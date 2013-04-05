@@ -12,9 +12,9 @@
 #' @param object a variable name (possibly quoted) who's label are to be updated
 #' @param value a value to be assigned to object's label
 #' @return The updated object
-#' @author Gavin Simpson, kohske, Tal Galili
+#' @author Gavin Simpson, Tal Galili
 #' @export
-#' @source The functions here are based on code by Gavin and kohske from: \url{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}
+#' @source The functions here are based on code by Gavin and kohske from (adopted to dendrogram by Tal Galili): \url{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}
 #' @seealso \code{\link{labels}}
 #' @examples
 #' x <- 1:3 

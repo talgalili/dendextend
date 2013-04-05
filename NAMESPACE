@@ -1,1 +1,7 @@
-exportPattern("^[[:alpha:]]+")
+export("labels<-")
+export("labels<-.default")
+export("labels<-.dendrogram")
+export("labels<-.hclust")
+export("labels<-.matrix")
+export(labels.hclust)
+export(labels.matrix)
