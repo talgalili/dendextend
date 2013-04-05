@@ -1,0 +1,9 @@
+Package: dendextend
+Type: Package
+Title: Extending dendrogram functionality
+Version: 0.1
+Date: 2013-04-05
+Author: Tal Galili
+Maintainer: Tal Galili <tal.galili@gmail.com>
+Description: More about what it does (maybe more than one line)
+License: GPL-2
