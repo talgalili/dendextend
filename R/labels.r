@@ -5,10 +5,47 @@
 
 
 # turning label insertion function into a method:
+
+#' @title "label" assignment operator
+#' @description "label" assignment operator for vectors, dendrogram, and hclust classes.
+#' @aliases "labels<-.default" "labels<-.dendrogram"
+#' @param object a variable name (possibly quoted) who's label are to be updated
+#' @param value a value to be assigned to object's label
+#' @return The updated object
+#' @author Gavin Simpson, kohske, Tal Galili
+#' @export
+#' @source The functions here are based on code by Gavin and kohske from: \url{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}
+#' @seealso \code{\link{labels}}
+#' @examples
+#' x <- 1:3 
+#' labels(x)
+#' labels(x) <- letters[1:3]
+#' labels(x) # [1] "a" "b" "c"
+#' x
+#' # a b c 
+#' # 1 2 3 
+#' 
+#' 
+#' # get("labels<-")
+#' 
+#' ################
+#' # Example for using the assignment with dendrogram and hclust objects:
+#' hc <- hclust(dist(USArrests[1:3,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' labels(hc) # "Arizona" "Alabama" "Alaska" 
+#' labels(hc)  <- letters[1:3]
+#' labels(hc)# "a" "b" "c"
+#' labels(dend) # "Arizona" "Alabama" "Alaska" 
+#' labels(dend) <- letters[1:3]
+#' labels(dend) # "a" "b" "c"
 "labels<-" <- function (object,value, ...) UseMethod("labels<-")
 
+# example("labels<-")
+# ?"labels<-"
 
 
+#' @export
 "labels<-.default" <- function (object, ..., value) {
    # object <- value		
    # since labels first goes to object names, then a change in objects labels (in a default setting), should result in changing it's "names"
@@ -70,6 +107,8 @@
 # }
 
 
+
+#' @export
 "labels<-.dendrogram" <- function (object,..., value) {
    # credit for the help on how to write this type of function goes to:
    # Gavin Simpson and also kohske, see here:
@@ -107,9 +146,10 @@
 
 
 
-
+#' @export
 labels.hclust <- function(object, ...)  as.character(object$labels)
 
+#' @export
 "labels<-.hclust" <- function (object,..., value) {
    # this function gets:
    #	object - a hclust object
@@ -118,3 +158,57 @@ labels.hclust <- function(object, ...)  as.character(object$labels)
    return(object)
 }
 
+
+
+
+
+
+
+#' @title "label" assignment operator for matrix class
+#' @aliases 'labels<-.matrix'
+#' @param object a variable name (possibly quoted) who's label are to be updated
+#' @param which "colnames" or "rownames", to which of the two should labels refer to.
+#' @param value a value to be assigned to object's label
+#' @return The matrix object with updated col/row names
+#' @author Gavin Simpson, Tal Galili
+#' @export
+#' @source Based on code by Gavin Simpson from: \url{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}
+#' @seealso \code{\link{labels}}
+#' @examples
+#' x <- matrix(1:9, 3,3)
+#' labels(x)
+#' x
+#' labels(x) <- letters[1:3]
+#' x
+#' labels(x, which = "rownames") <- LETTERS[24:26]
+#' x
+#' #  a b c
+#' #X 1 4 7
+#' #Y 2 5 8
+#' #Z 3 6 9
+labels.matrix <- function(obj, which = c("colnames","rownames"), ...) {
+   if(missing(which))
+      which <- "colnames"
+   which <- match.arg(which)
+   if(which == "colnames") {
+      out <- colnames(obj)
+   } else {
+      out <- rownames(obj)
+   }
+   out
+}
+# example("labels.matrix")
+
+
+#' @export
+'labels<-.matrix' <- function(obj, which = c("colnames","rownames"), ..., value) {
+   if(missing(which))
+      which <- "colnames"
+   which <- match.arg(which)
+   if(which == "colnames") {
+      colnames(obj) <- value
+   } else {
+      rownames(obj) <- value
+   }
+   obj
+}
