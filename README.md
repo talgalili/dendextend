@@ -28,22 +28,7 @@ install_github('dendextend', 'talgalili')
 
 ## Usage
 
-If you are using the Rgui, you will see a new menu added on your top right (just by "help"), giving you the option to update R, or install new software.
-
-For command line use you can **update R** by running:
-
-```r
-require(installr)
-updateR() # this will open dialog boxes to take you through the steps.
-```
-
-Or **install a new software** simply by running:
-
-```r
-require(installr)
-installr() #  user can easily select (via a GUI interface) a software to install.
-```
-
+TO BE UPDATED...
 
 ## Contact
 
@@ -64,3 +49,9 @@ You are welcome to:
 * rotate (with S3 methods for dendrogram, hclust, and phylo)
 * sort (with S3 methods for dendrogram and hclust)
 * flip (works for both dendrogram and hclust)
+* trim - trims leaves off a dendrogram/hclust/phylo trees. (based on the trim_leaf function)
+* as_hclust_fixed
+* get_branches_attr
+* unroot (dendrogram/hclust/phylo)
+* raise.dendrogram
+* flatten.dendrogram
