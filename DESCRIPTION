@@ -8,6 +8,8 @@ Maintainer: Tal Galili <tal.galili@gmail.com>
 Description: A set of functions and methods for extanding the capabilities of
     the dendrogram objects in R.
 License: GPL-2
+URL: https://github.com/talgalili/dendextend
+BugReports: https://github.com/talgalili/dendextend/issues
 Collate:
     'labels.r'
     'dendextend.r'

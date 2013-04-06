@@ -173,3 +173,16 @@ unclass_dend <- function(dend,...)
 # example(count_terminal_nodes)
 # example(labels_colors)
 
+
+
+
+#' @S3method head dendrogram
+#' @import utils
+head.dendrogram <- function(x, n = 3L, ...) {
+   str(x, max.leve = n,...)
+   cat( "etc...","\n")
+}
+# hc <- hclust(dist(USArrests), "ave")
+# dend <- as.dendrogram(hc)
+# str(dend)
+# head(dend)
