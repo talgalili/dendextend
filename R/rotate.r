@@ -41,6 +41,7 @@
 #' The hclust method of "\code{rotate}" works by first changing the object into dendrogram, performing the rotation, and then changing it back to hclust.  Special care is taken in preserving some of the properties of the hclust object.
 #' 
 #' The {ape} package has its own \code{\link[ape]{rotate}}({ape}) function (Which is sadly not S3, so cannot be easily connected with the current implementation).  Still, there is an S3 plug that makes sure people loading first ape and then dendextend will still be able to use \code{rotate} without a problem.
+#' Notice that if you will first load {ape} and only then {dendextend}, using "rotate" will fail with the error: "Error in rotate(dend, ____) : object "phy" is not of class "phylo"" - this is because rotate in ape is not S3 and will fail to find the rotate.dendrogram function.  In such a case simply run \code{detach("package:ape")}
 #' @return A rotated tree object
 #' @seealso \code{\link{order.dendrogram}},  \code{\link{order}},  \code{\link{rev.dendrogram}}, \code{\link[ape]{rotate}} ({ape})
 #' @examples

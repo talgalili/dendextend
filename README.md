@@ -34,8 +34,8 @@ TO BE UPDATED...
 
 You are welcome to:
 * submit suggestions and bug-reports at: <https://github.com/talgalili/dendextend/issues>
-* send pull requests are welcome on: <https://github.com/talgalili/dendextend/>
-* compose friendly e-mail to: <tal.galili@gmail.com>
+* send a pull request on: <https://github.com/talgalili/dendextend/>
+* compose a friendly e-mail to: <tal.galili@gmail.com>
 
 
 ## Available functions

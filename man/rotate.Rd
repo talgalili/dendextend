@@ -75,6 +75,12 @@
   implementation).  Still, there is an S3 plug that makes
   sure people loading first ape and then dendextend will
   still be able to use \code{rotate} without a problem.
+  Notice that if you will first load {ape} and only then
+  {dendextend}, using "rotate" will fail with the error:
+  "Error in rotate(dend, ____) : object "phy" is not of
+  class "phylo"" - this is because rotate in ape is not S3
+  and will fail to find the rotate.dendrogram function.  In
+  such a case simply run \code{detach("package:ape")}
 }
 \examples{
 hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
