@@ -6,12 +6,17 @@ NEW FUNCTIONS ADDED:
    * labels_colors (retrieving and assignment)
    * unclass_dend
    * head.dendrogram (S3 method for dendrogram)
+   * nleaves (with S3 methods for dendrogram and hclust)
+   * rotate (with S3 methods for dendrogram and hclust)
+   * sort (with S3 methods for dendrogram and hclust)
+   * flip (works for both dendrogram and hclust)
 
 UPDATED FUNCTIONS:
    * "labels<-.dendrogram" - made sure to allow shorter length of labels than the size of the tree (now uses recycling).  This version is now sure to deal correctly with labeling trees with duplicate labels.
 
 OTHER NOTES:
-   * using "." only for S3 methods.  Other functions will use "_"
+   * From here on I will be using "." only for S3 method functions.  Other functions will use "_"
+   * Added more .r files, and changed the locations of some functions.
 
 dendextend 0.1 (2013-04-05) - FIRST version!
 --------------------------------------------

@@ -26,4 +26,7 @@ str(dend) # this is a great way to show a dendrogram, but it doesn't help us und
 unclass_dend(dend) # this only returns a list with two dendrogram objects inside it.
 str(unclass_dend(dend)) # NOW we can more easily understand how the dendrogram object is structured...
 }
+\seealso{
+  \link{nleaves}
+}
 

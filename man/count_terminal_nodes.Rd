@@ -1,6 +1,6 @@
 \name{count_terminal_nodes}
 \alias{count_terminal_nodes}
-\title{Counts the actual number of terminal nodes}
+\title{Counts the number of terminal nodes (merging 0 nodes!)}
 \usage{
   count_terminal_nodes(dend_node, ...)
 }
@@ -16,11 +16,13 @@
 }
 \description{
   This function counts the number of "practical" terminal
-  nodes. If the tree is standard, that would simply be the
-  number of leaves (only the leaves will have height 0).
-  However, in cases where the tree has several nodes
-  (before the leaves) with 0 height, the
-  count_terminal_nodes counts such nodes as terminal nodes
+  nodes (nodes which are not leaves, but has 0 height to
+  them are considered "terminal" nodes). If the tree is
+  standard, that would simply be the number of leaves (only
+  the leaves will have height 0). However, in cases where
+  the tree has several nodes (before the leaves) with 0
+  height, the count_terminal_nodes counts such nodes as
+  terminal nodes
 
   The function is recursive in that it either returns 1 if
   it reached a terminal node (either a leaf or a 0 height

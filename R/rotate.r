@@ -1,0 +1,113 @@
+
+
+
+#' @title Rotate tree objects based on label's order
+#' @export
+#' @description Rotates, flip and sort the branches of a tree object (dendrogram, hclust) based on a vector of labels order
+#' @aliases 
+#' rotate.default
+#' rotate.dendrogram
+#' rotate.hclust
+#' sort.hclust
+#' sort.dendrogram
+#' flip
+#' @usage
+#' rotate(x, order, ...)
+#' 
+#' \method{rotate}{dendrogram}(x, order, ...)
+#' 
+#' \method{rotate}{hclust}(x, order, ...)
+#' 
+#' flip(x,...)
+#' 
+#' \method{sort}{dendrogram}(x, decreasing=FALSE, ...)
+#' 
+#' \method{sort}{hclust}(x, decreasing=FALSE, ...)
+#' 
+#' @param x a tree object (either a \code{dendrogram} or \code{hclust})
+#' @param order a numeric vector with the order of the value to be assigned to object's label. The numbers say which of the items on the tree-plot should be "first" (e.g: most left), second etc. (releacnt only to \code{rotate})
+#' @param decreasing logical. Should the sort be increasing or decreasing? Not available for partial sorting. (relevant only to \code{sort})
+#' @param ... parameters passed (for example, in case of sort)
+#' @details 
+#' The motivation for this function came from the function \code{\link{order.dendrogram}} not being intuitive enough to use as is.  What \code{rotate} aims to do is give a simple tree rotation function which is based on the order the user would like to see the tree rotated by (just as \code{\link{order}} works for numeric vectors).
+#' 
+#' \code{flip} returns the tree object after rotating it so to reverse the order of the labels.
+#' 
+#' The \code{sort} methods sort the labels of the tree (using \code{order}) and then attempts to rotate the tree to fit that order.
+#' 
+#' The hclust method of "\code{rotate}" works by first changing the object into dendrogram, performing the rotation, and then changing it back to hclust.  Special care is taken in preserving some of the properties of the hclust object.
+#' @return A rotated tree object
+#' @seealso \code{\link{order.dendrogram}},  \code{\link{order}}
+#' @examples
+#' hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' # For dendrogram objects:
+#' labels_colors(dend) <- rainbow(nleaves(dend)) # let's color the labels to make the followup of the rotation easier
+#' plot(dend, main = "Original tree") 
+#' plot(rotate(dend, c(2:5,1)), main = "Rotates the left most leaf \n into the right side of the tree")
+#' plot(sort(dend), main = "Sorts the labels by alphabetical order \n and rotates the tree to give the best fit possible")
+#' plot(dend, main = "Original tree again \n(before a flip)") 
+#' plot(flip(dend), main = "Flips the order of the tree labels")
+#' 
+#' # For hclust objects:
+#' plot(hc) 
+#' plot(rotate(hc, c(2:5,1)), main = "Rotates the left most leaf \n into the right side of the tree")
+#' 
+rotate <- function(x, order,...) UseMethod("rotate")
+
+#' @export
+rotate.default <- function(x,...) stop("object x must be a dendrogram or hclust object")
+
+#' @S3method rotate dendrogram
+rotate.dendrogram <- function(x, order,...)
+{
+   if(missing(order)) { # if order is missing - return the same tree.
+      warning("'order' is missing, returning the tree as it was.")
+      return(x)  
+   }
+
+   number_of_leaves <- nleaves(x)   
+   weights <- seq_len(number_of_leaves)
+   weights_for_order <- numeric(number_of_leaves)
+   weights_for_order[order.dendrogram(x)[order]] <- weights
+   reorder(x, weights_for_order, mean,...)
+}
+
+
+#' @S3method rotate hclust
+rotate.hclust <- function(x, order,...)
+{   
+   x_dend <- as.dendrogram(x)
+   x_dend_rotated <- rotate(x_dend, order,...)
+   x_rotated <- as.hclust(x_dend_rotated)
+   
+   # these elements are removed after using as.hclust - so they have to be manually re-introduced into the object.
+   x_rotated$call <- x$call
+   x_rotated$method <- x$method
+   x_rotated$dist.method <- x$dist.method
+   
+   return(x_rotated)
+}
+
+
+
+#' @S3method sort dendrogram
+sort.dendrogram <- function(x, decreasing = FALSE,...) rotate(x, order(labels(x),decreasing =decreasing ,...))
+
+#' @S3method sort hclust
+sort.hclust <- function(x, decreasing = FALSE,...) rotate(x, order(labels(x),decreasing =decreasing ,...))
+
+
+#' @export
+flip <- function(x, ...) {
+   rev_order <- rev(seq_len(nleaves(x)))
+   rotate(x, rev_order)
+}
+
+
+# methods(rotate)
+# methods(sort)
+# help(flip)
+# example(rotate)
+

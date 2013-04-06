@@ -13,3 +13,5 @@ BugReports: https://github.com/talgalili/dendextend/issues
 Collate:
     'labels.r'
     'dendextend.r'
+    'nleaves.r'
+    'rotate.r'
