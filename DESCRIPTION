@@ -5,7 +5,7 @@ Version: 0.1
 Date: 2013-04-05
 Author: Tal Galili
 Maintainer: Tal Galili <tal.galili@gmail.com>
-Description: A set of functions for extanding the capabilities of the
+Description: A set of functions and methods for extanding the capabilities of the
     dendrogram objects in R.
 License: GPL-2
 Collate:
