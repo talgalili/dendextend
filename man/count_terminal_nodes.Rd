@@ -1,8 +1,8 @@
-\name{count.terminal.nodes}
-\alias{count.terminal.nodes}
+\name{count_terminal_nodes}
+\alias{count_terminal_nodes}
 \title{Counts the actual number of terminal nodes}
 \usage{
-  count.terminal.nodes(dend_node, ...)
+  count_terminal_nodes(dend_node, ...)
 }
 \arguments{
   \item{dend_node}{a dendrogram object for which to count
@@ -20,7 +20,7 @@
   number of leaves (only the leaves will have height 0).
   However, in cases where the tree has several nodes
   (before the leaves) with 0 height, the
-  count.terminal.nodes counts such nodes as terminal nodes
+  count_terminal_nodes counts such nodes as terminal nodes
 
   The function is recursive in that it either returns 1 if
   it reached a terminal node (either a leaf or a 0 height
@@ -34,7 +34,7 @@ dend <- as.dendrogram(hc)
 
 ###
 # Trivial case
-count.terminal.nodes(dend) # 3 terminal nodes
+count_terminal_nodes(dend) # 3 terminal nodes
 length(labels(dend)) # 3 - the same number
 plot(dend, main = "This is considered a tree \\n with THREE terminal nodes (leaves)") # while we have 3 leaves, in practice we have only 2 terminal nodes (this is a feature, not a bug.)
 
@@ -42,7 +42,7 @@ plot(dend, main = "This is considered a tree \\n with THREE terminal nodes (leav
 # NON-Trivial case
 str(dend)
 attr(dend[[2]], "height") <- 0
-count.terminal.nodes(dend) # 2 terminal nodes, why? see this plot:
+count_terminal_nodes(dend) # 2 terminal nodes, why? see this plot:
 plot(dend, main = "This is considered a tree \\n with TWO terminal nodes only") # while we have 3 leaves, in practice we have only 2 terminal nodes (this is a feature, not a bug.)
 }
 
