@@ -145,6 +145,8 @@ trim.phylo <- function(x,...) ape:::drop.tip(phy=x, ...)
 
 
 
-
+# methods(trim)
+# example(rotate)
+# example(trim)
 
 

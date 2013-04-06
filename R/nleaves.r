@@ -41,9 +41,6 @@ nleaves.hclust <- function(x,...) length(x$order)
 
 
 
-
-
-
 #' @title Counts the number of terminal nodes (merging 0 nodes!)
 #' @export
 #' @description This function counts the number of "practical" terminal nodes (nodes which are not leaves, but has 0 height to them are considered "terminal" nodes).

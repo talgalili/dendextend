@@ -82,10 +82,14 @@ dend <- as.dendrogram(hc)
 
 # For dendrogram objects:
 labels_colors(dend) <- rainbow(nleaves(dend)) # let's color the labels to make the followup of the rotation easier
+par(mfrow = c(1,2))
 plot(dend, main = "Original tree")
 plot(rotate(dend, c(2:5,1)), main = "Rotates the left most leaf \\n into the right side of the tree")
+par(mfrow = c(1,2))
+plot(dend, main = "Original tree")
 plot(sort(dend), main = "Sorts the labels by alphabetical order \\n and rotates the tree to give the best fit possible")
-plot(dend, main = "Original tree again \\n(before a flip)")
+par(mfrow = c(1,2))
+plot(dend, main = "Original tree")
 plot(flip(dend), main = "Flips the order of the tree labels")
 
 # For hclust objects:

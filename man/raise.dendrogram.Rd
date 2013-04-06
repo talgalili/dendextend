@@ -1,0 +1,29 @@
+\name{raise.dendrogram}
+\alias{raise.dendrogram}
+\title{Raise the height of a dendrogram tree}
+\usage{
+  raise.dendrogram(dend, heiget_to_add, ...)
+}
+\arguments{
+  \item{dend}{dendrogram object}
+
+  \item{heiget_to_add}{how much height to add to all the
+  branches (not leaves) in the dendrogram}
+
+  \item{...}{passed on (not used)}
+}
+\value{
+  A raised dendrogram
+}
+\description{
+  Raise the height of a dendrogram tree
+}
+\examples{
+hc <- hclust(dist(USArrests[2:9,]), "com")
+dend <- as.dendrogram(hc)
+
+par(mfrow = c(1,2))
+plot(dend, main = "original tree")
+plot(raise.dendrogram(dend , 100), main = "Raised tree")
+}
+

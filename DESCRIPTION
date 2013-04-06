@@ -18,3 +18,4 @@ Collate:
     'nleaves.r'
     'rotate.r'
     'trim.r'
+    'unroot.r'

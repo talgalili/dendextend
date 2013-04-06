@@ -1,0 +1,36 @@
+\name{flatten.dendrogram}
+\alias{flatten.dendrogram}
+\title{Flatten the branches of a dendrogram's root}
+\usage{
+  flatten.dendrogram(dend, FUN = max, new_height, ...)
+}
+\arguments{
+  \item{dend}{dendrogram object}
+
+  \item{FUN}{how to choose the new height of both branches
+  (defaults to taking the max between the two)}
+
+  \item{new_height}{overrides FUN, and sets the new height
+  of the two branches manually}
+
+  \item{...}{passed on (not used)}
+}
+\value{
+  A dendrogram with both of the root's branches of the same
+  height
+}
+\description{
+  The function makes sure the two branches of the root of a
+  dendrogram will have the same height.  The user can
+  choose how to decide which height to use.
+}
+\examples{
+hc <- hclust(dist(USArrests[2:9,]), "com")
+dend <- as.dendrogram(hc)
+attr(dend[[1]], "height") <- 150 # make the height un-equal
+
+par(mfrow = c(1,2))
+plot(dend, main = "original tree")
+plot(flatten.dendrogram(dend), main = "Raised tree")
+}
+
