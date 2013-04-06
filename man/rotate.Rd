@@ -4,6 +4,7 @@
 \alias{rotate.default}
 \alias{rotate.dendrogram}
 \alias{rotate.hclust}
+\alias{rotate.phylo}
 \alias{sort.dendrogram}
 \alias{sort.hclust}
 \title{Rotate tree objects based on label's order}
@@ -13,6 +14,8 @@
   \method{rotate}{dendrogram}(x, order, ...)
 
   \method{rotate}{hclust}(x, order, ...)
+
+  \method{rotate}{phylo}(x, ...)
 
   flip(x,...)
 
@@ -68,8 +71,10 @@
 
   The {ape} package has its own
   \code{\link[ape]{rotate}}({ape}) function (Which is sadly
-  not S3, so cannot be connected with the current
-  implementation)
+  not S3, so cannot be easily connected with the current
+  implementation).  Still, there is an S3 plug that makes
+  sure people loading first ape and then dendextend will
+  still be able to use \code{rotate} without a problem.
 }
 \examples{
 hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")

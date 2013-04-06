@@ -29,7 +29,7 @@
 nleaves <- function(x, ...) UseMethod("nleaves")
 
 #' @export
-nleaves.default <- function(x,...) stop("object x must be a dendrogram or hclust object")
+nleaves.default <- function(x,...) stop("object x must be a dendrogram/hclust/phylo object")
 
 #' @S3method nleaves dendrogram
 nleaves.dendrogram <- function(x,...) length(order.dendrogram(x))
@@ -146,3 +146,10 @@ head.dendrogram <- function(x, n = 3L, ...) {
 # and: http://stackoverflow.com/questions/8637993/better-explanation-of-when-to-use-imports-depends
 
 # methods(nleaves)
+
+
+
+
+# This is what should have been done for dendrograms
+#order.default <- order
+#order <- function(...) UseMethod("order")
