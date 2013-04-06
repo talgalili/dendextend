@@ -134,6 +134,42 @@ count_terminal_nodes <- function(dend_node,...) {
    return(terminal_nodes_counter)
 }
 
+
+
+
+#' @title unclass an entire dendrogram tree
+#' @export
+#' @param dend a dendrogram object 
+#' @param ... not used
+#' @return The list which was the dendrogram (but without a class)
+#' @examples
+#' # define dendrogram object to play with:
+#' hc <- hclust(dist(USArrests[1:3,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' 
+#' unclass(dend) # this only returns a list with two dendrogram objects inside it.
+#' str(dend) # this is a great way to show a dendrogram, but it doesn't help us understand how the R object is built.
+#' unclass_dend(dend) # this only returns a list with two dendrogram objects inside it.
+#' str(unclass_dend(dend)) # NOW we can more easily understand how the dendrogram object is structured...
+unclass_dend <- function(dend,...)
+{
+   # I could have also made this into a method
+   # unclass_dendrogram
+   # But decided not to, so to allow unclass to work as usual in case someone wants to use it only on one branch.
+   if(!is.leaf(dend))
+   {
+      for(i in seq_len(length(dend)))
+      {
+         dend[[i]] <- unclass_dend(dend[[i]])
+      }
+   }
+   dend <- unclass(dend)
+   return(dend)
+}
+
+
+
 # example(count_terminal_nodes)
 # example(labels_colors)
 

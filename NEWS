@@ -4,6 +4,7 @@ dendextend 0.2 (2013-04-06)
 NEW FUNCTIONS ADDED:
    * count_terminal_nodes
    * labels_colors (retrieving and assignment)
+   * unclass_dend
 
 UPDATED FUNCTIONS:
    * "labels<-.dendrogram" - made sure to allow shorter length of labels than the size of the tree (now uses recycling).  This version is now sure to deal correctly with labeling trees with duplicate labels.

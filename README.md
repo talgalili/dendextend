@@ -56,5 +56,6 @@ You are welcome to:
 ## Available functions
 
 * labels assignment operators for vector, matrix, dendrogram, hclust.
-* count.terminal.nodes
-
+* count_terminal_nodes
+* unclass_dend
+* labels_colors (retrieving and assignment)
