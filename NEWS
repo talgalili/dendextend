@@ -16,6 +16,7 @@ NEW FUNCTIONS ADDED:
    * unroot (dendrogram/hclust/phylo)
    * raise.dendrogram
    * flatten.dendrogram
+   * order.dendrogram<-
 
 UPDATED FUNCTIONS:
    * "labels<-.dendrogram" - made sure to allow shorter length of labels than the size of the tree (now uses recycling).  This version is now sure to deal correctly with labeling trees with duplicate labels.

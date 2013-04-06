@@ -1,6 +1,7 @@
 export("labels_colors<-")
 export("labels<-")
 export("labels<-.default")
+export("order.dendrogram<-")
 export(as_hclust_fixed)
 export(count_terminal_nodes)
 export(flatten.dendrogram)

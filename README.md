@@ -55,3 +55,4 @@ You are welcome to:
 * unroot (dendrogram/hclust/phylo)
 * raise.dendrogram
 * flatten.dendrogram
+* order.dendrogram<-

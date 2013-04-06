@@ -178,6 +178,61 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
 }
 
 
+
+
+
+
+
+#' @title order.dendrogram<- assignment operator
+#' @description order.dendrogram<- assignment operator.  This is useful in cases where some object is turned into a dendrogram but its leaves values (the order) are all mixed up.
+#' @param object a variable name (possibly quoted) who's label are to be updated
+#' @param ... parameters passed (not currently in use)
+#' @param value a value to be assigned to object's leaves value (their "order")
+#' @usage
+#' order.dendrogram(object, ...) <- value
+#' @return dendrogram with updated order leaves values
+#' @export
+#' @seealso \code{\link{order.dendrogram}}, \code{\link{labels<-}} 
+#' @examples
+#' ################
+#' # Example for using the assignment with dendrogram and hclust objects:
+#' hc <- hclust(dist(USArrests[1:4,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' str(dend)
+#' order.dendrogram(dend) # 4 3 1 2
+#' order.dendrogram(dend) <- 1:4
+#' order.dendrogram(dend) # 1 2 3 4
+#' str(dend) # the structure is still fine.
+"order.dendrogram<-" <- function(object,..., value) {
+   new_labels <- as.numeric(value)
+   new_labels_length <- length(new_labels)
+   leaves_length <- length(order.dendrogram(object)) # labels(object) # it will be faster to use order.dendrogram than labels...   
+   if(new_labels_length < leaves_length) {
+      warning("The lengths of the new labels is shorter than the number of leaves in the dendrogram - labels are recycled.")
+      new_labels <- rep(new_labels, length.out = leaves_length)
+   }
+   
+   .change.order.LTR <- function(dend_node)
+   {
+      if(is.leaf(dend_node))
+      {   	
+         attr_backup <- attributes(dend_node)
+         i_leaf_number <<- i_leaf_number + 1 # this saves us from cases of duplicate enteries...
+         dend_node <- new_labels[i_leaf_number]
+         attributes(dend_node) <- attr_backup # fix attributes         
+      }
+      return(dend_node)
+   }
+   
+   i_leaf_number <- 0
+   new_dend_object <- dendrapply(object, .change.order.LTR)
+   
+   return(new_dend_object)
+}
+
+
+
 # methods("labels")
 # methods("labels<-")
 # example("labels.matrix")
