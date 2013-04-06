@@ -83,6 +83,10 @@ labels(hc)# "a" "b" "c"
 labels(dend) # "Arizona" "Alabama" "Alaska"
 labels(dend) <- letters[1:3]
 labels(dend) # "a" "b" "c"
+labels(dend) <- LETTERS[1:2] # will produce a warning
+labels(dend) # "A" "B" "A"
+labels(dend) <- LETTERS[4:6] # will replace the labels correctly (the fact the tree had duplicate labels will not cause a problem)
+labels(dend) # "D" "E" "F"
 }
 \author{
   Gavin Simpson, Tal Galili

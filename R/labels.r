@@ -74,6 +74,10 @@
 #' labels(dend) # "Arizona" "Alabama" "Alaska" 
 #' labels(dend) <- letters[1:3]
 #' labels(dend) # "a" "b" "c"
+#' labels(dend) <- LETTERS[1:2] # will produce a warning
+#' labels(dend) # "A" "B" "A"
+#' labels(dend) <- LETTERS[4:6] # will replace the labels correctly (the fact the tree had duplicate labels will not cause a problem)
+#' labels(dend) # "D" "E" "F"
 "labels<-" <- function(object,..., value) UseMethod("labels<-")
 
 # example("labels<-")
@@ -83,12 +87,6 @@
 # ' @title "label" assignment operator - default
 #' @export
 "labels<-.default" <- function(object,..., value) {
-   # object <- value		
-   # since labels first goes to object names, then a change in objects labels (in a default setting), should result in changing it's "names"
-   # x <- 1:3
-   # labels(x)
-   # names(x) <- letters[1:3]
-   # labels(x)
    names(object) <- value # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"
    object
 }
@@ -102,34 +100,29 @@
    # credit for the help on how to write this type of function goes to:
    # Gavin Simpson and also kohske, see here:
    # http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question
-   # this function gets:
-   #	object - a dendrogram object
-   # 	value - the values of the new labels to insert instead of the old labels
-   
+
+   # deals with wrong length of new labels VS tree size
    new_labels <- as.character(value)
-   old_labels <- labels(object)
-   if(length(old_labels) != length(new_labels)) stop("The lengths of old_labels and new_labels differ - you'll need to fix this in order for the function to proporly change the dendrogram labels")
+   new_labels_length <- length(new_labels)
+   leaves_length <- length(order.dendrogram(object)) # labels(object) # it will be faster to use order.dendrogram than labels...   
+   if(new_labels_length < leaves_length) {
+      warning("The lengths of the new labels is shorter than the number of leaves in the dendrogram - labels are recycled.")
+      new_labels <- rep(new_labels, length.out = leaves_length)
+   }
    
-   labels_mat <- cbind(old_labels, new_labels)
-   .change.label.by.mat <- function(dend_node, new_labels_mat = labels_mat)
+   .change.label.LTR <- function(dend_node)
    {
       if(is.leaf(dend_node))
       {			
-         node_label <- as.character(attr(dend_node, "label"))
-         optional_labels <- as.character(new_labels_mat[,1])
-         i_leaf_number <<- i_leaf_number + 1
-         ss <- i_leaf_number # this saves us from cases of duplicate enteries...
-         # ss <- which(optional_labels %in% node_label)[1] # the "which" makes sure that if there are multiple labels of the same name, nothing "bad" will happen here
-         attr(dend_node, "label") <- new_labels_mat[,2][ss]
+         i_leaf_number <<- i_leaf_number + 1 # this saves us from cases of duplicate enteries...
+         attr(dend_node, "label") <- new_labels[i_leaf_number]
       }
       return(dend_node)
    }
-   # mtrace(".change.label.by.mat")
+   
    i_leaf_number <- 0
-   new_dend_object <- dendrapply(object, .change.label.by.mat)
-   # This function could also be written using a running index of "i", with using "i <<- i + 1" to move in each step
-   # But I felt this way of writing the code was more clearly read (although, for production, the i<<-i+1 might be a better alternative)
-   # update - this function should be rewritten with the i<<-i+1 method - so to enable cases of duplicate labels... 
+   new_dend_object <- dendrapply(object, .change.label.LTR)
+
    return(new_dend_object)
 }
 
@@ -143,9 +136,6 @@ labels.hclust <- function(object, ...)  as.character(object$labels)
 # ' @export
 #' @S3method labels<- hclust
 "labels<-.hclust" <- function(object,..., value) {
-   # this function gets:
-   #	object - a hclust object
-   # 	value - the values of the new labels to insert instead of the old labels	
    object$labels <- value  # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"
    return(object)
 }
@@ -190,3 +180,4 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
 
 # methods("labels")
 # methods("labels<-")
+# example("labels.matrix")
