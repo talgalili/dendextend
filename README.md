@@ -53,7 +53,8 @@ You are welcome to:
 * compose friendly e-mail to: <tal.galili@gmail.com>
 
 
-## Available functions are:
+## Available functions
 
-* labels assignment operators.
+* labels assignment operators for vector, matrix, dendrogram, hclust.
+* count.terminal.nodes
 

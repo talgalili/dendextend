@@ -1,5 +1,6 @@
 export("labels<-")
 export("labels<-.default")
+export(count.terminal.nodes)
 S3method("labels<-",dendrogram)
 S3method("labels<-",hclust)
 S3method("labels<-",matrix)

@@ -1,12 +1,12 @@
 Package: dendextend
 Type: Package
 Title: Extending dendrogram functionality
-Version: 0.1
-Date: 2013-04-05
+Version: 0.2
+Date: 2013-04-06
 Author: Tal Galili
 Maintainer: Tal Galili <tal.galili@gmail.com>
-Description: A set of functions and methods for extanding the capabilities of the
-    dendrogram objects in R.
+Description: A set of functions and methods for extanding the capabilities of
+    the dendrogram objects in R.
 License: GPL-2
 Collate:
     'labels.r'
