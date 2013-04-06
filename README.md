@@ -61,6 +61,6 @@ You are welcome to:
 * labels_colors (retrieving and assignment)
 * head.dendrogram (S3 method for dendrogram)
 * nleaves (with S3 methods for dendrogram and hclust)
-* rotate (with S3 methods for dendrogram and hclust)
+* rotate (with S3 methods for dendrogram, hclust, and phylo)
 * sort (with S3 methods for dendrogram and hclust)
 * flip (works for both dendrogram and hclust)

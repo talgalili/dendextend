@@ -8,6 +8,7 @@
 #' rotate.default
 #' rotate.dendrogram
 #' rotate.hclust
+#' rotate.phylo
 #' sort.hclust
 #' sort.dendrogram
 #' flip
@@ -17,6 +18,8 @@
 #' \method{rotate}{dendrogram}(x, order, ...)
 #' 
 #' \method{rotate}{hclust}(x, order, ...)
+#' 
+#' \method{rotate}{phylo}(x, ...)
 #' 
 #' flip(x,...)
 #' 
@@ -31,13 +34,15 @@
 #' @details 
 #' The motivation for this function came from the function \code{\link{order.dendrogram}} not being intuitive enough to use as is.  What \code{rotate} aims to do is give a simple tree rotation function which is based on the order the user would like to see the tree rotated by (just as \code{\link{order}} works for numeric vectors).
 #' 
-#' \code{flip} returns the tree object after rotating it so to reverse the order of the labels.
+#' \code{flip} returns the tree object after rotating it so to reverse the order of the labels.  Note that flip is just like \code{\link{rev.dendrogram}} (yet it also includes an hclust method)
 #' 
 #' The \code{sort} methods sort the labels of the tree (using \code{order}) and then attempts to rotate the tree to fit that order.
 #' 
 #' The hclust method of "\code{rotate}" works by first changing the object into dendrogram, performing the rotation, and then changing it back to hclust.  Special care is taken in preserving some of the properties of the hclust object.
+#' 
+#' The {ape} package has its own \code{\link[ape]{rotate}}({ape}) function (Which is sadly not S3, so cannot be easily connected with the current implementation).  Still, there is an S3 plug that makes sure people loading first ape and then dendextend will still be able to use \code{rotate} without a problem.
 #' @return A rotated tree object
-#' @seealso \code{\link{order.dendrogram}},  \code{\link{order}}
+#' @seealso \code{\link{order.dendrogram}},  \code{\link{order}},  \code{\link{rev.dendrogram}}, \code{\link[ape]{rotate}} ({ape})
 #' @examples
 #' hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
 #' dend <- as.dendrogram(hc)
@@ -90,6 +95,9 @@ rotate.hclust <- function(x, order,...)
    return(x_rotated)
 }
 
+
+#' @S3method rotate phylo
+rotate.phylo <- function(x, ...) ape:::rotate(phy=x, ...)
 
 
 #' @S3method sort dendrogram

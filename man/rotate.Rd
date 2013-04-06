@@ -52,7 +52,9 @@
   \code{\link{order}} works for numeric vectors).
 
   \code{flip} returns the tree object after rotating it so
-  to reverse the order of the labels.
+  to reverse the order of the labels.  Note that flip is
+  just like \code{\link{rev.dendrogram}} (yet it also
+  includes an hclust method)
 
   The \code{sort} methods sort the labels of the tree
   (using \code{order}) and then attempts to rotate the tree
@@ -63,6 +65,11 @@
   rotation, and then changing it back to hclust.  Special
   care is taken in preserving some of the properties of the
   hclust object.
+
+  The {ape} package has its own
+  \code{\link[ape]{rotate}}({ape}) function (Which is sadly
+  not S3, so cannot be connected with the current
+  implementation)
 }
 \examples{
 hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
@@ -81,6 +88,8 @@ plot(hc)
 plot(rotate(hc, c(2:5,1)), main = "Rotates the left most leaf \\n into the right side of the tree")
 }
 \seealso{
-  \code{\link{order.dendrogram}}, \code{\link{order}}
+  \code{\link{order.dendrogram}}, \code{\link{order}},
+  \code{\link{rev.dendrogram}}, \code{\link[ape]{rotate}}
+  ({ape})
 }
 
