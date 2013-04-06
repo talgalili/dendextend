@@ -4,7 +4,7 @@
 #' @param ... passed on
 #' @details 
 #' Used through \link{trim}
-#' @return A dendrogram with with a leaf trimmed
+#' @return A dendrogram with a leaf trimmed
 #' @examples
 #' hc <- hclust(dist(USArrests[1:5,]), "ave")
 #' dend <- as.dendrogram(hc)
@@ -132,17 +132,19 @@ trim.dendrogram <- function(x, leaves,...) {
 trim.hclust <- function(x, leaves,...) {
    x_dend <- as.dendrogram(x)
    x_dend_trimmed <- trim(x_dend, leaves,...)
-   x_trimmed <- as.hclust(x_dend_trimmed)
-   
-   # these elements are removed after using as.hclust - so they have to be manually re-introduced into the object.
-   x_trimmed$call <- x$call
-   x_trimmed$method <- x$method
-   x_trimmed$dist.method <- x$dist.method
+   x_trimmed <- as_hclust_fixed(x_dend_trimmed, x)  
    
    return(x_trimmed)
 }
 
 #' @S3method trim phylo
 trim.phylo <- function(x,...) ape:::drop.tip(phy=x, ...)
+
+
+
+
+
+
+
 
 

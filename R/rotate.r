@@ -85,12 +85,7 @@ rotate.hclust <- function(x, order,...)
 {   
    x_dend <- as.dendrogram(x)
    x_dend_rotated <- rotate(x_dend, order,...)
-   x_rotated <- as.hclust(x_dend_rotated)
-   
-   # these elements are removed after using as.hclust - so they have to be manually re-introduced into the object.
-   x_rotated$call <- x$call
-   x_rotated$method <- x$method
-   x_rotated$dist.method <- x$dist.method
+   x_rotated <- as_hclust_fixed(x_dend_rotated, x)
    
    return(x_rotated)
 }

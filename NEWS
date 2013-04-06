@@ -11,6 +11,8 @@ NEW FUNCTIONS ADDED:
    * sort (with S3 methods for dendrogram and hclust)
    * flip (works for both dendrogram and hclust)
    * trim - trims leaves off a dendrogram/hclust/phylo trees. (based on the trim_leaf function)
+   * unroot.dendrogram
+   * as_hclust_fixed
 
 UPDATED FUNCTIONS:
    * "labels<-.dendrogram" - made sure to allow shorter length of labels than the size of the tree (now uses recycling).  This version is now sure to deal correctly with labeling trees with duplicate labels.

@@ -13,7 +13,7 @@
   \item{...}{passed on}
 }
 \value{
-  A dendrogram with with a leaf trimmed
+  A dendrogram with a leaf trimmed
 }
 \description{
   Trimms one leaf from a dendrogram

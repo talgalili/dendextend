@@ -1,6 +1,7 @@
 export("labels_colors<-")
 export("labels<-")
 export("labels<-.default")
+export(as_hclust_fixed)
 export(count_terminal_nodes)
 export(flip)
 export(labels_colors)
