@@ -1,4 +1,4 @@
-dendextend 0.2 (2013-04-06) 
+dendextend 0.2 (2013-04-10) 
 ---------------------------
 
 NEW FUNCTIONS ADDED:
@@ -17,6 +17,7 @@ NEW FUNCTIONS ADDED:
    * raise.dendrogram
    * flatten.dendrogram
    * order.dendrogram<-
+   * intersect_trees
 
 UPDATED FUNCTIONS:
    * "labels<-.dendrogram" - made sure to allow shorter length of labels than the size of the tree (now uses recycling).  This version is now sure to deal correctly with labeling trees with duplicate labels.

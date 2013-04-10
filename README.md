@@ -56,3 +56,4 @@ You are welcome to:
 * raise.dendrogram
 * flatten.dendrogram
 * order.dendrogram<-
+* intersect_trees
