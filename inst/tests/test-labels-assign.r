@@ -1,4 +1,4 @@
-context("setting labels")
+context("labels assignment")
 
 test_that("labels assginment works for vectors",{
    x <- 1:3   
