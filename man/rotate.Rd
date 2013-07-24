@@ -49,15 +49,16 @@
 \details{
   The motivation for this function came from the function
   \code{\link{order.dendrogram}} not being intuitive enough
-  to use as is.  What \code{rotate} aims to do is give a
+  to use as is. What \code{rotate} aims to do is give a
   simple tree rotation function which is based on the order
   the user would like to see the tree rotated by (just as
   \code{\link{order}} works for numeric vectors).
 
   \code{flip} returns the tree object after rotating it so
-  to reverse the order of the labels.  Note that flip is
+  to reverse the order of the labels. Note that flip is
   just like \code{\link{rev.dendrogram}} (yet it also
-  includes an hclust method)
+  includes an hclust method, since it relies on
+  \link{rotate}, which has an S3 method for hclust objects)
 
   The \code{sort} methods sort the labels of the tree
   (using \code{order}) and then attempts to rotate the tree
@@ -65,7 +66,7 @@
 
   The hclust method of "\code{rotate}" works by first
   changing the object into dendrogram, performing the
-  rotation, and then changing it back to hclust.  Special
+  rotation, and then changing it back to hclust. Special
   care is taken in preserving some of the properties of the
   hclust object.
 
@@ -80,27 +81,33 @@
   "Error in rotate(dend, ____) : object "phy" is not of
   class "phylo"" - this is because rotate in ape is not S3
   and will fail to find the rotate.dendrogram function.  In
-  such a case simply run \code{detach("package:ape")}
+  such a case simply run \code{unloadNamespace("ape")}. Or,
+  you can run: \code{unloadNamespace("dendextend");
+  attachNamespace("dendextend")}
 }
 \examples{
 hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
 dend <- as.dendrogram(hc)
 
 # For dendrogram objects:
-labels_colors(dend) <- rainbow(nleaves(dend)) # let's color the labels to make the followup of the rotation easier
+labels_colors(dend) <- rainbow(nleaves(dend))
+# let's color the labels to make the followup of the rotation easier
 par(mfrow = c(1,2))
 plot(dend, main = "Original tree")
-plot(rotate(dend, c(2:5,1)), main = "Rotates the left most leaf \\n into the right side of the tree")
+plot(rotate(dend, c(2:5,1)), main =
+"Rotates the left most leaf \\n into the right side of the tree")
 par(mfrow = c(1,2))
 plot(dend, main = "Original tree")
-plot(sort(dend), main = "Sorts the labels by alphabetical order \\n and rotates the tree to give the best fit possible")
+plot(sort(dend), main = "Sorts the labels by alphabetical order \\n
+and rotates the tree to give the best fit possible")
 par(mfrow = c(1,2))
 plot(dend, main = "Original tree")
 plot(flip(dend), main = "Flips the order of the tree labels")
 
 # For hclust objects:
 plot(hc)
-plot(rotate(hc, c(2:5,1)), main = "Rotates the left most leaf \\n into the right side of the tree")
+plot(rotate(hc, c(2:5,1)), main = "Rotates the left most leaf \\n
+into the right side of the tree")
 }
 \seealso{
   \code{\link{order.dendrogram}}, \code{\link{order}},

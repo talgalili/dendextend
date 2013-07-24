@@ -37,6 +37,15 @@
   \item{...}{parameters passed (not currently in use)}
 
   \item{value}{a value to be assigned to object's label}
+
+  \item{order}{default is FALSE. Only relevant for
+  extracting labels from an \link{hclust} object (with
+  labels.hclust). Setting order=TRUE will return labels in
+  their order in the dendrogram, instead of the riginal
+  labels order retained from object$labels - which ususally
+  corresponding to the row or column names of the
+  \link{dist} object provided to the \link{hclust}
+  function.}
 }
 \value{
   The updated object
@@ -85,11 +94,13 @@ labels(dend) <- letters[1:3]
 labels(dend) # "a" "b" "c"
 labels(dend) <- LETTERS[1:2] # will produce a warning
 labels(dend) # "A" "B" "A"
-labels(dend) <- LETTERS[4:6] # will replace the labels correctly (the fact the tree had duplicate labels will not cause a problem)
+labels(dend) <- LETTERS[4:6] # will replace the labels correctly
+# (the fact the tree had duplicate labels will not cause a problem)
 labels(dend) # "D" "E" "F"
 }
 \author{
-  Gavin Simpson, Tal Galili
+  Gavin Simpson, Tal Galili (with some ideas from Gregory
+  Jefferis's dendroextras package)
 }
 \seealso{
   \code{\link{labels}}, \code{\link{labels.matrix}}

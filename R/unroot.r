@@ -10,6 +10,7 @@
 #' dend <- as.dendrogram(hc)
 #' 
 #' get_branches_attr(dend, "height") # 0.00000 71.96247
+#' # plot(dend)
 #' str(dend, 2)
 get_branches_attr <- function(dend, the_attr,...) {
    if(class(dend) != "dendrogram")

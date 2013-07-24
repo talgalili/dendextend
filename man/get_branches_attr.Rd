@@ -23,6 +23,7 @@ hc <- hclust(dist(USArrests[2:9,]), "com")
 dend <- as.dendrogram(hc)
 
 get_branches_attr(dend, "height") # 0.00000 71.96247
+# plot(dend)
 str(dend, 2)
 }
 \seealso{
