@@ -22,7 +22,7 @@
 
 #' @title "label" assignment operator
 #' @description "label" assignment operator for vectors, dendrogram, and hclust classes.
-#' @rdname labels-set
+#' @rdname labels-assign
 #' @aliases 
 #' labels<-.default 
 #' labels<-.dendrogram 
@@ -39,7 +39,7 @@
 #' 
 #' \method{labels}{dendrogram}(object, ...) <- value
 #' 
-#' \method{labels}{hclust}(object, ...)
+#' \method{labels}{hclust}(object, order = FALSE,...)
 #' 
 #' \method{labels}{hclust}(object, ...) <- value
 #' @param object a variable name (possibly quoted) who's label are to be updated
@@ -153,7 +153,7 @@
 # ' @title Find Labels from hclust Object
 # ' @export
 #' @S3method labels hclust
-labels.hclust <- function(object, ..., order = FALSE)  {
+labels.hclust <- function(object, order = FALSE, ...)  {
    if(order) {
       labels_obj <- as.character(object$labels[object$order])      
    } else {
@@ -215,6 +215,7 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
 
 
 #' @title order.dendrogram<- assignment operator
+#' @rdname order.dendrogram-assign
 #' @description order.dendrogram<- assignment operator.  This is useful in cases where some object is turned into a dendrogram but its leaves values (the order) are all mixed up.
 #' @param object a variable name (possibly quoted) who's label are to be updated
 #' @param ... parameters passed (not currently in use)

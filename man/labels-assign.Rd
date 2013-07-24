@@ -23,7 +23,7 @@
 
   \method{labels}{dendrogram}(object, ...) <- value
 
-  \method{labels}{hclust}(object, ...)
+  \method{labels}{hclust}(object, order = FALSE,...)
 
   \method{labels}{hclust}(object, ...) <- value
 }
