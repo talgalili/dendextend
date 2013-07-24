@@ -2,7 +2,7 @@ context("labels assignment")
 
 test_that("labels assginment works for vectors",{
    x <- 1:3   
-   expect_that(labels(x), equals(as.character(1:3)))
+   expect_that(labels(x), equals(as.character(1:3))) # notice this is 1:3 as character
 
    labels(x) <- letters[1:3]
    expect_that(labels(x), equals(letters[1:3]))

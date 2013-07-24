@@ -271,13 +271,107 @@ install_github("dendextend", "talgalili")
 
 
 
-Labels assignment
-------------------
+Labels extraction and assignment 
+--------------------------------
 
-EXPLAIN labels.r...
+### labels in base R
+
+In base R, the *labels* function is intended to find/extract a suitable set of labels from an object for use in printing or plotting, for example. By default, it uses the *names* and *dimnames* functions.
+
+What base R *labels* function is mising is assignment. In the next few examples we will go through different examples of what the {**_dendextend_**} package offers for various objects.
+
+These assignment functions were originally written by Gavin Simpson (in a post on [stackoverflow](http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question))
+
+
+### labels for vectors and matrixes
+
+In base R, for vectors, labels gives the *names* of the object. And if these are missing, then *labels* will give the vector itself as a character vector:
+
+
+```r
+x <- 1:3
+names(x)  # this vector has no names
+```
+
+```
+## NULL
+```
+
+```r
+labels(x)  # this vector has no labels
+```
+
+```
+## [1] "1" "2" "3"
+```
+
+
+Assignment to names is available in base R and works as follows:
+
+
+```r
+x <- 1:3
+names(x) <- letters[1:3]  # assignment for names is in base R
+# both names and labels will give the same result:
+names(x)
+```
+
+```
+## [1] "a" "b" "c"
+```
+
+```r
+labels(x)
+```
+
+```
+## [1] "a" "b" "c"
+```
 
 
 
+The new labels assignment function will allow a user to change the labels of the vector just as if it was "names":
+
+
+```r
+x <- 1:3
+labels(x) <- letters[1:3]
+```
+
+```
+## Error: could not find function "labels<-"
+```
+
+```r
+names(x)
+```
+
+```
+## NULL
+```
+
+```r
+labels(x)
+```
+
+```
+## [1] "1" "2" "3"
+```
+
+
+Let's see how labels assignment will work for 
+
+
+
+   
+   labels(x) <- letters[1:3]
+
+
+
+### labels for dendrogram objects
+
+
+### labels for hclust objects
 
 
 

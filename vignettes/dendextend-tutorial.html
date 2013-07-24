@@ -403,9 +403,78 @@ require(&quot;devtools&quot;)
 install_github(&quot;dendextend&quot;, &quot;talgalili&quot;)
 </code></pre>
 
-<h2>Labels assignment</h2>
+<h2>Labels extraction and assignment </h2>
 
-<p>EXPLAIN labels.r&hellip;</p>
+<h3>labels in base R</h3>
+
+<p>In base R, the <em>labels</em> function is intended to find/extract a suitable set of labels from an object for use in printing or plotting, for example. By default, it uses the <em>names</em> and <em>dimnames</em> functions.</p>
+
+<p>What base R <em>labels</em> function is mising is assignment. In the next few examples we will go through different examples of what the {<strong><em>dendextend</em></strong>} package offers for various objects.</p>
+
+<p>These assignment functions were originally written by Gavin Simpson (in a post on <a href="http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question">stackoverflow</a>)</p>
+
+<h3>labels for vectors and matrixes</h3>
+
+<p>In base R, for vectors, labels gives the <em>names</em> of the object. And if these are missing, then <em>labels</em> will give the vector itself as a character vector:</p>
+
+<pre><code class="r">x &lt;- 1:3
+names(x)  # this vector has no names
+</code></pre>
+
+<pre><code>## NULL
+</code></pre>
+
+<pre><code class="r">labels(x)  # this vector has no labels
+</code></pre>
+
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;
+</code></pre>
+
+<p>Assignment to names is available in base R and works as follows:</p>
+
+<pre><code class="r">x &lt;- 1:3
+names(x) &lt;- letters[1:3]  # assignment for names is in base R
+# both names and labels will give the same result:
+names(x)
+</code></pre>
+
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+</code></pre>
+
+<pre><code class="r">labels(x)
+</code></pre>
+
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+</code></pre>
+
+<p>The new labels assignment function will allow a user to change the labels of the vector just as if it was &ldquo;names&rdquo;:</p>
+
+<pre><code class="r">x &lt;- 1:3
+labels(x) &lt;- letters[1:3]
+</code></pre>
+
+<pre><code>## Error: could not find function &quot;labels&lt;-&quot;
+</code></pre>
+
+<pre><code class="r">names(x)
+</code></pre>
+
+<pre><code>## NULL
+</code></pre>
+
+<pre><code class="r">labels(x)
+</code></pre>
+
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;
+</code></pre>
+
+<p>Let&#39;s see how labels assignment will work for </p>
+
+<p>labels(x) &lt;- letters[1:3]</p>
+
+<h3>labels for dendrogram objects</h3>
+
+<h3>labels for hclust objects</h3>
 
 </body>
 
