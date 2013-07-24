@@ -1,3 +1,30 @@
+dendextend 0.3 (2013-07-24) 
+---------------------------
+
+NEW FUNCTIONS ADDED:
+   * 
+
+NEW VIGNETTES SECTIONS ADDED:
+   * Vignettes created
+   * Basic introduction to dendrogram objects
+   * Labels extraction and assignment
+
+NEW TESTS ADDED:
+   * labels extraction and assignment (especially important for comparing hclust and dendrogram!)
+
+
+UPDATED FUNCTIONS:
+   * "labels.hclust" - added the "order" parameter. (based on some ideas from Gregory Jefferis's dendroextras package)
+   * "labels.hclust" and "labels.hclust<-" - now both use order=TRUE as default. this makes them consistent with labels.dendrogram. Proper tests have been implemented.
+
+OTHER NOTES:
+   * Extending the documentation for: rotate, labels.hclust,
+   * Added a welcome massage to when loading the package (zzz.r file added)
+   * Added a first template for browseVignettes(package ='dendextend')
+   * Added a tests folder - making the foundation for using testthat.
+      * Added tests for labels assignment
+
+
 dendextend 0.2 (2013-04-10) 
 ---------------------------
 
@@ -42,3 +69,7 @@ TODO for future releases:
 -------------------------
    * add functions...
    * Fix the demo / or work on a nice vignette
+   * add a print/warn parameter to intersect_trees
+   * add rect.hclust.nice http://stackoverflow.com/questions/4720307/change-dendrogram-leaves 
+   * Give this a thought: http://stackoverflow.com/questions/10088117/exporting-dendrogram-as-table-in-r?rq=1
+   * possibly use {dendroextras} to add colors to the tanglegrams
