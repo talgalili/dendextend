@@ -173,10 +173,6 @@ hljs.initHighlightingOnLoad();
 </script>
 
 
-<!-- MathJax scripts -->
-<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
 
 
 </head>
@@ -189,108 +185,227 @@ hljs.initHighlightingOnLoad();
 
 <h1>Doing more with dendrogram objects</h1>
 
-<h1>A tutorial on using the <strong>dendextend</strong> package</h1>
+<h1>A tutorial on using the {<strong><em>dendextend</em></strong>} package</h1>
+
+<h1></h1>
 
 <h2>Introduction</h2>
 
-<p>The &ldquo;dendrogram&rdquo; class provides general functions for handling tree-like structures in R. It is intended as a replacement for similar functions in hierarchical clustering and classification/regression trees, such that all of these can use the same engine for plotting or cutting trees.</p>
+<h3>The &ldquo;dendrogram&rdquo; object</h3>
 
-<p>However, many basic features are still missing from the dendrogram class.</p>
+<p>The <em>&ldquo;dendrogram&rdquo;</em> class provides general functions for handling tree-like structures in R. It is intended as a replacement for similar functions in hierarchical clustering and classification/regression trees, such that all of these can use the same engine for plotting or cutting trees.</p>
 
-<h3>Motivation</h3>
+<p>A dendrogram object represents a tree as a list object, with various attributes.</p>
 
-<p>The <strong>dendextend</strong> package aims at filling some gaps in base R, by extending the available functions for dendrogram manipulation, statistical analysis, and visualization.</p>
+<p>For example, let&#39;s create a dendrogram object based on an heirarchical clustering of 4 states in the U.S.:</p>
 
-<p>This vignettes Provides a step-by-step description of the functionality provided by the <strong>dendextend</strong> package.</p>
-
-<h3>Installation</h3>
-
-<p>To install the stable version from CRAN use:</p>
-
-<pre><code class="r"># install.packages(&#39;dendextend&#39;) # not yet available from CRAN
+<pre><code class="r"># our data:
+data(USArrests)
+US_data &lt;- USArrests[c(2, 5, 32, 35), ]
+print(US_data)
 </code></pre>
 
-<p>To install the GitHub version use:</p>
-
-<pre><code class="r">if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;); require(&#39;devtools&#39;)
-install_github(&#39;dendextend&#39;, &#39;talgalili&#39;)
+<pre><code>##            Murder Assault UrbanPop Rape
+## Alaska       10.0     263       48 44.5
+## California    9.0     276       91 40.6
+## New York     11.1     254       86 26.1
+## Ohio          7.3     120       75 21.4
 </code></pre>
 
-<p>This is an example of Markdown vignettes in R. Before R 3.0.0, only Sweave/PDF vignettes were supported in R. Markdown is gaining popularity over the years due to its simplicity, and R 3.0.0 starts to support package vignettes written in <a href="http://www.rstudio.com/ide/docs/authoring/using_markdown">R Markdown</a>.</p>
-
-<h2>Package vignettes</h2>
-
-<p>To enable Markdown vignettes in an R package, you need to</p>
-
-<ul>
-<li>add <code>*.Rmd</code> files under the <code>vignettes</code> directory</li>
-<li>add <code>VignetteBuilder: knitr</code> to the <code>DESCRIPTION</code> file</li>
-<li>specify the vignette engine <code>\VignetteEngine{knitr::knitr}</code> in the <code>Rmd</code> files (inside HTML comments)</li>
-</ul>
-
-<h2>View vignettes</h2>
-
-<p>And R will load the <strong>knitr</strong> package to build these vignettes to HTML files, and you can see them when you open the HTML help:</p>
-
-<pre><code class="r">help(package = &quot;YourPackage&quot;, help_type = &quot;html&quot;)
+<pre><code class="r">
+hc &lt;- hclust(dist(US_data), &quot;ave&quot;)  # create an heirarchical clustering object
+dend &lt;- as.dendrogram(hc)
 </code></pre>
 
-<h2>Examples</h2>
+<p>Dendrogram has several useful methods bundled with R:</p>
 
-<p>Below are some code chunks as examples.</p>
-
-<pre><code class="r">cat(&quot;_hello_ **markdown**!&quot;, &quot;\n&quot;)
+<pre><code class="r">methods(class = &quot;dendrogram&quot;)
 </code></pre>
 
-<p><em>hello</em> <strong>markdown</strong>! </p>
-
-<p>Normally you do not need any chunk options.</p>
-
-<pre><code class="r">1 + 1
+<pre><code>##  [1] [[.dendrogram*         as.hclust.dendrogram*  cophenetic.dendrogram*
+##  [4] cut.dendrogram*        labels.dendrogram*     merge.dendrogram*     
+##  [7] plot.dendrogram*       print.dendrogram*      reorder.dendrogram*   
+## [10] rev.dendrogram*        str.dendrogram*       
+## 
+##    Non-visible functions are asterisked
 </code></pre>
 
-<pre><code>## [1] 2
+<p>Here are some examples for their use:</p>
+
+<pre><code class="r">print(dend)
 </code></pre>
 
-<pre><code class="r">10:1
+<pre><code>## &#39;dendrogram&#39; with 2 branches and 4 members total, at height 146.7
 </code></pre>
 
-<pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1
+<pre><code class="r">labels(dend)
 </code></pre>
 
-<pre><code class="r">rnorm(5)^2
+<pre><code>## [1] &quot;Ohio&quot;       &quot;Alaska&quot;     &quot;California&quot; &quot;New York&quot;
 </code></pre>
 
-<pre><code>## [1] 3.6492 0.9615 1.9829 0.4458 1.0560
+<pre><code class="r">str(dend)
 </code></pre>
 
-<pre><code class="r">strsplit(&quot;hello, markdown vignettes&quot;, &quot;&quot;)
+<pre><code>## --[dendrogram w/ 2 branches and 4 members at h = 147]
+##   |--leaf &quot;Ohio&quot; 
+##   `--[dendrogram w/ 2 branches and 3 members at h = 44.1]
+##      |--leaf &quot;Alaska&quot; 
+##      `--[dendrogram w/ 2 branches and 2 members at h = 26.9]
+##         |--leaf &quot;California&quot; 
+##         `--leaf &quot;New York&quot;
+</code></pre>
+
+<pre><code class="r">str(dend[[2]])  # looking at one branch of the dendrogram
+</code></pre>
+
+<pre><code>## --[dendrogram w/ 2 branches and 3 members at h = 44.1]
+##   |--leaf &quot;Alaska&quot; 
+##   `--[dendrogram w/ 2 branches and 2 members at h = 26.9]
+##      |--leaf &quot;California&quot; 
+##      `--leaf &quot;New York&quot;
+</code></pre>
+
+<pre><code class="r">plot(dend)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-3"/> </p>
+
+<p>You might notice how the order of the items (leaves/terminal nodes) of the dendrogram is different than their order in the table. In order to re-order the rows in the data-table to have the same order as the items in the dendrogram, we can use the <em>order.dendrogram</em> function:</p>
+
+<pre><code class="r">(new_order &lt;- order.dendrogram(dend))  # the order of the original items to have them be at the same order as they assume in the dendrogram
+</code></pre>
+
+<pre><code>## [1] 4 1 2 3
+</code></pre>
+
+<pre><code class="r">print(US_data[new_order, ])
+</code></pre>
+
+<pre><code>##            Murder Assault UrbanPop Rape
+## Ohio          7.3     120       75 21.4
+## Alaska       10.0     263       48 44.5
+## California    9.0     276       91 40.6
+## New York     11.1     254       86 26.1
+</code></pre>
+
+<p>In order to see what our dendrogram (list) object includes, we need to use the <strong>unclass</strong> function, which will allow us to print the list as is, without going through the print.dendrorgam method:</p>
+
+<pre><code class="r">unclass(dend)
 </code></pre>
 
 <pre><code>## [[1]]
-##  [1] &quot;h&quot; &quot;e&quot; &quot;l&quot; &quot;l&quot; &quot;o&quot; &quot;,&quot; &quot; &quot; &quot;m&quot; &quot;a&quot; &quot;r&quot; &quot;k&quot; &quot;d&quot; &quot;o&quot; &quot;w&quot; &quot;n&quot; &quot; &quot; &quot;v&quot;
-## [18] &quot;i&quot; &quot;g&quot; &quot;n&quot; &quot;e&quot; &quot;t&quot; &quot;t&quot; &quot;e&quot; &quot;s&quot;
+## [1] 4
+## attr(,&quot;members&quot;)
+## [1] 1
+## attr(,&quot;height&quot;)
+## [1] 0
+## attr(,&quot;label&quot;)
+## [1] &quot;Ohio&quot;
+## attr(,&quot;leaf&quot;)
+## [1] TRUE
+## 
+## [[2]]
+## [[2]][[1]]
+## [1] 1
+## attr(,&quot;members&quot;)
+## [1] 1
+## attr(,&quot;height&quot;)
+## [1] 0
+## attr(,&quot;label&quot;)
+## [1] &quot;Alaska&quot;
+## attr(,&quot;leaf&quot;)
+## [1] TRUE
+## 
+## [[2]][[2]]
+## [[2]][[2]][[1]]
+## [1] 2
+## attr(,&quot;label&quot;)
+## [1] &quot;California&quot;
+## attr(,&quot;members&quot;)
+## [1] 1
+## attr(,&quot;height&quot;)
+## [1] 0
+## attr(,&quot;leaf&quot;)
+## [1] TRUE
+## 
+## [[2]][[2]][[2]]
+## [1] 3
+## attr(,&quot;label&quot;)
+## [1] &quot;New York&quot;
+## attr(,&quot;members&quot;)
+## [1] 1
+## attr(,&quot;height&quot;)
+## [1] 0
+## attr(,&quot;leaf&quot;)
+## [1] TRUE
+## 
+## attr(,&quot;members&quot;)
+## [1] 2
+## attr(,&quot;midpoint&quot;)
+## [1] 0.5
+## attr(,&quot;height&quot;)
+## [1] 26.9
+## 
+## attr(,&quot;members&quot;)
+## [1] 3
+## attr(,&quot;midpoint&quot;)
+## [1] 0.75
+## attr(,&quot;height&quot;)
+## [1] 44.14
+## 
+## attr(,&quot;members&quot;)
+## [1] 4
+## attr(,&quot;midpoint&quot;)
+## [1] 0.875
+## attr(,&quot;height&quot;)
+## [1] 146.7
 </code></pre>
 
-<p>Feel free to draw beautiful plots and write math \( P(X>x)=\alpha/2 \).</p>
+<p>We can see how each node in the dendrogram/list object has the following (self explaining) attributes:</p>
 
-<pre><code class="r">n = 300
-set.seed(123)
-par(mar = c(4, 4, 0.1, 0.1))
-plot(rnorm(n), rnorm(n), pch = 21, cex = 5 * runif(n), col = &quot;white&quot;, bg = &quot;gray&quot;)
+<pre><code class="r">names(attributes(dend)[-4])
 </code></pre>
 
-<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-3"/> </p>
-
-<p>You can use your own CSS file instead of the built-in style in the <strong>markdown</strong> package &ndash; just set the option <code>markdown.HTML.stylesheet</code>, e.g.</p>
-
-<pre><code class="r">options(markdown.HTML.stylesheet = &quot;path/to/a/custom/style.css&quot;)
+<pre><code>## [1] &quot;members&quot;  &quot;midpoint&quot; &quot;height&quot;
 </code></pre>
 
-<p>For this vignette, I use the <code>markdown.HTML.header</code> option to modify a few CSS rules in the default CSS style:</p>
+<p>Also, terminal nodes also has the &ldquo;leaf&rdquo; attribute (set to TRUE).</p>
 
-<pre><code class="r">options(markdown.HTML.header = system.file(&quot;misc&quot;, &quot;vignette.css&quot;, package = &quot;knitr&quot;))
+<h3>Motivation for creating {<strong><em>dendextend</em></strong>}</h3>
+
+<p>The <em>dendrogram</em> object has several <strong>advantages</strong>:</p>
+
+<ol>
+<li><em>dendrogram</em> objects are simply list R objects. This makes their structure  very simple to understand by R users.</li>
+<li><em>dendrogram</em> objects has various methods and functions for using them in R. </li>
+<li><em>dendrogram</em> objects are relatively simple to manipulte and extend.</li>
+<li>Other tree objects (such as <em>hclust</em>, and objects from the <em>{ape}</em> package) include an <em>as.dendrogram</em> method for converting their objects into a dendrogram.</li>
+</ol>
+
+<p>However, even with all of its advantages, the <em>dendrogram</em> class in R still lacks various basic features.</p>
+
+<p>The {<strong><em>dendextend</em></strong>} package aims at filling some gaps in base R, by extending the available functions for dendrogram manipulation, statistical analysis, and visualization.</p>
+
+<p>This vignettes Provides a step-by-step description of the functionality provided by the {<strong><em>dendextend</em></strong>} package.</p>
+
+<h3>Installing {<strong><em>dendextend</em></strong>}</h3>
+
+<p>To install the stable version from CRAN use:</p>
+
+<pre><code class="r">install.packages(&quot;dendextend&quot;)  # not yet available from CRAN
 </code></pre>
+
+<p>To install the <a href="https://github.com/talgalili/dendextend">GitHub version</a> use:</p>
+
+<pre><code class="r">if (!require(&quot;devtools&quot;)) install.packages(&quot;devtools&quot;)
+require(&quot;devtools&quot;)
+install_github(&quot;dendextend&quot;, &quot;talgalili&quot;)
+</code></pre>
+
+<h2>Labels assignment</h2>
+
+<p>EXPLAIN labels.r&hellip;</p>
 
 </body>
 

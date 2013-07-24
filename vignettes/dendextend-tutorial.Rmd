@@ -3,47 +3,116 @@
 %\VignetteIndexEntry{Doing more with dendrogram objects using dendextend}
 -->
 
-Doing more with dendrogram objects
-==================================
-A tutorial on using the **dendextend** package
+
+```{r header, echo=FALSE}
+# For this vignette, I use the `markdown.HTML.header` option to modify a few CSS rules in the default CSS style:
+options(markdown.HTML.header = system.file('misc', 'vignette.css', package='knitr'))
+```
+
+
+# Doing more with dendrogram objects
+# A tutorial on using the {**_dendextend_**} package
 ================================================
 
 
 Introduction
--------------
+---------------
 
 
 ### The "dendrogram" object
 
-The "dendrogram" class provides general functions for handling tree-like structures in R. It is intended as a replacement for similar functions in hierarchical clustering and classification/regression trees, such that all of these can use the same engine for plotting or cutting trees.
+The *"dendrogram"* class provides general functions for handling tree-like structures in R. It is intended as a replacement for similar functions in hierarchical clustering and classification/regression trees, such that all of these can use the same engine for plotting or cutting trees.
 
-Dendrogram are basically list
+A dendrogram object represents a tree as a list object, with various attributes.
+
+For example, let's create a dendrogram object based on an heirarchical clustering of 4 states in the U.S.:
+
+```{r}
+# our data:
+data(USArrests)
+US_data <- USArrests[c(2,5,32,35),]
+print(US_data)
+
+hc <- hclust(dist(US_data), "ave") # create an heirarchical clustering object
+dend <- as.dendrogram(hc)
+
+```
+
+Dendrogram has several useful methods bundled with R:
+
+```{r}
+methods(class="dendrogram")
+```
+
+Here are some examples for their use:
+
+```{r}
+print(dend)
+labels(dend)
+str(dend)
+str(dend[[2]]) # looking at one branch of the dendrogram
+plot(dend)
+```
+
+You might notice how the order of the items (leaves/terminal nodes) of the dendrogram is different than their order in the table. In order to re-order the rows in the data-table to have the same order as the items in the dendrogram, we can use the *order.dendrogram* function:
+
+```{r}
+(new_order <- order.dendrogram(dend)) # the order of the original items to have them be at the same order as they assume in the dendrogram
+print(US_data[new_order,])
+```
 
 
-However, many basic features are still missing from the dendrogram class.
-
-### Motivation for creating {dendextend}
-The **{dendextend}** package aims at filling some gaps in base R, by extending the available functions for dendrogram manipulation, statistical analysis, and visualization.
-
-This vignettes Provides a step-by-step description of the functionality provided by the **dendextend** package.
 
 
-### Installing {dendextend}
+In order to see what our dendrogram (list) object includes, we need to use the **unclass** function, which will allow us to print the list as is, without going through the print.dendrorgam method:
+
+```{r}
+unclass(dend)
+```
+
+We can see how each node in the dendrogram/list object has the following (self explaining) attributes:
+```{r}
+names(attributes(dend)[-4])
+```
+Also, terminal nodes also has the "leaf" attribute (set to TRUE).
+
+
+### Motivation for creating {**_dendextend_**}
+
+The *dendrogram* object has several **advantages**:
+
+1. *dendrogram* objects are simply list R objects. This makes their structure  very simple to understand by R users.
+2. *dendrogram* objects has various methods and functions for using them in R. 
+3. *dendrogram* objects are relatively simple to manipulte and extend.
+4. Other tree objects (such as *hclust*, and objects from the *{ape}* package) include an *as.dendrogram* method for converting their objects into a dendrogram.
+
+However, even with all of its advantages, the *dendrogram* class in R still lacks various basic features.
+
+The {**_dendextend_**} package aims at filling some gaps in base R, by extending the available functions for dendrogram manipulation, statistical analysis, and visualization.
+
+This vignettes Provides a step-by-step description of the functionality provided by the {**_dendextend_**} package.
+
+
+### Installing {**_dendextend_**}
 
 To install the stable version from CRAN use:
 
-```r
-# install.packages('dendextend') # not yet available from CRAN
+```{r eval=FALSE}
+install.packages('dendextend') # not yet available from CRAN
 ```
 
-To install the GitHub version use:
+To install the [GitHub version](https://github.com/talgalili/dendextend) use:
 
-```r
+```{r eval=FALSE}
 if (!require('devtools')) install.packages('devtools'); require('devtools')
 install_github('dendextend', 'talgalili')
 ```
 
 
+Labels assignment
+------------------
+
+EXPLAIN labels.r...
 
 
 
@@ -53,57 +122,5 @@ install_github('dendextend', 'talgalili')
 
 
 
-This is an example of Markdown vignettes in R. Before R 3.0.0, only Sweave/PDF vignettes were supported in R. Markdown is gaining popularity over the years due to its simplicity, and R 3.0.0 starts to support package vignettes written in [R Markdown](http://www.rstudio.com/ide/docs/authoring/using_markdown).
 
-## Package vignettes
 
-To enable Markdown vignettes in an R package, you need to
-
-- add `*.Rmd` files under the `vignettes` directory
-- add `VignetteBuilder: knitr` to the `DESCRIPTION` file
-- specify the vignette engine `\VignetteEngine{knitr::knitr}` in the `Rmd` files (inside HTML comments)
-
-## View vignettes
-
-And R will load the **knitr** package to build these vignettes to HTML files, and you can see them when you open the HTML help:
-
-```{r eval=FALSE}
-help(package = 'YourPackage', help_type = 'html')
-```
-
-## Examples
-
-Below are some code chunks as examples.
-
-```{r hello, results='asis'}
-cat('_hello_ **markdown**!', '\n')
-```
-
-Normally you do not need any chunk options.
-
-```{r}
-1+1
-10:1
-rnorm(5)^2
-strsplit('hello, markdown vignettes', '')
-```
-
-Feel free to draw beautiful plots and write math $P(X>x)=\alpha/2$.
-
-```{r}
-n=300; set.seed(123)
-par(mar=c(4,4,.1,.1))
-plot(rnorm(n), rnorm(n), pch=21, cex=5*runif(n), col='white', bg='gray')
-```
-
-You can use your own CSS file instead of the built-in style in the **markdown** package -- just set the option `markdown.HTML.stylesheet`, e.g.
-
-```{r css, eval=FALSE}
-options(markdown.HTML.stylesheet = 'path/to/a/custom/style.css')
-```
-
-For this vignette, I use the `markdown.HTML.header` option to modify a few CSS rules in the default CSS style:
-
-```{r header}
-options(markdown.HTML.header = system.file('misc', 'vignette.css', package='knitr'))
-```
