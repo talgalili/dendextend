@@ -153,7 +153,7 @@
 # ' @title Find Labels from hclust Object
 # ' @export
 #' @S3method labels hclust
-labels.hclust <- function(object, order = FALSE, ...)  {
+labels.hclust <- function(object, order = TRUE, ...)  {
    if(order) {
       labels_obj <- as.character(object$labels[object$order])      
    } else {
@@ -167,7 +167,7 @@ labels.hclust <- function(object, order = FALSE, ...)  {
 # ' @export
 #' @S3method labels<- hclust
 "labels<-.hclust" <- function(object,..., value) {
-   object$labels <- value  # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"
+   object$labels[object$order] <- value  # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"
    return(object)
 }
 

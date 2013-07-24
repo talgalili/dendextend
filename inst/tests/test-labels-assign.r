@@ -25,13 +25,33 @@ test_that("labels assginment works for matrix",{
    
 })
 
-test_that("labels assginment works for hclust",{
+test_that("labels (with order=TRUE, by default), before and after assginment, works for hclust",{
    hc <- hclust(dist(USArrests[1:3,]), "ave")
     
-   expect_that(labels(hc), equals(c("Alabama", "Alaska", "Arizona")))
+   #    plot(hc)   
+#    expect_that(labels(hc), equals(c("Alabama", "Alaska", "Arizona")))
+   expect_that(labels(hc), equals(c("Arizona", "Alabama", "Alaska")))
    
    labels(hc)  <- letters[1:3]
    expect_that(labels(hc), equals(letters[1:3]))   
+})
+
+
+test_that("labels (without order!) works for hclust",{
+   hc <- hclust(dist(USArrests[1:3,]), "ave")
+   #    plot(hc)   
+   expect_that(labels(hc, order = FALSE), equals(c("Alabama", "Alaska", "Arizona")))
+})
+
+
+test_that("labels (without order!) works differently than labels assignment (which are WITH order) for hclust",{
+   hc <- hclust(dist(USArrests[1:3,]), "ave")
+   #    plot(hc)   
+   expect_that(labels(hc, order = FALSE), equals(c("Alabama", "Alaska", "Arizona")))
+   
+   labels(hc)  <- letters[1:3]
+   expect_that(identical(labels(hc, order = FALSE) , letters[1:3]),
+               is_false())   
 })
 
 
@@ -46,10 +66,10 @@ test_that("labels assginment works for dendrogram",{
 })
 
 
-test_that("labels for hclust and dendrogram are different",{
+test_that("labels for hclust and dendrogram are (by default) the same",{
    hc <- hclust(dist(USArrests[1:3,]), "ave")
    dend <- as.dendrogram(hc)      
    # hc and dend labels should NOT be identical.   
-   expect_that(identical(labels(dend), labels(hc)), is_false())
+   expect_that(identical(labels(dend), labels(hc)), is_true())
 })
 
