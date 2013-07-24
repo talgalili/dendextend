@@ -1,7 +1,19 @@
 ####################
 ## Adding labels assignment as an S3 method (and extending it to include hclust)
+## Also order labels
 ####################
 
+
+### Includes the functions:
+# labels<-.default 
+# labels<-.dendrogram 
+# labels.hclust 
+# labels<-.hclust
+# labels.matrix 
+# labels<-.matrix
+#
+# "order.dendrogram<-" 
+   
 
 
 
@@ -10,11 +22,14 @@
 
 #' @title "label" assignment operator
 #' @description "label" assignment operator for vectors, dendrogram, and hclust classes.
+#' @rdname labels-set
 #' @aliases 
 #' labels<-.default 
 #' labels<-.dendrogram 
-#' labels.hclust labels<-.hclust
-#' labels.matrix labels<-.matrix
+#' labels.hclust 
+#' labels<-.hclust
+#' labels.matrix 
+#' labels<-.matrix
 #' @usage
 #' labels(object, ...) <- value
 #' 
@@ -31,8 +46,15 @@
 #' @param which "colnames" or "rownames", to which of the two should labels refer to.
 #' @param ... parameters passed (not currently in use)
 #' @param value a value to be assigned to object's label
+#' @param order default is FALSE. Only relevant for extracting labels from an
+#'  \link{hclust} object (with labels.hclust). Setting order=TRUE will return
+#'  labels in their order in the dendrogram, instead of the riginal labels order
+#'  retained from object$labels - which ususally corresponding to 
+#'  the row or column names of the \link{dist} object provided to
+#'  the \link{hclust} function.
 #' @return The updated object
-#' @author Gavin Simpson, Tal Galili
+#' @author Gavin Simpson, Tal Galili 
+#' (with some ideas from Gregory Jefferis's dendroextras package)
 #' @export
 #' @source The functions here are based on code by Gavin and kohske from (adopted to dendrogram by Tal Galili): \url{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}
 #' @seealso \code{\link{labels}}, \code{\link{labels.matrix}}
@@ -76,7 +98,8 @@
 #' labels(dend) # "a" "b" "c"
 #' labels(dend) <- LETTERS[1:2] # will produce a warning
 #' labels(dend) # "A" "B" "A"
-#' labels(dend) <- LETTERS[4:6] # will replace the labels correctly (the fact the tree had duplicate labels will not cause a problem)
+#' labels(dend) <- LETTERS[4:6] # will replace the labels correctly 
+#' # (the fact the tree had duplicate labels will not cause a problem)
 #' labels(dend) # "D" "E" "F"
 "labels<-" <- function(object,..., value) UseMethod("labels<-")
 
@@ -130,7 +153,15 @@
 # ' @title Find Labels from hclust Object
 # ' @export
 #' @S3method labels hclust
-labels.hclust <- function(object, ...)  as.character(object$labels)
+labels.hclust <- function(object, ..., order = FALSE)  {
+   if(order) {
+      labels_obj <- as.character(object$labels[object$order])      
+   } else {
+      labels_obj <- as.character(object$labels)
+   }   
+   
+   return(labels_obj)
+}
 
 # ' @title "label" assignment operator - hclust
 # ' @export
