@@ -136,7 +136,12 @@
 # ' @title "label" assignment operator - default
 #' @export
 "labels<-.default" <- function(object,..., value) {
-   names(object) <- value # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"
+   if(length(value) < length(object)) {
+      warning("The lengths of the new labels is shorter than the length of the object - labels are recycled.")
+      names(object) <- rep(value, length.out = length(object)) # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"      
+   } else {
+      names(object) <- value # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"      
+   }
    object
 }
 
@@ -166,12 +171,13 @@
          i_leaf_number <<- i_leaf_number + 1 # this saves us from cases of duplicate enteries...
          attr(dend_node, "label") <- new_labels[i_leaf_number]
       }
-      return(dend_node)
+      return(unclass(dend_node)) # the "unclass" is important since dendrapply adds the dendrogram class to each node (which is irrelevent)
    }
    
    i_leaf_number <- 0
    new_dend_object <- dendrapply(object, .change.label.LTR)
-
+   class(new_dend_object) <- "dendrogram"
+   
    return(new_dend_object)
 }
 
@@ -189,10 +195,16 @@ labels.hclust <- function(object, order = TRUE, ...)  {
    return(labels_obj)
 }
 
+
+
 # ' @title "label" assignment operator - hclust
 # ' @export
 #' @S3method labels<- hclust
 "labels<-.hclust" <- function(object,..., value) {
+   if(length(value) < length(object$labels)) {
+      warning("The lengths of the new labels is shorter than the number of leaves in the hclust - labels are recycled.")
+   }
+   
    object$labels[object$order] <- value  # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"
    return(object)
 }
@@ -226,10 +238,28 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
    if(missing(which))
       which <- "colnames"
    which <- match.arg(which)
+   
+   # I'm using ncol and nrow instead of length(colnames(object))
+   # since if the object has no colnames, their length will be 0
+   
    if(which == "colnames") {
-      colnames(object) <- value
+      
+      if(length(value) < ncol(object)) {
+         warning("The lengths of the new labels is shorter than the length of the object's colnames - labels are recycled.")
+         colnames(object) <- rep(value, length.out = ncol(object)) # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"      
+      } else {
+         colnames(object) <- value # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"      
+      }     
+      
    } else {
-      rownames(object) <- value
+
+      if(length(value) < nrow(object)) {
+         warning("The lengths of the new labels is shorter than the length of the object's rownames - labels are recycled.")
+         rownames(object) <- rep(value, length.out = nrow(object)) # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"      
+      } else {
+         rownames(object) <- value # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"      
+      }     
+      
    }
    object
 }

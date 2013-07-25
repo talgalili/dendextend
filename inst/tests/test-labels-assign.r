@@ -12,17 +12,16 @@ test_that("labels assginment works for vectors",{
 
 
 test_that("labels assginment works for matrix",{
-   x <- matrix(1:9, 3,3)
-   expect_that(labels(x), equals(NULL))
+   y <- matrix(1:9, 3,3)
+   expect_that(labels(y), equals(NULL))
    
-   labels(x) <- letters[1:3] # defaults to assign labels to columns
-   expect_that(labels(x), equals(letters[1:3]))
-   expect_that(colnames(x), equals(letters[1:3]))
+   labels(y) <- letters[1:3] # defaults to assign labels to columns
+   expect_that(labels(y), equals(letters[1:3]))
+   expect_that(colnames(y), equals(letters[1:3]))
    
-   labels(x, which = "rownames") <- letters[24:26]
-   expect_that(labels(x, which = "rownames"), equals(letters[24:26]))
-   expect_that(rownames(x), equals(letters[24:26]))
-   
+   labels(y, which = "rownames") <- letters[24:26]
+   expect_that(labels(y, which = "rownames"), equals(letters[24:26]))
+   expect_that(rownames(y), equals(letters[24:26]))   
 })
 
 test_that("labels (with order=TRUE, by default), before and after assginment, works for hclust",{
@@ -72,4 +71,55 @@ test_that("labels for hclust and dendrogram are (by default) the same",{
    # hc and dend labels should NOT be identical.   
    expect_that(identical(labels(dend), labels(hc)), is_true())
 })
+
+
+
+
+test_that("labels assginment recycles properly and consistently",{
+   x <- 1:3   
+   hc <- hclust(dist(USArrests[1:3,]), "ave")
+   dend <- as.dendrogram(hc)
+   y <- matrix(1:9, 3,3)
+   
+   suppressWarnings({
+   labels(x) <- letters[1]
+   labels(hc)  <- letters[1]
+   labels(dend)  <- letters[1]
+   labels(y) <- letters[1] # defaults to assign labels to columns
+   labels(y, which = "rownames") <- letters[24]
+   })
+   
+   expect_that(labels(x), equals(rep(letters[1], 3)))
+   expect_that(labels(hc), equals(rep(letters[1], 3)))
+   expect_that(labels(dend), equals(rep(letters[1], 3)))
+   expect_that(labels(y), equals(rep(letters[1], 3)))
+   expect_that(labels(y, which = "rownames"), equals(rep(letters[24], 3)))
+   # labels(x) # [1] "a" "b" "c"      
+})
+
+
+test_that("labels assginment issues warning when using recycling",{
+   x <- 1:3   
+   hc <- hclust(dist(USArrests[1:3,]), "ave")
+   dend <- as.dendrogram(hc)
+   y <- matrix(1:9, 3,3)   
+   
+#    expect_that(labels(x) <- letters[1], gives_warning())
+   expect_warning(labels(x) <- letters[1])
+   expect_warning(labels(hc) <- letters[1])
+   expect_warning(labels(dend) <- letters[1])
+   expect_warning(labels(y) <- letters[1])
+   expect_warning(labels(y, which = "rownames") <- letters[24])
+})
+
+
+test_that("labels assginment to dendrogram keeps the child nodes as NOT of dendrogram class",{
+   hc <- hclust(dist(USArrests[1:3,]), "ave")
+   dend <- as.dendrogram(hc)
+   labels(dend)  <- letters[1:3]
+   
+   expect_true(class(unclass(dend)[[2]]) == "list")
+})
+
+
 
