@@ -23,7 +23,8 @@ OTHER NOTES:
    * Added a first template for browseVignettes(package ='dendextend')
    * Added a tests folder - making the foundation for using testthat.
       * Added tests for labels assignment
-
+   * Added a clear GPL-2 copyright notice on each r file.
+	
 
 dendextend 0.2 (2013-04-10) 
 ---------------------------
@@ -73,3 +74,4 @@ TODO for future releases:
    * add rect.hclust.nice http://stackoverflow.com/questions/4720307/change-dendrogram-leaves 
    * Give this a thought: http://stackoverflow.com/questions/10088117/exporting-dendrogram-as-table-in-r?rq=1
    * possibly use {dendroextras} to add colors to the tanglegrams
+   * change Vignettes to LaTeX
