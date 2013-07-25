@@ -5,7 +5,7 @@ NEW FUNCTIONS ADDED:
    * 
 
 NEW VIGNETTES SECTIONS ADDED:
-   * Vignettes created
+   * Vignettes created (using LaTeX)
    * Basic introduction to dendrogram objects
    * Labels extraction and assignment
 
@@ -74,4 +74,4 @@ TODO for future releases:
    * add rect.hclust.nice http://stackoverflow.com/questions/4720307/change-dendrogram-leaves 
    * Give this a thought: http://stackoverflow.com/questions/10088117/exporting-dendrogram-as-table-in-r?rq=1
    * possibly use {dendroextras} to add colors to the tanglegrams
-   * change Vignettes to LaTeX
+   

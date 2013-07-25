@@ -5,3 +5,9 @@
 .RData
 vignettes/figure
 vignettes/*\.md
+vignettes/*\.gz
+vignettes/*\.tex
+vignettes/*\.log
+vignettes/*\.blg
+vignettes/*\.bbl
+
