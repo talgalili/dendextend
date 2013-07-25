@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  25 JUL 2013 13:48
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  25 JUL 2013 17:54
 entering extended mode
 **dendextend-tutorial.tex
 
@@ -15,7 +15,7 @@ an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese,
 romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
 sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
 senglishmax, welsh, loaded.
-(D:/R/R-30~1.1/share/texmf/tex/latex\jss.cls
+("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\jss.cls"
 Document Class: jss 2013/04/06 2.2 jss class by Achim Zeileis
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
@@ -371,27 +371,27 @@ nd.
 )
 ("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
 ial.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 118.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 118.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 124.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 124.
 
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
 
 (C:\Users\Tal\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -408,7 +408,7 @@ LaTeX Font Info:    ... okay on input line 118.
 \everyMPtoPDFconversion=\toks16
 )
 \AtBeginShipoutBox=\box28
-Package hyperref Info: Link coloring ON on input line 118.
+Package hyperref Info: Link coloring ON on input line 124.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
@@ -417,9 +417,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count112
 )
-LaTeX Info: Redefining \ref on input line 118.
-LaTeX Info: Redefining \pageref on input line 118.
-LaTeX Info: Redefining \nameref on input line 118.
+LaTeX Info: Redefining \ref on input line 124.
+LaTeX Info: Redefining \pageref on input line 124.
+LaTeX Info: Redefining \nameref on input line 124.
 
 ("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
 ial.out")
@@ -428,6 +428,75 @@ ial.out"
 ! Missing \endcsname inserted.
 <to be read again> 
                    \bgroup 
+l.2 ...endrogram object}{Section.0.Introduction.1}
+                                                  % 2
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \bgroup 
+l.2 ...endrogram object}{Section.0.Introduction.1}
+                                                  % 2
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   \B_Subsection.1.0.The  
+l.2 ...endrogram object}{Section.0.Introduction.1}
+                                                  % 2
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
+l.3 ...12=-1 dendextend}{Section.0.Introduction.1}
+                                                  % 3
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
+l.3 ...12=-1 dendextend}{Section.0.Introduction.1}
+                                                  % 3
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> Motivation for creating `\1
+                                      3712`12`\04412=-1 dendextend
+l.3 ...12=-1 dendextend}{Section.0.Introduction.1}
+                                                  % 3
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> Motivation for creating `\13712`12`\0
+                                                4412=-1 dendextend
+l.3 ...12=-1 dendextend}{Section.0.Introduction.1}
+                                                  % 3
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \bgroup 
 l.3 ...12=-1 dendextend}{Section.0.Introduction.1}
                                                   % 3
 The control sequence marked <to be read again> should
@@ -441,18 +510,9 @@ l.3 ...12=-1 dendextend}{Section.0.Introduction.1}
 The control sequence marked <to be read again> should
 not appear between \csname and \endcsname.
 
-! Missing number, treated as zero.
-<to be read again> 
-                   \B_Subsection.1.1.Motivation for creating  
-l.3 ...12=-1 dendextend}{Section.0.Introduction.1}
-                                                  % 3
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\1
-                                      3712`12`\04412=-1 dendextend
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
 l.4 ...12=-1 dendextend}{Section.0.Introduction.1}
                                                   % 4
 The control sequence at the end of the top line
@@ -462,8 +522,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\13712`12`\0
-                                                4412=-1 dendextend
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
 l.4 ...12=-1 dendextend}{Section.0.Introduction.1}
                                                   % 4
 The control sequence at the end of the top line
@@ -511,8 +571,8 @@ The control sequence marked <to be read again> should
 not appear between \csname and \endcsname.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\1
-                                      3712`12`\04412=-1 dendextend
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
 l.5 ...ment.1}{Labels extraction and assignment}{}
                                                   % 5
 The control sequence at the end of the top line
@@ -522,8 +582,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\13712`12`\0
-                                                4412=-1 dendextend
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
 l.5 ...ment.1}{Labels extraction and assignment}{}
                                                   % 5
 The control sequence at the end of the top line
@@ -533,8 +593,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\1
-                                      3712`12`\04412=-1 dendextend
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
 l.6 ...ction.1.Labels extraction and assignment.1}
                                                   % 6
 The control sequence at the end of the top line
@@ -544,8 +604,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\13712`12`\0
-                                                4412=-1 dendextend
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
 l.6 ...ction.1.Labels extraction and assignment.1}
                                                   % 6
 The control sequence at the end of the top line
@@ -555,8 +615,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\1
-                                      3712`12`\04412=-1 dendextend
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
 l.7 ...ction.1.Labels extraction and assignment.1}
                                                   % 7
 The control sequence at the end of the top line
@@ -566,8 +626,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\13712`12`\0
-                                                4412=-1 dendextend
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
 l.7 ...ction.1.Labels extraction and assignment.1}
                                                   % 7
 The control sequence at the end of the top line
@@ -577,8 +637,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\1
-                                      3712`12`\04412=-1 dendextend
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
 l.8 ...ction.1.Labels extraction and assignment.1}
                                                   % 8
 The control sequence at the end of the top line
@@ -588,8 +648,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\13712`12`\0
-                                                4412=-1 dendextend
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
 l.8 ...ction.1.Labels extraction and assignment.1}
                                                   % 8
 The control sequence at the end of the top line
@@ -599,8 +659,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\1
-                                      3712`12`\04412=-1 dendextend
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
 l.9 ...ction.1.Labels extraction and assignment.1}
                                                   % 9
 The control sequence at the end of the top line
@@ -610,8 +670,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\13712`12`\0
-                                                4412=-1 dendextend
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
 l.9 ...ction.1.Labels extraction and assignment.1}
                                                   % 9
 The control sequence at the end of the top line
@@ -621,9 +681,9 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\1
-                                      3712`12`\04412=-1 dendextend
-l.10 ...ARK [1][-]{Section.2.Summary.1}{Summary}{}
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
+l.10 ...tion.1.Labels extraction and assignment.1}
                                                   % 10
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -632,10 +692,32 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\Hy@temp ->Motivation for creating `\13712`12`\0
-                                                4412=-1 dendextend
-l.10 ...ARK [1][-]{Section.2.Summary.1}{Summary}{}
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
+l.10 ...tion.1.Labels extraction and assignment.1}
                                                   % 10
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
+l.11 ...ARK [1][-]{Section.2.Summary.1}{Summary}{}
+                                                  % 11
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
+l.11 ...ARK [1][-]{Section.2.Summary.1}{Summary}{}
+                                                  % 11
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -645,10 +727,10 @@ and I'll forget about whatever was undefined.
 )
 Runaway text?
 \catcode `\protect \T1\textunderscore 12\relax \catcode `\unhbox \voidb@x \ETC.
-! File ended while scanning text of \B_Subsection.1.1.Motivation for creating .
+! File ended while scanning text of \B_Subsection.1.0.The .
 <inserted text> 
                 }
-l.118 \begin{document}
+l.124 \begin{document}
                       
 I suspect you have forgotten a `}', causing me
 to read past where you wanted me to stop.
@@ -656,74 +738,97 @@ I'll try to recover; but if the error is serious,
 you'd better type `E' or `X' now and fix your file.
 
 \@outlinefile=\write4
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 118.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 118.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 118.
-LaTeX Font Info:    Try loading font information for T1+aess on input line 118.
+LaTeX Font Info:    Try loading font information for T1+aess on input line 124.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aess.fd"
 File: t1aess.fd 1997/11/16 Font definitions for T1/aess.
 )
-LaTeX Font Info:    Try loading font information for T1+aett on input line 127.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 124.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 124.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 124.
 
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 130.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 130.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 130.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\hyphenchar' on input line 130.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\font' on input line 130.
+
+
+Package hyperref Warning: Composite letter `\texttilde+1'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\texttilde' on input line 130.
+
+LaTeX Font Info:    Try loading font information for T1+aett on input line 130.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-Package color Info: Redefining color shadecolor on input line 134.
+Package color Info: Redefining color shadecolor on input line 140.
 
 
 LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
-(Font)              using `T1/aett/m/n' instead on input line 137.
+(Font)              using `T1/aett/m/n' instead on input line 142.
 
+Package color Info: Redefining color shadecolor on input line 164.
+[1
 
-Overfull \hbox (4.89291pt too wide) in paragraph at lines 150--150
+{C:/Users/Tal/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Overfull \hbox (4.89291pt too wide) in paragraph at lines 180--180
 []\T1/aett/bx/n/10.95 hc <- []hclust[]([]dist[](US_data), []"ave"[])  # create 
 an heirarchical clustering object[] 
  []
 
-Package color Info: Redefining color shadecolor on input line 162.
-[1
-
-{C:/Users/Tal/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Package color Info: Redefining color shadecolor on input line 187.
-LaTeX Font Info:    Try loading font information for TS1+aett on input line 193
+Package color Info: Redefining color shadecolor on input line 191.
+LaTeX Font Info:    Try loading font information for TS1+aett on input line 197
 .
-
 (D:/R/R-30~1.1/share/texmf/tex/latex\ts1aett.fd
 File: ts1aett.fd 
 )
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 193
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 197
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd"
 File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `TS1/aett/m/n' in size <10.95> not available
-(Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 193.
+(Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 197.
 
-<figure/unnamed-chunk-4.pdf, id=33, 505.89pt x 505.89pt>
+<figure/unnamed-chunk-4.pdf, id=32, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-4.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-4.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-4.pdf used on input line 227.
+Package pdftex.def Info: figure/unnamed-chunk-4.pdf used on input line 231.
 (pdftex.def)             Requested size: 289.08589pt x 289.08589pt.
-
-Underfull \vbox (badness 7595) has occurred while \output is active []
-
 LaTeX Font Info:    Font shape `T1/aer/b/sl' in size <10.95> not available
-(Font)              Font shape `T1/aer/bx/sl' tried instead on input line 236.
+(Font)              Font shape `T1/aer/bx/sl' tried instead on input line 240.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 2 []
  []
 
 [2]
-Package color Info: Redefining color shadecolor on input line 239.
-Package color Info: Redefining color shadecolor on input line 266.
+Package color Info: Redefining color shadecolor on input line 243.
+Package color Info: Redefining color shadecolor on input line 270.
+
+Underfull \vbox (badness 1028) has occurred while \output is active []
+
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 3
@@ -731,151 +836,141 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [3 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unnamed
 -chunk-4.pdf>]
-Underfull \vbox (badness 10000) detected at line 338
- []
-
-
-Underfull \vbox (badness 10000) detected at line 338
- []
-
-
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 4 []
  []
 
 [4]
-Package color Info: Redefining color shadecolor on input line 347.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 359.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 359.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 359.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\hyphenchar' on input line 359.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\font' on input line 359.
-
-
-Package hyperref Warning: Composite letter `\texttilde+1'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\texttilde' on input line 359.
-
-
-Overfull \hbox (17.29413pt too wide) in paragraph at lines 377--378
-[]\T1/aer/m/n/10.95 This vi-gnettes Pro-vides a step-by-step de-scrip-tion of t
-he func-tion-al-ity pro-vided by the \T1/aett/bx/n/10.95 dendextend
- []
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 380.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 380.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 380.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\hyphenchar' on input line 380.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\font' on input line 380.
-
-
-Package hyperref Warning: Composite letter `\texttilde+1'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\texttilde' on input line 380.
-
-Package color Info: Redefining color shadecolor on input line 385.
+Package color Info: Redefining color shadecolor on input line 349.
+Package color Info: Redefining color shadecolor on input line 367.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 5
  []
 
 [5]
-Package color Info: Redefining color shadecolor on input line 397.
-Package color Info: Redefining color shadecolor on input line 425.
-Package color Info: Redefining color shadecolor on input line 446.
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 392.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 392.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 392.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\hyphenchar' on input line 392.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\font' on input line 392.
+
+
+Package hyperref Warning: Composite letter `\texttilde+1'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\texttilde' on input line 392.
+
+
+Overfull \hbox (17.29413pt too wide) in paragraph at lines 410--411
+[]\T1/aer/m/n/10.95 This vi-gnettes Pro-vides a step-by-step de-scrip-tion of t
+he func-tion-al-ity pro-vided by the \T1/aett/bx/n/10.95 dendextend
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 413.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 413.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\catcode' on input line 413.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\hyphenchar' on input line 413.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\font' on input line 413.
+
+
+Package hyperref Warning: Composite letter `\texttilde+1'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\texttilde' on input line 413.
+
+Package color Info: Redefining color shadecolor on input line 418.
+Package color Info: Redefining color shadecolor on input line 430.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 6 []
  []
 
 [6]
-Package color Info: Redefining color shadecolor on input line 470.
-
-("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
-ial.bbl")
-Underfull \hbox (badness 10000) in paragraph at lines 655--655
-
- []
-
+Package color Info: Redefining color shadecolor on input line 458.
+Package color Info: Redefining color shadecolor on input line 479.
+Package color Info: Redefining color shadecolor on input line 503.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 7
  []
 
 [7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 655.
+("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
+ial.bbl")
+Underfull \hbox (badness 10000) in paragraph at lines 692--692
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 692.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 8 []
  []
 
 [8]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 655.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 692.
 
 ("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
 ial.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 655.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 655.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 692.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 692.
 Package rerunfilecheck Info: File `dendextend-tutorial.out' has not changed.
-(rerunfilecheck)             Checksum: 5A66994C3A352CD8A106DCA04D252AC2;1408.
+(rerunfilecheck)             Checksum: 6CD9700669860EE0F2EE27D63650DB78;1725.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 655.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 692.
  ) 
 Here is how much of TeX's memory you used:
- 6785 strings out of 494045
- 101555 string characters out of 3145976
- 213064 words of memory out of 3000000
- 9913 multiletter control sequences out of 15000+200000
- 45745 words of font info for 83 fonts, out of 3000000 for 9000
+ 6794 strings out of 494045
+ 101956 string characters out of 3145976
+ 221892 words of memory out of 3000000
+ 9916 multiletter control sequences out of 15000+200000
+ 49153 words of font info for 87 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 36i,9n,34p,418b,363s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{Subsection.1.1.Motivation\040for\040creating\040\
-\bgroup\040\\catcode\040`\\protect\040\\T1\\textunderscore\04012\\relax\040\\ca
-tcode\040`\\unhbox\040\\voidb@x\040\\bgroup\040\\let\040\\unhbox\040\\voidb@x\0
-40\\setbox\040\\@tempboxa\040\\hbox\040{1\\global\040\\mathchardef\040\\accent@
-spacefactor\040\\spacefactor\040}\\accent\0403\0401\\egroup\040\\spacefactor\04
-0\\accent@spacefactor\0402\\relax\040\\catcode\040`\\protect\040\\T1\\textdolla
-r\04012\\relax\040{\\protect\040\\protect\040\\edef\040T1{T1}\\let\040\\enc@upd
-ate\040\\relax\040\\protect\040\\edef\040aer{aer}\\protect\040\\edef\040m{m}\\p
-rotect\040\\edef\040n{n}\\protect\040\\xdef\040\\T1/aer/m/n/10.95\040{\\T1/aer/
-m/n/10.95\040}\\T1/aer/m/n/10.95\040\\size@update\040\\enc@update\040\\ignoresp
-aces\040\\relax\040\\protect\040\\relax\040\\protect\040\\edef\040aer{aett}\\pr
-otect\040\\xdef\040\\T1/aer/m/n/10.95\040{\\T1/aer/m/n/10.95\040}\\T1/aer/m/n/1
-0.95\040\\size@update\040\\enc@update\040\\hyphenchar\040\\font\040=-1\040dende
-xtend}\\egroup\040.2} has been referenced but does not exist, replaced by a fix
-ed one
+ 36i,9n,34p,400b,363s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{Subsection.1.0.The\040\\bgroup\040\\catcode\040`\
+\protect\040\\T1\\textunderscore\04012\\relax\040\\catcode\040`\\unhbox\040\\vo
+idb@x\040\\bgroup\040\\let\040\\unhbox\040\\voidb@x\040\\setbox\040\\@tempboxa\
+040\\hbox\040{1\\global\040\\mathchardef\040\\accent@spacefactor\040\\spacefact
+or\040}\\accent\0403\0401\\egroup\040\\spacefactor\040\\accent@spacefactor\0402
+\\relax\040\\catcode\040`\\protect\040\\T1\\textdollar\04012\\relax\040{\\prote
+ct\040\\protect\040\\edef\040T1{T1}\\let\040\\enc@update\040\\relax\040\\protec
+t\040\\edef\040aer{aer}\\protect\040\\edef\040m{m}\\protect\040\\edef\040n{n}\\
+protect\040\\xdef\040\\T1/aer/m/n/10.95\040{\\T1/aer/m/n/10.95\040}\\T1/aer/m/n
+/10.95\040\\size@update\040\\enc@update\040\\ignorespaces\040\\relax\040\\prote
+ct\040\\relax\040\\protect\040\\edef\040aer{aett}\\protect\040\\xdef\040\\T1/ae
+r/m/n/10.95\040{\\T1/aer/m/n/10.95\040}\\T1/aer/m/n/10.95\040\\size@update\040\
+\enc@update\040\\hyphenchar\040\\font\040=-1\040dendrogram}\\egroup\040object.2
+} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\Tal\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tctt
 1095.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmb10
@@ -885,12 +980,14 @@ fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Prog
-ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dendextend-tutorial.pdf (8 pages, 190291 bytes).
+ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Pr
+ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Pro
+gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program
+ Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on dendextend-tutorial.pdf (8 pages, 218654 bytes).
 PDF statistics:
- 146 PDF objects out of 1000 (max. 8388607)
- 35 named destinations out of 1000 (max. 500000)
- 30 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 156 PDF objects out of 1000 (max. 8388607)
+ 37 named destinations out of 1000 (max. 500000)
+ 22 words of extra memory for PDF output out of 10000 (max. 10000000)
 

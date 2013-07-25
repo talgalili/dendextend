@@ -35,11 +35,17 @@ options(width = 60)
 \author{Tal Galili\\Tel-Aviv University \And Yoav Benjamini\\Tel-Aviv University}
 \Plainauthor{Tal Galili, Yoav Benjamini}
 
-\Plaintitle{dendextend: doing more with dendrogram objects in R}
-\title{\pkg{dendextend}: doing more with\\ dendrogram objects in R}
+
+
+
+\Plaintitle{Doing More with Dendrograms: The dendextend R Package}
+\title{Doing More with Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
 
 \Abstract{
-  The \pkg{dendextend} package extends the dendrogram objects in \proglang{R}.
+The \pkg{dendextend} package extends the dendrogram objects in \proglang{R}.
+
+The paper gives a detailed exposition of both the internal structure of
+the package and the provided user interfaces.
 }
 
 \Keywords{Dendrogram, hclust, heirarchical clustering, visualization, tanglegram,  \proglang{R}}
@@ -78,12 +84,18 @@ options(width = 60)
 
 \section{Introduction}
 
-\subsection{Introduction}
+\subsection{The \code{dendrogram} object}
 
 
 The \code{dendrogram} class provides general functions for handling tree-like structures in \proglang{R} \citep{R:Main}. It is intended as a replacement for similar functions in hierarchical clustering and classification/regression trees, such that all of these can use the same engine for plotting or cutting trees.
 
-A dendrogram object represents a tree as a list object, with various attributes.
+A dendrogram object represents a tree as a nested \code{list} object, with various attributes.
+
+Dendrogram has several useful methods bundled with R:
+
+<<>>=
+methods(class="dendrogram")
+@
 
 For example, let's create a dendrogram object based on an heirarchical clustering of 4 states in the U.S.:
 
@@ -98,15 +110,7 @@ dend <- as.dendrogram(hc)
 @
 
 
-
-Dendrogram has several useful methods bundled with R:
-
-<<>>=
-methods(class="dendrogram")
-@
-
-
-Here are some examples for their use:
+Here are some examples for some dendrogram methods:
 
 <<out.width="4in", out.height="4in",fig.align='center'>>=
 print(dend)
@@ -126,20 +130,35 @@ print(US_data[new_order,])
 @
 
 
-In order to see what our dendrogram (list) object includes, we need to use the \code{unclass} function, which will allow us to print the list as is, without going through the \code{print.dendrorgam} method:
+In order to see what our dendrogram (\code{list}) object includes, we need to use the \code{unclass} function, which will strip away the class atrribute and will allow us to print the list as is, without going through the \code{print.dendrorgam} method. We can see how each node in the dendrogram/list object has the following (self explaining) attributes:
 
 <<>>=
 unclass(dend)
 @
 
 
-
-We can see how each node in the dendrogram/list object has the following (self explaining) attributes:
 Also, terminal nodes also has the "leaf" attribute (set to TRUE).
 <<>>=
 names(attributes(dend)[-4])
 @
-Also, terminal nodes also has the "leaf" attribute (set to TRUE).
+
+
+
+A very important function is \code{dendrapply}. It applies some function recursively to each node of a dendrogram. It is often used for adjusting attributes of the object, or extracting something from it. 
+
+One current "feature" with this function is that just sending a dendrogram through it will return it with each of its nodes becoming of class "dendrogram". For example:
+
+<<>>=
+# dendrapply(dend, unclass) # in case the  
+itself <- function(x) x
+dend_from_dendrapply <- dendrapply(dend, itself)
+
+# here we must first use unclass since "[[]]" inherits its class to the output:
+class(unclass(dend)[[2]])
+class(unclass(dend_from_dendrapply)[[2]])
+@
+
+
 
 \subsection{Motivation for creating \code{dendextend}}
 
@@ -228,6 +247,10 @@ Labels assignment are also available for matrixes.
 \subsection{labels for dendrogram objects}
 
 \subsection{labels for hclust objects}
+
+
+
+\subsection{labels assignment and recycling}
 
 
 

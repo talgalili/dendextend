@@ -77,11 +77,17 @@
 \author{Tal Galili\\Tel-Aviv University \And Yoav Benjamini\\Tel-Aviv University}
 \Plainauthor{Tal Galili, Yoav Benjamini}
 
-\Plaintitle{dendextend: doing more with dendrogram objects in R}
-\title{\pkg{dendextend}: doing more with\\ dendrogram objects in R}
+
+
+
+\Plaintitle{Doing More with Dendrograms: The dendextend R Package}
+\title{Doing More with Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
 
 \Abstract{
-  The \pkg{dendextend} package extends the dendrogram objects in \proglang{R}.
+The \pkg{dendextend} package extends the dendrogram objects in \proglang{R}.
+  
+The paper gives a detailed exposition of both the internal structure of
+the package and the provided user interfaces.
 }
 
 \Keywords{Dendrogram, hclust, heirarchical clustering, visualization, tanglegram,  \proglang{R}}
@@ -121,12 +127,36 @@
 
 \section{Introduction}
 
-\subsection{Introduction}
+\subsection{The \code{dendrogram} object}
 
 
 The \code{dendrogram} class provides general functions for handling tree-like structures in \proglang{R} \citep{R:Main}. It is intended as a replacement for similar functions in hierarchical clustering and classification/regression trees, such that all of these can use the same engine for plotting or cutting trees.
 
-A dendrogram object represents a tree as a list object, with various attributes.
+A dendrogram object represents a tree as a nested \code{list} object, with various attributes.
+
+Dendrogram has several useful methods bundled with R:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{methods}(class = \hlstring{"dendrogram"})
+\end{alltt}
+\begin{verbatim}
+##  [1] [[.dendrogram*         as.hclust.dendrogram* 
+##  [3] cophenetic.dendrogram* cut.dendrogram*       
+##  [5] head.dendrogram*       labels.dendrogram*    
+##  [7] labels<-.dendrogram*   merge.dendrogram*     
+##  [9] nleaves.dendrogram*    plot.dendrogram*      
+## [11] print.dendrogram*      reorder.dendrogram*   
+## [13] rev.dendrogram*        rotate.dendrogram*    
+## [15] sort.dendrogram*       str.dendrogram*       
+## [17] trim.dendrogram*       unroot.dendrogram*    
+## 
+##    Non-visible functions are asterisked
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 
 For example, let's create a dendrogram object based on an heirarchical clustering of 4 states in the U.S.:
 
@@ -155,33 +185,7 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 
 
 
-
-Dendrogram has several useful methods bundled with R:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlfunctioncall{methods}(class = \hlstring{"dendrogram"})
-\end{alltt}
-\begin{verbatim}
-##  [1] [[.dendrogram*         as.hclust.dendrogram* 
-##  [3] cophenetic.dendrogram* cut.dendrogram*       
-##  [5] head.dendrogram*       labels.dendrogram*    
-##  [7] labels<-.dendrogram*   merge.dendrogram*     
-##  [9] nleaves.dendrogram*    plot.dendrogram*      
-## [11] print.dendrogram*      reorder.dendrogram*   
-## [13] rev.dendrogram*        rotate.dendrogram*    
-## [15] sort.dendrogram*       str.dendrogram*       
-## [17] trim.dendrogram*       unroot.dendrogram*    
-## 
-##    Non-visible functions are asterisked
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-
-
-Here are some examples for their use:
+Here are some examples for some dendrogram methods:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -260,7 +264,7 @@ You might notice how the order of the items (leaves/terminal nodes) of the dendr
 
 
 
-In order to see what our dendrogram (list) object includes, we need to use the \code{unclass} function, which will allow us to print the list as is, without going through the \code{print.dendrorgam} method:
+In order to see what our dendrogram (\code{list}) object includes, we need to use the \code{unclass} function, which will strip away the class atrribute and will allow us to print the list as is, without going through the \code{print.dendrorgam} method. We can see how each node in the dendrogram/list object has the following (self explaining) attributes:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -340,8 +344,6 @@ In order to see what our dendrogram (list) object includes, we need to use the \
 
 
 
-
-We can see how each node in the dendrogram/list object has the following (self explaining) attributes:
 Also, terminal nodes also has the "leaf" attribute (set to TRUE).
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -354,7 +356,38 @@ Also, terminal nodes also has the "leaf" attribute (set to TRUE).
 \end{kframe}
 \end{knitrout}
 
-Also, terminal nodes also has the "leaf" attribute (set to TRUE).
+
+
+
+A very important function is \code{dendrapply}. It applies some function recursively to each node of a dendrogram. It is often used for adjusting attributes of the object, or extracting something from it. 
+
+One current "feature" with this function is that just sending a dendrogram through it will return it with each of its nodes becoming of class "dendrogram". For example:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcomment{# dendrapply(dend, unclass) # in case the}
+itself <- \hlfunctioncall{function}(x) x
+dend_from_dendrapply <- \hlfunctioncall{dendrapply}(dend, itself)
+
+\hlcomment{# here we must first use unclass since '[[]]' inherits its}
+\hlcomment{# class to the output:}
+\hlfunctioncall{class}(\hlfunctioncall{unclass}(dend)[[2]])
+\end{alltt}
+\begin{verbatim}
+## [1] "list"
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{class}(\hlfunctioncall{unclass}(dend_from_dendrapply)[[2]])
+\end{alltt}
+\begin{verbatim}
+## [1] "dendrogram"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
 
 \subsection{Motivation for creating \code{dendextend}}
 
@@ -492,6 +525,10 @@ Labels assignment are also available for matrixes.
 \subsection{labels for dendrogram objects}
 
 \subsection{labels for hclust objects}
+
+
+
+\subsection{labels assignment and recycling}
 
 
 
