@@ -87,14 +87,18 @@ nleaves.hclust <- function(x,...) length(x$order)
 #' # Trivial case
 #' count_terminal_nodes(dend) # 3 terminal nodes
 #' length(labels(dend)) # 3 - the same number
-#' plot(dend, main = "This is considered a tree \n with THREE terminal nodes (leaves)") # while we have 3 leaves, in practice we have only 2 terminal nodes (this is a feature, not a bug.)
+#' plot(dend, 
+#' main = "This is considered a tree \n with THREE terminal nodes (leaves)")
 #' 
 #' ###
 #' # NON-Trivial case
 #' str(dend)
 #' attr(dend[[2]], "height") <- 0
 #' count_terminal_nodes(dend) # 2 terminal nodes, why? see this plot:
-#' plot(dend, main = "This is considered a tree \n with TWO terminal nodes only") # while we have 3 leaves, in practice we have only 2 terminal nodes (this is a feature, not a bug.)
+#' plot(dend, 
+#' main = "This is considered a tree \n with TWO terminal nodes only")
+#' # while we have 3 leaves, in practice we have only 2 terminal nodes 
+#' # (this is a feature, not a bug.)
 count_terminal_nodes <- function(dend_node,...) {
    
    # a recursive function for counting the number of first encountered zero nodes
@@ -124,9 +128,11 @@ count_terminal_nodes <- function(dend_node,...) {
 #' hc <- hclust(dist(USArrests[1:3,]), "ave")
 #' dend <- as.dendrogram(hc)
 #' 
-#' 
+#' itself <- function(x) x
+#' dend <- dendrapply(dend, itself)
 #' unclass(dend) # this only returns a list with two dendrogram objects inside it.
 #' str(dend) # this is a great way to show a dendrogram, but it doesn't help us understand how the R object is built.
+#' str(unclass(dend)) # this is a great way to show a dendrogram, but it doesn't help us understand how the R object is built.
 #' unclass_dend(dend) # this only returns a list with two dendrogram objects inside it.
 #' str(unclass_dend(dend)) # NOW we can more easily understand how the dendrogram object is structured...
 unclass_dend <- function(dend,...)
@@ -134,14 +140,15 @@ unclass_dend <- function(dend,...)
    # I could have also made this into a method
    # unclass_dendrogram
    # But decided not to, so to allow unclass to work as usual in case someone wants to use it only on one branch.
-   if(!is.leaf(dend))
-   {
-      for(i in seq_len(length(dend)))
-      {
-         dend[[i]] <- unclass_dend(dend[[i]])
-      }
-   }
-   dend <- unclass(dend)
+#    if(!is.leaf(dend))
+#    {
+#       for(i in seq_len(length(dend)))
+#       {
+#          dend[[i]] <- unclass_dend(dend[[i]])
+#       }
+#    }
+#    dend <- unclass(dend)
+   dend <- dendrapply(dend, unclass)
    return(dend)
 }
 
