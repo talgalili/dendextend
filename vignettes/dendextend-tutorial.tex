@@ -85,7 +85,7 @@
 
 \Abstract{
 The \pkg{dendextend} package extends the dendrogram objects in \proglang{R}.
-  
+
 The paper gives a detailed exposition of both the internal structure of
 the package and the provided user interfaces.
 }
@@ -142,15 +142,12 @@ Dendrogram has several useful methods bundled with R:
 \hlfunctioncall{methods}(class = \hlstring{"dendrogram"})
 \end{alltt}
 \begin{verbatim}
-##  [1] [[.dendrogram*         as.hclust.dendrogram* 
-##  [3] cophenetic.dendrogram* cut.dendrogram*       
-##  [5] head.dendrogram*       labels.dendrogram*    
-##  [7] labels<-.dendrogram*   merge.dendrogram*     
-##  [9] nleaves.dendrogram*    plot.dendrogram*      
-## [11] print.dendrogram*      reorder.dendrogram*   
-## [13] rev.dendrogram*        rotate.dendrogram*    
-## [15] sort.dendrogram*       str.dendrogram*       
-## [17] trim.dendrogram*       unroot.dendrogram*    
+##  [1] [[.dendrogram*         as.hclust.dendrogram*  cophenetic.dendrogram*
+##  [4] cut.dendrogram*        head.dendrogram*       labels.dendrogram*    
+##  [7] labels<-.dendrogram*   merge.dendrogram*      nleaves.dendrogram*   
+## [10] plot.dendrogram*       print.dendrogram*      reorder.dendrogram*   
+## [13] rev.dendrogram*        rotate.dendrogram*     sort.dendrogram*      
+## [16] str.dendrogram*        trim.dendrogram*       unroot.dendrogram*    
 ## 
 ##    Non-visible functions are asterisked
 \end{verbatim}
@@ -248,8 +245,8 @@ You might notice how the order of the items (leaves/terminal nodes) of the dendr
 ## [1] 4 1 2 3
 \end{verbatim}
 \begin{alltt}
-\hlcomment{# the order of the original items to have them be at the}
-\hlcomment{# same order as they assume in the dendrogram}
+\hlcomment{# the order of the original items to have them be at the same order as}
+\hlcomment{# they assume in the dendrogram}
 \hlfunctioncall{print}(US_data[new_order, ])
 \end{alltt}
 \begin{verbatim}
@@ -269,75 +266,41 @@ In order to see what our dendrogram (\code{list}) object includes, we need to us
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlfunctioncall{unclass}(dend)
+\hlfunctioncall{str}(\hlfunctioncall{unclass}(dend))
 \end{alltt}
 \begin{verbatim}
-## [[1]]
-## [1] 4
-## attr(,"members")
-## [1] 1
-## attr(,"height")
-## [1] 0
-## attr(,"label")
-## [1] "Ohio"
-## attr(,"leaf")
-## [1] TRUE
-## 
-## [[2]]
-## [[2]][[1]]
-## [1] 1
-## attr(,"members")
-## [1] 1
-## attr(,"height")
-## [1] 0
-## attr(,"label")
-## [1] "Alaska"
-## attr(,"leaf")
-## [1] TRUE
-## 
-## [[2]][[2]]
-## [[2]][[2]][[1]]
-## [1] 2
-## attr(,"label")
-## [1] "California"
-## attr(,"members")
-## [1] 1
-## attr(,"height")
-## [1] 0
-## attr(,"leaf")
-## [1] TRUE
-## 
-## [[2]][[2]][[2]]
-## [1] 3
-## attr(,"label")
-## [1] "New York"
-## attr(,"members")
-## [1] 1
-## attr(,"height")
-## [1] 0
-## attr(,"leaf")
-## [1] TRUE
-## 
-## attr(,"members")
-## [1] 2
-## attr(,"midpoint")
-## [1] 0.5
-## attr(,"height")
-## [1] 26.9
-## 
-## attr(,"members")
-## [1] 3
-## attr(,"midpoint")
-## [1] 0.75
-## attr(,"height")
-## [1] 44.14
-## 
-## attr(,"members")
-## [1] 4
-## attr(,"midpoint")
-## [1] 0.875
-## attr(,"height")
-## [1] 146.7
+## List of 2
+##  $ : atomic [1:1] 4
+##   ..- attr(*, "members")= int 1
+##   ..- attr(*, "height")= num 0
+##   ..- attr(*, "label")= chr "Ohio"
+##   ..- attr(*, "leaf")= logi TRUE
+##  $ :List of 2
+##   ..$ : atomic [1:1] 1
+##   .. ..- attr(*, "members")= int 1
+##   .. ..- attr(*, "height")= num 0
+##   .. ..- attr(*, "label")= chr "Alaska"
+##   .. ..- attr(*, "leaf")= logi TRUE
+##   ..$ :List of 2
+##   .. ..$ : atomic [1:1] 2
+##   .. .. ..- attr(*, "label")= chr "California"
+##   .. .. ..- attr(*, "members")= int 1
+##   .. .. ..- attr(*, "height")= num 0
+##   .. .. ..- attr(*, "leaf")= logi TRUE
+##   .. ..$ : atomic [1:1] 3
+##   .. .. ..- attr(*, "label")= chr "New York"
+##   .. .. ..- attr(*, "members")= int 1
+##   .. .. ..- attr(*, "height")= num 0
+##   .. .. ..- attr(*, "leaf")= logi TRUE
+##   .. ..- attr(*, "members")= int 2
+##   .. ..- attr(*, "midpoint")= num 0.5
+##   .. ..- attr(*, "height")= num 26.9
+##   ..- attr(*, "members")= int 3
+##   ..- attr(*, "midpoint")= num 0.75
+##   ..- attr(*, "height")= num 44.1
+##  - attr(*, "members")= int 4
+##  - attr(*, "midpoint")= num 0.875
+##  - attr(*, "height")= num 147
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -361,7 +324,7 @@ Also, terminal nodes also has the "leaf" attribute (set to TRUE).
 
 A very important function is \code{dendrapply}. It applies some function recursively to each node of a dendrogram. It is often used for adjusting attributes of the object, or extracting something from it. 
 
-One current "feature" with this function is that just sending a dendrogram through it will return it with each of its nodes becoming of class "dendrogram". For example:
+One current "feature" with this function is that just sending a dendrogram through it will return it with each of its nodes becoming of class "dendrogram". Notice the use of the \code{unclass_dend} function. Example:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -370,8 +333,8 @@ One current "feature" with this function is that just sending a dendrogram throu
 itself <- \hlfunctioncall{function}(x) x
 dend_from_dendrapply <- \hlfunctioncall{dendrapply}(dend, itself)
 
-\hlcomment{# here we must first use unclass since '[[]]' inherits its}
-\hlcomment{# class to the output:}
+\hlcomment{# here we must first use unclass since '[[]]' inherits its class to the}
+\hlcomment{# output:}
 \hlfunctioncall{class}(\hlfunctioncall{unclass}(dend)[[2]])
 \end{alltt}
 \begin{verbatim}
@@ -382,6 +345,12 @@ dend_from_dendrapply <- \hlfunctioncall{dendrapply}(dend, itself)
 \end{alltt}
 \begin{verbatim}
 ## [1] "dendrogram"
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{class}(\hlfunctioncall{unclass_dend}(dend_from_dendrapply)[[2]])  \hlcomment{# the new uncless_dend solves it.}
+\end{alltt}
+\begin{verbatim}
+## [1] "list"
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -438,7 +407,7 @@ To install the \href{https://github.com/talgalili/dendextend}{GitHub version} us
 
 
 
-\section{Labels extraction and assignment}
+\section{Tree labels (extraction, assignment, length)}
 
 
 \subsection{labels in base R}
@@ -447,7 +416,7 @@ In base R, the \code{labels} function is intended to find/extract a suitable set
 
 What base R \code{labels} function is mising is assignment. In the next few examples we will go through different examples of what the \code{dendextend} package offers for various objects.
 
-\textbf{Credit:} These assignment functions were originally written by Gavin Simpson (in a post on \href{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}{(stackoverflow)}), and adopted/adjusted to this package by Tal Galili.
+\textbf{Credits:} These assignment functions were originally written by Gavin Simpson (in a post on \href{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}{(stackoverflow)}), and adopted/adjusted to this package by Tal Galili. Some modifactions were inspired by Gregory Jefferis's code from the \pkg{dendroextras} package.
 
 
 \subsection{labels for vectors and matrixes}
@@ -524,11 +493,231 @@ Labels assignment are also available for matrixes.
 
 \subsection{labels for dendrogram objects}
 
+We can get a dendrogram's labels using the \code{labels} function from base R. However, in order to assing new values to it, we'll need the assignment function from \pkg{dendextend}:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{labels}(dend)  \hlcomment{# from base R}
+\end{alltt}
+\begin{verbatim}
+## [1] "Ohio"       "Alaska"     "California" "New York"
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{set.seed}(2354235)
+\hlfunctioncall{labels}(dend) <- \hlfunctioncall{sample}(\hlfunctioncall{labels}(dend))  \hlcomment{# labels assingment - thanks to dendextend}
+\hlfunctioncall{labels}(dend)
+\end{alltt}
+\begin{verbatim}
+## [1] "New York"   "Ohio"       "Alaska"     "California"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
 \subsection{labels for hclust objects}
+
+\pkg{dendextend} offers a \code{labels} method for \code{hclust} objects. It take speciel care to have the order of the labels be the same as is with dendrogram object, which is the order of the labels in the plotted tree. This can be turned off when using the \code{order} parameter:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcomment{# All are from dendextend}
+\hlfunctioncall{labels}(hc)
+\end{alltt}
+\begin{verbatim}
+## [1] "Ohio"       "Alaska"     "California" "New York"
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{labels}(hc, order = FALSE)  \hlcomment{# this is the order of the rows of the original data.}
+\end{alltt}
+\begin{verbatim}
+## [1] "Alaska"     "California" "New York"   "Ohio"
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{set.seed}(229835)
+\hlfunctioncall{labels}(hc) <- \hlfunctioncall{sample}(\hlfunctioncall{labels}(hc))  \hlcomment{# labels assingment - thanks to dendextend}
+\hlfunctioncall{labels}(hc)
+\end{alltt}
+\begin{verbatim}
+## [1] "California" "New York"   "Alaska"     "Ohio"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 
 
 
 \subsection{labels assignment and recycling}
+
+When the assigned vector has a different length, the \pkg{dendextend} assignment functions will recycle the value but also give a warning:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+x <- 1:3
+hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(US_data), \hlstring{"ave"})
+dend <- \hlfunctioncall{as.dendrogram}(hc)
+y <- \hlfunctioncall{matrix}(1:9, 3, 3)
+
+\hlfunctioncall{labels}(x) <- \hlstring{"bob"}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: The lengths of the new labels is shorter than the length of the object - labels are recycled.}}\begin{alltt}
+\hlfunctioncall{labels}(x)
+\end{alltt}
+\begin{verbatim}
+## [1] "bob" "bob" "bob"
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{labels}(hc) <- \hlstring{"bob"}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: The lengths of the new labels is shorter than the number of leaves in the hclust - labels are recycled.}}\begin{alltt}
+\hlfunctioncall{labels}(hc)
+\end{alltt}
+\begin{verbatim}
+## [1] "bob" "bob" "bob" "bob"
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{labels}(dend) <- \hlstring{"bob"}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: The lengths of the new labels is shorter than the number of leaves in the dendrogram - labels are recycled.}}\begin{alltt}
+\hlfunctioncall{labels}(dend)
+\end{alltt}
+\begin{verbatim}
+## [1] "bob" "bob" "bob" "bob"
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{labels}(y) <- \hlstring{"bob"}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: The lengths of the new labels is shorter than the length of the object's colnames - labels are recycled.}}\begin{alltt}
+\hlfunctioncall{labels}(y)
+\end{alltt}
+\begin{verbatim}
+## [1] "bob" "bob" "bob"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+\subsection{Tree size}
+
+Getting the size of a tree (e.g: number of leaves/terminal-nodes) is good for validation of functions, and also when we wish to initiate a variable to later fill with data from the leaves. 
+
+The \code{labels} function for dendrogram is expensive, since it uses recurssion to get all of the tree's elements. If we are only intrested in getting the tree size, it is better to use the \code{nleaves} function. It has an S3 method for hclust, dendrogram and phylo (from the \pkg{ape}):
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{nleaves}(hc)
+\end{alltt}
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{nleaves}(dend)
+\end{alltt}
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+For dendrograms the speed imporvement is about 10 times using \code{labels}, whereas for hclust, there is not any gain made by using \code{nleaves}. Here is a quick benchmark:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{library}(microbenchmark)
+\hlfunctioncall{microbenchmark}(\hlfunctioncall{nleaves}(dend), \hlfunctioncall{length}(\hlfunctioncall{labels}(dend)))
+\end{alltt}
+\begin{verbatim}
+## Unit: microseconds
+##                  expr    min     lq median     uq   max neval
+##         nleaves(dend)  23.52  25.76  28.28  30.52 288.4   100
+##  length(labels(dend)) 374.59 382.15 395.59 421.62 810.2   100
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{microbenchmark}(\hlfunctioncall{nleaves}(hc), \hlfunctioncall{length}(\hlfunctioncall{labels}(hc)))
+\end{alltt}
+\begin{verbatim}
+## Unit: microseconds
+##                expr   min    lq median    uq   max neval
+##         nleaves(hc) 16.80 17.36  18.20 19.04  30.8   100
+##  length(labels(hc)) 29.68 30.80  31.36 31.36 127.7   100
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+There are border-line cases where the node above some leaves is of height 0. In such a case, we would consider that node as a "terminal node", and in order to count the number of such terminal nodes we would use \code{count_terminal_nodes} function. For example:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[1:3, ]), \hlstring{"ave"})
+dend <- \hlfunctioncall{as.dendrogram}(hc)
+
+\hlfunctioncall{par}(mfrow = \hlfunctioncall{c}(1, 2))
+
+\hlcomment{### Trivial case}
+\hlfunctioncall{count_terminal_nodes}(dend)  \hlcomment{# 3 terminal nodes}
+\end{alltt}
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{length}(\hlfunctioncall{labels}(dend))  \hlcomment{# 3 - the same number}
+\end{alltt}
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{plot}(dend, main = \hlstring{"This is considered a tree \textbackslash{}n with THREE terminal \hlfunctioncall{nodes} (leaves)"})
+
+\hlcomment{### NON-Trivial case}
+\hlfunctioncall{str}(dend)
+\end{alltt}
+\begin{verbatim}
+## --[dendrogram w/ 2 branches and 3 members at h = 54.8]
+##   |--leaf "Arizona" 
+##   `--[dendrogram w/ 2 branches and 2 members at h = 37.2]
+##      |--leaf "Alabama" 
+##      `--leaf "Alaska"
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{attr}(dend[[2]], \hlstring{"height"}) <- 0
+\hlfunctioncall{count_terminal_nodes}(dend)  \hlcomment{# 2 terminal nodes, why? see this plot:}
+\end{alltt}
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+\begin{alltt}
+\hlcomment{# while we have 3 leaves, in practice we have only 2 terminal nodes (this}
+\hlcomment{# is a feature, not a bug.)}
+\hlfunctioncall{plot}(dend, main = \hlstring{"This is considered a tree \textbackslash{}n with TWO terminal nodes only"})
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth,height=3in]{figure/unnamed-chunk-19} 
+
+}
+
+
+
+\end{knitrout}
+
 
 
 

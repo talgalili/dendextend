@@ -1,0 +1,10 @@
+base
+datasets
+dendextend
+graphics
+grDevices
+knitr
+methods
+microbenchmark
+stats
+utils
