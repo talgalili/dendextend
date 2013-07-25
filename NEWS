@@ -7,7 +7,7 @@ NEW FUNCTIONS ADDED:
 NEW VIGNETTES SECTIONS ADDED:
    * Vignettes created (using LaTeX)
    * Basic introduction to dendrogram objects
-   * Labels extraction and assignment
+   * Labels extraction and assignment, and measuring tree size.
 
 NEW TESTS ADDED:
    * labels extraction and assignment (especially important for comparing hclust and dendrogram!)
@@ -17,6 +17,8 @@ UPDATED FUNCTIONS:
    * "labels.hclust" - added the "order" parameter. (based on some ideas from Gregory Jefferis's dendroextras package)
    * "labels.hclust" and "labels.hclust<-" - now both use order=TRUE as default. this makes them consistent with labels.dendrogram. Proper tests have been implemented.
    * "labels<-.dendrogram" - make sure the new dendrogram does not have each of its node of class "dendrogram" (which happens when using dendrapply)
+   * unclass_dend - now uses dendrapply
+
 
 OTHER NOTES:
    * Extending the documentation for: rotate, labels.hclust,
