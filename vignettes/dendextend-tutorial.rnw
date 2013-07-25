@@ -49,8 +49,8 @@ The paper gives a detailed exposition of both the internal structure of
 the package and the provided user interfaces.
 }
 
-\Keywords{Dendrogram, hclust, heirarchical clustering, visualization, tanglegram,  \proglang{R}}
-\Plainkeywords{Dendrogram, hclust, heirarchical clustering, visualization, tanglegram, R}
+\Keywords{Dendrogram, hclust, hierarchical clustering, visualization, tanglegram,  \proglang{R}}
+\Plainkeywords{Dendrogram, hclust, hierarchical clustering, visualization, tanglegram, R}
 
 
 % \Volume{40}
@@ -98,7 +98,7 @@ Dendrogram has several useful methods bundled with R:
 methods(class="dendrogram")
 @
 
-For example, let's create a dendrogram object based on an heirarchical clustering of 4 states in the U.S.:
+For example, let's create a dendrogram object based on an hierarchical clustering of 4 states in the U.S.:
 
 <<>>=
 # our data:
@@ -111,7 +111,7 @@ dend <- as.dendrogram(hc)
 @
 
 
-Here are some examples for some dendrogram methods:
+Below are examples for some dendrogram methods:
 
 <<out.width="4in", out.height="4in",fig.align='center'>>=
 print(dend)
@@ -131,7 +131,7 @@ print(US_data[new_order,])
 @
 
 
-In order to see what our dendrogram (\code{list}) object includes, we need to use the \code{unclass} function, which will strip away the class atrribute and will allow us to print the list as is, without going through the \code{print.dendrorgam} method. We can see how each node in the dendrogram/list object has the following (self explaining) attributes:
+In order to see what our dendrogram (\code{list}) object includes, we need to use the \code{unclass} function, which will strip away the class attribute and will allow us to print the list as is, without going through the \code{print.dendrogram} method. We can see how each node in the dendrogram/list object has the following (self explaining) attributes:
 
 <<>>=
 str(unclass(dend))
@@ -171,7 +171,7 @@ The \code{dendrogram} object has several \textbf{advantages}:
 \begin{enumerate}
    \item \code{dendrogram} objects are simply list R objects. This makes their structure  very simple to understand by R users.
    \item \code{dendrogram} objects has various methods and functions for using them in R. 
-   \item \code{dendrogram} objects are relatively simple to manipulte and extend.
+   \item \code{dendrogram} objects are relatively simple to manipulate and extend.
    \item Other tree objects (such as *hclust*, and objects from the *{ape}* package) include an *as.dendrogram* method for converting their objects into a dendrogram.
 \end{enumerate}
 
@@ -207,12 +207,12 @@ install_github('dendextend', 'talgalili')
 
 In base R, the \code{labels} function is intended to find/extract a suitable set of labels from an object for use in printing or plotting, for example. By default, it uses the \code{names} and \code{dimnames} functions.
 
-What base R \code{labels} function is mising is assignment. In the next few examples we will go through different examples of what the \code{dendextend} package offers for various objects.
+What base R \code{labels} function is missing is assignment. In the next few examples we will go through different examples of what the \code{dendextend} package offers for various objects.
 
-\textbf{Credits:} These assignment functions were originally written by Gavin Simpson (in a post on \href{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}{(stackoverflow)}), and adopted/adjusted to this package by Tal Galili. Some modifactions were inspired by Gregory Jefferis's code from the \pkg{dendroextras} package.
+\textbf{Credits:} These assignment functions were originally written by Gavin Simpson (in a post on \href{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}{(stackoverflow)}), and adopted/adjusted to this package by Tal Galili. Some modification were inspired by Gregory Jefferis's code from the \pkg{dendroextras} package.
 
 
-\subsection{labels for vectors and matrixes}
+\subsection{labels for vectors and matrices}
 
 In base R, for vectors, labels gives the \code{names} of the object. And if these are missing, then \code{labels} will give the vector itself as a character vector:
 
@@ -243,12 +243,12 @@ names(x)
 labels(x)
 @
 
-Labels assignment are also available for matrixes.
+Labels assignment are also available for matrices.
 
 
 \subsection{labels for dendrogram objects}
 
-We can get a dendrogram's labels using the \code{labels} function from base R. However, in order to assing new values to it, we'll need the assignment function from \pkg{dendextend}:
+We can get a dendrogram's labels using the \code{labels} function from base R. However, in order to assign new values to it, we'll need the assignment function from \pkg{dendextend}:
 
 <<>>=
 labels(dend) # from base R
@@ -260,7 +260,7 @@ labels(dend)
 
 \subsection{labels for hclust objects}
 
-\pkg{dendextend} offers a \code{labels} method for \code{hclust} objects. It take speciel care to have the order of the labels be the same as is with dendrogram object, which is the order of the labels in the plotted tree. This can be turned off when using the \code{order} parameter:
+\pkg{dendextend} offers a \code{labels} method for \code{hclust} objects. It take special care to have the order of the labels be the same as is with dendrogram object, which is the order of the labels in the plotted tree. This can be turned off when using the \code{order} parameter:
 
 <<>>=
 # All are from dendextend
@@ -299,14 +299,14 @@ labels(y)
 
 Getting the size of a tree (e.g: number of leaves/terminal-nodes) is good for validation of functions, and also when we wish to initiate a variable to later fill with data from the leaves. 
 
-The \code{labels} function for dendrogram is expensive, since it uses recurssion to get all of the tree's elements. If we are only intrested in getting the tree size, it is better to use the \code{nleaves} function. It has an S3 method for hclust, dendrogram and phylo (from the \pkg{ape}):
+The \code{labels} function for dendrogram is expensive, since it uses recursion to get all of the tree's elements. If we are only interested in getting the tree size, it is better to use the \code{nleaves} function. It has an S3 method for hclust, dendrogram and phylo (from the \pkg{ape}):
 
 <<>>=
 nleaves(hc)
 nleaves(dend)
 @
 
-For dendrograms the speed imporvement is about 10 times using \code{labels}, whereas for hclust, there is not any gain made by using \code{nleaves}. Here is a quick benchmark:
+For dendrograms the speed improvement is about 10 times using \code{labels}, whereas for hclust, there is not any gain made by using \code{nleaves}. Here is a quick benchmark:
 
 <<cache=TRUE>>=
 library(microbenchmark)
