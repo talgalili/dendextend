@@ -90,8 +90,8 @@ The paper gives a detailed exposition of both the internal structure of
 the package and the provided user interfaces.
 }
 
-\Keywords{Dendrogram, hclust, heirarchical clustering, visualization, tanglegram,  \proglang{R}}
-\Plainkeywords{Dendrogram, hclust, heirarchical clustering, visualization, tanglegram, R}
+\Keywords{Dendrogram, hclust, hierarchical clustering, visualization, tanglegram,  \proglang{R}}
+\Plainkeywords{Dendrogram, hclust, hierarchical clustering, visualization, tanglegram, R}
 
 
 % \Volume{40}
@@ -122,8 +122,11 @@ the package and the provided user interfaces.
 
 
 \begin{document}
-
 \vspace*{-0.25cm}
+
+%% Doesn't seem to work:
+%% \tableofcontents
+
 
 \section{Introduction}
 
@@ -155,7 +158,7 @@ Dendrogram has several useful methods bundled with R:
 \end{knitrout}
 
 
-For example, let's create a dendrogram object based on an heirarchical clustering of 4 states in the U.S.:
+For example, let's create a dendrogram object based on an hierarchical clustering of 4 states in the U.S.:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -182,7 +185,7 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 
 
 
-Here are some examples for some dendrogram methods:
+Below are examples for some dendrogram methods:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -261,7 +264,7 @@ You might notice how the order of the items (leaves/terminal nodes) of the dendr
 
 
 
-In order to see what our dendrogram (\code{list}) object includes, we need to use the \code{unclass} function, which will strip away the class atrribute and will allow us to print the list as is, without going through the \code{print.dendrorgam} method. We can see how each node in the dendrogram/list object has the following (self explaining) attributes:
+In order to see what our dendrogram (\code{list}) object includes, we need to use the \code{unclass} function, which will strip away the class attribute and will allow us to print the list as is, without going through the \code{print.dendrogram} method. We can see how each node in the dendrogram/list object has the following (self explaining) attributes:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -307,7 +310,7 @@ In order to see what our dendrogram (\code{list}) object includes, we need to us
 
 
 
-Also, terminal nodes also has the "leaf" attribute (set to TRUE).
+Notice how terminal nodes uses the "leaf" attribute (set to TRUE).
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -367,7 +370,7 @@ The \code{dendrogram} object has several \textbf{advantages}:
 \begin{enumerate}
    \item \code{dendrogram} objects are simply list R objects. This makes their structure  very simple to understand by R users.
    \item \code{dendrogram} objects has various methods and functions for using them in R. 
-   \item \code{dendrogram} objects are relatively simple to manipulte and extend.
+   \item \code{dendrogram} objects are relatively simple to manipulate and extend.
    \item Other tree objects (such as *hclust*, and objects from the *{ape}* package) include an *as.dendrogram* method for converting their objects into a dendrogram.
 \end{enumerate}
 
@@ -414,12 +417,12 @@ To install the \href{https://github.com/talgalili/dendextend}{GitHub version} us
 
 In base R, the \code{labels} function is intended to find/extract a suitable set of labels from an object for use in printing or plotting, for example. By default, it uses the \code{names} and \code{dimnames} functions.
 
-What base R \code{labels} function is mising is assignment. In the next few examples we will go through different examples of what the \code{dendextend} package offers for various objects.
+What base R \code{labels} function is missing is assignment. In the next few examples we will go through different examples of what the \code{dendextend} package offers for various objects.
 
-\textbf{Credits:} These assignment functions were originally written by Gavin Simpson (in a post on \href{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}{(stackoverflow)}), and adopted/adjusted to this package by Tal Galili. Some modifactions were inspired by Gregory Jefferis's code from the \pkg{dendroextras} package.
+\textbf{Credits:} These assignment functions were originally written by Gavin Simpson (in a post on \href{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}{(stackoverflow)}), and adopted/adjusted to this package by Tal Galili. Some modification were inspired by Gregory Jefferis's code from the \pkg{dendroextras} package.
 
 
-\subsection{labels for vectors and matrixes}
+\subsection{labels for vectors and matrices}
 
 In base R, for vectors, labels gives the \code{names} of the object. And if these are missing, then \code{labels} will give the vector itself as a character vector:
 
@@ -488,12 +491,12 @@ x <- 1:3
 \end{knitrout}
 
 
-Labels assignment are also available for matrixes.
+Labels assignment are also available for matrices.
 
 
 \subsection{labels for dendrogram objects}
 
-We can get a dendrogram's labels using the \code{labels} function from base R. However, in order to assing new values to it, we'll need the assignment function from \pkg{dendextend}:
+We can get a dendrogram's labels using the \code{labels} function from base R. However, in order to assign new values to it, we'll need the assignment function from \pkg{dendextend}:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -518,7 +521,7 @@ We can get a dendrogram's labels using the \code{labels} function from base R. H
 
 \subsection{labels for hclust objects}
 
-\pkg{dendextend} offers a \code{labels} method for \code{hclust} objects. It take speciel care to have the order of the labels be the same as is with dendrogram object, which is the order of the labels in the plotted tree. This can be turned off when using the \code{order} parameter:
+\pkg{dendextend} offers a \code{labels} method for \code{hclust} objects. It take special care to have the order of the labels be the same as is with dendrogram object, which is the order of the labels in the plotted tree. This can be turned off when using the \code{order} parameter:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -613,7 +616,7 @@ y <- \hlfunctioncall{matrix}(1:9, 3, 3)
 
 Getting the size of a tree (e.g: number of leaves/terminal-nodes) is good for validation of functions, and also when we wish to initiate a variable to later fill with data from the leaves. 
 
-The \code{labels} function for dendrogram is expensive, since it uses recurssion to get all of the tree's elements. If we are only intrested in getting the tree size, it is better to use the \code{nleaves} function. It has an S3 method for hclust, dendrogram and phylo (from the \pkg{ape}):
+The \code{labels} function for dendrogram is expensive, since it uses recursion to get all of the tree's elements. If we are only interested in getting the tree size, it is better to use the \code{nleaves} function. It has an S3 method for hclust, dendrogram and phylo (from the \pkg{ape}):
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -633,7 +636,7 @@ The \code{labels} function for dendrogram is expensive, since it uses recurssion
 \end{knitrout}
 
 
-For dendrograms the speed imporvement is about 10 times using \code{labels}, whereas for hclust, there is not any gain made by using \code{nleaves}. Here is a quick benchmark:
+For dendrograms the speed improvement is about 10 times using \code{labels}, whereas for hclust, there is not any gain made by using \code{nleaves}. Here is a quick benchmark:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -684,7 +687,7 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 ## [1] 3
 \end{verbatim}
 \begin{alltt}
-\hlfunctioncall{plot}(dend, main = \hlstring{"This is considered a tree \textbackslash{}n with THREE terminal \hlfunctioncall{nodes} (leaves)"})
+\hlfunctioncall{plot}(dend, main = \hlstring{"This is considered a tree \textbackslash{}n with THREE terminal nodes/leaves"})
 
 \hlcomment{### NON-Trivial case}
 \hlfunctioncall{str}(dend)
@@ -710,13 +713,360 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth,height=3in]{figure/unnamed-chunk-19} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-19} 
 
 }
 
 
 
 \end{knitrout}
+
+
+
+\section{Tree manipulation}
+
+\subsection{Unrooting and root height}
+
+A tree's nodes has various heights. Sometimes we are interested in changing the height of the entire tree. It is useful when This can be accomplished using \code{raise.dendrogram}. For example (notice how the entire tree's height is changed):
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[1:3, ]), \hlstring{"ave"})
+dend <- \hlfunctioncall{as.dendrogram}(hc)
+
+taller_dend <- \hlfunctioncall{raise.dendrogram}(dend, 10)
+shorter_dend <- \hlfunctioncall{raise.dendrogram}(dend, -10)
+
+\hlfunctioncall{attr}(dend, \hlstring{"height"})  # 54.80041
+\end{alltt}
+\begin{verbatim}
+## [1] 54.8
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{attr}(taller_dend, \hlstring{"height"})  # 64.80041
+\end{alltt}
+\begin{verbatim}
+## [1] 64.8
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{attr}(shorter_dend, \hlstring{"height"})  # 44.80041
+\end{alltt}
+\begin{verbatim}
+## [1] 44.8
+\end{verbatim}
+\begin{alltt}
+
+\hlfunctioncall{par}(mfrow = \hlfunctioncall{c}(1, 3))
+\hlfunctioncall{plot}(dend, ylim = \hlfunctioncall{c}(0, 70), main = \hlstring{"Original dend"})
+\hlfunctioncall{abline}(h = \hlfunctioncall{c}(40, 50, 60), lty = 2)
+\hlfunctioncall{plot}(taller_dend, ylim = \hlfunctioncall{c}(0, 70), main = \hlstring{"Taller dend"})
+\hlfunctioncall{abline}(h = \hlfunctioncall{c}(40, 50, 60), lty = 2)
+\hlfunctioncall{plot}(shorter_dend, ylim = \hlfunctioncall{c}(0, 70), main = \hlstring{"Shorter dend"})
+\hlfunctioncall{abline}(h = \hlfunctioncall{c}(40, 50, 60), lty = 2)
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-20} 
+
+}
+
+
+
+\end{knitrout}
+
+
+
+
+Sometimes we wish to "unroot" the dendrogram, meaning that we merge one of the tree's branches with its root. This is useful, for example, when merging phylogenetic trees from several families, and being unwilling to assume a specific root to the merged trees. Unrooting can be done using the \code{unroot} (S3) function (notice the use of the \code{branch_becoming_root} parameter):
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[10:13, ]), \hlstring{"ward"})
+dend <- \hlfunctioncall{as.dendrogram}(hc)
+
+unrooted_dend <- \hlfunctioncall{unroot}(dend, branch_becoming_root = 1)
+unrooted_dend_2 <- \hlfunctioncall{unroot}(unrooted_dend, branch_becoming_root = 3)
+
+\hlfunctioncall{par}(mfrow = \hlfunctioncall{c}(1, 3))
+\hlfunctioncall{plot}(dend)
+\hlfunctioncall{plot}(unrooted_dend)
+\hlfunctioncall{plot}(unrooted_dend_2)
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-21} 
+
+}
+
+
+
+\end{knitrout}
+
+
+While the \code{unroot.hclust} method exists, it is not expected to work since \code{hclust} objects are not designed to handle non-binary trees (hence the advantage of using \code{dendrogram} objects). For \code{phylo} objects (from the \pkg{ape} package), there is also a method that would simply use \code{ape:::unroot(phy = x)}.
+
+In some rare cases, we might wish to equalize the heights of root's branches. For this we can use the \code{flatten.dendrogram} function:
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[10:13, ]), \hlstring{"ward"})
+dend <- \hlfunctioncall{as.dendrogram}(hc)
+
+flatten_dend_1 <- \hlfunctioncall{flatten.dendrogram}(dend, FUN = max)
+flatten_dend_2 <- \hlfunctioncall{flatten.dendrogram}(dend, FUN = min)
+
+\hlfunctioncall{par}(mfrow = \hlfunctioncall{c}(1, 3))
+\hlfunctioncall{plot}(dend, main = \hlstring{"Original tree"})
+\hlfunctioncall{abline}(h = \hlfunctioncall{c}(50, 100), lty = 2)
+\hlfunctioncall{plot}(flatten_dend_1, main = \hlstring{"Flatten tree \textbackslash{}\hlfunctioncall{n}(max branches height)"})
+\hlfunctioncall{abline}(h = \hlfunctioncall{c}(50, 100), lty = 2)
+\hlfunctioncall{plot}(flatten_dend_2, main = \hlstring{"Flatten tree \textbackslash{}\hlfunctioncall{n}(min branches height)"})
+\hlfunctioncall{abline}(h = \hlfunctioncall{c}(50, 100), lty = 2)
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-22} 
+
+}
+
+
+
+\end{knitrout}
+
+
+
+
+
+\subsection{Coloring labels of leaves}
+
+Coloring labels can sometimes be useful, it is done through the \code{labels_colors} function (which also has assignemnt). Notice the assignment recycling, as well as the differene in the appearence of a dot when labels' color is black, compared to when it is NULL:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+\hlfunctioncall{par}(mfrow = \hlfunctioncall{c}(1, 3))
+
+hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[1:3, ]), \hlstring{"ave"})
+dend <- \hlfunctioncall{as.dendrogram}(hc)
+
+\hlcomment{# Defaults:}
+\hlfunctioncall{labels_colors}(dend)
+\end{alltt}
+\begin{verbatim}
+## NULL
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{plot}(dend)
+
+\hlcomment{# let's add some color:}
+\hlfunctioncall{require}(colorspace)
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: colorspace}}\begin{alltt}
+\hlfunctioncall{labels_colors}(dend) <- \hlfunctioncall{rainbow_hcl}(3)
+\hlfunctioncall{labels_colors}(dend)
+\end{alltt}
+\begin{verbatim}
+## [1] "#E495A5" "#86B875" "#7DB0DD"
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{plot}(dend)
+
+\hlcomment{# changing color to black}
+\hlfunctioncall{labels_colors}(dend) <- 1
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Length of color vector was shorter then the number of leaves - vector color recycled}}\begin{alltt}
+\hlfunctioncall{labels_colors}(dend)
+\end{alltt}
+\begin{verbatim}
+## [1] 1 1 1
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{plot}(dend)
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-23} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+
+\hlcomment{# removing color (and the nodePar completely - if it has no other}
+\hlcomment{# attributed but lab.col)}
+\hlfunctioncall{labels_colors}(dend) <- NULL
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Length of color vector was shorter then the number of leaves - vector color recycled}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: 'x' is NULL so the result will be NULL}}\begin{alltt}
+\hlfunctioncall{labels_colors}(dend)
+\end{alltt}
+\begin{verbatim}
+## NULL
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+
+\subsection{Trimming leaves}
+
+Trimming a tree from some leaves can be done using the \code{trim} (S3 method) function (notice that the attributes of the trimmed tree are updated):
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[1:5, ]), \hlstring{"ave"})
+dend <- \hlfunctioncall{as.dendrogram}(hc)
+\hlfunctioncall{library}(colorspace)
+\hlfunctioncall{labels_colors}(dend) <- \hlfunctioncall{rainbow_hcl}(5)
+
+trimmed_dend <- \hlfunctioncall{trim}(dend, \hlfunctioncall{c}(\hlstring{"Alaska"}, \hlstring{"California"}))
+
+\hlfunctioncall{str}(\hlfunctioncall{unclass}(trimmed_dend))
+\end{alltt}
+\begin{verbatim}
+## List of 2
+##  $ : atomic [1:1] 4
+##   ..- attr(*, "members")= int 1
+##   ..- attr(*, "height")= num 0
+##   ..- attr(*, "label")= chr "Arkansas"
+##   ..- attr(*, "leaf")= logi TRUE
+##   ..- attr(*, "nodePar")=List of 1
+##   .. ..$ lab.col: chr "#E495A5"
+##  $ :List of 2
+##   ..$ : atomic [1:1] 3
+##   .. ..- attr(*, "label")= chr "Arizona"
+##   .. ..- attr(*, "members")= int 1
+##   .. ..- attr(*, "height")= num 0
+##   .. ..- attr(*, "leaf")= logi TRUE
+##   .. ..- attr(*, "nodePar")=List of 1
+##   .. .. ..$ lab.col: chr "#BDAB66"
+##   ..$ : atomic [1:1] 1
+##   .. ..- attr(*, "label")= chr "Alabama"
+##   .. ..- attr(*, "members")= int 1
+##   .. ..- attr(*, "height")= num 0
+##   .. ..- attr(*, "leaf")= logi TRUE
+##   .. ..- attr(*, "nodePar")=List of 1
+##   .. .. ..$ lab.col: chr "#55B8D0"
+##   ..- attr(*, "members")= num 2
+##   ..- attr(*, "midpoint")= num 0.5
+##   ..- attr(*, "height")= num 52.6
+##  - attr(*, "members")= num 3
+##  - attr(*, "midpoint")= num 0.75
+##  - attr(*, "height")= num 82.6
+\end{verbatim}
+\begin{alltt}
+
+\hlfunctioncall{par}(mfrow = \hlfunctioncall{c}(1, 2))
+\hlfunctioncall{plot}(dend, main = \hlstring{"original tree"})
+\hlfunctioncall{plot}(trimmed_dend, main = \hlstring{"tree without Alaska and California"})
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-24} 
+
+}
+
+
+
+\end{knitrout}
+
+
+If we have two trees, we can use the \code{intersect_trees} function to reduce both trees to have the same labels (this will be useful later when we'd like to compare the two trees):
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+hc_1 <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[1:5, ]), \hlstring{"single"})
+hc_2 <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[1:5, ]), \hlstring{"complete"})
+dend_1 <- \hlfunctioncall{as.dendrogram}(hc_1)
+dend_2 <- \hlfunctioncall{as.dendrogram}(hc_2)
+
+\hlfunctioncall{library}(colorspace)
+\hlfunctioncall{labels_colors}(dend_1) <- \hlfunctioncall{rainbow_hcl}(5)
+\hlfunctioncall{labels_colors}(dend_2) <- \hlfunctioncall{rainbow_hcl}(5)
+
+
+trimmed_dend_1 <- \hlfunctioncall{trim}(dend_1, \hlfunctioncall{c}(\hlstring{"Alaska"}))
+trimmed_dend_2 <- \hlfunctioncall{trim}(dend_2, \hlfunctioncall{c}(\hlstring{"California"}))
+
+dends_12 <- \hlfunctioncall{intersect_trees}(trimmed_dend_1, trimmed_dend_2)
+
+\hlfunctioncall{par}(mfrow = \hlfunctioncall{c}(3, 2))
+\hlfunctioncall{plot}(dend_1, main = \hlstring{"Tree - single method"}, ylim = \hlfunctioncall{c}(0, 110))
+\hlfunctioncall{plot}(dend_2, main = \hlstring{"Tree - complete method"}, ylim = \hlfunctioncall{c}(0, 110))
+\hlfunctioncall{plot}(trimmed_dend_1, main = \hlstring{"Trimmed tree - single method"}, ylim = \hlfunctioncall{c}(0, 110))
+\hlfunctioncall{plot}(trimmed_dend_2, main = \hlstring{"Trimmed tree - complete method"}, ylim = \hlfunctioncall{c}(0, 110))
+\hlfunctioncall{plot}(dends_12[[1]], main = \hlstring{"Intersected tree - single method"}, ylim = \hlfunctioncall{c}(0, 110))
+\hlfunctioncall{plot}(dends_12[[2]], main = \hlstring{"Intersected tree - complete method"}, ylim = \hlfunctioncall{c}(0, 
+    110))
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-25} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+
+
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+
+
+
+\subsection{Rotating branches}
+
+\subsection{Coloring leaves}
+
+\subsection{Coloring branches}
+
+
+\section{Tanglegrams - visually comparing two trees side-by-side}
+
+\subsection{Tanglegram visualization}
+
+\subsection{Finding an optimal rotation}
+
+
+\section{Comparing two trees - statistics and inference}
+
+\subsection{Baker's gamma}
+
+\subsection{Bk method}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -864,14 +1214,14 @@ The \pkg{dendextend} package presented in this paper greatly extends the availab
 
 
 
-% \section*{Acknowledgments}
-% 
+\section*{Acknowledgments}
+
+We are very thankful for code contributions and ideas by the R core team (especially Martin Maechler and Brian Ripley, but probably also others without our knowledge), Gavin Simpson, Gregory Jefferis
+,
 % Detailed comments and suggestions by editors as well as anonymous referees
-% are gratefully acknowledged.  We are also thankful for code contributions by
-% Douglas Bates and John Chambers, as well as for very helpful suggestions by Uwe
-% Ligges, Brian Ripley and Simon Urbanek concerning the build systems for different
-% platforms.   Last but not least, several users provided very fruitful
-% ideas for new or extended features via the \code{dendextend-devel} mailing list.
+% are gratefully acknowledged.  
+
+
 
 
 \bibliography{dendextend-tutorial}
