@@ -24,7 +24,8 @@
   right)}
 
   \item{new_root_height}{the new height of the branch which
-  will become the new root.}
+  will become the new root. If the parameter is not given -
+  the height of the original root is used.}
 
   \item{...}{passed on}
 }

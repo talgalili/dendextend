@@ -21,8 +21,8 @@
 }
 \description{
   The function makes sure the two branches of the root of a
-  dendrogram will have the same height.  The user can
-  choose how to decide which height to use.
+  dendrogram will have the same height. The user can choose
+  how to decide which height to use.
 }
 \examples{
 hc <- hclust(dist(USArrests[2:9,]), "com")
