@@ -39,13 +39,15 @@
 trim_leaf <- function(x, leaf_name,...)
 {
    labels_x <- labels(x)
+   
    if(length(labels_x) != length(unique(labels_x)))	warning("Found dubplicate labels in the tree (this might indicate a problem in the tree you supplied)")
+
    if(!(leaf_name %in% labels_x)) {	# what to do if there is no such leaf inside the tree
       warning(paste("There is no leaf with the label", leaf_name , "in the tree you supplied", "\n" , "Returning original tree", "\n" ))
       return(x)
    }
-   if(sum(labels_x %in% leaf_name) > 1) {	# what to do if there is no such leaf inside the tree
-      
+   
+   if(sum(labels_x %in% leaf_name) > 1) {	# what to do if there is no such leaf inside the tree      
       warning(paste("There are multiple leaves by the name of '", leaf_name , "' in the tree you supplied.  Their locations is:",
                     paste(which(labels_x %in% leaf_name), collapse = ","),"\n" , "Returning original tree", "\n" ))
       return(x)
@@ -94,8 +96,9 @@ trim_leaf <- function(x, leaf_name,...)
       return(x)
    }
    
+   
    new_x <- remove.leaf.if.child(x, leaf_name)
-   new_x <- stats:::midcache.dendrogram(new_x )
+   new_x <- suppressWarnings(stats:::midcache.dendrogram(new_x)) # fixes the attributes
    return(new_x)
 }
 
@@ -146,6 +149,7 @@ trim.dendrogram <- function(x, leaves,...) {
       
    for(i in seq_along(leaves))
    {
+      # this function is probably not the fastest - but it works...
       x <- trim_leaf(x, leaves[i])	# move step by stem to remove all of these leaves...
    }
    return(x)

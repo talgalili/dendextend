@@ -80,8 +80,11 @@ the package and the provided user interfaces.
 
 
 \begin{document}
-
 \vspace*{-0.25cm}
+
+%% Doesn't seem to work:
+%% \tableofcontents
+
 
 \section{Introduction}
 
@@ -393,7 +396,7 @@ While the \code{unroot.hclust} method exists, it is not expected to work since \
 In some rare cases, we might wish to equalize the heights of root's branches. For this we can use the \code{flatten.dendrogram} function:
 
 
-<<out.height="3in",fig.align='center'>>=
+<<fig.align='center'>>=
 
 hc <- hclust(dist(USArrests[10:13,]), "ward")
 dend <- as.dendrogram(hc)
@@ -409,7 +412,65 @@ plot(flatten_dend_2, main = "Flatten tree \n(min branches height)"); abline(h = 
 @
 
 
+
+
+\subsection{Coloring labels of leaves}
+
+
+<<>>=
+require(colorspace)
+
+@
+
+
+
 \subsection{Trimming leaves}
+
+Trimming a tree from some leaves can be done using the \code{trim} (S3 method) function (notice that the attributes of the trimmed tree are updated):
+
+<<out.height="3in",fig.align='center'>>=
+
+hc <- hclust(dist(USArrests[1:5,]), "ave")
+dend <- as.dendrogram(hc)
+trimmed_dend <- trim(dend , c("Alaska", "California"))
+
+str(unclass(trimmed_dend))
+
+par(mfrow = c(1,2))
+plot(dend, main = "original tree")
+plot(trimmed_dend, main = "tree without Alaska and California")
+
+@
+
+If we have two trees, we can use the \code{intersect_trees} function to reduce both trees to have the same labels (this will be useful later when we'd like to compare the two trees):
+
+
+<<fig.align='center'>>=
+
+hc_1 <- hclust(dist(USArrests[1:5,]), "single")
+hc_2 <- hclust(dist(USArrests[1:5,]), "complete")
+dend_1 <- as.dendrogram(hc_1)
+dend_2 <- as.dendrogram(hc_2)
+
+trimmed_dend_1 <- trim(dend_1 , c("Alaska"))
+trimmed_dend_2 <- trim(dend_2 , c("California"))
+
+dends_12 <- intersect_trees(trimmed_dend_1,trimmed_dend_2)
+
+par(mfrow = c(3,2))
+plot(dend_1, main = "Tree - single method", ylim = c(0,110))
+plot(dend_2, main = "Tree - complete method", ylim = c(0,110))
+plot(trimmed_dend_1, main = "Trimmed tree - single method", ylim = c(0,110))
+plot(trimmed_dend_2, main = "Trimmed tree - complete method", ylim = c(0,110))
+plot(dends_12[[1]], main = "Intersected tree - single method", ylim = c(0,110))
+plot(dends_12[[2]], main = "Intersected tree - complete method", ylim = c(0,110))
+
+
+
+@
+
+
+
 
 \subsection{Rotating branches}
 
@@ -430,6 +491,16 @@ plot(flatten_dend_2, main = "Flatten tree \n(min branches height)"); abline(h = 
 \subsection{Baker's gamma}
 
 \subsection{Bk method}
+
+
+
+
+
+
+
+
+
+
 
 
 
