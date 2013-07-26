@@ -2,6 +2,10 @@
 \alias{labels_colors}
 \alias{labels_colors<-}
 \title{Retrieve/assign colors to the labels of a dendrogram}
+\source{
+  Inspired by the code in the example of \link{dendrapply},
+  so credit should also go to Martin Maechler.
+}
 \usage{
   labels_colors(object, ...)
 
