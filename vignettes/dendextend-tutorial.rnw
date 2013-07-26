@@ -319,7 +319,7 @@ microbenchmark(nleaves(hc), length(labels(hc)))
 
 There are border-line cases where the node above some leaves is of height 0. In such a case, we would consider that node as a "terminal node", and in order to count the number of such terminal nodes we would use \code{count_terminal_nodes} function. For example:
 
-<<out.height="3in",fig.align='center'>>=
+<<fig.height = 3,fig.align='center'>>=
 
 hc <- hclust(dist(USArrests[1:3,]), "ave")
 dend <- as.dendrogram(hc)
@@ -352,7 +352,7 @@ plot(dend,
 
 A tree's nodes has various heights. Sometimes we are interested in changing the height of the entire tree. It is useful when This can be accomplished using \code{raise.dendrogram}. For example (notice how the entire tree's height is changed):
 
-<<out.height="3in",fig.align='center'>>=
+<<fig.height = 3,fig.align='center'>>=
 
 hc <- hclust(dist(USArrests[1:3,]), "ave")
 dend <- as.dendrogram(hc)
@@ -376,7 +376,7 @@ plot(shorter_dend, ylim = c(0, 70), main = "Shorter dend"); abline(h = c(40, 50,
 Sometimes we wish to "unroot" the dendrogram, meaning that we merge one of the tree's branches with its root. This is useful, for example, when merging phylogenetic trees from several families, and being unwilling to assume a specific root to the merged trees. Unrooting can be done using the \code{unroot} (S3) function (notice the use of the \code{branch_becoming_root} parameter):
 
 
-<<out.height="3in",fig.align='center'>>=
+<<fig.height = 3,fig.align='center'>>=
 
 hc <- hclust(dist(USArrests[10:13,]), "ward")
 dend <- as.dendrogram(hc)
@@ -396,7 +396,7 @@ While the \code{unroot.hclust} method exists, it is not expected to work since \
 In some rare cases, we might wish to equalize the heights of root's branches. For this we can use the \code{flatten.dendrogram} function:
 
 
-<<fig.align='center'>>=
+<<fig.height = 3, fig.align='center'>>=
 
 hc <- hclust(dist(USArrests[10:13,]), "ward")
 dend <- as.dendrogram(hc)
@@ -416,9 +416,33 @@ plot(flatten_dend_2, main = "Flatten tree \n(min branches height)"); abline(h = 
 
 \subsection{Coloring labels of leaves}
 
+Coloring labels can sometimes be useful, it is done through the \code{labels_colors} function (which also has assignemnt). Notice the assignment recycling, as well as the differene in the appearence of a dot when labels' color is black, compared to when it is NULL:
 
-<<>>=
+<<fig.height=3,fig.align='center'>>=
+
+par(mfrow = c(1,3))
+
+hc <- hclust(dist(USArrests[1:3,]), "ave")
+dend <- as.dendrogram(hc)
+
+# Defaults:
+labels_colors(dend)
+plot(dend)
+
+# let's add some color:
 require(colorspace)
+labels_colors(dend) <- rainbow_hcl(3)
+labels_colors(dend)
+plot(dend)
+
+# changing color to black
+labels_colors(dend) <- 1
+labels_colors(dend)
+plot(dend)
+
+# removing color (and the nodePar completely - if it has no other attributed but lab.col)
+labels_colors(dend) <- NULL
+labels_colors(dend)
 
 @
 
@@ -428,17 +452,20 @@ require(colorspace)
 
 Trimming a tree from some leaves can be done using the \code{trim} (S3 method) function (notice that the attributes of the trimmed tree are updated):
 
-<<out.height="3in",fig.align='center'>>=
+<<fig.height = 3,fig.align='center'>>=
 
 hc <- hclust(dist(USArrests[1:5,]), "ave")
 dend <- as.dendrogram(hc)
+library(colorspace)
+labels_colors(dend) <- rainbow_hcl(5)
+
 trimmed_dend <- trim(dend , c("Alaska", "California"))
 
 str(unclass(trimmed_dend))
 
 par(mfrow = c(1,2))
-plot(dend, main = "original tree")
-plot(trimmed_dend, main = "tree without Alaska and California")
+plot(dend, main = "Original tree")
+plot(trimmed_dend, main = "Tree without Alaska and California")
 
 @
 
@@ -451,6 +478,11 @@ hc_1 <- hclust(dist(USArrests[1:5,]), "single")
 hc_2 <- hclust(dist(USArrests[1:5,]), "complete")
 dend_1 <- as.dendrogram(hc_1)
 dend_2 <- as.dendrogram(hc_2)
+
+library(colorspace)
+labels_colors(dend_1) <- rainbow_hcl(5)
+labels_colors(dend_2) <- rainbow_hcl(5)
+
 
 trimmed_dend_1 <- trim(dend_1 , c("Alaska"))
 trimmed_dend_2 <- trim(dend_2 , c("California"))
@@ -647,14 +679,14 @@ The \pkg{dendextend} package presented in this paper greatly extends the availab
 
 
 
-% \section*{Acknowledgments}
-% 
+\section*{Acknowledgments}
+
+We are very thankful for code contributions and ideas by the R core team (especially Martin Maechler and Brian Ripley, but probably also others without our knowledge), Gavin Simpson, Gregory Jefferis
+,
 % Detailed comments and suggestions by editors as well as anonymous referees
-% are gratefully acknowledged.  We are also thankful for code contributions by
-% Douglas Bates and John Chambers, as well as for very helpful suggestions by Uwe
-% Ligges, Brian Ripley and Simon Urbanek concerning the build systems for different
-% platforms.   Last but not least, several users provided very fruitful
-% ideas for new or extended features via the \code{dendextend-devel} mailing list.
+% are gratefully acknowledged.  
+
+
 
 
 \bibliography{dendextend-tutorial}
