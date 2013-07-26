@@ -8,16 +8,19 @@ NEW VIGNETTES SECTIONS ADDED:
    * Vignettes created (using LaTeX)
    * Basic introduction to dendrogram objects
    * Labels extraction and assignment, and measuring tree size.
+   * Tree manipulation: unrooting, trimming, label coloring
 
 NEW TESTS ADDED:
-   * labels extraction and assignment (especially important for comparing hclust and dendrogram!)
-
+   * labels extraction, assignment and tree size (especially important for comparing hclust and dendrogram!)
+   * Tree manipulation: unrooting, trimming, label coloring
 
 UPDATED FUNCTIONS:
    * "labels.hclust" - added the "order" parameter. (based on some ideas from Gregory Jefferis's dendroextras package)
    * "labels.hclust" and "labels.hclust<-" - now both use order=TRUE as default. this makes them consistent with labels.dendrogram. Proper tests have been implemented.
    * "labels<-.dendrogram" - make sure the new dendrogram does not have each of its node of class "dendrogram" (which happens when using dendrapply)
    * unclass_dend - now uses dendrapply
+   * get_branches_attr - added "warning" parameter
+   * unroot.dendrogram - Can now deal with unrooting more than 3 branches. supresses various warnings. 
 
 
 OTHER NOTES:
@@ -76,5 +79,7 @@ TODO for future releases:
    * add a print/warn parameter to intersect_trees
    * add rect.hclust.nice http://stackoverflow.com/questions/4720307/change-dendrogram-leaves 
    * Give this a thought: http://stackoverflow.com/questions/10088117/exporting-dendrogram-as-table-in-r?rq=1
-   * possibly use {dendroextras} to add colors to the tanglegrams
-   
+   * possibly use {dendroextras} to add colors to the tanglegrams. also: http://stackoverflow.com/questions/10571266/colouring-branches-in-a-dendrogram-in-r?rq=1
+   * create rect.dendrogram (and make rect generic). http://stackoverflow.com/questions/717747/how-do-i-color-edges-or-draw-rects-correctly-in-an-r-dendrogram
+http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
+

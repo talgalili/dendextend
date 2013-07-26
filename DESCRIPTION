@@ -10,6 +10,7 @@ Suggests:
     knitr,
     testthat,
     microbenchmark,
+    colorspace,
     DendSer,labeltodendro,dendroextras,
     ggdendro,
     ape
@@ -25,5 +26,6 @@ Collate:
     'rotate.r'
     'trim.r'
     'unroot.r'
+    'labels_colors.r'
     'dendextend-package.r'
     'zzz.r'

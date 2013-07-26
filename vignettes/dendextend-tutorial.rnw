@@ -501,14 +501,14 @@ plot(dends_12[[2]], main = "Intersected tree - complete method", ylim = c(0,110)
 
 @
 
+Sidenote: a similar function, called \code{plotColoredClusters}, is available in the \pkg{ClassDiscovery} package for \code{hclust} objects.
+
+\subsection{Coloring branches}
+
 
 
 
 \subsection{Rotating branches}
-
-\subsection{Coloring leaves}
-
-\subsection{Coloring branches}
 
 
 \section{Tanglegrams - visually comparing two trees side-by-side}
