@@ -39,8 +39,8 @@ test_that("Intersecting-trees works",{
    dend_1 <- as.dendrogram(hc_1)
    dend_2 <- as.dendrogram(hc_2)
    
-   trimmed_dend_1 <- trim(dend , c("Alaska"))
-   trimmed_dend_2 <- trim(dend , c("California"))
+   trimmed_dend_1 <- trim(dend_1 , c("Alaska"))
+   trimmed_dend_2 <- trim(dend_2 , c("California"))
 
    dends_12 <- intersect_trees(trimmed_dend_1,trimmed_dend_2)   
    
