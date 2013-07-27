@@ -8,11 +8,11 @@ NEW VIGNETTES SECTIONS ADDED:
    * Vignettes created (using LaTeX)
    * Basic introduction to dendrogram objects
    * Labels extraction and assignment, and measuring tree size.
-   * Tree manipulation: unrooting, trimming, label coloring
+   * Tree manipulation: unrooting, trimming, label coloring, rotation
 
 NEW TESTS ADDED:
    * labels extraction, assignment and tree size (especially important for comparing hclust and dendrogram!)
-   * Tree manipulation: unrooting, trimming, label coloring
+   * Tree manipulation: unrooting, trimming, label coloring, rotation
 
 UPDATED FUNCTIONS:
    * "labels.hclust" - added the "order" parameter. (based on some ideas from Gregory Jefferis's dendroextras package)
@@ -21,6 +21,9 @@ UPDATED FUNCTIONS:
    * unclass_dend - now uses dendrapply
    * get_branches_attr - added "warning" parameter
    * unroot.dendrogram - Can now deal with unrooting more than 3 branches. supresses various warnings. 
+   * as_hclust_fixed - now works just as as.hclust when hc is missing.
+   * rotate - allowed "order" to accept character vector.
+   * removed "flip", added rev.hclust instead (since rev.dendrogram already exists)
 
 
 OTHER NOTES:

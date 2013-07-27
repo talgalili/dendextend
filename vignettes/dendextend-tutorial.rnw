@@ -45,8 +45,12 @@ now.date <- strftime(Sys.Date(), "%B %d, %Y")
 
 
 
-\Plaintitle{Doing More with Dendrograms: The dendextend R Package}
-\title{Doing More with Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
+% \Plaintitle{Doing More with Dendrograms: The dendextend R Package}
+% \title{Doing More with Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
+
+\Plaintitle{Comparing and Manipulating Dendrograms: The dendextend R Package}
+\title{Comparing and Manipulating Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
+
 
 \Abstract{
 The \pkg{dendextend} package extends the dendrogram objects in \proglang{R}.
@@ -521,6 +525,50 @@ plot(dends_12[[2]], main = "Intersected tree - complete method", ylim = c(0,110)
 
 Sidenote: a similar function, called \code{plotColoredClusters}, is available in the \pkg{ClassDiscovery} package for \code{hclust} objects.
 
+
+\subsection{Rotating branches}
+
+A dendrogram is an object which can be rotated on its hinges without 
+changing its topological.
+
+Rotating a dendrogram in base R can be done using the \code{reorder} function.
+The problem with this function is that it is not very intuitive. For this reason
+we wrote the \code{rotate} function. It has two main arguments: the object, and
+the order we wish to rotate it by. The order parameter can be either a numeric
+vector, used in a similar way we would order a simple character vector. Or, the
+order parameter can also be a character vector of the labels of the tree, given
+in the new desired order of the tree.
+
+It is also worth noting that some order are impossible to achieve for a given 
+tree's topology. In such a case, the function will do its "best" to get as close
+as possible.
+
+Here are a few examples:
+
+
+<<fig.align='center'>>=
+
+hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
+dend <- as.dendrogram(hc)
+
+# For dendrogram objects:
+require(colorspace)
+labels_colors(dend) <- rainbow_hcl(nleaves(dend)) 
+# let's color the labels to make the followup of the rotation easier
+par(mfrow = c(2,2))
+plot(dend, main = "Original tree") 
+plot(rotate(dend, c(2:5,1)), main = 
+        "Rotates the left most leaf \n into the right side of the tree")
+plot(dend, main = "Original tree") 
+plot(sort(dend), main = "Sorts the labels by alphabetical order \n 
+     and rotates the tree to give the best fit possible")
+@
+
+
+
+
+
+
 \subsection{Coloring branches}
 
 
@@ -531,7 +579,6 @@ This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dend
 
 
 
-\subsection{Rotating branches}
 
 
 \section{Tanglegrams - visually comparing two trees side-by-side}

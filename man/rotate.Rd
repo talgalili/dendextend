@@ -1,5 +1,5 @@
 \name{rotate}
-\alias{flip}
+\alias{rev.hclust}
 \alias{rotate}
 \alias{rotate.default}
 \alias{rotate.dendrogram}
@@ -17,7 +17,7 @@
 
   \method{rotate}{phylo}(x, ...)
 
-  flip(x,...)
+  \method{rev}{hclust}(x, ...)
 
   \method{sort}{dendrogram}(x, decreasing=FALSE, ...)
 
@@ -27,10 +27,15 @@
   \item{x}{a tree object (either a \code{dendrogram} or
   \code{hclust})}
 
-  \item{order}{a numeric vector with the order of the value
-  to be assigned to object's label. The numbers say which
-  of the items on the tree-plot should be "first" (e.g:
-  most left), second etc. (releacnt only to \code{rotate})}
+  \item{order}{Either numeric or character vector. Is
+  numeric: it is a numeric vector with the order of the
+  value to be assigned to object's label. The numbers say
+  are just like when you use \link{order}: which of the
+  items on the tree-plot should be "first" (e.g: most
+  left), second etc. (this is relevant only to
+  \code{rotate}) Is character: it must be a vector with the
+  content of labels(x), in the order we'd like to have the
+  new tree.}
 
   \item{decreasing}{logical. Should the sort be increasing
   or decreasing? Not available for partial sorting.
@@ -48,17 +53,16 @@
 }
 \details{
   The motivation for this function came from the function
-  \code{\link{order.dendrogram}} not being intuitive enough
-  to use as is. What \code{rotate} aims to do is give a
-  simple tree rotation function which is based on the order
-  the user would like to see the tree rotated by (just as
+  \code{\link{order.dendrogram}} NOT being very intuitive.
+  What \code{rotate} aims to do is give a simple tree
+  rotation function which is based on the order which the
+  user would like to see the tree rotated by (just as
   \code{\link{order}} works for numeric vectors).
 
-  \code{flip} returns the tree object after rotating it so
-  to reverse the order of the labels. Note that flip is
-  just like \code{\link{rev.dendrogram}} (yet it also
-  includes an hclust method, since it relies on
-  \link{rotate}, which has an S3 method for hclust objects)
+  \code{\link{rev.dendrogram}} is part of base R, and
+  returns the tree object after rotating it so that the
+  order of the labels is reversed. Here we added an S3
+  method for hclust objects.
 
   The \code{sort} methods sort the labels of the tree
   (using \code{order}) and then attempts to rotate the tree
@@ -83,7 +87,11 @@
   and will fail to find the rotate.dendrogram function.  In
   such a case simply run \code{unloadNamespace("ape")}. Or,
   you can run: \code{unloadNamespace("dendextend");
-  attachNamespace("dendextend")}
+  attachNamespace("dendextend")} The solution for this is
+  that if you have {ape} installed on your machine, It will
+  be loaded when you load {dendextend} (but after it).
+  This way, \code{rotate} will work fine for both
+  dendrogram AND phylo objects.
 }
 \examples{
 hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")

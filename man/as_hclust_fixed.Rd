@@ -5,7 +5,8 @@
   as_hclust_fixed(x, hc, ...)
 }
 \arguments{
-  \item{x}{a dendrogram object to turn into hclust}
+  \item{x}{any object which has an as.hclust method.
+  (mostly used for dendrogram)}
 
   \item{hc}{an old hclust object from which to re-use the
   call/method/dist.method values}

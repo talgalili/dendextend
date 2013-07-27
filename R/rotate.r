@@ -27,7 +27,7 @@
 #' rotate.phylo
 #' sort.hclust
 #' sort.dendrogram
-#' flip
+#' rev.hclust
 #' @usage
 #' rotate(x, order, ...)
 #' 
@@ -37,28 +37,32 @@
 #' 
 #' \method{rotate}{phylo}(x, ...)
 #' 
-#' flip(x,...)
+#' \method{rev}{hclust}(x, ...)
 #' 
 #' \method{sort}{dendrogram}(x, decreasing=FALSE, ...)
 #' 
 #' \method{sort}{hclust}(x, decreasing=FALSE, ...)
 #' 
 #' @param x a tree object (either a \code{dendrogram} or \code{hclust})
-#' @param order a numeric vector with the order of the value to be assigned to object's label. The numbers say which of the items on the tree-plot should be "first" (e.g: most left), second etc. (releacnt only to \code{rotate})
+#' @param order Either numeric or character vector.
+#' Is numeric: it is a numeric vector with the order of the value to be 
+#' assigned to object's label. The numbers say are just like when you use \link{order}:
+#' which of the items on the tree-plot should be "first" (e.g: most left),
+#' second etc. (this is relevant only to \code{rotate})
+#' Is character: it must be a vector with the content of labels(x), in the 
+#' order we'd like to have the new tree.
 #' @param decreasing logical. Should the sort be increasing or decreasing? Not available for partial sorting. (relevant only to \code{sort})
 #' @param ... parameters passed (for example, in case of sort)
 #' @details 
 #' The motivation for this function came from the function 
-#' \code{\link{order.dendrogram}} not being intuitive enough to use as is.  
+#' \code{\link{order.dendrogram}} NOT being very intuitive.
 #' What \code{rotate} aims to do is give a simple tree rotation function which 
-#' is based on the order the user would like to see the tree rotated by 
+#' is based on the order which the user would like to see the tree rotated by 
 #' (just as \code{\link{order}} works for numeric vectors).
 #' 
-#' \code{flip} returns the tree object after rotating it so to reverse 
-#' the order of the labels.  
-#' Note that flip is just like \code{\link{rev.dendrogram}} 
-#' (yet it also includes an hclust method, since it relies on \link{rotate}, 
-#' which has an S3 method for hclust objects)
+#' \code{\link{rev.dendrogram}} is part of base R, and returns the tree object
+#' after rotating it so that the order of the labels is reversed.
+#' Here we added an S3 method for hclust objects.
 #' 
 #' The \code{sort} methods sort the labels of the tree (using \code{order}) 
 #' and then attempts to rotate the tree to fit that order.
@@ -79,6 +83,11 @@
 #'  is not S3 and will fail to find the rotate.dendrogram function.  
 #'  In such a case simply run \code{unloadNamespace("ape")}. Or, you can run:
 #'  \code{unloadNamespace("dendextend"); attachNamespace("dendextend")}
+#'  The solution for this is that if you have {ape} installed on your machine,
+#'  It will be loaded when you load {dendextend} (but after it).
+#'  This way, \code{rotate} will work fine for both dendrogram AND phylo 
+#'  objects.
+#'  
 #' @return A rotated tree object
 #' @seealso \code{\link{order.dendrogram}},  \code{\link{order}}, 
 #' \code{\link{rev.dendrogram}}, \code{\link[ape]{rotate}} ({ape})
@@ -119,6 +128,19 @@ rotate.dendrogram <- function(x, order,...)
       return(x)  
    }
 
+   
+   if(!is.numeric(order)) {
+      order <- as.character(order)
+      if(length(intersect(order, labels(x))) != nleaves(x)) {
+         stop("'order' either be numeric, or a vector with ALL of the labels (in the order you want them to be)")
+      }
+      # order has all the labels, now, let's match:
+      # match(c("c", "a", "b"), c("c","b", "a")) # order for making 2 into 1!
+      # c("c", "b", "a", "d")[match(c("c", "d", "b", "a"), c("c","b","a", "d"))] # WORKS
+      # c("c", "d", "b", "a")[match(c("c", "d", "b", "a"), c("c","b","a", "d"))] # FAIL
+      order <- match(order, labels(x))
+   }
+   
    number_of_leaves <- nleaves(x)   
    weights <- seq_len(number_of_leaves)
    weights_for_order <- numeric(number_of_leaves)
@@ -149,10 +171,16 @@ sort.dendrogram <- function(x, decreasing = FALSE,...) rotate(x, order(labels(x)
 sort.hclust <- function(x, decreasing = FALSE,...) rotate(x, order(labels(x),decreasing =decreasing ,...))
 
 
+
+# flip <- function(x, ...) {
+#    rev_order <- rev(seq_len(nleaves(x)))
+#    rotate(x, rev_order)
+# }
+
 #' @export
-flip <- function(x, ...) {
+rev.hclust <- function(x, ...) {
    rev_order <- rev(seq_len(nleaves(x)))
-   rotate(x, rev_order)
+   rotate(x, rev_order,...)
 }
 
 
