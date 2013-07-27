@@ -23,12 +23,16 @@
 
 
 #' @title Convert dendrogram Objects to Class hclust 
-#' @description Convert dendrogram Objects to Class hclust while preserving the call/method/dist.method values of the original hclust object (hc)
+#' @description Convert dendrogram Objects to Class hclust while preserving 
+#' the call/method/dist.method values of the original hclust object (hc)
 #' @export
-#' @param x a dendrogram object to turn into hclust
-#' @param hc an old hclust object from which to re-use the call/method/dist.method values
+#' @param x any object which has an as.hclust method. 
+#' (mostly used for dendrogram)
+#' @param hc an old hclust object from which to re-use 
+#' the call/method/dist.method values
 #' @param ... passed to as.hclust
-#' @return An hclust object (from a dendrogram) with the original hclust call/method/dist.method values
+#' @return An hclust object (from a dendrogram) with the original hclust 
+#' call/method/dist.method values
 #' @seealso \link{as.hclust}
 #' @examples
 #' hc <- hclust(dist(USArrests[1:3,]), "ave")
@@ -37,12 +41,14 @@
 #' as.hclust(dend)
 #' as_hclust_fixed(dend, hc)
 as_hclust_fixed <- function(x, hc, ...) {
-   x <- as.hclust(x) 
+   x <- as.hclust(x,...) 
    
    # these elements are removed after using as.hclust - so they have to be manually re-introduced into the object.
-   x$call <- hc$call
-   x$method <- hc$method
-   x$dist.method <- hc$dist.method   
+   if(!missing(hc)){
+      x$call <- hc$call
+      x$method <- hc$method
+      x$dist.method <- hc$dist.method   
+   }
    
    return(x)
 }
