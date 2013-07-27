@@ -177,11 +177,22 @@ class(unclass_dend(dend_from_dendrapply)[[2]]) # the new uncless_dend solves it.
 The \code{dendrogram} object has several \textbf{advantages}:
 
 \begin{enumerate}
+
    \item \code{dendrogram} objects are list R objects. This makes their structure very familiar and easy to understand by R users. They are also, relatively, simple to manipulate and extend.
    \item \code{dendrogram} objects has various methods and functions for using them within R base. 
-   \item Other tree objects (such as \code{hclust}, and objects from the \pkg{ape} package) include an \code{as.dendrogram] method for converting their objects into a dendrogram.
+   \item Other tree objects, such as \code{hclust}, and objects from the \pkg{ape} package \citep{CRAN:ape},  include an \code{as.dendrogram} method for converting their objects into a dendrogram. And also \code{as.phylo.dendrogram}, \code{as.hclust.dendrogram}.
+   \item \code{dendrogram} objects are used in various packages as an intermediate step for other purposes (often plotting), such as:
+   
+   \begin{enumerate}
+   \item The \pkg{latticeExtra} package \citep{CRAN:latticeExtra}, see the \code{dendrogramGrob} function.
+   \item The \pkg{labeltodendro} package \citep{CRAN:labeltodendro}, see the \code{colorplot} function.
+   \item The \pkg{bclust} package \citep{CRAN:bclust}, see the \code{bclust} function.
+   \item The \pkg{ggdendro} package \citep{CRAN:ggdendro}, see the \code{dendro_data} function.
+   \item The \pkg{Heatplus} package \citep{CRAN:Heatplus}, see the \code{annHeatmap2} function.
+   \item The \pkg{sparcl} package \citep{CRAN:Heatplus}, see the \code{ColorDendrogram} function.
+   \end{enumerate}
+   
 \end{enumerate}
-   \item \code{dendrogram} objects are used in various packages as an intermediate step for other purposes (often plotting). They are used in packages such as: \citep{CRAN:latticeExtra} (see the \code{dendrogramGrob} function), \citep{CRAN:labeltodendro} (see the \code{colorplot} function), \citep{CRAN:bclust} (see the \code{bclust} function), \citep{CRAN:ggdendro} (see the \code{dendro_data} function), \citep{CRAN:Heatplus} (see the \code{annHeatmap2} function), \citep{CRAN:sparcl} (see the \code{ColorDendrogram} function).
    
    %\pkg{DendSer} (see the \code{} function), 
 
@@ -513,9 +524,10 @@ Sidenote: a similar function, called \code{plotColoredClusters}, is available in
 \subsection{Coloring branches}
 
 
-Dendrogram plots with colored branches have been available in R for many years in threads on the mailing lists and through various package. However, until recently, all of the functions in packages have always given the user a new function, without seperating the coloring of branches of a dendrogram from its plotting. Often the function for actually plotting the colored branched dendrogram would be hidden from the user. For example, the \pkg{labeltodendro} package \citep{CRAN:labeltodendro} gives a colored branch plot through the \code{colorplot} function, but the work horse for this is available in a hidden function called \code{dendroploth} or \code{dendroplotv}, both take care of the plotting by themselves (instead of modifying the dendrogram object, and then letting the base R function do the work). The same story happens in the \pkg{Heatplus} \citep{CRAN:Heatplus}, where the \code{plot.annHeatmap2} function actually uses the hidden function \code{cutplot.dendrogram} for doing the plotting.
+Dendrogram plots with colored branches have been available in R for many years in threads on the mailing lists and through various package. However, until recently, all of the functions in packages have always given the user a new \code{plot} function, without seperating the coloring of branches of a dendrogram from its plotting. Often the function for actually plotting the colored branched dendrogram would be hidden from the user. For example, the \pkg{labeltodendro} package \citep{CRAN:labeltodendro} gives a colored branch plot through the \code{colorplot} function, but the work horse for this is available in a hidden function called \code{dendroploth} or \code{dendroplotv}, both take care of the plotting by themselves (instead of modifying the dendrogram object, and then letting the base R function do the work). The same story happens in the \pkg{Heatplus} \citep{CRAN:Heatplus}, where the \code{plot.annHeatmap2} function actually uses the hidden function \code{cutplot.dendrogram} for doing the plotting.
 
-This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dendroextras} package \citep{CRAN:dendroextras}, which orgranized this through the \code{colour_clusters} function. In the \pkg{dendextend} package I will mostly import his code, with some modifications.
+This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dendroextras} package \citep{CRAN:dendroextras}, which orgranized this through the \code{colour_clusters} function. In the \pkg{dendextend} package I will mostly import his code, with some modifications. The biggest limitation in Gregory's code is that he relies on changing the \code{dendrogram} into \code{hclust} in order to use \code{cutree} on it and get the clusters. This has the advantage of being fast, but the \textbf{disadvantage} that it restricts his code to binary trees only. For this reason, I will not use his \code{slice} function, and made sure to use other functions instead.
+
 
 
 
