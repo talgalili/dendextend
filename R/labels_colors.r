@@ -63,6 +63,8 @@
 #' labels_colors(dend)
 #' plot(dend)
 labels_colors <- function (object, labels = TRUE, ...) {
+   if(!inherits(object,'dendrogram')) stop("'object' should be a dendrogram.")   
+   
    col <- NULL
    
    get.col.from.leaf <- function(dend_node)
@@ -84,6 +86,8 @@ labels_colors <- function (object, labels = TRUE, ...) {
 
 #' @export
 "labels_colors<-" <- function (object, ..., value) {
+   if(!inherits(object,'dendrogram')) stop("'object' should be a dendrogram.")   
+
    col <- value
    leaves_length <- length(order.dendrogram(object)) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
    if(leaves_length > length(col)) {

@@ -70,3 +70,12 @@ test_that("Color removing",{
 })
 
 
+test_that("Can't color a non-dendrogram object",{
+   
+   hc <- hclust(dist(USArrests[1:3,]), "ave")   
+   
+   expect_error(labels_colors(hc))   
+   expect_error(labels_colors(hc) <- NULL)      
+})
+
+
