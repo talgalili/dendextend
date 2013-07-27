@@ -162,7 +162,7 @@
    # deals with wrong length of new labels VS tree size
    new_labels <- as.character(value)
    new_labels_length <- length(new_labels)
-   leaves_length <- length(order.dendrogram(object)) # labels(object) # it will be faster to use order.dendrogram than labels...   
+   leaves_length <- nleaves(object) # labels(object) # it will be faster to use order.dendrogram than labels...   
    if(new_labels_length < leaves_length) {
       warning("The lengths of the new labels is shorter than the number of leaves in the dendrogram - labels are recycled.")
       new_labels <- rep(new_labels, length.out = leaves_length)
@@ -172,13 +172,13 @@
    {
       if(is.leaf(dend_node))
       {			
-         i_leaf_number <<- i_leaf_number + 1 # this saves us from cases of duplicate enteries...
          attr(dend_node, "label") <- new_labels[i_leaf_number]
+         i_leaf_number <<- i_leaf_number + 1 # this saves us from cases of duplicate enteries...
       }
       return(unclass(dend_node)) # the "unclass" is important since dendrapply adds the dendrogram class to each node (which is irrelevent)
    }
    
-   i_leaf_number <- 0
+   i_leaf_number <- 1
    new_dend_object <- dendrapply(object, .change.label.LTR)
    class(new_dend_object) <- "dendrogram"
    
@@ -299,7 +299,7 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
 "order.dendrogram<-" <- function(object,..., value) {
    new_labels <- as.numeric(value)
    new_labels_length <- length(new_labels)
-   leaves_length <- length(order.dendrogram(object)) # labels(object) # it will be faster to use order.dendrogram than labels...   
+   leaves_length <- nleaves(object) # labels(object) # it will be faster to use order.dendrogram than labels...   
    if(new_labels_length < leaves_length) {
       warning("The lengths of the new labels is shorter than the number of leaves in the dendrogram - labels are recycled.")
       new_labels <- rep(new_labels, length.out = leaves_length)
