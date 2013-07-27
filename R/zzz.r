@@ -23,14 +23,32 @@
    # adding and removing menus from the Rgui when loading and detaching the library
    # setHook(packageEvent("installr", "attach"), {function(pkgname, libpath) {add.installr.GUI()}  } )
    # setHook(packageEvent("installr", "detach"), {function(pkgname, libpath) {remove.installr.GUI()}  } )
-   
+
 }
 
 # menus are added and removed as needed: !!
 
 
 .onAttach <- function(lib, pkg,...){
-   packageStartupMessage(installrWelcomeMessage())
+   ####
+   ### I decided to not use the following code since it will 
+   ###   always give a "masked" warning when loading 
+   ###   dendextend. But it IS an issue...
+   ####
+   # if ape is installed on this computer, it will be loaded FIRST!   
+   # This way I make sure to not have "unroot" or "rotate" masked by {ape}
+   #     (they would still work though)
+       if("ape" %in% .packages(all.available = TRUE)) {       
+          library("ape", pos = which(search() %in% "package:dendextend")+1, 
+                  warn.conflicts = FALSE,
+                  quietly = TRUE)
+          #       search()
+          #       unloadNamespace("ape")
+          #       unloadNamespace("dendextend")
+          #       require("dendextend", warn.conflicts = TRUE)                 
+          #       require("dendextend", warn.conflicts = FALSE)                 
+       }   
+       packageStartupMessage(installrWelcomeMessage())   
 }
 
 
