@@ -1,3 +1,5 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: dendextend-tutorial.aux
 The style file: jss.bst
 Database file #1: dendextend-tutorial.bib
+Warning--can't use both author and editor fields in CRAN:labeltodendro
+(There was 1 warning)
