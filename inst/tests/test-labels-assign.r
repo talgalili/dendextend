@@ -7,6 +7,8 @@ test_that("labels assginment works for vectors",{
    labels(x) <- letters[1:3]
    expect_that(labels(x), equals(letters[1:3]))
    # labels(x) # [1] "a" "b" "c"   
+   labels(x)[1] <- "one"
+   expect_equal(labels(x), c("one", "b", "c")) # checking specific assignment   
 })
 
 
@@ -22,6 +24,9 @@ test_that("labels assginment works for matrix",{
    labels(y, which = "rownames") <- letters[24:26]
    expect_that(labels(y, which = "rownames"), equals(letters[24:26]))
    expect_that(rownames(y), equals(letters[24:26]))   
+
+   labels(y)[1] <- "one"
+   expect_equal(labels(y), c("one", "b", "c")) # checking specific assignment      
 })
 
 test_that("labels (with order=TRUE, by default), before and after assginment, works for hclust",{
@@ -33,6 +38,9 @@ test_that("labels (with order=TRUE, by default), before and after assginment, wo
    
    labels(hc)  <- letters[1:3]
    expect_that(labels(hc), equals(letters[1:3]))   
+   
+   labels(hc)[1] <- "one"
+   expect_equal(labels(hc), c("one", "b", "c")) # checking specific assignment         
 })
 
 
@@ -62,6 +70,9 @@ test_that("labels assginment works for dendrogram",{
    
    labels(dend)  <- letters[1:3]
    expect_that(labels(dend), equals(letters[1:3]))   
+   
+   labels(dend)[1] <- "one"
+   expect_equal(labels(dend), c("one", "b", "c")) # checking specific assignment            
 })
 
 
