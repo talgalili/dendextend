@@ -23,15 +23,22 @@
 #' @aliases 
 #' labels_colors<-
 #' @usage
-#' labels_colors(object, ...)
+#' labels_colors(object, labels = TRUE,...)
 #' 
 #' labels_colors(object, ...) <- value
 #' @export
 #' @param object a dendrogram object 
+#' @param labels Boolean (default is TRUE), should the returned vector of colors
+#' return with the leaves labels as names.
 #' @param ... not used
 #' @param value a vector of colors to be used as new label's colors for the dendrogram
-#' @source Inspired by the code in the example of \link{dendrapply}, so credit should also go to Martin Maechler.
-#' @return A vector with the dendrogram's labels colors (or a colored dendrogram, in case assignment is used)
+#' @source Heavily inspired by the code in the example of \link{dendrapply}, 
+#' so credit should go to Martin Maechler.
+#' I also implemented some ideas from Gregory Jefferis's dendroextras package
+#' (having the "names" of the returned vector be the labels).
+#' @return 
+#' A vector with the dendrogram's labels colors (or a colored dendrogram,
+#' in case assignment is used). The colors are labeled.
 #' @examples
 #' # define dendrogram object to play with:
 #' hc <- hclust(dist(USArrests[1:3,]), "ave")
@@ -55,7 +62,7 @@
 #' labels_colors(dend) <- NULL
 #' labels_colors(dend)
 #' plot(dend)
-labels_colors <- function (object,...) {
+labels_colors <- function (object, labels = TRUE, ...) {
    col <- NULL
    
    get.col.from.leaf <- function(dend_node)
@@ -63,7 +70,9 @@ labels_colors <- function (object,...) {
       if(is.leaf(dend_node))
       {   		
          i_leaf_number <<- i_leaf_number + 1
-         col[i_leaf_number] <<- attr(dend_node, "nodePar")[["lab.col"]]
+            col[i_leaf_number] <<- attr(dend_node, "nodePar")[["lab.col"]]
+         if(!is.null(col) & labels) names(col)[i_leaf_number] <<- attr(dend_node, "label")
+         
       }
       return(dend_node)
    }

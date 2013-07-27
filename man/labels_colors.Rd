@@ -3,16 +3,23 @@
 \alias{labels_colors<-}
 \title{Retrieve/assign colors to the labels of a dendrogram}
 \source{
-  Inspired by the code in the example of \link{dendrapply},
-  so credit should also go to Martin Maechler.
+  Heavily inspired by the code in the example of
+  \link{dendrapply}, so credit should go to Martin
+  Maechler. I also implemented some ideas from Gregory
+  Jefferis's dendroextras package (having the "names" of
+  the returned vector be the labels).
 }
 \usage{
-  labels_colors(object, ...)
+  labels_colors(object, labels = TRUE,...)
 
   labels_colors(object, ...) <- value
 }
 \arguments{
   \item{object}{a dendrogram object}
+
+  \item{labels}{Boolean (default is TRUE), should the
+  returned vector of colors return with the leaves labels
+  as names.}
 
   \item{...}{not used}
 
@@ -21,7 +28,8 @@
 }
 \value{
   A vector with the dendrogram's labels colors (or a
-  colored dendrogram, in case assignment is used)
+  colored dendrogram, in case assignment is used). The
+  colors are labeled.
 }
 \description{
   Retrieve/assign colors to the labels of a dendrogram
