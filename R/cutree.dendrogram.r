@@ -1,18 +1,35 @@
-# cutree.dendrogram.h(tree, h = h_to_use)
+#' @title Check if numbers are natural
+#' @export
+#' @description Vectorized function for checking if numbers are natural or not.
+#' Helps in checking if a vector is of type "order".
+#' @param x a vector of numbers
+#' @param tol tolerence to floating point issues.
+#' @param ... (not currently in use)
+#' @return boolean - is the entered number natural or not.
+#' @author Marco Gallotta (a.k.a: marcog), Tal Galili
+#' @source 
+#' This function was written by marcog, as an answer to my question here:
+#' \url{http://stackoverflow.com/questions/4562257/what-is-the-fastest-way-to-check-if-a-number-is-a-positive-natural-number-in-r}
+#' @seealso \code{\link{is.numeric}}, \code{\link{is.double}}, \code{\link{is.integer}}
+#' @examples
+#' is.natural.number(1) # is TRUE
+#' (x <- seq(-1,5, by=0.5) )
+#' is.natural.number( x )
+#' # is.natural.number( "a" )
+#' all(is.natural.number( x ))
+is.natural.number <- function(x, tol = .Machine$double.eps^0.5, ...)  x > tol & abs(x - round(x)) < tol
 
-# needed functions
-# followed by some short examples
-
-is.natural.number <- function(x, tol = .Machine$double.eps^0.5)  x > tol & abs(x - round(x)) < tol
-# Thanks to marcog
-# http://stackoverflow.com/questions/4562257/what-is-the-fastest-way-to-check-if-a-number-is-a-positive-natural-number-in-r
-## example:
-# is.naturalnumber(1) # is TRUE
-# (x <- seq(-1,5, by=0.5) )
-# is.natural.number( x )
-all.natural.numbers <- function(x) all(is.natural.number(x))   # check if all the numbers in a vector are natural
+## Not important enough to include
+# all.natural.numbers <- function(x) all(is.natural.number(x))   # check if all the numbers in a vector are natural
 # why is this important?
 # because it can enable one to check if what we have is a vector of "order"
+
+
+
+
+
+
+
 
 
 # cut(tree, h = 330)

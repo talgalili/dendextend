@@ -1,6 +1,9 @@
 dendextend 0.4 (2013-07-27) 
 ---------------------------
 
+NEW FUNCTIONS ADDED:
+   * is.natural.number function added. (including tests)
+
 
 
 dendextend 0.3 (2013-07-27) 
