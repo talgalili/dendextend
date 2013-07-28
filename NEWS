@@ -1,8 +1,10 @@
 dendextend 0.4 (2013-07-27) 
 ---------------------------
 
-NEW FUNCTIONS ADDED:
-   * is.natural.number function added. (including tests)
+NEW FUNCTIONS ADDED: 
+(including tests and documentation)
+   * is.natural.number
+   * cutree_1h.dendrogram - like cutree, but only for 1 height 
 
 
 

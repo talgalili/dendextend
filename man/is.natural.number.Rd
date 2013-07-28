@@ -1,0 +1,40 @@
+\name{is.natural.number}
+\alias{is.natural.number}
+\title{Check if numbers are natural}
+\source{
+  This function was written by marcog, as an answer to my
+  question here:
+  \url{http://stackoverflow.com/questions/4562257/what-is-the-fastest-way-to-check-if-a-number-is-a-positive-natural-number-in-r}
+}
+\usage{
+  is.natural.number(x, tol = .Machine$double.eps^0.5, ...)
+}
+\arguments{
+  \item{x}{a vector of numbers}
+
+  \item{tol}{tolerence to floating point issues.}
+
+  \item{...}{(not currently in use)}
+}
+\value{
+  boolean - is the entered number natural or not.
+}
+\description{
+  Vectorized function for checking if numbers are natural
+  or not. Helps in checking if a vector is of type "order".
+}
+\examples{
+is.natural.number(1) # is TRUE
+(x <- seq(-1,5, by=0.5) )
+is.natural.number( x )
+# is.natural.number( "a" )
+all(is.natural.number( x ))
+}
+\author{
+  Marco Gallotta (a.k.a: marcog), Tal Galili
+}
+\seealso{
+  \code{\link{is.numeric}}, \code{\link{is.double}},
+  \code{\link{is.integer}}
+}
+

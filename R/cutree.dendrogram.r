@@ -1,3 +1,5 @@
+
+
 #' @title Check if numbers are natural
 #' @export
 #' @description Vectorized function for checking if numbers are natural or not.
@@ -28,32 +30,66 @@ is.natural.number <- function(x, tol = .Machine$double.eps^0.5, ...)  x > tol & 
 
 
 
-
-
-
-# cut(tree, h = 330)
-# cutree_h.dendrogram(tree, h = 100)
-# cut(tree, h = 100)
-# plot(tree)
-
-cutree_h.dendrogram <- function(tree, h, order_clusters_using_tree = F, to_print = F, use_labels_not_values = T)
+#' @title cutree for dendrogram (by 1 height only!)
+#' @export
+#' @description Cuts a tree, e.g., as resulting from dendrogram, 
+#' into several groups by specifying the desired cut height (only a single height!).
+#' @param tree   a dendrogram object
+#' @param h    numeric scalar or vector with heights where the tree should be cut.
+#' @param use_labels_not_values boolean, defaults to TRUE. If the actual labels of the 
+#' clusters do not matter - and we want to gain speed (say, 10 times faster) - 
+#' then use FALSE (gives the "leaves order" instead of their labels.).
+#' @param order_clusters_as_data boolean, defaults to TRUE. There are two ways by which 
+#' to order the clusters: 1) By the order of the original data. 2) by the order of the 
+#' labels in the dendrogram. In order to be consistent with \link[stats]{cutree}, this is set
+#' to TRUE.
+#' @param ... (not currently in use)
+#' @return \code{cutree_1h.dendrogram} returns an integer vector with group memberships 
+#' @author Tal Galili
+#' @seealso \code{\link{hclust}}, \code{\link{cutree}}
+#' @examples
+#' hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
+#' dend <- as.dendrogram(hc)
+#' cutree(hc, h=50) # on hclust
+#' cutree_1h.dendrogram(dend, h=50) # on a dendrogram
+#' 
+#' labels(dend)
+#' cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = FALSE) # A different order of labels
+#' 
+#' # make it faster
+#' \dontrun{
+#' require(microbenchmark)
+#' microbenchmark(
+#'          cutree_1h.dendrogram(dend, h=50),
+#'          cutree_1h.dendrogram(dend, h=50,use_labels_not_values = FALSE)
+#'          )
+#'          # 0.8 vs 0.6 sec - for 100 runs
+#' } 
+cutree_1h.dendrogram <- function(tree, h, order_clusters_as_data = TRUE, use_labels_not_values = TRUE,...)
 {
-   # tree   a dendrogram object
-   # h	 numeric scalar or vector with heights where the tree should be cut.
-   # use use_labels_not_values = F, if the actual labels of the clusters do not matter - and we want to gain speed (say, 10 times faster)
-   # 				use use_labels_not_values = F gives the leaves values instead of their labels.
+
+   if(missing(h)) stop("h is missing")   
+   
+   if(length(h) > 1) {
+      warning("h has length > 1 and only the first element will be used")
+      h <- h[1]
+   }
    
    if(use_labels_not_values) {
       names_in_clusters <- sapply(cut(tree, h = h)$lower, labels)	# a list with names per cluster
    } else {
-      names_in_clusters <- sapply(cut(tree, h = h)$lower, leaves.values)	# If the proper labels are not important, this function is around 10 times faster than using labels (so it is much better for some other algorithms)
+      names_in_clusters <- sapply(cut(tree, h = h)$lower, order.dendrogram)	# If the proper labels are not important, this function is around 10 times faster than using labels (so it is much better for some other algorithms)
    }
    
    number_of_clusters <- length(names_in_clusters)
    number_of_members_in_clusters <-sapply(names_in_clusters, length) # a list with item per cluster. each item is a character vector with the names of the items in that cluster
-   cluster_vec <- rep(rev(seq_len(number_of_clusters)), times = number_of_members_in_clusters ) # like and in the original cutree
+   cluster_vec <- rep(rev(seq_len(number_of_clusters)), times = number_of_members_in_clusters ) # like in the original cutree
    # I am using "rev" on "seq_len" - so that the resulting cluster numbers will be consistant with those of cutree.hclust
-   if(h > attr(tree, "height")) cluster_vec <- rep(1, length(cluster_vec))	# 10.01.11: this is to fix the "bug" (I don't think it's a feature) of having the cut.dendrogram return splitted tree when h is heigher then the tree...
+   
+   # 2011-01-10: this is to fix the "bug" (I don't think it's a feature) of having the cut.dendrogram return splitted tree when h is heigher then the tree...
+   # now it gives consistent results with cutree
+   if(h > attr(tree, "height")) cluster_vec <- rep(1, length(cluster_vec))	
+
    names(cluster_vec) <- unlist(names_in_clusters)
    
    
@@ -62,30 +98,35 @@ cutree_h.dendrogram <- function(tree, h, order_clusters_using_tree = F, to_print
    # The original order of the names of the items, from which the hclust (and the dendrogram) object was created from, will not be preserved!
    
    
-   if(order_clusters_using_tree) 
+   if(order_clusters_as_data) 
    {
-      # clusters_order <- rapply(tree, function(x) {x})	# this was the old way, but it misses one thing:
-      # 1) sometimes the tree has gotten some leaves chopped, in which case, we need to rank the leaves order (since their range may not be relevant anymore...
-      clusters_order <- unlist(tree) # rapply(tree, function(x) {x})  # previously we used the rapply method
-      ranked_clusters_order <- rank(clusters_order, ties.method = "first")	# we use the "first" ties method - to handle the cases of ties in the ranks (after splits/merges with other trees)
-      
-      if(!all(is.natural.number(clusters_order)) {
-         warning("The numbers in the tips of the tree are not 'natural numbers'!  they were used for ordering the labels, but this ordering may be false!")
-         # cat("Here is the cluster order vector (from the tree tips) \n", clusters_order, "\n")	# If the numbers aren't natural - this will be printed in the next warning section...
+      if(!all(clusters_order %in% seq_along(clusters_order))){
+         warning("rank() was used for the leaves order number! \nExplenation: leaves tip number (the order), and the ranks of these numbers - are not equal.  The tree was probably trimmed and/or merged with other trees- and now the order labels don't make so much sense (hence, the rank on them was used.")
+         warning("Here is the cluster order vector (from the tree tips) \n", clusters_order, "\n")
+         clusters_order <- rank(clusters_order, ties.method = "first")   # we use the "first" ties method - to handle the cases of ties in the ranks (after splits/merges with other trees)
       }
-         if(!all(ranked_clusters_order == clusters_order)) {
-            warning("rank() was used for the leaves order number.  Explenation: leaves tip number (the order), and the ranks of these numbers - are not equal.  The tree was probably trimmed and/or merged with other trees- and now the order labels don't make so much sense (hence, the rank on them was used.")
-            if(to_print) cat("Here is the cluster order vector (from the tree tips) \n", clusters_order, "\n")
-         }		
-         
-         cluster_vec <- cluster_vec[order(clusters_order)]	# this reorders the cluster_vec according to the original order of the items from which the tree (maybe hclust) was created
-   } else { 
-      # warning("Can not order tree, since tree leaves don't seem to include information on trees items order (e.g: They are not a vector of type 1:number_of_items)")
-   }
+      
+      cluster_vec <- cluster_vec[order(clusters_order)]	# this reorders the cluster_vec according to the original order of the items from which the tree (maybe hclust) was created
+   }   
    
+   # 2013-07-28: stay consistant with hclust:
+   # if we have as many clusters as items - they should be numbered
+   # from left to right...
+   tree_size <- nleaves(tree)
+   if(number_of_clusters == tree_size) cluster_vec[seq_len(tree_size)] <- seq_len(tree_size)
    
    return(cluster_vec)
 }
+
+
+
+
+
+
+
+
+
+
 
 rllply <- function(X, FUN,...)
 {	# recursivly apply a function on a list - and returns the output as a list # following the naming convention in the {plyr} package
@@ -117,7 +158,7 @@ rllply <- function(X, FUN,...)
    return(output)
 }
 
-get_heights.dendrogram <- function(tree)
+get_heights.dendrogram <- function(tree,...)
 {
    height <- unlist(rllply(tree, function(x){attr(x, "height")}))
    height <- height[height != 0] # include only the non zero values
@@ -125,7 +166,7 @@ get_heights.dendrogram <- function(tree)
    return(height)
 }
 
-heights_per_k.dendrogram <- function(tree)
+heights_per_k.dendrogram <- function(tree,...)
 {
    # gets a dendro tree
    # returns a vector of heights, and the k clusters we'll get for each of them.
@@ -147,7 +188,7 @@ heights_per_k.dendrogram <- function(tree)
 # Play with:
 
 
-# cutree_h.dendrogram(tree, h = h,use_labels_not_values=F)
+# cutree_1h.dendrogram(tree, h = h,use_labels_not_values=F)
 # cutree_k.dendrogram(tree, 4)
 # cutree_k.dendrogram(tree, 4, use_labels_not_values=F)
 # 										h = h,use_labels_not_values=F)
@@ -169,7 +210,7 @@ cutree_k.dendrogram <- function(tree, k, to_print = F, dendrogram_heights_per_k,
    if(length(height_for_our_k) != 0)  # if such a height exists
    {
       h_to_use <- dendrogram_heights_per_k[height_for_our_k]
-      cluster_vec <- cutree_h.dendrogram(tree, h = h_to_use, use_labels_not_values = use_labels_not_values, ...)
+      cluster_vec <- cutree_1h.dendrogram(tree, h = h_to_use, use_labels_not_values = use_labels_not_values, ...)
       if(to_print) print(paste("The dendrogram was cut at height", round(h_to_use, 4), "in order to create",k, "clusters."))
    } else {
       cluster_vec <- NULL
@@ -218,7 +259,7 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,...)
    if(!is.null(k)) cluster_vec <- cutree_k.dendrogram(tree, k,...)
    
    # What to do in case h is supplied
-   if(!is.null(h)) cluster_vec <- cutree_h.dendrogram(tree, h,...)
+   if(!is.null(h)) cluster_vec <- cutree_1h.dendrogram(tree, h,...)
    
    return(cluster_vec)
 }

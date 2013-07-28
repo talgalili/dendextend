@@ -1,17 +1,13 @@
 \name{get_leaves_attr}
-\alias{###}
-\alias{###set_leaves_attr}
 \alias{get_leaves_attr}
-\title{Get/set attributes of dendrogram's leaves
-###}
+\title{Get/set attributes of dendrogram's leaves}
 \source{
   Heavily inspired by the code in the function
   \code{labels.dendrogram}, so credit should go to Martin
   Maechler.
 }
 \usage{
-  ###get_leaves_attr(object, labels = TRUE,...) ###
-    ###set_leaves_attr(object, ...) <- value
+  get_leaves_attr(object, attribute, ...)
 }
 \arguments{
   \item{object}{a dendrogram object}
@@ -25,7 +21,7 @@
   A vector with the dendrogram's leaves attribute
 }
 \description{
-  Get/set attributes of dendrogram's leaves ###
+  Get/set attributes of dendrogram's leaves
 }
 \examples{
 # define dendrogram object to play with:
