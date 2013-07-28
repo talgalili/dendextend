@@ -3,13 +3,13 @@
 #######
 
 
+### # ' @aliases 
+### # ' set_leaves_attr
+### # ' @usage
+### # ' get_leaves_attr(object, labels = TRUE,...)
+### # ' 
+### # ' set_leaves_attr(object, ...) <- value
 #' @title Get/set attributes of dendrogram's leaves
-### #' @aliases 
-### #' set_leaves_attr
-### #' @usage
-### #' get_leaves_attr(object, labels = TRUE,...)
-### #' 
-### #' set_leaves_attr(object, ...) <- value
 #' @export
 #' @param object a dendrogram object 
 #' @param attribute character scaler of the attribute (\code{attr})

@@ -1,8 +1,13 @@
-dendextend 0.3 (2013-07-24) 
+dendextend 0.4 (2013-07-27) 
+---------------------------
+
+
+
+dendextend 0.3 (2013-07-27) 
 ---------------------------
 
 NEW FUNCTIONS ADDED:
-   * 
+   * removed "flip", added rev.hclust instead (since rev.dendrogram already exists)
 
 NEW VIGNETTES SECTIONS ADDED:
    * Vignettes created (using LaTeX)
@@ -23,7 +28,6 @@ UPDATED FUNCTIONS:
    * unroot.dendrogram - Can now deal with unrooting more than 3 branches. supresses various warnings. 
    * as_hclust_fixed - now works just as as.hclust when hc is missing.
    * rotate - allowed "order" to accept character vector.
-   * removed "flip", added rev.hclust instead (since rev.dendrogram already exists)
 
 
 OTHER NOTES:
@@ -85,4 +89,4 @@ TODO for future releases:
    * possibly use {dendroextras} to add colors to the tanglegrams. also: http://stackoverflow.com/questions/10571266/colouring-branches-in-a-dendrogram-in-r?rq=1
    * create rect.dendrogram (and make rect generic). http://stackoverflow.com/questions/717747/how-do-i-color-edges-or-draw-rects-correctly-in-an-r-dendrogram
 http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
-
+   * hide some function's doc (labels<-.stuff)
