@@ -31,15 +31,14 @@ is.natural.number <- function(x, tol = .Machine$double.eps^0.5, ...)  x > tol & 
 
 
 
-
 # cut(tree, h = 330)
-# cutree.dendrogram.h(tree, h = 100)
+# cutree_h.dendrogram(tree, h = 100)
 # cut(tree, h = 100)
 # plot(tree)
 
-cutree.dendrogram.h <- function(tree, h, order_clusters_using_tree = F, to_print = F, use_labels_not_values = T)
+cutree_h.dendrogram <- function(tree, h, order_clusters_using_tree = F, to_print = F, use_labels_not_values = T)
 {
-   # tree	a dendrogram object
+   # tree   a dendrogram object
    # h	 numeric scalar or vector with heights where the tree should be cut.
    # use use_labels_not_values = F, if the actual labels of the clusters do not matter - and we want to gain speed (say, 10 times faster)
    # 				use use_labels_not_values = F gives the leaves values instead of their labels.
@@ -70,16 +69,16 @@ cutree.dendrogram.h <- function(tree, h, order_clusters_using_tree = F, to_print
       clusters_order <- unlist(tree) # rapply(tree, function(x) {x})  # previously we used the rapply method
       ranked_clusters_order <- rank(clusters_order, ties.method = "first")	# we use the "first" ties method - to handle the cases of ties in the ranks (after splits/merges with other trees)
       
-      if(!all.natural.numbers(clusters_order)) {
+      if(!all(is.natural.number(clusters_order)) {
          warning("The numbers in the tips of the tree are not 'natural numbers'!  they were used for ordering the labels, but this ordering may be false!")
          # cat("Here is the cluster order vector (from the tree tips) \n", clusters_order, "\n")	# If the numbers aren't natural - this will be printed in the next warning section...
       }
-      if(!all(ranked_clusters_order == clusters_order)) {
-         warning("rank() was used for the leaves order number.  Explenation: leaves tip number (the order), and the ranks of these numbers - are not equal.  The tree was probably trimmed and/or merged with other trees- and now the order labels don't make so much sense (hence, the rank on them was used.")
-         if(to_print) cat("Here is the cluster order vector (from the tree tips) \n", clusters_order, "\n")
-      }		
-      
-      cluster_vec <- cluster_vec[order(clusters_order)]	# this reorders the cluster_vec according to the original order of the items from which the tree (maybe hclust) was created
+         if(!all(ranked_clusters_order == clusters_order)) {
+            warning("rank() was used for the leaves order number.  Explenation: leaves tip number (the order), and the ranks of these numbers - are not equal.  The tree was probably trimmed and/or merged with other trees- and now the order labels don't make so much sense (hence, the rank on them was used.")
+            if(to_print) cat("Here is the cluster order vector (from the tree tips) \n", clusters_order, "\n")
+         }		
+         
+         cluster_vec <- cluster_vec[order(clusters_order)]	# this reorders the cluster_vec according to the original order of the items from which the tree (maybe hclust) was created
    } else { 
       # warning("Can not order tree, since tree leaves don't seem to include information on trees items order (e.g: They are not a vector of type 1:number_of_items)")
    }
@@ -118,7 +117,7 @@ rllply <- function(X, FUN,...)
    return(output)
 }
 
-get.dendrogram.heights <- function(tree)
+get_heights.dendrogram <- function(tree)
 {
    height <- unlist(rllply(tree, function(x){attr(x, "height")}))
    height <- height[height != 0] # include only the non zero values
@@ -126,12 +125,12 @@ get.dendrogram.heights <- function(tree)
    return(height)
 }
 
-dendrogram.heights.per.k <- function(tree)
+heights_per_k.dendrogram <- function(tree)
 {
    # gets a dendro tree
    # returns a vector of heights, and the k clusters we'll get for each of them.
    
-   our_dendrogram_heights <- sort(unique(get.dendrogram.heights(tree)), T)
+   our_dendrogram_heights <- sort(unique(get_heights.dendrogram(tree)), T)
    
    heights_to_remove_for_A_cut <- min(-diff(our_dendrogram_heights))/2 # the height to add so to be sure we get a "clear" cut
    heights_to_cut_by <- c((max(our_dendrogram_heights) + heights_to_remove_for_A_cut),	# adding the height for 1 clusters only (this is not mandetory and could be different or removed)
@@ -148,12 +147,12 @@ dendrogram.heights.per.k <- function(tree)
 # Play with:
 
 
-# cutree.dendrogram.h(tree, h = h,use_labels_not_values=F)
-# cutree.dendrogram.k(tree, 4)
-# cutree.dendrogram.k(tree, 4, use_labels_not_values=F)
+# cutree_h.dendrogram(tree, h = h,use_labels_not_values=F)
+# cutree_k.dendrogram(tree, 4)
+# cutree_k.dendrogram(tree, 4, use_labels_not_values=F)
 # 										h = h,use_labels_not_values=F)
 
-cutree.dendrogram.k <- function(tree, k, to_print = F, dendrogram_heights_per_k, use_labels_not_values = T,  ...)
+cutree_k.dendrogram <- function(tree, k, to_print = F, dendrogram_heights_per_k, use_labels_not_values = T,  ...)
 {
    # tree	a dendrogram object
    # k	 an integer scalar or vector with the desired number of groups
@@ -161,7 +160,7 @@ cutree.dendrogram.k <- function(tree, k, to_print = F, dendrogram_heights_per_k,
    # step 1: find all possible h cuts for tree	
    if(missing(dendrogram_heights_per_k)) {
       # since this is a step which takes a long time, If possible, I'd rather supply this to the function, so to make sure it runs faster...
-      dendrogram_heights_per_k <- dendrogram.heights.per.k(tree)
+      dendrogram_heights_per_k <- heights_per_k.dendrogram(tree)
    }
    
    
@@ -170,7 +169,7 @@ cutree.dendrogram.k <- function(tree, k, to_print = F, dendrogram_heights_per_k,
    if(length(height_for_our_k) != 0)  # if such a height exists
    {
       h_to_use <- dendrogram_heights_per_k[height_for_our_k]
-      cluster_vec <- cutree.dendrogram.h(tree, h = h_to_use, use_labels_not_values = use_labels_not_values, ...)
+      cluster_vec <- cutree_h.dendrogram(tree, h = h_to_use, use_labels_not_values = use_labels_not_values, ...)
       if(to_print) print(paste("The dendrogram was cut at height", round(h_to_use, 4), "in order to create",k, "clusters."))
    } else {
       cluster_vec <- NULL
@@ -191,9 +190,19 @@ cutree.dendrogram.k <- function(tree, k, to_print = F, dendrogram_heights_per_k,
    return(cluster_vec)
 }
 
+
+
+
+#' @export
+cutree.default <- stats:::cutree
+
+# this allows the making of cutree.dendrogram into a method :)
+cutree <- function(tree, k = NULL, h = NULL,...)  UseMethod("cutree")
+
+
 cutree.dendrogram <- function(tree, k = NULL, h = NULL,...)
 {
-   # tree	a dendrogram object
+   # tree   a dendrogram object
    # k	 an integer scalar or vector with the desired number of groups
    # h	 numeric scalar or vector with heights where the tree should be cut.
    # use_labels_not_values - if F, the resulting clusters will not have their lables (but instead, they will have tree values), however, the function will be about 10 times faster.  So if the labels are not useful, this is a good parameter to use.
@@ -206,54 +215,13 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,...)
       k <- NULL
    }
    
-   if(!is.null(k)) cluster_vec <- cutree.dendrogram.k(tree, k,...)
+   if(!is.null(k)) cluster_vec <- cutree_k.dendrogram(tree, k,...)
    
    # What to do in case h is supplied
-   if(!is.null(h)) cluster_vec <- cutree.dendrogram.h(tree, h,...)
+   if(!is.null(h)) cluster_vec <- cutree_h.dendrogram(tree, h,...)
    
    return(cluster_vec)
 }
-
-
-# this allows the making of cutree.dendrogram into a method :)
-cutree <- function(tree, k = NULL, h = NULL,...)  UseMethod("cutree")
-
-cutree.default <- function (tree, k = NULL, h = NULL,...) 
-{
-   if (is.null(n1 <- nrow(tree$merge)) || n1 < 1) 
-      stop("invalid 'tree' (merge component)")
-   n <- n1 + 1
-   if (is.null(k) && is.null(h)) 
-      stop("either 'k' or 'h' must be specified")
-   if (is.null(k)) {
-      if (is.unsorted(tree$height)) 
-         stop("the 'height' component of 'tree' is not sorted\n(increasingly); consider applying as.hclust() first")
-      k <- integer(length(h))
-      k <- n + 1 - apply(outer(c(tree$height, Inf), h, ">"), 
-                         2, which.max)
-      if (getOption("verbose")) 
-         message("cutree(): k(h) = ", k, domain = NA)
-   }
-   else {
-      k <- as.integer(k)
-      if (min(k) < 1 || max(k) > n) 
-         stop(gettextf("elements of 'k' must be between 1 and %d", 
-                       n), domain = NA)
-   }
-   ans <- .Call("R_cutree", tree$merge, k, PACKAGE = "stats")
-   if (length(k) == 1L) {
-      ans <- as.vector(ans)
-      names(ans) <- tree$labels
-   }
-   else {
-      colnames(ans) <- if (!is.null(h)) 
-         h
-      else k
-      rownames(ans) <- tree$labels
-   }
-   return(ans)
-}
-
 
 
 
@@ -278,5 +246,4 @@ cutree.default <- function (tree, k = NULL, h = NULL,...)
 # cutree.dendrogram(dhc, k = 3.2) # handaling the case were k is not a viable number of clusters
 
 
-# dendrogram.heights.per.k(dhc)
-
+# heights_per_k.dendrogram(dhc)
