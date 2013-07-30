@@ -51,3 +51,20 @@ test_that("cutree a dendrogram by height h",{
       labels(dend)      )  
    
 })
+
+
+
+
+
+
+
+test_that("Hanging dendrogram works just like hclust",{
+   
+   hc <- hclust(dist(USArrests[1:5,]), "ave")
+   dend <- as.dendrogram(hc)   
+      
+   expect_true(identical(as.dendrogram(hc, hang = 0.1),
+                         hang.dendrogram(dend, hang = 0.1)))   
+})
+
+

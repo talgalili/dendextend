@@ -64,10 +64,11 @@ is.natural.number <- function(x, tol = .Machine$double.eps^0.5, ...)  x > tol & 
 #'          cutree_1h.dendrogram(dend, h=50,use_labels_not_values = FALSE)
 #'          )
 #'          # 0.8 vs 0.6 sec - for 100 runs
-#' } 
+#' }
+#' 
 cutree_1h.dendrogram <- function(tree, h, order_clusters_as_data = TRUE, use_labels_not_values = TRUE,...)
 {
-
+   
    if(missing(h)) stop("h is missing")   
    
    if(length(h) > 1) {
@@ -76,7 +77,7 @@ cutree_1h.dendrogram <- function(tree, h, order_clusters_as_data = TRUE, use_lab
    }
    
    if(use_labels_not_values) {
-      names_in_clusters <- sapply(cut(tree, h = h)$lower, labels)	# a list with names per cluster
+      names_in_clusters <- sapply(cut(tree, h = h)$lower, labels)   # a list with names per cluster
    } else {
       names_in_clusters <- sapply(cut(tree, h = h)$lower, order.dendrogram)	# If the proper labels are not important, this function is around 10 times faster than using labels (so it is much better for some other algorithms)
    }
@@ -89,7 +90,7 @@ cutree_1h.dendrogram <- function(tree, h, order_clusters_as_data = TRUE, use_lab
    # 2011-01-10: this is to fix the "bug" (I don't think it's a feature) of having the cut.dendrogram return splitted tree when h is heigher then the tree...
    # now it gives consistent results with cutree
    if(h > attr(tree, "height")) cluster_vec <- rep(1, length(cluster_vec))	
-
+   
    names(cluster_vec) <- unlist(names_in_clusters)
    
    
@@ -127,51 +128,116 @@ cutree_1h.dendrogram <- function(tree, h, order_clusters_as_data = TRUE, use_lab
 
 
 
+#########################
+## FROM HERE ON - I STILL NEED TESTING!
+#########################
 
-rllply <- function(X, FUN,...)
-{	# recursivly apply a function on a list - and returns the output as a list # following the naming convention in the {plyr} package
-   # the big difference between this and rapply is that this will also apply the function on each element of the list, even if it's not a "terminal node" inside the list tree
-   # an attribute is added to indicate if the value returned is from a branch or a leaf
-   if(is.list(X)) {
+
+
+
+
+
+#' @title recursivly apply a function on a list
+#' @export
+#' @description
+#' recursivly apply a function on a list - and returns the output as a list, 
+#' following the naming convention in the {plyr} package
+#' the big difference between this and rapply is that this will also apply 
+#' the function on EACH element of the list, even if it's not a "terminal node"
+#' inside the list tree.
+#' An attribute is added to indicate if the value returned is 
+#' from a branch or a leaf.
+#' @param x a list.
+#' @param FUN a function to apply on each element of the list
+#' @param add_notation logical. Should each node be 
+#' added a "position_type" attribute, stating if it is a "Branch" or a "Leaf".
+#' @param ... not used.
+#' @return a list with ALL of the nodes (from the original "x" list),
+#' that FUN was applied on.
+#' 
+#' @examples
+#' \dontrun{
+#' x <- list(1)
+#' x
+#' rllply(x, function(x){x}, add_notation  = TRUE)
+#' 
+#' x <- list(1, 2, list(31))
+#' x
+#' rllply(x, function(x){x}, add_notation  = TRUE)
+#'                      # the first element is the entire tree
+#'                            # after FUN was applied to its root element.
+#' 
+#' hc <- hclust(dist(USArrests[1:4,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' rllply(dend, function(x){attr(x, "height")})
+#' rllply(dend, function(x){attr(x, "members")})
+#' }
+rllply <- function(x, FUN,add_notation = FALSE, ...)
+{	
+   if(is.list(x)) {
       output <- list()
-      for(i in seq_len(length(X)))
+      for(i in seq_len(length(x)))
       {		
-         output[[i]] <- list(rllply(X[[i]], FUN,...))
-         attr(output[[i]][[1]], "position_type") <- "Branch"
+         output[[i]] <- list(rllply(x[[i]], FUN,...))
+         if(add_notation) attr(output[[i]][[1]], "position_type") <- "Branch"
       }
-      output <- list(FUN(X,...), output)
+      output <- list(FUN(x,...), output)
    } else {
-      output <- FUN(X,...)
-      attr(output, "position_type") <- "Leaf"	
-   }
-   
-   # for(i in seq_len(length(X)))
-   # {
-   # if(is.list(X[[i]])) {
-   # output[[i]] <- list(FUN(X[[i]],...),rllply(X[[i]], FUN,...))
-   # attr(output[[i]][[1]], "position_type") <- "Branch"
-   # } else {
-   # output[[i]] <- FUN(X[[i]],...)
-   # attr(output[[i]], "position_type") <- "Leaf"
-   # }
-   # }
+      output <- FUN(x,...)
+      if(add_notation) attr(output, "position_type") <- "Leaf"	
+   }   
    return(output)
 }
 
-get_heights.dendrogram <- function(tree,...)
+
+#' @title Get height attributes from a dendrogram
+#' @export
+#' @param tree a dendrogram.
+#' @param decreasing logical. Should the sort be increasing or decreasing? Not available for partial sorting.
+#' @param ... not used.
+#' @return a vector of the dendrogram's branches heights.
+#' 
+#' @examples
+#' 
+#' hc <- hclust(dist(USArrests[1:4,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' get_heights.dendrogram(dend)
+#' 
+#' 
+get_heights.dendrogram <- function(tree, decreasing = FALSE, ...)
 {
    height <- unlist(rllply(tree, function(x){attr(x, "height")}))
    height <- height[height != 0] # include only the non zero values
-   height <- sort(height) 	# sort the height
+   height <- sort(height, decreasing=decreasing) 	# sort the height
    return(height)
 }
 
+
+
+
+#' @title Which height will result in which k for a dendrogram
+#' @export
+#' @param tree a dendrogram.
+#' @param ... not used.
+#' @return a vector of heights, with its names being the k clusters that will
+#' result for cutting the dendrogram at each height.
+#' 
+#' @examples
+#' \donotrun{
+#' hc <- hclust(dist(USArrests[1:4,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' heights_per_k.dendrogram(dend)
+#' ##       1        2        3        4 
+#' ##86.47086 68.84745 45.98871 28.36531 
+#' 
+#' cutree(hc, h = 68.8) # and indeed we get 2 clusters
+#' }
 heights_per_k.dendrogram <- function(tree,...)
 {
    # gets a dendro tree
    # returns a vector of heights, and the k clusters we'll get for each of them.
    
-   our_dendrogram_heights <- sort(unique(get_heights.dendrogram(tree)), T)
+   our_dendrogram_heights <- sort(unique(get_heights.dendrogram(tree)), TRUE)
    
    heights_to_remove_for_A_cut <- min(-diff(our_dendrogram_heights))/2 # the height to add so to be sure we get a "clear" cut
    heights_to_cut_by <- c((max(our_dendrogram_heights) + heights_to_remove_for_A_cut),	# adding the height for 1 clusters only (this is not mandetory and could be different or removed)
@@ -189,11 +255,11 @@ heights_per_k.dendrogram <- function(tree,...)
 
 
 # cutree_1h.dendrogram(tree, h = h,use_labels_not_values=F)
-# cutree_k.dendrogram(tree, 4)
-# cutree_k.dendrogram(tree, 4, use_labels_not_values=F)
+# cutree_1k.dendrogram(tree, 4)
+# cutree_1k.dendrogram(tree, 4, use_labels_not_values=F)
 # 										h = h,use_labels_not_values=F)
 
-cutree_k.dendrogram <- function(tree, k, to_print = F, dendrogram_heights_per_k, use_labels_not_values = T,  ...)
+cutree_1k.dendrogram <- function(tree, k, to_print = FALSE, dendrogram_heights_per_k, use_labels_not_values = TRUE,  ...)
 {
    # tree	a dendrogram object
    # k	 an integer scalar or vector with the desired number of groups
@@ -234,15 +300,32 @@ cutree_k.dendrogram <- function(tree, k, to_print = F, dendrogram_heights_per_k,
 
 
 
-#' @export
-cutree.default <- stats:::cutree
-
 # this allows the making of cutree.dendrogram into a method :)
 cutree <- function(tree, k = NULL, h = NULL,...)  UseMethod("cutree")
 
 
+#' @export
+cutree.default <- function(tree, k = NULL, h = NULL,...)  stop("Function cutree is only available for hclust and dendrogram objects.")
+
+#' @export
+#' @S3method cutree hclust
+cutree.hclust <- stats:::cutree
+
+
+#' @export
+#' @S3method cutree dendrogram
 cutree.dendrogram <- function(tree, k = NULL, h = NULL,...)
 {
+   # TODO:
+   # cutree.dendrogram might benefit from using 
+   # tryCatch(stop(), error = function(e) TRUE)
+   # tryCatch(stop(), error = function(e) TRUE, finally = FALSE)
+   # tryCatch(is.hclust(hc_dend <- as.hclust(dend)), error = function(e) FALSE)
+   # and if it works to use cutree.hclust
+   # this would be faster, especially when using k.
+   # and if it doesn't, one could use my functions
+   #     also, I should add a "force" parameter - to force using my function (for weird cases...)
+   
    # tree   a dendrogram object
    # k	 an integer scalar or vector with the desired number of groups
    # h	 numeric scalar or vector with heights where the tree should be cut.
@@ -256,13 +339,117 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,...)
       k <- NULL
    }
    
-   if(!is.null(k)) cluster_vec <- cutree_k.dendrogram(tree, k,...)
+   if(!is.null(k)) cluster_vec <- cutree_1k.dendrogram(tree, k,...)
    
    # What to do in case h is supplied
    if(!is.null(h)) cluster_vec <- cutree_1h.dendrogram(tree, h,...)
    
    return(cluster_vec)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#' @title Hang dendrogram leaves
+#' @export
+#' @description
+#' Adjust the height attr in all of the dendrogram leaves so that
+#'  the tree will hang. This is similar to as.dendrogram(hclust, hang=0.1)
+#'  Only that it now works on other object than hclust turned into a dendrogram.
+#'  For example, this allows us to hang non-binary trees.
+#'  
+#' @param dend a dendrogram object 
+#' @param hang The fraction of the plot height by which labels should hang below 
+#' the rest of the plot. A negative value will cause the labels to 
+#' hang down from 0.
+#' @param hang_height is missing, then using "hang". If a number is given,
+#' it overrides "hang" (except if "hang" is negative)
+#' @param ... not used
+#' @return 
+#' A dendrogram, after adjusting the height attr in all of its leaves, 
+#' so that the tree will hang.
+#' @examples
+#' 
+#' # define dendrogram object to play with:
+#' hc <- hclust(dist(USArrests[1:5,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' par(mfrow = c(1,2))
+#' plot(hang.dendrogram(dend))
+#' plot(hc)
+#' # identical(as.dendrogram(hc, hang = 0.1), hang.dendrogram(dend, hang = 0.1))
+#' # TRUE!!
+#' 
+#' 
+#' par(mfrow = c(1,4))
+#' 
+#' plot(dend)
+#' plot(hang.dendrogram(dend, hang = 0.1))
+#' plot(hang.dendrogram(dend, hang = 0))
+#' plot(hang.dendrogram(dend, hang = -0.1))
+#' 
+#' par(mfrow = c(1,1))
+#' plot(hang.dendrogram(dend), horiz = TRUE)
+#'  
+#'  
+hang.dendrogram <- function(dend,hang = 0.1,hang_height, ...) {
+   if(!inherits(dend,'dendrogram')) stop("'dend' should be a dendrogram.")   
+   
+#    get_heights.dendrogram
+   if(missing(hang_height)) hang_height <- attr(dend, "height")*hang
+   
+   fix_height_attr_per_leaf <- function(dend_node)
+   {
+      if(!is.leaf(dend_node)) {
+         dend_node_height <- attr(dend_node, "height")
+         
+         for(i_nodes in seq_len(length(dend_node))) {
+            if(is.leaf(dend_node[[i_nodes]])) {
+               if(hang < 0) {
+                  attr(dend_node[[i_nodes]], "height") <- 0
+               } else {
+                  attr(dend_node[[i_nodes]], "height") <- dend_node_height - hang_height
+               }
+               
+               dend_node[[i_nodes]] <- unclass(dend_node[[i_nodes]]) # makes sure we don't inherent any classes...
+               
+            } else {
+               dend_node[[i_nodes]] <- 
+                  fix_height_attr_per_leaf(dend_node[[i_nodes]])
+            }           
+         }
+         
+      }
+      return(unclass(dend_node))
+   }
+   
+   dend <- fix_height_attr_per_leaf(dend)   
+   class(dend) <- "dendrogram"
+   return(dend)
+}
+
+# unclass(dend)
+# unclass(hang.dendrogram(dend))
+# unclass(unclass(unclass(hang.dendrogram(dend))))
+
+
+
+
+
+
 
 
 
@@ -283,6 +470,7 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,...)
 # attr(dhc[[2]][[1]], "height") <- 23.2
 # attr(dhc[[2]][[2]], "height") <- 23.2
 # plot(dhc)
+# is.ultrametric(as.phylo(dhc))
 # cutree.dendrogram(dhc, k = 4) # handaling the case were k is not a viable number of clusters
 # cutree.dendrogram(dhc, k = 3.2) # handaling the case were k is not a viable number of clusters
 

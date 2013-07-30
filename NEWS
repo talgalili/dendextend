@@ -5,7 +5,8 @@ NEW FUNCTIONS ADDED:
 (including tests and documentation)
    * is.natural.number
    * cutree_1h.dendrogram - like cutree, but only for 1 height 
-
+   * fix_members_attr.dendrogram - just to validate that trim works o.k.
+   * hang.dendrogram - hangs a dendrogram leaves (also allows for a rotated hanged dendrogram), works also for non-binary trees.
 
 
 dendextend 0.3 (2013-07-27) 
@@ -95,3 +96,5 @@ TODO for future releases:
    * create rect.dendrogram (and make rect generic). http://stackoverflow.com/questions/717747/how-do-i-color-edges-or-draw-rects-correctly-in-an-r-dendrogram
 http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
    * hide some function's doc (labels<-.stuff)
+   * cite agnes/cluster and http://cran.r-project.org/web/packages/cluster/cluster.pdf
+   Maybe also spantree {vegan}
