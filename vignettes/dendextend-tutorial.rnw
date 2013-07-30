@@ -8,6 +8,7 @@ toBibtex(citation("sparcl"))
 toBibtex(citation("ggdendro"))
 toBibtex(citation("ape"))
 toBibtex(citation("Rcpp"))
+toBibtex(citation("boot"))
 
 toBibtex(packageDescription("stats"))
 
@@ -48,15 +49,17 @@ now.date <- strftime(Sys.Date(), "%B %d, %Y")
 % \Plaintitle{Doing More with Dendrograms: The dendextend R Package}
 % \title{Doing More with Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
 
-\Plaintitle{Comparing and Manipulating Dendrograms: The dendextend R Package}
-\title{Comparing and Manipulating Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
+\Plaintitle{Manipulate, Visualize and Compare Dendrograms: The dendextend R Package}
+\title{Manipulate, Visualize and Compare Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
 
 
 \Abstract{
-The \pkg{dendextend} package extends the dendrogram objects in \proglang{R}.
 
-The paper gives a detailed exposition of both the internal structure of
-the package and the provided user interfaces.
+A dendrogram is a tree diagram which is often used to visualize an hierarchical clustering of items. Dendrograms are used in many dispelines, ranging from Phylogenetic Trees in computational biology to Lexomic Trees in text analysis.
+
+The \pkg{dendextend} package extends the dendrogram objects in the \proglang{R} programming language, allowing for easy manipulation of a dendrogram's shape, color and content. Furthermore, it enable the tools for comparing the similarity of two dendrograms to one another both graphically (using tanglegrems) and statistically (from cophenetic correlations to Bk plots).
+
+The paper gives a detailed exposition of both the internal structure of the package and the provided user interfaces.
 }
 
 \Keywords{Dendrogram, hclust, hierarchical clustering, visualization, tanglegram,  \proglang{R}}
