@@ -23,6 +23,9 @@ test_that("Get a dendrogram nodes attributes",{
    hc <- hclust(dist(USArrests[1:3,]), "ave")
    dend <- as.dendrogram(hc)
    
+   expect_error(get_nodes_attr(dend)) # we need attribute!
+   
+   
    # NA's are from the nodes which are not leaves:
    expect_identical(get_nodes_attr(dend, "label"),
       c(NA, "Arizona", NA, "Alabama", "Alaska"))
