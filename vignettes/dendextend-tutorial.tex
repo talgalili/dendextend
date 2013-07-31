@@ -83,15 +83,17 @@
 % \Plaintitle{Doing More with Dendrograms: The dendextend R Package}
 % \title{Doing More with Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
 
-\Plaintitle{Comparing and Manipulating Dendrograms: The dendextend R Package}
-\title{Comparing and Manipulating Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
+\Plaintitle{Manipulate, Visualize and Compare Dendrograms: The dendextend R Package}
+\title{Manipulate, Visualize and Compare Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
 
 
 \Abstract{
-The \pkg{dendextend} package extends the dendrogram objects in \proglang{R}.
 
-The paper gives a detailed exposition of both the internal structure of
-the package and the provided user interfaces.
+A dendrogram is a tree diagram which is often used to visualize an hierarchical clustering of items. Dendrograms are used in many dispelines, ranging from Phylogenetic Trees in computational biology to Lexomic Trees in text analysis.
+
+The \pkg{dendextend} package extends the dendrogram objects in the \proglang{R} programming language, allowing for easy manipulation of a dendrogram's shape, color and content. Furthermore, it enable the tools for comparing the similarity of two dendrograms to one another both graphically (using tanglegrems) and statistically (from cophenetic correlations to Bk plots).
+
+The paper gives a detailed exposition of both the internal structure of the package and the provided user interfaces.
 }
 
 \Keywords{Dendrogram, hclust, hierarchical clustering, visualization, tanglegram,  \proglang{R}}
@@ -149,11 +151,12 @@ Dendrogram has several useful methods bundled with R:
 \end{alltt}
 \begin{verbatim}
 ##  [1] [[.dendrogram*         as.hclust.dendrogram*  cophenetic.dendrogram*
-##  [4] cut.dendrogram*        head.dendrogram*       labels.dendrogram*    
-##  [7] labels<-.dendrogram*   merge.dendrogram*      nleaves.dendrogram*   
-## [10] plot.dendrogram*       print.dendrogram*      reorder.dendrogram*   
-## [13] rev.dendrogram*        rotate.dendrogram*     sort.dendrogram*      
-## [16] str.dendrogram*        trim.dendrogram*       unroot.dendrogram*    
+##  [4] cut.dendrogram*        cutree.dendrogram*     head.dendrogram*      
+##  [7] labels.dendrogram*     labels<-.dendrogram*   merge.dendrogram*     
+## [10] nleaves.dendrogram*    nnodes.dendrogram*     plot.dendrogram*      
+## [13] print.dendrogram*      reorder.dendrogram*    rev.dendrogram*       
+## [16] rotate.dendrogram*     sort.dendrogram*       str.dendrogram*       
+## [19] trim.dendrogram*       unroot.dendrogram*    
 ## 
 ##    Non-visible functions are asterisked
 \end{verbatim}
@@ -426,7 +429,7 @@ To install the \href{https://github.com/talgalili/dendextend}{GitHub version} us
 
 
 
-\section{Tree labels (extraction, assignment, length)}
+\section{Tree attributes (extraction, assignment, length)}
 
 
 \subsection{labels in base R}
@@ -628,7 +631,7 @@ y <- \hlfunctioncall{matrix}(1:9, 3, 3)
 
 
 
-\subsection{Tree size}
+\subsection{Tree size - number of leaves}
 
 Getting the size of a tree (e.g: number of leaves/terminal-nodes) is good for validation of functions, and also when we wish to initiate a variable to later fill with data from the leaves. 
 
@@ -739,6 +742,206 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 
 
 
+\subsection{Tree size - number of nodes}
+
+Getting the size of a tree, in terms of the number of nodes can easily be done using:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[1:3, ]), \hlstring{"ave"})
+dend <- \hlfunctioncall{as.dendrogram}(hc)
+
+\hlfunctioncall{nnodes}(hc)
+\end{alltt}
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{nnodes}(dend)
+\end{alltt}
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+\subsection{Generally getting tree attributes}
+
+Getting tree attributes can more generally be achieved using \code{get_nodes_attr}, however, the dedicated function are often faster than the general solution. (also, in the future, we might introduce functions based on \pkg{Rcpp}, offering even faster times).
+
+Here are some examples:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[1:3, ]), \hlstring{"ave"})
+dend <- \hlfunctioncall{as.dendrogram}(hc)
+
+\hlcomment{# get_leaves_attr(dend) # error :)}
+\hlfunctioncall{get_leaves_attr}(dend, \hlstring{"label"})
+\end{alltt}
+\begin{verbatim}
+## [1] "Arizona" "Alabama" "Alaska"
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{labels}(dend, \hlstring{"label"})
+\end{alltt}
+\begin{verbatim}
+## [1] "Arizona" "Alabama" "Alaska"
+\end{verbatim}
+\begin{alltt}
+
+\hlfunctioncall{get_leaves_attr}(dend, \hlstring{"height"})  # should be 0's
+\end{alltt}
+\begin{verbatim}
+## [1] 0 0 0
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{get_nodes_attr}(dend, \hlstring{"height"})
+\end{alltt}
+\begin{verbatim}
+## [1] 54.80  0.00 37.18  0.00  0.00
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{get_branches_heights}(dend, sort = FALSE)  \hlcomment{# notice the sort=FALSE}
+\end{alltt}
+\begin{verbatim}
+## [1] 54.80 37.18
+\end{verbatim}
+\begin{alltt}
+
+
+\hlfunctioncall{get_leaves_attr}(dend, \hlstring{"leaf"})  # should be TRUE's
+\end{alltt}
+\begin{verbatim}
+## [1] TRUE TRUE TRUE
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{get_nodes_attr}(dend, \hlstring{"leaf"})  # conatins NA's
+\end{alltt}
+\begin{verbatim}
+## [1]   NA TRUE   NA TRUE TRUE
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{get_nodes_attr}(dend, \hlstring{"leaf"}, na.rm = TRUE)  #
+\end{alltt}
+\begin{verbatim}
+## [1] TRUE TRUE TRUE
+\end{verbatim}
+\begin{alltt}
+
+
+\hlfunctioncall{get_leaves_attr}(dend, \hlstring{"members"})  # should be 1's
+\end{alltt}
+\begin{verbatim}
+## [1] 1 1 1
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{get_nodes_attr}(dend, \hlstring{"members"}, include_branches = FALSE, na.rm = TRUE)  #
+\end{alltt}
+\begin{verbatim}
+## [1] 1 1 1
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{get_nodes_attr}(dend, \hlstring{"members"})  #
+\end{alltt}
+\begin{verbatim}
+## [1] 3 1 2 1 1
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{get_nodes_attr}(dend, \hlstring{"members"}, include_leaves = FALSE, na.rm = TRUE)  #
+\end{alltt}
+\begin{verbatim}
+## [1] 3 2
+\end{verbatim}
+\begin{alltt}
+
+
+hang_dend <- \hlfunctioncall{hang.dendrogram}(dend)
+\hlfunctioncall{get_leaves_attr}(hang_dend, \hlstring{"height"})  # no longer 0!
+\end{alltt}
+\begin{verbatim}
+## [1] 49.32 31.70 31.70
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{get_nodes_attr}(hang_dend, \hlstring{"height"})  # does not include any 0s!
+\end{alltt}
+\begin{verbatim}
+## [1] 54.80 49.32 37.18 31.70 31.70
+\end{verbatim}
+\begin{alltt}
+
+\hlcomment{# does not include leaves values:}
+\hlfunctioncall{get_nodes_attr}(hang_dend, \hlstring{"height"}, include_leaves = FALSE)
+\end{alltt}
+\begin{verbatim}
+## [1] 54.80    NA 37.18    NA    NA
+\end{verbatim}
+\begin{alltt}
+\hlcomment{# remove leaves values all together:}
+\hlfunctioncall{get_nodes_attr}(hang_dend, \hlstring{"height"}, include_leaves = FALSE, na.rm = TRUE)
+\end{alltt}
+\begin{verbatim}
+## [1] 54.80 37.18
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{get_branches_heights}(hang_dend)  \hlcomment{# notice the sort}
+\end{alltt}
+\begin{verbatim}
+## [1] 37.18 54.80
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{get_branches_heights}(hang_dend, sort = FALSE)  \hlcomment{# notice the sort}
+\end{alltt}
+\begin{verbatim}
+## [1] 54.80 37.18
+\end{verbatim}
+\begin{alltt}
+
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+
+Quick comparison on fetching leaves attributes:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+\hlfunctioncall{require}(microbenchmark)
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: microbenchmark}}\begin{alltt}
+\hlcomment{# get_leaves_attr is twice faster than get_nodes_attr}
+\hlfunctioncall{microbenchmark}(get_leaves_attr_4members = \hlfunctioncall{get_leaves_attr}(dend, \hlstring{"members"}), 
+    get_nodes_attr_4members = \hlfunctioncall{get_nodes_attr}(dend, \hlstring{"members"}, include_branches = FALSE, 
+        na.rm = TRUE))
+\end{alltt}
+\begin{verbatim}
+## Unit: microseconds
+##                      expr   min    lq median    uq  max neval
+##  get_leaves_attr_4members 280.5 290.9  311.3 337.6 4257   100
+##   get_nodes_attr_4members 694.9 726.5  812.7 902.9 4845   100
+\end{verbatim}
+\begin{alltt}
+
+
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+
+
+
+
+
 \section{Tree manipulation}
 
 \subsection{Unrooting and root height}
@@ -784,7 +987,7 @@ shorter_dend <- \hlfunctioncall{raise.dendrogram}(dend, -10)
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-20} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-23} 
 
 }
 
@@ -815,7 +1018,7 @@ unrooted_dend_2 <- \hlfunctioncall{unroot}(unrooted_dend, branch_becoming_root =
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-21} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-24} 
 
 }
 
@@ -849,7 +1052,7 @@ flatten_dend_2 <- \hlfunctioncall{flatten.dendrogram}(dend, FUN = min)
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-22} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-25} 
 
 }
 
@@ -916,7 +1119,7 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-23} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-26} 
 
 }
 
@@ -999,7 +1202,7 @@ trimmed_dend <- \hlfunctioncall{trim}(dend, \hlfunctioncall{c}(\hlstring{"Alaska
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-24} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-27} 
 
 }
 
@@ -1041,7 +1244,7 @@ dends_12 <- \hlfunctioncall{intersect_trees}(trimmed_dend_1, trimmed_dend_2)
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-25} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-28} 
 
 }
 
@@ -1096,7 +1299,7 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-26} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-29} 
 
 }
 
@@ -1115,7 +1318,7 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 
 Dendrogram plots with colored branches have been available in R for many years in threads on the mailing lists and through various package. However, until recently, all of the functions in packages have always given the user a new \code{plot} function, without seperating the coloring of branches of a dendrogram from its plotting. Often the function for actually plotting the colored branched dendrogram would be hidden from the user. For example, the \pkg{labeltodendro} package \citep{CRAN:labeltodendro} gives a colored branch plot through the \code{colorplot} function, but the work horse for this is available in a hidden function called \code{dendroploth} or \code{dendroplotv}, both take care of the plotting by themselves (instead of modifying the dendrogram object, and then letting the base R function do the work). The same story happens in the \pkg{Heatplus} \citep{CRAN:Heatplus}, where the \code{plot.annHeatmap2} function actually uses the hidden function \code{cutplot.dendrogram} for doing the plotting.
 
-This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dendroextras} package \citep{CRAN:dendroextras}, which orgranized this through the \code{colour_clusters} function. In the \pkg{dendextend} package I will mostly import his code, with some modifications. The biggest limitation in Gregory's code is that he relies on changing the \code{dendrogram} into \code{hclust} in order to use \code{cutree} on it and get the clusters. This has the advantage of being fast, but the \textbf{disadvantage} that it restricts his code to binary trees only. For this reason, I will not use his \code{slice} function, and made sure to use other functions instead.
+This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dendroextras} package \citep{CRAN:dendroextras}, which orgranized this through the \code{colour_clusters} function. In the \pkg{dendextend} package I will mostly import his code, with some modifications. The biggest limitation in Gregory's code is that he relies on changing the \code{dendrogram} into \code{hclust} in order to use \code{cutree} on it and get the clusters. This has the advantage of being fast, but the \textbf{disadvantage} that it restricts his code to binary trees only. For this reason, I did not use his \code{slice} function, and made sure to use other functions instead.
 
 
 

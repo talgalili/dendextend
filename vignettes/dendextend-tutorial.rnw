@@ -228,7 +228,7 @@ install_github('dendextend', 'talgalili')
 @
 
 
-\section{Tree labels (extraction, assignment, length)}
+\section{Tree attributes (extraction, assignment, length)}
 
 
 \subsection{labels in base R}
@@ -323,7 +323,7 @@ labels(y)
 @
 
 
-\subsection{Tree size}
+\subsection{Tree size - number of leaves}
 
 Getting the size of a tree (e.g: number of leaves/terminal-nodes) is good for validation of functions, and also when we wish to initiate a variable to later fill with data from the leaves. 
 
@@ -369,6 +369,83 @@ plot(dend,
    main = "This is considered a tree \n with TWO terminal nodes only") 
 
 @
+
+
+\subsection{Tree size - number of nodes}
+
+Getting the size of a tree, in terms of the number of nodes can easily be done using:
+
+<<>>=
+hc <- hclust(dist(USArrests[1:3,]), "ave")
+dend <- as.dendrogram(hc)
+
+nnodes(hc)
+nnodes(dend)
+@
+
+
+\subsection{Generally getting tree attributes}
+
+Getting tree attributes can more generally be achieved using \code{get_nodes_attr}, however, the dedicated function are often faster than the general solution. (also, in the future, we might introduce functions based on \pkg{Rcpp}, offering even faster times).
+
+Here are some examples:
+
+<<>>=
+hc <- hclust(dist(USArrests[1:3,]), "ave")
+dend <- as.dendrogram(hc)
+
+# get_leaves_attr(dend) # error :)
+get_leaves_attr(dend, "label")
+labels(dend, "label")
+
+get_leaves_attr(dend, "height") # should be 0's
+get_nodes_attr(dend, "height") 
+get_branches_heights(dend, sort = FALSE) # notice the sort=FALSE
+
+
+get_leaves_attr(dend, "leaf") # should be TRUE's
+get_nodes_attr(dend, "leaf") # conatins NA's
+get_nodes_attr(dend, "leaf", na.rm = TRUE) # 
+
+
+get_leaves_attr(dend, "members") # should be 1's
+get_nodes_attr(dend, "members", include_branches = FALSE, na.rm = TRUE) # 
+get_nodes_attr(dend, "members") # 
+get_nodes_attr(dend, "members", include_leaves = FALSE, na.rm = TRUE) # 
+
+
+hang_dend <- hang.dendrogram(dend)
+get_leaves_attr(hang_dend, "height") # no longer 0!
+get_nodes_attr(hang_dend, "height") # does not include any 0s!
+
+# does not include leaves values:
+get_nodes_attr(hang_dend, "height", include_leaves = FALSE) 
+# remove leaves values all together:
+get_nodes_attr(hang_dend, "height", include_leaves = FALSE, na.rm = TRUE) 
+get_branches_heights(hang_dend) # notice the sort
+get_branches_heights(hang_dend, sort = FALSE) # notice the sort
+
+
+@
+
+
+Quick comparison on fetching leaves attributes:
+
+<<>>=
+
+require(microbenchmark)
+# get_leaves_attr is twice faster than get_nodes_attr
+microbenchmark(   get_leaves_attr_4members = get_leaves_attr(dend, "members"), 
+                  get_nodes_attr_4members = get_nodes_attr(dend, "members", include_branches = FALSE, na.rm = TRUE)
+)
+
+
+
+@
+
+
+
+
 
 
 \section{Tree manipulation}

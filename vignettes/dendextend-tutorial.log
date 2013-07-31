@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  27 JUL 2013 17:54
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  31 JUL 2013 15:58
 entering extended mode
 **dendextend-tutorial.tex
 
@@ -371,27 +371,27 @@ nd.
 )
 ("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
 ial.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 128.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 128.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 130.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 130.
 
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
 
 (C:\Users\Tal\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -408,7 +408,7 @@ LaTeX Font Info:    ... okay on input line 128.
 \everyMPtoPDFconversion=\toks16
 )
 \AtBeginShipoutBox=\box28
-Package hyperref Info: Link coloring ON on input line 128.
+Package hyperref Info: Link coloring ON on input line 130.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
@@ -417,9 +417,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count112
 )
-LaTeX Info: Redefining \ref on input line 128.
-LaTeX Info: Redefining \pageref on input line 128.
-LaTeX Info: Redefining \nameref on input line 128.
+LaTeX Info: Redefining \ref on input line 130.
+LaTeX Info: Redefining \pageref on input line 130.
+LaTeX Info: Redefining \nameref on input line 130.
 
 ("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
 ial.out")
@@ -573,7 +573,7 @@ not appear between \csname and \endcsname.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.5 ...abels \(extraction, assignment, length\)}{}
+l.5 ...butes \(extraction, assignment, length\)}{}
                                                   % 5
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -584,7 +584,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.5 ...abels \(extraction, assignment, length\)}{}
+l.5 ...butes \(extraction, assignment, length\)}{}
                                                   % 5
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -595,7 +595,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \GenericError  ...                                
                                                     #4  \errhelp \@err@     ...
-l.5 ...abels \(extraction, assignment, length\)}{}
+l.5 ...butes \(extraction, assignment, length\)}{}
                                                   % 5
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -606,7 +606,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \GenericError  ...                                
                                                   \let \@err@               ...
-l.5 ...abels \(extraction, assignment, length\)}{}
+l.5 ...butes \(extraction, assignment, length\)}{}
                                                   % 5
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -617,7 +617,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \GenericError  ...                                
                                                   \@empty \def \MessageBreak...
-l.5 ...abels \(extraction, assignment, length\)}{}
+l.5 ...butes \(extraction, assignment, length\)}{}
                                                   % 5
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -628,7 +628,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \GenericError  ...                                
                                                      \endgroup 
-l.5 ...abels \(extraction, assignment, length\)}{}
+l.5 ...butes \(extraction, assignment, length\)}{}
                                                   % 5
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -639,7 +639,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.6 ... labels (extraction, assignment, length).1}
+l.6 ...ributes (extraction, assignment, length).1}
                                                   % 6
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -650,7 +650,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.6 ... labels (extraction, assignment, length).1}
+l.6 ...ributes (extraction, assignment, length).1}
                                                   % 6
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -661,7 +661,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.7 ... labels (extraction, assignment, length).1}
+l.7 ...ributes (extraction, assignment, length).1}
                                                   % 7
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -672,7 +672,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.7 ... labels (extraction, assignment, length).1}
+l.7 ...ributes (extraction, assignment, length).1}
                                                   % 7
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -683,7 +683,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.8 ... labels (extraction, assignment, length).1}
+l.8 ...ributes (extraction, assignment, length).1}
                                                   % 8
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -694,7 +694,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.8 ... labels (extraction, assignment, length).1}
+l.8 ...ributes (extraction, assignment, length).1}
                                                   % 8
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -705,7 +705,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.9 ... labels (extraction, assignment, length).1}
+l.9 ...ributes (extraction, assignment, length).1}
                                                   % 9
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -716,7 +716,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.9 ... labels (extraction, assignment, length).1}
+l.9 ...ributes (extraction, assignment, length).1}
                                                   % 9
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -727,7 +727,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.10 ...labels (extraction, assignment, length).1}
+l.10 ...ibutes (extraction, assignment, length).1}
                                                   % 10
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -738,7 +738,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.10 ...labels (extraction, assignment, length).1}
+l.10 ...ibutes (extraction, assignment, length).1}
                                                   % 10
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -749,7 +749,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.11 ...labels (extraction, assignment, length).1}
+l.11 ...ibutes (extraction, assignment, length).1}
                                                   % 11
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -760,7 +760,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.11 ...labels (extraction, assignment, length).1}
+l.11 ...ibutes (extraction, assignment, length).1}
                                                   % 11
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -771,7 +771,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.12 ....Tree manipulation.1}{Tree manipulation}{}
+l.12 ...ibutes (extraction, assignment, length).1}
                                                   % 12
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -782,7 +782,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.12 ....Tree manipulation.1}{Tree manipulation}{}
+l.12 ...ibutes (extraction, assignment, length).1}
                                                   % 12
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -793,7 +793,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.13 ...oot height}{Section.2.Tree manipulation.1}
+l.13 ...ibutes (extraction, assignment, length).1}
                                                   % 13
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -804,7 +804,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.13 ...oot height}{Section.2.Tree manipulation.1}
+l.13 ...ibutes (extraction, assignment, length).1}
                                                   % 13
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -815,7 +815,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.14 ... of leaves}{Section.2.Tree manipulation.1}
+l.14 ....Tree manipulation.1}{Tree manipulation}{}
                                                   % 14
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -826,7 +826,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.14 ... of leaves}{Section.2.Tree manipulation.1}
+l.14 ....Tree manipulation.1}{Tree manipulation}{}
                                                   % 14
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -837,7 +837,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.15 ...ing leaves}{Section.2.Tree manipulation.1}
+l.15 ...oot height}{Section.2.Tree manipulation.1}
                                                   % 15
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -848,7 +848,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.15 ...ing leaves}{Section.2.Tree manipulation.1}
+l.15 ...oot height}{Section.2.Tree manipulation.1}
                                                   % 15
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -859,7 +859,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.16 ...g branches}{Section.2.Tree manipulation.1}
+l.16 ... of leaves}{Section.2.Tree manipulation.1}
                                                   % 16
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -870,7 +870,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.16 ...g branches}{Section.2.Tree manipulation.1}
+l.16 ... of leaves}{Section.2.Tree manipulation.1}
                                                   % 16
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -881,7 +881,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.17 ...g branches}{Section.2.Tree manipulation.1}
+l.17 ...ing leaves}{Section.2.Tree manipulation.1}
                                                   % 17
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -892,7 +892,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.17 ...g branches}{Section.2.Tree manipulation.1}
+l.17 ...ing leaves}{Section.2.Tree manipulation.1}
                                                   % 17
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -903,7 +903,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.18 ...sually comparing two trees side-by-side}{}
+l.18 ...g branches}{Section.2.Tree manipulation.1}
                                                   % 18
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -914,7 +914,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.18 ...sually comparing two trees side-by-side}{}
+l.18 ...g branches}{Section.2.Tree manipulation.1}
                                                   % 18
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -925,7 +925,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.19 ...sually comparing two trees side-by-side.1}
+l.19 ...g branches}{Section.2.Tree manipulation.1}
                                                   % 19
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -936,7 +936,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.19 ...sually comparing two trees side-by-side.1}
+l.19 ...g branches}{Section.2.Tree manipulation.1}
                                                   % 19
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -947,7 +947,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.20 ...sually comparing two trees side-by-side.1}
+l.20 ...sually comparing two trees side-by-side}{}
                                                   % 20
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -958,7 +958,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.20 ...sually comparing two trees side-by-side.1}
+l.20 ...sually comparing two trees side-by-side}{}
                                                   % 20
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -969,7 +969,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.21 ...ng two trees - statistics and inference}{}
+l.21 ...sually comparing two trees side-by-side.1}
                                                   % 21
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -980,7 +980,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.21 ...ng two trees - statistics and inference}{}
+l.21 ...sually comparing two trees side-by-side.1}
                                                   % 21
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -991,7 +991,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.22 ...ng two trees - statistics and inference.1}
+l.22 ...sually comparing two trees side-by-side.1}
                                                   % 22
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1002,7 +1002,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.22 ...ng two trees - statistics and inference.1}
+l.22 ...sually comparing two trees side-by-side.1}
                                                   % 22
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1013,7 +1013,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.23 ...ng two trees - statistics and inference.1}
+l.23 ...ng two trees - statistics and inference}{}
                                                   % 23
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1024,7 +1024,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.23 ...ng two trees - statistics and inference.1}
+l.23 ...ng two trees - statistics and inference}{}
                                                   % 23
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1035,7 +1035,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.24 ...ARK [1][-]{Section.5.Summary.1}{Summary}{}
+l.24 ...ng two trees - statistics and inference.1}
                                                   % 24
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1046,8 +1046,52 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.24 ...ARK [1][-]{Section.5.Summary.1}{Summary}{}
+l.24 ...ng two trees - statistics and inference.1}
                                                   % 24
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
+l.25 ...ng two trees - statistics and inference.1}
+                                                  % 25
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
+l.25 ...ng two trees - statistics and inference.1}
+                                                  % 25
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
+l.26 ...ARK [1][-]{Section.5.Summary.1}{Summary}{}
+                                                  % 26
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
+l.26 ...ARK [1][-]{Section.5.Summary.1}{Summary}{}
+                                                  % 26
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1060,7 +1104,7 @@ Runaway text?
 ! File ended while scanning text of \B_Subsection.1.0.The .
 <inserted text> 
                 }
-l.128 \begin{document}
+l.130 \begin{document}
                       
 I suspect you have forgotten a `}', causing me
 to read past where you wanted me to stop.
@@ -1068,99 +1112,95 @@ I'll try to recover; but if the error is serious,
 you'd better type `E' or `X' now and fix your file.
 
 \@outlinefile=\write4
-LaTeX Font Info:    Try loading font information for T1+aess on input line 128.
+LaTeX Font Info:    Try loading font information for T1+aess on input line 130.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aess.fd"
 File: t1aess.fd 1997/11/16 Font definitions for T1/aess.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 128.
+(Font)              <10.95> on input line 130.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 128.
+(Font)              <8> on input line 130.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 128.
+(Font)              <6> on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 137.
+(hyperref)                removing `\catcode' on input line 139.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 137.
+(hyperref)                removing `\catcode' on input line 139.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 137.
+(hyperref)                removing `\catcode' on input line 139.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\hyphenchar' on input line 137.
+(hyperref)                removing `\hyphenchar' on input line 139.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\font' on input line 137.
+(hyperref)                removing `\font' on input line 139.
 
 
 Package hyperref Warning: Composite letter `\texttilde+1'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\texttilde' on input line 137.
+(hyperref)                removing `\texttilde' on input line 139.
 
-LaTeX Font Info:    Try loading font information for T1+aett on input line 137.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 139.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-Package color Info: Redefining color shadecolor on input line 146.
+Package color Info: Redefining color shadecolor on input line 148.
 
 
 LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
-(Font)              using `T1/aett/m/n' instead on input line 148.
-
-Package color Info: Redefining color shadecolor on input line 167.
-
-Overfull \hbox (4.89291pt too wide) in paragraph at lines 183--183
-[]\T1/aett/bx/n/10.95 hc <- []hclust[]([]dist[](US_data), []"ave"[])  # create 
-an heirarchical clustering object[] 
- []
+(Font)              using `T1/aett/m/n' instead on input line 150.
 
 [1
 
 {C:/Users/Tal/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Package color Info: Redefining color shadecolor on input line 194.
-LaTeX Font Info:    Try loading font information for TS1+aett on input line 200
-.
+Package color Info: Redefining color shadecolor on input line 170.
 
+Overfull \hbox (4.89291pt too wide) in paragraph at lines 186--186
+[]\T1/aett/bx/n/10.95 hc <- []hclust[]([]dist[](US_data), []"ave"[])  # create 
+an heirarchical clustering object[] 
+ []
+
+Package color Info: Redefining color shadecolor on input line 197.
+LaTeX Font Info:    Try loading font information for TS1+aett on input line 203
+.
 (D:/R/R-30~1.1/share/texmf/tex/latex\ts1aett.fd
 File: ts1aett.fd 
 )
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 200
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 203
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd"
 File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `TS1/aett/m/n' in size <10.95> not available
-(Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 200.
+(Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 203.
 
 <figure/unnamed-chunk-4.pdf, id=32, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-4.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-4.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-4.pdf used on input line 234.
+Package pdftex.def Info: figure/unnamed-chunk-4.pdf used on input line 237.
 (pdftex.def)             Requested size: 289.08589pt x 289.08589pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 LaTeX Font Info:    Font shape `T1/aer/b/sl' in size <10.95> not available
-(Font)              Font shape `T1/aer/bx/sl' tried instead on input line 243.
+(Font)              Font shape `T1/aer/bx/sl' tried instead on input line 246.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 2 []
  []
 
 [2]
-Package color Info: Redefining color shadecolor on input line 246.
-Package color Info: Redefining color shadecolor on input line 273.
+Package color Info: Redefining color shadecolor on input line 249.
+Package color Info: Redefining color shadecolor on input line 276.
 
 Underfull \vbox (badness 1028) has occurred while \output is active []
 
@@ -1171,46 +1211,46 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [3 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unnamed
 -chunk-4.pdf>]
-Package color Info: Redefining color shadecolor on input line 318.
-Package color Info: Redefining color shadecolor on input line 336.
+Package color Info: Redefining color shadecolor on input line 321.
+Package color Info: Redefining color shadecolor on input line 339.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 4 []
  []
 
 [4]
-Overfull \hbox (22.10625pt too wide) in paragraph at lines 356--356
+Overfull \hbox (22.10625pt too wide) in paragraph at lines 359--359
 [][]\T1/aett/bx/n/10.95 class[]([]unclass_dend[](dend_from_dendrapply)[[2]])  [
 ]# the new uncless_dend solves it.[][] 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 367.
+(hyperref)                removing `\catcode' on input line 370.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 367.
+(hyperref)                removing `\catcode' on input line 370.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 367.
+(hyperref)                removing `\catcode' on input line 370.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\hyphenchar' on input line 367.
+(hyperref)                removing `\hyphenchar' on input line 370.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\font' on input line 367.
+(hyperref)                removing `\font' on input line 370.
 
 
 Package hyperref Warning: Composite letter `\texttilde+1'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\texttilde' on input line 367.
+(hyperref)                removing `\texttilde' on input line 370.
 
 
-Overfull \hbox (17.29413pt too wide) in paragraph at lines 398--399
+Overfull \hbox (17.29413pt too wide) in paragraph at lines 401--402
 []\T1/aer/m/n/10.95 This vi-gnettes Pro-vides a step-by-step de-scrip-tion of t
 he func-tion-al-ity pro-vided by the \T1/aett/bx/n/10.95 dendextend
  []
@@ -1223,80 +1263,80 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [5]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 401.
+(hyperref)                removing `\catcode' on input line 404.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 401.
+(hyperref)                removing `\catcode' on input line 404.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 401.
+(hyperref)                removing `\catcode' on input line 404.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\hyphenchar' on input line 401.
+(hyperref)                removing `\hyphenchar' on input line 404.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\font' on input line 401.
+(hyperref)                removing `\font' on input line 404.
 
 
 Package hyperref Warning: Composite letter `\texttilde+1'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\texttilde' on input line 401.
+(hyperref)                removing `\texttilde' on input line 404.
 
-Package color Info: Redefining color shadecolor on input line 406.
-Package color Info: Redefining color shadecolor on input line 418.
-Package color Info: Redefining color shadecolor on input line 446.
-Package color Info: Redefining color shadecolor on input line 467.
+Package color Info: Redefining color shadecolor on input line 409.
+Package color Info: Redefining color shadecolor on input line 421.
+Package color Info: Redefining color shadecolor on input line 449.
+Package color Info: Redefining color shadecolor on input line 470.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 6 []
  []
 
 [6]
-Package color Info: Redefining color shadecolor on input line 491.
-Package color Info: Redefining color shadecolor on input line 518.
+Package color Info: Redefining color shadecolor on input line 494.
+Package color Info: Redefining color shadecolor on input line 521.
 
-Overfull \hbox (16.36847pt too wide) in paragraph at lines 527--527
+Overfull \hbox (16.36847pt too wide) in paragraph at lines 530--530
 [][]\T1/aett/bx/n/10.95 labels[](dend) <- []sample[]([]labels[](dend))  []# lab
 els assingment - thanks to dendextend[][] 
  []
 
-Package color Info: Redefining color shadecolor on input line 543.
+Package color Info: Redefining color shadecolor on input line 546.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 7
  []
 
 [7]
-Overfull \hbox (16.36847pt too wide) in paragraph at lines 552--552
+Overfull \hbox (16.36847pt too wide) in paragraph at lines 555--555
 [][]\T1/aett/bx/n/10.95 labels[](hc, order = FALSE)  []# this is the order of t
 he rows of the original data.[][] 
  []
 
-Package color Info: Redefining color shadecolor on input line 575.
+Package color Info: Redefining color shadecolor on input line 578.
 
-Overfull \hbox (33.5818pt too wide) in paragraph at lines 587--587
+Overfull \hbox (33.5818pt too wide) in paragraph at lines 590--590
 []\T1/aett/bx/n/10.95 ## Warning: The lengths of the new labels is shorter than
  the length of the object
  []
 
 
-Overfull \hbox (10.63069pt too wide) in paragraph at lines 598--598
+Overfull \hbox (10.63069pt too wide) in paragraph at lines 601--601
 []\T1/aett/bx/n/10.95 ## Warning: The lengths of the new labels is shorter than
  the number of leaves
  []
 
 
-Overfull \hbox (10.63069pt too wide) in paragraph at lines 609--609
+Overfull \hbox (10.63069pt too wide) in paragraph at lines 612--612
 []\T1/aett/bx/n/10.95 ## Warning: The lengths of the new labels is shorter than
  the number of leaves
  []
 
 
-Overfull \hbox (45.05736pt too wide) in paragraph at lines 620--620
+Overfull \hbox (45.05736pt too wide) in paragraph at lines 623--623
 []\T1/aett/bx/n/10.95 ## Warning: The lengths of the new labels is shorter than
  the length of the object's
  []
@@ -1307,23 +1347,23 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
  []
 
 [8]
-Package color Info: Redefining color shadecolor on input line 638.
-Package color Info: Redefining color shadecolor on input line 658.
+Package color Info: Redefining color shadecolor on input line 641.
+Package color Info: Redefining color shadecolor on input line 661.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 9
  []
 
 [9]
-Package color Info: Redefining color shadecolor on input line 685.
+Package color Info: Redefining color shadecolor on input line 688.
 
-Overfull \hbox (27.84402pt too wide) in paragraph at lines 706--706
+Overfull \hbox (27.84402pt too wide) in paragraph at lines 709--709
 [][]\T1/aett/bx/n/10.95 plot[](dend, main = []"This is considered a tree \n wit
 h THREE terminal nodes/leaves"[])[] 
  []
 
 
-Overfull \hbox (4.89291pt too wide) in paragraph at lines 728--728
+Overfull \hbox (4.89291pt too wide) in paragraph at lines 731--731
 [][]\T1/aett/bx/n/10.95 plot[](dend, main = []"This is considered a tree \n wit
 h TWO terminal nodes only"[])[] 
  []
@@ -1332,7 +1372,7 @@ h TWO terminal nodes only"[])[]
 File: figure/unnamed-chunk-19.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-19.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-19.pdf used on input line 732.
+Package pdftex.def Info: figure/unnamed-chunk-19.pdf used on input line 735.
 (pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1340,120 +1380,88 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [10]
-Package color Info: Redefining color shadecolor on input line 749.
+Package color Info: Redefining color shadecolor on input line 750.
+Package color Info: Redefining color shadecolor on input line 778.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 11
  []
 
 [11 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-19.pdf>] <figure/unnamed-chunk-20.pdf, id=144, 505.89pt x 216.81pt>
-File: figure/unnamed-chunk-20.pdf Graphic file (type pdf)
-
-<use figure/unnamed-chunk-20.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-20.pdf used on input line 787.
-(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
-Package color Info: Redefining color shadecolor on input line 802.
-
-<figure/unnamed-chunk-21.pdf, id=145, 505.89pt x 216.81pt>
-File: figure/unnamed-chunk-21.pdf Graphic file (type pdf)
-
-<use figure/unnamed-chunk-21.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-21.pdf used on input line 818.
-(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+d-chunk-19.pdf>]
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 12 []
  []
 
-[12 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-20.pdf>]
-Package color Info: Redefining color shadecolor on input line 833.
- <figure/unnamed-chunk-22.pdf, id=156, 505.89pt x 216.81pt>
-File: figure/unnamed-chunk-22.pdf Graphic file (type pdf)
+[12]
+Package color Info: Redefining color shadecolor on input line 913.
 
-<use figure/unnamed-chunk-22.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-22.pdf used on input line 852.
-(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \hbox (56.53291pt too wide) in paragraph at lines 923--923
+[]    \T1/aett/bx/n/10.95 get_nodes_attr_4members = []get_nodes_attr[](dend, []
+"members"[], include_branches = FALSE,[] 
+ []
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 13
  []
 
-[13 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-21.pdf>]
-Package color Info: Redefining color shadecolor on input line 869.
+[13]
+Package color Info: Redefining color shadecolor on input line 952.
+ <figure/unnamed-chunk-23.pdf, id=154, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-23.pdf Graphic file (type pdf)
 
-Overfull \hbox (27.84402pt too wide) in paragraph at lines 907--907
-[]\T1/aett/bx/n/10.95 ## Warning: Length of color vector was shorter then the n
-umber of leaves - vector
- []
-
+<use figure/unnamed-chunk-23.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-23.pdf used on input line 990.
+(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 14 []
  []
 
-[14 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-22.pdf>] <figure/unnamed-chunk-23.pdf, id=180, 505.89pt x 216.81pt>
-File: figure/unnamed-chunk-23.pdf Graphic file (type pdf)
+[14]
+Package color Info: Redefining color shadecolor on input line 1005.
+ <figure/unnamed-chunk-24.pdf, id=163, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-24.pdf Graphic file (type pdf)
 
-<use figure/unnamed-chunk-23.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-23.pdf used on input line 919.
+<use figure/unnamed-chunk-24.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-24.pdf used on input line 1021.
 (pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
-
-Overfull \hbox (27.84402pt too wide) in paragraph at lines 932--933
-[]\T1/aett/bx/n/10.95 ## Warning: Length of color vector was shorter then the n
-umber of leaves - vector
- []
-
-Package color Info: Redefining color shadecolor on input line 951.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 15
  []
 
 [15 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-23.pdf>] <figure/unnamed-chunk-24.pdf, id=192, 505.89pt x 216.81pt>
-File: figure/unnamed-chunk-24.pdf Graphic file (type pdf)
+d-chunk-23.pdf> <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/f
+igure/unnamed-chunk-24.pdf>]
+Package color Info: Redefining color shadecolor on input line 1036.
 
-<use figure/unnamed-chunk-24.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-24.pdf used on input line 1002.
+<figure/unnamed-chunk-25.pdf, id=179, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-25.pdf Graphic file (type pdf)
+
+<use figure/unnamed-chunk-25.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-25.pdf used on input line 1055.
 (pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
+Package color Info: Redefining color shadecolor on input line 1072.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \hbox (27.84402pt too wide) in paragraph at lines 1110--1110
+[]\T1/aett/bx/n/10.95 ## Warning: Length of color vector was shorter then the n
+umber of leaves - vector
+ []
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 16 []
  []
 
-[16]
-Package color Info: Redefining color shadecolor on input line 1015.
+[16 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
+d-chunk-25.pdf>] <figure/unnamed-chunk-26.pdf, id=192, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-26.pdf Graphic file (type pdf)
 
-Overfull \hbox (10.63069pt too wide) in paragraph at lines 1037--1037
-[][]\T1/aett/bx/n/10.95 plot[](trimmed_dend_2, main = []"Trimmed tree - complet
-e method"[], ylim = []c[](0, 110))[] 
- []
-
-
-Overfull \hbox (16.36847pt too wide) in paragraph at lines 1038--1038
-[][]\T1/aett/bx/n/10.95 plot[](dends_12[[1]], main = []"Intersected tree - sing
-le method"[], ylim = []c[](0, 110))[] 
- []
-
-<figure/unnamed-chunk-25.pdf, id=197, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-25.pdf Graphic file (type pdf)
-
-<use figure/unnamed-chunk-25.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-25.pdf used on input line 1044.
-(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+<use figure/unnamed-chunk-26.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-26.pdf used on input line 1122.
+(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1462,89 +1470,140 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 17
  []
 
-[17 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-24.pdf>]
+[17]
+Overfull \hbox (27.84402pt too wide) in paragraph at lines 1135--1136
+[]\T1/aett/bx/n/10.95 ## Warning: Length of color vector was shorter then the n
+umber of leaves - vector
+ []
+
+Package color Info: Redefining color shadecolor on input line 1154.
+
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 18 []
  []
 
 [18 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-25.pdf>]
-Package color Info: Redefining color shadecolor on input line 1081.
+d-chunk-26.pdf>] <figure/unnamed-chunk-27.pdf, id=208, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-27.pdf Graphic file (type pdf)
 
-Overfull \hbox (136.8618pt too wide) in paragraph at lines 1093--1093
-[][]\T1/aett/bx/n/10.95 plot[]([]rotate[](dend, []c[](2:5, 1)), main = []"Rotat
-es the left most leaf \n into the right side of the tree"[])[] 
+<use figure/unnamed-chunk-27.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-27.pdf used on input line 1205.
+(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
+Package color Info: Redefining color shadecolor on input line 1218.
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 19
+ []
+
+[19 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
+d-chunk-27.pdf>]
+Overfull \hbox (10.63069pt too wide) in paragraph at lines 1240--1240
+[][]\T1/aett/bx/n/10.95 plot[](trimmed_dend_2, main = []"Trimmed tree - complet
+e method"[], ylim = []c[](0, 110))[] 
  []
 
 
-Overfull \hbox (245.87958pt too wide) in paragraph at lines 1095--1095
-[][]\T1/aett/bx/n/10.95 plot[]([]sort[](dend), main = []"Sorts the labels by al
-phabetical order \n\nand rotates the tree to give the best fit possible"[])[] 
+Overfull \hbox (16.36847pt too wide) in paragraph at lines 1241--1241
+[][]\T1/aett/bx/n/10.95 plot[](dends_12[[1]], main = []"Intersected tree - sing
+le method"[], ylim = []c[](0, 110))[] 
  []
 
-<figure/unnamed-chunk-26.pdf, id=220, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-26.pdf Graphic file (type pdf)
+<figure/unnamed-chunk-28.pdf, id=220, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-28.pdf Graphic file (type pdf)
 
-<use figure/unnamed-chunk-26.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-26.pdf used on input line 1099.
+<use figure/unnamed-chunk-28.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-28.pdf used on input line 1247.
 (pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
-[] \T1/aer/m/n/10.95 19
- []
-
-[19]
-Underfull \vbox (badness 4036) has occurred while \output is active []
-
-
-Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 20 []
  []
 
-[20 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-26.pdf>]
-("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
-ial.bbl"
+[20]
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 21
  []
 
-[21])
-Underfull \hbox (badness 10000) in paragraph at lines 1307--1307
+[21 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
+d-chunk-28.pdf>]
+Package color Info: Redefining color shadecolor on input line 1284.
 
+Overfull \hbox (136.8618pt too wide) in paragraph at lines 1296--1296
+[][]\T1/aett/bx/n/10.95 plot[]([]rotate[](dend, []c[](2:5, 1)), main = []"Rotat
+es the left most leaf \n into the right side of the tree"[])[] 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1307.
+
+Overfull \hbox (245.87958pt too wide) in paragraph at lines 1298--1298
+[][]\T1/aett/bx/n/10.95 plot[]([]sort[](dend), main = []"Sorts the labels by al
+phabetical order \n\nand rotates the tree to give the best fit possible"[])[] 
+ []
+
+<figure/unnamed-chunk-29.pdf, id=237, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-29.pdf Graphic file (type pdf)
+
+<use figure/unnamed-chunk-29.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-29.pdf used on input line 1302.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 22 []
  []
 
 [22]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1307.
+Underfull \vbox (badness 4036) has occurred while \output is active []
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 23
+ []
+
+[23 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
+d-chunk-29.pdf>]
+("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
+ial.bbl"
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 24 []
+ []
+
+[24])
+Underfull \hbox (badness 10000) in paragraph at lines 1510--1510
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1510.
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 25
+ []
+
+[25]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1510.
 
 ("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
 ial.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1307.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1307.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1510.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1510.
 
 Package rerunfilecheck Info: File `dendextend-tutorial.out' has not changed.
-(rerunfilecheck)             Checksum: A3C1040CA6E68BF8B853A4E674FC494E;3430.
+(rerunfilecheck)             Checksum: 1C39ECE74DC20B79146C4D3BD37FCB18;3830.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1307.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1510.
  ) 
 Here is how much of TeX's memory you used:
- 6924 strings out of 494045
- 105208 string characters out of 3145976
- 276922 words of memory out of 3000000
- 9983 multiletter control sequences out of 15000+200000
+ 6933 strings out of 494045
+ 105531 string characters out of 3145976
+ 289933 words of memory out of 3000000
+ 9985 multiletter control sequences out of 15000+200000
  49643 words of font info for 89 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  36i,9n,34p,1068b,411s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1577,9 +1636,9 @@ gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Prog
 ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program 
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dendextend-tutorial.pdf (22 pages, 375787 bytes).
+Output written on dendextend-tutorial.pdf (25 pages, 392931 bytes).
 PDF statistics:
- 348 PDF objects out of 1000 (max. 8388607)
- 90 named destinations out of 1000 (max. 500000)
+ 367 PDF objects out of 1000 (max. 8388607)
+ 97 named destinations out of 1000 (max. 500000)
  62 words of extra memory for PDF output out of 10000 (max. 10000000)
 
