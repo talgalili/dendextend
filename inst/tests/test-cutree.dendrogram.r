@@ -87,6 +87,10 @@ test_that("cutree a dendrogram to k clusters",{
    # data
    hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
    dend <- as.dendrogram(hc)
+   unroot_dend <- unroot(dend,2)
+   
+#    plot(unroot_dend)
+   
    
    # the same as cutree
    expect_identical( 
@@ -110,10 +114,10 @@ test_that("cutree a dendrogram to k clusters",{
    
    # errors:
    expect_error(cutree_1k.dendrogram(dend))  # we need h!
-   expect_error( cutree_1k.dendrogram(dend, k=-1))
-   expect_error( cutree_1k.dendrogram(dend, k=0))
-   expect_error( cutree_1k.dendrogram(dend, k=1.5))
-   expect_error( cutree_1k.dendrogram(dend, k=50))
+   expect_error( cutree_1k.dendrogram(dend, k = -1))
+   expect_error( cutree_1k.dendrogram(dend, k = 0))
+#    expect_error( cutree_1k.dendrogram(dend, k = 1.5)) # I no longer expect an error since it is turned into "as.integer"
+   expect_error( cutree_1k.dendrogram(dend, k = 50))
    expect_error( cutree(hc, k=50)      )  
    
    
@@ -122,6 +126,108 @@ test_that("cutree a dendrogram to k clusters",{
       names(cutree_1k.dendrogram(dend, k=3,order_clusters_as_data=FALSE)),
       labels(dend)      )  
    
+   # cases of no possible k's:
+   expect_warning(cutree_1k.dendrogram(unroot_dend, 2))
+   expect_equal(cutree_1k.dendrogram(unroot_dend, 2, warn = FALSE), rep(NA,5))
+   
+   
 })
 
 
+
+
+
+
+test_that("cutree dendrogram method works for k",{
+   # data
+   hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
+   dend <- as.dendrogram(hc)
+   unroot_dend <- unroot(dend,2)
+   
+   #    plot(unroot_dend)
+   
+   
+   # the same as cutree
+   expect_identical( 
+      cutree(dend, k=3),
+      cutree(hc, k=3)      )  
+   
+   expect_identical( 
+      cutree(dend, k=1),
+      cutree(hc,  k=1)      )  
+   
+   # the same as cutree - also when there are NO clusters
+   expect_identical( 
+      cutree(dend, k=5),
+      cutree(hc, k=5)      )  
+   
+   # if ignoring the "names" on the vector - the numbers will be identical:
+   expect_identical( 
+      unname(cutree(dend, k=3, use_labels_not_values = FALSE)),
+      unname(cutree(hc, k=3) )     )    
+   
+   
+   # errors:
+   expect_error(cutree(dend))  # we need h!
+   expect_error( cutree(dend, k=-1))
+   expect_error( cutree(dend, k=0))
+#    expect_error( cutree(dend, k = 1.5)) # I no longer expect an error since it is turned into "as.integer"
+   expect_error( cutree(dend, k=50))
+   expect_error( cutree(hc, k=50)      )  
+   
+   
+   # get return in the order of the dendrogram:
+   expect_identical( 
+      names(cutree(dend, k=3,order_clusters_as_data=FALSE,try_cutree_hclust=FALSE)),
+      labels(dend)      )  
+   
+   expect_identical( 
+      names(cutree(dend, k=3,order_clusters_as_data=FALSE,try_cutree_hclust=TRUE)),
+      labels(dend)      )  
+
+   # cases of no possible k's:
+   expect_warning(cutree(unroot_dend, 2))
+   expect_equal(cutree(unroot_dend, 2, warn = FALSE), rep(NA,5))
+
+   # now to check vectorization
+   
+   
+})
+
+
+
+test_that("cutree for dendrogram works (k,h and vectorization)",{
+   
+   # data
+   hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
+   dend <- as.dendrogram(hc)
+   unroot_dend <- unroot(dend,2)
+   
+   #    plot(unroot_dend)
+   
+   
+   
+   # the same as cutree
+   expect_identical( 
+      cutree(dend, k=1:4),
+      cutree(hc, k=1:4)      )
+
+   expect_identical( 
+      cutree(dend, h = c(20, 25.5, 50,170)),
+      cutree(hc, h = c(20, 25.5, 50,170))      )
+   
+   expect_warning( cutree(unroot_dend, k=1:2) )    
+   
+   # it still works for missing k's, it just returns NA's in the second column
+   cutree_unroot_dend <- cutree(unroot_dend, k=1:4, warn = FALSE)
+   expect_true( is.matrix(cutree_unroot_dend) )
+   expect_true( all(is.na(cutree_unroot_dend[,2])) ) # 2nd column is NA.
+   
+   cutree_unroot_dend_2 <- cutree(unroot_dend, k=1:4,   
+                                warn = FALSE, order_clusters_as_data = FALSE,
+                                try_cutree_hclust = FALSE
+                                 )
+   expect_identical(rownames(cutree_unroot_dend_2), labels(unroot_dend))
+   
+   
+})

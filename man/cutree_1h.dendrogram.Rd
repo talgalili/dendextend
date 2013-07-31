@@ -4,7 +4,7 @@
 \usage{
   cutree_1h.dendrogram(tree, h,
     order_clusters_as_data = TRUE,
-    use_labels_not_values = TRUE, ...)
+    use_labels_not_values = TRUE, warn = TRUE, ...)
 }
 \arguments{
   \item{tree}{a dendrogram object}
@@ -23,6 +23,9 @@
   the order of the original data. 2) by the order of the
   labels in the dendrogram. In order to be consistent with
   \link[stats]{cutree}, this is set to TRUE.}
+
+  \item{warn}{logical. Should the function report warning
+  in extreme cases.}
 
   \item{...}{(not currently in use)}
 }

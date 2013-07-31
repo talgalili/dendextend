@@ -1,4 +1,18 @@
 
+#' @title Is the object of class hclust
+#' @export
+is.hclust <- function(x) { inherits(x,"hclust") }
+
+#' @title Is the object of class dendrogram
+#' @export
+is.dendrogram <- function(x) { inherits(x,"dendrogram") }
+
+#' @title Is the object of class phylo
+#' @export
+is.phylo <- function(x) { inherits(x,"phylo") }
+
+
+
 
 #' @title Check if numbers are natural
 #' @export
@@ -47,6 +61,7 @@ is.natural.number <- function(x, tol = .Machine$double.eps^0.5, ...) {
 #' to order the clusters: 1) By the order of the original data. 2) by the order of the 
 #' labels in the dendrogram. In order to be consistent with \link[stats]{cutree}, this is set
 #' to TRUE.
+#' @param warn logical. Should the function report warning in extreme cases.
 #' @param ... (not currently in use)
 #' @return \code{cutree_1h.dendrogram} returns an integer vector with group memberships 
 #' @author Tal Galili
@@ -77,13 +92,15 @@ is.natural.number <- function(x, tol = .Machine$double.eps^0.5, ...) {
 #' }
 #' 
 #' 
-cutree_1h.dendrogram <- function(tree, h, order_clusters_as_data = TRUE, use_labels_not_values = TRUE,...)
+cutree_1h.dendrogram <- function(tree, h, 
+                                 order_clusters_as_data = TRUE, use_labels_not_values = TRUE,
+                                 warn = TRUE, ...)
 {
    
    if(missing(h)) stop("h is missing")   
    
    if(length(h) > 1) {
-      warning("h has length > 1 and only the first element will be used")
+      if(warn) warning("h has length > 1 and only the first element will be used")
       h <- h[1]
    }
    
@@ -114,8 +131,10 @@ cutree_1h.dendrogram <- function(tree, h, order_clusters_as_data = TRUE, use_lab
    if(order_clusters_as_data) 
    {
       if(!all(clusters_order %in% seq_along(clusters_order))){
-         warning("rank() was used for the leaves order number! \nExplenation: leaves tip number (the order), and the ranks of these numbers - are not equal.  The tree was probably trimmed and/or merged with other trees- and now the order labels don't make so much sense (hence, the rank on them was used.")
-         warning("Here is the cluster order vector (from the tree tips) \n", clusters_order, "\n")
+         if(warn) {
+            warning("rank() was used for the leaves order number! \nExplenation: leaves tip number (the order), and the ranks of these numbers - are not equal.  The tree was probably trimmed and/or merged with other trees- and now the order labels don't make so much sense (hence, the rank on them was used.")
+            warning("Here is the cluster order vector (from the tree tips) \n", clusters_order, "\n")
+         }
          clusters_order <- rank(clusters_order, ties.method = "first")   # we use the "first" ties method - to handle the cases of ties in the ranks (after splits/merges with other trees)
       }
       
@@ -193,7 +212,7 @@ heights_per_k.dendrogram <- function(tree,...)
 #' by specifying the desired number of clusters k (only a single k value!).
 #' 
 #' In case there exists no such k for which exists a relevant split of the 
-#' dendrogram, a warning is issued to the user, and NULL is returned.
+#' dendrogram, a warning is issued to the user, and NA is returned.
 #' @param tree   a dendrogram object
 #' @param k    numeric scalar (not a vector!) with the number of clusters
 #' the tree should be cut into.
@@ -216,7 +235,7 @@ heights_per_k.dendrogram <- function(tree,...)
 #' memberships.
 #' 
 #' In case there exists no such k for which exists a relevant split of the 
-#' dendrogram, a warning is issued to the user, and NULL is returned.
+#' dendrogram, a warning is issued to the user, and NA is returned.
 #' @author Tal Galili
 #' @seealso \code{\link{hclust}}, \code{\link{cutree}}, 
 #' \code{\link{cutree_1h.dendrogram}}
@@ -250,11 +269,15 @@ heights_per_k.dendrogram <- function(tree,...)
 #' }
 #' 
 #' 
-cutree_1k.dendrogram <- function(tree, k, dend_heights_per_k, 
+cutree_1k.dendrogram <- function(tree, k, 
+                                 dend_heights_per_k = NULL, 
                                  use_labels_not_values = TRUE, 
                                  order_clusters_as_data =TRUE, 
                                  warn = TRUE, ...)
 {
+#    if(!is.integer(k) && warn) warning("k is not an integer - using k<-as.integer(k)")   
+   k <- as.integer(k) # making this consistant with cutree.hclust!!   
+   
    # STOPING RULES:
    
    # if k is not natural - stop!   
@@ -276,7 +299,7 @@ cutree_1k.dendrogram <- function(tree, k, dend_heights_per_k,
    
    
    # step 1: find all possible h cuts for tree	
-   if(missing(dend_heights_per_k)) {
+   if(is.null(dend_heights_per_k)) {
       # since this is a step which takes a long time, If possible, I'd rather supply this to the function, so to make sure it runs faster...
       dend_heights_per_k <- heights_per_k.dendrogram(tree)
    }
@@ -295,11 +318,11 @@ cutree_1k.dendrogram <- function(tree, k, dend_heights_per_k,
 #       if(to_print) print(paste("The dendrogram was cut at height", 
 #                                round(h_to_use, 4), "in order to create",k, "clusters."))
    } else {
-      cluster_vec <- NULL
+      cluster_vec <- rep(NA, nleaves(tree))
       
       # telling the user way he can't use this k
       if(warn) {
-         warning("Couldn't cut the tree - returning NULL.")
+         warning("Couldn't cut the tree - returning NA.")
          
          k_s <- as.numeric(names(dend_heights_per_k))
          # either his k is outside the possible options
@@ -318,54 +341,260 @@ cutree_1k.dendrogram <- function(tree, k, dend_heights_per_k,
 
 
 
-# this allows the making of cutree.dendrogram into a method :)
-cutree <- function(tree, k = NULL, h = NULL,...)  UseMethod("cutree")
+#' @title Cut a Tree (Dendrogram/hclust/phylo) into Groups of Data
+#' @export
+#' @description Cuts a dendrogram tree into several groups 
+#' by specifying the desired number of clusters k(s), or cut height(s).
+#' 
+#' For \code{hclust.dendrogram} - 
+#' In case there exists no such k for which exists a relevant split of the 
+#' dendrogram, a warning is issued to the user, and NA is returned.
+#' @rdname cutree-methods
+#' @aliases 
+#' cutree.default 
+#' cutree.dendrogram 
+#' cutree.hclust 
+#' cutree.phylo 
+#' @usage
+#' cutree(tree, k = NULL, h = NULL,...)   
+#' 
+#' \method{cutree}{hclust}(tree, k = NULL, h = NULL,
+#'                           order_clusters_as_data =TRUE,
+#'                           ...)
+#' 
+#' \method{cutree}{phylo}(tree, k = NULL, h = NULL,...)
+#' 
+#' \method{cutree}{dendrogram}(tree, k = NULL, h = NULL,
+#'                               dend_heights_per_k = NULL,
+#'                               use_labels_not_values = TRUE, 
+#'                               order_clusters_as_data =TRUE, 
+#'                               warn = TRUE, 
+#'                               try_cutree_hclust = TRUE,
+#'                               ...)
+#' 
+#' @param tree   a dendrogram object
+#' @param k    numeric scalar (OR a vector) with the number of clusters
+#' the tree should be cut into.
+#' @param h    numeric scalar (OR a vector) with a height where the tree 
+#' should be cut.
+#' @param dend_heights_per_k a named vector that resulted from running.
+#' \code{heights_per_k.dendrogram}. When running the function many times,
+#' supplying this object will help improve the running time if using k!=NULL .
+#' @param use_labels_not_values logical, defaults to TRUE. If the actual labels of the 
+#' clusters do not matter - and we want to gain speed (say, 10 times faster) - 
+#' then use FALSE (gives the "leaves order" instead of their labels.).
+#' This is passed to \code{cutree_1h.dendrogram}.
+#' @param order_clusters_as_data logical, defaults to TRUE. There are two ways by which 
+#' to order the clusters: 1) By the order of the original data. 2) by the order of the 
+#' labels in the dendrogram. In order to be consistent with \link[stats]{cutree}, this is set
+#' to TRUE.
+#' This is passed to \code{cutree_1h.dendrogram}.
+#' @param warn logical. Should the function send a warning in case the desried 
+#' k is not available? (deafult is TRUE)
+#' @param try_cutree_hclust logical. default is TRUE. Since cutree for hclust is 
+#' MUCH faster than for dendrogram - cutree.dendrogram will first try to change the 
+#' dendrogram into an hclust object. If it will fail (for example, with unrooted trees),
+#' it will continue using the cutree.dendrogram function.
+#' If try_cutree_hclust=TRUE, it will force to use cutree.dendrogram and not
+#' cutree.hclust.
+#' @param ... (not currently in use)
+#' 
+#' @details
+#' At least one of k or h must be specified, k overrides h if both are given.
+#' 
+#' as opposed to \link[stats]{cutree} for hclust, \code{cutree.dendrogram} allows the
+#' cutting of trees at a given height also for non-ultrametric trees 
+#' (ultrametric tree == a tree with monotone clustering heights).
+#' 
+#' @return
+#' 
+#' If k or h are scalar - \code{cutree.dendrogram} returns an integer vector with group 
+#' memberships.
+#' Otherwise a matrix with group memberships is returned where each column 
+#' corresponds to the elements of k or h, respectively 
+#' (which are also used as column names).
+#' 
+#' In case there exists no such k for which exists a relevant split of the 
+#' dendrogram, a warning is issued to the user, and NA is returned.
+#' 
+#' 
+#' @author 
+#' \code{cutree.dendrogram} was written by Tal Galili.
+#' \code{cutree.hclust} is redirecting the function
+#' to \link[stats]{cutree} from base R.
+#' 
+#' @seealso \code{\link{hclust}}, \code{\link[stats]{cutree}}, 
+#' \code{\link{cutree_1h.dendrogram}}, \code{\link{cutree_1k.dendrogram}}, 
+#' \code{\link{cutree_per_k}}
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
+#' dend <- as.dendrogram(hc)
+#' unroot_dend <- unroot(dend,2)
+#' 
+#' cutree(hc, k=2:4) # on hclust
+#' cutree(dend, k=2:4) # on dendrogram
+#' 
+#' cutree(hc, k=2) # on hclust
+#' cutree(dend, k=2) # on dendrogram
+#' 
+#' cutree(dend, h = c(20, 25.5, 50,170))
+#' cutree(hc, h = c(20, 25.5, 50,170))
+#' 
+#' # the default (ordered by original data's order)
+#' cutree(dend, k=2:3, order_clusters_as_data = FALSE) 
+#' labels(dend)
+#' 
+#' # as.hclust(unroot_dend) # ERROR - can not do this...
+#' cutree(unroot_dend, k = 2) # all NA's
+#' cutree(unroot_dend, k = 1:4)
+#' cutree(unroot_dend, h = c(20, 25.5, 50,170))
+#' cutree(dend, h = c(20, 25.5, 50,170))
+#' 
+#' 
+#' require(microbenchmark)
+#' ## this shows how as.hclust is expensive - but still worth it if possible
+#' microbenchmark(
+#'       cutree(hc, k=2:4),
+#'       cutree(as.hclust(dend), k=2:4),
+#'       cutree(dend, k=2:4),
+#'       cutree(dend, k=2:4, try_cutree_hclust=FALSE)
+#'    )          
+#'          # the dendrogram is MUCH slower...
+#'          
+#' # Unit: microseconds
+#' ##                       expr      min       lq    median        uq       max neval
+#' ##        cutree(hc, k = 2:4)   91.270   96.589   99.3885  107.5075   338.758   100
+#' ##    tree(as.hclust(dend), 
+#' ##			  k = 2:4)           1701.629 1767.700 1854.4895 2029.1875  8736.591   100
+#' ##      cutree(dend, k = 2:4) 1807.456 1869.887 1963.3960 2125.2155  5579.705   100
+#' ##  cutree(dend, k = 2:4, 
+#' ##	try_cutree_hclust = FALSE) 8393.914 8570.852 8755.3490 9686.7930 14194.790   100
+#'          
+#' # and trying to "hclust" is not expensive (which is nice...)         
+#' microbenchmark(
+#'   cutree_unroot_dend = cutree(unroot_dend, k=2:4),
+#'   cutree_unroot_dend_not_trying_to_hclust = 
+#'   cutree(unroot_dend, k=2:4, try_cutree_hclust=FALSE)
+#' )
+#'          
+#'  
+#' ## Unit: milliseconds
+#' ##                   expr      min       lq   median       uq      max neval
+#' ##cutree_unroot_dend       7.309329 7.428314 7.494107 7.752234 17.59581   100
+#' ##cutree_unroot_dend_not
+#' ##_trying_to_hclust        6.945375 7.079198 7.148629 7.577536 16.99780   100
+#' ##There were 50 or more warnings (use warnings() to see the first 50)        
+#'                  
+#'                          
+#'                                          
+#' }
+#' 
+#' 
+cutree <- function(tree, k = NULL, h = NULL,...)  {UseMethod("cutree")}
 
 
 #' @export
-cutree.default <- function(tree, k = NULL, h = NULL,...)  stop("Function cutree is only available for hclust and dendrogram objects.")
+cutree.default <- function(tree, k = NULL, h = NULL,...) {
+   stop("Function cutree is only available for hclust/dendrogram/phylo objects only.")}
 
 #' @export
 #' @S3method cutree hclust
-cutree.hclust <- stats:::cutree
+cutree.hclust <- function(tree, k = NULL, h = NULL,
+                          order_clusters_as_data =TRUE,
+                          ...) { 
+   
+   clusters <- stats:::cutree(tree, k = k, h = h, ...) 
+   if(!order_clusters_as_data) clusters <- clusters[tree$order]
+   
+   return(clusters)
+}
+
+
+#' @export
+#' @S3method cutree phylo
+cutree.phylo <- function(tree,k=NULL, h=NULL ,...) {cutree(as.dendrogram(tree),k=k,h=h,...)}
+   
 
 
 #' @export
 #' @S3method cutree dendrogram
-cutree.dendrogram <- function(tree, k = NULL, h = NULL,...)
+cutree.dendrogram <- function(tree, k = NULL, h = NULL,
+                              dend_heights_per_k = NULL,
+                              use_labels_not_values = TRUE, 
+                              order_clusters_as_data =TRUE, 
+                              warn = TRUE, 
+                              try_cutree_hclust = TRUE,
+                              ...)
 {
-   # TODO:
-   # cutree.dendrogram might benefit from using 
-   # tryCatch(stop(), error = function(e) TRUE)
-   # tryCatch(stop(), error = function(e) TRUE, finally = FALSE)
-   # tryCatch(is.hclust(hc_dend <- as.hclust(dend)), error = function(e) FALSE)
-   # and if it works to use cutree.hclust
-   # this would be faster, especially when using k.
-   # and if it doesn't, one could use my functions
-   #     also, I should add a "force" parameter - to force using my function (for weird cases...)
-   
-   # tree   a dendrogram object
-   # k	 an integer scalar or vector with the desired number of groups
-   # h	 numeric scalar or vector with heights where the tree should be cut.
-   # use_labels_not_values - if F, the resulting clusters will not have their lables (but instead, they will have tree values), however, the function will be about 10 times faster.  So if the labels are not useful, this is a good parameter to use.
    
    # warnings and stopping rules:
-   if(class(tree) !="dendrogram") warning("tree object is not of class dendrogram - this function might not work properly")
-   if(is.null(k) && is.null(h)) stop("Neither k nor h were specified")
+   if(!is.dendrogram(tree)) stop("tree should be of class dendrogram (and for some reason - it is not)")
+   if(is.null(k) && is.null(h)) stop("Neither k nor h were specified")   
    if(!is.null(k) && !is.null(h)) {
-      warning("Both k and h were specified - using h as default (consider using only h or k in order to avoid confusions)")
-      k <- NULL
+      if(warn) warning("Both k and h were specified - using k as default 
+                       (consider using only h or k in order to avoid confusions)")
+      h <- NULL
+   }
+
+   
+   # If it is possible to use cutree.hclust - we will!
+   # this would be faster, especially when using k.
+   # and if it doesn't, we would fall back on our function
+   if(try_cutree_hclust) {      
+      # if we succeed (tryCatch) in turning it into hclust - use it!
+      # if not - go on with the function.
+      hclust_tree <- tryCatch(
+         as.hclust(tree), 
+         error = function(e) FALSE)
+      
+      if(is.hclust(hclust_tree)) {
+         return(cutree(tree=hclust_tree, k=k, h=h, 
+                       order_clusters_as_data = order_clusters_as_data,...
+                       ))         
+      }      
+   } 
+   
+   
+   
+   if(!is.null(k)) {
+#       cluster_vec <- cutree_1k.dendrogram(tree, k,...) # NO, this would only work for scalars...
+
+      if(is.null(dend_heights_per_k)) {
+         # since this is a step which takes a long time, If possible, I'd rather supply this to the function, so to make sure it runs faster...
+         dend_heights_per_k <- heights_per_k.dendrogram(tree)
+      }
+      cutree_per_k <- function(x,...) cutree_1k.dendrogram(k=x,...)
+      clusters <- sapply(X=k,FUN = cutree_per_k, 
+                         tree=tree ,            
+                         dend_heights_per_k= dend_heights_per_k,
+                         use_labels_not_values = use_labels_not_values, 
+                         order_clusters_as_data = order_clusters_as_data, 
+                         warn = warn, 
+                         ...)
+      colnames(clusters) <- k
    }
    
-   if(!is.null(k)) cluster_vec <- cutree_1k.dendrogram(tree, k,...)
-   
    # What to do in case h is supplied
-   if(!is.null(h)) cluster_vec <- cutree_1h.dendrogram(tree, h,...)
-   
-   return(cluster_vec)
+   if(!is.null(h)) {
+      #       cluster_vec <- cutree_1h.dendrogram(tree, h,...) # nope...      
+      cutree_per_h <- function(x,...) cutree_1h.dendrogram(h=x,...)
+      clusters <- sapply(X=h,FUN = cutree_per_h, 
+                         tree=tree,
+                         use_labels_not_values = use_labels_not_values, 
+                         order_clusters_as_data = order_clusters_as_data, 
+                         warn = warn, 
+                         ...)
+      colnames(clusters) <- h            
+   }
+      
+   # return a vector if h/k are scalars:
+   if(ncol(clusters)==1) clusters <- clusters[,1] # make it NOT a matrix
+
+   return(clusters)
 }
-
-
 
 
 

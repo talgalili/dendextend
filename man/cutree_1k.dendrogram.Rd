@@ -2,7 +2,7 @@
 \alias{cutree_1k.dendrogram}
 \title{cutree for dendrogram (by 1 k value only!)}
 \usage{
-  cutree_1k.dendrogram(tree, k, dend_heights_per_k,
+  cutree_1k.dendrogram(tree, k, dend_heights_per_k = NULL,
     use_labels_not_values = TRUE,
     order_clusters_as_data = TRUE, warn = TRUE, ...)
 }
@@ -42,7 +42,7 @@
 
   In case there exists no such k for which exists a
   relevant split of the dendrogram, a warning is issued to
-  the user, and NULL is returned.
+  the user, and NA is returned.
 }
 \description{
   Cuts a dendrogram tree into several groups by specifying
@@ -51,7 +51,7 @@
 
   In case there exists no such k for which exists a
   relevant split of the dendrogram, a warning is issued to
-  the user, and NULL is returned.
+  the user, and NA is returned.
 }
 \examples{
 hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")

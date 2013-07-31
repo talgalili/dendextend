@@ -13,7 +13,15 @@ NEW FUNCTIONS ADDED:
    * get_branches_heights
    * fix_members_attr.dendrogram
    * heights_per_k.dendrogram - get the heights for a tree that will yield each k cluster.
+   * is.hclust
+   * is.dendrogram
+   * is.phylo
+
    * cutree_1k.dendrogram - like cutree, but only for 1 k (number of clusters) value.
+   * cutree.dendrogram - like cutree but for dendrograms (and it is also vectorized)
+   * cutree.hclust - like cutree but for hclust
+   * cutree.phylo - like cutree but for phylo
+   * cutree - with S3 methods for dendrogram/hclust/phylo
 
 UPDATED FUNCTIONS:
    * nleaves - added nleaves.phylo methods, based on as.hclust so it could be improved in the future.

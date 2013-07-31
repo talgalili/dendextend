@@ -1,6 +1,6 @@
 # require(testthat)
 
-context("Attribute access")
+context("attr access (get/set)")
 
 
 test_that("Get a dendrogram leaves attributes",{
