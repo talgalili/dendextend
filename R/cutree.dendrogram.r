@@ -136,85 +136,6 @@ cutree_1h.dendrogram <- function(tree, h, order_clusters_as_data = TRUE, use_lab
 
 
 
-
-#' @title recursivly apply a function on a list
-#' @export
-#' @description
-#' recursivly apply a function on a list - and returns the output as a list, 
-#' following the naming convention in the {plyr} package
-#' the big difference between this and rapply is that this will also apply 
-#' the function on EACH element of the list, even if it's not a "terminal node"
-#' inside the list tree.
-#' An attribute is added to indicate if the value returned is 
-#' from a branch or a leaf.
-#' @param x a list.
-#' @param FUN a function to apply on each element of the list
-#' @param add_notation logical. Should each node be 
-#' added a "position_type" attribute, stating if it is a "Branch" or a "Leaf".
-#' @param ... not used.
-#' @return a list with ALL of the nodes (from the original "x" list),
-#' that FUN was applied on.
-#' 
-#' @examples
-#' \dontrun{
-#' x <- list(1)
-#' x
-#' rllply(x, function(x){x}, add_notation  = TRUE)
-#' 
-#' x <- list(1, 2, list(31))
-#' x
-#' rllply(x, function(x){x}, add_notation  = TRUE)
-#'                      # the first element is the entire tree
-#'                            # after FUN was applied to its root element.
-#' 
-#' hc <- hclust(dist(USArrests[1:4,]), "ave")
-#' dend <- as.dendrogram(hc)
-#' rllply(dend, function(x){attr(x, "height")})
-#' rllply(dend, function(x){attr(x, "members")})
-#' }
-rllply <- function(x, FUN,add_notation = FALSE, ...)
-{	
-   if(is.list(x)) {
-      output <- list()
-      for(i in seq_len(length(x)))
-      {		
-         output[[i]] <- list(rllply(x[[i]], FUN,...))
-         if(add_notation) attr(output[[i]][[1]], "position_type") <- "Branch"
-      }
-      output <- list(FUN(x,...), output)
-   } else {
-      output <- FUN(x,...)
-      if(add_notation) attr(output, "position_type") <- "Leaf"	
-   }   
-   return(output)
-}
-
-
-#' @title Get height attributes from a dendrogram
-#' @export
-#' @param tree a dendrogram.
-#' @param decreasing logical. Should the sort be increasing or decreasing? Not available for partial sorting.
-#' @param ... not used.
-#' @return a vector of the dendrogram's branches heights.
-#' 
-#' @examples
-#' 
-#' hc <- hclust(dist(USArrests[1:4,]), "ave")
-#' dend <- as.dendrogram(hc)
-#' get_heights.dendrogram(dend)
-#' 
-#' 
-get_heights.dendrogram <- function(tree, decreasing = FALSE, ...)
-{
-   height <- unlist(rllply(tree, function(x){attr(x, "height")}))
-   height <- height[height != 0] # include only the non zero values
-   height <- sort(height, decreasing=decreasing) 	# sort the height
-   return(height)
-}
-
-
-
-
 #' @title Which height will result in which k for a dendrogram
 #' @export
 #' @param tree a dendrogram.
@@ -237,7 +158,7 @@ heights_per_k.dendrogram <- function(tree,...)
    # gets a dendro tree
    # returns a vector of heights, and the k clusters we'll get for each of them.
    
-   our_dendrogram_heights <- sort(unique(get_heights.dendrogram(tree)), TRUE)
+   our_dendrogram_heights <- sort(unique(get_branches_heights(tree)), TRUE)
    
    heights_to_remove_for_A_cut <- min(-diff(our_dendrogram_heights))/2 # the height to add so to be sure we get a "clear" cut
    heights_to_cut_by <- c((max(our_dendrogram_heights) + heights_to_remove_for_A_cut),	# adding the height for 1 clusters only (this is not mandetory and could be different or removed)
@@ -381,6 +302,9 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,...)
 #' @return 
 #' A dendrogram, after adjusting the height attr in all of its leaves, 
 #' so that the tree will hang.
+#' @source 
+#' Noticing that as.dendrogram has a "hang" parameter was thanks to Enrique Ramos's answer here:: 
+#' \url{http://stackoverflow.com/questions/17088136/plot-horizontal-dendrogram-with-hanging-leaves-r}
 #' @examples
 #' 
 #' # define dendrogram object to play with:
@@ -447,6 +371,14 @@ hang.dendrogram <- function(dend,hang = 0.1,hang_height, ...) {
 
 
 
+### TODO:
+### possible functions to add:
+# ultrametric
+# is.ultrametric(as.phylo(as.hclust(dend)))
+# is.ultrametric(as.phylo(as.hclust(hang.dendrogram(dend))))
+# plot(as.phylo(as.hclust(hang.dendrogram(dend))))
+# is.ultrametric(as.phylo(as.hclust(dend, hang = 2)))
+# is.binary.tree
 
 
 

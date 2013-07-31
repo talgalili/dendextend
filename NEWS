@@ -1,4 +1,4 @@
-dendextend 0.4 (2013-07-27) 
+dendextend 0.4 (2013-07-31) 
 ---------------------------
 
 NEW FUNCTIONS ADDED: 
@@ -9,6 +9,8 @@ NEW FUNCTIONS ADDED:
    * hang.dendrogram - hangs a dendrogram leaves (also allows for a rotated hanged dendrogram), works also for non-binary trees.
    * nnodes - count the number of nodes in a tree
    * as.dendrogram.phylo - based on as.hclust.
+   * get_nodes_attr - allows easy access to attributes of branches and leaves
+   * get_branches_heights
 
 UPDATED FUNCTIONS:
    * nleaves - added nleaves.phylo methods, based on as.hclust so it could be improved in the future.

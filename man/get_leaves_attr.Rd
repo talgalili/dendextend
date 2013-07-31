@@ -32,7 +32,17 @@ dend <- as.dendrogram(hc)
 get_leaves_attr(dend, "label")
 labels(dend, "label")
 get_leaves_attr(dend, "height") # should be 0's
+get_nodes_attr(dend, "height")
+
+
 get_leaves_attr(dend, "leaf") # should be TRUE's
-get_leaves_attr(dend, "members") # should be TRUE's
+get_nodes_attr(dend, "leaf") # conatins NA's
+
+
+get_leaves_attr(dend, "members") # should be 1's
+get_nodes_attr(dend, "members") #
+}
+\seealso{
+  \link{get_nodes_attr}, \link{nnodes}, \link{nleaves}
 }
 
