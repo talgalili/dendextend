@@ -197,7 +197,7 @@ heights_per_k.dendrogram <- function(tree,...)
 #' @param tree   a dendrogram object
 #' @param k    numeric scalar (not a vector!) with the number of clusters
 #' the tree should be cut into.
-#' @param dendrogram_heights_per_k a named vector that resulted from running.
+#' @param dend_heights_per_k a named vector that resulted from running.
 #' \code{heights_per_k.dendrogram}. When running the function many times,
 #' supplying this object will help improve the running time.
 #' @param use_labels_not_values logical, defaults to TRUE. If the actual labels of the 
@@ -223,47 +223,51 @@ heights_per_k.dendrogram <- function(tree,...)
 #' @examples
 #' hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
 #' dend <- as.dendrogram(hc)
-#' cutree(hc, h=50) # on hclust
-#' cutree_1h.dendrogram(dend, h=50) # on a dendrogram
+#' cutree(hc, k=3) # on hclust
+#' cutree_1k.dendrogram(dend, k=3) # on a dendrogram
 #' 
 #' labels(dend)
 #' 
 #' # the default (ordered by original data's order)
-#' cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = TRUE) 
+#' cutree_1k.dendrogram(dend, k=3, order_clusters_as_data = TRUE) 
 #' 
 #' # A different order of labels - order by their order in the tree
-#' cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = FALSE) 
+#' cutree_1k.dendrogram(dend, k=3, order_clusters_as_data = FALSE) 
 #' 
 #' 
 #' # make it faster
 #' \dontrun{
 #' require(microbenchmark)
+#' dend_ks <- heights_per_k.dendrogram
 #' microbenchmark(
-#'          cutree_1h.dendrogram(dend, h=50),
-#'          cutree_1h.dendrogram(dend, h=50,use_labels_not_values = FALSE)
+#'          cutree_1k.dendrogram = cutree_1k.dendrogram(dend, k=4),
+#'          cutree_1k.dendrogram_no_labels = cutree_1k.dendrogram(dend, k=4,use_labels_not_values = FALSE),
+#'          cutree_1k.dendrogram_no_labels_per_k = cutree_1k.dendrogram(dend, k=4,
+#'                                              use_labels_not_values = FALSE,
+#'                                              dend_heights_per_k = dend_ks)
 #'          )
-#'          # 0.8 vs 0.6 sec - for 100 runs
+#'          # the last one is the fastest...
 #' }
 #' 
 #' 
-cutree_1k.dendrogram <- function(tree, k, dendrogram_heights_per_k, 
+cutree_1k.dendrogram <- function(tree, k, dend_heights_per_k, 
                                  use_labels_not_values = TRUE, 
                                  order_clusters_as_data =TRUE, 
                                  warn = TRUE, ...)
 {
    
    # step 1: find all possible h cuts for tree	
-   if(missing(dendrogram_heights_per_k)) {
+   if(missing(dend_heights_per_k)) {
       # since this is a step which takes a long time, If possible, I'd rather supply this to the function, so to make sure it runs faster...
-      dendrogram_heights_per_k <- heights_per_k.dendrogram(tree)
+      dend_heights_per_k <- heights_per_k.dendrogram(tree)
    }
    
    
    # step 2: Check location in the vector of the height for the k we are interested in	
-   height_for_our_k <- which(names(dendrogram_heights_per_k) == k)
+   height_for_our_k <- which(names(dend_heights_per_k) == k)
    if(length(height_for_our_k) != 0)  # if such a height exists
    {
-      h_to_use <- dendrogram_heights_per_k[height_for_our_k]
+      h_to_use <- dend_heights_per_k[height_for_our_k]
       cluster_vec <- cutree_1h.dendrogram(tree, 
                                           h = h_to_use, 
                                           use_labels_not_values = use_labels_not_values, 
@@ -276,11 +280,11 @@ cutree_1k.dendrogram <- function(tree, k, dendrogram_heights_per_k,
       
       # telling the user way he can't use this k
       if(warn) {
-         if(k > max(as.numeric(names(dendrogram_heights_per_k))) || k < min(as.numeric(names(dendrogram_heights_per_k)))) {
-            range_for_clusters <- paste("[",  paste(range(names(dendrogram_heights_per_k)), collapse = "-"),"]", sep = "") # it's always supposed to be between 1 to max number of items (so this could be computed in more efficient ways)
+         if(k > max(as.numeric(names(dend_heights_per_k))) || k < min(as.numeric(names(dend_heights_per_k)))) {
+            range_for_clusters <- paste("[",  paste(range(names(dend_heights_per_k)), collapse = "-"),"]", sep = "") # it's always supposed to be between 1 to max number of items (so this could be computed in more efficient ways)
             warning(paste("No cut exists for creating", k, "clusters.  The possible range for clusters is:", range_for_clusters))
          }
-         if( !identical(round(k), k) || k < min(as.numeric(names(dendrogram_heights_per_k))))   {				
+         if( !identical(round(k), k) || k < min(as.numeric(names(dend_heights_per_k))))   {				
             warning(paste("k must be a natural number.  The k you used ("  ,k, ") is not a natural number"))
          } else {
             warning(paste("You (probably) have some branches with equal heights so that there exist no height(h) that can create",k," clusters"))

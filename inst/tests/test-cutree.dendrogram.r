@@ -67,10 +67,7 @@ test_that("get dendrogram heights for k clusters",{
    dend_heights <- heights_per_k.dendrogram(dend)
    unroot_dend_heights <- heights_per_k.dendrogram(unroot_dend)
    
-   cutree_1h.dendrogram(dend, h=dend_heights[[3]])
-   
-   
-   
+#    cutree_1h.dendrogram(dend, h=dend_heights[[3]])   
    
    expect_equal(length(dend_heights), 5)
    expect_equal(length(unroot_dend_heights), 4)
@@ -78,7 +75,5 @@ test_that("get dendrogram heights for k clusters",{
    expect_equal(nnodes(unroot_dend), 8)
    
    # dput(names(unroot_dend_heights))
-   expect_equal(names(unroot_dend_heights), c("1", "3", "4", "5"))   
-   
-   
+   expect_equal(names(unroot_dend_heights), c("1", "3", "4", "5"))      
 })

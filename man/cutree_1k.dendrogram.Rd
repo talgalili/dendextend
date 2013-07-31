@@ -2,7 +2,7 @@
 \alias{cutree_1k.dendrogram}
 \title{cutree for dendrogram (by 1 k value only!)}
 \usage{
-  cutree_1k.dendrogram(tree, k, dendrogram_heights_per_k,
+  cutree_1k.dendrogram(tree, k, dend_heights_per_k,
     use_labels_not_values = TRUE,
     order_clusters_as_data = TRUE, warn = TRUE, ...)
 }
@@ -12,10 +12,10 @@
   \item{k}{numeric scalar (not a vector!) with the number
   of clusters the tree should be cut into.}
 
-  \item{dendrogram_heights_per_k}{a named vector that
-  resulted from running. \code{heights_per_k.dendrogram}.
-  When running the function many times, supplying this
-  object will help improve the running time.}
+  \item{dend_heights_per_k}{a named vector that resulted
+  from running. \code{heights_per_k.dendrogram}. When
+  running the function many times, supplying this object
+  will help improve the running time.}
 
   \item{use_labels_not_values}{logical, defaults to TRUE.
   If the actual labels of the clusters do not matter - and
@@ -56,26 +56,30 @@
 \examples{
 hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
 dend <- as.dendrogram(hc)
-cutree(hc, h=50) # on hclust
-cutree_1h.dendrogram(dend, h=50) # on a dendrogram
+cutree(hc, k=3) # on hclust
+cutree_1k.dendrogram(dend, k=3) # on a dendrogram
 
 labels(dend)
 
 # the default (ordered by original data's order)
-cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = TRUE)
+cutree_1k.dendrogram(dend, k=3, order_clusters_as_data = TRUE)
 
 # A different order of labels - order by their order in the tree
-cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = FALSE)
+cutree_1k.dendrogram(dend, k=3, order_clusters_as_data = FALSE)
 
 
 # make it faster
 \dontrun{
 require(microbenchmark)
+dend_ks <- heights_per_k.dendrogram
 microbenchmark(
-         cutree_1h.dendrogram(dend, h=50),
-         cutree_1h.dendrogram(dend, h=50,use_labels_not_values = FALSE)
+         cutree_1k.dendrogram = cutree_1k.dendrogram(dend, k=4),
+         cutree_1k.dendrogram_no_labels = cutree_1k.dendrogram(dend, k=4,use_labels_not_values = FALSE),
+         cutree_1k.dendrogram_no_labels_per_k = cutree_1k.dendrogram(dend, k=4,
+                                             use_labels_not_values = FALSE,
+                                             dend_heights_per_k = dend_ks)
          )
-         # 0.8 vs 0.6 sec - for 100 runs
+         # the last one is the fastest...
 }
 }
 \author{
