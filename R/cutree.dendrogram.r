@@ -54,7 +54,13 @@ is.natural.number <- function(x, tol = .Machine$double.eps^0.5, ...)  x > tol & 
 #' cutree_1h.dendrogram(dend, h=50) # on a dendrogram
 #' 
 #' labels(dend)
-#' cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = FALSE) # A different order of labels
+#' 
+#' # the default (ordered by original data's order)
+#' cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = TRUE) 
+#' 
+#' # A different order of labels - order by their order in the tree
+#' cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = FALSE) 
+#' 
 #' 
 #' # make it faster
 #' \dontrun{
@@ -89,7 +95,7 @@ cutree_1h.dendrogram <- function(tree, h, order_clusters_as_data = TRUE, use_lab
    
    # 2011-01-10: this is to fix the "bug" (I don't think it's a feature) of having the cut.dendrogram return splitted tree when h is heigher then the tree...
    # now it gives consistent results with cutree
-   if(h > attr(tree, "height")) cluster_vec <- rep(1, length(cluster_vec))	
+   if(h > attr(tree, "height")) cluster_vec <- rep(1L, length(cluster_vec))	
    
    names(cluster_vec) <- unlist(names_in_clusters)
    

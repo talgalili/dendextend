@@ -24,29 +24,29 @@ test_that("cutree a dendrogram by height h",{
    expect_error(cutree_1h.dendrogram(dend)) 
    
    # the same as cutree
-   expect_equal( 
+   expect_identical( 
       cutree_1h.dendrogram(dend, h=100),
       cutree(hc, h=100)      )  
    
-   expect_equal( 
+   expect_identical( 
       cutree_1h.dendrogram(dend, h=30),
       cutree(hc, h=30)      )  
 
    # the same as cutree - also when there are NO clusters
-   expect_equal( 
+   expect_identical( 
       cutree_1h.dendrogram(dend, h=1000),
       cutree(hc, h=1000)      )  
 
    # the same as cutree - also when there are NO clusters
-   expect_equal( 
+   expect_identical( 
       cutree_1h.dendrogram(dend, h=0),
       cutree(hc, h=0)      )  
-   expect_equal( 
+   expect_identical( 
       cutree_1h.dendrogram(dend, h=1),
       cutree(hc, h=1)      )  
    
    # get return in the order of the dendrogram:
-   expect_equal( 
+   expect_identical( 
       names(cutree_1h.dendrogram(dend, 100,order_clusters_as_data=FALSE)),
       labels(dend)      )  
    
