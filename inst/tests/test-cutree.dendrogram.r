@@ -84,3 +84,33 @@ test_that("Hanging dendrogram works for unrooted trees",{
 
 
 
+
+
+
+
+test_that("get dendrogram heights for k clusters",{
+   # data
+   hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
+   dend <- as.dendrogram(hc)
+   unroot_dend <- unroot(dend,2)
+   
+   # plot(unroot_dend)
+
+   dend_heights <- heights_per_k.dendrogram(dend)
+   unroot_dend_heights <- heights_per_k.dendrogram(unroot_dend)
+   
+   cutree_1h.dendrogram(dend, h=dend_heights[[3]])
+   
+   
+   
+   
+   expect_equal(length(dend_heights), 5)
+   expect_equal(length(unroot_dend_heights), 4)
+   
+   expect_equal(nnodes(unroot_dend), 8)
+   
+   # dput(names(unroot_dend_heights))
+   expect_equal(names(unroot_dend_heights), c("1", "3", "4", "5"))   
+   
+   
+})

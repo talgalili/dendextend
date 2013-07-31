@@ -98,6 +98,7 @@ cutree_1h.dendrogram <- function(tree, h, order_clusters_as_data = TRUE, use_lab
    # If the dendrogram was created through as.dendrogram(hclust_object)
    # The original order of the names of the items, from which the hclust (and the dendrogram) object was created from, will not be preserved!
    
+   clusters_order <- order.dendrogram(tree)
    
    if(order_clusters_as_data) 
    {
@@ -152,17 +153,24 @@ cutree_1h.dendrogram <- function(tree, h, order_clusters_as_data = TRUE, use_lab
 #' ##86.47086 68.84745 45.98871 28.36531 
 #' 
 #' cutree(hc, h = 68.8) # and indeed we get 2 clusters
+#' 
+#' unroot_dend <- unroot(dend,2)
+#' plot(unroot_dend)
+#' heights_per_k.dendrogram(unroot_dend)
+#'        #1        3        4 
+#'        #97.90023 57.41808 16.93594 
+#'        # we do NOT have a height for k=2 because of the tree's structure.
 #' }
 heights_per_k.dendrogram <- function(tree,...)
 {
    # gets a dendro tree
    # returns a vector of heights, and the k clusters we'll get for each of them.
    
-   our_dendrogram_heights <- sort(unique(get_branches_heights(tree)), TRUE)
+   our_dend_heights <- sort(unique(get_branches_heights(tree)), TRUE)
    
-   heights_to_remove_for_A_cut <- min(-diff(our_dendrogram_heights))/2 # the height to add so to be sure we get a "clear" cut
-   heights_to_cut_by <- c((max(our_dendrogram_heights) + heights_to_remove_for_A_cut),	# adding the height for 1 clusters only (this is not mandetory and could be different or removed)
-                          (our_dendrogram_heights - heights_to_remove_for_A_cut))
+   heights_to_remove_for_A_cut <- min(-diff(our_dend_heights))/2 # the height to add so to be sure we get a "clear" cut
+   heights_to_cut_by <- c((max(our_dend_heights) + heights_to_remove_for_A_cut),	# adding the height for 1 clusters only (this is not mandetory and could be different or removed)
+                          (our_dend_heights - heights_to_remove_for_A_cut))
    # 	names(heights_to_cut_by) <- sapply(heights_to_cut_by, function(h) {length(cut(tree, h = h)$lower)}) # this is the SLOW line - I need to do it differently...
    names(heights_to_cut_by) <- sapply(heights_to_cut_by, function(h) {length(cut(tree, h = h)$lower)}) # this is the SLOW line - I need to do it differently...
    names(heights_to_cut_by)[1] <- "1" # should always be 1. (the fact that it's currently not is a bug - remove this line once it is fixed)
