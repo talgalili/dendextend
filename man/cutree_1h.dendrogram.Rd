@@ -9,16 +9,16 @@
 \arguments{
   \item{tree}{a dendrogram object}
 
-  \item{h}{numeric scalar or vector with heights where the
-  tree should be cut.}
+  \item{h}{numeric scalar (NOT a vector) with a height
+  where the tree should be cut.}
 
-  \item{use_labels_not_values}{boolean, defaults to TRUE.
+  \item{use_labels_not_values}{logical, defaults to TRUE.
   If the actual labels of the clusters do not matter - and
   we want to gain speed (say, 10 times faster) - then use
   FALSE (gives the "leaves order" instead of their
   labels.).}
 
-  \item{order_clusters_as_data}{boolean, defaults to TRUE.
+  \item{order_clusters_as_data}{logical, defaults to TRUE.
   There are two ways by which to order the clusters: 1) By
   the order of the original data. 2) by the order of the
   labels in the dendrogram. In order to be consistent with
@@ -31,9 +31,8 @@
   with group memberships
 }
 \description{
-  Cuts a tree, e.g., as resulting from dendrogram, into
-  several groups by specifying the desired cut height (only
-  a single height!).
+  Cuts a dendrogram tree into several groups by specifying
+  the desired cut height (only a single height!).
 }
 \examples{
 hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
@@ -42,7 +41,13 @@ cutree(hc, h=50) # on hclust
 cutree_1h.dendrogram(dend, h=50) # on a dendrogram
 
 labels(dend)
-cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = FALSE) # A different order of labels
+
+# the default (ordered by original data's order)
+cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = TRUE)
+
+# A different order of labels - order by their order in the tree
+cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = FALSE)
+
 
 # make it faster
 \dontrun{

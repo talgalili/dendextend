@@ -4,7 +4,7 @@ dendextend 0.4 (2013-07-31)
 NEW FUNCTIONS ADDED: 
 (including tests and documentation)
    * is.natural.number
-   * cutree_1h.dendrogram - like cutree, but only for 1 height 
+   * cutree_1h.dendrogram - like cutree, but only for 1 height value.
    * fix_members_attr.dendrogram - just to validate that trim works o.k.
    * hang.dendrogram - hangs a dendrogram leaves (also allows for a rotated hanged dendrogram), works also for non-binary trees.
    * nnodes - count the number of nodes in a tree
@@ -13,7 +13,7 @@ NEW FUNCTIONS ADDED:
    * get_branches_heights
    * fix_members_attr.dendrogram
    * heights_per_k.dendrogram - get the heights for a tree that will yield each k cluster.
-
+   * cutree_1k.dendrogram - like cutree, but only for 1 k (number of clusters) value.
 
 UPDATED FUNCTIONS:
    * nleaves - added nleaves.phylo methods, based on as.hclust so it could be improved in the future.

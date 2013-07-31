@@ -17,7 +17,7 @@
   \item{...}{(not currently in use)}
 }
 \value{
-  boolean - is the entered number natural or not.
+  logical - is the entered number natural or not.
 }
 \description{
   Vectorized function for checking if numbers are natural
