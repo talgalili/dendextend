@@ -19,6 +19,53 @@
 
 
 
+# nleaves(dend)
+# nleaves(dend[[1]])
+# nleaves(dend[[2]])
+
+
+#' @title Fix members attr in a dendrogram
+#' @description
+#' Fix members attr in a dendrogram after (for example), the tree was trimmed 
+#' or manipulated.
+#' @param dend a dendrogram object 
+#' @param ... not used
+#' @return 
+#' A dendrogram, after adjusting the members attr in all of its nodes.
+#' @examples
+#' 
+#' # define dendrogram object to play with:
+#' hc <- hclust(dist(USArrests[1:3,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' # plot(dend)
+#' # trim one leaf
+#' dend[[2]] <- dend[[2]][[1]]
+#' # plot(dend)
+#' dend # but it is NO LONGER true that it has 3 members total!
+#' fix_members_attr.dendrogram(dend) # it now knows it has only 2 members :)
+#' 
+#' hc <- hclust(dist(USArrests[1:3,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' identical(trim_leaf(dend , "Alaska"), fix_members_attr.dendrogram(trim_leaf(dend , "Alaska")))
+#' str(unclass(trim_leaf(dend , "Alaska")))
+#' str(unclass(fix_members_attr.dendrogram(trim_leaf(dend , "Alaska"))))
+fix_members_attr.dendrogram <- function(dend,...) {
+   if(!inherits(dend,'dendrogram')) stop("'dend' should be a dendrogram.")   
+   
+   
+   fix_members_attr_per_node <- function(dend_node)
+   {
+      if(!is.leaf(dend_node)) attr(dend_node, "members") <- nleaves(dend_node)
+      return(unclass(dend_node))
+   }
+   # mtrace(".change.label.by.mat")
+   dend <- dendrapply(dend, fix_members_attr_per_node)
+   class(dend) <- "dendrogram"
+   return(dend)
+}
+#
+
 
 
 
@@ -36,6 +83,8 @@
 #' par(mfrow = c(1,2))
 #' plot(dend, main = "original tree")
 #' plot(dendextend:::trim_leaf(dend , "Alaska"), main = "tree without Alaska")
+#' 
+#' 
 trim_leaf <- function(x, leaf_name,...)
 {
    labels_x <- labels(x)
@@ -65,7 +114,7 @@ trim_leaf <- function(x, leaf_name,...)
    }
    
    
-   remove.leaf.if.child <- function(x, leaf_name)
+   remove_leaf_if_child <- function(x, leaf_name)
    {
       # print(labels(x))
       if(all(labels(x) != leaf_name))
@@ -78,7 +127,7 @@ trim_leaf <- function(x, leaf_name,...)
          {
             for(i in seq_len(length(x)))
             {
-               x[[i]] <- remove.leaf.if.child(x[[i]], leaf_name)
+               x[[i]] <- remove_leaf_if_child(x[[i]], leaf_name)
             }
          } else { # we'll merge 
             if(length(x) != 2) stop("This function doesn't work for non binary branches where the leaf to remove is located")	# this should be fixed in the future...				
@@ -97,8 +146,9 @@ trim_leaf <- function(x, leaf_name,...)
    }
    
    
-   new_x <- remove.leaf.if.child(x, leaf_name)
+   new_x <- remove_leaf_if_child(x, leaf_name)
    new_x <- suppressWarnings(stats:::midcache.dendrogram(new_x)) # fixes the attributes
+#   new_x <- fix_members_attr.dendrogram(new_x) # fix the number of memebers attr for each node
    return(new_x)
 }
 

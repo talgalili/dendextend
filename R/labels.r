@@ -238,6 +238,7 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
 # ' @title "label" assignment operator - matrix
 # ' @export
 #' @S3method labels<- matrix
+#' @keywords internal
 'labels<-.matrix' <- function(object, which = c("colnames","rownames"), ..., value) {
    if(missing(which))
       which <- "colnames"
