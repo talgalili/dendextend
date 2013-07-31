@@ -255,6 +255,25 @@ cutree_1k.dendrogram <- function(tree, k, dend_heights_per_k,
                                  order_clusters_as_data =TRUE, 
                                  warn = TRUE, ...)
 {
+   # STOPING RULES:
+   
+   # if k is not natural - stop!   
+   if(!is.natural.number(k)) stop(paste("k must be a natural number!  The k you used ("  ,k, ") is not a natural number"))
+   
+   # if k is "too large" then stop!
+   if(k > nleaves(tree)) stop(paste("elements of 'k' must be between 1 and", nleaves(tree)))
+      
+   # if k is 1 - it is trivial to run and return:
+   if(k == 1L) {
+      h_to_use <- attr(tree, "height") + 1
+      cluster_vec <- cutree_1h.dendrogram(tree, 
+                                          h = h_to_use, 
+                                          use_labels_not_values = use_labels_not_values, 
+                                          order_clusters_as_data = order_clusters_as_data,
+                                          ...)
+      return(cluster_vec)
+   }
+   
    
    # step 1: find all possible h cuts for tree	
    if(missing(dend_heights_per_k)) {
@@ -280,19 +299,21 @@ cutree_1k.dendrogram <- function(tree, k, dend_heights_per_k,
       
       # telling the user way he can't use this k
       if(warn) {
-         if(k > max(as.numeric(names(dend_heights_per_k))) || k < min(as.numeric(names(dend_heights_per_k)))) {
-            range_for_clusters <- paste("[",  paste(range(names(dend_heights_per_k)), collapse = "-"),"]", sep = "") # it's always supposed to be between 1 to max number of items (so this could be computed in more efficient ways)
+         warning("Couldn't cut the tree - returning NULL.")
+         
+         k_s <- as.numeric(names(dend_heights_per_k))
+         # either his k is outside the possible options
+         if(k > max(k_s) || k < min(k_s)) {
+            range_for_clusters <- paste("[",  paste(range(k_s), collapse = "-"),"]", sep = "") # it's always supposed to be between 1 to max number of items (so this could be computed in more efficient ways)
             warning(paste("No cut exists for creating", k, "clusters.  The possible range for clusters is:", range_for_clusters))
-         }
-         if( !identical(round(k), k) || k < min(as.numeric(names(dend_heights_per_k))))   {				
-            warning(paste("k must be a natural number.  The k you used ("  ,k, ") is not a natural number"))
          } else {
-            warning(paste("You (probably) have some branches with equal heights so that there exist no height(h) that can create",k," clusters"))
+            warning(paste("You (probably) have some branches with equal heights so that there exist no height(h) that can create",k," clusters"))                     
          }
       }
    }
    return(cluster_vec)
 }
+
 
 
 

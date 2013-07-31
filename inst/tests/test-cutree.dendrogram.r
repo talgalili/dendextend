@@ -77,3 +77,51 @@ test_that("get dendrogram heights for k clusters",{
    # dput(names(unroot_dend_heights))
    expect_equal(names(unroot_dend_heights), c("1", "3", "4", "5"))      
 })
+
+
+
+
+
+
+test_that("cutree a dendrogram to k clusters",{
+   # data
+   hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   # the same as cutree
+   expect_identical( 
+      cutree_1k.dendrogram(dend, k=3),
+      cutree(hc, k=3)      )  
+   
+   expect_identical( 
+      cutree_1k.dendrogram(dend, k=1),
+      cutree(hc,  k=1)      )  
+   
+   # the same as cutree - also when there are NO clusters
+   expect_identical( 
+      cutree_1k.dendrogram(dend, k=5),
+      cutree(hc, k=5)      )  
+
+   # if ignoring the "names" on the vector - the numbers will be identical:
+   expect_identical( 
+      unname(cutree_1k.dendrogram(dend, k=3, use_labels_not_values = FALSE)),
+      unname(cutree(hc, k=3) )     )    
+   
+   
+   # errors:
+   expect_error(cutree_1k.dendrogram(dend))  # we need h!
+   expect_error( cutree_1k.dendrogram(dend, k=-1))
+   expect_error( cutree_1k.dendrogram(dend, k=0))
+   expect_error( cutree_1k.dendrogram(dend, k=1.5))
+   expect_error( cutree_1k.dendrogram(dend, k=50))
+   expect_error( cutree(hc, k=50)      )  
+   
+   
+   # get return in the order of the dendrogram:
+   expect_identical( 
+      names(cutree_1k.dendrogram(dend, k=3,order_clusters_as_data=FALSE)),
+      labels(dend)      )  
+   
+})
+
+
