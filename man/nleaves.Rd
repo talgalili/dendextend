@@ -3,6 +3,7 @@
 \alias{nleaves.default}
 \alias{nleaves.dendrogram}
 \alias{nleaves.hclust}
+\alias{nleaves.phylo}
 \title{Counts the number of leaves in a tree}
 \usage{
   nleaves(x, ...)
@@ -10,6 +11,8 @@
   \method{nleaves}{dendrogram}(x, ...)
 
   \method{nleaves}{hclust}(x, ...)
+
+  \method{nleaves}{phylo}(x, ...)
 }
 \arguments{
   \item{x}{tree object (dendrogram or hclust)}
@@ -30,6 +33,10 @@
   Also, it is worth noting that the nleaves.dendrogram is
   based on order.dendrogram instead of labels.dendrogram
   since the first is MUCH faster than the later.
+
+  The phylo method is based on turning the phylo to hclust
+  and than to dendrogram. It may not work for complex phylo
+  trees.
 }
 \examples{
 hc <- hclust(dist(USArrests[1:5,]), "ave")

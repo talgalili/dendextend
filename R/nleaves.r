@@ -18,6 +18,9 @@
 
 
 
+# as.dendrogram(as.hclust(as.phylo(hc)))
+#' @export
+as.dendrogram.phylo <- function(object,...) as.dendrogram(as.hclust(object))
 
 
 
@@ -28,6 +31,7 @@
 #' nleaves.default
 #' nleaves.dendrogram
 #' nleaves.hclust
+#' nleaves.phylo
 #' @description Counts the number of leaves in a tree (dendrogram or hclust).
 #' @usage
 #' nleaves(x, ...)
@@ -35,13 +39,22 @@
 #' \method{nleaves}{dendrogram}(x, ...)
 #' 
 #' \method{nleaves}{hclust}(x, ...)
+#' 
+#' \method{nleaves}{phylo}(x, ...)
+#' 
 #' @export
 #' @param x tree object (dendrogram or hclust)
 #' @param ... not used
 #' @details 
 #' The idea for the name is from functions like ncol, and nrow.
 #' 
-#' Also, it is worth noting that the nleaves.dendrogram is based on order.dendrogram instead of labels.dendrogram since the first is MUCH faster than the later.
+#' Also, it is worth noting that the nleaves.dendrogram is based on 
+#' order.dendrogram instead of labels.dendrogram since the first is 
+#' MUCH faster than the later.
+#' 
+#' The phylo method is based on turning the phylo to hclust and than to 
+#' dendrogram. It may not work for complex phylo trees.
+#' 
 #' @return The number of leaves in the tree
 #' @seealso \link{nrow}, \link{count_terminal_nodes}
 #' @examples
@@ -58,8 +71,82 @@ nleaves.default <- function(x,...) stop("object x must be a dendrogram/hclust/ph
 #' @S3method nleaves dendrogram
 nleaves.dendrogram <- function(x,...) length(order.dendrogram(x))
 
+#TODO: add count by number of labels/ or by the number of is.leaf==TRUE
+
+
 #' @S3method nleaves hclust
 nleaves.hclust <- function(x,...) length(x$order)
+
+
+#' @S3method nleaves phylo
+nleaves.phylo <- function(x,...) nleaves(as.dendrogram(x))
+
+
+
+
+
+#' @title Counts the number of nodes (Vertices) in a tree
+#' @aliases 
+#' nnodes.default
+#' nnodes.dendrogram
+#' nnodes.hclust
+#' nnodes.phylo
+#' @description Counts the number of nodes in a tree (dendrogram, hclust, phylo).
+#' 
+#' 
+#' @usage
+#' nnodes(x, ...)
+#' 
+#' \method{nnodes}{dendrogram}(x, ...)
+#' 
+#' \method{nnodes}{hclust}(x, ...)
+#' 
+#' \method{nnodes}{phylo}(x, ...)
+#' 
+#' @export
+#' @param x tree object (dendrogram or hclust)
+#' @param ... not used
+#' @details 
+#' The idea for the name is from functions like ncol, and nrow.
+#' 
+#' The phylo method is based on turning the phylo to hclust and than to 
+#' dendrogram. It may not work for complex phylo trees.
+#' 
+#' @return The number of leaves in the tree
+#' @seealso \link{nrow}, \link{count_terminal_nodes}, \link{nleaves}
+#' @examples
+#' hc <- hclust(dist(USArrests[1:5,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' nnodes(dend) # 9
+#' nnodes(hc) # 9
+nnodes <- function(x, ...) UseMethod("nnodes")
+
+#' @export
+nnodes.default <- function(x,...) stop("object x must be a dendrogram/hclust/phylo object")
+
+#' @S3method nnodes dendrogram
+nnodes.dendrogram <- function(x,...) {
+   if(!inherits(x,'dendrogram')) warning("'object' should be a dendrogram.")   
+   
+   i_node_counter <- 0
+   
+   go_through_nodes <- function(dend_node) {
+      i_node_counter <<- i_node_counter + 1
+   }   
+   
+   dendrapply(x, go_through_nodes)
+   
+   return(i_node_counter)   
+}
+# nnodes(dend)
+
+
+#' @S3method nnodes hclust
+nnodes.hclust <- function(x,...) nnodes(as.dendrogram(x))
+
+#' @S3method nnodes phylo
+nnodes.phylo <- function(x,...) nnodes(as.dendrogram(x))
 
 
 

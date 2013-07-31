@@ -7,6 +7,11 @@ NEW FUNCTIONS ADDED:
    * cutree_1h.dendrogram - like cutree, but only for 1 height 
    * fix_members_attr.dendrogram - just to validate that trim works o.k.
    * hang.dendrogram - hangs a dendrogram leaves (also allows for a rotated hanged dendrogram), works also for non-binary trees.
+   * nnodes - count the number of nodes in a tree
+   * as.dendrogram.phylo - based on as.hclust.
+
+UPDATED FUNCTIONS:
+   * nleaves - added nleaves.phylo methods, based on as.hclust so it could be improved in the future.
 
 
 dendextend 0.3 (2013-07-27) 
@@ -98,3 +103,4 @@ http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
    * hide some function's doc (labels<-.stuff)
    * cite agnes/cluster and http://cran.r-project.org/web/packages/cluster/cluster.pdf
    Maybe also spantree {vegan}
+   * boot_dend - create a same-size tree, while sampling (with repetition) the leaves! # later for boot

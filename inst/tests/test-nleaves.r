@@ -1,18 +1,30 @@
+# require(testthat)
+
 context("Tree size")
 
 
-test_that("Get a hclust tree size",{
+test_that("Get a hclust number of leaves",{
    hc <- hclust(dist(USArrests[1:3,]), "ave")
    
    expect_true(nleaves(hc)==3L)
 })
 
 
-test_that("Get a dendrogram tree size",{
+test_that("Get a dendrogram number of leaves",{
    hc <- hclust(dist(USArrests[1:3,]), "ave")
    dend <- as.dendrogram(hc)  
    
    expect_true(nleaves(dend)==3L)
+})
+
+
+
+test_that("Get a dendrogram number of nodes",{
+   hc <- hclust(dist(USArrests[1:3,]), "ave")
+   dend <- as.dendrogram(hc)  
+   
+   expect_true(nnodes(dend)==5L)
+   expect_true(nnodes(hc)==5L)
 })
 
 
