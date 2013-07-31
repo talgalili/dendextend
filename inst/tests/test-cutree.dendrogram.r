@@ -55,38 +55,6 @@ test_that("cutree a dendrogram by height h",{
 
 
 
-test_that("Hanging dendrogram works just like hclust",{
-   
-   hc <- hclust(dist(USArrests[1:5,]), "ave")
-   dend <- as.dendrogram(hc)   
-      
-   expect_true(identical(as.dendrogram(hc, hang = 0.1),
-                         hang.dendrogram(dend, hang = 0.1)))   
-})
-
-
-
-test_that("Hanging dendrogram works for unrooted trees",{
-   hc <- hclust(dist(USArrests[1:5,]), "ave")
-   dend <- as.dendrogram(hc)
-   
-   unrooted_dend <- unroot(dend,2)
-
-   # we can't hclust an unrooted tree...
-   expect_error(as.hclust(unrooted_dend))
-   
-#    plot(hang.dendrogram(unrooted_dend, hang = 0.1))
-
-   # showing that we can hang an unrooted tree   
-   expect_false(identical(unrooted_dend,
-                         hang.dendrogram(unrooted_dend, hang = 0.1)))   
-})
-
-
-
-
-
-
 
 test_that("get dendrogram heights for k clusters",{
    # data

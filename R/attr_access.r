@@ -257,3 +257,100 @@ get_branches_heights <- function(tree, sort = TRUE, decreasing = FALSE, ...)
 }
 
 
+
+
+
+
+
+
+
+
+
+
+#' @title Hang dendrogram leaves
+#' @export
+#' @description
+#' Adjust the height attr in all of the dendrogram leaves so that
+#'  the tree will hang. This is similar to as.dendrogram(hclust, hang=0.1)
+#'  Only that it now works on other object than hclust turned into a dendrogram.
+#'  For example, this allows us to hang non-binary trees.
+#'  
+#' @param dend a dendrogram object 
+#' @param hang The fraction of the plot height by which labels should hang below 
+#' the rest of the plot. A negative value will cause the labels to 
+#' hang down from 0.
+#' @param hang_height is missing, then using "hang". If a number is given,
+#' it overrides "hang" (except if "hang" is negative)
+#' @param ... not used
+#' @return 
+#' A dendrogram, after adjusting the height attr in all of its leaves, 
+#' so that the tree will hang.
+#' @source 
+#' Noticing that as.dendrogram has a "hang" parameter was thanks to Enrique Ramos's answer here:: 
+#' \url{http://stackoverflow.com/questions/17088136/plot-horizontal-dendrogram-with-hanging-leaves-r}
+#' @examples
+#' 
+#' # define dendrogram object to play with:
+#' hc <- hclust(dist(USArrests[1:5,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' par(mfrow = c(1,2))
+#' plot(hang.dendrogram(dend))
+#' plot(hc)
+#' # identical(as.dendrogram(hc, hang = 0.1), hang.dendrogram(dend, hang = 0.1))
+#' # TRUE!!
+#' 
+#' 
+#' par(mfrow = c(1,4))
+#' 
+#' plot(dend)
+#' plot(hang.dendrogram(dend, hang = 0.1))
+#' plot(hang.dendrogram(dend, hang = 0))
+#' plot(hang.dendrogram(dend, hang = -0.1))
+#' 
+#' par(mfrow = c(1,1))
+#' plot(hang.dendrogram(dend), horiz = TRUE)
+#'  
+#'  
+hang.dendrogram <- function(dend,hang = 0.1,hang_height, ...) {
+   if(!inherits(dend,'dendrogram')) stop("'dend' should be a dendrogram.")   
+   
+   #    get_heights.dendrogram
+   if(missing(hang_height)) hang_height <- attr(dend, "height")*hang
+   
+   fix_height_attr_per_leaf <- function(dend_node)
+   {
+      if(!is.leaf(dend_node)) {
+         dend_node_height <- attr(dend_node, "height")
+         
+         for(i_nodes in seq_len(length(dend_node))) {
+            if(is.leaf(dend_node[[i_nodes]])) {
+               if(hang < 0) {
+                  attr(dend_node[[i_nodes]], "height") <- 0
+               } else {
+                  attr(dend_node[[i_nodes]], "height") <- dend_node_height - hang_height
+               }
+               
+               dend_node[[i_nodes]] <- unclass(dend_node[[i_nodes]]) # makes sure we don't inherent any classes...
+               
+            } else {
+               dend_node[[i_nodes]] <- 
+                  fix_height_attr_per_leaf(dend_node[[i_nodes]])
+            }           
+         }
+         
+      }
+      return(unclass(dend_node))
+   }
+   
+   dend <- fix_height_attr_per_leaf(dend)   
+   class(dend) <- "dendrogram"
+   return(dend)
+}
+
+# unclass(dend)
+# unclass(hang.dendrogram(dend))
+# unclass(unclass(unclass(hang.dendrogram(dend))))
+
+
+
