@@ -151,7 +151,7 @@ Dendrogram has several useful methods bundled with R:
 \end{alltt}
 \begin{verbatim}
 ##  [1] [[.dendrogram*         as.hclust.dendrogram*  cophenetic.dendrogram*
-##  [4] cut.dendrogram*        cutree.dendrogram*     head.dendrogram*      
+##  [4] cut.dendrogram*        cutree.dendrogram      head.dendrogram*      
 ##  [7] labels.dendrogram*     labels<-.dendrogram*   merge.dendrogram*     
 ## [10] nleaves.dendrogram*    nnodes.dendrogram*     plot.dendrogram*      
 ## [13] print.dendrogram*      reorder.dendrogram*    rev.dendrogram*       
@@ -768,6 +768,7 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 
 
 
+
 \subsection{Generally getting tree attributes}
 
 Getting tree attributes can more generally be achieved using \code{get_nodes_attr}, however, the dedicated function are often faster than the general solution. (also, in the future, we might introduce functions based on \pkg{Rcpp}, offering even faster times).
@@ -925,9 +926,9 @@ Quick comparison on fetching leaves attributes:
 \end{alltt}
 \begin{verbatim}
 ## Unit: microseconds
-##                      expr   min    lq median    uq  max neval
-##  get_leaves_attr_4members 280.5 290.9  311.3 337.6 4257   100
-##   get_nodes_attr_4members 694.9 726.5  812.7 902.9 4845   100
+##                      expr   min    lq median    uq    max neval
+##  get_leaves_attr_4members 282.2 285.8  293.7 318.3 2501.8   100
+##   get_nodes_attr_4members 693.8 707.5  743.3 779.7  984.9   100
 \end{verbatim}
 \begin{alltt}
 
@@ -1146,6 +1147,48 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 
 
 
+
+\subsection{Hanging a dendrogram}
+
+Hanging a tree means that we change the height of the leaves to be near their parent node. Hanging helps when examining the toplogy of the tree. Currently, hanging of a dendrogram was possible by going through the hclust object, but now you can simply use the \code{hang.dendrogram} function. Here is an example:
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[1:9, ]), \hlstring{"ave"})
+dend <- \hlfunctioncall{as.dendrogram}(hc)
+hang_dend_1 <- \hlfunctioncall{hang.dendrogram}(dend, hang = 0.1)
+hang_dend_2 <- \hlfunctioncall{as.dendrogram}(hc, hang = 0.1)  \hlcomment{# another way of doing it, if}
+\hlcomment{# we could move from/to hclust}
+\hlfunctioncall{identical}(hang_dend_1, hang_dend_2)  \hlcomment{# and they are the same :)}
+\end{alltt}
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+\begin{alltt}
+
+\hlfunctioncall{require}(colorspace)
+\hlfunctioncall{labels_colors}(hang_dend_1) <- \hlfunctioncall{rainbow_hcl}(\hlfunctioncall{nleaves}(hang_dend_1))
+
+\hlfunctioncall{par}(mfrow = \hlfunctioncall{c}(1, 2))
+\hlfunctioncall{plot}(hc, main = \hlstring{"Hanged hclust tree"})
+\hlfunctioncall{plot}(hang_dend_1, main = \hlstring{"Hanged dendrogram tree"})
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-27} 
+
+}
+
+
+
+\end{knitrout}
+
+
+
+
 \subsection{Trimming leaves}
 
 Trimming a tree from some leaves can be done using the \code{trim} (S3 method) function (notice that the attributes of the trimmed tree are updated):
@@ -1202,7 +1245,7 @@ trimmed_dend <- \hlfunctioncall{trim}(dend, \hlfunctioncall{c}(\hlstring{"Alaska
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-27} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-28} 
 
 }
 
@@ -1244,7 +1287,7 @@ dends_12 <- \hlfunctioncall{intersect_trees}(trimmed_dend_1, trimmed_dend_2)
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-28} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-29} 
 
 }
 
@@ -1299,7 +1342,7 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-29} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-30} 
 
 }
 
@@ -1311,7 +1354,184 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 
 
 
+\subsection{Cutting trees}
 
+The \code{hclust} function comes with a very powerfull \code{cutree} function, for extracting cluster grouping of the original data based on cutting the heirarchical tree at some height (or setting a predefined k - number of clusters). The limitation of this function is that it is only available for \code{hclust} object. Hence, if we are dealing with a tree which is NOT an ultrametric tree (e.g: ultrametric tree = a tree with monotone clustering heights), \code{cutree} would not be available for us (since \code{as.hclust} would not work on our dendrogram).
+
+In \pkg{dendextend}, we extend \code{cutree} by turning it into an S3 method, with methods for dendrogram and phylo objects. The phylo method is only turning the phylo object to an hclust, and tries to work on it there. However, the dendrogram method (\code{cutree.dendrogram}) is a complete re-writing of \code{cutree} based on the \code{cut.dendrogram} function. \code{cutree.dendrogram} fully emulates \code{cutree} by default, but at the same time extends it with the type of trees it can handle, and with some other options.
+
+Since \code{cutree.dendrogram} is written in \proglang{R}, it is slower than \code{cutree} which is implemented in \proglang{C}. If we can turn the dendrogram into hclust, we will use \code{cutree.hclust}, otherwise - \code{cutree.dendrogram} will be used.
+
+Here are several examples of how these functions are used:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[\hlfunctioncall{c}(1, 6, 13, 20, 23), ]), \hlstring{"ave"})
+dend <- \hlfunctioncall{as.dendrogram}(hc)
+unroot_dend <- \hlfunctioncall{unroot}(dend, 2)
+
+\hlfunctioncall{cutree}(hc, k = 2:4)  \hlcomment{# on hclust}
+\end{alltt}
+\begin{verbatim}
+##           2 3 4
+## Alabama   1 1 1
+## Colorado  1 1 2
+## Illinois  1 1 1
+## Maryland  1 2 3
+## Minnesota 2 3 4
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{cutree}(dend, k = 2:4)  \hlcomment{# on dendrogram}
+\end{alltt}
+\begin{verbatim}
+##           2 3 4
+## Alabama   1 1 1
+## Colorado  1 1 2
+## Illinois  1 1 1
+## Maryland  1 2 3
+## Minnesota 2 3 4
+\end{verbatim}
+\begin{alltt}
+
+\hlfunctioncall{cutree}(hc, k = 2)  \hlcomment{# on hclust}
+\end{alltt}
+\begin{verbatim}
+##   Alabama  Colorado  Illinois  Maryland Minnesota 
+##         1         1         1         1         2
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{cutree}(dend, k = 2)  \hlcomment{# on dendrogram}
+\end{alltt}
+\begin{verbatim}
+##   Alabama  Colorado  Illinois  Maryland Minnesota 
+##         1         1         1         1         2
+\end{verbatim}
+\begin{alltt}
+
+\hlfunctioncall{cutree}(dend, h = \hlfunctioncall{c}(20, 25.5, 50, 170))
+\end{alltt}
+\begin{verbatim}
+##           20 25.5 50 170
+## Alabama    1    1  1   1
+## Colorado   2    2  1   1
+## Illinois   3    3  1   1
+## Maryland   4    4  2   1
+## Minnesota  5    5  3   2
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{cutree}(hc, h = \hlfunctioncall{c}(20, 25.5, 50, 170))
+\end{alltt}
+\begin{verbatim}
+##           20 25.5 50 170
+## Alabama    1    1  1   1
+## Colorado   2    2  1   1
+## Illinois   3    3  1   1
+## Maryland   4    4  2   1
+## Minnesota  5    5  3   2
+\end{verbatim}
+\begin{alltt}
+
+\hlcomment{# the default (ordered by original data's order)}
+\hlfunctioncall{cutree}(dend, k = 2:3, order_clusters_as_data = FALSE)
+\end{alltt}
+\begin{verbatim}
+## [1] 2 1 1 1 1
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{labels}(dend)
+\end{alltt}
+\begin{verbatim}
+## [1] "Minnesota" "Maryland"  "Colorado"  "Alabama"   "Illinois"
+\end{verbatim}
+\begin{alltt}
+
+\hlcomment{# cutree now works for unrooted trees!  as.hclust(unroot_dend) # ERROR -}
+\hlcomment{# can not do this...}
+\hlfunctioncall{cutree}(unroot_dend, k = 2)  \hlcomment{# all NA's}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Couldn't cut the tree - returning NA.}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: You (probably) have some branches with equal heights so that there exist no height(h) that can create 2\ \ clusters}}\begin{verbatim}
+## [1] NA NA NA NA NA
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{cutree}(unroot_dend, k = 1:4)
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Couldn't cut the tree - returning NA.}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: You (probably) have some branches with equal heights so that there exist no height(h) that can create 2\ \ clusters}}\begin{verbatim}
+##           1  2 3 4
+## Alabama   1 NA 2 2
+## Colorado  1 NA 2 3
+## Illinois  1 NA 2 2
+## Maryland  1 NA 3 4
+## Minnesota 1 NA 1 1
+\end{verbatim}
+\begin{alltt}
+\hlfunctioncall{cutree}(unroot_dend, h = \hlfunctioncall{c}(20, 25.5, 50, 170))
+\end{alltt}
+\begin{verbatim}
+##           20 25.5 50 170
+## Alabama    1    1  2   2
+## Colorado   2    2  2   2
+## Illinois   3    3  2   2
+## Maryland   4    4  3   3
+## Minnesota  5    5  1   1
+\end{verbatim}
+\begin{alltt}
+
+
+\hlfunctioncall{require}(microbenchmark)
+\hlcomment{## this shows how as.hclust is expensive - but still worth it if possible}
+\hlfunctioncall{microbenchmark}(\hlfunctioncall{cutree}(hc, k = 2:4), \hlfunctioncall{cutree}(\hlfunctioncall{as.hclust}(dend), k = 2:4), \hlfunctioncall{cutree}(dend, 
+    k = 2:4), \hlfunctioncall{cutree}(dend, k = 2:4, try_cutree_hclust = FALSE))
+\end{alltt}
+\begin{verbatim}
+## Unit: microseconds
+##                                              expr     min     lq median
+##                               cutree(hc, k = 2:4)   95.19  103.6  107.2
+##                  cutree(as.hclust(dend), k = 2:4) 1669.71 1757.6 1841.6
+##                             cutree(dend, k = 2:4) 1755.38 1862.6 1953.0
+##  cutree(dend, k = 2:4, try_cutree_hclust = FALSE) 8174.42 8529.1 8766.5
+##      uq     max neval
+##   155.1   472.6   100
+##  2077.9  5803.7   100
+##  2123.0  4925.1   100
+##  9478.5 97417.2   100
+\end{verbatim}
+\begin{alltt}
+\hlcomment{# the dendrogram is MUCH slower...}
+
+
+\hlcomment{# and trying to 'hclust' is not expensive (which is nice...)}
+\hlfunctioncall{microbenchmark}(cutree_unroot_dend = \hlfunctioncall{cutree}(unroot_dend, k = 2:4, warn = FALSE), 
+    cutree_unroot_dend_not_trying_to_hclust = \hlfunctioncall{cutree}(unroot_dend, k = 2:4, try_cutree_hclust = FALSE, 
+        warn = FALSE))
+\end{alltt}
+\begin{verbatim}
+## Unit: milliseconds
+##                                     expr   min    lq median    uq   max
+##                       cutree_unroot_dend 6.707 6.916  7.039 7.565 12.04
+##  cutree_unroot_dend_not_trying_to_hclust 6.328 6.537  6.724 7.455 15.99
+##  neval
+##    100
+##    100
+\end{verbatim}
+\begin{alltt}
+
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+
+Having \code{cutree.dendrogram} available to us, we can now gain the ability to color branches for trees which can not be represented as an \code{hclust} object.
 
 \subsection{Coloring branches}
 

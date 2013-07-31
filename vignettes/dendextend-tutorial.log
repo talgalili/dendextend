@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  31 JUL 2013 15:58
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  31 JUL 2013 23:50
 entering extended mode
 **dendextend-tutorial.tex
 
@@ -881,7 +881,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.17 ...ing leaves}{Section.2.Tree manipulation.1}
+l.17 ...dendrogram}{Section.2.Tree manipulation.1}
                                                   % 17
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -892,7 +892,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.17 ...ing leaves}{Section.2.Tree manipulation.1}
+l.17 ...dendrogram}{Section.2.Tree manipulation.1}
                                                   % 17
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -903,7 +903,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.18 ...g branches}{Section.2.Tree manipulation.1}
+l.18 ...ing leaves}{Section.2.Tree manipulation.1}
                                                   % 18
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -914,7 +914,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.18 ...g branches}{Section.2.Tree manipulation.1}
+l.18 ...ing leaves}{Section.2.Tree manipulation.1}
                                                   % 18
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -947,7 +947,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.20 ...sually comparing two trees side-by-side}{}
+l.20 ...ting trees}{Section.2.Tree manipulation.1}
                                                   % 20
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -958,7 +958,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.20 ...sually comparing two trees side-by-side}{}
+l.20 ...ting trees}{Section.2.Tree manipulation.1}
                                                   % 20
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -969,7 +969,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.21 ...sually comparing two trees side-by-side.1}
+l.21 ...g branches}{Section.2.Tree manipulation.1}
                                                   % 21
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -980,7 +980,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.21 ...sually comparing two trees side-by-side.1}
+l.21 ...g branches}{Section.2.Tree manipulation.1}
                                                   % 21
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -991,7 +991,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.22 ...sually comparing two trees side-by-side.1}
+l.22 ...sually comparing two trees side-by-side}{}
                                                   % 22
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1002,7 +1002,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.22 ...sually comparing two trees side-by-side.1}
+l.22 ...sually comparing two trees side-by-side}{}
                                                   % 22
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1013,7 +1013,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.23 ...ng two trees - statistics and inference}{}
+l.23 ...sually comparing two trees side-by-side.1}
                                                   % 23
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1024,7 +1024,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.23 ...ng two trees - statistics and inference}{}
+l.23 ...sually comparing two trees side-by-side.1}
                                                   % 23
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1035,7 +1035,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.24 ...ng two trees - statistics and inference.1}
+l.24 ...sually comparing two trees side-by-side.1}
                                                   % 24
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1046,7 +1046,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.24 ...ng two trees - statistics and inference.1}
+l.24 ...sually comparing two trees side-by-side.1}
                                                   % 24
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1057,7 +1057,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.25 ...ng two trees - statistics and inference.1}
+l.25 ...ng two trees - statistics and inference}{}
                                                   % 25
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1068,7 +1068,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.25 ...ng two trees - statistics and inference.1}
+l.25 ...ng two trees - statistics and inference}{}
                                                   % 25
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1079,7 +1079,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.26 ...ARK [1][-]{Section.5.Summary.1}{Summary}{}
+l.26 ...ng two trees - statistics and inference.1}
                                                   % 26
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1090,8 +1090,52 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.26 ...ARK [1][-]{Section.5.Summary.1}{Summary}{}
+l.26 ...ng two trees - statistics and inference.1}
                                                   % 26
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
+l.27 ...ng two trees - statistics and inference.1}
+                                                  % 27
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
+l.27 ...ng two trees - statistics and inference.1}
+                                                  % 27
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
+l.28 ...ARK [1][-]{Section.5.Summary.1}{Summary}{}
+                                                  % 28
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
+l.28 ...ARK [1][-]{Section.5.Summary.1}{Summary}{}
+                                                  % 28
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1381,7 +1425,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [10]
 Package color Info: Redefining color shadecolor on input line 750.
-Package color Info: Redefining color shadecolor on input line 778.
+Package color Info: Redefining color shadecolor on input line 779.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 11
@@ -1394,9 +1438,9 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [12]
-Package color Info: Redefining color shadecolor on input line 913.
+Package color Info: Redefining color shadecolor on input line 914.
 
-Overfull \hbox (56.53291pt too wide) in paragraph at lines 923--923
+Overfull \hbox (56.53291pt too wide) in paragraph at lines 924--924
 []    \T1/aett/bx/n/10.95 get_nodes_attr_4members = []get_nodes_attr[](dend, []
 "members"[], include_branches = FALSE,[] 
  []
@@ -1407,12 +1451,12 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [13]
-Package color Info: Redefining color shadecolor on input line 952.
+Package color Info: Redefining color shadecolor on input line 953.
  <figure/unnamed-chunk-23.pdf, id=154, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-23.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-23.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-23.pdf used on input line 990.
+Package pdftex.def Info: figure/unnamed-chunk-23.pdf used on input line 991.
 (pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1420,12 +1464,12 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [14]
-Package color Info: Redefining color shadecolor on input line 1005.
+Package color Info: Redefining color shadecolor on input line 1006.
  <figure/unnamed-chunk-24.pdf, id=163, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-24.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-24.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-24.pdf used on input line 1021.
+Package pdftex.def Info: figure/unnamed-chunk-24.pdf used on input line 1022.
 (pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1435,17 +1479,17 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [15 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
 d-chunk-23.pdf> <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/f
 igure/unnamed-chunk-24.pdf>]
-Package color Info: Redefining color shadecolor on input line 1036.
+Package color Info: Redefining color shadecolor on input line 1037.
 
 <figure/unnamed-chunk-25.pdf, id=179, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-25.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-25.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-25.pdf used on input line 1055.
+Package pdftex.def Info: figure/unnamed-chunk-25.pdf used on input line 1056.
 (pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
-Package color Info: Redefining color shadecolor on input line 1072.
+Package color Info: Redefining color shadecolor on input line 1073.
 
-Overfull \hbox (27.84402pt too wide) in paragraph at lines 1110--1110
+Overfull \hbox (27.84402pt too wide) in paragraph at lines 1111--1111
 []\T1/aett/bx/n/10.95 ## Warning: Length of color vector was shorter then the n
 umber of leaves - vector
  []
@@ -1460,7 +1504,7 @@ d-chunk-25.pdf>] <figure/unnamed-chunk-26.pdf, id=192, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-26.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-26.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-26.pdf used on input line 1122.
+Package pdftex.def Info: figure/unnamed-chunk-26.pdf used on input line 1123.
 (pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1471,12 +1515,12 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [17]
-Overfull \hbox (27.84402pt too wide) in paragraph at lines 1135--1136
+Overfull \hbox (27.84402pt too wide) in paragraph at lines 1136--1137
 []\T1/aett/bx/n/10.95 ## Warning: Length of color vector was shorter then the n
 umber of leaves - vector
  []
 
-Package color Info: Redefining color shadecolor on input line 1154.
+Package color Info: Redefining color shadecolor on input line 1157.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 18 []
@@ -1487,126 +1531,183 @@ d-chunk-26.pdf>] <figure/unnamed-chunk-27.pdf, id=208, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-27.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-27.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-27.pdf used on input line 1205.
+Package pdftex.def Info: figure/unnamed-chunk-27.pdf used on input line 1181.
 (pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
-Package color Info: Redefining color shadecolor on input line 1218.
+Package color Info: Redefining color shadecolor on input line 1197.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 19
  []
 
 [19 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-27.pdf>]
-Overfull \hbox (10.63069pt too wide) in paragraph at lines 1240--1240
+d-chunk-27.pdf>] <figure/unnamed-chunk-28.pdf, id=222, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-28.pdf Graphic file (type pdf)
+
+<use figure/unnamed-chunk-28.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-28.pdf used on input line 1248.
+(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
+Package color Info: Redefining color shadecolor on input line 1261.
+
+Overfull \hbox (10.63069pt too wide) in paragraph at lines 1283--1283
 [][]\T1/aett/bx/n/10.95 plot[](trimmed_dend_2, main = []"Trimmed tree - complet
 e method"[], ylim = []c[](0, 110))[] 
  []
 
 
-Overfull \hbox (16.36847pt too wide) in paragraph at lines 1241--1241
+Overfull \hbox (16.36847pt too wide) in paragraph at lines 1284--1284
 [][]\T1/aett/bx/n/10.95 plot[](dends_12[[1]], main = []"Intersected tree - sing
 le method"[], ylim = []c[](0, 110))[] 
  []
-
-<figure/unnamed-chunk-28.pdf, id=220, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-28.pdf Graphic file (type pdf)
-
-<use figure/unnamed-chunk-28.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-28.pdf used on input line 1247.
-(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 20 []
  []
 
-[20]
-Overfull \hbox (10.94998pt too wide) has occurred while \output is active
-[] \T1/aer/m/n/10.95 21
- []
-
-[21 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-28.pdf>]
-Package color Info: Redefining color shadecolor on input line 1284.
-
-Overfull \hbox (136.8618pt too wide) in paragraph at lines 1296--1296
-[][]\T1/aett/bx/n/10.95 plot[]([]rotate[](dend, []c[](2:5, 1)), main = []"Rotat
-es the left most leaf \n into the right side of the tree"[])[] 
- []
-
-
-Overfull \hbox (245.87958pt too wide) in paragraph at lines 1298--1298
-[][]\T1/aett/bx/n/10.95 plot[]([]sort[](dend), main = []"Sorts the labels by al
-phabetical order \n\nand rotates the tree to give the best fit possible"[])[] 
- []
-
-<figure/unnamed-chunk-29.pdf, id=237, 505.89pt x 505.89pt>
+[20 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
+d-chunk-28.pdf>] <figure/unnamed-chunk-29.pdf, id=233, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-29.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-29.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-29.pdf used on input line 1302.
+Package pdftex.def Info: figure/unnamed-chunk-29.pdf used on input line 1290.
 (pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 21
+ []
+
+[21]
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 22 []
  []
 
-[22]
-Underfull \vbox (badness 4036) has occurred while \output is active []
+[22 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
+d-chunk-29.pdf>]
+Package color Info: Redefining color shadecolor on input line 1327.
+
+Overfull \hbox (136.8618pt too wide) in paragraph at lines 1339--1339
+[][]\T1/aett/bx/n/10.95 plot[]([]rotate[](dend, []c[](2:5, 1)), main = []"Rotat
+es the left most leaf \n into the right side of the tree"[])[] 
+ []
+
+
+Overfull \hbox (245.87958pt too wide) in paragraph at lines 1341--1341
+[][]\T1/aett/bx/n/10.95 plot[]([]sort[](dend), main = []"Sorts the labels by al
+phabetical order \n\nand rotates the tree to give the best fit possible"[])[] 
+ []
+
+<figure/unnamed-chunk-30.pdf, id=250, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-30.pdf Graphic file (type pdf)
+
+<use figure/unnamed-chunk-30.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-30.pdf used on input line 1345.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 23
  []
 
-[23 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-29.pdf>]
-("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
-ial.bbl"
+[23]
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 24 []
  []
 
-[24])
-Underfull \hbox (badness 10000) in paragraph at lines 1510--1510
+[24 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
+d-chunk-30.pdf>]
+Package color Info: Redefining color shadecolor on input line 1368.
 
+Overfull \hbox (10.63069pt too wide) in paragraph at lines 1458--1458
+[]\T1/aett/bx/n/10.95 ## Warning: You (probably) have some branches with equal 
+heights so that there
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1510.
+
+Overfull \hbox (10.63069pt too wide) in paragraph at lines 1468--1468
+[]\T1/aett/bx/n/10.95 ## Warning: You (probably) have some branches with equal 
+heights so that there
+ []
+
+
+Overfull \hbox (27.84402pt too wide) in paragraph at lines 1492--1492
+[][]\T1/aett/bx/n/10.95 microbenchmark[]([]cutree[](hc, k = 2:4), []cutree[]([]
+as.hclust[](dend), k = 2:4), []cutree[](dend,[] 
+ []
+
+
+Overfull \hbox (10.63069pt too wide) in paragraph at lines 1513--1513
+[][]\T1/aett/bx/n/10.95 microbenchmark[](cutree_unroot_dend = []cutree[](unroot
+_dend, k = 2:4, warn = FALSE),[] 
+ []
+
+
+Overfull \hbox (136.8618pt too wide) in paragraph at lines 1514--1514
+[]    \T1/aett/bx/n/10.95 cutree_unroot_dend_not_trying_to_hclust = []cutree[](
+unroot_dend, k = 2:4, try_cutree_hclust = FALSE,[] 
+ []
+
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 25
  []
 
 [25]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1510.
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 26 []
+ []
+
+[26]
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 27
+ []
+
+[27]
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 28 []
+ []
+
+[28]
+("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
+ial.bbl")
+Underfull \hbox (badness 10000) in paragraph at lines 1730--1730
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1730.
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 29
+ []
+
+[29]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1730.
 
 ("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
 ial.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1510.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1510.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1730.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1730.
 
 Package rerunfilecheck Info: File `dendextend-tutorial.out' has not changed.
-(rerunfilecheck)             Checksum: 1C39ECE74DC20B79146C4D3BD37FCB18;3830.
+(rerunfilecheck)             Checksum: 3E5BB83EC4C49457DA44A7756C8FB815;4044.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1510.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1730.
  ) 
 Here is how much of TeX's memory you used:
- 6933 strings out of 494045
- 105531 string characters out of 3145976
- 289933 words of memory out of 3000000
- 9985 multiletter control sequences out of 15000+200000
+ 6948 strings out of 494045
+ 105881 string characters out of 3145976
+ 307272 words of memory out of 3000000
+ 9991 multiletter control sequences out of 15000+200000
  49643 words of font info for 89 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 36i,9n,34p,1068b,411s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,9n,34p,1068b,363s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Subsection.1.0.The\040\\bgroup\040\\catcode\040`\
 \protect\040\\T1\\textunderscore\04012\\relax\040\\catcode\040`\\unhbox\040\\vo
 idb@x\040\\bgroup\040\\let\040\\unhbox\040\\voidb@x\040\\setbox\040\\@tempboxa\
@@ -1636,9 +1737,9 @@ gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Prog
 ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program 
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dendextend-tutorial.pdf (25 pages, 392931 bytes).
+Output written on dendextend-tutorial.pdf (29 pages, 416660 bytes).
 PDF statistics:
- 367 PDF objects out of 1000 (max. 8388607)
- 97 named destinations out of 1000 (max. 500000)
- 62 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 395 PDF objects out of 1000 (max. 8388607)
+ 105 named destinations out of 1000 (max. 500000)
+ 67 words of extra memory for PDF output out of 10000 (max. 10000000)
 

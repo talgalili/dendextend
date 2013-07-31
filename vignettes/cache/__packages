@@ -1,10 +1,6 @@
+ape
 base
-datasets
+colorspace
 dendextend
-graphics
-grDevices
 knitr
-methods
 microbenchmark
-stats
-utils
