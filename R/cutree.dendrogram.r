@@ -692,7 +692,9 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
       
       if(is.hclust(hclust_tree)) {
          return(cutree(tree=hclust_tree, k=k, h=h, 
-                       order_clusters_as_data = order_clusters_as_data,...
+                       order_clusters_as_data = order_clusters_as_data,
+                       sort_cluster_numbers = sort_cluster_numbers,
+                       ...
                        ))         
       }      
    } 
