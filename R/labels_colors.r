@@ -92,7 +92,7 @@ labels_colors <- function (object, labels = TRUE, ...) {
    col <- value
    leaves_length <- length(order.dendrogram(object)) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
    if(leaves_length > length(col)) {
-      warning("Length of color vector was shorter then the number of leaves - vector color recycled")
+      warning("Length of color vector was shorter than the number of leaves - vector color recycled")
       col <- rep(col, length.out = leaves_length)
    }	 	
    
