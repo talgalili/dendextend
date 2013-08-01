@@ -1,0 +1,67 @@
+\name{sort_levels_values}
+\alias{sort_levels_values}
+\title{Sort the values level in a vector}
+\usage{
+  sort_levels_values(x, MARGIN = 2, decreasing = FALSE,
+    force_integer = FALSE, ...)
+}
+\arguments{
+  \item{x}{a numeric vector.}
+
+  \item{MARGIN}{passed to \link{apply}. It is a vector
+  giving the subscripts which the function will be applied
+  over.  E.g., for a matrix 1 indicates rows, 2 indicates
+  columns, c(1, 2) indicates rows and columns. Where X has
+  named dimnames, it can be a character vector selecting
+  dimension names.}
+
+  \item{decreasing}{logical. Should the sort be increasing
+  or decreasing?}
+
+  \item{force_integer}{logical. Should the values returned
+  be integers?}
+
+  \item{...}{ignored.}
+}
+\value{
+  if x is an object - it returns logical - is the object of
+  class dendrogram.
+}
+\description{
+  Takes a numeric vector and sort its values so that they
+  would be increasing from left to right. It is different
+  from \code{\link{sort}} in that the function will only
+  "sort" the values levels, and not the vector itself.
+
+  This function is useful for \link[dendextend]{cutree} -
+  making the sort_cluster_numbers parameter possible. Using
+  that parameter with TRUE makes the clusters id's from
+  cutree to be ordered from left to right. e.g: the left
+  most cluster in the tree will be numbered "1", the one
+  after it will be "2" etc...).
+}
+\examples{
+x <- 1:4
+sort_levels_values(x) # 1 2 3 4
+
+x <- c(4:1)
+names(x) <- letters[x]
+attr(x, "keep_me") <- "a cat"
+sort_levels_values(x) # 1 2 3 4
+
+x <- c(4:1,4, 2)
+sort_levels_values(x) # 1 2 3 4 1 3
+
+x <- c(2,2,3,2,1)
+sort_levels_values(x) # 1 1 2 1 3
+
+x<- matrix(16:1, 4, 4)
+rownames(x) <- letters[1:4]
+x
+apply(x, 2, sort_levels_values)
+}
+\seealso{
+  \code{\link{sort}}, \code{\link{fac2num}},
+  \code{\link[dendextend]{cutree}}
+}
+

@@ -20,15 +20,118 @@
 
 #' @title Is the object of class hclust
 #' @export
+#' @param x an object.
+#' @return logical - is the object of class hclust.
 is.hclust <- function(x) { inherits(x,"hclust") }
 
 #' @title Is the object of class dendrogram
 #' @export
+#' @param x an object.
+#' @return logical - is the object of class dendrogram.
 is.dendrogram <- function(x) { inherits(x,"dendrogram") }
 
 #' @title Is the object of class phylo
 #' @export
+#' @param x an object.
+#' @return logical - is the object of class phylo.
 is.phylo <- function(x) { inherits(x,"phylo") }
+
+
+#' @title Turns a factor into a number
+#' @export
+#' @description
+#' Turning a factor into a number is not trivial.
+#' Using \code{as.numeric} would only return to us the indicator numbers
+#' and NOT the factor levels turned into a number.
+#' fac2num simply turns a factor into a number, as we often need.
+#' @param x an object.
+#' @param force_integer logical. Should the values returned be integers?
+#' @param ... ignored.
+#' @return if x is an object - it returns logical - is the object of class dendrogram.
+#' @examples
+#' 
+#' x <- factor(3:5)
+#' as.numeric(x) # 1 2 3
+#' fac2num(x) # 3 4 5
+#' 
+fac2num <- function(x, force_integer = FALSE, ...) {
+   if(!is.factor(x)) stop("x must be a factor (in order to turn it into a number)")
+   new_x <- as.numeric(as.character(x))
+   if(force_integer) new_x <- as.integer(new_x)
+   return( new_x )
+}
+
+
+
+
+#' @title Sort the values level in a vector
+#' @export
+#' @description
+#' Takes a numeric vector and sort its values so that they 
+#' would be increasing from left to right.
+#' It is different from \code{\link{sort}} in that the function 
+#' will only "sort" the values levels, and not the vector itself.
+#' 
+#' This function is useful for \link[dendextend]{cutree} - making the 
+#' sort_cluster_numbers parameter possible. Using that parameter with TRUE
+#' makes the clusters id's from cutree to be ordered from left to right. 
+#' e.g: the left most cluster in the tree will be numbered "1", the one
+#' after it will be "2" etc...).
+#' 
+#' @param x a numeric vector.
+#' @param MARGIN passed to \link{apply}. It is a vector giving the subscripts 
+#' which the function will be applied over.
+#'  E.g., for a matrix 1 indicates rows, 2 indicates columns,
+#'  c(1, 2) indicates rows and columns. Where X has named dimnames, 
+#'  it can be a character vector selecting dimension names.
+#' @param decreasing logical. Should the sort be increasing or decreasing? 
+#' @param force_integer logical. Should the values returned be integers?
+#' @param ... ignored.
+#' @return if x is an object - it returns logical - is the object of class dendrogram.
+#' @seealso \code{\link{sort}}, \code{\link{fac2num}}, \code{\link[dendextend]{cutree}}
+#' @examples
+#' 
+#' x <- 1:4
+#' sort_levels_values(x) # 1 2 3 4
+#' 
+#' x <- c(4:1)
+#' names(x) <- letters[x]
+#' attr(x, "keep_me") <- "a cat"
+#' sort_levels_values(x) # 1 2 3 4
+#' 
+#' x <- c(4:1,4, 2)
+#' sort_levels_values(x) # 1 2 3 4 1 3
+#' 
+#' x <- c(2,2,3,2,1)
+#' sort_levels_values(x) # 1 1 2 1 3
+#' 
+#' x<- matrix(16:1, 4, 4)
+#' rownames(x) <- letters[1:4]
+#' x
+#' apply(x, 2, sort_levels_values)
+#' 
+sort_levels_values <- function(x, MARGIN = 2,  decreasing = FALSE, force_integer = FALSE,...) {
+   if(!is.numeric(x)) stop("x must be a numeric vector/matrix")
+   
+   # make a function that would work on a vector
+   sort_levels_values_vec <- function(x) {
+      f_x <- factor(x,levels = unique(x))
+      levels(f_x) <- sort(as.numeric(levels(f_x)), decreasing= decreasing)   
+      new_x <- x
+#       force_integer is available in the wrapping function
+      new_x[seq_along(new_x)] <- fac2num(f_x, force_integer = force_integer)   # this makes sure we retain things like names and attr
+      return( new_x )      
+   }  
+   
+   if(is.matrix(x)) {
+      new_x <- apply(x, MARGIN = MARGIN, sort_levels_values_vec)
+   } else {
+      new_x <- sort_levels_values_vec(x)
+   }   
+   
+   return( new_x )
+}
+
 
 
 
@@ -379,6 +482,7 @@ cutree_1k.dendrogram <- function(tree, k,
 #' 
 #' \method{cutree}{hclust}(tree, k = NULL, h = NULL,
 #'                           order_clusters_as_data =TRUE,
+#'                           sort_cluster_numbers = FALSE,
 #'                           ...)
 #' 
 #' \method{cutree}{phylo}(tree, k = NULL, h = NULL,...)
@@ -387,6 +491,7 @@ cutree_1k.dendrogram <- function(tree, k,
 #'                               dend_heights_per_k = NULL,
 #'                               use_labels_not_values = TRUE, 
 #'                               order_clusters_as_data =TRUE, 
+#'                               sort_cluster_numbers = FALSE,
 #'                               warn = TRUE, 
 #'                               try_cutree_hclust = TRUE,
 #'                               ...)
@@ -408,6 +513,10 @@ cutree_1k.dendrogram <- function(tree, k,
 #' labels in the dendrogram. In order to be consistent with \link[stats]{cutree}, this is set
 #' to TRUE.
 #' This is passed to \code{cutree_1h.dendrogram}.
+#' @param sort_cluster_numbers logical. Should the resulting cluster id numbers
+#' be sorted? (default is FALSE in order to make the function compatible with
+#' \code{ \link[stats]{cutree}  } ) from {stats}, but it allows for sensible
+#' color order when using \link{color_branches}.
 #' @param warn logical. Should the function send a warning in case the desried 
 #' k is not available? (deafult is TRUE)
 #' @param try_cutree_hclust logical. default is TRUE. Since cutree for hclust is 
@@ -424,6 +533,12 @@ cutree_1k.dendrogram <- function(tree, k,
 #' as opposed to \link[stats]{cutree} for hclust, \code{cutree.dendrogram} allows the
 #' cutting of trees at a given height also for non-ultrametric trees 
 #' (ultrametric tree == a tree with monotone clustering heights).
+
+#' This \code{sort_cluster_numbers} parameter is based on the 
+#' \link{sort_levels_values} function. Using that parameter with TRUE
+#' makes the clusters id's from cutree to be ordered from left to right. 
+#' e.g: the left most cluster in the tree will be numbered "1", the one
+#' after it will be "2" etc...).
 #' 
 #' @return
 #' 
@@ -523,10 +638,15 @@ cutree.default <- function(tree, k = NULL, h = NULL,...) {
 #' @S3method cutree hclust
 cutree.hclust <- function(tree, k = NULL, h = NULL,
                           order_clusters_as_data =TRUE,
+                          sort_cluster_numbers = FALSE,
                           ...) { 
    
    clusters <- stats:::cutree(tree, k = k, h = h, ...) 
    if(!order_clusters_as_data) clusters <- clusters[tree$order]
+
+   # sort the clusters id
+   if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE)
+         # we know that cluster id is an integer, so it is fine to use force_integer = TRUE
    
    return(clusters)
 }
@@ -544,6 +664,7 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
                               dend_heights_per_k = NULL,
                               use_labels_not_values = TRUE, 
                               order_clusters_as_data =TRUE, 
+                              sort_cluster_numbers = FALSE,
                               warn = TRUE, 
                               try_cutree_hclust = TRUE,
                               ...)
@@ -612,6 +733,11 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
    # return a vector if h/k are scalars:
    if(ncol(clusters)==1) clusters <- clusters[,1] # make it NOT a matrix
 
+   # sort the clusters id
+   if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE)
+         # we know that cluster id is an integer, so it is fine to use force_integer = TRUE
+   
+   
    return(clusters)
 }
 

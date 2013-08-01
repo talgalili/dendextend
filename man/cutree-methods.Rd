@@ -9,13 +9,15 @@
   cutree(tree, k = NULL, h = NULL,...)
 
   \method{cutree}{hclust}(tree, k = NULL, h = NULL,
-    order_clusters_as_data =TRUE, ...)
+    order_clusters_as_data =TRUE, sort_cluster_numbers =
+    FALSE, ...)
 
   \method{cutree}{phylo}(tree, k = NULL, h = NULL,...)
 
   \method{cutree}{dendrogram}(tree, k = NULL, h = NULL,
     dend_heights_per_k = NULL, use_labels_not_values =
-    TRUE, order_clusters_as_data =TRUE, warn = TRUE,
+    TRUE, order_clusters_as_data =TRUE,
+    sort_cluster_numbers = FALSE, warn = TRUE,
     try_cutree_hclust = TRUE, ...)
 }
 \arguments{
@@ -44,6 +46,12 @@
   labels in the dendrogram. In order to be consistent with
   \link[stats]{cutree}, this is set to TRUE. This is passed
   to \code{cutree_1h.dendrogram}.}
+
+  \item{sort_cluster_numbers}{logical. Should the resulting
+  cluster id numbers be sorted? (default is FALSE in order
+  to make the function compatible with \code{
+  \link[stats]{cutree} } ) from {stats}, but it allows for
+  sensible color order when using \link{color_branches}.}
 
   \item{warn}{logical. Should the function send a warning
   in case the desried k is not available? (deafult is
@@ -87,7 +95,13 @@
   as opposed to \link[stats]{cutree} for hclust,
   \code{cutree.dendrogram} allows the cutting of trees at a
   given height also for non-ultrametric trees (ultrametric
-  tree == a tree with monotone clustering heights).
+  tree == a tree with monotone clustering heights). This
+  \code{sort_cluster_numbers} parameter is based on the
+  \link{sort_levels_values} function. Using that parameter
+  with TRUE makes the clusters id's from cutree to be
+  ordered from left to right. e.g: the left most cluster in
+  the tree will be numbered "1", the one after it will be
+  "2" etc...).
 }
 \examples{
 \dontrun{

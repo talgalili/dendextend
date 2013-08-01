@@ -231,3 +231,99 @@ test_that("cutree for dendrogram works (k,h and vectorization)",{
    
    
 })
+
+
+
+
+# test_that("Making cutted clusters be numbered from left to right",{
+   
+
+test_that("Testing sort_levels_values works",{
+   
+   # the function can return the same object:
+   x <- 1:4
+   names(x) <- letters[x]
+   attr(x, "keep_me") <- "a cat"
+   expect_equal(x, sort_levels_values(x))
+   expect_identical(names(x), names(sort_levels_values(x)))
+   expect_identical(attributes(x), attributes(sort_levels_values(x)))
+   
+   x <- c(4:1)
+   names(x) <- letters[x]
+   attr(x, "keep_me") <- "a cat"
+   # it will keep the attributes as they are:
+   expect_identical(attributes(x), attributes(sort_levels_values(x)))
+   expect_equivalent(sort(x), sort_levels_values(x)) # not equal since "sort" removes the attr!
+   
+   x <- c(4:1,4, 2)
+#    dput(sort_levels_values(x)) # 1 2 3 4 1 3
+   expect_identical(sort_levels_values(x), c(1, 2, 3, 4, 1, 3))
+   
+   x <- c(2,2,3,2,1)
+   expect_identical(sort_levels_values(x), c(1, 1, 2, 1, 3))
+
+   # works when used on matrices:
+   x<- matrix(1:16, 4, 4)
+   rownames(x) <- letters[1:4]
+   #    x
+   expect_equal(x, apply(x, 2, sort_levels_values))
+   
+   
+   x<- matrix(4:1, 2, 2)
+   rownames(x) <- letters[1:2]
+#    x
+#    dput(apply(x, 2, sort_levels_values))
+   expect_identical(apply(x, 2, sort_levels_values),
+   structure(c(3, 4, 1, 2), .Dim = c(2L, 2L), .Dimnames = list(c("a", 
+                                                                 "b"), NULL))
+   )
+
+   # checking that sort_levels_values can be used on a matrix!
+   x<- matrix(4:1, 2, 2)
+   rownames(x) <- letters[1:2]
+   #    x
+   #    dput(apply(x, 2, sort_levels_values))
+   expect_identical(apply(x, 2, sort_levels_values), sort_levels_values(x))
+   # Yay!                    
+   
+})
+
+
+test_that("Making cutted clusters be numbered from left to right",{
+
+   hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   sorted_cutree_hc <-cutree(hc, k=1:4, sort_cluster_numbers=TRUE)
+   sorted_cutree_dend <-cutree(dend, k=1:4, sort_cluster_numbers=TRUE)
+   
+   expect_identical( 
+      mode(sorted_cutree_hc),
+      mode(sorted_cutree_dend)
+   )
+   
+   expect_identical( 
+      attributes(sorted_cutree_hc),
+      attributes(sorted_cutree_dend)
+   )
+
+   # the same as cutree
+   expect_identical( 
+      as.integer(cutree(dend, k=1:4, sort_cluster_numbers=TRUE)),
+      as.integer(cutree(hc, k=1:4, sort_cluster_numbers=TRUE))      )
+
+   expect_identical( 
+      as.vector(sorted_cutree_hc),
+      as.vector(sorted_cutree_dend)
+   )# this is identical since we are forcing the numbers to be integers!
+   
+   expect_identical( 
+      (sorted_cutree_hc),
+      (sorted_cutree_dend)
+   )# this is identical since we are forcing the numbers to be integers!
+   
+   
+})
+
+
+
