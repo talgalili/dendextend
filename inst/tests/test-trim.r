@@ -1,3 +1,7 @@
+# require(dendextend)
+# require(testthat)
+
+
 context("Trimming a tree")
 
 
@@ -44,12 +48,21 @@ test_that("Intersecting-trees works",{
 
    dends_12 <- intersect_trees(trimmed_dend_1,trimmed_dend_2)   
    
+   
+   
    expect_equal(length(dends_12), 2L)
    expect_equal(nleaves(dends_12[[1]]), 3L) # 3 leaves - tree 1
    expect_equal(nleaves(dends_12[[2]]), 3L) # 3 leaves - tree 2
    expect_equal(length(
       intersect(labels(dends_12[[1]]), labels(dends_12[[2]]))),
                 3L) # 3 labels are the same for both trees.
+   
+   
+   # that it returns the same object
+   dends_11 <- intersect_trees(dend_1,dend_1)   
+   expect_identical(dends_11[[1]], dend_1)
+   
+   
 })
 
 
