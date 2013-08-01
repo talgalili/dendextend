@@ -102,7 +102,10 @@ labels_colors <- function (object, labels = TRUE, ...) {
       {			
          i_leaf_number <<- i_leaf_number + 1
          if(is.null(attr(dend_node, "nodePar"))) {
-            attr(dend_node, "nodePar") <- list(lab.col= col[i_leaf_number] )
+            attr(dend_node, "nodePar") <- 
+               list(
+                  lab.col = col[i_leaf_number],
+                  pch = NA)
          } else {            
             attr(dend_node, "nodePar") <- within(attr(dend_node, "nodePar"), {lab.col <- col[i_leaf_number]}) # this way it doesn't erase other nodePar values (if they exist)
          }
@@ -117,3 +120,18 @@ labels_colors <- function (object, labels = TRUE, ...) {
 }
 
 
+
+# 
+# #### Tests:
+# # define dendrogram object to play with:
+# hc <- hclust(dist(USArrests[1:3,]), "ave")
+# dend <- as.dendrogram(hc)
+# 
+# # Defaults:
+# labels_colors(dend)
+# plot(dend)
+# 
+# # let's add some color:
+# labels_colors(dend) <- 2:4
+# plot(dend)
+# 

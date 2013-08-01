@@ -31,7 +31,7 @@ NEW FUNCTIONS ADDED:
 
 UPDATED FUNCTIONS:
    * nleaves - added nleaves.phylo methods, based on as.hclust so it could be improved in the future.
-
+   * "labels_colors<-" - fixed it so that by default it would not add phc=1 to the leaves.
 
 OTHER NOTES:
    * Updated the exact way the GPL was stated in DESCRIPTION and gave a better reference within each file.
