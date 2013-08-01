@@ -19,45 +19,87 @@
 
 
 
-#' Colour sub-clusters of a tree (dendrogram/hclust) object
+#' @title Color sub-clusters of a tree (dendrogram/hclust) object
+#' @export
+#' @aliases
+#' colour_clusters
+#' @description
+#' This function colors both the terminal leaves of a cluster and the edges 
+#' leading to those leaves. The edgePar attribute of nodes will be augmented by 
+#' a new list item col.
+#' The groups will be defined by a call to \code{\link[dendextend]{cutree}} 
+#' using the k or h parameters.
 #' 
-#' The distinctive feature of this function is to colour both the 
-#' terminal leaves of a cluster and the edges leading to those leaves.
-#' The edgePar attribute of nodes will be augmented by a new list item col.
-#' The groups will be defined by a call to \code{\link{slice}} using the k or h
-#' parameters.
-#' @details If \code{groupLabels=TRUE} then numeric group labels will added to
-#'   each cluster. If a vector is supplied then these entries will be used as 
+#' If col is a color vector with a different length than the number of clusters
+#' (k) - then a recycled color vector will be used.
+#' 
+#' @details 
+#' If \code{groupLabels=TRUE} then numeric group labels will be added 
+#'   to each cluster. If a vector is supplied then these entries will be used as 
 #'   the group labels. If a function is supplied then it will be passed a 
 #'   numeric vector of groups (e.g. 1:5) and must return the formatted group
 #'   labels.
-#' @param d A \code{dendrogram} or \code{hclust} tree object
-#' @param k number of groups (passed to \code{slice})
-#' @param h height at which to cut tree (passed to \code{slice})
-#' @param col Function or vector of colours
+#' @param tree A \code{dendrogram} or \code{hclust} tree object
+#' @param k number of groups (passed to \code{\link[dendextend]{cutree}})
+#' @param h height at which to cut tree (passed to \code{\link[dendextend]{cutree}})
+#' @param col Function or vector of Colors. By default it tries to use 
+#' \link[colorspace]{rainbow_hcl} from the \code{colorspace} package.
+#' (with parameters c=90 and l=50). If \code{colorspace} is not available,
+#' It will fall back on the \link{rainbow} function.
 #' @param groupLabels If TRUE add numeric group label - see Details for options
 #' @return a tree object of class dendrogram.
-#' @aliases color_clusters
-#' @author jefferis
-#' @export
-#' @seealso \code{\link{slice},\link{cutree},\link{dendrogram}}
+#' @author Tal Galili, extensively based on code by jefferis
+#' @source
+#' This function is a derived work from the \code{\link[dendroextra]{color_clusters}}
+#' function, with some ideas from the \code{\link[dendroextra]{slice}} function -
+#' both are from the {\pkg{dendroextra}} package by jefferis.
+#' 
+#' @seealso \code{\link[dendextend]{cutree}},\link{dendrogram}},\link{hclust}},
+#' \link{labels_colors}}
 #' @examples
-#' d5=colour_clusters(hclust(dist(USArrests), "ave"),5)
+#' dend <- hclust(dist(USArrests), "ave")
+#' d1=color_branches(dend,5, col = c(3,1,1,4,1))
+#' plot(d1) # selective coloring of branches :)
+#' 
+#' d5=color_branches(dend,5)
 #' plot(d5)
-#' d5g=colour_clusters(hclust(dist(USArrests), "ave"),5,groupLabels=TRUE)
+#' d5g=color_branches(dend,5,groupLabels=TRUE)
 #' plot(d5g)
-#' d5gr=colour_clusters(hclust(dist(USArrests), "ave"),5,groupLabels=as.roman)
+#' d5gr=color_branches(dend,5,groupLabels=as.roman)
 #' plot(d5gr)
-colour_clusters<-function(d,k=NULL,h=NULL,col=rainbow,groupLabels=NULL){
-   # TODO make this more modular
-   if(!inherits(d,'dendrogram') && !inherits(d,'hclust'))
-      stop("Expects a dendrogram or hclust object")
-   g=slice(d,k=k,h=h)
-   if(inherits(d,'hclust')) d=as.dendrogram(d)
+#'  
+#' 
+color_branches<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL){
    
-   k=max(g)
-   if(is.function(col)) col=col(k)
-   else if(length(col)!=k) stop("Must give same number of colours as clusters")
+   if(missing(col)) {
+      if(require(colorspace)) {
+         col <- function(n) rainbow_hcl(n, c=90, l=50)
+      } else {
+         col <- rainbow
+      }      
+   }   
+   
+   if(!is.dendrogram(tree) && !is.hclust(tree)) stop("tree needs to be either a dendrogram or an hclust object")
+   g <- dendextend:::cutree(tree,k=k,h=h, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE)
+   if(is.hclust(tree)) tree=as.dendrogram(tree)
+   
+   k <- max(g)
+   if(is.function(col)) {
+      col=col(k)
+   } else {
+      if(length(col) < k) {
+         #          stop("Must give the same number of colors as number of clusters")
+         warning("Length of color vector was shorter than the number of clusters - color vector was recycled")
+         col <- rep(col, length.out = k)
+      }
+      if(length(col) > k) {
+         #          stop("Must give the same number of colors as number of clusters")
+         warning("Length of color vector was longer than the number of clusters - first k elements are used")
+         col <- col[seq_len(k)]
+      }
+      
+   }
+   
    
    if(!is.null(groupLabels)){
       if(length(groupLabels)==1){
@@ -85,7 +127,7 @@ colour_clusters<-function(d,k=NULL,h=NULL,col=rainbow,groupLabels=NULL){
          for(i in seq(sd))
             sd[[i]]<-descendTree(sd[[i]])
       } else {
-         # else assign colours
+         # else assign Colors
          # sd=dendrapply(sd,addcol,col[groupsinsubtree],groupsinsubtree)
          sd=dendrapply(sd,addcol,col[groupsinsubtree])
          if(!is.null(groupLabels)){
@@ -95,25 +137,28 @@ colour_clusters<-function(d,k=NULL,h=NULL,col=rainbow,groupLabels=NULL){
       }
       sd
    }
-   descendTree(d)
+   descendTree(tree)
 }
 
-color_clusters<-colour_clusters
 
-#' Return the leaf colours of a dendrogram
+# nice idea - make this compatible with colour/color
+colour_clusters<-color_branches
+
+
+#' Return the leaf Colors of a dendrogram
 #' 
-#' @details The returned colours will be in dendrogram order.
+#' @details The returned Colors will be in dendrogram order.
 #' @param d the dendrogram
-#' @param col_to_return Character scalar - kind of colour attribute to return
-#' @return named character vector of colours, NA_character_ where missing
+#' @param col_to_return Character scalar - kind of Color attribute to return
+#' @return named character vector of Colors, NA_character_ where missing
 #' @author jefferis
 #' @export
 #' @aliases leaf_colors
-#' @seealso \code{\link{slice},\link{colour_clusters}}
+#' @seealso \code{\link{slice},\link{color_branches}}
 #' @examples
-#' d5=colour_clusters(hclust(dist(USArrests), "ave"),5)
-#' leaf_colours(d5)
-leaf_colours<-function(d,col_to_return=c("edge",'node','label')){
+#' d5=color_branches(dend,5)
+#' leaf_Colors(d5)
+leaf_Colors<-function(d,col_to_return=c("edge",'node','label')){
    if(!inherits(d,'dendrogram')) stop("I need a dendrogram!")
    col_to_return=match.arg(col_to_return)
    leaf_col<-function(n,col_to_return) {
@@ -130,4 +175,4 @@ leaf_colours<-function(d,col_to_return=c("edge",'node','label')){
    unlist(dendrapply(d,leaf_col,col_to_return))
 }
 
-leaf_colors<-leaf_colours
+leaf_colors<-leaf_Colors
