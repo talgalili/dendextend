@@ -11,7 +11,7 @@
 }
 \usage{
   color_branches(tree, k = NULL, h = NULL, col,
-    groupLabels = NULL)
+    groupLabels = NULL, ...)
 }
 \arguments{
   \item{tree}{A \code{dendrogram} or \code{hclust} tree
@@ -31,6 +31,8 @@
 
   \item{groupLabels}{If TRUE add numeric group label - see
   Details for options}
+
+  \item{...}{ignored.}
 }
 \value{
   a tree object of class dendrogram.
@@ -71,7 +73,7 @@ plot(d5gr)
   Tal Galili, extensively based on code by jefferis
 }
 \seealso{
-  \code{\link[dendextend]{cutree}},\link{dendrogram}},\link{hclust}},
-  \link{labels_colors}}
+  \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
+  \code{\link{hclust}}, \code{\link{labels_colors}}
 }
 
