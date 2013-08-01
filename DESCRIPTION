@@ -28,6 +28,7 @@ Collate:
     'trim.r'
     'unroot.r'
     'labels_colors.r'
+    'color_branches.r'
     'cutree.dendrogram.r'
     'dendextend-package.r'
     'zzz.r'
