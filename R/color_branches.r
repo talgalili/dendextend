@@ -19,12 +19,13 @@
 
 
 
-#' @title Color sub-clusters of a tree (dendrogram/hclust) object
+#' @title Color tree's branches according to sub-clusters
 #' @export
 #' @aliases
 #' colour_clusters
 #' @description
-#' This function colors both the terminal leaves of a cluster and the edges 
+#' This function is for dendrogram and hclust objects.
+#' This function colors both the terminal leaves of a tree's cluster and the edges 
 #' leading to those leaves. The edgePar attribute of nodes will be augmented by 
 #' a new list item col.
 #' The groups will be defined by a call to \code{\link[dendextend]{cutree}} 
@@ -47,6 +48,7 @@
 #' (with parameters c=90 and l=50). If \code{colorspace} is not available,
 #' It will fall back on the \link{rainbow} function.
 #' @param groupLabels If TRUE add numeric group label - see Details for options
+#' @param ... ignored.
 #' @return a tree object of class dendrogram.
 #' @author Tal Galili, extensively based on code by jefferis
 #' @source
@@ -54,8 +56,8 @@
 #' function, with some ideas from the \code{\link[dendroextra]{slice}} function -
 #' both are from the {\pkg{dendroextra}} package by jefferis.
 #' 
-#' @seealso \code{\link[dendextend]{cutree}},\link{dendrogram}},\link{hclust}},
-#' \link{labels_colors}}
+#' @seealso \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
+#' \code{\link{hclust}}, \code{\link{labels_colors}}
 #' @examples
 #' dend <- hclust(dist(USArrests), "ave")
 #' d1=color_branches(dend,5, col = c(3,1,1,4,1))
@@ -69,7 +71,7 @@
 #' plot(d5gr)
 #'  
 #' 
-color_branches<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL){
+color_branches<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
    
    if(missing(col)) {
       if(require(colorspace)) {
@@ -143,6 +145,105 @@ color_branches<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL){
 
 # nice idea - make this compatible with colour/color
 colour_clusters<-color_branches
+
+
+
+
+
+
+#' @title Color tree's labels according to sub-clusters
+#' @export
+#' @aliases
+#' colour_labels
+#' @description
+#' This function is for dendrogram and hclust objects.
+#' This function colors tree's labels.
+#' 
+#' The groups will be defined by a call to \code{\link[dendextend]{cutree}} 
+#' using the k or h parameters.
+#' 
+#' If col is a color vector with a different length than the number of clusters
+#' (k) - then a recycled color vector will be used.
+#' 
+#' @param tree A \code{dendrogram} or \code{hclust} tree object
+#' @param k number of groups (passed to \code{\link[dendextend]{cutree}})
+#' @param h height at which to cut tree (passed to \code{\link[dendextend]{cutree}})
+#' @param col Function or vector of Colors. By default it tries to use 
+#' \link[colorspace]{rainbow_hcl} from the \code{colorspace} package.
+#' (with parameters c=90 and l=50). If \code{colorspace} is not available,
+#' It will fall back on the \link{rainbow} function.
+#' @param ... ignored.
+#' @return a tree object of class dendrogram.
+#' @author Tal Galili
+#' @source
+#' This function is in the style of \code{\link{color_branches}}, and 
+#' based on \code{\link{labels_colors}}.
+#' @seealso \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
+#' \code{\link{hclust}}, \code{\link{labels_colors}}, \code{\link{color_branches}}
+#' @examples
+#' hc <- hclust(dist(USArrests), "ave")
+#' dend <- as.dendrogram(hc)
+#' dend=color_labels(dend,5, col = c(3,1,1,4,1))
+#' dend=color_branches(dend,5, col = c(3,1,1,4,1))
+#' plot(dend) # selective coloring of branches AND labels :)
+#' 
+#' 
+#' d5=color_branches(dend,5)
+#' plot(d5)
+#' d5g=color_branches(dend,5,groupLabels=TRUE)
+#' plot(d5g)
+#' d5gr=color_branches(dend,5,groupLabels=as.roman)
+#' plot(d5gr)
+#'  
+#' 
+color_labels<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
+   
+   if(missing(col)) {
+      if(require(colorspace)) {
+         col <- function(n) rainbow_hcl(n, c=90, l=50)
+      } else {
+         col <- rainbow
+      }      
+   }   
+   
+   if(!is.dendrogram(tree) && !is.hclust(tree)) stop("tree needs to be either a dendrogram or an hclust object")
+   g <- dendextend:::cutree(tree,k=k,h=h, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE)
+   if(is.hclust(tree)) tree=as.dendrogram(tree)
+   
+   k <- max(g)
+   if(is.function(col)) {
+      col=col(k)
+   } else {
+      if(length(col) < k) {
+         #          stop("Must give the same number of colors as number of clusters")
+         warning("Length of color vector was shorter than the number of clusters - color vector was recycled")
+         col <- rep(col, length.out = k)
+      }
+      if(length(col) > k) {
+         #          stop("Must give the same number of colors as number of clusters")
+         warning("Length of color vector was longer than the number of clusters - first k elements are used")
+         col <- col[seq_len(k)]
+      }
+   }
+   
+   
+   labels_colors(tree) <- col[g]
+   
+   return(tree)
+}
+
+
+# nice idea - make this compatible with colour/color
+colour_labels<-color_labels
+
+
+
+
+
+
+
+
+
 
 
 #' Return the leaf Colors of a dendrogram

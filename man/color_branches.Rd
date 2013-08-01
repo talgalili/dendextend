@@ -1,7 +1,7 @@
 \name{color_branches}
 \alias{color_branches}
 \alias{colour_clusters}
-\title{Color sub-clusters of a tree (dendrogram/hclust) object}
+\title{Color tree's branches according to sub-clusters}
 \source{
   This function is a derived work from the
   \code{\link[dendroextra]{color_clusters}} function, with
@@ -38,7 +38,8 @@
   a tree object of class dendrogram.
 }
 \description{
-  This function colors both the terminal leaves of a
+  This function is for dendrogram and hclust objects. This
+  function colors both the terminal leaves of a tree's
   cluster and the edges leading to those leaves. The
   edgePar attribute of nodes will be augmented by a new
   list item col. The groups will be defined by a call to
