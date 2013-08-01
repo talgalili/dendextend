@@ -1,4 +1,4 @@
-dendextend 0.4 (2013-07-31) 
+dendextend 0.4 (2013-08-01) 
 ---------------------------
 
 NEW FUNCTIONS ADDED: 
@@ -16,15 +16,23 @@ NEW FUNCTIONS ADDED:
    * is.hclust
    * is.dendrogram
    * is.phylo
+   * fac2num
 
    * cutree_1k.dendrogram - like cutree, but only for 1 k (number of clusters) value.
    * cutree.dendrogram - like cutree but for dendrograms (and it is also vectorized)
    * cutree.hclust - like cutree but for hclust
    * cutree.phylo - like cutree but for phylo
+   * sort_levels_values - make the resulting clusters from cutree to be ordered from left to right
    * cutree - with S3 methods for dendrogram/hclust/phylo
+
 
 UPDATED FUNCTIONS:
    * nleaves - added nleaves.phylo methods, based on as.hclust so it could be improved in the future.
+
+
+OTHER NOTES:
+   * Updated the exact way the GPL was stated in DESCRIPTION and gave a better reference within each file.
+
 
 
 dendextend 0.3 (2013-07-27) 

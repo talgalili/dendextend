@@ -4,6 +4,12 @@
 \usage{
   is.dendrogram(x)
 }
+\arguments{
+  \item{x}{an object.}
+}
+\value{
+  logical - is the object of class dendrogram.
+}
 \description{
   Is the object of class dendrogram
 }

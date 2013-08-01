@@ -4,6 +4,12 @@
 \usage{
   is.phylo(x)
 }
+\arguments{
+  \item{x}{an object.}
+}
+\value{
+  logical - is the object of class phylo.
+}
 \description{
   Is the object of class phylo
 }
