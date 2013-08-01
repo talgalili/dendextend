@@ -22,7 +22,7 @@
 #' @title Color tree's branches according to sub-clusters
 #' @export
 #' @aliases
-#' colour_clusters
+#' colour_branches
 #' @description
 #' This function is for dendrogram and hclust objects.
 #' This function colors both the terminal leaves of a tree's cluster and the edges 
@@ -56,12 +56,27 @@
 #' function, with some ideas from the \code{\link[dendroextra]{slice}} function -
 #' both are from the {\pkg{dendroextra}} package by jefferis.
 #' 
+#' It extends it by using \link[dendextend]{cutree.dendrogram} - allowing
+#' the function to work for trees that hclust can not handle 
+#' (unrooted and non-ultrametric trees).
+#' Also, it allows REPEATED cluster color assignments to branches on to 
+#' the same tree. Something which the original function was not able to handle.
+#' 
 #' @seealso \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
 #' \code{\link{hclust}}, \code{\link{labels_colors}}
 #' @examples
+#' 
+#' \dontrun{
 #' dend <- hclust(dist(USArrests), "ave")
 #' d1=color_branches(dend,5, col = c(3,1,1,4,1))
 #' plot(d1) # selective coloring of branches :)
+#' d2=color_branches(d1,5)
+#' plot(d2) 
+#' 
+#' d1=color_branches(dend,5, col = c(3,1,1,4,1),groupLabels=TRUE)
+#' plot(d1) # selective coloring of branches :)
+#' d2=color_branches(d1,5,groupLabels=TRUE)
+#' plot(d2) 
 #' 
 #' d5=color_branches(dend,5)
 #' plot(d5)
@@ -70,6 +85,11 @@
 #' d5gr=color_branches(dend,5,groupLabels=as.roman)
 #' plot(d5gr)
 #'  
+#'  
+#' # str(dendrapply(d2, unclass))
+#' # unclass(d1)
+#' 
+#' }
 #' 
 color_branches<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
    
@@ -117,9 +137,16 @@ color_branches<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
          stop("Must give same number of group labels as clusters")
    }
    
-   addcol<-function(n,col) {
-      attr(n,'edgePar')=c(attr(n,'edgePar'),list(col=col))
-      n
+   addcol<-function(dend_node,col) {      
+      if(is.null(attr(dend_node, "edgePar"))) {
+         attr(dend_node,'edgePar') <- list(col=col)
+      } else {            
+         attr(dend_node, "edgePar")[["col"]] <- col
+#             within(attr(dend_node, "edgePar"), 
+#                    {col=col}) 
+         # this way it doesn't erase other nodePar values (if they exist)
+      }
+      unclass(dend_node)
    }
    
    descendTree<-function(sd){
@@ -134,17 +161,22 @@ color_branches<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
          sd=dendrapply(sd,addcol,col[groupsinsubtree])
          if(!is.null(groupLabels)){
             attr(sd,'edgetext')=groupLabels[groupsinsubtree]
-            attr(sd,'edgePar')=c(attr(sd,'edgePar'),list(p.border=col[groupsinsubtree]))
+#             attr(sd,'edgePar')=c(attr(sd,'edgePar'),list(p.border=col[groupsinsubtree]))
+            attr(sd,'edgePar')[["p.border"]]=col[groupsinsubtree]
          }
       }
-      sd
+      unclass(sd)
    }
-   descendTree(tree)
+   tree <- descendTree(tree)
+   class(tree) <- "dendrogram"
+   tree   
 }
 
+# str(unclass(d2))
+# plot(tree)
 
 # nice idea - make this compatible with colour/color
-colour_clusters<-color_branches
+colour_branches<-color_branches
 
 
 
@@ -181,6 +213,8 @@ colour_clusters<-color_branches
 #' @seealso \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
 #' \code{\link{hclust}}, \code{\link{labels_colors}}, \code{\link{color_branches}}
 #' @examples
+#' 
+#' \dontrun{
 #' hc <- hclust(dist(USArrests), "ave")
 #' dend <- as.dendrogram(hc)
 #' dend=color_labels(dend,5, col = c(3,1,1,4,1))
@@ -194,7 +228,8 @@ colour_clusters<-color_branches
 #' plot(d5g)
 #' d5gr=color_branches(dend,5,groupLabels=as.roman)
 #' plot(d5gr)
-#'  
+#' 
+#' } 
 #' 
 color_labels<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
    

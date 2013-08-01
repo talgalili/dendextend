@@ -25,8 +25,8 @@ NEW FUNCTIONS ADDED:
    * sort_levels_values - make the resulting clusters from cutree to be ordered from left to right
    * cutree - with S3 methods for dendrogram/hclust/phylo
 
-   * color_branches - color a tree branches based on its clusters. This is a modified version of the color_clusters function from jefferis's dendroextra package. It extends it by using my own version of cutree.dendrogram - allowing the function to work for trees that hclust can not handle (unrooted and non-ultrametric trees).
-   * color_labels 
+   * color_branches - color a tree branches based on its clusters. This is a modified version of the color_clusters function from jefferis's dendroextra package. It extends it by using my own version of cutree.dendrogram - allowing the function to work for trees that hclust can not handle (unrooted and non-ultrametric trees). Also, it allows REPEATED cluster color assignments to branches on to the same tree. Something which the original function was not able to handle.
+   * color_labels - just like color_branches, but for labels.
 
 
 UPDATED FUNCTIONS:

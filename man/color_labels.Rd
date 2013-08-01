@@ -45,6 +45,7 @@
   will be used.
 }
 \examples{
+\dontrun{
 hc <- hclust(dist(USArrests), "ave")
 dend <- as.dendrogram(hc)
 dend=color_labels(dend,5, col = c(3,1,1,4,1))
@@ -58,6 +59,8 @@ d5g=color_branches(dend,5,groupLabels=TRUE)
 plot(d5g)
 d5gr=color_branches(dend,5,groupLabels=as.roman)
 plot(d5gr)
+
+}
 }
 \author{
   Tal Galili

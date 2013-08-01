@@ -1,6 +1,6 @@
 \name{color_branches}
 \alias{color_branches}
-\alias{colour_clusters}
+\alias{colour_branches}
 \title{Color tree's branches according to sub-clusters}
 \source{
   This function is a derived work from the
@@ -8,6 +8,14 @@
   some ideas from the \code{\link[dendroextra]{slice}}
   function - both are from the {\pkg{dendroextra}} package
   by jefferis.
+
+  It extends it by using
+  \link[dendextend]{cutree.dendrogram} - allowing the
+  function to work for trees that hclust can not handle
+  (unrooted and non-ultrametric trees). Also, it allows
+  REPEATED cluster color assignments to branches on to the
+  same tree. Something which the original function was not
+  able to handle.
 }
 \usage{
   color_branches(tree, k = NULL, h = NULL, col,
@@ -59,9 +67,17 @@
   group labels.
 }
 \examples{
+\dontrun{
 dend <- hclust(dist(USArrests), "ave")
 d1=color_branches(dend,5, col = c(3,1,1,4,1))
 plot(d1) # selective coloring of branches :)
+d2=color_branches(d1,5)
+plot(d2)
+
+d1=color_branches(dend,5, col = c(3,1,1,4,1),groupLabels=TRUE)
+plot(d1) # selective coloring of branches :)
+d2=color_branches(d1,5,groupLabels=TRUE)
+plot(d2)
 
 d5=color_branches(dend,5)
 plot(d5)
@@ -69,6 +85,12 @@ d5g=color_branches(dend,5,groupLabels=TRUE)
 plot(d5g)
 d5gr=color_branches(dend,5,groupLabels=as.roman)
 plot(d5gr)
+
+
+# str(dendrapply(d2, unclass))
+# unclass(d1)
+
+}
 }
 \author{
   Tal Galili, extensively based on code by jefferis
