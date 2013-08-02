@@ -156,3 +156,13 @@ test_that("order of leaves in sub-dendrogram and as.hclust",{
 })
 
 
+
+test_that("labels of hclust on data without rownames is an integer",{
+   # this is a problem when some function assumes that labels are "character"
+   DATA <- USArrests
+   rownames(DATA) <- NULL
+   hc <- hclust(dist(DATA))
+   dend <- as.dendrogram(hc)
+   expect_true(length(labels(hc))==0) # hc has NO labels
+   expect_true(is.integer(labels(dend))) # the labels the dend gets are Integer   
+})
