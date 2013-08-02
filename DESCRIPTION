@@ -26,7 +26,7 @@ Collate:
     'nleaves.r'
     'rotate.r'
     'trim.r'
-    'unroot.r'
+    'unbranch.r'
     'labels_colors.r'
     'color_branches.r'
     'cutree.dendrogram.r'

@@ -190,7 +190,15 @@ unbranch.hclust <- function(x, branch_becoming_root = 1, new_root_height, ...) {
 
 
 #' @S3method unbranch phylo
-unbranch.phylo <- function(x, ...) ape:::unbranch(phy = x)
+unbranch.phylo <- function(x, ...) {
+		# ape:::unbranch(phy = x)
+   x_dend <- as.dendrogram(x)
+   x_dend_unbranch <- unbranch(x_dend, branch_becoming_root , new_root_height, ...)
+   x_unbranch <- as.phylo(x_dend_unbranch)  
+
+   return(x_unbranch)
+}
+
 
 
 
