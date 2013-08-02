@@ -81,9 +81,15 @@ labels_colors <- function (object, labels = TRUE, ...) {
    }
    # mtrace(".change.label.by.mat")
    i_leaf_number <- 0
-   dendrapply(object, get.col.from.leaf)
+   # here I don't care about the classes of the branches of the object.
+   dendrapply(object, get.col.from.leaf) 
    return(col)
 }
+
+
+
+
+
 
 #' @export
 "labels_colors<-" <- function (object, ..., value) {
@@ -112,10 +118,11 @@ labels_colors <- function (object, labels = TRUE, ...) {
          
          if(length(attr(dend_node, "nodePar")) == 0) attr(dend_node, "nodePar") <- NULL # remove nodePar if it is empty
       }
-      return(dend_node)
+      return(unclass(dend_node))
    }   
    i_leaf_number <- 0
    new_dend_object <- dendrapply(object, set.col.to.leaf)
+   class(new_dend_object) <- "dendrogram"
    return(new_dend_object)
 }
 
