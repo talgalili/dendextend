@@ -44,7 +44,10 @@ cutree on a subset tree (e.g: dend[[1]])
 OTHER NOTES:
    * Updated the exact way the GPL was stated in DESCRIPTION and gave a better reference within each file.
 
-
+NEW VIGNETTES SECTIONS ADDED:
+   * Hanging trees
+   * Coloring branches.
+   
 
 dendextend 0.3 (2013-07-27) 
 ---------------------------

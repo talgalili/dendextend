@@ -17,16 +17,20 @@ toBibtex(citation("DendSer"))
 
 %% need no \usepackage{Sweave.sty}
 
-<<prelim,echo=FALSE>>=
+<<prelim,echo=FALSE, cache=FALSE>>=
 suppressPackageStartupMessages(library(dendextend))
 dendextend.version <- packageDescription("dendextend")$Version
 dendextend.date <- packageDescription("dendextend")$Date
 now.date <- strftime(Sys.Date(), "%B %d, %Y")
 # options(width = 60)
 # opts_chunk$set(tidy.opts=list(width.cutoff=60))
+opts_chunk$set( fig.align='center', cache=TRUE) # , message=FALSE, background='white')
+options(replace.assign=TRUE,width=60)
+
+# knit_hooks$set(fig=function(before, options, envir){if (before) par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)})
+
 @
 %
-
 
 
 
@@ -451,7 +455,7 @@ microbenchmark(   get_leaves_attr_4members = get_leaves_attr(dend, "members"),
 
 \section{Tree manipulation}
 
-\subsection{Unrooting and root height}
+\subsection{unbranching and root height}
 
 A tree's nodes has various heights. Sometimes we are interested in changing the height of the entire tree. It is useful when This can be accomplished using \code{raise.dendrogram}. For example (notice how the entire tree's height is changed):
 
@@ -476,7 +480,7 @@ plot(shorter_dend, ylim = c(0, 70), main = "Shorter dend"); abline(h = c(40, 50,
 
 
 
-Sometimes we wish to "unroot" the dendrogram, meaning that we merge one of the tree's branches with its root. This is useful, for example, when merging phylogenetic trees from several families, and being unwilling to assume a specific root to the merged trees. Unrooting can be done using the \code{unroot} (S3) function (notice the use of the \code{branch_becoming_root} parameter):
+Sometimes we wish to "unbranch" the dendrogram, meaning that we merge one of the tree's branches with its root. This is useful, for example, when merging phylogenetic trees from several families, and being unwilling to assume a specific root/height to the merged trees. unbranching can be done using the \code{unbranch} (S3) function (notice the use of the \code{branch_becoming_root} parameter):
 
 
 <<fig.height = 3,fig.align='center'>>=
@@ -484,17 +488,17 @@ Sometimes we wish to "unroot" the dendrogram, meaning that we merge one of the t
 hc <- hclust(dist(USArrests[10:13,]), "ward")
 dend <- as.dendrogram(hc)
 
-unrooted_dend <- unroot(dend, branch_becoming_root=1)
-unrooted_dend_2 <- unroot(unrooted_dend, branch_becoming_root=3)
+unbranched_dend <- unbranch(dend, branch_becoming_root=1)
+unbranched_dend_2 <- unbranch(unbranched_dend, branch_becoming_root=3)
 
 par(mfrow = c(1,3))
 plot(dend)
-plot(unrooted_dend)
-plot(unrooted_dend_2)
+plot(unbranched_dend)
+plot(unbranched_dend_2)
 
 @
 
-While the \code{unroot.hclust} method exists, it is not expected to work since \code{hclust} objects are not designed to handle non-binary trees (hence the advantage of using \code{dendrogram} objects). For \code{phylo} objects (from the \pkg{ape} package), there is also a method that would simply use \code{ape:::unroot(phy = x)}.
+While the \code{unbranch.hclust} method exists, it is not expected to work since \code{hclust} objects are not designed to handle non-binary trees (hence the advantage of using \code{dendrogram} objects). For \code{phylo} objects (from the \pkg{ape} package), there is also a method that would simply use \code{ape:::unbranch(phy = x)}.
 
 In some rare cases, we might wish to equalize the heights of root's branches. For this we can use the \code{flatten.dendrogram} function:
 
@@ -688,7 +692,7 @@ Here are several examples of how these functions are used:
 
 hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
 dend <- as.dendrogram(hc)
-unroot_dend <- unroot(dend,2)
+unbranch_dend <- unbranch(dend,2)
 
 cutree(hc, k=2:4) # on hclust
 cutree(dend, k=2:4) # on dendrogram
@@ -703,11 +707,11 @@ cutree(hc, h = c(20, 25.5, 50,170))
 cutree(dend, k=2:3, order_clusters_as_data = FALSE) 
 labels(dend)
 
-# cutree now works for unrooted trees!
-# as.hclust(unroot_dend) # ERROR - can not do this...
-cutree(unroot_dend, k = 2) # all NA's
-cutree(unroot_dend, k = 1:4)
-cutree(unroot_dend, h = c(20, 25.5, 50,170))
+# cutree now works for unbranched trees!
+# as.hclust(unbranch_dend) # ERROR - can not do this...
+cutree(unbranch_dend, k = 2) # all NA's
+cutree(unbranch_dend, k = 1:4)
+cutree(unbranch_dend, h = c(20, 25.5, 50,170))
 
 
 require(microbenchmark)
@@ -723,9 +727,9 @@ microbenchmark(
 
 # and trying to "hclust" is not expensive (which is nice...)         
 microbenchmark(
-   cutree_unroot_dend = cutree(unroot_dend, k=2:4, warn = FALSE),
-   cutree_unroot_dend_not_trying_to_hclust = 
-      cutree(unroot_dend, k=2:4, try_cutree_hclust=FALSE, warn = FALSE)
+   cutree_unbranch_dend = cutree(unbranch_dend, k=2:4, warn = FALSE),
+   cutree_unbranch_dend_not_trying_to_hclust = 
+      cutree(unbranch_dend, k=2:4, try_cutree_hclust=FALSE, warn = FALSE)
 )
 
 
@@ -737,9 +741,70 @@ Having \code{cutree.dendrogram} available to us, we can now gain the ability to 
 \subsection{Coloring branches}
 
 
-Dendrogram plots with colored branches have been available in R for many years in threads on the mailing lists and through various package. However, until recently, all of the functions in packages have always given the user a new \code{plot} function, without seperating the coloring of branches of a dendrogram from its plotting. Often the function for actually plotting the colored branched dendrogram would be hidden from the user. For example, the \pkg{labeltodendro} package \citep{CRAN:labeltodendro} gives a colored branch plot through the \code{colorplot} function, but the work horse for this is available in a hidden function called \code{dendroploth} or \code{dendroplotv}, both take care of the plotting by themselves (instead of modifying the dendrogram object, and then letting the base R function do the work). The same story happens in the \pkg{Heatplus} \citep{CRAN:Heatplus}, where the \code{plot.annHeatmap2} function actually uses the hidden function \code{cutplot.dendrogram} for doing the plotting.
+Dendrogram plots with colored branches are used to easly distinguishing between different clusters on a tree. They have been available in R for many years in threads on the mailing lists and through various package. However, until recently, all of the functions in packages have always given the user a new \code{plot} function, without seperating the coloring of branches of a dendrogram from its plotting. Often the function for actually plotting the colored branched dendrogram would be hidden from the user. For example, the \pkg{labeltodendro} package \citep{CRAN:labeltodendro} gives a colored branch plot through the \code{colorplot} function, but the work horse for this is available in a hidden function called \code{dendroploth} or \code{dendroplotv}, both take care of the plotting by themselves (instead of modifying the dendrogram object, and then letting the base R function do the work). The same story happens in the \pkg{Heatplus} \citep{CRAN:Heatplus}, where the \code{plot.annHeatmap2} function actually uses the hidden function \code{cutplot.dendrogram} for doing the plotting.
 
-This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dendroextras} package \citep{CRAN:dendroextras}, which orgranized this through the \code{colour_clusters} function. In the \pkg{dendextend} package I will mostly import his code, with some modifications. The biggest limitation in Gregory's code is that he relies on changing the \code{dendrogram} into \code{hclust} in order to use \code{cutree} on it and get the clusters. This has the advantage of being fast, but the \textbf{disadvantage} that it restricts his code to binary trees only. For this reason, I did not use his \code{slice} function, and made sure to use other functions instead.
+This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dendroextras} package \citep{CRAN:dendroextras}, which orgranized this through the \code{colour_clusters} function. In the \pkg{dendextend} package we imported his code into a new function called \code{color_branches}, with several useful modifications on the original code. The biggest limitation in the \code{colour_clusters} function is that it relies on changing the \code{dendrogram} into \code{hclust} in order to use \code{cutree} on it and get the clusters. This has the advantage of being fast, but the \textbf{disadvantage} of restricting the function to ultrametric and binary trees (the type of tree \code{hclust} objects can handle). In our implementation we implemented a new function called \code{cutree.dendrogram} (available through an S3 method), which can either relly on \code{hclust} for speed, but in case it is not possible will revert to find the clustering on the dendrogram object itself (the function is completely compatible with the base R \code{cutree} function). Also, our implementation of the \code{color_branches} function allows for repeated-multilayered coloring the branches. Another potential bug which is avoided in our implementation is to handle cases where the labels of the tree are of type Integer instead of Character (this happens if the \code{dendrogram} came from an \code{hclust}, used on the \code{dist} of data that has no \code{rownames}).
+
+Here is an example of using \code{color_branches} combined with \code{labels_colors}:
+
+<<iris_colored_branches, fig.height = 10, fig.width=7 ,fig.align='center'>>=
+require(colorspace)
+
+data(iris) 
+d_iris <- dist(iris[,-5])
+hc_iris <- hclust(d_iris)
+labels(hc_iris) # no labels, because "iris" has no row names
+dend_iris <- as.dendrogram(hc_iris)
+is.integer(labels(dend_iris)) # this could cause problems...
+
+iris_species <- rev(levels(iris[,5]))
+dend_iris <- color_branches(dend_iris,k=3, groupLabels=iris_species)
+is.character(labels(dend_iris)) # labels are no longer "integer"
+
+# have the labels match the real classification of the flowers:
+labels_colors(dend_iris) <-
+   rainbow_hcl(3)[sort_levels_values(
+      as.numeric(iris[,5])[order.dendrogram(dend_iris)]
+   )]
+
+# We'll add the flower type
+labels(dend_iris) <- paste(as.character(iris[,5])[order.dendrogram(dend_iris)],
+                           "(",labels(dend_iris),")", 
+                           sep = "")
+
+dend_iris <- hang.dendrogram(dend_iris,hang_height=0.1)
+
+# reduce the size of the labels:
+dend_iris <- assign_values_to_leaves_nodePar(dend_iris, 0.5, "lab.cex")
+
+par(mar = c(3,3,3,7))
+plot(dend_iris, 
+     main = "Clustered Iris dataset
+     (the labels give the true flower species)", 
+     horiz =  TRUE,  nodePar = list(cex = .007))
+legend("topleft", legend = iris_species, fill = rainbow_hcl(3))
+
+@
+
+This simple visualization easily demonstrates how the seperation of the heirarchical clustering is very good with the "setosa" sepcies, but misses in labeling many "versicolor" species as "virginica".
+
+The hanging of the tree also helps to locate extreme observations. For example, we can see that observation "virginica (107)" is not very similar to the Versicolor species, but still, it is amoung them. Also, "Versicolor (71)" is too much "within" the Virginica bush, and it is a wonder why that is.  Of course, the Iris dataset is very well known, and simpler pairs plot often help to locate such problems, yet - dendrogram trees (with all of their limitations) can help gain insights for very high-dimensional data where a simple pairs plot is not possible.
+
+Here is the similar pairs plot. Notice the filled red and green dots, corrosponding with the extreme observations we have noticed in the dendrogram. Petal.Length vs Petal.Width gives the best example of why the green dot is an outlier. Whereas most plots show why the red dot is an outlier. There are of course other outliers, and a problem with classification, which we will not go futher into.
+
+<<iris_colored_pairs_plot, fig.height = 9, fig.width=9>>=
+require(colorspace)
+
+species_col <- rev(rainbow_hcl(3))[as.numeric(iris[,5])]
+# species_col[c(107,71)] <- "red" # highlight the two extreme cases we mentioned
+species_pch <- rep(1, length(species_col))
+species_pch[c(107,71)] <- 19 # highlight the two extreme cases we mentioned
+
+pairs(iris[,-5],
+   col = species_col, pch=species_pch)
+
+
+@
 
 
 

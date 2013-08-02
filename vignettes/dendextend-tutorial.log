@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  31 JUL 2013 23:50
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  2 AUG 2013 23:23
 entering extended mode
 **dendextend-tutorial.tex
 
@@ -371,27 +371,27 @@ nd.
 )
 ("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
 ial.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 130.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 130.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 129.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 129.
 
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
 
 (C:\Users\Tal\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -408,7 +408,7 @@ LaTeX Font Info:    ... okay on input line 130.
 \everyMPtoPDFconversion=\toks16
 )
 \AtBeginShipoutBox=\box28
-Package hyperref Info: Link coloring ON on input line 130.
+Package hyperref Info: Link coloring ON on input line 129.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
@@ -417,9 +417,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count112
 )
-LaTeX Info: Redefining \ref on input line 130.
-LaTeX Info: Redefining \pageref on input line 130.
-LaTeX Info: Redefining \nameref on input line 130.
+LaTeX Info: Redefining \ref on input line 129.
+LaTeX Info: Redefining \pageref on input line 129.
+LaTeX Info: Redefining \nameref on input line 129.
 
 ("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
 ial.out")
@@ -1148,7 +1148,7 @@ Runaway text?
 ! File ended while scanning text of \B_Subsection.1.0.The .
 <inserted text> 
                 }
-l.130 \begin{document}
+l.129 \begin{document}
                       
 I suspect you have forgotten a `}', causing me
 to read past where you wanted me to stop.
@@ -1156,98 +1156,92 @@ I'll try to recover; but if the error is serious,
 you'd better type `E' or `X' now and fix your file.
 
 \@outlinefile=\write4
-LaTeX Font Info:    Try loading font information for T1+aess on input line 130.
+LaTeX Font Info:    Try loading font information for T1+aess on input line 129.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aess.fd"
 File: t1aess.fd 1997/11/16 Font definitions for T1/aess.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 130.
+(Font)              <10.95> on input line 129.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 130.
+(Font)              <8> on input line 129.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 130.
+(Font)              <6> on input line 129.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 139.
+(hyperref)                removing `\catcode' on input line 138.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 139.
+(hyperref)                removing `\catcode' on input line 138.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 139.
+(hyperref)                removing `\catcode' on input line 138.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\hyphenchar' on input line 139.
+(hyperref)                removing `\hyphenchar' on input line 138.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\font' on input line 139.
+(hyperref)                removing `\font' on input line 138.
 
 
 Package hyperref Warning: Composite letter `\texttilde+1'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\texttilde' on input line 139.
+(hyperref)                removing `\texttilde' on input line 138.
 
-LaTeX Font Info:    Try loading font information for T1+aett on input line 139.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 138.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-Package color Info: Redefining color shadecolor on input line 148.
+Package color Info: Redefining color shadecolor on input line 147.
 
 
 LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
-(Font)              using `T1/aett/m/n' instead on input line 150.
+(Font)              using `T1/aett/m/n' instead on input line 149.
 
 [1
 
 {C:/Users/Tal/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Package color Info: Redefining color shadecolor on input line 170.
+Package color Info: Redefining color shadecolor on input line 173.
 
-Overfull \hbox (4.89291pt too wide) in paragraph at lines 186--186
+Overfull \hbox (4.89291pt too wide) in paragraph at lines 189--189
 []\T1/aett/bx/n/10.95 hc <- []hclust[]([]dist[](US_data), []"ave"[])  # create 
 an heirarchical clustering object[] 
  []
 
-Package color Info: Redefining color shadecolor on input line 197.
-LaTeX Font Info:    Try loading font information for TS1+aett on input line 203
+Package color Info: Redefining color shadecolor on input line 200.
+LaTeX Font Info:    Try loading font information for TS1+aett on input line 206
 .
 (D:/R/R-30~1.1/share/texmf/tex/latex\ts1aett.fd
 File: ts1aett.fd 
 )
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 203
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 206
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd"
 File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `TS1/aett/m/n' in size <10.95> not available
-(Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 203.
-
-<figure/unnamed-chunk-4.pdf, id=32, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-4.pdf Graphic file (type pdf)
-
-<use figure/unnamed-chunk-4.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-4.pdf used on input line 237.
-(pdftex.def)             Requested size: 289.08589pt x 289.08589pt.
+(Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 206.
 LaTeX Font Info:    Font shape `T1/aer/b/sl' in size <10.95> not available
-(Font)              Font shape `T1/aer/bx/sl' tried instead on input line 246.
+(Font)              Font shape `T1/aer/bx/sl' tried instead on input line 238.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 2 []
  []
 
-[2]
-Package color Info: Redefining color shadecolor on input line 249.
-Package color Info: Redefining color shadecolor on input line 276.
+[2] <figure/unnamed-chunk-4.pdf, id=40, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-4.pdf Graphic file (type pdf)
 
-Underfull \vbox (badness 1028) has occurred while \output is active []
-
+<use figure/unnamed-chunk-4.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-4.pdf used on input line 240.
+(pdftex.def)             Requested size: 289.08589pt x 289.08589pt.
+Package color Info: Redefining color shadecolor on input line 252.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 3
@@ -1255,49 +1249,45 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [3 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unnamed
 -chunk-4.pdf>]
-Package color Info: Redefining color shadecolor on input line 321.
-Package color Info: Redefining color shadecolor on input line 339.
+Package color Info: Redefining color shadecolor on input line 279.
+Package color Info: Redefining color shadecolor on input line 324.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 4 []
  []
 
 [4]
-Overfull \hbox (22.10625pt too wide) in paragraph at lines 359--359
+Package color Info: Redefining color shadecolor on input line 342.
+
+Overfull \hbox (22.10625pt too wide) in paragraph at lines 362--362
 [][]\T1/aett/bx/n/10.95 class[]([]unclass_dend[](dend_from_dendrapply)[[2]])  [
 ]# the new uncless_dend solves it.[][] 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 370.
+(hyperref)                removing `\catcode' on input line 373.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 370.
+(hyperref)                removing `\catcode' on input line 373.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 370.
+(hyperref)                removing `\catcode' on input line 373.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\hyphenchar' on input line 370.
+(hyperref)                removing `\hyphenchar' on input line 373.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\font' on input line 370.
+(hyperref)                removing `\font' on input line 373.
 
 
 Package hyperref Warning: Composite letter `\texttilde+1'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\texttilde' on input line 370.
-
-
-Overfull \hbox (17.29413pt too wide) in paragraph at lines 401--402
-[]\T1/aer/m/n/10.95 This vi-gnettes Pro-vides a step-by-step de-scrip-tion of t
-he func-tion-al-ity pro-vided by the \T1/aett/bx/n/10.95 dendextend
- []
+(hyperref)                removing `\texttilde' on input line 373.
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
@@ -1305,82 +1295,88 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
  []
 
 [5]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 404.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 404.
+Overfull \hbox (17.29413pt too wide) in paragraph at lines 404--405
+[]\T1/aer/m/n/10.95 This vi-gnettes Pro-vides a step-by-step de-scrip-tion of t
+he func-tion-al-ity pro-vided by the \T1/aett/bx/n/10.95 dendextend
+ []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\catcode' on input line 404.
+(hyperref)                removing `\catcode' on input line 407.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\hyphenchar' on input line 404.
+(hyperref)                removing `\catcode' on input line 407.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\font' on input line 404.
+(hyperref)                removing `\catcode' on input line 407.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\hyphenchar' on input line 407.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\font' on input line 407.
 
 
 Package hyperref Warning: Composite letter `\texttilde+1'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\texttilde' on input line 404.
+(hyperref)                removing `\texttilde' on input line 407.
 
-Package color Info: Redefining color shadecolor on input line 409.
-Package color Info: Redefining color shadecolor on input line 421.
-Package color Info: Redefining color shadecolor on input line 449.
-Package color Info: Redefining color shadecolor on input line 470.
+Package color Info: Redefining color shadecolor on input line 412.
+Package color Info: Redefining color shadecolor on input line 424.
+Package color Info: Redefining color shadecolor on input line 452.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 6 []
  []
 
 [6]
-Package color Info: Redefining color shadecolor on input line 494.
-Package color Info: Redefining color shadecolor on input line 521.
+Package color Info: Redefining color shadecolor on input line 473.
+Package color Info: Redefining color shadecolor on input line 497.
+Package color Info: Redefining color shadecolor on input line 524.
 
-Overfull \hbox (16.36847pt too wide) in paragraph at lines 530--530
+Overfull \hbox (16.36847pt too wide) in paragraph at lines 533--533
 [][]\T1/aett/bx/n/10.95 labels[](dend) <- []sample[]([]labels[](dend))  []# lab
 els assingment - thanks to dendextend[][] 
  []
 
-Package color Info: Redefining color shadecolor on input line 546.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 7
  []
 
 [7]
-Overfull \hbox (16.36847pt too wide) in paragraph at lines 555--555
+Package color Info: Redefining color shadecolor on input line 549.
+
+Overfull \hbox (16.36847pt too wide) in paragraph at lines 558--558
 [][]\T1/aett/bx/n/10.95 labels[](hc, order = FALSE)  []# this is the order of t
 he rows of the original data.[][] 
  []
 
-Package color Info: Redefining color shadecolor on input line 578.
+Package color Info: Redefining color shadecolor on input line 581.
 
-Overfull \hbox (33.5818pt too wide) in paragraph at lines 590--590
+Overfull \hbox (33.5818pt too wide) in paragraph at lines 593--593
 []\T1/aett/bx/n/10.95 ## Warning: The lengths of the new labels is shorter than
  the length of the object
  []
 
 
-Overfull \hbox (10.63069pt too wide) in paragraph at lines 601--601
+Overfull \hbox (10.63069pt too wide) in paragraph at lines 604--604
 []\T1/aett/bx/n/10.95 ## Warning: The lengths of the new labels is shorter than
  the number of leaves
  []
 
 
-Overfull \hbox (10.63069pt too wide) in paragraph at lines 612--612
+Overfull \hbox (10.63069pt too wide) in paragraph at lines 615--615
 []\T1/aett/bx/n/10.95 ## Warning: The lengths of the new labels is shorter than
  the number of leaves
  []
 
 
-Overfull \hbox (45.05736pt too wide) in paragraph at lines 623--623
+Overfull \hbox (45.05736pt too wide) in paragraph at lines 626--626
 []\T1/aett/bx/n/10.95 ## Warning: The lengths of the new labels is shorter than
  the length of the object's
  []
@@ -1391,41 +1387,40 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
  []
 
 [8]
-Package color Info: Redefining color shadecolor on input line 641.
-Package color Info: Redefining color shadecolor on input line 661.
+Package color Info: Redefining color shadecolor on input line 644.
+Package color Info: Redefining color shadecolor on input line 664.
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 9
  []
 
 [9]
-Package color Info: Redefining color shadecolor on input line 688.
+Package color Info: Redefining color shadecolor on input line 694.
 
-Overfull \hbox (27.84402pt too wide) in paragraph at lines 709--709
+Overfull \hbox (27.84402pt too wide) in paragraph at lines 715--715
 [][]\T1/aett/bx/n/10.95 plot[](dend, main = []"This is considered a tree \n wit
 h THREE terminal nodes/leaves"[])[] 
  []
 
 
-Overfull \hbox (4.89291pt too wide) in paragraph at lines 731--731
+Overfull \hbox (4.89291pt too wide) in paragraph at lines 737--737
 [][]\T1/aett/bx/n/10.95 plot[](dend, main = []"This is considered a tree \n wit
 h TWO terminal nodes only"[])[] 
  []
 
-<figure/unnamed-chunk-19.pdf, id=125, 505.89pt x 216.81pt>
-File: figure/unnamed-chunk-19.pdf Graphic file (type pdf)
-
-<use figure/unnamed-chunk-19.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-19.pdf used on input line 735.
-(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 10 []
  []
 
-[10]
-Package color Info: Redefining color shadecolor on input line 750.
-Package color Info: Redefining color shadecolor on input line 779.
+[10] <figure/unnamed-chunk-19.pdf, id=129, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-19.pdf Graphic file (type pdf)
+
+<use figure/unnamed-chunk-19.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-19.pdf used on input line 741.
+(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
+Package color Info: Redefining color shadecolor on input line 756.
+Package color Info: Redefining color shadecolor on input line 785.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 11
@@ -1438,12 +1433,9 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [12]
-Package color Info: Redefining color shadecolor on input line 914.
+Package color Info: Redefining color shadecolor on input line 920.
 
-Overfull \hbox (56.53291pt too wide) in paragraph at lines 924--924
-[]    \T1/aett/bx/n/10.95 get_nodes_attr_4members = []get_nodes_attr[](dend, []
-"members"[], include_branches = FALSE,[] 
- []
+Underfull \vbox (badness 1424) has occurred while \output is active []
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1451,48 +1443,51 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [13]
-Package color Info: Redefining color shadecolor on input line 953.
- <figure/unnamed-chunk-23.pdf, id=154, 505.89pt x 216.81pt>
-File: figure/unnamed-chunk-23.pdf Graphic file (type pdf)
-
-<use figure/unnamed-chunk-23.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-23.pdf used on input line 991.
-(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
+Package color Info: Redefining color shadecolor on input line 958.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 14 []
  []
 
-[14]
-Package color Info: Redefining color shadecolor on input line 1006.
- <figure/unnamed-chunk-24.pdf, id=163, 505.89pt x 216.81pt>
+[14] <figure/unnamed-chunk-23.pdf, id=161, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-23.pdf Graphic file (type pdf)
+
+<use figure/unnamed-chunk-23.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-23.pdf used on input line 996.
+(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
+
+Overfull \hbox (35.96501pt too wide) in paragraph at lines 1007--1008
+\T1/aer/m/n/10.95 branch-ing can be done us-ing the \T1/aett/bx/n/10.95 unbranc
+h \T1/aer/m/n/10.95 (S3) func-tion (no-tice the use of the \T1/aett/bx/n/10.95 
+branch_becoming_root
+ []
+
+Package color Info: Redefining color shadecolor on input line 1011.
+<figure/unnamed-chunk-24.pdf, id=162, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-24.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-24.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-24.pdf used on input line 1022.
+Package pdftex.def Info: figure/unnamed-chunk-24.pdf used on input line 1027.
 (pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 15
  []
 
 [15 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-23.pdf> <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/f
-igure/unnamed-chunk-24.pdf>]
-Package color Info: Redefining color shadecolor on input line 1037.
-
-<figure/unnamed-chunk-25.pdf, id=179, 505.89pt x 216.81pt>
+d-chunk-23.pdf>]
+Package color Info: Redefining color shadecolor on input line 1042.
+ <figure/unnamed-chunk-25.pdf, id=173, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-25.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-25.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-25.pdf used on input line 1056.
+Package pdftex.def Info: figure/unnamed-chunk-25.pdf used on input line 1061.
 (pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
-Package color Info: Redefining color shadecolor on input line 1073.
 
-Overfull \hbox (27.84402pt too wide) in paragraph at lines 1111--1111
-[]\T1/aett/bx/n/10.95 ## Warning: Length of color vector was shorter then the n
-umber of leaves - vector
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1500,27 +1495,33 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [16 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-25.pdf>] <figure/unnamed-chunk-26.pdf, id=192, 505.89pt x 216.81pt>
-File: figure/unnamed-chunk-26.pdf Graphic file (type pdf)
+d-chunk-24.pdf>]
+Package color Info: Redefining color shadecolor on input line 1078.
 
-<use figure/unnamed-chunk-26.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-26.pdf used on input line 1123.
-(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \hbox (27.84402pt too wide) in paragraph at lines 1116--1116
+[]\T1/aett/bx/n/10.95 ## Warning: Length of color vector was shorter than the n
+umber of leaves - vector
+ []
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 17
  []
 
-[17]
-Overfull \hbox (27.84402pt too wide) in paragraph at lines 1136--1137
-[]\T1/aett/bx/n/10.95 ## Warning: Length of color vector was shorter then the n
+[17 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
+d-chunk-25.pdf>] <figure/unnamed-chunk-26.pdf, id=196, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-26.pdf Graphic file (type pdf)
+
+<use figure/unnamed-chunk-26.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-26.pdf used on input line 1128.
+(pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
+
+Overfull \hbox (27.84402pt too wide) in paragraph at lines 1141--1142
+[]\T1/aett/bx/n/10.95 ## Warning: Length of color vector was shorter than the n
 umber of leaves - vector
  []
 
-Package color Info: Redefining color shadecolor on input line 1157.
+Package color Info: Redefining color shadecolor on input line 1162.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 18 []
@@ -1531,9 +1532,9 @@ d-chunk-26.pdf>] <figure/unnamed-chunk-27.pdf, id=208, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-27.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-27.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-27.pdf used on input line 1181.
+Package pdftex.def Info: figure/unnamed-chunk-27.pdf used on input line 1186.
 (pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
-Package color Info: Redefining color shadecolor on input line 1197.
+Package color Info: Redefining color shadecolor on input line 1202.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 19
@@ -1544,32 +1545,23 @@ d-chunk-27.pdf>] <figure/unnamed-chunk-28.pdf, id=222, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-28.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-28.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-28.pdf used on input line 1248.
+Package pdftex.def Info: figure/unnamed-chunk-28.pdf used on input line 1256.
 (pdftex.def)             Requested size: 442.65375pt x 189.71158pt.
-Package color Info: Redefining color shadecolor on input line 1261.
 
-Overfull \hbox (10.63069pt too wide) in paragraph at lines 1283--1283
-[][]\T1/aett/bx/n/10.95 plot[](trimmed_dend_2, main = []"Trimmed tree - complet
-e method"[], ylim = []c[](0, 110))[] 
- []
-
-
-Overfull \hbox (16.36847pt too wide) in paragraph at lines 1284--1284
-[][]\T1/aett/bx/n/10.95 plot[](dends_12[[1]], main = []"Intersected tree - sing
-le method"[], ylim = []c[](0, 110))[] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 20 []
  []
 
-[20 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
-d-chunk-28.pdf>] <figure/unnamed-chunk-29.pdf, id=233, 505.89pt x 505.89pt>
+[20]
+Package color Info: Redefining color shadecolor on input line 1269.
+ <figure/unnamed-chunk-29.pdf, id=227, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-29.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-29.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-29.pdf used on input line 1290.
+Package pdftex.def Info: figure/unnamed-chunk-29.pdf used on input line 1301.
 (pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1579,22 +1571,23 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 21
  []
 
-[21]
+[21 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
+d-chunk-28.pdf>]
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 22 []
  []
 
 [22 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
 d-chunk-29.pdf>]
-Package color Info: Redefining color shadecolor on input line 1327.
+Package color Info: Redefining color shadecolor on input line 1338.
 
-Overfull \hbox (136.8618pt too wide) in paragraph at lines 1339--1339
+Overfull \hbox (136.8618pt too wide) in paragraph at lines 1351--1351
 [][]\T1/aett/bx/n/10.95 plot[]([]rotate[](dend, []c[](2:5, 1)), main = []"Rotat
 es the left most leaf \n into the right side of the tree"[])[] 
  []
 
 
-Overfull \hbox (245.87958pt too wide) in paragraph at lines 1341--1341
+Overfull \hbox (245.87958pt too wide) in paragraph at lines 1353--1353
 [][]\T1/aett/bx/n/10.95 plot[]([]sort[](dend), main = []"Sorts the labels by al
 phabetical order \n\nand rotates the tree to give the best fit possible"[])[] 
  []
@@ -1603,7 +1596,7 @@ phabetical order \n\nand rotates the tree to give the best fit possible"[])[]
 File: figure/unnamed-chunk-30.pdf Graphic file (type pdf)
 
 <use figure/unnamed-chunk-30.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-30.pdf used on input line 1345.
+Package pdftex.def Info: figure/unnamed-chunk-30.pdf used on input line 1357.
 (pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1620,35 +1613,23 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [24 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/unname
 d-chunk-30.pdf>]
-Package color Info: Redefining color shadecolor on input line 1368.
+Package color Info: Redefining color shadecolor on input line 1380.
 
-Overfull \hbox (10.63069pt too wide) in paragraph at lines 1458--1458
+Overfull \hbox (10.63069pt too wide) in paragraph at lines 1471--1471
 []\T1/aett/bx/n/10.95 ## Warning: You (probably) have some branches with equal 
 heights so that there
  []
 
 
-Overfull \hbox (10.63069pt too wide) in paragraph at lines 1468--1468
+Overfull \hbox (10.63069pt too wide) in paragraph at lines 1481--1481
 []\T1/aett/bx/n/10.95 ## Warning: You (probably) have some branches with equal 
 heights so that there
  []
 
 
-Overfull \hbox (27.84402pt too wide) in paragraph at lines 1492--1492
-[][]\T1/aett/bx/n/10.95 microbenchmark[]([]cutree[](hc, k = 2:4), []cutree[]([]
-as.hclust[](dend), k = 2:4), []cutree[](dend,[] 
- []
-
-
-Overfull \hbox (10.63069pt too wide) in paragraph at lines 1513--1513
-[][]\T1/aett/bx/n/10.95 microbenchmark[](cutree_unroot_dend = []cutree[](unroot
-_dend, k = 2:4, warn = FALSE),[] 
- []
-
-
-Overfull \hbox (136.8618pt too wide) in paragraph at lines 1514--1514
-[]    \T1/aett/bx/n/10.95 cutree_unroot_dend_not_trying_to_hclust = []cutree[](
-unroot_dend, k = 2:4, try_cutree_hclust = FALSE,[] 
+Overfull \hbox (39.31958pt too wide) in paragraph at lines 1529--1529
+[]    \T1/aett/bx/n/10.95 warn = FALSE), cutree_unbranch_dend_not_trying_to_hcl
+ust = []cutree[](unbranch_dend,[] 
  []
 
 
@@ -1667,47 +1648,129 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [27]
+Package color Info: Redefining color shadecolor on input line 1561.
+
+Overfull \hbox (10.63069pt too wide) in paragraph at lines 1593--1593
+[][]\T1/aett/bx/n/10.95 labels_colors[](dend_iris) <- []rainbow_hcl[](3)[[]sort
+_levels_values[]([]as.numeric[](iris[,[] 
+ []
+
+
+Overfull \hbox (16.36847pt too wide) in paragraph at lines 1597--1597
+[][]\T1/aett/bx/n/10.95 labels[](dend_iris) <- []paste[]([]as.character[](iris[
+, 5])[[]order.dendrogram[](dend_iris)],[] 
+ []
+
+
+Overfull \hbox (27.84402pt too wide) in paragraph at lines 1608--1608
+[]\T1/aett/bx/n/10.95 ## Warning: Length of value vector was shorter than the n
+umber of leaves - vector
+ []
+
+
+Overfull \hbox (79.48402pt too wide) in paragraph at lines 1611--1611
+[][]\T1/aett/bx/n/10.95 plot[](dend_iris, main = []"Clustered Iris dataset\[]n[
+](the labels give the true flower species)"[],[] 
+ []
+
+
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 28 []
  []
 
-[28]
-("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
-ial.bbl")
-Underfull \hbox (badness 10000) in paragraph at lines 1730--1730
+[28] <figure/iris_colored_branches.pdf, id=294, 505.89pt x 722.7pt>
+File: figure/iris_colored_branches.pdf Graphic file (type pdf)
 
- []
+<use figure/iris_colored_branches.pdf>
+Package pdftex.def Info: figure/iris_colored_branches.pdf used on input line 16
+17.
+(pdftex.def)             Requested size: 442.65375pt x 632.37196pt.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1730.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 29
  []
 
 [29]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1730.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 30 []
+ []
+
+[30 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/iris_c
+olored_branches.pdf>]
+Package color Info: Redefining color shadecolor on input line 1633.
+
+<figure/iris_colored_pairs_plot.pdf, id=309, 650.43pt x 650.43pt>
+File: figure/iris_colored_pairs_plot.pdf Graphic file (type pdf)
+
+<use figure/iris_colored_pairs_plot.pdf>
+Package pdftex.def Info: figure/iris_colored_pairs_plot.pdf used on input line 
+1647.
+(pdftex.def)             Requested size: 442.65375pt x 442.66368pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 31
+ []
+
+[31]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 32 []
+ []
+
+[32 <D:/Dropbox/aaaa good R code/My packages/dendextend/vignettes/figure/iris_c
+olored_pairs_plot.pdf>]
+("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
+ial.bbl"
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 33
+ []
+
+[33])
+Underfull \hbox (badness 10000) in paragraph at lines 1846--1846
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1846.
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 34 []
+ []
+
+[34]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1846.
 
 ("D:\Dropbox\aaaa good R code\My packages\dendextend\vignettes\dendextend-tutor
 ial.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1730.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1730.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1846.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1846.
 
 Package rerunfilecheck Info: File `dendextend-tutorial.out' has not changed.
-(rerunfilecheck)             Checksum: 3E5BB83EC4C49457DA44A7756C8FB815;4044.
+(rerunfilecheck)             Checksum: 9A66624CBFF72573572B287E60AA11D4;4048.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1730.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1846.
  ) 
 Here is how much of TeX's memory you used:
- 6948 strings out of 494045
- 105881 string characters out of 3145976
- 307272 words of memory out of 3000000
- 9991 multiletter control sequences out of 15000+200000
+ 6963 strings out of 494045
+ 106274 string characters out of 3145976
+ 307276 words of memory out of 3000000
+ 9999 multiletter control sequences out of 15000+200000
  49643 words of font info for 89 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 36i,9n,34p,1068b,363s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,9n,34p,1513b,473s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Subsection.1.0.The\040\\bgroup\040\\catcode\040`\
 \protect\040\\T1\\textunderscore\04012\\relax\040\\catcode\040`\\unhbox\040\\vo
 idb@x\040\\bgroup\040\\let\040\\unhbox\040\\voidb@x\040\\setbox\040\\@tempboxa\
@@ -1737,9 +1800,9 @@ gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Prog
 ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program 
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dendextend-tutorial.pdf (29 pages, 416660 bytes).
+Output written on dendextend-tutorial.pdf (34 pages, 512874 bytes).
 PDF statistics:
- 395 PDF objects out of 1000 (max. 8388607)
- 105 named destinations out of 1000 (max. 500000)
- 67 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 432 PDF objects out of 1000 (max. 8388607)
+ 110 named destinations out of 1000 (max. 500000)
+ 77 words of extra memory for PDF output out of 10000 (max. 10000000)
 

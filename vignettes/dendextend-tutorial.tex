@@ -10,7 +10,6 @@
 
 
 
-
 %% use JSS class -- use 'nojss' to turn off header
 \documentclass[shortnames,nojss,article]{jss}\usepackage{graphicx, color}
 %% maxwidth is the original width if it is less than linewidth
@@ -150,13 +149,17 @@ Dendrogram has several useful methods bundled with R:
 \hlfunctioncall{methods}(class = \hlstring{"dendrogram"})
 \end{alltt}
 \begin{verbatim}
-##  [1] [[.dendrogram*         as.hclust.dendrogram*  cophenetic.dendrogram*
-##  [4] cut.dendrogram*        cutree.dendrogram      head.dendrogram*      
-##  [7] labels.dendrogram*     labels<-.dendrogram*   merge.dendrogram*     
-## [10] nleaves.dendrogram*    nnodes.dendrogram*     plot.dendrogram*      
-## [13] print.dendrogram*      reorder.dendrogram*    rev.dendrogram*       
-## [16] rotate.dendrogram*     sort.dendrogram*       str.dendrogram*       
-## [19] trim.dendrogram*       unroot.dendrogram*    
+##  [1] [[.dendrogram*         as.hclust.dendrogram* 
+##  [3] as.phylo.dendrogram    cophenetic.dendrogram*
+##  [5] cut.dendrogram*        cutree.dendrogram     
+##  [7] head.dendrogram*       labels.dendrogram*    
+##  [9] labels<-.dendrogram    merge.dendrogram*     
+## [11] nleaves.dendrogram*    nnodes.dendrogram*    
+## [13] plot.dendrogram*       print.dendrogram*     
+## [15] reorder.dendrogram*    rev.dendrogram*       
+## [17] rotate.dendrogram*     sort.dendrogram*      
+## [19] str.dendrogram*        trim.dendrogram*      
+## [21] unbranch.dendrogram*  
 ## 
 ##    Non-visible functions are asterisked
 \end{verbatim}
@@ -254,8 +257,8 @@ You might notice how the order of the items (leaves/terminal nodes) of the dendr
 ## [1] 4 1 2 3
 \end{verbatim}
 \begin{alltt}
-\hlcomment{# the order of the original items to have them be at the same order as}
-\hlcomment{# they assume in the dendrogram}
+\hlcomment{# the order of the original items to have them be at the}
+\hlcomment{# same order as they assume in the dendrogram}
 \hlfunctioncall{print}(US_data[new_order, ])
 \end{alltt}
 \begin{verbatim}
@@ -342,8 +345,8 @@ One current "feature" with this function is that just sending a dendrogram throu
 itself <- \hlfunctioncall{function}(x) x
 dend_from_dendrapply <- \hlfunctioncall{dendrapply}(dend, itself)
 
-\hlcomment{# here we must first use unclass since '[[]]' inherits its class to the}
-\hlcomment{# output:}
+\hlcomment{# here we must first use unclass since '[[]]' inherits its}
+\hlcomment{# class to the output:}
 \hlfunctioncall{class}(\hlfunctioncall{unclass}(dend)[[2]])
 \end{alltt}
 \begin{verbatim}
@@ -665,18 +668,21 @@ For dendrograms the speed improvement is about 10 times using \code{labels}, whe
 \end{alltt}
 \begin{verbatim}
 ## Unit: microseconds
-##                  expr    min     lq median     uq   max neval
-##         nleaves(dend)  23.52  25.76  28.28  30.52 288.4   100
-##  length(labels(dend)) 374.59 382.15 395.59 421.62 810.2   100
+##                  expr    min     lq median    uq   max
+##         nleaves(dend)  24.08  26.04  27.16  30.8 132.7
+##  length(labels(dend)) 390.83 394.19 400.35 418.0 535.9
+##  neval
+##    100
+##    100
 \end{verbatim}
 \begin{alltt}
 \hlfunctioncall{microbenchmark}(\hlfunctioncall{nleaves}(hc), \hlfunctioncall{length}(\hlfunctioncall{labels}(hc)))
 \end{alltt}
 \begin{verbatim}
 ## Unit: microseconds
-##                expr   min    lq median    uq   max neval
-##         nleaves(hc) 16.80 17.36  18.20 19.04  30.8   100
-##  length(labels(hc)) 29.68 30.80  31.36 31.36 127.7   100
+##                expr   min    lq median    uq    max neval
+##         nleaves(hc) 17.92 18.48  19.04 19.60  31.92   100
+##  length(labels(hc)) 30.80 31.36  31.92 31.92 131.59   100
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -726,8 +732,8 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 ## [1] 2
 \end{verbatim}
 \begin{alltt}
-\hlcomment{# while we have 3 leaves, in practice we have only 2 terminal nodes (this}
-\hlcomment{# is a feature, not a bug.)}
+\hlcomment{# while we have 3 leaves, in practice we have only 2}
+\hlcomment{# terminal nodes (this is a feature, not a bug.)}
 \hlfunctioncall{plot}(dend, main = \hlstring{"This is considered a tree \textbackslash{}n with TWO terminal nodes only"})
 \end{alltt}
 \end{kframe}
@@ -915,20 +921,19 @@ Quick comparison on fetching leaves attributes:
 \begin{alltt}
 
 \hlfunctioncall{require}(microbenchmark)
-\end{alltt}
-
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: microbenchmark}}\begin{alltt}
 \hlcomment{# get_leaves_attr is twice faster than get_nodes_attr}
-\hlfunctioncall{microbenchmark}(get_leaves_attr_4members = \hlfunctioncall{get_leaves_attr}(dend, \hlstring{"members"}), 
-    get_nodes_attr_4members = \hlfunctioncall{get_nodes_attr}(dend, \hlstring{"members"}, include_branches = FALSE, 
-        na.rm = TRUE))
+\hlfunctioncall{microbenchmark}(get_leaves_attr_4members = \hlfunctioncall{get_leaves_attr}(dend, 
+    \hlstring{"members"}), get_nodes_attr_4members = \hlfunctioncall{get_nodes_attr}(dend, 
+    \hlstring{"members"}, include_branches = FALSE, na.rm = TRUE))
 \end{alltt}
 \begin{verbatim}
 ## Unit: microseconds
-##                      expr   min    lq median    uq    max neval
-##  get_leaves_attr_4members 282.2 285.8  293.7 318.3 2501.8   100
-##   get_nodes_attr_4members 693.8 707.5  743.3 779.7  984.9   100
+##                      expr   min    lq median    uq  max
+##  get_leaves_attr_4members 288.9 296.5  309.1 327.6 3543
+##   get_nodes_attr_4members 707.8 720.4  745.0 789.2 3127
+##  neval
+##    100
+##    100
 \end{verbatim}
 \begin{alltt}
 
@@ -945,7 +950,7 @@ Quick comparison on fetching leaves attributes:
 
 \section{Tree manipulation}
 
-\subsection{Unrooting and root height}
+\subsection{unbranching and root height}
 
 A tree's nodes has various heights. Sometimes we are interested in changing the height of the entire tree. It is useful when This can be accomplished using \code{raise.dendrogram}. For example (notice how the entire tree's height is changed):
 
@@ -999,7 +1004,7 @@ shorter_dend <- \hlfunctioncall{raise.dendrogram}(dend, -10)
 
 
 
-Sometimes we wish to "unroot" the dendrogram, meaning that we merge one of the tree's branches with its root. This is useful, for example, when merging phylogenetic trees from several families, and being unwilling to assume a specific root to the merged trees. Unrooting can be done using the \code{unroot} (S3) function (notice the use of the \code{branch_becoming_root} parameter):
+Sometimes we wish to "unbranch" the dendrogram, meaning that we merge one of the tree's branches with its root. This is useful, for example, when merging phylogenetic trees from several families, and being unwilling to assume a specific root/height to the merged trees. unbranching can be done using the \code{unbranch} (S3) function (notice the use of the \code{branch_becoming_root} parameter):
 
 
 \begin{knitrout}
@@ -1009,13 +1014,13 @@ Sometimes we wish to "unroot" the dendrogram, meaning that we merge one of the t
 hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[10:13, ]), \hlstring{"ward"})
 dend <- \hlfunctioncall{as.dendrogram}(hc)
 
-unrooted_dend <- \hlfunctioncall{unroot}(dend, branch_becoming_root = 1)
-unrooted_dend_2 <- \hlfunctioncall{unroot}(unrooted_dend, branch_becoming_root = 3)
+unbranched_dend <- \hlfunctioncall{unbranch}(dend, branch_becoming_root = 1)
+unbranched_dend_2 <- \hlfunctioncall{unbranch}(unbranched_dend, branch_becoming_root = 3)
 
 \hlfunctioncall{par}(mfrow = \hlfunctioncall{c}(1, 3))
 \hlfunctioncall{plot}(dend)
-\hlfunctioncall{plot}(unrooted_dend)
-\hlfunctioncall{plot}(unrooted_dend_2)
+\hlfunctioncall{plot}(unbranched_dend)
+\hlfunctioncall{plot}(unbranched_dend_2)
 \end{alltt}
 \end{kframe}
 
@@ -1028,7 +1033,7 @@ unrooted_dend_2 <- \hlfunctioncall{unroot}(unrooted_dend, branch_becoming_root =
 \end{knitrout}
 
 
-While the \code{unroot.hclust} method exists, it is not expected to work since \code{hclust} objects are not designed to handle non-binary trees (hence the advantage of using \code{dendrogram} objects). For \code{phylo} objects (from the \pkg{ape} package), there is also a method that would simply use \code{ape:::unroot(phy = x)}.
+While the \code{unbranch.hclust} method exists, it is not expected to work since \code{hclust} objects are not designed to handle non-binary trees (hence the advantage of using \code{dendrogram} objects). For \code{phylo} objects (from the \pkg{ape} package), there is also a method that would simply use \code{ape:::unbranch(phy = x)}.
 
 In some rare cases, we might wish to equalize the heights of root's branches. For this we can use the \code{flatten.dendrogram} function:
 
@@ -1108,7 +1113,7 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 \end{alltt}
 
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Length of color vector was shorter then the number of leaves - vector color recycled}}\begin{alltt}
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Length of color vector was shorter than the number of leaves - vector color recycled}}\begin{alltt}
 \hlfunctioncall{labels_colors}(dend)
 \end{alltt}
 \begin{verbatim}
@@ -1127,13 +1132,13 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 
 \begin{kframe}\begin{alltt}
 
-\hlcomment{# removing color (and the nodePar completely - if it has no other}
-\hlcomment{# attributed but lab.col)}
+\hlcomment{# removing color (and the nodePar completely - if it has no}
+\hlcomment{# other attributed but lab.col)}
 \hlfunctioncall{labels_colors}(dend) <- NULL
 \end{alltt}
 
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Length of color vector was shorter then the number of leaves - vector color recycled}}
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Length of color vector was shorter than the number of leaves - vector color recycled}}
 
 {\ttfamily\noindent\color{warningcolor}{\#\# Warning: 'x' is NULL so the result will be NULL}}\begin{alltt}
 \hlfunctioncall{labels_colors}(dend)
@@ -1213,23 +1218,26 @@ trimmed_dend <- \hlfunctioncall{trim}(dend, \hlfunctioncall{c}(\hlstring{"Alaska
 ##   ..- attr(*, "height")= num 0
 ##   ..- attr(*, "label")= chr "Arkansas"
 ##   ..- attr(*, "leaf")= logi TRUE
-##   ..- attr(*, "nodePar")=List of 1
+##   ..- attr(*, "nodePar")=List of 2
 ##   .. ..$ lab.col: chr "#E495A5"
+##   .. ..$ pch    : logi NA
 ##  $ :List of 2
 ##   ..$ : atomic [1:1] 3
 ##   .. ..- attr(*, "label")= chr "Arizona"
 ##   .. ..- attr(*, "members")= int 1
 ##   .. ..- attr(*, "height")= num 0
 ##   .. ..- attr(*, "leaf")= logi TRUE
-##   .. ..- attr(*, "nodePar")=List of 1
+##   .. ..- attr(*, "nodePar")=List of 2
 ##   .. .. ..$ lab.col: chr "#BDAB66"
+##   .. .. ..$ pch    : logi NA
 ##   ..$ : atomic [1:1] 1
 ##   .. ..- attr(*, "label")= chr "Alabama"
 ##   .. ..- attr(*, "members")= int 1
 ##   .. ..- attr(*, "height")= num 0
 ##   .. ..- attr(*, "leaf")= logi TRUE
-##   .. ..- attr(*, "nodePar")=List of 1
+##   .. ..- attr(*, "nodePar")=List of 2
 ##   .. .. ..$ lab.col: chr "#55B8D0"
+##   .. .. ..$ pch    : logi NA
 ##   ..- attr(*, "members")= num 2
 ##   ..- attr(*, "midpoint")= num 0.5
 ##   ..- attr(*, "height")= num 52.6
@@ -1279,11 +1287,14 @@ dends_12 <- \hlfunctioncall{intersect_trees}(trimmed_dend_1, trimmed_dend_2)
 \hlfunctioncall{par}(mfrow = \hlfunctioncall{c}(3, 2))
 \hlfunctioncall{plot}(dend_1, main = \hlstring{"Tree - single method"}, ylim = \hlfunctioncall{c}(0, 110))
 \hlfunctioncall{plot}(dend_2, main = \hlstring{"Tree - complete method"}, ylim = \hlfunctioncall{c}(0, 110))
-\hlfunctioncall{plot}(trimmed_dend_1, main = \hlstring{"Trimmed tree - single method"}, ylim = \hlfunctioncall{c}(0, 110))
-\hlfunctioncall{plot}(trimmed_dend_2, main = \hlstring{"Trimmed tree - complete method"}, ylim = \hlfunctioncall{c}(0, 110))
-\hlfunctioncall{plot}(dends_12[[1]], main = \hlstring{"Intersected tree - single method"}, ylim = \hlfunctioncall{c}(0, 110))
-\hlfunctioncall{plot}(dends_12[[2]], main = \hlstring{"Intersected tree - complete method"}, ylim = \hlfunctioncall{c}(0, 
+\hlfunctioncall{plot}(trimmed_dend_1, main = \hlstring{"Trimmed tree - single method"}, ylim = \hlfunctioncall{c}(0, 
     110))
+\hlfunctioncall{plot}(trimmed_dend_2, main = \hlstring{"Trimmed tree - complete method"}, 
+    ylim = \hlfunctioncall{c}(0, 110))
+\hlfunctioncall{plot}(dends_12[[1]], main = \hlstring{"Intersected tree - single method"}, 
+    ylim = \hlfunctioncall{c}(0, 110))
+\hlfunctioncall{plot}(dends_12[[2]], main = \hlstring{"Intersected tree - complete method"}, 
+    ylim = \hlfunctioncall{c}(0, 110))
 \end{alltt}
 \end{kframe}
 
@@ -1333,7 +1344,8 @@ dend <- \hlfunctioncall{as.dendrogram}(hc)
 \hlcomment{# For dendrogram objects:}
 \hlfunctioncall{require}(colorspace)
 \hlfunctioncall{labels_colors}(dend) <- \hlfunctioncall{rainbow_hcl}(\hlfunctioncall{nleaves}(dend))
-\hlcomment{# let's color the labels to make the followup of the rotation easier}
+\hlcomment{# let's color the labels to make the followup of the}
+\hlcomment{# rotation easier}
 \hlfunctioncall{par}(mfrow = \hlfunctioncall{c}(2, 2))
 \hlfunctioncall{plot}(dend, main = \hlstring{"Original tree"})
 \hlfunctioncall{plot}(\hlfunctioncall{rotate}(dend, \hlfunctioncall{c}(2:5, 1)), main = \hlstring{"Rotates the left most leaf \textbackslash{}n into the right side of the tree"})
@@ -1370,7 +1382,7 @@ Here are several examples of how these functions are used:
 
 hc <- \hlfunctioncall{hclust}(\hlfunctioncall{dist}(USArrests[\hlfunctioncall{c}(1, 6, 13, 20, 23), ]), \hlstring{"ave"})
 dend <- \hlfunctioncall{as.dendrogram}(hc)
-unroot_dend <- \hlfunctioncall{unroot}(dend, 2)
+unbranch_dend <- \hlfunctioncall{unbranch}(dend, 2)
 
 \hlfunctioncall{cutree}(hc, k = 2:4)  \hlcomment{# on hclust}
 \end{alltt}
@@ -1443,13 +1455,14 @@ unroot_dend <- \hlfunctioncall{unroot}(dend, 2)
 \hlfunctioncall{labels}(dend)
 \end{alltt}
 \begin{verbatim}
-## [1] "Minnesota" "Maryland"  "Colorado"  "Alabama"   "Illinois"
+## [1] "Minnesota" "Maryland"  "Colorado"  "Alabama"  
+## [5] "Illinois"
 \end{verbatim}
 \begin{alltt}
 
-\hlcomment{# cutree now works for unrooted trees!  as.hclust(unroot_dend) # ERROR -}
-\hlcomment{# can not do this...}
-\hlfunctioncall{cutree}(unroot_dend, k = 2)  \hlcomment{# all NA's}
+\hlcomment{# cutree now works for unbranched trees!}
+\hlcomment{# as.hclust(unbranch_dend) # ERROR - can not do this...}
+\hlfunctioncall{cutree}(unbranch_dend, k = 2)  \hlcomment{# all NA's}
 \end{alltt}
 
 
@@ -1459,7 +1472,7 @@ unroot_dend <- \hlfunctioncall{unroot}(dend, 2)
 ## [1] NA NA NA NA NA
 \end{verbatim}
 \begin{alltt}
-\hlfunctioncall{cutree}(unroot_dend, k = 1:4)
+\hlfunctioncall{cutree}(unbranch_dend, k = 1:4)
 \end{alltt}
 
 
@@ -1474,7 +1487,7 @@ unroot_dend <- \hlfunctioncall{unroot}(dend, 2)
 ## Minnesota 1 NA 1 1
 \end{verbatim}
 \begin{alltt}
-\hlfunctioncall{cutree}(unroot_dend, h = \hlfunctioncall{c}(20, 25.5, 50, 170))
+\hlfunctioncall{cutree}(unbranch_dend, h = \hlfunctioncall{c}(20, 25.5, 50, 170))
 \end{alltt}
 \begin{verbatim}
 ##           20 25.5 50 170
@@ -1488,40 +1501,42 @@ unroot_dend <- \hlfunctioncall{unroot}(dend, 2)
 
 
 \hlfunctioncall{require}(microbenchmark)
-\hlcomment{## this shows how as.hclust is expensive - but still worth it if possible}
-\hlfunctioncall{microbenchmark}(\hlfunctioncall{cutree}(hc, k = 2:4), \hlfunctioncall{cutree}(\hlfunctioncall{as.hclust}(dend), k = 2:4), \hlfunctioncall{cutree}(dend, 
-    k = 2:4), \hlfunctioncall{cutree}(dend, k = 2:4, try_cutree_hclust = FALSE))
+\hlcomment{## this shows how as.hclust is expensive - but still worth}
+\hlcomment{## it if possible}
+\hlfunctioncall{microbenchmark}(\hlfunctioncall{cutree}(hc, k = 2:4), \hlfunctioncall{cutree}(\hlfunctioncall{as.hclust}(dend), k = 2:4), 
+    \hlfunctioncall{cutree}(dend, k = 2:4), \hlfunctioncall{cutree}(dend, k = 2:4, try_cutree_hclust = FALSE))
 \end{alltt}
 \begin{verbatim}
 ## Unit: microseconds
-##                                              expr     min     lq median
-##                               cutree(hc, k = 2:4)   95.19  103.6  107.2
-##                  cutree(as.hclust(dend), k = 2:4) 1669.71 1757.6 1841.6
-##                             cutree(dend, k = 2:4) 1755.38 1862.6 1953.0
-##  cutree(dend, k = 2:4, try_cutree_hclust = FALSE) 8174.42 8529.1 8766.5
-##      uq     max neval
-##   155.1   472.6   100
-##  2077.9  5803.7   100
-##  2123.0  4925.1   100
-##  9478.5 97417.2   100
+##                                              expr    min
+##                               cutree(hc, k = 2:4)  134.9
+##                  cutree(as.hclust(dend), k = 2:4) 1738.0
+##                             cutree(dend, k = 2:4) 1865.1
+##  cutree(dend, k = 2:4, try_cutree_hclust = FALSE) 8250.6
+##      lq median     uq     max neval
+##   144.5  147.8  199.3   357.2   100
+##  1788.1 1851.1 1892.3  4769.5   100
+##  1935.4 1991.4 2050.2  4888.2   100
+##  8485.5 8676.1 8947.7 99834.4   100
 \end{verbatim}
 \begin{alltt}
 \hlcomment{# the dendrogram is MUCH slower...}
 
 
-\hlcomment{# and trying to 'hclust' is not expensive (which is nice...)}
-\hlfunctioncall{microbenchmark}(cutree_unroot_dend = \hlfunctioncall{cutree}(unroot_dend, k = 2:4, warn = FALSE), 
-    cutree_unroot_dend_not_trying_to_hclust = \hlfunctioncall{cutree}(unroot_dend, k = 2:4, try_cutree_hclust = FALSE, 
-        warn = FALSE))
+\hlcomment{# and trying to 'hclust' is not expensive (which is}
+\hlcomment{# nice...)}
+\hlfunctioncall{microbenchmark}(cutree_unbranch_dend = \hlfunctioncall{cutree}(unbranch_dend, k = 2:4, 
+    warn = FALSE), cutree_unbranch_dend_not_trying_to_hclust = \hlfunctioncall{cutree}(unbranch_dend, 
+    k = 2:4, try_cutree_hclust = FALSE, warn = FALSE))
 \end{alltt}
 \begin{verbatim}
 ## Unit: milliseconds
-##                                     expr   min    lq median    uq   max
-##                       cutree_unroot_dend 6.707 6.916  7.039 7.565 12.04
-##  cutree_unroot_dend_not_trying_to_hclust 6.328 6.537  6.724 7.455 15.99
-##  neval
-##    100
-##    100
+##                                       expr   min    lq
+##                       cutree_unbranch_dend 6.786 6.924
+##  cutree_unbranch_dend_not_trying_to_hclust 6.359 6.504
+##  median    uq   max neval
+##   7.064 7.197 33.35   100
+##   6.614 6.916 13.67   100
 \end{verbatim}
 \begin{alltt}
 
@@ -1536,9 +1551,110 @@ Having \code{cutree.dendrogram} available to us, we can now gain the ability to 
 \subsection{Coloring branches}
 
 
-Dendrogram plots with colored branches have been available in R for many years in threads on the mailing lists and through various package. However, until recently, all of the functions in packages have always given the user a new \code{plot} function, without seperating the coloring of branches of a dendrogram from its plotting. Often the function for actually plotting the colored branched dendrogram would be hidden from the user. For example, the \pkg{labeltodendro} package \citep{CRAN:labeltodendro} gives a colored branch plot through the \code{colorplot} function, but the work horse for this is available in a hidden function called \code{dendroploth} or \code{dendroplotv}, both take care of the plotting by themselves (instead of modifying the dendrogram object, and then letting the base R function do the work). The same story happens in the \pkg{Heatplus} \citep{CRAN:Heatplus}, where the \code{plot.annHeatmap2} function actually uses the hidden function \code{cutplot.dendrogram} for doing the plotting.
+Dendrogram plots with colored branches are used to easly distinguishing between different clusters on a tree. They have been available in R for many years in threads on the mailing lists and through various package. However, until recently, all of the functions in packages have always given the user a new \code{plot} function, without seperating the coloring of branches of a dendrogram from its plotting. Often the function for actually plotting the colored branched dendrogram would be hidden from the user. For example, the \pkg{labeltodendro} package \citep{CRAN:labeltodendro} gives a colored branch plot through the \code{colorplot} function, but the work horse for this is available in a hidden function called \code{dendroploth} or \code{dendroplotv}, both take care of the plotting by themselves (instead of modifying the dendrogram object, and then letting the base R function do the work). The same story happens in the \pkg{Heatplus} \citep{CRAN:Heatplus}, where the \code{plot.annHeatmap2} function actually uses the hidden function \code{cutplot.dendrogram} for doing the plotting.
 
-This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dendroextras} package \citep{CRAN:dendroextras}, which orgranized this through the \code{colour_clusters} function. In the \pkg{dendextend} package I will mostly import his code, with some modifications. The biggest limitation in Gregory's code is that he relies on changing the \code{dendrogram} into \code{hclust} in order to use \code{cutree} on it and get the clusters. This has the advantage of being fast, but the \textbf{disadvantage} that it restricts his code to binary trees only. For this reason, I did not use his \code{slice} function, and made sure to use other functions instead.
+This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dendroextras} package \citep{CRAN:dendroextras}, which orgranized this through the \code{colour_clusters} function. In the \pkg{dendextend} package we imported his code into a new function called \code{color_branches}, with several useful modifications on the original code. The biggest limitation in the \code{colour_clusters} function is that it relies on changing the \code{dendrogram} into \code{hclust} in order to use \code{cutree} on it and get the clusters. This has the advantage of being fast, but the \textbf{disadvantage} of restricting the function to ultrametric and binary trees (the type of tree \code{hclust} objects can handle). In our implementation we implemented a new function called \code{cutree.dendrogram} (available through an S3 method), which can either relly on \code{hclust} for speed, but in case it is not possible will revert to find the clustering on the dendrogram object itself (the function is completely compatible with the base R \code{cutree} function). Also, our implementation of the \code{color_branches} function allows for repeated-multilayered coloring the branches. Another potential bug which is avoided in our implementation is to handle cases where the labels of the tree are of type Integer instead of Character (this happens if the \code{dendrogram} came from an \code{hclust}, used on the \code{dist} of data that has no \code{rownames}).
+
+Here is an example of using \code{color_branches} combined with \code{labels_colors}:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{require}(colorspace)
+
+\hlfunctioncall{data}(iris)
+d_iris <- \hlfunctioncall{dist}(iris[, -5])
+hc_iris <- \hlfunctioncall{hclust}(d_iris)
+\hlfunctioncall{labels}(hc_iris)
+\end{alltt}
+\begin{verbatim}
+## character(0)
+\end{verbatim}
+\begin{alltt}
+dend_iris <- \hlfunctioncall{as.dendrogram}(hc_iris)
+\hlfunctioncall{is.integer}(\hlfunctioncall{labels}(dend_iris))  \hlcomment{# this could cause problems...}
+\end{alltt}
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+\begin{alltt}
+
+iris_species <- \hlfunctioncall{rev}(\hlfunctioncall{levels}(iris[, 5]))
+dend_iris <- \hlfunctioncall{color_branches}(dend_iris, k = 3, groupLabels = iris_species)
+\hlfunctioncall{is.character}(\hlfunctioncall{labels}(dend_iris))
+\end{alltt}
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+\begin{alltt}
+
+\hlcomment{# have the labels match the real classification of the}
+\hlcomment{# flowers:}
+\hlfunctioncall{labels_colors}(dend_iris) <- \hlfunctioncall{rainbow_hcl}(3)[\hlfunctioncall{sort_levels_values}(\hlfunctioncall{as.numeric}(iris[, 
+    5])[\hlfunctioncall{order.dendrogram}(dend_iris)])]
+
+\hlcomment{# We'll add the flower type}
+\hlfunctioncall{labels}(dend_iris) <- \hlfunctioncall{paste}(\hlfunctioncall{as.character}(iris[, 5])[\hlfunctioncall{order.dendrogram}(dend_iris)], 
+    \hlstring{"("}, \hlfunctioncall{labels}(dend_iris), \hlstring{")"}, sep = \hlstring{""})
+
+dend_iris <- \hlfunctioncall{hang.dendrogram}(dend_iris, hang_height = 0.1)
+
+\hlcomment{# reduce the size of the labels:}
+dend_iris <- \hlfunctioncall{assign_values_to_leaves_nodePar}(dend_iris, 0.5, 
+    \hlstring{"lab.cex"})
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Length of value vector was shorter than the number of leaves - vector value recycled}}\begin{alltt}
+
+\hlfunctioncall{par}(mar = \hlfunctioncall{c}(3, 3, 3, 7))
+\hlfunctioncall{plot}(dend_iris, main = \hlstring{"Clustered Iris dataset\textbackslash{}\hlfunctioncall{n}(the labels give the true flower species)"}, 
+    horiz = TRUE, nodePar = \hlfunctioncall{list}(cex = 0.007))
+\hlfunctioncall{legend}(\hlstring{"topleft"}, legend = iris_species, fill = \hlfunctioncall{rainbow_hcl}(3))
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/iris_colored_branches} 
+
+}
+
+
+
+\end{knitrout}
+
+
+This simple visualization easily demonstrates how the seperation of the heirarchical clustering is very good with the "setosa" sepcies, but misses in labeling many "versicolor" species as "virginica".
+
+The hanging of the tree also helps to locate extreme observations. For example, we can see that observation "virginica (107)" is not very similar to the Versicolor species, but still, it is amoung them. Also, "Versicolor (71)" is too much "within" the Virginica bush, and it is a wonder why that is.  Of course, the Iris dataset is very well known, and simpler pairs plot often help to locate such problems, yet - dendrogram trees (with all of their limitations) can help gain insights for very high-dimensional data where a simple pairs plot is not possible.
+
+Here is the similar pairs plot. Notice the filled red and green dots, corrosponding with the extreme observations we have noticed in the dendrogram. Petal.Length vs Petal.Width gives the best example of why the green dot is an outlier. Whereas most plots show why the red dot is an outlier. There are of course other outliers, and a problem with classification, which we will not go futher into.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{require}(colorspace)
+
+species_col <- \hlfunctioncall{rev}(\hlfunctioncall{rainbow_hcl}(3))[\hlfunctioncall{as.numeric}(iris[, 5])]
+\hlcomment{# species_col[c(107,71)] <- 'red' # highlight the two}
+\hlcomment{# extreme cases we mentioned}
+species_pch <- \hlfunctioncall{rep}(1, \hlfunctioncall{length}(species_col))
+species_pch[\hlfunctioncall{c}(107, 71)] <- 19  \hlcomment{# highlight the two extreme cases we mentioned}
+
+\hlfunctioncall{pairs}(iris[, -5], col = species_col, pch = species_pch)
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/iris_colored_pairs_plot} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
 
 
 
