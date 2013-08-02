@@ -10,7 +10,7 @@
 
   \method{cutree}{hclust}(tree, k = NULL, h = NULL,
     order_clusters_as_data =TRUE, sort_cluster_numbers =
-    FALSE, ...)
+    FALSE, warn = TRUE, ...)
 
   \method{cutree}{phylo}(tree, k = NULL, h = NULL,...)
 

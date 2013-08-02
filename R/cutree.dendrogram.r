@@ -254,8 +254,8 @@ cutree_1h.dendrogram <- function(tree, h,
    {
       if(!all(clusters_order %in% seq_along(clusters_order))){
          if(warn) {
-            warning("rank() was used for the leaves order number! \nExplenation: leaves tip number (the order), and the ranks of these numbers - are not equal.  The tree was probably trimmed and/or merged with other trees- and now the order labels don't make so much sense (hence, the rank on them was used.")
-            warning("Here is the cluster order vector (from the tree tips) \n", clusters_order, "\n")
+            warning("rank() was used for the leaves order number! \nExplenation: leaves tip number (the order), and the ranks of these numbers - are not equal.\n  The tree was probably subsetted, trimmed and/or merged with other trees- and now the order \n labels don't make so much sense (hence, the rank on them was used).")
+            warning("Here is the cluster order vector (from the tree tips) \n", paste(clusters_order, collapse=", "), "\n")
          }
          clusters_order <- rank(clusters_order, ties.method = "first")   # we use the "first" ties method - to handle the cases of ties in the ranks (after splits/merges with other trees)
       }
@@ -483,6 +483,7 @@ cutree_1k.dendrogram <- function(tree, k,
 #' \method{cutree}{hclust}(tree, k = NULL, h = NULL,
 #'                           order_clusters_as_data =TRUE,
 #'                           sort_cluster_numbers = FALSE,
+#'                           warn = TRUE,
 #'                           ...)
 #' 
 #' \method{cutree}{phylo}(tree, k = NULL, h = NULL,...)
@@ -639,7 +640,26 @@ cutree.default <- function(tree, k = NULL, h = NULL,...) {
 cutree.hclust <- function(tree, k = NULL, h = NULL,
                           order_clusters_as_data =TRUE,
                           sort_cluster_numbers = FALSE,
+                          warn = TRUE,
                           ...) { 
+   
+   ## Add an important warning before R crashes.
+   if(warn) {
+      if(any(is.na(labels(tree)))) {         
+         warning("'tree' has NA's in its labels (e.g: labels(tree)) - 
+              cutree might crash R.
+              If you used as.hclust on a subset of a dendrogram (e.g: dend[[1]]),
+              Make sure to first fix the dendrogram's order tips. See:
+              help('order.dendrogram<-')
+              for suggestion on how to do that.
+
+               (use warn=FALSE if you don't want to see this warning again)
+              ")
+#          ANSWER <- menu(c("Yes (continue)", "No (stop)"), graphics = FALSE, title = "Are you sure you want to proceed with cutree?")
+#          if(exists("ANSWER") && ANSWER==2) stop("'cutree' was stopped by the user.")
+      }
+   }
+      
    
    clusters <- stats:::cutree(tree, k = k, h = h, ...) 
    if(!order_clusters_as_data) clusters <- clusters[tree$order]
@@ -684,6 +704,18 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
    # this would be faster, especially when using k.
    # and if it doesn't, we would fall back on our function
    if(try_cutree_hclust) {      
+      
+      # Fixed the case when order.dendrogram is not the numbers it should
+      # Replacing the order tips with their rank. (otherwise, cutree will CRASH R <= 3.0.1)
+      order_tree <- order.dendrogram(tree)
+      if(!all(order_tree %in% seq_along(order_tree))){
+         if(warn) {
+            warning("rank() was used for the leaves order number! \nExplenation: leaves tip number (the order), and the ranks of these numbers - are not equal.\n  The tree was probably subsetted, trimmed and/or merged with other trees- and now the order \n labels don't make so much sense (hence, the rank on them was used).")
+            warning("Here is the cluster order vector (from the tree tips) \n", paste(order_tree, collapse=", "), "\n")
+         }
+         order.dendrogram(tree) <- rank(order_tree, ties.method = "first")   # we use the "first" ties method - to handle the cases of ties in the ranks (after splits/merges with other trees)
+      }   
+      
       # if we succeed (tryCatch) in turning it into hclust - use it!
       # if not - go on with the function.
       hclust_tree <- tryCatch(

@@ -5,7 +5,7 @@ context("Cutting a dendrogram")
 
 
 test_that("Checking if a number is natural",{
-
+   
    expect_true(is.natural.number(1))    # is TRUE
    expect_true(all(is.natural.number( seq(1,5, by=1)  )))
    expect_false(all(is.natural.number( seq(0,5, by=1)  )))
@@ -32,12 +32,12 @@ test_that("cutree a dendrogram by height h",{
    expect_identical( 
       cutree_1h.dendrogram(dend, h=30),
       cutree(hc, h=30)      )  
-
+   
    # the same as cutree - also when there are NO clusters
    expect_identical( 
       cutree_1h.dendrogram(dend, h=1000),
       cutree(hc, h=1000)      )  
-
+   
    # the same as cutree - also when there are NO clusters
    expect_identical( 
       cutree_1h.dendrogram(dend, h=0),
@@ -64,11 +64,11 @@ test_that("get dendrogram heights for k clusters",{
    unroot_dend <- unroot(dend,2)
    
    # plot(unroot_dend)
-
+   
    dend_heights <- heights_per_k.dendrogram(dend)
    unroot_dend_heights <- heights_per_k.dendrogram(unroot_dend)
    
-#    cutree_1h.dendrogram(dend, h=dend_heights[[3]])   
+   #    cutree_1h.dendrogram(dend, h=dend_heights[[3]])   
    
    expect_equal(length(dend_heights), 5)
    expect_equal(length(unroot_dend_heights), 4)
@@ -90,7 +90,7 @@ test_that("cutree a dendrogram to k clusters",{
    dend <- as.dendrogram(hc)
    unroot_dend <- unroot(dend,2)
    
-#    plot(unroot_dend)
+   #    plot(unroot_dend)
    
    
    # the same as cutree
@@ -106,7 +106,7 @@ test_that("cutree a dendrogram to k clusters",{
    expect_identical( 
       cutree_1k.dendrogram(dend, k=5),
       cutree(hc, k=5)      )  
-
+   
    # if ignoring the "names" on the vector - the numbers will be identical:
    expect_identical( 
       unname(cutree_1k.dendrogram(dend, k=3, use_labels_not_values = FALSE)),
@@ -117,7 +117,7 @@ test_that("cutree a dendrogram to k clusters",{
    expect_error(cutree_1k.dendrogram(dend))  # we need h!
    expect_error( cutree_1k.dendrogram(dend, k = -1))
    expect_error( cutree_1k.dendrogram(dend, k = 0))
-#    expect_error( cutree_1k.dendrogram(dend, k = 1.5)) # I no longer expect an error since it is turned into "as.integer"
+   #    expect_error( cutree_1k.dendrogram(dend, k = 1.5)) # I no longer expect an error since it is turned into "as.integer"
    expect_error( cutree_1k.dendrogram(dend, k = 50))
    expect_error( cutree(hc, k=50)      )  
    
@@ -172,7 +172,7 @@ test_that("cutree dendrogram method works for k",{
    expect_error(cutree(dend))  # we need h!
    expect_error( cutree(dend, k=-1))
    expect_error( cutree(dend, k=0))
-#    expect_error( cutree(dend, k = 1.5)) # I no longer expect an error since it is turned into "as.integer"
+   #    expect_error( cutree(dend, k = 1.5)) # I no longer expect an error since it is turned into "as.integer"
    expect_error( cutree(dend, k=50))
    expect_error( cutree(hc, k=50)      )  
    
@@ -185,11 +185,11 @@ test_that("cutree dendrogram method works for k",{
    expect_identical( 
       names(cutree(dend, k=3,order_clusters_as_data=FALSE,try_cutree_hclust=TRUE)),
       labels(dend)      )  
-
+   
    # cases of no possible k's:
    expect_warning(cutree(unroot_dend, 2))
    expect_equal(cutree(unroot_dend, 2, warn = FALSE), rep(NA,5))
-
+   
    # now to check vectorization
    
    
@@ -212,7 +212,7 @@ test_that("cutree for dendrogram works (k,h and vectorization)",{
    expect_identical( 
       cutree(dend, k=1:4),
       cutree(hc, k=1:4)      )
-
+   
    expect_identical( 
       cutree(dend, h = c(20, 25.5, 50,170)),
       cutree(hc, h = c(20, 25.5, 50,170))      )
@@ -225,9 +225,9 @@ test_that("cutree for dendrogram works (k,h and vectorization)",{
    expect_true( all(is.na(cutree_unroot_dend[,2])) ) # 2nd column is NA.
    
    cutree_unroot_dend_2 <- cutree(unroot_dend, k=1:4,   
-                                warn = FALSE, order_clusters_as_data = FALSE,
-                                try_cutree_hclust = FALSE
-                                 )
+                                  warn = FALSE, order_clusters_as_data = FALSE,
+                                  try_cutree_hclust = FALSE
+   )
    expect_identical(rownames(cutree_unroot_dend_2), labels(unroot_dend))
    
    
@@ -237,7 +237,7 @@ test_that("cutree for dendrogram works (k,h and vectorization)",{
 
 
 # test_that("Making cutted clusters be numbered from left to right",{
-   
+
 
 test_that("Testing sort_levels_values works",{
    
@@ -257,12 +257,12 @@ test_that("Testing sort_levels_values works",{
    expect_equivalent(sort(x), sort_levels_values(x)) # not equal since "sort" removes the attr!
    
    x <- c(4:1,4, 2)
-#    dput(sort_levels_values(x)) # 1 2 3 4 1 3
+   #    dput(sort_levels_values(x)) # 1 2 3 4 1 3
    expect_identical(sort_levels_values(x), c(1, 2, 3, 4, 1, 3))
    
    x <- c(2,2,3,2,1)
    expect_identical(sort_levels_values(x), c(1, 1, 2, 1, 3))
-
+   
    # works when used on matrices:
    x<- matrix(1:16, 4, 4)
    rownames(x) <- letters[1:4]
@@ -272,13 +272,13 @@ test_that("Testing sort_levels_values works",{
    
    x<- matrix(4:1, 2, 2)
    rownames(x) <- letters[1:2]
-#    x
-#    dput(apply(x, 2, sort_levels_values))
+   #    x
+   #    dput(apply(x, 2, sort_levels_values))
    expect_identical(apply(x, 2, sort_levels_values),
-   structure(c(3, 4, 1, 2), .Dim = c(2L, 2L), .Dimnames = list(c("a", 
-                                                                 "b"), NULL))
+                    structure(c(3, 4, 1, 2), .Dim = c(2L, 2L), .Dimnames = list(c("a", 
+                                                                                  "b"), NULL))
    )
-
+   
    # checking that sort_levels_values can be used on a matrix!
    x<- matrix(4:1, 2, 2)
    rownames(x) <- letters[1:2]
@@ -291,7 +291,7 @@ test_that("Testing sort_levels_values works",{
 
 
 test_that("Making cutted clusters be numbered from left to right",{
-
+   
    hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
    dend <- as.dendrogram(hc)
    
@@ -307,12 +307,12 @@ test_that("Making cutted clusters be numbered from left to right",{
       attributes(sorted_cutree_hc),
       attributes(sorted_cutree_dend)
    )
-
+   
    # the same as cutree
    expect_identical( 
       as.integer(cutree(dend, k=1:4, sort_cluster_numbers=TRUE)),
       as.integer(cutree(hc, k=1:4, sort_cluster_numbers=TRUE))      )
-
+   
    expect_identical( 
       as.vector(sorted_cutree_hc),
       as.vector(sorted_cutree_dend)
@@ -330,10 +330,10 @@ test_that("Making cutted clusters be numbered from left to right",{
 
 test_that("Compare labels which are character vs integer",{
    data(iris)
-
+   
    # they seem to be identical - but they are not in the way the are coerced!
    expect_identical(   iris[1:150,-5],
-                             iris[,-5])
+                       iris[,-5])
    
    # once they are coerced into a matrix - they are NOT identical!
    # the rownames are now NULL!
@@ -344,14 +344,14 @@ test_that("Compare labels which are character vs integer",{
    expect_false(   identical(attributes(as.matrix(iris[1:150,-5])),
                              attributes(as.matrix(iris[,-5])))
    )
-
+   
    expect_false(   identical(rownames(as.matrix(iris[1:150,-5])),
                              rownames(as.matrix(iris[,-5])))
    )
    
    # it now has no rownames!
    expect_true( is.null(rownames(as.matrix(iris[,-5]))) )
-
+   
    # what about their dist - not the same!:
    expect_false(   identical(dist(iris[1:150,-5]),
                              dist(iris[,-5]))
@@ -366,5 +366,41 @@ test_that("Compare labels which are character vs integer",{
    dend_iris <- as.dendrogram(hc_iris)
    expect_true(is.integer(labels(dend_iris))) # this is a source of BUGS!
    expect_false(is.character(labels(dend_iris)))
-
+   
 })
+
+
+
+test_that("Having cutree work when using a subsetted tree",{
+   # Wo   
+   # get a dendrogram:
+#    data(iris) 
+   d_iris <- dist(iris[1:10,-5])
+   hc_iris <- hclust(d_iris)
+   dend_iris <- as.dendrogram(hc_iris) # as.hclust.dendrogram - of course
+   
+   # taking a subset of the dendrogram:
+   sub_dend_iris <- dend_iris[[1]]   
+   hc_sub_dend_iris <- as.hclust(sub_dend_iris)
+   # We will have NA's:
+   expect_true(any(is.na(labels(as.dendrogram(hc_sub_dend_iris )))))
+   
+   # we will get warnings, but the functions would not collapse!
+   expect_warning(
+      cutree.dendrogram(as.dendrogram(hc_sub_dend_iris ), 3,  try_cutree_hclust = TRUE)
+   )
+   expect_warning(
+      cutree.dendrogram(as.dendrogram(hc_sub_dend_iris ), 3,  try_cutree_hclust = FALSE)
+   )
+   
+   # remove "iris" from the last test...
+   # if(exists("iris")) # it says it doesn't exists - but it does (in the gloval env)!
+#    suppressWarnings()
+   rm(iris, pos = 1)
+   
+})
+
+   
+
+
+
