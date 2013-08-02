@@ -16,6 +16,11 @@ test_that("Get a dendrogram leaves attributes",{
       identical(get_leaves_attr(hang.dendrogram(dend), "height"), rep(0, 3))
    )
    
+   # when using simplify=FALSE, we get back a list...
+   expect_true(is.list(get_leaves_attr(dend, "height", simplify=FALSE)))
+   expect_identical(unlist(get_leaves_attr(dend, "height", simplify=FALSE)), rep(0, 3))
+   
+   
 })
 
 
@@ -110,3 +115,23 @@ test_that("Hanging dendrogram works for unbranched trees",{
                           hang.dendrogram(unbranched_dend, hang = 0.1)))   
 })
 
+
+
+
+
+
+test_that("Assigning several values to a tree's leaves nodePar",{
+   hc <- hclust(dist(USArrests[1:3,]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   dend <- suppressWarnings(assign_values_to_leaves_nodePar(dend, 2, "lab.cex"))
+   dend <- suppressWarnings(assign_values_to_leaves_nodePar(object=dend, value = c(3,2), nodePar = "lab.col"))
+   
+   dend_leaf_nodePar <- get_leaves_attr(dend, "nodePar", simplify=FALSE)[[1]]
+   
+   expect_identical(length(dend_leaf_nodePar), 2L)
+   expect_identical(names(dend_leaf_nodePar), c("lab.cex", "lab.col"))
+   expect_identical(unname(dend_leaf_nodePar), c(2,3))
+   
+   
+})

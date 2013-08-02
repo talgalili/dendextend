@@ -123,10 +123,42 @@ main = "Clustered Iris dataset",
 
 # cutree(dend_iris,k=3, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE, try_cutree_hclust=FALSE)
 # cutree(dend_iris,k=3, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE, try_cutree_hclust=TRUE)
-dend_iris <- color_branches(dend_iris,k = 3)
-dend_iris <- color_labels(dend_iris,k = 3)
-plot(dend_iris)
 
+require(colorspace)
+
+data(iris)
+d_iris <- dist(iris[,-5])
+hc_iris <- hclust(d_iris)
+labels(hc_iris) # no labels, because "iris" has no row names
+dend_iris <- as.dendrogram(hc_iris)
+is.integer(labels(dend_iris)) # this could cause problems...
+
+iris_species <- rev(levels(iris[,5]))
+dend_iris <- color_branches(dend_iris,k=3, groupLabels=iris_species)
+is.character(labels(dend_iris)) # labels are no longer "integer"
+
+# have the labels match the real classification of the flowers:
+labels_colors(dend_iris) <-
+   rainbow_hcl(3)[sort_levels_values(
+      as.numeric(iris[,5])[order.dendrogram(dend_iris)]
+   )]
+
+# We'll add the flower type
+labels(dend_iris) <- paste(as.character(iris[,5])[order.dendrogram(dend_iris)],
+                           "(",labels(dend_iris),")",
+                           sep = "")
+
+dend_iris <- hang.dendrogram(dend_iris,hang_height=0.1)
+
+# reduce the size of the labels:
+dend_iris <- assign_values_to_leaves_nodePar(dend_iris, 0.5, "lab.cex")
+
+par(mar = c(3,3,3,7))
+plot(dend_iris,
+     main = "Clustered Iris dataset
+     (the labels give the true flower species)",
+     horiz =  TRUE,  nodePar = list(cex = .007))
+legend("topleft", legend = iris_species, fill = rainbow_hcl(3))
 a= dend_iris[[1]]
 dend_iris1 <- color_branches(a,k = 3)
 plot(dend_iris1)
