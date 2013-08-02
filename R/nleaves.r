@@ -21,8 +21,10 @@
 
 # as.dendrogram(as.hclust(as.phylo(hc)))
 #' @export
-as.dendrogram.phylo <- function(object,...) as.dendrogram(as.hclust(object))
+as.dendrogram.phylo <- function(object,...) {as.dendrogram(as.hclust(object))}
 
+#' @export
+as.phylo.dendrogram <- function(object,...) {as.phylo(as.hclust(object))}
 
 
 

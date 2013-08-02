@@ -17,7 +17,8 @@ NEW FUNCTIONS ADDED:
    * is.dendrogram
    * is.phylo
    * fac2num
-
+   * as.phylo.dendrogram - based on as.hclust.
+   
    * cutree_1k.dendrogram - like cutree, but only for 1 k (number of clusters) value.
    * cutree.dendrogram - like cutree but for dendrograms (and it is also vectorized)
    * cutree.hclust - like cutree but for hclust
