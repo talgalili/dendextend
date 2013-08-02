@@ -94,19 +94,19 @@ test_that("Hanging dendrogram works just like hclust",{
 
 
 
-test_that("Hanging dendrogram works for unrooted trees",{
+test_that("Hanging dendrogram works for unbranched trees",{
    hc <- hclust(dist(USArrests[1:5,]), "ave")
    dend <- as.dendrogram(hc)
    
-   unrooted_dend <- unroot(dend,2)
+   unbranched_dend <- unbranch(dend,2)
    
-   # we can't hclust an unrooted tree...
-   expect_error(as.hclust(unrooted_dend))
+   # we can't hclust an unbranched tree...
+   expect_error(as.hclust(unbranched_dend))
    
-   #    plot(hang.dendrogram(unrooted_dend, hang = 0.1))
+   #    plot(hang.dendrogram(unbranched_dend, hang = 0.1))
    
-   # showing that we can hang an unrooted tree   
-   expect_false(identical(unrooted_dend,
-                          hang.dendrogram(unrooted_dend, hang = 0.1)))   
+   # showing that we can hang an unbranched tree   
+   expect_false(identical(unbranched_dend,
+                          hang.dendrogram(unbranched_dend, hang = 0.1)))   
 })
 

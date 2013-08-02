@@ -66,7 +66,7 @@
 #' 
 #' It extends it by using \link[dendextend]{cutree.dendrogram} - allowing
 #' the function to work for trees that hclust can not handle 
-#' (unrooted and non-ultrametric trees).
+#' (unbranched and non-ultrametric trees).
 #' Also, it allows REPEATED cluster color assignments to branches on to 
 #' the same tree. Something which the original function was not able to handle.
 #' 

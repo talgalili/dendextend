@@ -61,22 +61,22 @@ test_that("get dendrogram heights for k clusters",{
    # data
    hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
    dend <- as.dendrogram(hc)
-   unroot_dend <- unroot(dend,2)
+   unbranch_dend <- unbranch(dend,2)
    
-   # plot(unroot_dend)
+   # plot(unbranch_dend)
    
    dend_heights <- heights_per_k.dendrogram(dend)
-   unroot_dend_heights <- heights_per_k.dendrogram(unroot_dend)
+   unbranch_dend_heights <- heights_per_k.dendrogram(unbranch_dend)
    
    #    cutree_1h.dendrogram(dend, h=dend_heights[[3]])   
    
    expect_equal(length(dend_heights), 5)
-   expect_equal(length(unroot_dend_heights), 4)
+   expect_equal(length(unbranch_dend_heights), 4)
    
-   expect_equal(nnodes(unroot_dend), 8)
+   expect_equal(nnodes(unbranch_dend), 8)
    
-   # dput(names(unroot_dend_heights))
-   expect_equal(names(unroot_dend_heights), c("1", "3", "4", "5"))      
+   # dput(names(unbranch_dend_heights))
+   expect_equal(names(unbranch_dend_heights), c("1", "3", "4", "5"))      
 })
 
 
@@ -88,9 +88,9 @@ test_that("cutree a dendrogram to k clusters",{
    # data
    hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
    dend <- as.dendrogram(hc)
-   unroot_dend <- unroot(dend,2)
+   unbranch_dend <- unbranch(dend,2)
    
-   #    plot(unroot_dend)
+   #    plot(unbranch_dend)
    
    
    # the same as cutree
@@ -128,8 +128,8 @@ test_that("cutree a dendrogram to k clusters",{
       labels(dend)      )  
    
    # cases of no possible k's:
-   expect_warning(cutree_1k.dendrogram(unroot_dend, 2))
-   expect_equal(cutree_1k.dendrogram(unroot_dend, 2, warn = FALSE), rep(NA,5))
+   expect_warning(cutree_1k.dendrogram(unbranch_dend, 2))
+   expect_equal(cutree_1k.dendrogram(unbranch_dend, 2, warn = FALSE), rep(NA,5))
    
    
 })
@@ -143,9 +143,9 @@ test_that("cutree dendrogram method works for k",{
    # data
    hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
    dend <- as.dendrogram(hc)
-   unroot_dend <- unroot(dend,2)
+   unbranch_dend <- unbranch(dend,2)
    
-   #    plot(unroot_dend)
+   #    plot(unbranch_dend)
    
    
    # the same as cutree
@@ -187,8 +187,8 @@ test_that("cutree dendrogram method works for k",{
       labels(dend)      )  
    
    # cases of no possible k's:
-   expect_warning(cutree(unroot_dend, 2))
-   expect_equal(cutree(unroot_dend, 2, warn = FALSE), rep(NA,5))
+   expect_warning(cutree(unbranch_dend, 2))
+   expect_equal(cutree(unbranch_dend, 2, warn = FALSE), rep(NA,5))
    
    # now to check vectorization
    
@@ -202,9 +202,9 @@ test_that("cutree for dendrogram works (k,h and vectorization)",{
    # data
    hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
    dend <- as.dendrogram(hc)
-   unroot_dend <- unroot(dend,2)
+   unbranch_dend <- unbranch(dend,2)
    
-   #    plot(unroot_dend)
+   #    plot(unbranch_dend)
    
    
    
@@ -217,18 +217,18 @@ test_that("cutree for dendrogram works (k,h and vectorization)",{
       cutree(dend, h = c(20, 25.5, 50,170)),
       cutree(hc, h = c(20, 25.5, 50,170))      )
    
-   expect_warning( cutree(unroot_dend, k=1:2) )    
+   expect_warning( cutree(unbranch_dend, k=1:2) )    
    
    # it still works for missing k's, it just returns NA's in the second column
-   cutree_unroot_dend <- cutree(unroot_dend, k=1:4, warn = FALSE)
-   expect_true( is.matrix(cutree_unroot_dend) )
-   expect_true( all(is.na(cutree_unroot_dend[,2])) ) # 2nd column is NA.
+   cutree_unbranch_dend <- cutree(unbranch_dend, k=1:4, warn = FALSE)
+   expect_true( is.matrix(cutree_unbranch_dend) )
+   expect_true( all(is.na(cutree_unbranch_dend[,2])) ) # 2nd column is NA.
    
-   cutree_unroot_dend_2 <- cutree(unroot_dend, k=1:4,   
+   cutree_unbranch_dend_2 <- cutree(unbranch_dend, k=1:4,   
                                   warn = FALSE, order_clusters_as_data = FALSE,
                                   try_cutree_hclust = FALSE
    )
-   expect_identical(rownames(cutree_unroot_dend_2), labels(unroot_dend))
+   expect_identical(rownames(cutree_unbranch_dend_2), labels(unbranch_dend))
    
    
 })

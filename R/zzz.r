@@ -37,7 +37,7 @@
    ###   dendextend. But it IS an issue...
    ####
    # if ape is installed on this computer, it will be loaded FIRST!   
-   # This way I make sure to not have "unroot" or "rotate" masked by {ape}
+   # This way I make sure to not have "unbranch" or "rotate" masked by {ape}
    #     (they would still work though)
        if("ape" %in% .packages(all.available = TRUE)) {       
           library("ape", pos = which(search() %in% "package:dendextend")+1, 

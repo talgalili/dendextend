@@ -21,17 +21,17 @@ test_that("Trimming removes leaves and updates the object",{
 
 
 
-test_that("Trimming works for unrooted trees",{
+test_that("Trimming works for unbranched trees",{
    hc <- hclust(dist(USArrests[1:5,]), "ave")
    dend <- as.dendrogram(hc)
 
-   unrooted_dend <- unroot(dend,2)
-   trimmed_unrooted_dend <- trim(unrooted_dend , c("Alaska", "California"))
+   unbranched_dend <- unbranch(dend,2)
+   trimmed_unbranched_dend <- trim(unbranched_dend , c("Alaska", "California"))
    
-   expect_equal(nleaves(trimmed_unrooted_dend), 3L)
-   expect_equal(attr(trimmed_unrooted_dend, "members"), 3L) # checking the attributes are correct.
-   expect_true(all(labels(trimmed_unrooted_dend) %in% labels(dend)))
-   expect_warning(trim(unrooted_dend , c("non-existing leaf")))
+   expect_equal(nleaves(trimmed_unbranched_dend), 3L)
+   expect_equal(attr(trimmed_unbranched_dend, "members"), 3L) # checking the attributes are correct.
+   expect_true(all(labels(trimmed_unbranched_dend) %in% labels(dend)))
+   expect_warning(trim(unbranched_dend , c("non-existing leaf")))
 })
 
 
@@ -70,11 +70,11 @@ test_that("Intersecting-trees works",{
 
 
 
-# unrooted_dend <- unroot(dend,2)
-# trimmed_dend <- trim(unrooted_dend , c("Alaska", "California"))
+# unbranched_dend <- unbranch(dend,2)
+# trimmed_dend <- trim(unbranched_dend , c("Alaska", "California"))
 # str(unclass(trimmed_dend))
-# str(unclass(unrooted_dend))
-# plot(unrooted_dend)
+# str(unclass(unbranched_dend))
+# plot(unbranched_dend)
 # plot(trimmed_dend)
 # 
 # 

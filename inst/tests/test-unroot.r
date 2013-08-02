@@ -1,4 +1,4 @@
-context("Unrooting a tree")
+context("unbranching a tree")
 
 
 test_that("Get attribute of node's branches (height)",{
@@ -25,20 +25,20 @@ test_that("Raising a dendrogram's root height",{
 
 
 
-test_that("Unrooting a dendrogram",{
+test_that("unbranching a dendrogram",{
    hc <- hclust(dist(USArrests[10:13,]), "ward")
    dend <- as.dendrogram(hc)
 #    plot(dend)
    
-   unrooted_dend <- unroot(dend,1)
-   unrooted_dend_2 <- unroot(unrooted_dend,3)
-   #    plot(unrooted_dend)
-   #    plot(unrooted_dend_2)
+   unbranched_dend <- unbranch(dend,1)
+   unbranched_dend_2 <- unbranch(unbranched_dend,3)
+   #    plot(unbranched_dend)
+   #    plot(unbranched_dend_2)
    
-   expect_equal(length(unrooted_dend), 3L) # our new tree has 3 branches
-   expect_equal(length(unrooted_dend_2), 4L) # our new tree has 3 branches
-   expect_warning(unroot(dend[[1]])) # since the new root can not be a leaf.
-   expect_error(unroot(hc)) # While there is an hclust method, 
+   expect_equal(length(unbranched_dend), 3L) # our new tree has 3 branches
+   expect_equal(length(unbranched_dend_2), 4L) # our new tree has 3 branches
+   expect_warning(unbranch(dend[[1]])) # since the new root can not be a leaf.
+   expect_error(unbranch(hc)) # While there is an hclust method, 
                               # this object can not handle non-binary trees.
 })
 
