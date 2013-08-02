@@ -1,4 +1,5 @@
 # require(testthat)
+# require(dendextend)
 
 context("Cutting a dendrogram")
 
@@ -327,3 +328,43 @@ test_that("Making cutted clusters be numbered from left to right",{
 
 
 
+test_that("Compare labels which are character vs integer",{
+   data(iris)
+
+   # they seem to be identical - but they are not in the way the are coerced!
+   expect_identical(   iris[1:150,-5],
+                             iris[,-5])
+   
+   # once they are coerced into a matrix - they are NOT identical!
+   # the rownames are now NULL!
+   expect_false(   identical(as.matrix(iris[1:150,-5]),
+                             as.matrix(iris[,-5]))
+   )
+   
+   expect_false(   identical(attributes(as.matrix(iris[1:150,-5])),
+                             attributes(as.matrix(iris[,-5])))
+   )
+
+   expect_false(   identical(rownames(as.matrix(iris[1:150,-5])),
+                             rownames(as.matrix(iris[,-5])))
+   )
+   
+   # it now has no rownames!
+   expect_true( is.null(rownames(as.matrix(iris[,-5]))) )
+
+   # what about their dist - not the same!:
+   expect_false(   identical(dist(iris[1:150,-5]),
+                             dist(iris[,-5]))
+   )
+   # the first one has "labels" and the second one doesn't
+   expect_false(   identical(attributes(dist(iris[1:150,-5])),
+                             attributes(dist(iris[,-5])))
+   )
+   
+   d_iris <- dist(iris[,-5])
+   hc_iris <- hclust(d_iris)
+   dend_iris <- as.dendrogram(hc_iris)
+   expect_true(is.integer(labels(dend_iris))) # this is a source of BUGS!
+   expect_false(is.character(labels(dend_iris)))
+
+})

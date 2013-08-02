@@ -65,10 +65,18 @@
   function is supplied then it will be passed a numeric
   vector of groups (e.g. 1:5) and must return the formatted
   group labels.
+
+  If the \link{labels} of the dendrogram are NOT character
+  (but, for example integers) - they are coerced into
+  character. This step is essential for the proper
+  operation of the function. A dendrogram labels might
+  happen to be integers if they are based on an
+  \link{hclust} performed on a \link{dist} of an object
+  without \link{rownames}.
 }
 \examples{
 \dontrun{
-dend <- hclust(dist(USArrests), "ave")
+dend <- as.dendrogram(hclust(dist(USArrests), "ave"))
 d1=color_branches(dend,5, col = c(3,1,1,4,1))
 plot(d1) # selective coloring of branches :)
 d2=color_branches(d1,5)
@@ -86,6 +94,42 @@ plot(d5g)
 d5gr=color_branches(dend,5,groupLabels=as.roman)
 plot(d5gr)
 
+# messy - but interesting:
+dend_override=color_branches(dend,2,groupLabels=as.roman)
+dend_override=color_branches(dend_override,4,groupLabels=as.roman)
+dend_override=color_branches(dend_override,7,groupLabels=as.roman)
+plot(dend_override)
+
+d5=color_branches(tree=dend[[1]],k=5)
+
+
+require(dendextend)
+data(iris)
+d_iris <- dist(iris[,-5])
+hc_iris <- hclust(d_iris)
+dend_iris <- as.dendrogram(hc_iris)
+dend_iris=color_branches(dend_iris,k=3)
+
+labels_colors(dend_iris) <-
+ rainbow_hcl(3)[sort_levels_values(
+ as.numeric(iris[,5])[order.dendrogram(dend_iris)]
+ )]
+
+plot(dend_iris,
+main = "Clustered Iris dataset",
+ sub = "labels are colored based on the true cluster")
+
+
+
+# cutree(dend_iris,k=3, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE, try_cutree_hclust=FALSE)
+# cutree(dend_iris,k=3, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE, try_cutree_hclust=TRUE)
+dend_iris <- color_branches(dend_iris,k = 3)
+dend_iris <- color_labels(dend_iris,k = 3)
+plot(dend_iris)
+
+a= dend_iris[[1]]
+dend_iris1 <- color_branches(a,k = 3)
+plot(dend_iris1)
 
 # str(dendrapply(d2, unclass))
 # unclass(d1)
