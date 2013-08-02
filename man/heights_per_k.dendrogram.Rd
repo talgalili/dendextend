@@ -27,9 +27,9 @@ heights_per_k.dendrogram(dend)
 
 cutree(hc, h = 68.8) # and indeed we get 2 clusters
 
-unroot_dend <- unroot(dend,2)
-plot(unroot_dend)
-heights_per_k.dendrogram(unroot_dend)
+unbranch_dend <- unbranch(dend,2)
+plot(unbranch_dend)
+heights_per_k.dendrogram(unbranch_dend)
        #1        3        4
        #97.90023 57.41808 16.93594
        # we do NOT have a height for k=2 because of the tree's structure.

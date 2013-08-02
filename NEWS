@@ -35,7 +35,7 @@ UPDATED FUNCTIONS:
    * "order.dendrogram<-" - now returns an integer (instead of numeric)
    * cutree (cutree.dendogram / cutree.hclust) - Prevent R from crashing when using 
 cutree on a subset tree (e.g: dend[[1]])
-
+   * Renaming the unroot function -> to -> unbranch 
 
 
 OTHER NOTES:

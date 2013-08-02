@@ -61,7 +61,7 @@
   cutree for hclust is MUCH faster than for dendrogram -
   cutree.dendrogram will first try to change the dendrogram
   into an hclust object. If it will fail (for example, with
-  unrooted trees), it will continue using the
+  unbranched trees), it will continue using the
   cutree.dendrogram function. If try_cutree_hclust=TRUE, it
   will force to use cutree.dendrogram and not
   cutree.hclust.}
@@ -107,7 +107,7 @@
 \dontrun{
 hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
 dend <- as.dendrogram(hc)
-unroot_dend <- unroot(dend,2)
+unbranch_dend <- unbranch(dend,2)
 
 cutree(hc, k=2:4) # on hclust
 cutree(dend, k=2:4) # on dendrogram
@@ -122,10 +122,10 @@ cutree(hc, h = c(20, 25.5, 50,170))
 cutree(dend, k=2:3, order_clusters_as_data = FALSE)
 labels(dend)
 
-# as.hclust(unroot_dend) # ERROR - can not do this...
-cutree(unroot_dend, k = 2) # all NA's
-cutree(unroot_dend, k = 1:4)
-cutree(unroot_dend, h = c(20, 25.5, 50,170))
+# as.hclust(unbranch_dend) # ERROR - can not do this...
+cutree(unbranch_dend, k = 2) # all NA's
+cutree(unbranch_dend, k = 1:4)
+cutree(unbranch_dend, h = c(20, 25.5, 50,170))
 cutree(dend, h = c(20, 25.5, 50,170))
 
 
@@ -150,16 +150,16 @@ microbenchmark(
 
 # and trying to "hclust" is not expensive (which is nice...)
 microbenchmark(
-  cutree_unroot_dend = cutree(unroot_dend, k=2:4),
-  cutree_unroot_dend_not_trying_to_hclust =
-  cutree(unroot_dend, k=2:4, try_cutree_hclust=FALSE)
+  cutree_unbranch_dend = cutree(unbranch_dend, k=2:4),
+  cutree_unbranch_dend_not_trying_to_hclust =
+  cutree(unbranch_dend, k=2:4, try_cutree_hclust=FALSE)
 )
 
 
 ## Unit: milliseconds
 ##                   expr      min       lq   median       uq      max neval
-##cutree_unroot_dend       7.309329 7.428314 7.494107 7.752234 17.59581   100
-##cutree_unroot_dend_not
+##cutree_unbranch_dend       7.309329 7.428314 7.494107 7.752234 17.59581   100
+##cutree_unbranch_dend_not
 ##_trying_to_hclust        6.945375 7.079198 7.148629 7.577536 16.99780   100
 ##There were 50 or more warnings (use warnings() to see the first 50)
 

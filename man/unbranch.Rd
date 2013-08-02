@@ -1,0 +1,50 @@
+\name{unbranch}
+\alias{unbranch}
+\alias{unbranch.default}
+\alias{unbranch.dendrogram}
+\alias{unbranch.hclust}
+\alias{unbranch.phylo}
+\title{unbranch trees}
+\usage{
+  unbranch(x, ...)
+
+  \method{unbranch}{dendrogram}(x, branch_becoming_root =
+    1, new_root_height, ...)
+
+  \method{unbranch}{hclust}(x, branch_becoming_root = 1,
+    new_root_height, ...)
+
+  \method{unbranch}{phylo}(x, ...)
+}
+\arguments{
+  \item{x}{tree (dendrogram/hclust) object}
+
+  \item{branch_becoming_root}{a numeric choosing the branch
+  of the root which will become the new root (from left to
+  right)}
+
+  \item{new_root_height}{the new height of the branch which
+  will become the new root. If the parameter is not given -
+  the height of the original root is used.}
+
+  \item{...}{passed on}
+}
+\value{
+  An unbranched dendrogram
+}
+\description{
+  unbranch trees
+}
+\examples{
+hc <- hclust(dist(USArrests[2:9,]), "com")
+dend <- as.dendrogram(hc)
+
+par(mfrow = c(1,3))
+plot(dend, main = "original tree")
+plot(unbranch(dend , 1), main = "unbranched tree (left branch)")
+plot(unbranch(dend , 2), main = "tree without  (right branch)")
+}
+\seealso{
+  \link[ape]{unbranch} {ape}
+}
+
