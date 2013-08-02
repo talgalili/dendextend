@@ -7,7 +7,7 @@
   Maechler.
 }
 \usage{
-  get_leaves_attr(object, attribute, ...)
+  get_leaves_attr(object, attribute, simplify = TRUE, ...)
 }
 \arguments{
   \item{object}{a dendrogram object}
@@ -15,10 +15,14 @@
   \item{attribute}{character scaler of the attribute
   (\code{attr}) we wish to get/set from the leaves}
 
+  \item{simplify}{logical. If TRUE (default), then the
+  return vector is after using \code{unlist} on it.}
+
   \item{...}{not used}
 }
 \value{
-  A vector with the dendrogram's leaves attribute
+  A vector (or a list) with the dendrogram's leaves
+  attribute
 }
 \description{
   Get/set attributes of dendrogram's leaves
@@ -41,8 +45,12 @@ get_nodes_attr(dend, "leaf") # conatins NA's
 
 get_leaves_attr(dend, "members") # should be 1's
 get_nodes_attr(dend, "members") #
+
+
+get_leaves_attr(dend, "members",simplify = FALSE) # should be 1's
 }
 \seealso{
-  \link{get_nodes_attr}, \link{nnodes}, \link{nleaves}
+  \link{get_nodes_attr}, \link{nnodes}, \link{nleaves},
+  \link{assign_values_to_leaves_nodePar}
 }
 

@@ -28,6 +28,8 @@ NEW FUNCTIONS ADDED:
 
    * color_branches - color a tree branches based on its clusters. This is a modified version of the color_clusters function from jefferis's dendroextra package. It extends it by using my own version of cutree.dendrogram - allowing the function to work for trees that hclust can not handle (unrooted and non-ultrametric trees). Also, it allows REPEATED cluster color assignments to branches on to the same tree. Something which the original function was not able to handle. It also handles extreme cases, such as when the labels of a tree are integers.
    * color_labels - just like color_branches, but for labels.
+   
+   * assign_values_to_leaves_nodePar - allows for complex manipulation of dendrogram's leaves parameters.
 
 
 UPDATED FUNCTIONS:
@@ -37,7 +39,7 @@ UPDATED FUNCTIONS:
    * cutree (cutree.dendogram / cutree.hclust) - Prevent R from crashing when using 
 cutree on a subset tree (e.g: dend[[1]])
    * Renaming the unroot function -> to -> unbranch 
-
+   * get_leaves_attr - added a simplify parameter.
 
 OTHER NOTES:
    * Updated the exact way the GPL was stated in DESCRIPTION and gave a better reference within each file.

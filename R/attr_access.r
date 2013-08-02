@@ -28,13 +28,16 @@
 #' @param object a dendrogram object 
 #' @param attribute character scaler of the attribute (\code{attr})
 #' we wish to get/set from the leaves
+#' @param simplify logical. If TRUE (default), then the return vector is 
+#' after using \code{unlist} on it.
 #' @param ... not used
 #' @source Heavily inspired by the code in the 
 #' function \code{labels.dendrogram}, 
 #' so credit should go to Martin Maechler.
 #' @return 
-#' A vector with the dendrogram's leaves attribute
-#' @seealso \link{get_nodes_attr}, \link{nnodes}, \link{nleaves}
+#' A vector (or a list) with the dendrogram's leaves attribute
+#' @seealso \link{get_nodes_attr}, \link{nnodes},
+#' \link{nleaves}, \link{assign_values_to_leaves_nodePar}
 #' @examples
 #' # define dendrogram object to play with:
 #' hc <- hclust(dist(USArrests[1:3,]), "ave")
@@ -54,15 +57,22 @@
 #' get_leaves_attr(dend, "members") # should be 1's
 #' get_nodes_attr(dend, "members") # 
 #' 
-get_leaves_attr <- function (object, attribute, ...) {
+#' 
+#' get_leaves_attr(dend, "members",simplify = FALSE) # should be 1's
+#' 
+#' 
+get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
    if(!inherits(object,'dendrogram')) warning("'object' should be a dendrogram.")   
    if(missing(attribute)) stop("'attribute' parameter is missing.")
    
    get_attr_from_leaf <- function(dend_node) {
       if(is.leaf(dend_node)) attr(dend_node, attribute)
    }   
+
+   ret <- dendrapply(object, get_attr_from_leaf)   
+   if(simplify) ret <- unlist(ret)   
    
-   return(unlist(dendrapply(object, get_attr_from_leaf)))   
+   return(ret)   
 }
 
 
@@ -366,5 +376,75 @@ hang.dendrogram <- function(dend,hang = 0.1,hang_height, ...) {
 # unclass(hang.dendrogram(dend))
 # unclass(unclass(unclass(hang.dendrogram(dend))))
 
+
+
+
+
+
+
+
+
+
+#' @title Assign values to nodePar of dendrogram's leaves
+#' @export
+#' @description
+#' Go through the dendrogram leaves and updates the values inside its nodePar
+#' @param object a dendrogram object 
+#' @param value a new value vector for the nodePar attribute. It should be 
+#' the same length as the number of leaves in the tree. If not, it will recycle
+#' the value and issue a warning.
+#' @param nodePar the value inside nodePar to adjust.
+#' @param ... not used
+#' @return 
+#' A dendrogram, after adjusting the nodePar attribute in all of its leaves, 
+#' @seealso \link{get_leaves_attr}
+#' @examples
+#' 
+#' \donotrun{
+#' 
+#' hc <- hclust(dist(USArrests[1:5,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' 
+#' # reproduces "labels_colors<-" 
+#' # although it does force us to run through the tree twice, 
+#' # hence "labels_colors<-" is better...
+#' plot(dend)
+#' dend <- assign_values_to_leaves_nodePar(object=dend, value = c(3,2), nodePar = "lab.col")
+#' plot(dend)
+#' # fix the annoying pch=1:
+#' dend <- assign_values_to_leaves_nodePar(dend, NA, "pch")
+#' plot(dend)
+#' # adjust the cex:
+#' dend <- assign_values_to_leaves_nodePar(dend, 2, "lab.cex")
+#' plot(dend)
+#' 
+#' get_leaves_attr(dend, "nodePar", simplify=FALSE)
+#' 
+#' }
+#' 
+assign_values_to_leaves_nodePar <- function(object, value, nodePar,...) {
+   if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
+   
+   leaves_length <- length(order.dendrogram(object)) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
+   if(leaves_length > length(value)) {
+      warning("Length of value vector was shorter than the number of leaves - vector value recycled")
+      value <- rep(value, length.out = leaves_length)
+   }       
+   
+   set_value_to_leaf <- function(dend_node) {
+      if(is.leaf(dend_node)) {			
+         i_leaf_number <<- i_leaf_number + 1
+         attr(dend_node, "nodePar")[[nodePar]] <- value[i_leaf_number] # this way it doesn't erase other nodePar values (if they exist)
+         
+         if(length(attr(dend_node, "nodePar")) == 0) attr(dend_node, "nodePar") <- NULL # remove nodePar if it is empty
+      }
+      return(unclass(dend_node))
+   }   
+   i_leaf_number <- 0
+   new_dend_object <- dendrapply(object, set_value_to_leaf)
+   class(new_dend_object) <- "dendrogram"
+   return(new_dend_object)
+}
 
 
