@@ -1,3 +1,5 @@
+# require(testthat)
+
 context("labels assignment")
 
 test_that("labels assginment works for vectors",{
@@ -132,5 +134,25 @@ test_that("labels assginment to dendrogram keeps the child nodes as NOT of dendr
    expect_true(class(unclass(dend)[[2]]) == "list")
 })
 
+
+
+test_that("order of leaves in sub-dendrogram and as.hclust",{
+   # For example:
+   hc <- hclust(dist(USArrests[1:6,]), "ave")
+   dend <- as.dendrogram(hc)
+   sub_dend <- dend[[1]]
+   
+   # bad order
+   expect_equal(order.dendrogram(sub_dend), c(4,6))
+   # bad labels:
+   expect_equal(labels(as.hclust(sub_dend)), as.character(rep(NA,2)))
+   
+   # let's fix it:   
+   order.dendrogram(sub_dend) <- rank(order.dendrogram(sub_dend), ties.method= "first")
+   expect_equal(labels(as.hclust(sub_dend)), c("Arkansas", "Colorado"))
+   # We now have labels :)
+   
+   
+})
 
 

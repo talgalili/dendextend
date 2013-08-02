@@ -298,8 +298,36 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
 #' order.dendrogram(dend) <- 1:4
 #' order.dendrogram(dend) # 1 2 3 4
 #' str(dend) # the structure is still fine.
+#' 
+#' # This function is very useful if we try playing with subtrees
+#' # For example:
+#' hc <- hclust(dist(USArrests[1:6,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' sub_dend <- dend[[1]]
+#' order.dendrogram(sub_dend) # 4 6
+#' # now using as.hclust(sub_dend) will cause trouble: (a bug in R 3.0.1)
+#' labels(as.hclust(sub_dend)) # NA NA labels!!!
+#' # let's fix it:
+#' 
+#' order.dendrogram(sub_dend) <- rank(order.dendrogram(sub_dend), ties.method= "first")
+#' labels(as.hclust(sub_dend)) # We now have labels :)
+#' 
 "order.dendrogram<-" <- function(object,..., value) {
-   new_labels <- as.numeric(value)
+
+   # notice that:  is.integer(as.numeric(1L)) == FALSE
+   # is.numeric(1L) == TRUE
+   # but the next line will not be triggered if value is an integer!
+   if(!is.numeric(value)) { 
+      warning("'value' is not numeric - coerced using as.numeric" )
+      value <- as.numeric(value)
+   }
+   if(!is.integer(value)) { 
+      warning("'value' is not integer - coerced using as.integer" )
+      value <- as.integer(value)
+   }
+   
+   new_labels <- value
+   
    new_labels_length <- length(new_labels)
    leaves_length <- nleaves(object) # labels(object) # it will be faster to use order.dendrogram than labels...   
    if(new_labels_length < leaves_length) {
@@ -316,11 +344,12 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
          dend_node <- new_labels[i_leaf_number]
          attributes(dend_node) <- attr_backup # fix attributes         
       }
-      return(dend_node)
+      return(unclass(dend_node))
    }
    
    i_leaf_number <- 0
    new_dend_object <- dendrapply(object, .change.order.LTR)
+   class(new_dend_object) <- "dendrogram"
    
    return(new_dend_object)
 }
