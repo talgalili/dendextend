@@ -50,8 +50,8 @@ options(replace.assign=TRUE,width=60)
 
 
 
-% \Plaintitle{Doing More with Dendrograms: The dendextend R Package}
-% \title{Doing More with Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
+% \Plaintitle{Visualizing and Comparing Trees of Heirarchical Clustering: Using the dendextend R Package}
+% \title{Visualizing and Comparing\\ Trees of Heirarchical Clustering:\\ Using the dendextend \proglang{R} Package}
 
 \Plaintitle{Manipulate, Visualize and Compare Dendrograms: The dendextend R Package}
 \title{Manipulate, Visualize and Compare Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
@@ -751,7 +751,7 @@ Here is an example of using \code{color_branches} combined with \code{labels_col
 require(colorspace)
 
 data(iris) 
-d_iris <- dist(iris[,-5])
+d_iris <- dist(iris[,-5]) # method="man" # is a bit better
 hc_iris <- hclust(d_iris)
 labels(hc_iris) # no labels, because "iris" has no row names
 dend_iris <- as.dendrogram(hc_iris)
