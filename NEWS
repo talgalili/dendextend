@@ -7,6 +7,7 @@ NEW FUNCTIONS ADDED:
 UPDATED FUNCTIONS:
    * rotate - fixes calling the same functions more than once (minor improvements)
    * fac2num - keep_names parameter added
+   * intersect_trees - added the "warn" parameter.
 
 NEW TESTS:
    * order.dendrogram gives warning and can be changed

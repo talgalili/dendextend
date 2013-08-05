@@ -2,12 +2,15 @@
 \alias{intersect_trees}
 \title{Intersect trees}
 \usage{
-  intersect_trees(x1, x2, ...)
+  intersect_trees(x1, x2, warn = FALSE, ...)
 }
 \arguments{
   \item{x1}{tree object (dendrogram/hclust/phylo)}
 
   \item{x2}{tree object (dendrogram/hclust/phylo)}
+
+  \item{warn}{logical (FALSE). Should a warning be issued
+  if there was a need to perform intersaction.}
 
   \item{...}{passed on}
 }
