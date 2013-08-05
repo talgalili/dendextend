@@ -212,3 +212,27 @@ rev.hclust <- function(x, ...) {
 # search()
 # unloadNamespace("dendextend"); attachNamespace("dendextend")
 # some thoughts: http://www.ats.ucla.edu/stat/r/faq/referencing_objects.htm
+
+
+
+
+# 
+# 
+# rotate_group_right <- function(x, ...) {
+#    fac_x <- factor(x) # , levels=unique(x))
+#    levels_fac_x <- levels(fac_x)
+#    levels(fac_x) <- c(tail(levels_fac_x, -1), head(levels_fac_x, 1))
+#    return(fac2num(fac_x))
+# }
+# 
+# 
+# hc <- hclust(dist(USArrests[1:5,]), "ave")
+# dend <- as.dendrogram(hc)
+# x = cutree(dend, k = 3)
+# rotate_group_right(rotate_group_right(x))
+# 
+
+#
+
+
+

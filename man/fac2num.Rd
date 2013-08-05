@@ -2,13 +2,16 @@
 \alias{fac2num}
 \title{Turns a factor into a number}
 \usage{
-  fac2num(x, force_integer = FALSE, ...)
+  fac2num(x, force_integer = FALSE, keep_names = TRUE, ...)
 }
 \arguments{
   \item{x}{an object.}
 
-  \item{force_integer}{logical. Should the values returned
-  be integers?}
+  \item{force_integer}{logical (FALSE). Should the values
+  returned be integers?}
+
+  \item{keep_names}{logical (TRUE). Should the values
+  returned keep the \link{names} of the original vector?}
 
   \item{...}{ignored.}
 }
