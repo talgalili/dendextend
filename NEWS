@@ -1,3 +1,12 @@
+dendextend 0.5 (2013-08-05) 
+---------------------------
+
+
+UPDATED FUNCTIONS:
+   * rotate - fixes calling the same functions more than once (minor improvements)
+
+
+
 dendextend 0.4 (2013-08-02) 
 ---------------------------
 

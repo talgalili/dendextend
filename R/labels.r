@@ -335,7 +335,7 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
       new_labels <- rep(new_labels, length.out = leaves_length)
    }
    
-   .change.order.LTR <- function(dend_node)
+   .change_order_LTR <- function(dend_node)
    {
       if(is.leaf(dend_node))
       {   	
@@ -348,7 +348,7 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
    }
    
    i_leaf_number <- 0
-   new_dend_object <- dendrapply(object, .change.order.LTR)
+   new_dend_object <- dendrapply(object, .change_order_LTR)
    class(new_dend_object) <- "dendrogram"
    
    return(new_dend_object)

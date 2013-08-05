@@ -1,3 +1,6 @@
+require(testthat)
+
+
 context("Rotate a tree around its hinges")
 
 

@@ -52,6 +52,10 @@
 #' second etc. (this is relevant only to \code{rotate})
 #' Is character: it must be a vector with the content of labels(x), in the 
 #' order we'd like to have the new tree.
+#' @param k    numeric scalar, with the number of clusters
+#' the tree should be cut into. The tree is rotate based on the cluster groups.
+#' @param h    numeric scalar, with a height where the tree 
+#' should be cut. The tree is rotate based on the cluster groups.
 #' @param decreasing logical. Should the sort be increasing or decreasing? Not available for partial sorting. (relevant only to \code{sort})
 #' @param ... parameters passed (for example, in case of sort)
 #' @details 
@@ -122,30 +126,33 @@ rotate <- function(x, order,...) UseMethod("rotate")
 rotate.default <- function(x,...) stop("object x must be a dendrogram or hclust object")
 
 #' @S3method rotate dendrogram
-rotate.dendrogram <- function(x, order,...)
+rotate.dendrogram <- function(x, order, k, h, ...)
 {
    if(missing(order)) { # if order is missing - return the same tree.
       warning("'order' parameter is missing, returning the tree as it was.")
       return(x)  
    }
 
+   labels_x <- labels(x) 
+   order_x <- order.dendrogram(x)
+   number_of_leaves <- length(order_x)
+   
    
    if(!is.numeric(order)) {
       order <- as.character(order)
-      if(length(intersect(order, labels(x))) != nleaves(x)) {
-         stop("'order' either be numeric, or a vector with ALL of the labels (in the order you want them to be)")
+      if(length(intersect(order, labels_x)) != number_of_leaves) {
+         stop("'order' is neither numeric nor a vector with ALL of the labels (in the order you want them to be)")
       }
       # order has all the labels, now, let's match:
       # match(c("c", "a", "b"), c("c","b", "a")) # order for making 2 into 1!
       # c("c", "b", "a", "d")[match(c("c", "d", "b", "a"), c("c","b","a", "d"))] # WORKS
       # c("c", "d", "b", "a")[match(c("c", "d", "b", "a"), c("c","b","a", "d"))] # FAIL
-      order <- match(order, labels(x))
+      order <- match(order, labels_x)
    }
    
-   number_of_leaves <- nleaves(x)   
    weights <- seq_len(number_of_leaves)
    weights_for_order <- numeric(number_of_leaves)
-   weights_for_order[order.dendrogram(x)[order]] <- weights
+   weights_for_order[order_x[order]] <- weights
    reorder(x, weights_for_order, mean,...)
 }
 
