@@ -5,7 +5,6 @@ context("Cutting a dendrogram")
 
 
 test_that("Checking if a number is natural",{
-   
    expect_true(is.natural.number(1))    # is TRUE
    expect_true(all(is.natural.number( seq(1,5, by=1)  )))
    expect_false(all(is.natural.number( seq(0,5, by=1)  )))
@@ -14,6 +13,18 @@ test_that("Checking if a number is natural",{
    
 })
 
+
+
+test_that("Turning factor into an integer",{
+   x <- factor(2:4)
+   expect_equal(as.numeric(x), 1:3)   
+   names(x) <- letters[x]
+   expect_equal(as.numeric(x), 1:3)   
+#    dput(fac2num(x))
+   expect_identical(fac2num(x),
+                    structure(c(2, 3, 4), .Names = c("a", "b", "c")))
+   expect_identical(fac2num(x, keep_names=FALSE), c(2, 3, 4))   
+})
 
 
 test_that("cutree a dendrogram by height h",{

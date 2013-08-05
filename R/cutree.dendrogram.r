@@ -45,7 +45,9 @@ is.phylo <- function(x) { inherits(x,"phylo") }
 #' and NOT the factor levels turned into a number.
 #' fac2num simply turns a factor into a number, as we often need.
 #' @param x an object.
-#' @param force_integer logical. Should the values returned be integers?
+#' @param force_integer logical (FALSE). Should the values returned be integers?
+#' @param keep_names logical (TRUE). Should the values returned keep the \link{names}
+#' of the original vector? 
 #' @param ... ignored.
 #' @return if x is an object - it returns logical - is the object of class dendrogram.
 #' @examples
@@ -54,13 +56,13 @@ is.phylo <- function(x) { inherits(x,"phylo") }
 #' as.numeric(x) # 1 2 3
 #' fac2num(x) # 3 4 5
 #' 
-fac2num <- function(x, force_integer = FALSE, ...) {
+fac2num <- function(x, force_integer = FALSE, keep_names = TRUE, ...) {
    if(!is.factor(x)) stop("x must be a factor (in order to turn it into a number)")
    new_x <- as.numeric(as.character(x))
    if(force_integer) new_x <- as.integer(new_x)
+   if(keep_names) names(new_x) <- names(x)
    return( new_x )
 }
-
 
 
 

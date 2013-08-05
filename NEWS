@@ -4,7 +4,11 @@ dendextend 0.5 (2013-08-05)
 
 UPDATED FUNCTIONS:
    * rotate - fixes calling the same functions more than once (minor improvements)
+   * fac2num - keep_names parameter added
 
+NEW TESTS:
+   * order.dendrogram gives warning and can be changed
+   * fac2num works
 
 
 dendextend 0.4 (2013-08-02) 
