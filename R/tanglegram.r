@@ -49,26 +49,26 @@ tanglegram.default <- function (object, ..., value) stop("no default function fo
 # tanglegram(dend2, sort(dend2))
 
 tanglegram.dendrogram <- function(dendo1,dendo2 , sort = F, 
-                                   color_lines, 
+                                  color_lines, 
                                   lwd = 2.5,
-                                   columns_width = c(5,3,5),
+                                  columns_width = c(5,3,5),
                                   ylim_bottom = 1,
-                                   margin_top = 3,
-                                   margin_bottom = 2.5,
+                                  margin_top = 3,
+                                  margin_bottom = 2.5,
                                   margin_center = 1.8,
                                   margin_shell = 0.5,
                                   left_dendo_mar = c(margin_bottom,margin_shell,margin_top,margin_center),
-                                   right_dendo_mar=c(margin_bottom,margin_center,margin_top,margin_shell),
-                                   characters_to_trim = NULL,
-                                   dLeaf = NULL, # -.3,
+                                  right_dendo_mar=c(margin_bottom,margin_center,margin_top,margin_shell),
+                                  characters_to_trim = NULL,
+                                  dLeaf = NULL, # -.3,
                                   dLeaf_left = 0.75 * strwidth("w"),
                                   dLeaf_right = -2.5 * strwidth("w"),
                                   axes = TRUE, 
-                                   dendo_type = "r", # can also be "t"
-                                   text_cex = 1,
-                                   remove_nodePar =F,
-                                   main_left = "",
-                                   main_right = ""																	 
+                                  dendo_type = "r", # can also be "t"
+                                  text_cex = 1,
+                                  remove_nodePar =F,
+                                  main_left = "",
+                                  main_right = ""																	 
 )
 {
    # characters_to_trim = the number of characters to leave after trimming the labels.		
@@ -93,44 +93,14 @@ tanglegram.dendrogram <- function(dendo1,dendo2 , sort = F,
       dendo2 <- sort(dendo2)
    }
    
-   # using this we lose some meta-data on hclust, but nothing majour...
-   # 	hc1 <- as.hclust(dendo1)
-   # 	hc2 <- as.hclust(dendo2)
-   
-   # dendo1$order
    
    l <- length(order.dendrogram(dendo1))
+   
    # The matrix to draw the arrows:
    ord_arrow <- cbind((1:l)[order(order.dendrogram(dendo1))],(1:l)[order(order.dendrogram(dendo2))]) 
-   # 	ord_arrow <- cbind((1:l)[(order.dendrogram(dendo1))],(1:l)[(order.dendrogram(dendo2))]) 
-   # 	ord_arrow <- cbind(order.dendrogram(dendo1),order.dendrogram(dendo2)) 
-   # 	labels(dendo1)
-   # The two vectors of ordered leave labels:
-#    leaves1 <- labels(dendo1)
-#    leaves2 <- labels(dendo2)
-#    
-#    if(!is.null(characters_to_trim) & is.numeric(characters_to_trim)) {
-#       # find out where we will trim
-#       ss_leaves1_add... <- nchar(leaves1) > characters_to_trim
-#       ss_leaves2_add... <- nchar(leaves2) > characters_to_trim
-#       
-#       leaves1 <- substr(leaves1,1,characters_to_trim)
-#       leaves2 <- substr(leaves2,1,characters_to_trim)		
-#       
-#       leaves1[ss_leaves1_add...] <- paste(leaves1[ss_leaves1_add...], "...", sep = "")
-#       leaves2[ss_leaves2_add...] <- paste(leaves2[ss_leaves2_add...], "...", sep = "")			
-#       leaves1[!ss_leaves1_add...] <- paste(leaves1[!ss_leaves1_add...], "   ", sep = "")
-#       leaves2[!ss_leaves2_add...] <- paste(leaves2[!ss_leaves2_add...], "   ", sep = "")			
-#    }
-#    
-   # 	labels(dendo1)[order.dendrogram(dendo1)]->leaves1
-   # 	labels(dendo2)[order.dendrogram(dendo2)]->leaves2
-   # 	cbind(leaves1, leaves2)
    
-   # And the plot:
    # Set the layout of the plot elements
    layout(matrix(1:3,nrow=1),width=columns_width)
-   #par(mfrow = c(1,2))
    
    # The first dendrogram:	
    par(mar=left_dendo_mar)
@@ -138,12 +108,6 @@ tanglegram.dendrogram <- function(dendo1,dendo2 , sort = F,
         dLeaf = dLeaf_left, type = dendo_type, axes = axes,
         main = main_left
    )
-   # plot(dendo1,horiz=TRUE,ylim=c(0,l))
-   
-   # The first serie of labels (i draw them separately because, for the second serie, I didn't find a simple way to draw them nicely on the cluster):
-#    par(mar=c(margin_bottom,0,margin_top,0))
-#    plot(NA, bty="n",axes=FALSE,xlim=c(0,1), ylim=c(0,l),ylab="",xlab="")
-#    sapply(1:l,function(x)text(x=0,y=x,labels=leaves1[x], pos=4, cex=text_cex, offset = 0))
    
    # The arrows:
    # arros colors:
@@ -161,18 +125,11 @@ tanglegram.dendrogram <- function(dendo1,dendo2 , sort = F,
          }
    )
    
-   # The second serie of labels:
-#    par(mar=c(margin_bottom,0,margin_top,0))
-#    plot(NA, bty="n",axes=FALSE, xlim=c(0,1), ylim=c(0,l), ylab="",xlab="")
-#    sapply(1:l,function(x)text(x=1,y=x,labels=leaves2[x], pos=2, cex=text_cex, offset = 0))
-   
    # And the second dendrogram (to reverse it I reversed the xlim vector:
    par(mar=right_dendo_mar)
    plot(dendo2,horiz=TRUE, xlim=c(0,attr(dendo2,"height")), 
-#         leaflab="none",
         ylim=c(ylim_bottom,l), 
         dLeaf = dLeaf_right ,
-#         dLeaf = dLeaf, 
         type = dendo_type, axes = axes,
         main = main_right)
    
