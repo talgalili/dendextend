@@ -166,3 +166,28 @@ test_that("labels of hclust on data without rownames is an integer",{
    expect_true(length(labels(hc))==0) # hc has NO labels
    expect_true(is.integer(labels(dend))) # the labels the dend gets are Integer   
 })
+
+
+
+
+
+
+test_that("order of leaves can be extracted and changed",{
+   hc <- hclust(dist(USArrests[1:3,]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   expect_identical(order.dendrogram(dend), c(3L,1L,2L))
+   
+   # change order:
+   order.dendrogram(dend) <- 1:3   
+   expect_identical(order.dendrogram(dend), 1:3)
+   
+   # change order (with replications):
+   expect_warning(order.dendrogram(dend) <- c(1,2))   
+   expect_identical(order.dendrogram(dend), as.integer(c(1,2,1)))
+   
+   
+})
+
+
+

@@ -325,29 +325,37 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
       warning("'value' is not integer - coerced using as.integer" )
       value <- as.integer(value)
    }
+   new_order_values <- value
    
-   new_labels <- value
-   
-   new_labels_length <- length(new_labels)
+   new_labels_length <- length(new_order_values)
    leaves_length <- nleaves(object) # labels(object) # it will be faster to use order.dendrogram than labels...   
+   
    if(new_labels_length < leaves_length) {
       warning("The lengths of the new labels is shorter than the number of leaves in the dendrogram - labels are recycled.")
-      new_labels <- rep(new_labels, length.out = leaves_length)
+      new_order_values <- rep(new_order_values, length.out = leaves_length)
    }
+
+   
+   # I can't think of a case were someone would like to use non unique values.  But just in case - I will warn them that they are doing so...
+   if(any(duplicated(new_order_values))) {
+      warning("The value you wish to insert into the dendrogram 'objects' has duplicate values.  Often you are likely to prefer unique values in your vector.  So be sure to check that you've used the correct vector here...")
+   }
+   #    any(duplicated(c(1:4, 2)))
+   
    
    .change_order_LTR <- function(dend_node)
    {
       if(is.leaf(dend_node))
       {   	
          attr_backup <- attributes(dend_node)
-         i_leaf_number <<- i_leaf_number + 1 # this saves us from cases of duplicate enteries...
-         dend_node <- new_labels[i_leaf_number]
+         dend_node <- new_order_values[i_leaf_number]
          attributes(dend_node) <- attr_backup # fix attributes         
+         i_leaf_number <<- i_leaf_number + 1 # this saves us from cases of duplicate enteries...
       }
       return(unclass(dend_node))
    }
    
-   i_leaf_number <- 0
+   i_leaf_number <- 1
    new_dend_object <- dendrapply(object, .change_order_LTR)
    class(new_dend_object) <- "dendrogram"
    
