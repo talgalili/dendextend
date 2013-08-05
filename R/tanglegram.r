@@ -24,11 +24,14 @@
 
 # source for this code: http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r
 
-tanglegram <- function (...) UseMethod("tanglegram")
+tanglegram <- function (tree1, ...) {UseMethod("tanglegram")}
 
 
-tanglegram.default <- function (object, ..., value) stop("no default function for tanglegram-")
+tanglegram.default <- function (tree1, ...) {stop("No default function for tanglegram - must use a dendrogram/hclust/phylo object")}
 
+tanglegram.hclust <- function(tree1, ...) {tanglegram.dendrogram(tree1 = tree1, ...)}
+
+tanglegram.phylo <- function(tree1, ...) {tanglegram.dendrogram(tree1 = tree1, ...)}
 
 
 # set.seed(23235)
@@ -48,9 +51,9 @@ tanglegram.default <- function (object, ..., value) stop("no default function fo
 # a good example of how massy this can be for THE SAME TREE!
 # tanglegram(dend2, sort(dend2))
 
-tanglegram.dendrogram <- function(dendo1,dendo2 , sort = F, 
-                                  color_lines, 
-                                  lwd = 2.5,
+tanglegram.dendrogram <- function(tree1,tree2 , sort = F, 
+                                  color_lines = rep("darkgrey", l), 
+                                  lwd = 3.5,
                                   columns_width = c(5,3,5),
                                   ylim_bottom = 1,
                                   margin_top = 3,
@@ -73,7 +76,9 @@ tanglegram.dendrogram <- function(dendo1,dendo2 , sort = F,
 {
    # characters_to_trim = the number of characters to leave after trimming the labels.		
    # remove_nodePar = makes sure that we won't have any dots at the end of leaves
-   # Future TODO:
+   
+   if(!is.dendrogram(tree1)) tree1 <- as.dendrogram(tree1)
+   if(!is.dendrogram(tree2)) tree2 <- as.dendrogram(tree2)
    
    # remove colors from the tips of leaves
    if(remove_nodePar) {
@@ -84,34 +89,33 @@ tanglegram.dendrogram <- function(dendo1,dendo2 , sort = F,
          }
          n
       }
-      dendo1 <- dendrapply(dendo1, colLab_0)
-      dendo2 <- dendrapply(dendo2, colLab_0)
+      tree1 <- dendrapply(tree1, colLab_0)
+      tree2 <- dendrapply(tree2, colLab_0)
    }
    # sort them for better graph
    if(sort == T) {	# based on the "rotate.dendrogram" function
-      dendo1 <- sort(dendo1)
-      dendo2 <- sort(dendo2)
+      tree1 <- sort(tree1)
+      tree2 <- sort(tree2)
    }
    
    
-   l <- length(order.dendrogram(dendo1))
+   l <- nleaves(tree1)
    
    # The matrix to draw the arrows:
-   ord_arrow <- cbind((1:l)[order(order.dendrogram(dendo1))],(1:l)[order(order.dendrogram(dendo2))]) 
+   ord_arrow <- cbind((1:l)[order(order.dendrogram(tree1))],(1:l)[order(order.dendrogram(tree2))]) 
    
    # Set the layout of the plot elements
    layout(matrix(1:3,nrow=1),width=columns_width)
    
    # The first dendrogram:	
    par(mar=left_dendo_mar)
-   plot(dendo1,horiz=TRUE, ylim=c(ylim_bottom,l),
+   plot(tree1,horiz=TRUE, ylim=c(ylim_bottom,l),
         dLeaf = dLeaf_left, type = dendo_type, axes = axes,
         main = main_left
    )
    
    # The arrows:
-   # arros colors:
-   if(missing(color_lines)) color_lines <- rep("skyblue3", l)
+   # arros colors:   
    if(length(color_lines) < l) color_lines <- rep.int(color_lines, l)
    color_lines <- color_lines[ord_arrow[,1]]	
    
@@ -121,13 +125,13 @@ tanglegram.dendrogram <- function(dendo1,dendo2 , sort = F,
    apply(ord_arrow,1,
          function(x){
             col_indx <<- col_indx + 1
-            arrows(0,x[1],1,x[2],code=3, length=0.05, col= color_lines[col_indx], lwd = lwd)
+            arrows(0,x[1],1,x[2],code=0, length=0.05, col= color_lines[col_indx], lwd = lwd)
          }
    )
    
    # And the second dendrogram (to reverse it I reversed the xlim vector:
    par(mar=right_dendo_mar)
-   plot(dendo2,horiz=TRUE, xlim=c(0,attr(dendo2,"height")), 
+   plot(tree2,horiz=TRUE, xlim=c(0,attr(tree2,"height")), 
         ylim=c(ylim_bottom,l), 
         dLeaf = dLeaf_right ,
         type = dendo_type, axes = axes,
@@ -135,7 +139,9 @@ tanglegram.dendrogram <- function(dendo1,dendo2 , sort = F,
    
 }
 
- tanglegram(dend2, dend1)
+#  tanglegram(dend2, dend1)
+#  tanglegram(as.hclust(dend2), dend1) # we now don't have any colors
+#  tanglegram(dend2, as.hclust(dend1)) # we now don't have any colors
 
 # tanglegram(rotate(dend1, labels(dend2) ), dend2, text_cex = 2, lwd = 5)
 
