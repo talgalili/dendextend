@@ -1,6 +1,8 @@
 dendextend 0.5 (2013-08-05) 
 ---------------------------
 
+NEW FUNCTIONS ADDED: 
+   * tanglegram
 
 UPDATED FUNCTIONS:
    * rotate - fixes calling the same functions more than once (minor improvements)

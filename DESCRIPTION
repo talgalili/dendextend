@@ -32,4 +32,5 @@ Collate:
     'color_branches.r'
     'cutree.dendrogram.r'
     'dendextend-package.r'
+    'tanglegram.r'
     'zzz.r'
