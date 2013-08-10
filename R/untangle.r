@@ -24,20 +24,151 @@
 
 
 
-match_leaves_by_labels <- function(dendo_change, dendo_template , check_that_labels_match = FALSE) {   
+# untangle.dendrogram # A function to take two dendrograms and rotate them so to minimize some penalty on entanglement 
+
+# entanglement
+
+entanglement <- function (...) { UseMethod("entanglement") }
+
+
+entanglement.default <- function (object, ...) { stop("no default function for entanglement") }
+
+
+
+
+entanglement.dendrogram <- function(dend1,dend2, L = 1.5, leaves_matching_method = c("leaves", "labels")) {
+   # One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
+   # A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
+   # leaves(dend1),leaves(dend2)
+   # L tells us which panelty level we are at (L0, L1, L2, partial L's etc).  L>1 means that we give a big panelty for sharp angles.  While L->0 means that any time something is not a streight horizontal line, it gets a large penalty
+   # If L=0.1 it means that we much prefer streight lines over non streight lines
    
-   #let's put the leaves' numbers and labels in two data.frames (one for Dan and one for Yoav)	
-   # 	tree_to_change_labels_order <- data.frame(labels = labels(dendo_change), values = order.dendrogram(dendo_change))
-   # 	tree_template_labels_order <- data.frame(labels = labels(dendo_template), values = order.dendrogram(dendo_template))
-   tree_to_change_labels_order_labels = labels(dendo_change)
-   # 	tree_to_change_labels_order_values = order.dendrogram(dendo_change)	# this is not used.
-   tree_template_labels_order_labels = labels(dendo_template)
+   if(L==0) L <- L + 1e-50 # this is in order to make sure L is not ==0.  Because that would just create nonsical meaning.
+   
+   
+   n_leaves <- length(order.dendrogram(dend1)) # how many leaves do we have? (number of leaves)
+   one_to_n_leaves <- seq_len(n_leaves)
+   
+   if(leaves_matching_method[1] == "leaves") {   
+      dend1_old_values <- order.dendrogram(dend1)
+      order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n	
+      dend2 <- match.order.dendrogram.by.old.values(dend2	, dend1, dend1_old_values) # make sure that the numbers if the 
+   } else { # "labels" - this method is "safer" (since we can easily see if the labels on the two trees match or not
+      # however, this is twice as slow (which adds up quite a bit with the functions that rely on this)
+      # Hence, it is best to make sure that the trees used here have the same labels and the SAME values matched to these values
+      order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n
+      dend2 <- match.leaves.by.labels(dend2	, dend1) # This one is "slow"
+   }
+   
+   sum.abs.diff.L <- function(x,y,L) sum(abs(x-y)**L)
+   
+   entanglement_result <- sum.abs.diff.L(order.dendrogram(dend1), order.dendrogram(dend2), L)	
+   worse_entanglement_result <- sum.abs.diff.L(one_to_n_leaves, rev(one_to_n_leaves), L)		
+   normalized_entanglement_result <- entanglement_result/worse_entanglement_result # should range between 0 (no etnaglement) and 1 (max entangelment
+   
+   normalized_entanglement_result
+}
+
+
+
+
+
+
+
+
+
+
+# ### OLD entanglement concept.
+# entanglement.dendrogram <- function(dend1,dend2 , method = c("absolute.rank.sum", "cor.spearman") )
+# {
+# 	# One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
+# 	# A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
+# 	# leaves(dend1),leaves(dend2)
+# 	
+# 	n_leaves <- length(order.dendrogram(dend1)) # how many leaves do we have? (number of leaves)
+# 	order.dendrogram(dend1) <- seq_len(n_leaves) # change the leaves of dend1 to be 1:n
+# 	dend2 <- match.leaves.by.labels(dend2	, dend1) # make sure that the numbers if the 
+# 
+# 	if(method[1] == "cor.spearman") {
+# 		order_cor <- cor(order.dendrogram(dend1),order.dendrogram(dend2), method = "spearman")
+# 		entanglement_result <- (1-order_cor)/2 # cor=1 is best (0 entanglement), cor = 0 is bad (0.5 entanglement), cor = -1 is worst (1 entanglament)		
+# 	}
+# 	if(method[1] == "absolute.rank.sum") {					
+# 		entanglement_result <- sum(abs(order.dendrogram(dend1)-order.dendrogram(dend2)))
+# 	}
+# 	
+# 	entanglement_result
+# }
+
+
+
+# tanglegram(dend1,dend2)
+# tanglegram(sort(dend1),sort(dend2))
+# entanglement(dend1,dend2, L = 0)
+# entanglement(dend1,dend2, L = 0.25)
+# entanglement(dend1,dend2, L = 1)
+# entanglement(dend1,dend2, L = 2)
+# entanglement(dend1,dend2, L = 10)
+# entanglement(sort(dend1),sort(dend2), L=0)
+# entanglement(sort(dend1),sort(dend2), L=0.25)
+# entanglement(sort(dend1),sort(dend2), L=1)
+# entanglement(sort(dend1),sort(dend2), L=2)
+# entanglement(sort(dend1),sort(dend2), L=10)
+
+# OLD and SLOW
+entanglement.dendrogram <- function(dend1,dend2, L = 1.5)
+{
+   # One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
+   # A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
+   # leaves(dend1),leaves(dend2)
+   # L tells us which panelty level we are at (L0, L1, L2, partial L's etc).  L>1 means that we give a big panelty for sharp angles.  While L->0 means that any time something is not a streight horizontal line, it gets a large penalty
+   # If L=0.1 it means that we much prefer streight lines over non streight lines
+   
+   if(L==0) L <- L + 1e-50 # this is in order to make sure L is not ==0.  Because that would just create nonsical meaning.
+   
+   
+   n_leaves <- length(order.dendrogram(dend1)) # how many leaves do we have? (number of leaves)
+   one_to_n_leaves <- seq_len(n_leaves)
+   order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n
+   dend2 <- match.leaves.by.labels(dend2	, dend1) # make sure that the numbers if the 
+   
+   sum.abs.diff.L <- function(x,y,L) sum(abs(x-y)**L)
+   
+   entanglement_result <- sum.abs.diff.L(order.dendrogram(dend1), order.dendrogram(dend2), L)	
+   worse_entanglement_result <- sum.abs.diff.L(one_to_n_leaves, rev(one_to_n_leaves), L)		
+   normalized_entanglement_result <- entanglement_result/worse_entanglement_result # should range between 0 (no etnaglement) and 1 (max entangelment
+   
+   normalized_entanglement_result
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+match_leaves_by_labels <- function(dend_change, dend_template , check_that_labels_match = FALSE) {   
+   
+   #let's put the leaves' numbers and labels in two data.frames (one for Dan and one for Yoav)   
+   # 	tree_to_change_labels_order <- data.frame(labels = labels(dend_change), values = order.dendrogram(dend_change))
+   # 	tree_template_labels_order <- data.frame(labels = labels(dend_template), values = order.dendrogram(dend_template))
+   tree_to_change_labels_order_labels = labels(dend_change)
+   # 	tree_to_change_labels_order_values = order.dendrogram(dend_change)	# this is not used.
+   tree_template_labels_order_labels = labels(dend_template)
    
    if(check_that_labels_match) { 
       if(any(sort(tree_to_change_labels_order_labels) != sort(tree_template_labels_order_labels))) stop("labels do not match in both trees.  Please make sure to fix the labels names!")
    }	
    
-   tree_template_labels_order_values = order.dendrogram(dendo_template)
+   tree_template_labels_order_values = order.dendrogram(dend_template)
    
    # this gives us how to order y so it would be in the order of x.
    # y_to_order_like_x <- c(2,3,1,4)
@@ -54,9 +185,9 @@ match_leaves_by_labels <- function(dendo_change, dendo_template , check_that_lab
    
    
    tree_new_leaf_numbers <- tree_template_labels_order_values[ss_order_change_leaf_numbers_to_match_template]
-   order.dendrogram(dendo_change) <- tree_new_leaf_numbers
+   order.dendrogram(dend_change) <- tree_new_leaf_numbers
    
-   return(dendo_change)
+   return(dend_change)
    # data.frame(
    # 		yoav_num = Yoav_tree_labels_order$order[ss_order_yoav_leaf_numbers_to_match_dans],
    # 		yoav_lab = Yoav_tree_labels_order$labels[ss_order_yoav_leaf_numbers_to_match_dans],
@@ -67,87 +198,8 @@ match_leaves_by_labels <- function(dendo_change, dendo_template , check_that_lab
 
 
 
-
-# untangle.dendrogram # A function to take two dendrograms and rotate them so to minimize some penalty on entanglement 
-
-# entanglement
-
-entanglement <- function (...) UseMethod("entanglement")
-
-entanglement.default <- function (object, ...) stop("no default function for entanglement")
-
-
-# ### OLD entanglement concept.
-# entanglement.dendrogram <- function(dendo1,dendo2 , method = c("absolute.rank.sum", "cor.spearman") )
-# {
-# 	# One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
-# 	# A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
-# 	# leaves(dendo1),leaves(dendo2)
-# 	
-# 	n_leaves <- length(order.dendrogram(dendo1)) # how many leaves do we have? (number of leaves)
-# 	order.dendrogram(dendo1) <- seq_len(n_leaves) # change the leaves of dendo1 to be 1:n
-# 	dendo2 <- match.leaves.by.labels(dendo2	, dendo1) # make sure that the numbers if the 
-# 
-# 	if(method[1] == "cor.spearman") {
-# 		order_cor <- cor(order.dendrogram(dendo1),order.dendrogram(dendo2), method = "spearman")
-# 		entanglement_result <- (1-order_cor)/2 # cor=1 is best (0 entanglement), cor = 0 is bad (0.5 entanglement), cor = -1 is worst (1 entanglament)		
-# 	}
-# 	if(method[1] == "absolute.rank.sum") {					
-# 		entanglement_result <- sum(abs(order.dendrogram(dendo1)-order.dendrogram(dendo2)))
-# 	}
-# 	
-# 	entanglement_result
-# }
-
-
-
-# tanglegram(dendo1,dendo2)
-# tanglegram(sort(dendo1),sort(dendo2))
-# entanglement(dendo1,dendo2, L = 0)
-# entanglement(dendo1,dendo2, L = 0.25)
-# entanglement(dendo1,dendo2, L = 1)
-# entanglement(dendo1,dendo2, L = 2)
-# entanglement(dendo1,dendo2, L = 10)
-# entanglement(sort(dendo1),sort(dendo2), L=0)
-# entanglement(sort(dendo1),sort(dendo2), L=0.25)
-# entanglement(sort(dendo1),sort(dendo2), L=1)
-# entanglement(sort(dendo1),sort(dendo2), L=2)
-# entanglement(sort(dendo1),sort(dendo2), L=10)
-
-# OLD and SLOW
-entanglement.dendrogram <- function(dendo1,dendo2, L = 1.5)
-{
-   # One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
-   # A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
-   # leaves(dendo1),leaves(dendo2)
-   # L tells us which panelty level we are at (L0, L1, L2, partial L's etc).  L>1 means that we give a big panelty for sharp angles.  While L->0 means that any time something is not a streight horizontal line, it gets a large penalty
-   # If L=0.1 it means that we much prefer streight lines over non streight lines
-   
-   if(L==0) L <- L + 1e-50 # this is in order to make sure L is not ==0.  Because that would just create nonsical meaning.
-   
-   
-   n_leaves <- length(order.dendrogram(dendo1)) # how many leaves do we have? (number of leaves)
-   one_to_n_leaves <- seq_len(n_leaves)
-   order.dendrogram(dendo1) <- one_to_n_leaves # change the leaves of dendo1 to be 1:n
-   dendo2 <- match.leaves.by.labels(dendo2	, dendo1) # make sure that the numbers if the 
-   
-   sum.abs.diff.L <- function(x,y,L) sum(abs(x-y)**L)
-   
-   entanglement_result <- sum.abs.diff.L(order.dendrogram(dendo1), order.dendrogram(dendo2), L)	
-   worse_entanglement_result <- sum.abs.diff.L(one_to_n_leaves, rev(one_to_n_leaves), L)		
-   normalized_entanglement_result <- entanglement_result/worse_entanglement_result # should range between 0 (no etnaglement) and 1 (max entangelment
-   
-   normalized_entanglement_result
-}
-
-
-
-
-
-
-
 # FASTER version of entanglement (assumes that the leaves values are matched correctly with the labels in both trees!)
-match.order.dendrogram.by.old.values <- function(dendo_change, dendo_template , dendo_template_old_values,
+match.order.dendrogram.by.old.values <- function(dend_change, dend_template , dend_template_old_values,
                                               check_that_labels_match = F, check_that_leaves_values_match =F ,
                                               print_NOTE = F) {	
    
@@ -155,31 +207,31 @@ match.order.dendrogram.by.old.values <- function(dendo_change, dendo_template , 
    # But it relies on some important assumptions (otherwise, its results will be nonsense!)
    
    if(check_that_labels_match) { # I am turning this check to FALSE since it takes 0.03 sec from the function (which is a long time when running this function a lot)
-      if(any(sort(labels(dendo_change)) != sort(labels(dendo_template)))) stop("labels do not match in both trees.  Please make sure to fix the labels names!")
+      if(any(sort(labels(dend_change)) != sort(labels(dend_template)))) stop("labels do not match in both trees.  Please make sure to fix the labels names!")
    }
    if(check_that_leaves_values_match) { # I am turning this check to FALSE since it takes 0.03 sec from the function (which is a long time when running this function a lot)
-      if(any(sort(order.dendrogram(dendo_change)) != sort(order.dendrogram(dendo_template)))) stop("order.dendrogram do not match in both trees.  Please make sure to fix the labels names!")
+      if(any(sort(order.dendrogram(dend_change)) != sort(order.dendrogram(dend_template)))) stop("order.dendrogram do not match in both trees.  Please make sure to fix the labels names!")
    }
    
    if(print_NOTE) cat("NOTE:
-                      Make sure that the values in dendo_template_old_values match the labels of dendo1 in the same way
-                      as the values and labels of the dendo_change!
+                      Make sure that the values in dend_template_old_values match the labels of dend1 in the same way
+                      as the values and labels of the dend_change!
                       ")
    
    
    #let's put the leaves' numbers and labels in two data.frames (one for Dan and one for Yoav)	
-   # 	tree_to_change_labels_order <- data.frame(labels = labels(dendo_change), values = order.dendrogram(dendo_change))
-   # 	tree_template_labels_order <- data.frame(labels = labels(dendo_template), values = order.dendrogram(dendo_template))
-   tree_to_change_labels_order_values = order.dendrogram(dendo_change)
-   # 	tree_to_change_labels_order_values = order.dendrogram(dendo_change)	# this is not used.
-   tree_template_labels_order_values = order.dendrogram(dendo_template) # these should be values after some change was done outside the function (and dendo_template_old_values are the values before the change)
+   # 	tree_to_change_labels_order <- data.frame(labels = labels(dend_change), values = order.dendrogram(dend_change))
+   # 	tree_template_labels_order <- data.frame(labels = labels(dend_template), values = order.dendrogram(dend_template))
+   tree_to_change_labels_order_values = order.dendrogram(dend_change)
+   # 	tree_to_change_labels_order_values = order.dendrogram(dend_change)	# this is not used.
+   tree_template_labels_order_values = order.dendrogram(dend_template) # these should be values after some change was done outside the function (and dend_template_old_values are the values before the change)
    
    # this gives us how to order y so it would be in the order of x.
    # y_to_order_like_x <- c(2,3,1,4)
    # y_to_order_like_x[match(c(1:4), y_to_order_like_x)]
    # I want to order the numbers in yoav_tree so that they would match the needed order in dans_tree
    
-   ss_order_change_leaf_numbers_to_match_template <- match(x= tree_to_change_labels_order_values, table= dendo_template_old_values)
+   ss_order_change_leaf_numbers_to_match_template <- match(x= tree_to_change_labels_order_values, table= dend_template_old_values)
    # let's check if it works: (it does!)
    # data.frame(
    # 		yoav_num = Yoav_tree_labels_order$order[ss_order_yoav_leaf_numbers_to_match_dans],
@@ -189,9 +241,9 @@ match.order.dendrogram.by.old.values <- function(dendo_change, dendo_template , 
    
    
    new_leaves_values <- tree_template_labels_order_values[ss_order_change_leaf_numbers_to_match_template]
-   order.dendrogram(dendo_change) <- new_leaves_values
+   order.dendrogram(dend_change) <- new_leaves_values
    
-   return(dendo_change)
+   return(dend_change)
    # data.frame(
    # 		yoav_num = Yoav_tree_labels_order$order[ss_order_yoav_leaf_numbers_to_match_dans],
    # 		yoav_lab = Yoav_tree_labels_order$labels[ss_order_yoav_leaf_numbers_to_match_dans],
@@ -199,39 +251,6 @@ match.order.dendrogram.by.old.values <- function(dendo_change, dendo_template , 
    # 		dan_lab = labels(Dan_arc_tree))
 }
 
-
-entanglement.dendrogram <- function(dendo1,dendo2, L = 1.5, leaves_matching_method = c("leaves", "labels")) {
-   # One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
-   # A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
-   # leaves(dendo1),leaves(dendo2)
-   # L tells us which panelty level we are at (L0, L1, L2, partial L's etc).  L>1 means that we give a big panelty for sharp angles.  While L->0 means that any time something is not a streight horizontal line, it gets a large penalty
-   # If L=0.1 it means that we much prefer streight lines over non streight lines
-   
-   if(L==0) L <- L + 1e-50 # this is in order to make sure L is not ==0.  Because that would just create nonsical meaning.
-   
-   
-   n_leaves <- length(order.dendrogram(dendo1)) # how many leaves do we have? (number of leaves)
-   one_to_n_leaves <- seq_len(n_leaves)
-   
-   if(leaves_matching_method[1] == "leaves") {	
-      dendo1_old_values <- order.dendrogram(dendo1)
-      order.dendrogram(dendo1) <- one_to_n_leaves # change the leaves of dendo1 to be 1:n	
-      dendo2 <- match.order.dendrogram.by.old.values(dendo2	, dendo1, dendo1_old_values) # make sure that the numbers if the 
-   } else { # "labels" - this method is "safer" (since we can easily see if the labels on the two trees match or not
-      # however, this is twice as slow (which adds up quite a bit with the functions that rely on this)
-      # Hence, it is best to make sure that the trees used here have the same labels and the SAME values matched to these values
-      order.dendrogram(dendo1) <- one_to_n_leaves # change the leaves of dendo1 to be 1:n
-      dendo2 <- match.leaves.by.labels(dendo2	, dendo1) # This one is "slow"
-   }
-   
-   sum.abs.diff.L <- function(x,y,L) sum(abs(x-y)**L)
-   
-   entanglement_result <- sum.abs.diff.L(order.dendrogram(dendo1), order.dendrogram(dendo2), L)	
-   worse_entanglement_result <- sum.abs.diff.L(one_to_n_leaves, rev(one_to_n_leaves), L)		
-   normalized_entanglement_result <- entanglement_result/worse_entanglement_result # should range between 0 (no etnaglement) and 1 (max entangelment
-   
-   normalized_entanglement_result
-}
 
 
 # get("sort")
@@ -247,26 +266,26 @@ stir.dendrogram <- function(object) {
 }
 
 
-untangle.random.search <- function(dendo1, dendo2, R = 100, L = 1) {
+untangle.random.search <- function(dend1, dend2, R = 100, L = 1) {
    # this is a simple random search algorithm for the optimal tanglegram layout problem.
    # it stirrs the trees, and see if we got a better entanglement or not
    
-   best_ordaring_entanglement <- entanglement(dendo1, dendo2, L)
+   best_ordaring_entanglement <- entanglement(dend1, dend2, L)
    
    for(i in 1:R) {
-      s_dendo1 <- stir(dendo1)
-      s_dendo2 <- stir(dendo2)
-      current_entanglement <- entanglement(s_dendo1, s_dendo2, L)
+      s_dend1 <- stir(dend1)
+      s_dend2 <- stir(dend2)
+      current_entanglement <- entanglement(s_dend1, s_dend2, L)
       
       # if we came across a better ordaring, then update the "Best" dendrograms 
       if(current_entanglement < best_ordaring_entanglement) {
          best_ordaring_entanglement<- current_entanglement
-         optimal_dendo1 <- s_dendo1
-         optimal_dendo2 <- s_dendo2			
+         optimal_dend1 <- s_dend1
+         optimal_dend2 <- s_dend2			
       }
    }
    
-   return(list(dendo1 = optimal_dendo1, dendo2 = optimal_dendo2))
+   return(list(dend1 = optimal_dend1, dend2 = optimal_dend2))
 }
 
 
@@ -359,12 +378,12 @@ remove.pipes.and.zzz <- function(x) strsplit(remove.zzz(x), "||",fixed=T)[[1]]
 
 
 
-flip.leaves <- function(dendo, leaves1, leaves2) {
+flip.leaves <- function(dend, leaves1, leaves2) {
    # flip a node in a tree based on the leaves in each branch in the node:
-   # this function gets a dendogram with two vector of leaves that needs to be flipped with one another on the tree
+   # this function gets a dendgram with two vector of leaves that needs to be flipped with one another on the tree
    # we assume here unique values of leaves.
    # also notice that this is based on the values of the leaves and NOT their labels.
-   leaves_values <- order.dendrogram(dendo)
+   leaves_values <- order.dendrogram(dend)
    weights <- seq_along(leaves_values)
    
    #turn the values of leaves and leaves1/2 to strings with || delim:
@@ -381,18 +400,18 @@ flip.leaves <- function(dendo, leaves1, leaves2) {
    # now use this order to order the weights!
    new_weights <- weights[new_order_weights]
    
-   flipped_dendo <- rotate(dendo, new_weights) # and lastly - rotate the dendo by the leaves to flip.
+   flipped_dend <- rotate(dend, new_weights) # and lastly - rotate the dend by the leaves to flip.
    
-   return(flipped_dendo)
+   return(flipped_dend)
 }
 
 if(F) { # example
-   order.dendrogram(dendo)
-   plot(dendo)
-   flip.leaves(dendo, c(10), c(1))
-   plot(flip.leaves(dendo, c(2), c(3,5)))
-   plot(flip.leaves(dendo, c(9), c(2,3,5)))
-   plot(flip.leaves(dendo, c(7), c( 1L, 8L, 4L, 6L, 10L, 9L, 2L, 3L, 5L)))
+   order.dendrogram(dend)
+   plot(dend)
+   flip.leaves(dend, c(10), c(1))
+   plot(flip.leaves(dend, c(2), c(3,5)))
+   plot(flip.leaves(dend, c(9), c(2,3,5)))
+   plot(flip.leaves(dend, c(7), c( 1L, 8L, 4L, 6L, 10L, 9L, 2L, 3L, 5L)))
 }
 
 
@@ -481,105 +500,105 @@ all.couple.rotations.at.k <- function(dendro, k, dendrogram_heights_per_k) {
 }
 
 
-# dendo=best_dendo
+# dend=best_dend
 # k = 13
-# all.couple.rotations.at.k(best_dendo, k)
-# system.time(all.couple.rotations.at.k(dendo1, k = 4))
+# all.couple.rotations.at.k(best_dend, k)
+# system.time(all.couple.rotations.at.k(dend1, k = 4))
 
 
 
 
 if(F) { # example
-   # 	tmp <- all.couple.rotations.at.k(dendo, 10)
-   # 	flip.leaves(dendo, leaves1, leaves2)
-   # 	order.dendrogram(dendo)
+   # 	tmp <- all.couple.rotations.at.k(dend, 10)
+   # 	flip.leaves(dend, leaves1, leaves2)
+   # 	order.dendrogram(dend)
    
    
-   tmp <- all.couple.rotations.at.k(dendo, 2)
+   tmp <- all.couple.rotations.at.k(dend, 2)
    length(tmp)
    plot(tmp[[1]])
    plot(tmp[[2]])
    
-   tmp <- all.couple.rotations.at.k(dendo, 3)
+   tmp <- all.couple.rotations.at.k(dend, 3)
    plot(tmp[[1]])
    plot(tmp[[2]])
    
-   tmp <- all.couple.rotations.at.k(dendo, 4)
+   tmp <- all.couple.rotations.at.k(dend, 4)
    length(tmp)
    plot(tmp[[1]])
    plot(tmp[[2]])
    
-   tmp <- all.couple.rotations.at.k(dendo, 5)
+   tmp <- all.couple.rotations.at.k(dend, 5)
    length(tmp)
    plot(tmp[[1]])
    plot(tmp[[2]])	
 }
 
-# cut.hierarchical.cluster.matrix(dendo1)
+# cut.hierarchical.cluster.matrix(dend1)
 
-# all.couple.rotations.at.k(dendo, 2)
+# all.couple.rotations.at.k(dend, 2)
 # all.couple.rotations.at.k(Dan_arc_tree, 3)
-# all.couple.rotations.at.k(dendo, 10)
-# untangle.forward.rotate.1side(dendo1, dendo2)
+# all.couple.rotations.at.k(dend, 10)
+# untangle.forward.rotate.1side(dend1, dend2)
 
-# (dendo12s[[1]], dendo12s[[2]])
-# dendo1 = dendo12s[[1]]
-# dendo2_fixed = dendo12s[[2]]
+# (dend12s[[1]], dend12s[[2]])
+# dend1 = dend12s[[1]]
+# dend2_fixed = dend12s[[2]]
 
 
-untangle.forward.rotate.1side <- function(dendo1, dendo2_fixed, L = 1) {
-   # this function gets two dendograms, and goes over each k splits of the first dendo1, and checks if the flip at level k of splitting imporves the entanglement between dendo1 and dendo2 (Which is fixed)
+untangle.forward.rotate.1side <- function(dend1, dend2_fixed, L = 1) {
+   # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
    require(plyr)
-   leaves_values <- order.dendrogram(dendo1)
-   best_dendo <- dendo1
-   best_dendo_heights_per_k <- dendrogram.heights.per.k(best_dendo) # since this function takes a looong time, I'm running it here so it will need to run only once!	
+   leaves_values <- order.dendrogram(dend1)
+   best_dend <- dend1
+   best_dend_heights_per_k <- dendrogram.heights.per.k(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
    
    for(k in 2:length(leaves_values)) {
-      dendo1_k_rotated <- all.couple.rotations.at.k(best_dendo, k, dendrogram_heights_per_k = best_dendo_heights_per_k)
-      dendo1_cut_k_entanglements <- laply(dendo1_k_rotated, entanglement, dendo2 = dendo2_fixed, L = L)
-      ss_best_dendo <- which.min(dendo1_cut_k_entanglements)
-      current_best_dendo <- dendo1_k_rotated[[ss_best_dendo]]
+      dend1_k_rotated <- all.couple.rotations.at.k(best_dend, k, dendrogram_heights_per_k = best_dend_heights_per_k)
+      dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)
+      ss_best_dend <- which.min(dend1_cut_k_entanglements)
+      current_best_dend <- dend1_k_rotated[[ss_best_dend]]
       
       # if this loop's best dendro is not identical to our last best dendro - then we should pick it as the new best dendro
       #		And that means we'll have to update the dendrogram.heights.per.k (which takes time, and we would like to avoid if it is not necessary)
-      if(!identical(current_best_dendo, best_dendo)) {
-         best_dendo <- current_best_dendo
-         best_dendo_heights_per_k <- dendrogram.heights.per.k(best_dendo) # since this function takes a looong time, I'm running it here so it will need to run only once!	
-      }# however, if the current dendo is just like our best dendo - then there is NO NEED to update dendrogram.heights.per.k (and we just saved some time!!)
+      if(!identical(current_best_dend, best_dend)) {
+         best_dend <- current_best_dend
+         best_dend_heights_per_k <- dendrogram.heights.per.k(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
+      }# however, if the current dend is just like our best dend - then there is NO NEED to update dendrogram.heights.per.k (and we just saved some time!!)
       # this combination is only useful if we have a tree for which there are only a few rotations which are useful
    }
    
-   return(best_dendo)	
+   return(best_dend)	
 }
 
-# system.time(identical(dendo1, dendo2))
-# system.time(identical(dendo1, dendo1))
-# identical(dendo1, dendo1)
+# system.time(identical(dend1, dend2))
+# system.time(identical(dend1, dend1))
+# identical(dend1, dend1)
 
 
-untangle.backward.rotate.1side <- function(dendo1, dendo2_fixed , L = 1) {
-   # this function gets two dendograms, and goes over each k splits of the first dendo1, and checks if the flip at level k of splitting imporves the entanglement between dendo1 and dendo2 (Which is fixed)
+untangle.backward.rotate.1side <- function(dend1, dend2_fixed , L = 1) {
+   # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
    require(plyr)
-   leaves_values <- order.dendrogram(dendo1)
-   best_dendo <- dendo1
+   leaves_values <- order.dendrogram(dend1)
+   best_dend <- dend1
    
    for(k in length(leaves_values):2) {
-      dendo1_k_rotated <- all.couple.rotations.at.k(best_dendo, k)
-      dendo1_cut_k_entanglements <- laply(dendo1_k_rotated, entanglement, dendo2 = dendo2_fixed, L = L)
-      ss_best_dendo <- which.min(dendo1_cut_k_entanglements)
-      best_dendo <- dendo1_k_rotated[[ss_best_dendo]]
+      dend1_k_rotated <- all.couple.rotations.at.k(best_dend, k)
+      dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)
+      ss_best_dend <- which.min(dend1_cut_k_entanglements)
+      best_dend <- dend1_k_rotated[[ss_best_dend]]
    }
    
-   return(best_dendo)	
+   return(best_dend)	
 }
 
 
 # 
-# untangle.forward.step.rotate.1side <- function(dendo1, dendo2_fixed) {
-# 	# this function gets two dendograms, and goes over each k splits of the first dendo1, and checks if the flip at level k of splitting imporves the entanglement between dendo1 and dendo2 (Which is fixed)
+# untangle.forward.step.rotate.1side <- function(dend1, dend2_fixed) {
+# 	# this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
 # 	require(plyr)
-# 	leaves_values <- order.dendrogram(dendo1)
-# 	best_dendo <- dendo1
+# 	leaves_values <- order.dendrogram(dend1)
+# 	best_dend <- dend1
 # 	
 # 	k_visited <- rep(F, length(leaves_values))
 # 	k_visited[1] <- T # I don't need the first one
@@ -587,43 +606,43 @@ untangle.backward.rotate.1side <- function(dendo1, dendo2_fixed , L = 1) {
 # 	
 # 	while(!all(k_visited)) {
 # 		# create all of the rotations with k+-1:
-# 		dendo1_k_p1_rotated <- all.couple.rotations.at.k(best_dendo, k+1)
-# 		dendo1_k_m1_rotated <- all.couple.rotations.at.k(best_dendo, k-1)
+# 		dend1_k_p1_rotated <- all.couple.rotations.at.k(best_dend, k+1)
+# 		dend1_k_m1_rotated <- all.couple.rotations.at.k(best_dend, k-1)
 # 		# find the enteglement for all of them:
-# 		dendo1_cut_k_p1_entanglements <- laply(dendo1_k_p1_rotated, entanglement, dendo2 = dendo2_fixed)
-# 		dendo1_cut_k_m1_entanglements <- laply(dendo1_k_m1_rotated, entanglement, dendo2 = dendo2_fixed)
+# 		dend1_cut_k_p1_entanglements <- laply(dend1_k_p1_rotated, entanglement, dend2 = dend2_fixed)
+# 		dend1_cut_k_m1_entanglements <- laply(dend1_k_m1_rotated, entanglement, dend2 = dend2_fixed)
 # 		# what is best, forward or backward?
-# 		if(min(dendo1_cut_k_p1_entanglements) > min(dendo1_cut_k_m1_entanglements)) {
+# 		if(min(dend1_cut_k_p1_entanglements) > min(dend1_cut_k_m1_entanglements)) {
 # 		
 # 		}
 # 		k <- k + 1
-# 		ss_best_dendo <- which.min(dendo1_cut_k_entanglements)
-# 		best_dendo <- dendo1_k_rotated[[ss_best_dendo]]		
+# 		ss_best_dend <- which.min(dend1_cut_k_entanglements)
+# 		best_dend <- dend1_k_rotated[[ss_best_dend]]		
 # 		
-# 		all.couple.rotations.at.k(best_dendo, -1)
+# 		all.couple.rotations.at.k(best_dend, -1)
 # 	}
 # 	
-# 	return(best_dendo)	
+# 	return(best_dend)	
 # }
 
 
-# dendo12s_1_better <- untangle.forward.rotate.1side(dendo1, dendo2)
-# cutree(dendo1, 10)
+# dend12s_1_better <- untangle.forward.rotate.1side(dend1, dend2)
+# cutree(dend1, 10)
 
 
 
 
 
 
-untangle.forward.rotate.2side <- function(dendo1, dendo2, max_n_iterations = 10, output_times = T, L = 1) {
-   # this function gets two dendograms, and orders dendo1 and 2 until a best entengelment is reached.
+untangle.forward.rotate.2side <- function(dend1, dend2, max_n_iterations = 10, output_times = T, L = 1) {
+   # this function gets two dendgrams, and orders dend1 and 2 until a best entengelment is reached.
    
    
    # Next, let's try to improve upon this tree using a forwared rotation of our tree:
-   dendo1_better <- untangle.forward.rotate.1side(dendo1, dendo2, L = L) 
-   dendo2_better <- untangle.forward.rotate.1side(dendo2, dendo1_better, L = L) 
+   dend1_better <- untangle.forward.rotate.1side(dend1, dend2, L = L) 
+   dend2_better <- untangle.forward.rotate.1side(dend2, dend1_better, L = L) 
    
-   entanglement_new <- entanglement(dendo1_better, dendo2_better, L = L) 
+   entanglement_new <- entanglement(dend1_better, dend2_better, L = L) 
    entanglement_old <- entanglement_new+1
    
    times <- 1
@@ -631,59 +650,59 @@ untangle.forward.rotate.2side <- function(dendo1, dendo2, max_n_iterations = 10,
    while(times < max_n_iterations & !identical(entanglement_new, entanglement_old)) { # if we got an improvement from last entaglement, we'll keep going!
       entanglement_old <- entanglement_new
       
-      dendo1_better_loop <- untangle.forward.rotate.1side(dendo1_better, dendo2_better, L = L) 
-      # if the new dendo1 is just like we just had - then we can stop the function since we found the best solution - else - continue
-      if(identical(dendo1_better_loop, dendo1_better)) {
+      dend1_better_loop <- untangle.forward.rotate.1side(dend1_better, dend2_better, L = L) 
+      # if the new dend1 is just like we just had - then we can stop the function since we found the best solution - else - continue
+      if(identical(dend1_better_loop, dend1_better)) {
          break;
       } else {
-         dendo1_better <- dendo1_better_loop
+         dend1_better <- dend1_better_loop
       }			 
       
-      # if the new dendo2 is just like we just had - then we can stop the function since we found the best solution - else - continue
-      dendo2_better_loop <- untangle.forward.rotate.1side(dendo2_better, dendo1_better, L = L) 
-      if(identical(dendo2_better_loop, dendo2_better)) {
+      # if the new dend2 is just like we just had - then we can stop the function since we found the best solution - else - continue
+      dend2_better_loop <- untangle.forward.rotate.1side(dend2_better, dend1_better, L = L) 
+      if(identical(dend2_better_loop, dend2_better)) {
          break;
       } else {
-         dendo2_better <- dendo2_better_loop
+         dend2_better <- dend2_better_loop
       }			 
       
-      entanglement_new <- entanglement(dendo1_better, dendo2_better, L = L) 
+      entanglement_new <- entanglement(dend1_better, dend2_better, L = L) 
       times <- times + 1
    }
    
    # identical(1,1+.00000000000000000000000001) # T
    if(output_times) cat("We ran untangle ", times, " times\n")
    
-   return(list(dendo1 = dendo1_better, dendo2 = dendo2_better))	
+   return(list(dend1 = dend1_better, dend2 = dend2_better))	
 }
 
 
 # evolution algorithm
-untangle.intercourse <- function(brother_1_dendo1, brother_1_dendo2, 
-                                 sister_2_dendo1, 	sister_2_dendo2, L = 1) 
+untangle.intercourse <- function(brother_1_dend1, brother_1_dend2, 
+                                 sister_2_dend1, 	sister_2_dend2, L = 1) 
 {
-   # Gets two pairs of dendo, and returns two childrens (inside a list)
-   children_1 <- untangle.forward.rotate.2side(brother_1_dendo1,sister_2_dendo2, L = L) 
-   children_2 <- untangle.forward.rotate.2side(sister_2_dendo1,brother_1_dendo2, L = L) 
+   # Gets two pairs of dend, and returns two childrens (inside a list)
+   children_1 <- untangle.forward.rotate.2side(brother_1_dend1,sister_2_dend2, L = L) 
+   children_2 <- untangle.forward.rotate.2side(sister_2_dend1,brother_1_dend2, L = L) 
    
    list(children_1, children_2)
 }
 
-entanglement.return.best.brother <- function(brother_1_dendo1, brother_1_dendo2, 
-                                             brother_2_dendo1, brother_2_dendo2, L = 1)
+entanglement.return.best.brother <- function(brother_1_dend1, brother_1_dend2, 
+                                             brother_2_dend1, brother_2_dend2, L = 1)
 {
-   # Gets two pairs of dendo, and returns the pair with the best (minimal) entanglement
+   # Gets two pairs of dend, and returns the pair with the best (minimal) entanglement
    
-   if( entanglement(brother_1_dendo1, brother_1_dendo2, L = L) <
-          entanglement(brother_2_dendo1, brother_2_dendo2, L = L)  ) {
-      return(list(brother_1_dendo1, brother_1_dendo2))
+   if( entanglement(brother_1_dend1, brother_1_dend2, L = L) <
+          entanglement(brother_2_dend1, brother_2_dend2, L = L)  ) {
+      return(list(brother_1_dend1, brother_1_dend2))
    } else {
-      return(list(brother_2_dendo1, brother_2_dendo2))
+      return(list(brother_2_dend1, brother_2_dend2))
    }
 }
 
 untangle.intercourse.evolution <- function(intercourse, L = 1) {
-   # intercourse is a list with two elements.  Each element has two dendos
+   # intercourse is a list with two elements.  Each element has two dends
    entanglement.return.best.brother(intercourse[[1]][[1]], intercourse[[1]][[2]],
                                     intercourse[[2]][[1]], intercourse[[2]][[2]], L = L) 
    
@@ -691,11 +710,11 @@ untangle.intercourse.evolution <- function(intercourse, L = 1) {
 }
 
 
-untangle.evolution<- function(brother_1_dendo1, brother_1_dendo2, 
-                              sister_2_dendo1, 	sister_2_dendo2, L = 1) 
+untangle.evolution<- function(brother_1_dend1, brother_1_dend2, 
+                              sister_2_dend1, 	sister_2_dend2, L = 1) 
 {
-   intercourse <- untangle.intercourse(brother_1_dendo1, brother_1_dendo2, 
-                                       sister_2_dendo1, 	sister_2_dendo2, L = L)  # creates a list with two pairs of dendos
+   intercourse <- untangle.intercourse(brother_1_dend1, brother_1_dend2, 
+                                       sister_2_dend1, 	sister_2_dend2, L = L)  # creates a list with two pairs of dends
    untangle.intercourse.evolution(intercourse, L = L)  # returns the best child
 }
 
@@ -712,50 +731,50 @@ untangle.evolution<- function(brother_1_dendo1, brother_1_dendo2,
 # A new approuch - I will go through every possible flip on one side, and find the one that gives the best improvement.
 # I will do the same on each tree, back and forth, until no better flip is found.
 
-untangle.best.k.to.rotate.by.1side <- function(dendo1, dendo2_fixed, L = 1) {
-   # this function gets two dendograms, and goes over each k splits of the first dendo1, and checks if the flip at level k of splitting imporves the entanglement between dendo1 and dendo2 (Which is fixed)
+untangle.best.k.to.rotate.by.1side <- function(dend1, dend2_fixed, L = 1) {
+   # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
    require(plyr)
-   leaves_values <- order.dendrogram(dendo1)
-   best_dendo <- dendo1
-   dendo1_k_rotated <- NULL
+   leaves_values <- order.dendrogram(dend1)
+   best_dend <- dend1
+   dend1_k_rotated <- NULL
    
-   best_dendo_heights_per_k <- dendrogram.heights.per.k(best_dendo) # since this function takes a looong time, I'm running it here so it will need to run only once!	
+   best_dend_heights_per_k <- dendrogram.heights.per.k(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
    # this makes the function about twice as fast... 
    
    for(k in 2:length(leaves_values)) {
-      dendo1_k_rotated <- c(dendo1_k_rotated, 
-                            all.couple.rotations.at.k(best_dendo, k, 
-                                                      dendrogram_heights_per_k = best_dendo_heights_per_k))
+      dend1_k_rotated <- c(dend1_k_rotated, 
+                            all.couple.rotations.at.k(best_dend, k, 
+                                                      dendrogram_heights_per_k = best_dend_heights_per_k))
    }
    
-   dendo1_cut_k_entanglements <- laply(dendo1_k_rotated, entanglement, dendo2 = dendo2_fixed, L = L)
-   ss_best_dendo <- which.min(dendo1_cut_k_entanglements)
-   best_dendo <- dendo1_k_rotated[[ss_best_dendo]]
-   return(best_dendo)	
+   dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)
+   ss_best_dend <- which.min(dend1_cut_k_entanglements)
+   best_dend <- dend1_k_rotated[[ss_best_dend]]
+   return(best_dend)	
 }
 
 
 
 flip.1.and.2 <- function(x) ifelse(x == 1, 2, 1)
 
-untangle.best.k.to.rotate.by.2side.backNforth <- function(dendo1, dendo2, times_to_stop = 2, output_times = T, L = 1) {
-   # this function gets two dendograms, and orders dendo1 and then 2 and then 1 again - back and forth -until a best entengelment is reached.
+untangle.best.k.to.rotate.by.2side.backNforth <- function(dend1, dend2, times_to_stop = 2, output_times = T, L = 1) {
+   # this function gets two dendgrams, and orders dend1 and then 2 and then 1 again - back and forth -until a best entengelment is reached.
    
    was_improved <- T # e.g: we can improve it further
    counter <- 1
    
    while(was_improved) {
-      entanglement_old <- entanglement(dendo1, dendo2, L = L) 
-      dendo1 <- untangle.best.k.to.rotate.by.1side(dendo1, dendo2, L = L) 
-      dendo2 <- untangle.best.k.to.rotate.by.1side(dendo2, dendo1, L = L) 
-      entanglement_new <- entanglement(dendo1, dendo2, L = L) 
+      entanglement_old <- entanglement(dend1, dend2, L = L) 
+      dend1 <- untangle.best.k.to.rotate.by.1side(dend1, dend2, L = L) 
+      dend2 <- untangle.best.k.to.rotate.by.1side(dend2, dend1, L = L) 
+      entanglement_new <- entanglement(dend1, dend2, L = L) 
       was_improved <- identical(entanglement_old, entanglement_new)
       counter <- counter + 1
    }
    # identical(1,1+.00000000000000000000000001) # T
    if(output_times) cat("We ran untangle.best.k.to.rotate.by.2side.backNforth ", counter, " times")
    
-   return(list(dendo1 = dendo1, dendo2 = dendo2))	
+   return(list(dend1 = dend1, dend2 = dend2))	
 }
 
 
@@ -767,15 +786,15 @@ if(F) {
    # First two dummy clusters (since you didn't provide with some...)
    hc1 <- hclust(dist_DATA , "single")
    hc2 <- hclust(dist_DATA , "complete")
-   dendo1 <- as.dendrogram(hc1)
-   dendo2 <- as.dendrogram(hc2)	
-   entanglement(dendo1, dendo2) 		
+   dend1 <- as.dendrogram(hc1)
+   dend2 <- as.dendrogram(hc2)	
+   entanglement(dend1, dend2) 		
    
-   system.time(dendo12_best_01 <- untangle.forward.rotate.2side(dendo1, dendo2, L = 2)) # 0.47 sec
-   system.time(dendo12_best_02 <- untangle.best.k.to.rotate.by.2side.backNforth(dendo1, dendo2, L = 2)) # 0.44 sec
-   tanglegram(dendo1, dendo2) 
-   tanglegram(dendo12_best_01[[1]], dendo12_best_01[[2]]) 
-   tanglegram(dendo12_best_02[[1]], dendo12_best_02[[2]]) 
+   system.time(dend12_best_01 <- untangle.forward.rotate.2side(dend1, dend2, L = 2)) # 0.47 sec
+   system.time(dend12_best_02 <- untangle.best.k.to.rotate.by.2side.backNforth(dend1, dend2, L = 2)) # 0.44 sec
+   tanglegram(dend1, dend2) 
+   tanglegram(dend12_best_01[[1]], dend12_best_01[[2]]) 
+   tanglegram(dend12_best_02[[1]], dend12_best_02[[2]]) 
 }
 
 
@@ -818,73 +837,73 @@ if(F) {
    # First two dummy clusters (since you didn't provide with some...)
    hc1 <- hclust(dist_DATA , "single")
    hc2 <- hclust(dist_DATA , "complete")
-   dendo1 <- as.dendrogram(hc1)
-   dendo2 <- as.dendrogram(hc2)
+   dend1 <- as.dendrogram(hc1)
+   dend2 <- as.dendrogram(hc2)
    
-   tanglegram(dendo1, dendo2) 
-   entanglement(dendo1, dendo2) # 0.8
+   tanglegram(dend1, dend2) 
+   entanglement(dend1, dend2) # 0.8
    
    # after sorting we get a better measure of entanglement and also a better looking plot
-   tanglegram(sort(dendo1), sort(dendo2))
-   entanglement(sort(dendo1), sort(dendo2)) # 0.1818
+   tanglegram(sort(dend1), sort(dend2))
+   entanglement(sort(dend1), sort(dend2)) # 0.1818
    
    # let's cause some stir... (e.g: mix the dendrogram, and see how that effects the outcome)
    set.seed(134)
-   s_dendo1 <- stir(dendo1)
-   s_dendo2 <- stir(dendo2)
-   tanglegram(s_dendo1, s_dendo2)
-   entanglement(s_dendo1, s_dendo2) # 0.7515
+   s_dend1 <- stir(dend1)
+   s_dend2 <- stir(dend2)
+   tanglegram(s_dend1, s_dend2)
+   entanglement(s_dend1, s_dend2) # 0.7515
    
    
    set.seed(1234)
-   dendo12s <- untangle.random.search(dendo1, dendo2, R = 10)
-   entanglement(dendo12s[[1]], dendo12s[[2]]) # 0.042
-   tanglegram(dendo12s[[1]], dendo12s[[2]]) # 
+   dend12s <- untangle.random.search(dend1, dend2, R = 10)
+   entanglement(dend12s[[1]], dend12s[[2]]) # 0.042
+   tanglegram(dend12s[[1]], dend12s[[2]]) # 
    # this is a case where it is CLEAR that the simplest heuristic would improve this to 0 entanglement...	
    
    # let's see if we can reach a good solution using a greedy forward selection algorithm
-   dendo12s_1_better <- untangle.forward.rotate.1side(dendo12s[[1]], dendo12s[[2]])
-   entanglement(dendo12s_1_better, dendo12s[[2]]) # from 0.042 to 0.006 !!
-   tanglegram(dendo12s_1_better, dendo12s[[2]]) # 
+   dend12s_1_better <- untangle.forward.rotate.1side(dend12s[[1]], dend12s[[2]])
+   entanglement(dend12s_1_better, dend12s[[2]]) # from 0.042 to 0.006 !!
+   tanglegram(dend12s_1_better, dend12s[[2]]) # 
    
    # let's see from the beginning
-   entanglement(dendo1, dendo2) # 0.6
-   tanglegram(dendo1, dendo2) # 0.6
-   dendo12s_1_better <- untangle.forward.rotate.1side(dendo1, dendo2)
-   entanglement(dendo12s_1_better, dendo2) # from 0.6 to 0.036
-   tanglegram(dendo12s_1_better, dendo2) # 
+   entanglement(dend1, dend2) # 0.6
+   tanglegram(dend1, dend2) # 0.6
+   dend12s_1_better <- untangle.forward.rotate.1side(dend1, dend2)
+   entanglement(dend12s_1_better, dend2) # from 0.6 to 0.036
+   tanglegram(dend12s_1_better, dend2) # 
    # let's try the other side:
-   dendo12s_2_better <- untangle.forward.rotate.1side(dendo2, dendo12s_1_better)
-   entanglement(dendo12s_1_better, dendo12s_2_better) # no improvment
+   dend12s_2_better <- untangle.forward.rotate.1side(dend2, dend12s_1_better)
+   entanglement(dend12s_1_better, dend12s_2_better) # no improvment
    
    
    
-   dendo2_01 <- untangle.forward.rotate.1side(dendo2, dendo1)
-   dendo2_02 <- untangle.backward.rotate.1side(dendo2, dendo1)
-   dendo2_03 <- untangle.backward.rotate.1side(dendo2_01, dendo1)
-   dendo2_04 <- untangle.forward.rotate.1side(dendo2_02, dendo1)
-   dendo2_05 <- untangle.evolution(dendo1, dendo2 , dendo1, dendo2_01 )
-   entanglement(dendo1, dendo2) 
-   entanglement(dendo1, dendo2_01) 
+   dend2_01 <- untangle.forward.rotate.1side(dend2, dend1)
+   dend2_02 <- untangle.backward.rotate.1side(dend2, dend1)
+   dend2_03 <- untangle.backward.rotate.1side(dend2_01, dend1)
+   dend2_04 <- untangle.forward.rotate.1side(dend2_02, dend1)
+   dend2_05 <- untangle.evolution(dend1, dend2 , dend1, dend2_01 )
+   entanglement(dend1, dend2) 
+   entanglement(dend1, dend2_01) 
    
-   entanglement(dendo1, dendo2_02) 
-   entanglement(dendo1, dendo2_03) 
-   entanglement(dendo1, dendo2_04) 
-   entanglement(dendo2_05[[1]], dendo2_05[[2]]) 
-   tanglegram(dendo1, dendo2) 
-   tanglegram(dendo1, dendo2_01) 
-   tanglegram(dendo1, dendo2_02) 
-   tanglegram(dendo1, dendo2_03) 
-   tanglegram(dendo1, dendo2_04) 
-   tanglegram(dendo2_05[[1]], dendo2_05[[2]]) 
+   entanglement(dend1, dend2_02) 
+   entanglement(dend1, dend2_03) 
+   entanglement(dend1, dend2_04) 
+   entanglement(dend2_05[[1]], dend2_05[[2]]) 
+   tanglegram(dend1, dend2) 
+   tanglegram(dend1, dend2_01) 
+   tanglegram(dend1, dend2_02) 
+   tanglegram(dend1, dend2_03) 
+   tanglegram(dend1, dend2_04) 
+   tanglegram(dend2_05[[1]], dend2_05[[2]]) 
    
    
    
-   entanglement(dendo1, dendo2) 
-   tanglegram(dendo1, dendo2) 
-   dendo2_01 <- untangle.forward.rotate.1side(dendo2, dendo1)
-   dendo2_01 <- untangle.backward.rotate.1side(dendo2, dendo1)
-   tanglegram(dendo1, dendo2_01) 
+   entanglement(dend1, dend2) 
+   tanglegram(dend1, dend2) 
+   dend2_01 <- untangle.forward.rotate.1side(dend2, dend1)
+   dend2_01 <- untangle.backward.rotate.1side(dend2, dend1)
+   tanglegram(dend1, dend2_01) 
    
    
    
@@ -893,25 +912,25 @@ if(F) {
    # First two dummy clusters (since you didn't provide with some...)
    hc1 <- hclust(dist_DATA , "single")
    hc2 <- hclust(dist_DATA , "complete")
-   dendo1 <- as.dendrogram(hc1)
-   dendo2 <- as.dendrogram(hc2)
-   dendo1_01 <- untangle.forward.rotate.1side(dendo1, dendo2)
-   entanglement(dendo1, dendo2) 
-   entanglement(dendo1_01, dendo2) 
-   tanglegram(dendo1, dendo2) 
-   tanglegram(dendo1_01, dendo2) 
+   dend1 <- as.dendrogram(hc1)
+   dend2 <- as.dendrogram(hc2)
+   dend1_01 <- untangle.forward.rotate.1side(dend1, dend2)
+   entanglement(dend1, dend2) 
+   entanglement(dend1_01, dend2) 
+   tanglegram(dend1, dend2) 
+   tanglegram(dend1_01, dend2) 
    
-   system.time(dendo1_01 <- untangle.forward.rotate.1side(dendo1, dendo2)) # 0.47 sec
-   system.time(dendo1_01 <- untangle.best.k.to.rotate.by(dendo1, dendo2)) # 0.44 sec
-   tanglegram(dendo1, dendo2) 
-   tanglegram(dendo1_01, dendo2) 
+   system.time(dend1_01 <- untangle.forward.rotate.1side(dend1, dend2)) # 0.47 sec
+   system.time(dend1_01 <- untangle.best.k.to.rotate.by(dend1, dend2)) # 0.44 sec
+   tanglegram(dend1, dend2) 
+   tanglegram(dend1_01, dend2) 
    
    
    
    
    #### profiling
    require(profr)
-   slow_dude <- profr(untangle.forward.rotate.1side(dendo2, dendo1))
+   slow_dude <- profr(untangle.forward.rotate.1side(dend2, dend1))
    head(slow_dude)
    summary(slow_dude)
    plot(slow_dude)
@@ -927,8 +946,8 @@ if(F) {
    # 	install.packages("microbenchmark")
    require(microbenchmark)
    
-   system.time(entanglement(dendo1, dendo2) 	) # 0.01
-   microbenchmark( entanglement(dendo1, dendo2) , times = 10 )# so this is 10 times faster (the medians)
+   system.time(entanglement(dend1, dend2) 	) # 0.01
+   microbenchmark( entanglement(dend1, dend2) , times = 10 )# so this is 10 times faster (the medians)
    #		betweem 0.011 to 0.038
    
 }
