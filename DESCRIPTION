@@ -33,5 +33,6 @@ Collate:
     'cutree.dendrogram.r'
     'dendextend-package.r'
     'tanglegram.r'
-    'untangle.r'
+    'entanglement.r'
     'zzz.r'
+    

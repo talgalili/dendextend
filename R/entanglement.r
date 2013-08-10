@@ -208,8 +208,6 @@ entanglement <- function (...) { UseMethod("entanglement") }
 entanglement.default <- function (object, ...) { stop("no default function for entanglement") }
 
 
-
-
 entanglement.dendrogram <- function(dend1,dend2, L = 1.5, leaves_matching_method = c("order", "labels")) {
    # One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
    # A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
