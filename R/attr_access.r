@@ -453,6 +453,86 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar,...) {
 
 
 
+#' @title Assign values to edgePar of dendrogram's branches
+#' @export
+#' @description
+#' Go through the dendrogram branches and updates the values inside its edgePar
+#' @param object a dendrogram object 
+#' @param value a new value scalar for the edgePar attribute. 
+#' @param edgePar the value inside edgePar to adjust.
+#' @param ... not used
+#' @return 
+#' A dendrogram, after adjusting the edgePar attribute in all of its branches, 
+#' @seealso \link{get_branches_attr}
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+#' plot(dend)
+#' dend <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "lwd")
+#' plot(dend)
+#' dend <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "col")
+#' plot(dend)
+#' dend <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "lty")
+#' plot(dend)
+#' 
+#' }
+#' 
+assign_values_to_branches_edgePar <- function(object, value, edgePar,...) {
+   if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
+   
+   set_value_to_branch <- function(dend_node) {
+      attr(dend_node, "edgePar")[[edgePar]] <- value # [i_leaf_number] # this way it doesn't erase other edgePar values (if they exist)
+      if(length(attr(dend_node, "edgePar")) == 0) attr(dend_node, "edgePar") <- NULL # remove edgePar if it is empty
+      return(unclass(dend_node))
+   }   
+   
+   new_dend_object <- dendrapply(object, set_value_to_branch)
+   class(new_dend_object) <- "dendrogram"
+   return(new_dend_object)
+}
+
+
+
+
+
+
+#' @title Remove all edgePar values from a dendrogram's branches
+#' @export
+#' @description
+#' Go through the dendrogram branches and remove its edgePar.
+#' @param object a dendrogram object 
+#' @param ... not used
+#' @return 
+#' A dendrogram, after removing the edgePar attribute in all of its branches, 
+#' @seealso \link{get_branches_attr}, \link{assign_values_to_branches_edgePar}
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+#' dend <- color_branches(dend, 3)
+#' par(mfrow = c(1,2))
+#' plot(dend)
+#' plot(remove_branches_edgePar(dend))
+#' 
+#' }
+#' 
+remove_branches_edgePar <- function(object, ...) {
+   if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
+   
+   remove_edgePar_from_branch <- function(dend_node) {
+      attr(dend_node, "edgePar") <- NULL # remove edgePar if it is empty
+      return(unclass(dend_node))
+   }   
+   new_dend_object <- dendrapply(object, remove_edgePar_from_branch)
+   class(new_dend_object) <- "dendrogram"
+   return(new_dend_object)
+}
+
+
+
 
 
 #' @title Remove all nodePar values from a dendrogram's leaves
