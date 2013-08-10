@@ -1,4 +1,4 @@
-dendextend 0.5.1 (2013-08-10) 
+dendextend 0.6 (2013-08-10) 
 ---------------------------
 NEW FUNCTIONS ADDED: 
    * tanglegram - major addition!
@@ -16,7 +16,12 @@ UPDATED FUNCTIONS:
    * nleaves - now allow the use of the "members" attr of a dendrogram for telling us the size of the tree.
 
 OTHER NOTES:
+   * entanglement.r file added
    * untangle.r file added
+
+NEW VIGNETTES SECTIONS ADDED:
+   * Tanglegram
+   * Entanglement
 
 dendextend 0.5 (2013-08-05) 
 ---------------------------

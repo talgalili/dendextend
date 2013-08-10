@@ -1,7 +1,7 @@
 Package: dendextend
 Type: Package
 Title: Extending dendrogram functionality
-Version: 0.5.1
+Version: 0.6
 Date: 2013-08-10
 Author: Tal Galili
 Maintainer: Tal Galili <tal.galili@gmail.com>
