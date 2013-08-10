@@ -1,6 +1,7 @@
 dendextend 0.5.1 (2013-08-10) 
 ---------------------------
 NEW FUNCTIONS ADDED: 
+   * tanglegram - major addition!
    * plot_horiz.dendrogram - Plotting a left-tip-adjusted horizontal dendrogram
    * remove_leaves_nodePar
    * assign_values_to_branches_edgePar

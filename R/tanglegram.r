@@ -17,10 +17,6 @@
 #
 
 
-# tanglegram.r
-
-
-
 
 
 
@@ -159,78 +155,166 @@ plot_horiz.dendrogram <- function (x, center = FALSE,
 
    return(invisible(dLeaf))
 }
-# 
+
+
 # # stats:::plot.dendrogram
 # # stats:::plotNode
-# plot_horiz.dendrogram(tree1)
-# plot(tree1, horiz = TRUE)
-# plot(tree1, horiz = TRUE, dLeaf=-.3)
-# plot_horiz.dendrogram(tree1, side=FALSE, dLeaf=-.3)
-# 
-# plot_horiz.dendrogram(tree1, side=TRUE, dLeaf=-.1)
-# plot_horiz.dendrogram(tree1, side=FALSE, dLeaf=-.1)
-# plot_horiz.dendrogram(tree1, side=FALSE, dLeaf=-.3)
-# 
 
 
 
 
-# source for this code: http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r
-
-# to explain why we are forced to use an extra plot, because that dLeaf is dependent
-# on a parameter which is decided after the plot was created...
 
 
 
+
+
+
+
+
+#' @title Tanglegram plot
+#' @export
+#' @aliases 
+#' tanglegram.default
+#' tanglegram.dendrogram
+#' tanglegram.hclust
+#' tanglegram.phylo
+#' dendbackback
+#' @description Counts the number of leaves in a tree (dendrogram or hclust).
+#' 
+#' @author Tal Galili, plannapus
+#' 
+#' @usage
+#' tanglegram(tree1, ...)
+#' 
+#' \method{tanglegram}{dendrogram}(tree1, tree2 ,
+#'    sort = FALSE, 
+#'    color_lines = "darkgrey", 
+#'    lwd = 3.5,
+#'    columns_width = c(5,3,5),
+#'    margin_top = 3,
+#'    margin_bottom = 2.5,
+#'    margin_inner = 1.8,
+#'    margin_outer = 0.5,
+#'    left_dendo_mar = c(margin_bottom,margin_outer,margin_top,margin_inner),
+#'    right_dendo_mar = c(margin_bottom,margin_inner,margin_top,margin_outer),
+#'    intersecting = TRUE,
+#'    dLeaf = NULL,
+#'    axes = TRUE, 
+#'    type = "r", # can also be "t"
+#'    lab.cex = 1,
+#'    remove_nodePar =F,
+#'    main_left = "",
+#'    main_right = "",
+#'    k_labels = NULL,
+#'    k_branches = NULL,
+#'    ...)
+#' 
+#' \method{tanglegram}{hclust}(tree1, ...)
+#' 
+#' \method{tanglegram}{phylo}(tree1, ...)
+#' 
+#' @param tree1 tree object (dendrogram/hclust/phylo), plotted on the left
+#' @param tree2 tree object (dendrogram/hclust/phylo), plotted on the right
+#' @param sort logical (FALSE). Should the dendrogram's labels be "sorted"?
+#' (might give a better tree in some cases).
+#' @param color_lines a vector of colors for the lines connected the labels.
+#' If the colors are shorter than the number of labels, they are recycled 
+#' (and a warning is issued).
+#' @param lwd width of the lines connecting the labels.
+#' @param edge.lwd width of the dendrograms lines.
+#' @param columns_width a vector with three elements, giving the relative
+#' sizes of the the three plots (left dendrogram, connecting lines, 
+#' right dendrogram). This is passed to \link{layout}.
+#' @param margin_top  the number of lines of margin to be specified on the top
+#' of the plots.
+#' @param margin_bottom the number of lines of margin to be specified on the 
+#' bottom of the plots.
+#' @param margin_inner margin_bottom the number of lines of margin 
+#' to be specified on the inner distence between the dendrograms
+#' and the connecting lines.
+#' @param margin_outer margin_bottom the number of lines of margin 
+#' to be specified on the outer distence between the dendrograms
+#' and the connecting lines.
+#' @param left_dendo_mar mar parameters of the left dendrgoram.
+#' @param right_dendo_mar mar parameters of the right dendrgoram.
+#' @param intersecting logical (TRUE). Should the leaves of the two dendrograms
+#' be trimmed so that the two trees will have the same labels?
+#' @param dLeaf a number specifying the distance in user coordinates between 
+#' the tip of a leaf and its label. If NULL as per default, 
+#' 3/4 of a letter width or height is used.
+#' @param axes logical (TRUE). Should plot axes be plotted?
+#' @param type type of plot ("t"/"r" = triangle or rectangle)
+#' @param lab.cex numeric scalar, influanicing the cex size of the labels.
+#' @param remove_nodePar logical (FALSE). Should the nodePar of the leaves be 
+#' removed? (useful when the trees' leaves have too many parameters on them)
+#' @param main_left Character. Title of the left dendrogram.
+#' @param main_right Character. Title of the right dendrogram.
+#' @param k_labels integer. Number of groups by which to color the leaves.
+#' @param k_branches integer. Number of groups by which to color the branches.
+#' @param ... not used.
+#' @details 
+#' Notice that tanglegram does not "resize" well. In case you are resizing your
+#' window you would need to re-run the function.
+#' 
+#' @return invisible(NULL)
+#' @source
+#' The function is based on code from plannapus, after major revisions. See:
+#' \url{http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r}
+#' @seealso \link{remove_leaves_nodePar}, \link{plot_horiz.dendrogram}, 
+#' @examples
+#' \dontrun{
+#' set.seed(23235)
+#' ss <- sample(1:150, 10 )
+#' hc1 <- hclust(dist(iris[ss,-5]), "com")
+#' hc2 <- hclust(dist(iris[ss,-5]), "single")
+#' dend1 <- as.dendrogram(hc1)
+#' dend2 <- as.dendrogram(hc2)
+#' tanglegram(dend1 , dend2)
+#' tanglegram(dend1 , dend2, sort = TRUE)
+#' tanglegram(dend1 , dend2, remove_nodePar = TRUE)
+#' tanglegram(dend1 , dend2, k_labels = 6, k_branches = 4)
+#' 
+#' tanglegram(dend1 , dend2, lab.cex = 2, edge.lwd = 3,
+#' margin_inner= 5, type = "t", center = TRUE)
+#' 
+#' 
+#' }
 tanglegram <- function (tree1, ...) {UseMethod("tanglegram")}
-
 
 tanglegram.default <- function (tree1, ...) {stop("No default function for tanglegram - must use a dendrogram/hclust/phylo object")}
 
+#' @S3method tanglegram hclust
 tanglegram.hclust <- function(tree1, ...) {tanglegram.dendrogram(tree1 = tree1, ...)}
 
+#' @S3method tanglegram phylo
 tanglegram.phylo <- function(tree1, ...) {tanglegram.dendrogram(tree1 = tree1, ...)}
 
-# 
-# set.seed(23235)
-# ss <- sample(1:150, 10 )
-# hc1 <- hclust(dist(iris[ss,-5]), "com")
-# hc2 <- hclust(dist(iris[ss,-5]), "single")
-# dend1 <- as.dendrogram(hc1)
-# dend2 <- as.dendrogram(hc2)
-# dend1 <- color_branches(dend1, 4)
-# dend2 <- color_branches(dend2, 4)
-# tanglegram(sort(dend1) , sort(dend2))
-# # 
-# tanglegram(rotate(dend1, labels(dend2) ), dend2, text_cex = 2, lwd = 5)
 
-# abbreviate
-
-# a good example of how massy this can be for THE SAME TREE!
-# tanglegram(dend2, sort(dend2))
-
-tanglegram.dendrogram <- function(tree1,tree2 , sort = F, 
-                                  color_lines = rep("darkgrey", l), 
+#' @S3method tanglegram dendrogram
+tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE, 
+                                  color_lines = "darkgrey", 
                                   lwd = 3.5,
-#                                   columns_width = c(5,2,3,2,5),
+                                  edge.lwd = NULL,
+                                  # columns_width = c(5,2,3,2,5),
                                   columns_width = c(5,3,5),
                                   margin_top = 3,
                                   margin_bottom = 2.5,
-                                  margin_center = 1.8,
-                                  margin_shell = 0.5,
-                                  left_dendo_mar = c(margin_bottom,margin_shell,margin_top,margin_center),
-                                  right_dendo_mar=c(margin_bottom,margin_center,margin_top,margin_shell),
-                                  characters_to_trim = NULL,
+                                  margin_inner = 3,
+                                  margin_outer = 0.5,
+                                  left_dendo_mar = c(margin_bottom,margin_outer,margin_top,margin_inner),
+                                  right_dendo_mar=c(margin_bottom,margin_inner,margin_top,margin_outer),
                                   intersecting = TRUE,
                                   dLeaf = NULL, # -.3,
 #                                   dLeaf_left = dLeaf,
 #                                   dLeaf_right = dLeaf,
                                   axes = TRUE, 
                                   type = "r", # can also be "t"
-                                  text_cex = 1,
-                                  remove_nodePar =F,
+                                  lab.cex = NULL,
+                                  remove_nodePar =FALSE,
                                   main_left = "",
                                   main_right = "",
+                                  k_labels = NULL,
+                                  k_branches = NULL,
                                   ... )
 {
    
@@ -243,28 +327,37 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = F,
    
    # remove colors from the tips of leaves
    if(remove_nodePar) {
-      colLab_0 <- function(n) {
-         if(is.leaf(n)) {
-            a <- attributes(n)			
-            attr(n, "nodePar") <- NULL
-         }
-         n
-      }
-      tree1 <- dendrapply(tree1, colLab_0)
-      tree2 <- dendrapply(tree2, colLab_0)
+      tree1 <- remove_leaves_nodePar(tree1)
+      tree2 <- remove_leaves_nodePar(tree2)
    }
    # sort them for better graph
-   if(sort == T) {	# based on the "rotate.dendrogram" function
+   if(sort == TRUE) {	# based on the "rotate.dendrogram" function
       tree1 <- sort(tree1)
       tree2 <- sort(tree2)
-   }
-
-   
+   }   
    if(intersecting) {
       tree12 <- intersect_trees(tree1, tree2, warn = TRUE)
       tree1 <- tree12[[1]]
       tree2 <- tree12[[2]]
    }
+   # adjust labels cex:
+   if(!is.null(lab.cex)) {
+      tree1 <- assign_values_to_leaves_nodePar(tree1, lab.cex, "lab.cex")
+      tree2 <- assign_values_to_leaves_nodePar(tree2, lab.cex, "lab.cex")
+   }
+   if(!is.null(edge.lwd)) {
+      tree1 <- assign_values_to_branches_edgePar(tree1, edge.lwd, "lwd")
+      tree2 <- assign_values_to_branches_edgePar(tree2, edge.lwd, "lwd")
+   }
+   if(!is.null(k_labels)) {
+      tree1 <- color_labels(tree1, k_labels)
+      tree2 <- color_labels(tree2, k_labels)
+   }
+   if(!is.null(k_branches)) {
+      tree1 <- color_branches(tree1, k_branches)
+      tree2 <- color_branches(tree2, k_branches)
+   }
+   
    
    
    l <- nleaves(tree1)
@@ -285,7 +378,9 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = F,
    # Set the layout of the plot elements
    layout(matrix(1:3,nrow=1),width=columns_width)
       
+   #################
    # The first dendrogram:	
+   #################
    par(mar=left_dendo_mar)
    plot(tree1,horiz=TRUE, ylim=c(0,l),
         dLeaf = dLeaf, 
@@ -297,10 +392,10 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = F,
 
    # now that I have a plot to use, I can calculate strwidth
    # this ASSUMES that both tree plots are of the same size/shape...
-   if(is.null(dLeaf)) { dLeaf <- -0.75 *strwidth("w")}   
    
-   
+   #################
    # The arrows:
+   #################
    # arros colors:   
    if(length(color_lines) < l) color_lines <- rep.int(color_lines, l)
    color_lines <- color_lines[ord_arrow[,1]]	
@@ -315,8 +410,11 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = F,
             arrows(0,x[1],1,x[2],code=0, length=0.05, col= color_lines[col_indx], lwd = lwd)
          }
    )
+
    
+   #################
    # And the second dendrogram (to reverse it I reversed the xlim vector:
+   #################
    par(mar=right_dendo_mar)
    plot_horiz.dendrogram(tree2, side=TRUE, dLeaf=dLeaf,
                          type = type, axes = axes,
@@ -333,95 +431,11 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = F,
 }
 
 
-### Give warning that resizing the window
-## causes distortions in the resulting figure labels location.
 
-# 
-# #  tanglegram(dend2, dend1)
-# # dend2 = color_labels(dend2,k=5)
-# # x11()
-# tanglegram(dend2, dend1 , dLeaf = -.1, margin_center=3)
-# #  tanglegram(as.hclust(dend2), dend1) # we now don't have any colors
-# #  tanglegram(dend2, as.hclust(dend1)) # we now don't have any colors
-# # par(mfrow = c(1,2))
-# fo <- function() {
-#    layout(t(c(1:2)))
-#    par(mar=left_dendo_mar)
-#    l = nleaves(tree1)
-#    plot(dend1, horiz  = T, dLeaf= 0, ylim = c(l,0), xlim = c(8,0))
-#    plot(dend1, horiz  = T, dLeaf= 0, xlim = c(0,8))
-# }
-# fo()
-# 
-# plot_horiz.dendrogram(dend2, horiz  = T, dLeaf= 0, side=T)
-# 
-# l = nleaves(tree1)
-# plot(tree1,horiz=TRUE, ylim=c(l,0),
-#      dLeaf = 0, 
-#      #         leaflab="none",
-#      axes = F,
-#      yaxs = "r", xaxs = "i")
-# 
-# 
-# plot(dend1, horiz  = T, # dLeaf= -1.5, # xlim = c(0,8),
-#      yaxs = "r", xaxs = "r")
-# 
-# 
-# 
-# plot(dend1,horiz=TRUE, ylim=c(0,nleaves(dend1)),
-#      dLeaf = 0, 
-#      axes = F,
-#      yaxs = "r", xaxs = "i")
-# 
-# 
-# # tanglegram(rotate(dend1, labels(dend2) ), dend2, text_cex = 2, lwd = 5)
-# 
-# 
-# # tanglegram.hclust <- function(hc1,hc2)
-
-dendobackback <- tanglegram.dendrogram # another name for the same function.
+#' @export
+dendbackback <- tanglegram.dendrogram # another name for the same function.
 # hclustbackback <- tanglegram.hclust # another name for the same function.
 
 
 
-# 
-# plot(dend1, horiz = T, xlim = c(10,0))
-# plot(dend1, horiz = T, xlim = c(0,10))
-# plot(dend1, horiz = T, xlim = c(0,10), dLeaf = -strwidth("145"))
-# 
 
-# https://stat.ethz.ch/pipermail/r-help/2007-July/135665.html
-# plot(1:10, new = F)
-# par(new=T)
-# plot(2.5, axes = F)
-# 
-# plot(dend1, horiz = T, xlim = c(0,10), dLeaf = -1)
-# plot(dend1[[1]], horiz = T, xlim = c(0,10), dLeaf = -1)
-# plot(dend1, horiz = T, xlim = c(10,0), dLeaf = 0)
-
-# stats:::plot.dendrogram
-# stats:::plotNode
-
-# -strwidth("145")
-# -strwidth("145")
-
-
-# 
-# tanglegram(rotate(dend1, labels(dend2) ), dend2)
-# tanglegram(dend2, dend1, intersecting = F)
-# tanglegram(dend1, dend2, dLeaf = 0)
-# labels(dend1)
-# labels(dend2)
-# 
-# par(mar = rep(2.2,4))
-# plot(dend1, leaflab = "none", dLeaf = 0, ylim = c(0.2, 7))
-# plot(dend2, leaflab = "none", dLeaf = 0, ylim = c(0.2, attr(dend2, "height")))
-# plot(dend2, leaflab = "none", frame.plot = T, ylim = c(0.06, attr(dend2, "height")))
-# 
-# plot(dend1, leaflab = "none", dLeaf = 0, frame.plot = T, xaxs = "r")
-# plot(dend1, leaflab = "none", dLeaf = 0, frame.plot = T, yaxs = "i")
-# plot(dend1, leaflab = "none", dLeaf = 0, frame.plot = F, yaxs = "i")  ## this is the way to do it.
-# 
-# 
-#  ?plot.new
-# 
