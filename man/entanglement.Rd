@@ -70,11 +70,46 @@
   streight lines over non streight lines
 }
 \examples{
-hc <- hclust(dist(USArrests[1:5,]), "ave")
-dend <- as.dendrogram(hc)
+\dontrun{
+hc1 <- hclust(dist(iris[,-5]), "com")
+hc2 <- hclust(dist(iris[,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+tanglegram(dend1,dend2)
 
-nleaves(dend) # 5
-nleaves(hc) # 5
+entanglement(dend1,dend2, L = 0) # 1
+entanglement(dend1,dend2, L = 0.25) # 0.97
+entanglement(dend1,dend2, L = 1) # 0.93
+entanglement(dend1,dend2, L = 2) # 0.88
+
+# a somewhat better tangelgram
+tanglegram(sort(dend1),sort(dend2))
+# and alos a MUCH better entanglement
+entanglement(sort(dend1),sort(dend2), L=1.5) # 0.0811
+# but not that much, for L=0.25
+entanglement(sort(dend1),sort(dend2), L=.25) # 0.579
+
+
+
+##################
+##################
+##################
+# massing up the order of leaves is dangerous:
+entanglement(dend1 , dend2, 1.5, "order") # 0.91
+order.dendrogram(dend2) <- seq_len(nleaves(dend2))
+# this 0.95 number is NO LONGER correct!!
+entanglement(dend1 , dend2, 1.5, "order") # 0.95
+# but if we use the "labels" method - we still get the correct number:
+entanglement(dend1 , dend2, 1.5, "labels") # 0.91
+
+# however, we can fix our dend2, as follows:
+dend2 <- match_order_by_labels(dend2, dend1)
+# Now that labels and order are matched - entanglement is back at working fine:
+entanglement(dend1 , dend2, 1.5, "order") # 0.91
+
+
+
+}
 }
 \seealso{
   \link{untangle}, \link{tanglegram},

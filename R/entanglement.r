@@ -70,7 +70,8 @@ match_order_by_labels <- function(dend_change, dend_template , check_that_labels
    
    if(check_that_labels_match) { 
       if(!identical(sort(tree_to_change_labels) , sort(tree_template_labels))) { 
-         stop("labels do not match in both trees.  Please make sure to fix the labels names!") 
+         stop("labels do not match in both trees.  Please make sure to fix the labels names!
+(make sure also that the labels of BOTH trees are 'character')") 
       }
    }	
    
