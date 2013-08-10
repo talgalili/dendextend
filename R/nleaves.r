@@ -30,6 +30,7 @@ as.phylo.dendrogram <- function(object,...) {as.phylo(as.hclust(object))}
 
 
 #' @title Counts the number of leaves in a tree
+#' @export
 #' @aliases 
 #' nleaves.default
 #' nleaves.dendrogram
@@ -45,7 +46,6 @@ as.phylo.dendrogram <- function(object,...) {as.phylo(as.hclust(object))}
 #' 
 #' \method{nleaves}{phylo}(x, ...)
 #' 
-#' @export
 #' @param x tree object (dendrogram or hclust)
 #' @param ... not used
 #' @details 
@@ -68,7 +68,6 @@ as.phylo.dendrogram <- function(object,...) {as.phylo(as.hclust(object))}
 #' nleaves(hc) # 5
 nleaves <- function(x, ...) UseMethod("nleaves")
 
-#' @export
 nleaves.default <- function(x,...) stop("object x must be a dendrogram/hclust/phylo object")
 
 #' @S3method nleaves dendrogram
