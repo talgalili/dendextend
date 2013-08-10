@@ -138,7 +138,7 @@ get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
 #' 
 #' 
 #' 
-#' \donotrun{
+#' \dontrun{
 #' require(microbenchmark)
 #' # get_leaves_attr is twice faster than get_nodes_attr
 #' microbenchmark(   get_leaves_attr(dend, "members"), # should be 1's
@@ -400,7 +400,7 @@ hang.dendrogram <- function(dend,hang = 0.1,hang_height, ...) {
 #' @seealso \link{get_leaves_attr}
 #' @examples
 #' 
-#' \donotrun{
+#' \dontrun{
 #' 
 #' hc <- hclust(dist(USArrests[1:5,]), "ave")
 #' dend <- as.dendrogram(hc)

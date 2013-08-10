@@ -70,7 +70,7 @@ get_nodes_attr(hang_dend, "height", include_leaves = FALSE, na.rm = TRUE)
 
 
 
-\\donotrun{
+\dontrun{
 require(microbenchmark)
 # get_leaves_attr is twice faster than get_nodes_attr
 microbenchmark(   get_leaves_attr(dend, "members"), # should be 1's

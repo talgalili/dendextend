@@ -26,7 +26,7 @@
   inside its nodePar
 }
 \examples{
-\\donotrun{
+\dontrun{
 
 hc <- hclust(dist(USArrests[1:5,]), "ave")
 dend <- as.dendrogram(hc)
