@@ -414,10 +414,14 @@ hang.dendrogram <- function(dend,hang = 0.1,hang_height, ...) {
 #' plot(dend)
 #' dend <- assign_values_to_leaves_nodePar(object=dend, value = c(3,2), nodePar = "lab.col")
 #' plot(dend)
+#' 
+#' dend <- assign_values_to_leaves_nodePar(dend, 1, "pch")
+#' plot(dend)
 #' # fix the annoying pch=1:
 #' dend <- assign_values_to_leaves_nodePar(dend, NA, "pch")
 #' plot(dend)
 #' # adjust the cex:
+#' dend <- assign_values_to_leaves_nodePar(dend, 19, "pch")
 #' dend <- assign_values_to_leaves_nodePar(dend, 2, "lab.cex")
 #' plot(dend)
 #' 
@@ -439,7 +443,15 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar,...) {
          i_leaf_number <<- i_leaf_number + 1
          attr(dend_node, "nodePar")[[nodePar]] <- value[i_leaf_number] # this way it doesn't erase other nodePar values (if they exist)
          
-         if(length(attr(dend_node, "nodePar")) == 0) attr(dend_node, "nodePar") <- NULL # remove nodePar if it is empty
+         if(length(attr(dend_node, "nodePar")) == 0) {
+            attr(dend_node, "nodePar") <- NULL # remove nodePar if it is empty
+         } else {
+            # if we have some nodePar, and we don't have pch - let's make 
+            # sure it is NA - so that we don't see that annoying dot.
+            if(! ("pch"  %in%  names(attr(dend_node, "nodePar"))) ) {
+               attr(dend_node, "nodePar")["pch"] <- NA
+            }               
+         }
       }
       return(unclass(dend_node))
    }   
@@ -449,6 +461,10 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar,...) {
    return(new_dend_object)
 }
 
+
+# 
+#  tanglegram(dend1 , dend2, lab.cex = 2, edge.lwd = 3,margin_inner= 5, type = "t", center = TRUE)
+# attr(dend[[1]], "nodePar")[["pch"]]
 
 
 

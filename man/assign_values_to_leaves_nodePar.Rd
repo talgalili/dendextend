@@ -38,10 +38,14 @@ dend <- as.dendrogram(hc)
 plot(dend)
 dend <- assign_values_to_leaves_nodePar(object=dend, value = c(3,2), nodePar = "lab.col")
 plot(dend)
+
+dend <- assign_values_to_leaves_nodePar(dend, 1, "pch")
+plot(dend)
 # fix the annoying pch=1:
 dend <- assign_values_to_leaves_nodePar(dend, NA, "pch")
 plot(dend)
 # adjust the cex:
+dend <- assign_values_to_leaves_nodePar(dend, 19, "pch")
 dend <- assign_values_to_leaves_nodePar(dend, 2, "lab.cex")
 plot(dend)
 
