@@ -97,6 +97,8 @@
   of the leaves be removed? (useful when the trees' leaves
   have too many parameters on them)}
 
+  \item{main}{Character. Title above the connecting lines.}
+
   \item{main_left}{Character. Title of the left
   dendrogram.}
 

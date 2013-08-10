@@ -247,6 +247,7 @@ plot_horiz.dendrogram <- function (x, center = FALSE,
 #' @param lab.cex numeric scalar, influanicing the cex size of the labels.
 #' @param remove_nodePar logical (FALSE). Should the nodePar of the leaves be 
 #' removed? (useful when the trees' leaves have too many parameters on them)
+#' @param main Character. Title above the connecting lines.
 #' @param main_left Character. Title of the left dendrogram.
 #' @param main_right Character. Title of the right dendrogram.
 #' @param k_labels integer. Number of groups by which to color the leaves.
@@ -311,6 +312,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   type = "r", # can also be "t"
                                   lab.cex = NULL,
                                   remove_nodePar =FALSE,
+                                  main = "",
                                   main_left = "",
                                   main_right = "",
                                   k_labels = NULL,
@@ -410,7 +412,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
             arrows(0,x[1],1,x[2],code=0, length=0.05, col= color_lines[col_indx], lwd = lwd)
          }
    )
-
+   mtext(main,side=3)
    
    #################
    # And the second dendrogram (to reverse it I reversed the xlim vector:
