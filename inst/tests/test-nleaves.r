@@ -18,6 +18,12 @@ test_that("Get a dendrogram number of leaves",{
 })
 
 
+test_that("nleaves works the same for members and order",{
+   dend <- as.dendrogram(hclust(dist(USArrests)))
+   expect_identical(nleaves(dend, "order"), nleaves(dend, "members"))
+})
+
+
 
 test_that("Get a dendrogram number of nodes",{
    hc <- hclust(dist(USArrests[1:3,]), "ave")

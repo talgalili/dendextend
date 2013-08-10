@@ -11,6 +11,7 @@ NEW FUNCTIONS ADDED:
 
 UPDATED FUNCTIONS:
    * assign_values_to_leaves_nodePar - now makes sure pch==NA if we are modifying a nodePar value which is other than pch (and pch did not exist before).
+   * nleaves - now allow the use of the "members" attr of a dendrogram for telling us the size of the tree.
 
 OTHER NOTES:
    * untangle.r file added

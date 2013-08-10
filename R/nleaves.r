@@ -40,13 +40,19 @@ as.phylo.dendrogram <- function(object,...) {as.phylo(as.hclust(object))}
 #' @usage
 #' nleaves(x, ...)
 #' 
-#' \method{nleaves}{dendrogram}(x, ...)
+#' \method{nleaves}{dendrogram}(x, method = c("order", "members"), ...)
 #' 
 #' \method{nleaves}{hclust}(x, ...)
 #' 
 #' \method{nleaves}{phylo}(x, ...)
 #' 
 #' @param x tree object (dendrogram or hclust)
+#' @param method a character scalar (default is "members"). If "order" 
+#' than nleaves is based on length of \link{order.dendrogram}. 
+#' If "members", than length is trusting what is written in the 
+#' dendrogram's root \link{attr}. 
+#' "members" is about 4 times faster than "order".
+#' 
 #' @param ... not used
 #' @details 
 #' The idea for the name is from functions like ncol, and nrow.
@@ -66,22 +72,38 @@ as.phylo.dendrogram <- function(object,...) {as.phylo(as.hclust(object))}
 #' 
 #' nleaves(dend) # 5
 #' nleaves(hc) # 5
-nleaves <- function(x, ...) UseMethod("nleaves")
+nleaves <- function(x, ...) {UseMethod("nleaves")}
 
-nleaves.default <- function(x,...) stop("object x must be a dendrogram/hclust/phylo object")
+nleaves.default <- function(x,...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
 #' @S3method nleaves dendrogram
-nleaves.dendrogram <- function(x,...) length(order.dendrogram(x))
+nleaves.dendrogram <- function(x, method = c("members", "order"),...) {
+   if(method[1] == "members") {
+      return(as.integer(attr(x, "members")))
+   } else {
+      # "order"
+      return(length(order.dendrogram(x)))
+   }
+}
+
+
+# require(microbenchmark)
+# big_dend <- as.dendrogram(hclust(dist(USArrests)))
+# microbenchmark(
+#    nleaves.dendrogram(big_dend, "order"),
+#    nleaves.dendrogram(big_dend, "members")
+# )
+
 
 #TODO: add count by number of labels/ or by the number of is.leaf==TRUE
 
 
 #' @S3method nleaves hclust
-nleaves.hclust <- function(x,...) length(x$order)
+nleaves.hclust <- function(x,...) {length(x$order)}
 
 
 #' @S3method nleaves phylo
-nleaves.phylo <- function(x,...) nleaves(as.dendrogram(x))
+nleaves.phylo <- function(x,...) {nleaves(as.dendrogram(x))}
 
 
 
@@ -122,10 +144,10 @@ nleaves.phylo <- function(x,...) nleaves(as.dendrogram(x))
 #' 
 #' nnodes(dend) # 9
 #' nnodes(hc) # 9
-nnodes <- function(x, ...) UseMethod("nnodes")
+nnodes <- function(x, ...) {UseMethod("nnodes")}
 
 #' @export
-nnodes.default <- function(x,...) stop("object x must be a dendrogram/hclust/phylo object")
+nnodes.default <- function(x,...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
 #' @S3method nnodes dendrogram
 nnodes.dendrogram <- function(x,...) {
@@ -145,10 +167,10 @@ nnodes.dendrogram <- function(x,...) {
 
 
 #' @S3method nnodes hclust
-nnodes.hclust <- function(x,...) nnodes(as.dendrogram(x))
+nnodes.hclust <- function(x,...) {nnodes(as.dendrogram(x))}
 
 #' @S3method nnodes phylo
-nnodes.phylo <- function(x,...) nnodes(as.dendrogram(x))
+nnodes.phylo <- function(x,...) {nnodes(as.dendrogram(x))}
 
 
 

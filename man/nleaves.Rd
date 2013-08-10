@@ -8,7 +8,8 @@
 \usage{
   nleaves(x, ...)
 
-  \method{nleaves}{dendrogram}(x, ...)
+  \method{nleaves}{dendrogram}(x, method = c("order",
+    "members"), ...)
 
   \method{nleaves}{hclust}(x, ...)
 
@@ -16,6 +17,13 @@
 }
 \arguments{
   \item{x}{tree object (dendrogram or hclust)}
+
+  \item{method}{a character scalar (default is "members").
+  If "order" than nleaves is based on length of
+  \link{order.dendrogram}. If "members", than length is
+  trusting what is written in the dendrogram's root
+  \link{attr}. "members" is about 4 times faster than
+  "order".}
 
   \item{...}{not used}
 }
