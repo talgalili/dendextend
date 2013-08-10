@@ -217,7 +217,7 @@ entanglement.dendrogram <- function(dend1,dend2, L = 1.5, leaves_matching_method
 # 	# A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
 # 	# leaves(dend1),leaves(dend2)
 # 	
-# 	n_leaves <- length(order.dendrogram(dend1)) # how many leaves do we have? (number of leaves)
+# 	n_leaves <- nleaves(dend1) # how many leaves do we have? (number of leaves)
 # 	order.dendrogram(dend1) <- seq_len(n_leaves) # change the leaves of dend1 to be 1:n
 # 	dend2 <- match_order_by_labels(dend2	, dend1) # make sure that the numbers if the 
 # 
@@ -259,7 +259,7 @@ entanglement.dendrogram <- function(dend1,dend2, L = 1.5)
    if(L==0) L <- L + 1e-50 # this is in order to make sure L is not ==0.  Because that would just create nonsical meaning.
    
    
-   n_leaves <- length(order.dendrogram(dend1)) # how many leaves do we have? (number of leaves)
+   n_leaves <- nleaves(dend1) # how many leaves do we have? (number of leaves)
    one_to_n_leaves <- seq_len(n_leaves)
    order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n
    dend2 <- match_order_by_labels(dend2	, dend1) # make sure that the numbers if the 
@@ -294,7 +294,7 @@ stir.default <- function (object, ...) stop("no default function for entanglemen
 stir.dendrogram <- function(object) {
    # takes a dendrogram object and stirrs its branches in a random fashion
    # 	num_of_leaves <- length(labels(object))	# leaves.value is faster then labels!
-   num_of_leaves <- length(order.dendrogram(object))
+   num_of_leaves <- nleaves(object)
    random_weights <- sample(seq_len(num_of_leaves)) # a random ordaring of 1:num_of_leaves weights
    rotate(object, random_weights)
 }
