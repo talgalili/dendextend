@@ -10,6 +10,9 @@ NEW FUNCTIONS ADDED:
 UPDATED FUNCTIONS:
    * assign_values_to_leaves_nodePar - now makes sure pch==NA if we are modifying a nodePar value which is other than pch (and pch did not exist before).
 
+OTHER NOTES:
+   * untangle.r file added
+
 dendextend 0.5 (2013-08-05) 
 ---------------------------
 
