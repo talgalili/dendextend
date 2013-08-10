@@ -129,9 +129,10 @@ test_that("Assigning several values to a tree's leaves nodePar",{
    
    dend_leaf_nodePar <- get_leaves_attr(dend, "nodePar", simplify=FALSE)[[1]]
    
-   expect_identical(length(dend_leaf_nodePar), 2L)
-   expect_identical(names(dend_leaf_nodePar), c("lab.cex", "lab.col"))
-   expect_identical(unname(dend_leaf_nodePar), c(2,3))
+   # notice how pch is added automatically!
+   expect_identical(length(dend_leaf_nodePar), 3L) 
+   expect_identical(names(dend_leaf_nodePar), c("lab.cex", "pch", "lab.col"))
+   expect_identical(unname(dend_leaf_nodePar), c(2,NA, 3))
    
    
 })
