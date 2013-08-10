@@ -16,7 +16,7 @@
   \method{nleaves}{phylo}(x, ...)
 }
 \arguments{
-  \item{x}{tree object (dendrogram or hclust)}
+  \item{x}{tree object (dendrogram/hclust/phylo)}
 
   \item{method}{a character scalar (default is "members").
   If "order" than nleaves is based on length of

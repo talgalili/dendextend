@@ -62,3 +62,47 @@ test_that("Match order of one dend based on another (using their order valuess)"
 
 
 
+
+
+test_that("Entanglement works",{
+
+   hc1 <- hclust(dist(iris[,-5]), "com")
+   hc2 <- hclust(dist(iris[,-5]), "single")
+   dend1 <- as.dendrogram(hc1)
+   dend2 <- as.dendrogram(hc2)
+
+   expect_identical(round(entanglement(dend1 , dend2, 0, "labels"), 2), 1)
+   expect_identical(round(entanglement(dend1 , dend2, 1, "labels"), 2), 0.93)
+   expect_identical(round(entanglement(dend1 , dend2, 1.5, "labels"), 2), 0.91)
+   expect_identical(round(entanglement(dend1 , dend2, 2, "labels"), 2), 0.89)
+
+})
+
+
+
+
+
+test_that("Entanglement with labels vs order",{
+   
+   hc1 <- hclust(dist(iris[,-5]), "com")
+   hc2 <- hclust(dist(iris[,-5]), "single")
+   dend1 <- as.dendrogram(hc1)
+   dend2 <- as.dendrogram(hc2)
+   
+   # massing up the order of leaves is dangerous:
+   expect_identical(round(entanglement(dend1 , dend2, 1.5, "order"), 2), 0.91)
+   order.dendrogram(dend2) <- seq_len(nleaves(dend2))
+   # this 0.95 number is NO LONGER correct!!
+   expect_identical(round(entanglement(dend1 , dend2, 1.5, "order"), 2), 0.95)
+   # but if we use the "labels" method - we still get the correct number:
+   expect_identical(round(entanglement(dend1 , dend2, 1.5, "labels"), 2), 0.91)
+   
+   # however, we can fix our dend2, as follows:
+   dend2 <- match_order_by_labels(dend2, dend1)
+   # Now that labels and order are matched - entanglement is back at working fine:
+   expect_identical(round(entanglement(dend1 , dend2, 1.5, "order"), 2), 0.91)
+   
+})
+
+
+

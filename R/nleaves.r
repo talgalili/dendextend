@@ -36,7 +36,8 @@ as.phylo.dendrogram <- function(object,...) {as.phylo(as.hclust(object))}
 #' nleaves.dendrogram
 #' nleaves.hclust
 #' nleaves.phylo
-#' @description Counts the number of leaves in a tree (dendrogram or hclust).
+#' @description 
+#' Counts the number of leaves in a tree (dendrogram or hclust).
 #' @usage
 #' nleaves(x, ...)
 #' 
@@ -46,7 +47,7 @@ as.phylo.dendrogram <- function(object,...) {as.phylo(as.hclust(object))}
 #' 
 #' \method{nleaves}{phylo}(x, ...)
 #' 
-#' @param x tree object (dendrogram or hclust)
+#' @param x tree object (dendrogram/hclust/phylo)
 #' @param method a character scalar (default is "members"). If "order" 
 #' than nleaves is based on length of \link{order.dendrogram}. 
 #' If "members", than length is trusting what is written in the 
@@ -105,6 +106,7 @@ nleaves.hclust <- function(x,...) {length(x$order)}
 #' @S3method nleaves phylo
 nleaves.phylo <- function(x,...) {nleaves(as.dendrogram(x))}
 
+# TODO: there is probably a better way for getting the tree size for a phylo object.
 
 
 
