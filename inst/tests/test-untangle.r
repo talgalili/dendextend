@@ -25,3 +25,6 @@ test_that("Match order of one dend based on another (using their labels)",{
    expect_error(match_order_by_labels(dend_changed, dend)) 
    
 })
+
+
+

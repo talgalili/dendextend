@@ -65,12 +65,11 @@ match_order_by_labels <- function(dend_change, dend_template , check_that_labels
    #let's put the leaves' numbers and labels in two data.frames 
    #    tree_to_change_labels_order <- data.frame(labels = labels(dend_change), values = order.dendrogram(dend_change))
    # 	tree_template_labels_order <- data.frame(labels = labels(dend_template), values = order.dendrogram(dend_template))
-   tree_to_change_labels_order_labels = labels(dend_change)
-   # 	tree_to_change_labels_order_values = order.dendrogram(dend_change)	# this is not used.
-   tree_template_labels_order_labels = labels(dend_template)
+   tree_to_change_labels = labels(dend_change)
+   tree_template_labels = labels(dend_template)
    
    if(check_that_labels_match) { 
-      if(!identical(sort(tree_to_change_labels_order_labels) , sort(tree_template_labels_order_labels))) { 
+      if(!identical(sort(tree_to_change_labels) , sort(tree_template_labels))) { 
          stop("labels do not match in both trees.  Please make sure to fix the labels names!") 
       }
    }	
@@ -82,7 +81,7 @@ match_order_by_labels <- function(dend_change, dend_template , check_that_labels
    # y_to_order_like_x[match(c(1:4), y_to_order_like_x)]
    # I want to order the numbers in yoav_tree so that they would match the needed order in dans_tree
    
-   ss_order_change_leaf_numbers_to_match_template <- match(x= tree_to_change_labels_order_labels, table= tree_template_labels_order_labels)
+   ss_order_change_leaf_numbers_to_match_template <- match(x= tree_to_change_labels, table= tree_template_labels)
    tree_new_leaf_numbers <- tree_template_labels_order_values[ss_order_change_leaf_numbers_to_match_template]
    order.dendrogram(dend_change) <- tree_new_leaf_numbers
    
@@ -179,7 +178,7 @@ entanglement.dendrogram <- function(dend1,dend2, L = 1.5, leaves_matching_method
    if(L==0) L <- L + 1e-50 # this is in order to make sure L is not ==0.  Because that would just create nonsical meaning.
    
    
-   n_leaves <- length(order.dendrogram(dend1)) # how many leaves do we have? (number of leaves)
+   n_leaves <- nleaves(dend1) # how many leaves do we have? (number of leaves)
    one_to_n_leaves <- seq_len(n_leaves)
    
    if(leaves_matching_method[1] == "order") {   
@@ -778,8 +777,8 @@ untangle.best.k.to.rotate.by.1side <- function(dend1, dend2_fixed, L = 1) {
    
    for(k in 2:length(leaves_values)) {
       dend1_k_rotated <- c(dend1_k_rotated, 
-                            all.couple.rotations.at.k(best_dend, k, 
-                                                      dendrogram_heights_per_k = best_dend_heights_per_k))
+                           all.couple.rotations.at.k(best_dend, k, 
+                                                     dendrogram_heights_per_k = best_dend_heights_per_k))
    }
    
    dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)
