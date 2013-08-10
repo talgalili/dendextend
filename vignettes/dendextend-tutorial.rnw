@@ -815,6 +815,33 @@ pairs(iris[,-5],
 
 \subsection{Tanglegram visualization}
 
+A tanglegram plot gives two dendrogram (with the same set of labels), one facing the other, and having their labels connected by lines. Tanglegram can be used for visually comparing two methods of heirarchical clustering, and are sometimes used in biology when comparing two phylogenetic trees.
+
+%% add references!
+
+Here is an example of creating a tanglegram using \pkg{dendextend}:
+
+
+<<>>=
+
+hc1 <- hclust(dist(iris[,-5]), "com")
+hc2 <- hclust(dist(iris[,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+tanglegram(dend1 , dend2, lab.cex = .5, edge.lwd = 1,
+ margin_inner= 3, type = "r", center = TRUE, k_branches = 3)
+@
+
+Notice that since every manipulation of the trees require going through all of their nodes, it might be better (when comparing large trees), to do all of the manipulations upfront, and only then plot the tanglegram.
+
+We can also notice the mess of tangled lines of the two trees, a mess we wish to untangle.
+
+
+
+
+
+
+
 \subsection{Finding an optimal rotation}
 
 
