@@ -8,6 +8,7 @@ NEW FUNCTIONS ADDED:
    * remove_branches_edgePar
 
    * match_order_by_labels
+   * match_order_dendrogram_by_old_order - like match_order_by_labels, but faster
 
 UPDATED FUNCTIONS:
    * assign_values_to_leaves_nodePar - now makes sure pch==NA if we are modifying a nodePar value which is other than pch (and pch did not exist before).

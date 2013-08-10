@@ -1,6 +1,6 @@
 \name{match_order_by_labels}
 \alias{match_order_by_labels}
-\title{Adjust the order of one dendrogram based on another}
+\title{Adjust the order of one dendrogram based on another (using labels)}
 \usage{
   match_order_by_labels(dend_change, dend_template,
     check_that_labels_match = TRUE)
@@ -15,8 +15,8 @@
   they do not, the function aborts)}
 }
 \value{
-  Returns dend_change after adjusting its values to be like
-  dend_template.
+  Returns dend_change after adjusting its order values to
+  be like dend_template.
 }
 \description{
   Takes one dendrogram and adjusts its order leaves valeus

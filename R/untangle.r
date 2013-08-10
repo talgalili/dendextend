@@ -26,7 +26,7 @@
 
 
 
-#' @title Adjust the order of one dendrogram based on another
+#' @title Adjust the order of one dendrogram based on another (using labels)
 #' @export
 #' @description 
 #' Takes one dendrogram and adjusts its order leaves valeus based on the order
@@ -40,7 +40,7 @@
 #' @param dend_template tree object (dendrogram)
 #' @param check_that_labels_match logical (TRUE). If to check that the labels
 #' in the two dendrogram match. (if they do not, the function aborts)
-#' @return Returns dend_change after adjusting its values to
+#' @return Returns dend_change after adjusting its order values to
 #'  be like dend_template.
 #' @seealso \link{untangle}, \link{entanglement} , \link{tangelgram}
 #' @examples
@@ -74,7 +74,7 @@ match_order_by_labels <- function(dend_change, dend_template , check_that_labels
       }
    }	
    
-   tree_template_labels_order_values <- order.dendrogram(dend_template)
+   tree_template_order <- order.dendrogram(dend_template)
    
    # this gives us how to order y so it would be in the order of x.
    # y_to_order_like_x <- c(2,3,1,4)
@@ -82,7 +82,7 @@ match_order_by_labels <- function(dend_change, dend_template , check_that_labels
    # I want to order the numbers in yoav_tree so that they would match the needed order in dans_tree
    
    ss_order_change_leaf_numbers_to_match_template <- match(x= tree_to_change_labels, table= tree_template_labels)
-   tree_new_leaf_numbers <- tree_template_labels_order_values[ss_order_change_leaf_numbers_to_match_template]
+   tree_new_leaf_numbers <- tree_template_order[ss_order_change_leaf_numbers_to_match_template]
    order.dendrogram(dend_change) <- tree_new_leaf_numbers
    
    return(dend_change)
@@ -91,10 +91,65 @@ match_order_by_labels <- function(dend_change, dend_template , check_that_labels
 
 
 
-# FASTER version of entanglement (assumes that the leaves values are matched correctly with the labels in both trees!)
-match_order_dendrogram_by_old_values <- function(dend_change, dend_template , dend_template_old_values,
-                                                 check_that_labels_match = F, check_that_leaves_values_match =F ,
-                                                 print_NOTE = F) {	
+
+
+#' @title Adjust the order of one dendrogram based on another (using order)
+#' @export
+#' @description 
+#' Takes one dendrogram and adjusts its order leaves valeus based on the order
+#' of another dendrogram. The values are matached based on the order of the
+#' two dendrograms.
+#' 
+#' This allows for faster \link{entanglement} running time, since we can be 
+#' sure that the leaves order is just as using their labels.
+#' 
+#' This is a function is FASTER than \link{match_order_by_labels}, but it 
+#' assumes that the order and the labels of the two trees are matching!!
+#' 
+#' This will allow for a faster calculation of \link{entanglement}.
+#' 
+#' @param dend_change tree object (dendrogram)
+#' @param dend_template tree object (dendrogram)
+#' @param dend_change_old_order a numeric vector with the order of leaves in
+#' dend_change (at least before it was changes for some reason).
+#' This is the vector based on which we adjust the new values of dend_change.
+#' @param check_that_labels_match logical (FALSE). If to check that the labels
+#' in the two dendrogram match. (if they do not, the function aborts)
+#' @param check_that_leaves_order_match logical (FALSE). If to check that 
+#' the order in the two dendrogram match. (if they do not, the function aborts)
+#' 
+#' @return Returns dend_change after adjusting its order values to
+#'  be like dend_template.
+#' @seealso \link{untangle}, \link{entanglement} , \link{tangelgram},
+#' \link{match_order_by_labels}
+#' @examples
+#' \dontrun{
+#' 
+#' dend <- as.dendrogram(hclust(dist(USArrests[1:4,])))
+#' order.dendrogram(dend) #  c(4L, 3L, 1L, 2L)
+#' 
+#' 
+#' # Watch this!
+#' dend_changed <- dend
+#' dend_changed <- rev(dend_changed)
+#' expect_false(identical(order.dendrogram(dend_changed), order.dendrogram(dend)))
+#' # we keep the order of dend_change, so that the leaves order are synced
+#' # with their labels JUST LIKE dend:
+#' old_dend_changed_order <- order.dendrogram(dend_changed)   
+#' # now we change dend_changed leaves order values:
+#' order.dendrogram(dend_changed) <- 1:4
+#' # and we can fix them again, based on their old kept leaves order:
+#' dend_changed <- match_order_dendrogram_by_old_order(dend_changed, dend, 
+#'                                                      old_dend_changed_order)
+#' expect_identical(order.dendrogram(dend_changed), order.dendrogram(dend))
+#' 
+#' 
+#' }
+match_order_dendrogram_by_old_order <- function(dend_change, dend_template , 
+                                                 dend_change_old_order,
+                                                 check_that_labels_match = FALSE, 
+                                                 check_that_leaves_order_match =FALSE
+                                                 ) {	
    
    # this function was made to help make entanglement.dendrogram faster.
    # But it relies on some important assumptions (otherwise, its results will be nonsense!)
@@ -102,46 +157,33 @@ match_order_dendrogram_by_old_values <- function(dend_change, dend_template , de
    if(check_that_labels_match) { # I am turning this check to FALSE since it takes 0.03 sec from the function (which is a long time when running this function a lot)
       if(any(sort(labels(dend_change)) != sort(labels(dend_template)))) stop("labels do not match in both trees.  Please make sure to fix the labels names!")
    }
-   if(check_that_leaves_values_match) { # I am turning this check to FALSE since it takes 0.03 sec from the function (which is a long time when running this function a lot)
+   if(check_that_leaves_order_match) { # I am turning this check to FALSE since it takes 0.03 sec from the function (which is a long time when running this function a lot)
       if(any(sort(order.dendrogram(dend_change)) != sort(order.dendrogram(dend_template)))) stop("order.dendrogram do not match in both trees.  Please make sure to fix the labels names!")
    }
    
-   if(print_NOTE) cat("NOTE:
-                      Make sure that the values in dend_template_old_values match the labels of dend1 in the same way
-                      as the values and labels of the dend_change!
-                      ")
+#    if(print_NOTE) cat("NOTE:
+#                       Make sure that the values in dend_change_old_order match the labels of dend1 in the same way
+#                       as the values and labels of the dend_change!
+#                       ")
    
    
-   #let's put the leaves' numbers and labels in two data.frames (one for Dan and one for Yoav)	
+   #let's put the leaves' numbers and labels in two data.frames
    # 	tree_to_change_labels_order <- data.frame(labels = labels(dend_change), values = order.dendrogram(dend_change))
    # 	tree_template_labels_order <- data.frame(labels = labels(dend_template), values = order.dendrogram(dend_template))
-   tree_to_change_labels_order_values = order.dendrogram(dend_change)
-   # 	tree_to_change_labels_order_values = order.dendrogram(dend_change)	# this is not used.
-   tree_template_labels_order_values = order.dendrogram(dend_template) # these should be values after some change was done outside the function (and dend_template_old_values are the values before the change)
+   tree_to_change_order = order.dendrogram(dend_change)
+   tree_template_order = order.dendrogram(dend_template) # these should be values after some change was done outside the function (and dend_change_old_order are the values before the change)
    
    # this gives us how to order y so it would be in the order of x.
    # y_to_order_like_x <- c(2,3,1,4)
    # y_to_order_like_x[match(c(1:4), y_to_order_like_x)]
    # I want to order the numbers in yoav_tree so that they would match the needed order in dans_tree
    
-   ss_order_change_leaf_numbers_to_match_template <- match(x= tree_to_change_labels_order_values, table= dend_template_old_values)
-   # let's check if it works: (it does!)
-   # data.frame(
-   # 		yoav_num = Yoav_tree_labels_order$order[ss_order_yoav_leaf_numbers_to_match_dans],
-   # 		yoav_lab = Yoav_tree_labels_order$labels[ss_order_yoav_leaf_numbers_to_match_dans],
-   # 		dan_num = Dan_arc_tree_labels_order$order,
-   # 		dan_lab = Dan_arc_tree_labels_order$labels)
+   ss_order_change_leaf_numbers_to_match_template <- match(x= tree_to_change_order, table= dend_change_old_order)
    
-   
-   new_leaves_values <- tree_template_labels_order_values[ss_order_change_leaf_numbers_to_match_template]
-   order.dendrogram(dend_change) <- new_leaves_values
+   new_leaves_order <- tree_template_order[ss_order_change_leaf_numbers_to_match_template]
+   order.dendrogram(dend_change) <- new_leaves_order
    
    return(dend_change)
-   # data.frame(
-   # 		yoav_num = Yoav_tree_labels_order$order[ss_order_yoav_leaf_numbers_to_match_dans],
-   # 		yoav_lab = Yoav_tree_labels_order$labels[ss_order_yoav_leaf_numbers_to_match_dans],
-   # 		dan_num = order.dendrogram(Dan_arc_tree),
-   # 		dan_lab = labels(Dan_arc_tree))
 }
 
 
@@ -182,9 +224,9 @@ entanglement.dendrogram <- function(dend1,dend2, L = 1.5, leaves_matching_method
    one_to_n_leaves <- seq_len(n_leaves)
    
    if(leaves_matching_method[1] == "order") {   
-      dend1_old_values <- order.dendrogram(dend1)
+      dend1_old_order <- order.dendrogram(dend1)
       order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n	
-      dend2 <- match_order_dendrogram_by_old_values(dend2	, dend1, dend1_old_values) # make sure that the numbers if the 
+      dend2 <- match_order_dendrogram_by_old_order(dend2	, dend1, dend1_old_order) # make sure that the numbers if the 
    } else { # "labels" - this method is "safer" (since we can easily see if the labels on the two trees match or not
       # however, this is twice as slow (which adds up quite a bit with the functions that rely on this)
       # Hence, it is best to make sure that the trees used here have the same labels and the SAME values matched to these values
@@ -192,10 +234,10 @@ entanglement.dendrogram <- function(dend1,dend2, L = 1.5, leaves_matching_method
       dend2 <- match_order_by_labels(dend2	, dend1) # This one is "slow"
    }
    
-   sum.abs.diff.L <- function(x,y,L) sum(abs(x-y)**L)
+   sum_abs_diff_L <- function(x,y,L) sum(abs(x-y)**L)
    
-   entanglement_result <- sum.abs.diff.L(order.dendrogram(dend1), order.dendrogram(dend2), L)	
-   worse_entanglement_result <- sum.abs.diff.L(one_to_n_leaves, rev(one_to_n_leaves), L)		
+   entanglement_result <- sum_abs_diff_L(order.dendrogram(dend1), order.dendrogram(dend2), L)	
+   worse_entanglement_result <- sum_abs_diff_L(one_to_n_leaves, rev(one_to_n_leaves), L)		
    normalized_entanglement_result <- entanglement_result/worse_entanglement_result # should range between 0 (no etnaglement) and 1 (max entangelment
    
    normalized_entanglement_result
@@ -264,10 +306,10 @@ entanglement.dendrogram <- function(dend1,dend2, L = 1.5)
    order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n
    dend2 <- match_order_by_labels(dend2	, dend1) # make sure that the numbers if the 
    
-   sum.abs.diff.L <- function(x,y,L) sum(abs(x-y)**L)
+   sum_abs_diff_L <- function(x,y,L) sum(abs(x-y)**L)
    
-   entanglement_result <- sum.abs.diff.L(order.dendrogram(dend1), order.dendrogram(dend2), L)	
-   worse_entanglement_result <- sum.abs.diff.L(one_to_n_leaves, rev(one_to_n_leaves), L)		
+   entanglement_result <- sum_abs_diff_L(order.dendrogram(dend1), order.dendrogram(dend2), L)	
+   worse_entanglement_result <- sum_abs_diff_L(one_to_n_leaves, rev(one_to_n_leaves), L)		
    normalized_entanglement_result <- entanglement_result/worse_entanglement_result # should range between 0 (no etnaglement) and 1 (max entangelment
    
    normalized_entanglement_result
@@ -417,20 +459,20 @@ flip.leaves <- function(dend, leaves1, leaves2) {
    # this function gets a dendgram with two vector of leaves that needs to be flipped with one another on the tree
    # we assume here unique values of leaves.
    # also notice that this is based on the values of the leaves and NOT their labels.
-   leaves_values <- order.dendrogram(dend)
-   weights <- seq_along(leaves_values)
+   leaves_order <- order.dendrogram(dend)
+   weights <- seq_along(leaves_order)
    
    #turn the values of leaves and leaves1/2 to strings with || delim:
-   leaves_values_string <- collapse.pipes.zzz(leaves_values)
+   leaves_order_string <- collapse.pipes.zzz(leaves_order)
    leaves1_string <- collapse.pipes.zzz(leaves1)
    leaves2_string <- collapse.pipes.zzz(leaves2)
    # then flips the locations of leaves1 and 2 in the string
-   flipped_leaves_values_string <- flip.strings(leaves_values_string, leaves1_string, leaves2_string)
+   flipped_leaves_order_string <- flip.strings(leaves_order_string, leaves1_string, leaves2_string)
    # and turn the string back to a vector of flipped leaves values:
-   flipped_leaves_values <- as.numeric(remove.pipes.and.zzz(flipped_leaves_values_string))
+   flipped_leaves_order <- as.numeric(remove.pipes.and.zzz(flipped_leaves_order_string))
    
-   new_order_weights <- match(flipped_leaves_values, leaves_values) # order the leaves_values to be like flipped_leaves_values
-   # leaves_values[new_order_weights]
+   new_order_weights <- match(flipped_leaves_order, leaves_order) # order the leaves_order to be like flipped_leaves_order
+   # leaves_order[new_order_weights]
    # now use this order to order the weights!
    new_weights <- weights[new_order_weights]
    
@@ -470,7 +512,7 @@ all.couple.rotations.at.k <- function(dendro, k, dendrogram_heights_per_k) {
    if(missing(dendrogram_heights_per_k)) dendrogram_heights_per_k <- dendrogram.heights.per.k(dendro) # since this function takes a looong time, I'm running it here so it will need to run only once!	
    # And I would MUCH rather give this vector upfront - so the entire thing will be faster...			
    
-   leaves_values <- order.dendrogram(dendro)
+   leaves_order <- order.dendrogram(dendro)
    k_cluster_leaves <- cutree(dendro, k, 
                               order_clusters_using_tree =F,
                               dendrogram_heights_per_k = dendrogram_heights_per_k, # makes it faster
@@ -520,8 +562,8 @@ all.couple.rotations.at.k <- function(dendro, k, dendrogram_heights_per_k) {
             # choosing the leaves belonging to each of the two clusters
             ss_leaves1 <- k_cluster_leaves == branches_permutations[1,j]
             ss_leaves2 <- k_cluster_leaves == branches_permutations[2,j]
-            leaves1 <- leaves_values[ss_leaves1]
-            leaves2 <- leaves_values[ss_leaves2]
+            leaves1 <- leaves_order[ss_leaves1]
+            leaves2 <- leaves_order[ss_leaves2]
             
             # 				plot(flip.leaves(dendro, leaves1, leaves2))
             # Flipping the branches of the two adjecent clusters:
@@ -583,11 +625,11 @@ if(F) { # example
 untangle.forward.rotate.1side <- function(dend1, dend2_fixed, L = 1) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
    require(plyr)
-   leaves_values <- order.dendrogram(dend1)
+   leaves_order <- order.dendrogram(dend1)
    best_dend <- dend1
    best_dend_heights_per_k <- dendrogram.heights.per.k(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
    
-   for(k in 2:length(leaves_values)) {
+   for(k in 2:length(leaves_order)) {
       dend1_k_rotated <- all.couple.rotations.at.k(best_dend, k, dendrogram_heights_per_k = best_dend_heights_per_k)
       dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)
       ss_best_dend <- which.min(dend1_cut_k_entanglements)
@@ -613,10 +655,10 @@ untangle.forward.rotate.1side <- function(dend1, dend2_fixed, L = 1) {
 untangle.backward.rotate.1side <- function(dend1, dend2_fixed , L = 1) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
    require(plyr)
-   leaves_values <- order.dendrogram(dend1)
+   leaves_order <- order.dendrogram(dend1)
    best_dend <- dend1
    
-   for(k in length(leaves_values):2) {
+   for(k in length(leaves_order):2) {
       dend1_k_rotated <- all.couple.rotations.at.k(best_dend, k)
       dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)
       ss_best_dend <- which.min(dend1_cut_k_entanglements)
@@ -631,10 +673,10 @@ untangle.backward.rotate.1side <- function(dend1, dend2_fixed , L = 1) {
 # untangle.forward.step.rotate.1side <- function(dend1, dend2_fixed) {
 # 	# this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
 # 	require(plyr)
-# 	leaves_values <- order.dendrogram(dend1)
+# 	leaves_order <- order.dendrogram(dend1)
 # 	best_dend <- dend1
 # 	
-# 	k_visited <- rep(F, length(leaves_values))
+# 	k_visited <- rep(F, length(leaves_order))
 # 	k_visited[1] <- T # I don't need the first one
 # 	k <- 1
 # 	
@@ -768,14 +810,14 @@ untangle.evolution<- function(brother_1_dend1, brother_1_dend2,
 untangle.best.k.to.rotate.by.1side <- function(dend1, dend2_fixed, L = 1) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
    require(plyr)
-   leaves_values <- order.dendrogram(dend1)
+   leaves_order <- order.dendrogram(dend1)
    best_dend <- dend1
    dend1_k_rotated <- NULL
    
    best_dend_heights_per_k <- dendrogram.heights.per.k(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
    # this makes the function about twice as fast... 
    
-   for(k in 2:length(leaves_values)) {
+   for(k in 2:length(leaves_order)) {
       dend1_k_rotated <- c(dend1_k_rotated, 
                            all.couple.rotations.at.k(best_dend, k, 
                                                      dendrogram_heights_per_k = best_dend_heights_per_k))

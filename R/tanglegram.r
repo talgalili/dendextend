@@ -432,6 +432,10 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
 
 
 
+# add an "abbreviation" parameter - to trim the labels of two trees.
+
+
+
 #' @export
 dendbackback <- tanglegram.dendrogram # another name for the same function.
 # hclustbackback <- tanglegram.hclust # another name for the same function.
