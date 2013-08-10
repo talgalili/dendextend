@@ -38,6 +38,8 @@ labels(dend, "label")
 get_leaves_attr(dend, "height") # should be 0's
 get_nodes_attr(dend, "height")
 
+get_leaves_attr(dend, "nodePar")
+
 
 get_leaves_attr(dend, "leaf") # should be TRUE's
 get_nodes_attr(dend, "leaf") # conatins NA's

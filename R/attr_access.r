@@ -49,6 +49,8 @@
 #' get_leaves_attr(dend, "height") # should be 0's
 #' get_nodes_attr(dend, "height") 
 #' 
+#' get_leaves_attr(dend, "nodePar") 
+#'  
 #' 
 #' get_leaves_attr(dend, "leaf") # should be TRUE's
 #' get_nodes_attr(dend, "leaf") # conatins NA's
@@ -447,4 +449,50 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar,...) {
    return(new_dend_object)
 }
 
+
+
+
+
+
+
+#' @title Remove all nodePar values from a dendrogram's leaves
+#' @export
+#' @description
+#' Go through the dendrogram leaves and remove its nodePar.
+#' @param object a dendrogram object 
+#' @param ... not used
+#' @return 
+#' A dendrogram, after removing the nodePar attribute in all of its leaves, 
+#' @seealso \link{get_leaves_attr}, \link{assign_values_to_leaves_nodePar}
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+#' 
+#' dend <- color_labels(dend, 3)
+#' par(mfrow = c(1,2))
+#' plot(dend)
+#' plot(remove_leaves_nodePar(dend))
+#' 
+#' 
+#' get_leaves_attr(dend, "nodePar")
+#' get_leaves_attr(remove_leaves_nodePar(dend), "nodePar")
+#' 
+#' 
+#' }
+#' 
+remove_leaves_nodePar <- function(object, ...) {
+   if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
+   
+   remove_nodePar_from_leaf <- function(dend_node) {
+      if(is.leaf(dend_node)) {   		
+         attr(dend_node, "nodePar") <- NULL # remove nodePar if it is empty
+      }
+      return(unclass(dend_node))
+   }   
+   new_dend_object <- dendrapply(object, remove_nodePar_from_leaf)
+   class(new_dend_object) <- "dendrogram"
+   return(new_dend_object)
+}
 

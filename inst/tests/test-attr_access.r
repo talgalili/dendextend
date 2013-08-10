@@ -135,3 +135,18 @@ test_that("Assigning several values to a tree's leaves nodePar",{
    
    
 })
+
+
+
+
+test_that("We can remove leaves nodePar",{
+   
+   dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+   dend <- color_labels(dend, 3)
+   
+   expect_false(is.null(get_leaves_attr(dend, "nodePar")))
+   expect_true(is.null(get_leaves_attr(remove_leaves_nodePar(dend), "nodePar")))
+   
+})
+
+

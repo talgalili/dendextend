@@ -2,7 +2,7 @@ dendextend 0.5.1 (2013-08-10)
 ---------------------------
 NEW FUNCTIONS ADDED: 
    * plot_horiz.dendrogram - Plotting a left-tip-adjusted horizontal dendrogram
-
+   * remove_leaves_nodePar
 
 dendextend 0.5 (2013-08-05) 
 ---------------------------
