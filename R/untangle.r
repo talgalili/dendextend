@@ -24,151 +24,58 @@
 
 
 
-# untangle.dendrogram # A function to take two dendrograms and rotate them so to minimize some penalty on entanglement 
-
-# entanglement
-
-entanglement <- function (...) { UseMethod("entanglement") }
 
 
-entanglement.default <- function (object, ...) { stop("no default function for entanglement") }
-
-
-
-
-entanglement.dendrogram <- function(dend1,dend2, L = 1.5, leaves_matching_method = c("leaves", "labels")) {
-   # One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
-   # A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
-   # leaves(dend1),leaves(dend2)
-   # L tells us which panelty level we are at (L0, L1, L2, partial L's etc).  L>1 means that we give a big panelty for sharp angles.  While L->0 means that any time something is not a streight horizontal line, it gets a large penalty
-   # If L=0.1 it means that we much prefer streight lines over non streight lines
+#' @title Adjust the order of one dendrogram based on another
+#' @export
+#' @description 
+#' Takes one dendrogram and adjusts its order leaves valeus based on the order
+#' of another dendrogram. The values are matached based on the labels of the
+#' two dendrograms.
+#' 
+#' This allows for faster \link{entanglement} running time, since we can be 
+#' sure that the leaves order is just as using their labels.
+#' 
+#' @param dend_change tree object (dendrogram)
+#' @param dend_template tree object (dendrogram)
+#' @param check_that_labels_match logical (TRUE). If to check that the labels
+#' in the two dendrogram match. (if they do not, the function aborts)
+#' @return Returns dend_change after adjusting its values to
+#'  be like dend_template.
+#' @seealso \link{untangle}, \link{entanglement} , \link{tangelgram}
+#' @examples
+#' \dontrun{
+#' 
+#' dend <- as.dendrogram(hclust(dist(USArrests[1:4,])))
+#' order.dendrogram(dend) #  c(4L, 3L, 1L, 2L)
+#' 
+#' dend_changed <- dend
+#' order.dendrogram(dend_changed) <- 1:4
+#' order.dendrogram(dend_changed) # c(1:4)
+#' 
+#' # now let's fix the order of the new object to be as it was:
+#' dend_changed <- match_order_by_labels(dend_changed, dend)
+#' # these two are now the same:
+#' order.dendrogram(dend_changed)
+#' order.dendrogram(dend))
+#' 
+#' }
+match_order_by_labels <- function(dend_change, dend_template , check_that_labels_match = TRUE) {   
    
-   if(L==0) L <- L + 1e-50 # this is in order to make sure L is not ==0.  Because that would just create nonsical meaning.
-   
-   
-   n_leaves <- length(order.dendrogram(dend1)) # how many leaves do we have? (number of leaves)
-   one_to_n_leaves <- seq_len(n_leaves)
-   
-   if(leaves_matching_method[1] == "leaves") {   
-      dend1_old_values <- order.dendrogram(dend1)
-      order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n	
-      dend2 <- match.order.dendrogram.by.old.values(dend2	, dend1, dend1_old_values) # make sure that the numbers if the 
-   } else { # "labels" - this method is "safer" (since we can easily see if the labels on the two trees match or not
-      # however, this is twice as slow (which adds up quite a bit with the functions that rely on this)
-      # Hence, it is best to make sure that the trees used here have the same labels and the SAME values matched to these values
-      order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n
-      dend2 <- match.leaves.by.labels(dend2	, dend1) # This one is "slow"
-   }
-   
-   sum.abs.diff.L <- function(x,y,L) sum(abs(x-y)**L)
-   
-   entanglement_result <- sum.abs.diff.L(order.dendrogram(dend1), order.dendrogram(dend2), L)	
-   worse_entanglement_result <- sum.abs.diff.L(one_to_n_leaves, rev(one_to_n_leaves), L)		
-   normalized_entanglement_result <- entanglement_result/worse_entanglement_result # should range between 0 (no etnaglement) and 1 (max entangelment
-   
-   normalized_entanglement_result
-}
-
-
-
-
-
-
-
-
-
-
-# ### OLD entanglement concept.
-# entanglement.dendrogram <- function(dend1,dend2 , method = c("absolute.rank.sum", "cor.spearman") )
-# {
-# 	# One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
-# 	# A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
-# 	# leaves(dend1),leaves(dend2)
-# 	
-# 	n_leaves <- length(order.dendrogram(dend1)) # how many leaves do we have? (number of leaves)
-# 	order.dendrogram(dend1) <- seq_len(n_leaves) # change the leaves of dend1 to be 1:n
-# 	dend2 <- match.leaves.by.labels(dend2	, dend1) # make sure that the numbers if the 
-# 
-# 	if(method[1] == "cor.spearman") {
-# 		order_cor <- cor(order.dendrogram(dend1),order.dendrogram(dend2), method = "spearman")
-# 		entanglement_result <- (1-order_cor)/2 # cor=1 is best (0 entanglement), cor = 0 is bad (0.5 entanglement), cor = -1 is worst (1 entanglament)		
-# 	}
-# 	if(method[1] == "absolute.rank.sum") {					
-# 		entanglement_result <- sum(abs(order.dendrogram(dend1)-order.dendrogram(dend2)))
-# 	}
-# 	
-# 	entanglement_result
-# }
-
-
-
-# tanglegram(dend1,dend2)
-# tanglegram(sort(dend1),sort(dend2))
-# entanglement(dend1,dend2, L = 0)
-# entanglement(dend1,dend2, L = 0.25)
-# entanglement(dend1,dend2, L = 1)
-# entanglement(dend1,dend2, L = 2)
-# entanglement(dend1,dend2, L = 10)
-# entanglement(sort(dend1),sort(dend2), L=0)
-# entanglement(sort(dend1),sort(dend2), L=0.25)
-# entanglement(sort(dend1),sort(dend2), L=1)
-# entanglement(sort(dend1),sort(dend2), L=2)
-# entanglement(sort(dend1),sort(dend2), L=10)
-
-# OLD and SLOW
-entanglement.dendrogram <- function(dend1,dend2, L = 1.5)
-{
-   # One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
-   # A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
-   # leaves(dend1),leaves(dend2)
-   # L tells us which panelty level we are at (L0, L1, L2, partial L's etc).  L>1 means that we give a big panelty for sharp angles.  While L->0 means that any time something is not a streight horizontal line, it gets a large penalty
-   # If L=0.1 it means that we much prefer streight lines over non streight lines
-   
-   if(L==0) L <- L + 1e-50 # this is in order to make sure L is not ==0.  Because that would just create nonsical meaning.
-   
-   
-   n_leaves <- length(order.dendrogram(dend1)) # how many leaves do we have? (number of leaves)
-   one_to_n_leaves <- seq_len(n_leaves)
-   order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n
-   dend2 <- match.leaves.by.labels(dend2	, dend1) # make sure that the numbers if the 
-   
-   sum.abs.diff.L <- function(x,y,L) sum(abs(x-y)**L)
-   
-   entanglement_result <- sum.abs.diff.L(order.dendrogram(dend1), order.dendrogram(dend2), L)	
-   worse_entanglement_result <- sum.abs.diff.L(one_to_n_leaves, rev(one_to_n_leaves), L)		
-   normalized_entanglement_result <- entanglement_result/worse_entanglement_result # should range between 0 (no etnaglement) and 1 (max entangelment
-   
-   normalized_entanglement_result
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-match_leaves_by_labels <- function(dend_change, dend_template , check_that_labels_match = FALSE) {   
-   
-   #let's put the leaves' numbers and labels in two data.frames (one for Dan and one for Yoav)   
-   # 	tree_to_change_labels_order <- data.frame(labels = labels(dend_change), values = order.dendrogram(dend_change))
+   #let's put the leaves' numbers and labels in two data.frames 
+   #    tree_to_change_labels_order <- data.frame(labels = labels(dend_change), values = order.dendrogram(dend_change))
    # 	tree_template_labels_order <- data.frame(labels = labels(dend_template), values = order.dendrogram(dend_template))
    tree_to_change_labels_order_labels = labels(dend_change)
    # 	tree_to_change_labels_order_values = order.dendrogram(dend_change)	# this is not used.
    tree_template_labels_order_labels = labels(dend_template)
    
    if(check_that_labels_match) { 
-      if(any(sort(tree_to_change_labels_order_labels) != sort(tree_template_labels_order_labels))) stop("labels do not match in both trees.  Please make sure to fix the labels names!")
+      if(!identical(sort(tree_to_change_labels_order_labels) , sort(tree_template_labels_order_labels))) { 
+         stop("labels do not match in both trees.  Please make sure to fix the labels names!") 
+      }
    }	
    
-   tree_template_labels_order_values = order.dendrogram(dend_template)
+   tree_template_labels_order_values <- order.dendrogram(dend_template)
    
    # this gives us how to order y so it would be in the order of x.
    # y_to_order_like_x <- c(2,3,1,4)
@@ -176,32 +83,19 @@ match_leaves_by_labels <- function(dend_change, dend_template , check_that_label
    # I want to order the numbers in yoav_tree so that they would match the needed order in dans_tree
    
    ss_order_change_leaf_numbers_to_match_template <- match(x= tree_to_change_labels_order_labels, table= tree_template_labels_order_labels)
-   # let's check if it works: (it does!)
-   # data.frame(
-   # 		yoav_num = Yoav_tree_labels_order$order[ss_order_yoav_leaf_numbers_to_match_dans],
-   # 		yoav_lab = Yoav_tree_labels_order$labels[ss_order_yoav_leaf_numbers_to_match_dans],
-   # 		dan_num = Dan_arc_tree_labels_order$order,
-   # 		dan_lab = Dan_arc_tree_labels_order$labels)
-   
-   
    tree_new_leaf_numbers <- tree_template_labels_order_values[ss_order_change_leaf_numbers_to_match_template]
    order.dendrogram(dend_change) <- tree_new_leaf_numbers
    
    return(dend_change)
-   # data.frame(
-   # 		yoav_num = Yoav_tree_labels_order$order[ss_order_yoav_leaf_numbers_to_match_dans],
-   # 		yoav_lab = Yoav_tree_labels_order$labels[ss_order_yoav_leaf_numbers_to_match_dans],
-   # 		dan_num = order.dendrogram(Dan_arc_tree),
-   # 		dan_lab = labels(Dan_arc_tree))
 }
 
 
 
 
 # FASTER version of entanglement (assumes that the leaves values are matched correctly with the labels in both trees!)
-match.order.dendrogram.by.old.values <- function(dend_change, dend_template , dend_template_old_values,
-                                              check_that_labels_match = F, check_that_leaves_values_match =F ,
-                                              print_NOTE = F) {	
+match_order_dendrogram_by_old_values <- function(dend_change, dend_template , dend_template_old_values,
+                                                 check_that_labels_match = F, check_that_leaves_values_match =F ,
+                                                 print_NOTE = F) {	
    
    # this function was made to help make entanglement.dendrogram faster.
    # But it relies on some important assumptions (otherwise, its results will be nonsense!)
@@ -250,6 +144,147 @@ match.order.dendrogram.by.old.values <- function(dend_change, dend_template , de
    # 		dan_num = order.dendrogram(Dan_arc_tree),
    # 		dan_lab = labels(Dan_arc_tree))
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+# untangle.dendrogram # A function to take two dendrograms and rotate them so to minimize some penalty on entanglement 
+
+# entanglement
+
+entanglement <- function (...) { UseMethod("entanglement") }
+
+
+entanglement.default <- function (object, ...) { stop("no default function for entanglement") }
+
+
+
+
+entanglement.dendrogram <- function(dend1,dend2, L = 1.5, leaves_matching_method = c("order", "labels")) {
+   # One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
+   # A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
+   # leaves(dend1),leaves(dend2)
+   # L tells us which panelty level we are at (L0, L1, L2, partial L's etc).  L>1 means that we give a big panelty for sharp angles.  While L->0 means that any time something is not a streight horizontal line, it gets a large penalty
+   # If L=0.1 it means that we much prefer streight lines over non streight lines
+   
+   if(L==0) L <- L + 1e-50 # this is in order to make sure L is not ==0.  Because that would just create nonsical meaning.
+   
+   
+   n_leaves <- length(order.dendrogram(dend1)) # how many leaves do we have? (number of leaves)
+   one_to_n_leaves <- seq_len(n_leaves)
+   
+   if(leaves_matching_method[1] == "order") {   
+      dend1_old_values <- order.dendrogram(dend1)
+      order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n	
+      dend2 <- match_order_dendrogram_by_old_values(dend2	, dend1, dend1_old_values) # make sure that the numbers if the 
+   } else { # "labels" - this method is "safer" (since we can easily see if the labels on the two trees match or not
+      # however, this is twice as slow (which adds up quite a bit with the functions that rely on this)
+      # Hence, it is best to make sure that the trees used here have the same labels and the SAME values matched to these values
+      order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n
+      dend2 <- match_order_by_labels(dend2	, dend1) # This one is "slow"
+   }
+   
+   sum.abs.diff.L <- function(x,y,L) sum(abs(x-y)**L)
+   
+   entanglement_result <- sum.abs.diff.L(order.dendrogram(dend1), order.dendrogram(dend2), L)	
+   worse_entanglement_result <- sum.abs.diff.L(one_to_n_leaves, rev(one_to_n_leaves), L)		
+   normalized_entanglement_result <- entanglement_result/worse_entanglement_result # should range between 0 (no etnaglement) and 1 (max entangelment
+   
+   normalized_entanglement_result
+}
+
+
+
+
+
+
+
+
+
+
+# ### OLD entanglement concept.
+# entanglement.dendrogram <- function(dend1,dend2 , method = c("absolute.rank.sum", "cor.spearman") )
+# {
+# 	# One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
+# 	# A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
+# 	# leaves(dend1),leaves(dend2)
+# 	
+# 	n_leaves <- length(order.dendrogram(dend1)) # how many leaves do we have? (number of leaves)
+# 	order.dendrogram(dend1) <- seq_len(n_leaves) # change the leaves of dend1 to be 1:n
+# 	dend2 <- match_order_by_labels(dend2	, dend1) # make sure that the numbers if the 
+# 
+# 	if(method[1] == "cor.spearman") {
+# 		order_cor <- cor(order.dendrogram(dend1),order.dendrogram(dend2), method = "spearman")
+# 		entanglement_result <- (1-order_cor)/2 # cor=1 is best (0 entanglement), cor = 0 is bad (0.5 entanglement), cor = -1 is worst (1 entanglament)		
+# 	}
+# 	if(method[1] == "absolute.rank.sum") {					
+# 		entanglement_result <- sum(abs(order.dendrogram(dend1)-order.dendrogram(dend2)))
+# 	}
+# 	
+# 	entanglement_result
+# }
+
+
+
+# tanglegram(dend1,dend2)
+# tanglegram(sort(dend1),sort(dend2))
+# entanglement(dend1,dend2, L = 0)
+# entanglement(dend1,dend2, L = 0.25)
+# entanglement(dend1,dend2, L = 1)
+# entanglement(dend1,dend2, L = 2)
+# entanglement(dend1,dend2, L = 10)
+# entanglement(sort(dend1),sort(dend2), L=0)
+# entanglement(sort(dend1),sort(dend2), L=0.25)
+# entanglement(sort(dend1),sort(dend2), L=1)
+# entanglement(sort(dend1),sort(dend2), L=2)
+# entanglement(sort(dend1),sort(dend2), L=10)
+
+# OLD and SLOW
+entanglement.dendrogram <- function(dend1,dend2, L = 1.5)
+{
+   # One day, one might think of other measures of entanglement.  But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.
+   # A level close to 1 is bad (very entangled).  A number close to 0 is good (low entanglement)
+   # leaves(dend1),leaves(dend2)
+   # L tells us which panelty level we are at (L0, L1, L2, partial L's etc).  L>1 means that we give a big panelty for sharp angles.  While L->0 means that any time something is not a streight horizontal line, it gets a large penalty
+   # If L=0.1 it means that we much prefer streight lines over non streight lines
+   
+   if(L==0) L <- L + 1e-50 # this is in order to make sure L is not ==0.  Because that would just create nonsical meaning.
+   
+   
+   n_leaves <- length(order.dendrogram(dend1)) # how many leaves do we have? (number of leaves)
+   one_to_n_leaves <- seq_len(n_leaves)
+   order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n
+   dend2 <- match_order_by_labels(dend2	, dend1) # make sure that the numbers if the 
+   
+   sum.abs.diff.L <- function(x,y,L) sum(abs(x-y)**L)
+   
+   entanglement_result <- sum.abs.diff.L(order.dendrogram(dend1), order.dendrogram(dend2), L)	
+   worse_entanglement_result <- sum.abs.diff.L(one_to_n_leaves, rev(one_to_n_leaves), L)		
+   normalized_entanglement_result <- entanglement_result/worse_entanglement_result # should range between 0 (no etnaglement) and 1 (max entangelment
+   
+   normalized_entanglement_result
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,51 @@
+\name{match_order_by_labels}
+\alias{match_order_by_labels}
+\title{Adjust the order of one dendrogram based on another}
+\usage{
+  match_order_by_labels(dend_change, dend_template,
+    check_that_labels_match = TRUE)
+}
+\arguments{
+  \item{dend_change}{tree object (dendrogram)}
+
+  \item{dend_template}{tree object (dendrogram)}
+
+  \item{check_that_labels_match}{logical (TRUE). If to
+  check that the labels in the two dendrogram match. (if
+  they do not, the function aborts)}
+}
+\value{
+  Returns dend_change after adjusting its values to be like
+  dend_template.
+}
+\description{
+  Takes one dendrogram and adjusts its order leaves valeus
+  based on the order of another dendrogram. The values are
+  matached based on the labels of the two dendrograms.
+
+  This allows for faster \link{entanglement} running time,
+  since we can be sure that the leaves order is just as
+  using their labels.
+}
+\examples{
+\dontrun{
+
+dend <- as.dendrogram(hclust(dist(USArrests[1:4,])))
+order.dendrogram(dend) #  c(4L, 3L, 1L, 2L)
+
+dend_changed <- dend
+order.dendrogram(dend_changed) <- 1:4
+order.dendrogram(dend_changed) # c(1:4)
+
+# now let's fix the order of the new object to be as it was:
+dend_changed <- match_order_by_labels(dend_changed, dend)
+# these two are now the same:
+order.dendrogram(dend_changed)
+order.dendrogram(dend))
+
+}
+}
+\seealso{
+  \link{untangle}, \link{entanglement} , \link{tangelgram}
+}
+
