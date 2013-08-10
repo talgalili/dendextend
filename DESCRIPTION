@@ -34,5 +34,6 @@ Collate:
     'dendextend-package.r'
     'tanglegram.r'
     'entanglement.r'
+    'untangle.r'
     'zzz.r'
     
