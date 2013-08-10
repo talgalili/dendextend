@@ -822,27 +822,74 @@ A tanglegram plot gives two dendrogram (with the same set of labels), one facing
 Here is an example of creating a tanglegram using \pkg{dendextend}:
 
 
+<<first_tanglegram, fig.keep='high', fig.height = 19, fig.width=19>>=
+
+hc1 <- hclust(dist(iris[,-5]), "com")
+hc2 <- hclust(dist(iris[,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+tanglegram(dend1 , dend2, lab.cex = .5, edge.lwd = 1, margin_inner= 3, type = "r",
+ center = TRUE, k_branches = 3)
+
+@
+
+
+
+Notice that since every manipulation of the trees require going through all of their nodes, it might be better (when comparing large trees), to do all of the manipulations upfront, and only then plot the tanglegram.
+
+We can also notice the mess of tangled lines of the two trees, a mess we wish to untangle.
+
+\subsection{Measuring Entanglement}
+
+When comparing two trees via a tanglegram, we can use the \code{entanglement} function in order to measure how much the two trees are "aligned".
+
+Entanglement is measured by giving the left tree's labels the values of 1 till tree size, and than match these numbers with the right tree. Now, entanglement is the L norm distance between these two vectors.
+That is, we take the sum of the absolute difference (each one in the power of L). e.g: \code{sum(abs(x-y)**L)}.
+And this is devided by the "worst case" entanglement level (e.g: when the right tree is the complete reverse of the left tree).
+
+L tells us which panelty level we are at (L0, L1, L2, partial L's etc).  L>1 means that we give a big panelty for sharp angles.  While L->0 means that any time something is not a streight horizontal line, it gets a large penalty If L=0.1 it means that we much prefer streight lines over non streight lines
+
+
+For example:
+
 <<>>=
 
 hc1 <- hclust(dist(iris[,-5]), "com")
 hc2 <- hclust(dist(iris[,-5]), "single")
 dend1 <- as.dendrogram(hc1)
 dend2 <- as.dendrogram(hc2)
-tanglegram(dend1 , dend2, lab.cex = .5, edge.lwd = 1,
- margin_inner= 3, type = "r", center = TRUE, k_branches = 3)
+dend1 <- color_branches(dend1, 3)
+# dend2 <- color_branches(dend2, 3) # colors will not match nicely
+labels(dend2) <- as.character(labels(dend2))
+
+require(colorspace)
+
+col_lines_by_left_groups <- rainbow_hcl(3)[
+   cutree(dend1, 3, order_clusters_as_data=FALSE, sort_cluster_numbers=TRUE)]
+tanglegram(dend1 , dend2, color_lines=col_lines_by_left_groups,
+           main = paste("Entanglement =", round(entanglement(dend1 , dend2), 2)))
+
 @
 
-Notice that since every manipulation of the trees require going through all of their nodes, it might be better (when comparing large trees), to do all of the manipulations upfront, and only then plot the tanglegram.
+And here is the entanglement of a tiny bit prettier tanglegram:
 
-We can also notice the mess of tangled lines of the two trees, a mess we wish to untangle.
+<<>>=
 
+s_dend1 <- sort(dend1)
+s_dend2 <- sort(dend2)
 
+# s_dend1 <- color_branches(s_dend1, 3) # If I don't do this again
+                  # I will get different colors
+col_lines_by_left_groups_sorted <- col_lines_by_left_groups[match(labels(s_dend1), labels(dend1))]
+tanglegram(s_dend1 , s_dend2, color_lines = col_lines_by_left_groups_sorted,
+           main = paste("Entanglement =", round(entanglement(s_dend1 , s_dend2), 2)))
 
-
+@
 
 
 
 \subsection{Finding an optimal rotation}
+
 
 
 \section{Comparing two trees - statistics and inference}
