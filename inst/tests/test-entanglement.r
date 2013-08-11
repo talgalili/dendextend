@@ -1,7 +1,7 @@
 # require(testthat)
 
 
-context("Untangle a dendrograms for plotting a tanglegram")
+context("Measuring entanglement of two trees")
 
 
 test_that("Match order of one dend based on another (using their labels)",{

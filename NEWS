@@ -1,6 +1,10 @@
 dendextend 0.7 (2013-08-11)
 ---------------------------
 
+NEW FUNCTIONS ADDED: 
+   * shuffle - Random rotation of trees
+
+
 OTHER NOTES:
    * rotate - minor code improvements.
 

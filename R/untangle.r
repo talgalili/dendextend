@@ -20,27 +20,68 @@
 
 
 # get("sort")
-# stir is a function that randomilly "stirs" a dendrogram leaves order (by means of rotation)
-stir <- function (...) UseMethod("stir")
-stir.default <- function (object, ...) stop("no default function for stir")
-stir.dendrogram <- function(object) {
-   # takes a dendrogram object and stirrs its branches in a random fashion
-   # 	num_of_leaves <- length(labels(object))	# leaves.value is faster then labels!
-   num_of_leaves <- nleaves(object)
-   random_weights <- sample(seq_len(num_of_leaves)) # a random ordaring of 1:num_of_leaves weights
-   rotate(object, random_weights)
+#' 'shuffle' is a function that randomilly rotates ("shuffles") a tree.
+#' a dendrogram leaves order (by means of rotation)
+
+
+#' @title Random rotation of trees
+#' @export
+#' @description 
+#' 'shuffle' randomilly rotates ("shuffles") a tree, changing its presentation 
+#' while preserving its topolgoy.
+#' 'shuffle' is based on \link[dendextend]{rotate} and through its methods can
+#' work for any of the major tree objects in R (\link{dendrogram}/\link{hclust}/\link[ape]{phylo}).
+#' 
+#' This function is useful in combination with \link{tanglegram} and \link{entanglement}.
+#' 
+#' @aliases 
+#' shuffle.default
+#' @usage
+#' shuffle(object, ...)
+#' 
+#' @param object a tree object (\link{dendrogram}/\link{hclust}/\link[ape]{phylo})
+#' @param ... Ignored.
+#'  
+#' @return A randomlly rotated tree object
+#' @seealso \code{\link{tanglegram}},  \code{\link{entanglement}}, 
+#' \code{\link[dendextend]{rotate}}
+#' @examples
+#' dend <- as.dendrogram(hclust(dist(USArrests)))
+#' set.seed(234238)
+#' dend2 <- shuffle(dend)
+#' 
+#' tanglegram(dend, dend2, margin_inner=7)
+#' entanglement(dend, dend2) # 0.3983
+#' 
+#' # although these ARE the SAME tree:
+#' tanglegram(sort(dend), sort(dend2), margin_inner=7)
+#' 
+#' 
+shuffle <- function (object, ...) {UseMethod("shuffle")}
+
+shuffle.default <- function(object, ...) {
+   # takes a dendrogram object and shuffles its branches in a random fashion
+   # 	n_leaves <- length(labels(object))	# leaves.value is faster then labels!
+   n_leaves <- nleaves(object)
+   random_weights <- sample(seq_len(n_leaves)) # a random ordaring of 1:n_leaves weights
+   rotate(object, random_weights) # since we have a method here for dend/hclust/phylo - this makes this function rather generic...
 }
+
+
+
+
+
 
 
 untangle.random.search <- function(dend1, dend2, R = 100, L = 1) {
    # this is a simple random search algorithm for the optimal tanglegram layout problem.
-   # it stirrs the trees, and see if we got a better entanglement or not
+   # it shufflers the trees, and see if we got a better entanglement or not
    
    best_ordaring_entanglement <- entanglement(dend1, dend2, L)
    
    for(i in 1:R) {
-      s_dend1 <- stir(dend1)
-      s_dend2 <- stir(dend2)
+      s_dend1 <- shuffle(dend1)
+      s_dend2 <- shuffle(dend2)
       current_entanglement <- entanglement(s_dend1, s_dend2, L)
       
       # if we came across a better ordaring, then update the "Best" dendrograms 
@@ -613,10 +654,10 @@ if(F) {
    tanglegram(sort(dend1), sort(dend2))
    entanglement(sort(dend1), sort(dend2)) # 0.1818
    
-   # let's cause some stir... (e.g: mix the dendrogram, and see how that effects the outcome)
+   # let's cause some shuffle... (e.g: mix the dendrogram, and see how that effects the outcome)
    set.seed(134)
-   s_dend1 <- stir(dend1)
-   s_dend2 <- stir(dend2)
+   s_dend1 <- shuffle(dend1)
+   s_dend2 <- shuffle(dend2)
    tanglegram(s_dend1, s_dend2)
    entanglement(s_dend1, s_dend2) # 0.7515
    
