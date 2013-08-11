@@ -180,6 +180,8 @@ match_order_dendrogram_by_old_order <- function(dend_change, dend_template ,
    # I want to order the numbers in yoav_tree so that they would match the needed order in dans_tree
    
    ss_order_change_leaf_numbers_to_match_template <- match(x= tree_to_change_order, table= dend_change_old_order)
+   #    ss_order_change_leaf_numbers_to_match_template <- match(x= tree_template_order, table= dend_change_old_order)
+   #    ss_order_change_leaf_numbers_to_match_template <- match(tree_to_change_order, dend_change_old_order)
    
    new_leaves_order <- tree_template_order[ss_order_change_leaf_numbers_to_match_template]
    order.dendrogram(dend_change) <- new_leaves_order
