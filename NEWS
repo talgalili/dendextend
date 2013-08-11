@@ -11,6 +11,9 @@ NEW FUNCTIONS ADDED:
 OTHER NOTES:
    * rotate - minor code improvements.
 
+NEW VIGNETTES SECTIONS ADDED:
+   * untangle_random_search 
+   * untangle_forward_rotate_1side
 
 
 dendextend 0.6 (2013-08-10) 
