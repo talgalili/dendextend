@@ -164,66 +164,6 @@ untangle_random_search <- function(tree1, tree2, R = 100L, L = 1, leaves_matchin
 }
 
 
-# this function is from the combinat package
-# permn <- function (x, fun = NULL, ...) 
-# {
-# 	if (is.numeric(x) && length(x) == 1 && x > 0 && trunc(x) == 
-# 				x) 
-# 		x <- seq(x)
-# 	n <- length(x)
-# 	nofun <- is.null(fun)
-# 	out <- vector("list", gamma(n + 1))
-# 	p <- ip <- seqn <- 1:n
-# 	d <- rep(-1, n)
-# 	d[1] <- 0
-# 	m <- n + 1
-# 	p <- c(m, p, m)
-# 	i <- 1
-# 	use <- -c(1, n + 2)
-# 	while (m != 1) {
-# 		out[[i]] <- if (nofun) 
-# 			x[p[use]]
-# 		else fun(x[p[use]], ...)
-# 		i <- i + 1
-# 		m <- n
-# 		chk <- (p[ip + d + 1] > seqn)
-# 		m <- max(seqn[!chk])
-# 		if (m < n) 
-# 			d[(m + 1):n] <- -d[(m + 1):n]
-# 		index1 <- ip[m] + 1
-# 		index2 <- p[index1] <- p[index1 + d[m]]
-# 		p[index1 + d[m]] <- m
-# 		tmp <- ip[index2]
-# 		ip[index2] <- ip[m]
-# 		ip[m] <- tmp
-# 	}
-# 	out
-# }
-# 
-
-
-
-
-
-order.weights.by.cluster.order <- function(weights, cluster_id, new_cluster_order) {
-   # this function gets a vector of weights. The clusters each weight belongs to
-   # and a new order for the clusters
-   # and outputs the new weight vector after ordering the vector by the new order of the cluster (internal order of elements within each cluster is preserved)
-   output <- NULL
-   for(i in seq_along(new_cluster_order)) {
-      output <- c(output, weights[cluster_id == new_cluster_order[i]])
-   }
-   return(output)
-}
-if(F){
-   # example:
-   x = c(1,2,3,4,5,6)
-   ord1 = c(1,1,2,2,2,3)
-   ord_of_clusters = c(2,1,3)
-   c(x[ord1 == ord_of_clusters[1]],x[ord1 == ord_of_clusters[2]],x[ord1 == ord_of_clusters[3]])
-   order.weights.by.cluster.order(x, ord1, ord_of_clusters)	
-}
-
 
 
 flip.strings <- function(STRING, str1, str2) {
@@ -879,3 +819,69 @@ if(F){
 
 
 
+
+
+
+
+
+
+
+# this function is from the combinat package
+# permn <- function (x, fun = NULL, ...) 
+# {
+#    if (is.numeric(x) && length(x) == 1 && x > 0 && trunc(x) == 
+# 				x) 
+# 		x <- seq(x)
+# 	n <- length(x)
+# 	nofun <- is.null(fun)
+# 	out <- vector("list", gamma(n + 1))
+# 	p <- ip <- seqn <- 1:n
+# 	d <- rep(-1, n)
+# 	d[1] <- 0
+# 	m <- n + 1
+# 	p <- c(m, p, m)
+# 	i <- 1
+# 	use <- -c(1, n + 2)
+# 	while (m != 1) {
+# 		out[[i]] <- if (nofun) 
+# 			x[p[use]]
+# 		else fun(x[p[use]], ...)
+# 		i <- i + 1
+# 		m <- n
+# 		chk <- (p[ip + d + 1] > seqn)
+# 		m <- max(seqn[!chk])
+# 		if (m < n) 
+# 			d[(m + 1):n] <- -d[(m + 1):n]
+# 		index1 <- ip[m] + 1
+# 		index2 <- p[index1] <- p[index1 + d[m]]
+# 		p[index1 + d[m]] <- m
+# 		tmp <- ip[index2]
+# 		ip[index2] <- ip[m]
+# 		ip[m] <- tmp
+# 	}
+# 	out
+# }
+# 
+
+
+
+
+
+order.weights.by.cluster.order <- function(weights, cluster_id, new_cluster_order) {
+   # this function gets a vector of weights. The clusters each weight belongs to
+   # and a new order for the clusters
+   # and outputs the new weight vector after ordering the vector by the new order of the cluster (internal order of elements within each cluster is preserved)
+   output <- NULL
+   for(i in seq_along(new_cluster_order)) {
+      output <- c(output, weights[cluster_id == new_cluster_order[i]])
+   }
+   return(output)
+}
+if(F){
+   # example:
+   x = c(1,2,3,4,5,6)
+   ord1 = c(1,1,2,2,2,3)
+   ord_of_clusters = c(2,1,3)
+   c(x[ord1 == ord_of_clusters[1]],x[ord1 == ord_of_clusters[2]],x[ord1 == ord_of_clusters[3]])
+   order.weights.by.cluster.order(x, ord1, ord_of_clusters)	
+}
