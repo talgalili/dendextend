@@ -26,6 +26,8 @@
 
 #' @title Random rotation of trees
 #' @export
+#' @aliases 
+#' shuffle.default
 #' @description 
 #' 'shuffle' randomilly rotates ("shuffles") a tree, changing its presentation 
 #' while preserving its topolgoy.
@@ -34,8 +36,6 @@
 #' 
 #' This function is useful in combination with \link{tanglegram} and \link{entanglement}.
 #' 
-#' @aliases 
-#' shuffle.default
 #' @usage
 #' shuffle(object, ...)
 #' 
@@ -72,27 +72,95 @@ shuffle.default <- function(object, ...) {
 
 
 
-
-untangle.random.search <- function(dend1, dend2, R = 100, L = 1) {
+#' @title Untangle - random search
+#' @export
+#' @description 
+#' Searches for two untangled dendrogram by randomlly shuflling them and each 
+#' time checking if their entanglement was improved.
+#' 
+#' @param tree1 a tree object (of class dendrogram/hclust/phylo).
+#' @param tree2 a tree object (of class dendrogram/hclust/phylo).
+#' @param R numeric (default is 100). The number of shuffles to perform.
+#' @param L the distance norm to use for measuring the distance between the
+#' two trees. It can be any positive number, often one will want to
+#'  use 0, 1, 1.5, 2 (see 'details' for more). 
+#'  It is passed to \link{entanglement}.
+#' @param leaves_matching_method a character scalar passed to \link{entanglement}.
+#' It can be either "order" (default) or "labels". If using "labels", 
+#' then we use the labels for matching the leaves order value.
+#' And if "order" then we use the old leaves order value for matching the 
+#' leaves order value.
+#' 
+#' Using "order" is faster, but "labels" is safer. "order" will assume that 
+#' the original two trees had their labels and order values MATCHED.
+#' 
+#' Hence, it is best to make sure that the trees used here have the same labels 
+#' and the SAME values matched to these values - and then use "order" (for
+#' fastest results).
+#' 
+#' If "order" is used, the function first calls \link{match_order_by_labels}
+#' in order to make sure that the two trees have their labels synced with 
+#' their leaves order values.
+#' 
+#' @param ... not used
+#' 
+#' @details 
+#' 
+#' Untangaling two trees is a hard combinatorical problem without a closed
+#' form solution. One way for doing it is to run through a random spectrom
+#' of options and look for the "best" two trees. This is what this function
+#' offers.
+#' 
+#' @return A list with two trees with the best entanglement that was found.
+#' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels},
+#' \link{entanglement}.
+#' @examples
+#' 
+#' \dontrun{
+#' hc1 <- hclust(dist(iris[,-5]), "com")
+#' hc2 <- hclust(dist(iris[,-5]), "single")
+#' dend1 <- as.dendrogram(hc1)
+#' dend2 <- as.dendrogram(hc2)
+#' tanglegram(dend1,dend2)
+#' 
+#' set.seed(65168)
+#' dend12 <- untangle_random_search(dend1, dend2)
+#' tanglegram(dend12[[1]],dend12[[2]])
+#' 
+#' entanglement(dend1,dend2, L = 2) # 0.8894
+#' entanglement(dend12[[1]],dend12[[2]], L = 2) # 0.0998
+#' 
+#' 
+#' 
+#' }
+untangle_random_search <- function(tree1, tree2, R = 100L, L = 1, leaves_matching_method = c("order", "labels"), ...) {
    # this is a simple random search algorithm for the optimal tanglegram layout problem.
    # it shufflers the trees, and see if we got a better entanglement or not
    
-   best_ordaring_entanglement <- entanglement(dend1, dend2, L)
+   
+   if(leaves_matching_method[1] == "order") {
+      old_tree2 <- tree2
+      tree2 <- match_order_by_labels(old_tree2, tree1)   
+      if(!identical(tree2,old_tree2)) warning("The leaves order in 'tree2' were changed. If you want to avoid that, use leaves_matching_method = 'labels'.")
+   }
+   
+   
+   best_ordaring_entanglement <- entanglement(tree1, tree2, L, leaves_matching_method)
    
    for(i in 1:R) {
-      s_dend1 <- shuffle(dend1)
-      s_dend2 <- shuffle(dend2)
-      current_entanglement <- entanglement(s_dend1, s_dend2, L)
+      s_tree1 <- shuffle(tree1)
+      s_tree2 <- shuffle(tree2)
+      current_entanglement <- entanglement(s_tree1, s_tree2, L,leaves_matching_method)
       
-      # if we came across a better ordaring, then update the "Best" dendrograms 
+      # if we came across a better ordaring, then update the "Best" treerograms 
       if(current_entanglement < best_ordaring_entanglement) {
          best_ordaring_entanglement<- current_entanglement
-         optimal_dend1 <- s_dend1
-         optimal_dend2 <- s_dend2			
+         optimal_tree1 <- s_tree1
+         optimal_tree2 <- s_tree2			
       }
    }
    
-   return(list(dend1 = optimal_dend1, dend2 = optimal_dend2))
+   return(list(tree1 = optimal_tree1, tree2 = optimal_tree2))
 }
 
 
