@@ -1,0 +1,42 @@
+\name{flip_leaves}
+\alias{flip_leaves}
+\title{Flip leaves}
+\usage{
+  flip_leaves(dend, leaves1, leaves2, ...)
+}
+\arguments{
+  \item{dend}{a dendrogram object}
+
+  \item{leaves1}{a vector of leaves order value to flip.}
+
+  \item{leaves2}{a (second) vector of leaves order value to
+  flip.}
+
+  \item{...}{not used}
+}
+\value{
+  A dendrogram object with flipped leaves.
+}
+\description{
+  Rotate a branch in a tree so that the locations of two
+  bundles of leaves are flipped.
+}
+\details{
+  This function is based on a bunch of string manipulation
+  functions. There may be a smarter/better way for doing
+  it...
+}
+\examples{
+\dontrun{
+dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+dend2 <- flip_leaves(dend1, c(3,5), c(1,2))
+tanglegram(dend1,dend2)
+entanglement(dend1,dend2, L = 2) # 0.4
+
+}
+}
+\seealso{
+  \link{untangle}, \link{tanglegram},
+  \link{match_order_by_labels}, \link{entanglement}.
+}
+

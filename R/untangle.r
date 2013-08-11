@@ -166,7 +166,7 @@ untangle_random_search <- function(tree1, tree2, R = 100L, L = 1, leaves_matchin
 
 
 
-flip.strings <- function(STRING, str1, str2) {
+flip_strings <- function(STRING, str1, str2) {
    # gets a string which includes str1 and str2, and makes sure to flip them in the string
    STRING <- sub(str1, "_____1_", STRING,fixed=T) # substitutes the first string with a place holder (1)
    STRING <- sub(str2, "_____2_", STRING,fixed=T) # substitutes the second string with a place holder (2)
@@ -174,26 +174,49 @@ flip.strings <- function(STRING, str1, str2) {
    STRING <- sub("_____2_",str1, STRING,fixed=T)	# substitutes the place holder (2) with the first string
    return(STRING)	
 }
-# flip.strings("abcdefgh", "ab", "fgh") # "fghcdeab"
+# flip_strings("abcdefgh", "ab", "fgh") # "fghcdeab"
 
-add.zzz <- function(x) {
+add_zzz <- function(x) {
    # this function adds a"_" character to the end of every element of the vector.
    # this is used to make numeric values unique (so to not confuse 1 and 10 or 17 and 7 !)
    x <- as.character(x)
    x <- paste("zzz", x, "zzz", sep ="")
    x
 }
-remove.zzz <- function(x) {
-   gsub("zzz","", x, fixed = T)
-}
-# remove.zzz(add.zzz(1:6))
-collapse.with.pipes <- function(x) paste(x, collapse = "||")
-collapse.pipes.zzz <- function(x) paste(add.zzz(x), collapse = "||")
-remove.pipes.and.zzz <- function(x) strsplit(remove.zzz(x), "||",fixed=T)[[1]]
+remove_zzz <- function(x) { gsub("zzz","", x, fixed = T) }
+# remove_zzz(add_zzz(1:6))
+collapse_with_pipes <- function(x) {paste(x, collapse = "||")}
+collapse_pipes_zzz <- function(x) {paste(add_zzz(x), collapse = "||")}
+remove_pipes_and_zzz <- function(x) {strsplit(remove_zzz(x), "||",fixed=T)[[1]]}
 
 
-
-flip.leaves <- function(dend, leaves1, leaves2) {
+#' @title Flip leaves
+#' @export
+#' @description 
+#' Rotate a branch in a tree so that the locations of two bundles of leaves
+#' are flipped.
+#' 
+#' @param dend a dendrogram object
+#' @param leaves1 a vector of leaves order value to flip.
+#' @param leaves2 a (second) vector of leaves order value to flip.
+#' @param ... not used
+#' @details
+#' This function is based on a bunch of string manipulation functions. There
+#' may be a smarter/better way for doing it...
+#' 
+#' @return A dendrogram object with flipped leaves.
+#' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels},
+#' \link{entanglement}.
+#' @examples
+#' 
+#' \dontrun{
+#' dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+#' dend2 <- flip_leaves(dend1, c(3,5), c(1,2))
+#' tanglegram(dend1,dend2)
+#' entanglement(dend1,dend2, L = 2) # 0.4
+#' 
+#' }
+flip_leaves <- function(dend, leaves1, leaves2,...) {
    # flip a node in a tree based on the leaves in each branch in the node:
    # this function gets a dendgram with two vector of leaves that needs to be flipped with one another on the tree
    # we assume here unique values of leaves.
@@ -202,13 +225,13 @@ flip.leaves <- function(dend, leaves1, leaves2) {
    weights <- seq_along(leaves_order)
    
    #turn the values of leaves and leaves1/2 to strings with || delim:
-   leaves_order_string <- collapse.pipes.zzz(leaves_order)
-   leaves1_string <- collapse.pipes.zzz(leaves1)
-   leaves2_string <- collapse.pipes.zzz(leaves2)
+   leaves_order_string <- collapse_pipes_zzz(leaves_order)
+   leaves1_string <- collapse_pipes_zzz(leaves1)
+   leaves2_string <- collapse_pipes_zzz(leaves2)
    # then flips the locations of leaves1 and 2 in the string
-   flipped_leaves_order_string <- flip.strings(leaves_order_string, leaves1_string, leaves2_string)
+   flipped_leaves_order_string <- flip_strings(leaves_order_string, leaves1_string, leaves2_string)
    # and turn the string back to a vector of flipped leaves values:
-   flipped_leaves_order <- as.numeric(remove.pipes.and.zzz(flipped_leaves_order_string))
+   flipped_leaves_order <- as.integer(remove_pipes_and_zzz(flipped_leaves_order_string))
    
    new_order_weights <- match(flipped_leaves_order, leaves_order) # order the leaves_order to be like flipped_leaves_order
    # leaves_order[new_order_weights]
@@ -220,27 +243,15 @@ flip.leaves <- function(dend, leaves1, leaves2) {
    return(flipped_dend)
 }
 
-if(F) { # example
-   order.dendrogram(dend)
-   plot(dend)
-   flip.leaves(dend, c(10), c(1))
-   plot(flip.leaves(dend, c(2), c(3,5)))
-   plot(flip.leaves(dend, c(9), c(2,3,5)))
-   plot(flip.leaves(dend, c(7), c( 1L, 8L, 4L, 6L, 10L, 9L, 2L, 3L, 5L)))
-}
-
 
 # I didn't use this evantually:
-# 	require(combinat)
+# require(combinat)
 # source for this package: http://stackoverflow.com/questions/7906332/how-to-calculate-combination-and-permutation-in-r	
 
 
 
-
-
-
 # NEW and FASTER version!!!
-all.couple.rotations.at.k <- function(dendro, k, dendrogram_heights_per_k) {
+all_couple_rotations_at_k <- function(dendro, k, dendrogram_heights_per_k) {
    # This function gets the dendro tree, and a k number of clusters
    # and returns all of the permutated dendrogram trees, rotating only two of the k clusters at each permutation
    # if this was done for ALL permutation, the algorithm would not be feasable.
@@ -304,10 +315,10 @@ all.couple.rotations.at.k <- function(dendro, k, dendrogram_heights_per_k) {
             leaves1 <- leaves_order[ss_leaves1]
             leaves2 <- leaves_order[ss_leaves2]
             
-            # 				plot(flip.leaves(dendro, leaves1, leaves2))
+            # 				plot(flip_leaves(dendro, leaves1, leaves2))
             # Flipping the branches of the two adjecent clusters:
             permutation_indx <- permutation_indx + 1
-            permutated_dendro[[permutation_indx]] <- flip.leaves(dendro, leaves1, leaves2) # this will not work for hclust (will for dendro)
+            permutated_dendro[[permutation_indx]] <- flip_leaves(dendro, leaves1, leaves2) # this will not work for hclust (will for dendro)
          }			
       }
    }	
@@ -317,33 +328,33 @@ all.couple.rotations.at.k <- function(dendro, k, dendrogram_heights_per_k) {
 
 # dend=best_dend
 # k = 13
-# all.couple.rotations.at.k(best_dend, k)
-# system.time(all.couple.rotations.at.k(dend1, k = 4))
+# all_couple_rotations_at_k(best_dend, k)
+# system.time(all_couple_rotations_at_k(dend1, k = 4))
 
 
 
 
 if(F) { # example
-   # 	tmp <- all.couple.rotations.at.k(dend, 10)
-   # 	flip.leaves(dend, leaves1, leaves2)
+   # 	tmp <- all_couple_rotations_at_k(dend, 10)
+   # 	flip_leaves(dend, leaves1, leaves2)
    # 	order.dendrogram(dend)
    
    
-   tmp <- all.couple.rotations.at.k(dend, 2)
+   tmp <- all_couple_rotations_at_k(dend, 2)
    length(tmp)
    plot(tmp[[1]])
    plot(tmp[[2]])
    
-   tmp <- all.couple.rotations.at.k(dend, 3)
+   tmp <- all_couple_rotations_at_k(dend, 3)
    plot(tmp[[1]])
    plot(tmp[[2]])
    
-   tmp <- all.couple.rotations.at.k(dend, 4)
+   tmp <- all_couple_rotations_at_k(dend, 4)
    length(tmp)
    plot(tmp[[1]])
    plot(tmp[[2]])
    
-   tmp <- all.couple.rotations.at.k(dend, 5)
+   tmp <- all_couple_rotations_at_k(dend, 5)
    length(tmp)
    plot(tmp[[1]])
    plot(tmp[[2]])	
@@ -351,9 +362,9 @@ if(F) { # example
 
 # cut.hierarchical.cluster.matrix(dend1)
 
-# all.couple.rotations.at.k(dend, 2)
-# all.couple.rotations.at.k(Dan_arc_tree, 3)
-# all.couple.rotations.at.k(dend, 10)
+# all_couple_rotations_at_k(dend, 2)
+# all_couple_rotations_at_k(Dan_arc_tree, 3)
+# all_couple_rotations_at_k(dend, 10)
 # untangle.forward.rotate.1side(dend1, dend2)
 
 # (dend12s[[1]], dend12s[[2]])
@@ -369,7 +380,7 @@ untangle.forward.rotate.1side <- function(dend1, dend2_fixed, L = 1) {
    best_dend_heights_per_k <- dendrogram.heights.per.k(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
    
    for(k in 2:length(leaves_order)) {
-      dend1_k_rotated <- all.couple.rotations.at.k(best_dend, k, dendrogram_heights_per_k = best_dend_heights_per_k)
+      dend1_k_rotated <- all_couple_rotations_at_k(best_dend, k, dendrogram_heights_per_k = best_dend_heights_per_k)
       dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)
       ss_best_dend <- which.min(dend1_cut_k_entanglements)
       current_best_dend <- dend1_k_rotated[[ss_best_dend]]
@@ -398,7 +409,7 @@ untangle.backward.rotate.1side <- function(dend1, dend2_fixed , L = 1) {
    best_dend <- dend1
    
    for(k in length(leaves_order):2) {
-      dend1_k_rotated <- all.couple.rotations.at.k(best_dend, k)
+      dend1_k_rotated <- all_couple_rotations_at_k(best_dend, k)
       dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)
       ss_best_dend <- which.min(dend1_cut_k_entanglements)
       best_dend <- dend1_k_rotated[[ss_best_dend]]
@@ -421,8 +432,8 @@ untangle.backward.rotate.1side <- function(dend1, dend2_fixed , L = 1) {
 # 	
 # 	while(!all(k_visited)) {
 # 		# create all of the rotations with k+-1:
-# 		dend1_k_p1_rotated <- all.couple.rotations.at.k(best_dend, k+1)
-# 		dend1_k_m1_rotated <- all.couple.rotations.at.k(best_dend, k-1)
+# 		dend1_k_p1_rotated <- all_couple_rotations_at_k(best_dend, k+1)
+# 		dend1_k_m1_rotated <- all_couple_rotations_at_k(best_dend, k-1)
 # 		# find the enteglement for all of them:
 # 		dend1_cut_k_p1_entanglements <- laply(dend1_k_p1_rotated, entanglement, dend2 = dend2_fixed)
 # 		dend1_cut_k_m1_entanglements <- laply(dend1_k_m1_rotated, entanglement, dend2 = dend2_fixed)
@@ -434,7 +445,7 @@ untangle.backward.rotate.1side <- function(dend1, dend2_fixed , L = 1) {
 # 		ss_best_dend <- which.min(dend1_cut_k_entanglements)
 # 		best_dend <- dend1_k_rotated[[ss_best_dend]]		
 # 		
-# 		all.couple.rotations.at.k(best_dend, -1)
+# 		all_couple_rotations_at_k(best_dend, -1)
 # 	}
 # 	
 # 	return(best_dend)	
@@ -558,7 +569,7 @@ untangle.best.k.to.rotate.by.1side <- function(dend1, dend2_fixed, L = 1) {
    
    for(k in 2:length(leaves_order)) {
       dend1_k_rotated <- c(dend1_k_rotated, 
-                           all.couple.rotations.at.k(best_dend, k, 
+                           all_couple_rotations_at_k(best_dend, k, 
                                                      dendrogram_heights_per_k = best_dend_heights_per_k))
    }
    

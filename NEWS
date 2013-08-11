@@ -4,6 +4,7 @@ dendextend 0.7 (2013-08-11)
 NEW FUNCTIONS ADDED: 
    * shuffle - Random rotation of trees
    * untangle_random_search - random search for two trees with low entanglement.
+   * flip_leaves
 
 OTHER NOTES:
    * rotate - minor code improvements.
