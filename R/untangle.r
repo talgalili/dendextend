@@ -250,50 +250,76 @@ flip_leaves <- function(dend, leaves1, leaves2,...) {
 
 
 
-# NEW and FASTER version!!!
-all_couple_rotations_at_k <- function(dendro, k, dendrogram_heights_per_k) {
-   # This function gets the dendro tree, and a k number of clusters
+#' @title Rotate tree branches for k
+#' @export
+#' @description 
+#' Given a tree and a k number of clusters, the tree is rotated so that the
+#' extra clusters added from k-1 to k clusters are flipped.
+#' 
+#' This is useful for finding a good trees for a \link{tanglegram}.
+#' @param dend a dendrogram object
+#' @param k integer scalar with the number of clusters the tree should be cut into.
+#' @param dend_heights_per_k a named vector that resulted from running
+#' \link{heights_per_k.dendrogram}. When running the function many times, 
+#' supplying this object will help improve the running time if using the
+#' \link{cutree.dendrogram} method..
+#' 
+#' @param ... not used
+#' @return A list with dendrogram objects with all the possible rotations
+#' for k clusters (beyond the k-1 clusters!).
+#' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels},
+#' \link{entanglement}, \link{flip_leaves}.
+#' @examples
+#' 
+#' \dontrun{
+#' dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+#' dend2 <- all_couple_rotations_at_k(dend1, k=2)[[2]]
+#' tanglegram(dend1,dend2)
+#' entanglement(dend1,dend2, L = 2) # 0.5
+#' }
+all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
+   # This function gets the dend tree, and a k number of clusters
    # and returns all of the permutated dendrogram trees, rotating only two of the k clusters at each permutation
    # if this was done for ALL permutation, the algorithm would not be feasable.
    # practically, for a binary tree - this only gives two trees as an output (the original, and the flipped new k'th cluster)
    
-   if(k==1) return(dendro) # there are no possible rotations for k==1
+   if(length(k) != 1) {
+      warning("'k' should be an integer SCALAR, using only the first element of k.")
+      k <- k[1]
+   }
+   if(k==1) return(dend) # there are no possible rotations for k==1
    
-   if(missing(dendrogram_heights_per_k)) dendrogram_heights_per_k <- dendrogram.heights.per.k(dendro) # since this function takes a looong time, I'm running it here so it will need to run only once!	
+   if(missing(dend_heights_per_k)) {dend_heights_per_k <- heights_per_k.dendrogram(dend)} # since this function takes a looong time, I'm running it here so it will need to run only once!	
    # And I would MUCH rather give this vector upfront - so the entire thing will be faster...			
    
-   leaves_order <- order.dendrogram(dendro)
-   k_cluster_leaves <- cutree(dendro, k, 
-                              order_clusters_using_tree =F,
-                              dendrogram_heights_per_k = dendrogram_heights_per_k, # makes it faster
-                              use_labels_not_values=F) # makes it 10 times faster (and we don't use the labels of the clusters, only the cluster vector)
-   km1_cluster_leaves <- cutree(dendro, k-1, 
-                                order_clusters_using_tree =F, 
-                                dendrogram_heights_per_k = dendrogram_heights_per_k,
-                                use_labels_not_values=F)
+   leaves_order <- order.dendrogram(dend)
+   k_cluster_leaves <- cutree(dend, k, 
+                              order_clusters_as_data = FALSE, 
+                              dend_heights_per_k = dend_heights_per_k, # makes it faster
+                              use_labels_not_values=FALSE) # makes it 10 times faster (and we don't use the labels of the clusters, only the cluster vector)
+   km1_cluster_leaves <- cutree(dend, k-1,
+                                order_clusters_as_data = FALSE, 
+                                dend_heights_per_k = dend_heights_per_k, # makes it faster
+                                use_labels_not_values=FALSE) # makes it 10 times faster (and we don't use the labels of the clusters, only the cluster vector)
    
    # if we can't cut the current stage (for example, because we have more than 2 branches, than return the original tree
-   if(is.null(k_cluster_leaves)) return(list(dendro))
+   if(any(is.na(k_cluster_leaves))) return(list(dend))
    # If we can't cut the tree above us, then loop up until you find a k for which you can cut.
    # there might be bugs for this code, more careful thought should be made in such cases...
-   while(is.null(km1_cluster_leaves)) {
+   while(any(is.na(km1_cluster_leaves))) {
       k <- k-1
-      km1_cluster_leaves <- cutree(dendro, k-1, 
-                                   order_clusters_using_tree =F, 
-                                   dendrogram_heights_per_k = dendrogram_heights_per_k,
-                                   use_labels_not_values=F) # makes it 10 times faster (and we don't use the labels of the clusters, only the cluster vector)
+      km1_cluster_leaves <- cutree(dend, k-1, 
+                                   order_clusters_as_data = FALSE, 
+                                   dend_heights_per_k = dend_heights_per_k, # makes it faster
+                                   use_labels_not_values=FALSE) # makes it 10 times faster (and we don't use the labels of the clusters, only the cluster vector)
       warning(paste("couldn't cut tree at k-1, trying it for", k-1))
    }	
    
-   # 	if(cutree(Dan_arc_tree, 1)
-   # weights <- seq_along(k_cluster_leaves)
-   # 	leaf_cluster_id <- cutree(dendro, k, order_clusters_using_tree =F)
-   # 	leaf_cluster_id <- factor(leaf_cluster_id) # turns it into a factor so I'd be able to easily permutate the values.
    
    # kkm1_df <-
    # data.frame(km1_cluster_leaves, k_cluster_leaves)
    
-   permutated_dendro <- list(dendro)# this one will hold all of the permutations
+   permutated_dend <- list(dend)# this one will hold all of the permutations
    permutation_indx <- 1 # this one will tell us at what stage of the permutation we are at	
    
    for(i in unique(km1_cluster_leaves)) {
@@ -315,14 +341,14 @@ all_couple_rotations_at_k <- function(dendro, k, dendrogram_heights_per_k) {
             leaves1 <- leaves_order[ss_leaves1]
             leaves2 <- leaves_order[ss_leaves2]
             
-            # 				plot(flip_leaves(dendro, leaves1, leaves2))
+            # 				plot(flip_leaves(dend, leaves1, leaves2))
             # Flipping the branches of the two adjecent clusters:
             permutation_indx <- permutation_indx + 1
-            permutated_dendro[[permutation_indx]] <- flip_leaves(dendro, leaves1, leaves2) # this will not work for hclust (will for dendro)
+            permutated_dend[[permutation_indx]] <- flip_leaves(dend, leaves1, leaves2) # this will not work for hclust (will for dend)
          }			
       }
    }	
-   return(permutated_dendro)
+   return(permutated_dend)
 }
 
 
@@ -362,35 +388,26 @@ if(F) { # example
 
 # cut.hierarchical.cluster.matrix(dend1)
 
-# all_couple_rotations_at_k(dend, 2)
-# all_couple_rotations_at_k(Dan_arc_tree, 3)
-# all_couple_rotations_at_k(dend, 10)
-# untangle.forward.rotate.1side(dend1, dend2)
-
-# (dend12s[[1]], dend12s[[2]])
-# dend1 = dend12s[[1]]
-# dend2_fixed = dend12s[[2]]
-
 
 untangle.forward.rotate.1side <- function(dend1, dend2_fixed, L = 1) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
    require(plyr)
    leaves_order <- order.dendrogram(dend1)
    best_dend <- dend1
-   best_dend_heights_per_k <- dendrogram.heights.per.k(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
+   best_dend_heights_per_k <- heights_per_k.dendrogram(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
    
    for(k in 2:length(leaves_order)) {
-      dend1_k_rotated <- all_couple_rotations_at_k(best_dend, k, dendrogram_heights_per_k = best_dend_heights_per_k)
+      dend1_k_rotated <- all_couple_rotations_at_k(best_dend, k, dend_heights_per_k = best_dend_heights_per_k)
       dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)
       ss_best_dend <- which.min(dend1_cut_k_entanglements)
       current_best_dend <- dend1_k_rotated[[ss_best_dend]]
       
       # if this loop's best dendro is not identical to our last best dendro - then we should pick it as the new best dendro
-      #		And that means we'll have to update the dendrogram.heights.per.k (which takes time, and we would like to avoid if it is not necessary)
+      #		And that means we'll have to update the heights_per_k.dendrogram (which takes time, and we would like to avoid if it is not necessary)
       if(!identical(current_best_dend, best_dend)) {
          best_dend <- current_best_dend
-         best_dend_heights_per_k <- dendrogram.heights.per.k(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
-      }# however, if the current dend is just like our best dend - then there is NO NEED to update dendrogram.heights.per.k (and we just saved some time!!)
+         best_dend_heights_per_k <- heights_per_k.dendrogram(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
+      }# however, if the current dend is just like our best dend - then there is NO NEED to update heights_per_k.dendrogram (and we just saved some time!!)
       # this combination is only useful if we have a tree for which there are only a few rotations which are useful
    }
    
@@ -564,13 +581,13 @@ untangle.best.k.to.rotate.by.1side <- function(dend1, dend2_fixed, L = 1) {
    best_dend <- dend1
    dend1_k_rotated <- NULL
    
-   best_dend_heights_per_k <- dendrogram.heights.per.k(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
+   best_dend_heights_per_k <- heights_per_k.dendrogram(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
    # this makes the function about twice as fast... 
    
    for(k in 2:length(leaves_order)) {
       dend1_k_rotated <- c(dend1_k_rotated, 
                            all_couple_rotations_at_k(best_dend, k, 
-                                                     dendrogram_heights_per_k = best_dend_heights_per_k))
+                                                     dend_heights_per_k = best_dend_heights_per_k))
    }
    
    dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)

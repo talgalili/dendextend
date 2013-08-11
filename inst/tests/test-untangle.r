@@ -28,8 +28,19 @@ test_that("Flip leaves work",{
    dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
    dend2 <- flip_leaves(dend1, c(3,5), c(1,2))
    # tanglegram(dend1,dend2)
-
+   # tanglegram(dend1,flip_leaves(dend1, c(3,5, 1,2), c(4)))
+   
    expect_identical(entanglement(dend1,dend2, L = 2),  0.4)   
+})
+
+
+
+test_that("all_couple_rotations_at_k work",{
+   dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+   dend2 <- all_couple_rotations_at_k(dend1, k=2)[[2]]
+   # tanglegram(dend1,dend2)
+   
+   expect_identical(entanglement(dend1,dend2, L = 2),  0.5)   
 })
 
 

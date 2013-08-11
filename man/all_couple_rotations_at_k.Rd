@@ -1,0 +1,47 @@
+\name{all_couple_rotations_at_k}
+\alias{all_couple_rotations_at_k}
+\title{Rotate tree branches for k}
+\usage{
+  all_couple_rotations_at_k(dend, k, dend_heights_per_k,
+    ...)
+}
+\arguments{
+  \item{dend}{a dendrogram object}
+
+  \item{k}{integer scalar with the number of clusters the
+  tree should be cut into.}
+
+  \item{dend_heights_per_k}{a named vector that resulted
+  from running \link{heights_per_k.dendrogram}. When
+  running the function many times, supplying this object
+  will help improve the running time if using the
+  \link{cutree.dendrogram} method..}
+
+  \item{...}{not used}
+}
+\value{
+  A list with dendrogram objects with all the possible
+  rotations for k clusters (beyond the k-1 clusters!).
+}
+\description{
+  Given a tree and a k number of clusters, the tree is
+  rotated so that the extra clusters added from k-1 to k
+  clusters are flipped.
+
+  This is useful for finding a good trees for a
+  \link{tanglegram}.
+}
+\examples{
+\dontrun{
+dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+dend2 <- all_couple_rotations_at_k(dend1, k=2)[[2]]
+tanglegram(dend1,dend2)
+entanglement(dend1,dend2, L = 2) # 0.5
+}
+}
+\seealso{
+  \link{untangle}, \link{tanglegram},
+  \link{match_order_by_labels}, \link{entanglement},
+  \link{flip_leaves}.
+}
+

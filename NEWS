@@ -5,6 +5,7 @@ NEW FUNCTIONS ADDED:
    * shuffle - Random rotation of trees
    * untangle_random_search - random search for two trees with low entanglement.
    * flip_leaves
+   * all_couple_rotations_at_k
 
 OTHER NOTES:
    * rotate - minor code improvements.
