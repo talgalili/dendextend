@@ -7,7 +7,7 @@
 \alias{rotate.phylo}
 \alias{sort.dendrogram}
 \alias{sort.hclust}
-\title{Rotate tree objects based on label's order}
+\title{Rotate a tree object}
 \usage{
   rotate(x, order, ...)
 
@@ -57,7 +57,9 @@
 }
 \description{
   Rotates, flip and sort the branches of a tree object
-  (dendrogram, hclust) based on a vector of labels order
+  (dendrogram, hclust) based on a vector - eithor of labels
+  order (numbers) or the labels in their new order
+  (character).
 }
 \details{
   The motivation for this function came from the function

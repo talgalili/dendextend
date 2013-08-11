@@ -18,9 +18,12 @@
 
 
 
-#' @title Rotate tree objects based on label's order
+#' @title Rotate a tree object
 #' @export
-#' @description Rotates, flip and sort the branches of a tree object (dendrogram, hclust) based on a vector of labels order
+#' @description 
+#' Rotates, flip and sort the branches of a tree object (dendrogram, hclust) 
+#' based on a vector - eithor of labels order (numbers) or the labels in their
+#' new order (character).
 #' @aliases 
 #' rotate.default
 #' rotate.dendrogram
@@ -120,10 +123,9 @@
 #' plot(rotate(hc, c(2:5,1)), main = "Rotates the left most leaf \n 
 #' into the right side of the tree")
 #' 
-rotate <- function(x, order,...) UseMethod("rotate")
+rotate <- function(x, order,...) {UseMethod("rotate")}
 
-#' @export
-rotate.default <- function(x,...) stop("object x must be a dendrogram or hclust object")
+rotate.default <- function(x,...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
 #' @S3method rotate dendrogram
 rotate.dendrogram <- function(x, order, k, h, ...)
@@ -169,14 +171,14 @@ rotate.hclust <- function(x, order,...)
 
 
 #' @S3method rotate phylo
-rotate.phylo <- function(x, ...) ape:::rotate(phy=x, ...)
+rotate.phylo <- function(x, ...) {ape:::rotate(phy=x, ...)}
 
 
 #' @S3method sort dendrogram
-sort.dendrogram <- function(x, decreasing = FALSE,...) rotate(x, order(labels(x),decreasing =decreasing ,...))
+sort.dendrogram <- function(x, decreasing = FALSE,...) {rotate(x, order(labels(x),decreasing =decreasing ,...))}
 
 #' @S3method sort hclust
-sort.hclust <- function(x, decreasing = FALSE,...) rotate(x, order(labels(x),decreasing =decreasing ,...))
+sort.hclust <- function(x, decreasing = FALSE,...) {rotate(x, order(labels(x),decreasing =decreasing ,...))}
 
 
 
