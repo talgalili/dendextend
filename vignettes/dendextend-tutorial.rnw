@@ -890,6 +890,109 @@ tanglegram(s_dend1 , s_dend2, color_lines = col_lines_by_left_groups_sorted,
 
 \subsection{Finding an optimal rotation}
 
+\subsubsection{Random search}
+
+
+Finding an optimal rotation for the tanglegram of two dendrogram is a hard problem.
+%% ref here.
+
+This problem is also harder for larger trees, so let us pick a tree from only 30 flowers, and look at comparing two clustering methods, complete and single:
+
+
+<<>>=
+
+set.seed(51324626)
+ss <- sample(1:150, size=30)
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+dend1 <- color_branches(dend1, 3)
+# dend2 <- color_branches(dend2, 3) # colors will not match nicely
+labels(dend2) <- as.character(labels(dend2))
+
+require(colorspace)
+
+col_lines_by_left_groups <- rainbow_hcl(3)[
+   cutree(dend1, 3, order_clusters_as_data=FALSE, sort_cluster_numbers=TRUE)]
+tanglegram(dend1 , dend2, color_lines=col_lines_by_left_groups,
+           main = paste("Entanglement =", round(entanglement(dend1 , dend2), 2)))
+
+@
+
+One solution for improving the tanglegram would be to randomely search the rotated tree space for a better solution.
+
+For example:
+
+<<>>=
+
+set.seed(65168)
+dend12 <- untangle_random_search(dend1, dend2, R=100)
+tanglegram(dend12[[1]] , dend12[[2]], color_lines=col_lines_by_left_groups,
+           main = paste("Entanglement =", round(entanglement(dend12[[1]] , dend12[[2]]), 2)))
+
+@
+
+We can see we already got something better. An advantage of the random search is the ability to create many many trees and compare them to find the best pair.
+
+
+\subsubsection{A one-side greedy search}
+
+Let's use a greedy forward step wise rotation of the right tree, to see if we can find a better solution for comparing the two trees. Notice that this may take some time to run (the larger the tree, the longer it would take), but we can limit the search for smaller k's, and see what improvement that can bring us:
+
+
+<<>>=
+
+best_dend_heights_per_k <- heights_per_k.dendrogram(dend2)
+
+dend2_2 <- untangle_step_rotate_1side(dend2, dend1,
+               k_seq=2:3, best_dend_heights_per_k=best_dend_heights_per_k) 
+# notice that here we are only using 
+tanglegram(dend1 , dend2_2, color_lines=col_lines_by_left_groups,
+           main = paste("Entanglement =", round(entanglement(dend1 , dend2_2), 2)))
+entanglement(dend1 , dend2_2)
+
+@
+
+
+Let's try to go "all the way down" all possible k's:
+
+<<>>=
+
+dend2_3 <- untangle_step_rotate_1side(dend2, dend1,
+                                      best_dend_heights_per_k=best_dend_heights_per_k) 
+tanglegram(dend1 , dend2_3, color_lines=col_lines_by_left_groups,
+           main = paste("Entanglement =", round(entanglement(dend1 , dend2_3), 2)))
+entanglement(dend1 , dend2_3)
+
+
+@
+
+\subsubsection{Combining a one-side greedy search with a random search}
+
+As we can see, the random search actually found something better than the forward selection search. But now we can use the forward search on the trees we found in the random search:
+
+
+<<>>=
+
+dend2_4 <- untangle_step_rotate_1side(dend12[[2]], dend12[[1]]) 
+tanglegram(dend12[[1]] , dend2_4, color_lines=col_lines_by_left_groups,
+           main = paste("Entanglement =", round(entanglement(dend12[[1]] , dend2_4), 2)))
+entanglement(dend12[[1]] , dend2_4)
+
+
+@
+
+We see how this got us with a perfect solution. The trees look almost identical, but they are not (look at label 45 to see a leaf which is differently located between the two trees.). We can use the k_branches parameter for tanglegram, to help us see the difference between the two trees (notice labels 19 and 45). One could actually do an animation sequence, using various k_branches values in order to located the differences between the trees.
+
+<<>>=
+
+tanglegram(color_branches(dend12[[1]], col=1, k=1) , dend2_4, color_lines=col_lines_by_left_groups, k_branches=10, 
+           main = paste("Entanglement =", round(entanglement(dend12[[1]] , dend2_4), 2)))
+
+@
+
+
 
 
 \section{Comparing two trees - statistics and inference}
