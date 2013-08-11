@@ -26,7 +26,7 @@
 #' @title Get/set attributes of dendrogram's leaves
 #' @export
 #' @param object a dendrogram object 
-#' @param attribute character scaler of the attribute (\code{attr})
+#' @param attribute character scalar of the attribute (\code{attr})
 #' we wish to get/set from the leaves
 #' @param simplify logical. If TRUE (default), then the return vector is 
 #' after using \code{unlist} on it.
@@ -93,7 +93,7 @@ get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
 #' 
 #' @export
 #' @param object a dendrogram object 
-#' @param attribute character scaler of the attribute (\code{attr})
+#' @param attribute character scalar of the attribute (\code{attr})
 #' we wish to get from the nodes
 #' @param include_leaves logical. Should leaves attributes be included as well?
 #' @param include_branches logical. Should non-leaf (branch node) 

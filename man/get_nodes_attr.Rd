@@ -13,7 +13,7 @@
 \arguments{
   \item{object}{a dendrogram object}
 
-  \item{attribute}{character scaler of the attribute
+  \item{attribute}{character scalar of the attribute
   (\code{attr}) we wish to get from the nodes}
 
   \item{include_leaves}{logical. Should leaves attributes

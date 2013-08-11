@@ -12,7 +12,7 @@
 \arguments{
   \item{object}{a dendrogram object}
 
-  \item{attribute}{character scaler of the attribute
+  \item{attribute}{character scalar of the attribute
   (\code{attr}) we wish to get/set from the leaves}
 
   \item{simplify}{logical. If TRUE (default), then the
