@@ -3,7 +3,8 @@
 \title{forward untangle one tree compared to another}
 \usage{
   untangle_step_rotate_1side(dend1, dend2_fixed, L = 1.5,
-    direction = c("forward", "backward"), ...)
+    direction = c("forward", "backward"), k_seq = NULL,
+    dend_heights_per_k, ...)
 }
 \arguments{
   \item{dend1}{a dendrogram object. The one we will rotate
@@ -21,7 +22,15 @@
   (default) or "backward". Impacts the direction of
   clustering that are tried. Either from 2 and up (in case
   of "forward"), or from nleaves to down (in case of
-  "backward")}
+  "backward")
+
+  If k_seq is not NULL, then it overrides "direction".}
+
+  \item{k_seq}{a sequence of k clusters to go through for
+  improving dend1. If NULL (default), then we use the
+  "direction" parameter.}
+
+  \item{dend_heights_per_k}{}
 
   \item{...}{not used}
 }

@@ -403,6 +403,13 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 #' Impacts the direction of clustering that are tried. Either from 2 and up
 #' (in case of "forward"), or from nleaves to down (in case of "backward")
 #' 
+#' If k_seq is not NULL, then it overrides "direction".
+#' 
+#' @param k_seq a sequence of k clusters to go through for improving 
+#' dend1. If NULL (default), then we use the "direction" parameter.
+#' 
+#' @param dend_heights_per_k 
+#' 
 #' @param ... not used
 #' @return dend1 after it wa rotated to best fit dend2_fixed.
 #' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels},
@@ -421,18 +428,21 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 #' entanglement(dend1,dend2_corrected, L = 2) # 0
 #' 
 #' }
-untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = c("forward", "backward"), ...) {
+untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = c("forward", "backward"), 
+                                       k_seq = NULL, dend_heights_per_k , ...) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
    require(plyr)
    n_leaves <- nleaves(dend1)
    best_dend <- dend1
-   best_dend_heights_per_k <- heights_per_k.dendrogram(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
+   if(missing(dend_heights_per_k)) best_dend_heights_per_k <- heights_per_k.dendrogram(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
    
-   # choose step direction:
-   if(direction[1] == "backward") {
-      k_seq <- n_leaves:2
-   } else { # forward
-      k_seq <- 2:n_leaves
+   if(is.null(k_seq)) {
+      # choose step direction:
+      if(direction[1] == "backward") {
+         k_seq <- n_leaves:2
+      } else { # forward
+         k_seq <- 2:n_leaves
+      }      
    }
    
    
