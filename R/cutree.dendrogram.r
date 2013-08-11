@@ -292,7 +292,7 @@ cutree_1h.dendrogram <- function(tree, h,
 #' result for cutting the dendrogram at each height.
 #' 
 #' @examples
-#' \donotrun{
+#' \dontrun{
 #' hc <- hclust(dist(USArrests[1:4,]), "ave")
 #' dend <- as.dendrogram(hc)
 #' heights_per_k.dendrogram(dend)

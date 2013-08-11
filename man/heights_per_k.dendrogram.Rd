@@ -18,7 +18,7 @@
   Which height will result in which k for a dendrogram
 }
 \examples{
-\\donotrun{
+\dontrun{
 hc <- hclust(dist(USArrests[1:4,]), "ave")
 dend <- as.dendrogram(hc)
 heights_per_k.dendrogram(dend)
