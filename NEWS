@@ -6,6 +6,7 @@ NEW FUNCTIONS ADDED:
    * untangle_random_search - random search for two trees with low entanglement.
    * flip_leaves
    * all_couple_rotations_at_k
+   * untangle_forward_rotate_1side
 
 OTHER NOTES:
    * rotate - minor code improvements.

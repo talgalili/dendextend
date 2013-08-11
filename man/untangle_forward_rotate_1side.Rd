@@ -1,0 +1,59 @@
+\name{untangle_forward_rotate_1side}
+\alias{untangle_forward_rotate_1side}
+\title{forward untangle one tree compared to another}
+\usage{
+  untangle_forward_rotate_1side(dend1, dend2_fixed,
+    L = 1.5, ...)
+}
+\arguments{
+  \item{dend1}{a dendrogram object. The one we will rotate
+  to best fit dend2_fixed.}
+
+  \item{dend2_fixed}{a dendrogram object. This one is kept
+  fixed.}
+
+  \item{L}{the distance norm to use for measuring the
+  distance between the two trees. It can be any positive
+  number, often one will want to use 0, 1, 1.5, 2 (see
+  'details' in \link{entanglement}).}
+
+  \item{...}{not used}
+}
+\value{
+  dend1 after it wa rotated to best fit dend2_fixed.
+}
+\description{
+  Given a fixed tree and a tree we wish to rotate, this
+  function goes through all of the k number of clusters
+  (from 2 onward), and each time rotates the branch which
+  was introduced in the new k'th cluster. This rotated tree
+  is compared with the fixed tree, and if it has a better
+  entanglement, it will be used for the following
+  interations.
+
+  This is a greedy forward selection algorithm for rotating
+  the tree and looking for a better match.
+
+  This is useful for finding good trees for a
+  \link{tanglegram}.
+}
+\examples{
+\dontrun{
+dend1 <- as.dendrogram(hclust(dist(USArrests[1:10,])))
+set.seed(3525)
+dend2 <- shuffle(dend1)
+tanglegram(dend1,dend2)
+entanglement(dend1,dend2, L = 2) # 0.4727
+
+dend2_corrected <- untangle_forward_rotate_1side(dend2, dend1)
+tanglegram(dend1,dend2_corrected) # FIXED.
+entanglement(dend1,dend2_corrected, L = 2) # 0
+
+}
+}
+\seealso{
+  \link{untangle}, \link{tanglegram},
+  \link{match_order_by_labels}, \link{entanglement},
+  \link{flip_leaves}, \link{all_couple_rotations_at_k}.
+}
+

@@ -44,4 +44,22 @@ test_that("all_couple_rotations_at_k work",{
 })
 
 
+test_that("untangle_forward_rotate_1side work",{
+
+   dend1 <- as.dendrogram(hclust(dist(USArrests[1:10,])))
+   set.seed(3525)
+   dend2 <- shuffle(dend1)
+#    tanglegram(dend1,dend2)
+   expect_identical(round(entanglement(dend1,dend2, L = 2),2) ,  0.47)   
+
+   # Fixing the problem :)
+   dend2_corrected <- untangle_forward_rotate_1side(dend2, dend1)
+#    tanglegram(dend1,dend2_corrected) # FIXED.
+   expect_identical(round(entanglement(dend1,dend2_corrected, L = 2),2) ,  0)   
+   
+})
+
+
+
+
 

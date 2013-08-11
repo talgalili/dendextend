@@ -28,7 +28,7 @@
   rotated so that the extra clusters added from k-1 to k
   clusters are flipped.
 
-  This is useful for finding a good trees for a
+  This is useful for finding good trees for a
   \link{tanglegram}.
 }
 \examples{
