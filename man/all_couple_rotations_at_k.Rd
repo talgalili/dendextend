@@ -37,6 +37,14 @@ dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
 dend2 <- all_couple_rotations_at_k(dend1, k=2)[[2]]
 tanglegram(dend1,dend2)
 entanglement(dend1,dend2, L = 2) # 0.5
+
+dend2 <- all_couple_rotations_at_k(dend1, k=3)[[2]]
+tanglegram(dend1,dend2)
+entanglement(dend1,dend2, L = 2) # 0.4
+
+dend2 <- all_couple_rotations_at_k(dend1, k=4)[[2]]
+tanglegram(dend1,dend2)
+entanglement(dend1,dend2, L = 2) # 0.05
 }
 }
 \seealso{

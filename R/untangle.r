@@ -28,6 +28,15 @@
 #' @export
 #' @aliases 
 #' shuffle.default
+#' @usage
+#' shuffle(object, ...)
+#' 
+#' \method{shuffle}{dendrogram}(object, ...)
+#' 
+#' \method{shuffle}{hclust}(object, ...)
+#' 
+#' \method{shuffle}{phylo}(object, ...)
+#' 
 #' @description 
 #' 'shuffle' randomilly rotates ("shuffles") a tree, changing its presentation 
 #' while preserving its topolgoy.
@@ -35,9 +44,6 @@
 #' work for any of the major tree objects in R (\link{dendrogram}/\link{hclust}/\link[ape]{phylo}).
 #' 
 #' This function is useful in combination with \link{tanglegram} and \link{entanglement}.
-#' 
-#' @usage
-#' shuffle(object, ...)
 #' 
 #' @param object a tree object (\link{dendrogram}/\link{hclust}/\link[ape]{phylo})
 #' @param ... Ignored.
@@ -67,6 +73,15 @@ shuffle.default <- function(object, ...) {
    rotate(object, random_weights) # since we have a method here for dend/hclust/phylo - this makes this function rather generic...
 }
 
+
+#' @S3method shuffle dendrogram
+shuffle.dendrogram <- shuffle.default
+
+#' @S3method shuffle hclust
+shuffle.hclust <- shuffle.default
+
+#' @S3method shuffle phylo
+shuffle.phylo <- shuffle.default
 
 
 
@@ -276,6 +291,14 @@ flip_leaves <- function(dend, leaves1, leaves2,...) {
 #' dend2 <- all_couple_rotations_at_k(dend1, k=2)[[2]]
 #' tanglegram(dend1,dend2)
 #' entanglement(dend1,dend2, L = 2) # 0.5
+#' 
+#' dend2 <- all_couple_rotations_at_k(dend1, k=3)[[2]]
+#' tanglegram(dend1,dend2)
+#' entanglement(dend1,dend2, L = 2) # 0.4
+#' 
+#' dend2 <- all_couple_rotations_at_k(dend1, k=4)[[2]]
+#' tanglegram(dend1,dend2)
+#' entanglement(dend1,dend2, L = 2) # 0.05
 #' }
 all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
    # This function gets the dend tree, and a k number of clusters
@@ -283,9 +306,9 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
    # if this was done for ALL permutation, the algorithm would not be feasable.
    # practically, for a binary tree - this only gives two trees as an output (the original, and the flipped new k'th cluster)
    
-   if(length(k) != 1) {
+   if(length(k) != 1L) {
       warning("'k' should be an integer SCALAR, using only the first element of k.")
-      k <- k[1]
+      k <- k[1L]
    }
    if(k==1) return(dend) # there are no possible rotations for k==1
    
@@ -352,39 +375,6 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 }
 
 
-# dend=best_dend
-# k = 13
-# all_couple_rotations_at_k(best_dend, k)
-# system.time(all_couple_rotations_at_k(dend1, k = 4))
-
-
-
-
-if(F) { # example
-   # 	tmp <- all_couple_rotations_at_k(dend, 10)
-   # 	flip_leaves(dend, leaves1, leaves2)
-   # 	order.dendrogram(dend)
-   
-   
-   tmp <- all_couple_rotations_at_k(dend, 2)
-   length(tmp)
-   plot(tmp[[1]])
-   plot(tmp[[2]])
-   
-   tmp <- all_couple_rotations_at_k(dend, 3)
-   plot(tmp[[1]])
-   plot(tmp[[2]])
-   
-   tmp <- all_couple_rotations_at_k(dend, 4)
-   length(tmp)
-   plot(tmp[[1]])
-   plot(tmp[[2]])
-   
-   tmp <- all_couple_rotations_at_k(dend, 5)
-   length(tmp)
-   plot(tmp[[1]])
-   plot(tmp[[2]])	
-}
 
 # cut.hierarchical.cluster.matrix(dend1)
 

@@ -4,6 +4,12 @@
 \title{Random rotation of trees}
 \usage{
   shuffle(object, ...)
+
+  \method{shuffle}{dendrogram}(object, ...)
+
+  \method{shuffle}{hclust}(object, ...)
+
+  \method{shuffle}{phylo}(object, ...)
 }
 \arguments{
   \item{object}{a tree object
