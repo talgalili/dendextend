@@ -53,8 +53,13 @@ test_that("untangle_forward_rotate_1side work",{
    expect_identical(round(entanglement(dend1,dend2, L = 2),2) ,  0.47)   
 
    # Fixing the problem :)
-   dend2_corrected <- untangle_forward_rotate_1side(dend2, dend1)
+   dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)
 #    tanglegram(dend1,dend2_corrected) # FIXED.
+   expect_identical(round(entanglement(dend1,dend2_corrected, L = 2),2) ,  0)   
+
+   # the other direction may also work:   
+   dend2_corrected <- untangle_step_rotate_1side(dend2, dend1, direction="backward")
+   #    tanglegram(dend1,dend2_corrected) # FIXED.
    expect_identical(round(entanglement(dend1,dend2_corrected, L = 2),2) ,  0)   
    
 })

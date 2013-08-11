@@ -1,9 +1,9 @@
-\name{untangle_forward_rotate_1side}
-\alias{untangle_forward_rotate_1side}
+\name{untangle_step_rotate_1side}
+\alias{untangle_step_rotate_1side}
 \title{forward untangle one tree compared to another}
 \usage{
-  untangle_forward_rotate_1side(dend1, dend2_fixed,
-    L = 1.5, ...)
+  untangle_step_rotate_1side(dend1, dend2_fixed, L = 1.5,
+    direction = c("forward", "backward"), ...)
 }
 \arguments{
   \item{dend1}{a dendrogram object. The one we will rotate
@@ -16,6 +16,12 @@
   distance between the two trees. It can be any positive
   number, often one will want to use 0, 1, 1.5, 2 (see
   'details' in \link{entanglement}).}
+
+  \item{direction}{a character scalar, either "forward"
+  (default) or "backward". Impacts the direction of
+  clustering that are tried. Either from 2 and up (in case
+  of "forward"), or from nleaves to down (in case of
+  "backward")}
 
   \item{...}{not used}
 }
@@ -45,7 +51,7 @@ dend2 <- shuffle(dend1)
 tanglegram(dend1,dend2)
 entanglement(dend1,dend2, L = 2) # 0.4727
 
-dend2_corrected <- untangle_forward_rotate_1side(dend2, dend1)
+dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)
 tanglegram(dend1,dend2_corrected) # FIXED.
 entanglement(dend1,dend2_corrected, L = 2) # 0
 

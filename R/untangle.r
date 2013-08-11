@@ -398,6 +398,11 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 #' @param L the distance norm to use for measuring the distance between the 
 #' two trees. It can be any positive number, 
 #' often one will want to use 0, 1, 1.5, 2 (see 'details' in \link{entanglement}).
+#' 
+#' @param direction a character scalar, either "forward" (default) or "backward".
+#' Impacts the direction of clustering that are tried. Either from 2 and up
+#' (in case of "forward"), or from nleaves to down (in case of "backward")
+#' 
 #' @param ... not used
 #' @return dend1 after it wa rotated to best fit dend2_fixed.
 #' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels},
@@ -411,19 +416,27 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 #' tanglegram(dend1,dend2)
 #' entanglement(dend1,dend2, L = 2) # 0.4727
 #' 
-#' dend2_corrected <- untangle_forward_rotate_1side(dend2, dend1)
+#' dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)
 #' tanglegram(dend1,dend2_corrected) # FIXED.
 #' entanglement(dend1,dend2_corrected, L = 2) # 0
 #' 
 #' }
-untangle_forward_rotate_1side <- function(dend1, dend2_fixed, L = 1.5,...) {
+untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = c("forward", "backward"), ...) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
    require(plyr)
-   leaves_order <- order.dendrogram(dend1)
+   n_leaves <- nleaves(dend1)
    best_dend <- dend1
    best_dend_heights_per_k <- heights_per_k.dendrogram(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
    
-   for(k in 2:length(leaves_order)) {
+   # choose step direction:
+   if(direction[1] == "backward") {
+      k_seq <- n_leaves:2
+   } else { # forward
+      k_seq <- 2:n_leaves
+   }
+   
+   
+   for(k in k_seq) {
       dend1_k_rotated <- all_couple_rotations_at_k(best_dend, k, dend_heights_per_k = best_dend_heights_per_k)
       dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, tree2 = dend2_fixed, L = L)
       ss_best_dend <- which.min(dend1_cut_k_entanglements)
@@ -445,25 +458,6 @@ untangle_forward_rotate_1side <- function(dend1, dend2_fixed, L = 1.5,...) {
 
 
 
-
-
-
-
-untangle.backward.rotate.1side <- function(dend1, dend2_fixed , L = 1) {
-   # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
-   require(plyr)
-   leaves_order <- order.dendrogram(dend1)
-   best_dend <- dend1
-   
-   for(k in length(leaves_order):2) {
-      dend1_k_rotated <- all_couple_rotations_at_k(best_dend, k)
-      dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)
-      ss_best_dend <- which.min(dend1_cut_k_entanglements)
-      best_dend <- dend1_k_rotated[[ss_best_dend]]
-   }
-   
-   return(best_dend)	
-}
 
 
 # 
@@ -499,7 +493,7 @@ untangle.backward.rotate.1side <- function(dend1, dend2_fixed , L = 1) {
 # }
 
 
-# dend12s_1_better <- untangle_forward_rotate_1side(dend1, dend2)
+# dend12s_1_better <- untangle_step_rotate_1side(dend1, dend2)
 # cutree(dend1, 10)
 
 
@@ -512,8 +506,8 @@ untangle.forward.rotate.2side <- function(dend1, dend2, max_n_iterations = 10, o
    
    
    # Next, let's try to improve upon this tree using a forwared rotation of our tree:
-   dend1_better <- untangle_forward_rotate_1side(dend1, dend2, L = L) 
-   dend2_better <- untangle_forward_rotate_1side(dend2, dend1_better, L = L) 
+   dend1_better <- untangle_step_rotate_1side(dend1, dend2, L = L) 
+   dend2_better <- untangle_step_rotate_1side(dend2, dend1_better, L = L) 
    
    entanglement_new <- entanglement(dend1_better, dend2_better, L = L) 
    entanglement_old <- entanglement_new+1
@@ -523,7 +517,7 @@ untangle.forward.rotate.2side <- function(dend1, dend2, max_n_iterations = 10, o
    while(times < max_n_iterations & !identical(entanglement_new, entanglement_old)) { # if we got an improvement from last entaglement, we'll keep going!
       entanglement_old <- entanglement_new
       
-      dend1_better_loop <- untangle_forward_rotate_1side(dend1_better, dend2_better, L = L) 
+      dend1_better_loop <- untangle_step_rotate_1side(dend1_better, dend2_better, L = L) 
       # if the new dend1 is just like we just had - then we can stop the function since we found the best solution - else - continue
       if(identical(dend1_better_loop, dend1_better)) {
          break;
@@ -532,7 +526,7 @@ untangle.forward.rotate.2side <- function(dend1, dend2, max_n_iterations = 10, o
       }			 
       
       # if the new dend2 is just like we just had - then we can stop the function since we found the best solution - else - continue
-      dend2_better_loop <- untangle_forward_rotate_1side(dend2_better, dend1_better, L = L) 
+      dend2_better_loop <- untangle_step_rotate_1side(dend2_better, dend1_better, L = L) 
       if(identical(dend2_better_loop, dend2_better)) {
          break;
       } else {
@@ -735,26 +729,26 @@ if(F) {
    # this is a case where it is CLEAR that the simplest heuristic would improve this to 0 entanglement...	
    
    # let's see if we can reach a good solution using a greedy forward selection algorithm
-   dend12s_1_better <- untangle_forward_rotate_1side(dend12s[[1]], dend12s[[2]])
+   dend12s_1_better <- untangle_step_rotate_1side(dend12s[[1]], dend12s[[2]])
    entanglement(dend12s_1_better, dend12s[[2]]) # from 0.042 to 0.006 !!
    tanglegram(dend12s_1_better, dend12s[[2]]) # 
    
    # let's see from the beginning
    entanglement(dend1, dend2) # 0.6
    tanglegram(dend1, dend2) # 0.6
-   dend12s_1_better <- untangle_forward_rotate_1side(dend1, dend2)
+   dend12s_1_better <- untangle_step_rotate_1side(dend1, dend2)
    entanglement(dend12s_1_better, dend2) # from 0.6 to 0.036
    tanglegram(dend12s_1_better, dend2) # 
    # let's try the other side:
-   dend12s_2_better <- untangle_forward_rotate_1side(dend2, dend12s_1_better)
+   dend12s_2_better <- untangle_step_rotate_1side(dend2, dend12s_1_better)
    entanglement(dend12s_1_better, dend12s_2_better) # no improvment
    
    
    
-   dend2_01 <- untangle_forward_rotate_1side(dend2, dend1)
+   dend2_01 <- untangle_step_rotate_1side(dend2, dend1)
    dend2_02 <- untangle.backward.rotate.1side(dend2, dend1)
    dend2_03 <- untangle.backward.rotate.1side(dend2_01, dend1)
-   dend2_04 <- untangle_forward_rotate_1side(dend2_02, dend1)
+   dend2_04 <- untangle_step_rotate_1side(dend2_02, dend1)
    dend2_05 <- untangle.evolution(dend1, dend2 , dend1, dend2_01 )
    entanglement(dend1, dend2) 
    entanglement(dend1, dend2_01) 
@@ -774,7 +768,7 @@ if(F) {
    
    entanglement(dend1, dend2) 
    tanglegram(dend1, dend2) 
-   dend2_01 <- untangle_forward_rotate_1side(dend2, dend1)
+   dend2_01 <- untangle_step_rotate_1side(dend2, dend1)
    dend2_01 <- untangle.backward.rotate.1side(dend2, dend1)
    tanglegram(dend1, dend2_01) 
    
@@ -787,13 +781,13 @@ if(F) {
    hc2 <- hclust(dist_DATA , "complete")
    dend1 <- as.dendrogram(hc1)
    dend2 <- as.dendrogram(hc2)
-   dend1_01 <- untangle_forward_rotate_1side(dend1, dend2)
+   dend1_01 <- untangle_step_rotate_1side(dend1, dend2)
    entanglement(dend1, dend2) 
    entanglement(dend1_01, dend2) 
    tanglegram(dend1, dend2) 
    tanglegram(dend1_01, dend2) 
    
-   system.time(dend1_01 <- untangle_forward_rotate_1side(dend1, dend2)) # 0.47 sec
+   system.time(dend1_01 <- untangle_step_rotate_1side(dend1, dend2)) # 0.47 sec
    system.time(dend1_01 <- untangle.best.k.to.rotate.by(dend1, dend2)) # 0.44 sec
    tanglegram(dend1, dend2) 
    tanglegram(dend1_01, dend2) 
@@ -803,7 +797,7 @@ if(F) {
    
    #### profiling
    require(profr)
-   slow_dude <- profr(untangle_forward_rotate_1side(dend2, dend1))
+   slow_dude <- profr(untangle_step_rotate_1side(dend2, dend1))
    head(slow_dude)
    summary(slow_dude)
    plot(slow_dude)
