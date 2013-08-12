@@ -378,8 +378,7 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 
 
 
-
-#' @title forward untangle one tree compared to another
+#' @title Stepwise untangle one tree compared to another
 #' @export
 #' @description 
 #' Given a fixed tree and a tree we wish to rotate, this function goes
@@ -411,9 +410,12 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 #' @param dend_heights_per_k 
 #' 
 #' @param ... not used
-#' @return dend1 after it wa rotated to best fit dend2_fixed.
+#' 
+#' @return dend1 after it was rotated to best fit dend2_fixed.
 #' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels},
-#' \link{entanglement}, \link{flip_leaves}, \link{all_couple_rotations_at_k}.
+#' \link{entanglement}, \link{flip_leaves}, \link{all_couple_rotations_at_k},
+#' \link{untangle_step_rotate_2side}.
+#' 
 #' @examples
 #' 
 #' \dontrun{
@@ -508,16 +510,79 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
 
 
 
+   
 
-
-
-untangle.forward.rotate.2side <- function(dend1, dend2, max_n_iterations = 10, output_times = T, L = 1) {
+#' @title Stepwise untangle two trees one at a time
+#' @export
+#' @description 
+#' This is a greedy forward selection algorithm for rotating the tree and
+#' looking for a better match.
+#' 
+#' This is useful for finding good trees for a \link{tanglegram}.
+#' 
+#' It goes through rotating dend1, then dend2, and so on - until a locally optimal solution is found.
+#' 
+#' @param dend1 a dendrogram object. The one we will rotate to best fit
+#' dend2.
+#' @param dend2 a dendrogram object. The one we will rotate to best fit
+#' dend1.
+#' @param L the distance norm to use for measuring the distance between the 
+#' two trees. It can be any positive number, 
+#' often one will want to use 0, 1, 1.5, 2 (see 'details' in \link{entanglement}).
+#' 
+#' @param direction a character scalar, either "forward" (default) or "backward".
+#' Impacts the direction of clustering that are tried. Either from 2 and up
+#' (in case of "forward"), or from nleaves to down (in case of "backward")
+#' 
+#' If k_seq is not NULL, then it overrides "direction".
+#' 
+#' @param max_n_iterations integer. The maximal number of times to switch between optimizing one tree with another.
+#' @param print_times logicla (TRUE), should we print how many times we switched between rotating the two trees?
+#' @param ... not used
+#' 
+#' @return A list with two dendrograms (dend1/dend2), 
+#' after they are rotated to best fit one another.
+#' 
+#' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels},
+#' \link{entanglement}, \link{flip_leaves}, \link{all_couple_rotations_at_k}.
+#' \link{untangle_step_rotate_1side}.
+#' @examples
+#' 
+#' \dontrun{
+#' dend1 <- as.dendrogram(hclust(dist(USArrests[1:20,])))
+#' dend2 <- as.dendrogram(hclust(dist(USArrests[1:20,]), method = "single"))
+#' set.seed(3525)
+#' dend2 <- shuffle(dend2)
+#' tanglegram(dend1,dend2, margin_inner=6.5)
+#' entanglement(dend1,dend2, L = 2) # 0.79
+#' 
+#' dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)
+#' tanglegram(dend1,dend2_corrected, margin_inner=6.5) # Good.
+#' entanglement(dend1,dend2_corrected, L = 2) # 0.0067
+#' # it is better, but not perfect. Can we improve it?
+#' 
+#' dend12_corrected <- untangle_step_rotate_2side(dend1, dend2)
+#' tanglegram(dend12_corrected[[1]],dend12_corrected[[2]], margin_inner=6.5) # Better...
+#' entanglement(dend12_corrected[[1]],dend12_corrected[[2]], L=2) # 0.0045
+#' 
+#' 
+#' # best combination:
+#' dend12_corrected_1 <- untangle_random_search(dend1, dend2)
+#' dend12_corrected_2 <- untangle_step_rotate_2side(dend12_corrected_1[[1]],dend12_corrected_1[[2]])
+#' tanglegram(dend12_corrected_2[[1]],dend12_corrected_2[[2]], margin_inner=6.5) # Better...
+#' entanglement(dend12_corrected_2[[1]],dend12_corrected_2[[2]], L=2) # 0 - PERFECT.
+#' 
+#' }                              
+untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("forward", "backward"), max_n_iterations = 10L, print_times = TRUE, ...) {
    # this function gets two dendgrams, and orders dend1 and 2 until a best entengelment is reached.
    
    
+   dend1_heights_per_k <- heights_per_k.dendrogram(dend1)
+   dend2_heights_per_k <- heights_per_k.dendrogram(dend2)
+   
    # Next, let's try to improve upon this tree using a forwared rotation of our tree:
-   dend1_better <- untangle_step_rotate_1side(dend1, dend2, L = L) 
-   dend2_better <- untangle_step_rotate_1side(dend2, dend1_better, L = L) 
+   dend1_better <- untangle_step_rotate_1side(dend1, dend2, L = L,dend_heights_per_k=dend1_heights_per_k, direction = direction) 
+   dend2_better <- untangle_step_rotate_1side(dend2, dend1_better, L = L,dend_heights_per_k=dend2_heights_per_k, direction = direction) 
    
    entanglement_new <- entanglement(dend1_better, dend2_better, L = L) 
    entanglement_old <- entanglement_new+1
@@ -527,7 +592,8 @@ untangle.forward.rotate.2side <- function(dend1, dend2, max_n_iterations = 10, o
    while(times < max_n_iterations & !identical(entanglement_new, entanglement_old)) { # if we got an improvement from last entaglement, we'll keep going!
       entanglement_old <- entanglement_new
       
-      dend1_better_loop <- untangle_step_rotate_1side(dend1_better, dend2_better, L = L) 
+      dend1_better_loop <- untangle_step_rotate_1side(dend1_better, dend2_better, L = L,
+                                                      dend_heights_per_k=dend1_heights_per_k, direction = direction) 
       # if the new dend1 is just like we just had - then we can stop the function since we found the best solution - else - continue
       if(identical(dend1_better_loop, dend1_better)) {
          break;
@@ -536,7 +602,8 @@ untangle.forward.rotate.2side <- function(dend1, dend2, max_n_iterations = 10, o
       }			 
       
       # if the new dend2 is just like we just had - then we can stop the function since we found the best solution - else - continue
-      dend2_better_loop <- untangle_step_rotate_1side(dend2_better, dend1_better, L = L) 
+      dend2_better_loop <- untangle_step_rotate_1side(dend2_better, dend1_better, L = L,
+                                                      dend_heights_per_k=dend2_heights_per_k, direction = direction) 
       if(identical(dend2_better_loop, dend2_better)) {
          break;
       } else {
@@ -548,10 +615,28 @@ untangle.forward.rotate.2side <- function(dend1, dend2, max_n_iterations = 10, o
    }
    
    # identical(1,1+.00000000000000000000000001) # T
-   if(output_times) cat("We ran untangle ", times, " times\n")
+   if(print_times) cat("We ran untangle ", times, " times\n")
    
    return(list(dend1 = dend1_better, dend2 = dend2_better))	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # evolution algorithm
@@ -559,8 +644,8 @@ untangle.intercourse <- function(brother_1_dend1, brother_1_dend2,
                                  sister_2_dend1, 	sister_2_dend2, L = 1) 
 {
    # Gets two pairs of dend, and returns two childrens (inside a list)
-   children_1 <- untangle.forward.rotate.2side(brother_1_dend1,sister_2_dend2, L = L) 
-   children_2 <- untangle.forward.rotate.2side(sister_2_dend1,brother_1_dend2, L = L) 
+   children_1 <- untangle_step_rotate_2side(brother_1_dend1,sister_2_dend2, L = L) 
+   children_2 <- untangle_step_rotate_2side(sister_2_dend1,brother_1_dend2, L = L) 
    
    list(children_1, children_2)
 }
@@ -634,7 +719,7 @@ untangle.best.k.to.rotate.by.1side <- function(dend1, dend2_fixed, L = 1) {
 
 flip.1.and.2 <- function(x) ifelse(x == 1, 2, 1)
 
-untangle.best.k.to.rotate.by.2side.backNforth <- function(dend1, dend2, times_to_stop = 2, output_times = T, L = 1) {
+untangle.best.k.to.rotate.by.2side.backNforth <- function(dend1, dend2, times_to_stop = 2, print_times = T, L = 1) {
    # this function gets two dendgrams, and orders dend1 and then 2 and then 1 again - back and forth -until a best entengelment is reached.
    
    was_improved <- T # e.g: we can improve it further
@@ -649,7 +734,7 @@ untangle.best.k.to.rotate.by.2side.backNforth <- function(dend1, dend2, times_to
       counter <- counter + 1
    }
    # identical(1,1+.00000000000000000000000001) # T
-   if(output_times) cat("We ran untangle.best.k.to.rotate.by.2side.backNforth ", counter, " times")
+   if(print_times) cat("We ran untangle.best.k.to.rotate.by.2side.backNforth ", counter, " times")
    
    return(list(dend1 = dend1, dend2 = dend2))	
 }
@@ -667,7 +752,7 @@ if(F) {
    dend2 <- as.dendrogram(hc2)	
    entanglement(dend1, dend2) 		
    
-   system.time(dend12_best_01 <- untangle.forward.rotate.2side(dend1, dend2, L = 2)) # 0.47 sec
+   system.time(dend12_best_01 <- untangle_step_rotate_2side(dend1, dend2, L = 2)) # 0.47 sec
    system.time(dend12_best_02 <- untangle.best.k.to.rotate.by.2side.backNforth(dend1, dend2, L = 2)) # 0.44 sec
    tanglegram(dend1, dend2) 
    tanglegram(dend12_best_01[[1]], dend12_best_01[[2]]) 
@@ -847,7 +932,7 @@ if(F){
    set.seed(best_seed) 
    times_a_better_seed_was_found <- 0
    random_dendros <- untangle.random.search(yoavs_tree, Dan_arc_tree, R = 1, L = 1.5)
-   rotated_dendros <- untangle.forward.rotate.2side(random_dendros[[1]], random_dendros[[2]], L = 1.5)
+   rotated_dendros <- untangle_step_rotate_2side(random_dendros[[1]], random_dendros[[2]], L = 1.5)
    best_entanglement <- entanglement(rotated_dendros[[1]], rotated_dendros[[2]], L = 1.5)
    # tanglegram(rotated_dendros[[1]], rotated_dendros[[2]])
    
@@ -857,7 +942,7 @@ if(F){
       current_seed <- get.seed()
       set.seed(current_seed)
       random_dendros <- untangle.random.search(yoavs_tree, Dan_arc_tree, R = 10, L = 1.5)
-      rotated_dendros <- untangle.forward.rotate.2side(random_dendros[[1]], random_dendros[[2]], L = 1.5)
+      rotated_dendros <- untangle_step_rotate_2side(random_dendros[[1]], random_dendros[[2]], L = 1.5)
       new_entanglement <- entanglement(rotated_dendros[[1]], rotated_dendros[[2]], L = 1.5)
       
       entanglement_history <- c(entanglement_history, new_entanglement)		

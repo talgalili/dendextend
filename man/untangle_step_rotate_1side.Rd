@@ -1,6 +1,6 @@
 \name{untangle_step_rotate_1side}
 \alias{untangle_step_rotate_1side}
-\title{forward untangle one tree compared to another}
+\title{Stepwise untangle one tree compared to another}
 \usage{
   untangle_step_rotate_1side(dend1, dend2_fixed, L = 1.5,
     direction = c("forward", "backward"), k_seq = NULL,
@@ -35,7 +35,7 @@
   \item{...}{not used}
 }
 \value{
-  dend1 after it wa rotated to best fit dend2_fixed.
+  dend1 after it was rotated to best fit dend2_fixed.
 }
 \description{
   Given a fixed tree and a tree we wish to rotate, this
@@ -69,6 +69,7 @@ entanglement(dend1,dend2_corrected, L = 2) # 0
 \seealso{
   \link{untangle}, \link{tanglegram},
   \link{match_order_by_labels}, \link{entanglement},
-  \link{flip_leaves}, \link{all_couple_rotations_at_k}.
+  \link{flip_leaves}, \link{all_couple_rotations_at_k},
+  \link{untangle_step_rotate_2side}.
 }
 
