@@ -68,17 +68,18 @@
 %\VignetteEngine{knitr::knitr}
 
 
+
+\Plaintitle{Visualizing and Comparing Trees of Heirarchical Clustering: Using the dendextend R Package}
+\title{Visualizing and Comparing\\ Trees of Heirarchical Clustering:\\ Using the dendextend \proglang{R} Package}
+
+
+% \Plaintitle{Manipulate, Visualize and Compare Dendrograms: The dendextend R Package}
+% \title{Manipulate, Visualize and Compare Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
+
+
 \author{Tal Galili\\Tel-Aviv University \And Yoav Benjamini\\Tel-Aviv University}
 \Plainauthor{Tal Galili, Yoav Benjamini}
 
-
-
-
-% \Plaintitle{Visualizing and Comparing Trees of Heirarchical Clustering: Using the dendextend R Package}
-% \title{Visualizing and Comparing\\ Trees of Heirarchical Clustering:\\ Using the dendextend \proglang{R} Package}
-
-\Plaintitle{Manipulate, Visualize and Compare Dendrograms: The dendextend R Package}
-\title{Manipulate, Visualize and Compare Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
 
 
 \Abstract{
@@ -93,6 +94,8 @@ The paper gives a detailed exposition of both the internal structure of the pack
 \Keywords{Dendrogram, hclust, hierarchical clustering, visualization, tanglegram,  \proglang{R}}
 \Plainkeywords{Dendrogram, hclust, hierarchical clustering, visualization, tanglegram, R}
 
+
+% \begin{center} \today \end{center}.
 
 % \Volume{40}
 % \Issue{8}
@@ -1727,6 +1730,302 @@ And here is the entanglement of a tiny bit prettier tanglegram:
 
 \subsection{Finding an optimal rotation}
 
+\subsubsection{Random search}
+
+
+Finding an optimal rotation for the tanglegram of two dendrogram is a hard problem.
+%% ref here.
+
+This problem is also harder for larger trees, so let us pick a tree from only 30 flowers, and look at comparing two clustering methods, complete and single:
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{set.seed}\hlstd{(}\hlnum{51324626}\hlstd{)}
+\hlstd{ss} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{150}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{30}\hlstd{)}
+\hlstd{hc1} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"com"}\hlstd{)}
+\hlstd{hc2} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"single"}\hlstd{)}
+\hlstd{dend1} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc1)}
+\hlstd{dend2} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc2)}
+\hlstd{dend1} \hlkwb{<-} \hlkwd{color_branches}\hlstd{(dend1,} \hlnum{3}\hlstd{)}
+\hlcom{# dend2 <- color_branches(dend2, 3) # colors will not match}
+\hlcom{# nicely}
+\hlkwd{labels}\hlstd{(dend2)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend2)}\hlstd{)}
+
+\hlkwd{require}\hlstd{(colorspace}\hlstd{)}
+
+\hlstd{col_lines_by_left_groups} \hlkwb{<-} \hlkwd{rainbow_hcl}\hlstd{(}\hlnum{3}\hlstd{)[}\hlkwd{cutree}\hlstd{(dend1,} \hlnum{3}\hlstd{,} \hlkwc{order_clusters_as_data} \hlstd{=} \hlnum{FALSE}\hlstd{,}
+    \hlkwc{sort_cluster_numbers} \hlstd{=} \hlnum{TRUE}\hlstd{)]}
+\hlkwd{tanglegram}\hlstd{(dend1, dend2,} \hlkwc{color_lines} \hlstd{= col_lines_by_left_groups,}
+    \hlkwc{main} \hlstd{=} \hlkwd{paste}\hlstd{(}\hlstr{"Entanglement ="}\hlstd{,} \hlkwd{round}\hlstd{(}\hlkwd{entanglement}\hlstd{(dend1,}
+        \hlstd{dend2),} \hlnum{2}\hlstd{)))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-34} 
+
+}
+
+
+
+\end{knitrout}
+
+
+One solution for improving the tanglegram would be to randomely search the rotated tree space for a better solution.
+
+For example:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{set.seed}\hlstd{(}\hlnum{65168}\hlstd{)}
+\hlstd{dend12} \hlkwb{<-} \hlkwd{untangle_random_search}\hlstd{(dend1, dend2,} \hlkwc{R} \hlstd{=} \hlnum{100}\hlstd{)}
+\hlkwd{tanglegram}\hlstd{(dend12[[}\hlnum{1}\hlstd{]], dend12[[}\hlnum{2}\hlstd{]],} \hlkwc{color_lines} \hlstd{= col_lines_by_left_groups,}
+    \hlkwc{main} \hlstd{=} \hlkwd{paste}\hlstd{(}\hlstr{"Entanglement ="}\hlstd{,} \hlkwd{round}\hlstd{(}\hlkwd{entanglement}\hlstd{(dend12[[}\hlnum{1}\hlstd{]],}
+        \hlstd{dend12[[}\hlnum{2}\hlstd{]]),} \hlnum{2}\hlstd{)))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-35} 
+
+}
+
+
+
+\end{knitrout}
+
+
+We can see we already got something better. An advantage of the random search is the ability to create many many trees and compare them to find the best pair.
+
+
+\subsubsection{A one-side greedy search}
+
+Let's use a greedy forward step wise rotation of the right tree, to see if we can find a better solution for comparing the two trees. Notice that this may take some time to run (the larger the tree, the longer it would take), but we can limit the search for smaller k's, and see what improvement that can bring us:
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{best_dend_heights_per_k} \hlkwb{<-} \hlkwd{heights_per_k.dendrogram}\hlstd{(dend2}\hlstd{)}
+
+\hlstd{dend2_2} \hlkwb{<-} \hlkwd{untangle_step_rotate_1side}\hlstd{(dend2, dend1,} \hlkwc{k_seq} \hlstd{=} \hlnum{2}\hlopt{:}\hlnum{3}\hlstd{,}
+    \hlkwc{best_dend_heights_per_k} \hlstd{= best_dend_heights_per_k)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: plyr}}\begin{alltt}
+\hlcom{# notice that here we are only using}
+\hlkwd{tanglegram}\hlstd{(dend1, dend2_2,} \hlkwc{color_lines} \hlstd{= col_lines_by_left_groups,}
+    \hlkwc{main} \hlstd{=} \hlkwd{paste}\hlstd{(}\hlstr{"Entanglement ="}\hlstd{,} \hlkwd{round}\hlstd{(}\hlkwd{entanglement}\hlstd{(dend1,}
+        \hlstd{dend2_2),} \hlnum{2}\hlstd{)))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-36} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+\hlkwd{entanglement}\hlstd{(dend1, dend2_2)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.06166
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+Let's try to go "all the way down" all possible k's:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{dend2_3} \hlkwb{<-} \hlkwd{untangle_step_rotate_1side}\hlstd{(dend2, dend1,} \hlkwc{best_dend_heights_per_k} \hlstd{= best_dend_heights_per_k)}
+\hlkwd{tanglegram}\hlstd{(dend1, dend2_3,} \hlkwc{color_lines} \hlstd{= col_lines_by_left_groups,}
+    \hlkwc{main} \hlstd{=} \hlkwd{paste}\hlstd{(}\hlstr{"Entanglement ="}\hlstd{,} \hlkwd{round}\hlstd{(}\hlkwd{entanglement}\hlstd{(dend1,}
+        \hlstd{dend2_3),} \hlnum{2}\hlstd{)))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-37} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+\hlkwd{entanglement}\hlstd{(dend1, dend2_3)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.04225
+\end{verbatim}
+\begin{alltt}
+
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+\subsubsection{Combining a one-side greedy search with a random search}
+
+As we can see, the random search actually found something better than the forward selection search. But now we can use the forward search on the trees we found in the random search:
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{dend2_4} \hlkwb{<-} \hlkwd{untangle_step_rotate_1side}\hlstd{(dend12[[}\hlnum{2}\hlstd{]], dend12[[}\hlnum{1}\hlstd{]])}
+\hlkwd{tanglegram}\hlstd{(dend12[[}\hlnum{1}\hlstd{]], dend2_4,} \hlkwc{color_lines} \hlstd{= col_lines_by_left_groups,}
+    \hlkwc{main} \hlstd{=} \hlkwd{paste}\hlstd{(}\hlstr{"Entanglement ="}\hlstd{,} \hlkwd{round}\hlstd{(}\hlkwd{entanglement}\hlstd{(dend12[[}\hlnum{1}\hlstd{]],}
+        \hlstd{dend2_4),} \hlnum{2}\hlstd{)))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-38} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+\hlkwd{entanglement}\hlstd{(dend12[[}\hlnum{1}\hlstd{]], dend2_4)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+\begin{alltt}
+
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+We see how this got us with a perfect solution. The trees look almost identical, but they are not (look at label 45 to see a leaf which is differently located between the two trees.). We can use the k_branches parameter for tanglegram, to help us see the difference between the two trees (notice labels 19 and 45). One could actually do an animation sequence, using various k_branches values in order to located the differences between the trees.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{tanglegram}\hlstd{(}\hlkwd{color_branches}\hlstd{(dend12[[}\hlnum{1}\hlstd{]],} \hlkwc{col} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{k} \hlstd{=} \hlnum{1}\hlstd{), dend2_4,}
+    \hlkwc{color_lines} \hlstd{= col_lines_by_left_groups,} \hlkwc{k_branches} \hlstd{=} \hlnum{10}\hlstd{,}
+    \hlkwc{main} \hlstd{=} \hlkwd{paste}\hlstd{(}\hlstr{"Entanglement ="}\hlstd{,} \hlkwd{round}\hlstd{(}\hlkwd{entanglement}\hlstd{(dend12[[}\hlnum{1}\hlstd{]],}
+        \hlstd{dend2_4),} \hlnum{2}\hlstd{)))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-39} 
+
+}
+
+
+
+\end{knitrout}
+
+
+
+\subsubsection{A two-side greedy search}
+
+Sometimes, using just one-sise greedy algorithm is not enough. Also, it is probably best to combine the random search with the two sided greedy stepwise search:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{dend1} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(}\hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(USArrests[}\hlnum{1}\hlopt{:}\hlnum{20}\hlstd{, ])))}
+\hlstd{dend2} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(}\hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(USArrests[}\hlnum{1}\hlopt{:}\hlnum{20}\hlstd{, ]),} \hlkwc{method} \hlstd{=} \hlstr{"single"}\hlstd{))}
+\hlkwd{set.seed}\hlstd{(}\hlnum{3525}\hlstd{)}
+\hlstd{dend2} \hlkwb{<-} \hlkwd{shuffle}\hlstd{(dend2)}
+\hlkwd{tanglegram}\hlstd{(dend1, dend2,} \hlkwc{margin_inner} \hlstd{=} \hlnum{6.5}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-401} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+\hlkwd{entanglement}\hlstd{(dend1, dend2,} \hlkwc{L} \hlstd{=} \hlnum{2}\hlstd{)}  \hlcom{# 0.79}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.7917
+\end{verbatim}
+\begin{alltt}
+\hlstd{dend2_corrected} \hlkwb{<-} \hlkwd{untangle_step_rotate_1side}\hlstd{(dend2, dend1)}
+\hlkwd{tanglegram}\hlstd{(dend1, dend2_corrected,} \hlkwc{margin_inner} \hlstd{=} \hlnum{6.5}\hlstd{)}  \hlcom{# Good.}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-402} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+\hlkwd{entanglement}\hlstd{(dend1, dend2_corrected,} \hlkwc{L} \hlstd{=} \hlnum{2}\hlstd{)}  \hlcom{# 0.0067}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.006767
+\end{verbatim}
+\begin{alltt}
+\hlcom{# it is better, but not perfect. Can we improve it?}
+
+\hlstd{dend12_corrected} \hlkwb{<-} \hlkwd{untangle_step_rotate_2side}\hlstd{(dend1, dend2)}
+\end{alltt}
+\begin{verbatim}
+## We ran untangle  1  times
+\end{verbatim}
+\begin{alltt}
+\hlkwd{tanglegram}\hlstd{(dend12_corrected[[}\hlnum{1}\hlstd{]], dend12_corrected[[}\hlnum{2}\hlstd{]],} \hlkwc{margin_inner} \hlstd{=} \hlnum{6.5}\hlstd{)}  \hlcom{# Better...}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-403} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+\hlkwd{entanglement}\hlstd{(dend12_corrected[[}\hlnum{1}\hlstd{]], dend12_corrected[[}\hlnum{2}\hlstd{]],} \hlkwc{L} \hlstd{=} \hlnum{2}\hlstd{)}  \hlcom{# 0.0045}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.004511
+\end{verbatim}
+\begin{alltt}
+\hlcom{# best combination:}
+\hlstd{dend12_corrected_1} \hlkwb{<-} \hlkwd{untangle_random_search}\hlstd{(dend1, dend2)}
+\hlstd{dend12_corrected_2} \hlkwb{<-} \hlkwd{untangle_step_rotate_2side}\hlstd{(dend12_corrected_1[[}\hlnum{1}\hlstd{]],}
+    \hlstd{dend12_corrected_1[[}\hlnum{2}\hlstd{]])}
+\end{alltt}
+\begin{verbatim}
+## We ran untangle  1  times
+\end{verbatim}
+\begin{alltt}
+\hlkwd{tanglegram}\hlstd{(dend12_corrected_2[[}\hlnum{1}\hlstd{]], dend12_corrected_2[[}\hlnum{2}\hlstd{]],}
+    \hlkwc{margin_inner} \hlstd{=} \hlnum{6.5}\hlstd{)}  \hlcom{# Better...}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-404} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+\hlkwd{entanglement}\hlstd{(dend12_corrected_2[[}\hlnum{1}\hlstd{]], dend12_corrected_2[[}\hlnum{2}\hlstd{]],}
+    \hlkwc{L} \hlstd{=} \hlnum{2}\hlstd{)}  \hlcom{# 0 - PERFECT.}
+\end{alltt}
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+\begin{alltt}
+
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+
+
 
 
 \section{Comparing two trees - statistics and inference}
@@ -1903,6 +2202,52 @@ We are very thankful for code contributions and ideas by the R core team (especi
 \bibliography{dendextend-tutorial}
 
 \vspace*{-0.35cm}
+
+
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{Sys.Date}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## [1] "2013-08-12"
+\end{verbatim}
+\begin{alltt}
+\hlkwd{sessionInfo}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## R version 3.0.1 (2013-05-16)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## 
+## locale:
+## [1] LC_COLLATE=Hebrew_Israel.1255 
+## [2] LC_CTYPE=Hebrew_Israel.1255   
+## [3] LC_MONETARY=Hebrew_Israel.1255
+## [4] LC_NUMERIC=C                  
+## [5] LC_TIME=Hebrew_Israel.1255    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets 
+## [6] methods   base     
+## 
+## other attached packages:
+## [1] codetools_0.2-8  dendextend_0.7.1 ape_3.0-8       
+## [4] knitr_1.4       
+## 
+## loaded via a namespace (and not attached):
+## [1] digest_0.6.3    evaluate_0.4.7  formatR_0.9    
+## [4] grid_3.0.1      lattice_0.20-15 nlme_3.1-109   
+## [7] stringr_0.6.2   tools_3.0.1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+
 
 \end{document}
 

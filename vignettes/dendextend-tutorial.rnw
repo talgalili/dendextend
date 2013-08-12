@@ -44,17 +44,18 @@ options(replace.assign=TRUE,width=60)
 %\VignetteEngine{knitr::knitr}
 
 
+
+\Plaintitle{Visualizing and Comparing Trees of Heirarchical Clustering: Using the dendextend R Package}
+\title{Visualizing and Comparing\\ Trees of Heirarchical Clustering:\\ Using the dendextend \proglang{R} Package}
+
+
+% \Plaintitle{Manipulate, Visualize and Compare Dendrograms: The dendextend R Package}
+% \title{Manipulate, Visualize and Compare Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
+
+
 \author{Tal Galili\\Tel-Aviv University \And Yoav Benjamini\\Tel-Aviv University}
 \Plainauthor{Tal Galili, Yoav Benjamini}
 
-
-
-
-% \Plaintitle{Visualizing and Comparing Trees of Heirarchical Clustering: Using the dendextend R Package}
-% \title{Visualizing and Comparing\\ Trees of Heirarchical Clustering:\\ Using the dendextend \proglang{R} Package}
-
-\Plaintitle{Manipulate, Visualize and Compare Dendrograms: The dendextend R Package}
-\title{Manipulate, Visualize and Compare Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
 
 
 \Abstract{
@@ -69,6 +70,8 @@ The paper gives a detailed exposition of both the internal structure of the pack
 \Keywords{Dendrogram, hclust, hierarchical clustering, visualization, tanglegram,  \proglang{R}}
 \Plainkeywords{Dendrogram, hclust, hierarchical clustering, visualization, tanglegram, R}
 
+
+% \begin{center} \today \end{center}.
 
 % \Volume{40}
 % \Issue{8}
@@ -993,6 +996,41 @@ tanglegram(color_branches(dend12[[1]], col=1, k=1) , dend2_4, color_lines=col_li
 @
 
 
+\subsubsection{A two-side greedy search}
+
+Sometimes, using just one-sise greedy algorithm is not enough. Also, it is probably best to combine the random search with the two sided greedy stepwise search:
+
+<<>>=
+
+
+dend1 <- as.dendrogram(hclust(dist(USArrests[1:20,])))
+dend2 <- as.dendrogram(hclust(dist(USArrests[1:20,]), method = "single"))
+set.seed(3525)
+dend2 <- shuffle(dend2)
+tanglegram(dend1,dend2, margin_inner=6.5)
+entanglement(dend1,dend2, L = 2) # 0.79
+
+dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)
+tanglegram(dend1,dend2_corrected, margin_inner=6.5) # Good.
+entanglement(dend1,dend2_corrected, L = 2) # 0.0067
+# it is better, but not perfect. Can we improve it?
+
+dend12_corrected <- untangle_step_rotate_2side(dend1, dend2)
+tanglegram(dend12_corrected[[1]],dend12_corrected[[2]], margin_inner=6.5) # Better...
+entanglement(dend12_corrected[[1]],dend12_corrected[[2]], L=2) # 0.0045
+
+
+# best combination:
+dend12_corrected_1 <- untangle_random_search(dend1, dend2)
+dend12_corrected_2 <- untangle_step_rotate_2side(dend12_corrected_1[[1]],dend12_corrected_1[[2]])
+tanglegram(dend12_corrected_2[[1]],dend12_corrected_2[[2]], margin_inner=6.5) # Better...
+entanglement(dend12_corrected_2[[1]],dend12_corrected_2[[2]], L=2) # 0 - PERFECT.
+
+
+@
+
+
+
 
 
 \section{Comparing two trees - statistics and inference}
@@ -1169,6 +1207,21 @@ We are very thankful for code contributions and ideas by the R core team (especi
 \bibliography{dendextend-tutorial}
 
 \vspace*{-0.35cm}
+
+
+
+
+
+<<sessionInfo, cache=FALSE>>=
+
+Sys.Date()
+
+sessionInfo()
+
+@
+
+
+
 
 \end{document}
 
