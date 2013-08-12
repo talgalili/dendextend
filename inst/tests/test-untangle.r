@@ -44,7 +44,9 @@ test_that("all_couple_rotations_at_k work",{
 })
 
 
-test_that("untangle_forward_rotate_1side work",{
+
+
+test_that("untangle_step_rotate_1side work",{
 
    dend1 <- as.dendrogram(hclust(dist(USArrests[1:10,])))
    set.seed(3525)
@@ -65,6 +67,37 @@ test_that("untangle_forward_rotate_1side work",{
 })
 
 
+
+
+
+
+test_that("untangle_step_rotate_2side work",{
+   
+   
+   dend1 <- as.dendrogram(hclust(dist(USArrests[1:20,])))
+   dend2 <- as.dendrogram(hclust(dist(USArrests[1:20,]), method = "single"))
+   set.seed(3525)
+   dend2 <- shuffle(dend2)
+#    tanglegram(dend1,dend2, margin_inner=6.5)
+   expect_identical(round(entanglement(dend1,dend2, L = 2),2) ,  0.79)   
+   
+   dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)
+#    tanglegram(dend1,dend2_corrected, margin_inner=6.5) # Good.
+   expect_identical(round(entanglement(dend1,dend2_corrected, L = 2),3) ,  0.007)   
+   # it is better, but not perfect. Can we improve it?
+   
+   dend12_corrected <- untangle_step_rotate_2side(dend1, dend2)
+#    tanglegram(dend12_corrected[[1]],dend12_corrected[[2]], margin_inner=6.5) # Better...
+   expect_identical(round(entanglement(dend12_corrected[[1]],dend12_corrected[[2]], L=2),3) ,  0.005)   
+   
+   # best combination:
+   dend12_corrected_1 <- untangle_random_search(dend1, dend2)
+   dend12_corrected_2 <- untangle_step_rotate_2side(dend12_corrected_1[[1]],dend12_corrected_1[[2]])
+#    tanglegram(dend12_corrected_2[[1]],dend12_corrected_2[[2]], margin_inner=6.5) # Better...
+   expect_identical(round(entanglement(dend12_corrected_2[[1]],dend12_corrected_2[[2]], L=2),3) ,  0)   
+    # 0 - PERFECT.
+
+})
 
 
 
