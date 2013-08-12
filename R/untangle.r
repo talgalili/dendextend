@@ -472,44 +472,6 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
 
 
 
-# 
-# untangle.forward.step.rotate.1side <- function(dend1, dend2_fixed) {
-# 	# this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
-# 	require(plyr)
-# 	leaves_order <- order.dendrogram(dend1)
-# 	best_dend <- dend1
-# 	
-# 	k_visited <- rep(F, length(leaves_order))
-# 	k_visited[1] <- T # I don't need the first one
-# 	k <- 1
-# 	
-# 	while(!all(k_visited)) {
-# 		# create all of the rotations with k+-1:
-# 		dend1_k_p1_rotated <- all_couple_rotations_at_k(best_dend, k+1)
-# 		dend1_k_m1_rotated <- all_couple_rotations_at_k(best_dend, k-1)
-# 		# find the enteglement for all of them:
-# 		dend1_cut_k_p1_entanglements <- laply(dend1_k_p1_rotated, entanglement, dend2 = dend2_fixed)
-# 		dend1_cut_k_m1_entanglements <- laply(dend1_k_m1_rotated, entanglement, dend2 = dend2_fixed)
-# 		# what is best, forward or backward?
-# 		if(min(dend1_cut_k_p1_entanglements) > min(dend1_cut_k_m1_entanglements)) {
-# 		
-# 		}
-# 		k <- k + 1
-# 		ss_best_dend <- which.min(dend1_cut_k_entanglements)
-# 		best_dend <- dend1_k_rotated[[ss_best_dend]]		
-# 		
-# 		all_couple_rotations_at_k(best_dend, -1)
-# 	}
-# 	
-# 	return(best_dend)	
-# }
-
-
-# dend12s_1_better <- untangle_step_rotate_1side(dend1, dend2)
-# cutree(dend1, 10)
-
-
-
    
 
 #' @title Stepwise untangle two trees one at a time
@@ -636,11 +598,64 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
 
 
 
+#########################################
+#########################################
+#########################################
+#########################################
+#########################################
+#########################################
+#########################################
+#########################################
+##### Other attempts which have not 
+##### proven themselves as useful...
+#########################################
+
+
+
+
+
+
+# 
+# untangle.forward.step.rotate.1side <- function(dend1, dend2_fixed) {
+#    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
+# 	require(plyr)
+# 	leaves_order <- order.dendrogram(dend1)
+# 	best_dend <- dend1
+# 	
+# 	k_visited <- rep(F, length(leaves_order))
+# 	k_visited[1] <- T # I don't need the first one
+# 	k <- 1
+# 	
+# 	while(!all(k_visited)) {
+# 		# create all of the rotations with k+-1:
+# 		dend1_k_p1_rotated <- all_couple_rotations_at_k(best_dend, k+1)
+# 		dend1_k_m1_rotated <- all_couple_rotations_at_k(best_dend, k-1)
+# 		# find the enteglement for all of them:
+# 		dend1_cut_k_p1_entanglements <- laply(dend1_k_p1_rotated, entanglement, dend2 = dend2_fixed)
+# 		dend1_cut_k_m1_entanglements <- laply(dend1_k_m1_rotated, entanglement, dend2 = dend2_fixed)
+# 		# what is best, forward or backward?
+# 		if(min(dend1_cut_k_p1_entanglements) > min(dend1_cut_k_m1_entanglements)) {
+# 		
+# 		}
+# 		k <- k + 1
+# 		ss_best_dend <- which.min(dend1_cut_k_entanglements)
+# 		best_dend <- dend1_k_rotated[[ss_best_dend]]		
+# 		
+# 		all_couple_rotations_at_k(best_dend, -1)
+# 	}
+# 	
+# 	return(best_dend)	
+# }
+
+
+# dend12s_1_better <- untangle_step_rotate_1side(dend1, dend2)
+# cutree(dend1, 10)
+
 
 
 
 # evolution algorithm
-untangle.intercourse <- function(brother_1_dend1, brother_1_dend2, 
+untangle_intercourse <- function(brother_1_dend1, brother_1_dend2, 
                                  sister_2_dend1, 	sister_2_dend2, L = 1) 
 {
    # Gets two pairs of dend, and returns two childrens (inside a list)
@@ -650,7 +665,7 @@ untangle.intercourse <- function(brother_1_dend1, brother_1_dend2,
    list(children_1, children_2)
 }
 
-entanglement.return.best.brother <- function(brother_1_dend1, brother_1_dend2, 
+entanglement_return_best_brother <- function(brother_1_dend1, brother_1_dend2, 
                                              brother_2_dend1, brother_2_dend2, L = 1)
 {
    # Gets two pairs of dend, and returns the pair with the best (minimal) entanglement
@@ -663,21 +678,21 @@ entanglement.return.best.brother <- function(brother_1_dend1, brother_1_dend2,
    }
 }
 
-untangle.intercourse.evolution <- function(intercourse, L = 1) {
+untangle_intercourse_evolution <- function(intercourse, L = 1) {
    # intercourse is a list with two elements.  Each element has two dends
-   entanglement.return.best.brother(intercourse[[1]][[1]], intercourse[[1]][[2]],
+   entanglement_return_best_brother(intercourse[[1]][[1]], intercourse[[1]][[2]],
                                     intercourse[[2]][[1]], intercourse[[2]][[2]], L = L) 
    
    
 }
 
 
-untangle.evolution<- function(brother_1_dend1, brother_1_dend2, 
+untangle_evolution<- function(brother_1_dend1, brother_1_dend2, 
                               sister_2_dend1, 	sister_2_dend2, L = 1) 
 {
-   intercourse <- untangle.intercourse(brother_1_dend1, brother_1_dend2, 
+   intercourse <- untangle_intercourse(brother_1_dend1, brother_1_dend2, 
                                        sister_2_dend1, 	sister_2_dend2, L = L)  # creates a list with two pairs of dends
-   untangle.intercourse.evolution(intercourse, L = L)  # returns the best child
+   untangle_intercourse_evolution(intercourse, L = L)  # returns the best child
 }
 
 
@@ -693,7 +708,7 @@ untangle.evolution<- function(brother_1_dend1, brother_1_dend2,
 # A new approuch - I will go through every possible flip on one side, and find the one that gives the best improvement.
 # I will do the same on each tree, back and forth, until no better flip is found.
 
-untangle.best.k.to.rotate.by.1side <- function(dend1, dend2_fixed, L = 1) {
+untangle_best_k_to_rotate_by_1side <- function(dend1, dend2_fixed, L = 1) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
    require(plyr)
    leaves_order <- order.dendrogram(dend1)
@@ -717,9 +732,9 @@ untangle.best.k.to.rotate.by.1side <- function(dend1, dend2_fixed, L = 1) {
 
 
 
-flip.1.and.2 <- function(x) ifelse(x == 1, 2, 1)
+flip_1_and_2 <- function(x) {ifelse(x == 1, 2, 1)}
 
-untangle.best.k.to.rotate.by.2side.backNforth <- function(dend1, dend2, times_to_stop = 2, print_times = T, L = 1) {
+untangle_best_k_to_rotate_by_2side_backNforth <- function(dend1, dend2, times_to_stop = 2, print_times = T, L = 1) {
    # this function gets two dendgrams, and orders dend1 and then 2 and then 1 again - back and forth -until a best entengelment is reached.
    
    was_improved <- T # e.g: we can improve it further
@@ -727,14 +742,14 @@ untangle.best.k.to.rotate.by.2side.backNforth <- function(dend1, dend2, times_to
    
    while(was_improved) {
       entanglement_old <- entanglement(dend1, dend2, L = L) 
-      dend1 <- untangle.best.k.to.rotate.by.1side(dend1, dend2, L = L) 
-      dend2 <- untangle.best.k.to.rotate.by.1side(dend2, dend1, L = L) 
+      dend1 <- untangle_best_k_to_rotate_by_1side(dend1, dend2, L = L) 
+      dend2 <- untangle_best_k_to_rotate_by_1side(dend2, dend1, L = L) 
       entanglement_new <- entanglement(dend1, dend2, L = L) 
       was_improved <- identical(entanglement_old, entanglement_new)
       counter <- counter + 1
    }
    # identical(1,1+.00000000000000000000000001) # T
-   if(print_times) cat("We ran untangle.best.k.to.rotate.by.2side.backNforth ", counter, " times")
+   if(print_times) cat("We ran untangle_best_k_to_rotate_by_2side_backNforth ", counter, " times")
    
    return(list(dend1 = dend1, dend2 = dend2))	
 }
@@ -753,7 +768,7 @@ if(F) {
    entanglement(dend1, dend2) 		
    
    system.time(dend12_best_01 <- untangle_step_rotate_2side(dend1, dend2, L = 2)) # 0.47 sec
-   system.time(dend12_best_02 <- untangle.best.k.to.rotate.by.2side.backNforth(dend1, dend2, L = 2)) # 0.44 sec
+   system.time(dend12_best_02 <- untangle_best_k_to_rotate_by_2side_backNforth(dend1, dend2, L = 2)) # 0.44 sec
    tanglegram(dend1, dend2) 
    tanglegram(dend12_best_01[[1]], dend12_best_01[[2]]) 
    tanglegram(dend12_best_02[[1]], dend12_best_02[[2]]) 
@@ -775,7 +790,7 @@ richrach <- function(x) {
    # to this: 1 6 2 5 3 4
 }
 
-richrach.xy <- function(x,y) { 
+richrach_xy <- function(x,y) { 
    # move back and forth between the beginning and the end of a vector
    c(t(cbind(x, y)))[1:length(x)]
    # example:
@@ -785,10 +800,10 @@ richrach.xy <- function(x,y) {
 }
 
 
-odd.locations <- function(x) {
+odd_locations <- function(x) {
    x[seq(1, length(x), by = 2)]
 }
-# odd.locations(1:6)
+# odd_locations(1:6)
 
 
 
@@ -844,7 +859,7 @@ if(F) {
    dend2_02 <- untangle.backward.rotate.1side(dend2, dend1)
    dend2_03 <- untangle.backward.rotate.1side(dend2_01, dend1)
    dend2_04 <- untangle_step_rotate_1side(dend2_02, dend1)
-   dend2_05 <- untangle.evolution(dend1, dend2 , dend1, dend2_01 )
+   dend2_05 <- untangle_evolution(dend1, dend2 , dend1, dend2_01 )
    entanglement(dend1, dend2) 
    entanglement(dend1, dend2_01) 
    
@@ -1011,24 +1026,24 @@ if(F){
 # 
 
 
-
-
-
-order.weights.by.cluster.order <- function(weights, cluster_id, new_cluster_order) {
-   # this function gets a vector of weights. The clusters each weight belongs to
-   # and a new order for the clusters
-   # and outputs the new weight vector after ordering the vector by the new order of the cluster (internal order of elements within each cluster is preserved)
-   output <- NULL
-   for(i in seq_along(new_cluster_order)) {
-      output <- c(output, weights[cluster_id == new_cluster_order[i]])
-   }
-   return(output)
-}
-if(F){
-   # example:
-   x = c(1,2,3,4,5,6)
-   ord1 = c(1,1,2,2,2,3)
-   ord_of_clusters = c(2,1,3)
-   c(x[ord1 == ord_of_clusters[1]],x[ord1 == ord_of_clusters[2]],x[ord1 == ord_of_clusters[3]])
-   order.weights.by.cluster.order(x, ord1, ord_of_clusters)	
-}
+# 
+# 
+# 
+# order.weights.by.cluster.order <- function(weights, cluster_id, new_cluster_order) {
+#    # this function gets a vector of weights. The clusters each weight belongs to
+#    # and a new order for the clusters
+#    # and outputs the new weight vector after ordering the vector by the new order of the cluster (internal order of elements within each cluster is preserved)
+#    output <- NULL
+#    for(i in seq_along(new_cluster_order)) {
+#       output <- c(output, weights[cluster_id == new_cluster_order[i]])
+#    }
+#    return(output)
+# }
+# if(F){
+#    # example:
+#    x = c(1,2,3,4,5,6)
+#    ord1 = c(1,1,2,2,2,3)
+#    ord_of_clusters = c(2,1,3)
+#    c(x[ord1 == ord_of_clusters[1]],x[ord1 == ord_of_clusters[2]],x[ord1 == ord_of_clusters[3]])
+#    order.weights.by.cluster.order(x, ord1, ord_of_clusters)	
+# }
