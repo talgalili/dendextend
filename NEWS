@@ -3,7 +3,8 @@ dendextend 0.7.2 (2013-08-13)
 
 BUG FIXES: 
    * Fix untangle_step_rotate_1side to work with non-missing dend_heights_per_k
-
+   * Set sort_cluster_numbers = TRUE for cutree, in order to make it compatible with stats:::cutree. Added a test for this.
+   * Fix cutree.hclust to work with a vector of k again when !order_clusters_as_data
 
 
 dendextend 0.7.1 (2013-08-12)
