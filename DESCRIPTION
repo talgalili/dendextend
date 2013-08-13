@@ -1,8 +1,8 @@
 Package: dendextend
 Type: Package
 Title: Extending dendrogram functionality
-Version: 0.7.1
-Date: 2013-08-12
+Version: 0.7.2
+Date: 2013-08-13
 Author: Tal Galili
 Maintainer: Tal Galili <tal.galili@gmail.com>
 Description: Functions and methods for extanding dendrogram objects in R.
@@ -35,4 +35,5 @@ Collate:
     'tanglegram.r'
     'entanglement.r'
     'untangle.r'
+    'bakers_gamma.r'
     'zzz.r'

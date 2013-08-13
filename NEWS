@@ -1,10 +1,25 @@
 dendextend 0.7.2 (2013-08-13)
 ----------------------------
 
+NEW FUNCTIONS ADDED: 
+   * plotNode_horiz - allows the labels, in plot_horiz.dendrogram, to be aligned to the leaves tips when the tree is plotted horizontally, its leaves facing left.
+
+UPDATED FUNCTIONS:
+   * plot_horiz.dendrogram - allows the labels to be aligned to the leaves tips when the tree is plotted horizontally, its leaves facing left. (took a lot of digging into internal functions used by plot.dendrogram)
+   * tanglegram - added the parameters: dLeaf_left dLeaf_right. Also, labels are now alligned to the leaves tips in the right dendrogram.
+
+
+
 BUG FIXES: 
    * Fix untangle_step_rotate_1side to work with non-missing dend_heights_per_k
    * Set sort_cluster_numbers = TRUE for cutree, in order to make it compatible with stats:::cutree. Added a test for this.
-   * Fix cutree.hclust to work with a vector of k again when !order_clusters_as_data
+   * Fix cutree.hclust to work with a vector of k when !order_clusters_as_data
+   * Fix cutree.dendrogram to give default results as stats:::hclust does, by setting the default to sort_cluster_numbers = TRUE.
+
+
+OTHER NOTES:
+   * Variations of the changes to plot_horiz.dendrogram and plotNode_horiz should be added to R core in order to allow forward compatability.
+
 
 
 dendextend 0.7.1 (2013-08-12)
