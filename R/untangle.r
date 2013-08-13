@@ -436,7 +436,8 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
    require(plyr)
    n_leaves <- nleaves(dend1)
    best_dend <- dend1
-   if(missing(dend_heights_per_k)) best_dend_heights_per_k <- heights_per_k.dendrogram(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
+   if(missing(dend_heights_per_k)) dend_heights_per_k <- heights_per_k.dendrogram(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
+   
    
    if(is.null(k_seq)) {
       # choose step direction:
@@ -449,7 +450,7 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
    
    
    for(k in k_seq) {
-      dend1_k_rotated <- all_couple_rotations_at_k(best_dend, k, dend_heights_per_k = best_dend_heights_per_k)
+      dend1_k_rotated <- all_couple_rotations_at_k(best_dend, k, dend_heights_per_k = dend_heights_per_k)
       dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, tree2 = dend2_fixed, L = L)
       ss_best_dend <- which.min(dend1_cut_k_entanglements)
       current_best_dend <- dend1_k_rotated[[ss_best_dend]]
@@ -581,9 +582,6 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
    
    return(list(dend1 = dend1_better, dend2 = dend2_better))	
 }
-
-
-
 
 
 

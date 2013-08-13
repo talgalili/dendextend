@@ -1,3 +1,11 @@
+dendextend 0.7.2 (2013-08-13)
+----------------------------
+
+BUG FIXES: 
+   * Fix untangle_step_rotate_1side to work with non-missing dend_heights_per_k
+
+
+
 dendextend 0.7.1 (2013-08-12)
 ----------------------------
 
