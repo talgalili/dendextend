@@ -78,9 +78,12 @@ test_that("untangle_step_rotate_2side work",{
    expect_identical(round(entanglement(dend1,dend2, L = 2),2) ,  0.35)   
    
    # Fixing the problem :)
-   dend2_corrected <- untangle_step_rotate_2side(dend2, dend1,print_times=FALSE)
-   #    tanglegram(dend2_corrected[[1]],dend2_corrected[[2]]) # FIXED.
-   expect_identical(round(entanglement(dend2_corrected[[1]],dend2_corrected[[2]], L = 2),3) ,  0.005)      
+   dend12_corrected <- suppressWarnings(
+      untangle_step_rotate_2side(dend1, dend2, L = 2, print_times=FALSE)
+      )      
+   
+   #    tanglegram(dend12_corrected[[1]],dend12_corrected[[2]]) # FIXED.
+   expect_identical(round(entanglement(dend12_corrected[[1]],dend12_corrected[[2]], L = 2),3) ,  0.036)      
 })
 
 
