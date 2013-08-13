@@ -10,14 +10,14 @@
 
   \method{cutree}{hclust}(tree, k = NULL, h = NULL,
     order_clusters_as_data =TRUE, sort_cluster_numbers =
-    FALSE, warn = TRUE, ...)
+    TRUE, warn = TRUE, ...)
 
   \method{cutree}{phylo}(tree, k = NULL, h = NULL,...)
 
   \method{cutree}{dendrogram}(tree, k = NULL, h = NULL,
     dend_heights_per_k = NULL, use_labels_not_values =
     TRUE, order_clusters_as_data =TRUE,
-    sort_cluster_numbers = FALSE, warn = TRUE,
+    sort_cluster_numbers = TRUE, warn = TRUE,
     try_cutree_hclust = TRUE, ...)
 }
 \arguments{
@@ -47,9 +47,9 @@
   \link[stats]{cutree}, this is set to TRUE. This is passed
   to \code{cutree_1h.dendrogram}.}
 
-  \item{sort_cluster_numbers}{logical. Should the resulting
-  cluster id numbers be sorted? (default is FALSE in order
-  to make the function compatible with \code{
+  \item{sort_cluster_numbers}{logical (TRUE). Should the
+  resulting cluster id numbers be sorted? (default is FALSE
+  in order to make the function compatible with \code{
   \link[stats]{cutree} } ) from {stats}, but it allows for
   sensible color order when using \link{color_branches}.}
 

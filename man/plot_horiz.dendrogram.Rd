@@ -9,13 +9,19 @@
   for this function.
 }
 \usage{
-  plot_horiz.dendrogram(x, center = FALSE,
+  plot_horiz.dendrogram(x,
+    type = c("rectangle", "triangle"), center = FALSE,
     edge.root = is.leaf(x) || !is.null(attr(x, "edgetext")),
     dLeaf = NULL, horiz = TRUE, xaxt = "n", yaxt = "s",
-    xlim, ylim, side = FALSE, ...)
+    xlim = NULL, ylim = NULL, nodePar = NULL,
+    edgePar = list(),
+    leaflab = c("perpendicular", "textlike", "none"),
+    side = TRUE, text_offset = NULL, text_pos = 2, ...)
 }
 \arguments{
   \item{x}{tree object (dendrogram)}
+
+  \item{type}{}
 
   \item{center}{logical; if TRUE, nodes are plotted
   centered with respect to the leaves in the branch.
@@ -27,8 +33,9 @@
 
   \item{dLeaf}{a number specifying the distance in user
   coordinates between the tip of a leaf and its label. If
-  NULL as per default, 3/4 of a letter width or height is
-  used.}
+  NULL as per default, 3/4 of a letter width is used.
+  IMPORTANT - this is overriddenb by the text_offset
+  parameter.}
 
   \item{horiz}{logical indicating if the dendrogram should
   be drawn horizontally or not. In this function it MUST be
@@ -40,19 +47,32 @@
   \item{yaxt}{graphical parameters, or arguments for other
   methods.}
 
-  \item{xlim}{optional x- and y-limits of the plot, passed
-  to plot.default. The defaults for these show the full
-  dendrogram.}
+  \item{xlim}{(NULL) optional x- and y-limits of the plot,
+  passed to plot.default. The defaults for these show the
+  full dendrogram.}
 
-  \item{ylim}{optional x- and y-limits of the plot, passed
-  to plot.default. The defaults for these show the full
-  dendrogram.}
+  \item{ylim}{(NULL) optional x- and y-limits of the plot,
+  passed to plot.default. The defaults for these show the
+  full dendrogram.}
 
-  \item{side}{logical (FALSE). Should the tips of the drawn
+  \item{nodePar}{NULL.}
+
+  \item{edgePar}{list()}
+
+  \item{leaflab}{c("perpendicular", "textlike", "none")}
+
+  \item{side}{logical (TRUE). Should the tips of the drawn
   tree be facing the left side. This is the important
   feature of this function.}
 
-  \item{...}{passed to \link{plot.dendrogram}.}
+  \item{text_pos}{integer from either 1 to 4 (2). Two
+  relevant values are 2 and 4. 2 (default) means that the
+  labels are alligned to the tips of the tree leaves. 4
+  will have the labels allign to the left, making them look
+  like they were when the tree was on the left side (with
+  leaves tips facing to the right).}
+
+  \item{...}{passed to \link{plot}.}
 }
 \value{
   The invisiable dLeaf value.
@@ -70,12 +90,19 @@
 dend <- as.dendrogram(hclust(dist(USArrests[1:10,])))
 
 par(mfrow =c(1,2), mar = rep(6,4))
-plot_horiz.dendrogram(dend)
+plot_horiz.dendrogram(dend, side=FALSE)
 plot_horiz.dendrogram(dend, side=TRUE)
 # plot_horiz.dendrogram(dend, side=TRUE, dLeaf= 0)
 # plot_horiz.dendrogram(dend, side=TRUE, nodePar = list(pos = 1))
 # sadly, lab.pos is not implemented yet,
 ## so the labels can not be right aligned...
+
+
+plot_horiz.dendrogram(dend, side=F)
+plot_horiz.dendrogram(dend, side=TRUE, dLeaf=0, xlim = c(100,-10)) # bad
+plot_horiz.dendrogram(dend, side=TRUE, text_offset = 0)
+plot_horiz.dendrogram(dend, side=TRUE, text_offset = 0,text_pos=4)
+
 }
 }
 \seealso{

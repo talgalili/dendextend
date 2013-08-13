@@ -20,6 +20,206 @@
 
 
 
+
+
+
+
+
+
+### An internal function for plot_horiz.dendrogram
+### This is basically "plotNode", but with options to make it work 
+### with horizontal trees.
+plotNode_horiz <- function (x1, x2, subtree, type, center, leaflab, dLeaf, nodePar, 
+                            edgePar, horiz = FALSE, 
+                            text_pos = 2, text_offset = 0.5) 
+{
+   .midDend <- stats:::.midDend
+   plotNodeLimit <- stats:::plotNodeLimit
+   plotNode <- stats:::plotNode
+   
+   inner <- !is.leaf(subtree) && x1 != x2
+   yTop <- attr(subtree, "height")
+   bx <- plotNodeLimit(x1, x2, subtree, center)
+   xTop <- bx$x
+   hasP <- !is.null(nPar <- attr(subtree, "nodePar"))
+   if (!hasP) 
+      nPar <- nodePar
+   if (getOption("verbose")) {
+      cat(if (inner) 
+         "inner node"
+          else "leaf", ":")
+      if (!is.null(nPar)) {
+         cat(" with node pars\n")
+         str(nPar)
+      }
+      cat(if (inner) 
+         paste(" height", formatC(yTop), "; "), "(x1,x2)= (", 
+          formatC(x1, width = 4), ",", formatC(x2, width = 4), 
+          ")", "--> xTop=", formatC(xTop, width = 8), "\n", 
+          sep = "")
+   }
+   Xtract <- function(nam, L, default, indx) rep(if (nam %in% 
+                                                        names(L)) L[[nam]] else default, length.out = indx)[indx]
+   asTxt <- function(x) if (is.character(x) || is.expression(x) || 
+                               is.null(x)) 
+      x
+   else as.character(x)
+   i <- if (inner || hasP) 
+      1
+   else 2
+   if (!is.null(nPar)) {
+      pch <- Xtract("pch", nPar, default = 1L:2, i)
+      cex <- Xtract("cex", nPar, default = c(1, 1), i)
+      col <- Xtract("col", nPar, default = par("col"), i)
+      bg <- Xtract("bg", nPar, default = par("bg"), i)
+      points(if (horiz) 
+         cbind(yTop, xTop)
+             else cbind(xTop, yTop), pch = pch, bg = bg, col = col, 
+             cex = cex)
+   }
+   if (leaflab == "textlike") 
+      p.col <- Xtract("p.col", nPar, default = "white", i)
+   lab.col <- Xtract("lab.col", nPar, default = par("col"), 
+                     i)
+   lab.cex <- Xtract("lab.cex", nPar, default = c(1, 1), i)
+   lab.font <- Xtract("lab.font", nPar, default = par("font"), 
+                      i)
+   lab.xpd <- Xtract("xpd", nPar, default = c(TRUE, TRUE), i)
+   if (is.leaf(subtree)) {
+      if (leaflab == "perpendicular") {
+         if (horiz) {
+            if(text_pos==2) {
+               X <- yTop - dLeaf * lab.cex ##############
+            } else {
+               X <- yTop + dLeaf * lab.cex ##############               
+            }
+            Y <- xTop
+            srt <- 0
+            adj <- c(0, 0.5)
+         }
+         else {
+            Y <- yTop - dLeaf * lab.cex
+            X <- xTop
+            srt <- 90
+            adj <- 1
+         }
+         nodeText <- asTxt(attr(subtree, "label"))
+         text(X, Y, nodeText, xpd = lab.xpd, srt = srt, adj = adj, 
+              cex = lab.cex, col = lab.col, font = lab.font, 
+              pos = text_pos, offset = text_offset) ###########
+      }
+   }
+   else if (inner) {
+      segmentsHV <- function(x0, y0, x1, y1) {
+         if (horiz) 
+            segments(y0, x0, y1, x1, col = col, lty = lty, 
+                     lwd = lwd)
+         else segments(x0, y0, x1, y1, col = col, lty = lty, 
+                       lwd = lwd)
+      }
+      for (k in seq_along(subtree)) {
+         child <- subtree[[k]]
+         yBot <- attr(child, "height")
+         if (getOption("verbose")) 
+            cat("ch.", k, "@ h=", yBot, "; ")
+         if (is.null(yBot)) 
+            yBot <- 0
+         xBot <- if (center) 
+            mean(bx$limit[k:(k + 1)])
+         else bx$limit[k] + .midDend(child)
+         hasE <- !is.null(ePar <- attr(child, "edgePar"))
+         if (!hasE) 
+            ePar <- edgePar
+         i <- if (!is.leaf(child) || hasE) 
+            1
+         else 2
+         col <- Xtract("col", ePar, default = par("col"), 
+                       i)
+         lty <- Xtract("lty", ePar, default = par("lty"), 
+                       i)
+         lwd <- Xtract("lwd", ePar, default = par("lwd"), 
+                       i)
+         if (type == "triangle") {
+            segmentsHV(xTop, yTop, xBot, yBot)
+         }
+         else {
+            segmentsHV(xTop, yTop, xBot, yTop)
+            segmentsHV(xBot, yTop, xBot, yBot)
+         }
+         vln <- NULL
+         if (is.leaf(child) && leaflab == "textlike") {
+            nodeText <- asTxt(attr(child, "label"))
+            if (getOption("verbose")) 
+               cat("-- with \"label\"", format(nodeText))
+            hln <- 0.6 * strwidth(nodeText, cex = lab.cex)/2
+            vln <- 1.5 * strheight(nodeText, cex = lab.cex)/2
+            rect(xBot - hln, yBot, xBot + hln, yBot + 2 * 
+                    vln, col = p.col)
+            text(xBot, yBot + vln, nodeText, xpd = lab.xpd, 
+                 cex = lab.cex, col = lab.col, font = lab.font) # , pos = text_pos)
+         }
+         if (!is.null(attr(child, "edgetext"))) {
+            edgeText <- asTxt(attr(child, "edgetext"))
+            if (getOption("verbose")) 
+               cat("-- with \"edgetext\"", format(edgeText))
+            if (!is.null(vln)) {
+               mx <- if (type == "triangle") 
+                  (xTop + xBot + ((xTop - xBot)/(yTop - yBot)) * 
+                      vln)/2
+               else xBot
+               my <- (yTop + yBot + 2 * vln)/2
+            }
+            else {
+               mx <- if (type == "triangle") 
+                  (xTop + xBot)/2
+               else xBot
+               my <- (yTop + yBot)/2
+            }
+            p.col <- Xtract("p.col", ePar, default = "white", 
+                            i)
+            p.border <- Xtract("p.border", ePar, default = par("fg"), 
+                               i)
+            p.lwd <- Xtract("p.lwd", ePar, default = lwd, 
+                            i)
+            p.lty <- Xtract("p.lty", ePar, default = lty, 
+                            i)
+            t.col <- Xtract("t.col", ePar, default = col, 
+                            i)
+            t.cex <- Xtract("t.cex", ePar, default = 1, i)
+            t.font <- Xtract("t.font", ePar, default = par("font"), 
+                             i)
+            vlm <- strheight(c(edgeText, "h"), cex = t.cex)/2
+            hlm <- strwidth(c(edgeText, "m"), cex = t.cex)/2
+            hl3 <- c(hlm[1L], hlm[1L] + hlm[2L], hlm[1L])
+            if (horiz) {
+               polygon(my + c(-hl3, hl3), mx + sum(vlm) * 
+                          c(-1L:1L, 1L:-1L), col = p.col, border = p.border, 
+                       lty = p.lty, lwd = p.lwd)
+               text(my, mx, edgeText, cex = t.cex, col = t.col, 
+                    font = t.font) # , pos = text_pos)
+            }
+            else {
+               polygon(mx + c(-hl3, hl3), my + sum(vlm) * 
+                          c(-1L:1L, 1L:-1L), col = p.col, border = p.border, 
+                       lty = p.lty, lwd = p.lwd)
+               text(mx, my, edgeText, cex = t.cex, col = t.col, 
+                    font = t.font)
+            }
+         }
+         plotNode_horiz(bx$limit[k], bx$limit[k + 1], subtree = child,  #########
+                        type, center, leaflab, dLeaf, nodePar, edgePar, 
+                        horiz, text_pos = text_pos, text_offset = text_offset) ########
+      }
+   }
+   invisible()
+}
+
+
+
+
+
+
+
 #' @title Plotting a left-tip-adjusted horizontal dendrogram
 #' @export
 #' @description 
@@ -29,24 +229,34 @@
 #' is finding the distance of the labels from the leaves tips - which is solved
 #' with this function.
 #' @param x tree object (dendrogram)
+#' @param type
 #' @param center logical; if TRUE, nodes are plotted centered with respect to
 #' the leaves in the branch. Otherwise (default), plot them in the
 #'  middle of all direct child nodes.
 #' @param edge.root logical; if true, draw an edge to the root node.
 #' @param dLeaf a number specifying the distance in user coordinates between 
 #' the tip of a leaf and its label. If NULL as per default, 3/4 of a letter
-#' width or height is used.
+#' width is used.
+#' IMPORTANT - this is overriddenb by the text_offset parameter.
 #' @param horiz logical indicating if the dendrogram should be 
 #' drawn horizontally or not. In this function it MUST be TRUE!
 #' @param xaxt graphical parameters, or arguments for other methods.
 #' @param yaxt graphical parameters, or arguments for other methods.
-#' @param xlim optional x- and y-limits of the plot, passed to plot.default. 
+#' @param xlim (NULL) optional x- and y-limits of the plot, passed to plot.default. 
 #' The defaults for these show the full dendrogram.
-#' @param ylim optional x- and y-limits of the plot, passed to plot.default. 
+#' @param ylim (NULL) optional x- and y-limits of the plot, passed to plot.default. 
 #' The defaults for these show the full dendrogram.
-#' @param side logical (FALSE). Should the tips of the drawn tree be facing
+#' @param nodePar NULL.
+#' @param edgePar list()
+#' @param leaflab c("perpendicular", "textlike", "none")
+#' @param side logical (TRUE). Should the tips of the drawn tree be facing
 #' the left side. This is the important feature of this function.
-#' @param ... passed to \link{plot.dendrogram}.
+#' @param text_pos integer from either 1 to 4 (2). Two relevant values 
+#' are 2 and 4. 2 (default) means that the labels are alligned to the 
+#' tips of the tree leaves. 4 will have the labels allign to the left,
+#' making them look like they were when the tree was on the left side
+#' (with leaves tips facing to the right).
+#' @param ... passed to \link{plot}.
 #' @return The invisiable dLeaf value.
 #' @source
 #' This function is based on replicating \link{plot.dendrogram}.
@@ -59,20 +269,34 @@
 #' dend <- as.dendrogram(hclust(dist(USArrests[1:10,])))
 #' 
 #' par(mfrow =c(1,2), mar = rep(6,4))
-#' plot_horiz.dendrogram(dend) 
+#' plot_horiz.dendrogram(dend, side=FALSE) 
 #' plot_horiz.dendrogram(dend, side=TRUE) 
 #' # plot_horiz.dendrogram(dend, side=TRUE, dLeaf= 0) 
 #' # plot_horiz.dendrogram(dend, side=TRUE, nodePar = list(pos = 1)) 
 #' # sadly, lab.pos is not implemented yet, 
 #' ## so the labels can not be right aligned...
+#' 
+#' 
+#' plot_horiz.dendrogram(dend, side=F)
+#' plot_horiz.dendrogram(dend, side=TRUE, dLeaf=0, xlim = c(100,-10)) # bad
+#' plot_horiz.dendrogram(dend, side=TRUE, text_offset = 0)
+#' plot_horiz.dendrogram(dend, side=TRUE, text_offset = 0,text_pos=4)
+#' 
 #' }
-plot_horiz.dendrogram <- function (x, center = FALSE, 
+plot_horiz.dendrogram <- function (x, 
+                                   type = c("rectangle", "triangle"),
+                                   center = FALSE, 
                                    edge.root = is.leaf(x) || !is.null(attr(x, "edgetext")),                                    
                                    dLeaf = NULL, 
                                    horiz = TRUE, 
                                    xaxt = "n", yaxt = "s", 
-                                   xlim, ylim, 
-                                   side = FALSE,
+                                   xlim = NULL, ylim = NULL, 
+                                   nodePar = NULL, edgePar = list(),
+                                   leaflab = c("perpendicular", 
+                                               "textlike", "none"),
+                                   side = TRUE,
+                                   text_offset = NULL,
+                                   text_pos = 2,
                                    ...) {
    # reproduces plot.dendrogram in order to set the correct 
    # strwidth for the labels when using revers horiz!
@@ -83,9 +307,23 @@ plot_horiz.dendrogram <- function (x, center = FALSE,
    if(!is.dendrogram(x)) x <- as.dendrogram(x)
    if(!horiz) stop("This function was created ONLY for horiz==TRUE.")
    
+   # if NOT side - then plot as usual
+   if(!side) {
+      plot(x, center = center, 
+           type= type,nodePar=nodePar,edgePar=edgePar,leaflab=leaflab,
+                  edge.root = edge.root,
+                  dLeaf = dLeaf, 
+                  horiz = horiz, 
+                  xaxt = xaxt, yaxt = yaxt, 
+                  xlim=xlim, ylim=ylim, ...)
+      return(invisible(NULL))
+   }
+   
    #######################
    ### The same as:
    ####  plot.dendrogram
+   type <- match.arg(type)
+   leaflab <- match.arg(leaflab)
    hgt <- attr(x, "height")
    if (edge.root && is.logical(edge.root)) 
       edge.root <- 0.0625 * if (is.leaf(x)) {1} else {hgt}
@@ -120,42 +358,71 @@ plot_horiz.dendrogram <- function (x, center = FALSE,
    ### NEW code
    
    # for right_side 
-   if(side)  {
-      
-      xlim <- rev(xlim)
-      
-      plot(0, xlim = xlim, ylim = ylim, type = "n", xlab = "", 
-           ylab = "", xaxt = xaxt, yaxt = yaxt, frame.plot = FALSE, axes = FALSE)
-      
-      
-      labels_x <- labels(x)
-      max_labels_x <- labels_x[which.max(nchar(labels_x))]
-      base_dLeaf <- strwidth(max_labels_x)
-      
-      if (is.null(dLeaf)) {
-         dLeaf <- -0.75 * strwidth("w") - base_dLeaf
-         ### (if (horiz) else strheight("x"))   ## this function gives ONLY horiz= TRUE
-      } else {
-         dLeaf <- dLeaf-base_dLeaf
-      }   
-      
-      par(new=TRUE)
-   } # else {
-      # the usual stuff...
+   #    if(side)  {
    
-  plot(x,
-       horiz=horiz, 
-       center = center, 
-       edge.root = edge.root,
-       dLeaf = dLeaf, 
-       xaxt = yaxt, yaxt = xaxt, # these are reversed in order to be re-reversed later due to the horiz=TRUE in this function...
-       xlim=xlim, ylim=ylim, 
-       ...)
-   if(side) par(new=FALSE)
+   xlim <- rev(xlim)
+   
+   plot(0, xlim = xlim, ylim = ylim, type = "n", xlab = "", 
+        ylab = "", xaxt = xaxt, yaxt = yaxt, frame.plot = FALSE,...) # , axes = FALSE)
+   
+   
+   labels_x <- labels(x)
+   max_labels_x <- labels_x[which.max(nchar(labels_x))]
+   base_dLeaf <- strwidth(max_labels_x)
+   
+   if (is.null(dLeaf)) {
+      if(text_pos == 2) {
+         dLeaf <- 0.75 * strwidth("w")
+      } else {
+         dLeaf <- -0.75 * strwidth("w") - base_dLeaf         
+      }      
+      ### (if (horiz) else strheight("x"))   ## this function gives ONLY horiz= TRUE
+   } else {
+      if(text_pos != 2) dLeaf <- dLeaf-base_dLeaf
+   }   
+   
+   #       par(new=TRUE)
+   #    } # else {
+   #       # the usual stuff...
+   
+#   plot(x,
+#        horiz=horiz, 
+#        center = center, 
+#        edge.root = edge.root,
+#        dLeaf = dLeaf, 
+#        xaxt = yaxt, yaxt = xaxt, # these are reversed in order to be re-reversed later due to the horiz=TRUE in this function...
+#        xlim=xlim, ylim=ylim, 
+#        ...)
+#    if(side) par(new=FALSE)
 
+   ###### back to the function as usual:
+   if (edge.root) {
+      x0 <- stats:::plotNodeLimit(x1, x2, x, center)$x
+      if (horiz) 
+         segments(hgt, x0, yTop, x0)
+      else segments(x0, hgt, x0, yTop)
+      if (!is.null(et <- attr(x, "edgetext"))) {
+         my <- mean(hgt, yTop)
+         if (horiz) 
+            text(my, x0, et)
+         else text(x0, my, et)
+      }
+   }   
+   
+#    stats:::plotNode
+   # @param text_offset Numeric (NULL). This value gives the offset of the label 
+   # from the specified coordinate in fractions of a character width.
+   # If NULL (default) then 3/4 of a letter width is used.
+   # 
+   # This number overrides dLeaf.   
+   
+   
+   plotNode_horiz(x1, x2, x, type = type, center = center, leaflab = leaflab, 
+            dLeaf = dLeaf, nodePar = nodePar, edgePar = edgePar, 
+            horiz = horiz, text_pos = text_pos, text_offset = dLeaf)
+   
    return(invisible(dLeaf))
 }
-
 
 # # stats:::plot.dendrogram
 # # stats:::plotNode
@@ -240,8 +507,21 @@ plot_horiz.dendrogram <- function (x, center = FALSE,
 #' @param intersecting logical (TRUE). Should the leaves of the two dendrograms
 #' be trimmed so that the two trees will have the same labels?
 #' @param dLeaf a number specifying the distance in user coordinates between 
-#' the tip of a leaf and its label. If NULL as per default, 
+#' the tip of a leaf and its label. If NULL, as per default, 
 #' 3/4 of a letter width or height is used.
+#' 
+#' Notice that if we are comparing two dendrograms with different
+#' heights, manually changing dLeaf will affect both trees differently.
+#' In such a case, it is recommanded to manually change dLeaf_left
+#' and dLeaf_right.
+#' This can be especially important when changing the lab.cex of the 
+#' dendrogram's labels.
+#' Alternatively, one could manually set the xlim parameter for both
+#' trees, which will force the proportion of distances of the 
+#' labels from the trees to remain the same.
+#' 
+#' @param dLeaf_left dLeaf of the left dendrogram, by default it is equal to dLeaf (often negative).
+#' @param dLeaf_right dLeaf of the right dendrogram, by default it is equal to minus dLeaf (often positive).
 #' @param axes logical (TRUE). Should plot axes be plotted?
 #' @param type type of plot ("t"/"r" = triangle or rectangle)
 #' @param lab.cex numeric scalar, influanicing the cex size of the labels.
@@ -279,6 +559,13 @@ plot_horiz.dendrogram <- function (x, center = FALSE,
 #' margin_inner= 5, type = "t", center = TRUE)
 #' 
 #' 
+#' ## works nicely:
+#' tanglegram(dend1 , dend2, lab.cex = 2, edge.lwd = 3,  
+#' margin_inner= 3.5, type = "t", center = TRUE,
+#' dLeaf = -0.1, xlim = c(7,0),
+#' k_branches=3)
+#' 
+#' 
 #' }
 tanglegram <- function (tree1, ...) {UseMethod("tanglegram")}
 
@@ -306,8 +593,8 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   right_dendo_mar=c(margin_bottom,margin_inner,margin_top,margin_outer),
                                   intersecting = TRUE,
                                   dLeaf = NULL, # -.3,
-#                                   dLeaf_left = dLeaf,
-#                                   dLeaf_right = dLeaf,
+                                   dLeaf_left = dLeaf,
+                                   dLeaf_right = dLeaf,
                                   axes = TRUE, 
                                   type = "r", # can also be "t"
                                   lab.cex = NULL,
@@ -364,7 +651,8 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    
    l <- nleaves(tree1)
    
-   
+   # makes sure that dLeaf gives a symmetric result.
+   if(!is.null(dLeaf) && dLeaf_right==dLeaf_left) dLeaf_right <- -dLeaf_left 
    
    ##########################################
    #####  Plotting.
@@ -385,7 +673,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    #################
    par(mar=left_dendo_mar)
    plot(tree1,horiz=TRUE, ylim=c(0,l),
-        dLeaf = dLeaf, 
+        dLeaf = dLeaf_left, 
         type = type, axes = axes,
         main = main_left,
         # ...)
@@ -418,7 +706,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    # And the second dendrogram (to reverse it I reversed the xlim vector:
    #################
    par(mar=right_dendo_mar)
-   plot_horiz.dendrogram(tree2, side=TRUE, dLeaf=dLeaf,
+   plot_horiz.dendrogram(tree2, side=TRUE, dLeaf=dLeaf_right,
                          type = type, axes = axes,
                          ylim=c(0,l),
                          main = main_right,

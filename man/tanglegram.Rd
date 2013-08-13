@@ -82,8 +82,24 @@
 
   \item{dLeaf}{a number specifying the distance in user
   coordinates between the tip of a leaf and its label. If
-  NULL as per default, 3/4 of a letter width or height is
-  used.}
+  NULL, as per default, 3/4 of a letter width or height is
+  used.
+
+  Notice that if we are comparing two dendrograms with
+  different heights, manually changing dLeaf will affect
+  both trees differently. In such a case, it is recommanded
+  to manually change dLeaf_left and dLeaf_right. This can
+  be especially important when changing the lab.cex of the
+  dendrogram's labels. Alternatively, one could manually
+  set the xlim parameter for both trees, which will force
+  the proportion of distances of the labels from the trees
+  to remain the same.}
+
+  \item{dLeaf_left}{dLeaf of the left dendrogram, by
+  default it is equal to dLeaf (often negative).}
+
+  \item{dLeaf_right}{dLeaf of the right dendrogram, by
+  default it is equal to minus dLeaf (often positive).}
 
   \item{axes}{logical (TRUE). Should plot axes be plotted?}
 
@@ -140,6 +156,13 @@ tanglegram(dend1 , dend2, k_labels = 6, k_branches = 4)
 
 tanglegram(dend1 , dend2, lab.cex = 2, edge.lwd = 3,
 margin_inner= 5, type = "t", center = TRUE)
+
+
+## works nicely:
+tanglegram(dend1 , dend2, lab.cex = 2, edge.lwd = 3,
+margin_inner= 3.5, type = "t", center = TRUE,
+dLeaf = -0.1, xlim = c(7,0),
+k_branches=3)
 
 
 }
