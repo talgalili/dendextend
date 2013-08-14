@@ -16,6 +16,7 @@ UPDATED FUNCTIONS:
 VIGNETTES:
    * Added the Baker's Gamma Index section.
    * Added a bootstrap and permutation examples for inference on Baker's Gamma.
+   * Also for Cophenetic correlation.
 
 FILE CHANGES:
    * sample.dendrogram.r file added.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  14 AUG 2013 21:12
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  14 AUG 2013 22:50
 entering extended mode
 **dendextend-tutorial.tex
 
@@ -1233,7 +1233,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.33 ...ARK [1][-]{Section.5.Summary.1}{Summary}{}
+l.33 ...ng two trees - statistics and inference.1}
                                                   % 33
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1244,8 +1244,30 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.33 ...ARK [1][-]{Section.5.Summary.1}{Summary}{}
+l.33 ...ng two trees - statistics and inference.1}
                                                   % 33
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
+l.34 ...ARK [1][-]{Section.5.Summary.1}{Summary}{}
+                                                  % 34
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
+l.34 ...ARK [1][-]{Section.5.Summary.1}{Summary}{}
+                                                  % 34
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2385,60 +2407,138 @@ Package pdftex.def Info: figure/cor_bakers_gamma_simulation_CI_43.pdf used on i
 nput line 2462.
 (pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 58 []
  []
 
 [58 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
 or_bakers_gamma_simulation_CI_43.pdf>]
-("D:\Dropbox\aaaa good R code\AA - My packages\dendextend\vignettes\dendextend-
-tutorial.bbl")
-Package color Info: Redefining color shadecolor on input line 2651.
+Package color Info: Redefining color shadecolor on input line 2485.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 59
  []
 
 [59]
-Underfull \hbox (badness 10000) in paragraph at lines 2694--2694
+Package color Info: Redefining color shadecolor on input line 2576.
 
+Overfull \hbox (85.2218pt too wide) in paragraph at lines 2603--2603
+[][]\T1/aett/bx/n/10.95 plot[][]([][]density[][](cor_cophenetic_results),[] []m
+ain[] []=[] []"Cophenetic correlation distribution under H0"[][],[][] 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2694.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 60 []
  []
 
-[60]
+[60] <figure/cor_cophenetic_simulation_2.pdf, id=591, 505.89pt x 505.89pt>
+File: figure/cor_cophenetic_simulation_2.pdf Graphic file (type pdf)
+
+<use figure/cor_cophenetic_simulation_2.pdf>
+Package pdftex.def Info: figure/cor_cophenetic_simulation_2.pdf used on input l
+ine 2612.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+Package color Info: Redefining color shadecolor on input line 2627.
+
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 61
  []
 
-[61]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2694.
+[61 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
+or_cophenetic_simulation_2.pdf>]
+Overfull \hbox (102.43513pt too wide) in paragraph at lines 2678--2678
+[][]\T1/aett/bx/n/10.95 plot[][]([][]density[][](cor_cophenetic_results),[] []m
+ain[] []=[] []"Cophenetic correlation - bootstrap distribution"[][],[][] 
+ []
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 62 []
+ []
+
+[62] <figure/cor_cophenetic_simulation_CI_3.pdf, id=607, 505.89pt x 505.89pt>
+File: figure/cor_cophenetic_simulation_CI_3.pdf Graphic file (type pdf)
+
+<use figure/cor_cophenetic_simulation_CI_3.pdf>
+Package pdftex.def Info: figure/cor_cophenetic_simulation_CI_3.pdf used on inpu
+t line 2687.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+Package color Info: Redefining color shadecolor on input line 2701.
+
+Overfull \hbox (102.43513pt too wide) in paragraph at lines 2752--2752
+[][]\T1/aett/bx/n/10.95 plot[][]([][]density[][](cor_cophenetic_results),[] []m
+ain[] []=[] []"Cophenetic correlation - bootstrap distribution"[][],[][] 
+ []
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 63
+ []
+
+[63 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
+or_cophenetic_simulation_CI_3.pdf>]
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 64 []
+ []
+
+[64] <figure/cor_cophenetic_simulation_CI_4.pdf, id=622, 505.89pt x 505.89pt>
+File: figure/cor_cophenetic_simulation_CI_4.pdf Graphic file (type pdf)
+
+<use figure/cor_cophenetic_simulation_CI_4.pdf>
+Package pdftex.def Info: figure/cor_cophenetic_simulation_CI_4.pdf used on inpu
+t line 2762.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 65
+ []
+
+[65 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
+or_cophenetic_simulation_CI_4.pdf>]
+("D:\Dropbox\aaaa good R code\AA - My packages\dendextend\vignettes\dendextend-
+tutorial.bbl")
+Package color Info: Redefining color shadecolor on input line 2950.
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 66 []
+ []
+
+[66]
+Underfull \hbox (badness 10000) in paragraph at lines 2993--2993
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2993.
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 67
+ []
+
+[67]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2993.
 
 ("D:\Dropbox\aaaa good R code\AA - My packages\dendextend\vignettes\dendextend-
 tutorial.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2694.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2694.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2993.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2993.
 
 Package rerunfilecheck Info: File `dendextend-tutorial.out' has not changed.
-(rerunfilecheck)             Checksum: 9400F526787647BEDBCA5CBFE5DA9596;4824.
+(rerunfilecheck)             Checksum: 595453FC0FF0D1AE38667C522A8AB93E;4971.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2694.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2993.
  ) 
 Here is how much of TeX's memory you used:
- 7120 strings out of 494045
- 111392 string characters out of 3145976
- 329062 words of memory out of 3000000
- 10078 multiletter control sequences out of 15000+200000
+ 7148 strings out of 494045
+ 112272 string characters out of 3145976
+ 333276 words of memory out of 3000000
+ 10094 multiletter control sequences out of 15000+200000
  49668 words of font info for 92 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  36i,9n,34p,1513b,473s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2474,9 +2574,9 @@ rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Pro
 gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Progr
 am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program
  Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dendextend-tutorial.pdf (61 pages, 762481 bytes).
+Output written on dendextend-tutorial.pdf (67 pages, 802952 bytes).
 PDF statistics:
- 698 PDF objects out of 1000 (max. 8388607)
- 148 named destinations out of 1000 (max. 500000)
- 172 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 753 PDF objects out of 1000 (max. 8388607)
+ 157 named destinations out of 1000 (max. 500000)
+ 187 words of extra memory for PDF output out of 10000 (max. 10000000)
 

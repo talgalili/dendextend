@@ -1299,6 +1299,219 @@ We can see that in our case, the non-parametric bootstrap confidence-intervals r
 
 
 
+
+\subsection{Cophenetic correlation}
+
+The cophenetic distance between two observations that have been clustered is defined to be the intergroup dissimilarity at which the two observations are first combined into a single cluster. This distance has many ties and restrictions. The cophenetic correlation \citep{sokal1962comparison} is the correlation between two cophenetic distance matrices of two trees.
+
+The value can range between -1 to 1. With near 0 values meaning that the two trees are not statistically similar. For exact p-value one should result to a permutation test. One such option will be to permute over the labels of one tree many times, and calculating the distriubtion under the null hypothesis (keeping the trees topologies constant).
+
+Here is a simple example:
+
+<<cor_cophenetic_example_1>>=
+
+
+
+set.seed(23235)
+ss <- sample(1:150, 10 )
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+#    cutree(dend1)   
+
+# cophenetic(hc1)
+# cophenetic(hc2)
+# # notice how the dist matrix for the dendrograms have different orders:
+# cophenetic(dend1)
+# cophenetic(dend2)
+
+cor(cophenetic(hc1), cophenetic(hc2)) # 0.874
+cor(cophenetic(dend1), cophenetic(dend2))  # 0.16
+# the difference is becasue the order of the distance table in the case of
+# stats:::cophenetic.dendrogram will change between dendrograms!
+
+# However, this is consistant (since I force-sort the rows/columns): 
+cor_cophenetic(hc1, hc2)
+cor_cophenetic(dend1, dend2)
+
+# we can also use different cor methods (almost the same result though): 
+cor_cophenetic(hc1, hc2, method = "spearman") # 0.8456014
+cor_cophenetic(dend1, dend2, method = "spearman") # 
+
+
+# cophenetic correlation is about 10 times (!) faster than bakers_gamma cor:
+require(microbenchmark)
+microbenchmark(
+   cor_bakers_gamma = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=FALSE),
+   cor_cophenetic = cor_cophenetic(dend1, dend2)   ,
+   times=10
+)
+
+# but only because of the cutree for dendrogram. When allowing hclust cutree
+# it is only about twice as fast:
+microbenchmark(
+   cor_bakers_gamma = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=TRUE),
+   cor_cophenetic = cor_cophenetic(dend1, dend2)   ,
+   times=10
+)
+
+@
+
+An example of a permutation test:
+
+<<cor_cophenetic_simulation_2>>=
+
+
+set.seed(23235)
+ss <- sample(1:150, 10 ) # we want to compare small trees
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+#    cutree(dend1)   
+
+the_cor <- cor_cophenetic(dend1, dend2)
+the_cor
+
+R <- 1000
+cor_cophenetic_results <- numeric(R)
+dend_mixed1 <- dend1
+dend_mixed2 <- dend2
+for(i in 1:R) {
+   dend_mixed1 <- sample.dendrogram(dend_mixed1, replace = FALSE)
+   dend_mixed2 <- sample.dendrogram(dend_mixed2, replace = FALSE)
+   cor_cophenetic_results[i] <- cor_cophenetic(dend_mixed1, dend_mixed2)
+}
+plot(density(cor_cophenetic_results),
+     main = "Cophenetic correlation distribution under H0",
+     xlim = c(-1,1))
+abline(v = 0, lty = 2)
+abline(v = the_cor, lty = 2, col = 2)
+title(sub = paste("One sided p-value =",  round(sum(the_cor < cor_cophenetic_results)/ R, 4)))
+
+@
+
+
+
+An example of a bootstrap CI (with method="pearson"):
+
+
+<<cor_cophenetic_simulation_CI_3>>=
+
+set.seed(312356)
+ss <- sample(1:150, 10 ) # we want to compare small trees
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+# tanglegram(dend1, dend2)
+#    cutree(dend1)   
+
+R <- 1000
+dend1_labels <- labels(dend1)
+dend2_labels <- labels(dend2)
+cor_cophenetic_results <- numeric(R)
+for(i in 1:R) {
+   sampled_labels <- sample(dend1_labels, replace = TRUE)
+   # members needs to be fixed since it will be later used in nleaves
+   dend_mixed1 <- sample.dendrogram(dend1, 
+                                    dend_labels=dend1_labels,
+                                    fix_members=TRUE,fix_order=TRUE,fix_midpoint=FALSE,
+                                    replace = TRUE, sampled_labels=sampled_labels
+                                      )
+   dend_mixed2 <- sample.dendrogram(dend2, dend_labels=dend2_labels,
+                                    fix_members=TRUE,fix_order=TRUE,fix_midpoint=FALSE,
+                                    replace = TRUE, sampled_labels=sampled_labels
+                                      )                                    
+   cor_cophenetic_results[i] <- cor_cophenetic(dend_mixed1, dend_mixed2, warn = FALSE)
+}
+
+
+# here is the tanglegram
+# tanglegram(dend1, dend2)
+# And here is the tanglegram for one sample of our trees:
+dend_mixed1 <- rank_order.dendrogram(dend_mixed1)
+dend_mixed2 <- rank_order.dendrogram(dend_mixed2)
+dend_mixed1 <- fix_members_attr.dendrogram(dend_mixed1)
+dend_mixed2 <- fix_members_attr.dendrogram(dend_mixed2)
+# tanglegram(dend_mixed1, dend_mixed2)
+cor_cophenetic(dend_mixed1, dend_mixed2, warn = FALSE)
+
+
+CI95 <- quantile(cor_cophenetic_results, probs=c(.025,.975))
+CI95
+par(mfrow = c(1,1))
+plot(density(cor_cophenetic_results),
+     main = "Cophenetic correlation - bootstrap distribution",
+     xlim = c(-1,1))
+abline(v = CI95, lty = 2, col = 3)
+abline(v = cor_cophenetic(dend1, dend2), lty = 2, col = 2)
+legend("topleft", legend =c("95% CI", "Cophenetic correlation"), fill = c(3,2))
+
+@
+
+
+An example of a bootstrap CI (with method="spearman"):
+
+
+<<cor_cophenetic_simulation_CI_4>>=
+
+set.seed(312356)
+ss <- sample(1:150, 10 ) # we want to compare small trees
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+# tanglegram(dend1, dend2)
+#    cutree(dend1)   
+
+R <- 1000
+dend1_labels <- labels(dend1)
+dend2_labels <- labels(dend2)
+cor_cophenetic_results <- numeric(R)
+for(i in 1:R) {
+   sampled_labels <- sample(dend1_labels, replace = TRUE)
+   # members needs to be fixed since it will be later used in nleaves
+   dend_mixed1 <- sample.dendrogram(dend1, 
+                                    dend_labels=dend1_labels,
+                                    fix_members=TRUE,fix_order=TRUE,fix_midpoint=FALSE,
+                                    replace = TRUE, sampled_labels=sampled_labels
+                                      )
+   dend_mixed2 <- sample.dendrogram(dend2, dend_labels=dend2_labels,
+                                    fix_members=TRUE,fix_order=TRUE,fix_midpoint=FALSE,
+                                    replace = TRUE, sampled_labels=sampled_labels
+                                      )                                    
+   cor_cophenetic_results[i] <- cor_cophenetic(dend_mixed1, dend_mixed2, warn = FALSE, method="spearman")
+}
+
+
+# here is the tanglegram
+# tanglegram(dend1, dend2)
+# And here is the tanglegram for one sample of our trees:
+dend_mixed1 <- rank_order.dendrogram(dend_mixed1)
+dend_mixed2 <- rank_order.dendrogram(dend_mixed2)
+dend_mixed1 <- fix_members_attr.dendrogram(dend_mixed1)
+dend_mixed2 <- fix_members_attr.dendrogram(dend_mixed2)
+# tanglegram(dend_mixed1, dend_mixed2)
+cor_cophenetic(dend_mixed1, dend_mixed2, warn = FALSE, method="spearman")
+
+
+CI95 <- quantile(cor_cophenetic_results, probs=c(.025,.975))
+CI95
+par(mfrow = c(1,1))
+plot(density(cor_cophenetic_results),
+     main = "Cophenetic correlation - bootstrap distribution",
+     xlim = c(-1,1))
+abline(v = CI95, lty = 2, col = 3)
+abline(v = cor_cophenetic(dend1, dend2, method="spearman"), lty = 2, col = 2)
+legend("topleft", legend =c("95% CI", "Cophenetic correlation"), fill = c(3,2))
+
+@
+
+
+
+
 \subsection{Bk method}
 
 

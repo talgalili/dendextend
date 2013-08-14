@@ -2472,6 +2472,305 @@ We can see that in our case, the non-parametric bootstrap confidence-intervals r
 
 
 
+
+\subsection{Cophenetic correlation}
+
+The cophenetic distance between two observations that have been clustered is defined to be the intergroup dissimilarity at which the two observations are first combined into a single cluster. This distance has many ties and restrictions. The cophenetic correlation \citep{sokal1962comparison} is the correlation between two cophenetic distance matrices of two trees.
+
+The value can range between -1 to 1. With near 0 values meaning that the two trees are not statistically similar. For exact p-value one should result to a permutation test. One such option will be to permute over the labels of one tree many times, and calculating the distriubtion under the null hypothesis (keeping the trees topologies constant).
+
+Here is a simple example:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{set.seed}\hlstd{(}\hlnum{23235}\hlstd{)}
+\hlstd{ss} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{150}\hlstd{,} \hlnum{10}\hlstd{)}
+\hlstd{hc1} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"com"}\hlstd{)}
+\hlstd{hc2} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"single"}\hlstd{)}
+\hlstd{dend1} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc1)}
+\hlstd{dend2} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc2)}
+\hlcom{# cutree(dend1)}
+
+\hlcom{# cophenetic(hc1) cophenetic(hc2) # notice how the dist}
+\hlcom{# matrix for the dendrograms have different orders:}
+\hlcom{# cophenetic(dend1) cophenetic(dend2)}
+
+\hlkwd{cor}\hlstd{(}\hlkwd{cophenetic}\hlstd{(hc1),} \hlkwd{cophenetic}\hlstd{(hc2))}  \hlcom{# 0.874}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.4925
+\end{verbatim}
+\begin{alltt}
+\hlkwd{cor}\hlstd{(}\hlkwd{cophenetic}\hlstd{(dend1),} \hlkwd{cophenetic}\hlstd{(dend2))}  \hlcom{# 0.16}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.3106
+\end{verbatim}
+\begin{alltt}
+\hlcom{# the difference is becasue the order of the distance table}
+\hlcom{# in the case of stats:::cophenetic.dendrogram will change}
+\hlcom{# between dendrograms!}
+
+\hlcom{# However, this is consistant (since I force-sort the}
+\hlcom{# rows/columns):}
+\hlkwd{cor_cophenetic}\hlstd{(hc1, hc2)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.4925
+\end{verbatim}
+\begin{alltt}
+\hlkwd{cor_cophenetic}\hlstd{(dend1, dend2)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.4925
+\end{verbatim}
+\begin{alltt}
+\hlcom{# we can also use different cor methods (almost the same}
+\hlcom{# result though):}
+\hlkwd{cor_cophenetic}\hlstd{(hc1, hc2,} \hlkwc{method} \hlstd{=} \hlstr{"spearman"}\hlstd{)}  \hlcom{# 0.8456014}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.5716
+\end{verbatim}
+\begin{alltt}
+\hlkwd{cor_cophenetic}\hlstd{(dend1, dend2,} \hlkwc{method} \hlstd{=} \hlstr{"spearman"}\hlstd{)}  \hlcom{# }
+\end{alltt}
+\begin{verbatim}
+## [1] 0.5716
+\end{verbatim}
+\begin{alltt}
+\hlcom{# cophenetic correlation is about 10 times (!) faster than}
+\hlcom{# bakers_gamma cor:}
+\hlkwd{require}\hlstd{(microbenchmark)}
+\hlkwd{microbenchmark}\hlstd{(}\hlkwc{cor_bakers_gamma} \hlstd{=} \hlkwd{cor_bakers_gamma}\hlstd{(dend1, dend2,}
+    \hlkwc{try_cutree_hclust} \hlstd{=} \hlnum{FALSE}\hlstd{),} \hlkwc{cor_cophenetic} \hlstd{=} \hlkwd{cor_cophenetic}\hlstd{(dend1,}
+    \hlstd{dend2),} \hlkwc{times} \hlstd{=} \hlnum{10}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Unit: milliseconds
+##              expr    min     lq median    uq    max neval
+##  cor_bakers_gamma 100.15 100.88 102.04 107.3 113.22    10
+##    cor_cophenetic  11.51  11.89  12.22  14.6  15.52    10
+\end{verbatim}
+\begin{alltt}
+\hlcom{# but only because of the cutree for dendrogram. When}
+\hlcom{# allowing hclust cutree it is only about twice as fast:}
+\hlkwd{microbenchmark}\hlstd{(}\hlkwc{cor_bakers_gamma} \hlstd{=} \hlkwd{cor_bakers_gamma}\hlstd{(dend1, dend2,}
+    \hlkwc{try_cutree_hclust} \hlstd{=} \hlnum{TRUE}\hlstd{),} \hlkwc{cor_cophenetic} \hlstd{=} \hlkwd{cor_cophenetic}\hlstd{(dend1,}
+    \hlstd{dend2),} \hlkwc{times} \hlstd{=} \hlnum{10}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Unit: milliseconds
+##              expr   min    lq median    uq   max neval
+##  cor_bakers_gamma 23.70 24.09  24.46 25.44 26.50    10
+##    cor_cophenetic 11.38 11.80  12.35 14.61 18.61    10
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+An example of a permutation test:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{set.seed}\hlstd{(}\hlnum{23235}\hlstd{)}
+\hlstd{ss} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{150}\hlstd{,} \hlnum{10}\hlstd{)}  \hlcom{# we want to compare small trees}
+\hlstd{hc1} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"com"}\hlstd{)}
+\hlstd{hc2} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"single"}\hlstd{)}
+\hlstd{dend1} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc1)}
+\hlstd{dend2} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc2)}
+\hlcom{# cutree(dend1)}
+
+\hlstd{the_cor} \hlkwb{<-} \hlkwd{cor_cophenetic}\hlstd{(dend1, dend2)}
+\hlstd{the_cor}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.4925
+\end{verbatim}
+\begin{alltt}
+\hlstd{R} \hlkwb{<-} \hlnum{1000}
+\hlstd{cor_cophenetic_results} \hlkwb{<-} \hlkwd{numeric}\hlstd{(R)}
+\hlstd{dend_mixed1} \hlkwb{<-} \hlstd{dend1}
+\hlstd{dend_mixed2} \hlkwb{<-} \hlstd{dend2}
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{R) \{}
+    \hlstd{dend_mixed1} \hlkwb{<-} \hlkwd{sample.dendrogram}\hlstd{(dend_mixed1,} \hlkwc{replace} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+    \hlstd{dend_mixed2} \hlkwb{<-} \hlkwd{sample.dendrogram}\hlstd{(dend_mixed2,} \hlkwc{replace} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+    \hlstd{cor_cophenetic_results[i]} \hlkwb{<-} \hlkwd{cor_cophenetic}\hlstd{(dend_mixed1,}
+        \hlstd{dend_mixed2)}
+\hlstd{\}}
+\hlkwd{plot}\hlstd{(}\hlkwd{density}\hlstd{(cor_cophenetic_results),} \hlkwc{main} \hlstd{=} \hlstr{"Cophenetic correlation distribution under H0"}\hlstd{,}
+    \hlkwc{xlim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+\hlkwd{abline}\hlstd{(}\hlkwc{v} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{lty} \hlstd{=} \hlnum{2}\hlstd{)}
+\hlkwd{abline}\hlstd{(}\hlkwc{v} \hlstd{= the_cor,} \hlkwc{lty} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{col} \hlstd{=} \hlnum{2}\hlstd{)}
+\hlkwd{title}\hlstd{(}\hlkwc{sub} \hlstd{=} \hlkwd{paste}\hlstd{(}\hlstr{"One sided p-value ="}\hlstd{,} \hlkwd{round}\hlstd{(}\hlkwd{sum}\hlstd{(the_cor} \hlopt{<}
+    \hlstd{cor_cophenetic_results)}\hlopt{/}\hlstd{R,} \hlnum{4}\hlstd{)))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/cor_cophenetic_simulation_2} 
+
+}
+
+
+
+\end{knitrout}
+
+
+
+
+An example of a bootstrap CI (with method="pearson"):
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{set.seed}\hlstd{(}\hlnum{312356}\hlstd{)}
+\hlstd{ss} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{150}\hlstd{,} \hlnum{10}\hlstd{)}  \hlcom{# we want to compare small trees}
+\hlstd{hc1} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"com"}\hlstd{)}
+\hlstd{hc2} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"single"}\hlstd{)}
+\hlstd{dend1} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc1)}
+\hlstd{dend2} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc2)}
+\hlcom{# tanglegram(dend1, dend2) cutree(dend1)}
+
+\hlstd{R} \hlkwb{<-} \hlnum{1000}
+\hlstd{dend1_labels} \hlkwb{<-} \hlkwd{labels}\hlstd{(dend1)}
+\hlstd{dend2_labels} \hlkwb{<-} \hlkwd{labels}\hlstd{(dend2)}
+\hlstd{cor_cophenetic_results} \hlkwb{<-} \hlkwd{numeric}\hlstd{(R)}
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{R) \{}
+    \hlstd{sampled_labels} \hlkwb{<-} \hlkwd{sample}\hlstd{(dend1_labels,} \hlkwc{replace} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+    \hlcom{# members needs to be fixed since it will be later used in}
+    \hlcom{# nleaves}
+    \hlstd{dend_mixed1} \hlkwb{<-} \hlkwd{sample.dendrogram}\hlstd{(dend1,} \hlkwc{dend_labels} \hlstd{= dend1_labels,}
+        \hlkwc{fix_members} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{fix_order} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{fix_midpoint} \hlstd{=} \hlnum{FALSE}\hlstd{,}
+        \hlkwc{replace} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{sampled_labels} \hlstd{= sampled_labels)}
+    \hlstd{dend_mixed2} \hlkwb{<-} \hlkwd{sample.dendrogram}\hlstd{(dend2,} \hlkwc{dend_labels} \hlstd{= dend2_labels,}
+        \hlkwc{fix_members} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{fix_order} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{fix_midpoint} \hlstd{=} \hlnum{FALSE}\hlstd{,}
+        \hlkwc{replace} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{sampled_labels} \hlstd{= sampled_labels)}
+    \hlstd{cor_cophenetic_results[i]} \hlkwb{<-} \hlkwd{cor_cophenetic}\hlstd{(dend_mixed1,}
+        \hlstd{dend_mixed2,} \hlkwc{warn} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+\hlstd{\}}
+
+
+\hlcom{# here is the tanglegram tanglegram(dend1, dend2) And here is}
+\hlcom{# the tanglegram for one sample of our trees:}
+\hlstd{dend_mixed1} \hlkwb{<-} \hlkwd{rank_order.dendrogram}\hlstd{(dend_mixed1)}
+\hlstd{dend_mixed2} \hlkwb{<-} \hlkwd{rank_order.dendrogram}\hlstd{(dend_mixed2)}
+\hlstd{dend_mixed1} \hlkwb{<-} \hlkwd{fix_members_attr.dendrogram}\hlstd{(dend_mixed1)}
+\hlstd{dend_mixed2} \hlkwb{<-} \hlkwd{fix_members_attr.dendrogram}\hlstd{(dend_mixed2)}
+\hlcom{# tanglegram(dend_mixed1, dend_mixed2)}
+\hlkwd{cor_cophenetic}\hlstd{(dend_mixed1, dend_mixed2,} \hlkwc{warn} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.9981
+\end{verbatim}
+\begin{alltt}
+\hlstd{CI95} \hlkwb{<-} \hlkwd{quantile}\hlstd{(cor_cophenetic_results,} \hlkwc{probs} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.025}\hlstd{,} \hlnum{0.975}\hlstd{))}
+\hlstd{CI95}
+\end{alltt}
+\begin{verbatim}
+##   2.5%  97.5% 
+## 0.5253 0.9943
+\end{verbatim}
+\begin{alltt}
+\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+\hlkwd{plot}\hlstd{(}\hlkwd{density}\hlstd{(cor_cophenetic_results),} \hlkwc{main} \hlstd{=} \hlstr{"Cophenetic correlation - bootstrap distribution"}\hlstd{,}
+    \hlkwc{xlim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+\hlkwd{abline}\hlstd{(}\hlkwc{v} \hlstd{= CI95,} \hlkwc{lty} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{col} \hlstd{=} \hlnum{3}\hlstd{)}
+\hlkwd{abline}\hlstd{(}\hlkwc{v} \hlstd{=} \hlkwd{cor_cophenetic}\hlstd{(dend1, dend2),} \hlkwc{lty} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{col} \hlstd{=} \hlnum{2}\hlstd{)}
+\hlkwd{legend}\hlstd{(}\hlstr{"topleft"}\hlstd{,} \hlkwc{legend} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"95% CI"}\hlstd{,} \hlstr{"Cophenetic correlation"}\hlstd{),}
+    \hlkwc{fill} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{3}\hlstd{,} \hlnum{2}\hlstd{))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/cor_cophenetic_simulation_CI_3} 
+
+}
+
+
+
+\end{knitrout}
+
+
+
+An example of a bootstrap CI (with method="spearman"):
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{set.seed}\hlstd{(}\hlnum{312356}\hlstd{)}
+\hlstd{ss} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{150}\hlstd{,} \hlnum{10}\hlstd{)}  \hlcom{# we want to compare small trees}
+\hlstd{hc1} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"com"}\hlstd{)}
+\hlstd{hc2} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"single"}\hlstd{)}
+\hlstd{dend1} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc1)}
+\hlstd{dend2} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc2)}
+\hlcom{# tanglegram(dend1, dend2) cutree(dend1)}
+
+\hlstd{R} \hlkwb{<-} \hlnum{1000}
+\hlstd{dend1_labels} \hlkwb{<-} \hlkwd{labels}\hlstd{(dend1)}
+\hlstd{dend2_labels} \hlkwb{<-} \hlkwd{labels}\hlstd{(dend2)}
+\hlstd{cor_cophenetic_results} \hlkwb{<-} \hlkwd{numeric}\hlstd{(R)}
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{R) \{}
+    \hlstd{sampled_labels} \hlkwb{<-} \hlkwd{sample}\hlstd{(dend1_labels,} \hlkwc{replace} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+    \hlcom{# members needs to be fixed since it will be later used in}
+    \hlcom{# nleaves}
+    \hlstd{dend_mixed1} \hlkwb{<-} \hlkwd{sample.dendrogram}\hlstd{(dend1,} \hlkwc{dend_labels} \hlstd{= dend1_labels,}
+        \hlkwc{fix_members} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{fix_order} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{fix_midpoint} \hlstd{=} \hlnum{FALSE}\hlstd{,}
+        \hlkwc{replace} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{sampled_labels} \hlstd{= sampled_labels)}
+    \hlstd{dend_mixed2} \hlkwb{<-} \hlkwd{sample.dendrogram}\hlstd{(dend2,} \hlkwc{dend_labels} \hlstd{= dend2_labels,}
+        \hlkwc{fix_members} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{fix_order} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{fix_midpoint} \hlstd{=} \hlnum{FALSE}\hlstd{,}
+        \hlkwc{replace} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{sampled_labels} \hlstd{= sampled_labels)}
+    \hlstd{cor_cophenetic_results[i]} \hlkwb{<-} \hlkwd{cor_cophenetic}\hlstd{(dend_mixed1,}
+        \hlstd{dend_mixed2,} \hlkwc{warn} \hlstd{=} \hlnum{FALSE}\hlstd{,} \hlkwc{method} \hlstd{=} \hlstr{"spearman"}\hlstd{)}
+\hlstd{\}}
+
+
+\hlcom{# here is the tanglegram tanglegram(dend1, dend2) And here is}
+\hlcom{# the tanglegram for one sample of our trees:}
+\hlstd{dend_mixed1} \hlkwb{<-} \hlkwd{rank_order.dendrogram}\hlstd{(dend_mixed1)}
+\hlstd{dend_mixed2} \hlkwb{<-} \hlkwd{rank_order.dendrogram}\hlstd{(dend_mixed2)}
+\hlstd{dend_mixed1} \hlkwb{<-} \hlkwd{fix_members_attr.dendrogram}\hlstd{(dend_mixed1)}
+\hlstd{dend_mixed2} \hlkwb{<-} \hlkwd{fix_members_attr.dendrogram}\hlstd{(dend_mixed2)}
+\hlcom{# tanglegram(dend_mixed1, dend_mixed2)}
+\hlkwd{cor_cophenetic}\hlstd{(dend_mixed1, dend_mixed2,} \hlkwc{warn} \hlstd{=} \hlnum{FALSE}\hlstd{,} \hlkwc{method} \hlstd{=} \hlstr{"spearman"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.9924
+\end{verbatim}
+\begin{alltt}
+\hlstd{CI95} \hlkwb{<-} \hlkwd{quantile}\hlstd{(cor_cophenetic_results,} \hlkwc{probs} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.025}\hlstd{,} \hlnum{0.975}\hlstd{))}
+\hlstd{CI95}
+\end{alltt}
+\begin{verbatim}
+##   2.5%  97.5% 
+## 0.4753 1.0000
+\end{verbatim}
+\begin{alltt}
+\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+\hlkwd{plot}\hlstd{(}\hlkwd{density}\hlstd{(cor_cophenetic_results),} \hlkwc{main} \hlstd{=} \hlstr{"Cophenetic correlation - bootstrap distribution"}\hlstd{,}
+    \hlkwc{xlim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+\hlkwd{abline}\hlstd{(}\hlkwc{v} \hlstd{= CI95,} \hlkwc{lty} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{col} \hlstd{=} \hlnum{3}\hlstd{)}
+\hlkwd{abline}\hlstd{(}\hlkwc{v} \hlstd{=} \hlkwd{cor_cophenetic}\hlstd{(dend1, dend2,} \hlkwc{method} \hlstd{=} \hlstr{"spearman"}\hlstd{),}
+    \hlkwc{lty} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{col} \hlstd{=} \hlnum{2}\hlstd{)}
+\hlkwd{legend}\hlstd{(}\hlstr{"topleft"}\hlstd{,} \hlkwc{legend} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"95% CI"}\hlstd{,} \hlstr{"Cophenetic correlation"}\hlstd{),}
+    \hlkwc{fill} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{3}\hlstd{,} \hlnum{2}\hlstd{))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/cor_cophenetic_simulation_CI_4} 
+
+}
+
+
+
+\end{knitrout}
+
+
+
+
+
 \subsection{Bk method}
 
 
