@@ -1,7 +1,7 @@
 Package: dendextend
 Type: Package
 Title: Extending dendrogram functionality
-Version: 0.7.3
+Version: 0.8.0
 Date: 2013-08-14
 Author: Tal Galili
 Maintainer: Tal Galili <tal.galili@gmail.com>
@@ -35,5 +35,6 @@ Collate:
     'tanglegram.r'
     'entanglement.r'
     'untangle.r'
-    'zzz.r'
     'cor_bakers_gamma.r'
+    'sample.dendrogram.r'
+    'zzz.r'    

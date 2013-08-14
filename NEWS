@@ -2,12 +2,17 @@ dendextend 0.8.0 (2013-08-14)
 ----------------------------
 NEW FUNCTIONS ADDED: 
    * cor_bakers_gamma
+   * sample.dendrogram
+   * rank_order.dendrogram
 
 UPDATED FUNCTIONS:
    * tanglegram - added the match_order_by_labels parameter.
 
 VIGNETTES:
    * Added the Baker's Gamma Index section.
+
+FILE CHANGES:
+   * sample.dendrogram.r file added.
 
 
 dendextend 0.7.3 (2013-08-14)
