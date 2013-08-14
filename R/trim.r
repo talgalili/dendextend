@@ -20,55 +20,6 @@
 
 
 
-# nleaves(dend)
-# nleaves(dend[[1]])
-# nleaves(dend[[2]])
-
-
-#' @title Fix members attr in a dendrogram
-#' @description
-#' Fix members attr in a dendrogram after (for example), the tree was trimmed 
-#' or manipulated.
-#' @param dend a dendrogram object 
-#' @param ... not used
-#' @return 
-#' A dendrogram, after adjusting the members attr in all of its nodes.
-#' @examples
-#' 
-#' # define dendrogram object to play with:
-#' hc <- hclust(dist(USArrests[1:3,]), "ave")
-#' dend <- as.dendrogram(hc)
-#' # plot(dend)
-#' # trim one leaf
-#' dend[[2]] <- dend[[2]][[1]]
-#' # plot(dend)
-#' dend # but it is NO LONGER true that it has 3 members total!
-#' fix_members_attr.dendrogram(dend) # it now knows it has only 2 members :)
-#' 
-#' hc <- hclust(dist(USArrests[1:3,]), "ave")
-#' dend <- as.dendrogram(hc)
-#' 
-#' identical(trim_leaf(dend , "Alaska"), fix_members_attr.dendrogram(trim_leaf(dend , "Alaska")))
-#' str(unclass(trim_leaf(dend , "Alaska")))
-#' str(unclass(fix_members_attr.dendrogram(trim_leaf(dend , "Alaska"))))
-fix_members_attr.dendrogram <- function(dend,...) {
-   if(!inherits(dend,'dendrogram')) stop("'dend' should be a dendrogram.")   
-   
-   
-   fix_members_attr_per_node <- function(dend_node)
-   {
-      if(!is.leaf(dend_node)) attr(dend_node, "members") <- nleaves(dend_node)
-      return(unclass(dend_node))
-   }
-   # mtrace(".change.label.by.mat")
-   dend <- dendrapply(dend, fix_members_attr_per_node)
-   class(dend) <- "dendrogram"
-   return(dend)
-}
-#
-
-
-
 
 #' @title Trimms one leaf from a dendrogram
 #' @param x dendrogram object
