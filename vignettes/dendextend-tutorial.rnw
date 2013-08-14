@@ -1203,6 +1203,40 @@ title(sub = paste("One sided p-value =",  round(sum(the_cor < cor_bakers_gamma_r
 @
 
 
+And lastly, let us look at a simulation were labels of both trees are shuffled:
+
+
+<<cor_bakers_gamma_simulation_3>>=
+
+
+set.seed(23235)
+ss <- sample(1:150, 10 ) # we want to compare small trees
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+#    cutree(dend1)   
+
+the_cor <- cor_bakers_gamma(dend1, dend2)
+the_cor
+
+R <- 1000
+cor_bakers_gamma_results <- numeric(R)
+dend_mixed1 <- dend1
+dend_mixed2 <- dend2
+for(i in 1:R) {
+   labels(dend_mixed1) <- sample(labels(dend_mixed1))
+   labels(dend_mixed2) <- sample(labels(dend_mixed2))
+   cor_bakers_gamma_results[i] <- cor_bakers_gamma(dend_mixed1, dend_mixed2)
+}
+plot(density(cor_bakers_gamma_results),
+     main = "Baker's gamma distribution under H0",
+     xlim = c(-1,1))
+abline(v = 0, lty = 2)
+abline(v = the_cor, lty = 2, col = 2)
+title(sub = paste("One sided p-value =",  round(sum(the_cor < cor_bakers_gamma_results)/ R, 4)))
+
+@
 
 
 

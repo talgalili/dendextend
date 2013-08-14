@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  14 AUG 2013 15:45
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  14 AUG 2013 16:43
 entering extended mode
 **dendextend-tutorial.tex
 
@@ -2290,6 +2290,7 @@ File: figure/cor_bakers_gamma_simulation_2.pdf Graphic file (type pdf)
 Package pdftex.def Info: figure/cor_bakers_gamma_simulation_2.pdf used on input
  line 2321.
 (pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+Package color Info: Redefining color shadecolor on input line 2335.
 
 Underfull \vbox (badness 2393) has occurred while \output is active []
 
@@ -2300,32 +2301,60 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [52 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
 or_bakers_gamma_simulation_2.pdf>]
-("D:\Dropbox\aaaa good R code\AA - My packages\dendextend\vignettes\dendextend-
-tutorial.bbl")
-Package color Info: Redefining color shadecolor on input line 2510.
+Overfull \hbox (44.97795pt too wide) in paragraph at lines 2362--2362
+[][]\T1/aett/bx/n/10.95 plot[][]([][]density[][](cor_bakers_gamma_results),[] [
+]main[] []=[] []"Baker\TS1/cmtt/m/n/10.95 '\T1/aett/bx/n/10.95 s gamma distribu
+tion under H0"[][],[][] 
+ []
+
+<figure/cor_bakers_gamma_simulation_3.pdf, id=525, 505.89pt x 505.89pt>
+File: figure/cor_bakers_gamma_simulation_3.pdf Graphic file (type pdf)
+
+<use figure/cor_bakers_gamma_simulation_3.pdf>
+Package pdftex.def Info: figure/cor_bakers_gamma_simulation_3.pdf used on input
+ line 2371.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 53
  []
 
 [53]
-Underfull \hbox (badness 10000) in paragraph at lines 2551--2551
-
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2551.
-
+("D:\Dropbox\aaaa good R code\AA - My packages\dendextend\vignettes\dendextend-
+tutorial.bbl"
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 54 []
  []
 
-[54]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2551.
+[54 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
+or_bakers_gamma_simulation_3.pdf>])
+Package color Info: Redefining color shadecolor on input line 2558.
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 55
+ []
+
+[55]
+Underfull \hbox (badness 10000) in paragraph at lines 2601--2601
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2601.
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 56 []
+ []
+
+[56]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2601.
 
 ("D:\Dropbox\aaaa good R code\AA - My packages\dendextend\vignettes\dendextend-
 tutorial.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2551.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2551.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2601.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2601.
 
 Package rerunfilecheck Info: File `dendextend-tutorial.out' has not changed.
 (rerunfilecheck)             Checksum: 9400F526787647BEDBCA5CBFE5DA9596;4824.
@@ -2333,13 +2362,13 @@ Package rerunfilecheck Info: File `dendextend-tutorial.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2551.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2601.
  ) 
 Here is how much of TeX's memory you used:
- 7093 strings out of 494045
- 110435 string characters out of 3145976
+ 7100 strings out of 494045
+ 110661 string characters out of 3145976
  329062 words of memory out of 3000000
- 10062 multiletter control sequences out of 15000+200000
+ 10066 multiletter control sequences out of 15000+200000
  49668 words of font info for 92 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  36i,9n,34p,1513b,473s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2375,9 +2404,9 @@ rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Pro
 gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Progr
 am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program
  Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dendextend-tutorial.pdf (54 pages, 727621 bytes).
+Output written on dendextend-tutorial.pdf (56 pages, 738148 bytes).
 PDF statistics:
- 640 PDF objects out of 1000 (max. 8388607)
- 141 named destinations out of 1000 (max. 500000)
- 152 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 656 PDF objects out of 1000 (max. 8388607)
+ 143 named destinations out of 1000 (max. 500000)
+ 157 words of extra memory for PDF output out of 10000 (max. 10000000)
 

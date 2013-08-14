@@ -2328,6 +2328,54 @@ Since the observations creating the Baker's Gamma Index of such a measure are co
 
 
 
+And lastly, let us look at a simulation were labels of both trees are shuffled:
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{set.seed}\hlstd{(}\hlnum{23235}\hlstd{)}
+\hlstd{ss} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{150}\hlstd{,} \hlnum{10}\hlstd{)}  \hlcom{# we want to compare small trees}
+\hlstd{hc1} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"com"}\hlstd{)}
+\hlstd{hc2} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"single"}\hlstd{)}
+\hlstd{dend1} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc1)}
+\hlstd{dend2} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc2)}
+\hlcom{# cutree(dend1)}
+
+\hlstd{the_cor} \hlkwb{<-} \hlkwd{cor_bakers_gamma}\hlstd{(dend1, dend2)}
+\hlstd{the_cor}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.5716
+\end{verbatim}
+\begin{alltt}
+\hlstd{R} \hlkwb{<-} \hlnum{1000}
+\hlstd{cor_bakers_gamma_results} \hlkwb{<-} \hlkwd{numeric}\hlstd{(R)}
+\hlstd{dend_mixed1} \hlkwb{<-} \hlstd{dend1}
+\hlstd{dend_mixed2} \hlkwb{<-} \hlstd{dend2}
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{R) \{}
+    \hlkwd{labels}\hlstd{(dend_mixed1)} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlkwd{labels}\hlstd{(dend_mixed1))}
+    \hlkwd{labels}\hlstd{(dend_mixed2)} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlkwd{labels}\hlstd{(dend_mixed2))}
+    \hlstd{cor_bakers_gamma_results[i]} \hlkwb{<-} \hlkwd{cor_bakers_gamma}\hlstd{(dend_mixed1,}
+        \hlstd{dend_mixed2)}
+\hlstd{\}}
+\hlkwd{plot}\hlstd{(}\hlkwd{density}\hlstd{(cor_bakers_gamma_results),} \hlkwc{main} \hlstd{=} \hlstr{"Baker's gamma distribution under H0"}\hlstd{,}
+    \hlkwc{xlim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+\hlkwd{abline}\hlstd{(}\hlkwc{v} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{lty} \hlstd{=} \hlnum{2}\hlstd{)}
+\hlkwd{abline}\hlstd{(}\hlkwc{v} \hlstd{= the_cor,} \hlkwc{lty} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{col} \hlstd{=} \hlnum{2}\hlstd{)}
+\hlkwd{title}\hlstd{(}\hlkwc{sub} \hlstd{=} \hlkwd{paste}\hlstd{(}\hlstr{"One sided p-value ="}\hlstd{,} \hlkwd{round}\hlstd{(}\hlkwd{sum}\hlstd{(the_cor} \hlopt{<}
+    \hlstd{cor_bakers_gamma_results)}\hlopt{/}\hlstd{R,} \hlnum{4}\hlstd{)))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/cor_bakers_gamma_simulation_3} 
+
+}
+
+
+
+\end{knitrout}
+
 
 
 
@@ -2533,13 +2581,15 @@ We are very thankful for code contributions and ideas by the R core team (especi
 ## [6] methods   base     
 ## 
 ## other attached packages:
-## [1] codetools_0.2-8  dendextend_0.7.3 ape_3.0-8       
-## [4] knitr_1.4       
+## [1] plyr_1.8             microbenchmark_1.3-0
+## [3] colorspace_1.2-2     codetools_0.2-8     
+## [5] dendextend_0.7.3     ape_3.0-8           
+## [7] knitr_1.4           
 ## 
 ## loaded via a namespace (and not attached):
 ## [1] digest_0.6.3    evaluate_0.4.7  formatR_0.9    
-## [4] grid_3.0.1      lattice_0.20-15 nlme_3.1-109   
-## [7] stringr_0.6.2   tools_3.0.1
+## [4] grid_3.0.1      highr_0.2.2     lattice_0.20-15
+## [7] nlme_3.1-109    stringr_0.6.2   tools_3.0.1
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
