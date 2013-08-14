@@ -179,6 +179,17 @@ test_that("cutree dendrogram method works for k",{
       unname(cutree(hc, k=3) )     )    
    
    
+   # use_labels_not_values doesn't harm cutree
+   expect_identical( 
+      cutree(dend, k=3, use_labels_not_values = TRUE),
+      cutree(dend, k=3, use_labels_not_values = FALSE))    
+
+   # use_labels_not_values doesn't harm cutree also when try_cutree_hclust=FALSE
+   expect_identical( 
+      unname(cutree(dend, k=3, use_labels_not_values = TRUE, try_cutree_hclust=FALSE)),
+             unname(cutree(dend, k=3, use_labels_not_values = FALSE, try_cutree_hclust=FALSE)))    
+   
+   
    # errors:
    expect_error(cutree(dend))  # we need h!
    expect_error( cutree(dend, k=-1))
