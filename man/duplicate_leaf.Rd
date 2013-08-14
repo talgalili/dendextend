@@ -1,0 +1,53 @@
+\name{duplicate_leaf}
+\alias{duplicate_leaf}
+\title{Duplicate a leaf X times}
+\usage{
+  duplicate_leaf(dend, leaf_label, times,
+    fix_members = TRUE, fix_order = TRUE,
+    fix_midpoint = TRUE, ...)
+}
+\arguments{
+  \item{dend}{a dendrogram object}
+
+  \item{leaf_label}{the label of the laef to replicate.}
+
+  \item{times}{the number of times we will have this leaf
+  after replication}
+
+  \item{fix_members}{logical (TRUE). Fix the number of
+  members in attr using \link{fix_members_attr.dendrogram}}
+
+  \item{fix_order}{logical (TRUE). Fix the leaves order}
+
+  \item{fix_midpoint}{logical (TRUE). Fix the midpoint
+  value. If TRUE, it overrides "fix_members" and turns it
+  into TRUE (since it must have a correct number of members
+  in order to work). values using
+  \link{rank_order.dendrogram}}
+
+  \item{...}{not used}
+}
+\value{
+  A dendrogram, after duplicating one of its leaves.
+}
+\description{
+  Duplicates a leaf in a tree. Useful for non-parametric
+  bootstraping trees since it emulates what would have
+  happened if the tree was constructed based on a
+  row-sample with replacments from the original data
+  matrix.
+}
+\examples{
+\dontrun{
+# define dendrogram object to play with:
+dend <- as.dendrogram(hclust(dist(USArrests[1:3,]), "ave"))
+plot(dend)
+duplicate_leaf(dend, "Alaska", 3)
+duplicate_leaf(dend, "Arizona", 2, fix_members =FALSE, fix_order = FALSE)
+plot(duplicate_leaf(dend, "Alaska", 2))
+plot(duplicate_leaf(dend, "Alaska", 4))
+plot(duplicate_leaf(dend, "Arizona", 2))
+plot(duplicate_leaf(dend, "Arizona", 4))
+}
+}
+

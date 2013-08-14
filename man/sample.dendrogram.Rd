@@ -1,0 +1,77 @@
+\name{sample.dendrogram}
+\alias{sample.dendrogram}
+\title{Sample a tree}
+\usage{
+  sample.dendrogram(dend, replace = FALSE, dend_labels,
+    sampled_labels, fix_members = TRUE, fix_order = TRUE,
+    fix_midpoint = TRUE, ...)
+}
+\arguments{
+  \item{dend}{a dendrogram object}
+
+  \item{replace}{logical (FALSE). Should we shuffle the
+  labels (if FALSE), or should we replicate the same leaf
+  over and over, while omitting other leaves? (this is when
+  set to TRUE).}
+
+  \item{dend_labels}{a character vector of the tree's
+  labels. This can save the time it takes for getting the
+  tree labels (in case we run a simulating, computing this
+  once might save some running time). If missing, it uses
+  \link{labels} in order to get the labels.}
+
+  \item{sampled_labels}{a character vector of the tree's
+  sampled labels. This can help us if we wish to compare
+  two trees. In such a case we'd like to be able to have
+  the same sample of labels used on both trees. If missing,
+  it uses \link{sample} in order to get the sampled labels.
+
+  Only works when replace=TRUE!}
+
+  \item{fix_members}{logical (TRUE). Fix the number of
+  members in attr using \link{fix_members_attr.dendrogram}}
+
+  \item{fix_order}{logical (TRUE). Fix the leaves order}
+
+  \item{fix_midpoint}{logical (TRUE). Fix the midpoint
+  value. If TRUE, it overrides "fix_members" and turns it
+  into TRUE (since it must have a correct number of members
+  in order to work). values using
+  \link{rank_order.dendrogram}}
+
+  \item{...}{not used}
+}
+\value{
+  A dendrogram, after "sampling" its leaves.
+}
+\description{
+  Samples a tree, either by permuting the labels (which is
+  usefull for a permutation test), or by repeated sampling
+  of the same labels (essential for bootstraping when we
+  don't have access to the original data which produced the
+  tree).
+
+  Duplicates a leaf in a tree. Useful for non-parametric
+  bootstraping trees since it emulates what would have
+  happened if the tree was constructed based on a
+  row-sample with replacments from the original data
+  matrix.
+}
+\examples{
+\dontrun{
+# define dendrogram object to play with:
+dend <- as.dendrogram(hclust(dist(USArrests[1:5,]), "ave"))
+plot(dend)
+
+# # same tree, with different order of labels
+plot(sample.dendrogram(dend, replace = FALSE))
+
+# # A different tree (!), with some labels duplicated,
+  # while others are trimmed
+plot(sample.dendrogram(dend, replace = TRUE))
+}
+}
+\seealso{
+  \link{sample}, \link{duplicate_leaf}
+}
+
