@@ -127,6 +127,10 @@
   \item{k_branches}{integer. Number of groups by which to
   color the branches.}
 
+  \item{rank_branches}{logical (FALSE). Should the branches
+  heights be adjusted? (setting this to TRUE - can make it
+  easier for comparing topological differences)}
+
   \item{...}{not used.}
 }
 \value{

@@ -30,7 +30,7 @@
 ### with horizontal trees.
 plotNode_horiz <- function (x1, x2, subtree, type, center, leaflab, dLeaf, nodePar, 
                             edgePar, horiz = FALSE, 
-                            text_pos = 2, text_offset = 0.5) 
+                            text_pos = 2, text_offset = 0) 
 {
    .midDend <- stats:::.midDend
    plotNodeLimit <- stats:::plotNodeLimit
@@ -237,7 +237,6 @@ plotNode_horiz <- function (x1, x2, subtree, type, center, leaflab, dLeaf, nodeP
 #' @param dLeaf a number specifying the distance in user coordinates between 
 #' the tip of a leaf and its label. If NULL as per default, 3/4 of a letter
 #' width is used.
-#' IMPORTANT - this is overriddenb by the text_offset parameter.
 #' @param horiz logical indicating if the dendrogram should be 
 #' drawn horizontally or not. In this function it MUST be TRUE!
 #' @param xaxt graphical parameters, or arguments for other methods.
@@ -295,7 +294,6 @@ plot_horiz.dendrogram <- function (x,
                                    leaflab = c("perpendicular", 
                                                "textlike", "none"),
                                    side = TRUE,
-                                   text_offset = NULL,
                                    text_pos = 2,
                                    ...) {
    # reproduces plot.dendrogram in order to set the correct 
@@ -419,7 +417,7 @@ plot_horiz.dendrogram <- function (x,
    
    plotNode_horiz(x1, x2, x, type = type, center = center, leaflab = leaflab, 
             dLeaf = dLeaf, nodePar = nodePar, edgePar = edgePar, 
-            horiz = horiz, text_pos = text_pos, text_offset = dLeaf)
+            horiz = horiz, text_pos = text_pos)
    
    return(invisible(dLeaf))
 }
@@ -532,6 +530,9 @@ plot_horiz.dendrogram <- function (x,
 #' @param main_right Character. Title of the right dendrogram.
 #' @param k_labels integer. Number of groups by which to color the leaves.
 #' @param k_branches integer. Number of groups by which to color the branches.
+#' @param rank_branches logical (FALSE). Should the branches heights be adjusted?
+#' (setting this to TRUE - can make it easier for 
+#' comparing topological differences)
 #' @param ... not used.
 #' @details 
 #' Notice that tanglegram does not "resize" well. In case you are resizing your
@@ -610,6 +611,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   main_right = "",
                                   k_labels = NULL,
                                   k_branches = NULL,
+                                  rank_branches = FALSE, 
                                   ... )
 {
    
@@ -652,6 +654,11 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
       tree1 <- color_branches(tree1, k_branches)
       tree2 <- color_branches(tree2, k_branches)
    }
+   if(rank_branches) {
+      tree1 <- rank_branches(tree1)
+      tree2 <- rank_branches(tree2)      
+   }
+   
    
    
    

@@ -16,7 +16,7 @@
     xlim = NULL, ylim = NULL, nodePar = NULL,
     edgePar = list(),
     leaflab = c("perpendicular", "textlike", "none"),
-    side = TRUE, text_offset = NULL, text_pos = 2, ...)
+    side = TRUE, text_pos = 2, ...)
 }
 \arguments{
   \item{x}{tree object (dendrogram)}
@@ -33,9 +33,7 @@
 
   \item{dLeaf}{a number specifying the distance in user
   coordinates between the tip of a leaf and its label. If
-  NULL as per default, 3/4 of a letter width is used.
-  IMPORTANT - this is overriddenb by the text_offset
-  parameter.}
+  NULL as per default, 3/4 of a letter width is used.}
 
   \item{horiz}{logical indicating if the dendrogram should
   be drawn horizontally or not. In this function it MUST be
