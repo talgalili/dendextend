@@ -155,9 +155,9 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 #' of its relative position compared with other branches.
 #' 
 #' @seealso
-#' \link{cor_bakers_gamma}
+#' \link{cor_cophenetic}
 #' @return 
-#' The first location (from left) where the two vectors have the same A dendrogram, after adjusting the members attr in all of its nodes.
+#' Baker's Gamma association Index between two trees (a number between -1 to 1)
 #' 
 #' @references
 #' 

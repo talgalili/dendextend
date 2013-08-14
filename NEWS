@@ -7,6 +7,9 @@ NEW FUNCTIONS ADDED:
    * duplicate_leaf - for sample.dendrogram
    * sample.dendrogram - for bootstraping trees when the original data table is missing.
 
+   * sort_dist_mat
+   * cor_cophenetic
+
 UPDATED FUNCTIONS:
    * tanglegram - added the match_order_by_labels parameter.
 
@@ -266,3 +269,4 @@ http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
    * boot_dend - create a same-size tree, while sampling (with repetition) the leaves! # later for boot
    * An algorithm to find subtrees that are topologically identical between the two trees - and color them accordingly.
    * Get stats:::midcache.dendrogram to work for non-binary trees...
+   * labels.dendrogram in Rcpp would be very helpful! (since this is such a slow, and highly used function). Then it is also interesting to check if I can NOT force the user to use Rcpp (in which case they would revert to the default function).

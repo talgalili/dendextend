@@ -37,4 +37,5 @@ Collate:
     'untangle.r'
     'cor_bakers_gamma.r'
     'sample.dendrogram.r'
+    'cor_cophenetic.r'
     'zzz.r'

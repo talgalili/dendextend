@@ -24,9 +24,8 @@
   \item{...}{Passed to \link[dendextend]{cutree}.}
 }
 \value{
-  The first location (from left) where the two vectors have
-  the same A dendrogram, after adjusting the members attr
-  in all of its nodes.
+  Baker's Gamma association Index between two trees (a
+  number between -1 to 1)
 }
 \description{
   Calculate Baker's Gamma correlation coefficient for two
@@ -104,6 +103,6 @@ cor_bakers_gamma(dend1, dend1, use_labels_not_values = TRUE)
   (1974).
 }
 \seealso{
-  \link{cor_bakers_gamma}
+  \link{cor_cophenetic}
 }
 
