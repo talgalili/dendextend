@@ -8,6 +8,7 @@ UPDATED FUNCTIONS:
    * sort_levels_values - now returns a vector with NA's as is without changing it. Also, a warning is issued (with a parameter to supress the warning called 'warn')
    * cutree - now supresses warnings produced by sort_levels_values, in the case of NA values.
    * plotNode_horiz now uses "Recall" (I might implement this in more function).
+   * tanglegram - added parameters hang and rank_branches.
 
 BUG FIXES: 
    * tanglegram - fixed the right tree's labels position relative to the leaves tips. (they were too far away because of a combination of text_adj with dLeaf)

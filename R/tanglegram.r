@@ -533,6 +533,7 @@ plot_horiz.dendrogram <- function (x,
 #' @param rank_branches logical (FALSE). Should the branches heights be adjusted?
 #' (setting this to TRUE - can make it easier for 
 #' comparing topological differences)
+#' @param hang logical (FALSE). Should we hang the leaves of the trees?
 #' @param ... not used.
 #' @details 
 #' Notice that tanglegram does not "resize" well. In case you are resizing your
@@ -542,7 +543,8 @@ plot_horiz.dendrogram <- function (x,
 #' @source
 #' The function is based on code from plannapus, after major revisions. See:
 #' \url{http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r}
-#' @seealso \link{remove_leaves_nodePar}, \link{plot_horiz.dendrogram}, \link{rank_branches}
+#' @seealso \link{remove_leaves_nodePar}, \link{plot_horiz.dendrogram}, \link{rank_branches},
+#' \link{hang.dendrogram}
 #' @examples
 #' \dontrun{
 #' set.seed(23235)
@@ -612,6 +614,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   k_labels = NULL,
                                   k_branches = NULL,
                                   rank_branches = FALSE, 
+                                  hang = FALSE, 
                                   ... )
 {
    
@@ -658,7 +661,11 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
       tree1 <- rank_branches(tree1)
       tree2 <- rank_branches(tree2)      
    }
-   
+   # MUST    
+   if(hang) {
+      tree1 <- hang.dendrogram(tree1)
+      tree2 <- hang.dendrogram(tree2)      
+   }
    
    
    

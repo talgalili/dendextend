@@ -1035,6 +1035,17 @@ tanglegram(dend12_corrected_2[[1]],
            xlim = c(8,0)) # Much Better...
 
 
+# using "hang=TRUE" also helps:
+tanglegram(dend12_corrected_2[[1]],
+           dend12_corrected_2[[2]],
+           k_branches = 7, 
+           rank_branches = TRUE, hang = TRUE,
+           margin_inner=6.5, type = "r", center = TRUE,
+           xlim = c(8,0)
+           ) # Also Better... 
+
+
+
 
 @
 

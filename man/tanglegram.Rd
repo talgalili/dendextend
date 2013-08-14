@@ -131,6 +131,9 @@
   heights be adjusted? (setting this to TRUE - can make it
   easier for comparing topological differences)}
 
+  \item{hang}{logical (FALSE). Should we hang the leaves of
+  the trees?}
+
   \item{...}{not used.}
 }
 \value{
@@ -182,6 +185,7 @@ tanglegram(rank_branches(dend1) , rank_branches(dend2), lab.cex = 2, edge.lwd = 
 }
 \seealso{
   \link{remove_leaves_nodePar},
-  \link{plot_horiz.dendrogram}, \link{rank_branches}
+  \link{plot_horiz.dendrogram}, \link{rank_branches},
+  \link{hang.dendrogram}
 }
 
