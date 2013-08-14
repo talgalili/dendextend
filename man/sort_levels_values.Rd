@@ -3,7 +3,7 @@
 \title{Sort the values level in a vector}
 \usage{
   sort_levels_values(x, MARGIN = 2, decreasing = FALSE,
-    force_integer = FALSE, ...)
+    force_integer = FALSE, warn = TRUE, ...)
 }
 \arguments{
   \item{x}{a numeric vector.}
@@ -15,11 +15,14 @@
   named dimnames, it can be a character vector selecting
   dimension names.}
 
-  \item{decreasing}{logical. Should the sort be increasing
-  or decreasing?}
+  \item{decreasing}{logical (FALSE). Should the sort be
+  increasing or decreasing?}
 
-  \item{force_integer}{logical. Should the values returned
-  be integers?}
+  \item{force_integer}{logical (FALSE). Should the values
+  returned be integers?}
+
+  \item{warn}{logical (TRUE). Should the function print
+  warnings? (for example when x had NA values in it)}
 
   \item{...}{ignored.}
 }

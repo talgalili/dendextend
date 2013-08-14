@@ -86,8 +86,10 @@ fac2num <- function(x, force_integer = FALSE, keep_names = TRUE, ...) {
 #'  E.g., for a matrix 1 indicates rows, 2 indicates columns,
 #'  c(1, 2) indicates rows and columns. Where X has named dimnames, 
 #'  it can be a character vector selecting dimension names.
-#' @param decreasing logical. Should the sort be increasing or decreasing? 
-#' @param force_integer logical. Should the values returned be integers?
+#' @param decreasing logical (FALSE). Should the sort be increasing or decreasing? 
+#' @param force_integer logical (FALSE). Should the values returned be integers?
+#' @param warn logical (TRUE). Should the function print warnings? (for example
+#' when x had NA values in it)
 #' @param ... ignored.
 #' @return if x is an object - it returns logical - is the object of class dendrogram.
 #' @seealso \code{\link{sort}}, \code{\link{fac2num}}, \code{\link[dendextend]{cutree}}
@@ -112,7 +114,12 @@ fac2num <- function(x, force_integer = FALSE, keep_names = TRUE, ...) {
 #' x
 #' apply(x, 2, sort_levels_values)
 #' 
-sort_levels_values <- function(x, MARGIN = 2,  decreasing = FALSE, force_integer = FALSE,...) {
+sort_levels_values <- function(x, MARGIN = 2,  decreasing = FALSE, force_integer = FALSE, warn = TRUE, ...) {
+   if(any(is.na(x))) {
+      if(warn) warning("'x' had NA values - it is returned as is.")
+      return(x)   
+   }
+   
    if(!is.numeric(x)) stop("x must be a numeric vector/matrix")
    
    # make a function that would work on a vector
@@ -674,7 +681,7 @@ cutree.hclust <- function(tree, k = NULL, h = NULL,
    
 
    # sort the clusters id
-   if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE)
+   if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE, warn = FALSE)
          # we know that cluster id is an integer, so it is fine to use force_integer = TRUE
    
    return(clusters)
@@ -789,7 +796,7 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
    if(ncol(clusters)==1) clusters <- clusters[,1] # make it NOT a matrix
 
    # sort the clusters id
-   if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE)
+   if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE, warn = FALSE)
          # we know that cluster id is an integer, so it is fine to use force_integer = TRUE
    
    
