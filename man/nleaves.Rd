@@ -8,8 +8,8 @@
 \usage{
   nleaves(x, ...)
 
-  \method{nleaves}{dendrogram}(x, method = c("order",
-    "members"), ...)
+  \method{nleaves}{dendrogram}(x, method = c("members",
+    "order"), ...)
 
   \method{nleaves}{hclust}(x, ...)
 
