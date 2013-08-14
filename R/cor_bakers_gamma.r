@@ -152,6 +152,13 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 #' \link{cor_bakers_gamma}
 #' @return 
 #' The first location (from left) where the two vectors have the same A dendrogram, after adjusting the members attr in all of its nodes.
+#' 
+#' @references
+#' 
+#' Baker, F. B., Stability of Two Hierarchical Grouping Techniques Case
+#'  1: Sensitivity to Data Errors. Journal of the American Statistical 
+#'  Association, 69(346), 440 (1974).
+#' 
 #' @examples
 #' 
 #' \dontrun{
