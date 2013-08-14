@@ -1052,10 +1052,159 @@ tanglegram(dend12_corrected_2[[1]],
 
 
 
-
 \section{Comparing two trees - statistics and inference}
 
-\subsection{Baker's gamma}
+\subsection{Baker's Gamma Index}
+
+Baker's Gamma Index \citep{baker1974stability} is a measure of accosiation (similarity) 
+between two trees of heirarchical clustering (dendrograms). It is defined as the rank correlation between the stages at which pairs of objects combine in each of the two trees.
+
+Or more detailed: It is calculated by taking two items, and see what is the heighst
+possible level of k (number of cluster groups created when cutting the tree)
+for which the two item still belongs to the same tree. That k is returned, 
+and the same is done for these two items for the second tree.
+There are n over 2 combinations of such pairs of items from the items in 
+the tree, and all of these numbers are calculated for each of the two trees. 
+Then, these two sets of numbers (a set for the items in each tree)
+are paired according to the pairs of items compared, and a spearman 
+correlation is calculated.
+
+The value can range between -1 to 1. With near 0 values meaning that
+the two trees are not statistically similar.
+For exact p-value one should result to a permutation test. One such option
+will be to permute over the labels of one tree many times, and calculating 
+the distriubtion under the null hypothesis (keeping the trees topologies
+constant).
+
+Notice that this measure is not affected by the height of a branch but only
+of its relative position compared with other branches.
+
+
+Here are a few examples:
+
+<<cor_bakers_gamma_example_1>>=
+
+
+set.seed(23235)
+ss <- sample(1:150, 10 ) # we want to compare small trees
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+#    cutree(dend1)   
+
+cor_bakers_gamma(hc1, hc2)
+cor_bakers_gamma(dend1, dend2)
+
+# dend1 <- match_order_by_labels(dend1, dend2) # if you are not sure
+# cor_bakers_gamma(dend1, dend2, use_labels_not_values = FALSE)   
+
+require(microbenchmark)
+microbenchmark(
+   with_labels = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=FALSE)   ,
+   with_values = cor_bakers_gamma(dend1, dend2, use_labels_not_values = FALSE, try_cutree_hclust=FALSE)   ,
+   times=10
+)
+
+# The cor of a tree with itself is 1:
+cor_bakers_gamma(dend1, dend1, use_labels_not_values = FALSE)   
+cor_bakers_gamma(dend1, dend1, use_labels_not_values = TRUE)   
+entanglement(dend1, dend1) # having a worse entanglement 
+tanglegram(dend1, dend1) # having a worse entanglement 
+
+
+# tree order has no effect on the correlation:
+rev_dend1 <- rev(dend1)
+cor_bakers_gamma(dend1, rev_dend1, use_labels_not_values = TRUE)   
+entanglement(dend1, rev_dend1) # having a worse entanglement 
+tanglegram(dend1, rev_dend1) # having a worse entanglement 
+
+# But labels order does matter!!
+dend1_mixed <- dend1
+labels(dend1_mixed) <- rev(labels(dend1_mixed))
+tanglegram(dend1, dend1_mixed)
+entanglement(dend1, dend1_mixed) # having the worst entanglement 
+# does NOT mean having the worst cor!
+cor_bakers_gamma(dend1, dend1_mixed, use_labels_not_values = TRUE)   
+
+set.seed(983597)
+labels(dend1_mixed) <- sample(labels(dend1_mixed))
+tanglegram(dend1, dend1_mixed)
+entanglement(dend1, dend1_mixed) # having a worse entanglement 
+cor_bakers_gamma(dend1, dend1_mixed, use_labels_not_values = TRUE)   
+
+
+@
+
+
+Since the observations creating the Baker's Gamma Index of such a measure are correlated, we need to perform a permutation test for the calculation of the statistical significance of the index. Let's look at the distribution of Baker's Gamma Index under the null hypothesis (assuming fixed tree topologies). This will be different for different tree structures and sizes. Here are the results when the compared tree is itself (after shuffaling its own labels), and when comparing tree 1 to the shuffled tree 2:
+
+
+
+<<cor_bakers_gamma_simulation_1>>=
+
+
+set.seed(23235)
+ss <- sample(1:150, 10 ) # we want to compare small trees
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+#    cutree(dend1)   
+
+the_cor <- cor_bakers_gamma(dend1, dend1)
+the_cor
+
+R <- 1000
+cor_bakers_gamma_results <- numeric(R)
+dend_mixed <- dend1
+for(i in 1:R) {
+   labels(dend_mixed) <- sample(labels(dend_mixed))
+   cor_bakers_gamma_results[i] <- cor_bakers_gamma(dend1, dend_mixed)
+}
+plot(density(cor_bakers_gamma_results),
+     main = "Baker's gamma distribution under H0",
+     xlim = c(-1,1))
+abline(v = 0, lty = 2)
+abline(v = the_cor, lty = 2, col = 2)
+title(sub = paste("One sided p-value =",  round(sum(the_cor < cor_bakers_gamma_results)/ R, 4)))
+
+@
+
+
+<<cor_bakers_gamma_simulation_2>>=
+
+
+set.seed(23235)
+ss <- sample(1:150, 10 ) # we want to compare small trees
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+#    cutree(dend1)   
+
+the_cor <- cor_bakers_gamma(dend1, dend2)
+the_cor
+
+R <- 1000
+cor_bakers_gamma_results <- numeric(R)
+dend_mixed <- dend2
+for(i in 1:R) {
+   labels(dend_mixed) <- sample(labels(dend_mixed))
+   cor_bakers_gamma_results[i] <- cor_bakers_gamma(dend1, dend_mixed)
+}
+plot(density(cor_bakers_gamma_results),
+     main = "Baker's gamma distribution under H0",
+     xlim = c(-1,1))
+abline(v = 0, lty = 2)
+abline(v = the_cor, lty = 2, col = 2)
+title(sub = paste("One sided p-value =",  round(sum(the_cor < cor_bakers_gamma_results)/ R, 4)))
+
+@
+
+
+
+
 
 \subsection{Bk method}
 

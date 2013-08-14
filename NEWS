@@ -6,6 +6,9 @@ NEW FUNCTIONS ADDED:
 UPDATED FUNCTIONS:
    * tanglegram - added the match_order_by_labels parameter.
 
+VIGNETTES:
+   * Added the Baker's Gamma Index section.
+
 
 dendextend 0.7.3 (2013-08-14)
 ----------------------------
