@@ -1,6 +1,23 @@
+dendextend 0.7.3 (2013-08-14)
+----------------------------
+NEW FUNCTIONS ADDED: 
+   * get_childrens_heights - Get height attributes from a dendrogram's children
+   * rank_branches - ranks the heights of branches - making comparison of the topologies of two trees easier.
+
+UPDATED FUNCTIONS:
+   * sort_levels_values - now returns a vector with NA's as is without changing it. Also, a warning is issued (with a parameter to supress the warning called 'warn')
+   * cutree - now supresses warnings produced by sort_levels_values, in the case of NA values.
+   * plotNode_horiz now uses "Recall" (I might implement this in more function).
+
+BUG FIXES: 
+   * tanglegram - fixed the right tree's labels position relative to the leaves tips. (they were too far away because of a combination of text_adj with dLeaf)
+
+VIGNETTES:
+   * Fixed the dLeaf in tanglegram plots, and gave an example of using rank_branches. 
+
+
 dendextend 0.7.2 (2013-08-13)
 ----------------------------
-
 NEW FUNCTIONS ADDED: 
    * plotNode_horiz - allows the labels, in plot_horiz.dendrogram, to be aligned to the leaves tips when the tree is plotted horizontally, its leaves facing left.
 
@@ -8,23 +25,18 @@ UPDATED FUNCTIONS:
    * plot_horiz.dendrogram - allows the labels to be aligned to the leaves tips when the tree is plotted horizontally, its leaves facing left. (took a lot of digging into internal functions used by plot.dendrogram)
    * tanglegram - added the parameters: dLeaf_left dLeaf_right. Also, labels are now alligned to the leaves tips in the right dendrogram.
 
-
-
 BUG FIXES: 
    * Fix untangle_step_rotate_1side to work with non-missing dend_heights_per_k
    * Set sort_cluster_numbers = TRUE for cutree, in order to make it compatible with stats:::cutree. Added a test for this.
    * Fix cutree.hclust to work with a vector of k when !order_clusters_as_data
    * Fix cutree.dendrogram to give default results as stats:::hclust does, by setting the default to sort_cluster_numbers = TRUE.
 
-
 OTHER NOTES:
    * Variations of the changes to plot_horiz.dendrogram and plotNode_horiz should be added to R core in order to allow forward compatability.
 
 
-
 dendextend 0.7.1 (2013-08-12)
 ----------------------------
-
 NEW FUNCTIONS ADDED: 
    * untangle_step_rotate_2side
 
@@ -32,10 +44,8 @@ NEW VIGNETTES SECTIONS ADDED:
    * untangle_forward_rotate_2side
 
 
-
 dendextend 0.7 (2013-08-11)
 ---------------------------
-
 NEW FUNCTIONS ADDED: 
    * shuffle - Random rotation of trees
    * untangle_random_search - random search for two trees with low entanglement.
@@ -76,9 +86,9 @@ NEW VIGNETTES SECTIONS ADDED:
    * Tanglegram
    * Entanglement
 
+
 dendextend 0.5 (2013-08-05) 
 ---------------------------
-
 NEW FUNCTIONS ADDED: 
    * tanglegram
 
@@ -94,7 +104,6 @@ NEW TESTS:
 
 dendextend 0.4 (2013-08-02) 
 ---------------------------
-
 NEW FUNCTIONS ADDED: 
 (including tests and documentation)
    * is.natural.number
@@ -125,7 +134,6 @@ NEW FUNCTIONS ADDED:
    
    * assign_values_to_leaves_nodePar - allows for complex manipulation of dendrogram's leaves parameters.
 
-
 UPDATED FUNCTIONS:
    * nleaves - added nleaves.phylo methods, based on as.hclust so it could be improved in the future.
    * "labels_colors<-" - fixed it so that by default it would not add phc=1 to the leaves.
@@ -145,7 +153,6 @@ NEW VIGNETTES SECTIONS ADDED:
 
 dendextend 0.3 (2013-07-27) 
 ---------------------------
-
 NEW FUNCTIONS ADDED:
    * removed "flip", added rev.hclust instead (since rev.dendrogram already exists)
 
@@ -169,7 +176,6 @@ UPDATED FUNCTIONS:
    * as_hclust_fixed - now works just as as.hclust when hc is missing.
    * rotate - allowed "order" to accept character vector.
 
-
 OTHER NOTES:
    * Extending the documentation for: rotate, labels.hclust,
    * Added a welcome massage to when loading the package (zzz.r file added)
@@ -179,9 +185,9 @@ OTHER NOTES:
    * Added a clear GPL-2+ copyright notice on each r file.
 	* Forcing {ape} to load before {dendextend}, thus allowing for both rotate and unroot to work for BOTH packages. It does add extra noise when loading the package, but it is the best solution I can think of at this point.
 
+
 dendextend 0.2 (2013-04-10) 
 ---------------------------
-
 NEW FUNCTIONS ADDED:
    * count_terminal_nodes
    * labels_colors (retrieving and assignment)
@@ -219,6 +225,8 @@ OTHER NOTES:
 
 	
 
+
+
 TODO for future releases:
 -------------------------
    * add functions...
@@ -226,10 +234,11 @@ TODO for future releases:
    * add a print/warn parameter to intersect_trees
    * add rect.hclust.nice http://stackoverflow.com/questions/4720307/change-dendrogram-leaves 
    * Give this a thought: http://stackoverflow.com/questions/10088117/exporting-dendrogram-as-table-in-r?rq=1
-   * possibly use {dendroextras} to add colors to the tanglegrams. also: http://stackoverflow.com/questions/10571266/colouring-branches-in-a-dendrogram-in-r?rq=1
+   * reply here: http://stackoverflow.com/questions/10571266/colouring-branches-in-a-dendrogram-in-r?rq=1
    * create rect.dendrogram (and make rect generic). http://stackoverflow.com/questions/717747/how-do-i-color-edges-or-draw-rects-correctly-in-an-r-dendrogram
 http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
    * hide some function's doc (labels<-.stuff)
    * cite agnes/cluster and http://cran.r-project.org/web/packages/cluster/cluster.pdf
    Maybe also spantree {vegan}
    * boot_dend - create a same-size tree, while sampling (with repetition) the leaves! # later for boot
+   * An algorithm to find subtrees that are topologically identical between the two trees - and color them accordingly.

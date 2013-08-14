@@ -1938,7 +1938,7 @@ Sometimes, using just one-sise greedy algorithm is not enough. Also, it is proba
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-401} 
+{\centering \includegraphics[width=\maxwidth]{figure/untangle_step_rotate_2side_example1} 
 
 }
 
@@ -1955,7 +1955,7 @@ Sometimes, using just one-sise greedy algorithm is not enough. Also, it is proba
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-402} 
+{\centering \includegraphics[width=\maxwidth]{figure/untangle_step_rotate_2side_example2} 
 
 }
 
@@ -1979,7 +1979,7 @@ Sometimes, using just one-sise greedy algorithm is not enough. Also, it is proba
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-403} 
+{\centering \includegraphics[width=\maxwidth]{figure/untangle_step_rotate_2side_example3} 
 
 }
 
@@ -2005,7 +2005,7 @@ Sometimes, using just one-sise greedy algorithm is not enough. Also, it is proba
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-404} 
+{\centering \includegraphics[width=\maxwidth]{figure/untangle_step_rotate_2side_example4} 
 
 }
 
@@ -2018,6 +2018,22 @@ Sometimes, using just one-sise greedy algorithm is not enough. Also, it is proba
 ## [1] 0
 \end{verbatim}
 \begin{alltt}
+\hlcom{# using rank_branches and k_branches, combined with type,}
+\hlcom{# center, and xlim - helps to see various topological}
+\hlcom{# differences between the two trees:}
+\hlkwd{tanglegram}\hlstd{(dend12_corrected_2[[}\hlnum{1}\hlstd{]], dend12_corrected_2[[}\hlnum{2}\hlstd{]],}
+    \hlkwc{k_branches} \hlstd{=} \hlnum{7}\hlstd{,} \hlkwc{rank_branches} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{margin_inner} \hlstd{=} \hlnum{6.5}\hlstd{,}
+    \hlkwc{type} \hlstd{=} \hlstr{"t"}\hlstd{,} \hlkwc{center} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{xlim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{8}\hlstd{,} \hlnum{0}\hlstd{))}  \hlcom{# Much Better...}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/untangle_step_rotate_2side_example5} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+
 
 \end{alltt}
 \end{kframe}
@@ -2213,7 +2229,7 @@ We are very thankful for code contributions and ideas by the R core team (especi
 \hlkwd{Sys.Date}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## [1] "2013-08-12"
+## [1] "2013-08-14"
 \end{verbatim}
 \begin{alltt}
 \hlkwd{sessionInfo}\hlstd{()}
@@ -2234,13 +2250,15 @@ We are very thankful for code contributions and ideas by the R core team (especi
 ## [6] methods   base     
 ## 
 ## other attached packages:
-## [1] codetools_0.2-8  dendextend_0.7.1 ape_3.0-8       
-## [4] knitr_1.4       
+## [1] plyr_1.8             microbenchmark_1.3-0
+## [3] colorspace_1.2-2     codetools_0.2-8     
+## [5] dendextend_0.7.3     ape_3.0-8           
+## [7] knitr_1.4           
 ## 
 ## loaded via a namespace (and not attached):
 ## [1] digest_0.6.3    evaluate_0.4.7  formatR_0.9    
-## [4] grid_3.0.1      lattice_0.20-15 nlme_3.1-109   
-## [7] stringr_0.6.2   tools_3.0.1
+## [4] grid_3.0.1      highr_0.2.2     lattice_0.20-15
+## [7] nlme_3.1-109    stringr_0.6.2   tools_3.0.1
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

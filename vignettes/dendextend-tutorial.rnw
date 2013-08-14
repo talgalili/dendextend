@@ -1000,7 +1000,7 @@ tanglegram(color_branches(dend12[[1]], col=1, k=1) , dend2_4, color_lines=col_li
 
 Sometimes, using just one-sise greedy algorithm is not enough. Also, it is probably best to combine the random search with the two sided greedy stepwise search:
 
-<<>>=
+<<untangle_step_rotate_2side_example>>=
 
 
 dend1 <- as.dendrogram(hclust(dist(USArrests[1:20,])))
@@ -1025,6 +1025,15 @@ dend12_corrected_1 <- untangle_random_search(dend1, dend2)
 dend12_corrected_2 <- untangle_step_rotate_2side(dend12_corrected_1[[1]],dend12_corrected_1[[2]])
 tanglegram(dend12_corrected_2[[1]],dend12_corrected_2[[2]], margin_inner=6.5) # Better...
 entanglement(dend12_corrected_2[[1]],dend12_corrected_2[[2]], L=2) # 0 - PERFECT.
+
+# using rank_branches and k_branches, combined with type, center, and xlim - 
+# helps to see various topological differences between the two trees:
+tanglegram(dend12_corrected_2[[1]],
+           dend12_corrected_2[[2]],
+           k_branches = 7, rank_branches = TRUE,
+           margin_inner=6.5, type = "t", center = TRUE,
+           xlim = c(8,0)) # Much Better...
+
 
 
 @
