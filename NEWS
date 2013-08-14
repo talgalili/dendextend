@@ -1,3 +1,12 @@
+dendextend 0.8.0 (2013-08-14)
+----------------------------
+NEW FUNCTIONS ADDED: 
+   * cor_bakers_gamma
+
+UPDATED FUNCTIONS:
+   * tanglegram - added the match_order_by_labels parameter.
+
+
 dendextend 0.7.3 (2013-08-14)
 ----------------------------
 NEW FUNCTIONS ADDED: 
