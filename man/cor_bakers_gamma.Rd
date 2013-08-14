@@ -93,6 +93,12 @@ cor_bakers_gamma(dend1, dend1, use_labels_not_values = TRUE)
 
 }
 }
+\references{
+  Baker, F. B., Stability of Two Hierarchical Grouping
+  Techniques Case 1: Sensitivity to Data Errors. Journal of
+  the American Statistical Association, 69(346), 440
+  (1974).
+}
 \seealso{
   \link{cor_bakers_gamma}
 }
