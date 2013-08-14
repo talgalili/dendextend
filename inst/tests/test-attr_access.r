@@ -162,3 +162,18 @@ test_that("rank_branches work",{
 })
 
 
+
+
+test_that("fix_members_attr.dendrogram work",{
+   
+   dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+   
+   # ruin members
+   attr(dend, "members") <- 1
+   fixed_dend <- fix_members_attr.dendrogram(dend)
+   
+   expect_equal(attr(fixed_dend, "members"), 5)
+})
+
+
+

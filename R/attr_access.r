@@ -737,7 +737,7 @@ fix_members_attr.dendrogram <- function(dend,...) {
    
    fix_members_attr_per_node <- function(dend_node)
    {
-      if(!is.leaf(dend_node)) attr(dend_node, "members") <- nleaves(dend_node)
+      if(!is.leaf(dend_node)) attr(dend_node, "members") <- nleaves(dend_node, method="order")
       return(unclass(dend_node))
    }
    # mtrace(".change.label.by.mat")

@@ -14,6 +14,8 @@ VIGNETTES:
 FILE CHANGES:
    * sample.dendrogram.r file added.
 
+BUG FIXES: 
+   * fix_members_attr.dendrogram - fixed a bug introduced by the new "members" method in nleaves.
 
 dendextend 0.7.3 (2013-08-14)
 ----------------------------
