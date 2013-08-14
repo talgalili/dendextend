@@ -339,7 +339,7 @@ get_branches_heights <- function(tree, sort = TRUE, decreasing = FALSE, ...)
 #'  
 #'  
 hang.dendrogram <- function(dend,hang = 0.1,hang_height, ...) {
-   if(!inherits(dend,'dendrogram')) stop("'dend' should be a dendrogram.")   
+   if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")   
    
    #    get_heights.dendrogram
    if(missing(hang_height)) hang_height <- attr(dend, "height")*hang
@@ -374,9 +374,105 @@ hang.dendrogram <- function(dend,hang = 0.1,hang_height, ...) {
    return(dend)
 }
 
-# unclass(dend)
-# unclass(hang.dendrogram(dend))
-# unclass(unclass(unclass(hang.dendrogram(dend))))
+
+
+
+
+#' @title Get height attributes from a dendrogram's children
+#' @export
+#' @param dend a dendrogram.
+#' @param ... not used.
+#' @return 
+#' a vector of the heights of a dendrogram's current node's 
+#' (first level) children.
+#' 
+#' @seealso
+#' \link{get_branches_heights}
+#' @examples
+#' 
+#' hc <- hclust(dist(USArrests[1:4,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' get_childrens_heights(dend)
+#' 
+#' 
+get_childrens_heights <- function(dend,...) {
+   sapply(dend, function(x) {attr(x, "height")})
+}
+
+
+
+#' @title Rank branches' heights
+#' @export
+#' @description
+#' Adjust the height attr in all of the dendrogram nodes so that
+#'  the tree will have a distance of 1 unit between each parent/child nodes.
+#'  It can be thought of as ranking the branches between themselves.
+#'  
+#'  This is intended for easier comparison of the topology of two trees.
+#'  
+#'  Notice that this function changes the height of all the leaves into 0, 
+#'  thus erasing the effect of \link{hang.dendrogram} (which should be run 
+#'  again, if that is the visualization you are intereted in).
+#'  
+#' @param dend a dendrogram object 
+#' @param diff_height Numeric scalar (1). Affects the difference in height
+#' between two branches.
+#' @param ... not used
+#' @seealso
+#' \link{get_branches_heights}, \link{get_childrens_heights},
+#' \link{hang.dendrogram}, \link{tanglegram}
+#' 
+#' @return 
+#' A dendrogram, after adjusting the height attr in all of its branches.
+#' 
+#' @examples
+#' 
+#' # define dendrogram object to play with:
+#' dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+#' 
+#' par(mfrow = c(1,3))
+#' 
+#' plot(dend)
+#' plot(rank_branches(dend))
+#' plot(hang.dendrogram(rank_branches(dend)))
+#' 
+#'  
+rank_branches <- function(dend, diff_height =1, ...) {
+   if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")   
+   
+   
+   fix_height_diff_per_branch <- function(dend_node)
+   {
+      if(is.leaf(dend_node)) { 
+         attr(dend_node, "height") <- 0
+         return(unclass(dend_node)) 
+      }
+      # else:
+
+      # go through and fix all of the nodes beneath this one:
+      for(i_nodes in seq_len(length(dend_node))) {
+         dend_node[[i_nodes]] <- Recall(dend_node[[i_nodes]])
+      }
+      
+      # now we can fix the current height, by finding the height of 
+      # all son-branches and increasing the height of the maximum of them.
+      dend_children_heights <- get_childrens_heights(dend_node)
+      attr(dend_node, "height") <- max(dend_children_heights) + diff_height
+      
+      
+      return(unclass(dend_node)) 
+   }
+   
+   dend <- fix_height_diff_per_branch(dend)   
+   class(dend) <- "dendrogram"
+   return(dend)
+}
+
+
+
+
+
+
 
 
 

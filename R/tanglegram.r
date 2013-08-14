@@ -25,7 +25,6 @@
 
 
 
-
 ### An internal function for plot_horiz.dendrogram
 ### This is basically "plotNode", but with options to make it work 
 ### with horizontal trees.
@@ -206,7 +205,8 @@ plotNode_horiz <- function (x1, x2, subtree, type, center, leaflab, dLeaf, nodeP
                     font = t.font)
             }
          }
-         plotNode_horiz(bx$limit[k], bx$limit[k + 1], subtree = child,  #########
+         # plotNode_horiz
+         Recall(bx$limit[k], bx$limit[k + 1], subtree = child,  #########
                         type, center, leaflab, dLeaf, nodePar, edgePar, 
                         horiz, text_pos = text_pos, text_offset = text_offset) ########
       }
@@ -541,7 +541,7 @@ plot_horiz.dendrogram <- function (x,
 #' @source
 #' The function is based on code from plannapus, after major revisions. See:
 #' \url{http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r}
-#' @seealso \link{remove_leaves_nodePar}, \link{plot_horiz.dendrogram}, 
+#' @seealso \link{remove_leaves_nodePar}, \link{plot_horiz.dendrogram}, \link{rank_branches}
 #' @examples
 #' \dontrun{
 #' set.seed(23235)
@@ -565,6 +565,12 @@ plot_horiz.dendrogram <- function (x,
 #' dLeaf = -0.1, xlim = c(7,0),
 #' k_branches=3)
 #' 
+#' 
+#' # using rank_branches can make the comparison even easier
+#' tanglegram(rank_branches(dend1) , rank_branches(dend2), lab.cex = 2, edge.lwd = 3,  
+#'  margin_inner= 3.5, type = "t", center = TRUE,
+#'   dLeaf = -0.1, xlim = c(5.1,0), columns_width= c(5,1,5),
+#'    k_branches=3)
 #' 
 #' }
 tanglegram <- function (tree1, ...) {UseMethod("tanglegram")}

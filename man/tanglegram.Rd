@@ -165,6 +165,12 @@ dLeaf = -0.1, xlim = c(7,0),
 k_branches=3)
 
 
+# using rank_branches can make the comparison even easier
+tanglegram(rank_branches(dend1) , rank_branches(dend2), lab.cex = 2, edge.lwd = 3,
+ margin_inner= 3.5, type = "t", center = TRUE,
+  dLeaf = -0.1, xlim = c(5.1,0), columns_width= c(5,1,5),
+   k_branches=3)
+
 }
 }
 \author{
@@ -172,6 +178,6 @@ k_branches=3)
 }
 \seealso{
   \link{remove_leaves_nodePar},
-  \link{plot_horiz.dendrogram},
+  \link{plot_horiz.dendrogram}, \link{rank_branches}
 }
 

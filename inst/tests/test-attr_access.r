@@ -151,3 +151,14 @@ test_that("We can remove leaves nodePar",{
 })
 
 
+
+test_that("rank_branches work",{
+   
+   dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+
+   expect_equal(round(get_branches_heights(dend)), c(23,37,63,109))
+   
+   expect_equal(get_branches_heights(rank_branches(dend)), c(1,1,2,3))
+})
+
+
