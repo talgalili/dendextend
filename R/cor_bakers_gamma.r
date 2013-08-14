@@ -42,7 +42,9 @@ lowest_common_branch <- function(item1, item2,...)
    # this finds all the cases where the two items are identical (e.g: belong to the same branch)
    # Then it takes the most extreme value (lowest branch) where this happens
    # and finally - it extracts the level of that lowest brnach (names) and turn it to be numeric
-   as.numeric(names(tail(which(item1 == item2),1))	)
+   value <- as.numeric(names(tail(which(item1 == item2),1))	)
+   if(length(value) == 0) value <- 0
+   return(value)
 }
 
 
@@ -91,6 +93,8 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
    }
    
    COR_object <- cor(cor_mat[,1], cor_mat[,2], method = "spearman")
+   if(is.na(COR_object)) COR_object <- 1 # because this is NA only if the two vectors are identical
+   #  that happens only when the two trees have only leaves. Which is o.k. to define as correlation of 1.
    
    if(to_plot) {
       plot(cor_mat, sub = paste("COR =", round(COR_object,4)))
