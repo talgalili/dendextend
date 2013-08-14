@@ -534,6 +534,11 @@ plot_horiz.dendrogram <- function (x,
 #' (setting this to TRUE - can make it easier for 
 #' comparing topological differences)
 #' @param hang logical (FALSE). Should we hang the leaves of the trees?
+#' @param match_order_by_labels logical (TRUE). Should the leaves value order
+#' be matched between the two trees based on labels? This is a MUST in order
+#' to have the lines connect the correct labels. Set this to FALSE if you 
+#' want to make the plotting a bit faster, and only after you are sure
+#' the labels and orders are correctly aligned.
 #' @param ... not used.
 #' @details 
 #' Notice that tanglegram does not "resize" well. In case you are resizing your
@@ -615,6 +620,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   k_branches = NULL,
                                   rank_branches = FALSE, 
                                   hang = FALSE, 
+                                  match_order_by_labels = TRUE,
                                   ... )
 {
    
@@ -672,7 +678,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    l <- nleaves(tree1)
    
    # makes sure that dLeaf gives a symmetric result.
-   if(!is.null(dLeaf) && dLeaf_right==dLeaf_left) dLeaf_right <- -dLeaf_left 
+   if(!is.null(dLeaf) && dLeaf_right==dLeaf_left) {dLeaf_right <- -dLeaf_left }
    
    ##########################################
    #####  Plotting.
@@ -683,6 +689,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    
    
    # The matrix to draw the arrows:
+   if(match_order_by_labels) tree1 <- match_order_by_labels(tree1, tree2)
    ord_arrow <- cbind((1:l)[order(order.dendrogram(tree1))],(1:l)[order(order.dendrogram(tree2))]) 
    
    # Set the layout of the plot elements

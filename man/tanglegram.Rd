@@ -134,6 +134,13 @@
   \item{hang}{logical (FALSE). Should we hang the leaves of
   the trees?}
 
+  \item{match_order_by_labels}{logical (TRUE). Should the
+  leaves value order be matched between the two trees based
+  on labels? This is a MUST in order to have the lines
+  connect the correct labels. Set this to FALSE if you want
+  to make the plotting a bit faster, and only after you are
+  sure the labels and orders are correctly aligned.}
+
   \item{...}{not used.}
 }
 \value{
