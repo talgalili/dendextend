@@ -236,7 +236,7 @@ sample.dendrogram <- function(dend, replace = FALSE,
       n_dend <- nleaves(dend)
       new_order <- sample(n_dend)
       labels(dend) <- dend_labels[new_order]      
-      order.dendrogram(dend) <- order.dendrogram(dend)[new_order]      
+      if(fix_order) order.dendrogram(dend) <- order.dendrogram(dend)[new_order]      
    }
    
    

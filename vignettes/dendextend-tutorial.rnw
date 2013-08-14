@@ -24,6 +24,7 @@ dendextend.date <- packageDescription("dendextend")$Date
 now.date <- strftime(Sys.Date(), "%B %d, %Y")
 # options(width = 60)
 # opts_chunk$set(tidy.opts=list(width.cutoff=60))
+opts_chunk <- knitr:::opts_chunk
 opts_chunk$set( fig.align='center', cache=TRUE) # , message=FALSE, background='white')
 options(replace.assign=TRUE,width=60)
 
@@ -1159,7 +1160,7 @@ R <- 1000
 cor_bakers_gamma_results <- numeric(R)
 dend_mixed <- dend1
 for(i in 1:R) {
-   labels(dend_mixed) <- sample(labels(dend_mixed))
+   dend_mixed <- sample.dendrogram(dend_mixed, replace = FALSE)
    cor_bakers_gamma_results[i] <- cor_bakers_gamma(dend1, dend_mixed)
 }
 plot(density(cor_bakers_gamma_results),
@@ -1190,7 +1191,7 @@ R <- 1000
 cor_bakers_gamma_results <- numeric(R)
 dend_mixed <- dend2
 for(i in 1:R) {
-   labels(dend_mixed) <- sample(labels(dend_mixed))
+   dend_mixed <- sample.dendrogram(dend_mixed, replace = FALSE)
    cor_bakers_gamma_results[i] <- cor_bakers_gamma(dend1, dend_mixed)
 }
 plot(density(cor_bakers_gamma_results),
@@ -1225,8 +1226,8 @@ cor_bakers_gamma_results <- numeric(R)
 dend_mixed1 <- dend1
 dend_mixed2 <- dend2
 for(i in 1:R) {
-   labels(dend_mixed1) <- sample(labels(dend_mixed1))
-   labels(dend_mixed2) <- sample(labels(dend_mixed2))
+   dend_mixed1 <- sample.dendrogram(dend_mixed1, replace = FALSE)
+   dend_mixed2 <- sample.dendrogram(dend_mixed2, replace = FALSE)
    cor_bakers_gamma_results[i] <- cor_bakers_gamma(dend_mixed1, dend_mixed2)
 }
 plot(density(cor_bakers_gamma_results),
@@ -1237,6 +1238,64 @@ abline(v = the_cor, lty = 2, col = 2)
 title(sub = paste("One sided p-value =",  round(sum(the_cor < cor_bakers_gamma_results)/ R, 4)))
 
 @
+
+We can also calculate a bootstrap confidence interval using the \code{sample.dendrogram} function. This function can be very slow for larger trees, so make sure you use if carefully:
+
+<<cor_bakers_gamma_simulation_CI_4>>=
+
+set.seed(312356)
+ss <- sample(1:150, 10 ) # we want to compare small trees
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+# tanglegram(dend1, dend2)
+#    cutree(dend1)   
+
+R <- 1000
+dend1_labels <- labels(dend1)
+dend2_labels <- labels(dend2)
+cor_bakers_gamma_results <- numeric(R)
+for(i in 1:R) {
+   sampled_labels <- sample(dend1_labels, replace = TRUE)
+   # members needs to be fixed since it will be later used in nleaves
+   dend_mixed1 <- sample.dendrogram(dend1, 
+                                    dend_labels=dend1_labels,
+                                    fix_members=TRUE,fix_order=TRUE,fix_midpoint=FALSE,
+                                    replace = TRUE, sampled_labels=sampled_labels
+                                      )
+   dend_mixed2 <- sample.dendrogram(dend2, dend_labels=dend2_labels,
+                                    fix_members=TRUE,fix_order=TRUE,fix_midpoint=FALSE,
+                                    replace = TRUE, sampled_labels=sampled_labels
+                                      )                                    
+   cor_bakers_gamma_results[i] <- cor_bakers_gamma(dend_mixed1, dend_mixed2, warn = FALSE)
+}
+
+
+# here is the tanglegram
+tanglegram(dend1, dend2)
+# And here is the tanglegram for one sample of our trees:
+dend_mixed1 <- rank_order.dendrogram(dend_mixed1)
+dend_mixed2 <- rank_order.dendrogram(dend_mixed2)
+dend_mixed1 <- fix_members_attr.dendrogram(dend_mixed1)
+dend_mixed2 <- fix_members_attr.dendrogram(dend_mixed2)
+tanglegram(dend_mixed1, dend_mixed2)
+cor_bakers_gamma(dend_mixed1, dend_mixed2, warn = FALSE)
+
+
+CI95 <- quantile(cor_bakers_gamma_results, probs=c(.025,.975))
+CI95
+par(mfrow = c(1,1))
+plot(density(cor_bakers_gamma_results),
+     main = "Baker's gamma bootstrap distribution",
+     xlim = c(-1,1))
+abline(v = CI95, lty = 2, col = 3)
+abline(v = cor_bakers_gamma(dend1, dend2), lty = 2, col = 2)
+legend("topleft", legend =c("95% CI", "Baker's Gamma Index"), fill = c(3,2))
+
+@
+
+We can see that in our case, the non-parametric bootstrap confidence-intervals reassures us that the correlation is significantly different than 0 (thank to the confidence-intervals duality with rejection regions). 
 
 
 
@@ -1405,14 +1464,14 @@ We are very thankful for code contributions and ideas by the R core team (especi
 % are gratefully acknowledged.  
 
 
-
-
 \bibliography{dendextend-tutorial}
 
 \vspace*{-0.35cm}
 
 
 
+
+\section*{R Session Info}
 
 
 <<sessionInfo, cache=FALSE>>=
