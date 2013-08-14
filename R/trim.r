@@ -189,10 +189,10 @@ trim_leaf <- function(x, leaf_name,...)
 #' par(mfrow = c(1,2))
 #' plot(dend, main = "original tree")
 #' plot(trim(dend , c("Alaska", "California")), main = "tree without Alaska and California")
-trim <- function(x, ...) UseMethod("trim")
+trim <- function(x, ...) {UseMethod("trim")}
 
 #' @export
-trim.default <- function(x,...) stop("object x must be a dendrogram/hclust/phylo object")
+trim.default <- function(x,...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
 #' @S3method trim dendrogram
 trim.dendrogram <- function(x, leaves,...) {
