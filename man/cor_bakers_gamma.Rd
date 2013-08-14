@@ -17,6 +17,10 @@
   each labels. This can be assured by using
   \link{match_order_by_labels}.}
 
+  \item{warn}{logical (TRUE). In case of problems when
+  cutting the tree, should a warning be issued when using
+  \link[dendextend]{cutree}?}
+
   \item{...}{Passed to \link[dendextend]{cutree}.}
 }
 \value{

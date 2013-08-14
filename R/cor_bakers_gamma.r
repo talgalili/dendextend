@@ -126,6 +126,8 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 #' k matrix when using cutree? Set to FALSE will make the function a bit faster
 #' BUT, it assumes the two trees have the exact same leaves order values for 
 #' each labels. This can be assured by using \link{match_order_by_labels}.
+#' @param warn logical (TRUE). In case of problems when cutting the tree,
+#' should a warning be issued when using \link[dendextend]{cutree}?
 #' @param ... Passed to \link[dendextend]{cutree}.
 #' 
 #' @details
@@ -206,10 +208,10 @@ cor_bakers_gamma.default <- function(tree1, tree2, ...) {
 }
 
 #' @S3method cor_bakers_gamma dendrogram
-cor_bakers_gamma.dendrogram <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, ...)
+cor_bakers_gamma.dendrogram <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = TRUE, ...)
 {
-   k_matrix_tree1 <- cutree(tree1, k = 1:nleaves(tree1), use_labels_not_values=use_labels_not_values,...)
-   k_matrix_tree2 <- cutree(tree2, k = 1:nleaves(tree2), use_labels_not_values=use_labels_not_values,...)
+   k_matrix_tree1 <- cutree(tree1, k = 1:nleaves(tree1), use_labels_not_values=use_labels_not_values,warn=warn,...)
+   k_matrix_tree2 <- cutree(tree2, k = 1:nleaves(tree2), use_labels_not_values=use_labels_not_values,warn=warn,...)
    bakers_gamma <- bakers_gamma_for_2_k_matrix(k_matrix_tree1, k_matrix_tree2, to_plot = to_plot)
    return(bakers_gamma)
 }
