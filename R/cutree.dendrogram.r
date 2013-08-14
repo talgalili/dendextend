@@ -275,7 +275,7 @@ cutree_1h.dendrogram <- function(tree, h,
    # 2013-07-28: stay consistant with hclust:
    # if we have as many clusters as items - they should be numbered
    # from left to right...
-   tree_size <- nleaves(tree)
+   tree_size <- nleaves(tree, method = "order")
    if(number_of_clusters == tree_size) cluster_vec[seq_len(tree_size)] <- seq_len(tree_size)
    
    return(cluster_vec)
@@ -449,7 +449,7 @@ cutree_1k.dendrogram <- function(tree, k,
 #       if(to_print) print(paste("The dendrogram was cut at height", 
 #                                round(h_to_use, 4), "in order to create",k, "clusters."))
    } else {
-      cluster_vec <- rep(NA, nleaves(tree))
+      cluster_vec <- rep(NA, nleaves(tree, method="order"))
       
       # telling the user way he can't use this k
       if(warn) {
@@ -741,7 +741,8 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
             warning("rank() was used for the leaves order number! \nExplenation: leaves tip number (the order), and the ranks of these numbers - are not equal.\n  The tree was probably subsetted, trimmed and/or merged with other trees- and now the order \n labels don't make so much sense (hence, the rank on them was used).")
             warning("Here is the cluster order vector (from the tree tips) \n", paste(order_tree, collapse=", "), "\n")
          }
-         order.dendrogram(tree) <- rank(order_tree, ties.method = "first")   # we use the "first" ties method - to handle the cases of ties in the ranks (after splits/merges with other trees)
+         tree <- rank_order.dendrogram(tree)
+#          order.dendrogram(tree) <- rank(order_tree, ties.method = "first")   # we use the "first" ties method - to handle the cases of ties in the ranks (after splits/merges with other trees)
       }   
       
       # if we succeed (tryCatch) in turning it into hclust - use it!
