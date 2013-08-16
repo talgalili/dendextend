@@ -309,7 +309,7 @@ colour_branches<-color_branches
 #' 
 #' } 
 #' 
-color_labels<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
+color_labels<-function(tree,k=NULL,h=NULL,col,...){
    
    if(missing(col)) {
       if(require(colorspace)) {
