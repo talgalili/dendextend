@@ -261,6 +261,70 @@ colour_branches<-color_branches
 
 
 
+
+
+
+
+
+
+if(F) {
+   
+   data(iris) 
+   d_iris <- dist(iris[1:4,-5],method="man")
+   hc_iris <- hclust(d_iris)
+   labels(hc_iris) # no labels, because "iris" has no row names
+   dend_iris <- as.dendrogram(hc_iris)
+   plot(dend_iris)
+   
+   labels_colors(dend_iris)[2] <- 2
+   is.integer(labels(dend_iris)) # this could cause problems...
+   
+   # than add this function to color_labels, add a labels parameter - and have it override everything else!
+   plot(color_labels_by_labels(dend_iris, c("1","4"), c(2,3,5), warn = T))
+   
+   # Maybe I should create color_labels_by_kh!!!
+   color_labels
+   # add a "warn" parameter
+}
+
+color_labels_by_labels <- function(tree, labels, col, warn=FALSE, ...) {
+   tree_labels <- labels(tree)
+   tree_col <- labels_colors(tree)
+   
+   ss_labels_to_color <- tree_labels %in% labels
+   
+   # recycle colors if they are shorter than the labels.
+   rep_col <- rep_len(col, sum(ss_labels_to_color))
+   if(length(rep_col) != length(col)) {
+      if(warn) warning("The length of 'col' is different than that of the labels in the tree. 'col' recycled to fit the length.")
+      col <- rep_col
+   }   
+   
+   # fix vector of labels colors
+   tree_col[ss_labels_to_color] <- col
+   # fix labels colors in the tree
+   labels_colors(tree) <- tree_col
+   
+   return(tree)   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #' @title Color tree's labels according to sub-clusters
 #' @export
 #' @aliases
