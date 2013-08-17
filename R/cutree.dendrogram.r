@@ -236,10 +236,52 @@ cutree_1h.dendrogram <- function(tree, h,
    }
    
    if(use_labels_not_values) {
-      names_in_clusters <- sapply(cut(tree, h = h)$lower, labels)   # a list with names per cluster
+      FUN <- labels
    } else {
-      names_in_clusters <- sapply(cut(tree, h = h)$lower, order.dendrogram)	# If the proper labels are not important, this function is around 10 times faster than using labels (so it is much better for some other algorithms)
+      FUN <- order.dendrogram
    }
+   
+   
+   #    cut_replace <- function(dend, h, FUN) {
+   #       if(attr(dend, "height") <= h  ) return(list(FUN(dend)))
+   #       
+   #       clusters <- list()
+   #       counter <- 1
+   #       
+   #       add_clusters <- function(dend_node)
+   #       {
+   #          if(is.leaf(dend_node)) {
+   #             clusters[[counter]] <<-FUN(dend_node)
+   #             return(NULL)
+   #          }
+   #          for(i in seq(dend_node)) {
+   #             dend_node_child_height <- attr(dend_node[[i]], "height")   
+   #             if(dend_node_child_height>h) { # notice I'm using > and not >= (this might be worth checking further)
+   #                if(is.leaf(dend_node[[i]])) {
+   #                   clusters[[counter]] <<- FUN(dend_node[[i]])
+   #                } else {
+   #                   add_clusters(dend_node[[i]])
+   #                }
+   #             } else { # this node is now a new cluser, hence:
+   #                clusters[[counter]] <<- FUN(dend_node[[i]])
+   #                counter <<- 1 + counter            
+   #             }         
+   #          }
+   #          return(NULL)
+   #       }
+   #       add_clusters(dend)
+   #       return(clusters)
+   #    }
+   # an alternatice which is not faster (but may be used in the future for making this into an Rcpp function!)
+#    names_in_clusters <- cut_replace(tree, h, FUN)
+   
+   names_in_clusters <- sapply(cut(tree, h = h)$lower, FUN)   # If the proper labels are not important, this function is around 10 times faster than using labels (so it is much better for some other algorithms)
+   # Type of output:
+#    [[1]]
+#    [1] "Minnesota"
+#    
+#    [[2]]
+#    [1] "Maryland" "Colorado" "Alabama"  "Illinois"
    
    number_of_clusters <- length(names_in_clusters)
    number_of_members_in_clusters <-sapply(names_in_clusters, length) # a list with item per cluster. each item is a character vector with the names of the items in that cluster
