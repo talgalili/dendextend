@@ -45,6 +45,11 @@ if(F) {
 }
 
 
+# x = vector("list", 5)
+# x[1:2]=1:2
+# attr(x[[1]], "fo") = "mi"
+# attr(x[2], "fo") = "mi2"
+# str(x)
 
 
 
@@ -63,8 +68,7 @@ Bk <- function(A1, A2, k = 3, print.output = F, sanity_checks = FALSE, ...)
    }
    
    # calculate n
-   if(is.hclust(A1)) n <- length(A1$labels)  # this may be done faster if we know this is a dendrogram
-   if(is.dendrogram(A1)) n <- length(labels(A1))  # this may be done faster if we know this is a dendrogram
+   n <- nleaves(A1) 
    
    # creating matrix M
    # ----------
@@ -81,18 +85,18 @@ Bk <- function(A1, A2, k = 3, print.output = F, sanity_checks = FALSE, ...)
    # ----------
    # a much better way!
    
-   A1.clusters <- cutree(A1, k = k)
-   A2.clusters <- cutree(A2, k = k)
+   A1_clusters <- cutree(A1, k = k)
+   A2_clusters <- cutree(A2, k = k)
    
    # If one of the trees can not be cut, we should return the data.frame with missing values (so to not stop the entire function...)
-   if(is.null(A1.clusters) || is.null(A2.clusters)) return(data.frame(Bk = NA, E.Bk= NA, Var.Bk= NA) )
+   if(is.null(A1_clusters) || is.null(A2_clusters)) return(data.frame(Bk = NA, E_Bk= NA, Var_Bk= NA) )
    
    # sort them to look the same (we assume the *same naming* for the leaves !
-   A1.clusters <- A1.clusters[order(names(A1.clusters))]	# order the vec accourding to the names, so to allow a comparison
-   A2.clusters <- A2.clusters[order(names(A2.clusters))]	# order the vec accourding to the names, so to allow a comparison
-   if(print.output) print(list(A1.clusters, A2.clusters )	)
-   M <- table(A1.clusters, A2.clusters)
-   if(print.output) print(M)
+   A1_clusters <- A1_clusters[order(names(A1_clusters))]	# order the vec accourding to the names, so to allow a comparison
+   A2_clusters <- A2_clusters[order(names(A2_clusters))]	# order the vec accourding to the names, so to allow a comparison
+   if(print_output) print(list(A1_clusters, A2_clusters )	)
+   M <- table(A1_clusters, A2_clusters)
+   if(print_output) print(M)
    
    
    Tk <- sum(M^2) - n
@@ -105,17 +109,22 @@ Bk <- function(A1, A2, k = 3, print.output = F, sanity_checks = FALSE, ...)
    
    Bk <- Tk / sqrt(Pk*Qk)
    
-   E.Bk <- sqrt(Pk*Qk)/ (n*(n-1))
+   E_Bk <- sqrt(Pk*Qk)/ (n*(n-1))
    
    
    Pk2 <- sum( m_i. * (m_i. -1) * (m_i. -2) )
    Qk2 <- sum( m_.j * (m_.j -1) * (m_.j -2) )
-   Var.Bk <- 2/ (n*(n-1))  +  
+   Var_Bk <- 2/ (n*(n-1))  +  
       4*Pk2 * Qk2 / ( (n*(n-1)*(n-2)) * Pk*Qk ) + 
       (Pk -2 - 4*Pk2/Pk) * (Qk -2 - 4*Qk2/Qk) / ( (n*(n-1)*(n-2)*(n-3))) -
       Pk * Qk / (n^2*(n-1)^2)
    
-   return(data.frame(Bk, E.Bk, Var.Bk) )
+   
+   Bk_table <- data.frame(Bk, E_Bk, Var_Bk)
+   if(!include_E) Bk_table$E_Bk <- NULL
+   if(!include_V) Bk_table$Var_Bk <- NULL
+         
+   return(Bk_table)
 }
 
 # Bk(fit1, fit2, k = 2, T)
@@ -145,17 +154,20 @@ if(F) {
    require("profdpm")
    # see page 9 and 10:
    pci(cutree(dend1 , k= 4),cutree(dend2 , k= 4))[2]
-   Bk(dend1 , dend2, k = 4)
+   Bk(dend1 , dend2, k = 4,F,F,F,F)
    # I get the same results - yay!
    
-   system.time(pci(cutree(dend1 , k= 4),cutree(dend2 , k= 4)))
-   system.time(Bk(dend1 , dend2, k = 4))
+   # Matthew's C code is 100 times faster than our R code.
+   require(microbenchmark)
+   microbenchmark(
+      pci(cutree(dend1 , k= 4),cutree(dend2 , k= 4)),
+      system.time(Bk(dend1 , dend2, k = 4)))
    
    
    
 }
 
-Bk_range <- function(A1, A2, ks = NULL, to.print = F)
+Bk_range <- function(A1, A2, ks = NULL, to_print = F)
 {
    #ks is the k range
    
@@ -171,7 +183,7 @@ Bk_range <- function(A1, A2, ks = NULL, to.print = F)
       #		Bks[[counter]] <- Bk(A1, A2, k = the.k)
       Bks <- rbind(Bks, Bk(A1, A2, k = the.k))
       # counter <- 	counter + 1
-      if(to.print) print(paste("We just cut using k:",the.k))
+      if(to_print) print(paste("We just cut using k:",the.k))
    }	
    return(data.frame(ks ,	Bks))
 }
@@ -188,11 +200,19 @@ plot_Bks_with_E_Bk <- function(Bk_data_frame, CI_sd_times = 2, plot_mean_Bk_unde
    with(aa, plot(Bk ~ ks, ylim = c(0,1), type = "b" ,...))
    if(plot_mean_Bk_under_H0 )
    {
-      with(aa, points(E.Bk ~ ks, type = "l" , lwd = 2))
-      with(aa, points((E.Bk +  CI_sd_times*sqrt(Var.Bk))  ~ ks, type = "l" , lwd = 1, lty = 2))
-      with(aa, points((E.Bk -  CI_sd_times*sqrt(Var.Bk))  ~ ks, type = "l" , lwd = 1, lty = 2))
+      with(aa, points(E_Bk ~ ks, type = "l" , lwd = 2))
+      with(aa, points((E_Bk +  CI_sd_times*sqrt(Var_Bk))  ~ ks, type = "l" , lwd = 1, lty = 2))
+      with(aa, points((E_Bk -  CI_sd_times*sqrt(Var_Bk))  ~ ks, type = "l" , lwd = 1, lty = 2))
    }
 }
+
+
+
+
+
+
+
+
 
 
 plot_Bks_with_E_Bk.and.bakers.gamma <- function(the_bk_object ,the_bakers_gamma, main = "")
@@ -216,21 +236,21 @@ plot_Bks_with_E_Bk.BH.adjusted <- function(Bk_data_frame, CI_sd_times = 2, ...)
    # the three dots ... are for the plot
    aa <- Bk_data_frame
    
-   Bk.Ps <- with(aa, 1-pnorm(((Bk - E.Bk)/sqrt(Var.Bk)) ))
-   with(aa, 1-pnorm(((Bk - E.Bk)/sqrt(Var.Bk)) ))
-   with(aa, 1-pnorm(Bk , E.Bk,sqrt(Var.Bk)))
+   Bk.Ps <- with(aa, 1-pnorm(((Bk - E_Bk)/sqrt(Var_Bk)) ))
+   with(aa, 1-pnorm(((Bk - E_Bk)/sqrt(Var_Bk)) ))
+   with(aa, 1-pnorm(Bk , E_Bk,sqrt(Var_Bk)))
    aa$Bk
-   adjusted.Bk.Ps <- p.adjust(Bk.Ps, method = "BH")
-   adjusted.Bk <- with(aa, (qnorm(1-adjusted.Bk.Ps) + E.Bk)*sqrt(Var.Bk))	
-   ss <- adjusted.Bk == Inf
-   adjusted.Bk[ss] <- aa$Bk[ss] # fill in Inf values with original Bk 
+   adjusted_Bk.Ps <- p.adjust(Bk.Ps, method = "BH")
+   adjusted_Bk <- with(aa, (qnorm(1-adjusted_Bk.Ps) + E_Bk)*sqrt(Var_Bk))	
+   ss <- adjusted_Bk == Inf
+   adjusted_Bk[ss] <- aa$Bk[ss] # fill in Inf values with original Bk 
    
    
    with(aa, plot(Bk ~ ks, ylim = c(0,1), type = "b" ,...))
-   with(aa, points(adjusted.Bk ~ ks, col = "orange", pch = 19, type = "b"))
-   with(aa, points(E.Bk ~ ks, type = "l" , lwd = 2))
-   with(aa, points((E.Bk +  CI_sd_times*sqrt(Var.Bk))  ~ ks, type = "l" , lwd = 1, lty = 2))
-   with(aa, points((E.Bk -  CI_sd_times*sqrt(Var.Bk))  ~ ks, type = "l" , lwd = 1, lty = 2))
+   with(aa, points(adjusted_Bk ~ ks, col = "orange", pch = 19, type = "b"))
+   with(aa, points(E_Bk ~ ks, type = "l" , lwd = 2))
+   with(aa, points((E_Bk +  CI_sd_times*sqrt(Var_Bk))  ~ ks, type = "l" , lwd = 1, lty = 2))
+   with(aa, points((E_Bk -  CI_sd_times*sqrt(Var_Bk))  ~ ks, type = "l" , lwd = 1, lty = 2))
 }
 
 
@@ -247,16 +267,16 @@ plot_Bks_with_E_Bk.holm.adjusted.CI <- function(Bk_data_frame, CI_sd_times = 2, 
    CI_sd_times <- qnorm(1-ordered.adj.Ps)	# the new  CI_sd_times - adjusted	
    
    with(aa, plot(Bk ~ ks, ylim = c(0,1), type = "b" ,...))	
-   with(aa, points(E.Bk ~ ks, type = "l" , lwd = 2))
-   with(aa, points((E.Bk +  CI_sd_times*sqrt(Var.Bk))  ~ ks, type = "l" , lwd = 1, lty = 2, col = "green"))
-   with(aa, points((E.Bk -  CI_sd_times*sqrt(Var.Bk))  ~ ks, type = "l" , lwd = 1, lty = 2, col = "green"))
+   with(aa, points(E_Bk ~ ks, type = "l" , lwd = 2))
+   with(aa, points((E_Bk +  CI_sd_times*sqrt(Var_Bk))  ~ ks, type = "l" , lwd = 1, lty = 2, col = "green"))
+   with(aa, points((E_Bk -  CI_sd_times*sqrt(Var_Bk))  ~ ks, type = "l" , lwd = 1, lty = 2, col = "green"))
    
-   with(aa, points((E.Bk +  qnorm(.975)*sqrt(Var.Bk))  ~ ks, type = "l" , lwd = 1, lty = 2, col = 1))
-   with(aa, points((E.Bk -  qnorm(.975)*sqrt(Var.Bk))  ~ ks, type = "l" , lwd = 1, lty = 2, col = 1))	
+   with(aa, points((E_Bk +  qnorm(.975)*sqrt(Var_Bk))  ~ ks, type = "l" , lwd = 1, lty = 2, col = 1))
+   with(aa, points((E_Bk -  qnorm(.975)*sqrt(Var_Bk))  ~ ks, type = "l" , lwd = 1, lty = 2, col = 1))	
    
    bonf.CI_sd_times <- qnorm(1-((.05/2) / length(aa$Bk)))	
-   with(aa, points((E.Bk +  bonf.CI_sd_times*sqrt(Var.Bk))  ~ ks, type = "l" , lwd = 1, lty = 2, col = "red"))
-   with(aa, points((E.Bk -  bonf.CI_sd_times*sqrt(Var.Bk))  ~ ks, type = "l" , lwd = 1, lty = 2, col = "red"))
+   with(aa, points((E_Bk +  bonf.CI_sd_times*sqrt(Var_Bk))  ~ ks, type = "l" , lwd = 1, lty = 2, col = "red"))
+   with(aa, points((E_Bk -  bonf.CI_sd_times*sqrt(Var_Bk))  ~ ks, type = "l" , lwd = 1, lty = 2, col = "red"))
    
    legend("topright", fill = c("black", "red","green"), legend = c("no correction - +-1.96", "Bonferroni correction CI", "Holm's adjusted CI"))
 }
