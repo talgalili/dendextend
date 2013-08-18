@@ -1,3 +1,26 @@
+dendextend 0.9.0BETA (2013-08-18)
+----------------------------
+NEW FUNCTIONS ADDED: 
+   * sort_2_clusters_vectors
+   * FM_index_profdpm 
+   * FM_index_R
+   * FM_index
+   * FM_index_permutation - for checking permutation distribution of the FM Index
+
+UPDATED FUNCTIONS:
+   * color_labels - removed unused 'groupLabels' parameter.
+
+VIGNETTES:
+   * Added the FM Index section.
+
+FILE CHANGES:
+   * Bk-method.r file added.
+
+OTHER NOTES:
+   * The RcppDend package (version 0.1.1) is now on github, and offers a faster labels.dendrogram function (It is 20 to 40 times faster than the 'stats' function!)
+   * Added a commented-out section which could (in the future) be the basis of an Rcpp cutree (actually cutree_1h.dendrogram) function!
+
+
 dendextend 0.8.0 (2013-08-14)
 ----------------------------
 NEW FUNCTIONS ADDED: 
@@ -270,4 +293,4 @@ http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
    * boot_dend - create a same-size tree, while sampling (with repetition) the leaves! # later for boot
    * An algorithm to find subtrees that are topologically identical between the two trees - and color them accordingly.
    * Get stats:::midcache.dendrogram to work for non-binary trees...
-   * labels.dendrogram in Rcpp would be very helpful! (since this is such a slow, and highly used function). Then it is also interesting to check if I can NOT force the user to use Rcpp (in which case they would revert to the default function).
+   * cut_replace - make it in Rcpp - to make cutree_1h.dendrogram faster...

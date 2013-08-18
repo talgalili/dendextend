@@ -1,12 +1,13 @@
 Package: dendextend
 Type: Package
 Title: Extending dendrogram functionality
-Version: 0.8.0
-Date: 2013-08-14
+Version: 0.9.0
+Date: 2013-08-18
 Author: Tal Galili
 Maintainer: Tal Galili <tal.galili@gmail.com>
 Description: Functions and methods for extanding dendrogram objects in R.
 Suggests:
+    RcppDend,
     knitr,
     testthat,
     microbenchmark,
@@ -38,4 +39,5 @@ Collate:
     'cor_bakers_gamma.r'
     'sample.dendrogram.r'
     'cor_cophenetic.r'
+    'bk_method.r'
     'zzz.r'

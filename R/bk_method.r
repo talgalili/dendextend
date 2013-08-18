@@ -460,6 +460,108 @@ FM_index <- function(A1_clusters, A2_clusters, include_EV = TRUE, assume_sorted_
 
 
 
+
+
+#' @title Calculating Fowlkes-Mallows Index under H0
+#' @export
+#' @description
+#' 
+#' Calculating Fowlkes-Mallows index under the null hypothesis of no relation
+#' between the clusterings (random order of the items labels).
+#'  
+#' @param A1_clusters a numeric vector of cluster grouping (numeric) of items,
+#' with a name attribute of item name for each element from group A1.
+#' These are often obtained by using some k cut on a dendrogram.
+#' @param A2_clusters a numeric vector of cluster grouping (numeric) of items,
+#' with a name attribute of item name for each element from group A2.
+#' These are often obtained by using some k cut on a dendrogram.
+#' @param warn logical (TRUE). Should a warning be issued in case of problems?
+#' @param ... Ignored (passed to FM_index_R/FM_index_profdpm).
+#' 
+#' 
+#' @seealso
+#' \link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}}, 
+#' \code{\link{FM_index_R}}, \code{\link{FM_index}}
+#' 
+#' @return 
+#' The Fowlkes-Mallows index between two vectors of clustering groups.
+#' Under H0. (a double without attr)
+#' 
+#' @references
+#' 
+#' Fowlkes, E. B.; Mallows, C. L. (1 September 1983).
+#' "A Method for Comparing Two Hierarchical Clusterings".
+#' Journal of the American Statistical Association 78 (383): 553.
+#' 
+#' \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' set.seed(23235)
+#' ss <- TRUE # sample(1:150, 10 )
+#' hc1 <- hclust(dist(iris[ss,-5]), "com")
+#' hc2 <- hclust(dist(iris[ss,-5]), "single")
+#' # dend1 <- as.dendrogram(hc1)
+#' # dend2 <- as.dendrogram(hc2)
+#' #    cutree(dend1)   
+#' 
+#' A1_clusters <- cutree(hc1, k=3)
+#' A2_clusters <- A1_clusters
+#' 
+#' R <- 10000
+#' set.seed(414130)
+#' FM_index_H0 <- replicate(R, FM_index_permutation(A1_clusters, A2_clusters)) # can take 10 sec
+#' plot(density(FM_index_H0), main = "FM Index distribution under H0\n (10000 permutation)")
+#' abline(v = mean(FM_index_H0), col = 1, lty = 2)
+#' # The permutation distribution is with a heavy right tail:
+#' require(psych)
+#' skew(FM_index_H0) # 1.254
+#' kurtosi(FM_index_H0) # 2.5427
+#' 
+#' mean(FM_index_H0); var(FM_index_H0)
+#' the_FM_index <- FM_index(A1_clusters, A2_clusters)
+#' the_FM_index
+#' our_dnorm <- function(x) {
+#'    dnorm(x, mean = attr(the_FM_index, "E_FM"), 
+#'          sd = sqrt(attr(the_FM_index, "V_FM")))
+#' }
+#' # our_dnorm(0.35)
+#' curve(our_dnorm,
+#'       col = 4,
+#'       from = -1,to=1,n=R,add = TRUE)
+#' abline(v = attr(the_FM_index, "E_FM"), col = 4, lty = 2)
+#' 
+#' }
+FM_index_permutation <- function(A1_clusters, A2_clusters, warn = TRUE, ...) {
+   return(
+      as.vector(FM_index(sample(A1_clusters), 
+               sample(A2_clusters), 
+               include_EV=FALSE, assume_sorted_vectors=TRUE, warn = warn,...))
+   )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Bk <- function(A1, A2, k = 3, print_output = F, 
                sanity_checks = FALSE, 
                include_E = TRUE,

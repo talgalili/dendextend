@@ -194,3 +194,37 @@ test_that("FM_index works",{
    
 })
 
+
+
+
+
+
+
+test_that("FM_index_permutation works",{
+   
+   
+   set.seed(23235)
+   ss <- TRUE # sample(1:150, 10 )
+   hc1 <- hclust(dist(iris[ss,-5]), "com")
+   hc2 <- hclust(dist(iris[ss,-5]), "single")
+   # dend1 <- as.dendrogram(hc1)
+   # dend2 <- as.dendrogram(hc2)
+   #    cutree(dend1)   
+   
+   A1_clusters <- cutree(hc1, k=3)
+   A2_clusters <- A1_clusters
+   
+   R <- 10
+   set.seed(414130)
+   FM_index_H0 <- replicate(R, FM_index_permutation(A1_clusters, A2_clusters)) # can take 10 sec
+   
+   expect_identical( round(mean(FM_index_H0), 2) ,
+                     0.37)
+   expect_identical( round(sd(FM_index_H0), 2) ,
+                     0.01)
+   
+   
+   
+})
+
+
