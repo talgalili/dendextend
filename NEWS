@@ -1,4 +1,4 @@
-dendextend 0.9.0BETA (2013-08-18)
+dendextend 0.9.0 (2013-08-18)
 ----------------------------
 NEW FUNCTIONS ADDED: 
    * sort_2_clusters_vectors
@@ -8,6 +8,7 @@ NEW FUNCTIONS ADDED:
    * FM_index_permutation - for checking permutation distribution of the FM Index
    * Bk
    * Bk_permutations
+   * Bk_plot (it can be MUCH slower for dendrograms with large trees, but works great for hclust)
 
 UPDATED FUNCTIONS:
    * color_labels - removed unused 'groupLabels' parameter.

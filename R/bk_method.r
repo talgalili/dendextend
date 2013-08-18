@@ -774,7 +774,7 @@ Bk_permutations <- function(tree1, tree2, k,  R = 1000, warn = TRUE, ...) {
    
    Bk_permutations_for_each_k <- function(k) {
       A1_clusters <- cutree(tree1, k)
-      A1_clusters <- cutree(tree2, k)
+      A2_clusters <- cutree(tree2, k)
       
       FM_index_H0 <- replicate(R, FM_index_permutation(A1_clusters, A2_clusters,warn=warn)) # can take 10 sec
       
@@ -797,7 +797,7 @@ Bk_permutations <- function(tree1, tree2, k,  R = 1000, warn = TRUE, ...) {
 
 
 
-#' @title Bk plot - Calculating Fowlkes-Mallows Index for two dendrogram
+#' @title Bk plot - ploting the Fowlkes-Mallows Index of two dendrogram for various k's
 #' @export
 #' @description
 #' 
@@ -814,14 +814,45 @@ Bk_permutations <- function(tree1, tree2, k,  R = 1000, warn = TRUE, ...) {
 #' If missing - the Bk will be calculated for a default k range of
 #' 2:(nleaves-1).
 #' No point in checking k=1/k=n, since both will give Bk=1.
-#' @param include_EV logical (TRUE). Should we calculate expectancy and variance
-#' of the FM Index under null hypothesis of no relation between the clusterings?
-#' If TRUE (Default) - then the \link{FM_index_R} function, else (FALSE)
-#' we use the (faster) \link{FM_index_profdpm} function.
+#' @param add_E logical (TRUE). Should we add a line of the Expected Bk value
+#' for each k, under the null hypothesis of no relation between the clusterings?
+#' @param rejection_line_asymptotic logical (TRUE). Should we add a line of
+#' the one sided rejection region based on the asymptotic distribution
+#' of Bk values, for each k, under the null hypothesis of no relation 
+#' between the clusterings?
+#' @param rejection_line_permutation logical (FALSE). Should we add a line of
+#' the one sided rejection region based on the asymptotic distribution
+#' of Bk values, for each k, under the null hypothesis of no relation 
+#' between the clusterings?
+#' @param R integer (Default is 1000). The number of Bk permutation to perform 
+#' for each k. Applicable only if rejection_line_permutation is TRUE.
+#' @param k_permutation the k's to be used for permutation (sometimes we might
+#' be only interested in some k's and it is not important to run the simulation
+#' for all possible ks). If missing - k itself will be used.
+#' @param conf.level the level of one sided confidence interval used for creation
+#' of the rejection lines.
+#' @param p.adjust.methods a character scalar of either "none" (default), or
+#' "bonferroni". This controls the multiple correction method to use for the
+#' critical rejection values. Currently only the Bonferroni method 
+#' is implemented (based on the number of different k values).
+#' @param col_line_Bk the color of the Bk line.
+#' @param col_line_asymptotic the color of the rejection asymptotic Bk line.
+#' @param col_line_permutation the color of the rejection asymptotic Bk line.
 #' @param warn logical (TRUE). Should a warning be issued in case of problems?
 #' If set to TRUE, extra checks are made to varify that the two clusters have
 #' the same size and the same labels.
-#' @param ... Ignored (passed to FM_index_R/FM_index_profdpm).
+#' @param main passed to \link{plot}.
+#' @param xlab passed to \link{plot}.
+#' @param ylab passed to \link{plot}.
+#' @param xlim passed to \link{plot}. If missign, xlim is from 2 to nleaves-1
+#' @param ylim passed to \link{plot}.
+#' @param try_cutree_hclust logical (TRUE). Since cutree for hclust is MUCH 
+#' faster than for dendrogram - Bk_plot will first try to change the dendrogram
+#' into an hclust object. If it will fail (for example, with unbranched trees),
+#' it will continue using the cutree.dendrogram functions. 
+#' If try_cutree_hclust=FALSE, it will force to use cutree.dendrogram and
+#' not cutree.hclust.
+#' @param ... Ignored.
 #' 
 #' @details
 #' From Wikipedia:
@@ -834,12 +865,18 @@ Bk_permutations <- function(tree1, tree2, k,  R = 1000, warn = TRUE, ...) {
 #' indicates a greater similarity between the clusters and the benchmark 
 #' classifications.
 #' 
+#' The default Bk plot comes with a line with dots (type "b") of the Bk values.
+#' Also with a fragmented (lty=2) line (of the same color) of the expected Bk
+#' line under H0,
+#' And a solid red line of the upper critical Bk values for rejection 
+#' 
+#' 
 #' @seealso
-#' \code{\link{FM_index}}, \link{cor_bakers_gamma}
+#' \code{\link{FM_index}}, \link{Bk}, \link{Bk_permutations}
 #' @return 
-#' A list (of k's length) of Fowlkes-Mallows index between two dendrogram for 
-#' a scalar/vector of k values.
-#' The names of the lists' items is the k for which it was calculated.
+#' After plotting the Bk plot.
+#' Returns (invisible) the output of the elements used for constructing the plot:
+#' The Bk values, Bk permutations (if used), Bk theoratical values, etc.
 #' 
 #' @references
 #' 
@@ -861,238 +898,131 @@ Bk_permutations <- function(tree1, tree2, k,  R = 1000, warn = TRUE, ...) {
 #' # tree2 <- as.treerogram(hc2)
 #' #    cutree(tree1)   
 #' 
-#' Bk(hc1, hc2, k = 3)
-#' Bk(hc1, hc2, k = 2:10)
+#' Bk_plot(hc1, hc2, k = 2:20, xlim = c(2,149))
+#' Bk_plot(hc1, hc2)
 #' 
-#' y <- Bk(hc1, hc2, k = 2:10)
-#' plot(unlist(y)~c(2:10), type = "b", ylim = c(0,1))
+#' Bk_plot(hc1, hc2, k = 3)
+#' Bk_plot(hc1, hc2, k = 3:10)
+#' Bk_plot(hc1, hc2)
+#' Bk_plot(hc1, hc2,p.adjust.methods="bonferroni") # higher rejection lines
 #' 
-#' # can take a few seconds
-#' y <- Bk(hc1, hc2)
-#' plot(unlist(y)~as.numeric(names(y)), 
-#'      main = "Bk plot", pch = 20,
-#'      xlab = "k", ylab = "FM Index",
-#'      type = "b", ylim = c(0,1))
-#' # we are still missing some hypothesis testing here.
-#' # for this we'll have the Bk_plot function.
+#' # this one can take a bit of time:
+#' Bk_plot(hc1, hc2, rejection_line_permutation=TRUE, k_permutation = c(2,4,6,8,10,20,30,40,50), R= 100) 
+#' # we can see that the permutation line is VERY close to the asymptotic line.
+#' # This is great since it means one can often use the asymptotic results
+#' # Without having to do many simulations.
+#' 
+#' # works just as well for dendrograms:
+#' dend1 <- as.dendrogram(hc1)
+#' dend2 <- as.dendrogram(hc2)
+#' Bk_plot(dend1, dend2, k = 2:3, try_cutree_hclust = FALSE) # slower than hclust, but works...
+#' Bk_plot(hc1, dend2, k = 2:3, try_cutree_hclust = FALSE) # slower than hclust, but works...
+#' Bk_plot(dend1, dend1, k = 2:3, try_cutree_hclust = TRUE) # slower than hclust, but works...
+#' Bk_plot(hc1, hc1, k = 2:3) # slower than hclust, but works...
+#' # for some reason it can't turn dend2 back to hclust :(
+#' a= Bk_plot(hc1, hc2, k = 2:3, try_cutree_hclust = TRUE) # slower than hclust, but works...
+#' 
+#' hc1_mixed <- as.hclust(sample(as.dendrogram(hc1)))
+#' Bk_plot(tree1=hc1, tree2=hc1_mixed, 
+#'         add_E=FALSE,        
+#'         rejection_line_permutation=TRUE, k_permutation = c(2,4,6,8,10,20,30,40,50), R= 100) 
+#' 
 #' 
 #' }
-Bk <- function(tree1, tree2, k,  include_EV = TRUE, warn = TRUE, ...) {
+Bk_plot <- function(tree1, tree2, k,  
+                    add_E = TRUE,
+                    rejection_line_asymptotic = TRUE,
+                    rejection_line_permutation = FALSE,
+                    R = 1000,
+                    k_permutation,
+                    conf.level = 0.95,
+                    p.adjust.methods = c("none", "bonferroni"),
+                    col_line_Bk = 1,
+                    col_line_asymptotic = 2,
+                    col_line_permutation = 4,
+                    warn = TRUE,
+                    main = "Bk plot",
+                    xlab = "k (number of clusters)",
+                    ylab = "Bk (Fowlkes-Mallows Index)",
+                    xlim ,
+                    ylim = c(0,1),
+                    try_cutree_hclust = TRUE,
+                    ... ) {
    
-   # some sanity checks!
-   if(warn) {   # the sanity checks are turned off by default since the "labels" function for dendrogram is one which takes some time to run...
-      # notice that we must have labels.hclust and labels.dendrogram defined!
-      tree1_labels <- labels(tree1)
-      tree2_labels <- labels(tree2)
-      length_tree1_labels <- length(tree1_labels)
-      length_tree2_labels <- length(tree2_labels)   
-      
-      # Checking for common error options:
-      if(length_tree1_labels != length_tree2_labels) stop("The two clusters don't have the same number of items!")	# If cluster sized are different - stop
-      if(!all(sort(tree1_labels) == sort(tree2_labels))) stop("Your trees are having leaves with different names - please correct it in order to use this function")
-   }
+   if(try_cutree_hclust) {      
+      # if we succeed (tryCatch) in turning it into hclust - use it!
+      # if not - go on with the function.
+      if(!is.hclust(tree1)) tryCatch(tree1_hc <- as.hclust(tree1), error = function(e) {FALSE})
+      if(!is.hclust(tree2)) tryCatch(tree2_hc <- as.hclust(tree2), error = function(e) {FALSE})
+      if(exists("tree1_hc")) tree1 <- tree1_hc
+      if(exists("tree2_hc")) tree2 <- tree2_hc
+   }  
    
-   Bk_for_each_k <- function(k) {
-      FM_index(
-         cutree(tree1, k), cutree(tree2, k),
-         assume_sorted_vectors = FALSE, 
-         # We can't trust cutree to give the same order of items!
-         # In order to assume it, we would need to match order by labels
-         # and then have cutree( ) with order_clusters_as_data=TRUE
-         # but for small length of k's, this per-process (/checks)
-         # will likely be more expensive than simply running it with
-         # assume_sorted_vectors = FALSE, 
-         include_EV = include_EV,
-         warn = warn
-      ) 
-   }
-   
+   output <- list()   
    if(missing(k)) k <- 2:(nleaves(tree1)-1)
-   the_Bks <- lapply(k, Bk_for_each_k)
-   names(the_Bks) <- k
-   
-   return(the_Bks)
-}
+   the_Bks <- Bk(tree1, tree2, k=k, 
+                 include_EV=add_E|rejection_line_asymptotic,
+                 warn=warn)
+   output[length(output)+1] <- list(Bk = the_Bks)
+   if(missing(xlim)) xlim <- c(2,c(nleaves(tree1)-1))
+        
+   plot(unlist(the_Bks)~as.numeric(names(the_Bks)), 
+        main = main, xlab = xlab, ylab = ylab,
+        xlim = xlim, ylim = ylim,
+        col = col_line_Bk,
+        pch = 20, type = "b")
+      
 
-
-
-
-
-
-if(F) {
-   # The Bk function was previously also implemented by Matt in:
-   #		 http://cran.r-project.org/web/packages/profdpm/index.html
-   # See pages 9 and 10 here: http://cran.r-project.org/web/packages/profdpm/vignettes/profdpm.pdf
-   # I came by this package thanks to chl: http://stats.stackexchange.com/questions/3672/a-measure-to-describe-the-distribution-of-a-dendrogram	
-   # Also, there is a great overview of similarity measures on this here:
-   # http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.164.6189&rep=rep1&type=pdf
-   
-   our_dist <- dist(USArrests[1:10,])
-   dend1 <- hclust(our_dist , "complete")
-   dend2 <- hclust(our_dist , "single")
-   plot(dend1)
-   plot(as.dendrogram(dend1))
-   our_dist
-   
-   
-   # install.packages("profdpm")
-   require("profdpm")
-   # see page 9 and 10:
-   pci(cutree(dend1 , k= 4),cutree(dend2 , k= 4))[2]
-   Bk(dend1 , dend2, k = 4,F,F,F,F)
-   # I get the same results - yay!
-   
-   # Matthew's C code is 100 times faster than our R code.
-   require(microbenchmark)
-   microbenchmark(
-      pci(cutree(dend1 , k= 4),cutree(dend2 , k= 4)),
-      system.time(Bk(dend1 , dend2, k = 4)))
-   
-   
-   
-}
-
-plot_Bks_with_E_FM <- function(Bk_data_frame, CI_sd_times = 2, plot_mean_Bk_under_H0 = TRUE, ...)	
-{
-   # CI_sd_times == how many times to multiply the Sd(Bk) - to get the cI
-   # the three dots ... are for the plot
-   if(sum(is.na(Bk_data_frame))>1) warning("NA's exists in the Bk table - rows with NA were ommited")
-   
-   aa <- na.omit(Bk_data_frame)	# the na.omit fixes issues with missing values (it deletes the entire row)
-   with(aa, plot(Bk ~ ks, ylim = c(0,1), type = "b" ,...))
-   if(plot_mean_Bk_under_H0 )
-   {
-      with(aa, points(E_FM ~ ks, type = "l" , lwd = 2))
-      with(aa, points((E_FM +  CI_sd_times*sqrt(V_FM))  ~ ks, type = "l" , lwd = 1, lty = 2))
-      with(aa, points((E_FM -  CI_sd_times*sqrt(V_FM))  ~ ks, type = "l" , lwd = 1, lty = 2))
+   if(add_E) {
+      the_Bks_E <- sapply(the_Bks, function(x) attr(x, "E_FM"))
+      lines(the_Bks_E~k,
+            col = col_line_Bk,
+            type = "l", lty = 2, lwd = 2)
    }
+   
+   if(p.adjust.methods[1] == "bonferroni") {
+      alfa <- 1-conf.level
+      conf.level <- 1-alfa/length(k)      
+   }
+   
+   if(rejection_line_asymptotic) {      
+      if(!exists("the_Bks_E")) the_Bks_E <- sapply(the_Bks, function(x) attr(x, "E_FM"))
+      the_Bks_V <- sapply(the_Bks, function(x) attr(x, "V_FM"))
+      
+      the_Bks_SD <- sqrt(the_Bks_V)      
+      Z <- qnorm(conf.level)
+      
+      Bk_critical_value_asymptotic <- the_Bks_E + Z*the_Bks_SD
+      
+      lines(Bk_critical_value_asymptotic~k,
+            col = col_line_asymptotic,
+            pch = 20, type = "l", lty = 1, lwd = 2, cex = .5)
+      output[length(output)+1] <- list(Bk_critical_value_asymptotic = Bk_critical_value_asymptotic)
+   }
+   
+   if(rejection_line_permutation) {      
+      if(missing(k_permutation)) k_permutation <- k
+      some_Bk_permu <- Bk_permutations(tree1, tree2, k = k_permutation,R=R, warn= warn)
+      # we can see that the Bk is much higher than the permutation Bks: 
+      Bk_critical_value_permu <- unname(sapply(some_Bk_permu, quantile, probs=conf.level))
+      lines(Bk_critical_value_permu~k_permutation,
+            col = col_line_permutation,
+            pch = 20, type = "l", lty = 1, lwd = 2, cex = .5)
+      output[length(output)+1] <- list(Bk_permutations = some_Bk_permu)
+      output[length(output)+1] <- list(Bk_critical_value_permu = Bk_critical_value_permu)
+   }
+   
+   
+   return(invisible(output))
 }
 
 
 
 
 
-
-
-
-
-
-plot_Bks_with_E_FM.and.bakers.gamma <- function(thE_FM_object ,the_bakers_gamma, main = "")
-{
-   plot_Bks_with_E_FM(thE_FM_object)
-   
-   title(main = main)
-   legend("topright", legend = paste("Baker's gamma (P_value):  ",
-                                     round(the_bakers_gamma$estimate, 3)," (",
-                                     round(the_bakers_gamma$p.value, 5),")", sep = "")
-   )
-}
-
-
-# plot_Bks_with_E_FM(Bk_range(fit1, fit2))	
-
-
-plot_Bks_with_E_FM.BH.adjusted <- function(Bk_data_frame, CI_sd_times = 2, ...)	
-{
-   # CI_sd_times == how many times to multiply the Sd(Bk) - to get the cI
-   # the three dots ... are for the plot
-   aa <- Bk_data_frame
-   
-   Bk.Ps <- with(aa, 1-pnorm(((Bk - E_FM)/sqrt(V_FM)) ))
-   with(aa, 1-pnorm(((Bk - E_FM)/sqrt(V_FM)) ))
-   with(aa, 1-pnorm(Bk , E_FM,sqrt(V_FM)))
-   aa$Bk
-   adjusted_Bk.Ps <- p.adjust(Bk.Ps, method = "BH")
-   adjusted_Bk <- with(aa, (qnorm(1-adjusted_Bk.Ps) + E_FM)*sqrt(V_FM))	
-   ss <- adjusted_Bk == Inf
-   adjusted_Bk[ss] <- aa$Bk[ss] # fill in Inf values with original Bk 
-   
-   
-   with(aa, plot(Bk ~ ks, ylim = c(0,1), type = "b" ,...))
-   with(aa, points(adjusted_Bk ~ ks, col = "orange", pch = 19, type = "b"))
-   with(aa, points(E_FM ~ ks, type = "l" , lwd = 2))
-   with(aa, points((E_FM +  CI_sd_times*sqrt(V_FM))  ~ ks, type = "l" , lwd = 1, lty = 2))
-   with(aa, points((E_FM -  CI_sd_times*sqrt(V_FM))  ~ ks, type = "l" , lwd = 1, lty = 2))
-}
-
-
-plot_Bks_with_E_FM.holm.adjusted.CI <- function(Bk_data_frame, CI_sd_times = 2, ...)	
-{
-   # CI_sd_times == how many times to multiply the Sd(Bk) - to get the cI
-   # the three dots ... are for the plot
-   aa <- Bk_data_frame
-   
-   # let's assume we wish to keep alfa = .05/2
-   CI_sd_times 
-   adj.Ps <- (.05/2) / length(aa$Bk):1
-   ordered.adj.Ps <- adj.Ps[order(aa$Bk)]
-   CI_sd_times <- qnorm(1-ordered.adj.Ps)	# the new  CI_sd_times - adjusted	
-   
-   with(aa, plot(Bk ~ ks, ylim = c(0,1), type = "b" ,...))	
-   with(aa, points(E_FM ~ ks, type = "l" , lwd = 2))
-   with(aa, points((E_FM +  CI_sd_times*sqrt(V_FM))  ~ ks, type = "l" , lwd = 1, lty = 2, col = "green"))
-   with(aa, points((E_FM -  CI_sd_times*sqrt(V_FM))  ~ ks, type = "l" , lwd = 1, lty = 2, col = "green"))
-   
-   with(aa, points((E_FM +  qnorm(.975)*sqrt(V_FM))  ~ ks, type = "l" , lwd = 1, lty = 2, col = 1))
-   with(aa, points((E_FM -  qnorm(.975)*sqrt(V_FM))  ~ ks, type = "l" , lwd = 1, lty = 2, col = 1))	
-   
-   bonf.CI_sd_times <- qnorm(1-((.05/2) / length(aa$Bk)))	
-   with(aa, points((E_FM +  bonf.CI_sd_times*sqrt(V_FM))  ~ ks, type = "l" , lwd = 1, lty = 2, col = "red"))
-   with(aa, points((E_FM -  bonf.CI_sd_times*sqrt(V_FM))  ~ ks, type = "l" , lwd = 1, lty = 2, col = "red"))
-   
-   legend("topright", fill = c("black", "red","green"), legend = c("no correction - +-1.96", "Bonferroni correction CI", "Holm's adjusted CI"))
-}
-
-
-
-
-
-# calculate
-# aa <- Bk_range(fit1, fit2)
-# plot_Bks_with_E_FM(aa)
-
-# str(as.dendrogram(fit1))
-# aa <- Bk_range(as.dendrogram(fit1), as.dendrogram(fit2))
-# Bk(as.dendrogram(fit1), as.dendrogram(fit2), k = 2,T)
-
-# plot_Bks_with_E_FM(aa)
-
-# unlist(as.dendrogram(fit1))
-# labels(as.dendrogram(fit1))
-
-
-
-
-###
-#
-# Bk-method.r
-
-# require(R2PPT)
-
-
-
-##example:
-# mydata <- USArrests
-##Ward Hierarchical Clustering
-# d <- dist(mydata, method = "euclidean") # distance matrix
-# fit1 <- hclust(d, method="ward") 
-# fit2 <- hclust(d, method="single") 
-##fit <- fit1
-# par(mfrow = c(1,2))
-# plot(fit1) # display dendogram
-# plot(fit2) # display dendogram
-
-if(F) {
-   system.time(Bk(dendo1, dendo2)) 
-   # Bk = 0.7832726 0.4284998 0.0007704066
-   # times in sec after modifications:
-   # 0.51
-   # 0.68 
-}
-
-
-# x = vector("list", 5)
-# x[1:2]=1:2
-# attr(x[[1]], "fo") = "mi"
-# attr(x[2], "fo") = "mi2"
-# str(x)
+# The Bk function was previously also implemented by Matt in:
+#   	 http://cran.r-project.org/web/packages/profdpm/index.html
+# See pages 9 and 10 here: http://cran.r-project.org/web/packages/profdpm/vignettes/profdpm.pdf
+# I came by this package thanks to chl: http://stats.stackexchange.com/questions/3672/a-measure-to-describe-the-distribution-of-a-dendrogram	
+# Also, there is a great overview of similarity measures on this here:
+# http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.164.6189&rep=rep1&type=pdf

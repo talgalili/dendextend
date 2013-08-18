@@ -62,8 +62,8 @@
   cutree.dendrogram will first try to change the dendrogram
   into an hclust object. If it will fail (for example, with
   unbranched trees), it will continue using the
-  cutree.dendrogram function. If try_cutree_hclust=TRUE, it
-  will force to use cutree.dendrogram and not
+  cutree.dendrogram function. If try_cutree_hclust=FALSE,
+  it will force to use cutree.dendrogram and not
   cutree.hclust.}
 
   \item{...}{(not currently in use)}

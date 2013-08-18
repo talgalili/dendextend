@@ -260,7 +260,7 @@ sample.dendrogram <- function(dend, replace = FALSE,
    }
    
    
-   
+   class(dend) <- "dendrogram"
    
    return(dend)
 }
