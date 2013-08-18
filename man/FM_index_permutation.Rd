@@ -42,7 +42,12 @@ hc2 <- hclust(dist(iris[ss,-5]), "single")
 # dend2 <- as.dendrogram(hc2)
 #    cutree(dend1)
 
-A1_clusters <- cutree(hc1, k=3)
+# small k
+A1_clusters <- cutree(hc1, k=3) # will give a right tailed distribution
+# large k
+A1_clusters <- cutree(hc1, k=50) # will give a discrete distribution
+# "medium" k
+A1_clusters <- cutree(hc1, k=25) # gives almost the normal distribution!
 A2_clusters <- A1_clusters
 
 R <- 10000
