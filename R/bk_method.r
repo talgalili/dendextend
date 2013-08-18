@@ -19,6 +19,79 @@
 
 
 
+
+#' @title Sorts two clusters vector by their names
+#' @export
+#' @param A1_clusters a numeric vector of cluster grouping (numeric) of items,
+#' with a name attribute of item name for each element from group A1.
+#' These are often obtained by using some k cut on a dendrogram.
+#' @param A2_clusters a numeric vector of cluster grouping (numeric) of items,
+#' with a name attribute of item name for each element from group A2.
+#' These are often obtained by using some k cut on a dendrogram.
+#' @param assume_sorted_vectors logical (FALSE). Can we assume to two group 
+#' vectors are sorter so that they have the same order of items?
+#' IF FALSE (default), then the vectors will be sorted based on their
+#' name attribute.
+#' @param warn logical (TRUE). Should a warning be issued in case of problems?
+#' @param ... Ignored.
+#' 
+#' @seealso
+#' \link{FM_index_profdpm}
+#' @return 
+#' A list with two elements, corrosponding two the two clustering vectors.
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' set.seed(23235)
+#' ss <- sample(1:150, 4 )
+#' hc1 <- hclust(dist(iris[ss,-5]), "com")
+#' hc2 <- hclust(dist(iris[ss,-5]), "single")
+#' # dend1 <- as.dendrogram(hc1)
+#' # dend2 <- as.dendrogram(hc2)
+#' #    cutree(dend1)   
+#' 
+#' A1_clusters <- cutree(hc1, k=3)
+#' A2_clusters <- sample(cutree(hc1, k=3))
+#' 
+#' sort_2_clusters_vectors(A1_clusters, A2_clusters, assume_sorted_vectors =TRUE) # no sorting
+#' sort_2_clusters_vectors(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE) # Sorted
+#' 
+#' 
+#' }
+sort_2_clusters_vectors <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, warn = TRUE, ...) {
+   
+   # sanity checks in case the names of the vectors do not make sense:
+   if(!assume_sorted_vectors) {      
+      names_A1_clusters <- names(A1_clusters)
+      names_A2_clusters <- names(A2_clusters)
+      
+      if(is.null(names_A1_clusters) || is.null(names_A2_clusters)) {
+         if(warn) warning("Names of the clusters are NULL, we will assume the vectors are sorted.")
+         assume_sorted_vectors <- TRUE
+      }
+      if(length(names_A1_clusters) != length(names_A2_clusters)) {
+         if(warn) warning("Names of the clusters are not of equal length, we will assume the vectors are sorted.")
+         assume_sorted_vectors <- TRUE
+      }
+      if(length(names_A1_clusters) != length(A1_clusters)) {
+         if(warn) warning("Names of the clusters are not of equal length as that of the clusters, we will assume the vectors are sorted.")
+         assume_sorted_vectors <- TRUE
+      }
+   }         
+   # if we are still NOT assuming the vectors are sorted - we can sort them...
+   if(!assume_sorted_vectors) {
+      A1_clusters <- A1_clusters[order(names_A1_clusters)]   # order the vec accourding to the names, so to allow a comparison
+      A2_clusters <- A2_clusters[order(names_A2_clusters)]   # order the vec accourding to the names, so to allow a comparison
+   }
+   
+   return(list(A1_clusters=A1_clusters, A2_clusters=A2_clusters))
+}
+   
+
+
+
 #' @title Calculating Fowlkes-Mallows index using the profdpm R package
 #' @export
 #' @description
@@ -106,28 +179,12 @@ FM_index_profdpm <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FA
    # see page 9 and 10, here:
    # http://ftp.daum.net/CRAN/web/packages/profdpm/vignettes/profdpm.pdf
    
-   # sanity checks in case the names of the vectors do not make sense:
-   if(!assume_sorted_vectors) {      
-      names_A1_clusters <- names(A1_clusters)
-      names_A2_clusters <- names(A2_clusters)
-      
-      if(is.null(names_A1_clusters) || is.null(names_A2_clusters)) {
-         if(warn) warning("Names of the clusters are NULL, we will assume the vectors are sorted.")
-         assume_sorted_vectors <- TRUE
-      }
-      if(length(names_A1_clusters) != length(names_A2_clusters)) {
-         if(warn) warning("Names of the clusters are not of equal length, we will assume the vectors are sorted.")
-         assume_sorted_vectors <- TRUE
-      }
-      if(length(names_A1_clusters) != length(A1_clusters)) {
-         if(warn) warning("Names of the clusters are not of equal length as that of the clusters, we will assume the vectors are sorted.")
-         assume_sorted_vectors <- TRUE
-      }
-   }         
-   # if we are still NOT assuming the vectors are sorted - we can sort them...
    if(!assume_sorted_vectors) {
-      A1_clusters <- A1_clusters[order(names_A1_clusters)]   # order the vec accourding to the names, so to allow a comparison
-      A2_clusters <- A2_clusters[order(names_A2_clusters)]   # order the vec accourding to the names, so to allow a comparison
+      sorted_As <- sort_2_clusters_vectors(A1_clusters, A2_clusters,
+                                           assume_sorted_vectors =assume_sorted_vectors,
+                                           warn = warn)   
+      A1_clusters <- sorted_As[[1]]
+      A2_clusters <- sorted_As[[2]]
    }
 
    FM_index <- pci(A1_clusters,A2_clusters)[2]
