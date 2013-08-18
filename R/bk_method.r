@@ -97,13 +97,17 @@ sort_2_clusters_vectors <- function(A1_clusters, A2_clusters, assume_sorted_vect
 #' @description
 #' 
 #' Calculating Fowlkes-Mallows index using the \code{pci} function from
-#' the profdpm R package. This function uses very fast C code (thanks to
-#' Matthew Shotwell's work).
+#' the profdpm R package. This function uses C code (thanks to
+#' Matthew Shotwell's work) and is a bit faster than the R code 
+#' (from my simple tests - it is about 1.2-1.3 times faster - which is not much
+#' but it might be useful).
 #' 
 #' As opposed to the \code{\link{FM_index_R}} function, the \code{FM_index_profdpm}
-#' function does NOT calculate the Expectancy or the variance of the FM Index
+#' function does NOT calculate the expectancy or the variance of the FM Index
 #' under the null hypothesis of no relation.
 #' 
+#' This function also allows us to compare our calculations with an independent
+#' writing of a function calculating the same statistic.
 #' 
 #' @param A1_clusters a numeric vector of cluster grouping (numeric) of items,
 #' with a name attribute of item name for each element from group A1.
@@ -187,7 +191,7 @@ FM_index_profdpm <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FA
       A2_clusters <- sorted_As[[2]]
    }
 
-   FM_index <- pci(A1_clusters,A2_clusters)[2]
+   FM_index <- unname(pci(A1_clusters,A2_clusters)[2])
    attr(FM_index, "E_FM") <- NA
    attr(FM_index, "V_FM") <- NA
    
@@ -198,13 +202,99 @@ FM_index_profdpm <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FA
 
 
 
-FM_index_R <- function(A1_clusters, A2_clusters, k,
-                     print_output = F, 
-               include_E = TRUE,
-               include_V = TRUE,               
-               ...)
-{
 
+
+
+
+
+
+#' @title Calculating Fowlkes-Mallows index in R
+#' @export
+#' @description
+#' 
+#' Calculating Fowlkes-Mallows index.
+#' 
+#' As opposed to the \code{\link{FM_index_profdpm}} function, the \code{FM_index_R}
+#' function also calculates the expectancy and variance of the FM Index
+#' under the null hypothesis of no relation.
+#' 
+#'  
+#' @param A1_clusters a numeric vector of cluster grouping (numeric) of items,
+#' with a name attribute of item name for each element from group A1.
+#' These are often obtained by using some k cut on a dendrogram.
+#' @param A2_clusters a numeric vector of cluster grouping (numeric) of items,
+#' with a name attribute of item name for each element from group A2.
+#' These are often obtained by using some k cut on a dendrogram.
+#' @param assume_sorted_vectors logical (FALSE). Can we assume to two group 
+#' vectors are sorter so that they have the same order of items?
+#' IF FALSE (default), then the vectors will be sorted based on their
+#' name attribute.
+#' @param warn logical (TRUE). Should a warning be issued in case of problems?
+#' @param ... Ignored.
+#' 
+#' @details
+#' From Wikipedia:
+#' 
+#' Fowlkes-Mallows index (see references) is an external evaluation method 
+#' that is used to determine the similarity between two clusterings
+#' (clusters obtained after a clustering algorithm). This measure of similarity
+#' could be either between two hierarchical clusterings or a clustering and
+#' a benchmark classification. A higher the value for the Fowlkes-Mallows index
+#' indicates a greater similarity between the clusters and the benchmark 
+#' classifications.
+#' 
+#' @seealso
+#' \link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}}
+#' @return 
+#' The Fowlkes-Mallows index between two vectors of clustering groups.
+#' 
+#' Includes the attributes E_FM and V_FM for the relevant expectancy and
+#' variance under the null hypothesis of no-relation.
+#' 
+#' @references
+#' 
+#' Fowlkes, E. B.; Mallows, C. L. (1 September 1983).
+#' "A Method for Comparing Two Hierarchical Clusterings".
+#' Journal of the American Statistical Association 78 (383): 553.
+#' 
+#' \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' set.seed(23235)
+#' ss <- TRUE # sample(1:150, 10 )
+#' hc1 <- hclust(dist(iris[ss,-5]), "com")
+#' hc2 <- hclust(dist(iris[ss,-5]), "single")
+#' # dend1 <- as.dendrogram(hc1)
+#' # dend2 <- as.dendrogram(hc2)
+#' #    cutree(dend1)   
+#' 
+#' FM_index_R(cutree(hc1, k=3), cutree(hc1, k=3)) # 1
+#' set.seed(1341)
+#' FM_index_R(cutree(hc1, k=3), sample(cutree(hc1, k=3)), assume_sorted_vectors =TRUE) # 0.38037
+#' FM_index_R(cutree(hc1, k=3), sample(cutree(hc1, k=3)), assume_sorted_vectors =FALSE) # 1 again :)
+#' FM_index_R(cutree(hc1, k=3), cutree(hc2, k=3)) # 0.8059
+#' FM_index_R(cutree(hc1, k=30), cutree(hc2, k=30)) # 0.4529
+#' 
+#' fo <- function(k) FM_index_R(cutree(hc1, k), cutree(hc2, k)) 
+#' lapply(1:4, fo)
+#' ks <- 1:150
+#' plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the iris dataset")
+#' 
+#' }
+FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, warn = TRUE, ...) {
+   
+   if(!assume_sorted_vectors) {
+      sorted_As <- sort_2_clusters_vectors(A1_clusters, A2_clusters,
+                                           assume_sorted_vectors =assume_sorted_vectors,
+                                           warn = warn)   
+      A1_clusters <- sorted_As[[1]]
+      A2_clusters <- sorted_As[[2]]
+   }
+
+   
    
    # creating matrix M
    # ----------
@@ -220,25 +310,7 @@ FM_index_R <- function(A1_clusters, A2_clusters, k,
    # }
    # ----------
    # a much better way!
-   
-#    A1_clusters <- cutree(A1, k = k)
-#    A2_clusters <- cutree(A2, k = k)
-#    # calculate n
-#    n <- nleaves(A1) 
-   
-   # If one of the trees can not be cut, we should return the data.frame with missing values (so to not stop the entire function...)
-   if(any(is.na(A1_clusters)) || any(is.na(A2_clusters))) return(data.frame(Bk = NA, E_FM= NA, V_FM= NA) )
-   
-   # sort them to look the same (we assume the *same naming* for the leaves !
-   A1_clusters <- A1_clusters[order(names(A1_clusters))]	# order the vec accourding to the names, so to allow a comparison
-   A2_clusters <- A2_clusters[order(names(A2_clusters))]	# order the vec accourding to the names, so to allow a comparison
-   if(print_output) print(list(A1_clusters, A2_clusters )	)
    M <- table(A1_clusters, A2_clusters)
-   if(print_output) print(M)
-   
-   
-#    if(!include_V) Bk_table$V_FM <- NULL
-   
    # calculate n
    n <- length(A1_clusters) 
    
@@ -250,26 +322,24 @@ FM_index_R <- function(A1_clusters, A2_clusters, k,
    Pk <- sum(m_i.^2) - n
    Qk <- sum(m_.j^2) - n
    
-   Bk <- Tk / sqrt(Pk*Qk)
+   FM <- Tk / sqrt(Pk*Qk)
    
-   # Expectancy of the Bk (according to H0)
+   # Expectancy of the FM (according to H0)
    E_FM <- sqrt(Pk*Qk)/ (n*(n-1))
    
    
    Pk2 <- sum( m_i. * (m_i. -1) * (m_i. -2) )
    Qk2 <- sum( m_.j * (m_.j -1) * (m_.j -2) )
-   # variance of the Bk (according to H0)
+   # variance of the FM (according to H0)
    V_FM <- 2/ (n*(n-1))  +  
       4*Pk2 * Qk2 / ( (n*(n-1)*(n-2)) * Pk*Qk ) + 
       (Pk -2 - 4*Pk2/Pk) * (Qk -2 - 4*Qk2/Qk) / ( (n*(n-1)*(n-2)*(n-3))) -
       Pk * Qk / (n^2*(n-1)^2)
    
    
-   FM_index <- Bk # c(, E_FM, V_FM)   
-   attr(FM_index, "E_FM") <- ifelse(include_E, E_FM, NA)
-   attr(FM_index, "V_FM") <- ifelse(include_V, V_FM, NA)
-   
-   
+   FM_index <- FM # c(, E_FM, V_FM)   
+   attr(FM_index, "E_FM") <- E_FM
+   attr(FM_index, "V_FM") <- V_FM
    
    return(FM_index)
 }
@@ -282,7 +352,109 @@ FM_index_R <- function(A1_clusters, A2_clusters, k,
 
 
 
+#' @title Calculating Fowlkes-Mallows Index
+#' @export
+#' @description
+#' 
+#' Calculating Fowlkes-Mallows index.
+#' 
+#' As opposed to the \code{\link{FM_index_profdpm}} function, the \code{FM_index_R}
+#' function also calculates the expectancy and variance of the FM Index
+#' under the null hypothesis of no relation.
+#' 
+#'  
+#' @param A1_clusters a numeric vector of cluster grouping (numeric) of items,
+#' with a name attribute of item name for each element from group A1.
+#' These are often obtained by using some k cut on a dendrogram.
+#' @param A2_clusters a numeric vector of cluster grouping (numeric) of items,
+#' with a name attribute of item name for each element from group A2.
+#' These are often obtained by using some k cut on a dendrogram.
+#' @param include_EV logical (TRUE). Should we calculate expectancy and variance
+#' of the FM Index under null hypothesis of no relation between the clusterings?
+#' If TRUE (Default) - then the \link{FM_index_R} function, else (FALSE)
+#' we use the (faster) \link{FM_index_profdpm} function.
+#' @param assume_sorted_vectors logical (FALSE). Can we assume to two group 
+#' vectors are sorter so that they have the same order of items?
+#' IF FALSE (default), then the vectors will be sorted based on their
+#' name attribute.
+#' @param warn logical (TRUE). Should a warning be issued in case of problems?
+#' @param ... Ignored (passed to FM_index_R/FM_index_profdpm).
+#' 
+#' @details
+#' From Wikipedia:
+#' 
+#' Fowlkes-Mallows index (see references) is an external evaluation method 
+#' that is used to determine the similarity between two clusterings
+#' (clusters obtained after a clustering algorithm). This measure of similarity
+#' could be either between two hierarchical clusterings or a clustering and
+#' a benchmark classification. A higher the value for the Fowlkes-Mallows index
+#' indicates a greater similarity between the clusters and the benchmark 
+#' classifications.
+#' 
+#' @seealso
+#' \link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}}
+#' @return 
+#' The Fowlkes-Mallows index between two vectors of clustering groups.
+#' 
+#' Includes the attributes E_FM and V_FM for the relevant expectancy and
+#' variance under the null hypothesis of no-relation.
+#' 
+#' @references
+#' 
+#' Fowlkes, E. B.; Mallows, C. L. (1 September 1983).
+#' "A Method for Comparing Two Hierarchical Clusterings".
+#' Journal of the American Statistical Association 78 (383): 553.
+#' 
+#' \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' set.seed(23235)
+#' ss <- TRUE # sample(1:150, 10 )
+#' hc1 <- hclust(dist(iris[ss,-5]), "com")
+#' hc2 <- hclust(dist(iris[ss,-5]), "single")
+#' # dend1 <- as.dendrogram(hc1)
+#' # dend2 <- as.dendrogram(hc2)
+#' #    cutree(dend1)   
+#' 
+#' FM_index(cutree(hc1, k=3), cutree(hc1, k=3)) # 1 with EV
+#' FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= FALSE) # 1
+#' 
+#' # checking speed gains
+#' require(microbenchmark)
+#'  microbenchmark(FM_index(cutree(hc1, k=3), cutree(hc1, k=3)),
+#'                  FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= FALSE),
+#'                   FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= TRUE, assume_sorted_vectors=TRUE),
+#'                   FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= FALSE, assume_sorted_vectors=TRUE)
+#'                                                   )
+#' # C code is 1.2-1.3 times faster.                                                   
+#'                                                   
+#' set.seed(1341)
+#' FM_index(cutree(hc1, k=3), sample(cutree(hc1, k=3)), assume_sorted_vectors =TRUE) # 0.38037
+#' FM_index(cutree(hc1, k=3), sample(cutree(hc1, k=3)), assume_sorted_vectors =FALSE) # 1 again :)
+#' FM_index(cutree(hc1, k=3), cutree(hc2, k=3)) # 0.8059
+#' FM_index(cutree(hc1, k=30), cutree(hc2, k=30)) # 0.4529
+#' 
+#' fo <- function(k) FM_index(cutree(hc1, k), cutree(hc2, k)) 
+#' lapply(1:4, fo)
+#' ks <- 1:150
+#' plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the iris dataset")
+#' 
+#' }
+FM_index <- function(A1_clusters, A2_clusters, include_EV = TRUE, assume_sorted_vectors =FALSE, warn = TRUE, ...) {
 
+   if(include_EV) {
+      FM <- FM_index_R(A1_clusters, A2_clusters, 
+                       assume_sorted_vectors =assume_sorted_vectors, warn = warn, ...)
+   } else {
+      FM <- FM_index_profdpm(A1_clusters, A2_clusters, 
+                       assume_sorted_vectors =assume_sorted_vectors, warn = warn, ...)      
+   }  
+   
+   return(FM)
+}
 
 
 
