@@ -8,8 +8,7 @@
   \code{\link{labels_colors}}.
 }
 \usage{
-  color_labels(tree, k = NULL, h = NULL, col,
-    groupLabels = NULL, ...)
+  color_labels(tree, k = NULL, h = NULL, col, ...)
 }
 \arguments{
   \item{tree}{A \code{dendrogram} or \code{hclust} tree
