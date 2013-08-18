@@ -565,84 +565,118 @@ FM_index_permutation <- function(A1_clusters, A2_clusters, warn = TRUE, ...) {
 
 
 
-
-
-Bk <- function(A1, A2, k = 3, print_output = F, 
-               sanity_checks = FALSE, 
-               include_E = TRUE,
-               include_V = TRUE,               
-               ...)
-{
-   if(sanity_checks) {	# the sanity checks are turned off by default since the "labels" function for dendrogram is one which takes some time to run...
+#' @title Bk - Calculating Fowlkes-Mallows Index for two dendrogram
+#' @export
+#' @description
+#' 
+#' Bk is the calculation of Fowlkes-Mallows index for a series of k cuts 
+#' for two dendrograms.
+#' 
+#' @param tree1 a dendrogram/hclust/phylo object.
+#' @param tree2 a dendrogram/hclust/phylo object.
+#' @param k an integer scalar or vector with the desired number 
+#' of cluster groups.
+#' If missing - the Bk will be calculated for a default k range of
+#' 2:(nleaves-1).
+#' No point in checking k=1/k=n, since both will give Bk=1.
+#' @param include_EV logical (TRUE). Should we calculate expectancy and variance
+#' of the FM Index under null hypothesis of no relation between the clusterings?
+#' If TRUE (Default) - then the \link{FM_index_R} function, else (FALSE)
+#' we use the (faster) \link{FM_index_profdpm} function.
+#' @param warn logical (TRUE). Should a warning be issued in case of problems?
+#' If set to TRUE, extra checks are made to varify that the two clusters have
+#' the same size and the same labels.
+#' @param ... Ignored (passed to FM_index_R/FM_index_profdpm).
+#' 
+#' @details
+#' From Wikipedia:
+#' 
+#' Fowlkes-Mallows index (see references) is an external evaluation method 
+#' that is used to determine the similarity between two clusterings
+#' (clusters obtained after a clustering algorithm). This measure of similarity
+#' could be either between two hierarchical clusterings or a clustering and
+#' a benchmark classification. A higher the value for the Fowlkes-Mallows index
+#' indicates a greater similarity between the clusters and the benchmark 
+#' classifications.
+#' 
+#' @seealso
+#' \code{\link{FM_index}}, \link{cor_bakers_gamma}
+#' @return 
+#' A list (of k's length) of Fowlkes-Mallows index between two dendrogram for 
+#' a scalar/vector of k values.
+#' The names of the lists' items is the k for which it was calculated.
+#' 
+#' @references
+#' 
+#' Fowlkes, E. B.; Mallows, C. L. (1 September 1983).
+#' "A Method for Comparing Two Hierarchical Clusterings".
+#' Journal of the American Statistical Association 78 (383): 553.
+#' 
+#' \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' set.seed(23235)
+#' ss <- TRUE # sample(1:150, 10 )
+#' hc1 <- hclust(dist(iris[ss,-5]), "com")
+#' hc2 <- hclust(dist(iris[ss,-5]), "single")
+#' # tree1 <- as.treerogram(hc1)
+#' # tree2 <- as.treerogram(hc2)
+#' #    cutree(tree1)   
+#' 
+#' Bk(hc1, hc2, k = 3)
+#' Bk(hc1, hc2, k = 2:10)
+#' 
+#' y <- Bk(hc1, hc2, k = 2:10)
+#' plot(unlist(y)~c(2:10), type = "b", ylim = c(0,1))
+#' 
+#' # can take a few seconds
+#' y <- Bk(hc1, hc2)
+#' plot(unlist(y)~as.numeric(names(y)), 
+#'      main = "Bk plot", pch = 20,
+#'      xlab = "k", ylab = "FM Index",
+#'      type = "b", ylim = c(0,1))
+#' # we are still missing some hypothesis testing here.
+#' # for this we'll have the Bk_plot function.
+#' 
+#' }
+Bk <- function(tree1, tree2, k,  include_EV = TRUE, warn = TRUE, ...) {
+   
+   # some sanity checks!
+   if(warn) {   # the sanity checks are turned off by default since the "labels" function for dendrogram is one which takes some time to run...
       # notice that we must have labels.hclust and labels.dendrogram defined!
-      A1_labels <- labels(A1)
-      A2_labels <- labels(A2)
-      length_A1_labels <- length(A1_labels)
-      length_A2_labels <- length(A2_labels)	
+      tree1_labels <- labels(tree1)
+      tree2_labels <- labels(tree2)
+      length_tree1_labels <- length(tree1_labels)
+      length_tree2_labels <- length(tree2_labels)	
       
       # Checking for common error options:
-      if(length_A1_labels != length_A2_labels) stop("The two clusters don't have the same number of items!")	# If cluster sized are different - stop
-      if(!all(sort(A1_labels) == sort(A2_labels))) stop("Your trees are having leaves with different names - please correct it inorder to use this function")
+      if(length_tree1_labels != length_tree2_labels) stop("The two clusters don't have the same number of items!")	# If cluster sized are different - stop
+      if(!all(sort(tree1_labels) == sort(tree2_labels))) stop("Your trees are having leaves with different names - please correct it in order to use this function")
    }
    
-   # calculate n
-   n <- nleaves(A1) 
-   
-   # creating matrix M
-   # ----------
-   # a not-so-smart way
-   # M <- matrix(0, nrow = k, ncol = k)
-   # for(i in 1:k)
-   # {
-   # for(j in 1:k)
-   # {
-   # M[i,j] <- sum(rect.hclust(A1, k = k)[[i]] %in% rect.hclust(A2, k = k)[[j]])
-   # how many of the objects in cluser i in tree A1, exist in cluster j in tree A2
-   # }
-   # }
-   # ----------
-   # a much better way!
-   
-   A1_clusters <- cutree(A1, k = k)
-   A2_clusters <- cutree(A2, k = k)
-   
-   # If one of the trees can not be cut, we should return the data.frame with missing values (so to not stop the entire function...)
-   if(is.null(A1_clusters) || is.null(A2_clusters)) return(data.frame(Bk = NA, E_FM= NA, V_FM= NA) )
-   
-   # sort them to look the same (we assume the *same naming* for the leaves !
-   A1_clusters <- A1_clusters[order(names(A1_clusters))]	# order the vec accourding to the names, so to allow a comparison
-   A2_clusters <- A2_clusters[order(names(A2_clusters))]	# order the vec accourding to the names, so to allow a comparison
-   if(print_output) print(list(A1_clusters, A2_clusters )	)
-   M <- table(A1_clusters, A2_clusters)
-   if(print_output) print(M)
-   
-   
-   Tk <- sum(M^2) - n
-   m_i. <- apply(M, 1, sum)
-   m_.j <- apply(M, 2, sum)
-   m_.. <- n # sum(M)
-   if(sum(M) != n ) stop("Why does M matrix doesn't sum up to n ??")
-   Pk <- sum(m_i.^2) - n
-   Qk <- sum(m_.j^2) - n
-   
-   Bk <- Tk / sqrt(Pk*Qk)
-   
-   E_FM <- sqrt(Pk*Qk)/ (n*(n-1))
-   
-   
-   Pk2 <- sum( m_i. * (m_i. -1) * (m_i. -2) )
-   Qk2 <- sum( m_.j * (m_.j -1) * (m_.j -2) )
-   V_FM <- 2/ (n*(n-1))  +  
-      4*Pk2 * Qk2 / ( (n*(n-1)*(n-2)) * Pk*Qk ) + 
-      (Pk -2 - 4*Pk2/Pk) * (Qk -2 - 4*Qk2/Qk) / ( (n*(n-1)*(n-2)*(n-3))) -
-      Pk * Qk / (n^2*(n-1)^2)
-   
-   
-   Bk_table <- data.frame(Bk, E_FM, V_FM)
-   if(!include_E) Bk_table$E_FM <- NULL
-   if(!include_V) Bk_table$V_FM <- NULL
-         
-   return(Bk_table)
+   Bk_for_each_k <- function(k) {
+      FM_index(
+         cutree(tree1, k), cutree(tree2, k),
+         assume_sorted_vectors = FALSE, 
+         # We can't trust cutree to give the same order of items!
+         # In order to assume it, we would need to match order by labels
+         # and then have cutree( ) with order_clusters_as_data=TRUE
+         # but for small length of k's, this per-process (/checks)
+         # will likely be more expensive than simply running it with
+         # assume_sorted_vectors = FALSE, 
+         include_EV = include_EV,
+         warn = warn
+         ) 
+   }
+
+   if(missing(k)) k <- 2:(nleaves(tree1)-1)
+   the_Bks <- lapply(k, Bk_for_each_k)
+   names(the_Bks) <- k
+
+   return(the_Bks)
 }
 
 
@@ -650,11 +684,7 @@ Bk <- function(A1, A2, k = 3, print_output = F,
 
 
 
-# Bk(fit1, fit2, k = 2, T)
-# Bk(as.dendrogram(fit1), as.dendrogram(fit2), k = 2, T)
 
-# Bk(fit1, fit2, k = 2, F)
-# Bk(as.dendrogram(fit1), as.dendrogram(fit2), k = 5, F)
 
 
 if(F) {
@@ -689,29 +719,6 @@ if(F) {
    
    
 }
-
-Bk_range <- function(A1, A2, ks = NULL, to_print = F)
-{
-   #ks is the k range
-   
-   # n <- length(A1$order)	# this would ONLY work for hclust...
-   n <- length(leaves.values(A1))	# this will also work for both hclust and denderogram (assuming the proper methods were defined...)
-   if(is.null(ks)) ks <- 2:(n-1)
-   Bks <- NULL # rep(NA, length(ks))
-   
-   # counter <- 1
-   
-   for(the.k in ks)
-   {
-      #		Bks[[counter]] <- Bk(A1, A2, k = the.k)
-      Bks <- rbind(Bks, Bk(A1, A2, k = the.k))
-      # counter <- 	counter + 1
-      if(to_print) print(paste("We just cut using k:",the.k))
-   }	
-   return(data.frame(ks ,	Bks))
-}
-
-# Bk_range(fit1, fit2, c(2:6))
 
 plot_Bks_with_E_FM <- function(Bk_data_frame, CI_sd_times = 2, plot_mean_Bk_under_H0 = TRUE, ...)	
 {

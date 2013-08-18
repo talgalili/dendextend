@@ -6,6 +6,7 @@ NEW FUNCTIONS ADDED:
    * FM_index_R
    * FM_index
    * FM_index_permutation - for checking permutation distribution of the FM Index
+   * Bk
 
 UPDATED FUNCTIONS:
    * color_labels - removed unused 'groupLabels' parameter.

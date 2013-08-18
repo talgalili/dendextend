@@ -1,0 +1,93 @@
+\name{Bk}
+\alias{Bk}
+\title{Bk - Calculating Fowlkes-Mallows Index for two dendrogram}
+\usage{
+  Bk(tree1, tree2, k, include_EV = TRUE, warn = TRUE, ...)
+}
+\arguments{
+  \item{tree1}{a dendrogram/hclust/phylo object.}
+
+  \item{tree2}{a dendrogram/hclust/phylo object.}
+
+  \item{k}{an integer scalar or vector with the desired
+  number of cluster groups. If missing - the Bk will be
+  calculated for a default k range of 2:(nleaves-1). No
+  point in checking k=1/k=n, since both will give Bk=1.}
+
+  \item{include_EV}{logical (TRUE). Should we calculate
+  expectancy and variance of the FM Index under null
+  hypothesis of no relation between the clusterings? If
+  TRUE (Default) - then the \link{FM_index_R} function,
+  else (FALSE) we use the (faster) \link{FM_index_profdpm}
+  function.}
+
+  \item{warn}{logical (TRUE). Should a warning be issued in
+  case of problems? If set to TRUE, extra checks are made
+  to varify that the two clusters have the same size and
+  the same labels.}
+
+  \item{...}{Ignored (passed to
+  FM_index_R/FM_index_profdpm).}
+}
+\value{
+  A list (of k's length) of Fowlkes-Mallows index between
+  two dendrogram for a scalar/vector of k values. The names
+  of the lists' items is the k for which it was calculated.
+}
+\description{
+  Bk is the calculation of Fowlkes-Mallows index for a
+  series of k cuts for two dendrograms.
+}
+\details{
+  From Wikipedia:
+
+  Fowlkes-Mallows index (see references) is an external
+  evaluation method that is used to determine the
+  similarity between two clusterings (clusters obtained
+  after a clustering algorithm). This measure of similarity
+  could be either between two hierarchical clusterings or a
+  clustering and a benchmark classification. A higher the
+  value for the Fowlkes-Mallows index indicates a greater
+  similarity between the clusters and the benchmark
+  classifications.
+}
+\examples{
+\dontrun{
+
+set.seed(23235)
+ss <- TRUE # sample(1:150, 10 )
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+# tree1 <- as.treerogram(hc1)
+# tree2 <- as.treerogram(hc2)
+#    cutree(tree1)
+
+Bk(hc1, hc2, k = 3)
+Bk(hc1, hc2, k = 2:10)
+
+y <- Bk(hc1, hc2, k = 2:10)
+plot(unlist(y)~c(2:10), type = "b", ylim = c(0,1))
+
+# can take a few seconds
+y <- Bk(hc1, hc2)
+plot(unlist(y)~as.numeric(names(y)),
+     main = "Bk plot", pch = 20,
+     xlab = "k", ylab = "FM Index",
+     type = "b", ylim = c(0,1))
+# we are still missing some hypothesis testing here.
+# for this we'll have the Bk_plot function.
+
+}
+}
+\references{
+  Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
+  Method for Comparing Two Hierarchical Clusterings".
+  Journal of the American Statistical Association 78 (383):
+  553.
+
+  \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+}
+\seealso{
+  \code{\link{FM_index}}, \link{cor_bakers_gamma}
+}
+
