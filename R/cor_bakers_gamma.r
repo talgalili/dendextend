@@ -19,6 +19,7 @@
 
 
 #' @title Find lowest common branch were the two items are shared
+#' @export
 #' @description
 #' Given two vectors, for two items, of cluster belonging - the function finds
 #' the lowest branch (e.g: largest number of k clusters) for which the two
