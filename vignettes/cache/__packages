@@ -3,6 +3,10 @@ base
 codetools
 colorspace
 dendextend
+dendextendRcpp
+installr
 knitr
 microbenchmark
 plyr
+profdpm
+Rcpp

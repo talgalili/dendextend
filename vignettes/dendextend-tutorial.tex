@@ -2771,7 +2771,43 @@ An example of a bootstrap CI (with method="spearman"):
 
 
 
-\subsection{Bk method}
+\subsection{The Bk method}
+
+The Fowlkes-Mallows Index \citep{fowlkes1983method} (FM Index, or Bk) is a measure of similarity between two clusterings. The FM index ranges from 0 to 1, a higher value indicates a greater similarity between the two clusters. In the Bk method we calculate the FM Index (Bk) for each k (k=2,3,…,n-1) number of clusters, giving the association between the two trees when each is cut to have k groups. The similarity between two hierarchical clustering dendrograms, can be investigated, using the (k,Bk) plot: For every level of splitting of the two dendrograms which produces k clusters in each tree, the plot shows the number Bk, and therefore enables the investigation of potential nuances in the structure of similarity. The Bk measures the number of pairs of items which are in the same cluster in both dendrograms, one of the clusters in one of the trees and one of the clusters in the other tree, divided by the geometric mean of the number of pairs of items which are in the same cluster in each tree. Namely, ${a_{uv}} = 1\left( {or{\rm{ }}{{\rm{b}}_{uv}} = 1} \right)$ if the items u and v are in the same cluster in the first tree (second tree), when it is cut so to give k clusters, and otherwise 0:
+
+\[{FM_k} = {B_k} = \frac{{\sum\limits_{}^{} {{a_{uv}}{b_{uv}}} }}{{\sqrt {\sum\limits_{}^{} {{a_{uv}}} \sum\limits_{}^{} {{b_{uv}}} } }}\]
+
+The Bk measure can be plotted for every value of k (except k=n) in order to create the “(k,Bk) plot”.  The plot compares the similarity of the two trees for different cuts. The mean and variance of Bk, under the null hypothesis (that the two trees are not “similar”), and under the assumption that the margins of the matching matrix are fixed, are given in Fowlkes and Mallows \citep{fowlkes1983method}. They allow making inference on whether the results obtained are different from what would have been expected under the null hypothesis (of now particular order of the trees' labels).
+
+THE FM index is also available through the \code{pci} function, in the \pkg{profdpm} package \citep{CRAN:profdpm}.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{our_dist} \hlkwb{<-} \hlkwd{dist}\hlstd{(USArrests[}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{, ])}
+\hlstd{dend1} \hlkwb{<-} \hlkwd{hclust}\hlstd{(our_dist,} \hlstr{"complete"}\hlstd{)}
+\hlstd{dend2} \hlkwb{<-} \hlkwd{hclust}\hlstd{(our_dist,} \hlstr{"single"}\hlstd{)}
+
+\hlkwd{require}\hlstd{(}\hlstr{"profdpm"}\hlstd{)}  \hlcom{# see page 9 and 10:}
+\hlkwd{pci}\hlstd{(}\hlkwd{cutree}\hlstd{(dend1,} \hlkwc{k} \hlstd{=} \hlnum{4}\hlstd{),} \hlkwd{cutree}\hlstd{(dend2,} \hlkwc{k} \hlstd{=} \hlnum{4}\hlstd{))[}\hlnum{2}\hlstd{]}
+\end{alltt}
+\begin{verbatim}
+##     FM 
+## 0.5833
+\end{verbatim}
+\begin{alltt}
+\hlkwd{Bk}\hlstd{(dend1, dend2,} \hlkwc{k} \hlstd{=} \hlnum{4}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## $`4`
+## [1] 0.5833
+## attr(,"E_FM")
+## [1] 0.2667
+## attr(,"V_FM")
+## [1] 0.007659
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 
 
 
@@ -2780,6 +2816,107 @@ An example of a bootstrap CI (with method="spearman"):
 
 
 
+
+
+
+
+
+
+
+
+\section{dendextendRcpp - gaining speed with Rcpp}
+
+Since dendrogram objects are often revised through the use of recursion, R often falls short when it comes to speed. In various function which are intended to run only once (such as \code{labels.color}), this does not bother us, and we are content at quickly writing the function with R and let it handle many extreme cases.
+
+However, some functions are intended to be used many times, and in such cases are well served to be handled with \proglang{C++}. Thanks the the \pkg{Rcpp} packabe (\cite{CRAN:Rcpp}, \cite{JSS:Rcpp}), we can comfortably extend several core functions of the dendextend package. These modifications are included in a seperate add-on package called \pkg{dendextendRcpp} \citep{CRAN:dendextendRcpp} by Dirk Eddelbuettel, Romain Fran\c{c}ois and Tal Galili. \pkg{dendextendRcpp} is set to load autmatically when \pkg{dendextend} loads, and its functions are set to properly override the R functions.
+
+Here are a few benchmarks using the \pkg{microbenchmark} package \citep{CRAN:microbenchmark}.
+
+For \code{labels.dendrogram}:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(}\hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[,} \hlopt{-}\hlnum{5}\hlstd{])))}
+\hlkwd{labels}\hlstd{(dend)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend)}\hlstd{)}
+
+\hlkwd{require}\hlstd{(dendextendRcpp)}  \hlcom{# already loaded by default with dendextend}
+\hlkwd{require}\hlstd{(microbenchmark)}
+\hlkwd{microbenchmark}\hlstd{(stats:::}\hlkwd{labels.dendrogram}\hlstd{(dend), dendextendRcpp:::}\hlkwd{labels.dendrogram}\hlstd{(dend))}
+\end{alltt}
+\begin{verbatim}
+## Unit: microseconds
+##                                      expr     min      lq
+##           stats:::labels.dendrogram(dend) 21425.4 22303.9
+##  dendextendRcpp:::labels.dendrogram(dend)   543.7   560.8
+##   median      uq      max neval
+##  23978.2 25715.6 124609.9   100
+##    700.8   719.8    931.2   100
+\end{verbatim}
+\begin{alltt}
+# Rcpp is ~34 times faster
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+
+For \code{get_branches_heights} (an essential function when using cutree with some k):
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(}\hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[,} \hlopt{-}\hlnum{5}\hlstd{])))}
+\hlkwd{labels}\hlstd{(dend)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend)}\hlstd{)}
+
+\hlkwd{require}\hlstd{(dendextendRcpp)}  \hlcom{# already loaded by default with dendextend}
+\hlkwd{require}\hlstd{(microbenchmark)}
+\hlkwd{microbenchmark}\hlstd{(}\hlkwd{old_get_branches_heights}\hlstd{(dend), dendextendRcpp:::}\hlkwd{get_branches_heights}\hlstd{(dend),}
+    \hlkwc{times} \hlstd{=} \hlnum{100}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Unit: microseconds
+##                                         expr     min
+##               old_get_branches_heights(dend) 51092.5
+##  dendextendRcpp:::get_branches_heights(dend)   498.9
+##       lq  median      uq    max neval
+##  55343.3 56827.9 58136.2 149678   100
+##    511.8   630.8   660.2   3561   100
+\end{verbatim}
+\begin{alltt}
+# Rcpp is ~90 times faster!
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+For \code{heights_per_k.dendrogram} (an essential function when using cutree with some k):
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(}\hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[,} \hlopt{-}\hlnum{5}\hlstd{])))}
+\hlkwd{labels}\hlstd{(dend)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend)}\hlstd{)}
+
+\hlkwd{require}\hlstd{(dendextendRcpp)}  \hlcom{# already loaded by default with dendextend}
+\hlkwd{require}\hlstd{(microbenchmark)}
+\hlkwd{microbenchmark}\hlstd{(}\hlkwd{old_heights_per_k.dendrogram}\hlstd{(dend), dendextendRcpp:::}\hlkwd{heights_per_k.dendrogram}\hlstd{(dend),}
+    \hlkwc{times} \hlstd{=} \hlnum{100}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Unit: milliseconds
+##                                             expr     min
+##               old_heights_per_k.dendrogram(dend) 3646.85
+##  dendextendRcpp:::heights_per_k.dendrogram(dend)   26.41
+##       lq  median      uq     max neval
+##  3801.28 3924.02 3962.17 4091.29   100
+##    28.36   29.55   32.14   34.91   100
+\end{verbatim}
+\begin{alltt}
+# Rcpp is ~135 times faster!
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 
 
@@ -2952,7 +3089,7 @@ We are very thankful for code contributions and ideas by the R core team (especi
 \hlkwd{Sys.Date}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## [1] "2013-08-14"
+## [1] "2013-08-19"
 \end{verbatim}
 \begin{alltt}
 \hlkwd{sessionInfo}\hlstd{()}
@@ -2969,14 +3106,16 @@ We are very thankful for code contributions and ideas by the R core team (especi
 ## [5] LC_TIME=Hebrew_Israel.1255    
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets 
+## [1] stats     graphics  grDevices datasets  utils    
 ## [6] methods   base     
 ## 
 ## other attached packages:
-## [1] plyr_1.8             microbenchmark_1.3-0
-## [3] colorspace_1.2-2     codetools_0.2-8     
-## [5] dendextend_0.8.0     ape_3.0-8           
-## [7] knitr_1.4           
+##  [1] profdpm_3.3          plyr_1.8            
+##  [3] microbenchmark_1.3-0 colorspace_1.2-2    
+##  [5] codetools_0.2-8      dendextendRcpp_0.2.0
+##  [7] Rcpp_0.10.4          dendextend_0.9.1    
+##  [9] ape_3.0-8            knitr_1.4           
+## [11] installr_0.11.0     
 ## 
 ## loaded via a namespace (and not attached):
 ## [1] digest_0.6.3    evaluate_0.4.7  formatR_0.9    

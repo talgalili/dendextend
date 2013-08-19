@@ -12,6 +12,9 @@ BUG FIXES:
 OTHER NOTES:
    * The dendextendRcpp package (version 0.2.0) is now on github, and offers functions for making cutree.dendrogram(k) MUCH faster (between 20 to 100 times faster). (this is besided having labels.dendrogram now also accept a leaf as a tree.)
 
+VIGNETTES:
+   * Added Rcpp section.
+   * Started the Bk section (some theory, but no code yet - although it is all written by now...).
 
 
 dendextend 0.9.0 (2013-08-18)

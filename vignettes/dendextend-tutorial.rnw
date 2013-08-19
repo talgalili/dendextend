@@ -9,6 +9,10 @@ toBibtex(citation("ggdendro"))
 toBibtex(citation("ape"))
 toBibtex(citation("Rcpp"))
 toBibtex(citation("boot"))
+toBibtex(citation("profdpm"))
+toBibtex(citation("dendextendRcpp"))
+toBibtex(citation("microbenchmark"))
+
 
 toBibtex(packageDescription("stats"))
 
@@ -1512,16 +1516,79 @@ legend("topleft", legend =c("95% CI", "Cophenetic correlation"), fill = c(3,2))
 
 
 
-\subsection{Bk method}
+\subsection{The Bk method}
+
+The Fowlkes-Mallows Index \citep{fowlkes1983method} (FM Index, or Bk) is a measure of similarity between two clusterings. The FM index ranges from 0 to 1, a higher value indicates a greater similarity between the two clusters. In the Bk method we calculate the FM Index (Bk) for each k (k=2,3,…,n-1) number of clusters, giving the association between the two trees when each is cut to have k groups. The similarity between two hierarchical clustering dendrograms, can be investigated, using the (k,Bk) plot: For every level of splitting of the two dendrograms which produces k clusters in each tree, the plot shows the number Bk, and therefore enables the investigation of potential nuances in the structure of similarity. The Bk measures the number of pairs of items which are in the same cluster in both dendrograms, one of the clusters in one of the trees and one of the clusters in the other tree, divided by the geometric mean of the number of pairs of items which are in the same cluster in each tree. Namely, ${a_{uv}} = 1\left( {or{\rm{ }}{{\rm{b}}_{uv}} = 1} \right)$ if the items u and v are in the same cluster in the first tree (second tree), when it is cut so to give k clusters, and otherwise 0:
+
+\[{FM_k} = {B_k} = \frac{{\sum\limits_{}^{} {{a_{uv}}{b_{uv}}} }}{{\sqrt {\sum\limits_{}^{} {{a_{uv}}} \sum\limits_{}^{} {{b_{uv}}} } }}\]
+
+The Bk measure can be plotted for every value of k (except k=n) in order to create the “(k,Bk) plot”.  The plot compares the similarity of the two trees for different cuts. The mean and variance of Bk, under the null hypothesis (that the two trees are not “similar”), and under the assumption that the margins of the matching matrix are fixed, are given in Fowlkes and Mallows \citep{fowlkes1983method}. They allow making inference on whether the results obtained are different from what would have been expected under the null hypothesis (of now particular order of the trees' labels).
 
 
 
 
 
+\section{dendextendRcpp - gaining speed with Rcpp}
+
+Since dendrogram objects are often revised through the use of recursion, R often falls short when it comes to speed. In various function which are intended to run only once (such as \code{labels.color}), this does not bother us, and we are content at quickly writing the function with R and let it handle many extreme cases.
+
+However, some functions are intended to be used many times, and in such cases are well served to be handled with \proglang{C++}. Thanks the the \pkg{Rcpp} packabe (\cite{CRAN:Rcpp}, \cite{JSS:Rcpp}), we can comfortably extend several core functions of the dendextend package. These modifications are included in a seperate add-on package called \pkg{dendextendRcpp} \citep{CRAN:dendextendRcpp} by Dirk Eddelbuettel, Romain Fran\c{c}ois and Tal Galili. \pkg{dendextendRcpp} is set to load autmatically when \pkg{dendextend} loads, and its functions are set to properly override the R functions.
+
+Here are a few benchmarks using the \pkg{microbenchmark} package \citep{CRAN:microbenchmark}.
+
+For \code{labels.dendrogram}:
+
+<<Rcpp_simu_labels_dendrogram>>=
+
+dend <- as.dendrogram(hclust(dist(iris[,-5])))
+labels(dend) <- as.character(labels(dend))
+
+require(dendextendRcpp) # already loaded by default with dendextend
+require(microbenchmark)
+microbenchmark(
+stats:::labels.dendrogram(dend),
+dendextendRcpp:::labels.dendrogram(dend)
+   ) 
+# Rcpp is ~34 times faster
+
+@
 
 
+For \code{get_branches_heights} (an essential function when using cutree with some k):
 
+<<Rcpp_simu_get_branches_heights>>=
 
+dend <- as.dendrogram(hclust(dist(iris[,-5])))
+labels(dend) <- as.character(labels(dend))
+
+require(dendextendRcpp) # already loaded by default with dendextend
+require(microbenchmark)
+microbenchmark(
+old_get_branches_heights(dend),
+dendextendRcpp:::get_branches_heights(dend),
+times = 100
+   ) 
+# Rcpp is ~90 times faster!
+
+@
+
+For \code{heights_per_k.dendrogram} (an essential function when using cutree with some k):
+
+<<Rcpp_simu_heights_per_k>>=
+
+dend <- as.dendrogram(hclust(dist(iris[,-5])))
+labels(dend) <- as.character(labels(dend))
+
+require(dendextendRcpp) # already loaded by default with dendextend
+require(microbenchmark)
+microbenchmark(
+old_heights_per_k.dendrogram(dend),
+dendextendRcpp:::heights_per_k.dendrogram(dend),
+times = 100
+   ) 
+# Rcpp is ~135 times faster!
+
+@
 
 
 
