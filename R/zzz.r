@@ -18,13 +18,53 @@
 
 
 
+
+assign_RcppDend_to_dendextend <- function() {
+   # assigns the FASTER RcppDend functions to override
+   # the dendextend functions....
+   
+   if(suppressWarnings(require(RcppDend))) {
+      # This wouldn't work since it will only assign
+      # the faster function in the current env      
+#       get_branches_heights <- RcppDend:::get_branches_heights
+#       heights_per_k.dendrogram <- RcppDend:::heights_per_k.dendrogram
+      # for getting the functions "into" dendextend, we need to run this:
+      assignInNamespace(
+         x= "heights_per_k.dendrogram",
+         value = RcppDend:::heights_per_k.dendrogram,
+         ns = "dendextend"
+      )
+      assignInNamespace(
+         x= "get_branches_heights",
+         value = RcppDend:::get_branches_heights,
+         ns = "dendextend"
+      )   
+   } else {
+      warning("
+         The 'dendextend' package runs 
+         MUCH faster when you also have the RcppDend package installed.
+         Please consider running:
+         install.packages('RcppDend')
+         and then re-load dendextend.
+           ")
+   }
+   
+}
+
+
+
+
+
+
+
+
 .onLoad <- function(libname, pkgname){
    # Thanks for Romain: http://stackoverflow.com/questions/4369334/first-lib-idiom-in-r-packages
    
    # adding and removing menus from the Rgui when loading and detaching the library
    # setHook(packageEvent("installr", "attach"), {function(pkgname, libpath) {add.installr.GUI()}  } )
    # setHook(packageEvent("installr", "detach"), {function(pkgname, libpath) {remove.installr.GUI()}  } )
-
+   
 }
 
 # menus are added and removed as needed: !!
@@ -39,18 +79,24 @@
    # if ape is installed on this computer, it will be loaded FIRST!   
    # This way I make sure to not have "unbranch" or "rotate" masked by {ape}
    #     (they would still work though)
-       if("ape" %in% .packages(all.available = TRUE)) {       
-          library("ape", pos = which(search() %in% "package:dendextend")+1, 
-                  warn.conflicts = FALSE,
-                  quietly = TRUE)
-          #       search()
-          #       unloadNamespace("ape")
-          #       unloadNamespace("dendextend")
-          #       require("dendextend", warn.conflicts = TRUE)                 
-          #       require("dendextend", warn.conflicts = FALSE)                 
-       }   
-       packageStartupMessage(installrWelcomeMessage())   
+   if("ape" %in% .packages(all.available = TRUE)) {       
+      library("ape", pos = which(search() %in% "package:dendextend")+1, 
+              warn.conflicts = FALSE,
+              quietly = TRUE)
+      #       search()
+      #       unloadNamespace("ape")
+      #       unloadNamespace("dendextend")
+      #       require("dendextend", warn.conflicts = TRUE)                 
+      #       require("dendextend", warn.conflicts = FALSE)                 
+   }   
+   packageStartupMessage(installrWelcomeMessage())  
+   
+   assign_RcppDend_to_dendextend()
+   
+   
 }
+
+
 
 
 installrWelcomeMessage <- function(){
