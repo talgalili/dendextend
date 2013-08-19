@@ -346,6 +346,8 @@ color_labels_by_labels <- function(tree, labels, col, warn=FALSE, ...) {
 #' \link[colorspace]{rainbow_hcl} from the \code{colorspace} package.
 #' (with parameters c=90 and l=50). If \code{colorspace} is not available,
 #' It will fall back on the \link{rainbow} function.
+#' @param labels character vecotor. If not missing, it overrides k and h,
+#' and simply colors these labels in the tree based on "col" parameter.
 #' @param ... ignored.
 #' @return a tree object of class dendrogram.
 #' @author Tal Galili
@@ -363,6 +365,9 @@ color_labels_by_labels <- function(tree, labels, col, warn=FALSE, ...) {
 #' dend=color_branches(dend,5, col = c(3,1,1,4,1))
 #' plot(dend) # selective coloring of branches AND labels :)
 #' 
+#' # coloring some labels, based on label names:
+#' dend=color_labels(dend,col = "red", labels = labels(dend)[c(4,16)]) 
+#' plot(dend) # selective coloring of branches AND labels :)
 #' 
 #' d5=color_branches(dend,5)
 #' plot(d5)
@@ -373,7 +378,10 @@ color_labels_by_labels <- function(tree, labels, col, warn=FALSE, ...) {
 #' 
 #' } 
 #' 
-color_labels<-function(tree,k=NULL,h=NULL,col,...){
+color_labels<-function(tree,k=NULL,h=NULL,labels, col,...){
+
+   if(!missing(labels)) return(color_labels_by_labels(tree=tree, labels=labels, col=col, warn=FALSE, ...) )     
+   
    
    if(missing(col)) {
       if(require(colorspace)) {
@@ -415,8 +423,14 @@ colour_labels<-color_labels
 
 
 
-
-
+# 
+# require(microbenchmark)
+# microbenchmark(
+#    stats:::labels.dendrogram(dend),
+#    labels(dend)
+#    )
+# require(RcppDend)
+# 
 
 
 

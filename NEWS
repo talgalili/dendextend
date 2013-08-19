@@ -12,6 +12,7 @@ NEW FUNCTIONS ADDED:
 
 UPDATED FUNCTIONS:
    * color_labels - removed unused 'groupLabels' parameter.
+   * color_labels - added "labels" parameter for selective coloring of labels by name.
 
 VIGNETTES:
    * Added the FM Index section.

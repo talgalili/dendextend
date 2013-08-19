@@ -8,7 +8,7 @@
   \code{\link{labels_colors}}.
 }
 \usage{
-  color_labels(tree, k = NULL, h = NULL, col, ...)
+  color_labels(tree, k = NULL, h = NULL, labels, col, ...)
 }
 \arguments{
   \item{tree}{A \code{dendrogram} or \code{hclust} tree
@@ -25,6 +25,10 @@
   \code{colorspace} package. (with parameters c=90 and
   l=50). If \code{colorspace} is not available, It will
   fall back on the \link{rainbow} function.}
+
+  \item{labels}{character vecotor. If not missing, it
+  overrides k and h, and simply colors these labels in the
+  tree based on "col" parameter.}
 
   \item{...}{ignored.}
 }
@@ -51,6 +55,9 @@ dend=color_labels(dend,5, col = c(3,1,1,4,1))
 dend=color_branches(dend,5, col = c(3,1,1,4,1))
 plot(dend) # selective coloring of branches AND labels :)
 
+# coloring some labels, based on label names:
+dend=color_labels(dend,col = "red", labels = labels(dend)[c(4,16)])
+plot(dend) # selective coloring of branches AND labels :)
 
 d5=color_branches(dend,5)
 plot(d5)
