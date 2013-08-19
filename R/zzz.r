@@ -39,6 +39,18 @@ assign_RcppDend_to_dendextend <- function() {
          value = RcppDend:::get_branches_heights,
          ns = "dendextend"
       )   
+      
+      ## p.s:
+      # doing the following is a BAD IDEA!
+      # This will not allow us to use labels.dendrogram when our Rcpp version fails...
+      # assignInNamespace(
+      #    x= "labels.dendrogram",
+      #    value = RcppDend:::labels.dendrogram,
+      #    ns = "stats"
+      #    )
+      
+      
+      
    } else {
       warning("
          The 'dendextend' package runs 
