@@ -283,6 +283,11 @@ FM_index_profdpm <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FA
 #' ks <- 1:150
 #' plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the iris dataset")
 #' 
+#' clu_1 <- cutree(hc2, k = 100) # this is a lie - since this one is NOT well defined!
+#' clu_2 <- cutree(as.dendrogram(hc2), k = 100) # We see that we get a vector of NAs for this...
+#' 
+#' FM_index_R(clu_1, clu_2) # NA
+#' 
 #' }
 FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, warn = TRUE, ...) {
    
@@ -294,6 +299,14 @@ FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, w
       A2_clusters <- sorted_As[[2]]
    }
 
+   if(any(is.na(A1_clusters)) | any(is.na(A2_clusters))) {
+      if(warn) warning("The clusterings have some NA's in them - returned NA.")
+      FM_index <- NA
+      attr(FM_index, "E_FM") <- NA
+      attr(FM_index, "V_FM") <- NA
+      return(FM_index)
+   }
+      
    
    
    # creating matrix M
@@ -622,12 +635,23 @@ FM_index_permutation <- function(A1_clusters, A2_clusters, warn = TRUE, ...) {
 #' ss <- TRUE # sample(1:150, 10 )
 #' hc1 <- hclust(dist(iris[ss,-5]), "com")
 #' hc2 <- hclust(dist(iris[ss,-5]), "single")
-#' # tree1 <- as.treerogram(hc1)
-#' # tree2 <- as.treerogram(hc2)
+#' tree1 <- as.dendrogram(hc1)
+#' tree2 <- as.dendrogram(hc2)
 #' #    cutree(tree1)   
 #' 
 #' Bk(hc1, hc2, k = 3)
 #' Bk(hc1, hc2, k = 2:10)
+#' Bk(hc1, hc2)
+#' 
+#' Bk(tree1, tree2, k = 3)
+#' Bk(tree1, tree2, k = 2:5)
+#' 
+#' system.time(Bk(hc1, hc2, k = 2:5)) # 0.01
+#' system.time(Bk(hc1, hc2)) # 1.28
+#' system.time(Bk(tree1, tree2, k = 2:5)) # 0.24 # after fixes.
+#' system.time(Bk(tree1, tree2, k = 2:10)) # 0.31 # after fixes.
+#' system.time(Bk(tree1, tree2)) # 7.85 
+#' Bk(tree1, tree2, k= 99:101)
 #' 
 #' y <- Bk(hc1, hc2, k = 2:10)
 #' plot(unlist(y)~c(2:10), type = "b", ylim = c(0,1))
@@ -657,9 +681,30 @@ Bk <- function(tree1, tree2, k,  include_EV = TRUE, warn = TRUE, ...) {
       if(!all(sort(tree1_labels) == sort(tree2_labels))) stop("Your trees are having leaves with different names - please correct it in order to use this function")
    }
    
-   Bk_for_each_k <- function(k) {
+   
+   if(missing(k)) k <- 2:(nleaves(tree1)-1)
+   cutree_tree1 <- cutree(tree1, k)
+   cutree_tree2 <- cutree(tree2, k)   
+   # makes sure the output is a matrix:
+   # This is if length(k)==1 since in that case
+   # the output would be a vector, not a matrix.
+   if(length(k)== 1) {
+      cutree_tree1 <- as.matrix(cutree_tree1)
+      cutree_tree2 <- as.matrix(cutree_tree2)      
+   }
+   # example of such a case:
+#    a = cutree(tree1, k=1:2)
+#    is.vector(a)
+#    is.matrix(a)
+#    a = as.matrix(a)
+#    is.vector(a)
+#    is.matrix(a)
+   
+   n_ks <- ncol(cutree_tree1)
+   
+   Bk_for_each_k <- function(i_k) {
       FM_index(
-         cutree(tree1, k), cutree(tree2, k),
+         cutree_tree1[,i_k], cutree_tree2[,i_k],
          assume_sorted_vectors = FALSE, 
          # We can't trust cutree to give the same order of items!
          # In order to assume it, we would need to match order by labels
@@ -672,8 +717,7 @@ Bk <- function(tree1, tree2, k,  include_EV = TRUE, warn = TRUE, ...) {
          ) 
    }
 
-   if(missing(k)) k <- 2:(nleaves(tree1)-1)
-   the_Bks <- lapply(k, Bk_for_each_k)
+   the_Bks <- lapply(seq_len(n_ks), Bk_for_each_k)
    names(the_Bks) <- k
 
    return(the_Bks)
@@ -928,6 +972,7 @@ Bk_permutations <- function(tree1, tree2, k,  R = 1000, warn = TRUE, ...) {
 #'         rejection_line_permutation=TRUE, k_permutation = c(2,4,6,8,10,20,30,40,50), R= 100) 
 #' 
 #' 
+#' 
 #' }
 Bk_plot <- function(tree1, tree2, k,  
                     add_E = TRUE,
@@ -952,10 +997,14 @@ Bk_plot <- function(tree1, tree2, k,
    if(try_cutree_hclust) {      
       # if we succeed (tryCatch) in turning it into hclust - use it!
       # if not - go on with the function.
-      if(!is.hclust(tree1)) tryCatch(tree1_hc <- as.hclust(tree1), error = function(e) {FALSE})
-      if(!is.hclust(tree2)) tryCatch(tree2_hc <- as.hclust(tree2), error = function(e) {FALSE})
-      if(exists("tree1_hc")) tree1 <- tree1_hc
-      if(exists("tree2_hc")) tree2 <- tree2_hc
+      if(!is.hclust(tree1)) tree1_hc <- tryCatch(as.hclust(tree1), error = function(e) {FALSE})
+      if(!is.hclust(tree2)) tree2_hc <- tryCatch(as.hclust(tree2), error = function(e) {FALSE})
+      
+      # only if we got BOTH trees to be hclust - can be put them in...
+      if(!(is.logical(tree1_hc)|is.logical(tree2_hc))) {
+         tree1 <- tree1_hc
+         tree2 <- tree2_hc
+      }
    }  
    
    output <- list()   
@@ -965,8 +1014,9 @@ Bk_plot <- function(tree1, tree2, k,
                  warn=warn)
    output[length(output)+1] <- list(Bk = the_Bks)
    if(missing(xlim)) xlim <- c(2,c(nleaves(tree1)-1))
-        
-   plot(unlist(the_Bks)~as.numeric(names(the_Bks)), 
+   
+#    k and as.numeric(names(the_Bks)) should be THE SAME
+   plot(unlist(the_Bks)~k, 
         main = main, xlab = xlab, ylab = ylab,
         xlim = xlim, ylim = ylim,
         col = col_line_Bk,
@@ -978,6 +1028,10 @@ Bk_plot <- function(tree1, tree2, k,
       lines(the_Bks_E~k,
             col = col_line_Bk,
             type = "l", lty = 2, lwd = 2)
+      # the points are added for the case we have NA's in the Bk
+      points(the_Bks_E~k,
+            col = col_line_Bk,
+            pch = 19, cex = .01)
    }
    
    if(p.adjust.methods[1] == "bonferroni") {
@@ -997,6 +1051,10 @@ Bk_plot <- function(tree1, tree2, k,
       lines(Bk_critical_value_asymptotic~k,
             col = col_line_asymptotic,
             pch = 20, type = "l", lty = 1, lwd = 2, cex = .5)
+      # the points are added for the case we have NA's in the Bk
+      points(Bk_critical_value_asymptotic~k,
+             col = col_line_asymptotic,
+             pch = 19, cex = .01)
       output[length(output)+1] <- list(Bk_critical_value_asymptotic = Bk_critical_value_asymptotic)
    }
    
@@ -1018,7 +1076,8 @@ Bk_plot <- function(tree1, tree2, k,
 
 
 
-
+# Bk_plot(tree1, tree2, k = 30:50)
+# Bk_plot(tree1, tree2)
 
 # The Bk function was previously also implemented by Matt in:
 #   	 http://cran.r-project.org/web/packages/profdpm/index.html

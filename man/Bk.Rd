@@ -58,12 +58,23 @@ set.seed(23235)
 ss <- TRUE # sample(1:150, 10 )
 hc1 <- hclust(dist(iris[ss,-5]), "com")
 hc2 <- hclust(dist(iris[ss,-5]), "single")
-# tree1 <- as.treerogram(hc1)
-# tree2 <- as.treerogram(hc2)
+tree1 <- as.dendrogram(hc1)
+tree2 <- as.dendrogram(hc2)
 #    cutree(tree1)
 
 Bk(hc1, hc2, k = 3)
 Bk(hc1, hc2, k = 2:10)
+Bk(hc1, hc2)
+
+Bk(tree1, tree2, k = 3)
+Bk(tree1, tree2, k = 2:5)
+
+system.time(Bk(hc1, hc2, k = 2:5)) # 0.01
+system.time(Bk(hc1, hc2)) # 1.28
+system.time(Bk(tree1, tree2, k = 2:5)) # 0.24 # after fixes.
+system.time(Bk(tree1, tree2, k = 2:10)) # 0.31 # after fixes.
+system.time(Bk(tree1, tree2)) # 7.85
+Bk(tree1, tree2, k= 99:101)
 
 y <- Bk(hc1, hc2, k = 2:10)
 plot(unlist(y)~c(2:10), type = "b", ylim = c(0,1))

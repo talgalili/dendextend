@@ -1,3 +1,19 @@
+dendextend 0.9.1 (2013-08-19)
+----------------------------
+UPDATED FUNCTIONS:
+   * color_labels - added "labels" parameter for selective coloring of labels by name.
+   * Bk_plot - now adds dots for the asymptotic lines in case of NA's   
+   * Bk - now calculates cutree once for all relevant k's - and only then goes forth with FM_index.
+
+BUG FIXES: 
+   * FM_index_R - now returns NA when comparing NA vectors (when, for example, there is no possible split for some k), instead of crashing (as it did before).
+   * Bk_plot - now won't turn one dendrogram into hclust, while leaving the other a dendrogram.
+
+OTHER NOTES:
+   * The dendextendRcpp package (version 0.2.0) is now on github, and offers functions for making cutree.dendrogram(k) MUCH faster (between 20 to 100 times faster). (this is besided having labels.dendrogram now also accept a leaf as a tree.)
+
+
+
 dendextend 0.9.0 (2013-08-18)
 ----------------------------
 NEW FUNCTIONS ADDED: 
@@ -12,7 +28,6 @@ NEW FUNCTIONS ADDED:
 
 UPDATED FUNCTIONS:
    * color_labels - removed unused 'groupLabels' parameter.
-   * color_labels - added "labels" parameter for selective coloring of labels by name.
 
 VIGNETTES:
    * Added the FM Index section.
@@ -21,8 +36,7 @@ FILE CHANGES:
    * Bk-method.r file added.
 
 OTHER NOTES:
-   * The dendextendRcpp package (version 0.2.0) is now on github, and offers a faster labels.dendrogram function (It is 20 to 40 times faster than the 'stats' function!)
-      And functions for making cutree.dendrogram(k) MUCH faster (between 20 to 100 times faster).
+   * The dendextendRcpp package (version 0.1.1) is now on github, and offers a faster labels.dendrogram function (It is 20 to 40 times faster than the 'stats' function!)
    * Added a commented-out section which could (in the future) be the basis of an Rcpp cutree (actually cutree_1h.dendrogram) function!
 
 

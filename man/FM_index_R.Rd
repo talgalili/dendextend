@@ -78,6 +78,11 @@ lapply(1:4, fo)
 ks <- 1:150
 plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the iris dataset")
 
+clu_1 <- cutree(hc2, k = 100) # this is a lie - since this one is NOT well defined!
+clu_2 <- cutree(as.dendrogram(hc2), k = 100) # We see that we get a vector of NAs for this...
+
+FM_index_R(clu_1, clu_2) # NA
+
 }
 }
 \references{

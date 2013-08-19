@@ -164,6 +164,7 @@ Bk_plot(tree1=hc1, tree2=hc1_mixed,
         rejection_line_permutation=TRUE, k_permutation = c(2,4,6,8,10,20,30,40,50), R= 100)
 
 
+
 }
 }
 \references{
