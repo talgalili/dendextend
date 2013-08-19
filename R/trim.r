@@ -60,7 +60,7 @@ trim_leaf <- function(x, leaf_name,...)
       is.father <- F
       for(i in seq_len(length(x)))
       {
-         if(is.leaf(x[[i]]) == T  &&  labels(x[[i]]) == leaf_name) is.father <- T
+         if(is.leaf(x[[i]]) == TRUE  &&  labels(x[[i]]) == leaf_name) is.father <- TRUE
       }
       return(is.father)
    }
