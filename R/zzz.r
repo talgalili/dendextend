@@ -19,24 +19,24 @@
 
 
 
-assign_RcppDend_to_dendextend <- function() {
-   # assigns the FASTER RcppDend functions to override
+assign_dendextendRcpp_to_dendextend <- function() {
+   # assigns the FASTER dendextendRcpp functions to override
    # the dendextend functions....
    
-   if(suppressWarnings(require(RcppDend))) {
+   if(suppressWarnings(require(dendextendRcpp))) {
       # This wouldn't work since it will only assign
       # the faster function in the current env      
-#       get_branches_heights <- RcppDend:::get_branches_heights
-#       heights_per_k.dendrogram <- RcppDend:::heights_per_k.dendrogram
+#       get_branches_heights <- dendextendRcpp:::get_branches_heights
+#       heights_per_k.dendrogram <- dendextendRcpp:::heights_per_k.dendrogram
       # for getting the functions "into" dendextend, we need to run this:
       assignInNamespace(
          x= "heights_per_k.dendrogram",
-         value = RcppDend:::heights_per_k.dendrogram,
+         value = dendextendRcpp:::heights_per_k.dendrogram,
          ns = "dendextend"
       )
       assignInNamespace(
          x= "get_branches_heights",
-         value = RcppDend:::get_branches_heights,
+         value = dendextendRcpp:::get_branches_heights,
          ns = "dendextend"
       )   
       
@@ -45,7 +45,7 @@ assign_RcppDend_to_dendextend <- function() {
       # This will not allow us to use labels.dendrogram when our Rcpp version fails...
       # assignInNamespace(
       #    x= "labels.dendrogram",
-      #    value = RcppDend:::labels.dendrogram,
+      #    value = dendextendRcpp:::labels.dendrogram,
       #    ns = "stats"
       #    )
       
@@ -54,9 +54,9 @@ assign_RcppDend_to_dendextend <- function() {
    } else {
       warning("
          The 'dendextend' package runs 
-         MUCH faster when you also have the RcppDend package installed.
+         MUCH faster when you also have the dendextendRcpp package installed.
          Please consider running:
-         install.packages('RcppDend')
+         install.packages('dendextendRcpp')
          and then re-load dendextend.
            ")
    }
@@ -103,7 +103,7 @@ assign_RcppDend_to_dendextend <- function() {
    }   
    packageStartupMessage(installrWelcomeMessage())  
    
-   assign_RcppDend_to_dendextend()
+   assign_dendextendRcpp_to_dendextend()
    
    
 }

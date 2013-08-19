@@ -7,7 +7,7 @@ Author: Tal Galili
 Maintainer: Tal Galili <tal.galili@gmail.com>
 Description: Functions and methods for extanding dendrogram objects in R.
 Suggests:
-    RcppDend,
+    dendextendRcpp,
     knitr,
     testthat,
     microbenchmark,

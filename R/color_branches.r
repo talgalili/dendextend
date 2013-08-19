@@ -429,7 +429,7 @@ colour_labels<-color_labels
 #    stats:::labels.dendrogram(dend),
 #    labels(dend)
 #    )
-# require(RcppDend)
+# require(dendextendRcpp)
 # 
 
 

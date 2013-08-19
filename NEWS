@@ -21,7 +21,8 @@ FILE CHANGES:
    * Bk-method.r file added.
 
 OTHER NOTES:
-   * The RcppDend package (version 0.1.1) is now on github, and offers a faster labels.dendrogram function (It is 20 to 40 times faster than the 'stats' function!)
+   * The dendextendRcpp package (version 0.2.0) is now on github, and offers a faster labels.dendrogram function (It is 20 to 40 times faster than the 'stats' function!)
+      And functions for making cutree.dendrogram(k) MUCH faster (between 20 to 100 times faster).
    * Added a commented-out section which could (in the future) be the basis of an Rcpp cutree (actually cutree_1h.dendrogram) function!
 
 
