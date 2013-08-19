@@ -1,8 +1,8 @@
 Package: dendextend
 Type: Package
 Title: Extending dendrogram functionality
-Version: 0.9.0
-Date: 2013-08-18
+Version: 0.9.1
+Date: 2013-08-19
 Author: Tal Galili
 Maintainer: Tal Galili <tal.galili@gmail.com>
 Description: Functions and methods for extanding dendrogram objects in R.

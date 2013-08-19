@@ -29,6 +29,14 @@ assign_dendextendRcpp_to_dendextend <- function() {
 #       get_branches_heights <- dendextendRcpp:::get_branches_heights
 #       heights_per_k.dendrogram <- dendextendRcpp:::heights_per_k.dendrogram
       # for getting the functions "into" dendextend, we need to run this:
+      
+      # create a backup of these functions in order to later
+      # compare them using benchmark (their kept invisible - but can be accessed)
+      assign("old_heights_per_k.dendrogram", dendextend:::heights_per_k.dendrogram,
+             envir=as.environment("package:dendextend"))
+      assign("old_get_branches_heights", dendextend:::get_branches_heights,
+             envir=as.environment("package:dendextend"))
+      
       assignInNamespace(
          x= "heights_per_k.dendrogram",
          value = dendextendRcpp:::heights_per_k.dendrogram,
