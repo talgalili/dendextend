@@ -412,7 +412,14 @@ test_that("Having cutree work when using a subsetted tree",{
    sub_dend_iris <- dend_iris[[1]]   
    hc_sub_dend_iris <- as.hclust(sub_dend_iris)
    # We will have NA's:
-   expect_true(any(is.na(labels(as.dendrogram(hc_sub_dend_iris )))))
+   expect_true(any(is.na(stats:::labels.dendrogram(as.dendrogram(hc_sub_dend_iris )))))
+   
+   # notice that for Rcpp this would be false since the returned vector
+   # has "NA" characters instead of NA:
+   expect_false(any(is.na(RcppDend:::labels.dendrogram(as.dendrogram(hc_sub_dend_iris )))))
+   # e.g: "NA" "3"  "NA" "NA" "4"  "7" 
+#    a[which(a == "NA")] <- NA # this is NOT a good idea, in the case we have a label with "NA" as a character.
+   
    
    # we will get warnings, but the functions would not collapse!
    expect_warning(
