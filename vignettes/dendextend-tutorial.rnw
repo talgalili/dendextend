@@ -1516,13 +1516,241 @@ legend("topleft", legend =c("95% CI", "Cophenetic correlation"), fill = c(3,2))
 
 
 
-\subsection{The Bk method}
+\subsection{The Fowlkes-Mallows Index and the Bk plot}
 
-The Fowlkes-Mallows Index \citep{fowlkes1983method} (FM Index, or Bk) is a measure of similarity between two clusterings. The FM index ranges from 0 to 1, a higher value indicates a greater similarity between the two clusters. In the Bk method we calculate the FM Index (Bk) for each k (k=2,3,…,n-1) number of clusters, giving the association between the two trees when each is cut to have k groups. The similarity between two hierarchical clustering dendrograms, can be investigated, using the (k,Bk) plot: For every level of splitting of the two dendrograms which produces k clusters in each tree, the plot shows the number Bk, and therefore enables the investigation of potential nuances in the structure of similarity. The Bk measures the number of pairs of items which are in the same cluster in both dendrograms, one of the clusters in one of the trees and one of the clusters in the other tree, divided by the geometric mean of the number of pairs of items which are in the same cluster in each tree. Namely, ${a_{uv}} = 1\left( {or{\rm{ }}{{\rm{b}}_{uv}} = 1} \right)$ if the items u and v are in the same cluster in the first tree (second tree), when it is cut so to give k clusters, and otherwise 0:
+\subsubsection{The Fowlkes-Mallows Index}
+
+The Fowlkes-Mallows Index \citep{fowlkes1983method} (FM Index, or Bk) is a measure of similarity between two clusterings. The FM index ranges from 0 to 1, a higher value indicates a greater similarity between the two clusters.
+
+The \pkg{dendextend} package allows the calculation of FM-Index, its expectancy and variance under the null hypothesis, and a creation of permutations of the FM-Index under $H_0$. Thanks to the \pkg{profdpm} package \citep{CRAN:profdpm}, we have another example of calculating the FM (though it does not offer the expectancy and variance under $H_0$):
+
+<<FM_index_examples_1>>=
+
+ss <- TRUE # sample(1:150, 10 )
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+
+# FM index of a cluster with himself is 1:
+FM_index(cutree(hc1, k=3), cutree(hc1, k=3))
+# FM index of two clusterings:
+FM_index(cutree(hc1, k=3), cutree(hc2, k=3)) 
+# we got a value far above the expected under H0
+         
+# Using the R code:
+FM_index_R(cutree(hc1, k=3), cutree(hc2, k=3))
+# Or wrapping the code from profdpm: (notice the NA's)
+FM_index_profdpm(cutree(hc1, k=3), cutree(hc2, k=3))
+
+
+
+@
+
+The distribution of FM is interesting for medium sized k (25), we can test it using a permutation test:
+
+<<FM_permutation_example_1>>=
+
+set.seed(23235)
+ss <- TRUE # sample(1:150, 10 )
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+# dend1 <- as.dendrogram(hc1)
+# dend2 <- as.dendrogram(hc2)
+#    cutree(dend1)   
+
+# # small k
+# A1_clusters <- cutree(hc1, k=3) # will give a right tailed distribution
+# # large k
+# A1_clusters <- cutree(hc1, k=50) # will give a discrete distribution
+# "medium" k
+A1_clusters <- cutree(hc1, k=25) # gives almost the normal distribution!
+A2_clusters <- A1_clusters
+
+R <- 10000
+set.seed(414130)
+FM_index_H0 <- replicate(R, FM_index_permutation(A1_clusters, A2_clusters)) # can take 10 sec
+plot(density(FM_index_H0), main = "FM Index distribution under H0\n (10000 permutation)")
+abline(v = mean(FM_index_H0), col = 1, lty = 2)
+# The permutation distribution is with a heavy right tail:
+# require(psych)
+# skew(FM_index_H0) # 1.254
+# kurtosi(FM_index_H0) # 2.5427
+
+mean(FM_index_H0); var(FM_index_H0)
+the_FM_index <- FM_index(A1_clusters, A2_clusters)
+the_FM_index
+our_dnorm <- function(x) {
+   dnorm(x, mean = attr(the_FM_index, "E_FM"), 
+         sd = sqrt(attr(the_FM_index, "V_FM")))
+}
+# our_dnorm(0.35)
+curve(our_dnorm,
+      col = 4,
+      from = -1,to=1,n=R,add = TRUE)
+abline(v = attr(the_FM_index, "E_FM"), col = 4, lty = 2)
+
+legend("topright", legend = c("asymptotic", "permutation"), fill = c(4,1))
+
+@
+
+It is interesting to compare how the two ditributions diverge when K (3) is smaller:
+
+
+<<FM_permutation_example_2, echo=FALSE>>=
+
+set.seed(23235)
+ss <- TRUE # sample(1:150, 10 )
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+# dend1 <- as.dendrogram(hc1)
+# dend2 <- as.dendrogram(hc2)
+#    cutree(dend1)   
+
+# small k
+A1_clusters <- cutree(hc1, k=3) # will give a right tailed distribution
+# # large k
+# A1_clusters <- cutree(hc1, k=50) # will give a discrete distribution
+# "medium" k
+# A1_clusters <- cutree(hc1, k=25) # gives almost the normal distribution!
+A2_clusters <- A1_clusters
+
+R <- 10000
+set.seed(414130)
+FM_index_H0 <- replicate(R, FM_index_permutation(A1_clusters, A2_clusters)) # can take 10 sec
+plot(density(FM_index_H0), main = "FM Index distribution under H0\n (10000 permutation)")
+abline(v = mean(FM_index_H0), col = 1, lty = 2)
+# The permutation distribution is with a heavy right tail:
+# require(psych)
+# skew(FM_index_H0) # 1.254
+# kurtosi(FM_index_H0) # 2.5427
+
+mean(FM_index_H0); var(FM_index_H0)
+the_FM_index <- FM_index(A1_clusters, A2_clusters)
+the_FM_index
+our_dnorm <- function(x) {
+   dnorm(x, mean = attr(the_FM_index, "E_FM"), 
+         sd = sqrt(attr(the_FM_index, "V_FM")))
+}
+# our_dnorm(0.35)
+curve(our_dnorm,
+      col = 4,
+      from = -1,to=1,n=R,add = TRUE)
+abline(v = attr(the_FM_index, "E_FM"), col = 4, lty = 2)
+
+legend("topright", legend = c("asymptotic", "permutation"), fill = c(4,1))
+
+@
+
+Or of how it will look when K (80) is large (and the distribution becomes discrete):
+
+
+<<FM_permutation_example_3, echo=FALSE>>=
+
+set.seed(23235)
+ss <- TRUE # sample(1:150, 10 )
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+# dend1 <- as.dendrogram(hc1)
+# dend2 <- as.dendrogram(hc2)
+#    cutree(dend1)   
+
+# small k
+# A1_clusters <- cutree(hc1, k=3) # will give a right tailed distribution
+# # large k
+A1_clusters <- cutree(hc1, k=80) # will give a discrete distribution
+# "medium" k
+# A1_clusters <- cutree(hc1, k=25) # gives almost the normal distribution!
+A2_clusters <- A1_clusters
+
+R <- 10000
+set.seed(414130)
+FM_index_H0 <- replicate(R, FM_index_permutation(A1_clusters, A2_clusters)) # can take 10 sec
+plot(density(FM_index_H0), main = "FM Index distribution under H0\n (10000 permutation)")
+abline(v = mean(FM_index_H0), col = 1, lty = 2)
+# The permutation distribution is with a heavy right tail:
+# require(psych)
+# skew(FM_index_H0) # 1.254
+# kurtosi(FM_index_H0) # 2.5427
+
+mean(FM_index_H0); var(FM_index_H0)
+the_FM_index <- FM_index(A1_clusters, A2_clusters)
+the_FM_index
+our_dnorm <- function(x) {
+   dnorm(x, mean = attr(the_FM_index, "E_FM"), 
+         sd = sqrt(attr(the_FM_index, "V_FM")))
+}
+# our_dnorm(0.35)
+curve(our_dnorm,
+      col = 4,
+      from = -1,to=1,n=R,add = TRUE)
+abline(v = attr(the_FM_index, "E_FM"), col = 4, lty = 2)
+
+legend("topright", legend = c("asymptotic", "permutation"), fill = c(4,1))
+
+@
+
+\subsubsection{The Bk plot}
+
+
+In the Bk method we calculate the FM Index (Bk) for each k (k=2,3,…,n-1) number of clusters, giving the association between the two trees when each is cut to have k groups. The similarity between two hierarchical clustering dendrograms, can be investigated, using the (k,Bk) plot: For every level of splitting of the two dendrograms which produces k clusters in each tree, the plot shows the number Bk, and therefore enables the investigation of potential nuances in the structure of similarity. The Bk measures the number of pairs of items which are in the same cluster in both dendrograms, one of the clusters in one of the trees and one of the clusters in the other tree, divided by the geometric mean of the number of pairs of items which are in the same cluster in each tree. Namely, ${a_{uv}} = 1\left( {or{\rm{ }}{{\rm{b}}_{uv}} = 1} \right)$ if the items u and v are in the same cluster in the first tree (second tree), when it is cut so to give k clusters, and otherwise 0:
 
 \[{FM_k} = {B_k} = \frac{{\sum\limits_{}^{} {{a_{uv}}{b_{uv}}} }}{{\sqrt {\sum\limits_{}^{} {{a_{uv}}} \sum\limits_{}^{} {{b_{uv}}} } }}\]
 
 The Bk measure can be plotted for every value of k (except k=n) in order to create the “(k,Bk) plot”.  The plot compares the similarity of the two trees for different cuts. The mean and variance of Bk, under the null hypothesis (that the two trees are not “similar”), and under the assumption that the margins of the matching matrix are fixed, are given in Fowlkes and Mallows \citep{fowlkes1983method}. They allow making inference on whether the results obtained are different from what would have been expected under the null hypothesis (of now particular order of the trees' labels).
+
+The \code{Bk} and the \code{Bk_plot} functions allow the calculation of the FM-Index for a range of k values on two trees. Here are examples:
+
+<<Bk_examples>>=
+   
+set.seed(23235)
+ss <- TRUE # sample(1:150, 30 ) # TRUE #
+hc1 <- hclust(dist(iris[ss,-5]), "com")
+hc2 <- hclust(dist(iris[ss,-5]), "single")
+dend1 <- as.dendrogram(hc1)
+dend2 <- as.dendrogram(hc2)
+#    cutree(tree1)   
+
+# It works the same for hclust and dendrograms:
+Bk(hc1, hc2, k = 3)
+Bk(dend1, dend2, k = 3)
+
+require(microbenchmark)
+microbenchmark(
+      Bk(hc1, hc2, k = 3),
+      Bk(dend1, dend2, k = 3),
+      times = 10
+   ) # the "dend" method is much slower (since it relies less on C code).
+
+# however, because the hc2 tree is actually with several branches/leaves of 
+# the same height - actually the dendrogram object gives a more correct output!
+
+
+@
+
+The Bk plot:
+
+<<Bk_plot_for_hclust_WRONG>>=
+Bk_plot(hc1, hc2, main = "WRONG Bk plot \n(due to the way cutree works with ties in hclust)", warn = FALSE)
+@
+
+<<Bk_plot_for_dends_correct, warning=FALSE>>=
+Bk_plot(dend1, dend2, main = "CORRECT Bk plot \n(based on dendrograms)")
+@
+
+
+
+% 
+% A reminder tanglegram:
+% 
+% <<>>=
+% set.seed(2542)
+% dend12_corrected_1 <- untangle_random_search(dend1, dend2,R=10)
+% dend12_corrected_2 <- untangle_step_rotate_2side(dend12_corrected_1[[1]],dend12_corrected_1[[2]])
+% tanglegram(dend12_corrected_2[[1]],dend12_corrected_2[[2]], margin_inner=6.5) # Better...
+% 
+% @
+% 
+
+
 
 
 

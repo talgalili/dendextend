@@ -2771,13 +2771,315 @@ An example of a bootstrap CI (with method="spearman"):
 
 
 
-\subsection{The Bk method}
+\subsection{The Fowlkes-Mallows Index and the Bk plot}
 
-The Fowlkes-Mallows Index \citep{fowlkes1983method} (FM Index, or Bk) is a measure of similarity between two clusterings. The FM index ranges from 0 to 1, a higher value indicates a greater similarity between the two clusters. In the Bk method we calculate the FM Index (Bk) for each k (k=2,3,…,n-1) number of clusters, giving the association between the two trees when each is cut to have k groups. The similarity between two hierarchical clustering dendrograms, can be investigated, using the (k,Bk) plot: For every level of splitting of the two dendrograms which produces k clusters in each tree, the plot shows the number Bk, and therefore enables the investigation of potential nuances in the structure of similarity. The Bk measures the number of pairs of items which are in the same cluster in both dendrograms, one of the clusters in one of the trees and one of the clusters in the other tree, divided by the geometric mean of the number of pairs of items which are in the same cluster in each tree. Namely, ${a_{uv}} = 1\left( {or{\rm{ }}{{\rm{b}}_{uv}} = 1} \right)$ if the items u and v are in the same cluster in the first tree (second tree), when it is cut so to give k clusters, and otherwise 0:
+\subsubsection{The Fowlkes-Mallows Index}
+
+The Fowlkes-Mallows Index \citep{fowlkes1983method} (FM Index, or Bk) is a measure of similarity between two clusterings. The FM index ranges from 0 to 1, a higher value indicates a greater similarity between the two clusters.
+
+The \pkg{dendextend} package allows the calculation of FM-Index, its expectancy and variance under the null hypothesis, and a creation of permutations of the FM-Index under $H_0$. Thanks to the \pkg{profdpm} package \citep{CRAN:profdpm}, we have another example of calculating the FM (though it does not offer the expectancy and variance under $H_0$):
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ss} \hlkwb{<-} \hlnum{TRUE}  \hlcom{# sample(1:150, 10 )}
+\hlstd{hc1} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"com"}\hlstd{)}
+\hlstd{hc2} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"single"}\hlstd{)}
+
+\hlcom{# FM index of a cluster with himself is 1:}
+\hlkwd{FM_index}\hlstd{(}\hlkwd{cutree}\hlstd{(hc1,} \hlkwc{k} \hlstd{=} \hlnum{3}\hlstd{),} \hlkwd{cutree}\hlstd{(hc1,} \hlkwc{k} \hlstd{=} \hlnum{3}\hlstd{))}
+\end{alltt}
+\begin{verbatim}
+## [1] 1
+## attr(,"E_FM")
+## [1] 0.3722
+## attr(,"V_FM")
+## [1] 5.985e-05
+\end{verbatim}
+\begin{alltt}
+\hlcom{# FM index of two clusterings:}
+\hlkwd{FM_index}\hlstd{(}\hlkwd{cutree}\hlstd{(hc1,} \hlkwc{k} \hlstd{=} \hlnum{3}\hlstd{),} \hlkwd{cutree}\hlstd{(hc2,} \hlkwc{k} \hlstd{=} \hlnum{3}\hlstd{))}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.806
+## attr(,"E_FM")
+## [1] 0.4462
+## attr(,"V_FM")
+## [1] 6.464e-05
+\end{verbatim}
+\begin{alltt}
+\hlcom{# we got a value far above the expected under H0}
+
+\hlcom{# Using the R code:}
+\hlkwd{FM_index_R}\hlstd{(}\hlkwd{cutree}\hlstd{(hc1,} \hlkwc{k} \hlstd{=} \hlnum{3}\hlstd{),} \hlkwd{cutree}\hlstd{(hc2,} \hlkwc{k} \hlstd{=} \hlnum{3}\hlstd{))}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.806
+## attr(,"E_FM")
+## [1] 0.4462
+## attr(,"V_FM")
+## [1] 6.464e-05
+\end{verbatim}
+\begin{alltt}
+\hlcom{# Or wrapping the code from profdpm: (notice the NA's)}
+\hlkwd{FM_index_profdpm}\hlstd{(}\hlkwd{cutree}\hlstd{(hc1,} \hlkwc{k} \hlstd{=} \hlnum{3}\hlstd{),} \hlkwd{cutree}\hlstd{(hc2,} \hlkwc{k} \hlstd{=} \hlnum{3}\hlstd{))}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.806
+## attr(,"E_FM")
+## [1] NA
+## attr(,"V_FM")
+## [1] NA
+\end{verbatim}
+\begin{alltt}
+
+
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+The distribution of FM is interesting for medium sized k (25), we can test it using a permutation test:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{set.seed}\hlstd{(}\hlnum{23235}\hlstd{)}
+\hlstd{ss} \hlkwb{<-} \hlnum{TRUE}  \hlcom{# sample(1:150, 10 )}
+\hlstd{hc1} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"com"}\hlstd{)}
+\hlstd{hc2} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"single"}\hlstd{)}
+\hlcom{# dend1 <- as.dendrogram(hc1) dend2 <- as.dendrogram(hc2)}
+\hlcom{# cutree(dend1)}
+
+\hlcom{# # small k A1_clusters <- cutree(hc1, k=3) # will give a}
+\hlcom{# right tailed distribution # large k A1_clusters <-}
+\hlcom{# cutree(hc1, k=50) # will give a discrete distribution}
+\hlcom{# 'medium' k}
+\hlstd{A1_clusters} \hlkwb{<-} \hlkwd{cutree}\hlstd{(hc1,} \hlkwc{k} \hlstd{=} \hlnum{25}\hlstd{)}  \hlcom{# gives almost the normal distribution!}
+\hlstd{A2_clusters} \hlkwb{<-} \hlstd{A1_clusters}
+
+\hlstd{R} \hlkwb{<-} \hlnum{10000}
+\hlkwd{set.seed}\hlstd{(}\hlnum{414130}\hlstd{)}
+\hlstd{FM_index_H0} \hlkwb{<-} \hlkwd{replicate}\hlstd{(R,} \hlkwd{FM_index_permutation}\hlstd{(A1_clusters,}
+    \hlstd{A2_clusters))}  \hlcom{# can take 10 sec}
+\hlkwd{plot}\hlstd{(}\hlkwd{density}\hlstd{(FM_index_H0),} \hlkwc{main} \hlstd{=} \hlstr{"FM Index distribution under H0\textbackslash{}n (10000 permutation)"}\hlstd{)}
+\hlkwd{abline}\hlstd{(}\hlkwc{v} \hlstd{=} \hlkwd{mean}\hlstd{(FM_index_H0),} \hlkwc{col} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{lty} \hlstd{=} \hlnum{2}\hlstd{)}
+\hlcom{# The permutation distribution is with a heavy right tail:}
+\hlcom{# require(psych) skew(FM_index_H0) # 1.254}
+\hlcom{# kurtosi(FM_index_H0) # 2.5427}
+
+\hlkwd{mean}\hlstd{(FM_index_H0)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.05151
+\end{verbatim}
+\begin{alltt}
+\hlkwd{var}\hlstd{(FM_index_H0)}
+\end{alltt}
+\begin{verbatim}
+## [1] 8.28e-05
+\end{verbatim}
+\begin{alltt}
+\hlstd{the_FM_index} \hlkwb{<-} \hlkwd{FM_index}\hlstd{(A1_clusters, A2_clusters)}
+\hlstd{the_FM_index}
+\end{alltt}
+\begin{verbatim}
+## [1] 1
+## attr(,"E_FM")
+## [1] 0.05154
+## attr(,"V_FM")
+## [1] 8.415e-05
+\end{verbatim}
+\begin{alltt}
+\hlstd{our_dnorm} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{) \{}
+    \hlkwd{dnorm}\hlstd{(x,} \hlkwc{mean} \hlstd{=} \hlkwd{attr}\hlstd{(the_FM_index,} \hlstr{"E_FM"}\hlstd{),} \hlkwc{sd} \hlstd{=} \hlkwd{sqrt}\hlstd{(}\hlkwd{attr}\hlstd{(the_FM_index,}
+        \hlstr{"V_FM"}\hlstd{)))}
+\hlstd{\}}
+\hlcom{# our_dnorm(0.35)}
+\hlkwd{curve}\hlstd{(our_dnorm,} \hlkwc{col} \hlstd{=} \hlnum{4}\hlstd{,} \hlkwc{from} \hlstd{=} \hlopt{-}\hlnum{1}\hlstd{,} \hlkwc{to} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{n} \hlstd{= R,} \hlkwc{add} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\hlkwd{abline}\hlstd{(}\hlkwc{v} \hlstd{=} \hlkwd{attr}\hlstd{(the_FM_index,} \hlstr{"E_FM"}\hlstd{),} \hlkwc{col} \hlstd{=} \hlnum{4}\hlstd{,} \hlkwc{lty} \hlstd{=} \hlnum{2}\hlstd{)}
+
+\hlkwd{legend}\hlstd{(}\hlstr{"topright"}\hlstd{,} \hlkwc{legend} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"asymptotic"}\hlstd{,} \hlstr{"permutation"}\hlstd{),} \hlkwc{fill} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{4}\hlstd{,}
+    \hlnum{1}\hlstd{))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/FM_permutation_example_1} 
+
+}
+
+
+
+\end{knitrout}
+
+
+It is interesting to compare how the two ditributions diverge when K (3) is smaller:
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+## [1] 5.923e-05
+## [1] 1
+## attr(,"E_FM")
+## [1] 0.3722
+## attr(,"V_FM")
+## [1] 5.985e-05
+\end{verbatim}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/FM_permutation_example_2} 
+
+}
+
+
+
+\end{knitrout}
+
+
+Or of how it will look when K (80) is large (and the distribution becomes discrete):
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+## [1] 8.89e-05
+## [1] 1
+## attr(,"E_FM")
+## [1] 0.01136
+## attr(,"V_FM")
+## [1] 8.86e-05
+\end{verbatim}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/FM_permutation_example_3} 
+
+}
+
+
+
+\end{knitrout}
+
+
+\subsubsection{The Bk plot}
+
+
+In the Bk method we calculate the FM Index (Bk) for each k (k=2,3,…,n-1) number of clusters, giving the association between the two trees when each is cut to have k groups. The similarity between two hierarchical clustering dendrograms, can be investigated, using the (k,Bk) plot: For every level of splitting of the two dendrograms which produces k clusters in each tree, the plot shows the number Bk, and therefore enables the investigation of potential nuances in the structure of similarity. The Bk measures the number of pairs of items which are in the same cluster in both dendrograms, one of the clusters in one of the trees and one of the clusters in the other tree, divided by the geometric mean of the number of pairs of items which are in the same cluster in each tree. Namely, ${a_{uv}} = 1\left( {or{\rm{ }}{{\rm{b}}_{uv}} = 1} \right)$ if the items u and v are in the same cluster in the first tree (second tree), when it is cut so to give k clusters, and otherwise 0:
 
 \[{FM_k} = {B_k} = \frac{{\sum\limits_{}^{} {{a_{uv}}{b_{uv}}} }}{{\sqrt {\sum\limits_{}^{} {{a_{uv}}} \sum\limits_{}^{} {{b_{uv}}} } }}\]
 
 The Bk measure can be plotted for every value of k (except k=n) in order to create the “(k,Bk) plot”.  The plot compares the similarity of the two trees for different cuts. The mean and variance of Bk, under the null hypothesis (that the two trees are not “similar”), and under the assumption that the margins of the matching matrix are fixed, are given in Fowlkes and Mallows \citep{fowlkes1983method}. They allow making inference on whether the results obtained are different from what would have been expected under the null hypothesis (of now particular order of the trees' labels).
+
+The \code{Bk} and the \code{Bk_plot} functions allow the calculation of the FM-Index for a range of k values on two trees. Here are examples:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{set.seed}\hlstd{(}\hlnum{23235}\hlstd{)}
+\hlstd{ss} \hlkwb{<-} \hlnum{TRUE}  \hlcom{# sample(1:150, 30 ) # TRUE #}
+\hlstd{hc1} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"com"}\hlstd{)}
+\hlstd{hc2} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[ss,} \hlopt{-}\hlnum{5}\hlstd{]),} \hlstr{"single"}\hlstd{)}
+\hlstd{dend1} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc1)}
+\hlstd{dend2} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc2)}
+\hlcom{# cutree(tree1)}
+
+\hlcom{# It works the same for hclust and dendrograms:}
+\hlkwd{Bk}\hlstd{(hc1, hc2,} \hlkwc{k} \hlstd{=} \hlnum{3}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## $`3`
+## [1] 0.806
+## attr(,"E_FM")
+## [1] 0.4462
+## attr(,"V_FM")
+## [1] 6.464e-05
+\end{verbatim}
+\begin{alltt}
+\hlkwd{Bk}\hlstd{(dend1, dend2,} \hlkwc{k} \hlstd{=} \hlnum{3}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## $`3`
+## [1] 0.806
+## attr(,"E_FM")
+## [1] 0.4462
+## attr(,"V_FM")
+## [1] 6.464e-05
+\end{verbatim}
+\begin{alltt}
+\hlkwd{require}\hlstd{(microbenchmark)}
+\hlkwd{microbenchmark}\hlstd{(}\hlkwd{Bk}\hlstd{(hc1, hc2,} \hlkwc{k} \hlstd{=} \hlnum{3}\hlstd{),} \hlkwd{Bk}\hlstd{(dend1, dend2,} \hlkwc{k} \hlstd{=} \hlnum{3}\hlstd{),}
+    \hlkwc{times} \hlstd{=} \hlnum{10}\hlstd{)}  \hlcom{# the 'dend' method is much slower (since it relies less on C code).}
+\end{alltt}
+\begin{verbatim}
+## Unit: milliseconds
+##                     expr     min      lq  median     uq
+##      Bk(hc1, hc2, k = 3)   5.623   5.644   5.808   6.06
+##  Bk(dend1, dend2, k = 3) 190.099 221.253 248.910 271.67
+##     max neval
+##    8.64    10
+##  348.51    10
+\end{verbatim}
+\begin{alltt}
+
+# however, because the hc2 tree is actually with several
+# branches/leaves of the same height - actually the
+# dendrogram object gives a more correct output!
+
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+The Bk plot:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{Bk_plot}\hlstd{(hc1, hc2,} \hlkwc{main} \hlstd{=} \hlstr{"WRONG Bk plot \textbackslash{}n(due to the way cutree works with ties in hclust)"}\hlstd{,}
+    \hlkwc{warn} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/Bk_plot_for_hclust_WRONG} 
+
+}
+
+
+
+\end{knitrout}
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{Bk_plot}\hlstd{(dend1, dend2,} \hlkwc{main} \hlstd{=} \hlstr{"CORRECT Bk plot \textbackslash{}n(based on dendrograms)"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/Bk_plot_for_dends_correct} 
+
+}
+
+
+
+\end{knitrout}
+
+
+
+
+% 
+% A reminder tanglegram:
+% 
+% <<>>=
+% set.seed(2542)
+% dend12_corrected_1 <- untangle_random_search(dend1, dend2,R=10)
+% dend12_corrected_2 <- untangle_step_rotate_2side(dend12_corrected_1[[1]],dend12_corrected_1[[2]])
+% tanglegram(dend12_corrected_2[[1]],dend12_corrected_2[[2]], margin_inner=6.5) # Better...
+% 
+% @
+% 
+
+
 
 
 
@@ -3073,7 +3375,7 @@ We are very thankful for code contributions and ideas by the R core team (especi
 \hlkwd{Sys.Date}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## [1] "2013-08-20"
+## [1] "2013-08-21"
 \end{verbatim}
 \begin{alltt}
 \hlkwd{sessionInfo}\hlstd{()}
@@ -3094,17 +3396,15 @@ We are very thankful for code contributions and ideas by the R core team (especi
 ## [6] methods   base     
 ## 
 ## other attached packages:
-##  [1] profdpm_3.3          plyr_1.8            
-##  [3] microbenchmark_1.3-0 colorspace_1.2-2    
-##  [5] codetools_0.2-8      dendextendRcpp_0.3.0
-##  [7] Rcpp_0.10.4          dendextend_0.9.1    
-##  [9] ape_3.0-8            knitr_1.4           
-## [11] installr_0.11.0     
+## [1] codetools_0.2-8      dendextendRcpp_0.3.0
+## [3] Rcpp_0.10.4          dendextend_0.10.0   
+## [5] ape_3.0-8            knitr_1.4           
+## [7] installr_0.11.0     
 ## 
 ## loaded via a namespace (and not attached):
 ## [1] digest_0.6.3    evaluate_0.4.7  formatR_0.9    
-## [4] grid_3.0.1      highr_0.2.2     lattice_0.20-15
-## [7] nlme_3.1-109    stringr_0.6.2   tools_3.0.1
+## [4] grid_3.0.1      lattice_0.20-15 nlme_3.1-109   
+## [7] stringr_0.6.2   tools_3.0.1
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

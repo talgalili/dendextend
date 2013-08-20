@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  20 AUG 2013 22:43
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  21 AUG 2013 00:15
 entering extended mode
 **dendextend-tutorial.tex
 
@@ -1255,7 +1255,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.34 ...endextendRcpp - gaining speed with Rcpp}{}
+l.34 ...e Fowlkes-Mallows Index and the Bk plot.2}
                                                   % 34
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1266,7 +1266,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.34 ...endextendRcpp - gaining speed with Rcpp}{}
+l.34 ...e Fowlkes-Mallows Index and the Bk plot.2}
                                                   % 34
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1277,7 +1277,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\1
                   3712`12`\04412=-1 dendrogram object
-l.35 ...ARK [1][-]{Section.6.Summary.1}{Summary}{}
+l.35 ...e Fowlkes-Mallows Index and the Bk plot.2}
                                                   % 35
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1288,8 +1288,52 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \Hy@temp ->The `\13712`12`\0
                             4412=-1 dendrogram object
-l.35 ...ARK [1][-]{Section.6.Summary.1}{Summary}{}
+l.35 ...e Fowlkes-Mallows Index and the Bk plot.2}
                                                   % 35
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
+l.36 ...endextendRcpp - gaining speed with Rcpp}{}
+                                                  % 36
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
+l.36 ...endextendRcpp - gaining speed with Rcpp}{}
+                                                  % 36
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\1
+                  3712`12`\04412=-1 dendrogram object
+l.37 ...ARK [1][-]{Section.6.Summary.1}{Summary}{}
+                                                  % 37
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\Hy@temp ->The `\13712`12`\0
+                            4412=-1 dendrogram object
+l.37 ...ARK [1][-]{Section.6.Summary.1}{Summary}{}
+                                                  % 37
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2511,6 +2555,7 @@ File: figure/cor_cophenetic_simulation_CI_4.pdf Graphic file (type pdf)
 Package pdftex.def Info: figure/cor_cophenetic_simulation_CI_4.pdf used on inpu
 t line 2762.
 (pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+Package color Info: Redefining color shadecolor on input line 2783.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 65
@@ -2518,41 +2563,160 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [65 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
 or_cophenetic_simulation_CI_4.pdf>]
-Package color Info: Redefining color shadecolor on input line 2797.
-
-Overfull \hbox (68.00847pt too wide) in paragraph at lines 2804--2804
-[][]\T1/aett/bx/n/10.95 microbenchmark[][](stats:::[][]labels.dendrogram[][](de
-nd), dendextendRcpp:::[][]labels.dendrogram[][](dend))[][] 
- []
-
-
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 66 []
  []
 
 [66]
-Package color Info: Redefining color shadecolor on input line 2826.
+Package color Info: Redefining color shadecolor on input line 2845.
 
-Overfull \hbox (79.48402pt too wide) in paragraph at lines 2833--2833
-[][]\T1/aett/bx/n/10.95 microbenchmark[][]([][]old_get_branches_heights[][](den
-d), dendextendRcpp:::[][]get_branches_heights[][](dend),[][] 
+Overfull \hbox (68.00847pt too wide) in paragraph at lines 2865--2865
+[][]\T1/aett/bx/n/10.95 plot[][]([][]density[][](FM_index_H0),[] []main[] []=[]
+ []"FM Index distribution under H0\n (10000 permutation)"[][])[][] 
  []
 
-Package color Info: Redefining color shadecolor on input line 2855.
-
-Overfull \hbox (125.38625pt too wide) in paragraph at lines 2862--2862
-[][]\T1/aett/bx/n/10.95 microbenchmark[][]([][]old_heights_per_k.dendrogram[][]
-(dend), dendextendRcpp:::[][]heights_per_k.dendrogram[][](dend),[][] 
- []
-
-Package color Info: Redefining color shadecolor on input line 2885.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 67
  []
 
-[67]
-Overfull \hbox (73.74625pt too wide) in paragraph at lines 2889--2889
+[67] <figure/FM_permutation_example_1.pdf, id=653, 505.89pt x 505.89pt>
+File: figure/FM_permutation_example_1.pdf Graphic file (type pdf)
+
+<use figure/FM_permutation_example_1.pdf>
+Package pdftex.def Info: figure/FM_permutation_example_1.pdf used on input line
+ 2907.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+Package color Info: Redefining color shadecolor on input line 2920.
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 68 []
+ []
+
+[68 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/F
+M_permutation_example_1.pdf>]
+<figure/FM_permutation_example_2.pdf, id=664, 505.89pt x 505.89pt>
+File: figure/FM_permutation_example_2.pdf Graphic file (type pdf)
+
+<use figure/FM_permutation_example_2.pdf>
+Package pdftex.def Info: figure/FM_permutation_example_2.pdf used on input line
+ 2931.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+Package color Info: Redefining color shadecolor on input line 2944.
+
+<figure/FM_permutation_example_3.pdf, id=665, 505.89pt x 505.89pt>
+File: figure/FM_permutation_example_3.pdf Graphic file (type pdf)
+
+<use figure/FM_permutation_example_3.pdf>
+Package pdftex.def Info: figure/FM_permutation_example_3.pdf used on input line
+ 2955.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 69
+ []
+
+[69 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/F
+M_permutation_example_2.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 70 []
+ []
+
+[70 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/F
+M_permutation_example_3.pdf>]
+Package color Info: Redefining color shadecolor on input line 2976.
+
+Overfull \hbox (46.79286pt too wide) in paragraph at lines 3011--3011
+[]    []\T1/aett/bx/n/10.95 times[] []=[] []10[][])[]  []\T1/aett/m/it/10.95 # 
+the \TS1/cmtt/m/it/10.95 '\T1/aett/m/it/10.95 dend\TS1/cmtt/m/it/10.95 ' \T1/ae
+tt/m/it/10.95 method is much slower (since it re-lies less on C code).[][] 
+ []
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 71
+ []
+
+[71]
+Package color Info: Redefining color shadecolor on input line 3036.
+
+Overfull \hbox (90.95958pt too wide) in paragraph at lines 3038--3038
+[][]\T1/aett/bx/n/10.95 Bk_plot[][](hc1, hc2,[] []main[] []=[] []"WRONG Bk plot
+ \n(due to the way cutree works with ties in hclust)"[][],[][] 
+ []
+
+<figure/Bk_plot_for_hclust_WRONG.pdf, id=695, 505.89pt x 505.89pt>
+File: figure/Bk_plot_for_hclust_WRONG.pdf Graphic file (type pdf)
+
+<use figure/Bk_plot_for_hclust_WRONG.pdf>
+Package pdftex.def Info: figure/Bk_plot_for_hclust_WRONG.pdf used on input line
+ 3043.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+Package color Info: Redefining color shadecolor on input line 3053.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 72 []
+ []
+
+[72] <figure/Bk_plot_for_dends_correct.pdf, id=700, 505.89pt x 505.89pt>
+File: figure/Bk_plot_for_dends_correct.pdf Graphic file (type pdf)
+
+<use figure/Bk_plot_for_dends_correct.pdf>
+Package pdftex.def Info: figure/Bk_plot_for_dends_correct.pdf used on input lin
+e 3059.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 73
+ []
+
+[73 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/B
+k_plot_for_hclust_WRONG.pdf>]
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/aer/m/n/10.95 74 []
+ []
+
+[74 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/B
+k_plot_for_dends_correct.pdf>]
+Package color Info: Redefining color shadecolor on input line 3099.
+
+Overfull \hbox (68.00847pt too wide) in paragraph at lines 3106--3106
+[][]\T1/aett/bx/n/10.95 microbenchmark[][](stats:::[][]labels.dendrogram[][](de
+nd), dendextendRcpp:::[][]labels.dendrogram[][](dend))[][] 
+ []
+
+Package color Info: Redefining color shadecolor on input line 3128.
+
+Overfull \hbox (79.48402pt too wide) in paragraph at lines 3135--3135
+[][]\T1/aett/bx/n/10.95 microbenchmark[][]([][]old_get_branches_heights[][](den
+d), dendextendRcpp:::[][]get_branches_heights[][](dend),[][] 
+ []
+
+Package color Info: Redefining color shadecolor on input line 3157.
+
+Overfull \hbox (125.38625pt too wide) in paragraph at lines 3164--3164
+[][]\T1/aett/bx/n/10.95 microbenchmark[][]([][]old_heights_per_k.dendrogram[][]
+(dend), dendextendRcpp:::[][]heights_per_k.dendrogram[][](dend),[][] 
+ []
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 75
+ []
+
+[75]
+Package color Info: Redefining color shadecolor on input line 3187.
+
+Overfull \hbox (73.74625pt too wide) in paragraph at lines 3191--3191
 [][]\T1/aett/bx/n/10.95 microbenchmark[][]([][]old_cut_lower_fun[][](dend_big,[
 ] []0.01[][]), dendextendRcpp:::[][]cut_lower_fun[][](dend_big,[][] 
  []
@@ -2561,48 +2725,53 @@ Overfull \hbox (73.74625pt too wide) in paragraph at lines 2889--2889
 ("D:\Dropbox\aaaa good R code\AA - My packages\dendextend\vignettes\dendextend-
 tutorial.bbl"
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
-\T1/aer/m/n/10.95 68 []
+\T1/aer/m/n/10.95 76 []
  []
 
-[68])
-Package color Info: Redefining color shadecolor on input line 3071.
+[76]
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/aer/m/n/10.95 77
+ []
+
+[77])
+Package color Info: Redefining color shadecolor on input line 3373.
+
+Underfull \hbox (badness 10000) in paragraph at lines 3416--3416
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3416.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
-[] \T1/aer/m/n/10.95 69
+\T1/aer/m/n/10.95 78 []
  []
 
-[69]
-Underfull \hbox (badness 10000) in paragraph at lines 3116--3116
-
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3116.
-
+[78]
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
-\T1/aer/m/n/10.95 70 []
+[] \T1/aer/m/n/10.95 79
  []
 
-[70]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3116.
+[79]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3416.
 
 ("D:\Dropbox\aaaa good R code\AA - My packages\dendextend\vignettes\dendextend-
 tutorial.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3116.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3116.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3416.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3416.
 
 Package rerunfilecheck Info: File `dendextend-tutorial.out' has not changed.
-(rerunfilecheck)             Checksum: 82B5759ED442F83DC4B9439E554888E3;5099.
+(rerunfilecheck)             Checksum: 3A722BCADA14A00338E8BC470E68502E;5443.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3116.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3416.
  ) 
 Here is how much of TeX's memory you used:
- 7174 strings out of 494045
- 112867 string characters out of 3145976
- 337744 words of memory out of 3000000
- 10110 multiletter control sequences out of 15000+200000
+ 7218 strings out of 494045
+ 114229 string characters out of 3145976
+ 346201 words of memory out of 3000000
+ 10135 multiletter control sequences out of 15000+200000
  49668 words of font info for 92 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  36i,9n,34p,1513b,473s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2631,17 +2800,18 @@ bx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex
 0.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.
 pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 ><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/
-Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Pro
-gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Progr
-am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program
- Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program F
-iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dendextend-tutorial.pdf (70 pages, 832678 bytes).
+:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Pr
+ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Prog
+ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Program
+ Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on dendextend-tutorial.pdf (79 pages, 947386 bytes).
 PDF statistics:
- 794 PDF objects out of 1000 (max. 8388607)
- 167 named destinations out of 1000 (max. 500000)
- 187 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 885 PDF objects out of 1000 (max. 8388607)
+ 181 named destinations out of 1000 (max. 500000)
+ 212 words of extra memory for PDF output out of 10000 (max. 10000000)
 
