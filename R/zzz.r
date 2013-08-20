@@ -32,21 +32,28 @@ assign_dendextendRcpp_to_dendextend <- function() {
       
       # create a backup of these functions in order to later
       # compare them using benchmark (their kept invisible - but can be accessed)
-      assign("old_heights_per_k.dendrogram", dendextend:::heights_per_k.dendrogram,
-             envir=as.environment("package:dendextend"))
       assign("old_get_branches_heights", dendextend:::get_branches_heights,
              envir=as.environment("package:dendextend"))
+      assign("old_heights_per_k.dendrogram", dendextend:::heights_per_k.dendrogram,
+             envir=as.environment("package:dendextend"))
+      assign("old_cut_lower_fun", dendextend:::cut_lower_fun,
+             envir=as.environment("package:dendextend"))
       
+      assignInNamespace(
+         x= "get_branches_heights",
+         value = dendextendRcpp:::get_branches_heights,
+         ns = "dendextend"
+      )   
       assignInNamespace(
          x= "heights_per_k.dendrogram",
          value = dendextendRcpp:::heights_per_k.dendrogram,
          ns = "dendextend"
       )
       assignInNamespace(
-         x= "get_branches_heights",
-         value = dendextendRcpp:::get_branches_heights,
+         x= "cut_lower_fun",
+         value = dendextendRcpp:::cut_lower_fun,
          ns = "dendextend"
-      )   
+      )
       
       ## p.s:
       # doing the following is a BAD IDEA!

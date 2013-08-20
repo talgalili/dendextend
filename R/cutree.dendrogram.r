@@ -275,7 +275,8 @@ cutree_1h.dendrogram <- function(tree, h,
    # an alternatice which is not faster (but may be used in the future for making this into an Rcpp function!)
 #    names_in_clusters <- cut_replace(tree, h, FUN)
    
-   names_in_clusters <- sapply(cut(tree, h = h)$lower, FUN)   # If the proper labels are not important, this function is around 10 times faster than using labels (so it is much better for some other algorithms)
+#    names_in_clusters <- sapply(cut(tree, h = h)$lower, FUN)   # If the proper labels are not important, this function is around 10 times faster than using labels (so it is much better for some other algorithms)
+   names_in_clusters <- cut_lower_fun(tree, h, FUN) # If the proper labels are not important, this function is around 10 times faster than using labels (so it is much better for some other algorithms)
    # Type of output:
 #    [[1]]
 #    [1] "Minnesota"

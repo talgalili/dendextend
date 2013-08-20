@@ -41,3 +41,4 @@ Collate:
     'cor_cophenetic.r'
     'bk_method.r'
     'zzz.r'
+    'cut_lower_fun.r'

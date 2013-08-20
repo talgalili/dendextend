@@ -1591,7 +1591,19 @@ times = 100
 @
 
 
+For \code{cut_lower_fun} (an essential function when using cutree with some h):
 
+<<Rcpp_simu_cut_lower_fun>>=
+
+dend_big = as.dendrogram(hclust(dist(iris[1:150,-5])))
+require(microbenchmark)
+microbenchmark(old_cut_lower_fun(dend_big,.01),
+               dendextendRcpp:::cut_lower_fun(dend_big,.01),
+               times = 100)
+# Rcpp is ~4-14 times faster. depending on the size of the tree, 
+# and the depth of the height
+
+@
 
 
 % 
