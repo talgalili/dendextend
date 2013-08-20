@@ -551,6 +551,7 @@ FM_index <- function(A1_clusters, A2_clusters, include_EV = TRUE, assume_sorted_
 #'       from = -1,to=1,n=R,add = TRUE)
 #' abline(v = attr(the_FM_index, "E_FM"), col = 4, lty = 2)
 #' 
+#' legend("topright", legend = c("asymptotic", "permutation"), fill = c(4,1))
 #' }
 FM_index_permutation <- function(A1_clusters, A2_clusters, warn = TRUE, ...) {
    return(
@@ -1001,7 +1002,9 @@ Bk_plot <- function(tree1, tree2, k,
       if(!is.hclust(tree2)) tree2_hc <- tryCatch(as.hclust(tree2), error = function(e) {FALSE})
       
       # only if we got BOTH trees to be hclust - can be put them in...
-      if(!(is.logical(tree1_hc)|is.logical(tree2_hc))) {
+      
+      if((exists("tree1_hc")&exists("tree2_hc")) && 
+            !(is.logical(tree1_hc)|is.logical(tree2_hc))) {
          tree1 <- tree1_hc
          tree2 <- tree2_hc
       }

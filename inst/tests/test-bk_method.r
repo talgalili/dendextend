@@ -228,3 +228,59 @@ test_that("FM_index_permutation works",{
 })
 
 
+
+
+
+
+
+
+test_that("Bk works",{
+   
+   
+   set.seed(23235)
+   ss <- TRUE # sample(1:150, 10 )
+   hc1 <- hclust(dist(iris[ss,-5]), "com")
+   hc2 <- hclust(dist(iris[ss,-5]), "single")
+   dend1 <- as.dendrogram(hc1)
+   dend2 <- as.dendrogram(hc2)
+   #    cutree(tree1)   
+   
+   expect_identical(
+      Bk(hc1, hc2, k = 3),
+      Bk(dend1, dend2, k = 3)
+   )
+
+   expect_identical(
+      Bk(hc1, hc2, k = 3,include_EV=FALSE),
+      Bk(dend1, dend2, k = 3,include_EV=FALSE)
+   )
+
+   expect_identical(
+      round(as.numeric(Bk(hc1, hc2, k = 3)),3),
+      0.806
+   )
+   expect_identical(
+      round(as.numeric(Bk(dend1, dend2, k = 3)),3),
+      0.806
+   )
+
+   
+   set.seed(23234535)
+   expect_identical(
+      round(
+         Bk_permutations(dend1, 
+                         dend2, 
+                         k = 3, R = 2)[[1]], 2),
+      c(.45,.44))
+   
+   
+   
+   #    Bk_plot(hc1, hc2, main = "WRONG Bk plot \n(due to the way cutree works with ties)")
+   #    Bk_plot(dend1, dend2, main = "CORRECT Bk plot")
+   
+   
+   
+})
+
+
+

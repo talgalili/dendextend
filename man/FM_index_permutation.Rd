@@ -73,6 +73,7 @@ curve(our_dnorm,
       from = -1,to=1,n=R,add = TRUE)
 abline(v = attr(the_FM_index, "E_FM"), col = 4, lty = 2)
 
+legend("topright", legend = c("asymptotic", "permutation"), fill = c(4,1))
 }
 }
 \references{
