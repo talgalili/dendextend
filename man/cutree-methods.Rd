@@ -9,8 +9,8 @@
   cutree(tree, k = NULL, h = NULL,...)
 
   \method{cutree}{hclust}(tree, k = NULL, h = NULL,
-    order_clusters_as_data =TRUE, sort_cluster_numbers =
-    TRUE, warn = TRUE, ...)
+    use_labels_not_values = TRUE, order_clusters_as_data
+    =TRUE, sort_cluster_numbers = TRUE, warn = TRUE, ...)
 
   \method{cutree}{phylo}(tree, k = NULL, h = NULL,...)
 

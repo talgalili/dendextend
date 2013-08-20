@@ -532,6 +532,7 @@ cutree_1k.dendrogram <- function(tree, k,
 #' cutree(tree, k = NULL, h = NULL,...)   
 #' 
 #' \method{cutree}{hclust}(tree, k = NULL, h = NULL,
+#'                            use_labels_not_values = TRUE, 
 #'                           order_clusters_as_data =TRUE,
 #'                           sort_cluster_numbers = TRUE,
 #'                           warn = TRUE,
@@ -689,6 +690,7 @@ cutree.default <- function(tree, k = NULL, h = NULL,...) {
 #' @export
 #' @S3method cutree hclust
 cutree.hclust <- function(tree, k = NULL, h = NULL,
+                          use_labels_not_values = TRUE, # ignored here...
                           order_clusters_as_data =TRUE,
                           sort_cluster_numbers = TRUE,
                           warn = TRUE,

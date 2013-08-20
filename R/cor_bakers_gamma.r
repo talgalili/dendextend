@@ -218,7 +218,21 @@ cor_bakers_gamma.dendrogram <- function(tree1, tree2, use_labels_not_values = TR
 }
 
 
+#' @S3method cor_bakers_gamma hclust
+cor_bakers_gamma.hclust <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = TRUE, ...)
+{
+   k_matrix_tree1 <- cutree(tree1, k = 1:nleaves(tree1), use_labels_not_values=use_labels_not_values,warn=warn,...)
+   k_matrix_tree2 <- cutree(tree2, k = 1:nleaves(tree2), use_labels_not_values=use_labels_not_values,warn=warn,...)
+   bakers_gamma <- bakers_gamma_for_2_k_matrix(k_matrix_tree1, k_matrix_tree2, to_plot = to_plot)
+   return(bakers_gamma)
+}
 
 
 
-
+# k_matrix_tree1 <- cutree(hc1, k = 1:nleaves(hc1))
+# k_matrix_tree2 <- cutree(hc2, k = 1:nleaves(hc1))
+# require(compiler)
+# enableJIT(3)
+# system.time(bakers_gamma_for_2_k_matrix(k_matrix_tree1, k_matrix_tree2)) 
+# before: 2.37
+# after: 1.97
