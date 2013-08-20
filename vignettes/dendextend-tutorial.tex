@@ -2779,47 +2779,6 @@ The Fowlkes-Mallows Index \citep{fowlkes1983method} (FM Index, or Bk) is a measu
 
 The Bk measure can be plotted for every value of k (except k=n) in order to create the “(k,Bk) plot”.  The plot compares the similarity of the two trees for different cuts. The mean and variance of Bk, under the null hypothesis (that the two trees are not “similar”), and under the assumption that the margins of the matching matrix are fixed, are given in Fowlkes and Mallows \citep{fowlkes1983method}. They allow making inference on whether the results obtained are different from what would have been expected under the null hypothesis (of now particular order of the trees' labels).
 
-THE FM index is also available through the \code{pci} function, in the \pkg{profdpm} package \citep{CRAN:profdpm}.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{our_dist} \hlkwb{<-} \hlkwd{dist}\hlstd{(USArrests[}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{, ])}
-\hlstd{dend1} \hlkwb{<-} \hlkwd{hclust}\hlstd{(our_dist,} \hlstr{"complete"}\hlstd{)}
-\hlstd{dend2} \hlkwb{<-} \hlkwd{hclust}\hlstd{(our_dist,} \hlstr{"single"}\hlstd{)}
-
-\hlkwd{require}\hlstd{(}\hlstr{"profdpm"}\hlstd{)}  \hlcom{# see page 9 and 10:}
-\hlkwd{pci}\hlstd{(}\hlkwd{cutree}\hlstd{(dend1,} \hlkwc{k} \hlstd{=} \hlnum{4}\hlstd{),} \hlkwd{cutree}\hlstd{(dend2,} \hlkwc{k} \hlstd{=} \hlnum{4}\hlstd{))[}\hlnum{2}\hlstd{]}
-\end{alltt}
-\begin{verbatim}
-##     FM 
-## 0.5833
-\end{verbatim}
-\begin{alltt}
-\hlkwd{Bk}\hlstd{(dend1, dend2,} \hlkwc{k} \hlstd{=} \hlnum{4}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## $`4`
-## [1] 0.5833
-## attr(,"E_FM")
-## [1] 0.2667
-## attr(,"V_FM")
-## [1] 0.007659
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2920,6 +2879,31 @@ For \code{heights_per_k.dendrogram} (an essential function when using cutree wit
 
 
 
+For \code{cut_lower_fun} (an essential function when using cutree with some h):
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{dend_big} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(}\hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[}\hlnum{1}\hlopt{:}\hlnum{150}\hlstd{,} \hlopt{-}\hlnum{5}\hlstd{])))}
+\hlkwd{require}\hlstd{(microbenchmark)}
+\hlkwd{microbenchmark}\hlstd{(}\hlkwd{old_cut_lower_fun}\hlstd{(dend_big,} \hlnum{0.01}\hlstd{), dendextendRcpp:::}\hlkwd{cut_lower_fun}\hlstd{(dend_big,}
+    \hlnum{0.01}\hlstd{),} \hlkwc{times} \hlstd{=} \hlnum{100}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Unit: milliseconds
+##                                            expr    min
+##               old_cut_lower_fun(dend_big, 0.01) 50.864
+##  dendextendRcpp:::cut_lower_fun(dend_big, 0.01)  4.062
+##      lq median     uq    max neval
+##  60.274 66.879 76.366 239.05   100
+##   4.394  4.823  5.501  39.87   100
+\end{verbatim}
+\begin{alltt}
+# Rcpp is ~4-14 times faster. depending on the size of the
+# tree, and the depth of the height
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 
 
@@ -3089,7 +3073,7 @@ We are very thankful for code contributions and ideas by the R core team (especi
 \hlkwd{Sys.Date}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## [1] "2013-08-19"
+## [1] "2013-08-20"
 \end{verbatim}
 \begin{alltt}
 \hlkwd{sessionInfo}\hlstd{()}
@@ -3112,7 +3096,7 @@ We are very thankful for code contributions and ideas by the R core team (especi
 ## other attached packages:
 ##  [1] profdpm_3.3          plyr_1.8            
 ##  [3] microbenchmark_1.3-0 colorspace_1.2-2    
-##  [5] codetools_0.2-8      dendextendRcpp_0.2.0
+##  [5] codetools_0.2-8      dendextendRcpp_0.3.0
 ##  [7] Rcpp_0.10.4          dendextend_0.9.1    
 ##  [9] ape_3.0-8            knitr_1.4           
 ## [11] installr_0.11.0     

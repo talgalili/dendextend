@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  19 AUG 2013 16:40
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  20 AUG 2013 22:43
 entering extended mode
 **dendextend-tutorial.tex
 
@@ -2518,37 +2518,43 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [65 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
 or_cophenetic_simulation_CI_4.pdf>]
-Package color Info: Redefining color shadecolor on input line 2785.
+Package color Info: Redefining color shadecolor on input line 2797.
+
+Overfull \hbox (68.00847pt too wide) in paragraph at lines 2804--2804
+[][]\T1/aett/bx/n/10.95 microbenchmark[][](stats:::[][]labels.dendrogram[][](de
+nd), dendextendRcpp:::[][]labels.dendrogram[][](dend))[][] 
+ []
+
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 66 []
  []
 
 [66]
-Package color Info: Redefining color shadecolor on input line 2838.
+Package color Info: Redefining color shadecolor on input line 2826.
 
-Overfull \hbox (68.00847pt too wide) in paragraph at lines 2845--2845
-[][]\T1/aett/bx/n/10.95 microbenchmark[][](stats:::[][]labels.dendrogram[][](de
-nd), dendextendRcpp:::[][]labels.dendrogram[][](dend))[][] 
- []
-
-Package color Info: Redefining color shadecolor on input line 2867.
-
-Overfull \hbox (79.48402pt too wide) in paragraph at lines 2874--2874
+Overfull \hbox (79.48402pt too wide) in paragraph at lines 2833--2833
 [][]\T1/aett/bx/n/10.95 microbenchmark[][]([][]old_get_branches_heights[][](den
 d), dendextendRcpp:::[][]get_branches_heights[][](dend),[][] 
  []
 
-Package color Info: Redefining color shadecolor on input line 2896.
+Package color Info: Redefining color shadecolor on input line 2855.
+
+Overfull \hbox (125.38625pt too wide) in paragraph at lines 2862--2862
+[][]\T1/aett/bx/n/10.95 microbenchmark[][]([][]old_heights_per_k.dendrogram[][]
+(dend), dendextendRcpp:::[][]heights_per_k.dendrogram[][](dend),[][] 
+ []
+
+Package color Info: Redefining color shadecolor on input line 2885.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 67
  []
 
 [67]
-Overfull \hbox (125.38625pt too wide) in paragraph at lines 2903--2903
-[][]\T1/aett/bx/n/10.95 microbenchmark[][]([][]old_heights_per_k.dendrogram[][]
-(dend), dendextendRcpp:::[][]heights_per_k.dendrogram[][](dend),[][] 
+Overfull \hbox (73.74625pt too wide) in paragraph at lines 2889--2889
+[][]\T1/aett/bx/n/10.95 microbenchmark[][]([][]old_cut_lower_fun[][](dend_big,[
+] []0.01[][]), dendextendRcpp:::[][]cut_lower_fun[][](dend_big,[][] 
  []
 
 
@@ -2559,30 +2565,30 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [68])
-Package color Info: Redefining color shadecolor on input line 3087.
+Package color Info: Redefining color shadecolor on input line 3071.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 69
  []
 
 [69]
-Underfull \hbox (badness 10000) in paragraph at lines 3132--3132
+Underfull \hbox (badness 10000) in paragraph at lines 3116--3116
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3132.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3116.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 70 []
  []
 
 [70]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3132.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3116.
 
 ("D:\Dropbox\aaaa good R code\AA - My packages\dendextend\vignettes\dendextend-
 tutorial.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3132.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3132.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3116.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3116.
 
 Package rerunfilecheck Info: File `dendextend-tutorial.out' has not changed.
 (rerunfilecheck)             Checksum: 82B5759ED442F83DC4B9439E554888E3;5099.
@@ -2590,13 +2596,13 @@ Package rerunfilecheck Info: File `dendextend-tutorial.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3132.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3116.
  ) 
 Here is how much of TeX's memory you used:
- 7178 strings out of 494045
- 112944 string characters out of 3145976
- 337772 words of memory out of 3000000
- 10113 multiletter control sequences out of 15000+200000
+ 7174 strings out of 494045
+ 112867 string characters out of 3145976
+ 337744 words of memory out of 3000000
+ 10110 multiletter control sequences out of 15000+200000
  49668 words of font info for 92 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  36i,9n,34p,1513b,473s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2633,9 +2639,9 @@ gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Progr
 am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program
  Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program F
 iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dendextend-tutorial.pdf (70 pages, 834847 bytes).
+Output written on dendextend-tutorial.pdf (70 pages, 832678 bytes).
 PDF statistics:
- 799 PDF objects out of 1000 (max. 8388607)
- 168 named destinations out of 1000 (max. 500000)
+ 794 PDF objects out of 1000 (max. 8388607)
+ 167 named destinations out of 1000 (max. 500000)
  187 words of extra memory for PDF output out of 10000 (max. 10000000)
 
