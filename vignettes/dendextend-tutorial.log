@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  21 AUG 2013 00:15
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  24 AUG 2013 12:15
 entering extended mode
 **dendextend-tutorial.tex
 
@@ -2113,31 +2113,6 @@ I could not locate the file with any of these extensions:
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.1904 ...tween the two trees.). We can use the k_
-                                                  branches parameter for tan...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.1905 
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (673.85056pt too wide) in paragraph at lines 1904--1905
-\T1/aer/m/n/10.95 the k$[]\OML/cmm/m/it/10.95 ranchesparameterfortanglegram; to
-helpusseethedifferencebetweenthetwotrees\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95
- noticelabels\OT1/cmr/m/n/10.95 19\OML/cmm/m/it/10.95 and\OT1/cmr/m/n/10.95 45)
-\OML/cmm/m/it/10.95 :Onecouldactuallydoananimationsequence; usingvariousk[]ranc
-hesvaluesinordertolocatedthedifferencesbetweenthetrees:$ 
- []
-
 Package color Info: Redefining color shadecolor on input line 1907.
 
 ! LaTeX Error: File `figure/unnamed-chunk-39' not found.
@@ -2160,20 +2135,12 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [38]
-<figure/untangle_step_rotate_2side_example1.pdf, id=386, 505.89pt x 505.89pt>
+<figure/untangle_step_rotate_2side_example1.pdf, id=383, 505.89pt x 505.89pt>
 File: figure/untangle_step_rotate_2side_example1.pdf Graphic file (type pdf)
 
 <use figure/untangle_step_rotate_2side_example1.pdf>
 Package pdftex.def Info: figure/untangle_step_rotate_2side_example1.pdf used on
  input line 1941.
-(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
-
-<figure/untangle_step_rotate_2side_example2.pdf, id=387, 505.89pt x 505.89pt>
-File: figure/untangle_step_rotate_2side_example2.pdf Graphic file (type pdf)
-
-<use figure/untangle_step_rotate_2side_example2.pdf>
-Package pdftex.def Info: figure/untangle_step_rotate_2side_example2.pdf used on
- input line 1958.
 (pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -2182,21 +2149,19 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [39 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/u
 ntangle_step_rotate_2side_example1.pdf>]
+<figure/untangle_step_rotate_2side_example2.pdf, id=395, 505.89pt x 505.89pt>
+File: figure/untangle_step_rotate_2side_example2.pdf Graphic file (type pdf)
+
+<use figure/untangle_step_rotate_2side_example2.pdf>
+Package pdftex.def Info: figure/untangle_step_rotate_2side_example2.pdf used on
+ input line 1958.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+
 Overfull \hbox (39.31958pt too wide) in paragraph at lines 1978--1978
 [][]\T1/aett/bx/n/10.95 tanglegram[][](dend12_corrected[[[][]1[][]]], dend12_co
 rrected[[[][]2[][]]],[] []margin_inner[] []=[] []6.5[][])[]  []\T1/aett/m/it/10
 .95 # Bet-
  []
-
-<figure/untangle_step_rotate_2side_example3.pdf, id=397, 505.89pt x 505.89pt>
-File: figure/untangle_step_rotate_2side_example3.pdf Graphic file (type pdf)
-
-<use figure/untangle_step_rotate_2side_example3.pdf>
-Package pdftex.def Info: figure/untangle_step_rotate_2side_example3.pdf used on
- input line 1982.
-(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
-
-Underfull \vbox (badness 1472) has occurred while \output is active []
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -2205,12 +2170,12 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [40 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/u
 ntangle_step_rotate_2side_example2.pdf>]
-<figure/untangle_step_rotate_2side_example4.pdf, id=407, 505.89pt x 505.89pt>
-File: figure/untangle_step_rotate_2side_example4.pdf Graphic file (type pdf)
+<figure/untangle_step_rotate_2side_example3.pdf, id=405, 505.89pt x 505.89pt>
+File: figure/untangle_step_rotate_2side_example3.pdf Graphic file (type pdf)
 
-<use figure/untangle_step_rotate_2side_example4.pdf>
-Package pdftex.def Info: figure/untangle_step_rotate_2side_example4.pdf used on
- input line 2008.
+<use figure/untangle_step_rotate_2side_example3.pdf>
+Package pdftex.def Info: figure/untangle_step_rotate_2side_example3.pdf used on
+ input line 1982.
 (pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -2219,16 +2184,13 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [41 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/u
 ntangle_step_rotate_2side_example3.pdf>]
-<figure/untangle_step_rotate_2side_example5.pdf, id=417, 505.89pt x 505.89pt>
-File: figure/untangle_step_rotate_2side_example5.pdf Graphic file (type pdf)
+<figure/untangle_step_rotate_2side_example4.pdf, id=415, 505.89pt x 505.89pt>
+File: figure/untangle_step_rotate_2side_example4.pdf Graphic file (type pdf)
 
-<use figure/untangle_step_rotate_2side_example5.pdf>
-Package pdftex.def Info: figure/untangle_step_rotate_2side_example5.pdf used on
- input line 2030.
+<use figure/untangle_step_rotate_2side_example4.pdf>
+Package pdftex.def Info: figure/untangle_step_rotate_2side_example4.pdf used on
+ input line 2008.
 (pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 42 []
@@ -2236,7 +2198,15 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [42 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/u
 ntangle_step_rotate_2side_example4.pdf>]
-<figure/untangle_step_rotate_2side_example6.pdf, id=427, 505.89pt x 505.89pt>
+<figure/untangle_step_rotate_2side_example5.pdf, id=425, 505.89pt x 505.89pt>
+File: figure/untangle_step_rotate_2side_example5.pdf Graphic file (type pdf)
+
+<use figure/untangle_step_rotate_2side_example5.pdf>
+Package pdftex.def Info: figure/untangle_step_rotate_2side_example5.pdf used on
+ input line 2030.
+(pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
+
+<figure/untangle_step_rotate_2side_example6.pdf, id=426, 505.89pt x 505.89pt>
 File: figure/untangle_step_rotate_2side_example6.pdf Graphic file (type pdf)
 
 <use figure/untangle_step_rotate_2side_example6.pdf>
@@ -2277,7 +2247,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 45
  []
 
-[45] <figure/cor_bakers_gamma_example_11.pdf, id=458, 505.89pt x 505.89pt>
+[45] <figure/cor_bakers_gamma_example_11.pdf, id=457, 505.89pt x 505.89pt>
 File: figure/cor_bakers_gamma_example_11.pdf Graphic file (type pdf)
 
 <use figure/cor_bakers_gamma_example_11.pdf>
@@ -2291,7 +2261,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [46 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
 or_bakers_gamma_example_11.pdf>]
-<figure/cor_bakers_gamma_example_12.pdf, id=468, 505.89pt x 505.89pt>
+<figure/cor_bakers_gamma_example_12.pdf, id=467, 505.89pt x 505.89pt>
 File: figure/cor_bakers_gamma_example_12.pdf Graphic file (type pdf)
 
 <use figure/cor_bakers_gamma_example_12.pdf>
@@ -2305,7 +2275,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [47 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
 or_bakers_gamma_example_12.pdf>]
-<figure/cor_bakers_gamma_example_13.pdf, id=478, 505.89pt x 505.89pt>
+<figure/cor_bakers_gamma_example_13.pdf, id=477, 505.89pt x 505.89pt>
 File: figure/cor_bakers_gamma_example_13.pdf Graphic file (type pdf)
 
 <use figure/cor_bakers_gamma_example_13.pdf>
@@ -2319,7 +2289,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [48 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
 or_bakers_gamma_example_13.pdf>]
-<figure/cor_bakers_gamma_example_14.pdf, id=488, 505.89pt x 505.89pt>
+<figure/cor_bakers_gamma_example_14.pdf, id=487, 505.89pt x 505.89pt>
 File: figure/cor_bakers_gamma_example_14.pdf Graphic file (type pdf)
 
 <use figure/cor_bakers_gamma_example_14.pdf>
@@ -2341,7 +2311,7 @@ Overfull \hbox (44.97795pt too wide) in paragraph at lines 2268--2268
 tion under H0"[][],[][] 
  []
 
-<figure/cor_bakers_gamma_simulation_1.pdf, id=499, 505.89pt x 505.89pt>
+<figure/cor_bakers_gamma_simulation_1.pdf, id=498, 505.89pt x 505.89pt>
 File: figure/cor_bakers_gamma_simulation_1.pdf Graphic file (type pdf)
 
 <use figure/cor_bakers_gamma_simulation_1.pdf>
@@ -2371,7 +2341,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [51 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
 or_bakers_gamma_simulation_1.pdf>]
-<figure/cor_bakers_gamma_simulation_2.pdf, id=514, 505.89pt x 505.89pt>
+<figure/cor_bakers_gamma_simulation_2.pdf, id=513, 505.89pt x 505.89pt>
 File: figure/cor_bakers_gamma_simulation_2.pdf Graphic file (type pdf)
 
 <use figure/cor_bakers_gamma_simulation_2.pdf>
@@ -2395,7 +2365,7 @@ Overfull \hbox (44.97795pt too wide) in paragraph at lines 2362--2362
 tion under H0"[][],[][] 
  []
 
-<figure/cor_bakers_gamma_simulation_3.pdf, id=525, 505.89pt x 505.89pt>
+<figure/cor_bakers_gamma_simulation_3.pdf, id=524, 505.89pt x 505.89pt>
 File: figure/cor_bakers_gamma_simulation_3.pdf Graphic file (type pdf)
 
 <use figure/cor_bakers_gamma_simulation_3.pdf>
@@ -2419,7 +2389,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [54 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
 or_bakers_gamma_simulation_3.pdf>]
-<figure/cor_bakers_gamma_simulation_CI_41.pdf, id=540, 505.89pt x 505.89pt>
+<figure/cor_bakers_gamma_simulation_CI_41.pdf, id=539, 505.89pt x 505.89pt>
 File: figure/cor_bakers_gamma_simulation_CI_41.pdf Graphic file (type pdf)
 
 <use figure/cor_bakers_gamma_simulation_CI_41.pdf>
@@ -2435,7 +2405,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [55]
-<figure/cor_bakers_gamma_simulation_CI_42.pdf, id=546, 505.89pt x 505.89pt>
+<figure/cor_bakers_gamma_simulation_CI_42.pdf, id=545, 505.89pt x 505.89pt>
 File: figure/cor_bakers_gamma_simulation_CI_42.pdf Graphic file (type pdf)
 
 <use figure/cor_bakers_gamma_simulation_CI_42.pdf>
@@ -2465,7 +2435,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [57 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/c
 or_bakers_gamma_simulation_CI_42.pdf>]
-<figure/cor_bakers_gamma_simulation_CI_43.pdf, id=565, 505.89pt x 505.89pt>
+<figure/cor_bakers_gamma_simulation_CI_43.pdf, id=564, 505.89pt x 505.89pt>
 File: figure/cor_bakers_gamma_simulation_CI_43.pdf Graphic file (type pdf)
 
 <use figure/cor_bakers_gamma_simulation_CI_43.pdf>
@@ -2498,7 +2468,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 60 []
  []
 
-[60] <figure/cor_cophenetic_simulation_2.pdf, id=591, 505.89pt x 505.89pt>
+[60] <figure/cor_cophenetic_simulation_2.pdf, id=590, 505.89pt x 505.89pt>
 File: figure/cor_cophenetic_simulation_2.pdf Graphic file (type pdf)
 
 <use figure/cor_cophenetic_simulation_2.pdf>
@@ -2523,7 +2493,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 62 []
  []
 
-[62] <figure/cor_cophenetic_simulation_CI_3.pdf, id=607, 505.89pt x 505.89pt>
+[62] <figure/cor_cophenetic_simulation_CI_3.pdf, id=606, 505.89pt x 505.89pt>
 File: figure/cor_cophenetic_simulation_CI_3.pdf Graphic file (type pdf)
 
 <use figure/cor_cophenetic_simulation_CI_3.pdf>
@@ -2548,7 +2518,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 64 []
  []
 
-[64] <figure/cor_cophenetic_simulation_CI_4.pdf, id=622, 505.89pt x 505.89pt>
+[64] <figure/cor_cophenetic_simulation_CI_4.pdf, id=621, 505.89pt x 505.89pt>
 File: figure/cor_cophenetic_simulation_CI_4.pdf Graphic file (type pdf)
 
 <use figure/cor_cophenetic_simulation_CI_4.pdf>
@@ -2580,7 +2550,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 67
  []
 
-[67] <figure/FM_permutation_example_1.pdf, id=653, 505.89pt x 505.89pt>
+[67] <figure/FM_permutation_example_1.pdf, id=652, 505.89pt x 505.89pt>
 File: figure/FM_permutation_example_1.pdf Graphic file (type pdf)
 
 <use figure/FM_permutation_example_1.pdf>
@@ -2595,7 +2565,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [68 <D:/Dropbox/aaaa good R code/AA - My packages/dendextend/vignettes/figure/F
 M_permutation_example_1.pdf>]
-<figure/FM_permutation_example_2.pdf, id=664, 505.89pt x 505.89pt>
+<figure/FM_permutation_example_2.pdf, id=663, 505.89pt x 505.89pt>
 File: figure/FM_permutation_example_2.pdf Graphic file (type pdf)
 
 <use figure/FM_permutation_example_2.pdf>
@@ -2604,7 +2574,7 @@ Package pdftex.def Info: figure/FM_permutation_example_2.pdf used on input line
 (pdftex.def)             Requested size: 442.65375pt x 442.66037pt.
 Package color Info: Redefining color shadecolor on input line 2944.
 
-<figure/FM_permutation_example_3.pdf, id=665, 505.89pt x 505.89pt>
+<figure/FM_permutation_example_3.pdf, id=664, 505.89pt x 505.89pt>
 File: figure/FM_permutation_example_3.pdf Graphic file (type pdf)
 
 <use figure/FM_permutation_example_3.pdf>
@@ -2809,7 +2779,7 @@ m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Program
 iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Fil
 es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files
  (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dendextend-tutorial.pdf (79 pages, 947386 bytes).
+Output written on dendextend-tutorial.pdf (79 pages, 942779 bytes).
 PDF statistics:
  885 PDF objects out of 1000 (max. 8388607)
  181 named destinations out of 1000 (max. 500000)

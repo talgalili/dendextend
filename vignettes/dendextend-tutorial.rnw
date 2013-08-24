@@ -991,7 +991,7 @@ entanglement(dend12[[1]] , dend2_4)
 
 @
 
-We see how this got us with a perfect solution. The trees look almost identical, but they are not (look at label 45 to see a leaf which is differently located between the two trees.). We can use the k_branches parameter for tanglegram, to help us see the difference between the two trees (notice labels 19 and 45). One could actually do an animation sequence, using various k_branches values in order to located the differences between the trees.
+We see how this got us with a perfect solution. The trees look almost identical, but they are not (look at label 45 to see a leaf which is differently located between the two trees.). We can use the \code{k_branches} parameter for tanglegram, to help us see the difference between the two trees (notice labels 19 and 45). One could actually do an animation sequence, using various \code{k_branches} values in order to located the differences between the trees.
 
 <<>>=
 
