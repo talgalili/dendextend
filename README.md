@@ -22,13 +22,19 @@ To install the stable version on CRAN:
 To install the GitHub version:
 
 ```r
-if (!require('devtools')) install.packages('devtools'); require('devtools')
+if (!require('installr')) install.packages('installr'); require('installr')
+## install.Rtools() # run this if you are using Windows and don't have Rtools
+require2(devtools)
 install_github('dendextend', 'talgalili')
+require2(Rcpp)
+install_github('dendextendRcpp', 'talgalili')
 ```
 
 ## Usage
 
-TO BE UPDATED...
+Please see:
+- Vignette: https://github.com/talgalili/dendextend/blob/master/vignettes/dendextend-tutorial.pdf
+- A presentation: https://github.com/talgalili/dendextend/blob/master/inst/doc/2013-09-05_Boston-useR/2013-09-05_Boston-useR.md
 
 ## Contact
 
