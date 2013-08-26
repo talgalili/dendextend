@@ -10,10 +10,11 @@ height: 1200
 
 Boston-useR
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, echo=FALSE}
+require(knitr)
 opts_chunk$set(cache=TRUE, fig.align='center')
 options(digits = 3)
-
+purl("2013-09-05_Boston-useR.Rpres")
 ```
 
 
