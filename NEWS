@@ -1,3 +1,10 @@
+dendextend 0.11.1 (2013-08-29)
+----------------------------
+UPDATED FUNCTIONS:
+   * color_labels - added a "warn" parameter. And also set the default (in case no k/h is supplied) - to just color all of the labels.
+
+
+
 dendextend 0.11.0 (2013-08-24)
 ----------------------------
 VIGNETTES:

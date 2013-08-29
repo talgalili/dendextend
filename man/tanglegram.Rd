@@ -141,6 +141,14 @@
   to make the plotting a bit faster, and only after you are
   sure the labels and orders are correctly aligned.}
 
+  \item{cex_main}{A numerical value giving the amount by
+  which plotting title should be magnified relative to the
+  default.}
+
+  \item{cex_main_left}{see cex_main.}
+
+  \item{cex_main_right}{see cex_main.}
+
   \item{...}{not used.}
 }
 \value{

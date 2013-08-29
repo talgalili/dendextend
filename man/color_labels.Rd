@@ -8,7 +8,8 @@
   \code{\link{labels_colors}}.
 }
 \usage{
-  color_labels(tree, k = NULL, h = NULL, labels, col, ...)
+  color_labels(tree, k = NULL, h = NULL, labels, col,
+    warn = FALSE, ...)
 }
 \arguments{
   \item{tree}{A \code{dendrogram} or \code{hclust} tree
@@ -29,6 +30,10 @@
   \item{labels}{character vecotor. If not missing, it
   overrides k and h, and simply colors these labels in the
   tree based on "col" parameter.}
+
+  \item{warn}{logical (FALSE). Should warning be issued?
+  (in case h/k/labels are not supplied, or if col is too
+  short)}
 
   \item{...}{ignored.}
 }

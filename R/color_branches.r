@@ -348,6 +348,8 @@ color_labels_by_labels <- function(tree, labels, col, warn=FALSE, ...) {
 #' It will fall back on the \link{rainbow} function.
 #' @param labels character vecotor. If not missing, it overrides k and h,
 #' and simply colors these labels in the tree based on "col" parameter.
+#' @param warn logical (FALSE). Should warning be issued?
+#' (in case h/k/labels are not supplied, or if col is too short)
 #' @param ... ignored.
 #' @return a tree object of class dendrogram.
 #' @author Tal Galili
@@ -378,9 +380,9 @@ color_labels_by_labels <- function(tree, labels, col, warn=FALSE, ...) {
 #' 
 #' } 
 #' 
-color_labels<-function(tree,k=NULL,h=NULL,labels, col,...){
+color_labels<-function(tree,k=NULL,h=NULL,labels, col,warn =FALSE,...){
 
-   if(!missing(labels)) return(color_labels_by_labels(tree=tree, labels=labels, col=col, warn=FALSE, ...) )     
+   if(!missing(labels)) return(color_labels_by_labels(tree=tree, labels=labels, col=col, warn=warn, ...) )     
    
    
    if(missing(col)) {
@@ -392,6 +394,12 @@ color_labels<-function(tree,k=NULL,h=NULL,labels, col,...){
    }   
    
    if(!is.dendrogram(tree) && !is.hclust(tree)) stop("tree needs to be either a dendrogram or an hclust object")
+   
+   if(missing(k) & missing(h)) {
+      k = nleaves(tree)
+      if(warn) warning("Neither k nor h were supplied - coloring all leaves based on 'col'.")
+   }
+   
    g <- dendextend:::cutree(tree,k=k,h=h, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE)
    if(is.hclust(tree)) tree=as.dendrogram(tree)
    
@@ -401,12 +409,12 @@ color_labels<-function(tree,k=NULL,h=NULL,labels, col,...){
    } else {
       if(length(col) < k) {
          #          stop("Must give the same number of colors as number of clusters")
-         warning("Length of color vector was shorter than the number of clusters - color vector was recycled")
+         if(warn) warning("Length of color vector was shorter than the number of clusters - color vector was recycled")
          col <- rep(col, length.out = k)
       }
       if(length(col) > k) {
          #          stop("Must give the same number of colors as number of clusters")
-         warning("Length of color vector was longer than the number of clusters - first k elements are used")
+         if(warn) warning("Length of color vector was longer than the number of clusters - first k elements are used")
          col <- col[seq_len(k)]
       }
    }
