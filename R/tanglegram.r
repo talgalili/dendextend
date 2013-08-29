@@ -655,20 +655,20 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    }
    # adjust labels cex:
    if(!is.null(lab.cex)) {
-      tree1 <- assign_values_to_leaves_nodePar(tree1, lab.cex, "lab.cex")
-      tree2 <- assign_values_to_leaves_nodePar(tree2, lab.cex, "lab.cex")
+      tree1 <- assign_values_to_leaves_nodePar(tree1, lab.cex, "lab.cex", warn = FALSE)
+      tree2 <- assign_values_to_leaves_nodePar(tree2, lab.cex, "lab.cex", warn = FALSE)
    }
    if(!is.null(edge.lwd)) {
       tree1 <- assign_values_to_branches_edgePar(tree1, edge.lwd, "lwd")
       tree2 <- assign_values_to_branches_edgePar(tree2, edge.lwd, "lwd")
    }
    if(!is.null(k_labels)) {
-      tree1 <- color_labels(tree1, k_labels)
-      tree2 <- color_labels(tree2, k_labels)
+      tree1 <- color_labels(tree1, k=k_labels)
+      tree2 <- color_labels(tree2, k=k_labels)
    }
    if(!is.null(k_branches)) {
-      tree1 <- color_branches(tree1, k_branches)
-      tree2 <- color_branches(tree2, k_branches)
+      tree1 <- color_branches(tree1, k=k_branches)
+      tree2 <- color_branches(tree2, k=k_branches)
    }
    if(rank_branches) {
       tree1 <- rank_branches(tree1)

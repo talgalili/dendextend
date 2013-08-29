@@ -3,7 +3,7 @@
 \title{Assign values to nodePar of dendrogram's leaves}
 \usage{
   assign_values_to_leaves_nodePar(object, value, nodePar,
-    ...)
+    warn = TRUE, ...)
 }
 \arguments{
   \item{object}{a dendrogram object}
@@ -14,6 +14,11 @@
   issue a warning.}
 
   \item{nodePar}{the value inside nodePar to adjust.}
+
+  \item{warn}{logical (TRUE). Should warning be issued?
+  Generally, it is safer to keep this at TRUe. But for
+  specific uses it might be more user-friendly to turn it
+  off (for example, in the \link{tanglegram} function)}
 
   \item{...}{not used}
 }

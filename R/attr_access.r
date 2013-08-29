@@ -492,6 +492,11 @@ rank_branches <- function(dend, diff_height =1, ...) {
 #' the same length as the number of leaves in the tree. If not, it will recycle
 #' the value and issue a warning.
 #' @param nodePar the value inside nodePar to adjust.
+#' @param warn logical (TRUE). Should warning be issued?
+#' Generally, it is safer to keep this at TRUe.
+#' But for specific uses it might be more user-friendly
+#' to turn it off (for example, in the \link{tanglegram}
+#' function)
 #' @param ... not used
 #' @return 
 #' A dendrogram, after adjusting the nodePar attribute in all of its leaves, 
@@ -525,12 +530,12 @@ rank_branches <- function(dend, diff_height =1, ...) {
 #' 
 #' }
 #' 
-assign_values_to_leaves_nodePar <- function(object, value, nodePar,...) {
+assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE, ...) {
    if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
    
    leaves_length <- length(order.dendrogram(object)) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
    if(leaves_length > length(value)) {
-      warning("Length of value vector was shorter than the number of leaves - vector value recycled")
+      if(warn) warning("Length of value vector was shorter than the number of leaves - vector value recycled")
       value <- rep(value, length.out = leaves_length)
    }       
    
