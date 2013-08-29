@@ -548,7 +548,8 @@ plot_horiz.dendrogram <- function (x,
 #' Notice that tanglegram does not "resize" well. In case you are resizing your
 #' window you would need to re-run the function.
 #' 
-#' @return invisible(NULL)
+#' @return An invisible list, with two trees after being
+#' modified during the creation of the tanglegram.
 #' @source
 #' The function is based on code from plannapus, after major revisions. See:
 #' \url{http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r}
@@ -753,7 +754,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    
    
    
-   return(invisible(NULL))
+   return(invisible(list(tree1 = tree1, tree2 = tree2)))
 }
 
 

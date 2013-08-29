@@ -152,7 +152,8 @@
   \item{...}{not used.}
 }
 \value{
-  invisible(NULL)
+  An invisible list, with two trees after being modified
+  during the creation of the tanglegram.
 }
 \description{
   Counts the number of leaves in a tree (dendrogram or
