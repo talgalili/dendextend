@@ -539,6 +539,10 @@ plot_horiz.dendrogram <- function (x,
 #' to have the lines connect the correct labels. Set this to FALSE if you 
 #' want to make the plotting a bit faster, and only after you are sure
 #' the labels and orders are correctly aligned.
+#' @param cex_main A numerical value giving the amount by which plotting title 
+#' should be magnified relative to the default.
+#' @param cex_main_left see cex_main.
+#' @param cex_main_right see cex_main.
 #' @param ... not used.
 #' @details 
 #' Notice that tanglegram does not "resize" well. In case you are resizing your
@@ -621,6 +625,9 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   rank_branches = FALSE, 
                                   hang = FALSE, 
                                   match_order_by_labels = TRUE,
+                                  cex_main = 1,
+                                  cex_main_left=cex_main,
+                                  cex_main_right=cex_main,
                                   ... )
 {
    
@@ -703,6 +710,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
         dLeaf = dLeaf_left, 
         type = type, axes = axes,
         main = main_left,
+        cex.main = cex_main_left,
         # ...)
 #         leaflab="none",
        yaxs = "r", xaxs = "i" ,...) # this might be causing bugs when refreshing a resized window.
@@ -727,7 +735,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
             arrows(0,x[1],1,x[2],code=0, length=0.05, col= color_lines[col_indx], lwd = lwd)
          }
    )
-   mtext(main,side=3)
+   mtext(main,side=3,cex=cex_main)
    
    #################
    # And the second dendrogram (to reverse it I reversed the xlim vector:
@@ -736,6 +744,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    plot_horiz.dendrogram(tree2, side=TRUE, dLeaf=dLeaf_right,
                          type = type, axes = axes,
                          ylim=c(0,l),
+                         cex.main = cex_main_left,
                          main = main_right,
                          # ...)
                          #         leaflab="none",        
