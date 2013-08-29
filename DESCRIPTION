@@ -1,14 +1,15 @@
 Package: dendextend
 Type: Package
 Title: Extending dendrogram functionality
-Version: 0.10.0
-Date: 2013-08-20
+Version: 0.11.0
+Date: 2013-08-24
 Authors@R: c(person("Tal Galili", "Developer", role = c("aut", "cre", "ctb"),
     email = "tal.galili@math.tau.ac.il"), person("Gavin Simpson",
-    "Developer", role = "ctb"),
-    person("jefferis", "Developer", role = "ctb", comment = "imported code from the dendroextras package") , person("Marco Gallotta",
-    "Developer", role = "ctb", comment = "a.k.a: marcog") , person("plannapus", "Developer", role =
-    "ctb") , person("Gregory", "Developer", role = "ctb"))
+    role = "ctb"), person("jefferis",  role = "ctb", comment =
+    "imported code from the dendroextras package") , person("Marco Gallotta",
+    role = "ctb", comment = "a.k.a: marcog") , person("plannapus",
+    role = "ctb") , person("Gregory",  role = "ctb"),
+    person("R core team",  role = "ctb", comment = "Infastructure"))
 Maintainer: Tal Galili <tal.galili@gmail.com>
 Description: Functions and methods for extanding dendrogram objects in R.
 Suggests:
@@ -23,6 +24,7 @@ Suggests:
 Enhances: ape
 License: GPL-2 | GPL-3
 URL: https://github.com/talgalili/dendextend/,
+    https://groups.google.com/forum/#!forum/dendextend/,
     http://www.r-statistics.com/tag/dendextend/
 BugReports: https://github.com/talgalili/dendextend/issues
 VignetteBuilder: knitr

@@ -1,3 +1,15 @@
+dendextend 0.11.0 (2013-08-24)
+----------------------------
+VIGNETTES:
+   * Added a knitr presentation for "Boston-useR" 2013-09-05. Includes an introduction to hclust and dendrogram objects, tree manipulation, and dendextend modules (still needs the dendextend section on tanglegram...)
+
+UPDATED FUNCTIONS:
+   * tangelgram - added cex_main parameter.
+
+
+OTHER NOTES:
+   * Gave proper credit to contributers in the DESCRIPTION file (and not just the .Rd files)
+
 dendextend 0.10.0 (2013-08-20)
 ----------------------------
 NEW FUNCTIONS ADDED: 
