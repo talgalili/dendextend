@@ -159,6 +159,8 @@ untangle_random_search <- function(tree1, tree2, R = 100L, L = 1, leaves_matchin
       if(!identical(tree2,old_tree2)) warning("The leaves order in 'tree2' were changed. If you want to avoid that, use leaves_matching_method = 'labels'.")
    }
    
+   optimal_tree1 <- tree1
+   optimal_tree2 <- tree2   		
    
    best_ordaring_entanglement <- entanglement(tree1, tree2, L, leaves_matching_method)
    

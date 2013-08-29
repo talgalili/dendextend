@@ -5,6 +5,8 @@ UPDATED FUNCTIONS:
    * Added "warn" parameter to: assign_values_to_leaves_nodePar, And set it to FALSE when used inside "tanglegram".
    * tanglegram now returns an invisible list with the two dendrograms (after they have been modified within the function).
 
+BUG FIXES:
+   * untangle_random_search - made sure the function will return the original trees if no better tree was found.
 
 
 dendextend 0.11.0 (2013-08-24)
