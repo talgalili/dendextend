@@ -524,10 +524,11 @@ plot_horiz.dendrogram <- function (x,
 #' @param type type of plot ("t"/"r" = triangle or rectangle)
 #' @param lab.cex numeric scalar, influanicing the cex size of the labels.
 #' @param remove_nodePar logical (FALSE). Should the nodePar of the leaves be 
-#' removed? (useful when the trees' leaves have too many parameters on them)
+#' removed? (useful when the trees' leaves has too many parameters on them)
 #' @param main Character. Title above the connecting lines.
 #' @param main_left Character. Title of the left dendrogram.
 #' @param main_right Character. Title of the right dendrogram.
+#' @param sub Character. Title below the connecting lines.
 #' @param k_labels integer. Number of groups by which to color the leaves.
 #' @param k_branches integer. Number of groups by which to color the branches.
 #' @param rank_branches logical (FALSE). Should the branches heights be adjusted?
@@ -543,6 +544,7 @@ plot_horiz.dendrogram <- function (x,
 #' should be magnified relative to the default.
 #' @param cex_main_left see cex_main.
 #' @param cex_main_right see cex_main.
+#' @param cex_sub see cex_main.
 #' @param ... not used.
 #' @details 
 #' Notice that tanglegram does not "resize" well. In case you are resizing your
@@ -621,6 +623,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   main = "",
                                   main_left = "",
                                   main_right = "",
+                                  sub = "",
                                   k_labels = NULL,
                                   k_branches = NULL,
                                   rank_branches = FALSE, 
@@ -629,6 +632,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   cex_main = 3,
                                   cex_main_left=cex_main,
                                   cex_main_right=cex_main,
+                                  cex_sub=cex_main,
                                   ... )
 {
    
@@ -737,6 +741,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
          }
    )
    mtext(main,side=3,cex=cex_main)
+   mtext(sub,side=1,cex=cex_sub)
    
    #################
    # And the second dendrogram (to reverse it I reversed the xlim vector:

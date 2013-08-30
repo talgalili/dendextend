@@ -111,7 +111,7 @@
 
   \item{remove_nodePar}{logical (FALSE). Should the nodePar
   of the leaves be removed? (useful when the trees' leaves
-  have too many parameters on them)}
+  has too many parameters on them)}
 
   \item{main}{Character. Title above the connecting lines.}
 
@@ -120,6 +120,8 @@
 
   \item{main_right}{Character. Title of the right
   dendrogram.}
+
+  \item{sub}{Character. Title below the connecting lines.}
 
   \item{k_labels}{integer. Number of groups by which to
   color the leaves.}
@@ -148,6 +150,8 @@
   \item{cex_main_left}{see cex_main.}
 
   \item{cex_main_right}{see cex_main.}
+
+  \item{cex_sub}{see cex_main.}
 
   \item{...}{not used.}
 }
