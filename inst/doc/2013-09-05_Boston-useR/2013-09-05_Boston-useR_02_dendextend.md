@@ -204,7 +204,7 @@ plot(dend)
 
 
 
-Colors - for leaves
+Coloring: leaves
 ================================================================
 
 **Color leaves**:
@@ -241,7 +241,7 @@ plot(dend)
 
 
 
-Colors - for branches
+Coloring: branches
 ================================================================
 **Color leaves**:
 
@@ -308,6 +308,8 @@ label_col=unlist(get_nodes_attr(dend, "nodePar")) )
 ```
 
 
+(relatively simple since we only have one relevant parameter in the object: color)
+
 ***
 
 **Color branches and leaves**:
@@ -335,7 +337,7 @@ par(cex = 2, lwd = 2, las = 2)
 plot(dend4)   
 ```
 
-<img src="2013-09-05_Boston-useR_02_dendextend-figure/unnamed-chunk-15.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" />
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/dend_hang_tree_1.png" title="plot of chunk dend_hang_tree_1" alt="plot of chunk dend_hang_tree_1" style="display: block; margin: auto;" />
 
 
 
@@ -350,7 +352,7 @@ plot(dend3)
 abline(h=3, col = 3, lty = 2)
 ```
 
-<img src="2013-09-05_Boston-useR_02_dendextend-figure/unnamed-chunk-16.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" />
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/unnamed-chunk-15.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" />
 
 
 
@@ -361,13 +363,13 @@ Rotating
 
 
 ```r
-
+dend4 <- hang.dendrogram(dend3)
 
 par(cex = 2, lwd = 2, las = 2)
 plot(dend4)   
 ```
 
-<img src="2013-09-05_Boston-useR_02_dendextend-figure/unnamed-chunk-17.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" style="display: block; margin: auto;" />
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/dend_hang_tree_1.png" title="plot of chunk dend_hang_tree_1" alt="plot of chunk dend_hang_tree_1" style="display: block; margin: auto;" />
 
 
 ***
@@ -375,19 +377,15 @@ plot(dend4)
 
 
 ```r
-
-
-
-
 dend5 <- rotate(dend4, c(4, 1:3, 5))
 par(cex = 2, lwd = 2, las = 2)
 plot(dend5)   
 ```
 
-<img src="2013-09-05_Boston-useR_02_dendextend-figure/unnamed-chunk-18.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" style="display: block; margin: auto;" />
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/dend_rotating_example_1.png" title="plot of chunk dend_rotating_example_1" alt="plot of chunk dend_rotating_example_1" style="display: block; margin: auto;" />
 
 
-
+(may also use labels' names)
 
 
 
@@ -402,7 +400,7 @@ par(cex = 2, lwd = 2, las = 2)
 plot(dend6) 
 ```
 
-<img src="2013-09-05_Boston-useR_02_dendextend-figure/unnamed-chunk-19.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" style="display: block; margin: auto;" />
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/dend_unbranching_example_1.png" title="plot of chunk dend_unbranching_example_1" alt="plot of chunk dend_unbranching_example_1" style="display: block; margin: auto;" />
 
 
 
@@ -416,19 +414,13 @@ plot(dend6)
 ***
 
 
-
 ```r
-
-
-
-
 dend5 <- rotate(dend4, c(4, 1:3, 5))
 par(cex = 2, lwd = 2, las = 2)
 plot(dend5)   
 ```
 
-<img src="2013-09-05_Boston-useR_02_dendextend-figure/unnamed-chunk-21.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" style="display: block; margin: auto;" />
-
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/dend_rotating_example_1.png" title="plot of chunk dend_rotating_example_1" alt="plot of chunk dend_rotating_example_1" style="display: block; margin: auto;" />
 
 
 
@@ -445,7 +437,7 @@ par(cex = 2, lwd = 2, las = 2)
 plot(dend6) 
 ```
 
-<img src="2013-09-05_Boston-useR_02_dendextend-figure/unnamed-chunk-22.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" style="display: block; margin: auto;" />
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/dend_unbranching_example_1.png" title="plot of chunk dend_unbranching_example_1" alt="plot of chunk dend_unbranching_example_1" style="display: block; margin: auto;" />
 
 
 
@@ -460,7 +452,7 @@ par(cex = 2, lwd = 2, las = 2)
 plot(dend7) 
 ```
 
-<img src="2013-09-05_Boston-useR_02_dendextend-figure/unnamed-chunk-23.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" style="display: block; margin: auto;" />
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/dend_trimming_example_1.png" title="plot of chunk dend_trimming_example_1" alt="plot of chunk dend_trimming_example_1" style="display: block; margin: auto;" />
 
 
 
@@ -508,14 +500,13 @@ NULL
 
 
 ```r
-
-
+dend7 <- trim(dend6, c("Wshng", "NwYrk")) 
 
 par(cex = 2, lwd = 2, las = 2) 
-plot(dend7)  
+plot(dend7) 
 ```
 
-<img src="2013-09-05_Boston-useR_02_dendextend-figure/unnamed-chunk-25.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" style="display: block; margin: auto;" />
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/dend_trimming_example_1.png" title="plot of chunk dend_trimming_example_1" alt="plot of chunk dend_trimming_example_1" style="display: block; margin: auto;" />
 
 
 
@@ -531,7 +522,7 @@ left: 50%
 **Iris dataset:** - 150 items, 50 from each of three species of Iris (Iris setosa, Iris virginica and Iris versicolor). Four features were measured from each sample: the length and the width of the sepals and petals, in centimetres.
 
 
-<img src="2013-09-05_Boston-useR_02_dendextend-figure/unnamed-chunk-26.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" style="display: block; margin: auto;" />
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/unnamed-chunk-18.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" style="display: block; margin: auto;" />
 
 
 
@@ -570,7 +561,7 @@ function (tree1, tree2, sort = FALSE, color_lines = "darkgrey",
     dLeaf_left = dLeaf, dLeaf_right = dLeaf, axes = TRUE, type = "r", 
     lab.cex = NULL, remove_nodePar = FALSE, main = "", main_left = "", 
     main_right = "", k_labels = NULL, k_branches = NULL, rank_branches = FALSE, 
-    hang = FALSE, match_order_by_labels = TRUE, cex_main = 1, 
+    hang = FALSE, match_order_by_labels = TRUE, cex_main = 3, 
     cex_main_left = cex_main, cex_main_right = cex_main, ...) 
 NULL
 ```
@@ -593,7 +584,7 @@ dend1 <- as.dendrogram(hc1)
 dend1 <- color_labels(dend1)
 labels(dend1) <- LETTERS[1:4]
 dend2 <- rotate(dend1, order=c(1,2,4,3))
-dend2_worst <- rev(dend1)
+dend2_worst <- rev(dend1) # in the code it is a bit different
 ```
 
 
@@ -624,12 +615,18 @@ Tanglegram plots:
 
 
 ```r
-tanglegram(dend1, dend2, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(3,3,2,2), main = "Our data")
+tanglegram(dend1, dend2, 
+           main = "Our data",
+           color_lines = c(3,3,2,2), 
+           lab.cex = 4, edge.lwd = 7,
+           margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
 ```
 
 <img src="2013-09-05_Boston-useR_02_dendextend-figure/simple_tanglegram_1.png" title="plot of chunk simple_tanglegram_1" alt="plot of chunk simple_tanglegram_1" style="display: block; margin: auto;" />
 
 
+(no need for axes in this case)
 
 Measuring entanglement (step-by-step): L=1.5
 =====================================================
@@ -782,7 +779,9 @@ Let us do a naive **random search** over one shuffle of the right trees:
 
 set.seed(1112) # always set this first!
 dend2_shuffle <- shuffle(dend2)
-tanglegram(dend1, dend2_shuffle, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(2,2,3,3), main = "Different - but NOT better")
+tanglegram(dend1, dend2_shuffle, lab.cex = 4, edge.lwd = 7, color_lines = c(2,2,3,3), main = "Different - but NOT better",
+                      margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
 ```
 
 <img src="2013-09-05_Boston-useR_02_dendextend-figure/simple_tanglegram_one_shuffle_1.png" title="plot of chunk simple_tanglegram_one_shuffle_1" alt="plot of chunk simple_tanglegram_one_shuffle_1" style="display: block; margin: auto;" />
@@ -814,13 +813,15 @@ Naive **random search** over MANY shuffles of BOTH trees:
 
 set.seed(65168)
 dend12 <- untangle_random_search(dend1, dend2, R=10)
-tanglegram(dend12[[1]] , dend12[[2]], lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = rep(3,4), main = "Problem solved")
+tanglegram(dend12[[1]] , dend12[[2]], lab.cex = 4, edge.lwd = 7, color_lines = rep(3,4), main = "Problem solved",
+                      margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
 ```
 
 <img src="2013-09-05_Boston-useR_02_dendextend-figure/simple_tanglegram_random_search_1.png" title="plot of chunk simple_tanglegram_random_search_1" alt="plot of chunk simple_tanglegram_random_search_1" style="display: block; margin: auto;" />
 
 
-
+(notice the new leaves order)
 
 ***
 
@@ -835,16 +836,38 @@ Tanglegram plots:
 
 
 
-Statistical inference on the similarity of two trees
-================================================================
-type: sub-section
+Untangaling tanglegrams: forward step (1 side)
+=====================================================
+left: 50%
+
+Pick one tree - and check rotations for improvement from root to leaves:
 
 
 
 
+```r
+# set.seed(65168) # doesn't matter
+dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)
+tanglegram(dend1 , dend2_corrected, lab.cex = 4, edge.lwd = 7, color_lines = rep(3,4), main = "Problem solved",
+                      margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
+```
+
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/simple_tanglegram_step_rotate_1side_example_1.png" title="plot of chunk simple_tanglegram_step_rotate_1side_example_1" alt="plot of chunk simple_tanglegram_step_rotate_1side_example_1" style="display: block; margin: auto;" />
 
 
+The same exists for BOTH sides using: "untangle_step_rotate_1side"
 
+(notice the leaves' locations of the first tree did NOT change)
+
+***
+
+Tanglegram plots:
+
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/simple_tanglegram_1.png" title="plot of chunk simple_tanglegram_1" alt="plot of chunk simple_tanglegram_1" style="display: block; margin: auto;" />
+
+
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/simple_tanglegram_1_worst_case.png" title="plot of chunk simple_tanglegram_1_worst_case" alt="plot of chunk simple_tanglegram_1_worst_case" style="display: block; margin: auto;" />
 
 
 

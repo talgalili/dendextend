@@ -14,7 +14,13 @@ Boston-useR
 require(knitr)
 opts_chunk$set(cache=TRUE, fig.align='center')
 options(digits = 3)
-purl("2013-09-05_Boston-useR_01_intro.Rpres")
+
+local_files <- list.files(getwd())
+Rpres_loc <- > grep("Rpres", local_files)
+for(i in Rpres_loc) {
+	purl(local_files[i])
+}
+
 ```
 
 

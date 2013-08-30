@@ -109,7 +109,7 @@ plot(dend3)
 abline(h=3, col = 3, lty = 2)
 
 
-## ----, fig.height=10, fig.width=10---------------------------------------
+## ----dend_hang_tree_1, fig.height=10, fig.width=10-----------------------
 dend4 <- hang.dendrogram(dend3)
 
 par(cex = 2, lwd = 2, las = 2)
@@ -123,24 +123,20 @@ plot(dend3)
 abline(h=3, col = 3, lty = 2)
 
 
-## ----, fig.height=10, fig.width=10---------------------------------------
-
+## ----dend_hang_tree_1, fig.height=10, fig.width=10-----------------------
+dend4 <- hang.dendrogram(dend3)
 
 par(cex = 2, lwd = 2, las = 2)
 plot(dend4)   
 
 
-## ----, fig.height=10, fig.width=10---------------------------------------
-
-
-
-
+## ----dend_rotating_example_1, fig.height=10, fig.width=10----------------
 dend5 <- rotate(dend4, c(4, 1:3, 5))
 par(cex = 2, lwd = 2, las = 2)
 plot(dend5)   
 
 
-## ----, fig.height=10, fig.width=10---------------------------------------
+## ----dend_unbranching_example_1, fig.height=10, fig.width=10-------------
 dend6 <- unbranch(dend5)
 
 par(cex = 2, lwd = 2, las = 2) 
@@ -151,24 +147,20 @@ plot(dend6)
 # as.hclust(dend) is not longer possible...
 
 
-## ----, fig.height=10, fig.width=10---------------------------------------
-
-
-
-
+## ----dend_rotating_example_1, fig.height=10, fig.width=10----------------
 dend5 <- rotate(dend4, c(4, 1:3, 5))
 par(cex = 2, lwd = 2, las = 2)
 plot(dend5)   
 
 
-## ----, fig.height=10, fig.width=10---------------------------------------
+## ----dend_unbranching_example_1, fig.height=10, fig.width=10-------------
 dend6 <- unbranch(dend5)
 
 par(cex = 2, lwd = 2, las = 2) 
 plot(dend6) 
 
 
-## ----, fig.height=10, fig.width=10---------------------------------------
+## ----dend_trimming_example_1, fig.height=10, fig.width=10----------------
 dend7 <- trim(dend6, c("Wshng", "NwYrk")) 
 
 par(cex = 2, lwd = 2, las = 2) 
@@ -181,12 +173,11 @@ cutree(dend7 , k=3,order_clusters_as_data=FALSE)
 args(cutree.dendrogram)
 
 
-## ----, fig.height=10, fig.width=10---------------------------------------
-
-
+## ----dend_trimming_example_1, fig.height=10, fig.width=10----------------
+dend7 <- trim(dend6, c("Wshng", "NwYrk")) 
 
 par(cex = 2, lwd = 2, las = 2) 
-plot(dend7)  
+plot(dend7) 
 
 
 ## ----,  fig.height = 13, fig.width=13,echo=FALSE-------------------------
@@ -259,7 +250,7 @@ dend1 <- as.dendrogram(hc1)
 dend2 <- as.dendrogram(hc2)
 
 lines_col_true <- rainbow_hcl(3)[sort_levels_values(
-      as.numeric(iris[,5])[order.dendrogram(dend_iris)]
+      as.numeric(iris[,5])[order.dendrogram(dend1)]
    )]
 
 tanglegram(dend1 , rev(dend2), 
@@ -285,7 +276,7 @@ dend1 <- as.dendrogram(hc1)
 dend1 <- color_labels(dend1)
 labels(dend1) <- LETTERS[1:4]
 dend2 <- rotate(dend1, order=c(1,2,4,3))
-dend2_worst <- rev(dend1)
+dend2_worst <- rev(dend1) # in the code it is a bit different
 
 
 ## ------------------------------------------------------------------------
@@ -293,7 +284,12 @@ entanglement(dend1,dend2, L = 1.5)
 
 
 ## ----simple_tanglegram_1, fig.height=7, fig.width = 8--------------------
-tanglegram(dend1, dend2, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(3,3,2,2), main = "Our data")
+tanglegram(dend1, dend2, 
+           main = "Our data",
+           color_lines = c(3,3,2,2), 
+           lab.cex = 4, edge.lwd = 7,
+           margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
 
 
 ## ------------------------------------------------------------------------
@@ -313,11 +309,19 @@ entanglement(dend1,dend2)
 
 
 ## ----simple_tanglegram_1, fig.height=3, fig.width = 8, echo=FALSE--------
-tanglegram(dend1, dend2, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(3,3,2,2), main = "Our data")
+tanglegram(dend1, dend2, 
+           main = "Our data",
+           color_lines = c(3,3,2,2), 
+           lab.cex = 4, edge.lwd = 7,
+           margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
 
 
 ## ----simple_tanglegram_1_worst_case, fig.height=7, fig.width = 8, echo=FALSE----
-tanglegram(dend1, dend2_worst, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(2,2,2,2), main = "Worst case")
+tanglegram(dend1, dend2_worst, lab.cex = 4, edge.lwd = 7, color_lines = c(2,2,2,2), main = "Worst case",
+                      margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
+
 
 
 ## ------------------------------------------------------------------------
@@ -337,42 +341,92 @@ entanglement(dend1,dend2, L = 0)
 
 
 ## ----simple_tanglegram_1, fig.height=7, fig.width = 8, echo=FALSE--------
-tanglegram(dend1, dend2, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(3,3,2,2), main = "Our data")
+tanglegram(dend1, dend2, 
+           main = "Our data",
+           color_lines = c(3,3,2,2), 
+           lab.cex = 4, edge.lwd = 7,
+           margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
 
 
 ## ----simple_tanglegram_1_worst_case, fig.height=7, fig.width = 8, echo=FALSE----
-tanglegram(dend1, dend2_worst, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(2,2,2,2), main = "Worst case")
+tanglegram(dend1, dend2_worst, lab.cex = 4, edge.lwd = 7, color_lines = c(2,2,2,2), main = "Worst case",
+                      margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
+
 
 
 ## ----simple_tanglegram_one_shuffle_1, fig.height=7, fig.width = 8--------
 
 set.seed(1112) # always set this first!
 dend2_shuffle <- shuffle(dend2)
-tanglegram(dend1, dend2_shuffle, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(2,2,3,3), main = "Different - but NOT better")
-
+tanglegram(dend1, dend2_shuffle, lab.cex = 4, edge.lwd = 7, color_lines = c(2,2,3,3), main = "Different - but NOT better",
+                      margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
 
 
 ## ----simple_tanglegram_1, fig.height=7, fig.width = 8, echo=FALSE--------
-tanglegram(dend1, dend2, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(3,3,2,2), main = "Our data")
+tanglegram(dend1, dend2, 
+           main = "Our data",
+           color_lines = c(3,3,2,2), 
+           lab.cex = 4, edge.lwd = 7,
+           margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
 
 
 ## ----simple_tanglegram_1_worst_case, fig.height=7, fig.width = 8, echo=FALSE----
-tanglegram(dend1, dend2_worst, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(2,2,2,2), main = "Worst case")
+tanglegram(dend1, dend2_worst, lab.cex = 4, edge.lwd = 7, color_lines = c(2,2,2,2), main = "Worst case",
+                      margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
+
 
 
 ## ----simple_tanglegram_random_search_1, fig.height=7, fig.width = 8------
 
 set.seed(65168)
 dend12 <- untangle_random_search(dend1, dend2, R=10)
-tanglegram(dend12[[1]] , dend12[[2]], lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = rep(3,4), main = "Problem solved")
-
+tanglegram(dend12[[1]] , dend12[[2]], lab.cex = 4, edge.lwd = 7, color_lines = rep(3,4), main = "Problem solved",
+                      margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
 
 
 ## ----simple_tanglegram_1, fig.height=7, fig.width = 8, echo=FALSE--------
-tanglegram(dend1, dend2, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(3,3,2,2), main = "Our data")
+tanglegram(dend1, dend2, 
+           main = "Our data",
+           color_lines = c(3,3,2,2), 
+           lab.cex = 4, edge.lwd = 7,
+           margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
 
 
 ## ----simple_tanglegram_1_worst_case, fig.height=7, fig.width = 8, echo=FALSE----
-tanglegram(dend1, dend2_worst, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(2,2,2,2), main = "Worst case")
+tanglegram(dend1, dend2_worst, lab.cex = 4, edge.lwd = 7, color_lines = c(2,2,2,2), main = "Worst case",
+                      margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
+
+
+
+## ----simple_tanglegram_step_rotate_1side_example_1, fig.height=7, fig.width = 8----
+# set.seed(65168) # doesn't matter
+dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)
+tanglegram(dend1 , dend2_corrected, lab.cex = 4, edge.lwd = 7, color_lines = rep(3,4), main = "Problem solved",
+                      margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
+
+
+## ----simple_tanglegram_1, fig.height=7, fig.width = 8, echo=FALSE--------
+tanglegram(dend1, dend2, 
+           main = "Our data",
+           color_lines = c(3,3,2,2), 
+           lab.cex = 4, edge.lwd = 7,
+           margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
+
+
+## ----simple_tanglegram_1_worst_case, fig.height=7, fig.width = 8, echo=FALSE----
+tanglegram(dend1, dend2_worst, lab.cex = 4, edge.lwd = 7, color_lines = c(2,2,2,2), main = "Worst case",
+                      margin_inner= 5, margin_bottom = 0, 
+           axes = FALSE)
+
 
 
