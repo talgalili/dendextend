@@ -157,7 +157,7 @@ Dendrogram has several useful methods bundled with R:
 ## [15] print.dendrogram*        reorder.dendrogram*     
 ## [17] rev.dendrogram*          rotate.dendrogram*      
 ## [19] sort.dendrogram*         str.dendrogram*         
-## [21] tanglegram.dendrogram*   trim.dendrogram*        
+## [21] tanglegram.dendrogram*   prune.dendrogram*        
 ## [23] unbranch.dendrogram*    
 ## 
 ##    Non-visible functions are asterisked
@@ -1169,7 +1169,7 @@ Hanging a tree means that we change the height of the leaves to be near their pa
 
 \subsection{Trimming leaves}
 
-Trimming a tree from some leaves can be done using the \code{trim} (S3 method) function (notice that the attributes of the trimmed tree are updated):
+Trimming a tree from some leaves can be done using the \code{prune} (S3 method) function (notice that the attributes of the pruned tree are updated):
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -1179,9 +1179,9 @@ Trimming a tree from some leaves can be done using the \code{trim} (S3 method) f
 \hlkwd{library}\hlstd{(colorspace)}
 \hlkwd{labels_colors}\hlstd{(dend)} \hlkwb{<-} \hlkwd{rainbow_hcl}\hlstd{(}\hlnum{5}\hlstd{)}
 
-\hlstd{trimmed_dend} \hlkwb{<-} \hlkwd{trim}\hlstd{(dend,} \hlkwd{c}\hlstd{(}\hlstr{"Alaska"}\hlstd{,} \hlstr{"California"}\hlstd{)}\hlstd{)}
+\hlstd{pruned_dend} \hlkwb{<-} \hlkwd{prune}\hlstd{(dend,} \hlkwd{c}\hlstd{(}\hlstr{"Alaska"}\hlstd{,} \hlstr{"California"}\hlstd{)}\hlstd{)}
 
-\hlkwd{str}\hlstd{(}\hlkwd{unclass}\hlstd{(trimmed_dend))}
+\hlkwd{str}\hlstd{(}\hlkwd{unclass}\hlstd{(pruned_dend))}
 \end{alltt}
 \begin{verbatim}
 ## List of 2
@@ -1220,7 +1220,7 @@ Trimming a tree from some leaves can be done using the \code{trim} (S3 method) f
 \begin{alltt}
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{))}
 \hlkwd{plot}\hlstd{(dend,} \hlkwc{main} \hlstd{=} \hlstr{"Original tree"}\hlstd{)}
-\hlkwd{plot}\hlstd{(trimmed_dend,} \hlkwc{main} \hlstd{=} \hlstr{"Tree without Alaska and California"}\hlstd{)}
+\hlkwd{plot}\hlstd{(pruned_dend,} \hlkwc{main} \hlstd{=} \hlstr{"Tree without Alaska and California"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1249,17 +1249,17 @@ If we have two trees, we can use the \code{intersect_trees} function to reduce b
 \hlkwd{labels_colors}\hlstd{(dend_2)} \hlkwb{<-} \hlkwd{rainbow_hcl}\hlstd{(}\hlnum{5}\hlstd{)}
 
 
-\hlstd{trimmed_dend_1} \hlkwb{<-} \hlkwd{trim}\hlstd{(dend_1,} \hlkwd{c}\hlstd{(}\hlstr{"Alaska"}\hlstd{))}
-\hlstd{trimmed_dend_2} \hlkwb{<-} \hlkwd{trim}\hlstd{(dend_2,} \hlkwd{c}\hlstd{(}\hlstr{"California"}\hlstd{)}\hlstd{)}
+\hlstd{pruned_dend_1} \hlkwb{<-} \hlkwd{prune}\hlstd{(dend_1,} \hlkwd{c}\hlstd{(}\hlstr{"Alaska"}\hlstd{))}
+\hlstd{pruned_dend_2} \hlkwb{<-} \hlkwd{prune}\hlstd{(dend_2,} \hlkwd{c}\hlstd{(}\hlstr{"California"}\hlstd{)}\hlstd{)}
 
-\hlstd{dends_12} \hlkwb{<-} \hlkwd{intersect_trees}\hlstd{(trimmed_dend_1, trimmed_dend_2}\hlstd{)}
+\hlstd{dends_12} \hlkwb{<-} \hlkwd{intersect_trees}\hlstd{(pruned_dend_1, pruned_dend_2}\hlstd{)}
 
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{3}\hlstd{,} \hlnum{2}\hlstd{))}
 \hlkwd{plot}\hlstd{(dend_1,} \hlkwc{main} \hlstd{=} \hlstr{"Tree - single method"}\hlstd{,} \hlkwc{ylim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{110}\hlstd{))}
 \hlkwd{plot}\hlstd{(dend_2,} \hlkwc{main} \hlstd{=} \hlstr{"Tree - complete method"}\hlstd{,} \hlkwc{ylim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{110}\hlstd{))}
-\hlkwd{plot}\hlstd{(trimmed_dend_1,} \hlkwc{main} \hlstd{=} \hlstr{"Trimmed tree - single method"}\hlstd{,} \hlkwc{ylim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}
+\hlkwd{plot}\hlstd{(pruned_dend_1,} \hlkwc{main} \hlstd{=} \hlstr{"Trimmed tree - single method"}\hlstd{,} \hlkwc{ylim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}
     \hlnum{110}\hlstd{))}
-\hlkwd{plot}\hlstd{(trimmed_dend_2,} \hlkwc{main} \hlstd{=} \hlstr{"Trimmed tree - complete method"}\hlstd{,}
+\hlkwd{plot}\hlstd{(pruned_dend_2,} \hlkwc{main} \hlstd{=} \hlstr{"Trimmed tree - complete method"}\hlstd{,}
     \hlkwc{ylim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{110}\hlstd{))}
 \hlkwd{plot}\hlstd{(dends_12[[}\hlnum{1}\hlstd{]],} \hlkwc{main} \hlstd{=} \hlstr{"Intersected tree - single method"}\hlstd{,}
     \hlkwc{ylim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{110}\hlstd{))}
@@ -3375,7 +3375,7 @@ We are very thankful for code contributions and ideas by the R core team (especi
 \hlkwd{Sys.Date}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## [1] "2013-08-29"
+## [1] "2013-08-30"
 \end{verbatim}
 \begin{alltt}
 \hlkwd{sessionInfo}\hlstd{()}

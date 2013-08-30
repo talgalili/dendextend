@@ -310,8 +310,8 @@ Trimming
 ***
 
 
-```{r dend_trimming_example_1, fig.height=10, fig.width=10}
-dend7 <- trim(dend6, c("Wshng", "NwYrk")) 
+```{r dend_pruning_example_1, fig.height=10, fig.width=10}
+dend7 <- prune(dend6, c("Wshng", "NwYrk")) 
 
 par(cex = 2, lwd = 2, las = 2) 
 plot(dend7) 
@@ -334,7 +334,7 @@ args(cutree.dendrogram)
 
 ***
 
-```{r dend_trimming_example_1, fig.height=10, fig.width=10}
+```{r dend_pruning_example_1, fig.height=10, fig.width=10}
 ```
 
 

@@ -446,13 +446,13 @@ plot(dend6)
 
 
 ```r
-dend7 <- trim(dend6, c("Wshng", "NwYrk")) 
+dend7 <- prune(dend6, c("Wshng", "NwYrk")) 
 
 par(cex = 2, lwd = 2, las = 2) 
 plot(dend7) 
 ```
 
-<img src="2013-09-05_Boston-useR_02_dendextend-figure/dend_trimming_example_1.png" title="plot of chunk dend_trimming_example_1" alt="plot of chunk dend_trimming_example_1" style="display: block; margin: auto;" />
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/dend_pruning_example_1.png" title="plot of chunk dend_pruning_example_1" alt="plot of chunk dend_pruning_example_1" style="display: block; margin: auto;" />
 
 
 
@@ -500,13 +500,13 @@ NULL
 
 
 ```r
-dend7 <- trim(dend6, c("Wshng", "NwYrk")) 
+dend7 <- prune(dend6, c("Wshng", "NwYrk")) 
 
 par(cex = 2, lwd = 2, las = 2) 
 plot(dend7) 
 ```
 
-<img src="2013-09-05_Boston-useR_02_dendextend-figure/dend_trimming_example_1.png" title="plot of chunk dend_trimming_example_1" alt="plot of chunk dend_trimming_example_1" style="display: block; margin: auto;" />
+<img src="2013-09-05_Boston-useR_02_dendextend-figure/dend_pruning_example_1.png" title="plot of chunk dend_pruning_example_1" alt="plot of chunk dend_pruning_example_1" style="display: block; margin: auto;" />
 
 
 

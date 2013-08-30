@@ -203,7 +203,7 @@ duplicate_leaf <- function(dend, leaf_label, times, fix_members=TRUE, fix_order=
 #' plot(sample.dendrogram(dend, replace = FALSE)) 
 #' 
 #' # # A different tree (!), with some labels duplicated, 
-#'   # while others are trimmed
+#'   # while others are pruned
 #' plot(sample.dendrogram(dend, replace = TRUE)) 
 #' }
 #' 
@@ -215,11 +215,11 @@ sample.dendrogram <- function(dend, replace = FALSE,
    if(replace) {
       if(missing(sampled_labels)) sampled_labels <- sample(dend_labels, replace=TRUE)
       
-      # 1) trim redundent leaves
+      # 1) prune redundent leaves
       ss_kept_labels <- dend_labels %in% sampled_labels
       ss_removed_labels <- !ss_kept_labels
       removed_labels <- dend_labels[ss_removed_labels]
-      dend <- trim(dend, leaves=removed_labels)
+      dend <- prune(dend, leaves=removed_labels)
       
 
       # 2) add new leaves

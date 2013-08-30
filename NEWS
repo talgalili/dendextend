@@ -7,6 +7,7 @@ UPDATED FUNCTIONS:
 
 VIGNETTES:
    * Finished tanglegram and untangle. We are left with 
+   * "trim" is now called "prune"!
 
 dendextend 0.11.1 (2013-08-29)
 ----------------------------
@@ -242,7 +243,7 @@ NEW FUNCTIONS ADDED:
 (including tests and documentation)
    * is.natural.number
    * cutree_1h.dendrogram - like cutree, but only for 1 height value.
-   * fix_members_attr.dendrogram - just to validate that trim works o.k.
+   * fix_members_attr.dendrogram - just to validate that prune works o.k.
    * hang.dendrogram - hangs a dendrogram leaves (also allows for a rotated hanged dendrogram), works also for non-binary trees.
    * nnodes - count the number of nodes in a tree
    * as.dendrogram.phylo - based on as.hclust.
@@ -294,11 +295,11 @@ NEW VIGNETTES SECTIONS ADDED:
    * Vignettes created (using LaTeX)
    * Basic introduction to dendrogram objects
    * Labels extraction and assignment, and measuring tree size.
-   * Tree manipulation: unrooting, trimming, label coloring, rotation
+   * Tree manipulation: unrooting, pruning, label coloring, rotation
 
 NEW TESTS ADDED:
    * labels extraction, assignment and tree size (especially important for comparing hclust and dendrogram!)
-   * Tree manipulation: unrooting, trimming, label coloring, rotation
+   * Tree manipulation: unrooting, pruning, label coloring, rotation
 
 UPDATED FUNCTIONS:
    * "labels.hclust" - added the "order" parameter. (based on some ideas from Gregory Jefferis's dendroextras package)
@@ -331,7 +332,7 @@ NEW FUNCTIONS ADDED:
    * rotate (with S3 methods for dendrogram, hclust and phylo)
    * sort (with S3 methods for dendrogram and hclust)
    * flip (works for both dendrogram and hclust)
-   * trim - trims leaves off a dendrogram/hclust/phylo trees. (based on the trim_leaf function)
+   * prune - prunes leaves off a dendrogram/hclust/phylo trees. (based on the prune_leaf function)
    * as_hclust_fixed
    * get_branches_attr
    * unroot (dendrogram/hclust/phylo)

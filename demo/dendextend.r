@@ -5,7 +5,7 @@ require(dendextend)
 ### Nice visual manipulations:
 example(labels_colors)
 example(rotate.dendrogram)
-example(trim.dendrogram)
+example(prune.dendrogram)
 example(unroot.dendrogram)
 example(raise.dendrogram)
 example(flatten.dendrogram)

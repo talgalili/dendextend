@@ -306,7 +306,7 @@ cutree_1h.dendrogram <- function(tree, h,
    {
       if(!all(clusters_order %in% seq_along(clusters_order))){
          if(warn) {
-            warning("rank() was used for the leaves order number! \nExplenation: leaves tip number (the order), and the ranks of these numbers - are not equal.\n  The tree was probably subsetted, trimmed and/or merged with other trees- and now the order \n labels don't make so much sense (hence, the rank on them was used).")
+            warning("rank() was used for the leaves order number! \nExplenation: leaves tip number (the order), and the ranks of these numbers - are not equal.\n  The tree was probably subsetted, pruned and/or merged with other trees- and now the order \n labels don't make so much sense (hence, the rank on them was used).")
             warning("Here is the cluster order vector (from the tree tips) \n", paste(clusters_order, collapse=", "), "\n")
          }
          clusters_order <- rank(clusters_order, ties.method = "first")   # we use the "first" ties method - to handle the cases of ties in the ranks (after splits/merges with other trees)
@@ -783,7 +783,7 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
       order_tree <- order.dendrogram(tree)
       if(!all(order_tree %in% seq_along(order_tree))){
          if(warn) {
-            warning("rank() was used for the leaves order number! \nExplenation: leaves tip number (the order), and the ranks of these numbers - are not equal.\n  The tree was probably subsetted, trimmed and/or merged with other trees- and now the order \n labels don't make so much sense (hence, the rank on them was used).")
+            warning("rank() was used for the leaves order number! \nExplenation: leaves tip number (the order), and the ranks of these numbers - are not equal.\n  The tree was probably subsetted, pruned and/or merged with other trees- and now the order \n labels don't make so much sense (hence, the rank on them was used).")
             warning("Here is the cluster order vector (from the tree tips) \n", paste(order_tree, collapse=", "), "\n")
          }
          tree <- rank_order.dendrogram(tree)

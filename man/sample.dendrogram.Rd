@@ -67,7 +67,7 @@ plot(dend)
 plot(sample.dendrogram(dend, replace = FALSE))
 
 # # A different tree (!), with some labels duplicated,
-  # while others are trimmed
+  # while others are pruned
 plot(sample.dendrogram(dend, replace = TRUE))
 }
 }

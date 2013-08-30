@@ -23,11 +23,11 @@
 dend <- as.dendrogram(hclust(dist(USArrests[1:4,]), "ave"))
 # plot(dend)
 order.dendrogram(dend)
-dend2 <- trim(dend, "Alaska")
+dend2 <- prune(dend, "Alaska")
 order.dendrogram(dend2)
 order.dendrogram(rank_order.dendrogram(dend2))
 }
 \seealso{
-  \link{trim}
+  \link{prune}
 }
 

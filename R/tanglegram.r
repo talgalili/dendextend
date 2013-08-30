@@ -503,7 +503,7 @@ plot_horiz.dendrogram <- function (x,
 #' @param left_dendo_mar mar parameters of the left dendrgoram.
 #' @param right_dendo_mar mar parameters of the right dendrgoram.
 #' @param intersecting logical (TRUE). Should the leaves of the two dendrograms
-#' be trimmed so that the two trees will have the same labels?
+#' be pruned so that the two trees will have the same labels?
 #' @param dLeaf a number specifying the distance in user coordinates between 
 #' the tip of a leaf and its label. If NULL, as per default, 
 #' 3/4 of a letter width or height is used.
@@ -637,7 +637,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
 {
    
    
-   # characters_to_trim = the number of characters to leave after trimming the labels.		
+   # characters_to_prune = the number of characters to leave after pruning the labels.		
    # remove_nodePar = makes sure that we won't have any dots at the end of leaves
    
    if(!is.dendrogram(tree1)) tree1 <- as.dendrogram(tree1)
@@ -764,7 +764,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
 
 
 
-# add an "abbreviation" parameter - to trim the labels of two trees.
+# add an "abbreviation" parameter - to prune the labels of two trees.
 
 
 

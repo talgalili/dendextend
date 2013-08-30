@@ -712,7 +712,7 @@ remove_leaves_nodePar <- function(object, ...) {
 #' @title Fix members attr in a dendrogram
 #' @export
 #' @description
-#' Fix members attr in a dendrogram after (for example), the tree was trimmed 
+#' Fix members attr in a dendrogram after (for example), the tree was pruned 
 #' or manipulated.
 #' @param dend a dendrogram object 
 #' @param ... not used
@@ -724,7 +724,7 @@ remove_leaves_nodePar <- function(object, ...) {
 #' hc <- hclust(dist(USArrests[1:3,]), "ave")
 #' dend <- as.dendrogram(hc)
 #' # plot(dend)
-#' # trim one leaf
+#' # prune one leaf
 #' dend[[2]] <- dend[[2]][[1]]
 #' # plot(dend)
 #' dend # but it is NO LONGER true that it has 3 members total!
@@ -733,9 +733,9 @@ remove_leaves_nodePar <- function(object, ...) {
 #' hc <- hclust(dist(USArrests[1:3,]), "ave")
 #' dend <- as.dendrogram(hc)
 #' 
-#' identical(trim_leaf(dend , "Alaska"), fix_members_attr.dendrogram(trim_leaf(dend , "Alaska")))
-#' str(unclass(trim_leaf(dend , "Alaska")))
-#' str(unclass(fix_members_attr.dendrogram(trim_leaf(dend , "Alaska"))))
+#' identical(prune_leaf(dend , "Alaska"), fix_members_attr.dendrogram(prune_leaf(dend , "Alaska")))
+#' str(unclass(prune_leaf(dend , "Alaska")))
+#' str(unclass(fix_members_attr.dendrogram(prune_leaf(dend , "Alaska"))))
 fix_members_attr.dendrogram <- function(dend,...) {
    if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")   
    
@@ -766,14 +766,14 @@ fix_members_attr.dendrogram <- function(dend,...) {
 #' @return 
 #' A dendrogram, after fixing its leaves order values.
 #' @seealso
-#' \link{trim}
+#' \link{prune}
 #' @examples
 #' 
 #' # define dendrogram object to play with:
 #' dend <- as.dendrogram(hclust(dist(USArrests[1:4,]), "ave"))
 #' # plot(dend)
 #' order.dendrogram(dend)
-#' dend2 <- trim(dend, "Alaska")
+#' dend2 <- prune(dend, "Alaska")
 #' order.dendrogram(dend2)
 #' order.dendrogram(rank_order.dendrogram(dend2))
 #' 

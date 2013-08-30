@@ -160,8 +160,8 @@ par(cex = 2, lwd = 2, las = 2)
 plot(dend6) 
 
 
-## ----dend_trimming_example_1, fig.height=10, fig.width=10----------------
-dend7 <- trim(dend6, c("Wshng", "NwYrk")) 
+## ----dend_pruning_example_1, fig.height=10, fig.width=10----------------
+dend7 <- prune(dend6, c("Wshng", "NwYrk")) 
 
 par(cex = 2, lwd = 2, las = 2) 
 plot(dend7) 
@@ -173,8 +173,8 @@ cutree(dend7 , k=3,order_clusters_as_data=FALSE)
 args(cutree.dendrogram)
 
 
-## ----dend_trimming_example_1, fig.height=10, fig.width=10----------------
-dend7 <- trim(dend6, c("Wshng", "NwYrk")) 
+## ----dend_pruning_example_1, fig.height=10, fig.width=10----------------
+dend7 <- prune(dend6, c("Wshng", "NwYrk")) 
 
 par(cex = 2, lwd = 2, las = 2) 
 plot(dend7) 

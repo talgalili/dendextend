@@ -591,7 +591,7 @@ plot(hang_dend_1, main ="Hanged dendrogram tree")
 
 \subsection{Trimming leaves}
 
-Trimming a tree from some leaves can be done using the \code{trim} (S3 method) function (notice that the attributes of the trimmed tree are updated):
+Trimming a tree from some leaves can be done using the \code{prune} (S3 method) function (notice that the attributes of the pruned tree are updated):
 
 <<fig.height = 3,fig.align='center'>>=
 
@@ -600,13 +600,13 @@ dend <- as.dendrogram(hc)
 library(colorspace)
 labels_colors(dend) <- rainbow_hcl(5)
 
-trimmed_dend <- trim(dend , c("Alaska", "California"))
+pruned_dend <- prune(dend , c("Alaska", "California"))
 
-str(unclass(trimmed_dend))
+str(unclass(pruned_dend))
 
 par(mfrow = c(1,2))
 plot(dend, main = "Original tree")
-plot(trimmed_dend, main = "Tree without Alaska and California")
+plot(pruned_dend, main = "Tree without Alaska and California")
 
 @
 
@@ -625,16 +625,16 @@ labels_colors(dend_1) <- rainbow_hcl(5)
 labels_colors(dend_2) <- rainbow_hcl(5)
 
 
-trimmed_dend_1 <- trim(dend_1 , c("Alaska"))
-trimmed_dend_2 <- trim(dend_2 , c("California"))
+pruned_dend_1 <- prune(dend_1 , c("Alaska"))
+pruned_dend_2 <- prune(dend_2 , c("California"))
 
-dends_12 <- intersect_trees(trimmed_dend_1,trimmed_dend_2)
+dends_12 <- intersect_trees(pruned_dend_1,pruned_dend_2)
 
 par(mfrow = c(3,2))
 plot(dend_1, main = "Tree - single method", ylim = c(0,110))
 plot(dend_2, main = "Tree - complete method", ylim = c(0,110))
-plot(trimmed_dend_1, main = "Trimmed tree - single method", ylim = c(0,110))
-plot(trimmed_dend_2, main = "Trimmed tree - complete method", ylim = c(0,110))
+plot(pruned_dend_1, main = "Trimmed tree - single method", ylim = c(0,110))
+plot(pruned_dend_2, main = "Trimmed tree - complete method", ylim = c(0,110))
 plot(dends_12[[1]], main = "Intersected tree - single method", ylim = c(0,110))
 plot(dends_12[[2]], main = "Intersected tree - complete method", ylim = c(0,110))
 

@@ -77,8 +77,8 @@
   dendrgoram.}
 
   \item{intersecting}{logical (TRUE). Should the leaves of
-  the two dendrograms be trimmed so that the two trees will
-  have the same labels?}
+  the two dendrograms be pruned so that the two trees
+  will have the same labels?}
 
   \item{dLeaf}{a number specifying the distance in user
   coordinates between the tip of a leaf and its label. If

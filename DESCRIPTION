@@ -1,8 +1,8 @@
 Package: dendextend
 Type: Package
 Title: Extending dendrogram functionality
-Version: 0.11.0
-Date: 2013-08-24
+Version: 0.11.2
+Date: 2013-08-30
 Authors@R: c(person("Tal Galili", "Developer", role = c("aut", "cre", "ctb"),
     email = "tal.galili@math.tau.ac.il"), person("Gavin Simpson",
     role = "ctb"), person("jefferis",  role = "ctb", comment =
@@ -19,6 +19,7 @@ Suggests:
     microbenchmark,
     colorspace,
     DendSer,labeltodendro,dendroextras,
+    dynamicTreeCut,
     ggdendro,
     ape
 Enhances: ape
@@ -34,7 +35,6 @@ Collate:
     'dendextend.r'
     'nleaves.r'
     'rotate.r'
-    'trim.r'
     'unbranch.r'
     'labels_colors.r'
     'color_branches.r'
@@ -49,3 +49,4 @@ Collate:
     'bk_method.r'
     'zzz.r'
     'cut_lower_fun.r'
+    'trim.r'

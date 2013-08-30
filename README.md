@@ -55,7 +55,7 @@ You are welcome to:
 * rotate (with S3 methods for dendrogram, hclust, and phylo)
 * sort (with S3 methods for dendrogram and hclust)
 * flip (works for both dendrogram and hclust)
-* trim - trims leaves off a dendrogram/hclust/phylo trees. (based on the trim_leaf function)
+* prune - prunes leaves off a dendrogram/hclust/phylo trees. (based on the prune_leaf function)
 * as_hclust_fixed
 * get_branches_attr
 * unroot (dendrogram/hclust/phylo)

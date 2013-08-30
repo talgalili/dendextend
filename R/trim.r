@@ -23,21 +23,21 @@
 
 #' @title Trimms one leaf from a dendrogram
 #' @param x dendrogram object
-#' @param leaf_name a character string as the label of the tip we wish to trim
+#' @param leaf_name a character string as the label of the tip we wish to prune
 #' @param ... passed on
 #' @details 
-#' Used through \link{trim}
-#' @return A dendrogram with a leaf trimmed
+#' Used through \link{prune}
+#' @return A dendrogram with a leaf pruned
 #' @examples
 #' hc <- hclust(dist(USArrests[1:5,]), "ave")
 #' dend <- as.dendrogram(hc)
 #' 
 #' par(mfrow = c(1,2))
 #' plot(dend, main = "original tree")
-#' plot(dendextend:::trim_leaf(dend , "Alaska"), main = "tree without Alaska")
+#' plot(dendextend:::prune_leaf(dend , "Alaska"), main = "tree without Alaska")
 #' 
 #' 
-trim_leaf <- function(x, leaf_name,...)
+prune_leaf <- function(x, leaf_name,...)
 {
    labels_x <- labels(x)
    
@@ -111,64 +111,64 @@ trim_leaf <- function(x, leaf_name,...)
 
 #' @title Trim a tree (using leaves' labels)
 #' @aliases 
-#' trim.default
-#' trim.dendrogram
-#' trim.hclust
-#' trim.phylo
+#' prune.default
+#' prune.dendrogram
+#' prune.hclust
+#' prune.phylo
 #' @description  Trimms a tree (dendrogram, hclust) from a set of leaves based on their labels.
 #' @usage
-#' trim(x, ...)
+#' prune(x, ...)
 #' 
-#' \method{trim}{dendrogram}(x, leaves,...)
+#' \method{prune}{dendrogram}(x, leaves,...)
 #' 
-#' \method{trim}{hclust}(x, leaves,...)
+#' \method{prune}{hclust}(x, leaves,...)
 #' 
-#' \method{trim}{phylo}(x, ...)
+#' \method{prune}{phylo}(x, ...)
 #' @export
 #' @param x tree object (dendrogram/hclust/phylo)
-#' @param leaves a character vector of the label(S) of the tip(s) (leaves) we wish to trim off the tree.
+#' @param leaves a character vector of the label(S) of the tip(s) (leaves) we wish to prune off the tree.
 #' @param ... passed on
 #' @details 
-#' I was not sure if to call this function drop.tip (from ape), snip/prune (from rpart) or just remove.leaves.  I ended up deciding on trim.
+#' I was not sure if to call this function drop.tip (from ape), snip/prune (from rpart) or just remove.leaves.  I ended up deciding on prune.
 #' 
-#' @return A trimmed tree
-#' @seealso \link{trim_leaf}, \link[ape]{drop.tip} {ape}
+#' @return A pruned tree
+#' @seealso \link{prune_leaf}, \link[ape]{drop.tip} {ape}
 #' @examples
 #' hc <- hclust(dist(USArrests[1:5,]), "ave")
 #' dend <- as.dendrogram(hc)
 #' 
 #' par(mfrow = c(1,2))
 #' plot(dend, main = "original tree")
-#' plot(trim(dend , c("Alaska", "California")), main = "tree without Alaska and California")
-trim <- function(x, ...) {UseMethod("trim")}
+#' plot(prune(dend , c("Alaska", "California")), main = "tree without Alaska and California")
+prune <- function(x, ...) {UseMethod("prune")}
 
 #' @export
-trim.default <- function(x,...) {stop("object x must be a dendrogram/hclust/phylo object")}
+prune.default <- function(x,...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
-#' @S3method trim dendrogram
-trim.dendrogram <- function(x, leaves,...) {
+#' @S3method prune dendrogram
+prune.dendrogram <- function(x, leaves,...) {
    leaves <- as.character(leaves)
       
    for(i in seq_along(leaves))
    {
       # this function is probably not the fastest - but it works...
-      x <- trim_leaf(x, leaves[i])	# move step by stem to remove all of these leaves...
+      x <- prune_leaf(x, leaves[i])	# move step by stem to remove all of these leaves...
    }
    return(x)
 }
 
 
-#' @S3method trim hclust
-trim.hclust <- function(x, leaves,...) {
+#' @S3method prune hclust
+prune.hclust <- function(x, leaves,...) {
    x_dend <- as.dendrogram(x)
-   x_dend_trimmed <- trim(x_dend, leaves,...)
-   x_trimmed <- as_hclust_fixed(x_dend_trimmed, x)  
+   x_dend_pruned <- prune(x_dend, leaves,...)
+   x_pruned <- as_hclust_fixed(x_dend_pruned, x)  
    
-   return(x_trimmed)
+   return(x_pruned)
 }
 
-#' @S3method trim phylo
-trim.phylo <- function(x,...) ape:::drop.tip(phy=x, ...)
+#' @S3method prune phylo
+prune.phylo <- function(x,...) ape:::drop.tip(phy=x, ...)
 
 
 
@@ -180,48 +180,48 @@ trim.phylo <- function(x,...) ape:::drop.tip(phy=x, ...)
 
 #' @title Intersect trees
 #' @description 
-#' Return two trees after trimming them so that the only leaves left are the intersection of their labels.
+#' Return two trees after pruning them so that the only leaves left are the intersection of their labels.
 #' @export
 #' @param x1 tree object (dendrogram/hclust/phylo)
 #' @param x2 tree object (dendrogram/hclust/phylo)
 #' @param warn logical (FALSE). Should a warning be issued if there
 #' was a need to perform intersaction.
 #' @param ... passed on
-#' @return A list with two trimmed trees
-#' @seealso \link{trim}, \link{intersect}, \link{labels}
+#' @return A list with two pruned trees
+#' @seealso \link{prune}, \link{intersect}, \link{labels}
 #' @examples
 #' hc <- hclust(dist(USArrests[1:5,]), "ave")
 #' dend <- as.dendrogram(hc)
 #' labels(dend) <- 1:5
-#' dend1 <- trim(dend, 1)
-#' dend2 <- trim(dend, 5)
+#' dend1 <- prune(dend, 1)
+#' dend2 <- prune(dend, 5)
 #' intersect_dend <- intersect_trees(dend1, dend2)
 #' 
 #' layout(matrix(c(1,1,2,3,4,5), 3,2, byrow=TRUE))
 #' plot(dend, main = "Original tree")
-#' plot(dend1, main = "Tree 1:\n original with label 1 trimmed"); plot(dend2, main = "Tree 2:\n original with label 2 trimmed")
-#' plot(intersect_dend[[1]], main = "Tree 1 trimmed\n with the labels that intersected with those of Tree 2");plot(intersect_dend[[2]], main = "Tree 2 trimmed\n with the labels that intersected with those of Tree 1")
+#' plot(dend1, main = "Tree 1:\n original with label 1 pruned"); plot(dend2, main = "Tree 2:\n original with label 2 pruned")
+#' plot(intersect_dend[[1]], main = "Tree 1 pruned\n with the labels that intersected with those of Tree 2");plot(intersect_dend[[2]], main = "Tree 2 pruned\n with the labels that intersected with those of Tree 1")
 #' 
 intersect_trees <- function(x1, x2, warn= FALSE, ...){
    labels_x1 <- labels(x1)
    labels_x2 <- labels(x2)
    intersected_labels <- intersect(labels_x1, labels_x2)
    
-   # trim tree 1
+   # prune tree 1
    ss_labels_to_keep  <- labels_x1 %in% intersected_labels
-   ss_labels_to_trim_1 <- !ss_labels_to_keep
-   trimmed_x1 <- trim(x1, labels_x1[ss_labels_to_trim_1])
+   ss_labels_to_prune_1 <- !ss_labels_to_keep
+   pruned_x1 <- prune(x1, labels_x1[ss_labels_to_prune_1])
       
-   # trim tree 2
+   # prune tree 2
    ss_labels_to_keep  <- labels_x2 %in% intersected_labels
-   ss_labels_to_trim_2 <- !ss_labels_to_keep
-   trimmed_x2 <- trim(x2, labels_x2[ss_labels_to_trim_2])
+   ss_labels_to_prune_2 <- !ss_labels_to_keep
+   pruned_x2 <- prune(x2, labels_x2[ss_labels_to_prune_2])
    
-   if(warn && any(c(ss_labels_to_trim_1, ss_labels_to_trim_2)))  {
-      warning("The labels in both tree had different values - trees were trimmed.")
+   if(warn && any(c(ss_labels_to_prune_1, ss_labels_to_prune_2)))  {
+      warning("The labels in both tree had different values - trees were pruned.")
    }
    
-   return(list(trimmed_x1, trimmed_x2))   
+   return(list(pruned_x1, pruned_x2))   
 }
 
 
@@ -229,8 +229,8 @@ intersect_trees <- function(x1, x2, warn= FALSE, ...){
 
 
 
-# methods(trim)
+# methods(prune)
 # example(rotate)
-# example(trim)
+# example(prune)
 # example(intersect_trees)
 
