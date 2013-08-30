@@ -1,4 +1,4 @@
-Creating beautiful trees of clusterings with R
+Creating beautiful trees of clusterings with R - dendextend
 ==============================================
 author: Tal Galili
 date: 2013-09-05
@@ -14,398 +14,9 @@ Boston-useR
 require(knitr)
 opts_chunk$set(cache=TRUE, fig.align='center')
 options(digits = 3)
-purl("2013-09-05_Boston-useR.Rpres")
+purl("2013-09-05_Boston-useR_02_dendextend.Rpres")
 ```
 
-
-Intro to heirarchical clustering in R
-================================================================
-type: section
-
-## -  hclust objects in R
-## -  dendrogram objects in R
-
-
-hclust objects in R
-================================================================
-type: sub-section
-
-
-
-
-
-hclust: precip data-set
-================================================================
-left: 60%
-
-**precip**: The average amount of rainfall (precipitation) in inches for three US cities in 1975.
-
-
-**Code:** 
-
-```{r precip_subset_data_prep, echo = TRUE, eval = TRUE}
-data(precip)
-precip_data <- 
-   round(precip[c("Boston", "New York", "Nashville")])
-DIST <- dist(precip_data, diag=TRUE)
-# create an heirarchical clustering object
-hc <- hclust(DIST, method = "single") 
-```
-
-**Data:** 
-```{r, echo = FALSE}
-print(precip_data)
-```
-
-
-
-**Matrix of euclidean distances:**
-
-```{r, echo = FALSE}
-print(DIST)
-```
-
-
-
-***
-
-**Dendrogram:**
-
-```{r precip_subset__hclust_single_plot, echo = TRUE, fig.height=9, eval = TRUE}
-par(cex=1.14, cex.lab = 1.2, lwd = 4,las = 1)
-plot(hc, hang = -1) 
-abline(h = c(2,4), 
-       lty = 2, col = 2, lwd = 2)
-```
-
-
-
-
-
-
-
-
-
-
-hclust: k-clustering
-================================================================
-incremental: false
-left: 60%
-
-**R Code**:
-
-Getting the clusters:
-
-```{r }
-cutree(hc, k = 2)
-```
-   
-```{r }
-cutree(hc, h = 3.5)
-```
-
-
-***
-
-
-**Dendrogram:** (with rectangles)
-
-
-
-```{r precip_subset__hclust_single_plot_rect,echo = TRUE, fig.height=9, eval = TRUE}
-par(cex=1.14, cex.lab = 1.2, lwd = 4,las = 1)
-plot(hc, hang = -1) 
-
-abline(h = 3.5, col = 2, lty = 2)
-rect.hclust(hc, k = 2, border = 3)
-# No - xlim didn't fix this...
-```
-
-
-
-
-
-
-hclust: other clustering algorithms
-================================================================
-
-```{r ,echo = FALSE, fig.height=9, fig.width=25, eval = TRUE}
-x <- c(1:3, 5)
-names(x) <- c(1:3, 5) # We MUST add names...
-print(x)
-x_dist <- dist(x)
-par(mfrow = c(1,3), cex=1.14, cex.lab = 1.2, lwd = 4,cex.main=2)
-plot(hclust(x_dist, method = "single"), main = "single", hang = -1) 
-plot(hclust(x_dist, method = "complete"), main = "complete", hang = -1) 
-plot(hclust(x_dist, method = "average"), main = "average", hang = -1) 
-```
-
-
-
-
-
-hclust: pros and cons
-================================================================
-incremental: false
-left: 50%
-
-advantages
-----------
-
-- **Diversity in statistical methods:**
-
-"single", "complete", "average", "ward", "mcquitty", "median" or "centroid".
-
-
-- **Speed:**
-
-```{r hclust_speed_measurment}
-DIST <- dist(rnorm(4000))
-system.time(hc2 <- hclust(DIST))
-system.time(cutree(hc2, k = 4))
-```
-
-
-
-***
-
-dis-advantages
---------------
-
-- **Limited flexibility in plotting:**
-
-- **Only binary trees**
-
-- **"Complex" data structure:**
-(see "merge")
-
-```{r}
-str(hc)
-```
-
-
-
-
-dendrogram objects in R
-================================================================
-type: sub-section
-
-
-
-hclust -> dendrogram: dendrogram structure
-================================================================
-left: 70%
-incremental: false
-
-
-```{r }
-data(precip)
-precip_data <- 
-   round(precip[c("Boston", "New York", "Nashville")])
-DIST <- dist(precip_data, diag=TRUE)
-# create an heirarchical clustering object
-hc <- hclust(DIST, "single") 
-#########################
-##### hclust to dend ####
-#########################
-dend <- as.dendrogram(hc)
-
-print(dend)
-str(dend)
-```
-
-***
-
-**Dendrogram:**
-```{r precip_dend_plot_1, echo=FALSE, fig.height=9}
-par(cex=2.5, lwd = 4,las = 1)
-plot(dend) 
-```
-
-
-
-hclust -> dendrogram: dendrogram structure
-================================================================
-left: 70%
-incremental: false
-
-```{r}
-str(unclass(dend))
-```
-
-
-***
-**Dendrogram:**
-```{r precip_dend_plot_1, echo=FALSE, fig.height=9}
-```
-
-
-dendrogram: what can we do with them? 
-================================================================
-left: 70%
-About 11 things:
-
-```{r, cache=FALSE}
-as.matrix(methods(class="dendrogram"))
-```
-
-***
-**Dendrogram:**
-```{r precip_dend_plot_1, echo=FALSE, fig.height=9}
-```
-
-
-dendrogram: Extracting elements
-================================================================
-left: 70%
-
-
-**labels**:
-
-```{r}
-labels(dend)
-```
-
-**order.dendrogram**:
-```{r}
-order.dendrogram(dend)
-```
-(values for ordering original data to have tree order)
-
-
-Using **[[**, **str** and **print**:
-
-```{r}
-print(str(dend[[2]]))
-```
-
-
-***
-**Dendrogram:**
-```{r precip_dend_plot_1, echo=FALSE, fig.height=9}
-```
-
-
-
-dendrogram: Tree cutting/merging
-================================================================
-left: 70%
-
-**cut:**
-
-(like cutree with only h)
-
-```{r}
-cut(dend,h=50)
-```
-
-**merge:**
-
-```{r}
-cut_dend <- cut(dend,h=3)$lower
-# now let's get our tree back:
-merge(cut_dend[[1]], cut_dend[[2]], height = 4)
-```
-
-***
-**Dendrogram:**
-```{r precip_dend_plot_2, echo=FALSE, fig.height=9}
-par(cex=2.5, lwd = 4,las = 1)
-plot(dend) 
-abline(h = 3, lty = 2, col = 2)
-```
-
-
-
-dendrogram: Retreiving (cophenetic) distances
-================================================================
-left: 70%
-
-
-```{r}
-ord <- order.dendrogram(dend)
-DIST <- dist(precip_data[ord], diag=TRUE)
-print(DIST, diag = TRUE)
-coph_dend <- cophenetic(dend)
-as.dist(coph_dend, diag = TRUE)
-```
-
-Notice "Nashville" and "New York" has different distances.
-
-**Cophenetic correlation coefficient:** a measure of how faithfully a dendrogram preserves the pairwise distances between the original unmodeled data points.
-
-```{r}
-round(
-   cor(DIST, coph_dend),
-   2)
-```
-
-
-***
-**Dendrogram:**
-```{r precip_dend_plot_1, echo=FALSE, fig.height=9}
-```
-
-
-dendrogram: Plotting and changing order
-================================================================
-
-**plot** and **rev**:
-
-```{r, fig.width=20}
-par(mfrow = c(1,2))
-plot(dend) # has various options
-plot(rev(dend))
-```
-
-(reorder == not easy!)
-
-dendrogram: what can we do with them?
-================================================================
-
-Plotting options
-----------------------------
-
-```{r}
-args(stats:::plot.dendrogram)
-```
-
-dendrogram: Plotting options - example
-================================================================
-
-
-```{r, fig.width=20, fig.height=10}
-par(mfrow = c(1,2), cex = 2)
-plot(dend, main = "default") 
-plot(dend, main = "modified",
-     type = "t", center = TRUE, horiz = TRUE, 
-     nodePar = list(lab.col = 4), 
-     edgePar = list(col = 3 , lwd = 3)) 
-```
-
-
-
-
-
-dendrogram: Recursive functions
-================================================================
-left: 60%
-
-
-```{r}
-print_height <- function(x) { 
-   print(attr(x, "height"))
-   }
-
-tmp <- dendrapply(dend,
-                  print_height)
-```
-
-***
- 
-
-```{r ref.label='precip_subset__hclust_single_plot', echo = FALSE, fig.height=9, eval = TRUE}
-```
 
 
 
@@ -857,8 +468,204 @@ tanglegram(dend1 , rev(dend2),
 ```
 
 
+
+Tanglegram plot has MANY options
+===========================================
+
+
+```{r}
+args(dendextend:::tanglegram.dendrogram)
+```
+When producing many consequtive plots - it is better to use the dendrograms after adjustment (as returned by "tanglegram").
+
+
+Tanglegram plot: a simple example
+=====================================================
+left: 50%
+
+**Simple Data**:
+
+```{r, warning=FALSE}
+DIST <- dist(c(1,2,4,5), diag=TRUE)
+# create an heirarchical clustering object
+hc1 <- hclust(DIST, "single") 
+dend1 <- as.dendrogram(hc1)
+dend1 <- color_labels(dend1)
+labels(dend1) <- LETTERS[1:4]
+dend2 <- rotate(dend1, order=c(1,2,4,3))
+dend2_worst <- rev(dend1)
+```
+
+
+**Measuring entanglement**
+
+- Often measured as the number of line-crossings.
+- We measure it as the sum of the L-norm difference between the ranks of labels of the two trees (devided by the worst case).
+
+In our case:
+
+```{r}
+entanglement(dend1,dend2, L = 1.5)
+```
+
+
+
+
+***
+
+Tanglegram plots:
+
+```{r simple_tanglegram_1, fig.height=7, fig.width = 8}
+tanglegram(dend1, dend2, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(3,3,2,2), main = "Our data")
+```
+
+
+Measuring entanglement (step-by-step): L=1.5
+=====================================================
+left: 50%
+
+
+```{r}
+abs_rank_diff <- abs(c(1:4)-c(1,2,4,3))
+abs_rank_diff
+L<-1.5
+L_norm <- abs_rank_diff^L
+sum_L_norm <- sum(L_norm)
+worst_case <- sum((abs(c(1:4)-c(4:1)))^L)
+sum_L_norm
+worst_case
+sum_L_norm / worst_case
+```
+
+```{r}
+entanglement(dend1,dend2)
+```
+
+
+***
+
+Tanglegram plots:
+
+```{r simple_tanglegram_1, fig.height=3, fig.width = 8, echo=FALSE}
+```
+
+
+```{r simple_tanglegram_1_worst_case, fig.height=7, fig.width = 8, echo=FALSE}
+tanglegram(dend1, dend2_worst, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(2,2,2,2), main = "Worst case")
+```
+
+
+
+
+
+Measuring entanglement (step-by-step): L=0
+=====================================================
+left: 50%
+
+When using L=0, it is (mostly) the percent of non-streight lines:
+
+```{r}
+abs_rank_diff <- abs(c(1:4)-c(1,2,4,3))
+abs_rank_diff
+L<-0
+L_norm <- abs_rank_diff^L
+sum_L_norm <- sum(L_norm)
+worst_case <- sum((abs(c(1:4)-c(4:1)))^L)
+sum_L_norm
+worst_case
+sum_L_norm / worst_case
+```
+
+```{r}
+entanglement(dend1,dend2, L = 0)
+```
+
+***
+
+Tanglegram plots:
+
+```{r simple_tanglegram_1, fig.height=7, fig.width = 8, echo=FALSE}
+```
+
+
+```{r simple_tanglegram_1_worst_case, fig.height=7, fig.width = 8, echo=FALSE}
+```
+
+
+Untangaling tanglegrams: random flip (once)
+=====================================================
+left: 50%
+
+Optimizing rotation is an NP-hard problem!
+
+Let us do a naive **random search** over one shuffle of the right trees:
+
+
+```{r simple_tanglegram_one_shuffle_1, fig.height=7, fig.width = 8}
+
+set.seed(1112) # always set this first!
+dend2_shuffle <- shuffle(dend2)
+tanglegram(dend1, dend2_shuffle, lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = c(2,2,3,3), main = "Different - but NOT better")
+
+```
+
+
+
+***
+
+Tanglegram plots:
+
+```{r simple_tanglegram_1, fig.height=7, fig.width = 8, echo=FALSE}
+```
+
+```{r simple_tanglegram_1_worst_case, fig.height=7, fig.width = 8, echo=FALSE}
+```
+
+
+Untangaling tanglegrams: random flip (many times)
+=====================================================
+left: 50%
+
+Naive **random search** over MANY shuffles of BOTH trees:
+
+
+
+```{r simple_tanglegram_random_search_1, fig.height=7, fig.width = 8}
+
+set.seed(65168)
+dend12 <- untangle_random_search(dend1, dend2, R=10)
+tanglegram(dend12[[1]] , dend12[[2]], lab.cex = 2, edge.lwd = 7, margin_inner= 4, color_lines = rep(3,4), main = "Problem solved")
+
+```
+
+
+
+***
+
+Tanglegram plots:
+
+```{r simple_tanglegram_1, fig.height=7, fig.width = 8, echo=FALSE}
+```
+
+```{r simple_tanglegram_1_worst_case, fig.height=7, fig.width = 8, echo=FALSE}
+```
+
+
+
+
 Statistical inference on the similarity of two trees
 ================================================================
 type: sub-section
+
+
+
+
+
+
+
+
+
+
+
 
 

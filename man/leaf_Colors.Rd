@@ -1,6 +1,6 @@
 \name{leaf_Colors}
-\alias{leaf_colors}
 \alias{leaf_Colors}
+\alias{leaf_colors}
 \title{Return the leaf Colors of a dendrogram}
 \usage{
   leaf_Colors(d,

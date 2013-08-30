@@ -8,6 +8,8 @@ UPDATED FUNCTIONS:
 BUG FIXES:
    * untangle_random_search - made sure the function will return the original trees if no better tree was found.
 
+OTHER NOTES:
+   * Seperated 2013-09-05_Boston-useR.Rpres into two files (since RStudio is not able to handle them)
 
 dendextend 0.11.0 (2013-08-24)
 ----------------------------
