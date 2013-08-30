@@ -503,6 +503,8 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
 #' 
 #' @param max_n_iterations integer. The maximal number of times to switch between optimizing one tree with another.
 #' @param print_times logicla (TRUE), should we print how many times we switched between rotating the two trees?
+#' @param k_seq a sequence of k clusters to go through for improving 
+#' dend1. If NULL (default), then we use the "direction" parameter.
 #' @param ... not used
 #' 
 #' @return A list with two dendrograms (dend1/dend2), 
@@ -538,7 +540,8 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
 #' entanglement(dend12_corrected_2[[1]],dend12_corrected_2[[2]], L=2) # 0 - PERFECT.
 #' 
 #' }                              
-untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("forward", "backward"), max_n_iterations = 10L, print_times = TRUE, ...) {
+untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("forward", "backward"), max_n_iterations = 10L, print_times = TRUE, 
+                                       k_seq = NULL,...) {
    # this function gets two dendgrams, and orders dend1 and 2 until a best entengelment is reached.
    
    
@@ -546,8 +549,8 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
    dend2_heights_per_k <- heights_per_k.dendrogram(dend2)
    
    # Next, let's try to improve upon this tree using a forwared rotation of our tree:
-   dend1_better <- untangle_step_rotate_1side(dend1, dend2, L = L,dend_heights_per_k=dend1_heights_per_k, direction = direction) 
-   dend2_better <- untangle_step_rotate_1side(dend2, dend1_better, L = L,dend_heights_per_k=dend2_heights_per_k, direction = direction) 
+   dend1_better <- untangle_step_rotate_1side(dend1, dend2, L = L,dend_heights_per_k=dend1_heights_per_k, direction = direction, k_seq= k_seq) 
+   dend2_better <- untangle_step_rotate_1side(dend2, dend1_better, L = L,dend_heights_per_k=dend2_heights_per_k, direction = direction, k_seq= k_seq) 
    
    entanglement_new <- entanglement(dend1_better, dend2_better, L = L) 
    entanglement_old <- entanglement_new+1
@@ -558,7 +561,7 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
       entanglement_old <- entanglement_new
       
       dend1_better_loop <- untangle_step_rotate_1side(dend1_better, dend2_better, L = L,
-                                                      dend_heights_per_k=dend1_heights_per_k, direction = direction) 
+                                                      dend_heights_per_k=dend1_heights_per_k, direction = direction, k_seq= k_seq) 
       # if the new dend1 is just like we just had - then we can stop the function since we found the best solution - else - continue
       if(identical(dend1_better_loop, dend1_better)) {
          break;
@@ -568,7 +571,7 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
       
       # if the new dend2 is just like we just had - then we can stop the function since we found the best solution - else - continue
       dend2_better_loop <- untangle_step_rotate_1side(dend2_better, dend1_better, L = L,
-                                                      dend_heights_per_k=dend2_heights_per_k, direction = direction) 
+                                                      dend_heights_per_k=dend2_heights_per_k, direction = direction, k_seq= k_seq) 
       if(identical(dend2_better_loop, dend2_better)) {
          break;
       } else {

@@ -4,7 +4,8 @@
 \usage{
   untangle_step_rotate_2side(dend1, dend2, L = 1.5,
     direction = c("forward", "backward"),
-    max_n_iterations = 10L, print_times = TRUE, ...)
+    max_n_iterations = 10L, print_times = TRUE,
+    k_seq = NULL, ...)
 }
 \arguments{
   \item{dend1}{a dendrogram object. The one we will rotate
@@ -32,6 +33,10 @@
 
   \item{print_times}{logicla (TRUE), should we print how
   many times we switched between rotating the two trees?}
+
+  \item{k_seq}{a sequence of k clusters to go through for
+  improving dend1. If NULL (default), then we use the
+  "direction" parameter.}
 
   \item{...}{not used}
 }
