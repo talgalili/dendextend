@@ -34,7 +34,11 @@ install_github('dendextendRcpp', 'talgalili')
 
 Please see:
 - Vignette: https://github.com/talgalili/dendextend/blob/master/vignettes/dendextend-tutorial.pdf
-- A presentation: https://github.com/talgalili/dendextend/blob/master/inst/doc/2013-09-05_Boston-useR/2013-09-05_Boston-useR.md
+- Presentations: 
+   - http://htmlpreview.github.com/?https://raw.github.com/talgalili/dendextend/master/inst/doc/2013-09-05_Boston-useR/2013-09-05_Boston-useR_01_intro.html
+   - http://htmlpreview.github.com/?https://raw.github.com/talgalili/dendextend/master/inst/doc/2013-09-05_Boston-useR/2013-09-05_Boston-useR_02_dendextend.html
+   - http://htmlpreview.github.com/?https://raw.github.com/talgalili/dendextend/master/inst/doc/2013-09-05_Boston-useR/2013-09-05_Boston-useR_03_untangle_iris.html
+   - http://htmlpreview.github.com/?https://raw.github.com/talgalili/dendextend/master/inst/doc/2013-09-05_Boston-useR/2013-09-05_Boston-useR_04_tree_inference.html
 
 ## Contact
 
