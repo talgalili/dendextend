@@ -1,13 +1,15 @@
-dendextend 0.11.2 (2013-08-30)
+dendextend 0.11.2 (2013-08-31)
 ----------------------------
 
 UPDATED FUNCTIONS:
    * tanglegram now has "sub" and "cex_sub" parameters.
    * untangle_step_rotate_2side added k_seq parameter.
+   * "trim" is now called "prune"!
 
 VIGNETTES:
-   * Finished tanglegram and untangle. We are left with 
-   * "trim" is now called "prune"!
+   * Finished tanglegram and untangle. 
+   * Finished statistical measures of similarity between trees. 
+
 
 dendextend 0.11.1 (2013-08-29)
 ----------------------------

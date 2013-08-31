@@ -22,59 +22,171 @@ suppressMessages(require(dendextendRcpp))
 
 
 
-
-
-Tanglegram plot - Iris example: first attempt
+dendrogram: Retreiving (cophenetic) distances
 ================================================================
+left: 50%
 
-(a sample of 30)
+```{r fake_data_for_comparing_trees, echo=FALSE}
+set.seed(291)
+ss <- sample(120, 4)
+tiny_iris_data <- iris[ss,-5]
+rownames(tiny_iris_data) <- LETTERS[1:4]
+DIST <- ceiling(dist(tiny_iris_data, diag=TRUE))
+# create an heirarchical clustering object
+hc1 <- hclust(DIST, "single") 
+#########################
+##### hclust to dend ####
+#########################
+dend1 <- as.dendrogram(hc1)
+dend1 <- color_labels(dend1)
+dend2 <- dend1
+# labels(dend1) <- LETTERS[1:4]
+labels(dend2) <- labels(dend2)[c(1,4,2,3)]
+labels_colors(dend2) <- labels_colors(dend2)[c(1,4,2,3)]
+# plot(dend1)
+# plot(dend2)
+```
 
 ```{r}
-set.seed(85945987)
-ss <- sample(1:150, 30)
-hc1 <- hclust(dist(iris[ss,-5]), "com")
-hc2 <- hclust(dist(iris[ss,-5]), "single")
-dend1 <- as.dendrogram(hc1)
-dend2 <- as.dendrogram(hc2)
+print(DIST, diag = TRUE)
+coph_dend1 <- cophenetic(dend1) 
+as.dist(coph_dend1, diag = TRUE)
+```
 
-dend1 <- rotate(dend1, order = c("132", "103", "130", "136", "137", "116", "87", "51", "70", 
-"82", "86", "71", "95", "62", "64", "74", "147", "84", "120", 
-"122", "37", "21", "18", "50", "48", "43", "9", "17", "33", "16"
-))
-dend2 <- rotate(dend2, order = c("132", "103", "130", "136", "137", "116", "87", "51", "70", 
-"82", "95", "62", "86", "71", "64", "74", "147", "84", "120", 
-"122", "37", "21", "18", "50", "48", "43", "9", "17", "33", "16"
-))
-                   
+**Cophenetic correlation coefficient:** a measure of how faithfully a dendrogram preserves the pairwise distances between the original unmodeled data points. (in our case - not so good)
+
+```{r}
+round(   cor(DIST, coph_dend1),   2) 
+```
+
+
+***
+**Dendrogram:**
+```{r dend1_plot_1, echo=FALSE, fig.height=9}
+par(lwd = 6, las = 1, cex.axis=3) 
+dend1_2 <- assign_values_to_leaves_nodePar(dend1, 3, "lab.cex", warn=FALSE)
+plot(dend1_2) # This won't work anymore:  nodePar = list(lab.cex = 3))
 ```
 
 
 
-```{r iris_tanglegram_ordered, echo=FALSE, fig.height = 20, fig.width=18, eval=FALSE}
-require(colorspace)
-lines_col_true <- rainbow_hcl(3)[sort_levels_values(
-      as.numeric(iris[ss,5])[order.dendrogram(dend1)]
-   )]
-dend12 <- tanglegram(dend1 , dend2, 
-           cex_main=3,
-           cex_main_left=5,
-           cex_main_right=5,
-           color_lines=lines_col_true,
-           main_left= "hclust complete", main_right="hclust single", main = "(true clusters)",
-           lab.cex = .5, edge.lwd = 6, margin_inner= 3, 
-           type = "r", center = TRUE, k_branches = 3, axes = FALSE, 
-   sub = paste("Entanglement:", 
-               round(entanglement(dend1 , dend2),3)),
-           )
+
+
+cophenetic correlation coefficient between trees
+================================================================
+left: 50%
+
+This is agnostic to the rotation of the trees.
+
+Wrong way (due to label order)
+```{r}
+coph_dend1 <- cophenetic(dend1) 
+coph_dend2 <- cophenetic(dend2) 
+round(   cor(coph_dend1, coph_dend2),   2) 
+labels(coph_dend1)
+labels(coph_dend2)
+```
+
+
+
+***
+
+
+DOES work:
+
+```{r}
+cor_cophenetic(dend1, dend2)
+cor_cophenetic(dend1, dend2, method = "spearman")
+```
+
+**Tanglegram:**
+```{r tanglegram_dend12_1, echo=FALSE, fig.height=9, fig.width=10}
+tanglegram(dend1, dend2, lab.cex=4, margin_inner=5, axes=FALSE) 
+```
+
+
+
+Similarity of a tree to itself: a permutation test
+===============================================
+
+```{r}
+the_cor <- cor_cophenetic(dend1, dend1)
+the_cor
+R <- 1000
+cor_cophenetic_results <- numeric(R)
+dend_mixed <- dend1
+for(i in 1:R) {
+   dend_mixed <- sample.dendrogram(dend1, replace = FALSE)
+   cor_cophenetic_results[i] <- cor_cophenetic(dend1, dend_mixed)
+}
+```
+
+"sample.dendrogram" can return the same tree but with permutated labels:
+
+```{r}
+labels(dend1)
+labels(sample.dendrogram(dend1,replace=FALSE))
 ```
 
 
 ***
 
-```{r iris_tanglegram_ordered, echo=FALSE, fig.height = 20, fig.width=18}
+```{r, fig.width=9, fig.height=9}
+par(cex.axis=3, cex.main = 2.5)
+plot(density(cor_cophenetic_results,from=-1, to=1),
+     main = "Cophenetic correlation's \n distribution under H0",
+     lwd = 5, col = 4, axes = FALSE,
+     xlim = c(-1,1))
+axis(1)
+abline(v = 0, lty = 2, lwd = 5)
+abline(v = the_cor, lty = 2, col = 2, lwd = 5)
+title(sub = paste("One sided p-value =",  round(sum(the_cor < cor_cophenetic_results)/ R, 4)))
 ```
 
 
 
+Similarity of a tree to another: a bootstrap confidence-interval
+===============================================
+
+```{r, warning=FALSE, eval=TRUE}
+the_cor <- cor_cophenetic(dend1, dend2)
+the_cor
+set.seed(23525)
+R <- 100
+cor_cophenetic_results <- numeric(R)
+for(i in 1:R) {
+   dend2_mixed <- sample.dendrogram(dend2, replace = TRUE)
+   cor_cophenetic_results[i] <- cor_cophenetic(dend1, dend2_mixed)
+}
+```
+
+"sample.dendrogram" can return a non-parametric bootstrap sampled tree:
 
 
+```{r, echo=FALSE}
+par(lwd = 7)
+plot(dend2_mixed)
+```
+
+
+***
+
+
+
+```{r, fig.width=9, fig.height=9, echo=FALSE}
+CI95 <- quantile(cor_cophenetic_results, probs=c(.025,.975), na.rm = TRUE)
+CI95
+par(cex.axis=3, cex.main = 2.5)
+par(mfrow = c(1,1))
+plot(density(na.omit(cor_cophenetic_results)),
+     main = "Cophenetic correlation's\n bootstrap distribution",
+     lwd = 5, col = 4, axes = FALSE,
+     xlim = c(-1,1))
+axis(1)
+abline(v = 0, lty = 2, lwd = 5)
+abline(v = CI95, lty = 2, col = 3,lwd = 5)
+abline(v = cor_bakers_gamma(dend1, dend2), lty = 2, col = 2,lwd = 5)
+legend("topleft", legend =c("95% CI", "Cophenetic correlation"), fill = c(3,2))
+```
+
+(Note the no-variance problem with small trees.)

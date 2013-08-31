@@ -2,7 +2,7 @@ Package: dendextend
 Type: Package
 Title: Extending dendrogram functionality
 Version: 0.11.2
-Date: 2013-08-30
+Date: 2013-08-31
 Authors@R: c(person("Tal Galili", "Developer", role = c("aut", "cre", "ctb"),
     email = "tal.galili@math.tau.ac.il"), person("Gavin Simpson",
     role = "ctb"), person("jefferis",  role = "ctb", comment =
