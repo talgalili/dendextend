@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  30 AUG 2013 13:09
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.6.9)  31 AUG 2013 00:28
 entering extended mode
 **dendextend-tutorial.tex
 
@@ -2706,28 +2706,32 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [77])
 Package color Info: Redefining color shadecolor on input line 3373.
 
-Underfull \hbox (badness 10000) in paragraph at lines 3416--3416
+Underfull \hbox (badness 10000) in paragraph at lines 3418--3418
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3416.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/aer/m/n/10.95 78 []
  []
 
 [78]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3418.
+
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/aer/m/n/10.95 79
  []
 
 [79]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3416.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3418.
 
 ("D:\Dropbox\aaaa good R code\AA - My packages\dendextend\vignettes\dendextend-
 tutorial.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3416.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3416.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3418.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3418.
 
 Package rerunfilecheck Info: File `dendextend-tutorial.out' has not changed.
 (rerunfilecheck)             Checksum: 3A722BCADA14A00338E8BC470E68502E;5443.
@@ -2735,12 +2739,12 @@ Package rerunfilecheck Info: File `dendextend-tutorial.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3416.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3418.
  ) 
 Here is how much of TeX's memory you used:
  7218 strings out of 494045
  114229 string characters out of 3145976
- 346201 words of memory out of 3000000
+ 346202 words of memory out of 3000000
  10135 multiletter control sequences out of 15000+200000
  49668 words of font info for 92 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
@@ -2779,7 +2783,7 @@ m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Program
 iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Fil
 es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files
  (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dendextend-tutorial.pdf (79 pages, 942781 bytes).
+Output written on dendextend-tutorial.pdf (79 pages, 942723 bytes).
 PDF statistics:
  885 PDF objects out of 1000 (max. 8388607)
  181 named destinations out of 1000 (max. 500000)
