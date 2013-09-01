@@ -10,4 +10,4 @@ vignettes/*\.tex
 vignettes/*\.log
 vignettes/*\.blg
 vignettes/*\.bbl
-
+NEWS.md

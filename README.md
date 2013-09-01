@@ -50,6 +50,12 @@ You are welcome to:
 
 ## Available functions
 
+You can see the most recent changes to the package in the NEWS.md file:
+
+- https://github.com/talgalili/dendextend/blob/master/NEWS.md
+
+
+
 * labels assignment operators for vector, matrix, dendrogram, hclust.
 * count_terminal_nodes
 * unclass_dend
