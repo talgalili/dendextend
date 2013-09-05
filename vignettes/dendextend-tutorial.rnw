@@ -47,7 +47,7 @@ options(replace.assign=TRUE,width=60)
 %\VignetteKeywords{Dendrogram, hclust, heirarchical clustering, visualization, tanglegram, R}
 %\VignettePackage{dendextend}
 %\VignetteEngine{knitr::knitr}
-
+\usepackage[utf8]{inputenc}
 
 
 \Plaintitle{Visualizing and Comparing Trees of Heirarchical Clustering: Using the dendextend R Package}
