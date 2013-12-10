@@ -50,8 +50,8 @@ options(replace.assign=TRUE,width=60)
 \usepackage[utf8]{inputenc}
 
 
-\Plaintitle{Visualizing and Comparing Trees of Heirarchical Clustering: Using the dendextend R Package}
-\title{Visualizing and Comparing\\ Trees of Heirarchical Clustering:\\ Using the dendextend \proglang{R} Package}
+\Plaintitle{Visualizing and Comparing Trees of Hierarchical Clustering: Using the dendextend R Package}
+\title{Visualizing and Comparing\\ Trees of Hierarchical Clustering:\\ Using the dendextend \proglang{R} Package}
 
 
 % \Plaintitle{Manipulate, Visualize and Compare Dendrograms: The dendextend R Package}
@@ -133,7 +133,7 @@ data(USArrests)
 US_data <- USArrests[c(2,5,32,35),]
 print(US_data)
 
-hc <- hclust(dist(US_data), "ave") # create an heirarchical clustering object
+hc <- hclust(dist(US_data), "ave") # create an Hierarchical clustering object
 dend <- as.dendrogram(hc)
 @
 
@@ -688,7 +688,7 @@ plot(sort(dend), main = "Sorts the labels by alphabetical order \n
 
 \subsection{Cutting trees}
 
-The \code{hclust} function comes with a very powerfull \code{cutree} function, for extracting cluster grouping of the original data based on cutting the heirarchical tree at some height (or setting a predefined k - number of clusters). The limitation of this function is that it is only available for \code{hclust} object. Hence, if we are dealing with a tree which is NOT an ultrametric tree (e.g: ultrametric tree = a tree with monotone clustering heights), \code{cutree} would not be available for us (since \code{as.hclust} would not work on our dendrogram).
+The \code{hclust} function comes with a very powerfull \code{cutree} function, for extracting cluster grouping of the original data based on cutting the Hierarchical tree at some height (or setting a predefined k - number of clusters). The limitation of this function is that it is only available for \code{hclust} object. Hence, if we are dealing with a tree which is NOT an ultrametric tree (e.g: ultrametric tree = a tree with monotone clustering heights), \code{cutree} would not be available for us (since \code{as.hclust} would not work on our dendrogram).
 
 In \pkg{dendextend}, we extend \code{cutree} by turning it into an S3 method, with methods for dendrogram and phylo objects. The phylo method is only turning the phylo object to an hclust, and tries to work on it there. However, the dendrogram method (\code{cutree.dendrogram}) is a complete re-writing of \code{cutree} based on the \code{cut.dendrogram} function. \code{cutree.dendrogram} fully emulates \code{cutree} by default, but at the same time extends it with the type of trees it can handle, and with some other options.
 
@@ -794,7 +794,7 @@ legend("topleft", legend = iris_species, fill = rainbow_hcl(3))
 
 @
 
-This simple visualization easily demonstrates how the seperation of the heirarchical clustering is very good with the "setosa" sepcies, but misses in labeling many "versicolor" species as "virginica".
+This simple visualization easily demonstrates how the seperation of the Hierarchical clustering is very good with the "setosa" sepcies, but misses in labeling many "versicolor" species as "virginica".
 
 The hanging of the tree also helps to locate extreme observations. For example, we can see that observation "virginica (107)" is not very similar to the Versicolor species, but still, it is amoung them. Also, "Versicolor (71)" is too much "within" the Virginica bush, and it is a wonder why that is.  Of course, the Iris dataset is very well known, and simpler pairs plot often help to locate such problems, yet - dendrogram trees (with all of their limitations) can help gain insights for very high-dimensional data where a simple pairs plot is not possible.
 
@@ -823,7 +823,7 @@ pairs(iris[,-5],
 
 \subsection{Tanglegram visualization}
 
-A tanglegram plot gives two dendrogram (with the same set of labels), one facing the other, and having their labels connected by lines. Tanglegram can be used for visually comparing two methods of heirarchical clustering, and are sometimes used in biology when comparing two phylogenetic trees.
+A tanglegram plot gives two dendrogram (with the same set of labels), one facing the other, and having their labels connected by lines. Tanglegram can be used for visually comparing two methods of Hierarchical clustering, and are sometimes used in biology when comparing two phylogenetic trees.
 
 %% add references!
 
@@ -1062,7 +1062,7 @@ tanglegram(dend12_corrected_2[[1]],
 \subsection{Baker's Gamma Index}
 
 Baker's Gamma Index \citep{baker1974stability} is a measure of accosiation (similarity) 
-between two trees of heirarchical clustering (dendrograms). It is defined as the rank correlation between the stages at which pairs of objects combine in each of the two trees.
+between two trees of Hierarchical clustering (dendrograms). It is defined as the rank correlation between the stages at which pairs of objects combine in each of the two trees.
 
 Or more detailed: It is calculated by taking two items, and see what is the heighst
 possible level of k (number of cluster groups created when cutting the tree)
