@@ -456,6 +456,7 @@ colour_labels<-color_labels
 #' @aliases leaf_colors
 #' @seealso \code{\link{slice},\link{color_branches}}
 #' @examples
+#' dend <- as.dendrogram(hclust(dist(USArrests), "ave"))
 #' d5=color_branches(dend,5)
 #' leaf_Colors(d5)
 leaf_Colors<-function(d,col_to_return=c("edge",'node','label')){
