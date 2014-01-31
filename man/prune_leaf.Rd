@@ -27,6 +27,6 @@ dend <- as.dendrogram(hc)
 
 par(mfrow = c(1,2))
 plot(dend, main = "original tree")
-plot(dendextend:::prune_leaf(dend , "Alaska"), main = "tree without Alaska")
+plot(prune_leaf(dend , "Alaska"), main = "tree without Alaska")
 }
 

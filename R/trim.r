@@ -22,6 +22,7 @@
 
 
 #' @title Trimms one leaf from a dendrogram
+#' @export
 #' @param x dendrogram object
 #' @param leaf_name a character string as the label of the tip we wish to prune
 #' @param ... passed on
@@ -34,7 +35,7 @@
 #' 
 #' par(mfrow = c(1,2))
 #' plot(dend, main = "original tree")
-#' plot(dendextend:::prune_leaf(dend , "Alaska"), main = "tree without Alaska")
+#' plot(prune_leaf(dend , "Alaska"), main = "tree without Alaska")
 #' 
 #' 
 prune_leaf <- function(x, leaf_name,...)
