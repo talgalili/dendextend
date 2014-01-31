@@ -23,11 +23,24 @@ To install the GitHub version:
 
 ```r
 if (!require('installr')) install.packages('installr'); require('installr')
+# the installr includes the "require2" function
 ## install.Rtools() # run this if you are using Windows and don't have Rtools
 require2(devtools)
 install_github('dendextend', 'talgalili')
 require2(Rcpp)
 install_github('dendextendRcpp', 'talgalili')
+
+# Having colorspace is also useful, since it is used
+# In various examples in the vignettes
+require2(colorspace)
+```
+
+And then you may load the package using:
+```r
+library(dendextend)
+# library(dendextendRcpp) # loads by itself, if installed.
+# And you might also wish to load:
+library(colorspace)
 ```
 
 ## Usage
@@ -39,6 +52,10 @@ Please see:
    - http://htmlpreview.github.com/?https://raw.github.com/talgalili/dendextend/master/inst/doc/2013-09-05_Boston-useR/2013-09-05_Boston-useR_02_dendextend.html
    - http://htmlpreview.github.com/?https://raw.github.com/talgalili/dendextend/master/inst/doc/2013-09-05_Boston-useR/2013-09-05_Boston-useR_03_untangle_iris.html
    - http://htmlpreview.github.com/?https://raw.github.com/talgalili/dendextend/master/inst/doc/2013-09-05_Boston-useR/2013-09-05_Boston-useR_04_tree_inference.html
+
+## Share your dendrograms!
+
+If you have made interesting work using the dendextend package, I would LOVE to know about it. It can be a blog post, an academic paper, or just some plots you made for your work in the industry. Please contact me with what you have done, and I would also be happy to promote it in this page.
 
 ## Contact
 
