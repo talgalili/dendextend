@@ -13,3 +13,4 @@ vignettes/*\.blg
 vignettes/*\.bbl
 NEWS.md
 inst/doc/2013-09-05_Boston-useR
+vignettes/
