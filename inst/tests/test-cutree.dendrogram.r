@@ -318,8 +318,8 @@ test_that("Making cutted clusters be numbered from left to right",{
    dend <- as.dendrogram(hc)
    
    sorted_cutree_hc_orig <-stats:::cutree(hc, k=1:4)
-   sorted_cutree_hc <-cutree.hclust(hc, k=1:4, sort_cluster_numbers=TRUE)
-   sorted_cutree_dend <-cutree.dendrogram(dend, k=1:4, sort_cluster_numbers=TRUE,try_cutree_hclust=FALSE)
+   sorted_cutree_hc <-dendextend:::cutree.hclust(hc, k=1:4, sort_cluster_numbers=TRUE)
+   sorted_cutree_dend <-dendextend:::cutree.dendrogram(dend, k=1:4, sort_cluster_numbers=TRUE,try_cutree_hclust=FALSE)
 
    expect_identical( 
       sorted_cutree_hc_orig,
@@ -404,7 +404,7 @@ test_that("Having cutree work when using a subsetted tree",{
    # Wo   
    # get a dendrogram:
 #    data(iris) 
-   d_iris <- dist(iris[1:10,-5])
+   d_iris <- dist(datasets::iris[1:10,-5])
    hc_iris <- hclust(d_iris)
    dend_iris <- as.dendrogram(hc_iris) # as.hclust.dendrogram - of course
    
@@ -423,16 +423,16 @@ test_that("Having cutree work when using a subsetted tree",{
    
    # we will get warnings, but the functions would not collapse!
    expect_warning(
-      cutree.dendrogram(as.dendrogram(hc_sub_dend_iris ), 3,  try_cutree_hclust = TRUE)
+      dendextend:::cutree.dendrogram(as.dendrogram(hc_sub_dend_iris ), 3,  try_cutree_hclust = TRUE)
    )
    expect_warning(
-      cutree.dendrogram(as.dendrogram(hc_sub_dend_iris ), 3,  try_cutree_hclust = FALSE)
+      dendextend:::cutree.dendrogram(as.dendrogram(hc_sub_dend_iris ), 3,  try_cutree_hclust = FALSE)
    )
    
    # remove "iris" from the last test...
    # if(exists("iris")) # it says it doesn't exists - but it does (in the gloval env)!
 #    suppressWarnings()
-   rm(iris, pos = 1)
+#    rm(iris, pos = 1)
    
 })
 

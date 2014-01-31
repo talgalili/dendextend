@@ -21,9 +21,12 @@
 
 # as.dendrogram(as.hclust(as.phylo(hc)))
 #' @export
+#' @S3method as.dendrogram phylo
 as.dendrogram.phylo <- function(object,...) {as.dendrogram(as.hclust(object))}
 
+
 #' @export
+#' @S3method as.phylo dendrogram
 as.phylo.dendrogram <- function(object,...) {
 	require(ape)
 	ape::as.phylo(as.hclust(object))
@@ -170,6 +173,7 @@ nnodes.dendrogram <- function(x,...) {
 # nnodes(dend)
 
 
+#' @import stats
 #' @S3method nnodes hclust
 nnodes.hclust <- function(x,...) {nnodes(as.dendrogram(x))}
 
