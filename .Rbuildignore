@@ -4,6 +4,7 @@
 .Rhistory
 .RData
 vignettes/figure
+vignettes/cache
 vignettes/*\.md
 vignettes/*\.gz
 vignettes/*\.tex
@@ -11,3 +12,4 @@ vignettes/*\.log
 vignettes/*\.blg
 vignettes/*\.bbl
 NEWS.md
+inst/doc/2013-09-05_Boston-useR
