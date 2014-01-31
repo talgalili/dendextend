@@ -2,7 +2,7 @@
 \alias{unclass_dend}
 \title{unclass an entire dendrogram tree}
 \usage{
-  unclass_dend(dend, ...)
+unclass_dend(dend, ...)
 }
 \arguments{
   \item{dend}{a dendrogram object}
@@ -10,10 +10,10 @@
   \item{...}{not used}
 }
 \value{
-  The list which was the dendrogram (but without a class)
+The list which was the dendrogram (but without a class)
 }
 \description{
-  unclass an entire dendrogram tree
+unclass an entire dendrogram tree
 }
 \examples{
 # define dendrogram object to play with:
@@ -29,6 +29,6 @@ unclass_dend(dend) # this only returns a list with two dendrogram objects inside
 str(unclass_dend(dend)) # NOW we can more easily understand how the dendrogram object is structured...
 }
 \seealso{
-  \link{nleaves}
+\link{nleaves}
 }
 

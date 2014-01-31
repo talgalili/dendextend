@@ -2,21 +2,18 @@
 \alias{plot_horiz.dendrogram}
 \title{Plotting a left-tip-adjusted horizontal dendrogram}
 \source{
-  This function is based on replicating
-  \link{plot.dendrogram}. In fact, I'd be happy if in the
-  future, some tweaks could be make to
-  \link{plot.dendrogram}, so that it would replace the need
-  for this function.
+This function is based on replicating
+\link{plot.dendrogram}. In fact, I'd be happy if in the
+future, some tweaks could be make to
+\link{plot.dendrogram}, so that it would replace the need
+for this function.
 }
 \usage{
-  plot_horiz.dendrogram(x,
-    type = c("rectangle", "triangle"), center = FALSE,
-    edge.root = is.leaf(x) || !is.null(attr(x, "edgetext")),
-    dLeaf = NULL, horiz = TRUE, xaxt = "n", yaxt = "s",
-    xlim = NULL, ylim = NULL, nodePar = NULL,
-    edgePar = list(),
-    leaflab = c("perpendicular", "textlike", "none"),
-    side = TRUE, text_pos = 2, ...)
+plot_horiz.dendrogram(x, type = c("rectangle", "triangle"), center = FALSE,
+  edge.root = is.leaf(x) || !is.null(attr(x, "edgetext")), dLeaf = NULL,
+  horiz = TRUE, xaxt = "n", yaxt = "s", xlim = NULL, ylim = NULL,
+  nodePar = NULL, edgePar = list(), leaflab = c("perpendicular",
+  "textlike", "none"), side = TRUE, text_pos = 2, ...)
 }
 \arguments{
   \item{x}{tree object (dendrogram)}
@@ -73,15 +70,15 @@
   \item{...}{passed to \link{plot}.}
 }
 \value{
-  The invisiable dLeaf value.
+The invisiable dLeaf value.
 }
 \description{
-  The default \code{plot(dend, horiz = TRUE)}, gives us a
-  dendrogram tree plot with the tips turned right. The
-  current function enables the creation of the same tree,
-  but with the tips turned left. The main challange in
-  doing this is finding the distance of the labels from the
-  leaves tips - which is solved with this function.
+The default \code{plot(dend, horiz = TRUE)}, gives us a
+dendrogram tree plot with the tips turned right. The
+current function enables the creation of the same tree, but
+with the tips turned left. The main challange in doing this
+is finding the distance of the labels from the leaves tips
+- which is solved with this function.
 }
 \examples{
 \dontrun{
@@ -104,6 +101,6 @@ plot_horiz.dendrogram(dend, side=TRUE, text_offset = 0,text_pos=4)
 }
 }
 \seealso{
-  \link{plot.dendrogram}, \link{tangelgram}
+\link{plot.dendrogram}, \link{tangelgram}
 }
 

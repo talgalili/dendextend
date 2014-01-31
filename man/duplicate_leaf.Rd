@@ -2,9 +2,8 @@
 \alias{duplicate_leaf}
 \title{Duplicate a leaf X times}
 \usage{
-  duplicate_leaf(dend, leaf_label, times,
-    fix_members = TRUE, fix_order = TRUE,
-    fix_midpoint = TRUE, ...)
+duplicate_leaf(dend, leaf_label, times, fix_members = TRUE,
+  fix_order = TRUE, fix_midpoint = TRUE, ...)
 }
 \arguments{
   \item{dend}{a dendrogram object}
@@ -28,14 +27,13 @@
   \item{...}{not used}
 }
 \value{
-  A dendrogram, after duplicating one of its leaves.
+A dendrogram, after duplicating one of its leaves.
 }
 \description{
-  Duplicates a leaf in a tree. Useful for non-parametric
-  bootstraping trees since it emulates what would have
-  happened if the tree was constructed based on a
-  row-sample with replacments from the original data
-  matrix.
+Duplicates a leaf in a tree. Useful for non-parametric
+bootstraping trees since it emulates what would have
+happened if the tree was constructed based on a row-sample
+with replacments from the original data matrix.
 }
 \examples{
 \dontrun{

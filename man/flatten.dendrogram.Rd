@@ -2,7 +2,7 @@
 \alias{flatten.dendrogram}
 \title{Flatten the branches of a dendrogram's root}
 \usage{
-  flatten.dendrogram(dend, FUN = max, new_height, ...)
+flatten.dendrogram(dend, FUN = max, new_height, ...)
 }
 \arguments{
   \item{dend}{dendrogram object}
@@ -16,13 +16,13 @@
   \item{...}{passed on (not used)}
 }
 \value{
-  A dendrogram with both of the root's branches of the same
-  height
+A dendrogram with both of the root's branches of the same
+height
 }
 \description{
-  The function makes sure the two branches of the root of a
-  dendrogram will have the same height. The user can choose
-  how to decide which height to use.
+The function makes sure the two branches of the root of a
+dendrogram will have the same height. The user can choose
+how to decide which height to use.
 }
 \examples{
 hc <- hclust(dist(USArrests[2:9,]), "com")

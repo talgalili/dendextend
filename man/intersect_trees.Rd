@@ -2,7 +2,7 @@
 \alias{intersect_trees}
 \title{Intersect trees}
 \usage{
-  intersect_trees(x1, x2, warn = FALSE, ...)
+intersect_trees(x1, x2, warn = FALSE, ...)
 }
 \arguments{
   \item{x1}{tree object (dendrogram/hclust/phylo)}
@@ -15,11 +15,11 @@
   \item{...}{passed on}
 }
 \value{
-  A list with two pruned trees
+A list with two pruned trees
 }
 \description{
-  Return two trees after pruning them so that the only
-  leaves left are the intersection of their labels.
+Return two trees after pruning them so that the only leaves
+left are the intersection of their labels.
 }
 \examples{
 hc <- hclust(dist(USArrests[1:5,]), "ave")
@@ -35,6 +35,6 @@ plot(dend1, main = "Tree 1:\\n original with label 1 pruned"); plot(dend2, main 
 plot(intersect_dend[[1]], main = "Tree 1 pruned\\n with the labels that intersected with those of Tree 2");plot(intersect_dend[[2]], main = "Tree 2 pruned\\n with the labels that intersected with those of Tree 1")
 }
 \seealso{
-  \link{prune}, \link{intersect}, \link{labels}
+\link{prune}, \link{intersect}, \link{labels}
 }
 

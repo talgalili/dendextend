@@ -2,15 +2,15 @@
 \alias{is.hclust}
 \title{Is the object of class hclust}
 \usage{
-  is.hclust(x)
+is.hclust(x)
 }
 \arguments{
   \item{x}{an object.}
 }
 \value{
-  logical - is the object of class hclust.
+logical - is the object of class hclust.
 }
 \description{
-  Is the object of class hclust
+Is the object of class hclust
 }
 

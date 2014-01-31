@@ -2,7 +2,7 @@
 \alias{prune_leaf}
 \title{Trimms one leaf from a dendrogram}
 \usage{
-  prune_leaf(x, leaf_name, ...)
+prune_leaf(x, leaf_name, ...)
 }
 \arguments{
   \item{x}{dendrogram object}
@@ -13,13 +13,13 @@
   \item{...}{passed on}
 }
 \value{
-  A dendrogram with a leaf pruned
+A dendrogram with a leaf pruned
 }
 \description{
-  Trimms one leaf from a dendrogram
+Trimms one leaf from a dendrogram
 }
 \details{
-  Used through \link{prune}
+Used through \link{prune}
 }
 \examples{
 hc <- hclust(dist(USArrests[1:5,]), "ave")

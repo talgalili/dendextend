@@ -3,23 +3,21 @@
 \alias{colour_branches}
 \title{Color tree's branches according to sub-clusters}
 \source{
-  This function is a derived work from the
-  \code{\link[dendroextra]{color_clusters}} function, with
-  some ideas from the \code{\link[dendroextra]{slice}}
-  function - both are from the {\pkg{dendroextra}} package
-  by jefferis.
+This function is a derived work from the
+\code{\link[dendroextra]{color_clusters}} function, with
+some ideas from the \code{\link[dendroextra]{slice}}
+function - both are from the {\pkg{dendroextra}} package by
+jefferis.
 
-  It extends it by using
-  \link[dendextend]{cutree.dendrogram} - allowing the
-  function to work for trees that hclust can not handle
-  (unbranched and non-ultrametric trees). Also, it allows
-  REPEATED cluster color assignments to branches on to the
-  same tree. Something which the original function was not
-  able to handle.
+It extends it by using \link[dendextend]{cutree.dendrogram}
+- allowing the function to work for trees that hclust can
+not handle (unbranched and non-ultrametric trees). Also, it
+allows REPEATED cluster color assignments to branches on to
+the same tree. Something which the original function was
+not able to handle.
 }
 \usage{
-  color_branches(tree, k = NULL, h = NULL, col,
-    groupLabels = NULL, ...)
+color_branches(tree, k = NULL, h = NULL, col, groupLabels = NULL, ...)
 }
 \arguments{
   \item{tree}{A \code{dendrogram} or \code{hclust} tree
@@ -43,36 +41,35 @@
   \item{...}{ignored.}
 }
 \value{
-  a tree object of class dendrogram.
+a tree object of class dendrogram.
 }
 \description{
-  This function is for dendrogram and hclust objects. This
-  function colors both the terminal leaves of a tree's
-  cluster and the edges leading to those leaves. The
-  edgePar attribute of nodes will be augmented by a new
-  list item col. The groups will be defined by a call to
-  \code{\link[dendextend]{cutree}} using the k or h
-  parameters.
+This function is for dendrogram and hclust objects. This
+function colors both the terminal leaves of a tree's
+cluster and the edges leading to those leaves. The edgePar
+attribute of nodes will be augmented by a new list item
+col. The groups will be defined by a call to
+\code{\link[dendextend]{cutree}} using the k or h
+parameters.
 
-  If col is a color vector with a different length than the
-  number of clusters (k) - then a recycled color vector
-  will be used.
+If col is a color vector with a different length than the
+number of clusters (k) - then a recycled color vector will
+be used.
 }
 \details{
-  If \code{groupLabels=TRUE} then numeric group labels will
-  be added to each cluster. If a vector is supplied then
-  these entries will be used as the group labels. If a
-  function is supplied then it will be passed a numeric
-  vector of groups (e.g. 1:5) and must return the formatted
-  group labels.
+If \code{groupLabels=TRUE} then numeric group labels will
+be added to each cluster. If a vector is supplied then
+these entries will be used as the group labels. If a
+function is supplied then it will be passed a numeric
+vector of groups (e.g. 1:5) and must return the formatted
+group labels.
 
-  If the \link{labels} of the dendrogram are NOT character
-  (but, for example integers) - they are coerced into
-  character. This step is essential for the proper
-  operation of the function. A dendrogram labels might
-  happen to be integers if they are based on an
-  \link{hclust} performed on a \link{dist} of an object
-  without \link{rownames}.
+If the \link{labels} of the dendrogram are NOT character
+(but, for example integers) - they are coerced into
+character. This step is essential for the proper operation
+of the function. A dendrogram labels might happen to be
+integers if they are based on an \link{hclust} performed on
+a \link{dist} of an object without \link{rownames}.
 }
 \examples{
 \dontrun{
@@ -169,10 +166,10 @@ plot(dend_iris1)
 }
 }
 \author{
-  Tal Galili, extensively based on code by jefferis
+Tal Galili, extensively based on code by jefferis
 }
 \seealso{
-  \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
-  \code{\link{hclust}}, \code{\link{labels_colors}}
+\code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
+\code{\link{hclust}}, \code{\link{labels_colors}}
 }
 

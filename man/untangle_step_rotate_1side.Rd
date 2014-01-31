@@ -2,9 +2,9 @@
 \alias{untangle_step_rotate_1side}
 \title{Stepwise untangle one tree compared to another}
 \usage{
-  untangle_step_rotate_1side(dend1, dend2_fixed, L = 1.5,
-    direction = c("forward", "backward"), k_seq = NULL,
-    dend_heights_per_k, ...)
+untangle_step_rotate_1side(dend1, dend2_fixed, L = 1.5,
+  direction = c("forward", "backward"), k_seq = NULL, dend_heights_per_k,
+  ...)
 }
 \arguments{
   \item{dend1}{a dendrogram object. The one we will rotate
@@ -35,22 +35,22 @@
   \item{...}{not used}
 }
 \value{
-  dend1 after it was rotated to best fit dend2_fixed.
+dend1 after it was rotated to best fit dend2_fixed.
 }
 \description{
-  Given a fixed tree and a tree we wish to rotate, this
-  function goes through all of the k number of clusters
-  (from 2 onward), and each time rotates the branch which
-  was introduced in the new k'th cluster. This rotated tree
-  is compared with the fixed tree, and if it has a better
-  entanglement, it will be used for the following
-  interations.
+Given a fixed tree and a tree we wish to rotate, this
+function goes through all of the k number of clusters (from
+2 onward), and each time rotates the branch which was
+introduced in the new k'th cluster. This rotated tree is
+compared with the fixed tree, and if it has a better
+entanglement, it will be used for the following
+interations.
 
-  This is a greedy forward selection algorithm for rotating
-  the tree and looking for a better match.
+This is a greedy forward selection algorithm for rotating
+the tree and looking for a better match.
 
-  This is useful for finding good trees for a
-  \link{tanglegram}.
+This is useful for finding good trees for a
+\link{tanglegram}.
 }
 \examples{
 \dontrun{
@@ -67,9 +67,9 @@ entanglement(dend1,dend2_corrected, L = 2) # 0
 }
 }
 \seealso{
-  \link{untangle}, \link{tanglegram},
-  \link{match_order_by_labels}, \link{entanglement},
-  \link{flip_leaves}, \link{all_couple_rotations_at_k},
-  \link{untangle_step_rotate_2side}.
+\link{untangle}, \link{tanglegram},
+\link{match_order_by_labels}, \link{entanglement},
+\link{flip_leaves}, \link{all_couple_rotations_at_k},
+\link{untangle_step_rotate_2side}.
 }
 

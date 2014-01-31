@@ -2,9 +2,8 @@
 \alias{sample.dendrogram}
 \title{Sample a tree}
 \usage{
-  sample.dendrogram(dend, replace = FALSE, dend_labels,
-    sampled_labels, fix_members = TRUE, fix_order = TRUE,
-    fix_midpoint = TRUE, ...)
+sample.dendrogram(dend, replace = FALSE, dend_labels, sampled_labels,
+  fix_members = TRUE, fix_order = TRUE, fix_midpoint = TRUE, ...)
 }
 \arguments{
   \item{dend}{a dendrogram object}
@@ -42,20 +41,18 @@
   \item{...}{not used}
 }
 \value{
-  A dendrogram, after "sampling" its leaves.
+A dendrogram, after "sampling" its leaves.
 }
 \description{
-  Samples a tree, either by permuting the labels (which is
-  usefull for a permutation test), or by repeated sampling
-  of the same labels (essential for bootstraping when we
-  don't have access to the original data which produced the
-  tree).
+Samples a tree, either by permuting the labels (which is
+usefull for a permutation test), or by repeated sampling of
+the same labels (essential for bootstraping when we don't
+have access to the original data which produced the tree).
 
-  Duplicates a leaf in a tree. Useful for non-parametric
-  bootstraping trees since it emulates what would have
-  happened if the tree was constructed based on a
-  row-sample with replacments from the original data
-  matrix.
+Duplicates a leaf in a tree. Useful for non-parametric
+bootstraping trees since it emulates what would have
+happened if the tree was constructed based on a row-sample
+with replacments from the original data matrix.
 }
 \examples{
 \dontrun{
@@ -72,6 +69,6 @@ plot(sample.dendrogram(dend, replace = TRUE))
 }
 }
 \seealso{
-  \link{sample}, \link{duplicate_leaf}
+\link{sample}, \link{duplicate_leaf}
 }
 

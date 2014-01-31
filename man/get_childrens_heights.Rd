@@ -2,7 +2,7 @@
 \alias{get_childrens_heights}
 \title{Get height attributes from a dendrogram's children}
 \usage{
-  get_childrens_heights(dend, ...)
+get_childrens_heights(dend, ...)
 }
 \arguments{
   \item{dend}{a dendrogram.}
@@ -10,11 +10,11 @@
   \item{...}{not used.}
 }
 \value{
-  a vector of the heights of a dendrogram's current node's
-  (first level) children.
+a vector of the heights of a dendrogram's current node's
+(first level) children.
 }
 \description{
-  Get height attributes from a dendrogram's children
+Get height attributes from a dendrogram's children
 }
 \examples{
 hc <- hclust(dist(USArrests[1:4,]), "ave")
@@ -22,6 +22,6 @@ dend <- as.dendrogram(hc)
 get_childrens_heights(dend)
 }
 \seealso{
-  \link{get_branches_heights}
+\link{get_branches_heights}
 }
 

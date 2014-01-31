@@ -2,8 +2,7 @@
 \alias{sort_dist_mat}
 \title{Sorts a distance matrix by rows and columns}
 \usage{
-  sort_dist_mat(dist_mat, by_rows = TRUE, by_cols = TRUE,
-    ...)
+sort_dist_mat(dist_mat, by_rows = TRUE, by_cols = TRUE, ...)
 }
 \arguments{
   \item{dist_mat}{a distance matrix.}
@@ -17,12 +16,12 @@
   \item{...}{Ignored.}
 }
 \value{
-  A distance matrix (after sorting)
+A distance matrix (after sorting)
 }
 \description{
-  Sorts a distance matrix by rows and columns
+Sorts a distance matrix by rows and columns
 }
 \seealso{
-  \link{dist}, \link{cor_cophenetic}
+\link{dist}, \link{cor_cophenetic}
 }
 

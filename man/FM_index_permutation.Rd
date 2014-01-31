@@ -2,8 +2,7 @@
 \alias{FM_index_permutation}
 \title{Calculating Fowlkes-Mallows Index under H0}
 \usage{
-  FM_index_permutation(A1_clusters, A2_clusters,
-    warn = TRUE, ...)
+FM_index_permutation(A1_clusters, A2_clusters, warn = TRUE, ...)
 }
 \arguments{
   \item{A1_clusters}{a numeric vector of cluster grouping
@@ -23,13 +22,13 @@
   FM_index_R/FM_index_profdpm).}
 }
 \value{
-  The Fowlkes-Mallows index between two vectors of
-  clustering groups. Under H0. (a double without attr)
+The Fowlkes-Mallows index between two vectors of clustering
+groups. Under H0. (a double without attr)
 }
 \description{
-  Calculating Fowlkes-Mallows index under the null
-  hypothesis of no relation between the clusterings (random
-  order of the items labels).
+Calculating Fowlkes-Mallows index under the null hypothesis
+of no relation between the clusterings (random order of the
+items labels).
 }
 \examples{
 \dontrun{
@@ -77,15 +76,14 @@ legend("topright", legend = c("asymptotic", "permutation"), fill = c(4,1))
 }
 }
 \references{
-  Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
-  Method for Comparing Two Hierarchical Clusterings".
-  Journal of the American Statistical Association 78 (383):
-  553.
+Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
+Method for Comparing Two Hierarchical Clusterings". Journal
+of the American Statistical Association 78 (383): 553.
 
-  \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+\url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 }
 \seealso{
-  \link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}},
-  \code{\link{FM_index_R}}, \code{\link{FM_index}}
+\link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}},
+\code{\link{FM_index_R}}, \code{\link{FM_index}}
 }
 

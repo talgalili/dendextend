@@ -2,7 +2,7 @@
 \alias{cor_cophenetic}
 \title{Cophenetic correlation between two trees}
 \usage{
-  cor_cophenetic(tree1, tree2, method = "pearson", ...)
+cor_cophenetic(tree1, tree2, method = "pearson", ...)
 }
 \arguments{
   \item{tree1}{a tree (dendrogram/hclust/phylo)}
@@ -17,35 +17,34 @@
   \item{...}{Ignored.}
 }
 \value{
-  The correlation between cophenetic
+The correlation between cophenetic
 }
 \description{
-  Cophenetic correlation coefficient for two trees.
+Cophenetic correlation coefficient for two trees.
 
-  Assumes the labels in the two trees fully match. If they
-  do not please first use \link{intersect_trees} to have
-  them matched.
+Assumes the labels in the two trees fully match. If they do
+not please first use \link{intersect_trees} to have them
+matched.
 }
 \details{
-  From \link{cophenetic}: The cophenetic distance between
-  two observations that have been clustered is defined to
-  be the intergroup dissimilarity at which the two
-  observations are first combined into a single cluster.
-  Note that this distance has many ties and restrictions.
+From \link{cophenetic}: The cophenetic distance between two
+observations that have been clustered is defined to be the
+intergroup dissimilarity at which the two observations are
+first combined into a single cluster. Note that this
+distance has many ties and restrictions.
 
-  cor_cophenetic calculates the correlation between two
-  cophenetic distance matrices of the two trees.
+cor_cophenetic calculates the correlation between two
+cophenetic distance matrices of the two trees.
 
-  The value can range between -1 to 1. With near 0 values
-  meaning that the two trees are not statistically similar.
-  For exact p-value one should result to a permutation
-  test. One such option will be to permute over the labels
-  of one tree many times, and calculating the distriubtion
-  under the null hypothesis (keeping the trees topologies
-  constant).
+The value can range between -1 to 1. With near 0 values
+meaning that the two trees are not statistically similar.
+For exact p-value one should result to a permutation test.
+One such option will be to permute over the labels of one
+tree many times, and calculating the distriubtion under the
+null hypothesis (keeping the trees topologies constant).
 
-  Notice that this measure IS affected by the height of a
-  branch.
+Notice that this measure IS affected by the height of a
+branch.
 }
 \examples{
 \dontrun{
@@ -97,16 +96,16 @@ microbenchmark(
 }
 }
 \references{
-  Sokal, R. R. and F. J. Rohlf. 1962. The comparison of
-  dendrograms by objective methods. Taxon, 11:33-40
+Sokal, R. R. and F. J. Rohlf. 1962. The comparison of
+dendrograms by objective methods. Taxon, 11:33-40
 
-  Sneath, P.H.A. and Sokal, R.R. (1973) Numerical Taxonomy:
-  The Principles and Practice of Numerical Classification,
-  p. 278 ff; Freeman, San Francisco.
+Sneath, P.H.A. and Sokal, R.R. (1973) Numerical Taxonomy:
+The Principles and Practice of Numerical Classification, p.
+278 ff; Freeman, San Francisco.
 
-  \url{http://en.wikipedia.org/wiki/Cophenetic_correlation}
+\url{http://en.wikipedia.org/wiki/Cophenetic_correlation}
 }
 \seealso{
-  \link{cophenetic}, \link{cor_bakers_gamma}
+\link{cophenetic}, \link{cor_bakers_gamma}
 }
 

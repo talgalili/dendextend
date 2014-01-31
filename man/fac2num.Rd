@@ -2,7 +2,7 @@
 \alias{fac2num}
 \title{Turns a factor into a number}
 \usage{
-  fac2num(x, force_integer = FALSE, keep_names = TRUE, ...)
+fac2num(x, force_integer = FALSE, keep_names = TRUE, ...)
 }
 \arguments{
   \item{x}{an object.}
@@ -16,15 +16,15 @@
   \item{...}{ignored.}
 }
 \value{
-  if x is an object - it returns logical - is the object of
-  class dendrogram.
+if x is an object - it returns logical - is the object of
+class dendrogram.
 }
 \description{
-  Turning a factor into a number is not trivial. Using
-  \code{as.numeric} would only return to us the indicator
-  numbers and NOT the factor levels turned into a number.
-  fac2num simply turns a factor into a number, as we often
-  need.
+Turning a factor into a number is not trivial. Using
+\code{as.numeric} would only return to us the indicator
+numbers and NOT the factor levels turned into a number.
+fac2num simply turns a factor into a number, as we often
+need.
 }
 \examples{
 x <- factor(3:5)

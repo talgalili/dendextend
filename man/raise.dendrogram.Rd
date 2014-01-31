@@ -2,7 +2,7 @@
 \alias{raise.dendrogram}
 \title{Raise the height of a dendrogram tree}
 \usage{
-  raise.dendrogram(dend, heiget_to_add, ...)
+raise.dendrogram(dend, heiget_to_add, ...)
 }
 \arguments{
   \item{dend}{dendrogram object}
@@ -13,10 +13,10 @@
   \item{...}{passed on (not used)}
 }
 \value{
-  A raised dendrogram
+A raised dendrogram
 }
 \description{
-  Raise the height of a dendrogram tree
+Raise the height of a dendrogram tree
 }
 \examples{
 hc <- hclust(dist(USArrests[2:9,]), "com")

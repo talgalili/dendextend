@@ -2,8 +2,8 @@
 \alias{sort_2_clusters_vectors}
 \title{Sorts two clusters vector by their names}
 \usage{
-  sort_2_clusters_vectors(A1_clusters, A2_clusters,
-    assume_sorted_vectors = FALSE, warn = TRUE, ...)
+sort_2_clusters_vectors(A1_clusters, A2_clusters,
+  assume_sorted_vectors = FALSE, warn = TRUE, ...)
 }
 \arguments{
   \item{A1_clusters}{a numeric vector of cluster grouping
@@ -27,11 +27,11 @@
   \item{...}{Ignored.}
 }
 \value{
-  A list with two elements, corrosponding two the two
-  clustering vectors.
+A list with two elements, corrosponding two the two
+clustering vectors.
 }
 \description{
-  Sorts two clusters vector by their names
+Sorts two clusters vector by their names
 }
 \examples{
 \dontrun{
@@ -54,6 +54,6 @@ sort_2_clusters_vectors(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE) 
 }
 }
 \seealso{
-  \link{FM_index_profdpm}
+\link{FM_index_profdpm}
 }
 

@@ -2,7 +2,7 @@
 \alias{fix_members_attr.dendrogram}
 \title{Fix members attr in a dendrogram}
 \usage{
-  fix_members_attr.dendrogram(dend, ...)
+fix_members_attr.dendrogram(dend, ...)
 }
 \arguments{
   \item{dend}{a dendrogram object}
@@ -10,12 +10,12 @@
   \item{...}{not used}
 }
 \value{
-  A dendrogram, after adjusting the members attr in all of
-  its nodes.
+A dendrogram, after adjusting the members attr in all of
+its nodes.
 }
 \description{
-  Fix members attr in a dendrogram after (for example), the
-  tree was pruned or manipulated.
+Fix members attr in a dendrogram after (for example), the
+tree was pruned or manipulated.
 }
 \examples{
 # define dendrogram object to play with:

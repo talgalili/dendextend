@@ -2,7 +2,7 @@
 \alias{remove_branches_edgePar}
 \title{Remove all edgePar values from a dendrogram's branches}
 \usage{
-  remove_branches_edgePar(object, ...)
+remove_branches_edgePar(object, ...)
 }
 \arguments{
   \item{object}{a dendrogram object}
@@ -10,12 +10,11 @@
   \item{...}{not used}
 }
 \value{
-  A dendrogram, after removing the edgePar attribute in all
-  of its branches,
+A dendrogram, after removing the edgePar attribute in all
+of its branches,
 }
 \description{
-  Go through the dendrogram branches and remove its
-  edgePar.
+Go through the dendrogram branches and remove its edgePar.
 }
 \examples{
 \dontrun{
@@ -29,7 +28,7 @@ plot(remove_branches_edgePar(dend))
 }
 }
 \seealso{
-  \link{get_branches_attr},
-  \link{assign_values_to_branches_edgePar}
+\link{get_branches_attr},
+\link{assign_values_to_branches_edgePar}
 }
 

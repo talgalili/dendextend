@@ -2,8 +2,7 @@
 \alias{bakers_gamma_for_2_k_matrix}
 \title{Bakers Gamma for two k matrices}
 \usage{
-  bakers_gamma_for_2_k_matrix(k_matrix_tree1,
-    k_matrix_tree2, to_plot = FALSE)
+bakers_gamma_for_2_k_matrix(k_matrix_tree1, k_matrix_tree2, to_plot = FALSE)
 }
 \arguments{
   \item{k_matrix_tree1}{a matrix of k cluster groupings
@@ -20,12 +19,12 @@
   \item{...}{not used}
 }
 \value{
-  Baker's Gamma coefficient.
+Baker's Gamma coefficient.
 }
 \description{
-  Bakers Gamma for two k matrices
+Bakers Gamma for two k matrices
 }
 \seealso{
-  \link{cor_bakers_gamma}
+\link{cor_bakers_gamma}
 }
 

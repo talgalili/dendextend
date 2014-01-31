@@ -2,7 +2,7 @@
 \alias{rllply}
 \title{recursivly apply a function on a list}
 \usage{
-  rllply(x, FUN, add_notation = FALSE, ...)
+rllply(x, FUN, add_notation = FALSE, ...)
 }
 \arguments{
   \item{x}{a list.}
@@ -17,17 +17,17 @@
   \item{...}{not used.}
 }
 \value{
-  a list with ALL of the nodes (from the original "x"
-  list), that FUN was applied on.
+a list with ALL of the nodes (from the original "x" list),
+that FUN was applied on.
 }
 \description{
-  recursivly apply a function on a list - and returns the
-  output as a list, following the naming convention in the
-  {plyr} package the big difference between this and rapply
-  is that this will also apply the function on EACH element
-  of the list, even if it's not a "terminal node" inside
-  the list tree. An attribute is added to indicate if the
-  value returned is from a branch or a leaf.
+recursivly apply a function on a list - and returns the
+output as a list, following the naming convention in the
+{plyr} package the big difference between this and rapply
+is that this will also apply the function on EACH element
+of the list, even if it's not a "terminal node" inside the
+list tree. An attribute is added to indicate if the value
+returned is from a branch or a leaf.
 }
 \examples{
 \dontrun{

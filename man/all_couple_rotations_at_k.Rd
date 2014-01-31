@@ -2,8 +2,7 @@
 \alias{all_couple_rotations_at_k}
 \title{Rotate tree branches for k}
 \usage{
-  all_couple_rotations_at_k(dend, k, dend_heights_per_k,
-    ...)
+all_couple_rotations_at_k(dend, k, dend_heights_per_k, ...)
 }
 \arguments{
   \item{dend}{a dendrogram object}
@@ -20,16 +19,16 @@
   \item{...}{not used}
 }
 \value{
-  A list with dendrogram objects with all the possible
-  rotations for k clusters (beyond the k-1 clusters!).
+A list with dendrogram objects with all the possible
+rotations for k clusters (beyond the k-1 clusters!).
 }
 \description{
-  Given a tree and a k number of clusters, the tree is
-  rotated so that the extra clusters added from k-1 to k
-  clusters are flipped.
+Given a tree and a k number of clusters, the tree is
+rotated so that the extra clusters added from k-1 to k
+clusters are flipped.
 
-  This is useful for finding good trees for a
-  \link{tanglegram}.
+This is useful for finding good trees for a
+\link{tanglegram}.
 }
 \examples{
 \dontrun{
@@ -48,8 +47,8 @@ entanglement(dend1,dend2, L = 2) # 0.05
 }
 }
 \seealso{
-  \link{untangle}, \link{tanglegram},
-  \link{match_order_by_labels}, \link{entanglement},
-  \link{flip_leaves}.
+\link{untangle}, \link{tanglegram},
+\link{match_order_by_labels}, \link{entanglement},
+\link{flip_leaves}.
 }
 

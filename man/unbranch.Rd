@@ -6,15 +6,13 @@
 \alias{unbranch.phylo}
 \title{unbranch trees}
 \usage{
-  unbranch(x, ...)
+unbranch(x, ...)
 
-  \method{unbranch}{dendrogram}(x, branch_becoming_root =
-    1, new_root_height, ...)
+\method{unbranch}{dendrogram}(x, branch_becoming_root = 1, new_root_height, ...)
 
-  \method{unbranch}{hclust}(x, branch_becoming_root = 1,
-    new_root_height, ...)
+\method{unbranch}{hclust}(x, branch_becoming_root = 1, new_root_height, ...)
 
-  \method{unbranch}{phylo}(x, ...)
+\method{unbranch}{phylo}(x, ...)
 }
 \arguments{
   \item{x}{tree (dendrogram/hclust) object}
@@ -30,10 +28,10 @@
   \item{...}{passed on}
 }
 \value{
-  An unbranched dendrogram
+An unbranched dendrogram
 }
 \description{
-  unbranch trees
+unbranch trees
 }
 \examples{
 hc <- hclust(dist(USArrests[2:9,]), "com")
@@ -45,6 +43,6 @@ plot(unbranch(dend , 1), main = "unbranched tree (left branch)")
 plot(unbranch(dend , 2), main = "tree without  (right branch)")
 }
 \seealso{
-  \link[ape]{unbranch} {ape}
+\link[ape]{unbranch} {ape}
 }
 

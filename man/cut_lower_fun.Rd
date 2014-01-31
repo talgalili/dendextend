@@ -2,7 +2,7 @@
 \alias{cut_lower_fun}
 \title{Cut a dendrogram - and run a function on the output}
 \usage{
-  cut_lower_fun(tree, h, FUN = labels, warn = FALSE, ...)
+cut_lower_fun(tree, h, FUN = labels, warn = FALSE, ...)
 }
 \arguments{
   \item{tree}{a dendrogram object.}
@@ -16,19 +16,19 @@
   \item{...}{passed to FUN.}
 }
 \value{
-  A list with the output of running FUN on each of the sub
-  trees derived from cutting "tree"
+A list with the output of running FUN on each of the sub
+trees derived from cutting "tree"
 }
 \description{
-  Cuts the a tree at height h and returns a list with the
-  FUN function implemented on all the sub trees created by
-  cut at height h. This is used for creating a
-  \link[dendextend]{cutree.dendrogram} function, by using
-  the \code{labels} function as FUN.
+Cuts the a tree at height h and returns a list with the FUN
+function implemented on all the sub trees created by cut at
+height h. This is used for creating a
+\link[dendextend]{cutree.dendrogram} function, by using the
+\code{labels} function as FUN.
 
-  This is the Rcpp version of the function, offering a
-  10-60 times improvement in speed (depending on the tree
-  size it is used on).
+This is the Rcpp version of the function, offering a 10-60
+times improvement in speed (depending on the tree size it
+is used on).
 }
 \examples{
 dend = as.dendrogram(hclust(dist(iris[1:4,-5])))
@@ -50,10 +50,10 @@ cut_lower_fun(dend, .4, order.dendrogram)
 }
 }
 \author{
-  Tal Galili
+Tal Galili
 }
 \seealso{
-  \code{\link{labels}}, \code{\link{dendrogram}},
-  \link[dendextend]{cutree.dendrogram}
+\code{\link{labels}}, \code{\link{dendrogram}},
+\link[dendextend]{cutree.dendrogram}
 }
 

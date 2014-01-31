@@ -2,10 +2,9 @@
 \alias{untangle_step_rotate_2side}
 \title{Stepwise untangle two trees one at a time}
 \usage{
-  untangle_step_rotate_2side(dend1, dend2, L = 1.5,
-    direction = c("forward", "backward"),
-    max_n_iterations = 10L, print_times = TRUE,
-    k_seq = NULL, ...)
+untangle_step_rotate_2side(dend1, dend2, L = 1.5, direction = c("forward",
+  "backward"), max_n_iterations = 10L, print_times = TRUE, k_seq = NULL,
+  ...)
 }
 \arguments{
   \item{dend1}{a dendrogram object. The one we will rotate
@@ -41,18 +40,18 @@
   \item{...}{not used}
 }
 \value{
-  A list with two dendrograms (dend1/dend2), after they are
-  rotated to best fit one another.
+A list with two dendrograms (dend1/dend2), after they are
+rotated to best fit one another.
 }
 \description{
-  This is a greedy forward selection algorithm for rotating
-  the tree and looking for a better match.
+This is a greedy forward selection algorithm for rotating
+the tree and looking for a better match.
 
-  This is useful for finding good trees for a
-  \link{tanglegram}.
+This is useful for finding good trees for a
+\link{tanglegram}.
 
-  It goes through rotating dend1, then dend2, and so on -
-  until a locally optimal solution is found.
+It goes through rotating dend1, then dend2, and so on -
+until a locally optimal solution is found.
 }
 \examples{
 \dontrun{
@@ -82,9 +81,9 @@ entanglement(dend12_corrected_2[[1]],dend12_corrected_2[[2]], L=2) # 0 - PERFECT
 }
 }
 \seealso{
-  \link{untangle}, \link{tanglegram},
-  \link{match_order_by_labels}, \link{entanglement},
-  \link{flip_leaves}, \link{all_couple_rotations_at_k}.
-  \link{untangle_step_rotate_1side}.
+\link{untangle}, \link{tanglegram},
+\link{match_order_by_labels}, \link{entanglement},
+\link{flip_leaves}, \link{all_couple_rotations_at_k}.
+\link{untangle_step_rotate_1side}.
 }
 

@@ -3,8 +3,7 @@
 \alias{leaf_colors}
 \title{Return the leaf Colors of a dendrogram}
 \usage{
-  leaf_Colors(d,
-    col_to_return = c("edge", "node", "label"))
+leaf_Colors(d, col_to_return = c("edge", "node", "label"))
 }
 \arguments{
   \item{d}{the dendrogram}
@@ -13,23 +12,23 @@
   attribute to return}
 }
 \value{
-  named character vector of Colors, NA_character_ where
-  missing
+named character vector of Colors, NA_character_ where
+missing
 }
 \description{
-  Return the leaf Colors of a dendrogram
+Return the leaf Colors of a dendrogram
 }
 \details{
-  The returned Colors will be in dendrogram order.
+The returned Colors will be in dendrogram order.
 }
 \examples{
 d5=color_branches(dend,5)
 leaf_Colors(d5)
 }
 \author{
-  jefferis
+jefferis
 }
 \seealso{
-  \code{\link{slice},\link{color_branches}}
+\code{\link{slice},\link{color_branches}}
 }
 

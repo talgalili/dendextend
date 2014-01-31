@@ -6,13 +6,13 @@
 \alias{nnodes.phylo}
 \title{Counts the number of nodes (Vertices) in a tree}
 \usage{
-  nnodes(x, ...)
+nnodes(x, ...)
 
-  \method{nnodes}{dendrogram}(x, ...)
+\method{nnodes}{dendrogram}(x, ...)
 
-  \method{nnodes}{hclust}(x, ...)
+\method{nnodes}{hclust}(x, ...)
 
-  \method{nnodes}{phylo}(x, ...)
+\method{nnodes}{phylo}(x, ...)
 }
 \arguments{
   \item{x}{tree object (dendrogram or hclust)}
@@ -20,19 +20,19 @@
   \item{...}{not used}
 }
 \value{
-  The number of leaves in the tree
+The number of leaves in the tree
 }
 \description{
-  Counts the number of nodes in a tree (dendrogram, hclust,
-  phylo).
+Counts the number of nodes in a tree (dendrogram, hclust,
+phylo).
 }
 \details{
-  The idea for the name is from functions like ncol, and
-  nrow.
+The idea for the name is from functions like ncol, and
+nrow.
 
-  The phylo method is based on turning the phylo to hclust
-  and than to dendrogram. It may not work for complex phylo
-  trees.
+The phylo method is based on turning the phylo to hclust
+and than to dendrogram. It may not work for complex phylo
+trees.
 }
 \examples{
 hc <- hclust(dist(USArrests[1:5,]), "ave")
@@ -42,6 +42,6 @@ nnodes(dend) # 9
 nnodes(hc) # 9
 }
 \seealso{
-  \link{nrow}, \link{count_terminal_nodes}, \link{nleaves}
+\link{nrow}, \link{count_terminal_nodes}, \link{nleaves}
 }
 

@@ -2,8 +2,8 @@
 \alias{FM_index_profdpm}
 \title{Calculating Fowlkes-Mallows index using the profdpm R package}
 \usage{
-  FM_index_profdpm(A1_clusters, A2_clusters,
-    assume_sorted_vectors = FALSE, warn = TRUE, ...)
+FM_index_profdpm(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE,
+  warn = TRUE, ...)
 }
 \arguments{
   \item{A1_clusters}{a numeric vector of cluster grouping
@@ -27,38 +27,37 @@
   \item{...}{Ignored.}
 }
 \value{
-  The Fowlkes-Mallows index between two vectors of
-  clustering groups.
+The Fowlkes-Mallows index between two vectors of clustering
+groups.
 }
 \description{
-  Calculating Fowlkes-Mallows index using the \code{pci}
-  function from the profdpm R package. This function uses C
-  code (thanks to Matthew Shotwell's work) and is a bit
-  faster than the R code (from my simple tests - it is
-  about 1.2-1.3 times faster - which is not much but it
-  might be useful).
+Calculating Fowlkes-Mallows index using the \code{pci}
+function from the profdpm R package. This function uses C
+code (thanks to Matthew Shotwell's work) and is a bit
+faster than the R code (from my simple tests - it is about
+1.2-1.3 times faster - which is not much but it might be
+useful).
 
-  As opposed to the \code{\link{FM_index_R}} function, the
-  \code{FM_index_profdpm} function does NOT calculate the
-  expectancy or the variance of the FM Index under the null
-  hypothesis of no relation.
+As opposed to the \code{\link{FM_index_R}} function, the
+\code{FM_index_profdpm} function does NOT calculate the
+expectancy or the variance of the FM Index under the null
+hypothesis of no relation.
 
-  This function also allows us to compare our calculations
-  with an independent writing of a function calculating the
-  same statistic.
+This function also allows us to compare our calculations
+with an independent writing of a function calculating the
+same statistic.
 }
 \details{
-  From Wikipedia:
+From Wikipedia:
 
-  Fowlkes-Mallows index (see references) is an external
-  evaluation method that is used to determine the
-  similarity between two clusterings (clusters obtained
-  after a clustering algorithm). This measure of similarity
-  could be either between two hierarchical clusterings or a
-  clustering and a benchmark classification. A higher the
-  value for the Fowlkes-Mallows index indicates a greater
-  similarity between the clusters and the benchmark
-  classifications.
+Fowlkes-Mallows index (see references) is an external
+evaluation method that is used to determine the similarity
+between two clusterings (clusters obtained after a
+clustering algorithm). This measure of similarity could be
+either between two hierarchical clusterings or a clustering
+and a benchmark classification. A higher the value for the
+Fowlkes-Mallows index indicates a greater similarity
+between the clusters and the benchmark classifications.
 }
 \examples{
 \dontrun{
@@ -86,18 +85,17 @@ plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the iris dataset")
 }
 }
 \references{
-  Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
-  Method for Comparing Two Hierarchical Clusterings".
-  Journal of the American Statistical Association 78 (383):
-  553.
+Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
+Method for Comparing Two Hierarchical Clusterings". Journal
+of the American Statistical Association 78 (383): 553.
 
-  Shotwell, Matthew S. "profdpm: An R Package for MAP
-  Estimation in a Class of Conjugate Product Partition
-  Models." Journal of Statistical Software 53: 1-18.
+Shotwell, Matthew S. "profdpm: An R Package for MAP
+Estimation in a Class of Conjugate Product Partition
+Models." Journal of Statistical Software 53: 1-18.
 
-  \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+\url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 }
 \seealso{
-  \link{cor_bakers_gamma}
+\link{cor_bakers_gamma}
 }
 

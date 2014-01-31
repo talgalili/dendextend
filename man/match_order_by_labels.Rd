@@ -2,8 +2,8 @@
 \alias{match_order_by_labels}
 \title{Adjust the order of one dendrogram based on another (using labels)}
 \usage{
-  match_order_by_labels(dend_change, dend_template,
-    check_that_labels_match = TRUE)
+match_order_by_labels(dend_change, dend_template,
+  check_that_labels_match = TRUE)
 }
 \arguments{
   \item{dend_change}{tree object (dendrogram)}
@@ -15,17 +15,17 @@
   they do not, the function aborts)}
 }
 \value{
-  Returns dend_change after adjusting its order values to
-  be like dend_template.
+Returns dend_change after adjusting its order values to be
+like dend_template.
 }
 \description{
-  Takes one dendrogram and adjusts its order leaves valeus
-  based on the order of another dendrogram. The values are
-  matached based on the labels of the two dendrograms.
+Takes one dendrogram and adjusts its order leaves valeus
+based on the order of another dendrogram. The values are
+matached based on the labels of the two dendrograms.
 
-  This allows for faster \link{entanglement} running time,
-  since we can be sure that the leaves order is just as
-  using their labels.
+This allows for faster \link{entanglement} running time,
+since we can be sure that the leaves order is just as using
+their labels.
 }
 \examples{
 \dontrun{
@@ -46,6 +46,6 @@ order.dendrogram(dend))
 }
 }
 \seealso{
-  \link{untangle}, \link{entanglement} , \link{tangelgram}
+\link{untangle}, \link{entanglement} , \link{tangelgram}
 }
 

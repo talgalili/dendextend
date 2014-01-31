@@ -2,8 +2,8 @@
 \alias{sort_levels_values}
 \title{Sort the values level in a vector}
 \usage{
-  sort_levels_values(x, MARGIN = 2, decreasing = FALSE,
-    force_integer = FALSE, warn = TRUE, ...)
+sort_levels_values(x, MARGIN = 2, decreasing = FALSE,
+  force_integer = FALSE, warn = TRUE, ...)
 }
 \arguments{
   \item{x}{a numeric vector.}
@@ -27,21 +27,21 @@
   \item{...}{ignored.}
 }
 \value{
-  if x is an object - it returns logical - is the object of
-  class dendrogram.
+if x is an object - it returns logical - is the object of
+class dendrogram.
 }
 \description{
-  Takes a numeric vector and sort its values so that they
-  would be increasing from left to right. It is different
-  from \code{\link{sort}} in that the function will only
-  "sort" the values levels, and not the vector itself.
+Takes a numeric vector and sort its values so that they
+would be increasing from left to right. It is different
+from \code{\link{sort}} in that the function will only
+"sort" the values levels, and not the vector itself.
 
-  This function is useful for \link[dendextend]{cutree} -
-  making the sort_cluster_numbers parameter possible. Using
-  that parameter with TRUE makes the clusters id's from
-  cutree to be ordered from left to right. e.g: the left
-  most cluster in the tree will be numbered "1", the one
-  after it will be "2" etc...).
+This function is useful for \link[dendextend]{cutree} -
+making the sort_cluster_numbers parameter possible. Using
+that parameter with TRUE makes the clusters id's from
+cutree to be ordered from left to right. e.g: the left most
+cluster in the tree will be numbered "1", the one after it
+will be "2" etc...).
 }
 \examples{
 x <- 1:4
@@ -64,7 +64,7 @@ x
 apply(x, 2, sort_levels_values)
 }
 \seealso{
-  \code{\link{sort}}, \code{\link{fac2num}},
-  \code{\link[dendextend]{cutree}}
+\code{\link{sort}}, \code{\link{fac2num}},
+\code{\link[dendextend]{cutree}}
 }
 

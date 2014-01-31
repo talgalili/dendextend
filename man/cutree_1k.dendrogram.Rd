@@ -2,9 +2,9 @@
 \alias{cutree_1k.dendrogram}
 \title{cutree for dendrogram (by 1 k value only!)}
 \usage{
-  cutree_1k.dendrogram(tree, k, dend_heights_per_k = NULL,
-    use_labels_not_values = TRUE,
-    order_clusters_as_data = TRUE, warn = TRUE, ...)
+cutree_1k.dendrogram(tree, k, dend_heights_per_k = NULL,
+  use_labels_not_values = TRUE, order_clusters_as_data = TRUE,
+  warn = TRUE, ...)
 }
 \arguments{
   \item{tree}{a dendrogram object}
@@ -37,21 +37,20 @@
   \item{...}{(not currently in use)}
 }
 \value{
-  \code{cutree_1k.dendrogram} returns an integer vector
-  with group memberships.
+\code{cutree_1k.dendrogram} returns an integer vector with
+group memberships.
 
-  In case there exists no such k for which exists a
-  relevant split of the dendrogram, a warning is issued to
-  the user, and NA is returned.
+In case there exists no such k for which exists a relevant
+split of the dendrogram, a warning is issued to the user,
+and NA is returned.
 }
 \description{
-  Cuts a dendrogram tree into several groups by specifying
-  the desired number of clusters k (only a single k
-  value!).
+Cuts a dendrogram tree into several groups by specifying
+the desired number of clusters k (only a single k value!).
 
-  In case there exists no such k for which exists a
-  relevant split of the dendrogram, a warning is issued to
-  the user, and NA is returned.
+In case there exists no such k for which exists a relevant
+split of the dendrogram, a warning is issued to the user,
+and NA is returned.
 }
 \examples{
 hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
@@ -83,10 +82,10 @@ microbenchmark(
 }
 }
 \author{
-  Tal Galili
+Tal Galili
 }
 \seealso{
-  \code{\link{hclust}}, \code{\link{cutree}},
-  \code{\link{cutree_1h.dendrogram}}
+\code{\link{hclust}}, \code{\link{cutree}},
+\code{\link{cutree_1h.dendrogram}}
 }
 

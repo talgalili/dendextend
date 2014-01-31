@@ -2,8 +2,7 @@
 \alias{assign_values_to_branches_edgePar}
 \title{Assign values to edgePar of dendrogram's branches}
 \usage{
-  assign_values_to_branches_edgePar(object, value, edgePar,
-    ...)
+assign_values_to_branches_edgePar(object, value, edgePar, ...)
 }
 \arguments{
   \item{object}{a dendrogram object}
@@ -16,12 +15,12 @@
   \item{...}{not used}
 }
 \value{
-  A dendrogram, after adjusting the edgePar attribute in
-  all of its branches,
+A dendrogram, after adjusting the edgePar attribute in all
+of its branches,
 }
 \description{
-  Go through the dendrogram branches and updates the values
-  inside its edgePar
+Go through the dendrogram branches and updates the values
+inside its edgePar
 }
 \examples{
 \dontrun{
@@ -38,6 +37,6 @@ plot(dend)
 }
 }
 \seealso{
-  \link{get_branches_attr}
+\link{get_branches_attr}
 }
 

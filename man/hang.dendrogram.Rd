@@ -2,12 +2,12 @@
 \alias{hang.dendrogram}
 \title{Hang dendrogram leaves}
 \source{
-  Noticing that as.dendrogram has a "hang" parameter was
-  thanks to Enrique Ramos's answer here::
-  \url{http://stackoverflow.com/questions/17088136/plot-horizontal-dendrogram-with-hanging-leaves-r}
+Noticing that as.dendrogram has a "hang" parameter was
+thanks to Enrique Ramos's answer here::
+\url{http://stackoverflow.com/questions/17088136/plot-horizontal-dendrogram-with-hanging-leaves-r}
 }
 \usage{
-  hang.dendrogram(dend, hang = 0.1, hang_height, ...)
+hang.dendrogram(dend, hang = 0.1, hang_height, ...)
 }
 \arguments{
   \item{dend}{a dendrogram object}
@@ -23,15 +23,15 @@
   \item{...}{not used}
 }
 \value{
-  A dendrogram, after adjusting the height attr in all of
-  its leaves, so that the tree will hang.
+A dendrogram, after adjusting the height attr in all of its
+leaves, so that the tree will hang.
 }
 \description{
-  Adjust the height attr in all of the dendrogram leaves so
-  that the tree will hang. This is similar to
-  as.dendrogram(hclust, hang=0.1) Only that it now works on
-  other object than hclust turned into a dendrogram.  For
-  example, this allows us to hang non-binary trees.
+Adjust the height attr in all of the dendrogram leaves so
+that the tree will hang. This is similar to
+as.dendrogram(hclust, hang=0.1) Only that it now works on
+other object than hclust turned into a dendrogram.  For
+example, this allows us to hang non-binary trees.
 }
 \examples{
 # define dendrogram object to play with:

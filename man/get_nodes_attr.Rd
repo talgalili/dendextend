@@ -2,13 +2,13 @@
 \alias{get_nodes_attr}
 \title{Get attributes of dendrogram's nodes}
 \source{
-  Heavily inspired by the code in the function
-  \code{labels.dendrogram}, so credit should go to Martin
-  Maechler.
+Heavily inspired by the code in the function
+\code{labels.dendrogram}, so credit should go to Martin
+Maechler.
 }
 \usage{
-  get_nodes_attr(object, attribute, include_leaves = TRUE,
-    include_branches = TRUE, na.rm = FALSE, ...)
+get_nodes_attr(object, attribute, include_leaves = TRUE,
+  include_branches = TRUE, na.rm = FALSE, ...)
 }
 \arguments{
   \item{object}{a dendrogram object}
@@ -28,14 +28,14 @@
   \item{...}{not used}
 }
 \value{
-  A vector with the dendrogram's nodes attribute. If an
-  attribute is missing from some nodes, it will return NA
-  in that vector.
+A vector with the dendrogram's nodes attribute. If an
+attribute is missing from some nodes, it will return NA in
+that vector.
 }
 \description{
-  Allows easy access to attributes of branches and/or
-  leaves, with option of returning a vector with/withough
-  NA's (for marking the missing attr value)
+Allows easy access to attributes of branches and/or leaves,
+with option of returning a vector with/withough NA's (for
+marking the missing attr value)
 }
 \examples{
 # define dendrogram object to play with:
@@ -79,6 +79,6 @@ microbenchmark(   get_leaves_attr(dend, "members"), # should be 1's
 }
 }
 \seealso{
-  \link{get_leaves_attr}, \link{nnodes}, \link{nleaves}
+\link{get_leaves_attr}, \link{nnodes}, \link{nleaves}
 }
 

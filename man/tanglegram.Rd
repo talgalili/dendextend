@@ -7,29 +7,39 @@
 \alias{tanglegram.phylo}
 \title{Tanglegram plot}
 \source{
-  The function is based on code from plannapus, after major
-  revisions. See:
-  \url{http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r}
+The function is based on code from plannapus, after major
+revisions. See:
+\url{http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r}
 }
 \usage{
-  tanglegram(tree1, ...)
+tanglegram(tree1, ...)
 
-  \method{tanglegram}{dendrogram}(tree1, tree2 , sort =
-    FALSE, color_lines = "darkgrey", lwd = 3.5,
-    columns_width = c(5,3,5), margin_top = 3, margin_bottom
-    = 2.5, margin_inner = 1.8, margin_outer = 0.5,
-    left_dendo_mar =
-    c(margin_bottom,margin_outer,margin_top,margin_inner),
-    right_dendo_mar =
-    c(margin_bottom,margin_inner,margin_top,margin_outer),
-    intersecting = TRUE, dLeaf = NULL, axes = TRUE, type =
-    "r", # can also be "t" lab.cex = 1, remove_nodePar =F,
-    main_left = "", main_right = "", k_labels = NULL,
-    k_branches = NULL, ...)
+\method{tanglegram}{dendrogram}(tree1, tree2 ,
+   sort = FALSE,
+   color_lines = "darkgrey",
+   lwd = 3.5,
+   columns_width = c(5,3,5),
+   margin_top = 3,
+   margin_bottom = 2.5,
+   margin_inner = 1.8,
+   margin_outer = 0.5,
+   left_dendo_mar = c(margin_bottom,margin_outer,margin_top,margin_inner),
+   right_dendo_mar = c(margin_bottom,margin_inner,margin_top,margin_outer),
+   intersecting = TRUE,
+   dLeaf = NULL,
+   axes = TRUE,
+   type = "r", # can also be "t"
+   lab.cex = 1,
+   remove_nodePar =F,
+   main_left = "",
+   main_right = "",
+   k_labels = NULL,
+   k_branches = NULL,
+   ...)
 
-  \method{tanglegram}{hclust}(tree1, ...)
+\method{tanglegram}{hclust}(tree1, ...)
 
-  \method{tanglegram}{phylo}(tree1, ...)
+\method{tanglegram}{phylo}(tree1, ...)
 }
 \arguments{
   \item{tree1}{tree object (dendrogram/hclust/phylo),
@@ -77,8 +87,8 @@
   dendrgoram.}
 
   \item{intersecting}{logical (TRUE). Should the leaves of
-  the two dendrograms be pruned so that the two trees
-  will have the same labels?}
+  the two dendrograms be pruned so that the two trees will
+  have the same labels?}
 
   \item{dLeaf}{a number specifying the distance in user
   coordinates between the tip of a leaf and its label. If
@@ -156,17 +166,17 @@
   \item{...}{not used.}
 }
 \value{
-  An invisible list, with two trees after being modified
-  during the creation of the tanglegram.
+An invisible list, with two trees after being modified
+during the creation of the tanglegram.
 }
 \description{
-  Counts the number of leaves in a tree (dendrogram or
-  hclust).
+Counts the number of leaves in a tree (dendrogram or
+hclust).
 }
 \details{
-  Notice that tanglegram does not "resize" well. In case
-  you are resizing your window you would need to re-run the
-  function.
+Notice that tanglegram does not "resize" well. In case you
+are resizing your window you would need to re-run the
+function.
 }
 \examples{
 \dontrun{
@@ -201,11 +211,10 @@ tanglegram(rank_branches(dend1) , rank_branches(dend2), lab.cex = 2, edge.lwd = 
 }
 }
 \author{
-  Tal Galili, plannapus
+Tal Galili, plannapus
 }
 \seealso{
-  \link{remove_leaves_nodePar},
-  \link{plot_horiz.dendrogram}, \link{rank_branches},
-  \link{hang.dendrogram}
+\link{remove_leaves_nodePar}, \link{plot_horiz.dendrogram},
+\link{rank_branches}, \link{hang.dendrogram}
 }
 

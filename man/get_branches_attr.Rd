@@ -2,7 +2,7 @@
 \alias{get_branches_attr}
 \title{get attributes from the dendrogram's root branches}
 \usage{
-  get_branches_attr(dend, the_attr, warning = TRUE, ...)
+get_branches_attr(dend, the_attr, warning = TRUE, ...)
 }
 \arguments{
   \item{dend}{dendrogram object}
@@ -17,11 +17,11 @@
   \item{...}{passed on to attr}
 }
 \value{
-  The attributes of the branches (often two) of the
-  dendrogram's root
+The attributes of the branches (often two) of the
+dendrogram's root
 }
 \description{
-  get attributes from the dendrogram's root branches
+get attributes from the dendrogram's root branches
 }
 \examples{
 hc <- hclust(dist(USArrests[2:9,]), "com")
@@ -32,6 +32,6 @@ get_branches_attr(dend, "height") # 0.00000 71.96247
 str(dend, 2)
 }
 \seealso{
-  \link{attr}
+\link{attr}
 }
 

@@ -2,10 +2,9 @@
 \alias{match_order_dendrogram_by_old_order}
 \title{Adjust the order of one dendrogram based on another (using order)}
 \usage{
-  match_order_dendrogram_by_old_order(dend_change,
-    dend_template, dend_change_old_order,
-    check_that_labels_match = FALSE,
-    check_that_leaves_order_match = FALSE)
+match_order_dendrogram_by_old_order(dend_change, dend_template,
+  dend_change_old_order, check_that_labels_match = FALSE,
+  check_that_leaves_order_match = FALSE)
 }
 \arguments{
   \item{dend_change}{tree object (dendrogram)}
@@ -26,24 +25,24 @@
   they do not, the function aborts)}
 }
 \value{
-  Returns dend_change after adjusting its order values to
-  be like dend_template.
+Returns dend_change after adjusting its order values to be
+like dend_template.
 }
 \description{
-  Takes one dendrogram and adjusts its order leaves valeus
-  based on the order of another dendrogram. The values are
-  matached based on the order of the two dendrograms.
+Takes one dendrogram and adjusts its order leaves valeus
+based on the order of another dendrogram. The values are
+matached based on the order of the two dendrograms.
 
-  This allows for faster \link{entanglement} running time,
-  since we can be sure that the leaves order is just as
-  using their labels.
+This allows for faster \link{entanglement} running time,
+since we can be sure that the leaves order is just as using
+their labels.
 
-  This is a function is FASTER than
-  \link{match_order_by_labels}, but it assumes that the
-  order and the labels of the two trees are matching!!
+This is a function is FASTER than
+\link{match_order_by_labels}, but it assumes that the order
+and the labels of the two trees are matching!!
 
-  This will allow for a faster calculation of
-  \link{entanglement}.
+This will allow for a faster calculation of
+\link{entanglement}.
 }
 \examples{
 \dontrun{
@@ -70,7 +69,7 @@ expect_identical(order.dendrogram(dend_changed), order.dendrogram(dend))
 }
 }
 \seealso{
-  \link{untangle}, \link{entanglement} , \link{tangelgram},
-  \link{match_order_by_labels}
+\link{untangle}, \link{entanglement} , \link{tangelgram},
+\link{match_order_by_labels}
 }
 

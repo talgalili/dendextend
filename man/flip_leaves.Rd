@@ -2,7 +2,7 @@
 \alias{flip_leaves}
 \title{Flip leaves}
 \usage{
-  flip_leaves(dend, leaves1, leaves2, ...)
+flip_leaves(dend, leaves1, leaves2, ...)
 }
 \arguments{
   \item{dend}{a dendrogram object}
@@ -15,16 +15,16 @@
   \item{...}{not used}
 }
 \value{
-  A dendrogram object with flipped leaves.
+A dendrogram object with flipped leaves.
 }
 \description{
-  Rotate a branch in a tree so that the locations of two
-  bundles of leaves are flipped.
+Rotate a branch in a tree so that the locations of two
+bundles of leaves are flipped.
 }
 \details{
-  This function is based on a bunch of string manipulation
-  functions. There may be a smarter/better way for doing
-  it...
+This function is based on a bunch of string manipulation
+functions. There may be a smarter/better way for doing
+it...
 }
 \examples{
 \dontrun{
@@ -36,7 +36,7 @@ entanglement(dend1,dend2, L = 2) # 0.4
 }
 }
 \seealso{
-  \link{untangle}, \link{tanglegram},
-  \link{match_order_by_labels}, \link{entanglement}.
+\link{untangle}, \link{tanglegram},
+\link{match_order_by_labels}, \link{entanglement}.
 }
 

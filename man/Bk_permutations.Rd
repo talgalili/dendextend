@@ -2,8 +2,7 @@
 \alias{Bk_permutations}
 \title{Bk permutation - Calculating Fowlkes-Mallows Index for two dendrogram}
 \usage{
-  Bk_permutations(tree1, tree2, k, R = 1000, warn = TRUE,
-    ...)
+Bk_permutations(tree1, tree2, k, R = 1000, warn = TRUE, ...)
 }
 \arguments{
   \item{tree1}{a dendrogram/hclust/phylo object.}
@@ -27,35 +26,34 @@
   FM_index_R/FM_index_profdpm).}
 }
 \value{
-  A list (of the length of k's), where each element of the
-  list has R (number of permutations) calculations of
-  Fowlkes-Mallows index between two dendrogram after having
-  their labels shuffled.
+A list (of the length of k's), where each element of the
+list has R (number of permutations) calculations of
+Fowlkes-Mallows index between two dendrogram after having
+their labels shuffled.
 
-  The names of the lists' items is the k for which it was
-  calculated.
+The names of the lists' items is the k for which it was
+calculated.
 }
 \description{
-  Bk is the calculation of Fowlkes-Mallows index for a
-  series of k cuts for two dendrograms.
+Bk is the calculation of Fowlkes-Mallows index for a series
+of k cuts for two dendrograms.
 
-  Bk permutation calculates the Bk under the null
-  hypothesis of no similarirty between the two trees by
-  randomally shuffling the labels of the two trees and
-  calculating their Bk.
+Bk permutation calculates the Bk under the null hypothesis
+of no similarirty between the two trees by randomally
+shuffling the labels of the two trees and calculating their
+Bk.
 }
 \details{
-  From Wikipedia:
+From Wikipedia:
 
-  Fowlkes-Mallows index (see references) is an external
-  evaluation method that is used to determine the
-  similarity between two clusterings (clusters obtained
-  after a clustering algorithm). This measure of similarity
-  could be either between two hierarchical clusterings or a
-  clustering and a benchmark classification. A higher the
-  value for the Fowlkes-Mallows index indicates a greater
-  similarity between the clusters and the benchmark
-  classifications.
+Fowlkes-Mallows index (see references) is an external
+evaluation method that is used to determine the similarity
+between two clusterings (clusters obtained after a
+clustering algorithm). This measure of similarity could be
+either between two hierarchical clusterings or a clustering
+and a benchmark classification. A higher the value for the
+Fowlkes-Mallows index indicates a greater similarity
+between the clusters and the benchmark classifications.
 }
 \examples{
 \dontrun{
@@ -80,14 +78,13 @@ points(1, y= some_Bk, pch = 19, col = 2 )
 }
 }
 \references{
-  Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
-  Method for Comparing Two Hierarchical Clusterings".
-  Journal of the American Statistical Association 78 (383):
-  553.
+Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
+Method for Comparing Two Hierarchical Clusterings". Journal
+of the American Statistical Association 78 (383): 553.
 
-  \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+\url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 }
 \seealso{
-  \code{\link{FM_index}}, \link{Bk}
+\code{\link{FM_index}}, \link{Bk}
 }
 

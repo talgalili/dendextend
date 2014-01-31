@@ -2,8 +2,7 @@
 \alias{assign_values_to_leaves_nodePar}
 \title{Assign values to nodePar of dendrogram's leaves}
 \usage{
-  assign_values_to_leaves_nodePar(object, value, nodePar,
-    warn = TRUE, ...)
+assign_values_to_leaves_nodePar(object, value, nodePar, warn = TRUE, ...)
 }
 \arguments{
   \item{object}{a dendrogram object}
@@ -23,12 +22,12 @@
   \item{...}{not used}
 }
 \value{
-  A dendrogram, after adjusting the nodePar attribute in
-  all of its leaves,
+A dendrogram, after adjusting the nodePar attribute in all
+of its leaves,
 }
 \description{
-  Go through the dendrogram leaves and updates the values
-  inside its nodePar
+Go through the dendrogram leaves and updates the values
+inside its nodePar
 }
 \examples{
 \dontrun{
@@ -59,6 +58,6 @@ get_leaves_attr(dend, "nodePar", simplify=FALSE)
 }
 }
 \seealso{
-  \link{get_leaves_attr}
+\link{get_leaves_attr}
 }
 

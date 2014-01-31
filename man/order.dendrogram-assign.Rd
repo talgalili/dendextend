@@ -2,7 +2,7 @@
 \alias{order.dendrogram<-}
 \title{order.dendrogram<- assignment operator}
 \usage{
-  order.dendrogram(object, ...) <- value
+order.dendrogram(object, ...) <- value
 }
 \arguments{
   \item{object}{a variable name (possibly quoted) who's
@@ -14,12 +14,12 @@
   value (their "order")}
 }
 \value{
-  dendrogram with updated order leaves values
+dendrogram with updated order leaves values
 }
 \description{
-  order.dendrogram<- assignment operator.  This is useful
-  in cases where some object is turned into a dendrogram
-  but its leaves values (the order) are all mixed up.
+order.dendrogram<- assignment operator.  This is useful in
+cases where some object is turned into a dendrogram but its
+leaves values (the order) are all mixed up.
 }
 \examples{
 ################
@@ -47,6 +47,6 @@ order.dendrogram(sub_dend) <- rank(order.dendrogram(sub_dend), ties.method= "fir
 labels(as.hclust(sub_dend)) # We now have labels :)
 }
 \seealso{
-  \code{\link{order.dendrogram}}, \code{\link{labels<-}}
+\code{\link{order.dendrogram}}, \code{\link{labels<-}}
 }
 

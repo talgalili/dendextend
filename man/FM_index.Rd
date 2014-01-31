@@ -2,8 +2,8 @@
 \alias{FM_index}
 \title{Calculating Fowlkes-Mallows Index}
 \usage{
-  FM_index(A1_clusters, A2_clusters, include_EV = TRUE,
-    assume_sorted_vectors = FALSE, warn = TRUE, ...)
+FM_index(A1_clusters, A2_clusters, include_EV = TRUE,
+  assume_sorted_vectors = FALSE, warn = TRUE, ...)
 }
 \arguments{
   \item{A1_clusters}{a numeric vector of cluster grouping
@@ -35,33 +35,32 @@
   FM_index_R/FM_index_profdpm).}
 }
 \value{
-  The Fowlkes-Mallows index between two vectors of
-  clustering groups.
+The Fowlkes-Mallows index between two vectors of clustering
+groups.
 
-  Includes the attributes E_FM and V_FM for the relevant
-  expectancy and variance under the null hypothesis of
-  no-relation.
+Includes the attributes E_FM and V_FM for the relevant
+expectancy and variance under the null hypothesis of
+no-relation.
 }
 \description{
-  Calculating Fowlkes-Mallows index.
+Calculating Fowlkes-Mallows index.
 
-  As opposed to the \code{\link{FM_index_profdpm}}
-  function, the \code{FM_index_R} function also calculates
-  the expectancy and variance of the FM Index under the
-  null hypothesis of no relation.
+As opposed to the \code{\link{FM_index_profdpm}} function,
+the \code{FM_index_R} function also calculates the
+expectancy and variance of the FM Index under the null
+hypothesis of no relation.
 }
 \details{
-  From Wikipedia:
+From Wikipedia:
 
-  Fowlkes-Mallows index (see references) is an external
-  evaluation method that is used to determine the
-  similarity between two clusterings (clusters obtained
-  after a clustering algorithm). This measure of similarity
-  could be either between two hierarchical clusterings or a
-  clustering and a benchmark classification. A higher the
-  value for the Fowlkes-Mallows index indicates a greater
-  similarity between the clusters and the benchmark
-  classifications.
+Fowlkes-Mallows index (see references) is an external
+evaluation method that is used to determine the similarity
+between two clusterings (clusters obtained after a
+clustering algorithm). This measure of similarity could be
+either between two hierarchical clusterings or a clustering
+and a benchmark classification. A higher the value for the
+Fowlkes-Mallows index indicates a greater similarity
+between the clusters and the benchmark classifications.
 }
 \examples{
 \dontrun{
@@ -100,14 +99,13 @@ plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the iris dataset")
 }
 }
 \references{
-  Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
-  Method for Comparing Two Hierarchical Clusterings".
-  Journal of the American Statistical Association 78 (383):
-  553.
+Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
+Method for Comparing Two Hierarchical Clusterings". Journal
+of the American Statistical Association 78 (383): 553.
 
-  \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+\url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 }
 \seealso{
-  \link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}}
+\link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}}
 }
 

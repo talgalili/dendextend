@@ -6,19 +6,25 @@
 \alias{cutree.phylo}
 \title{Cut a Tree (Dendrogram/hclust/phylo) into Groups of Data}
 \usage{
-  cutree(tree, k = NULL, h = NULL,...)
+cutree(tree, k = NULL, h = NULL,...)
 
-  \method{cutree}{hclust}(tree, k = NULL, h = NULL,
-    use_labels_not_values = TRUE, order_clusters_as_data
-    =TRUE, sort_cluster_numbers = TRUE, warn = TRUE, ...)
+\method{cutree}{hclust}(tree, k = NULL, h = NULL,
+                           use_labels_not_values = TRUE,
+                          order_clusters_as_data =TRUE,
+                          sort_cluster_numbers = TRUE,
+                          warn = TRUE,
+                          ...)
 
-  \method{cutree}{phylo}(tree, k = NULL, h = NULL,...)
+\method{cutree}{phylo}(tree, k = NULL, h = NULL,...)
 
-  \method{cutree}{dendrogram}(tree, k = NULL, h = NULL,
-    dend_heights_per_k = NULL, use_labels_not_values =
-    TRUE, order_clusters_as_data =TRUE,
-    sort_cluster_numbers = TRUE, warn = TRUE,
-    try_cutree_hclust = TRUE, ...)
+\method{cutree}{dendrogram}(tree, k = NULL, h = NULL,
+                              dend_heights_per_k = NULL,
+                              use_labels_not_values = TRUE,
+                              order_clusters_as_data =TRUE,
+                              sort_cluster_numbers = TRUE,
+                              warn = TRUE,
+                              try_cutree_hclust = TRUE,
+                              ...)
 }
 \arguments{
   \item{tree}{a dendrogram object}
@@ -69,39 +75,37 @@
   \item{...}{(not currently in use)}
 }
 \value{
-  If k or h are scalar - \code{cutree.dendrogram} returns
-  an integer vector with group memberships. Otherwise a
-  matrix with group memberships is returned where each
-  column corresponds to the elements of k or h,
-  respectively (which are also used as column names).
+If k or h are scalar - \code{cutree.dendrogram} returns an
+integer vector with group memberships. Otherwise a matrix
+with group memberships is returned where each column
+corresponds to the elements of k or h, respectively (which
+are also used as column names).
 
-  In case there exists no such k for which exists a
-  relevant split of the dendrogram, a warning is issued to
-  the user, and NA is returned.
+In case there exists no such k for which exists a relevant
+split of the dendrogram, a warning is issued to the user,
+and NA is returned.
 }
 \description{
-  Cuts a dendrogram tree into several groups by specifying
-  the desired number of clusters k(s), or cut height(s).
+Cuts a dendrogram tree into several groups by specifying
+the desired number of clusters k(s), or cut height(s).
 
-  For \code{hclust.dendrogram} - In case there exists no
-  such k for which exists a relevant split of the
-  dendrogram, a warning is issued to the user, and NA is
-  returned.
+For \code{hclust.dendrogram} - In case there exists no such
+k for which exists a relevant split of the dendrogram, a
+warning is issued to the user, and NA is returned.
 }
 \details{
-  At least one of k or h must be specified, k overrides h
-  if both are given.
+At least one of k or h must be specified, k overrides h if
+both are given.
 
-  as opposed to \link[stats]{cutree} for hclust,
-  \code{cutree.dendrogram} allows the cutting of trees at a
-  given height also for non-ultrametric trees (ultrametric
-  tree == a tree with monotone clustering heights). This
-  \code{sort_cluster_numbers} parameter is based on the
-  \link{sort_levels_values} function. Using that parameter
-  with TRUE makes the clusters id's from cutree to be
-  ordered from left to right. e.g: the left most cluster in
-  the tree will be numbered "1", the one after it will be
-  "2" etc...).
+as opposed to \link[stats]{cutree} for hclust,
+\code{cutree.dendrogram} allows the cutting of trees at a
+given height also for non-ultrametric trees (ultrametric
+tree == a tree with monotone clustering heights). This
+\code{sort_cluster_numbers} parameter is based on the
+\link{sort_levels_values} function. Using that parameter
+with TRUE makes the clusters id's from cutree to be ordered
+from left to right. e.g: the left most cluster in the tree
+will be numbered "1", the one after it will be "2" etc...).
 }
 \examples{
 \dontrun{
@@ -168,14 +172,14 @@ microbenchmark(
 }
 }
 \author{
-  \code{cutree.dendrogram} was written by Tal Galili.
-  \code{cutree.hclust} is redirecting the function to
-  \link[stats]{cutree} from base R.
+\code{cutree.dendrogram} was written by Tal Galili.
+\code{cutree.hclust} is redirecting the function to
+\link[stats]{cutree} from base R.
 }
 \seealso{
-  \code{\link{hclust}}, \code{\link[stats]{cutree}},
-  \code{\link{cutree_1h.dendrogram}},
-  \code{\link{cutree_1k.dendrogram}},
-  \code{\link{cutree_per_k}}
+\code{\link{hclust}}, \code{\link[stats]{cutree}},
+\code{\link{cutree_1h.dendrogram}},
+\code{\link{cutree_1k.dendrogram}},
+\code{\link{cutree_per_k}}
 }
 

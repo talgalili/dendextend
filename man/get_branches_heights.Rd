@@ -2,8 +2,7 @@
 \alias{get_branches_heights}
 \title{Get height attributes from a dendrogram}
 \usage{
-  get_branches_heights(tree, sort = TRUE,
-    decreasing = FALSE, ...)
+get_branches_heights(tree, sort = TRUE, decreasing = FALSE, ...)
 }
 \arguments{
   \item{tree}{a dendrogram.}
@@ -16,11 +15,11 @@
   \item{...}{not used.}
 }
 \value{
-  a vector of the dendrogram's nodes heights (excluding
-  leaves).
+a vector of the dendrogram's nodes heights (excluding
+leaves).
 }
 \description{
-  Get height attributes from a dendrogram
+Get height attributes from a dendrogram
 }
 \examples{
 hc <- hclust(dist(USArrests[1:4,]), "ave")

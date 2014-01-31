@@ -2,16 +2,13 @@
 \alias{Bk_plot}
 \title{Bk plot - ploting the Fowlkes-Mallows Index of two dendrogram for various k's}
 \usage{
-  Bk_plot(tree1, tree2, k, add_E = TRUE,
-    rejection_line_asymptotic = TRUE,
-    rejection_line_permutation = FALSE, R = 1000,
-    k_permutation, conf.level = 0.95,
-    p.adjust.methods = c("none", "bonferroni"),
-    col_line_Bk = 1, col_line_asymptotic = 2,
-    col_line_permutation = 4, warn = TRUE,
-    main = "Bk plot", xlab = "k (number of clusters)",
-    ylab = "Bk (Fowlkes-Mallows Index)", xlim,
-    ylim = c(0, 1), try_cutree_hclust = TRUE, ...)
+Bk_plot(tree1, tree2, k, add_E = TRUE, rejection_line_asymptotic = TRUE,
+  rejection_line_permutation = FALSE, R = 1000, k_permutation,
+  conf.level = 0.95, p.adjust.methods = c("none", "bonferroni"),
+  col_line_Bk = 1, col_line_asymptotic = 2, col_line_permutation = 4,
+  warn = TRUE, main = "Bk plot", xlab = "k (number of clusters)",
+  ylab = "Bk (Fowlkes-Mallows Index)", xlim, ylim = c(0, 1),
+  try_cutree_hclust = TRUE, ...)
 }
 \arguments{
   \item{tree1}{a dendrogram/hclust/phylo object.}
@@ -92,36 +89,35 @@
   \item{...}{Ignored.}
 }
 \value{
-  After plotting the Bk plot. Returns (invisible) the
-  output of the elements used for constructing the plot:
-  The Bk values, Bk permutations (if used), Bk theoratical
-  values, etc.
+After plotting the Bk plot. Returns (invisible) the output
+of the elements used for constructing the plot: The Bk
+values, Bk permutations (if used), Bk theoratical values,
+etc.
 }
 \description{
-  Bk is the calculation of Fowlkes-Mallows index for a
-  series of k cuts for two dendrograms. A Bk plot is simply
-  a scatter plot of Bk versus k. This plot helps in
-  identifiying the similarity between two dendrograms in
-  different levels of k (number of clusters).
+Bk is the calculation of Fowlkes-Mallows index for a series
+of k cuts for two dendrograms. A Bk plot is simply a
+scatter plot of Bk versus k. This plot helps in
+identifiying the similarity between two dendrograms in
+different levels of k (number of clusters).
 }
 \details{
-  From Wikipedia:
+From Wikipedia:
 
-  Fowlkes-Mallows index (see references) is an external
-  evaluation method that is used to determine the
-  similarity between two clusterings (clusters obtained
-  after a clustering algorithm). This measure of similarity
-  could be either between two hierarchical clusterings or a
-  clustering and a benchmark classification. A higher the
-  value for the Fowlkes-Mallows index indicates a greater
-  similarity between the clusters and the benchmark
-  classifications.
+Fowlkes-Mallows index (see references) is an external
+evaluation method that is used to determine the similarity
+between two clusterings (clusters obtained after a
+clustering algorithm). This measure of similarity could be
+either between two hierarchical clusterings or a clustering
+and a benchmark classification. A higher the value for the
+Fowlkes-Mallows index indicates a greater similarity
+between the clusters and the benchmark classifications.
 
-  The default Bk plot comes with a line with dots (type
-  "b") of the Bk values. Also with a fragmented (lty=2)
-  line (of the same color) of the expected Bk line under
-  H0, And a solid red line of the upper critical Bk values
-  for rejection
+The default Bk plot comes with a line with dots (type "b")
+of the Bk values. Also with a fragmented (lty=2) line (of
+the same color) of the expected Bk line under H0, And a
+solid red line of the upper critical Bk values for
+rejection
 }
 \examples{
 \dontrun{
@@ -168,14 +164,13 @@ Bk_plot(tree1=hc1, tree2=hc1_mixed,
 }
 }
 \references{
-  Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
-  Method for Comparing Two Hierarchical Clusterings".
-  Journal of the American Statistical Association 78 (383):
-  553.
+Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
+Method for Comparing Two Hierarchical Clusterings". Journal
+of the American Statistical Association 78 (383): 553.
 
-  \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+\url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 }
 \seealso{
-  \code{\link{FM_index}}, \link{Bk}, \link{Bk_permutations}
+\code{\link{FM_index}}, \link{Bk}, \link{Bk_permutations}
 }
 

@@ -2,7 +2,7 @@
 \alias{Bk}
 \title{Bk - Calculating Fowlkes-Mallows Index for two dendrogram}
 \usage{
-  Bk(tree1, tree2, k, include_EV = TRUE, warn = TRUE, ...)
+Bk(tree1, tree2, k, include_EV = TRUE, warn = TRUE, ...)
 }
 \arguments{
   \item{tree1}{a dendrogram/hclust/phylo object.}
@@ -30,26 +30,25 @@
   FM_index_R/FM_index_profdpm).}
 }
 \value{
-  A list (of k's length) of Fowlkes-Mallows index between
-  two dendrogram for a scalar/vector of k values. The names
-  of the lists' items is the k for which it was calculated.
+A list (of k's length) of Fowlkes-Mallows index between two
+dendrogram for a scalar/vector of k values. The names of
+the lists' items is the k for which it was calculated.
 }
 \description{
-  Bk is the calculation of Fowlkes-Mallows index for a
-  series of k cuts for two dendrograms.
+Bk is the calculation of Fowlkes-Mallows index for a series
+of k cuts for two dendrograms.
 }
 \details{
-  From Wikipedia:
+From Wikipedia:
 
-  Fowlkes-Mallows index (see references) is an external
-  evaluation method that is used to determine the
-  similarity between two clusterings (clusters obtained
-  after a clustering algorithm). This measure of similarity
-  could be either between two hierarchical clusterings or a
-  clustering and a benchmark classification. A higher the
-  value for the Fowlkes-Mallows index indicates a greater
-  similarity between the clusters and the benchmark
-  classifications.
+Fowlkes-Mallows index (see references) is an external
+evaluation method that is used to determine the similarity
+between two clusterings (clusters obtained after a
+clustering algorithm). This measure of similarity could be
+either between two hierarchical clusterings or a clustering
+and a benchmark classification. A higher the value for the
+Fowlkes-Mallows index indicates a greater similarity
+between the clusters and the benchmark classifications.
 }
 \examples{
 \dontrun{
@@ -91,14 +90,13 @@ plot(unlist(y)~as.numeric(names(y)),
 }
 }
 \references{
-  Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
-  Method for Comparing Two Hierarchical Clusterings".
-  Journal of the American Statistical Association 78 (383):
-  553.
+Fowlkes, E. B.; Mallows, C. L. (1 September 1983). "A
+Method for Comparing Two Hierarchical Clusterings". Journal
+of the American Statistical Association 78 (383): 553.
 
-  \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+\url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 }
 \seealso{
-  \code{\link{FM_index}}, \link{cor_bakers_gamma}
+\code{\link{FM_index}}, \link{cor_bakers_gamma}
 }
 

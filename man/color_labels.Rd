@@ -3,13 +3,12 @@
 \alias{colour_labels}
 \title{Color tree's labels according to sub-clusters}
 \source{
-  This function is in the style of
-  \code{\link{color_branches}}, and based on
-  \code{\link{labels_colors}}.
+This function is in the style of
+\code{\link{color_branches}}, and based on
+\code{\link{labels_colors}}.
 }
 \usage{
-  color_labels(tree, k = NULL, h = NULL, labels, col,
-    warn = FALSE, ...)
+color_labels(tree, k = NULL, h = NULL, labels, col, warn = FALSE, ...)
 }
 \arguments{
   \item{tree}{A \code{dendrogram} or \code{hclust} tree
@@ -38,19 +37,19 @@
   \item{...}{ignored.}
 }
 \value{
-  a tree object of class dendrogram.
+a tree object of class dendrogram.
 }
 \description{
-  This function is for dendrogram and hclust objects. This
-  function colors tree's labels.
+This function is for dendrogram and hclust objects. This
+function colors tree's labels.
 
-  The groups will be defined by a call to
-  \code{\link[dendextend]{cutree}} using the k or h
-  parameters.
+The groups will be defined by a call to
+\code{\link[dendextend]{cutree}} using the k or h
+parameters.
 
-  If col is a color vector with a different length than the
-  number of clusters (k) - then a recycled color vector
-  will be used.
+If col is a color vector with a different length than the
+number of clusters (k) - then a recycled color vector will
+be used.
 }
 \examples{
 \dontrun{
@@ -74,11 +73,11 @@ plot(d5gr)
 }
 }
 \author{
-  Tal Galili
+Tal Galili
 }
 \seealso{
-  \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
-  \code{\link{hclust}}, \code{\link{labels_colors}},
-  \code{\link{color_branches}}
+\code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
+\code{\link{hclust}}, \code{\link{labels_colors}},
+\code{\link{color_branches}}
 }
 

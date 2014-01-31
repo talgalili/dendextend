@@ -2,9 +2,8 @@
 \alias{cutree_1h.dendrogram}
 \title{cutree for dendrogram (by 1 height only!)}
 \usage{
-  cutree_1h.dendrogram(tree, h,
-    order_clusters_as_data = TRUE,
-    use_labels_not_values = TRUE, warn = TRUE, ...)
+cutree_1h.dendrogram(tree, h, order_clusters_as_data = TRUE,
+  use_labels_not_values = TRUE, warn = TRUE, ...)
 }
 \arguments{
   \item{tree}{a dendrogram object}
@@ -30,12 +29,12 @@
   \item{...}{(not currently in use)}
 }
 \value{
-  \code{cutree_1h.dendrogram} returns an integer vector
-  with group memberships
+\code{cutree_1h.dendrogram} returns an integer vector with
+group memberships
 }
 \description{
-  Cuts a dendrogram tree into several groups by specifying
-  the desired cut height (only a single height!).
+Cuts a dendrogram tree into several groups by specifying
+the desired cut height (only a single height!).
 }
 \examples{
 hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
@@ -63,9 +62,9 @@ microbenchmark(
 }
 }
 \author{
-  Tal Galili
+Tal Galili
 }
 \seealso{
-  \code{\link{hclust}}, \code{\link{cutree}}
+\code{\link{hclust}}, \code{\link{cutree}}
 }
 

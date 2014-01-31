@@ -2,7 +2,7 @@
 \alias{remove_leaves_nodePar}
 \title{Remove all nodePar values from a dendrogram's leaves}
 \usage{
-  remove_leaves_nodePar(object, ...)
+remove_leaves_nodePar(object, ...)
 }
 \arguments{
   \item{object}{a dendrogram object}
@@ -10,11 +10,11 @@
   \item{...}{not used}
 }
 \value{
-  A dendrogram, after removing the nodePar attribute in all
-  of its leaves,
+A dendrogram, after removing the nodePar attribute in all
+of its leaves,
 }
 \description{
-  Go through the dendrogram leaves and remove its nodePar.
+Go through the dendrogram leaves and remove its nodePar.
 }
 \examples{
 \dontrun{
@@ -34,7 +34,7 @@ get_leaves_attr(remove_leaves_nodePar(dend), "nodePar")
 }
 }
 \seealso{
-  \link{get_leaves_attr},
-  \link{assign_values_to_leaves_nodePar}
+\link{get_leaves_attr},
+\link{assign_values_to_leaves_nodePar}
 }
 

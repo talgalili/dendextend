@@ -2,8 +2,8 @@
 \alias{untangle_random_search}
 \title{Untangle - random search}
 \usage{
-  untangle_random_search(tree1, tree2, R = 100L, L = 1,
-    leaves_matching_method = c("order", "labels"), ...)
+untangle_random_search(tree1, tree2, R = 100L, L = 1,
+  leaves_matching_method = c("order", "labels"), ...)
 }
 \arguments{
   \item{tree1}{a tree object (of class
@@ -44,19 +44,19 @@
   \item{...}{not used}
 }
 \value{
-  A list with two trees with the best entanglement that was
-  found.
+A list with two trees with the best entanglement that was
+found.
 }
 \description{
-  Searches for two untangled dendrogram by randomlly
-  shuflling them and each time checking if their
-  entanglement was improved.
+Searches for two untangled dendrogram by randomlly
+shuflling them and each time checking if their entanglement
+was improved.
 }
 \details{
-  Untangaling two trees is a hard combinatorical problem
-  without a closed form solution. One way for doing it is
-  to run through a random spectrom of options and look for
-  the "best" two trees. This is what this function offers.
+Untangaling two trees is a hard combinatorical problem
+without a closed form solution. One way for doing it is to
+run through a random spectrom of options and look for the
+"best" two trees. This is what this function offers.
 }
 \examples{
 \dontrun{
@@ -78,7 +78,7 @@ entanglement(dend12[[1]],dend12[[2]], L = 2) # 0.0998
 }
 }
 \seealso{
-  \link{untangle}, \link{tanglegram},
-  \link{match_order_by_labels}, \link{entanglement}.
+\link{untangle}, \link{tanglegram},
+\link{match_order_by_labels}, \link{entanglement}.
 }
 
