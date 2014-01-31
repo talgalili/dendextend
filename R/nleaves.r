@@ -24,8 +24,10 @@
 as.dendrogram.phylo <- function(object,...) {as.dendrogram(as.hclust(object))}
 
 #' @export
-as.phylo.dendrogram <- function(object,...) {as.phylo(as.hclust(object))}
-
+as.phylo.dendrogram <- function(object,...) {
+	require(ape)
+	ape::as.phylo(as.hclust(object))
+}
 
 
 
