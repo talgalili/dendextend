@@ -19,18 +19,20 @@ test_that("cut_lower_fun works",{
    )
 
    # cut should have returned the tree itself
-   # but it FORCES a cut - as opposed to the cut_lower_fun function...
+   # but it FORCES a cut - as opposed to the cut_lower_fun (within the dendextendRcpp) function...
+   require(dendextendRcpp)
    expect_false(
       identical(
-      cut_lower_fun(dend, 40, labels),
-      lapply(cut(dend, h = 40)$lower, labels)   )
+         dendextendRcpp::cut_lower_fun(dend, 40, labels),
+         lapply(cut(dend, h = 40)$lower, labels)   
+      )
    )
    
    # cut should have returned the tree itself - instead it returns list()
-   # as opposed to the cut_lower_fun function...
+   # as opposed to the cut_lower_fun (in the dendextendRcpp package) function...
    expect_false(
       identical(
-         cut_lower_fun(dend, -1, labels),
+         dendextendRcpp::cut_lower_fun(dend, -1, labels),
          lapply(cut(dend, h = -1)$lower, labels)   )
    )
    
@@ -38,10 +40,19 @@ test_that("cut_lower_fun works",{
    
    # returns itself as it should:
    expect_identical(
-      cut_lower_fun(dend[[1]], .4, function(x)x),
+      dendextend::cut_lower_fun(dend[[1]], .4, function(x)x),
       list(dend[[1]])  
    )
-
+   # this is the way to test this:
+#    expect_identical(
+#       old_cut_lower_fun(dend[[1]], .4, function(x)x),
+#       list(dend[[1]])  
+#    )   
+   expect_identical(
+      dendextendRcpp::cut_lower_fun(dend[[1]], .4, function(x)x),
+      list(dend[[1]])  
+   )
+   
    # function on a leaf gives what we expect
    expect_identical(
       cut_lower_fun(dend[[1]], .4, labels),
