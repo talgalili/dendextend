@@ -4,7 +4,7 @@
 \alias{prune.dendrogram}
 \alias{prune.hclust}
 \alias{prune.phylo}
-\title{Trim a tree (using leaves' labels)}
+\title{Prunes a tree (using leaves' labels)}
 \usage{
 prune(x, ...)
 
