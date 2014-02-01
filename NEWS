@@ -19,6 +19,8 @@ UPDATED DOCS:
       * remove \link{untangle} from various .Rd (I never created this function...)
       * tangelgram -> tanglegram
    * fix "Unknown package 'dendroextra' in Rd xrefs" in color_branches docs. (into dendroextras)
+   * Fix Undocumented code objects: 'old_cut_lower_fun' 'old_get_branches_heights'
+  'old_heights_per_k.dendrogram'.  By adding them as "#' @aliases"
 
 
 UPDATED TESTS: 

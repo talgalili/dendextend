@@ -1,5 +1,6 @@
 \name{heights_per_k.dendrogram}
 \alias{heights_per_k.dendrogram}
+\alias{old_heights_per_k.dendrogram}
 \title{Which height will result in which k for a dendrogram}
 \usage{
 heights_per_k.dendrogram(tree, ...)

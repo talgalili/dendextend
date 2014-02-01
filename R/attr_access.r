@@ -256,6 +256,8 @@ rllply <- function(x, FUN,add_notation = FALSE, ...)
 
 #' @title Get height attributes from a dendrogram
 #' @export
+#' @aliases 
+#' old_get_branches_heights
 #' @param tree a dendrogram.
 #' @param sort logical. Should the heights be sorted?
 #' @param decreasing logical. Should the sort be increasing or decreasing? Not available for partial sorting.

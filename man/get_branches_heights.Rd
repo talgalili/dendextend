@@ -1,5 +1,6 @@
 \name{get_branches_heights}
 \alias{get_branches_heights}
+\alias{old_get_branches_heights}
 \title{Get height attributes from a dendrogram}
 \usage{
 get_branches_heights(tree, sort = TRUE, decreasing = FALSE, ...)
