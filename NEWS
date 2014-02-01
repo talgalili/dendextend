@@ -29,6 +29,7 @@ UPDATED DOCS:
           * Name: 'margin_inner' Code: 3 Docs: 1.8
           * Name: 'lab.cex' Code: NULL Docs: 1
           * Name: 'remove_nodePar' Code: FALSE Docs: F
+   * Fix "Argument names in code not in docs", for: edge.lwd dLeaf_left dLeaf_right main sub rank_branches hang match_order_by_labels cex_main cex_main_left cex_main_right cex_sub
 
 
 UPDATED TESTS: 
