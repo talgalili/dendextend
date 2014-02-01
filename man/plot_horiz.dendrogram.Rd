@@ -18,7 +18,8 @@ plot_horiz.dendrogram(x, type = c("rectangle", "triangle"), center = FALSE,
 \arguments{
   \item{x}{tree object (dendrogram)}
 
-  \item{type}{}
+  \item{type}{a character vector with either "rectangle" or
+  "triangle" (passed to \link{plot.dendrogram})}
 
   \item{center}{logical; if TRUE, nodes are plotted
   centered with respect to the leaves in the branch.

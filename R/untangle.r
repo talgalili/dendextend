@@ -411,7 +411,7 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 #' @param k_seq a sequence of k clusters to go through for improving 
 #' dend1. If NULL (default), then we use the "direction" parameter.
 #' 
-#' @param dend_heights_per_k 
+#' @param dend_heights_per_k a numeric vector of values which indicate which height will produce which number of clusters (k)
 #' 
 #' @param ... not used
 #' 

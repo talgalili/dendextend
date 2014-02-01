@@ -39,7 +39,7 @@ UPDATED DOCS:
       * 'cut_lower_fun'
    * Fix "Objects in \usage without \alias in documentation object 'shuffle'":
   'shuffle.dendrogram' 'shuffle.hclust' 'shuffle.phylo'
-
+   * Fix "Argument items with no description in Rd object": 'plot_horiz.dendrogram', 'untangle_step_rotate_1side'.
 
 UPDATED TESTS: 
    * S3methods no longer seem to be exported (due to something in roxygen2), I chose to update the tests accordingly.

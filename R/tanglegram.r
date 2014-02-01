@@ -229,7 +229,7 @@ plotNode_horiz <- function (x1, x2, subtree, type, center, leaflab, dLeaf, nodeP
 #' is finding the distance of the labels from the leaves tips - which is solved
 #' with this function.
 #' @param x tree object (dendrogram)
-#' @param type
+#' @param type a character vector with either "rectangle" or "triangle" (passed to \link{plot.dendrogram})
 #' @param center logical; if TRUE, nodes are plotted centered with respect to
 #' the leaves in the branch. Otherwise (default), plot them in the
 #'  middle of all direct child nodes.

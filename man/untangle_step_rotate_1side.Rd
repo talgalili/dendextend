@@ -30,7 +30,9 @@ untangle_step_rotate_1side(dend1, dend2_fixed, L = 1.5,
   improving dend1. If NULL (default), then we use the
   "direction" parameter.}
 
-  \item{dend_heights_per_k}{}
+  \item{dend_heights_per_k}{a numeric vector of values
+  which indicate which height will produce which number of
+  clusters (k)}
 
   \item{...}{not used}
 }
