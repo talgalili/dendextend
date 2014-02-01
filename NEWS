@@ -46,7 +46,7 @@ UPDATED TESTS:
       * cutree.hclust -> dendextend:::cutree.hclust
       * cutree.dendrogram -> dendextend:::cutree.dendrogram
    * cut_lower_fun acts diffirently on dendextendRcpp vs old dendextend, so I updated the tests to reflect that.
-
+   * Fixed the usage of person() in DESCRIPTION. (props goes to Uwe Ligges for his input)
 
 OTHER NOTES:
    * Fixing .Rd indentation.
