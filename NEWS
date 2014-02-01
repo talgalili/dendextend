@@ -21,7 +21,14 @@ UPDATED DOCS:
    * fix "Unknown package 'dendroextra' in Rd xrefs" in color_branches docs. (into dendroextras)
    * Fix Undocumented code objects: 'old_cut_lower_fun' 'old_get_branches_heights'
   'old_heights_per_k.dendrogram'.  By adding them as "#' @aliases"
-   * Fix "Codoc mismatches from documentation object 'rotate':" - by removing k and h (since I never got to implement them...)
+   * Fix "Codoc mismatches from documentation object"
+      * 'rotate': - by removing k and h (since I never got to implement them...)
+      * 
+   * Fix "Mismatches in argument default values"
+      * tanglegram
+          * Name: 'margin_inner' Code: 3 Docs: 1.8
+          * Name: 'lab.cex' Code: NULL Docs: 1
+          * Name: 'remove_nodePar' Code: FALSE Docs: F
 
 
 UPDATED TESTS: 
