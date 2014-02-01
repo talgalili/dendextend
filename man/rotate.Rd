@@ -37,14 +37,6 @@ rotate(x, order, ...)
   content of labels(x), in the order we'd like to have the
   new tree.}
 
-  \item{k}{numeric scalar, with the number of clusters the
-  tree should be cut into. The tree is rotate based on the
-  cluster groups.}
-
-  \item{h}{numeric scalar, with a height where the tree
-  should be cut. The tree is rotate based on the cluster
-  groups.}
-
   \item{decreasing}{logical. Should the sort be increasing
   or decreasing? Not available for partial sorting.
   (relevant only to \code{sort})}

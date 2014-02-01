@@ -55,10 +55,6 @@
 #' second etc. (this is relevant only to \code{rotate})
 #' Is character: it must be a vector with the content of labels(x), in the 
 #' order we'd like to have the new tree.
-#' @param k    numeric scalar, with the number of clusters
-#' the tree should be cut into. The tree is rotate based on the cluster groups.
-#' @param h    numeric scalar, with a height where the tree 
-#' should be cut. The tree is rotate based on the cluster groups.
 #' @param decreasing logical. Should the sort be increasing or decreasing? Not available for partial sorting. (relevant only to \code{sort})
 #' @param ... parameters passed (for example, in case of sort)
 #' @details 
@@ -125,10 +121,17 @@
 #' 
 rotate <- function(x, order,...) {UseMethod("rotate")}
 
-rotate.default <- function(x,...) {stop("object x must be a dendrogram/hclust/phylo object")}
+### TODO: maybe add k, h parameters.
+# ' @param k    numeric scalar, with the number of clusters
+# ' the tree should be cut into. The tree is rotate based on the cluster groups.
+# ' @param h    numeric scalar, with a height where the tree 
+# ' should be cut. The tree is rotate based on the cluster groups.
+
+
+rotate.default <- function(x, order, ...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
 #' @S3method rotate dendrogram
-rotate.dendrogram <- function(x, order, k, h, ...)
+rotate.dendrogram <- function(x, order, ...)
 {
    if(missing(order)) { # if order is missing - return the same tree.
       warning("'order' parameter is missing, returning the tree as it was.")
