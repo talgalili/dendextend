@@ -28,12 +28,17 @@ as.dendrogram.phylo <- function(object,...) {
 }
 
 
-## ' @export
-## ' @S3method as.phylo dendrogram
-#as.phylo.dendrogram <- function(object,...) {
-	# require(ape)
-	# ape::as.phylo.hclust(as.hclust(object))
-# }
+#' @export
+#' @import ape
+#' @S3method as.phylo dendrogram
+as.phylo.dendrogram <- function(x,...) {
+	if(require("ape")) {
+	   ape::as.phylo.hclust(as.hclust(x))   
+	}	
+}
+## http://stackoverflow.com/questions/13085481/namespace-dependencies-not-required
+## I also added ape to "Imports" in DESCRIPTION in order to avoid the error:
+##    Namespace dependency not required: 'ape'
 
 
 
