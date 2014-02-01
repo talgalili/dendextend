@@ -506,7 +506,7 @@ plot(unbranched_dend_2)
 
 @
 
-While the \code{unbranch.hclust} method exists, it is not expected to work since \code{hclust} objects are not designed to handle non-binary trees (hence the advantage of using \code{dendrogram} objects). For \code{phylo} objects (from the \pkg{ape} package), there is also a method that would simply use \code{ape:::unbranch(phy = x)}.
+While the \code{unbranch.hclust} method exists, it is not expected to work since \code{hclust} objects are not designed to handle non-binary trees (hence the advantage of using \code{dendrogram} objects). For \code{phylo} objects (from the \pkg{ape} package), there is also a method that would simply use \code{ape::unbranch(phy = x)}.
 
 In some rare cases, we might wish to equalize the heights of root's branches. For this we can use the \code{flatten.dendrogram} function:
 

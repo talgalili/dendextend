@@ -39,6 +39,12 @@ assign_dendextendRcpp_to_dendextend <- function() {
       assign("old_cut_lower_fun", dendextend:::cut_lower_fun,
              envir=as.environment("package:dendextend"))
       
+
+	  # require(utils) # doesn't help really...
+	  # but this does: (!)
+		# http://stackoverflow.com/questions/13595145/overriding-a-package-function-inherited-by-another-package
+# 	  get("assignInNamespace", envir=asNamespace("utils"))
+	  
       assignInNamespace(
          x= "get_branches_heights",
          value = dendextendRcpp:::get_branches_heights,
@@ -127,9 +133,10 @@ assign_dendextendRcpp_to_dendextend <- function() {
 
 
 installrWelcomeMessage <- function(){
+   require(utils)   
    
    paste("\n",     
-         "Welcome to dendextend version ", utils:::packageDescription("dendextend")$Version, "\n",
+         "Welcome to dendextend version ", utils::packageDescription("dendextend")$Version, "\n",
          "\n",
          "Type ?dendextend to access the overall documentation and\n",
          "vignette('dendextend') for the package vignette.\n",
@@ -170,6 +177,9 @@ installrWelcomeMessage <- function(){
 # When all is done, run:
 # require(devtools)
 # check()
+# browseURL(tempdir())
+### http://www.rstudio.com/ide/docs/packages/build_options
+# check(build_args="--no-build-vignettes --no-manual", args = "--no-examples --no-build-vignettes --no-manual",  cran = FALSE, cleanup = FALSE)
 # check(args="--as-cran")
 #                 Thanks to: http://stackoverflow.com/questions/10017702/r-cmd-check-options-for-more-rigorous-testing-2-15-0
 # file.copy("NEWS", "NEWS.md")

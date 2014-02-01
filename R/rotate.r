@@ -171,7 +171,10 @@ rotate.hclust <- function(x, order,...)
 
 
 #' @S3method rotate phylo
-rotate.phylo <- function(x, ...) {ape:::rotate(phy=x, ...)}
+rotate.phylo <- function(x, ...) {
+	require(ape)
+	ape::rotate(phy=x, ...)
+}
 
 
 #' @S3method sort dendrogram

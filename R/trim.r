@@ -110,7 +110,8 @@ prune_leaf <- function(x, leaf_name,...)
 
 
 
-#' @title Trim a tree (using leaves' labels)
+#' @title Prunes a tree (using leaves' labels)
+#' @export
 #' @aliases 
 #' prune.default
 #' prune.dendrogram
@@ -125,7 +126,6 @@ prune_leaf <- function(x, leaf_name,...)
 #' \method{prune}{hclust}(x, leaves,...)
 #' 
 #' \method{prune}{phylo}(x, ...)
-#' @export
 #' @param x tree object (dendrogram/hclust/phylo)
 #' @param leaves a character vector of the label(S) of the tip(s) (leaves) we wish to prune off the tree.
 #' @param ... passed on
@@ -144,7 +144,9 @@ prune_leaf <- function(x, leaf_name,...)
 prune <- function(x, ...) {UseMethod("prune")}
 
 #' @export
-prune.default <- function(x,...) {stop("object x must be a dendrogram/hclust/phylo object")}
+prune.default <- function(x,...) {
+   stop("object x must be a dendrogram/hclust/phylo object")
+}
 
 #' @S3method prune dendrogram
 prune.dendrogram <- function(x, leaves,...) {
@@ -169,7 +171,10 @@ prune.hclust <- function(x, leaves,...) {
 }
 
 #' @S3method prune phylo
-prune.phylo <- function(x,...) ape:::drop.tip(phy=x, ...)
+prune.phylo <- function(x,...) {
+	require(ape)
+	ape::drop.tip(phy=x, ...)
+}
 
 
 
