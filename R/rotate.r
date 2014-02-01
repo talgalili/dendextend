@@ -85,7 +85,7 @@
 #' using "rotate" will fail with the error: "Error in rotate(dend, ____) :
 #'  object "phy" is not of class "phylo"" - this is because rotate in ape 
 #'  is not S3 and will fail to find the rotate.dendrogram function.  
-#'  In such a case simply run \code{unloadNamespace("ape")}. Or, you can run:
+#'  In such a case simply run \code{unloadNamespace(ape)}. Or, you can run:
 #'  \code{unloadNamespace("dendextend"); attachNamespace("dendextend")}
 #'  The solution for this is that if you have {ape} installed on your machine,
 #'  It will be loaded when you load {dendextend} (but after it).
@@ -175,7 +175,7 @@ rotate.hclust <- function(x, order,...)
 
 #' @S3method rotate phylo
 rotate.phylo <- function(x, ...) {
-	require(ape)
+	# require(ape)
 	ape::rotate(phy=x, ...)
 }
 
@@ -216,7 +216,7 @@ rev.hclust <- function(x, ...) {
 # hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
 # rotate(hc)
 # loadedNamespaces()
-# unloadNamespace("ape")
+# unloadNamespace(ape)
 # search()
 # unloadNamespace("dendextend"); attachNamespace("dendextend")
 # some thoughts: http://www.ats.ucla.edu/stat/r/faq/referencing_objects.htm

@@ -87,7 +87,7 @@ Notice that if you will first load {ape} and only then
 "Error in rotate(dend, ____) : object "phy" is not of class
 "phylo"" - this is because rotate in ape is not S3 and will
 fail to find the rotate.dendrogram function.  In such a
-case simply run \code{unloadNamespace("ape")}. Or, you can
+case simply run \code{unloadNamespace(ape)}. Or, you can
 run: \code{unloadNamespace("dendextend");
 attachNamespace("dendextend")} The solution for this is
 that if you have {ape} installed on your machine, It will

@@ -30,7 +30,9 @@ UPDATED DOCS:
           * Name: 'lab.cex' Code: NULL Docs: 1
           * Name: 'remove_nodePar' Code: FALSE Docs: F
    * Fix "Argument names in code not in docs", for: edge.lwd dLeaf_left dLeaf_right main sub rank_branches hang match_order_by_labels cex_main cex_main_left cex_main_right cex_sub
-
+   * Fix "'library' or 'require' call not declared from: 'ape'" by commenting-off every "require(ape)" command in the code, since it is already mentioned in imports!
+      (see: http://stackoverflow.com/questions/15648772/how-do-i-prevent-r-library-or-require-calls-not-declared-warnings-when-dev)
+      The problem still persists because of .onLoad in zzz.r, but we'll look into this later...
 
 UPDATED TESTS: 
    * S3methods no longer seem to be exported (due to something in roxygen2), I chose to update the tests accordingly.

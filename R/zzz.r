@@ -118,12 +118,15 @@ assign_dendextendRcpp_to_dendextend <- function() {
       library("ape", pos = which(search() %in% "package:dendextend")+1, 
               warn.conflicts = FALSE,
               quietly = TRUE)
+   }      
+   
+   # The above line causes problems such as: 'library' or 'require' call not declared from: 'ape'
+   
       #       search()
-      #       unloadNamespace("ape")
+      #       unloadNamespace(ape")
       #       unloadNamespace("dendextend")
       #       require("dendextend", warn.conflicts = TRUE)                 
       #       require("dendextend", warn.conflicts = FALSE)                 
-   }      
    # but it makes sure that "dendextend" does not "Depends" on ape"...
    
    packageStartupMessage(installrWelcomeMessage())  
