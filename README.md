@@ -26,9 +26,9 @@ if (!require('installr')) install.packages('installr'); require('installr')
 # the installr includes the "require2" function
 ## install.Rtools() # run this if you are using Windows and don't have Rtools
 require2(devtools)
-install_github('dendextend', 'talgalili')
+install_github('talgalili/dendextend')
 require2(Rcpp)
-install_github('dendextendRcpp', 'talgalili')
+install_github('talgalili/dendextendRcpp')
 
 # Having colorspace is also useful, since it is used
 # In various examples in the vignettes
