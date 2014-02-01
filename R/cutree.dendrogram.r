@@ -689,7 +689,6 @@ cutree.default <- function(tree, k = NULL, h = NULL,...) {
    stop("Function cutree is only available for hclust/dendrogram/phylo objects only.")}
 
 #' @export
-#' @S3method cutree hclust
 cutree.hclust <- function(tree, k = NULL, h = NULL,
                           use_labels_not_values = TRUE, # ignored here...
                           order_clusters_as_data =TRUE,
@@ -715,7 +714,7 @@ cutree.hclust <- function(tree, k = NULL, h = NULL,
    }
       
    
-   clusters <- stats:::cutree(tree, k = k, h = h, ...) 
+   clusters <- stats::cutree(tree, k = k, h = h, ...) 
    if(!order_clusters_as_data) {
       if(is.matrix(clusters)) {
          clusters <- clusters[tree$order,]           

@@ -401,6 +401,8 @@ test_that("Compare labels which are character vs integer",{
 
 
 test_that("Having cutree work when using a subsetted tree",{
+	require(stats)
+	require(dendextendRcpp)
    # Wo   
    # get a dendrogram:
 #    data(iris) 
@@ -416,7 +418,7 @@ test_that("Having cutree work when using a subsetted tree",{
    
    # notice that for Rcpp this would be false since the returned vector
    # has "NA" characters instead of NA:
-   expect_false(any(is.na(dendextendRcpp:::labels.dendrogram(as.dendrogram(hc_sub_dend_iris )))))
+   expect_false(any(is.na(dendextendRcpp::labels.dendrogram(as.dendrogram(hc_sub_dend_iris )))))
    # e.g: "NA" "3"  "NA" "NA" "4"  "7" 
 #    a[which(a == "NA")] <- NA # this is NOT a good idea, in the case we have a label with "NA" as a character.
    

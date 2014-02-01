@@ -1775,7 +1775,7 @@ require(dendextendRcpp) # already loaded by default with dendextend
 require(microbenchmark)
 microbenchmark(
 stats:::labels.dendrogram(dend),
-dendextendRcpp:::labels.dendrogram(dend)
+dendextendRcpp::labels.dendrogram(dend)
    ) 
 # Rcpp is ~34 times faster
 
@@ -1793,7 +1793,7 @@ require(dendextendRcpp) # already loaded by default with dendextend
 require(microbenchmark)
 microbenchmark(
 old_get_branches_heights(dend),
-dendextendRcpp:::get_branches_heights(dend),
+dendextendRcpp::get_branches_heights(dend),
 times = 100
    ) 
 # Rcpp is ~90 times faster!
@@ -1811,7 +1811,7 @@ require(dendextendRcpp) # already loaded by default with dendextend
 require(microbenchmark)
 microbenchmark(
 old_heights_per_k.dendrogram(dend),
-dendextendRcpp:::heights_per_k.dendrogram(dend),
+dendextendRcpp::heights_per_k.dendrogram(dend),
 times = 100
    ) 
 # Rcpp is ~135 times faster!
@@ -1826,7 +1826,7 @@ For \code{cut_lower_fun} (an essential function when using cutree with some h):
 dend_big = as.dendrogram(hclust(dist(iris[1:150,-5])))
 require(microbenchmark)
 microbenchmark(old_cut_lower_fun(dend_big,.01),
-               dendextendRcpp:::cut_lower_fun(dend_big,.01),
+               dendextendRcpp::cut_lower_fun(dend_big,.01),
                times = 100)
 # Rcpp is ~4-14 times faster. depending on the size of the tree, 
 # and the depth of the height

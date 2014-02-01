@@ -54,7 +54,7 @@
 #'    dend_big = as.dendrogram(hclust(dist(iris[1:150,-5])))
 #'    require(microbenchmark)
 #'    microbenchmark(old_cut_lower_fun(dend_big,4),
-#'                   dendextendRcpp:::cut_lower_fun(dend_big,4),
+#'                   dendextendRcpp::cut_lower_fun(dend_big,4),
 #'                      times = 100)
 #'    # about 20 times faster. It is faster the larger the tree is.
 #' }

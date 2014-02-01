@@ -4,7 +4,8 @@ context("cut_lower_fun works")
 
 
 test_that("cut_lower_fun works",{
-   
+   	require(dendextendRcpp)
+
    dend = as.dendrogram(hclust(dist(iris[1:4,-5])))
 
    # this is really cool!
