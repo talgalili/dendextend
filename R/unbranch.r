@@ -194,7 +194,7 @@ unbranch.phylo <- function(x, ...) {
 		# ape::unbranch(phy = x)
 	require(ape)
    x_dend <- as.dendrogram(x)
-   x_dend_unbranch <- unbranch(x_dend, branch_becoming_root , new_root_height, ...)
+   x_dend_unbranch <- unbranch(x_dend, ...) # branch_becoming_root , new_root_height,
    x_unbranch <- ape::as.phylo(x_dend_unbranch)  
 
    return(x_unbranch)

@@ -4,10 +4,10 @@
 \title{Color tree's branches according to sub-clusters}
 \source{
 This function is a derived work from the
-\code{\link[dendroextra]{color_clusters}} function, with
-some ideas from the \code{\link[dendroextra]{slice}}
-function - both are from the {\pkg{dendroextra}} package by
-jefferis.
+\code{\link[dendroextras]{color_clusters}} function, with
+some ideas from the \code{\link[dendroextras]{slice}}
+function - both are from the {\pkg{dendroextras}} package
+by jefferis.
 
 It extends it by using \link[dendextend]{cutree.dendrogram}
 - allowing the function to work for trees that hclust can

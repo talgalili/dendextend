@@ -12,6 +12,10 @@ UPDATED FUNCTIONS:
    * tanglegram.dendrogram - fix warning in layout(matrix(1:3, nrow = 1), width =
   columns_width): partial argument match of 'width' to 'widths'
    * Return "as.phylo.dendrogram" by adding "ape" to "Imports" in DESCRIPTION and "import" to NAMESPACE. Also fixing consistancy (using x instead of object).
+   * fix "Unknown package 'dendroextra' in Rd xrefs" in color_branches docs.
+   * unbranch.phylo - fix extra parameters.
+
+
 
 UPDATED TESTS: 
    * S3methods no longer seem to be exported (due to something in roxygen2), I chose to update the tests accordingly.

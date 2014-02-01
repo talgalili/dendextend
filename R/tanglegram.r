@@ -705,7 +705,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    ord_arrow <- cbind((1:l)[order(order.dendrogram(tree1))],(1:l)[order(order.dendrogram(tree2))]) 
    
    # Set the layout of the plot elements
-   layout(matrix(1:3,nrow=1),width=columns_width)
+   layout(matrix(1:3,nrow=1),widths=columns_width)
       
    #################
    # The first dendrogram:	
