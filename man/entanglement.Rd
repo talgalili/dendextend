@@ -81,7 +81,7 @@ entanglement(dend1,dend2, L = 0.25) # 0.97
 entanglement(dend1,dend2, L = 1) # 0.93
 entanglement(dend1,dend2, L = 2) # 0.88
 
-# a somewhat better tangelgram
+# a somewhat better tanglegram
 tanglegram(sort(dend1),sort(dend2))
 # and alos a MUCH better entanglement
 entanglement(sort(dend1),sort(dend2), L=1.5) # 0.0811
@@ -111,7 +111,6 @@ entanglement(dend1 , dend2, 1.5, "order") # 0.91
 }
 }
 \seealso{
-\link{untangle}, \link{tanglegram},
-\link{match_order_by_labels}.
+\link{tanglegram}, \link{match_order_by_labels}.
 }
 

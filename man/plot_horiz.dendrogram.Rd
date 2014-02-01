@@ -101,6 +101,6 @@ plot_horiz.dendrogram(dend, side=TRUE, text_offset = 0,text_pos=4)
 }
 }
 \seealso{
-\link{plot.dendrogram}, \link{tangelgram}
+\link{plot.dendrogram}, \link{tanglegram}
 }
 

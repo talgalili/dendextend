@@ -30,6 +30,6 @@ leaf_Colors(d5)
 jefferis
 }
 \seealso{
-\code{\link{slice},\link{color_branches}}
+\code{\link[dendroextras]{slice},\link{color_branches}}
 }
 

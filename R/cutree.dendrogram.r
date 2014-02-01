@@ -613,7 +613,6 @@ cutree_1k.dendrogram <- function(tree, k,
 #' 
 #' @seealso \code{\link{hclust}}, \code{\link[stats]{cutree}}, 
 #' \code{\link{cutree_1h.dendrogram}}, \code{\link{cutree_1k.dendrogram}}, 
-#' \code{\link{cutree_per_k}}
 #' 
 #' @examples
 #' 

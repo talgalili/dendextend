@@ -262,7 +262,7 @@ plotNode_horiz <- function (x1, x2, subtree, type, center, leaflab, dLeaf, nodeP
 #' In fact, I'd be happy if in the future, some tweaks could be make to
 #' \link{plot.dendrogram}, so that it would replace the need for this function.
 #' 
-#' @seealso \link{plot.dendrogram}, \link{tangelgram}
+#' @seealso \link{plot.dendrogram}, \link{tanglegram}
 #' @examples
 #' \dontrun{
 #' dend <- as.dendrogram(hclust(dist(USArrests[1:10,])))

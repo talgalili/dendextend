@@ -46,6 +46,6 @@ order.dendrogram(dend))
 }
 }
 \seealso{
-\link{untangle}, \link{entanglement} , \link{tangelgram}
+\link{entanglement} , \link{tanglegram}
 }
 

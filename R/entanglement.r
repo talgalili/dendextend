@@ -42,7 +42,7 @@
 #' in the two dendrogram match. (if they do not, the function aborts)
 #' @return Returns dend_change after adjusting its order values to
 #'  be like dend_template.
-#' @seealso \link{untangle}, \link{entanglement} , \link{tangelgram}
+#' @seealso \link{entanglement} , \link{tanglegram}
 #' @examples
 #' \dontrun{
 #' 
@@ -121,7 +121,7 @@ match_order_by_labels <- function(dend_change, dend_template , check_that_labels
 #' 
 #' @return Returns dend_change after adjusting its order values to
 #'  be like dend_template.
-#' @seealso \link{untangle}, \link{entanglement} , \link{tangelgram},
+#' @seealso \link{entanglement} , \link{tanglegram},
 #' \link{match_order_by_labels}
 #' @examples
 #' \dontrun{
@@ -267,7 +267,7 @@ match_order_dendrogram_by_old_order <- function(dend_change, dend_template ,
 #' If L=0.1 it means that we much prefer streight lines over non streight lines
 #' 
 #' @return The number of leaves in the tree
-#' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels}.
+#' @seealso \link{tanglegram}, \link{match_order_by_labels}.
 #' @examples
 #' 
 #' \dontrun{
@@ -282,7 +282,7 @@ match_order_dendrogram_by_old_order <- function(dend_change, dend_template ,
 #' entanglement(dend1,dend2, L = 1) # 0.93
 #' entanglement(dend1,dend2, L = 2) # 0.88
 #' 
-#' # a somewhat better tangelgram
+#' # a somewhat better tanglegram
 #' tanglegram(sort(dend1),sort(dend2))
 #' # and alos a MUCH better entanglement
 #' entanglement(sort(dend1),sort(dend2), L=1.5) # 0.0811

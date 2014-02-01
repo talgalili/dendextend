@@ -81,9 +81,9 @@ entanglement(dend12_corrected_2[[1]],dend12_corrected_2[[2]], L=2) # 0 - PERFECT
 }
 }
 \seealso{
-\link{untangle}, \link{tanglegram},
-\link{match_order_by_labels}, \link{entanglement},
-\link{flip_leaves}, \link{all_couple_rotations_at_k}.
+\link{tanglegram}, \link{match_order_by_labels},
+\link{entanglement}, \link{flip_leaves},
+\link{all_couple_rotations_at_k}.
 \link{untangle_step_rotate_1side}.
 }
 

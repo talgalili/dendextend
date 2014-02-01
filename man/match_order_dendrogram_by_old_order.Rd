@@ -69,7 +69,7 @@ expect_identical(order.dendrogram(dend_changed), order.dendrogram(dend))
 }
 }
 \seealso{
-\link{untangle}, \link{entanglement} , \link{tangelgram},
+\link{entanglement} , \link{tanglegram},
 \link{match_order_by_labels}
 }
 

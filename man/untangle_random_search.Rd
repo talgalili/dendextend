@@ -78,7 +78,7 @@ entanglement(dend12[[1]],dend12[[2]], L = 2) # 0.0998
 }
 }
 \seealso{
-\link{untangle}, \link{tanglegram},
-\link{match_order_by_labels}, \link{entanglement}.
+\link{tanglegram}, \link{match_order_by_labels},
+\link{entanglement}.
 }
 

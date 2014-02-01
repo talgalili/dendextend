@@ -30,7 +30,7 @@ VIGNETTES:
    * Added a knitr presentation for "Boston-useR" 2013-09-05. Includes an introduction to hclust and dendrogram objects, tree manipulation, and dendextend modules (still needs the dendextend section on tanglegram...)
 
 UPDATED FUNCTIONS:
-   * tangelgram - added cex_main parameter.
+   * tanglegram - added cex_main parameter.
 
 
 OTHER NOTES:
