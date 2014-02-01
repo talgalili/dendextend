@@ -66,19 +66,22 @@
 %\VignetteKeywords{Dendrogram, hclust, heirarchical clustering, visualization, tanglegram, R}
 %\VignettePackage{dendextend}
 %\VignetteEngine{knitr::knitr}
+\usepackage[utf8]{inputenc}
 
 
-
-\Plaintitle{Visualizing and Comparing Trees of Heirarchical Clustering: Using the dendextend R Package}
-\title{Visualizing and Comparing\\ Trees of Heirarchical Clustering:\\ Using the dendextend \proglang{R} Package}
+\Plaintitle{Visualizing and Comparing Trees of Hierarchical Clustering: Using the dendextend R Package}
+\title{Visualizing and Comparing\\ Trees of Hierarchical Clustering:\\ Using the dendextend \proglang{R} Package}
 
 
 % \Plaintitle{Manipulate, Visualize and Compare Dendrograms: The dendextend R Package}
 % \title{Manipulate, Visualize and Compare Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
 
 
-\author{Tal Galili\\Tel-Aviv University \And Yoav Benjamini\\Tel-Aviv University}
-\Plainauthor{Tal Galili, Yoav Benjamini}
+% \author{Tal Galili\\Tel-Aviv University \And Yoav Benjamini\\Tel-Aviv University}
+% \Plainauthor{Tal Galili, Yoav Benjamini}
+
+\author{Tal Galili\\Tel-Aviv University}
+\Plainauthor{Tal Galili}
 
 
 
@@ -112,13 +115,13 @@ The paper gives a detailed exposition of both the internal structure of the pack
    URLs: \url{http://www.r-statistics.com/}, 
          \url{http://www.r-bloggers.com/}\\
 
-  Yoav Benjamini\\
-   The Nathan and Lily Silver\\
-   Professor of Applied Statistics\\
-   Department of Statistics and Operations Research \\
-   Tel Aviv University, Israel \\
-   E-mail: \email{ybenja@tau.ac.il}\\
-   URL: \url{http://www.tau.ac.il/~ybenja/}
+%   Yoav Benjamini\\
+%    The Nathan and Lily Silver\\
+%    Professor of Applied Statistics\\
+%    Department of Statistics and Operations Research \\
+%    Tel Aviv University, Israel \\
+%    E-mail: \email{ybenja@tau.ac.il}\\
+%    URL: \url{http://www.tau.ac.il/~ybenja/}
 }
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 
@@ -147,18 +150,31 @@ Dendrogram has several useful methods bundled with R:
 \hlkwd{methods}\hlstd{(}\hlkwc{class} \hlstd{=} \hlstr{"dendrogram"}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-##  [1] [[.dendrogram*           as.hclust.dendrogram*   
-##  [3] as.phylo.dendrogram      cophenetic.dendrogram*  
-##  [5] cut.dendrogram*          cutree.dendrogram       
-##  [7] entanglement.dendrogram* head.dendrogram*        
-##  [9] labels.dendrogram*       labels<-.dendrogram     
-## [11] merge.dendrogram*        nleaves.dendrogram*     
-## [13] nnodes.dendrogram*       plot.dendrogram*        
-## [15] print.dendrogram*        reorder.dendrogram*     
-## [17] rev.dendrogram*          rotate.dendrogram*      
-## [19] sort.dendrogram*         str.dendrogram*         
-## [21] tanglegram.dendrogram*   trim.dendrogram*        
-## [23] unbranch.dendrogram*    
+##  [1] [[.dendrogram*              
+##  [2] as.hclust.dendrogram*       
+##  [3] as.phylo.dendrogram*        
+##  [4] cophenetic.dendrogram*      
+##  [5] cor_bakers_gamma.dendrogram*
+##  [6] cut.dendrogram*             
+##  [7] cutree.dendrogram*          
+##  [8] entanglement.dendrogram*    
+##  [9] head.dendrogram*            
+## [10] labels.dendrogram           
+## [11] labels<-.dendrogram*        
+## [12] merge.dendrogram*           
+## [13] nleaves.dendrogram*         
+## [14] nnodes.dendrogram*          
+## [15] plot.dendrogram*            
+## [16] print.dendrogram*           
+## [17] prune.dendrogram*           
+## [18] reorder.dendrogram*         
+## [19] rev.dendrogram*             
+## [20] rotate.dendrogram*          
+## [21] shuffle.dendrogram*         
+## [22] sort.dendrogram*            
+## [23] str.dendrogram*             
+## [24] tanglegram.dendrogram*      
+## [25] unbranch.dendrogram*        
 ## 
 ##    Non-visible functions are asterisked
 \end{verbatim}
@@ -184,7 +200,7 @@ For example, let's create a dendrogram object based on an hierarchical clusterin
 ## Ohio          7.3     120       75 21.4
 \end{verbatim}
 \begin{alltt}
-\hlstd{hc} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(US_data),} \hlstr{"ave"}\hlstd{)}  \hlcom{# create an heirarchical clustering object}
+\hlstd{hc} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(US_data),} \hlstr{"ave"}\hlstd{)}  \hlcom{# create an Hierarchical clustering object}
 \hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc)}
 \end{alltt}
 \end{kframe}
@@ -341,7 +357,7 @@ One current "feature" with this function is that just sending a dendrogram throu
 \begin{alltt}
 \hlcom{# dendrapply(dend, unclass) # in case the}
 \hlstd{itself} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{) x}
-\hlstd{dend_from_dendrapply} \hlkwb{<-} \hlkwd{dendrapply}\hlstd{(dend, itself}\hlstd{)}
+\hlstd{dend_from_dendrapply} \hlkwb{<-} \hlkwd{dendrapply}\hlstd{(dend, itself)}
 
 \hlcom{# here we must first use unclass since '[[]]' inherits its}
 \hlcom{# class to the output:}
@@ -665,12 +681,9 @@ For dendrograms the speed improvement is about 10 times using \code{labels}, whe
 \end{alltt}
 \begin{verbatim}
 ## Unit: microseconds
-##                  expr    min     lq median    uq   max
-##         nleaves(dend)  24.64  25.76  26.88  30.8 212.8
-##  length(labels(dend)) 390.83 396.99 400.35 406.5 951.3
-##  neval
-##    100
-##    100
+##                  expr   min    lq median    uq   max neval
+##         nleaves(dend) 26.32 26.88  28.00 30.80 113.1   100
+##  length(labels(dend)) 71.11 72.23  72.79 74.19 194.3   100
 \end{verbatim}
 \begin{alltt}
 \hlkwd{microbenchmark}\hlstd{(}\hlkwd{nleaves}\hlstd{(hc),} \hlkwd{length}\hlstd{(}\hlkwd{labels}\hlstd{(hc)))}
@@ -678,8 +691,8 @@ For dendrograms the speed improvement is about 10 times using \code{labels}, whe
 \begin{verbatim}
 ## Unit: microseconds
 ##                expr   min    lq median    uq    max neval
-##         nleaves(hc) 19.60 20.16  20.72 21.28  31.92   100
-##  length(labels(hc)) 31.36 31.92  32.20 32.48 151.18   100
+##         nleaves(hc) 21.28 22.40  22.96 23.52  87.35   100
+##  length(labels(hc)) 34.72 35.84  36.40 36.96 267.09   100
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -691,9 +704,9 @@ There are border-line cases where the node above some leaves is of height 0. In 
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{hc} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(USArrests[}\hlnum{1}\hlopt{:}\hlnum{3}\hlstd{, ]),} \hlstr{"ave"}\hlstd{)}
-\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc}\hlstd{)}
+\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc)}
 
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{)}\hlstd{)}
+\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{))}
 
 \hlcom{### Trivial case}
 \hlkwd{count_terminal_nodes}\hlstd{(dend)}  \hlcom{# 3 terminal nodes}
@@ -752,7 +765,7 @@ Getting the size of a tree, in terms of the number of nodes can easily be done u
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{hc} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(USArrests[}\hlnum{1}\hlopt{:}\hlnum{3}\hlstd{, ]),} \hlstr{"ave"}\hlstd{)}
-\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc}\hlstd{)}
+\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc)}
 
 \hlkwd{nnodes}\hlstd{(hc)}
 \end{alltt}
@@ -781,7 +794,7 @@ Here are some examples:
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{hc} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(USArrests[}\hlnum{1}\hlopt{:}\hlnum{3}\hlstd{, ]),} \hlstr{"ave"}\hlstd{)}
-\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc}\hlstd{)}
+\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc)}
 
 \hlcom{# get_leaves_attr(dend) # error :)}
 \hlkwd{get_leaves_attr}\hlstd{(dend,} \hlstr{"label"}\hlstd{)}
@@ -915,9 +928,9 @@ Quick comparison on fetching leaves attributes:
 \end{alltt}
 \begin{verbatim}
 ## Unit: microseconds
-##                      expr   min    lq median    uq    max
-##  get_leaves_attr_4members 290.6 295.1  300.7 324.2  444.6
-##   get_nodes_attr_4members 708.9 717.3  732.4 786.1 2855.6
+##                      expr   min    lq median    uq  max
+##  get_leaves_attr_4members 309.6 318.0  334.3 354.2 6709
+##   get_nodes_attr_4members 759.8 791.7  839.3 886.1 9320
 ##  neval
 ##    100
 ##    100
@@ -945,7 +958,7 @@ A tree's nodes has various heights. Sometimes we are interested in changing the 
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{hc} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(USArrests[}\hlnum{1}\hlopt{:}\hlnum{3}\hlstd{, ]),} \hlstr{"ave"}\hlstd{)}
-\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc}\hlstd{)}
+\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc)}
 
 \hlstd{taller_dend} \hlkwb{<-} \hlkwd{raise.dendrogram}\hlstd{(dend,} \hlnum{10}\hlstd{)}
 \hlstd{shorter_dend} \hlkwb{<-} \hlkwd{raise.dendrogram}\hlstd{(dend,} \hlopt{-}\hlnum{10}\hlstd{)}
@@ -996,7 +1009,7 @@ Sometimes we wish to "unbranch" the dendrogram, meaning that we merge one of the
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{hc} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(USArrests[}\hlnum{10}\hlopt{:}\hlnum{13}\hlstd{, ]),} \hlstr{"ward"}\hlstd{)}
-\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc}\hlstd{)}
+\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc)}
 
 \hlstd{unbranched_dend} \hlkwb{<-} \hlkwd{unbranch}\hlstd{(dend,} \hlkwc{branch_becoming_root} \hlstd{=} \hlnum{1}\hlstd{)}
 \hlstd{unbranched_dend_2} \hlkwb{<-} \hlkwd{unbranch}\hlstd{(unbranched_dend,} \hlkwc{branch_becoming_root} \hlstd{=} \hlnum{3}\hlstd{)}
@@ -1026,10 +1039,10 @@ In some rare cases, we might wish to equalize the heights of root's branches. Fo
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{hc} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(USArrests[}\hlnum{10}\hlopt{:}\hlnum{13}\hlstd{, ]),} \hlstr{"ward"}\hlstd{)}
-\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc}\hlstd{)}
+\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc)}
 
 \hlstd{flatten_dend_1} \hlkwb{<-} \hlkwd{flatten.dendrogram}\hlstd{(dend,} \hlkwc{FUN} \hlstd{= max)}
-\hlstd{flatten_dend_2} \hlkwb{<-} \hlkwd{flatten.dendrogram}\hlstd{(dend,} \hlkwc{FUN} \hlstd{= min}\hlstd{)}
+\hlstd{flatten_dend_2} \hlkwb{<-} \hlkwd{flatten.dendrogram}\hlstd{(dend,} \hlkwc{FUN} \hlstd{= min)}
 
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{3}\hlstd{))}
 \hlkwd{plot}\hlstd{(dend,} \hlkwc{main} \hlstd{=} \hlstr{"Original tree"}\hlstd{)}
@@ -1060,10 +1073,10 @@ Coloring labels can sometimes be useful, it is done through the \code{labels_col
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{3}\hlstd{)}\hlstd{)}
+\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{3}\hlstd{))}
 
 \hlstd{hc} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(USArrests[}\hlnum{1}\hlopt{:}\hlnum{3}\hlstd{, ]),} \hlstr{"ave"}\hlstd{)}
-\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc}\hlstd{)}
+\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc)}
 
 \hlcom{# Defaults:}
 \hlkwd{labels_colors}\hlstd{(dend)}
@@ -1072,7 +1085,7 @@ Coloring labels can sometimes be useful, it is done through the \code{labels_col
 ## NULL
 \end{verbatim}
 \begin{alltt}
-\hlkwd{plot}\hlstd{(dend}\hlstd{)}
+\hlkwd{plot}\hlstd{(dend)}
 
 \hlcom{# let's add some color:}
 \hlkwd{require}\hlstd{(colorspace)}
@@ -1084,7 +1097,7 @@ Coloring labels can sometimes be useful, it is done through the \code{labels_col
 ## "#E495A5" "#86B875" "#7DB0DD"
 \end{verbatim}
 \begin{alltt}
-\hlkwd{plot}\hlstd{(dend}\hlstd{)}
+\hlkwd{plot}\hlstd{(dend)}
 
 \hlcom{# changing color to black}
 \hlkwd{labels_colors}\hlstd{(dend)} \hlkwb{<-} \hlnum{1}
@@ -1148,7 +1161,7 @@ Hanging a tree means that we change the height of the leaves to be near their pa
 \end{verbatim}
 \begin{alltt}
 \hlkwd{require}\hlstd{(colorspace)}
-\hlkwd{labels_colors}\hlstd{(hang_dend_1)} \hlkwb{<-} \hlkwd{rainbow_hcl}\hlstd{(}\hlkwd{nleaves}\hlstd{(hang_dend_1)}\hlstd{)}
+\hlkwd{labels_colors}\hlstd{(hang_dend_1)} \hlkwb{<-} \hlkwd{rainbow_hcl}\hlstd{(}\hlkwd{nleaves}\hlstd{(hang_dend_1))}
 
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{))}
 \hlkwd{plot}\hlstd{(hc,} \hlkwc{main} \hlstd{=} \hlstr{"Hanged hclust tree"}\hlstd{)}
@@ -1179,7 +1192,7 @@ Trimming a tree from some leaves can be done using the \code{prune} (S3 method) 
 \hlkwd{library}\hlstd{(colorspace)}
 \hlkwd{labels_colors}\hlstd{(dend)} \hlkwb{<-} \hlkwd{rainbow_hcl}\hlstd{(}\hlnum{5}\hlstd{)}
 
-\hlstd{pruned_dend} \hlkwb{<-} \hlkwd{prune}\hlstd{(dend,} \hlkwd{c}\hlstd{(}\hlstr{"Alaska"}\hlstd{,} \hlstr{"California"}\hlstd{)}\hlstd{)}
+\hlstd{pruned_dend} \hlkwb{<-} \hlkwd{prune}\hlstd{(dend,} \hlkwd{c}\hlstd{(}\hlstr{"Alaska"}\hlstd{,} \hlstr{"California"}\hlstd{))}
 
 \hlkwd{str}\hlstd{(}\hlkwd{unclass}\hlstd{(pruned_dend))}
 \end{alltt}
@@ -1242,7 +1255,7 @@ If we have two trees, we can use the \code{intersect_trees} function to reduce b
 \hlstd{hc_1} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(USArrests[}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{, ]),} \hlstr{"single"}\hlstd{)}
 \hlstd{hc_2} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(USArrests[}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{, ]),} \hlstr{"complete"}\hlstd{)}
 \hlstd{dend_1} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc_1)}
-\hlstd{dend_2} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc_2}\hlstd{)}
+\hlstd{dend_2} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc_2)}
 
 \hlkwd{library}\hlstd{(colorspace)}
 \hlkwd{labels_colors}\hlstd{(dend_1)} \hlkwb{<-} \hlkwd{rainbow_hcl}\hlstd{(}\hlnum{5}\hlstd{)}
@@ -1250,9 +1263,9 @@ If we have two trees, we can use the \code{intersect_trees} function to reduce b
 
 
 \hlstd{pruned_dend_1} \hlkwb{<-} \hlkwd{prune}\hlstd{(dend_1,} \hlkwd{c}\hlstd{(}\hlstr{"Alaska"}\hlstd{))}
-\hlstd{pruned_dend_2} \hlkwb{<-} \hlkwd{prune}\hlstd{(dend_2,} \hlkwd{c}\hlstd{(}\hlstr{"California"}\hlstd{)}\hlstd{)}
+\hlstd{pruned_dend_2} \hlkwb{<-} \hlkwd{prune}\hlstd{(dend_2,} \hlkwd{c}\hlstd{(}\hlstr{"California"}\hlstd{))}
 
-\hlstd{dends_12} \hlkwb{<-} \hlkwd{intersect_trees}\hlstd{(pruned_dend_1, pruned_dend_2}\hlstd{)}
+\hlstd{dends_12} \hlkwb{<-} \hlkwd{intersect_trees}\hlstd{(pruned_dend_1, pruned_dend_2)}
 
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{3}\hlstd{,} \hlnum{2}\hlstd{))}
 \hlkwd{plot}\hlstd{(dend_1,} \hlkwc{main} \hlstd{=} \hlstr{"Tree - single method"}\hlstd{,} \hlkwc{ylim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{110}\hlstd{))}
@@ -1308,7 +1321,7 @@ Here are a few examples:
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{hc} \hlkwb{<-} \hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(USArrests[}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{6}\hlstd{,} \hlnum{13}\hlstd{,} \hlnum{20}\hlstd{,} \hlnum{23}\hlstd{), ]),} \hlstr{"ave"}\hlstd{)}
-\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc}\hlstd{)}
+\hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(hc)}
 
 \hlcom{# For dendrogram objects:}
 \hlkwd{require}\hlstd{(colorspace)}
@@ -1337,7 +1350,7 @@ Here are a few examples:
 
 \subsection{Cutting trees}
 
-The \code{hclust} function comes with a very powerfull \code{cutree} function, for extracting cluster grouping of the original data based on cutting the heirarchical tree at some height (or setting a predefined k - number of clusters). The limitation of this function is that it is only available for \code{hclust} object. Hence, if we are dealing with a tree which is NOT an ultrametric tree (e.g: ultrametric tree = a tree with monotone clustering heights), \code{cutree} would not be available for us (since \code{as.hclust} would not work on our dendrogram).
+The \code{hclust} function comes with a very powerfull \code{cutree} function, for extracting cluster grouping of the original data based on cutting the Hierarchical tree at some height (or setting a predefined k - number of clusters). The limitation of this function is that it is only available for \code{hclust} object. Hence, if we are dealing with a tree which is NOT an ultrametric tree (e.g: ultrametric tree = a tree with monotone clustering heights), \code{cutree} would not be available for us (since \code{as.hclust} would not work on our dendrogram).
 
 In \pkg{dendextend}, we extend \code{cutree} by turning it into an S3 method, with methods for dendrogram and phylo objects. The phylo method is only turning the phylo object to an hclust, and tries to work on it there. However, the dendrogram method (\code{cutree.dendrogram}) is a complete re-writing of \code{cutree} based on the \code{cut.dendrogram} function. \code{cutree.dendrogram} fully emulates \code{cutree} by default, but at the same time extends it with the type of trees it can handle, and with some other options.
 
@@ -1414,7 +1427,12 @@ Here are several examples of how these functions are used:
 \hlkwd{cutree}\hlstd{(dend,} \hlkwc{k} \hlstd{=} \hlnum{2}\hlopt{:}\hlnum{3}\hlstd{,} \hlkwc{order_clusters_as_data} \hlstd{=} \hlnum{FALSE}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 2 1 1 1 1
+##           2 3
+## Minnesota 1 1
+## Maryland  2 2
+## Colorado  2 3
+## Alabama   2 3
+## Illinois  2 3
 \end{verbatim}
 \begin{alltt}
 \hlkwd{labels}\hlstd{(dend)}
@@ -1451,11 +1469,11 @@ Here are several examples of how these functions are used:
 \end{alltt}
 \begin{verbatim}
 ##           20 25.5 50 170
-## Alabama    1    1  2   2
-## Colorado   2    2  2   2
-## Illinois   3    3  2   2
-## Maryland   4    4  3   3
-## Minnesota  5    5  1   1
+## Alabama    1    1  1   1
+## Colorado   2    2  1   1
+## Illinois   3    3  1   1
+## Maryland   4    4  2   2
+## Minnesota  5    5  3   3
 \end{verbatim}
 \begin{alltt}
 \hlkwd{require}\hlstd{(microbenchmark)}
@@ -1465,17 +1483,17 @@ Here are several examples of how these functions are used:
     \hlkwd{cutree}\hlstd{(dend,} \hlkwc{k} \hlstd{=} \hlnum{2}\hlopt{:}\hlnum{4}\hlstd{),} \hlkwd{cutree}\hlstd{(dend,} \hlkwc{k} \hlstd{=} \hlnum{2}\hlopt{:}\hlnum{4}\hlstd{,} \hlkwc{try_cutree_hclust} \hlstd{=} \hlnum{FALSE}\hlstd{))}
 \end{alltt}
 \begin{verbatim}
-## Unit: microseconds
-##                                              expr    min
-##                               cutree(hc, k = 2:4)  136.6
-##                  cutree(as.hclust(dend), k = 2:4) 1727.9
-##                             cutree(dend, k = 2:4) 1825.9
-##  cutree(dend, k = 2:4, try_cutree_hclust = FALSE) 8218.0
-##      lq median     uq     max neval
-##   142.2  145.6  194.6   324.8   100
-##  1755.9 1834.9 1902.6  4882.0   100
-##  1889.8 1945.5 1994.2  4950.9   100
-##  8372.6 8512.6 8707.1 11539.5   100
+## Unit: milliseconds
+##                                              expr   min
+##                               cutree(hc, k = 2:4) 1.541
+##                  cutree(as.hclust(dend), k = 2:4) 3.510
+##                             cutree(dend, k = 2:4) 3.581
+##  cutree(dend, k = 2:4, try_cutree_hclust = FALSE) 3.502
+##     lq median    uq    max neval
+##  1.633  1.684 1.853 133.69   100
+##  3.745  3.974 4.268  15.13   100
+##  3.809  4.067 4.350  10.28   100
+##  3.776  4.075 4.565  11.28   100
 \end{verbatim}
 \begin{alltt}
 \hlcom{# the dendrogram is MUCH slower...}
@@ -1489,11 +1507,11 @@ Here are several examples of how these functions are used:
 \begin{verbatim}
 ## Unit: milliseconds
 ##                                       expr   min    lq
-##                       cutree_unbranch_dend 6.691 6.784
-##  cutree_unbranch_dend_not_trying_to_hclust 6.283 6.375
-##  median    uq    max neval
-##   6.894 7.052  9.978   100
-##   6.488 6.679 13.087   100
+##                       cutree_unbranch_dend 2.166 2.305
+##  cutree_unbranch_dend_not_trying_to_hclust 1.622 1.786
+##  median    uq   max neval
+##   2.397 2.813 8.286   100
+##   1.876 2.213 5.851   100
 \end{verbatim}
 \begin{alltt}
 
@@ -1517,7 +1535,7 @@ Here is an example of using \code{color_branches} combined with \code{labels_col
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{require}\hlstd{(colorspace}\hlstd{)}
+\hlkwd{require}\hlstd{(colorspace)}
 
 \hlkwd{data}\hlstd{(iris)}
 \hlstd{d_iris} \hlkwb{<-} \hlkwd{dist}\hlstd{(iris[,} \hlopt{-}\hlnum{5}\hlstd{])}  \hlcom{# method='man' # is a bit better}
@@ -1546,7 +1564,7 @@ Here is an example of using \code{color_branches} combined with \code{labels_col
 \hlcom{# have the labels match the real classification of the}
 \hlcom{# flowers:}
 \hlkwd{labels_colors}\hlstd{(dend_iris)} \hlkwb{<-} \hlkwd{rainbow_hcl}\hlstd{(}\hlnum{3}\hlstd{)[}\hlkwd{sort_levels_values}\hlstd{(}\hlkwd{as.numeric}\hlstd{(iris[,}
-    \hlnum{5}\hlstd{])[}\hlkwd{order.dendrogram}\hlstd{(dend_iris)])}\hlstd{]}
+    \hlnum{5}\hlstd{])[}\hlkwd{order.dendrogram}\hlstd{(dend_iris)])]}
 
 \hlcom{# We'll add the flower type}
 \hlkwd{labels}\hlstd{(dend_iris)} \hlkwb{<-} \hlkwd{paste}\hlstd{(}\hlkwd{as.character}\hlstd{(iris[,} \hlnum{5}\hlstd{])[}\hlkwd{order.dendrogram}\hlstd{(dend_iris)],}
@@ -1577,7 +1595,7 @@ Here is an example of using \code{color_branches} combined with \code{labels_col
 \end{knitrout}
 
 
-This simple visualization easily demonstrates how the seperation of the heirarchical clustering is very good with the "setosa" sepcies, but misses in labeling many "versicolor" species as "virginica".
+This simple visualization easily demonstrates how the seperation of the Hierarchical clustering is very good with the "setosa" sepcies, but misses in labeling many "versicolor" species as "virginica".
 
 The hanging of the tree also helps to locate extreme observations. For example, we can see that observation "virginica (107)" is not very similar to the Versicolor species, but still, it is amoung them. Also, "Versicolor (71)" is too much "within" the Virginica bush, and it is a wonder why that is.  Of course, the Iris dataset is very well known, and simpler pairs plot often help to locate such problems, yet - dendrogram trees (with all of their limitations) can help gain insights for very high-dimensional data where a simple pairs plot is not possible.
 
@@ -1586,7 +1604,7 @@ Here is the similar pairs plot. Notice the filled red and green dots, corrospond
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{require}\hlstd{(colorspace}\hlstd{)}
+\hlkwd{require}\hlstd{(colorspace)}
 
 \hlstd{species_col} \hlkwb{<-} \hlkwd{rev}\hlstd{(}\hlkwd{rainbow_hcl}\hlstd{(}\hlnum{3}\hlstd{))[}\hlkwd{as.numeric}\hlstd{(iris[,} \hlnum{5}\hlstd{])]}
 \hlcom{# species_col[c(107,71)] <- 'red' # highlight the two extreme}
@@ -1619,7 +1637,7 @@ Here is the similar pairs plot. Notice the filled red and green dots, corrospond
 
 \subsection{Tanglegram visualization}
 
-A tanglegram plot gives two dendrogram (with the same set of labels), one facing the other, and having their labels connected by lines. Tanglegram can be used for visually comparing two methods of heirarchical clustering, and are sometimes used in biology when comparing two phylogenetic trees.
+A tanglegram plot gives two dendrogram (with the same set of labels), one facing the other, and having their labels connected by lines. Tanglegram can be used for visually comparing two methods of Hierarchical clustering, and are sometimes used in biology when comparing two phylogenetic trees.
 
 %% add references!
 
@@ -1636,9 +1654,7 @@ Here is an example of creating a tanglegram using \pkg{dendextend}:
 \hlkwd{tanglegram}\hlstd{(dend1, dend2,} \hlkwc{lab.cex} \hlstd{=} \hlnum{0.5}\hlstd{,} \hlkwc{edge.lwd} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{margin_inner} \hlstd{=} \hlnum{3}\hlstd{,}
     \hlkwc{type} \hlstd{=} \hlstr{"r"}\hlstd{,} \hlkwc{center} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{k_branches} \hlstd{=} \hlnum{3}\hlstd{)}
 \end{alltt}
-
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Length of value vector was shorter than the number of leaves - vector value recycled\\\#\# Warning: Length of value vector was shorter than the number of leaves - vector value recycled}}\end{kframe}
+\end{kframe}
 
 {\centering \includegraphics[width=\maxwidth]{figure/first_tanglegram} 
 
@@ -1678,9 +1694,9 @@ For example:
 \hlstd{dend1} \hlkwb{<-} \hlkwd{color_branches}\hlstd{(dend1,} \hlnum{3}\hlstd{)}
 \hlcom{# dend2 <- color_branches(dend2, 3) # colors will not match}
 \hlcom{# nicely}
-\hlkwd{labels}\hlstd{(dend2)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend2)}\hlstd{)}
+\hlkwd{labels}\hlstd{(dend2)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend2))}
 
-\hlkwd{require}\hlstd{(colorspace}\hlstd{)}
+\hlkwd{require}\hlstd{(colorspace)}
 
 \hlstd{col_lines_by_left_groups} \hlkwb{<-} \hlkwd{rainbow_hcl}\hlstd{(}\hlnum{3}\hlstd{)[}\hlkwd{cutree}\hlstd{(dend1,} \hlnum{3}\hlstd{,} \hlkwc{order_clusters_as_data} \hlstd{=} \hlnum{FALSE}\hlstd{,}
     \hlkwc{sort_cluster_numbers} \hlstd{=} \hlnum{TRUE}\hlstd{)]}
@@ -1705,7 +1721,7 @@ And here is the entanglement of a tiny bit prettier tanglegram:
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{s_dend1} \hlkwb{<-} \hlkwd{sort}\hlstd{(dend1)}
-\hlstd{s_dend2} \hlkwb{<-} \hlkwd{sort}\hlstd{(dend2}\hlstd{)}
+\hlstd{s_dend2} \hlkwb{<-} \hlkwd{sort}\hlstd{(dend2)}
 
 \hlcom{# s_dend1 <- color_branches(s_dend1, 3) # If I don't do this}
 \hlcom{# again I will get different colors}
@@ -1751,9 +1767,9 @@ This problem is also harder for larger trees, so let us pick a tree from only 30
 \hlstd{dend1} \hlkwb{<-} \hlkwd{color_branches}\hlstd{(dend1,} \hlnum{3}\hlstd{)}
 \hlcom{# dend2 <- color_branches(dend2, 3) # colors will not match}
 \hlcom{# nicely}
-\hlkwd{labels}\hlstd{(dend2)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend2)}\hlstd{)}
+\hlkwd{labels}\hlstd{(dend2)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend2))}
 
-\hlkwd{require}\hlstd{(colorspace}\hlstd{)}
+\hlkwd{require}\hlstd{(colorspace)}
 
 \hlstd{col_lines_by_left_groups} \hlkwb{<-} \hlkwd{rainbow_hcl}\hlstd{(}\hlnum{3}\hlstd{)[}\hlkwd{cutree}\hlstd{(dend1,} \hlnum{3}\hlstd{,} \hlkwc{order_clusters_as_data} \hlstd{=} \hlnum{FALSE}\hlstd{,}
     \hlkwc{sort_cluster_numbers} \hlstd{=} \hlnum{TRUE}\hlstd{)]}
@@ -1807,14 +1823,10 @@ Let's use a greedy forward step wise rotation of the right tree, to see if we ca
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{best_dend_heights_per_k} \hlkwb{<-} \hlkwd{heights_per_k.dendrogram}\hlstd{(dend2}\hlstd{)}
+\hlstd{best_dend_heights_per_k} \hlkwb{<-} \hlkwd{heights_per_k.dendrogram}\hlstd{(dend2)}
 
 \hlstd{dend2_2} \hlkwb{<-} \hlkwd{untangle_step_rotate_1side}\hlstd{(dend2, dend1,} \hlkwc{k_seq} \hlstd{=} \hlnum{2}\hlopt{:}\hlnum{3}\hlstd{,}
     \hlkwc{best_dend_heights_per_k} \hlstd{= best_dend_heights_per_k)}
-\end{alltt}
-
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: plyr}}\begin{alltt}
 \hlcom{# notice that here we are only using}
 \hlkwd{tanglegram}\hlstd{(dend1, dend2_2,} \hlkwc{color_lines} \hlstd{= col_lines_by_left_groups,}
     \hlkwc{main} \hlstd{=} \hlkwd{paste}\hlstd{(}\hlstr{"Entanglement ="}\hlstd{,} \hlkwd{round}\hlstd{(}\hlkwd{entanglement}\hlstd{(dend1,}
@@ -2062,7 +2074,7 @@ Sometimes, using just one-sise greedy algorithm is not enough. Also, it is proba
 \subsection{Baker's Gamma Index}
 
 Baker's Gamma Index \citep{baker1974stability} is a measure of accosiation (similarity) 
-between two trees of heirarchical clustering (dendrograms). It is defined as the rank correlation between the stages at which pairs of objects combine in each of the two trees.
+between two trees of Hierarchical clustering (dendrograms). It is defined as the rank correlation between the stages at which pairs of objects combine in each of the two trees.
 
 Or more detailed: It is calculated by taking two items, and see what is the heighst
 possible level of k (number of cluster groups created when cutting the tree)
@@ -2121,9 +2133,9 @@ Here are a few examples:
 \end{alltt}
 \begin{verbatim}
 ## Unit: milliseconds
-##         expr   min     lq median     uq    max neval
-##  with_labels 97.98 101.87 103.83 105.58 111.81    10
-##  with_values 84.62  87.63  89.64  92.06  92.97    10
+##         expr   min    lq median    uq   max neval
+##  with_labels 35.05 39.34  41.25 42.94 49.30    10
+##  with_values 32.73 36.68  39.69 42.01 46.64    10
 \end{verbatim}
 \begin{alltt}
 \hlcom{# The cor of a tree with itself is 1:}
@@ -2446,7 +2458,7 @@ We can also calculate a bootstrap confidence interval using the \code{sample.den
 \end{alltt}
 \begin{verbatim}
 ##   2.5%  97.5% 
-## 0.4674 1.0000
+## 0.4753 1.0000
 \end{verbatim}
 \begin{alltt}
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
@@ -2549,9 +2561,9 @@ Here is a simple example:
 \end{alltt}
 \begin{verbatim}
 ## Unit: milliseconds
-##              expr    min     lq median    uq    max neval
-##  cor_bakers_gamma 100.15 100.88 102.04 107.3 113.22    10
-##    cor_cophenetic  11.51  11.89  12.22  14.6  15.52    10
+##              expr   min    lq median    uq   max neval
+##  cor_bakers_gamma 37.12 39.16  41.04 45.66 47.37    10
+##    cor_cophenetic 13.74 14.77  15.15 15.91 22.36    10
 \end{verbatim}
 \begin{alltt}
 \hlcom{# but only because of the cutree for dendrogram. When}
@@ -2563,8 +2575,8 @@ Here is a simple example:
 \begin{verbatim}
 ## Unit: milliseconds
 ##              expr   min    lq median    uq   max neval
-##  cor_bakers_gamma 23.70 24.09  24.46 25.44 26.50    10
-##    cor_cophenetic 11.38 11.80  12.35 14.61 18.61    10
+##  cor_bakers_gamma 27.73 29.21  30.78 32.51 42.05    10
+##    cor_cophenetic 13.85 14.37  16.09 19.57 23.83    10
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -3013,18 +3025,16 @@ The \code{Bk} and the \code{Bk_plot} functions allow the calculation of the FM-I
 \begin{verbatim}
 ## Unit: milliseconds
 ##                     expr     min      lq  median     uq
-##      Bk(hc1, hc2, k = 3)   5.623   5.644   5.808   6.06
-##  Bk(dend1, dend2, k = 3) 190.099 221.253 248.910 271.67
-##     max neval
-##    8.64    10
-##  348.51    10
+##      Bk(hc1, hc2, k = 3)   5.784   5.854   6.163   6.44
+##  Bk(dend1, dend2, k = 3) 189.247 193.771 199.897 214.49
+##      max neval
+##    6.508    10
+##  258.647    10
 \end{verbatim}
 \begin{alltt}
-
-# however, because the hc2 tree is actually with several
-# branches/leaves of the same height - actually the
-# dendrogram object gives a more correct output!
-
+\hlcom{# however, because the hc2 tree is actually with several}
+\hlcom{# branches/leaves of the same height - actually the}
+\hlcom{# dendrogram object gives a more correct output!}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -3099,23 +3109,23 @@ For \code{labels.dendrogram}:
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(}\hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[,} \hlopt{-}\hlnum{5}\hlstd{])))}
-\hlkwd{labels}\hlstd{(dend)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend)}\hlstd{)}
+\hlkwd{labels}\hlstd{(dend)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend))}
 
 \hlkwd{require}\hlstd{(dendextendRcpp)}  \hlcom{# already loaded by default with dendextend}
 \hlkwd{require}\hlstd{(microbenchmark)}
-\hlkwd{microbenchmark}\hlstd{(stats:::}\hlkwd{labels.dendrogram}\hlstd{(dend), dendextendRcpp:::}\hlkwd{labels.dendrogram}\hlstd{(dend))}
+\hlkwd{microbenchmark}\hlstd{(stats:::}\hlkwd{labels.dendrogram}\hlstd{(dend), dendextendRcpp::}\hlkwd{labels.dendrogram}\hlstd{(dend))}
 \end{alltt}
 \begin{verbatim}
 ## Unit: microseconds
-##                                      expr     min      lq
-##           stats:::labels.dendrogram(dend) 21425.4 22303.9
-##  dendextendRcpp:::labels.dendrogram(dend)   543.7   560.8
-##   median      uq      max neval
-##  23978.2 25715.6 124609.9   100
-##    700.8   719.8    931.2   100
+##                                     expr     min      lq
+##          stats:::labels.dendrogram(dend) 22113.4 22871.6
+##  dendextendRcpp::labels.dendrogram(dend)   567.2   600.2
+##   median      uq    max neval
+##  23467.4 25423.2 147528   100
+##    731.6   764.3   1143   100
 \end{verbatim}
 \begin{alltt}
-# Rcpp is ~34 times faster
+\hlcom{# Rcpp is ~34 times faster}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -3128,24 +3138,24 @@ For \code{get_branches_heights} (an essential function when using cutree with so
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(}\hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[,} \hlopt{-}\hlnum{5}\hlstd{])))}
-\hlkwd{labels}\hlstd{(dend)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend)}\hlstd{)}
+\hlkwd{labels}\hlstd{(dend)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend))}
 
 \hlkwd{require}\hlstd{(dendextendRcpp)}  \hlcom{# already loaded by default with dendextend}
 \hlkwd{require}\hlstd{(microbenchmark)}
-\hlkwd{microbenchmark}\hlstd{(}\hlkwd{old_get_branches_heights}\hlstd{(dend), dendextendRcpp:::}\hlkwd{get_branches_heights}\hlstd{(dend),}
+\hlkwd{microbenchmark}\hlstd{(}\hlkwd{old_get_branches_heights}\hlstd{(dend), dendextendRcpp::}\hlkwd{get_branches_heights}\hlstd{(dend),}
     \hlkwc{times} \hlstd{=} \hlnum{100}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
 ## Unit: microseconds
-##                                         expr     min
-##               old_get_branches_heights(dend) 51092.5
-##  dendextendRcpp:::get_branches_heights(dend)   498.9
-##       lq  median      uq    max neval
-##  55343.3 56827.9 58136.2 149678   100
-##    511.8   630.8   660.2   3561   100
+##                                        expr   min    lq
+##              old_get_branches_heights(dend) 479.3 491.1
+##  dendextendRcpp::get_branches_heights(dend) 521.3 549.6
+##  median    uq  max neval
+##   516.8 566.7  990   100
+##   581.8 666.6 1316   100
 \end{verbatim}
 \begin{alltt}
-# Rcpp is ~90 times faster!
+\hlcom{# Rcpp is ~90 times faster!}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -3157,24 +3167,24 @@ For \code{heights_per_k.dendrogram} (an essential function when using cutree wit
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{dend} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(}\hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[,} \hlopt{-}\hlnum{5}\hlstd{])))}
-\hlkwd{labels}\hlstd{(dend)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend)}\hlstd{)}
+\hlkwd{labels}\hlstd{(dend)} \hlkwb{<-} \hlkwd{as.character}\hlstd{(}\hlkwd{labels}\hlstd{(dend))}
 
 \hlkwd{require}\hlstd{(dendextendRcpp)}  \hlcom{# already loaded by default with dendextend}
 \hlkwd{require}\hlstd{(microbenchmark)}
-\hlkwd{microbenchmark}\hlstd{(}\hlkwd{old_heights_per_k.dendrogram}\hlstd{(dend), dendextendRcpp:::}\hlkwd{heights_per_k.dendrogram}\hlstd{(dend),}
+\hlkwd{microbenchmark}\hlstd{(}\hlkwd{old_heights_per_k.dendrogram}\hlstd{(dend), dendextendRcpp::}\hlkwd{heights_per_k.dendrogram}\hlstd{(dend),}
     \hlkwc{times} \hlstd{=} \hlnum{100}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
 ## Unit: milliseconds
-##                                             expr     min
-##               old_heights_per_k.dendrogram(dend) 3646.85
-##  dendextendRcpp:::heights_per_k.dendrogram(dend)   26.41
-##       lq  median      uq     max neval
-##  3801.28 3924.02 3962.17 4091.29   100
-##    28.36   29.55   32.14   34.91   100
+##                                            expr   min    lq
+##              old_heights_per_k.dendrogram(dend) 25.66 26.10
+##  dendextendRcpp::heights_per_k.dendrogram(dend) 25.70 26.22
+##  median    uq   max neval
+##   26.56 27.82 57.47   100
+##   26.64 27.86 36.43   100
 \end{verbatim}
 \begin{alltt}
-# Rcpp is ~135 times faster!
+\hlcom{# Rcpp is ~135 times faster!}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -3188,21 +3198,21 @@ For \code{cut_lower_fun} (an essential function when using cutree with some h):
 \begin{alltt}
 \hlstd{dend_big} \hlkwb{<-} \hlkwd{as.dendrogram}\hlstd{(}\hlkwd{hclust}\hlstd{(}\hlkwd{dist}\hlstd{(iris[}\hlnum{1}\hlopt{:}\hlnum{150}\hlstd{,} \hlopt{-}\hlnum{5}\hlstd{])))}
 \hlkwd{require}\hlstd{(microbenchmark)}
-\hlkwd{microbenchmark}\hlstd{(}\hlkwd{old_cut_lower_fun}\hlstd{(dend_big,} \hlnum{0.01}\hlstd{), dendextendRcpp:::}\hlkwd{cut_lower_fun}\hlstd{(dend_big,}
+\hlkwd{microbenchmark}\hlstd{(}\hlkwd{old_cut_lower_fun}\hlstd{(dend_big,} \hlnum{0.01}\hlstd{), dendextendRcpp::}\hlkwd{cut_lower_fun}\hlstd{(dend_big,}
     \hlnum{0.01}\hlstd{),} \hlkwc{times} \hlstd{=} \hlnum{100}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
 ## Unit: milliseconds
-##                                            expr    min
-##               old_cut_lower_fun(dend_big, 0.01) 50.864
-##  dendextendRcpp:::cut_lower_fun(dend_big, 0.01)  4.062
+##                                           expr    min
+##              old_cut_lower_fun(dend_big, 0.01) 44.809
+##  dendextendRcpp::cut_lower_fun(dend_big, 0.01)  4.094
 ##      lq median     uq    max neval
-##  60.274 66.879 76.366 239.05   100
-##   4.394  4.823  5.501  39.87   100
+##  51.094 54.616 59.631 107.52   100
+##   4.334  4.586  4.847  73.35   100
 \end{verbatim}
 \begin{alltt}
-# Rcpp is ~4-14 times faster. depending on the size of the
-# tree, and the depth of the height
+\hlcom{# Rcpp is ~4-14 times faster. depending on the size of the}
+\hlcom{# tree, and the depth of the height}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -3375,13 +3385,13 @@ We are very thankful for code contributions and ideas by the R core team (especi
 \hlkwd{Sys.Date}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## [1] "2013-08-31"
+## [1] "2014-02-01"
 \end{verbatim}
 \begin{alltt}
 \hlkwd{sessionInfo}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## R version 3.0.1 (2013-05-16)
+## R version 3.0.2 (2013-09-25)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## 
 ## locale:
@@ -3396,17 +3406,14 @@ We are very thankful for code contributions and ideas by the R core team (especi
 ## [6] methods   base     
 ## 
 ## other attached packages:
-##  [1] profdpm_3.3          plyr_1.8            
-##  [3] microbenchmark_1.3-0 colorspace_1.2-2    
-##  [5] codetools_0.2-8      dendextendRcpp_0.3.0
-##  [7] Rcpp_0.10.4          dendextend_0.11.2   
-##  [9] ape_3.0-8            knitr_1.4           
-## [11] installr_0.12.0     
+## [1] dendextendRcpp_0.3.0 Rcpp_0.10.6         
+## [3] dendextend_0.12.0    ape_3.0-11          
+## [5] knitr_1.5            installr_0.13.0     
 ## 
 ## loaded via a namespace (and not attached):
-## [1] digest_0.6.3    evaluate_0.4.7  formatR_0.9    
-## [4] grid_3.0.1      highr_0.2.2     lattice_0.20-15
-## [7] nlme_3.1-109    stringr_0.6.2   tools_3.0.1
+## [1] digest_0.6.4    evaluate_0.5.1  formatR_0.10   
+## [4] grid_3.0.2      lattice_0.20-24 nlme_3.1-113   
+## [7] stringr_0.6.2   tools_3.0.2
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

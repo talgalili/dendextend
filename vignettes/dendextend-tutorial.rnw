@@ -58,8 +58,11 @@ options(replace.assign=TRUE,width=60)
 % \title{Manipulate, Visualize and Compare Dendrograms:\\ The \pkg{dendextend} \proglang{R} Package}
 
 
-\author{Tal Galili\\Tel-Aviv University \And Yoav Benjamini\\Tel-Aviv University}
-\Plainauthor{Tal Galili, Yoav Benjamini}
+% \author{Tal Galili\\Tel-Aviv University \And Yoav Benjamini\\Tel-Aviv University}
+% \Plainauthor{Tal Galili, Yoav Benjamini}
+
+\author{Tal Galili\\Tel-Aviv University}
+\Plainauthor{Tal Galili}
 
 
 
@@ -93,13 +96,13 @@ The paper gives a detailed exposition of both the internal structure of the pack
    URLs: \url{http://www.r-statistics.com/}, 
          \url{http://www.r-bloggers.com/}\\
 
-  Yoav Benjamini\\
-   The Nathan and Lily Silver\\
-   Professor of Applied Statistics\\
-   Department of Statistics and Operations Research \\
-   Tel Aviv University, Israel \\
-   E-mail: \email{ybenja@tau.ac.il}\\
-   URL: \url{http://www.tau.ac.il/~ybenja/}
+%   Yoav Benjamini\\
+%    The Nathan and Lily Silver\\
+%    Professor of Applied Statistics\\
+%    Department of Statistics and Operations Research \\
+%    Tel Aviv University, Israel \\
+%    E-mail: \email{ybenja@tau.ac.il}\\
+%    URL: \url{http://www.tau.ac.il/~ybenja/}
 }
 
 
