@@ -23,11 +23,13 @@
 #' 'shuffle' is a function that randomilly rotates ("shuffles") a tree.
 #' a dendrogram leaves order (by means of rotation)
 
-
 #' @title Random rotation of trees
 #' @export
 #' @aliases 
 #' shuffle.default
+#' shuffle.dendrogram
+#' shuffle.hclust
+#' shuffle.phylo
 #' @usage
 #' shuffle(object, ...)
 #' 

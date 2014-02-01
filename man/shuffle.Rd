@@ -1,6 +1,9 @@
 \name{shuffle}
 \alias{shuffle}
 \alias{shuffle.default}
+\alias{shuffle.dendrogram}
+\alias{shuffle.hclust}
+\alias{shuffle.phylo}
 \title{Random rotation of trees}
 \usage{
 shuffle(object, ...)

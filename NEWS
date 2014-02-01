@@ -37,6 +37,9 @@ UPDATED DOCS:
       * 'bakers_gamma_for_2_k_matrix'
       * 'cor_bakers_gamma'
       * 'cut_lower_fun'
+   * Fix "Objects in \usage without \alias in documentation object 'shuffle'":
+  'shuffle.dendrogram' 'shuffle.hclust' 'shuffle.phylo'
+
 
 UPDATED TESTS: 
    * S3methods no longer seem to be exported (due to something in roxygen2), I chose to update the tests accordingly.
