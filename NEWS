@@ -3,7 +3,6 @@ dendextend 0.12.0 (2014-02-01)
 
 UPDATED FUNCTIONS:
    * exported prune_leaf
-   * leaf_Colors - fix example (added "dend").
    * as.dendrogram.phylo as.phylo.dendrogram - turned into S3 (no longer exported)
    * changed functions names:
       * trim -> prune
@@ -12,9 +11,12 @@ UPDATED FUNCTIONS:
    * tanglegram.dendrogram - fix warning in layout(matrix(1:3, nrow = 1), width =
   columns_width): partial argument match of 'width' to 'widths'
    * Return "as.phylo.dendrogram" by adding "ape" to "Imports" in DESCRIPTION and "import" to NAMESPACE. Also fixing consistancy (using x instead of object).
-   * fix "Unknown package 'dendroextra' in Rd xrefs" in color_branches docs.
    * unbranch.phylo - fix extra parameters.
 
+UPDATED DOCS:
+   * leaf_Colors - fix example (added "dend").
+   * remove \link{untangle} from various .Rd (I never created this function...)
+   * fix "Unknown package 'dendroextra' in Rd xrefs" in color_branches docs.
 
 
 UPDATED TESTS: 

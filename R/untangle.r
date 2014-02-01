@@ -127,7 +127,7 @@ shuffle.phylo <- shuffle.default
 #' offers.
 #' 
 #' @return A list with two trees with the best entanglement that was found.
-#' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels},
+#' @seealso \link{tanglegram}, \link{match_order_by_labels},
 #' \link{entanglement}.
 #' @examples
 #' 
@@ -222,7 +222,7 @@ remove_pipes_and_zzz <- function(x) {strsplit(remove_zzz(x), "||",fixed=T)[[1]]}
 #' may be a smarter/better way for doing it...
 #' 
 #' @return A dendrogram object with flipped leaves.
-#' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels},
+#' @seealso \link{tanglegram}, \link{match_order_by_labels},
 #' \link{entanglement}.
 #' @examples
 #' 
@@ -284,7 +284,7 @@ flip_leaves <- function(dend, leaves1, leaves2,...) {
 #' @param ... not used
 #' @return A list with dendrogram objects with all the possible rotations
 #' for k clusters (beyond the k-1 clusters!).
-#' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels},
+#' @seealso \link{tanglegram}, \link{match_order_by_labels},
 #' \link{entanglement}, \link{flip_leaves}.
 #' @examples
 #' 
@@ -414,7 +414,7 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 #' @param ... not used
 #' 
 #' @return dend1 after it was rotated to best fit dend2_fixed.
-#' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels},
+#' @seealso \link{tanglegram}, \link{match_order_by_labels},
 #' \link{entanglement}, \link{flip_leaves}, \link{all_couple_rotations_at_k},
 #' \link{untangle_step_rotate_2side}.
 #' 
@@ -510,7 +510,7 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
 #' @return A list with two dendrograms (dend1/dend2), 
 #' after they are rotated to best fit one another.
 #' 
-#' @seealso \link{untangle}, \link{tanglegram}, \link{match_order_by_labels},
+#' @seealso \link{tanglegram}, \link{match_order_by_labels},
 #' \link{entanglement}, \link{flip_leaves}, \link{all_couple_rotations_at_k}.
 #' \link{untangle_step_rotate_1side}.
 #' @examples
