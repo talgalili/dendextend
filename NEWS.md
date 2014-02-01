@@ -164,9 +164,9 @@ UPDATED FUNCTIONS:
 
 BUG FIXES: 
    * Fix untangle_step_rotate_1side to work with non-missing dend_heights_per_k
-   * Set sort_cluster_numbers = TRUE for cutree, in order to make it compatible with stats:::cutree. Added a test for this.
+   * Set sort_cluster_numbers = TRUE for cutree, in order to make it compatible with stats::cutree. Added a test for this.
    * Fix cutree.hclust to work with a vector of k when !order_clusters_as_data
-   * Fix cutree.dendrogram to give default results as stats:::hclust does, by setting the default to sort_cluster_numbers = TRUE.
+   * Fix cutree.dendrogram to give default results as stats::hclust does, by setting the default to sort_cluster_numbers = TRUE.
 
 OTHER NOTES:
    * Variations of the changes to plot_horiz.dendrogram and plotNode_horiz should be added to R core in order to allow forward compatability.
@@ -379,5 +379,5 @@ http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
    Maybe also spantree {vegan}
    * boot_dend - create a same-size tree, while sampling (with repetition) the leaves! # later for boot
    * An algorithm to find subtrees that are topologically identical between the two trees - and color them accordingly.
-   * Get stats:::midcache.dendrogram to work for non-binary trees...
+   * Get stats::midcache.dendrogram to work for non-binary trees...
    * cut_replace - make it in Rcpp - to make cutree_1h.dendrogram faster...

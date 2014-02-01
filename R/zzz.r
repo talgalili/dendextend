@@ -26,8 +26,8 @@ assign_dendextendRcpp_to_dendextend <- function() {
    if(suppressWarnings(require(dendextendRcpp))) {
       # This wouldn't work since it will only assign
       # the faster function in the current env      
-#       get_branches_heights <- dendextendRcpp:::get_branches_heights
-#       heights_per_k.dendrogram <- dendextendRcpp:::heights_per_k.dendrogram
+#       get_branches_heights <- dendextendRcpp::get_branches_heights
+#       heights_per_k.dendrogram <- dendextendRcpp::heights_per_k.dendrogram
       # for getting the functions "into" dendextend, we need to run this:
       
       # create a backup of these functions in order to later
@@ -44,6 +44,8 @@ assign_dendextendRcpp_to_dendextend <- function() {
 	  # but this does: (!)
 		# http://stackoverflow.com/questions/13595145/overriding-a-package-function-inherited-by-another-package
 # 	  get("assignInNamespace", envir=asNamespace("utils"))
+	  require(dendextendRcpp)
+	  # Using only "::" instead of ":::" will crash many tests...
 	  
       assignInNamespace(
          x= "get_branches_heights",
@@ -121,7 +123,9 @@ assign_dendextendRcpp_to_dendextend <- function() {
       #       unloadNamespace("dendextend")
       #       require("dendextend", warn.conflicts = TRUE)                 
       #       require("dendextend", warn.conflicts = FALSE)                 
-   }   
+   }      
+   # but it makes sure that "dendextend" does not "Depends" on ape"...
+   
    packageStartupMessage(installrWelcomeMessage())  
    
    assign_dendextendRcpp_to_dendextend()

@@ -1,3 +1,40 @@
+dendextend 0.12.0 (2014-02-01)
+----------------------------
+
+UPDATED FUNCTIONS:
+   * exported prune_leaf
+   * leaf_Colors - fix example (added "dend").
+   * as.dendrogram.phylo as.phylo.dendrogram - turned into S3 (no longer exported)
+   * changed functions names:
+      * trim -> prune
+      * unroot -> unbranch
+   * Moved from ::: to :: (where possible).
+   * tanglegram.dendrogram - fix warning in layout(matrix(1:3, nrow = 1), width =
+  columns_width): partial argument match of 'width' to 'widths'
+   * Return "as.phylo.dendrogram" by adding "ape" to "Imports" in DESCRIPTION and "import" to NAMESPACE. Also fixing consistancy (using x instead of object).
+
+UPDATED TESTS: 
+   * S3methods no longer seem to be exported (due to something in roxygen2), I chose to update the tests accordingly.
+      * cutree.hclust -> dendextend:::cutree.hclust
+      * cutree.dendrogram -> dendextend:::cutree.dendrogram
+   * cut_lower_fun acts diffirently on dendextendRcpp vs old dendextend, so I updated the tests to reflect that.
+
+
+OTHER NOTES:
+   * Fixing .Rd indentation.
+   * Fix S3method in NAMESPACE.
+   * Added "ape::" to as.phylo.
+   * Added to .Rbuildignore: (large files which are not essential)
+      * inst/doc/2013-09-05_Boston-useR
+      * vignettes/figure
+      * vignettes/ (we'll deal with this later...)
+   * Removed "Enhances: ape" from DESCRIPTION
+   * README.md - Using 'talgalili/dendextend', in install_github
+
+   * dendextend 0.12.0 is intended to be shipped to CRAN.
+
+
+
 dendextend 0.11.2 (2013-08-31)
 ----------------------------
 
@@ -164,9 +201,9 @@ UPDATED FUNCTIONS:
 
 BUG FIXES: 
    * Fix untangle_step_rotate_1side to work with non-missing dend_heights_per_k
-   * Set sort_cluster_numbers = TRUE for cutree, in order to make it compatible with stats:::cutree. Added a test for this.
+   * Set sort_cluster_numbers = TRUE for cutree, in order to make it compatible with stats::cutree. Added a test for this.
    * Fix cutree.hclust to work with a vector of k when !order_clusters_as_data
-   * Fix cutree.dendrogram to give default results as stats:::hclust does, by setting the default to sort_cluster_numbers = TRUE.
+   * Fix cutree.dendrogram to give default results as stats::hclust does, by setting the default to sort_cluster_numbers = TRUE.
 
 OTHER NOTES:
    * Variations of the changes to plot_horiz.dendrogram and plotNode_horiz should be added to R core in order to allow forward compatability.
@@ -379,5 +416,43 @@ http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
    Maybe also spantree {vegan}
    * boot_dend - create a same-size tree, while sampling (with repetition) the leaves! # later for boot
    * An algorithm to find subtrees that are topologically identical between the two trees - and color them accordingly.
-   * Get stats:::midcache.dendrogram to work for non-binary trees...
+   * Get stats::midcache.dendrogram to work for non-binary trees...
    * cut_replace - make it in Rcpp - to make cutree_1h.dendrogram faster...
+   * See this code: https://github.com/andrie/ggdendro/blob/master/R/dendro_rpart.R
+   for creating an rpart plotting machanism using dendrograms!
+   This will enable hilighting one branch/rule.
+   Note that more "attr" will need to be added to the tree in order to
+   include all of the rpart information. This could also allow the merging of plots from rpart/party etc. 
+   
+   * Add as.dendrogram.ctree . Example code for further work:
+require(party)
+set.seed(290875)
+### regression
+airq <- subset(airquality, !is.na(Ozone))
+airct <- ctree(Ozone ~ ., data = airq, 
+                   controls = ctree_control(maxsurrogate = 3))
+airct
+plot(airct)
+str(airct@tree)
+# as.dendrogram.ctree will need to work with the above object
+# to extract the elements needed for detecting the tree's parameters...
+
+	* Create: as.dendrogram.randomForest (a template is available in the R folder)	
+	* Check if I need to implement something from here: http://r.789695.n4.nabble.com/dendrogram-plot-does-not-draw-long-labels-td3235843.html
+	* Also good: get the conditions in a tree: http://stats.stackexchange.com/questions/41443/how-to-actually-plot-a-sample-tree-from-randomforestgettree
+	* Look into the proximity matrix produced from a randomForest:
+data(iris)
+require(randomForest)
+mod.rf <- randomForest(Species ~ ., data=iris,  proximity=TRUE)
+hc <- hclust(as.dist(mod.rf$proximity))
+plot(as.dendrogram(hc))
+MDSplot(mod.rf, iris$Species)
+	
+	* Combine with gridBase to include sub plots like in {party: ?plot.BinaryTree}	
+	Sources:
+		http://cran.r-project.org/web/packages/party/vignettes/party.pdf
+		http://sublogo.r-forge.r-project.org/
+		http://casoilresource.lawr.ucdavis.edu/drupal/node/1007
+		http://cran.r-project.org/web/packages/gridBase/vignettes/gridBase.pdf
+	* give examples with http://cran.r-project.org/web/packages/treemap/index.html
+	
