@@ -21,7 +21,7 @@
 #' @title Rotate a tree object
 #' @export
 #' @description 
-#' Rotates, flip and sort the branches of a tree object (dendrogram, hclust) 
+#' Rotates, rev and sort the branches of a tree object (dendrogram, hclust) 
 #' based on a vector - eithor of labels order (numbers) or the labels in their
 #' new order (character).
 #' @aliases 
@@ -112,7 +112,7 @@
 #' and rotates the tree to give the best fit possible")
 #' par(mfrow = c(1,2))
 #' plot(dend, main = "Original tree") 
-#' plot(flip(dend), main = "Flips the order of the tree labels")
+#' plot(rev(dend), main = "Reverses the order of the tree labels")
 #' 
 #' # For hclust objects:
 #' plot(hc) 
