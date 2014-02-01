@@ -22,15 +22,18 @@
 # as.dendrogram(as.hclust(as.phylo(hc)))
 #' @export
 #' @S3method as.dendrogram phylo
-as.dendrogram.phylo <- function(object,...) {as.dendrogram(as.hclust(object))}
-
-
-#' @export
-#' @S3method as.phylo dendrogram
-as.phylo.dendrogram <- function(object,...) {
+as.dendrogram.phylo <- function(object,...) {
 	require(ape)
-	ape::as.phylo(as.hclust(object))
+	as.dendrogram(as.hclust(object))
 }
+
+
+## ' @export
+## ' @S3method as.phylo dendrogram
+#as.phylo.dendrogram <- function(object,...) {
+	# require(ape)
+	# ape::as.phylo.hclust(as.hclust(object))
+# }
 
 
 
@@ -282,6 +285,7 @@ unclass_dend <- function(dend,...)
 #' @S3method head dendrogram
 #' @import utils
 head.dendrogram <- function(x, n = 3L, ...) {
+	require(utils)
    str(x, max.leve = n,...)
    cat( "etc...","\n")
 }

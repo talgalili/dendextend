@@ -53,3 +53,18 @@ as_hclust_fixed <- function(x, hc, ...) {
    
    return(x)
 }
+
+
+
+
+# ' @export
+# as.phylo <- function (x, ...) 
+# {
+    # if (length(class(x)) == 1 && class(x) == "phylo") 
+        # return(x)
+    # UseMethod("as.phylo")
+# }
+#### This function is added in order to fix the Error of having this function missing in the namespace
+#### There might be a better way to resolve it...
+
+
