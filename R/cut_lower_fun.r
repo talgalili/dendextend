@@ -33,6 +33,7 @@
 #' 
 #' @param tree a dendrogram object.
 #' @param h a scalar of height to cut the tree by.
+#' @param FUN a function to run. (default is "labels")
 #' @param warn logical (FALSE) - should the user be warned if reverting to
 #' default? (I set it to FALSE since it can be very noisy sometimes...)
 #' @param ... passed to FUN.

@@ -10,6 +10,8 @@ cut_lower_fun(tree, h, FUN = labels, warn = FALSE, ...)
 
   \item{h}{a scalar of height to cut the tree by.}
 
+  \item{FUN}{a function to run. (default is "labels")}
+
   \item{warn}{logical (FALSE) - should the user be warned
   if reverting to default? (I set it to FALSE since it can
   be very noisy sometimes...)}

@@ -3,7 +3,7 @@
 \title{Baker's Gamma correlation coefficient}
 \usage{
 cor_bakers_gamma(tree1, tree2, use_labels_not_values = TRUE,
-  to_plot = FALSE, ...)
+  to_plot = FALSE, warn = TRUE, ...)
 }
 \arguments{
   \item{tree1}{a tree (dendrogram/hclust/phylo)}
@@ -16,6 +16,9 @@ cor_bakers_gamma(tree1, tree2, use_labels_not_values = TRUE,
   the two trees have the exact same leaves order values for
   each labels. This can be assured by using
   \link{match_order_by_labels}.}
+
+  \item{to_plot}{logical (FALSE). Passed to
+  \link{bakers_gamma_for_2_k_matrix}}
 
   \item{warn}{logical (TRUE). In case of problems when
   cutting the tree, should a warning be issued when using

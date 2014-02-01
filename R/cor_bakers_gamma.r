@@ -51,7 +51,7 @@ lowest_common_branch <- function(item1, item2,...)
 
 #' @title Bakers Gamma for two k matrices
 #' @param k_matrix_tree1 a matrix of k cluster groupings from a dendrogram
-#' @param k_matrix_tree1 a matrix of k cluster groupings from a dendrogram
+#' @param k_matrix_tree2 a (second) matrix of k cluster groupings from a dendrogram
 #' @param to_plot logical (FALSE). Should a scaterplot be plotted, showing the
 #' correlation between the lowest shared branch between two items in the two
 #' compared trees.
@@ -127,6 +127,7 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 #' k matrix when using cutree? Set to FALSE will make the function a bit faster
 #' BUT, it assumes the two trees have the exact same leaves order values for 
 #' each labels. This can be assured by using \link{match_order_by_labels}.
+#' @param to_plot logical (FALSE). Passed to \link{bakers_gamma_for_2_k_matrix}
 #' @param warn logical (TRUE). In case of problems when cutting the tree,
 #' should a warning be issued when using \link[dendextend]{cutree}?
 #' @param ... Passed to \link[dendextend]{cutree}.
@@ -197,7 +198,7 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 #' 
 #' }
 #' 
-cor_bakers_gamma <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, ...){
+cor_bakers_gamma <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = TRUE, ...){
    UseMethod("cor_bakers_gamma")
 }
 

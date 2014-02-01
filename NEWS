@@ -33,6 +33,10 @@ UPDATED DOCS:
    * Fix "'library' or 'require' call not declared from: 'ape'" by commenting-off every "require(ape)" command in the code, since it is already mentioned in imports!
       (see: http://stackoverflow.com/questions/15648772/how-do-i-prevent-r-library-or-require-calls-not-declared-warnings-when-dev)
       The problem still persists because of .onLoad in zzz.r, but we'll look into this later...
+   * Fix "Undocumented arguments in documentation object" for:
+      * 'bakers_gamma_for_2_k_matrix'
+      * 'cor_bakers_gamma'
+      * 'cut_lower_fun'
 
 UPDATED TESTS: 
    * S3methods no longer seem to be exported (due to something in roxygen2), I chose to update the tests accordingly.
