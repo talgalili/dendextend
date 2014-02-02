@@ -79,15 +79,20 @@ FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= FALSE) # 1
 # checking speed gains
 require(microbenchmark)
  microbenchmark(FM_index(cutree(hc1, k=3), cutree(hc1, k=3)),
-                 FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= FALSE),
-                  FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= TRUE, assume_sorted_vectors=TRUE),
-                  FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= FALSE, assume_sorted_vectors=TRUE)
+                 FM_index(cutree(hc1, k=3), cutree(hc1, k=3),
+                     include_EV= FALSE),
+                  FM_index(cutree(hc1, k=3), cutree(hc1, k=3),
+                     include_EV= TRUE, assume_sorted_vectors=TRUE),
+                  FM_index(cutree(hc1, k=3), cutree(hc1, k=3),
+                     include_EV= FALSE, assume_sorted_vectors=TRUE)
                                                   )
 # C code is 1.2-1.3 times faster.
 
 set.seed(1341)
-FM_index(cutree(hc1, k=3), sample(cutree(hc1, k=3)), assume_sorted_vectors =TRUE) # 0.38037
-FM_index(cutree(hc1, k=3), sample(cutree(hc1, k=3)), assume_sorted_vectors =FALSE) # 1 again :)
+FM_index(cutree(hc1, k=3), sample(cutree(hc1, k=3)),
+   assume_sorted_vectors =TRUE) # 0.38037
+FM_index(cutree(hc1, k=3), sample(cutree(hc1, k=3)),
+   assume_sorted_vectors =FALSE) # 1 again :)
 FM_index(cutree(hc1, k=3), cutree(hc2, k=3)) # 0.8059
 FM_index(cutree(hc1, k=30), cutree(hc2, k=30)) # 0.4529
 

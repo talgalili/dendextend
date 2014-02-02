@@ -88,7 +88,8 @@ cor_bakers_gamma(dend1, dend2, use_labels_not_values = FALSE)
 require(microbenchmark)
 microbenchmark(
    with_labels = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=FALSE)   ,
-   with_values = cor_bakers_gamma(dend1, dend2, use_labels_not_values = FALSE, try_cutree_hclust=FALSE)   ,
+   with_values = cor_bakers_gamma(dend1, dend2,
+               use_labels_not_values = FALSE, try_cutree_hclust=FALSE)   ,
    times=10
 )
 

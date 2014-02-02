@@ -72,8 +72,10 @@ hc2 <- hclust(dist(iris[ss,-5]), "single")
 
 FM_index_profdpm(cutree(hc1, k=3), cutree(hc1, k=3)) # 1
 set.seed(1341)
-FM_index_profdpm(cutree(hc1, k=3), sample(cutree(hc1, k=3)), assume_sorted_vectors =TRUE) # 0.38037
-FM_index_profdpm(cutree(hc1, k=3), sample(cutree(hc1, k=3)), assume_sorted_vectors =FALSE) # 1 again :)
+FM_index_profdpm(cutree(hc1, k=3), sample(cutree(hc1, k=3)),
+   assume_sorted_vectors =TRUE) # 0.38037
+FM_index_profdpm(cutree(hc1, k=3), sample(cutree(hc1, k=3)),
+   assume_sorted_vectors =FALSE) # 1 again :)
 FM_index_profdpm(cutree(hc1, k=3), cutree(hc2, k=3)) # 0.8059
 FM_index_profdpm(cutree(hc1, k=30), cutree(hc2, k=30)) # 0.4529
 

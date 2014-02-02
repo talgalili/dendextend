@@ -73,9 +73,10 @@ require(microbenchmark)
 dend_ks <- heights_per_k.dendrogram
 microbenchmark(
          cutree_1k.dendrogram = cutree_1k.dendrogram(dend, k=4),
-         cutree_1k.dendrogram_no_labels = cutree_1k.dendrogram(dend, k=4,use_labels_not_values = FALSE),
-         cutree_1k.dendrogram_no_labels_per_k = cutree_1k.dendrogram(dend, k=4,
-                                             use_labels_not_values = FALSE,
+         cutree_1k.dendrogram_no_labels = cutree_1k.dendrogram(dend,
+                                       k=4,use_labels_not_values = FALSE),
+         cutree_1k.dendrogram_no_labels_per_k = cutree_1k.dendrogram(dend,
+                                       k=4, use_labels_not_values = FALSE,
                                              dend_heights_per_k = dend_ks)
          )
          # the last one is the fastest...

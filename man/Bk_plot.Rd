@@ -139,7 +139,8 @@ Bk_plot(hc1, hc2)
 Bk_plot(hc1, hc2,p.adjust.methods="bonferroni") # higher rejection lines
 
 # this one can take a bit of time:
-Bk_plot(hc1, hc2, rejection_line_permutation=TRUE, k_permutation = c(2,4,6,8,10,20,30,40,50), R= 100)
+Bk_plot(hc1, hc2, rejection_line_permutation=TRUE,
+k_permutation = c(2,4,6,8,10,20,30,40,50), R= 100)
 # we can see that the permutation line is VERY close to the asymptotic line.
 # This is great since it means one can often use the asymptotic results
 # Without having to do many simulations.

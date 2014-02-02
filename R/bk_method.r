@@ -164,8 +164,10 @@ sort_2_clusters_vectors <- function(A1_clusters, A2_clusters, assume_sorted_vect
 #' 
 #' FM_index_profdpm(cutree(hc1, k=3), cutree(hc1, k=3)) # 1
 #' set.seed(1341)
-#' FM_index_profdpm(cutree(hc1, k=3), sample(cutree(hc1, k=3)), assume_sorted_vectors =TRUE) # 0.38037
-#' FM_index_profdpm(cutree(hc1, k=3), sample(cutree(hc1, k=3)), assume_sorted_vectors =FALSE) # 1 again :)
+#' FM_index_profdpm(cutree(hc1, k=3), sample(cutree(hc1, k=3)),
+#'    assume_sorted_vectors =TRUE) # 0.38037
+#' FM_index_profdpm(cutree(hc1, k=3), sample(cutree(hc1, k=3)),
+#'    assume_sorted_vectors =FALSE) # 1 again :)
 #' FM_index_profdpm(cutree(hc1, k=3), cutree(hc2, k=3)) # 0.8059
 #' FM_index_profdpm(cutree(hc1, k=30), cutree(hc2, k=30)) # 0.4529
 #' 
@@ -438,15 +440,20 @@ FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, w
 #' # checking speed gains
 #' require(microbenchmark)
 #'  microbenchmark(FM_index(cutree(hc1, k=3), cutree(hc1, k=3)),
-#'                  FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= FALSE),
-#'                   FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= TRUE, assume_sorted_vectors=TRUE),
-#'                   FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= FALSE, assume_sorted_vectors=TRUE)
+#'                  FM_index(cutree(hc1, k=3), cutree(hc1, k=3),
+#'                      include_EV= FALSE),
+#'                   FM_index(cutree(hc1, k=3), cutree(hc1, k=3),
+#'                      include_EV= TRUE, assume_sorted_vectors=TRUE),
+#'                   FM_index(cutree(hc1, k=3), cutree(hc1, k=3),
+#'                      include_EV= FALSE, assume_sorted_vectors=TRUE)
 #'                                                   )
 #' # C code is 1.2-1.3 times faster.                                                   
 #'                                                   
 #' set.seed(1341)
-#' FM_index(cutree(hc1, k=3), sample(cutree(hc1, k=3)), assume_sorted_vectors =TRUE) # 0.38037
-#' FM_index(cutree(hc1, k=3), sample(cutree(hc1, k=3)), assume_sorted_vectors =FALSE) # 1 again :)
+#' FM_index(cutree(hc1, k=3), sample(cutree(hc1, k=3)),
+#'    assume_sorted_vectors =TRUE) # 0.38037
+#' FM_index(cutree(hc1, k=3), sample(cutree(hc1, k=3)),
+#'    assume_sorted_vectors =FALSE) # 1 again :)
 #' FM_index(cutree(hc1, k=3), cutree(hc2, k=3)) # 0.8059
 #' FM_index(cutree(hc1, k=30), cutree(hc2, k=30)) # 0.4529
 #' 
@@ -952,7 +959,8 @@ Bk_permutations <- function(tree1, tree2, k,  R = 1000, warn = TRUE, ...) {
 #' Bk_plot(hc1, hc2,p.adjust.methods="bonferroni") # higher rejection lines
 #' 
 #' # this one can take a bit of time:
-#' Bk_plot(hc1, hc2, rejection_line_permutation=TRUE, k_permutation = c(2,4,6,8,10,20,30,40,50), R= 100) 
+#' Bk_plot(hc1, hc2, rejection_line_permutation=TRUE, 
+#' k_permutation = c(2,4,6,8,10,20,30,40,50), R= 100) 
 #' # we can see that the permutation line is VERY close to the asymptotic line.
 #' # This is great since it means one can often use the asymptotic results
 #' # Without having to do many simulations.

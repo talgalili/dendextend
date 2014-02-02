@@ -6,6 +6,7 @@ UPDATED TESTS:
 
 UPDATED DOCS:
    * data(iris) -> data(iris, envir = environment()) 
+   * Fix "\examples lines wider than 100 characters:" in several places.
 
 OTHER NOTES:
    * Commented out manipulations on the search path and of assignInNamespace (to avoid NOTES/warnings). This was done after moving all of these operations into Rcpp.
