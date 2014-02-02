@@ -18,10 +18,12 @@
 
 
 
+# ' @aliases 
+# ' old_cut_lower_fun
+
+
 #' @title Cut a dendrogram - and run a function on the output
 #' @export
-#' @aliases 
-#' old_cut_lower_fun
 #' @description 
 #' Cuts the a tree at height h and returns a list with the FUN function
 #' implemented on all the sub trees created by cut at height h.

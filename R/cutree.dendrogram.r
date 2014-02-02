@@ -332,12 +332,12 @@ cutree_1h.dendrogram <- function(tree, h,
 
 
 
+# ' @aliases 
+# ' old_heights_per_k.dendrogram
 
 
 #' @title Which height will result in which k for a dendrogram
 #' @export
-#' @aliases 
-#' old_heights_per_k.dendrogram
 #' @param tree a dendrogram.
 #' @param ... not used.
 #' @return a vector of heights, with its names being the k clusters that will

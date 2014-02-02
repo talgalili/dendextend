@@ -28,7 +28,8 @@ as.dendrogram.phylo <- function(object,...) {
 }
 
 
-#' @export
+# We don't need to export this function (it is S3)
+# ' @export
 #' @import ape
 #' @S3method as.phylo dendrogram
 as.phylo.dendrogram <- function(x,...) {

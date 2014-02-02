@@ -16,76 +16,75 @@
 #  http://www.r-project.org/Licenses/
 #
 
-
-
-
-assign_dendextendRcpp_to_dendextend <- function() {
-   # assigns the FASTER dendextendRcpp functions to override
-   # the dendextend functions....
-   
-   if(suppressWarnings(require(dendextendRcpp))) {
-      # This wouldn't work since it will only assign
-      # the faster function in the current env      
-#       get_branches_heights <- dendextendRcpp::get_branches_heights
-#       heights_per_k.dendrogram <- dendextendRcpp::heights_per_k.dendrogram
-      # for getting the functions "into" dendextend, we need to run this:
-      
-      # create a backup of these functions in order to later
-      # compare them using benchmark (their kept invisible - but can be accessed)
-      assign("old_get_branches_heights", dendextend:::get_branches_heights,
-             envir=as.environment("package:dendextend"))
-      assign("old_heights_per_k.dendrogram", dendextend:::heights_per_k.dendrogram,
-             envir=as.environment("package:dendextend"))
-      assign("old_cut_lower_fun", dendextend:::cut_lower_fun,
-             envir=as.environment("package:dendextend"))
-      
-
-	  # require(utils) # doesn't help really...
-	  # but this does: (!)
-		# http://stackoverflow.com/questions/13595145/overriding-a-package-function-inherited-by-another-package
-# 	  get("assignInNamespace", envir=asNamespace("utils"))
-	  require(dendextendRcpp)
-	  # Using only "::" instead of ":::" will crash many tests...
-	  
-      assignInNamespace(
-         x= "get_branches_heights",
-         value = dendextendRcpp:::get_branches_heights,
-         ns = "dendextend"
-      )   
-      assignInNamespace(
-         x= "heights_per_k.dendrogram",
-         value = dendextendRcpp:::heights_per_k.dendrogram,
-         ns = "dendextend"
-      )
-      assignInNamespace(
-         x= "cut_lower_fun",
-         value = dendextendRcpp:::cut_lower_fun,
-         ns = "dendextend"
-      )
-      
-      ## p.s:
-      # doing the following is a BAD IDEA!
-      # This will not allow us to use labels.dendrogram when our Rcpp version fails...
-      # assignInNamespace(
-      #    x= "labels.dendrogram",
-      #    value = dendextendRcpp:::labels.dendrogram,
-      #    ns = "stats"
-      #    )
-      
-      
-      
-   } else {
-      warning("
-         The 'dendextend' package runs 
-         MUCH faster when you also have the dendextendRcpp package installed.
-         Please consider running:
-         install.packages('dendextendRcpp')
-         and then re-load dendextend.
-           ")
-   }
-   
-}
-
+# 
+# 
+# 
+# assign_dendextendRcpp_to_dendextend <- function() {
+#    # assigns the FASTER dendextendRcpp functions to override
+#    # the dendextend functions....
+#    
+#    if(suppressWarnings(require(dendextendRcpp))) {
+#       # This wouldn't work since it will only assign
+#       # the faster function in the current env      
+# #       get_branches_heights <- dendextendRcpp::get_branches_heights
+# #       heights_per_k.dendrogram <- dendextendRcpp::heights_per_k.dendrogram
+#       # for getting the functions "into" dendextend, we need to run this:
+#       
+#       # create a backup of these functions in order to later
+#       # compare them using benchmark (their kept invisible - but can be accessed)
+#       assign("old_get_branches_heights", dendextend:::get_branches_heights,
+#              envir=as.environment("package:dendextend"))
+#       assign("old_heights_per_k.dendrogram", dendextend:::heights_per_k.dendrogram,
+#              envir=as.environment("package:dendextend"))
+#       assign("old_cut_lower_fun", dendextend:::cut_lower_fun,
+#              envir=as.environment("package:dendextend"))
+#       
+# 
+# 	  # require(utils) # doesn't help really...
+# 	  # but this does: (!)
+# 		# http://stackoverflow.com/questions/13595145/overriding-a-package-function-inherited-by-another-package
+# # 	  get("assignInNamespace", envir=asNamespace("utils"))
+# 	  # Using only "::" instead of ":::" will crash many tests...
+# 	  
+#       assignInNamespace(
+#          x= "get_branches_heights",
+#          value = dendextendRcpp:::get_branches_heights,
+#          ns = "dendextend"
+#       )   
+#       assignInNamespace(
+#          x= "heights_per_k.dendrogram",
+#          value = dendextendRcpp:::heights_per_k.dendrogram,
+#          ns = "dendextend"
+#       )
+#       assignInNamespace(
+#          x= "cut_lower_fun",
+#          value = dendextendRcpp:::cut_lower_fun,
+#          ns = "dendextend"
+#       )
+#       
+#       ## p.s:
+#       # doing the following is a BAD IDEA!
+#       # This will not allow us to use labels.dendrogram when our Rcpp version fails...
+#       # assignInNamespace(
+#       #    x= "labels.dendrogram",
+#       #    value = dendextendRcpp:::labels.dendrogram,
+#       #    ns = "stats"
+#       #    )
+#       
+#       
+#       
+#    } else {
+#       warning("
+#          The 'dendextend' package runs 
+#          MUCH faster when you also have the dendextendRcpp package installed.
+#          Please consider running:
+#          install.packages('dendextendRcpp')
+#          and then re-load dendextend.
+#            ")
+#    }
+#    
+# }
+# 
 
 
 
@@ -112,13 +111,15 @@ assign_dendextendRcpp_to_dendextend <- function() {
    ###   dendextend. But it IS an issue...
    ####
    # if ape is installed on this computer, it will be loaded FIRST!   
-   # This way I make sure to not have "unbranch" or "rotate" masked by {ape}
+   # This way I make sure to not have "rotate" masked by {ape}
    #     (they would still work though)
-   if("ape" %in% .packages(all.available = TRUE)) {       
-      library("ape", pos = which(search() %in% "package:dendextend")+1, 
-              warn.conflicts = FALSE,
-              quietly = TRUE)
-   }      
+
+   # this would solve it, but it is not a "nice" way to do it...
+#    if("ape" %in% .packages(all.available = TRUE)) {       
+#       library("ape", pos = which(search() %in% "package:dendextend")+1, 
+#               warn.conflicts = FALSE,
+#               quietly = TRUE)
+#    }      
    
    # The above line causes problems such as: 'library' or 'require' call not declared from: 'ape'
    
@@ -129,9 +130,9 @@ assign_dendextendRcpp_to_dendextend <- function() {
       #       require("dendextend", warn.conflicts = FALSE)                 
    # but it makes sure that "dendextend" does not "Depends" on ape"...
    
-   packageStartupMessage(installrWelcomeMessage())  
+   packageStartupMessage(dendextendWelcomeMessage())  
    
-   assign_dendextendRcpp_to_dendextend()
+#    assign_dendextendRcpp_to_dendextend()
    
    
 }
@@ -139,7 +140,7 @@ assign_dendextendRcpp_to_dendextend <- function() {
 
 
 
-installrWelcomeMessage <- function(){
+dendextendWelcomeMessage <- function(){
    require(utils)   
    
    paste("\n",     
@@ -187,6 +188,7 @@ installrWelcomeMessage <- function(){
 # browseURL(tempdir())
 ### http://www.rstudio.com/ide/docs/packages/build_options
 # check(build_args="--no-build-vignettes --no-manual", args = "--no-examples --no-build-vignettes --no-manual",  cran = FALSE, cleanup = FALSE)
+# check(build_args="--no-build-vignettes ", args = "--no-build-vignettes",  cran = FALSE, cleanup = FALSE)
 # check(args="--as-cran")
 #                 Thanks to: http://stackoverflow.com/questions/10017702/r-cmd-check-options-for-more-rigorous-testing-2-15-0
 # file.copy("NEWS", "NEWS.md")
