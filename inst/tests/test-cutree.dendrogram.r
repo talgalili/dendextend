@@ -358,7 +358,7 @@ test_that("Making cutted clusters be numbered from left to right",{
 
 
 test_that("Compare labels which are character vs integer",{
-   data(iris)
+   iris <- datasets::iris
    
    # they seem to be identical - but they are not in the way the are coerced!
    expect_identical(   iris[1:150,-5],
@@ -399,10 +399,11 @@ test_that("Compare labels which are character vs integer",{
 })
 
 
+require(stats)
+require(dendextendRcpp)
+
 
 test_that("Having cutree work when using a subsetted tree",{
-	require(stats)
-	require(dendextendRcpp)
    # Wo   
    # get a dendrogram:
 #    data(iris) 
@@ -416,11 +417,14 @@ test_that("Having cutree work when using a subsetted tree",{
    # We will have NA's:
    expect_true(any(is.na(stats:::labels.dendrogram(as.dendrogram(hc_sub_dend_iris )))))
    
-   # notice that for Rcpp this would be false since the returned vector
-   # has "NA" characters instead of NA:
-   expect_false(any(is.na(dendextendRcpp::labels.dendrogram(as.dendrogram(hc_sub_dend_iris )))))
-   # e.g: "NA" "3"  "NA" "NA" "4"  "7" 
-#    a[which(a == "NA")] <- NA # this is NOT a good idea, in the case we have a label with "NA" as a character.
+   
+   if(require(dendextendRcpp)) {
+	   # notice that for Rcpp this would be false since the returned vector
+	   # has "NA" characters instead of NA:
+	   expect_false(any(is.na(dendextendRcpp::labels.dendrogram(as.dendrogram(hc_sub_dend_iris )))))
+	   # e.g: "NA" "3"  "NA" "NA" "4"  "7" 
+	#    a[which(a == "NA")] <- NA # this is NOT a good idea, in the case we have a label with "NA" as a character.
+   }
    
    
    # we will get warnings, but the functions would not collapse!

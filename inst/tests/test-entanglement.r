@@ -84,8 +84,8 @@ test_that("Match order of one dend based on another (using their order valuess)"
 
 test_that("Entanglement works",{
 
-   hc1 <- hclust(dist(iris[,-5]), "com")
-   hc2 <- hclust(dist(iris[,-5]), "single")
+   hc1 <- hclust(dist(datasets::iris[,-5]), "com")
+   hc2 <- hclust(dist(datasets::iris[,-5]), "single")
    dend1 <- as.dendrogram(hc1)
    dend2 <- as.dendrogram(hc2)
 

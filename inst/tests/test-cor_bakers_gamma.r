@@ -16,8 +16,8 @@ test_that("Get a dendrogram number of leaves",{
    
    set.seed(23235)
    ss <- sample(1:150, 10 ) # we want to compare small trees
-   hc1 <- hclust(dist(iris[ss,-5]), "com")
-   hc2 <- hclust(dist(iris[ss,-5]), "single")
+   hc1 <- hclust(dist(datasets::iris[ss,-5]), "com")
+   hc2 <- hclust(dist(datasets::iris[ss,-5]), "single")
    dend1 <- as.dendrogram(hc1)
    dend2 <- as.dendrogram(hc2)
    #    cutree(dend1)   

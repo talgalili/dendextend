@@ -2,11 +2,13 @@
 
 context("cut_lower_fun works")
 
+# require(dendextend)
+require(dendextendRcpp)
 
 test_that("cut_lower_fun works",{
-   	require(dendextendRcpp)
+   
 
-   dend = as.dendrogram(hclust(dist(iris[1:4,-5])))
+   dend = as.dendrogram(hclust(dist(datasets::iris[1:4,-5])))
 
    # this is really cool!
    expect_identical(
@@ -19,25 +21,30 @@ test_that("cut_lower_fun works",{
       lapply(cut(dend, h = 0)$lower, labels)   
    )
 
-   # cut should have returned the tree itself
-   # but it FORCES a cut - as opposed to the cut_lower_fun (within the dendextendRcpp) function...
-   require(dendextendRcpp)
-   expect_false(
-      identical(
-         dendextendRcpp::cut_lower_fun(dend, 40, labels),
-         lapply(cut(dend, h = 40)$lower, labels)   
-      )
-   )
+   if(require(dendextendRcpp)) {
    
-   # cut should have returned the tree itself - instead it returns list()
-   # as opposed to the cut_lower_fun (in the dendextendRcpp package) function...
-   expect_false(
-      identical(
-         dendextendRcpp::cut_lower_fun(dend, -1, labels),
-         lapply(cut(dend, h = -1)$lower, labels)   )
-   )
-   
-   
+	   # cut should have returned the tree itself
+	   # but it FORCES a cut - as opposed to the cut_lower_fun (within the dendextendRcpp) function...
+	   expect_false(
+		  identical(
+			 dendextendRcpp::cut_lower_fun(dend, 40, labels),
+			 lapply(cut(dend, h = 40)$lower, labels)   
+		  )
+	   )
+	   
+	   # cut should have returned the tree itself - instead it returns list()
+	   # as opposed to the cut_lower_fun (in the dendextendRcpp package) function...
+	   expect_false(
+		  identical(
+			 dendextendRcpp::cut_lower_fun(dend, -1, labels),
+			 lapply(cut(dend, h = -1)$lower, labels)   )
+	   )
+	   
+	   expect_identical(
+		  dendextendRcpp::cut_lower_fun(dend[[1]], .4, function(x)x),
+		  list(dend[[1]])  
+	   )
+	}
    
    # returns itself as it should:
    expect_identical(
@@ -49,10 +56,6 @@ test_that("cut_lower_fun works",{
 #       old_cut_lower_fun(dend[[1]], .4, function(x)x),
 #       list(dend[[1]])  
 #    )   
-   expect_identical(
-      dendextendRcpp::cut_lower_fun(dend[[1]], .4, function(x)x),
-      list(dend[[1]])  
-   )
    
    # function on a leaf gives what we expect
    expect_identical(

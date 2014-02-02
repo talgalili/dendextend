@@ -6,8 +6,8 @@ context("Bk method (FM Index) between two trees")
 test_that("sort_2_clusters_vectors works",{
    set.seed(23235)
    ss <- sample(1:150, 4 )
-   hc1 <- hclust(dist(iris[ss,-5]), "com")
-   hc2 <- hclust(dist(iris[ss,-5]), "single")
+   hc1 <- hclust(dist(datasets::iris[ss,-5]), "com")
+   hc2 <- hclust(dist(datasets::iris[ss,-5]), "single")
    # dend1 <- as.dendrogram(hc1)
    # dend2 <- as.dendrogram(hc2)
    #    cutree(dend1)   
@@ -32,8 +32,8 @@ test_that("FM_index_profdpm works",{
    
    #    set.seed(23235)
    ss <- TRUE # sample(1:150, 10 )
-   hc1 <- hclust(dist(iris[ss,-5]), "com")
-   hc2 <- hclust(dist(iris[ss,-5]), "single")
+   hc1 <- hclust(dist(datasets::iris[ss,-5]), "com")
+   hc2 <- hclust(dist(datasets::iris[ss,-5]), "single")
    # dend1 <- as.dendrogram(hc1)
    # dend2 <- as.dendrogram(hc2)
    #    cutree(dend1)   
@@ -72,7 +72,7 @@ test_that("FM_index_profdpm works",{
                     c(1, 0.71, 0.81, 0.75)
    )
    #    ks <- 1:150
-   #    plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the iris dataset")
+   #    plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the datasets::iris dataset")
    #      
    
    
@@ -86,8 +86,8 @@ test_that("FM_index_R works",{
    
    #    set.seed(23235)
    ss <- TRUE # sample(1:150, 10 )
-   hc1 <- hclust(dist(iris[ss,-5]), "com")
-   hc2 <- hclust(dist(iris[ss,-5]), "single")
+   hc1 <- hclust(dist(datasets::iris[ss,-5]), "com")
+   hc2 <- hclust(dist(datasets::iris[ss,-5]), "single")
    # dend1 <- as.dendrogram(hc1)
    # dend2 <- as.dendrogram(hc2)
    #    cutree(dend1)   
@@ -126,7 +126,7 @@ test_that("FM_index_R works",{
                     c(1, 0.71, 0.81, 0.75)
    )
    #    ks <- 1:150
-   #    plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the iris dataset")
+   #    plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the datasets::iris dataset")
    #      
    
    set.seed(234234)
@@ -142,8 +142,8 @@ test_that("FM_index works",{
    
    #    set.seed(23235)
    ss <- TRUE # sample(1:150, 10 )
-   hc1 <- hclust(dist(iris[ss,-5]), "com")
-   hc2 <- hclust(dist(iris[ss,-5]), "single")
+   hc1 <- hclust(dist(datasets::iris[ss,-5]), "com")
+   hc2 <- hclust(dist(datasets::iris[ss,-5]), "single")
    # dend1 <- as.dendrogram(hc1)
    # dend2 <- as.dendrogram(hc2)
    #    cutree(dend1)   
@@ -182,7 +182,7 @@ test_that("FM_index works",{
                     c(1, 0.71, 0.81, 0.75)
    )
    #    ks <- 1:150
-   #    plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the iris dataset")
+   #    plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the datasets::iris dataset")
    #      
    
    
@@ -205,8 +205,8 @@ test_that("FM_index_permutation works",{
    
    set.seed(23235)
    ss <- TRUE # sample(1:150, 10 )
-   hc1 <- hclust(dist(iris[ss,-5]), "com")
-   hc2 <- hclust(dist(iris[ss,-5]), "single")
+   hc1 <- hclust(dist(datasets::iris[ss,-5]), "com")
+   hc2 <- hclust(dist(datasets::iris[ss,-5]), "single")
    # dend1 <- as.dendrogram(hc1)
    # dend2 <- as.dendrogram(hc2)
    #    cutree(dend1)   
@@ -239,15 +239,15 @@ test_that("Bk works",{
    
    set.seed(23235)
    ss <- TRUE # sample(1:150, 10 )
-   hc1 <- hclust(dist(iris[ss,-5]), "com")
-   hc2 <- hclust(dist(iris[ss,-5]), "single")
+   hc1 <- hclust(dist(datasets::iris[ss,-5]), "com")
+   hc2 <- hclust(dist(datasets::iris[ss,-5]), "single")
    dend1 <- as.dendrogram(hc1)
    dend2 <- as.dendrogram(hc2)
    #    cutree(tree1)   
    
    expect_identical(
       Bk(hc1, hc2, k = 3),
-      Bk(dend1, dend2, k = 3)
+      Bk(dend1, dend2, k = 3,)
    )
 
    expect_identical(
