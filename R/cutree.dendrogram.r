@@ -867,7 +867,7 @@ if(FALSE) {
    
    # this gives the same results as the default:
    cutree.hclust(as.hclust(dend1), k = 3, order_clusters_as_data=TRUE, sort_cluster_numbers=FALSE)
-   stats:::cutree(as.hclust(dend1), k = 3)
+   stats::cutree(as.hclust(dend1), k = 3)
    # but not for dendrogram:   
    cutree(dend1, k=3, order_clusters_as_data=TRUE, try_cutree_hclust=FALSE, sort_cluster_numbers=TRUE) 
    cutree(dend1, k=3, order_clusters_as_data=TRUE, try_cutree_hclust=FALSE, sort_cluster_numbers=FALSE) 
@@ -875,8 +875,8 @@ if(FALSE) {
    
    # this gives the same results as the default:
    cutree.hclust(as.hclust(dend1), k = 3, order_clusters_as_data=TRUE, sort_cluster_numbers=TRUE)
-   stats:::cutree(as.hclust(dend1), k = 3)
-   stats:::cutree(hc1, k = 3)
+   stats::cutree(as.hclust(dend1), k = 3)
+   stats::cutree(hc1, k = 3)
    cutree.dendrogram(dend1, k=3, order_clusters_as_data=TRUE, try_cutree_hclust=FALSE, 
           sort_cluster_numbers=TRUE) 
    

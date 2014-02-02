@@ -317,7 +317,7 @@ test_that("Making cutted clusters be numbered from left to right",{
    hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
    dend <- as.dendrogram(hc)
    
-   sorted_cutree_hc_orig <-stats:::cutree(hc, k=1:4)
+   sorted_cutree_hc_orig <-stats::cutree(hc, k=1:4)
    sorted_cutree_hc <-dendextend:::cutree.hclust(hc, k=1:4, sort_cluster_numbers=TRUE)
    sorted_cutree_dend <-dendextend:::cutree.dendrogram(dend, k=1:4, sort_cluster_numbers=TRUE,try_cutree_hclust=FALSE)
 
