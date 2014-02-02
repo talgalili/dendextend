@@ -4,6 +4,8 @@ dendextend 0.12.1 (2014-02-02)
 UPDATED TESTS: 
    * Made sure to check dendextendRcpp is available before calling it.
 
+UPDATED DOCS:
+   * data(iris) -> data(iris, envir = environment()) 
 
 OTHER NOTES:
    * Commented out manipulations on the search path and of assignInNamespace (to avoid NOTES/warnings). This was done after moving all of these operations into Rcpp.

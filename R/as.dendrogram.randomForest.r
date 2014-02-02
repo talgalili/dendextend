@@ -35,7 +35,7 @@
 
 # require(randomForest)
 # set.seed(1)
-# data(iris)
+# data(iris, envir = environment())
 # iris.rf <- randomForest(Species ~ ., iris, proximity=TRUE,
                         # keep.forest=FALSE)
 # MDSplot(iris.rf, iris$Species)

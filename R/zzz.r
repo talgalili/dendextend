@@ -174,6 +174,14 @@ dendextendWelcomeMessage <- function(){
 # 'updateR.r'
 
 
+
+
+# require(dendextend)
+# environmentIsLocked(as.environment("package:dendextend"))
+# lockEnvironment(env=as.environment("package:dendextend"), bindings = FALSE)
+# lockEnvironment(env=as.environment("package:dendextend"), bindings = TRUE)
+
+
 # IMPORTANT NOTICE: this will add Collate to the DESCRIPTION file, and if any new r file is added - it will need to be updated.
 # Collate:
 # +    'create.global.library.r'

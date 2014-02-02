@@ -101,7 +101,7 @@ d5=color_branches(tree=dend[[1]],k=5)
 
 
 require(dendextend)
-data(iris)
+data(iris, envir = environment())
 d_iris <- dist(iris[,-5])
 hc_iris <- hclust(d_iris)
 dend_iris <- as.dendrogram(hc_iris)
@@ -123,7 +123,7 @@ main = "Clustered Iris dataset",
 
 require(colorspace)
 
-data(iris)
+data(iris, envir = environment())
 d_iris <- dist(iris[,-5])
 hc_iris <- hclust(d_iris)
 labels(hc_iris) # no labels, because "iris" has no row names
