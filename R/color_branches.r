@@ -180,7 +180,7 @@ color_branches<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
    }   
    
    if(!is.dendrogram(tree) && !is.hclust(tree)) stop("tree needs to be either a dendrogram or an hclust object")
-   g <- dendextend:::cutree(tree,k=k,h=h, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE)
+   g <- dendextend::cutree(tree,k=k,h=h, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE)
    if(is.hclust(tree)) tree=as.dendrogram(tree)
    
    k <- max(g)
@@ -402,7 +402,7 @@ color_labels<-function(tree,k=NULL,h=NULL,labels, col,warn =FALSE,...){
       if(warn) warning("Neither k nor h were supplied - coloring all leaves based on 'col'.")
    }
    
-   g <- dendextend:::cutree(tree,k=k,h=h, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE)
+   g <- dendextend::cutree(tree,k=k,h=h, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE)
    if(is.hclust(tree)) tree=as.dendrogram(tree)
    
    k <- max(g)
