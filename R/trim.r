@@ -100,7 +100,7 @@ prune_leaf <- function(x, leaf_name,...)
    
    
    new_x <- remove_leaf_if_child(x, leaf_name)
-   new_x <- suppressWarnings(stats:::midcache.dendrogram(new_x)) # fixes the attributes
+   new_x <- suppressWarnings(stats_midcache.dendrogram(new_x)) # fixes the attributes
 #   new_x <- fix_members_attr.dendrogram(new_x) # fix the number of memebers attr for each node
    return(new_x)
 }

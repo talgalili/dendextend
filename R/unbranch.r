@@ -172,7 +172,7 @@ Please choose another branch to be the root.")
 
    # Bad idea: we only use labels for the leafs...
    #    attr(new_dend, "label") <- "merged root" # might cause problems in the future?
-   new_dend <- suppressWarnings(stats:::midcache.dendrogram(new_dend)) # might through warnings if we have 3 branches (but it will keep the "midpoints" in check 
+   new_dend <- suppressWarnings(stats_midcache.dendrogram(new_dend)) # might through warnings if we have 3 branches (but it will keep the "midpoints" in check 
    
    return(new_dend)
 }

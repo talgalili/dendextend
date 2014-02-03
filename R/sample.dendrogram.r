@@ -139,7 +139,7 @@ duplicate_leaf <- function(dend, leaf_label, times, fix_members=TRUE, fix_order=
    if(fix_midpoint) fix_members <- TRUE # for midpoint to work, we MUST have a correct number of members.
    if(fix_members) dend <- fix_members_attr.dendrogram(dend)   
    if(fix_order) dend <- rank_order.dendrogram(dend)
-   if(fix_midpoint) dend <- suppressWarnings(stats:::midcache.dendrogram(dend)) # fixing the middle point thing   
+   if(fix_midpoint) dend <- suppressWarnings(stats_midcache.dendrogram(dend)) # fixing the middle point thing   
 
    return(dend)
 }
@@ -246,7 +246,7 @@ sample.dendrogram <- function(dend, replace = FALSE,
       if(fix_midpoint) fix_members <- TRUE # for midpoint to work, we MUST have a correct number of members.
       if(fix_members) dend <- fix_members_attr.dendrogram(dend)   
       if(fix_order) dend <- rank_order.dendrogram(dend)
-      if(fix_midpoint) dend <- suppressWarnings(stats:::midcache.dendrogram(dend)) # fixing the middle point thing   
+      if(fix_midpoint) dend <- suppressWarnings(stats_midcache.dendrogram(dend)) # fixing the middle point thing   
       
       
    } else { 

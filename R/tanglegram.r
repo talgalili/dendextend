@@ -32,9 +32,9 @@ plotNode_horiz <- function (x1, x2, subtree, type, center, leaflab, dLeaf, nodeP
                             edgePar, horiz = FALSE, 
                             text_pos = 2, text_offset = 0) 
 {
-   .midDend <- stats:::.midDend
-   plotNodeLimit <- stats:::plotNodeLimit
-   plotNode <- stats:::plotNode
+   .midDend <- stats_.midDend
+   plotNodeLimit <- stats_plotNodeLimit
+   plotNode <- stats_plotNode
    
    inner <- !is.leaf(subtree) && x1 != x2
    yTop <- attr(subtree, "height")
@@ -325,7 +325,7 @@ plot_horiz.dendrogram <- function (x,
    hgt <- attr(x, "height")
    if (edge.root && is.logical(edge.root)) 
       edge.root <- 0.0625 * if (is.leaf(x)) {1} else {hgt}
-   mem.x <- stats:::.memberDend(x)
+   mem.x <- stats_.memberDend(x)
    yTop <- hgt + edge.root
    if (center) {
       x1 <- 0.5
@@ -395,7 +395,7 @@ plot_horiz.dendrogram <- function (x,
 
    ###### back to the function as usual:
    if (edge.root) {
-      x0 <- stats:::plotNodeLimit(x1, x2, x, center)$x
+      x0 <- stats_plotNodeLimit(x1, x2, x, center)$x
       if (horiz) 
          segments(hgt, x0, yTop, x0)
       else segments(x0, hgt, x0, yTop)
@@ -407,7 +407,7 @@ plot_horiz.dendrogram <- function (x,
       }
    }   
    
-#    stats:::plotNode
+#    stats_plotNode
    # @param text_offset Numeric (NULL). This value gives the offset of the label 
    # from the specified coordinate in fractions of a character width.
    # If NULL (default) then 3/4 of a letter width is used.
@@ -422,8 +422,8 @@ plot_horiz.dendrogram <- function (x,
    return(invisible(dLeaf))
 }
 
-# # stats:::plot.dendrogram
-# # stats:::plotNode
+# # stats_plot.dendrogram
+# # stats_plotNode
 
 
 
