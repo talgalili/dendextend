@@ -1,3 +1,28 @@
+dendextend 0.12.2 (2014-02-03)
+----------------------------
+UPDATED DESCRIPTION:
+   * Removed VignetteBuilder: knitr (until later)
+   * Removed Suggests: dendextendRcpp, (until later)
+   * fixed mis-spelled words: extanding (14:40)
+
+NEW FUNCTIONS:
+   * Hidden "stats" functions have been added to a new file "imports_stats.r"
+      with a new local copy for
+                           'stats:::.memberDend' 'stats:::.midDend'
+                           'stats:::midcache.dendrogram' 'stats:::plotNode'
+                           'stats:::plotNodeLimit'
+      with stats::: -> stats_
+
+UPDATED FUNCTIONS:
+   * stats:::cutree -> stats::cutree
+   * dendextend:::cutree -> dendextend::cutree
+
+OTHER NOTES:
+   * compacted ‘dendextend-tutorial.pdf’ from 961Kb to 737Kb (thanks to tools::compactPDF)
+   * dendextend 0.12.2 is intended to be shipped to CRAN.
+
+
+
 dendextend 0.12.1 (2014-02-02)
 ----------------------------
 
@@ -10,7 +35,7 @@ UPDATED DOCS:
 
 OTHER NOTES:
    * Commented out manipulations on the search path and of assignInNamespace (to avoid NOTES/warnings). This was done after moving all of these operations into Rcpp.
-   * dendextend 0.12.1 is intended to be shipped to CRAN.
+   * dendextend 0.12.1 is intended to be shipped to CRAN. (but failed)
 
 dendextend 0.12.0 (2014-02-01)
 ----------------------------
