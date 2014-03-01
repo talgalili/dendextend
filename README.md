@@ -16,15 +16,15 @@ Extending R core dendrogram functions.
 To install the stable version on CRAN:
 
 ```r
-# install.packages('dendextend') # not yet available from CRAN
+# install.packages('dendextend')
 ```
 
 To install the GitHub version:
 
 ```r
 if (!require('installr')) install.packages('installr'); require('installr')
-# the installr includes the "require2" function
-## install.Rtools() # run this if you are using Windows and don't have Rtools
+# the installr includes the "require2" function - making it faster to add/load new packages.
+## install.Rtools() # run this if you are using Windows and don't have Rtools installed
 require2(devtools)
 install_github('talgalili/dendextend')
 require2(Rcpp)

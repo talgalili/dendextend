@@ -1,3 +1,29 @@
+dendextend 0.13.0 (2014-03-01)
+----------------------------
+
+UPDATED R FUNCTIONS:
+   * assign_dendextendRcpp_to_dendextend - Moved to passing the functions through "options" instead of through assignInNamespace (which was not intended for production use).
+   * get_branches_heights, heights_per_k.dendrogram, cut_lower_fun - now all rely on the function located in the global options. This way, they can be replaced by the dendextebdRcpp version, if available.
+
+UPDATED TESTS: 
+   * When comparing to dendextendRcpp - added condition to not make the check if the package is not loaded and in the search path (this way I could compare the tests with and without the dendextendRcpp package).
+   * added a minor test for dendextend_get_branches_heights - checking the function directly through the options.
+
+UPDATED DOCS: 
+   * dendextend_get_branches_heights, dendextend_heights_per_k.dendrogram, dendextend_cut_lower_fun - gave speed tests
+
+
+
+NEW FUNCTIONS:
+   * assign_dendextend_options - we now pass all functions that have a Rcpp equivalent through "options". While this adds a bit of an overhead (sadly), it still gets a much faster speed gain, and without verious warnings that CRAN checks would not like...
+   * dendextend_get_branches_heights, dendextend_heights_per_k.dendrogram, dendextend_cut_lower_fun
+
+OTHER NOTES:
+   * dendextend 0.13.0 goes with Version 0.4.0 of dendextendRcpp. Previous versions of dendextendRcpp will not be effective for versions of dendextend which are before 0.13.0 (however, it would also not conflict with them...)
+   * dendextend 0.13.0 is intended to be shipped to CRAN.
+
+
+
 dendextend 0.12.2 (2014-02-03)
 ----------------------------
 UPDATED DESCRIPTION:
