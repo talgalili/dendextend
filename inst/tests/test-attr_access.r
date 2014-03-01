@@ -76,8 +76,10 @@ test_that("Get a dendrogram's branches heights",{
    hc <- hclust(dist(USArrests[1:3,]), "ave")
    dend <- as.dendrogram(hc)  
    
+   expect_equal(dendextend_get_branches_heights(dend),c(37.1770090243957, 54.8004107236398))
+   expect_equal(options()$dendextend_get_branches_heights(dend),c(37.1770090243957, 54.8004107236398))
    expect_equal(get_branches_heights(dend),c(37.1770090243957, 54.8004107236398))
-                    
+   
    expect_identical(get_branches_heights(dend),
                     sort(get_nodes_attr(dend, "height",include_leaves=FALSE, na.rm = TRUE))
    )
