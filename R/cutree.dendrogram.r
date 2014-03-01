@@ -332,12 +332,12 @@ cutree_1h.dendrogram <- function(tree, h,
 
 
 
-# ' @aliases 
-# ' old_heights_per_k.dendrogram
 
 
 #' @title Which height will result in which k for a dendrogram
 #' @export
+#' @aliases
+#' dendextend_heights_per_k.dendrogram
 #' @param tree a dendrogram.
 #' @param ... not used.
 #' @return a vector of heights, with its names being the k clusters that will
@@ -359,8 +359,30 @@ cutree_1h.dendrogram <- function(tree, h,
 #'        #1        3        4 
 #'        #97.90023 57.41808 16.93594 
 #'        # we do NOT have a height for k=2 because of the tree's structure.
+#'        
+#'        
+#'        
+#' # speed gains:
+#' dat1 <- iris[1:150,-5]
+#' # dat1 <- rbind(dat1,dat1,dat1,dat1,dat1,dat1,dat1)
+#' dend_big = as.dendrogram(hclust(dist(dat1)))
+#' require(microbenchmark)
+#' require(dendextendRcpp)
+#' microbenchmark(dendextend_heights_per_k.dendrogram(dend_big),
+#'                heights_per_k.dendrogram(dend_big),
+#'                dendextendRcpp::heights_per_k.dendrogram(dend_big),
+#'                times = 10)
+#' # ~126 times faster!
 #' }
-heights_per_k.dendrogram <- function(tree,...)
+heights_per_k.dendrogram <- function(tree, ...) {
+   fo <- getOption("dendextend_heights_per_k.dendrogram", dendextend::dendextend_heights_per_k.dendrogram)
+   fo(tree=tree, ...)
+}
+
+
+
+#' @export
+dendextend_heights_per_k.dendrogram <- function(tree,...)
 {
    # gets a dendro tree
    # returns a vector of heights, and the k clusters we'll get for each of them.

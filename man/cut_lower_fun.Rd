@@ -1,5 +1,6 @@
 \name{cut_lower_fun}
 \alias{cut_lower_fun}
+\alias{dendextend_cut_lower_fun}
 \title{Cut a dendrogram - and run a function on the output}
 \usage{
 cut_lower_fun(tree, h, FUN = labels, warn = FALSE, ...)

@@ -258,6 +258,8 @@ rllply <- function(x, FUN,add_notation = FALSE, ...)
 
 #' @title Get height attributes from a dendrogram
 #' @export
+#' @aliases
+#' dendextend_get_branches_heights
 #' @param tree a dendrogram.
 #' @param sort logical. Should the heights be sorted?
 #' @param decreasing logical. Should the sort be increasing or decreasing? Not available for partial sorting.
@@ -271,8 +273,28 @@ rllply <- function(x, FUN,add_notation = FALSE, ...)
 #' dend <- as.dendrogram(hc)
 #' get_branches_heights(dend)
 #' 
+#' \dontrun{
+#' dat1 <- iris[1:150,-5]
+#' dat1 <- rbind(dat1,dat1,dat1,dat1,dat1,dat1,dat1)
+#' dend_big = as.dendrogram(hclust(dist(dat1)))
+#' require(microbenchmark)
+#' require(dendextendRcpp)
+#' microbenchmark(dendextend_get_branches_heights(dend_big),
+#'                get_branches_heights(dend_big),
+#'                dendextendRcpp::get_branches_heights(dend_big),
+#'                times = 10)
+#'                # ~148 times faster! (for larger trees)
+#' }
 #' 
-get_branches_heights <- function(tree, sort = TRUE, decreasing = FALSE, ...)
+get_branches_heights <- function(tree, sort = TRUE, decreasing = FALSE, ...) {
+   fo <- getOption("dendextend_get_branches_heights", dendextend::dendextend_get_branches_heights)
+   fo(tree=tree, sort = sort, decreasing = decreasing, ...)
+}
+
+
+
+#' @export
+dendextend_get_branches_heights <- function(tree, sort = TRUE, decreasing = FALSE, ...)
 {
 #    height <- unlist(rllply(tree, function(x){attr(x, "height")}))
 #    height <- get_nodes_attr(tree, "height") 

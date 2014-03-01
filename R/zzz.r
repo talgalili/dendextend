@@ -89,6 +89,21 @@
 
 
 
+assign_dendextend_options <- function() { 
+   # assigns the functions which could later be replaced by the FASTER dendextendRcpp functions 
+   options(dendextend_get_branches_heights = dendextend::dendextend_get_branches_heights)
+   options(dendextend_heights_per_k.dendrogram = dendextend::dendextend_heights_per_k.dendrogram)
+   options(dendextend_cut_lower_fun = dendextend::dendextend_cut_lower_fun)
+}
+
+remove_dendextend_options <- function() { 
+   # assigns the functions which could later be replaced by the FASTER dendextendRcpp functions 
+   options(dendextend_get_branches_heights = NULL)
+   options(dendextend_heights_per_k.dendrogram = NULL)
+   options(dendextend_cut_lower_fun = NULL)
+}
+
+
 
 
 
@@ -97,8 +112,7 @@
    
    # adding and removing menus from the Rgui when loading and detaching the library
    # setHook(packageEvent("installr", "attach"), {function(pkgname, libpath) {add.installr.GUI()}  } )
-   # setHook(packageEvent("installr", "detach"), {function(pkgname, libpath) {remove.installr.GUI()}  } )
-   
+   setHook(packageEvent("dendextend", "detach"), {function(pkgname, libpath) {remove_dendextend_options()}  } )
 }
 
 # menus are added and removed as needed: !!
@@ -129,6 +143,9 @@
       #       require("dendextend", warn.conflicts = TRUE)                 
       #       require("dendextend", warn.conflicts = FALSE)                 
    # but it makes sure that "dendextend" does not "Depends" on ape"...
+   
+   # move some functions to the "options" so that they would later be overridden.
+   assign_dendextend_options()
    
    packageStartupMessage(dendextendWelcomeMessage())  
    

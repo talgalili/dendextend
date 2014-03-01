@@ -24,6 +24,8 @@
 
 #' @title Cut a dendrogram - and run a function on the output
 #' @export
+#' @aliases
+#' dendextend_cut_lower_fun
 #' @description 
 #' Cuts the a tree at height h and returns a list with the FUN function
 #' implemented on all the sub trees created by cut at height h.
@@ -65,8 +67,19 @@
 #' }
 #' 
 cut_lower_fun <- function(tree, h, FUN = labels, warn = FALSE, ...) {
+#    fo <- options()$dendextend_cut_lower_fun
+#    if(is.null(fo)) fo <- dendextend::cut_lower_fun_dendextend
+   # the above is NOT faster then what is below
+   fo <- getOption("dendextend_cut_lower_fun", dendextend::dendextend_cut_lower_fun)
+   fo(tree=tree, h=h, FUN = FUN, warn = warn, ...)
+}
+
+
+
+#' @export
+dendextend_cut_lower_fun <- function(tree, h, FUN = labels, warn = FALSE, ...) {
    
-   if(!inherits(tree, "dendrogram")) stop("'tree' needs to be a dendrogram. Aborting the function 'cut_lower_labels'.")
+   if(!is.dendrogram(tree)) stop("'tree' needs to be a dendrogram. Aborting the function 'cut_lower_labels'.")
    
    if(is.leaf(tree)) return(list(FUN(tree)))
    # else:

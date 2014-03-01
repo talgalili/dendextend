@@ -20,7 +20,7 @@
 
 
 
-#' Functions for extending dendrogram objsects
+#' Functions for extending dendrogram objects
 #' 
 #' @name dendextend-package
 #' @aliases dendextend
