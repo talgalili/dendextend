@@ -1,3 +1,14 @@
+dendextend 0.14.2 (2014-03-15)
+----------------------------
+
+UPDATED DESCRIPTION:
+   * Added dependency for R (>= 3.0.0)
+
+OTHER NOTES:
+   * dendextend 0.14.2 is intended to be shipped to CRAN.
+
+
+
 dendextend 0.14.1 (2014-03-15)
 ----------------------------
 
