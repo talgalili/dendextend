@@ -375,7 +375,7 @@ cutree_1h.dendrogram <- function(tree, h,
 #' # ~126 times faster!
 #' }
 heights_per_k.dendrogram <- function(tree, ...) {
-   fo <- getOption("dendextend_heights_per_k.dendrogram", dendextend::dendextend_heights_per_k.dendrogram)
+   fo <- dendextend_options("heights_per_k.dendrogram")   
    fo(tree=tree, ...)
 }
 

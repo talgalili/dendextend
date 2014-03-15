@@ -287,7 +287,7 @@ rllply <- function(x, FUN,add_notation = FALSE, ...)
 #' }
 #' 
 get_branches_heights <- function(tree, sort = TRUE, decreasing = FALSE, ...) {
-   fo <- getOption("dendextend_get_branches_heights", dendextend::dendextend_get_branches_heights)
+   fo <- dendextend_options("get_branches_heights")
    fo(tree=tree, sort = sort, decreasing = decreasing, ...)
 }
 

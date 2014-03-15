@@ -1,3 +1,17 @@
+dendextend 0.14.0 (2014-03-15)
+----------------------------
+
+NEW FUNCTIONS:
+   * create_dendextend_options
+
+UPDATED R FUNCTIONS:
+   * assign_dendextendRcpp_to_dendextend - Moved to passing the functions through "dendextend_options" instead of through "options" (Thanks to suggestions by Kurt Hornik and Uwe Ligges).
+   * remove_dendextend_options - now removes the object dendextend_options
+   * get_branches_heights, heights_per_k.dendrogram, cut_lower_fun - now all rely on dendextend_options.
+
+
+
+
 dendextend 0.13.0 (2014-03-01)
 ----------------------------
 

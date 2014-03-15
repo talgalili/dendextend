@@ -70,7 +70,7 @@ cut_lower_fun <- function(tree, h, FUN = labels, warn = FALSE, ...) {
 #    fo <- options()$dendextend_cut_lower_fun
 #    if(is.null(fo)) fo <- dendextend::cut_lower_fun_dendextend
    # the above is NOT faster then what is below
-   fo <- getOption("dendextend_cut_lower_fun", dendextend::dendextend_cut_lower_fun)
+   fo <- dendextend_options("cut_lower_fun")   
    fo(tree=tree, h=h, FUN = FUN, warn = warn, ...)
 }
 
