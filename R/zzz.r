@@ -89,33 +89,52 @@
 
 
 
-create_dendextend_options <- function() { 
-   # assigns the functions which could later be replaced by the FASTER dendextendRcpp functions 
-   
-   dendextend_options <<- local({
-      options <- list()
-      function(option, value) {
-         #          ellipsis <- list(...)         
-         if(missing(option)) return(options)
-         
-         if(missing(value))
-            options[[option]]
-         else options[[option]] <<- value
-      }
-   })
-   # a=2
-   # dendextend_options()
-   # dendextend_options(a=3)  # sadly, this will fail, and ellipsis does not help
-   # dendextend_options(a<-3)
-   # dendextend_options("a",3)
-   # dendextend_options("a")
-   # dendextend_options()
-   
-}
-# create_dendextend_options()
-# dendextend_options
-# dendextend_options()
+# create_dendextend_options <- function() { 
+#    # assigns the functions which could later be replaced by the FASTER dendextendRcpp functions 
+#    
+#    
+# }
+# # create_dendextend_options()
+# # dendextend_options
+# # dendextend_options()
 
+
+
+#' @title Access to dendextend_options
+#' @export
+#' @description
+#' This is a function inside its own environment. This enables a bunch of
+#' functions to be manipulated outside the package, even when they are called
+#' from function within the dendextend package.
+#' @author Kurt Hornik
+#' @return a list with functions
+#' @examples
+#' 
+#' dendextend_options("a")
+#' dendextend_options("a", 1)
+#' dendextend_options("a")
+#' dendextend_options("a", NULL)
+#' dendextend_options("a")
+#' dendextend_options()
+#' 
+dendextend_options <- local({
+   options <- list()
+   function(option, value) {
+      #          ellipsis <- list(...)         
+      if(missing(option)) return(options)
+      
+      if(missing(value))
+         options[[option]]
+      else options[[option]] <<- value
+   }
+})
+# a=2
+# dendextend_options()
+# dendextend_options(a=3)  # sadly, this will fail, and ellipsis does not help
+# dendextend_options(a<-3)
+# dendextend_options("a",3)
+# dendextend_options("a")
+# dendextend_options()
 
 
 
@@ -125,6 +144,7 @@ create_dendextend_options <- function() {
 #' @return NULL
 assign_dendextend_options <- function() { 
    # assigns the functions which could later be replaced by the FASTER dendextendRcpp functions 
+
    
    dendextend_options("get_branches_heights" , dendextend::dendextend_get_branches_heights)
    dendextend_options("heights_per_k.dendrogram" , dendextend::dendextend_heights_per_k.dendrogram)
@@ -133,7 +153,6 @@ assign_dendextend_options <- function() {
 }
 
 # dendextend_options("cut_lower_fun")
-
 #
 
 
@@ -150,7 +169,7 @@ remove_dendextend_options <- function() {
 #    options(dendextend_get_branches_heights = NULL)
 #    options(dendextend_heights_per_k.dendrogram = NULL)
 #    options(dendextend_cut_lower_fun = NULL)
-   rm(dendextend_options)
+#    rm(dendextend_options)
 }
 
 
@@ -195,7 +214,7 @@ remove_dendextend_options <- function() {
    # but it makes sure that "dendextend" does not "Depends" on ape"...
    
    # move some functions to the "options" so that they would later be overridden.
-   create_dendextend_options()
+#    create_dendextend_options()
    assign_dendextend_options()
    
    packageStartupMessage(dendextendWelcomeMessage())  

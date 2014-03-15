@@ -2,7 +2,7 @@ dendextend 0.14.0 (2014-03-15)
 ----------------------------
 
 NEW FUNCTIONS:
-   * create_dendextend_options
+   * dendextend_options (actually an enviornment + a function)
 
 UPDATED R FUNCTIONS:
    * assign_dendextend_options - Moved to passing the functions through "dendextend_options" instead of through "options" (Thanks to suggestions by Kurt Hornik and Uwe Ligges).
