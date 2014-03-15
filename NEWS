@@ -10,6 +10,8 @@ UPDATED R FUNCTIONS:
    * remove_dendextend_options - now removes the object dendextend_options
    * get_branches_heights, heights_per_k.dendrogram, cut_lower_fun - now all rely on dendextend_options.
 
+UPDATED TESTS: 
+   * update tests to the new names in dendextendRcpp (dendextendRcpp_cut_lower_fun, dendextend_options)
 
 
 

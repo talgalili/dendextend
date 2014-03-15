@@ -77,7 +77,7 @@ test_that("Get a dendrogram's branches heights",{
    dend <- as.dendrogram(hc)  
    
    expect_equal(dendextend_get_branches_heights(dend),c(37.1770090243957, 54.8004107236398))
-   expect_equal(options()$dendextend_get_branches_heights(dend),c(37.1770090243957, 54.8004107236398))
+   expect_equal(dendextend_options("get_branches_heights")(dend),c(37.1770090243957, 54.8004107236398))
    expect_equal(get_branches_heights(dend),c(37.1770090243957, 54.8004107236398))
    
    expect_identical(get_branches_heights(dend),

@@ -26,7 +26,7 @@ test_that("cut_lower_fun works",{
    	   # but it FORCES a cut - as opposed to the cut_lower_fun (within the dendextendRcpp) function...
    	   expect_false(
    		  identical(
-   			 dendextendRcpp::cut_lower_fun(dend, 40, labels),
+   			 dendextendRcpp::dendextendRcpp_cut_lower_fun(dend, 40, labels),
    			 lapply(cut(dend, h = 40)$lower, labels)   
    		  )
    	   )
@@ -35,12 +35,12 @@ test_that("cut_lower_fun works",{
    	   # as opposed to the cut_lower_fun (in the dendextendRcpp package) function...
    	   expect_false(
    		  identical(
-   			 dendextendRcpp::cut_lower_fun(dend, -1, labels),
+   			 dendextendRcpp::dendextendRcpp_cut_lower_fun(dend, -1, labels),
    			 lapply(cut(dend, h = -1)$lower, labels)   )
    	   )
    	   
    	   expect_identical(
-   		  dendextendRcpp::cut_lower_fun(dend[[1]], .4, function(x)x),
+   		  dendextendRcpp::dendextendRcpp_cut_lower_fun(dend[[1]], .4, function(x)x),
    		  list(dend[[1]])  
    	   )
    	}  # run only if dendextendRcpp was loaded
@@ -48,7 +48,7 @@ test_that("cut_lower_fun works",{
       
       # returns itself as it should:
       expect_identical(
-         dendextend::cut_lower_fun(dend[[1]], .4, function(x)x),
+         dendextend::dendextend_cut_lower_fun(dend[[1]], .4, function(x)x),
          list(dend[[1]])  
       )
       # this is the way to test this:
