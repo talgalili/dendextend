@@ -3,7 +3,8 @@ dendextend 0.14.1 (2014-03-15)
 
 UPDATED DESCRIPTION:
    * Added Uwe and Kurt as contributors.
-   * Removed Suggests: dendextendRcpp, (until later)
+   * Removed Suggests: dendextendRcpp, (until it would be on CRAN)
+   * Removed link to google group
 
 
 NEW FUNCTIONS:
@@ -11,6 +12,11 @@ NEW FUNCTIONS:
 
 UPDATED TESTS: 
    * update test_rotate.r so it would make sure ape is loaded BEFORE dendextend.
+
+OTHER NOTES:
+   * dendextend 0.14.1 goes with Version 0.5.0 of dendextendRcpp. Previous versions of dendextendRcpp will not be effective for versions of dendextend which are before 0.14.0.
+   * dendextend 0.14.1 is intended to be shipped to CRAN.
+
 
 
 dendextend 0.14.0 (2014-03-15)
