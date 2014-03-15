@@ -4,6 +4,13 @@
 \usage{
 dendextend_options(option, value)
 }
+\arguments{
+  \item{option}{a character scalar of the value of the
+  options we would like to access or update.}
+
+  \item{value}{any value that we would like to update into
+  the "option" element in dendextend_options}
+}
 \value{
 a list with functions
 }

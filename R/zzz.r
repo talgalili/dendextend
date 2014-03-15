@@ -107,6 +107,10 @@
 #' functions to be manipulated outside the package, even when they are called
 #' from function within the dendextend package.
 #' @author Kurt Hornik
+#' @param option a character scalar of the value of the options we would
+#' like to access or update.
+#' @param value any value that we would like to update into the "option"
+#' element in dendextend_options
 #' @return a list with functions
 #' @examples
 #' 
