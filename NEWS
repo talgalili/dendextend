@@ -1,8 +1,21 @@
+dendextend 0.14.1 (2014-03-15)
+----------------------------
+
+UPDATED DESCRIPTION:
+   * Added Uwe and Kurt as contributors.
+   * Removed Suggests: dendextendRcpp, (until later)
+
+
+NEW FUNCTIONS:
+   * dendextend_options (actually an enviornment + a function). Here I've moved the dendextend_options from the global enviornment to the dendextend namespace.
+
+UPDATED TESTS: 
+   * update test_rotate.r so it would make sure ape is loaded BEFORE dendextend.
+
+
 dendextend 0.14.0 (2014-03-15)
 ----------------------------
 
-NEW FUNCTIONS:
-   * dendextend_options (actually an enviornment + a function)
 
 UPDATED R FUNCTIONS:
    * assign_dendextend_options - Moved to passing the functions through "dendextend_options" instead of through "options" (Thanks to suggestions by Kurt Hornik and Uwe Ligges).
@@ -12,7 +25,6 @@ UPDATED R FUNCTIONS:
 
 UPDATED TESTS: 
    * update tests to the new names in dendextendRcpp (dendextendRcpp_cut_lower_fun, dendextend_options)
-   * update test_rotate.r so it would make sure ape is loaded BEFORE dendextend.
 
 
 dendextend 0.13.0 (2014-03-01)
