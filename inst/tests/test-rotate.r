@@ -1,6 +1,20 @@
 # require(testthat)
 
 
+if("package:dendextendRcpp" %in% search()) {
+   detach("package:dendextendRcpp")
+   return_dendextendRcpp <- TRUE
+} else {
+   return_dendextendRcpp <- FALSE   
+}
+
+detach("package:dendextend")
+require(ape)
+suppressPackageStartupMessages(library(dendextend))
+if(return_dendextendRcpp) suppressPackageStartupMessages(library(dendextendRcpp))
+rm(return_dendextendRcpp)
+# search()
+
 context("Rotate a tree around its hinges")
 
 

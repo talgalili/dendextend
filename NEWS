@@ -12,7 +12,7 @@ UPDATED R FUNCTIONS:
 
 UPDATED TESTS: 
    * update tests to the new names in dendextendRcpp (dendextendRcpp_cut_lower_fun, dendextend_options)
-
+   * update test_rotate.r so it would make sure ape is loaded BEFORE dendextend.
 
 
 dendextend 0.13.0 (2014-03-01)
