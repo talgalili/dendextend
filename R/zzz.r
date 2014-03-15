@@ -116,6 +116,13 @@ create_dendextend_options <- function() {
 # dendextend_options
 # dendextend_options()
 
+
+
+
+
+#' @title Populates dendextend functions into dendextend_options
+#' @export
+#' @return NULL
 assign_dendextend_options <- function() { 
    # assigns the functions which could later be replaced by the FASTER dendextendRcpp functions 
    
