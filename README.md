@@ -46,7 +46,9 @@ library(colorspace)
 ## Usage
 
 Please see:
+
 - Vignette: https://github.com/talgalili/dendextend/blob/master/vignettes/dendextend-tutorial.pdf
+
 - Presentations: 
    - http://htmlpreview.github.com/?https://raw.github.com/talgalili/dendextend/master/inst/doc/2013-09-05_Boston-useR/2013-09-05_Boston-useR_01_intro.html
    - http://htmlpreview.github.com/?https://raw.github.com/talgalili/dendextend/master/inst/doc/2013-09-05_Boston-useR/2013-09-05_Boston-useR_02_dendextend.html
@@ -60,6 +62,7 @@ If you have made interesting work using the dendextend package, I would LOVE to 
 ## Contact
 
 You are welcome to:
+
 * submit suggestions and bug-reports at: <https://github.com/talgalili/dendextend/issues>
 * send a pull request on: <https://github.com/talgalili/dendextend/>
 * compose a friendly e-mail to: <tal.galili@gmail.com>
