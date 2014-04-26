@@ -1,3 +1,12 @@
+dendextend 0.14.3 (2014-04-26)
+----------------------------
+UPDATED DESCRIPTION:
+   * Fix an author name.
+   * Added dendextendRcpp to suggest
+
+OTHER NOTES:
+   * Minor changes to docs.
+
 dendextend 0.14.2 (2014-03-15)
 ----------------------------
 
@@ -595,4 +604,7 @@ MDSplot(mod.rf, iris$Species)
 		http://casoilresource.lawr.ucdavis.edu/drupal/node/1007
 		http://cran.r-project.org/web/packages/gridBase/vignettes/gridBase.pdf
 	* give examples with http://cran.r-project.org/web/packages/treemap/index.html
+	
+
+	* Ideas for improving the package: http://robjhyndman.com/hyndsight/jss-rpackages/
 	
