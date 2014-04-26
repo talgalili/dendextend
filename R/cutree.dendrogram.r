@@ -593,7 +593,7 @@ cutree_1k.dendrogram <- function(tree, k,
 #' to TRUE.
 #' This is passed to \code{cutree_1h.dendrogram}.
 #' @param sort_cluster_numbers logical (TRUE). Should the resulting cluster id numbers
-#' be sorted? (default is FALSE in order to make the function compatible with
+#' be sorted? (default is TRUE in order to make the function compatible with
 #' \code{ \link[stats]{cutree}  } ) from {stats}, but it allows for sensible
 #' color order when using \link{color_branches}.
 #' @param warn logical. Should the function send a warning in case the desried 

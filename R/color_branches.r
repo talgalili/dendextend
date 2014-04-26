@@ -109,6 +109,7 @@
 #' dend_iris <- as.dendrogram(hc_iris)
 #' dend_iris=color_branches(dend_iris,k=3)
 #' 
+#' require(colorspace)
 #' labels_colors(dend_iris) <-
 #'  rainbow_hcl(3)[sort_levels_values(
 #'  as.numeric(iris[,5])[order.dendrogram(dend_iris)]
