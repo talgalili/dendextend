@@ -87,11 +87,11 @@ get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
 
 
 #' @title Get attributes of dendrogram's nodes
+#' @export
 #' @description
 #' Allows easy access to attributes of branches and/or leaves, with option
 #' of returning a vector with/withough NA's (for marking the missing attr value)
 #' 
-#' @export
 #' @param object a dendrogram object 
 #' @param attribute character scalar of the attribute (\code{attr})
 #' we wish to get from the nodes
