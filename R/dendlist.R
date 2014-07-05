@@ -26,7 +26,10 @@
 #' and chain them all together.
 #' This function aim to help with the usability of 
 #' comparing two or more dendrograms
-#' @param ... several dendrogram or dendlist objects
+#' 
+#' @param ... several dendrogram/hclust/phylo or dendlist objects
+#' If an object is hclust or phylo - it will be converted
+#' into a dendrogram.
 #' @return 
 #' A list of class dendlist where each item
 #' is a dendrogram
@@ -45,6 +48,8 @@
 #' dendlist(dend, dend2)
 #' dendlist(dend) %>% dendlist(dend2)
 #' dendlist(dend) %>% dendlist(dend2) %>% dendlist(dend)
+#' dendlist(dend, dend2) %>% tanglegram
+#' tanglegram(tree1 = dendlist(dend, dend2))
 #' 
 #' }
 #' 
@@ -56,13 +61,23 @@ dendlist <- function (...) {
    # If we have objects which are not dend or dendlist - STOP!   
    x_classes <- sapply(x, class)
 
-   if(!all(x_classes %in% c("dendrogram", "dendlist"))) {
+   if(!all(x_classes %in% c("dendrogram", "hclust", "phylo", "dendlist"))) {
       print_x_classes <- paste(x_classes, collapse = ", ")
       stop(
-         paste("Some of your object's classes are not of the type dendrogram/dendlist. Please review and fix. Their classes are:\n",
+         paste("Some of your object's classes are not of the type dendrogram/hclust/phylo/dendlist. Please review and fix. Their classes are:\n",
                print_x_classes))
    }
    
+   # if some objects are hclust/phylo - then turn them into dend:
+   x_classes_hclust_phylo <- x_classes %in% c("hclust","phylo")
+   if(any(x_classes_hclust_phylo)) {
+      for (i in seq_len(n)) {
+         if(x_classes_hclust_phylo[i]) {
+            x[[i]] <- as.dendrogram(x[[i]])
+         }
+      }
+   }
+
    # If all objects are dend - just list them, and return
    x_classes_dend <- x_classes == "dendrogram"
    if(all(x_classes_dend)) {
