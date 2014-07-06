@@ -12,6 +12,7 @@ Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     role = "ctb"), person("R core team", role = "ctb", comment = "Other than
     the Infastructure, some code came from their examples"), person("Kurt",
     "Hornik", role = "ctb"), person("Uwe", "Ligges", role = "ctb"),
+    person("Andrej-Nikolai", "Spiess", role = "ctb"),
     person("Yoav", "Benjamini", role = "ths"))
 Description: Functions and methods for extending dendrogram objects in R.
 Depends:

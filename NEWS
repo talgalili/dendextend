@@ -10,6 +10,10 @@ NEW S3 METHODS:
 
 NEW FILES
    * dendlist.R
+   * test-dendlist.R
+
+UPDATED TESTS: 
+   * Check dendlist works
 
 OTHER NOTES:
    * DESCRIPTION - 
