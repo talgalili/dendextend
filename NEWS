@@ -1,3 +1,29 @@
+dendextend 0.15.0 (2014-07-06)
+----------------------------
+
+NEW FUNCTIONS:
+   * dendlist - a function which creates a list of dendrogram of the new "dendlist" class.
+   * click_rotate - interactively rotate a tree (thanks to Andrej-Nikolai Spiess)
+
+NEW S3 METHODS:
+   * tanglegram.dendlist
+
+NEW FILES
+   * dendlist.R
+
+OTHER NOTES:
+   * DESCRIPTION - 
+      * Added the magrittr package as an imports.
+      * changed stats from depends to imports. Here is a good reference for why to choose the one over the other - http://stackoverflow.com/questions/8637993/better-explanation-of-when-to-use-imports-depends
+
+
+dendextend 0.14.4 (2014-07-04)
+----------------------------
+
+OTHER NOTES:
+   * Changed all R script files from .r to .R!
+
+
 dendextend 0.14.3 (2014-04-26)
 ----------------------------
 UPDATED DESCRIPTION:
@@ -607,4 +633,7 @@ MDSplot(mod.rf, iris$Species)
 	
 
 	* Ideas for improving the package: http://robjhyndman.com/hyndsight/jss-rpackages/
+	
+	* use match.arg
+	* cross-ref untangle functions docs
 	
