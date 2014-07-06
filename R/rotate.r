@@ -244,3 +244,79 @@ rev.hclust <- function(x, ...) {
 
 
 
+
+
+
+
+#' @title Interactively rotate a tree object
+#' @export
+#' @description 
+#' Lets te user click a plot of dendrogram
+#' and rotates the tree based on the location of the click.
+#' @aliases 
+#' click_rotate.default
+#' click_rotate.dendrogram
+#' @usage
+#' click_rotate(x, ...)
+#' 
+#' \method{click_rotate}{dendrogram}(x, plot = TRUE, plot_after = plot, ...)
+#' 
+#' @description
+#' Code for mouse selection of (sub-)cluster to be rotated
+#' 
+#' @param x a tree object (either a \code{dendrogram} or \code{hclust})
+#' @param plot (logical) should the dendrogram first be plotted.
+#' @param plot_after (logical) should the dendrogram be plotted after
+#' the rotation?
+#' @param ... parameters passed to the plot
+#' 
+#' @author Andrej-Nikolai Spiess, Tal Galili
+#' @return A rotated tree object
+#' @seealso \code{\link{rotate.dendrogram}}
+#' @examples
+#' # create the dend:
+#' dend <- USArrests %>% dist %>% hclust("ave") %>%  
+#' as.dendrogram %>% color_labels
+#' 
+#' \dontrun{
+#' # play with the rotation once
+#' dend <- click_rotate(dend)
+#' # keep playing with the rotation:
+#' while(TRUE) dend <- click_rotate(dend)
+#' }
+#' 
+click_rotate <- function(x, ...) {UseMethod("click_rotate")}
+
+click_rotate.default <- function(x, ...) {stop("object x must be a dendrogram/hclust/phylo object")}
+
+#' @S3method click_rotate dendrogram
+click_rotate.dendrogram <- function(x, plot = TRUE, plot_after = plot, ...)
+{
+   if(plot) plot(x, ...)
+   
+   labels_x <- labels(x) 
+   order_x <- order.dendrogram(x)
+   number_of_leaves <- length(order_x)
+   
+   cat("Please click on top branch of cluster to be rotated...\n")
+   LOC <- locator(1)
+   X <- round(LOC$x)
+   Y <- LOC$y
+   CLUSTERS <- cutree(x, h = Y, order_clusters_as_data = FALSE)
+   order <- 1:length(CLUSTERS)
+   CLUSNUM <- CLUSTERS[X]
+   SEL <- which(CLUSTERS == CLUSNUM)    
+   order[SEL] <- rev(order[SEL])      
+   
+   x <- rotate(x, order)
+   
+   if(plot_after) plot(x, ...)
+   
+   return(x)
+}
+
+
+
+
+
+
