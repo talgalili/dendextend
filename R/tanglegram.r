@@ -495,8 +495,8 @@ plot_horiz.dendrogram <- function (x,
 #' 
 #' @param tree1 tree object (dendrogram/dendlist/hclust/phylo), plotted on the left
 #' @param tree2 tree object (dendrogram/hclust/phylo), plotted on the right
-#' @param which a integer vector of length 2, indicating
-#' which of the trees in a dendlist obect should be plotted
+#' @param which an integer vector of length 2, indicating
+#' which of the trees in a dendlist object should be plotted
 #' @param sort logical (FALSE). Should the dendrogram's labels be "sorted"?
 #' (might give a better tree in some cases).
 #' @param color_lines a vector of colors for the lines connected the labels.
@@ -621,7 +621,7 @@ tanglegram.dendlist <- function(tree1, which = c(1L,2L), ...) {
    # we could get a dendlist with a length of 1 - in which case, we can't plot
    if(length(tree1) == 1) stop("Your dendlist has only 1 dendrogram - a tanglegram can not be plotted")
    # we could get a dendlist with a length of >2 - in which case, should we only plot the first two items?
-   if(!all(which %in% seq_len(length(tree1)))) {
+   if(all(which %in% seq_len(length(tree1)))) {
       tanglegram.dendrogram(tree1[[which[1]]], tree1[[which[2]]], ...)
    } else {
       stop("You are trying to plot trees which are outside the range of trees in your dendlist")
