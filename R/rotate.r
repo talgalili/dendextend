@@ -259,7 +259,7 @@ rev.hclust <- function(x, ...) {
 #' @usage
 #' click_rotate(x, ...)
 #' 
-#' \method{click_rotate}{dendrogram}(x, plot = TRUE, plot_after = plot, ...)
+#' \method{click_rotate}{dendrogram}(x, plot = TRUE, plot_after = plot, horiz = FALSE, continue = FALSE, ...)
 #' 
 #' @description
 #' Code for mouse selection of (sub-)cluster to be rotated
@@ -268,6 +268,9 @@ rev.hclust <- function(x, ...) {
 #' @param plot (logical) should the dendrogram first be plotted.
 #' @param plot_after (logical) should the dendrogram be plotted after
 #' the rotation?
+#' @param horiz logical. Should the plot be normal or horizontal?
+#' @param continue logical. If TRUE, allows the user to keep
+#' clicking the plot until a click is made on the labels.
 #' @param ... parameters passed to the plot
 #' 
 #' @author Andrej-Nikolai Spiess, Tal Galili
@@ -281,8 +284,11 @@ rev.hclust <- function(x, ...) {
 #' \dontrun{
 #' # play with the rotation once
 #' dend <- click_rotate(dend)
+#' dend <- click_rotate(dend, horiz = TRUE)
 #' # keep playing with the rotation:
 #' while(TRUE) dend <- click_rotate(dend)
+#' # the same as
+#' dend <- click_rotate(dend, continue = TRUE)
 #' }
 #' 
 click_rotate <- function(x, ...) {UseMethod("click_rotate")}
@@ -290,27 +296,36 @@ click_rotate <- function(x, ...) {UseMethod("click_rotate")}
 click_rotate.default <- function(x, ...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
 #' @S3method click_rotate dendrogram
-click_rotate.dendrogram <- function(x, plot = TRUE, plot_after = plot, ...)
+click_rotate.dendrogram <- function(x, plot = TRUE, plot_after = plot, horiz = FALSE, continue = FALSE, ...)
 {
-   if(plot) plot(x, ...)
+   if(plot) plot(x, horiz = horiz, ...)
    
    labels_x <- labels(x) 
    order_x <- order.dendrogram(x)
    number_of_leaves <- length(order_x)
    
-   cat("Please click on top branch of cluster to be rotated...\n")
-   LOC <- locator(1)
-   X <- round(LOC$x)
-   Y <- LOC$y
-   CLUSTERS <- cutree(x, h = Y, order_clusters_as_data = FALSE)
-   order <- 1:length(CLUSTERS)
-   CLUSNUM <- CLUSTERS[X]
-   SEL <- which(CLUSTERS == CLUSNUM)    
-   order[SEL] <- rev(order[SEL])      
+   only_once <- !continue
+   continue <- TRUE
    
-   x <- rotate(x, order)
+   while (isTRUE(continue)) {
+      cat("Please click on top branch of cluster to be rotated...\n")
+      if(!only_once) cat("Clicking on the leaf labels will exit...\n\n")
+      LOC <- locator(1)
+      X <- ifelse(horiz, round(LOC$y), round(LOC$x))
+      Y <- ifelse(horiz, LOC$x, LOC$y)       
+      CLUSTERS <- cutree(x, h = Y, order_clusters_as_data = FALSE)
+      order <- 1:length(CLUSTERS)
+      CLUSNUM <- CLUSTERS[X]
+      SEL <- which(CLUSTERS == CLUSNUM)
+      order[SEL] <- rev(order[SEL])
+      
+      x <- rotate(x, order)
+      if(plot_after) plot(x, horiz = horiz, ...)
+      
+      if (Y < 0 | only_once) continue <- FALSE      
+   }
    
-   if(plot_after) plot(x, ...)
+   cat("Done rotating.\n")
    
    return(x)
 }
