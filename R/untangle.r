@@ -134,10 +134,8 @@ shuffle.phylo <- shuffle.default
 #' @examples
 #' 
 #' \dontrun{
-#' hc1 <- hclust(dist(iris[,-5]), "com")
-#' hc2 <- hclust(dist(iris[,-5]), "single")
-#' dend1 <- as.dendrogram(hc1)
-#' dend2 <- as.dendrogram(hc2)
+#' dend1 <- iris[,-5] %>% dist %>% hclust("com") %>% as.dendrogram
+#' dend2 <- iris[,-5] %>% dist %>% hclust("sin") %>% as.dendrogram
 #' tanglegram(dend1,dend2)
 #' 
 #' set.seed(65168)
