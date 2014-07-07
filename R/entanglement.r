@@ -226,12 +226,17 @@ match_order_dendrogram_by_old_order <- function(dend_change, dend_template ,
 #' 
 #' \method{entanglement}{dendrogram}(tree1, tree2, L = 1.5, leaves_matching_method = c("labels", "order"),...)
 #' 
+#' \method{tanglegram}{dendlist}(tree1, which = c(1L,2L), ...)
+#' 
 #' \method{entanglement}{hclust}(tree1, tree2, ...)
 #' 
 #' \method{entanglement}{phylo}(tree1, tree2, ...)
 #' 
 #' @param tree1 a tree object (of class dendrogram/hclust/phylo).
 #' @param tree2 a tree object (of class dendrogram/hclust/phylo).
+#' @param which an integer vector of length 2, indicating
+#' which of the trees in a dendlist object should have 
+#' their entanglement calculated
 #' @param L the distance norm to use for measuring the distance between the
 #' two trees. It can be any positive number, often one will want to
 #'  use 0, 1, 1.5, 2 (see 'details' for more).
@@ -271,12 +276,14 @@ match_order_dendrogram_by_old_order <- function(dend_change, dend_template ,
 #' @examples
 #' 
 #' \dontrun{
-#' hc1 <- hclust(dist(iris[,-5]), "com")
-#' hc2 <- hclust(dist(iris[,-5]), "single")
-#' dend1 <- as.dendrogram(hc1)
-#' dend2 <- as.dendrogram(hc2)
-#' tanglegram(dend1,dend2)
+#' dend1 <- iris[,-5] %>% dist %>% hclust("com") %>% as.dendrogram
+#' dend2 <- iris[,-5] %>% dist %>% hclust("sin") %>% as.dendrogram
+#' dend12 <- dendlist(dend1, dend2)
+#' tanglegram(dend12)
 #' 
+#' entanglement(dend12)
+#' entanglement(dend12, L = 0)
+#' entanglement(dend12, L = 0.25)
 #' entanglement(dend1,dend2, L = 0) # 1
 #' entanglement(dend1,dend2, L = 0.25) # 0.97
 #' entanglement(dend1,dend2, L = 1) # 0.93
@@ -328,6 +335,20 @@ entanglement.phylo <- function (tree1, tree2,...) {
    tree1 <- as.dendrogram(tree1)
    tree2 <- as.dendrogram(tree2)
    entanglement(tree1, tree2, ...)   
+}
+
+
+#' @S3method entanglement dendlist
+entanglement.dendlist <- function(tree1, which = c(1L,2L), ...) {
+   # many things can go wrong here (which we might wish to fix):
+   # we could get a dendlist with a length of 1 - in which case, we can't plot
+   if(length(tree1) == 1) stop("Your dendlist has only 1 dendrogram - entanglement can not be calculated")
+   # we could get a dendlist with a length of >2 - in which case, should we only plot the first two items?
+   if(all(which %in% seq_len(length(tree1)))) {
+      entanglement.dendrogram(tree1[[which[1]]], tree1[[which[2]]], ...)
+   } else {
+      stop("You are trying to calculate the entanglement for trees which are outside the range of trees in your dendlist")
+   }   
 }
 
 

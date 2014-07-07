@@ -3,6 +3,8 @@ dendextend 0.15.0 (2014-07-06)
 
 NEW FUNCTIONS:
    * dendlist - a function which creates a list of dendrogram of the new "dendlist" class.
+      * tanglegram.dendlist
+      * entanglement.dendlist
    * click_rotate - interactively rotate a tree (thanks to Andrej-Nikolai Spiess)
 
 NEW S3 METHODS:
