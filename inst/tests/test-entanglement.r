@@ -6,7 +6,7 @@ context("Measuring entanglement of two trees")
 
 test_that("Match order of one dend based on another (using their labels)",{
 
-   dend <- as.dendrogram(hclust(dist(USArrests[1:4,])))
+   dend <- USArrests[1:4,] %>% dist %>% hclust %>% as.dendrogram
    expect_identical(order.dendrogram(dend), c(4L, 3L, 1L, 2L))
    
    dend_changed <- dend
@@ -130,4 +130,10 @@ test_that("Entanglement with labels vs order",{
 })
 
 
-
+test_that("Entanglement works for dendlist objects ",{
+   dend1 <- iris[,-5] %>% dist %>% hclust("com") %>% as.dendrogram
+   dend2 <- iris[,-5] %>% dist %>% hclust("sin") %>% as.dendrogram
+   dend12 <- dendlist(dend1, dend2)
+   expect_identical(entanglement(dend12, L = .25),
+                    entanglement(dend1,dend2, L = .25) )
+})
