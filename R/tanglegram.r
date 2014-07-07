@@ -496,7 +496,7 @@ plot_horiz.dendrogram <- function (x,
 #' @param tree1 tree object (dendrogram/dendlist/hclust/phylo), plotted on the left
 #' @param tree2 tree object (dendrogram/hclust/phylo), plotted on the right
 #' @param which an integer vector of length 2, indicating
-#' which of the trees in a dendlist object should be plotted
+#' which of the trees in the dendlist object should be plotted
 #' @param sort logical (FALSE). Should the dendrogram's labels be "sorted"?
 #' (might give a better tree in some cases).
 #' @param color_lines a vector of colors for the lines connected the labels.
@@ -567,7 +567,7 @@ plot_horiz.dendrogram <- function (x,
 #' Notice that tanglegram does not "resize" well. In case you are resizing your
 #' window you would need to re-run the function.
 #' 
-#' @return An invisible list, with two trees after being
+#' @return An invisible \link{dendlist}, with two trees after being
 #' modified during the creation of the tanglegram.
 #' @source
 #' The function is based on code from plannapus, after major revisions. See:
@@ -578,10 +578,12 @@ plot_horiz.dendrogram <- function (x,
 #' \dontrun{
 #' set.seed(23235)
 #' ss <- sample(1:150, 10 )
-#' hc1 <- hclust(dist(iris[ss,-5]), "com")
-#' hc2 <- hclust(dist(iris[ss,-5]), "single")
-#' dend1 <- as.dendrogram(hc1)
-#' dend2 <- as.dendrogram(hc2)
+#' dend1 <- iris[ss,-5] %>% dist %>% hclust("com") %>% as.dendrogram
+#' dend2 <- iris[ss,-5] %>% dist %>% hclust("sin") %>% as.dendrogram
+#' dend12 <- dendlist(dend1, dend2)
+#' 
+#' dend12 %>% tanglegram
+#' 
 #' tanglegram(dend1 , dend2)
 #' tanglegram(dend1 , dend2, sort = TRUE)
 #' tanglegram(dend1 , dend2, remove_nodePar = TRUE)
@@ -789,7 +791,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    
    
    
-   return(invisible(list(tree1 = tree1, tree2 = tree2)))
+   return(invisible(dendlist(tree1 = tree1, tree2 = tree2)))
 }
 
 
