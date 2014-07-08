@@ -445,7 +445,8 @@ plot_horiz.dendrogram <- function (x,
 #' tanglegram.hclust
 #' tanglegram.phylo
 #' dendbackback
-#' @description Counts the number of leaves in a tree (dendrogram or hclust).
+#' @description 
+#' Plots a tanglegram plot of a side by side trees.
 #' 
 #' @author Tal Galili, plannapus
 #' 
