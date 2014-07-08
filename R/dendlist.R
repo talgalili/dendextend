@@ -19,6 +19,52 @@
 # Creating the "dendlist" class for more easily dealing with tanglegrams and so on
 
 
+
+#' @title Checks if the value is and empty list()
+#' @param x whatever object to check
+#' @return 
+#' logical
+#' @examples
+#' # TRUE:
+#' is_null_list(list())
+#' # FALSE
+#' is_null_list(list(1))
+#' is_null_list(1)
+#' 
+#' x <- list(1, list(), 123)
+#' ss_list <- sapply(x, is_null_list)
+#' x <- x[!ss_list]
+#' x
+#' 
+#' x <- list(1, list(), 123)
+#' ss_list <- sapply(x, is_null_list)
+#' x <- list(list())
+#' x
+#' \dontrun{
+#' # error
+#' is_null_list() 
+#' }
+is_null_list <- function(x) {
+   identical(x, list())   
+}
+
+
+
+#' @title Checks if an object is of class dendlist
+#' @export
+#' @param x whatever object to check
+#' @return 
+#' logical
+#' @examples
+#' # TRUE:
+#' is.dendlist(dendlist())
+#' # FALSE
+#' is.dendlist(1)
+is.dendlist <- function(x) {
+   class(x) == "dendlist"
+}
+
+
 #' @title Creating a dendlist object from several dendrograms
 #' @export
 #' @description
@@ -30,6 +76,11 @@
 #' @param ... several dendrogram/hclust/phylo or dendlist objects
 #' If an object is hclust or phylo - it will be converted
 #' into a dendrogram.
+#' 
+#' @details
+#' It there are list() in the ..., they are omitted.
+#' If ... is missing, it returns an empty dendlist.
+#' 
 #' @return 
 #' A list of class dendlist where each item
 #' is a dendrogram
@@ -55,6 +106,19 @@
 #' 
 dendlist <- function (...) {
    x <- list(...)
+   
+   # dendlist on a list will return a length 0 dendlist
+   # First, let's remove all "list()" from the object
+   ss_list <- sapply(x, is_null_list)
+   x <- x[!ss_list]   
+   # if we are left with nothing, return an empty dendlist
+   if(identical(x, list())) {
+      warning("You entered an empty (or no) list to dendlist, a dendlist of length 0 is created.")
+      x_final <- list()
+      class(x_final) <- "dendlist"
+      return(x_final)   
+   }
+   
 #    object <- as.list(substitute(x))[-1L]
    n <- length(x)
 
@@ -116,4 +180,43 @@ dendlist <- function (...) {
 
 
 
+
+
+#' @title Try to coerce something into a dendlist
+#' @export
+#' @description
+#' It removes stuff that are not dendgrogram/dendlist
+#' and turns what is left into a dendlist
+#' @param x a list with several dendrogram/hclust/phylo or dendlist objects
+#' and other junk that should be omitted.
+#' @param ... NOT USED
+#' @return 
+#' A list of class dendlist where each item
+#' is a dendrogram
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' dend <- iris[,-5] %>% dist %>% hclust %>% as.dendrogram
+#' dend2 <- iris[,-5] %>% dist %>% hclust(method = "single") %>% as.dendrogram
+#' 
+#' x = list(dend, 1, dend2)
+#' as.dendlist(x)
+#' 
+#' }
+#' 
+as.dendlist <- function (x, ...) {
+#    x <- list(...)
+   # If we have objects which are not dend or dendlist - STOP!   
+   x_classes <- sapply(x, class)
+   ss <- x_classes %in% c("dendrogram", "hclust", "phylo", "dendlist")   
+   # keep only the parts which are relevant
+   x <- x[ss]
+   x_final <- list()
+   for(i in seq_len(length(x))) {
+      x_final <- dendlist(x_final, x[[i]])
+   }
+   
+   return(x_final)   
+}
 

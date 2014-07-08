@@ -5,6 +5,8 @@ NEW FUNCTIONS:
    * dendlist - a function which creates a list of dendrogram of the new "dendlist" class.
       * tanglegram.dendlist
       * entanglement.dendlist
+      * is.dendlist - to check that an object is a dendlist
+      * as.dendlist - to turn a list to a dendlist
    * click_rotate - interactively rotate a tree (thanks to Andrej-Nikolai Spiess)
 
 NEW S3 METHODS:
