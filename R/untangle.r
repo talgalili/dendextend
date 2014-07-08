@@ -21,6 +21,106 @@
 
 
 
+#' @title untangle dendrograms
+#' @export
+#' @aliases 
+#' untangle.default
+#' untangle.dendrogram
+#' untangle.dendlist
+#' @description 
+#' One untangle function to rule them all.
+#' 
+#' This function untangles dendrogram lists (dendlist),
+#' Using various heuristics.
+#' 
+#' @author Tal Galili
+#' 
+#' @usage
+#' untangle(dend1, ...)
+#' 
+#' \method{untangle}{dendrogram}(dend1, dend2 ,
+#'    method = c("random", "step1side", "step2side"),
+#'    ...)
+#' 
+#' \method{untangle}{dendlist}(dend1, which = c(1L,2L), ...)
+#' 
+#' @param dend1 a dednrogram or a dendlist object
+#' @param dend2 A second dednrogram (to untangle against)
+#' @param which an integer vector of length 2, indicating
+#' which of the trees in the dendlist object should be plotted
+#' @param method a character indicating the type of untangle
+#' heuristic to use.
+#' @param ... passed to the releavnt untangle function
+#' @details 
+#' This function wraps all of the untagnle functions,
+#' in order to make it easier to find our about (and use) them.
+#' @return A \link{dendlist}, with two trees after 
+#' they have been untangled.
+#' 
+#' @seealso 
+#' \link{tanglegram}, \link{untangle_random_search}, 
+#' \link{untangle_step_rotate_1side}, \link{untangle_step_rotate_2side},
+#' \link{entanglement}
+#' @examples
+#' \dontrun{
+#' set.seed(23235)
+#' ss <- sample(1:150, 10 )
+#' dend1 <- iris[ss,-5] %>% dist %>% hclust("com") %>% as.dendrogram
+#' dend2 <- iris[ss,-5] %>% dist %>% hclust("sin") %>% as.dendrogram
+#' dend12 <- dendlist(dend1, dend2)
+#' 
+#' dend12 %>% tanglegram
+#' 
+#' untangle(dend1, dend2, method="random", R = 5) %>% tanglegram
+#' 
+#' # it works, and we get something different:
+#' set.seed(1234)
+#' dend12 %>% untangle(method="random", R = 5) %>% tanglegram
+#' 
+#' set.seed(1234)
+#' # fixes it completely:
+#' dend12 %>% untangle(method="random", R = 5) %>% untangle(method="step1") %>% tanglegram
+#' # not good enough
+#' dend12 %>% untangle(method="step1") %>% tanglegram
+#' # not good enough
+#' dend12 %>% untangle(method="step2") %>% tanglegram
+#' # How we might wish to use it:
+#' set.seed(12777)
+#' dend12 %>% 
+#'    untangle(method="random", R = 1) %>%
+#'    untangle(method="step2") %>% 
+#'    tanglegram
+#' 
+#' }
+untangle <- function (dend1, ...) {UseMethod("untangle")}
+
+untangle.default <- function (dend1, ...) {stop("No default function for tanglegram - must use a dendrogram/hclust/phylo object")}
+
+#' @S3method untangle dendrogram
+untangle.dendrogram <- function (dend1, dend2, 
+                                 method = c("random", "step1side", "step2side"), ...) {
+   method <- match.arg(method)
+   
+   switch(method,
+          random = untangle_random_search(dend1, dend2, ...),
+          step1side = untangle_step_rotate_1side(dend1, dend2, ...),
+          step2side = untangle_step_rotate_2side(dend1, dend2, ...)
+   )
+}
+
+#' @S3method untangle dendlist
+untangle.dendlist <- function (dend1, method, which = c(1L,2L), ...) {
+   untangle(dend1[[which[1]]], dend1[[which[2]]], method = method, ...)
+}
+
+
+# center <- function(type = c("mean", "median", "trimmed")) {
+#    print(match.arg(type))
+# }
+# center(type="tri")
+
+
+
 # get("sort")
 #' 'shuffle' is a function that randomilly rotates ("shuffles") a tree.
 #' a dendrogram leaves order (by means of rotation)

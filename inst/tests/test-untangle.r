@@ -125,3 +125,38 @@ test_that("untangle_step_rotate_2side work",{
 # 
 
 
+
+
+test_that("untangle (main function) works for random search",{
+   dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+   dend2 <- flip_leaves(dend1, c(3,5), c(1,2))
+   # tanglegram(dend1,dend2)
+   # tanglegram(dend1,flip_leaves(dend1, c(3,5, 1,2), c(4)))
+   dend12 <- dendlist(dend1, dend2)
+   
+   set.seed(123123)
+   out1 <- untangle(dend12, method = "ran", R = 10)
+   set.seed(123123)
+   out2 <- untangle_random_search(dend1, dend2, R = 10)
+   expect_identical(out1,out2)
+   
+})
+
+
+
+
+test_that("untangle (main function) works for 2 step",{
+   dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+   dend2 <- flip_leaves(dend1, c(3,5), c(1,2))
+   # tanglegram(dend1,dend2)
+   # tanglegram(dend1,flip_leaves(dend1, c(3,5, 1,2), c(4)))
+   dend12 <- dendlist(dend1, dend2)
+   
+   out1 <- untangle(dend12, method = "step2")
+   set.seed(123123)
+   out2 <- untangle_step_rotate_2side(dend1, dend2)
+   expect_identical(out1,out2)
+   
+})
+
+
