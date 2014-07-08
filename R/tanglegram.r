@@ -572,6 +572,11 @@ plot_horiz.dendrogram <- function (x,
 #' @source
 #' The function is based on code from plannapus, after major revisions. See:
 #' \url{http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r}
+#' 
+#' As far as I could tell, this code was originally inspired by Dylan Beaudette
+#' function \code{dueling.dendrograms} from the sharpshootR package:
+#' \url{http://cran.at.r-project.org/web/packages/sharpshootR/}
+#' tanglegram
 #' @seealso \link{remove_leaves_nodePar}, \link{plot_horiz.dendrogram}, \link{rank_branches},
 #' \link{hang.dendrogram}
 #' @examples
