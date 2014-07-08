@@ -327,6 +327,12 @@ dendextendWelcomeMessage <- function(){
 # # http://stackoverflow.com/questions/3523534/good-ways-to-manage-a-changelog-using-git
 # # http://www.commandlinefu.com/commands/view/12420/generate-a-change-log-with-git
 # shell("git log --decorate > ChangeLog", intern = T)
+
+# Modify it using: http://git-scm.com/book/en/Git-Basics-Viewing-the-Commit-History
+#         http://stackoverflow.com/questions/9007181/custom-log-format-omits-newline-at-end-of-output
+# shell('git log --graph --stat --date=iso > ChangeLog', intern = TRUE)
+# use this:
+# shell('git log --graph --stat --date=short --pretty=format:"%ad(%an) %s |%h" > ChangeLog', intern = TRUE)
 # 
 # system.PATH()
 # shell("path")
