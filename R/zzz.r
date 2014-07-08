@@ -306,6 +306,38 @@ dendextendWelcomeMessage <- function(){
 # options(repos=c("http://cran.rstudio.com", "http://www.stats.ox.ac.uk/pub/RWin" ))
 # to D:\R\R-devel\etc\Rprofile.site
 
+
+
+# 
+# # Run once:
+# shell('set PATH=%PATH%;"C:\\Program%20Files%20(x86)\\Git\\bin"', intern = TRUE)
+# shell("echo %PATH% ", intern= TRUE)
+# 
+# system('set PATH=%PATH%;C:\\xampp\\php')
+# 
+# 
+# 
+# # Creating a changelog using git
+# First make sure git is in the path. Run the 
+# following using cmd.exe, as admin:
+# setx PATH "C:\\Program Files (x86)\\Git\\bin"
+# 
+# Then - run the script to create the ChangeLog before shipping the package.
+# # http://stackoverflow.com/questions/10330425/how-do-i-export-a-git-log-to-a-text-file
+# # http://stackoverflow.com/questions/3523534/good-ways-to-manage-a-changelog-using-git
+# # http://www.commandlinefu.com/commands/view/12420/generate-a-change-log-with-git
+# shell("git log --decorate > ChangeLog", intern = T)
+# 
+# system.PATH()
+# shell("path")
+
+
+# shell("echo %PATH% ", intern= TRUE)
+# require(rmarkdown)
+# render("NEWS",clean = TRUE,output_format = "html_document")
+
+
+
 # when a function is renamed, its document in man must be removed - otherwise it may cause problems with the built check (it will try to run the code in the example, and will fail.)
 # When all is done, run:
 # require(devtools)

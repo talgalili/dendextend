@@ -1,0 +1,2148 @@
+commit 2ff871864ab99b74c40c3c3575e415ba9c3b28a5 (HEAD, dendextend_github/master, master)
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Jul 8 04:48:06 2014 +0300
+
+    Added credit to Dylan Beaudette for his dueling.dendrograms function (the origin of the tanglegram plot)
+
+commit 67157883b2452e353141f429ee19c1d04674dbd4
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Jul 8 01:11:20 2014 +0300
+
+    Add pipes to the untangle docs
+
+commit 39fef73c7e65593d4910aa65aebc2b731374d8c6
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Jul 8 01:10:42 2014 +0300
+
+    Add tests for entenglement on dendlist
+
+commit d9db482c5ef62fa88c5955b9dfb63edf0676b21b
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Jul 8 01:10:06 2014 +0300
+
+    tanglegram - making its output be a dendlist object
+
+commit f7f8c83fa1f3d6659a62e7a3a9bd254613eb8dc8
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Jul 7 22:13:23 2014 +0300
+
+    Added entanglement.dendlist function
+
+commit acd20bb31577df3694177cb1a020b36db30be7cc
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Jul 7 22:12:31 2014 +0300
+
+    tanglegram.dendlist - bug fix for it to work + some minor fixes to the doc
+
+commit ec46e2998d64bf968cb1e6ce7209bc40ec8a2d67
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Jul 7 22:11:29 2014 +0300
+
+    Move magrittr to Depends, to make it easier to work with examples (this way it will always get the chain %>% operator to be available to all examples)
+
+commit e19f738f67e90e16e24f89ed7c3e2eb92c425307
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Jul 7 14:50:18 2014 +0300
+
+    Added horiz and continue paramters to the click_rotate function
+
+commit c5866a87e4af3f0fd5727d2c4df16a919a58c862
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Jul 6 03:34:49 2014 +0300
+
+    Check dendlist works (new tests)
+
+commit 1ce17d7fe9b3a6339b2c8d657c81d7253210e1cb
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Jul 6 03:21:52 2014 +0300
+
+    Updated DESCRIPTION and NEWS
+
+commit c455d60f55815ca771f910031a77819667783530
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Jul 6 03:21:21 2014 +0300
+
+    Added the click_rotate function (thanks to Andrej-Nikolai Spiess)
+
+commit 20e4c79428ec14fe20d409a8ee57c298d48ebf58
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 5 04:05:55 2014 +0300
+
+    Added tanglegramm.dendlist S3 method
+
+commit c74f06ae285eb2f3b54cce15a3a43dda035d6b0f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 5 04:04:20 2014 +0300
+
+    Make dendlist handle hclust and phylo
+
+commit 2dec5f9eced19a54012b1d38fc37ca91cef79064
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jul 4 22:03:50 2014 +0300
+
+    dendlist - a function which creates a list of dendrogram of the new "dendlist" class.
+
+commit 70b93f921d73a3c216c0ced9e542a70f893a04c3 (tag: 0.14.3)
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 26 13:19:15 2014 +0300
+
+    Version 0.14.3 - minor changes to DESCRIPTION
+
+commit d7d3c86ad6e639150521a7c8cba5e61be013abd5
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 26 13:15:03 2014 +0300
+
+    minor fixes to examples
+
+commit acd6f989a5eee855499e4e91800768d88d4cb044
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Mar 18 07:45:59 2014 +0200
+
+    Added dendextendRcpp (>= 0.5.0) to Suggests!
+    
+    Also fixed a missing comma in the Authors@R's list
+
+commit b74e3bad0c89756215f94d002464a5399269d79a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Mar 18 07:43:23 2014 +0200
+
+    Fixing spaces
+
+commit e2f9496fa2c40b49fa4c8f28d973a4fd83588660
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Mar 18 07:43:12 2014 +0200
+
+    Fixing "jefferis" to full name
+
+commit 25e3103d321b26ad65a9d071c0c306fafe6528ba (tag: 0.14.2)
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 15 16:50:20 2014 +0200
+
+    Added dependency for R (>= 3.0.0)
+
+commit 8e92afb78ae6fc01b67524daf253dd527339f693 (tag: 0.14.1)
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 15 14:19:23 2014 +0200
+
+    Note that the package will go on CRAN
+
+commit 029e5a0c6190464b82978902ec01bdf396df31c0
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 15 13:18:15 2014 +0200
+
+    Bumped to  0.14.1
+
+commit a3d35201c61f396b0db23ef5bff2cd5e1d1b35d0 (tag: 0.14.0)
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 15 13:05:20 2014 +0200
+
+    Fix Undocumented arguments in documentation object 'dendextend_options'
+      'option' 'value'
+
+commit 067afc4b3e3004a2e3c4846e3ada459323bbad7d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 15 12:55:38 2014 +0200
+
+    update test_rotate.r so it would make sure ape is loaded BEFORE dendextend.
+
+commit 095861c7b23c0458810ff9c4e025dbf0dfe6d71c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 15 12:54:45 2014 +0200
+
+    dendextend_options (actually an enviornment + a function) - added
+
+commit d4c03b05af6d2c17bf0c139d521d7920c09fee20
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 15 12:29:03 2014 +0200
+
+    update tests to the new names in dendextendRcpp (dendextendRcpp_cut_lower_fun, dendextend_options)
+
+commit b0f1028a3c3118c3af2071e0542d48c85f3db452
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 15 11:14:13 2014 +0200
+
+    assign_dendextend_options - is now exported.
+
+commit ce0c91b274bfa421707743c448a9633cab10be78
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 15 11:01:45 2014 +0200
+
+    Moved to passing the functions through "dendextend_options" instead of through "options" (Thanks to suggestions by Kurt Hornik and Uwe Ligges).
+
+commit 7c8c681abc1b3a04fcea4243cc7b237c70f0ef6a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 1 15:55:09 2014 +0200
+
+    Bump to version 0.13.0
+    
+    (and updated DESCRIPTION)
+
+commit 68d7376fd7e3f8e9a145cee47da720f9045aa644
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 1 15:45:53 2014 +0200
+
+    Added a compressed version of the pdf tutorial.
+
+commit 4e47c40e38e3cbe2172e125c7dcadcc6a070d5e3
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 1 15:44:48 2014 +0200
+
+    assign_dendextend_options - we now pass all functions that have a Rcpp equivalent through "options". While this adds a bit of an overhead (sadly), it still gets a much faster speed gain, and without verious warnings that CRAN checks would not like.
+    
+    Now added: dendextend_get_branches_heights, dendextend_heights_per_k.dendrogram, dendextend_cut_lower_fun - and gave speed tests in the DOCS.
+
+commit f7bad9b3558649d3f9bb9002da19d33d551265d1
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 1 15:42:13 2014 +0200
+
+    When comparing to dendextendRcpp - added condition to not make the check if the package is not loaded and in the search path (this way I could compare the tests with and without the dendextendRcpp package).
+
+commit 523e60408775413f86ed5ed2051388049fb57aff
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Mar 1 15:41:54 2014 +0200
+
+    added a minor test for dendextend_get_branches_heights - checking the function directly through the options.
+
+commit d86832f8ddc02b70a8f171a4d744c4e9de15d381 (tag: 0.12.2)
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Feb 3 12:58:21 2014 +0200
+
+    dendextend 0.12.2 is intended to be shipped to CRAN.
+
+commit 62f874e674ffe452f4c13ba92fb4cf6dbcd5b305
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Feb 3 12:57:54 2014 +0200
+
+    Hidden "stats" functions have been added to a new file "imports_stats.r"
+          with a new local copy for
+                               'stats:::.memberDend' 'stats:::.midDend'
+                               'stats:::midcache.dendrogram' 'stats:::plotNode'
+                               'stats:::plotNodeLimit'
+          with stats::: -> stats_
+
+commit c6db8e85c37f0875139331d212065e931ca836ba
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Feb 3 12:56:30 2014 +0200
+
+    dendextend:::cutree -> dendextend::cutree
+
+commit b83bb5a01cf64ae83c9e441e8cd9db64d750aa73
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Feb 3 12:55:15 2014 +0200
+
+    UPDATED DESCRIPTION:
+       * Removed VignetteBuilder: knitr (until later)
+       * Removed Suggests: dendextendRcpp, (until later)
+       * fixed mis-spelled words: extanding (14:40)
+
+commit 72eee44ad4be8fea71d0c2e0da8acf535b7edbd8
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Feb 3 01:22:59 2014 +0200
+
+    stats:::cutree -> stats::cutree
+
+commit 18a24202087cc8b3de34cd3b70c288d508674773 (tag: 0.12.1)
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Feb 2 22:58:45 2014 +0200
+
+    Fix "\examples lines wider than 100 characters:" in several places.
+
+commit c5f56e4fe29cd86a806ff16fb02ef26e77652fad
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Feb 2 22:42:31 2014 +0200
+
+    data(iris) -> data(iris, envir = environment())
+
+commit c0b9bc0eb0dc2fd199804fe2c36f410542561136
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Feb 2 22:20:55 2014 +0200
+
+    Made sure to check dendextendRcpp is available before calling it.
+
+commit d40fc3445cad7c46bbe7d44fe7b761d95e63ad17
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Feb 2 18:44:10 2014 +0200
+
+    Commented out manipulations on the search path and of assignInNamespace. (to avoid NOTES/warnings)
+
+commit 6e073a7bd8d7fdc873fc28a895c092d1a08bc8e8 (tag: 0.12.0)
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 23:27:22 2014 +0200
+
+    Vignettes - getting the latest version.
+
+commit 4e2b110124c7749606d485b28a282f79912dca16
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 19:35:55 2014 +0200
+
+    rotate - Remove the "flip" command in the example (after I noticed that "rev" does this just fine...)
+
+commit 28d84d85b0dbbe4642acde5737f46daceb6c225d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 19:18:37 2014 +0200
+
+    Fixed the usage of person() in DESCRIPTION. (props goes to Uwe Ligges for his input)
+
+commit 6173ec9130821d3af2ae321ec78263d0a80807a5
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 18:36:04 2014 +0200
+
+    Fix "Argument items with no description in Rd object": 'plot_horiz.dendrogram', 'untangle_step_rotate_1side'.
+
+commit 87ec513c5f9b369dbb0ee5f72f9f65a6e03f2bdd
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 18:32:11 2014 +0200
+
+    Fix "Objects in \usage without \alias in documentation object 'shuffle'":
+      'shuffle.dendrogram' 'shuffle.hclust' 'shuffle.phylo'
+
+commit 35bf95816926aa8c44d8434d2276ff299fa7aa6d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 13:55:24 2014 +0200
+
+    Fix "Undocumented arguments in documentation object" for:
+          * 'bakers_gamma_for_2_k_matrix'
+          * 'cor_bakers_gamma'
+          * 'cut_lower_fun'
+
+commit 651bd982225fd3139e2ff0bbf481c2f42701d692
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 13:42:36 2014 +0200
+
+    Fix "'library' or 'require' call not declared from: 'ape'" by commenting-off every "require(ape)" command in the code, since it is already mentioned in imports!
+          (see: http://stackoverflow.com/questions/15648772/how-do-i-prevent-r-library-or-require-calls-not-declared-warnings-when-dev)
+          The problem still persists because of .onLoad in zzz.r, but we'll look into this later...
+
+commit 1f588467aac9ed03143cb6914f37e636ecb3596c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 13:22:37 2014 +0200
+
+    Fix "Argument names in code not in docs", for: edge.lwd dLeaf_left dLeaf_right main sub rank_branches hang match_order_by_labels cex_main cex_main_left cex_main_right cex_sub
+
+commit a4fe297836162da1d659ceced1489515d8b5d833
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 13:08:05 2014 +0200
+
+    Fix "Mismatches in argument default values "tanglegram"
+
+commit 12a24bf98292b612f3d14cee14f6c17556cdc94a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 13:02:58 2014 +0200
+
+    Fix "Codoc mismatches from documentation object 'rotate':" - by removing k and h (since I never got to implement them...)
+
+commit 13c28a1d15653e480366b8abf0cb866da4d270fc
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 12:56:57 2014 +0200
+
+    Fix Undocumented code objects: 'old_cut_lower_fun' 'old_get_branches_heights'
+      'old_heights_per_k.dendrogram'.  By adding them as "#' @aliases"
+
+commit cb607c688f867c02a48cea0f9e94d9b901b51157
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 12:45:28 2014 +0200
+
+    Fix various "Missing link or links in documentation object"
+
+commit 0d9c368e96143655a33a538137fffc36fab5a404
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 12:33:52 2014 +0200
+
+    remove \link{untangle} from various .Rd (I never created this function...)
+
+commit 52b0ff45ccd8516128fcf84b30a73845b4b8814a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 12:29:18 2014 +0200
+
+    fix "Unknown package 'dendroextra' in Rd xrefs" in color_branches docs.
+    
+    tanglegram.dendrogram - fix warning in layout(matrix(1:3, nrow = 1), width =
+      columns_width): partial argument match of 'width' to 'widths'
+    
+    unbranch.phylo - fix extra parameters.
+
+commit e80c96f6be77ac2c647fcf7c65f7cc353c378161
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 12:24:55 2014 +0200
+
+    Add DESCRIPTION and NEWS to git.
+    
+    This is an ongoing bump to 0.12.0
+
+commit 6706c688c8860524cdd974f3b15ffe76890d482d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 12:22:02 2014 +0200
+
+    Return "as.phylo.dendrogram" by adding "ape" to "Imports" in DESCRIPTION and "import" to NAMESPACE. Also fixing consistancy (using x instead of object).
+
+commit 52f47805b4a8d5139ad93a42f96ce0e6b0809c2d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 11:52:45 2014 +0200
+
+    Remove "as.phylo.dendrogram" so to not force the package to depend on "ape"
+
+commit 519cad5cf29fdee53e8bb59427a38bcbdcd11dc1
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 11:26:55 2014 +0200
+
+    Moved from ::: to :: (where possible with dendextendRcpp).
+
+commit ec75abf28982a75f9e4fab58d0fa70192cf77044
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 10:58:07 2014 +0200
+
+    Using 'talgalili/dendextend', in install_github
+
+commit f4cff303e162afcbfc16b261cc2c6719384aa2fa
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 10:57:38 2014 +0200
+
+    Moved from ::: to :: (where possible).
+
+commit 20e1dae6418f5a4f6874287f934a5e437be469d7
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 01:16:42 2014 +0200
+
+    cutree.dendrogram - turned into S3 (no longer exported)
+
+commit 9ca729c854a8158d9a59c5b9647eb881e225c891
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 01:16:15 2014 +0200
+
+    changed functions names:
+          * trim -> prune
+          * unroot -> unbranch
+
+commit b520e840a8f2f6c17173b7894b05da1dbcd18eea
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 01:06:08 2014 +0200
+
+    cut_lower_fun acts diffirently on dendextendRcpp vs old dendextend, so I updated the tests to reflect that.
+
+commit e8ac80b7179dff873cc42074bd881a72041aa19a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Feb 1 01:05:05 2014 +0200
+
+    S3methods no longer seem to be exported (due to something in roxygen2), I chose to update the tests accordingly.
+          * cutree.hclust -> dendextend:::cutree.hclust
+          * cutree.dendrogram -> dendextend:::cutree.dendrogram
+
+commit 4ea429e670db01137b03c16c8203ea822701d7f8
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jan 31 19:52:02 2014 +0200
+
+    Added to .Rbuildignore "vignettes/"
+    (we'll deal with this later...)
+
+commit 0594889491ff6557ca8a6a99201ac06bd6c6223f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jan 31 18:25:33 2014 +0200
+
+    leaf_Colors - fix example (added "dend").
+
+commit c5723592f5f1794160bce0f7e16788a4b4f51c16
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jan 31 18:22:49 2014 +0200
+
+    exported prune_leaf
+
+commit dcc55c38e14a9e03776b7e5d481dbe45f3d28941
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jan 31 18:16:43 2014 +0200
+
+    README.md - invitation to get credit for using dendextend.
+
+commit a2a46841e0c31fdfabc64cc6c11123084fd61579
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jan 31 18:15:38 2014 +0200
+
+    Added to .Rbuildignore: (large files which are not essential)
+          * inst/doc/2013-09-05_Boston-useR
+          * vignettes/figure
+
+commit e7cbf414f575dc6e1ffcca7ead7d791775f0e132
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jan 31 17:58:03 2014 +0200
+
+    Added "ape::" to as.phylo
+
+commit 738d0ed8b2d3684fdf18afd9df996baf6322c739
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jan 31 17:57:09 2014 +0200
+
+    Fix S3method in NAMESPACE
+
+commit 8c68f206e26a54d844e089ac54e123c8406739c7
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jan 31 17:56:26 2014 +0200
+
+    Fixing .Rd indentation.
+
+commit 2172548da9340452ebbfe06d686e16aa9f3b2164
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jan 31 17:06:40 2014 +0200
+
+    Added a placeholder for "as.dendrogram.randomForest"
+
+commit ee796c1166d52b4979bb4205913ede8b0534d3e6 (tag: 0.11.2)
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Dec 10 18:13:23 2013 +0200
+
+    heirarchical -> Hierarchical
+
+commit 9bd9615c3cc6096119883fe5d70bb2bec79e0311
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Sep 5 03:13:01 2013 +0300
+
+    Added a fix to declare the UTF-8 encoding (for non-Windows users trying to install from github)
+
+commit 73e0f185b4fea01f81e91f0c714f614c74316b37
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Sep 1 23:52:19 2013 +0300
+
+    NEWS.md file added.
+
+commit e4a1fc233ba9467a6dc5554bdb81131675e6d203
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 31 15:24:36 2013 +0300
+
+    Added R code for the presentations.
+
+commit 3197196a0e50f7c1ae71fb7ead9ffbeecd32b749
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 31 15:19:52 2013 +0300
+
+    Updated presentations links
+
+commit 0f265bfc4a5d99707916ca007ca44786783d13d9
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 31 15:14:24 2013 +0300
+
+    Finished tanglegram and untangle.  Finished statistical measures of similarity between trees.
+
+commit c992a7b438ff9b7a4eef019d97bf40c0ef8c83e9
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 31 15:12:20 2013 +0300
+
+    Vignettes tweaks
+
+commit e783d26faa434a11d1e63ecdac36a8db67d865a3
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 30 18:35:59 2013 +0300
+
+    "trim" is now called "prune"!
+
+commit 3689f21f78bda55a85e22db191b8f8af87683b1d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 30 18:29:32 2013 +0300
+
+    Finished tanglegram and untangle. We are left with
+
+commit b3aab6a05622175609271d5b0907ff638c78ec2d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 30 18:27:58 2013 +0300
+
+     untangle_step_rotate_2side added k_seq parameter.
+
+commit eecbd30a487219b170256c2a68bb5a612803d33d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 30 13:41:22 2013 +0300
+
+    tanglegram now has "sub" and "cex_sub" parameters.
+
+commit 73d97149ed880de44030d55a8473a7e13a4c4a6e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 30 12:34:05 2013 +0300
+
+    Seperated 2013-09-05_Boston-useR.Rpres into two files (since RStudio is not able to handle them)
+
+commit 1d6d9fb5f17484bb1f3db0148939c0e8f0d098a2
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 29 18:25:05 2013 +0300
+
+    untangle_random_search - made sure the function will return the original trees if no better tree was found.
+
+commit d3b0f0761095f77488d0907253a6638fa2b7a783
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 29 17:36:02 2013 +0300
+
+    tanglegram now returns an invisible list with the two dendrograms (after they have been modified within the function).
+
+commit 5e1abf1d54906fa6e313364e99f47c0c70c5c8e7
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 29 16:55:58 2013 +0300
+
+    Added "warn" parameter to: assign_values_to_leaves_nodePar, And set it to FALSE when used inside "tanglegram".
+
+commit 2fc659e620d52f5bd01791f2a1b43e1846af3a1f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 29 15:45:04 2013 +0300
+
+    color_labels - added a "warn" parameter. And also set the default (in case no k/h is supplied) - to just color all of the labels.
+
+commit 10d8cc3d2fb3893b89d32a677bbb9996cb54f889
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 29 15:26:40 2013 +0300
+
+    Version bump to 0.11.0
+    
+    (this is actually from the 24th, but it needed recovery due to some git-issues having to do with caching)
+
+commit 79ab5829cd8d1c362f8d11996027d938f881db62
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 29 15:23:35 2013 +0300
+
+    tangelgram - added cex_main parameter.
+
+commit 2c9b5b4ea8f93426d35e4030d5e078236cd5a30f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 26 21:56:26 2013 +0300
+
+    Adding links to the documents, and a better "install" code sequence.
+
+commit d86616c275969e09f181342ba10364e49ec03c57
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 26 21:55:52 2013 +0300
+
+    Added auto purl for extracting the R code.
+
+commit d1f14cf21398e86100855a93a4562e000492f18c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 26 11:18:48 2013 +0300
+
+    Boston-useR presentation
+
+commit a286c6e26132f7b5e89dfb5ba596cc780416fffa
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 24 12:47:04 2013 +0300
+
+    vignette - minor fixes
+
+commit 325c8df231b3cdded580ce5305582e02eff7f48b
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 22 09:30:04 2013 +0300
+
+    Updated the list of contributors to the package.
+
+commit fba17c38164c04d75b159b47d395bc505568569d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 21 00:18:43 2013 +0300
+
+    VIGNETTES: Added FM-index and Bk plot sections.
+
+commit 35df06cbbb365ece0a50ae6830ba83b64e8fbe23
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 21 00:17:38 2013 +0300
+
+    New tests for Bk methods and some minor doc changes.
+
+commit 0079a2ce9b293f1146923cd52531278f89a8b456
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Aug 20 22:53:29 2013 +0300
+
+    Version bump - 0.10.0
+
+commit c08cec1c01e62b4c3e0dcd8277525fcbe1c426d5
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Aug 20 22:47:54 2013 +0300
+
+    Vignette - cut_lower_fun PDF and extra files are updated.
+
+commit 987af618900d7918e32e6f4bd9ec1e401ae7379f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Aug 20 22:47:10 2013 +0300
+
+    cut_lower_fun function added - it wraps the "cut" function, and is built to be masked by the function in dendextendRcpp in order to gain 4-14 speed gain.
+
+commit 9bd41bf598d6e96f699a4d9b4e3c435735aa68db
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Aug 20 08:11:31 2013 +0300
+
+    cor_bakers_gamma.hclust function added.
+
+commit c534cc08e9199258729407b4179540d82906b3ac
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Aug 20 00:12:18 2013 +0300
+
+    Vignettes - some Bk thoery, and Rcpp section.
+
+commit a8b17c05e097ecacf7b7bd82dfaff78537c1f237
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 19 15:56:31 2013 +0300
+
+    Create hidden backups of the R functions which are replaced by the Rcpp function so that we will be able to benchmark them.
+
+commit 0d4d3ddc2b91b27e402d2edb3b3eabd69e13bf8a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 19 15:20:30 2013 +0300
+
+    UPDATED FUNCTIONS:
+     * Bk_plot - now adds dots for the asymptotic lines in case of NA's
+       * Bk - now calculates cutree once for all relevant k's - and only then goes forth with FM_index.
+    
+    BUG FIXES:
+       * FM_index_R - now returns NA when comparing NA vectors (when, for example, there is no possible split for some k), instead of crashing (as it did before).
+       * Bk_plot - now won't turn one dendrogram into hclust, while leaving the other a dendrogram.
+
+commit 890308447b5d55e0c05e570299110523c29b3ab1
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 19 14:11:30 2013 +0300
+
+    Rename the package RcppDend-> dendextendRcpp
+
+commit 740aaf7d925b1bcb2bf495686c548ec785f63ea6
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 19 13:43:15 2013 +0300
+
+    note on labels.dendrogram.
+
+commit 730cf255f51ca6ef42e85a6bd6ce8aa6ad83c288
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 19 13:36:40 2013 +0300
+
+    color_labels - added "labels" parameter for selective coloring of labels by name.
+
+commit ffb7187f0c56b30544f5658ec691f7e68409f538
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 19 13:08:45 2013 +0300
+
+    Make RcppDend loads and override core functions in dendextend in order to make it MUCH faster :)
+
+commit 979beed0fd915350e53aec41e70ca021561555ab
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 19 13:07:28 2013 +0300
+
+    add more explenation in the tests for how labels.dendrogram acts when there are missing labels. (in stats vs RcppDend package)
+
+commit fc3ea186349df5fc0a0f2ca250f66e2eea63f0c9
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 19 13:06:43 2013 +0300
+
+    T -> TRUE
+
+commit f532205dbc7753cd338d4c63a5f5f550825eda2e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 19 13:06:32 2013 +0300
+
+    being explisit about "sort" in get_branches_heights
+
+commit 814a6684803a9ce98a321f290d28dbdd8d26b929
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 18 21:35:52 2013 +0300
+
+    Bk_plot function added!
+    
+    Also fixed a major bug in Bk_permutations
+    
+    A mistake was fixed in cutree.dendrogram doc.
+    
+    sample.dendrogram now returns a tree of type "dendrogram" (before it didn't have any class)
+
+commit d5a24cd2c8264333a2b355be6b9eba02da86fb7b
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 18 18:38:48 2013 +0300
+
+    Bk_permutations function added.
+    
+    And also added .Rd for Bk.
+
+commit bf73478bdc3684ae53cbc209ebd5a733880473ef
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 18 18:16:53 2013 +0300
+
+    Bk Function added!
+
+commit feb643243b3a9b7971353c26c4275e5cfce8eea2
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 18 16:24:14 2013 +0300
+
+    Exaplin what happens to FM distribution for different values of k.
+
+commit 4cc208da018b65d16164c7b0f3b3fdc378ef3f82
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 18 15:36:43 2013 +0300
+
+    FM_index_permutation function added
+
+commit ee501736d4e3877a272ed989442bea9f9127ad88
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 18 15:03:42 2013 +0300
+
+    tests for FM_index_R and FM_index
+
+commit e7a250be4ef9cc1098a8ea6fb20686b72a0343a2
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 18 14:21:22 2013 +0300
+
+    FM_index_R and FM_index functions added.
+
+commit e4913b5a57cd87550a5d2c23f102ca2a2650ed8d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 18 13:09:41 2013 +0300
+
+    sort_2_clusters_vectors function added.
+
+commit f2dc78b799c2028378e3e33cb7bd7e7f431775a6
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 18 12:49:03 2013 +0300
+
+    export lowest_common_branch.
+
+commit 35cf12da241892ec951a3a7507263cef0e34f707
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 18 12:31:58 2013 +0300
+
+    FM_index_profdpm function added.
+
+commit 858167fb8a6ae98dfa5b2b064afafaf3a85e6e84
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 18 11:06:37 2013 +0300
+
+    Change variable names from "." to "_"
+
+commit cde09ff3b9de266373a875b8bde72ab05b51daf2
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 17 12:48:06 2013 +0300
+
+    Added a commented-out section which could (in the future) be the basis of an Rcpp cutree (actually cutree_1h.dendrogram) function!
+
+commit 88c8685854c3396db7d7e971de94b77a0794cc50
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 16 14:53:02 2013 +0300
+
+    color_labels_by_labels - code added (now need to document, and add to color_labels).
+    
+    Maybe I should create color_labels_by_kh
+
+commit 4680820d62104d17713efc910d6e9e212f980f55
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 16 14:49:54 2013 +0300
+
+    color_labels - removed unused 'groupLabels' parameter.
+
+commit 02c1f28f387d1e1a3212fd765073b68472f328d5
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 16 10:18:54 2013 +0300
+
+    copyright notice.
+
+commit 5db46e612d92aeb29802c89e4342c1b049f7894d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 16 10:18:21 2013 +0300
+
+    Bk-method.r file added
+
+commit f5fbc66181eb875c4b8fb3751eff83e6f9e58150
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 15 19:08:43 2013 +0300
+
+    Added some ref for tanglegram problem
+
+commit 8d83bee661f0fc13e99887b40b3a36f239efb019
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 23:05:15 2013 +0300
+
+    Vignettes - Cophenetic correlation
+
+commit cecaa2a1f3e9ad9220fbf66f1348d35ecbf2d102
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 22:30:52 2013 +0300
+
+    cor_cophenetic function added (also sort_dist_mat)
+
+commit 87bce54911db24ab44cd2e9128ef4f4c06eb897d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 21:31:16 2013 +0300
+
+    Adding copyright notice
+
+commit 08fb0c336e812d11fb7a4d0234ee453bca8ad9c5
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 21:17:53 2013 +0300
+
+    VIGNETTES: Added a bootstrap and permutation examples for inference on Baker's Gamma.
+
+commit f6f62b214a22282cbae8244473427957ae4d5050
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 21:07:09 2013 +0300
+
+    Added a "warn" parameter to cor_bakers_gamma
+
+commit e02436f35d18b38a4e8f92a8b969d933feb5eda9
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 21:00:38 2013 +0300
+
+    sample.dendrogram function added - it allows for permutation and bootstrap tests for comparing two trees.
+
+commit e26477395c8d6b7dd45625d79ef4abb342fcabfb
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 20:59:44 2013 +0300
+
+    Fix cor_bakers_gamma to work in case if trees with only leaves.
+
+commit 8735d55b8fb80d2d4e11f9d3a043d3ce1f87b2fe
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 20:58:47 2013 +0300
+
+    nleaves - fix doc.
+
+commit aa129cd94ba94b01aa6567594dc069f5543a3b5f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 20:58:31 2013 +0300
+
+    More protection for cutree by forcing nleaves to use method order.
+
+commit 6ba62950ae1380ee5e358c0d57ffe33b4a7e6d5a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 19:04:23 2013 +0300
+
+    fix_members_attr.dendrogram - fixed a bug introduced by the new "members" method in nleaves. (test added)
+
+commit c213ffc8083e8fabdc47460a3b0404018d66fa4f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 17:34:41 2013 +0300
+
+    sample.dendrogram function added. Only works for replace = FALSE
+
+commit 39a5237e413c817672fae3eb0670ecf6d27458f7
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 17:29:24 2013 +0300
+
+    rank_order.dendrogram function added.
+    
+    Also moved fix_members_attr.dendrogram to attr_access.r
+
+commit 33390db35e07d74372ce2a2a3b613105c7e9c716
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 16:50:42 2013 +0300
+
+    added ref to Baker 1974
+
+commit bfef209fe672cfd848ff0cc46d1366de931b41c9
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 16:45:29 2013 +0300
+
+    Vignettes: adding a third simulation
+
+commit 9dd5cdd07b19e050f5c00769a0b872996af77782
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 15:49:05 2013 +0300
+
+    VIGNETTES - Added the Baker's Gamma Index section.
+
+commit 5a0209d528de0be6140b839cc654816b61e9f599
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 15:45:33 2013 +0300
+
+    Adding reference to Baker's paper from 1974.
+
+commit 88579521949a4c5c9dabbe9b46ddd098862742b0
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 15:37:01 2013 +0300
+
+    cor_bakers_gamma function added.
+    
+    Including docs and tests.
+
+commit da980a98e9e03f6965886e1304818d9102d88d62
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 15:35:34 2013 +0300
+
+    Added {}
+
+commit 646329a4c52a5ff6a158a33866825a7112b6cfe3
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 15:11:24 2013 +0300
+
+    tanglegram - added the match_order_by_labels parameter.
+
+commit 733f127dcbd7312b7b2651aedd1fa2ba8dff023e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 13:50:54 2013 +0300
+
+    Added test for cutree's use_labels_not_values parameter.
+
+commit 82b3bd2cc29bf0bed45a48658ff1cae69fb63757
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 12:30:38 2013 +0300
+
+    tanglegram - added the hang parameter.
+    
+    Also updated a new plot with it in the Vignettes.
+
+commit 2bb5655508cead8f3935aaf7bf8fe525b64953f5
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 12:07:49 2013 +0300
+
+    Version bump 0.7.3
+    
+    Also some tweaks made to the vignettes.
+
+commit 5c0f75e8c25295d7ed032daae092fa4006636110
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 11:41:15 2013 +0300
+
+    tanglegram - fixed the right tree's labels position relative to the leaves tips. (they were too far away because of a combination of text_adj with dLeaf)
+
+commit f56a9d83d2cb0765b5053ed2513de3415b3ca335
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 11:10:29 2013 +0300
+
+    rank_branches function added.
+
+commit 62631fa110f321c4853e376bc6d03a4ac62a88c5
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Aug 14 11:09:48 2013 +0300
+
+    sort_levels_values now deals with vectors haing NA values (just returning the vector as is)
+
+commit 7d8ae6487567dcdcd682f93900eb7ee4c6d2338f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Aug 13 20:06:29 2013 +0300
+
+    Version bump to 0.7.2
+
+commit e153fd2696ead559cb966f7584336a5390f361bd
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Aug 13 20:05:57 2013 +0300
+
+    tanglegram - labels are now alligned to the leaves tips in the right dendrogram.
+    
+    This took extending plot_horiz.dendrogram, editing a new functino called plotNode_horiz
+
+commit e7a0dcb6f2bbe1258234c3f26e7c01d96c4992e3
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Aug 13 13:41:20 2013 +0300
+
+    Set sort_cluster_numbers = TRUE for cutree, in order to make it compatible with stats:::cutree
+    
+    Added a test for this.
+    
+    Also:
+    Fix cutree.hclust to work with a vector of k again when !order_clusters_as_data
+
+commit 3ed6210c0eea5bceef1fa267df0ee5aac603cb6c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Aug 13 13:27:38 2013 +0300
+
+    Fix untangle_step_rotate_1side to work with non-missing dend_heights_per_k
+
+commit 889c0e8051df41189e8fcaa7f68e6422d752173e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Aug 13 13:20:11 2013 +0300
+
+    Fix some names in untangle_step_rotate_2side test
+
+commit 0d4b1380f8da11512a0127f0a169b3b58baef3b6
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Aug 13 12:45:43 2013 +0300
+
+    Make a quicker test for untangle_step_rotate_2side
+
+commit b36c95d975926dcaa0544d2444e0073d0930ee67
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 12 10:03:54 2013 +0300
+
+    Set print_times=FALSE for tests.
+
+commit 31091119ab19eb19839decac3b80d300f39e37cc
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 12 10:02:30 2013 +0300
+
+    Version bump to 0.7.1
+
+commit 102641953cedcf7a27a49fefaec535078d2106c2
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 12 10:02:16 2013 +0300
+
+    Vignettes - untangle_step_rotate_2side
+
+commit af6c7bf09258eb18b4c8ef02e0d8281244540ecb
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 12 09:40:41 2013 +0300
+
+    untangle_step_rotate_2side - added tests
+
+commit 08ba75fc1478c01ed6e64d81b28a3346fca8d1d1
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 12 09:30:28 2013 +0300
+
+    Moving old code done (maybe I will document it in the future, and maybe not...)
+
+commit 07e1fb0d8f3adb3867da6b180db134124f656d41
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 12 09:21:42 2013 +0300
+
+    untangle_step_rotate_2side function added.
+
+commit ddd2552edc201fbbd1ec822f9588ea9d0f069591
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 12 00:55:08 2013 +0300
+
+    Version bump to 0.7
+
+commit e208ba3e7cb73ff64127ed3dd95d26ce28105f55
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 12 00:52:38 2013 +0300
+
+    Vignettes doc for untangaling trees.
+
+commit 581245cd617249ae46a8c81f3c06c2b8c6eb0fbe
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 12 00:52:17 2013 +0300
+
+    Added k_seq and dend_heights_per_k to untangle_step_rotate_1side.
+
+commit 43178f51bb72b7bcf8cbb4ffb6ab5a586bf91a29
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 12 00:04:38 2013 +0300
+
+    Rename: untangle_forward_rotate_1side -> untangle_step_rotate_1side
+    
+    Also added the "direction" parameter (with either forward or backward)
+
+commit f72190624e030b30bd3504a69897dcbf7bd0d2a9
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 23:54:06 2013 +0300
+
+    untangle_forward_rotate_1side function added!
+
+commit 88175b681bc50a164863c85e85a97d6986e57275
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 23:34:06 2013 +0300
+
+    There is some problem with match_order_dendrogram_by_old_order - might need to revisit this in the future...
+
+commit a85ad68d5e35bf8a14536f903163c839280ecc68
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 23:33:35 2013 +0300
+
+    Added shuffle to the namespace.
+    
+    Also added some doc to all_couple_rotations_at_k
+
+commit 6acc7e73533c898c2a6eeb39ab695118922b2472
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 22:52:29 2013 +0300
+
+    all_couple_rotations_at_k function added.
+
+commit 01b489e6a99084bd86114d14d689b4c53ef13dfb
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 22:45:36 2013 +0300
+
+    scaler -> scalar
+
+commit 2b65ab317d4db6cc32a38893c748924e792ba38a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 22:42:24 2013 +0300
+
+    donotrun  -> dontrun
+
+commit 3d9fda5bea8512724171a7ef0c4c2f3c570a7ad7
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 21:54:56 2013 +0300
+
+    flip_leaves function added
+
+commit 7e840b51a498534abe0262f6dd99da289b4f0972
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 16:25:50 2013 +0300
+
+    move some code down the file.
+    
+    (might be erased later)
+
+commit 4fe24f9e7349f818a1eee36f480cc99ff12c267d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 16:24:43 2013 +0300
+
+    untangle_random_search function added - random search for two trees with low entanglement.
+    
+    Modified the shuffle.Rd file.
+
+commit 79ec35e2c11e186aa043396be9fa775c70dde2e0
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 13:18:02 2013 +0300
+
+    shuffle function added.
+
+commit 270ae47c997f19b3036be5144067517cb89ab600
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 12:58:04 2013 +0300
+
+    rotate - minor code and doc improvements.
+
+commit b483d57c8dcaed0544d6f761a9ba85a5564f87a2
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 01:14:40 2013 +0300
+
+    Bump version to 0.6
+
+commit 4e258d07cf4134301c74eca77ae8c5245f24c4f8
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 01:14:32 2013 +0300
+
+    Vignettes - added tanglegram and entanglement.
+
+commit 1cf03a869e76c328ab179634fe589a093b35009e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 00:33:23 2013 +0300
+
+    entanglement - added .Rd example
+
+commit af2148475bf31a7cfe109df4c4bd454b642335db
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 11 00:32:54 2013 +0300
+
+    tanglegram  - added a "main" parameter.
+
+commit df51acb622e3187e79bab4a31568dfa4a4f46043
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 23:57:59 2013 +0300
+
+    entanglement function added!
+    
+    With examples and tests.
+
+commit a10f2bdd3841369a9e6ba717eb8dfebdd3e173db
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 23:07:23 2013 +0300
+
+    moved code from entanglement.r. -> to -> untangle.r
+
+commit 83e729318a4c174c0e6bd2ba9d56791bccd52287
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 22:58:59 2013 +0300
+
+    Rename: 'untangle.r' -> 'entanglement.r'
+
+commit 3a1c4e22a71032534078248fa5a564cc64f216c1
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 22:52:09 2013 +0300
+
+    match_order_dendrogram_by_old_order function added.
+
+commit 52e15fe7e607f1a561aae6c513608a0339573a13
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 22:12:16 2013 +0300
+
+    nleaves - now allow the use of the "members" attr of a dendrogram for telling us the size of the tree.
+
+commit 9c65dd817006d32a020ec567f03e5be85e95bd38
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 21:59:24 2013 +0300
+
+    length(order.dendrogram(object)) -> nleaves(object)
+
+commit d8932be7f5f7a0b3b4338e36532f841211bdac38
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 21:57:59 2013 +0300
+
+    abels_order_labels -> labels
+
+commit c11b0ee4d6fc7830a620b64004fb99a44de0999e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 21:38:56 2013 +0300
+
+    match_order_by_labels function added.
+
+commit 4080be6a6edcbb66eed6a45accbd0cbdf0f2707e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 21:17:20 2013 +0300
+
+    dendo -> dend
+    
+    + re-ordering some code.
+
+commit 38073ca37ce97ab13ced0a27019daef22f569650
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 21:14:01 2013 +0300
+
+    leaves.values -> order.dendrogram
+
+commit 022419b06eecc16577d379f05a25f7a26b0b09d5
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 21:05:06 2013 +0300
+
+    Old code added (it now requires modifications)
+
+commit 1f6319a08f55af24ffb1768c7953526a0d3fcbf8
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 21:03:20 2013 +0300
+
+    untangle.r file added
+
+commit 13b84b9e1d51b91ac5d2b47e3c4bf616f2f53da6
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 15:36:21 2013 +0300
+
+    vignettes - added an example of the tanglegram.
+
+commit 48ea0d014aedf0c9a1eaf9d23c5137d80e9fa4a6
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 15:24:50 2013 +0300
+
+    tanglegram function officially added!
+    
+    It has more options than the original.
+
+commit 90c8b957c44b7920ba91e869820b9893b6c5ce31
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 15:23:20 2013 +0300
+
+    nleaves - changed some export rules.
+
+commit da98bdecb2577e6290cef9ecc5da8cdc613bca7a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 15:23:00 2013 +0300
+
+    fix tests for the automatic addition of pch=NA.
+
+commit 307f0b0a3594fa3e77af16f0977b46f8b279655e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 15:06:45 2013 +0300
+
+    Makes sure pch==NA if we are modifying a nodePar value which is other than pch (and pch did not exist before) - in assign_values_to_leaves_nodePar
+
+commit d11873b3275b12472571d0e93e8363ebb5b75a27
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 14:49:53 2013 +0300
+
+    assign_values_to_branches_edgePar function added
+    
+    Also - remove_branches_edgePar
+
+commit d15f8d6adf8913c3a164c24c35a7a8b38ed2abac
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 14:03:39 2013 +0300
+
+    remove_leaves_nodePar function added.
+
+commit 0badd908de9bfb4fcd239ac2bbfecca6b69ecc23
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 12:46:31 2013 +0300
+
+    plot_horiz.dendrogram function added
+    
+    As well as many chances to tangelgram (which will be documented later)
+    
+    + a version bump
+
+commit 8ad570c4281752e814f464b5b45919b5d91bf919
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Aug 10 12:45:35 2013 +0300
+
+    fix donotrun ->dontrun
+
+commit fed9f7803e0626ac6f7b520a9d10429c1300f6c1
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 5 18:21:58 2013 +0300
+
+    intersect_trees - added the "warn" parameter.
+
+commit 055fad9ab63dd1a5682a273ce428c0c55e0c61d7
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 5 13:10:47 2013 +0300
+
+    Changed "dend1" -> "tree1", and added methods for hclust/phylo (by simply turning them into dendrograms)
+
+commit 980e0c5da1da14741ace95d5be645e9a22660607
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 5 13:09:34 2013 +0300
+
+    fac2num - updated doc
+    
+    rotate - updated doc (added k,h  - but they are not in use yet)
+
+commit 11ffb1ff3d956e842f9935331b25745079553390
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 5 12:52:11 2013 +0300
+
+    tanglegram- remove un-needed comments
+
+commit 4edbc4ddfa902a2b44872ed18f109d5a00d482fc
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 5 12:49:34 2013 +0300
+
+    tanglegram - more parameters.
+    Made it so that the labels will be handled by plot.dendrogram (instead of by me)
+
+commit 61b7f11618bfbc92265917ab46e4dad66d779d9e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 5 08:24:22 2013 +0300
+
+    tanglegram file/function added!
+
+commit 3468f6266f9b45b7b52957b4164dfa3b9da51dba
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 5 08:13:52 2013 +0300
+
+    order.dendrogram - added tests and made the function a bit more optimized.
+
+commit cdde4d40bd7d1b0422d000bbe773a140e583950c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 5 08:12:58 2013 +0300
+
+    fac2num - added tests and a keep_names parameter
+
+commit 28e6de16349816d30b04c8536a36e3e0eae4b58e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Mon Aug 5 06:45:08 2013 +0300
+
+    rotate - fixes calling the same functions more than once (minor improvements)
+
+commit b9a64d930369c572200f67b0b5e5abcc5e04b2fd
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Aug 4 22:57:55 2013 +0300
+
+    Change title
+
+commit f7e66bcc5fc91336da3197263cdf2b1a51d43d2f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 23:41:01 2013 +0300
+
+    bump date, and added a link to where I'll publish posts about the package.
+
+commit 89e6431db89c0ba9a3d106eb6c8f37efdad53f6f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 23:28:39 2013 +0300
+
+    Vignettes - added Coloring branches example!
+
+commit b34b15b10058a360c72c3aed7b8f829a8c5ef167
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 23:26:56 2013 +0300
+
+    Added an example to color_branches
+
+commit 7e97f680a1b1ed4524efed64b4c62b81a14b9f75
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 22:47:45 2013 +0300
+
+    "labels_colors<-" - fix the classes of the tree's branches.
+
+commit b9c5d916294b6ee7126c9f878c9d6e2d3d2bc455
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 22:46:46 2013 +0300
+
+    Function added: assign_values_to_leaves_nodePar - allows for complex manipulation of dendrogram's leaves parameters.
+    
+    * get_leaves_attr - added a simplify parameter.
+
+commit 94f1aa7ae94b6c80597d6c569c1faed77a91f58e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 22:17:11 2013 +0300
+
+    test to show that labels with integer values are VERY possible.
+
+commit cefa337a08dab6861a798e513e0f7c2ab3b3c437
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 21:15:42 2013 +0300
+
+    test-unroot.r -> test-unbranch.r
+    
+    change file name (to be consistant with the name change of the function)
+
+commit ff0b4bc9840865270beb60aa3aaf6875e62c0034
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 20:46:42 2013 +0300
+
+    as.phylo.dendrogram function added
+
+commit d467113521d3c7584e45b7ac30fc11352fa7b521
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 20:42:32 2013 +0300
+
+    Renaming the file:
+    unroot.r -> unbranch.r
+
+commit a05d61792c467e3ff896c088f84a0018a7874c23
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 20:34:10 2013 +0300
+
+    unroot -> unbranch: modify .Rd files
+
+commit 938a30080c1e820be22dcf2143efb9d405212a28
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 19:12:15 2013 +0300
+
+    Renaming the unroot function -> to -> unbranch
+
+commit 1cd001411ab94de183432231328d1c6022231db4
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 16:22:46 2013 +0300
+
+    cutree.dendogram - Prevent R from crashing when using
+    cutree on a subset tree (e.g: dend[[1]])
+    
+    cutree.hclust - gives a warning.
+
+commit cc0d0382773a7827520cbdfd32f4ae2ac7d8dc4b
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 15:56:56 2013 +0300
+
+    "order.dendrogram<-" - now returns an integer (instead of numeric)
+    
+    Added tests and documentation.
+
+commit af9751ecd6f70da56cf46cb14fee58bc37146f38
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 11:18:17 2013 +0300
+
+    making sure labels.hclust is exported!
+
+commit 32e2a42d84c3904fdc1be1e4c0fe79c8ee030f81
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 10:56:17 2013 +0300
+
+    Fixed a bug in color_branches when the tree's labels are integers!
+    
+    Also updated the doc with a nice Iris example...
+
+commit 479ca6fcb3777621bbc26b33b70c668cd01ee56e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Aug 2 00:25:07 2013 +0300
+
+    Extend color_branches to allow REPEATED cluster color assignments to branches on to the same tree. Something which the original function was not able to handle.
+
+commit 7d8d9d0ad258829bff85cfe3f41d17e40759a0ef
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 1 23:40:03 2013 +0300
+
+    "labels_colors<-" - fixed it so that by default it would not add phc=1 to the leaves.
+
+commit c17a1d12ca7d97907d101179c7bca4be0770c553
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 1 23:29:17 2013 +0300
+
+    color_labels function added.
+
+commit f4bd3cee24215d6aa8f3b0a8263c70f83d8083b5
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 1 23:28:37 2013 +0300
+
+    Fix cutree.dendrogram for the case of using hclust - so it will respect sort_cluster_numbers!
+
+commit 21b2009aa3700dd27e82534c003b2fd1475735c7
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 1 23:03:43 2013 +0300
+
+    fix missed \code{
+    and added "..."
+
+commit c5b15e4a945fb1e2662a3e753105f21695c165f5
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 1 22:47:24 2013 +0300
+
+    Another test for intersect_trees
+
+commit 243a91b4f930fe9e723ee98ffdf924e6414810ae
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 1 19:41:41 2013 +0300
+
+    color_branches function added.
+    
+    This is a modified version of the color_clusters function from
+    jefferis's dendroextra package.
+
+commit af1128d90658cbd2b1c3060e665125c561a8bd4b
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 1 19:40:31 2013 +0300
+
+    Fixed typo
+
+commit 606044ef983a843b29da700f19a0682038b7373c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 1 18:39:58 2013 +0300
+
+    Updated the is.X functions docs
+
+commit d591a2d66ab6960228ea552e15bd4466f9717c17
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 1 18:39:23 2013 +0300
+
+    sort_levels_values function added.
+    
+    Based on it we added the sort_cluster_numbers parameter to cutree. We are now able to have cutree return cluster id's which are ordered from left to right (so that the left most cluster in the tree will be "number 1").
+    
+    Relevant tests are added.
+    
+    This allows us to modify color_branches.
+
+commit a0d328163dd4e86d451d396b47a945d0be9ebb35
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 1 16:27:20 2013 +0300
+
+    color_branches.r file added - it includes the original "colour_clusters" and "leaf_colours" from the {dendroextras} package.
+    
+    (next - I will modify them in order to fit the {dendextend} package)
+
+commit 5330e518f2a5f9b108335ffae11f27dbba193494
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Aug 1 14:30:55 2013 +0300
+
+    Fix license reference (now pointing to http://www.r-project.org/Licenses/)
+
+commit 1d9844d98578e5d84bc5b6bdc1150690da1b9679
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 23:38:38 2013 +0300
+
+    vignettes - adding examples for cutree.dendrogram and hang.dendrogram.
+
+commit 715711a27f154d1aa7ee05c25e8cea8ef9362d4e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 23:14:04 2013 +0300
+
+    cutree.dendrogram function added.
+    With many docs and tests!
+    
+    Also:
+    *falling back on cutree.hclust if possible.
+    *started using k=NULL, h= NULL in all functions.
+    *bad k returns NA.
+    *turn k into integer (like hclust)
+    * is.hclust/phylo/dendrogram functions added.
+
+commit e58929fbccfac87f10eb04f6a7dbc7aac50bf1ed
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 20:16:36 2013 +0300
+
+    cutree_1k.dendrogram - added tests
+    
+    (as well as faster solution for trivial cases of k)
+
+commit 2e971e298b6a1dd404f7959290b91364c3fea170
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 19:53:19 2013 +0300
+
+    dendrogram_heights_per_k -> dend_heights_per_k
+
+commit 7c5fff95e622330d26e32feea534f23f82357cd1
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 19:23:36 2013 +0300
+
+    cutree_1k.dendrogram function added.
+    
+    Also some changes to the doc of
+    cutree_1h.dendrogram was made,
+    As well as changing boolean->logical in some docs.
+
+commit 4dc03d908741834e58442f81190dde6e85ad8864
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 17:13:11 2013 +0300
+
+    Moving hang.dendrogram from cutree.dendrogram.r to attr_access.r
+    
+    Also moved the relevant tests.
+
+commit 0395b1379014ffe11a42f17b8327acb6ecb0d31b
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 17:10:20 2013 +0300
+
+    Make cutree_1h.dendrogram identical to cutree when height is above ALL clusters
+    
+    Changing 1 -> 1L
+
+commit 981a6a323005adeb7d9781101440488023dcc76e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 16:56:41 2013 +0300
+
+    Fix a major bug in cutree_1h.dendrogram due to some line getting erased at some point (not clear when that bug was introduced).
+    
+    Also added tests (and some code in the example) for heights_per_k.dendrogram
+
+commit 6779acfc6bcba2a26a7d2f64375e662bc879db24
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 16:13:45 2013 +0300
+
+    vignettes - added some attr extraction examples.
+
+commit b333ba46772d3d513fdf186a873ebf6f7cf7fb89
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 16:13:07 2013 +0300
+
+    test when get_nodes_attr doesn't get an attribute
+
+commit 7fa3d0eea556f181d6f8fe28e9692dfe9320df66
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 16:12:38 2013 +0300
+
+    hang.dendrogram - added a test, and source ref for the function
+
+commit b4719844ca4fcad59a41957ae92ec539b35cb2ac
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 16:12:11 2013 +0300
+
+    fix_members_attr.dendrogram function added.
+
+commit 8a5510443d4b27ef50bfc0a8efb2e42b3721414c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 16:10:16 2013 +0300
+
+    bumping version to 0.4 (we'll stay here for a while...)
+
+commit fb394a78f7b8f3dd31920d66bd4d9cec9663752f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 15:58:34 2013 +0300
+
+    fix .bib (commas were missing)
+
+commit 01613a2dfcb3cac75bb228c1a9c5894e288129e1
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 15:20:35 2013 +0300
+
+    get_nodes_attr function added
+    
+    Also moved get_branches_heights to attr_access.r
+
+commit 1187719adb27333e8aa818b11d8c2fca36505346
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 31 14:01:04 2013 +0300
+
+    nnodes function added - count the number of nodes in a tree
+    
+    Also: added nleaves.phylo methods, based on as.hclust so it could be improved in the future.
+    
+    And - as.dendrogram.phylo
+
+commit f8491a5e2b283e55874e7b8cab45bbba4503dd5f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Jul 30 12:30:54 2013 +0300
+
+    vignettes - expended the abstract a bit.
+    
+    Also added some .bib (not added to the vignettes yet)
+
+commit 82846ea525b5514f656a458dadef11fdd7e31e5e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Tue Jul 30 12:29:55 2013 +0300
+
+    hang.dendrogram function added, including tests and doc.
+    
+    Also added some docs to other functions.
+
+commit 4754ba04931b530c4bb767cc1c3d75b3a9d109d8
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Jul 28 19:47:19 2013 +0300
+
+    cutree_1h.dendrogram function added (with doc and tests) - like cutree, but only for 1 height
+
+commit 2d125d0f493ab7eb278b280b5bafa84b4e3e942a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Jul 28 17:31:58 2013 +0300
+
+    Changed functions names to be more S3 like.
+
+commit 58922db2ccd732bb16545cf970b34d6a0df542bd
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Jul 28 17:30:33 2013 +0300
+
+    is.natural.number function added (with tests and documentation)
+
+commit 55598e4c8e65d156dc1b3755064934200e6c04a0
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sun Jul 28 16:56:15 2013 +0300
+
+    cutree.dendrogram.r - added first version of the file (with the old functions which will now be revised to newer naming conventions and documentation)
+
+commit 6793d2057e44a55bcd31c6b412ce6238e40d19c0
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 18:40:53 2013 +0300
+
+    Vignettes - updated noisense files.
+
+commit 74ece8d65445a0cbab5b68cdae61d335001a6dad
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 18:32:46 2013 +0300
+
+    Various changes to rotate - adding documentation and testing!
+
+commit 5d6414e01b6cd17c61762d7e5aa068aa831aebdd
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 18:31:52 2013 +0300
+
+    Some work on attr_access.r (not sure if this would be used later or not...).
+
+commit a61307166af3df04313daaf664b1c38d812655c6
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 14:43:42 2013 +0300
+
+    as_hclust_fixed - now works just as as.hclust when hc is missing.
+
+commit a74140ff24a101c62990827e1d7fe0d1c39a3dc2
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 14:09:36 2013 +0300
+
+    Bump release date for DESCRIPTION
+    (although it will keep moving until a specific stage is released...)
+
+commit 1e0501a2457c511ab88da5e02ff4885a9138c9e3
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 14:07:46 2013 +0300
+
+    Move from length(order.dendrogram(x)) to nleaves(x)
+    
+    (shorter to read, and better documented)
+
+commit 8b105cdcdbfe3a09536a8471bcf4f7a91d4d48e0
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 13:32:23 2013 +0300
+
+    Vignettes - adding references to other packages.
+    
+    Especially regarding dendroextras.
+
+commit ae741d8b030c62558ec0bb713ef3c45a325e209c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 13:21:50 2013 +0300
+
+    Forcing {ape} to load before {dendextend}, thus allowing for both rotate and unroot to work for BOTH packages. It does add extra noise when loading the package, but it is the best solution I can think of at this point.
+
+commit fb6dad986f76271d85858998b186d781eac6fe43
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 12:28:27 2013 +0300
+
+    labels_colors - added checks for "dendrogram" class
+
+commit 1c96d06aae48f0b2208fdf18a799a44662ca84db
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 11:08:47 2013 +0300
+
+    Fix a wrong variable name.
+
+commit 197370ed49146db8a161b4087d15e7e59a9d7840
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 11:06:39 2013 +0300
+
+    Testing for partial assignment.
+
+commit 634a7a783dd3b4aad5a85b678e51418f1cadf99c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 11:06:22 2013 +0300
+
+    Adding credit.
+
+commit 0d6189928c4b4d4c16186e7972823c5cc927026b
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Jul 27 11:06:07 2013 +0300
+
+    labels_colors - adding leaves labels as names to the color vector. Giving credit to Gregory Jefferis.
+
+commit e74fe575732d93e37e8df308923436639c3cdfba
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jul 26 18:59:48 2013 +0300
+
+    Vignettes PDF - updated
+
+commit e389f990109598b0bfc4547ad381417166a74592
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jul 26 18:49:04 2013 +0300
+
+    Updated NEWS/DESCRIPTION (still not done with V0.3)
+
+commit 9a558ea959e8adb933b7557c96ad38c9505af8f5
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jul 26 16:58:08 2013 +0300
+
+    Vignettes - added a section on labels_colors
+    
+    Also corrected some issus with figures' width.
+
+commit 68eba04e856ce98354156aedeff7bbff44e33d6b
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jul 26 16:57:23 2013 +0300
+
+    labels_colors - moved to their own file,
+    Also added new tests.
+
+commit 2ea19337fceacd6bb28ae434bd6d19f162fe288c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jul 26 16:30:26 2013 +0300
+
+    Trimming by labels.
+
+commit d7402e7d35d238a088167fcad4d49b6f97d984b5
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jul 26 15:00:57 2013 +0300
+
+    Vignettes - unroot, raise.dendrogram
+
+commit 9085f8dff19080d5318a684035492677bb326bfe
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Jul 26 15:00:32 2013 +0300
+
+    Fixes and extensions to unroot
+    
+    Also added unit testing.
+
+commit 7d6cb65f649370abf5a06010993d40874f136800
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Jul 25 20:15:54 2013 +0300
+
+    vignettes - spell checked.
+
+commit f95c928acd9158b4facd8f7769e8289ef0533d98
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Jul 25 19:36:08 2013 +0300
+
+    Added tests for tree size :)
+
+commit da057528700598e7bfe116a9862cdbaba4c7f72c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Jul 25 19:35:48 2013 +0300
+
+    Vignettes - assignment recycling and tree sizes
+
+commit 14a1e5e73918b7b5dff929392cbea35f3675a776
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Jul 25 19:34:44 2013 +0300
+
+    fix labeels-assign.Rd
+
+commit 6e287f46da55ce6a54f7418b7cbbab2d5db19f88
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Jul 25 19:33:56 2013 +0300
+
+    unclass_dend now uses dendrapply
+
+commit cea57f97aafca88ab0286b2defc3df53e6c0ce1c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Jul 25 17:50:40 2013 +0300
+
+    Vignettes: a section on dendrapply
+    
+    And some changes to the title.
+
+commit fec015c7704e4a2ce276e1bc907bc5984fc20443
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Jul 25 17:49:23 2013 +0300
+
+    Fix assignment recycling
+    And also class of nodes are no longer "dendrogram" after label assignment
+
+commit 15d1492efa4a5dbf1fca4904ef2b63f09fd26d5d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Jul 25 13:51:05 2013 +0300
+
+    Vignettes: switched from markdown to LaTeX (to make it easier to submit to a journal later on)
+
+commit aebbbc0419c6335bde271220f0339269471b484b
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Thu Jul 25 11:07:27 2013 +0300
+
+    Added a clear GPL-2 copyright notice on each r file.
+
+commit 35db6ed7daf43cbfc13e1215c2cd72196b503d2a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 24 23:42:41 2013 +0300
+
+    Updated NEWS and DESCRIPTION
+
+commit 5a20227959dc9c679c6dce3fb7c53f8dbc3dad0d
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 24 23:36:39 2013 +0300
+
+    vingettes - labels assignment for vectors.
+
+commit 34151cbae4144e8c5a02d605bf5c3f76e8a5d88a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 24 23:02:58 2013 +0300
+
+    "labels.hclust" and "labels.hclust<-" - now both use order=TRUE as default. this makes them consistent with labels.dendrogram. Proper tests have been implemented.
+
+commit 7b1d8f99c47642150ce7291977b885a4816bb00e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 24 22:39:18 2013 +0300
+
+    tests - changed names, and added quick way for checking the code while developing the package.
+
+commit 63042313216cbfe3096b2664de95c4464106922f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 24 22:38:33 2013 +0300
+
+    vignettes - first part of the introduction written (it is a very rough draft, but readable).
+
+commit 10e98856b71f563d118235380ba6223ae62607ec
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 24 13:07:27 2013 +0300
+
+    Added tests for labels assignment
+
+commit 5ee965531a718e4e3fcc05401cd85b307541a666
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 24 13:07:08 2013 +0300
+
+    Fixes for CMD CHECK
+    
+    1)
+    Change labels-set.Rd to labels-assign.Rd
+    And
+    order.denderogram-set.Rd to order.denderogram-assign.Rd
+
+commit 857e081c1e5f429f4610743b92074c10c9875a67
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 24 12:11:26 2013 +0300
+
+    New: demo, vignettes (knitr), tests (testthat) -
+    
+    all will need to be updated...
+
+commit 3f515a186cae647de1dabd8dd8793c2cfa38149b
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 24 12:08:06 2013 +0300
+
+    labels.hclust - added the 'order' parameter
+
+commit b3eed860411b37e8665d820482354317fdba1dcc
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Jul 24 12:06:36 2013 +0300
+
+    Updated doc -
+    
+    Re-formatting (more will be needed), and added a package main doc.
+
+commit 988374d2f9029bf8be7e0c0a265f8374b2370650
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Wed Apr 10 17:24:04 2013 +0300
+
+    intersect_trees function added
+
+commit cf1c8631983e77868ce4703996304ff14a2661d6
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 22:56:06 2013 +0300
+
+    order.dendrogram<- function added.
+
+commit ca4edad161e5b86808251480f6e39fe01c2e7ebe
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 19:16:42 2013 +0300
+
+    Notes on rotate and {ape} masking it.
+
+commit 05492664cef43c056e598ba0bf2d925367b203d3
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 18:41:09 2013 +0300
+
+    updated README
+
+commit a765a29170d39e99be456af413d28aa46dacc749
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 18:39:24 2013 +0300
+
+    unroot (S3'd), raise.dendrogram, flatten.dendrogram
+    
+    Functions are added, with more documentation and examples.
+
+commit 67b220e3e6df6bd4c5bab109e11323694a29049f
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 17:49:08 2013 +0300
+
+    as_hclust_fixed function added (and implemented in trim and rotate)
+
+commit 0fcde8ee5a8db266585098f222aa9a308f7bf7b3
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 17:12:02 2013 +0300
+
+    trim (leaves by labels) function added :)
+
+commit 7228393c5c13274f2d6ee87fc65fba988de44497
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 16:31:56 2013 +0300
+
+    rotate.phylo S3 method (and doc) added.
+
+commit 84ccfd6cc0851c7b420c7a784fb6b60e23bfff0c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 16:01:42 2013 +0300
+
+    rotate, sort, flip, nleaves functions were added!
+    
+    Very useful set of functions...
+
+commit fe4dbbbf707256511c565bb20333a812cd36f571
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 10:54:58 2013 +0300
+
+    head.dendrogram S3 method to head
+
+commit b37a26b3e2c02e6d8a3ae53f89ba8100b41c74ac
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 10:37:48 2013 +0300
+
+    unclass_dend function added
+
+commit 718899f2ed12d16e4b61aaf14ca5d8ee69010f36
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 10:22:44 2013 +0300
+
+    labels_colors function added
+    
+    Also labels_colors<-
+    
+    And changed count.terminal.nodes to be count_terminal_nodes
+
+commit f82ed9b21e846c2e79f6bb528251699a4daabfc1
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 09:35:03 2013 +0300
+
+    "labels<-.dendrogram" updated - to allow duplicate labels, and shorter labels than the size of the tree.
+    
+    Also trimmed the code a bit.
+
+commit cbcab9913715ec5d999c5052442683e350690a8a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 08:57:58 2013 +0300
+
+    count.terminal.nodes function added
+    
+    bump to version 0.2
+    
+    Remove needless comment from labels.r
+
+commit 8a55439abf7288468d529c71df2a9138d66b638c
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Sat Apr 6 08:22:50 2013 +0300
+
+    Merged "labels<-" help files
+    
+    Proper use of s3method documentation in roxygen2
+    
+    This now passes all CHECKS.
+    e.g: the code is CRAN-ready level   :)
+
+commit 0a117aed5f60c3a3cf27f1e3fa087c8f103f7cf4
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Apr 5 23:29:13 2013 +0300
+
+    NEWS and README.md files added
+
+commit 25d9c1c8c262c6650f2ed7d09f80472c4a84307e
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Apr 5 23:28:52 2013 +0300
+
+    labels assignment operators for matrix added
+    
+    As well as documentation for all the current functions.
+
+commit 2e4a49797e1ef301addf4c3d21817db695243f7a
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Apr 5 21:49:44 2013 +0300
+
+    labels.r added
+    
+    Includes assignment for labels
+    
+    Still needs documentation...
+
+commit 8479c64e7b41673f7e43eb22c28290b6d8416793
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Apr 5 21:37:41 2013 +0300
+
+    minor edit to DESCRIPTION
+
+commit 05eb3f97d5ce6a637dfcf1d996a03d625d3e96d3
+Author: Tal Galili <tal.galili@gmail.com>
+Date:   Fri Apr 5 21:35:21 2013 +0300
+
+    Package shell
