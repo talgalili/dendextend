@@ -7,7 +7,7 @@
 \usage{
 click_rotate(x, ...)
 
-\method{click_rotate}{dendrogram}(x, plot = TRUE, plot_after = plot, ...)
+\method{click_rotate}{dendrogram}(x, plot = TRUE, plot_after = plot, horiz = FALSE, continue = FALSE, ...)
 }
 \arguments{
 \item{x}{a tree object (either a \code{dendrogram} or \code{hclust})}
@@ -16,6 +16,11 @@ click_rotate(x, ...)
 
 \item{plot_after}{(logical) should the dendrogram be plotted after
 the rotation?}
+
+\item{horiz}{logical. Should the plot be normal or horizontal?}
+
+\item{continue}{logical. If TRUE, allows the user to keep
+clicking the plot until a click is made on the labels.}
 
 \item{...}{parameters passed to the plot}
 }
@@ -34,8 +39,11 @@ as.dendrogram \%>\% color_labels
 \dontrun{
 # play with the rotation once
 dend <- click_rotate(dend)
+dend <- click_rotate(dend, horiz = TRUE)
 # keep playing with the rotation:
 while(TRUE) dend <- click_rotate(dend)
+# the same as
+dend <- click_rotate(dend, continue = TRUE)
 }
 }
 \author{

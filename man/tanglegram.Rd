@@ -11,6 +11,11 @@
 \source{
 The function is based on code from plannapus, after major revisions. See:
 \url{http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r}
+
+As far as I could tell, this code was originally inspired by Dylan Beaudette
+function \code{dueling.dendrograms} from the sharpshootR package:
+\url{http://cran.at.r-project.org/web/packages/sharpshootR/}
+tanglegram
 }
 \usage{
 tanglegram(tree1, ...)
@@ -61,8 +66,8 @@ tanglegram(tree1, ...)
 
 \item{tree2}{tree object (dendrogram/hclust/phylo), plotted on the right}
 
-\item{which}{a integer vector of length 2, indicating
-which of the trees in a dendlist obect should be plotted}
+\item{which}{an integer vector of length 2, indicating
+which of the trees in the dendlist object should be plotted}
 
 \item{sort}{logical (FALSE). Should the dendrogram's labels be "sorted"?
 (might give a better tree in some cases).}
@@ -163,11 +168,11 @@ should be magnified relative to the default.}
 \item{...}{not used.}
 }
 \value{
-An invisible list, with two trees after being
+An invisible \link{dendlist}, with two trees after being
 modified during the creation of the tanglegram.
 }
 \description{
-Counts the number of leaves in a tree (dendrogram or hclust).
+Plots a tanglegram plot of a side by side trees.
 }
 \details{
 Notice that tanglegram does not "resize" well. In case you are resizing your
@@ -177,10 +182,12 @@ window you would need to re-run the function.
 \dontrun{
 set.seed(23235)
 ss <- sample(1:150, 10 )
-hc1 <- hclust(dist(iris[ss,-5]), "com")
-hc2 <- hclust(dist(iris[ss,-5]), "single")
-dend1 <- as.dendrogram(hc1)
-dend2 <- as.dendrogram(hc2)
+dend1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
+dend2 <- iris[ss,-5] \%>\% dist \%>\% hclust("sin") \%>\% as.dendrogram
+dend12 <- dendlist(dend1, dend2)
+
+dend12 \%>\% tanglegram
+
 tanglegram(dend1 , dend2)
 tanglegram(dend1 , dend2, sort = TRUE)
 tanglegram(dend1 , dend2, remove_nodePar = TRUE)

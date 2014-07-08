@@ -6,7 +6,9 @@
 dendlist(...)
 }
 \arguments{
-\item{...}{several dendrogram or dendlist objects}
+\item{...}{several dendrogram/hclust/phylo or dendlist objects
+If an object is hclust or phylo - it will be converted
+into a dendrogram.}
 }
 \value{
 A list of class dendlist where each item
@@ -17,6 +19,10 @@ It accepts several dendrograms and or dendlist objects
 and chain them all together.
 This function aim to help with the usability of
 comparing two or more dendrograms
+}
+\details{
+It there are list() in the ..., they are omitted.
+If ... is missing, it returns an empty dendlist.
 }
 \examples{
 \dontrun{
@@ -32,6 +38,8 @@ dendlist(dend, dend, dendlist(dend))
 dendlist(dend, dend2)
 dendlist(dend) \%>\% dendlist(dend2)
 dendlist(dend) \%>\% dendlist(dend2) \%>\% dendlist(dend)
+dendlist(dend, dend2) \%>\% tanglegram
+tanglegram(tree1 = dendlist(dend, dend2))
 
 }
 }
