@@ -35,6 +35,8 @@
 #' 
 #' \method{shuffle}{dendrogram}(object, ...)
 #' 
+#' \method{shuffle}{dendlist}(object, which, ...)
+#' 
 #' \method{shuffle}{hclust}(object, ...)
 #' 
 #' \method{shuffle}{phylo}(object, ...)
@@ -48,6 +50,10 @@
 #' This function is useful in combination with \link{tanglegram} and \link{entanglement}.
 #' 
 #' @param object a tree object (\link{dendrogram}/\link{hclust}/\link[ape]{phylo})
+#' @param which an integer vector for indicating
+#' which of the trees in the dendlist object should be plotted
+#' default is missing, in which case all the dends in dendlist
+#' will be shuffled
 #' @param ... Ignored.
 #'  
 #' @return A randomlly rotated tree object
@@ -78,6 +84,24 @@ shuffle.default <- function(object, ...) {
 
 #' @S3method shuffle dendrogram
 shuffle.dendrogram <- shuffle.default
+
+
+#' @S3method shuffle dendlist
+shuffle.dendlist <- function(object, which, ...) {
+   
+#    if(T) 1 else 2
+#    if(F) 1 else 2   
+   #    if(F) 1 else
+   #       2   
+   what_to_shuffle <- if(missing(which)) seq_len(length(object)) else which
+   
+   for(i in what_to_shuffle) {
+      object[[i]] <- shuffle(object[[i]])
+   }
+   
+   object
+}
+
 
 #' @S3method shuffle hclust
 shuffle.hclust <- shuffle.default

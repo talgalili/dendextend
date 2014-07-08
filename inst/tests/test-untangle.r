@@ -5,11 +5,10 @@ context("Untangle two dendrograms for plotting a tanglegram")
 
 
 test_that("shuffle works",{
-   
-   
-   dend <- as.dendrogram(hclust(dist(USArrests)))
+#    require(magrittr)
+   dend <- USArrests %>% dist %>% hclust %>% as.dendrogram
    set.seed(234238)
-   dend2 <- shuffle(dend)
+   dend2 <- dend %>% shuffle
    
    # different tree layouts:
    #    tanglegram(dend, dend2, margin_inner=7)
@@ -19,6 +18,9 @@ test_that("shuffle works",{
    # same topology
    expect_true(identical(sort(dend), sort(dend2)))
    
+   dend12 <- dendlist(dend, dend2)
+   expect_false(identical(dend12, shuffle(dend12)))
+   expect_equal(length(shuffle(dend12)), 2)
    
 })
 
