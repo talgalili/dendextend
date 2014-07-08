@@ -1,7 +1,36 @@
-* 2014-07-08(Tal Galili) Modify the changelog to a more compact view. |961b4e2| 
+* 2014-07-08(Tal Galili) Added tests for empty dendlist |d128b2b| 
+|  inst/tests/test-dendlist.R | 38 ++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 38 insertions(+)
+
+* 2014-07-08(Tal Galili) Added "untangle" - a master function to control all untangle functions (making it much easier to navigate this feature, as well as use it through %>% piping) |f276111| 
+|  NEWS                       |   4 ++
+|  R/untangle.r               | 100 +++++++++++++++++++++++++++++++++++++++++++
+|  inst/tests/test-untangle.r |  35 +++++++++++++++
+|  3 files changed, 139 insertions(+)
+
+* 2014-07-08(Tal Galili) Make sure that the main untangle functions will return a dendlist (and also that untangle_step_rotate_2side will be able to work with the new untangle_step_rotate_1side output) |01d5312| 
+|  R/untangle.r | 35 ++++++++++++++++++++---------------
+|  1 file changed, 20 insertions(+), 15 deletions(-)
+
+* 2014-07-08(Tal Galili) tanglegram - a minor fix to the doc |1470d5a| 
+|  R/tanglegram.r | 3 ++-
+|  1 file changed, 2 insertions(+), 1 deletion(-)
+
+* 2014-07-08(Tal Galili) added the functions: * is.dendlist - to check that an object is a dendlist * as.dendlist - to turn a list to a dendlist * (hidden) is_null_list |780e851| 
+|  NEWS         |   2 ++
+|  R/dendlist.R | 103 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  2 files changed, 105 insertions(+)
+
+* 2014-07-08(Tal Galili) Added a S3 dendlist method to shuffle |0af1ac2| 
+|  NAMESPACE                  |  2 ++
+|  R/untangle.r               | 24 ++++++++++++++++++++++++
+|  inst/tests/test-untangle.r | 10 ++++++----
+|  3 files changed, 32 insertions(+), 4 deletions(-)
+
+* 2014-07-08(Tal Galili) Modify the changelog to a more compact view. |096a505| 
 |  ChangeLog | 5373 +++++++++++++++++++++++++++++++++++------------------------
-|  R/zzz.r   |    3 +
-|  2 files changed, 3228 insertions(+), 2148 deletions(-)
+|  R/zzz.r   |    6 +
+|  2 files changed, 3231 insertions(+), 2148 deletions(-)
 
 * 2014-07-08(Tal Galili) Start creating "ChangeLog" file, based on my git commits :) |75ab7a8| 
 |  ChangeLog | 2148 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

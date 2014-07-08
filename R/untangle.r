@@ -39,7 +39,7 @@
 #' untangle(dend1, ...)
 #' 
 #' \method{untangle}{dendrogram}(dend1, dend2 ,
-#'    method = c("random", "step1side", "step2side"),
+#'    method = c("random", "step1side", "step2side", "DendSer"),
 #'    ...)
 #' 
 #' \method{untangle}{dendlist}(dend1, which = c(1L,2L), ...)
@@ -98,13 +98,14 @@ untangle.default <- function (dend1, ...) {stop("No default function for tangleg
 
 #' @S3method untangle dendrogram
 untangle.dendrogram <- function (dend1, dend2, 
-                                 method = c("random", "step1side", "step2side"), ...) {
+                                 method = c("random", "step1side", "step2side", "DendSer"), ...) {
    method <- match.arg(method)
    
    switch(method,
           random = untangle_random_search(dend1, dend2, ...),
           step1side = untangle_step_rotate_1side(dend1, dend2, ...),
-          step2side = untangle_step_rotate_2side(dend1, dend2, ...)
+          step2side = untangle_step_rotate_2side(dend1, dend2, ...),
+          DendSer = untangle_DendSer(dendlist(dend1, dend2), ...)
    )
 }
 
@@ -1179,3 +1180,83 @@ if(F){
 #    c(x[ord1 == ord_of_clusters[1]],x[ord1 == ord_of_clusters[2]],x[ord1 == ord_of_clusters[3]])
 #    order.weights.by.cluster.order(x, ord1, ord_of_clusters)	
 # }
+
+
+
+
+
+
+
+
+
+#' @title Tries to run DendSer on a dendrogram
+#' @export
+#' @description
+#' The function tries to turn the dend into hclust.
+#' Also, if a distance matrix is missing, it will try
+#' to use the \link{cophenetic} distance.
+#' @param dend An object of class dendrogram
+#' @param ser_weight Used by cost function to evaluate
+#'  ordering. For cost=costLS, this is a vector of
+#'   object weights. Otherwise is a dist or symmetric matrix.
+#' passed to DendSer.
+#' If it is missing, the cophenetic distance is used instead.
+#' @param ... parameters passed to \link[DendSer]{DendSer}
+#' @return Numeric vector giving an optimal dendrogram order
+#' @seealso \code{\link[DendSer]{DendSer}}
+#' @examples
+#' \dontrun{
+#' require(DendSer) # already used from within the function
+#' hc <- hclust(dist(USArrests[1:4,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' DendSer.dendrogram(dend)
+#' }
+DendSer.dendrogram <- function(dend, ser_weight, ...) {
+   h <- as.hclust(dend)
+   if(missing(ser_weight)) ser_weight <- cophenetic(dend)
+   require(DendSer)
+   DendSer(h = h, ser_weight = ser_weight,...)
+}
+
+
+#' @title Tries to run DendSer on a dendrogram
+#' @export
+#' @description
+#' The function tries to turn the dend into hclust.
+#' It then uses the \link{cophenetic} distance matrix
+#' for optimizing the tree's rotation.
+#' 
+#' This is a good (and fast) starting point for link{untangle_step_rotate_2side}
+#' @param dend An object of class \link{dendlist}
+#' @param ... NOT USED
+#' @return A dendlist object with ordered dends
+#' @seealso \code{\link[DendSer]{DendSer}}
+#' @examples
+#' \dontrun{
+#' set.seed(232)
+#' ss <- sample(1:150, 20)
+#' dend1 <- iris[ss,-5] %>% dist %>% hclust("com") %>% as.dendrogram
+#' dend2 <- iris[ss,-5] %>% dist %>% hclust("sin") %>% as.dendrogram
+#' dend12 <- dendlist(dend1, dend2)
+#' 
+#' # bad solutions
+#' dend12 %>% tanglegram
+#' dend12 %>% untangle("step2") %>% tanglegram
+#' dend12 %>% untangle_DendSer %>% tanglegram
+#' # but the combination is quite awsome:
+#' dend12 %>% untangle_DendSer %>% untangle("step2") %>% tanglegram
+#' }
+untangle_DendSer <- function(dend, ...) {
+   
+   dend1 <- dend[[1]]
+   dend2 <- dend[[2]]
+   
+   ord_1 <- tryCatch(DendSer.dendrogram(dend1), error = function(e) seq_len(length(dend1)))
+#    dist1 <- cophenetic(dend1) # using the dend1 dist for dend2
+#    ord_2 <- tryCatch(DendSer.dendrogram(dend2, dist1), error = function(e) seq_len(length(dend2)))
+   ord_2 <- tryCatch(DendSer.dendrogram(dend2), error = function(e) seq_len(length(dend2)))
+
+   dendlist(
+      dend1 %>% rotate(ord_1),
+      dend2 %>% rotate(ord_2))
+}
