@@ -170,7 +170,7 @@
 #' 
 #' }
 #' 
-color_branches<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
+color_branches <- function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
    
    if(missing(col)) {
       if(require(colorspace)) {
@@ -216,7 +216,7 @@ color_branches<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
          stop("Must give same number of group labels as clusters")
    }
    
-   addcol<-function(dend_node,col) {      
+   addcol <- function(dend_node,col) {      
       if(is.null(attr(dend_node, "edgePar"))) {
          attr(dend_node,'edgePar') <- list(col=col)
       } else {            
@@ -228,7 +228,7 @@ color_branches<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
       unclass(dend_node)
    }
    
-   descendTree<-function(sd){
+   descendTree <- function(sd){
       groupsinsubtree=unique(g[labels(sd)])
       if(length(groupsinsubtree)>1){
          # keep descending 
@@ -257,7 +257,7 @@ color_branches<-function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
 # plot(tree)
 
 # nice idea - make this compatible with colour/color
-colour_branches<-color_branches
+colour_branches <- color_branches
 
 
 
@@ -383,7 +383,7 @@ color_labels_by_labels <- function(tree, labels, col, warn=FALSE, ...) {
 #' 
 #' } 
 #' 
-color_labels<-function(tree,k=NULL,h=NULL,labels, col,warn =FALSE,...){
+color_labels <- function(tree,k=NULL,h=NULL,labels, col,warn =FALSE,...){
 
    if(!missing(labels)) return(color_labels_by_labels(tree=tree, labels=labels, col=col, warn=warn, ...) )     
    
@@ -430,7 +430,7 @@ color_labels<-function(tree,k=NULL,h=NULL,labels, col,warn =FALSE,...){
 
 
 # nice idea - make this compatible with colour/color
-colour_labels<-color_labels
+colour_labels <- color_labels
 
 
 
@@ -462,10 +462,10 @@ colour_labels<-color_labels
 #' dend <- as.dendrogram(hclust(dist(USArrests), "ave"))
 #' d5=color_branches(dend,5)
 #' leaf_Colors(d5)
-leaf_Colors<-function(d,col_to_return=c("edge",'node','label')){
+leaf_Colors <- function(d,col_to_return=c("edge",'node','label')){
    if(!inherits(d,'dendrogram')) stop("I need a dendrogram!")
    col_to_return=match.arg(col_to_return)
-   leaf_col<-function(n,col_to_return) {
+   leaf_col <- function(n,col_to_return) {
       if(is.leaf(n)) {
          col=switch(col_to_return,
                     edge=attr(n,'edgePar')$col,
@@ -479,4 +479,4 @@ leaf_Colors<-function(d,col_to_return=c("edge",'node','label')){
    unlist(dendrapply(d,leaf_col,col_to_return))
 }
 
-leaf_colors<-leaf_Colors
+leaf_colors <- leaf_Colors

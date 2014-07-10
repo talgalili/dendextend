@@ -299,7 +299,7 @@ untangle_random_search <- function(tree1, tree2, R = 100L, L = 1, leaves_matchin
       
       # if we came across a better ordaring, then update the "Best" treerograms 
       if(current_entanglement < best_ordaring_entanglement) {
-         best_ordaring_entanglement<- current_entanglement
+         best_ordaring_entanglement <- current_entanglement
          optimal_tree1 <- s_tree1
          optimal_tree2 <- s_tree2			
       }
@@ -820,7 +820,7 @@ untangle_intercourse_evolution <- function(intercourse, L = 1) {
 }
 
 
-untangle_evolution<- function(brother_1_dend1, brother_1_dend2, 
+untangle_evolution <- function(brother_1_dend1, brother_1_dend2, 
                               sister_2_dend1, 	sister_2_dend2, L = 1) 
 {
    intercourse <- untangle_intercourse(brother_1_dend1, brother_1_dend2, 
