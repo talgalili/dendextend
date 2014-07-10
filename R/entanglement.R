@@ -46,7 +46,7 @@
 #' @examples
 #' \dontrun{
 #' 
-#' dend <- as.dendrogram(hclust(dist(USArrests[1:4,])))
+#' dend <- USArrests[1:4,] %>% dist %>% hclust %>% as.dendrogram
 #' order.dendrogram(dend) #  c(4L, 3L, 1L, 2L)
 #' 
 #' dend_changed <- dend
@@ -126,7 +126,7 @@ match_order_by_labels <- function(dend_change, dend_template , check_that_labels
 #' @examples
 #' \dontrun{
 #' 
-#' dend <- as.dendrogram(hclust(dist(USArrests[1:4,])))
+#' dend <- USArrests[1:4,] %>% dist %>% hclust %>% as.dendrogram
 #' order.dendrogram(dend) #  c(4L, 3L, 1L, 2L)
 #' 
 #' 

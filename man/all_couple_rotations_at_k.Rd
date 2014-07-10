@@ -29,7 +29,7 @@ This is useful for finding good trees for a \link{tanglegram}.
 }
 \examples{
 \dontrun{
-dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+dend1 <- USArrests[1:5,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
 dend2 <- all_couple_rotations_at_k(dend1, k=2)[[2]]
 tanglegram(dend1,dend2)
 entanglement(dend1,dend2, L = 2) # 0.5

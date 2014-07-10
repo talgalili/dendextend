@@ -47,8 +47,8 @@ It goes through rotating dend1, then dend2, and so on - until a locally optimal 
 }
 \examples{
 \dontrun{
-dend1 <- as.dendrogram(hclust(dist(USArrests[1:20,])))
-dend2 <- as.dendrogram(hclust(dist(USArrests[1:20,]), method = "single"))
+dend1 <- USArrests[1:20,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
+dend2 <- USArrests[1:20,] \%>\% dist \%>\% hclust(method = "single") \%>\% as.dendrogram
 set.seed(3525)
 dend2 <- shuffle(dend2)
 tanglegram(dend1,dend2, margin_inner=6.5)

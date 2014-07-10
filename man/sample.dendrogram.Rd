@@ -53,7 +53,7 @@ on a row-sample with replacments from the original data matrix.
 \examples{
 \dontrun{
 # define dendrogram object to play with:
-dend <- as.dendrogram(hclust(dist(USArrests[1:5,]), "ave"))
+dend <- USArrests[1:5,] \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
 plot(dend)
 
 # # same tree, with different order of labels

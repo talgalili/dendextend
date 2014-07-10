@@ -102,7 +102,7 @@ nleaves.dendrogram <- function(x, method = c("members", "order"),...) {
 
 
 # require(microbenchmark)
-# big_dend <- as.dendrogram(hclust(dist(USArrests)))
+# big_dend <- USArrests %>% dist %>% hclust %>% as.dendrogram
 # microbenchmark(
 #    nleaves.dendrogram(big_dend, "order"),
 #    nleaves.dendrogram(big_dend, "members")

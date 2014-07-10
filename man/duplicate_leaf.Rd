@@ -36,7 +36,7 @@ on a row-sample with replacments from the original data matrix.
 \examples{
 \dontrun{
 # define dendrogram object to play with:
-dend <- as.dendrogram(hclust(dist(USArrests[1:3,]), "ave"))
+dend <- USArrests[1:3,] \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
 plot(dend)
 duplicate_leaf(dend, "Alaska", 3)
 duplicate_leaf(dend, "Arizona", 2, fix_members =FALSE, fix_order = FALSE)

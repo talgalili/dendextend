@@ -19,7 +19,7 @@ Go through the dendrogram branches and remove its edgePar.
 \examples{
 \dontrun{
 
-dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+dend <- USArrests[1:5,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
 dend <- color_branches(dend, 3)
 par(mfrow = c(1,2))
 plot(dend)

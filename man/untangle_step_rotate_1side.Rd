@@ -49,7 +49,7 @@ This is useful for finding good trees for a \link{tanglegram}.
 }
 \examples{
 \dontrun{
-dend1 <- as.dendrogram(hclust(dist(USArrests[1:10,])))
+dend1 <- USArrests[1:10,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
 set.seed(3525)
 dend2 <- shuffle(dend1)
 tanglegram(dend1,dend2)

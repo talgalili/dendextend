@@ -75,7 +75,7 @@
 #' @examples
 #' 
 #' \dontrun{
-#' dend <- as.dendrogram(hclust(dist(USArrests), "ave"))
+#' dend <- USArrests %>% dist %>% hclust(method = "ave") %>% as.dendrogram
 #' d1=color_branches(dend,5, col = c(3,1,1,4,1))
 #' plot(d1) # selective coloring of branches :)
 #' d2=color_branches(d1,5)
@@ -459,7 +459,7 @@ colour_labels <- color_labels
 #' @aliases leaf_colors
 #' @seealso \code{\link[dendroextras]{slice},\link{color_branches}}
 #' @examples
-#' dend <- as.dendrogram(hclust(dist(USArrests), "ave"))
+#' dend <- USArrests %>% dist %>% hclust(method = "ave") %>% as.dendrogram
 #' d5=color_branches(dend,5)
 #' leaf_Colors(d5)
 leaf_Colors <- function(d,col_to_return=c("edge",'node','label')){

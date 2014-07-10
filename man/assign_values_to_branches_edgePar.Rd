@@ -23,7 +23,7 @@ Go through the dendrogram branches and updates the values inside its edgePar
 \examples{
 \dontrun{
 
-dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+dend <- USArrests[1:5,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
 plot(dend)
 dend <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "lwd")
 plot(dend)

@@ -29,7 +29,7 @@ Adjust the height attr in all of the dendrogram nodes so that
 }
 \examples{
 # define dendrogram object to play with:
-dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+dend <- USArrests[1:5,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
 
 par(mfrow = c(1,3))
 

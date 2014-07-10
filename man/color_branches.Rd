@@ -62,7 +62,7 @@ of an object without \link{rownames}.
 }
 \examples{
 \dontrun{
-dend <- as.dendrogram(hclust(dist(USArrests), "ave"))
+dend <- USArrests \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
 d1=color_branches(dend,5, col = c(3,1,1,4,1))
 plot(d1) # selective coloring of branches :)
 d2=color_branches(d1,5)

@@ -42,7 +42,7 @@
 #' 
 #' \dontrun{
 #' # define dendrogram object to play with:
-#' dend <- as.dendrogram(hclust(dist(USArrests[1:3,]), "ave"))
+#' dend <- USArrests[1:3,] %>% dist %>% hclust(method = "ave") %>% as.dendrogram
 #' plot(dend)
 #' duplicate_leaf(dend, "Alaska", 3)
 #' duplicate_leaf(dend, "Arizona", 2, fix_members =FALSE, fix_order = FALSE)
@@ -196,7 +196,7 @@ duplicate_leaf <- function(dend, leaf_label, times, fix_members=TRUE, fix_order=
 #' 
 #' \dontrun{
 #' # define dendrogram object to play with:
-#' dend <- as.dendrogram(hclust(dist(USArrests[1:5,]), "ave"))
+#' dend <- USArrests[1:5,] %>% dist %>% hclust(method = "ave") %>% as.dendrogram
 #' plot(dend)
 #' 
 #' # # same tree, with different order of labels 

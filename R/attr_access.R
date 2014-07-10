@@ -452,7 +452,7 @@ get_childrens_heights <- function(dend,...) {
 #' @examples
 #' 
 #' # define dendrogram object to play with:
-#' dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+#' dend <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
 #' 
 #' par(mfrow = c(1,3))
 #' 
@@ -609,7 +609,7 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
 #' 
 #' \dontrun{
 #' 
-#' dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+#' dend <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
 #' plot(dend)
 #' dend <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "lwd")
 #' plot(dend)
@@ -652,7 +652,7 @@ assign_values_to_branches_edgePar <- function(object, value, edgePar,...) {
 #' 
 #' \dontrun{
 #' 
-#' dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+#' dend <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
 #' dend <- color_branches(dend, 3)
 #' par(mfrow = c(1,2))
 #' plot(dend)
@@ -689,7 +689,7 @@ remove_branches_edgePar <- function(object, ...) {
 #' 
 #' \dontrun{
 #' 
-#' dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+#' dend <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
 #' 
 #' dend <- color_labels(dend, 3)
 #' par(mfrow = c(1,2))
@@ -794,7 +794,7 @@ fix_members_attr.dendrogram <- function(dend,...) {
 #' @examples
 #' 
 #' # define dendrogram object to play with:
-#' dend <- as.dendrogram(hclust(dist(USArrests[1:4,]), "ave"))
+#' dend <- USArrests[1:4,] %>% dist %>% hclust(method = "ave") %>% as.dendrogram
 #' # plot(dend)
 #' order.dendrogram(dend)
 #' dend2 <- prune(dend, "Alaska")

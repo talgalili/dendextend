@@ -19,7 +19,7 @@ Go through the dendrogram leaves and remove its nodePar.
 \examples{
 \dontrun{
 
-dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+dend <- USArrests[1:5,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
 
 dend <- color_labels(dend, 3)
 par(mfrow = c(1,2))

@@ -21,7 +21,7 @@ Return the leaf Colors of a dendrogram
 The returned Colors will be in dendrogram order.
 }
 \examples{
-dend <- as.dendrogram(hclust(dist(USArrests), "ave"))
+dend <- USArrests \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
 d5=color_branches(dend,5)
 leaf_Colors(d5)
 }

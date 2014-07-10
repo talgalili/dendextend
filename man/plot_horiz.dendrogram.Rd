@@ -71,7 +71,7 @@ with this function.
 }
 \examples{
 \dontrun{
-dend <- as.dendrogram(hclust(dist(USArrests[1:10,])))
+dend <- USArrests[1:10,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
 
 par(mfrow =c(1,2), mar = rep(6,4))
 plot_horiz.dendrogram(dend, side=FALSE)

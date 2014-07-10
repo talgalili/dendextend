@@ -21,7 +21,7 @@ values.
 }
 \examples{
 # define dendrogram object to play with:
-dend <- as.dendrogram(hclust(dist(USArrests[1:4,]), "ave"))
+dend <- USArrests[1:4,] \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
 # plot(dend)
 order.dendrogram(dend)
 dend2 <- prune(dend, "Alaska")

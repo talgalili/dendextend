@@ -163,7 +163,7 @@ untangle.dendlist <- function (dend1, method, which = c(1L,2L), ...) {
 #' @seealso \code{\link{tanglegram}},  \code{\link{entanglement}}, 
 #' \code{\link[dendextend]{rotate}}
 #' @examples
-#' dend <- as.dendrogram(hclust(dist(USArrests)))
+#' dend <- USArrests %>% dist %>% hclust %>% as.dendrogram
 #' set.seed(234238)
 #' dend2 <- shuffle(dend)
 #' 
@@ -355,7 +355,7 @@ remove_pipes_and_zzz <- function(x) {strsplit(remove_zzz(x), "||",fixed=T)[[1]]}
 #' @examples
 #' 
 #' \dontrun{
-#' dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+#' dend1 <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
 #' dend2 <- flip_leaves(dend1, c(3,5), c(1,2))
 #' tanglegram(dend1,dend2)
 #' entanglement(dend1,dend2, L = 2) # 0.4
@@ -417,7 +417,7 @@ flip_leaves <- function(dend, leaves1, leaves2,...) {
 #' @examples
 #' 
 #' \dontrun{
-#' dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+#' dend1 <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
 #' dend2 <- all_couple_rotations_at_k(dend1, k=2)[[2]]
 #' tanglegram(dend1,dend2)
 #' entanglement(dend1,dend2, L = 2) # 0.5
@@ -551,7 +551,7 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 #' @examples
 #' 
 #' \dontrun{
-#' dend1 <- as.dendrogram(hclust(dist(USArrests[1:10,])))
+#' dend1 <- USArrests[1:10,] %>% dist %>% hclust %>% as.dendrogram
 #' set.seed(3525)
 #' dend2 <- shuffle(dend1)
 #' tanglegram(dend1,dend2)
@@ -646,8 +646,8 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
 #' @examples
 #' 
 #' \dontrun{
-#' dend1 <- as.dendrogram(hclust(dist(USArrests[1:20,])))
-#' dend2 <- as.dendrogram(hclust(dist(USArrests[1:20,]), method = "single"))
+#' dend1 <- USArrests[1:20,] %>% dist %>% hclust %>% as.dendrogram
+#' dend2 <- USArrests[1:20,] %>% dist %>% hclust(method = "single") %>% as.dendrogram
 #' set.seed(3525)
 #' dend2 <- shuffle(dend2)
 #' tanglegram(dend1,dend2, margin_inner=6.5)

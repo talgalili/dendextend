@@ -43,7 +43,7 @@ This function is useful in combination with \link{tanglegram} and \link{entangle
 a dendrogram leaves order (by means of rotation)
 }
 \examples{
-dend <- as.dendrogram(hclust(dist(USArrests)))
+dend <- USArrests \%>\% dist \%>\% hclust \%>\% as.dendrogram
 set.seed(234238)
 dend2 <- shuffle(dend)
 
