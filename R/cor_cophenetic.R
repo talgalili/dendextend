@@ -143,14 +143,14 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' 
 #' }
 #' 
-cor_cophenetic <- function(tree1, tree2, method = "pearson", ...){
+cor_cophenetic <- function(tree1, tree2, method = c("pearson", "kendall", "spearman"), ...){
    UseMethod("cor_cophenetic")
 }
 
 
 
 #' @export
-cor_cophenetic.default <- function(tree1, tree2, method = "pearson", ...) {
+cor_cophenetic.default <- function(tree1, tree2, method = c("pearson", "kendall", "spearman"), ...) {
    dist_tree1 <- cophenetic(tree1)
    dist_tree2 <- cophenetic(tree2)
 
@@ -160,12 +160,13 @@ cor_cophenetic.default <- function(tree1, tree2, method = "pearson", ...) {
       dist_tree2 <- sort_dist_mat(dist_tree2)
    }
    
+   method <- match.arg(method)
    cor(dist_tree1, dist_tree2 , method=method)
 }
 
 # 
 # 
-# cor_cophenetic.hclust <- function(tree1, tree2, method = "pearson", ...) {
+# cor_cophenetic.hclust <- function(tree1, tree2, method = c("pearson", "kendall", "spearman"), ...) {
 #    # hclust keeps things consistant
 #    dist_tree1 <- cophenetic(tree1)
 #    dist_tree2 <- cophenetic(tree2)

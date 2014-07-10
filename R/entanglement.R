@@ -367,7 +367,8 @@ entanglement.dendrogram <- function(tree1,tree2, L = 1.5, leaves_matching_method
    n_leaves <- nleaves(tree1) # how many leaves do we have? (number of leaves)
    one_to_n_leaves <- seq_len(n_leaves)
    
-   if(leaves_matching_method[1] == "order") {   
+   leaves_matching_method <- match.arg(leaves_matching_method)
+   if(leaves_matching_method == "order") {   
       tree1_old_order <- order.dendrogram(tree1)
       order.dendrogram(tree1) <- one_to_n_leaves # change the leaves of tree1 to be 1:n	
       tree2 <- match_order_dendrogram_by_old_order(tree2	, tree1, tree1_old_order) 

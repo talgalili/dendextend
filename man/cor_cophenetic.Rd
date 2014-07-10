@@ -3,7 +3,8 @@
 \alias{cor_cophenetic}
 \title{Cophenetic correlation between two trees}
 \usage{
-cor_cophenetic(tree1, tree2, method = "pearson", ...)
+cor_cophenetic(tree1, tree2, method = c("pearson", "kendall", "spearman"),
+  ...)
 }
 \arguments{
 \item{tree1}{a tree (dendrogram/hclust/phylo)}

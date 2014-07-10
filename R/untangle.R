@@ -280,8 +280,8 @@ untangle_random_search <- function(tree1, tree2, R = 100L, L = 1, leaves_matchin
    # this is a simple random search algorithm for the optimal tanglegram layout problem.
    # it shufflers the trees, and see if we got a better entanglement or not
    
-   
-   if(leaves_matching_method[1] == "order") {
+   leaves_matching_method <- match.arg(leaves_matching_method)
+   if(leaves_matching_method == "order") {
       old_tree2 <- tree2
       tree2 <- match_order_by_labels(old_tree2, tree1)   
       if(!identical(tree2,old_tree2)) warning("The leaves order in 'tree2' were changed. If you want to avoid that, use leaves_matching_method = 'labels'.")
@@ -571,9 +571,10 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
    if(missing(dend_heights_per_k)) dend_heights_per_k <- heights_per_k.dendrogram(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
    
    
+   direction <- match.arg(direction)
    if(is.null(k_seq)) {
       # choose step direction:
-      if(direction[1] == "backward") {
+      if(direction == "backward") {
          k_seq <- n_leaves:2
       } else { # forward
          k_seq <- 2:n_leaves
@@ -674,6 +675,7 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
                                        k_seq = NULL,...) {
    # this function gets two dendgrams, and orders dend1 and 2 until a best entengelment is reached.
    
+   direction <- match.arg(direction)
    
    dend1_heights_per_k <- heights_per_k.dendrogram(dend1)
    dend2_heights_per_k <- heights_per_k.dendrogram(dend2)

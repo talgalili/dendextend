@@ -1045,7 +1045,8 @@ Bk_plot <- function(tree1, tree2, k,
             pch = 19, cex = .01)
    }
    
-   if(p.adjust.methods[1] == "bonferroni") {
+   p.adjust.methods <- match.arg(p.adjust.methods)
+   if(p.adjust.methods == "bonferroni") {
       alfa <- 1-conf.level
       conf.level <- 1-alfa/length(k)      
    }
