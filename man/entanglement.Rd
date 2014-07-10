@@ -2,6 +2,7 @@
 \name{entanglement}
 \alias{entanglement}
 \alias{entanglement.default}
+\alias{entanglement.dendlist}
 \alias{entanglement.dendrogram}
 \alias{entanglement.hclust}
 \alias{entanglement.phylo}

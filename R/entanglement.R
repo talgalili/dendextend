@@ -213,6 +213,7 @@ match_order_dendrogram_by_old_order <- function(dend_change, dend_template ,
 #' entanglement.dendrogram
 #' entanglement.hclust
 #' entanglement.phylo
+#' entanglement.dendlist
 #' @description 
 #' Measures the entanglement between two trees. 
 #' Entanglement is a measure between 1 (full entanglement) and 0 
