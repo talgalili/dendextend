@@ -43,6 +43,9 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 
 
 #' @title Cophenetic correlation between two trees
+#' @aliases 
+#' cor_cophenetic.default
+#' cor_cophenetic.dendlist
 #' @export
 #' @description
 #' Cophenetic correlation coefficient for two trees.
@@ -50,9 +53,16 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' Assumes the labels in the two trees fully match. If they do not
 #' please first use \link{intersect_trees} to have them matched.
 #' 
+#' @usage
+#' cor_cophenetic(tree1, tree2, method = c("pearson", "kendall", "spearman"), ...) 
 #' 
-#' @param tree1 a tree (dendrogram/hclust/phylo)
+#' \method{cor_cophenetic}{dendlist}(tree1, which = c(1L,2L), method = c("pearson", "kendall", "spearman"), ...) 
+#' 
+#' @param tree1 a tree (dendrogram/hclust/phylo, or dendlist)
 #' @param tree2 a tree (dendrogram/hclust/phylo)
+#' @param which an integer vector of length 2, indicating
+#' which of the trees in a dendlist object should have 
+#' their cor_cophenetic calculated.
 #' @param method a character string indicating which correlation coefficient 
 #' is to be computed. One of "pearson" (default), "kendall", or "spearman", 
 #' can be abbreviated. Passed to \link{cor}.
@@ -99,8 +109,8 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' 
 #' set.seed(23235)
 #' ss <- sample(1:150, 10 )
-#' hc1 <- hclust(dist(iris[ss,-5]), "com")
-#' hc2 <- hclust(dist(iris[ss,-5]), "single")
+#' hc1 <- iris[ss,-5] %>% dist %>% hclust("com")
+#' hc2 <- iris[ss,-5] %>% dist %>% hclust("single")
 #' dend1 <- as.dendrogram(hc1)
 #' dend2 <- as.dendrogram(hc2)
 #' #    cutree(dend1)   
@@ -119,6 +129,8 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' # however, this is consistant (since I force-sort the rows/columns): 
 #' cor_cophenetic(hc1, hc2)
 #' cor_cophenetic(dend1, dend2)
+#' 
+#' cor_cophenetic(dendlist(dend1, dend2))
 #' 
 #' # we can also use different cor methods (almost the same result though): 
 #' cor_cophenetic(hc1, hc2, method = "spearman") # 0.8456014
@@ -163,6 +175,14 @@ cor_cophenetic.default <- function(tree1, tree2, method = c("pearson", "kendall"
    method <- match.arg(method)
    cor(dist_tree1, dist_tree2 , method=method)
 }
+
+
+#' @export
+cor_cophenetic.dendlist <- function(tree1, which = c(1L, 2L), method = c("pearson", "kendall", "spearman"), ...) {
+   method <- match.arg(method)
+   cor_cophenetic(tree1[[which[1]]], tree1[[which[2]]], method=method ,...)
+}
+
 
 # 
 # 

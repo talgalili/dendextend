@@ -12,7 +12,7 @@ test_that("lowest_common_branch works",{
 })
 
 
-test_that("Get a dendrogram number of leaves",{
+test_that("cor_bakers_gamma works",{
    
    set.seed(23235)
    ss <- sample(1:150, 10 ) # we want to compare small trees
