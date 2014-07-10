@@ -27,7 +27,7 @@ test_that("shuffle works",{
 
 
 test_that("Flip leaves work",{
-   dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+   dend1 <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
    dend2 <- flip_leaves(dend1, c(3,5), c(1,2))
    # tanglegram(dend1,dend2)
    # tanglegram(dend1,flip_leaves(dend1, c(3,5, 1,2), c(4)))
@@ -38,7 +38,7 @@ test_that("Flip leaves work",{
 
 
 test_that("all_couple_rotations_at_k work",{
-   dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+   dend1 <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
    dend2 <- all_couple_rotations_at_k(dend1, k=2)[[2]]
    # tanglegram(dend1,dend2)
    
@@ -50,19 +50,19 @@ test_that("all_couple_rotations_at_k work",{
 
 test_that("untangle_step_rotate_1side work",{
 
-   dend1 <- as.dendrogram(hclust(dist(USArrests[1:10,])))
+   dend1 <- USArrests[1:10,] %>% dist %>% hclust %>% as.dendrogram
    set.seed(3525)
    dend2 <- shuffle(dend1)
 #    tanglegram(dend1,dend2)
    expect_identical(round(entanglement(dend1,dend2, L = 2),2) ,  0.47)   
 
    # Fixing the problem :)
-   dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)
+   dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)[[1]]
 #    tanglegram(dend1,dend2_corrected) # FIXED.
    expect_identical(round(entanglement(dend1,dend2_corrected, L = 2),2) ,  0)   
 
    # the other direction may also work:   
-   dend2_corrected <- untangle_step_rotate_1side(dend2, dend1, direction="backward")
+   dend2_corrected <- untangle_step_rotate_1side(dend2, dend1, direction="backward")[[1]]
    #    tanglegram(dend1,dend2_corrected) # FIXED.
    expect_identical(round(entanglement(dend1,dend2_corrected, L = 2),2) ,  0)   
    
@@ -73,9 +73,9 @@ test_that("untangle_step_rotate_1side work",{
 
 test_that("untangle_step_rotate_2side work",{
    
-   dend1 <- as.dendrogram(hclust(dist(USArrests[1:10,])))
+   dend1 <- USArrests[1:10,] %>% dist %>% hclust %>% as.dendrogram
    set.seed(3525645)
-   dend2 <- shuffle(as.dendrogram(hclust(dist(USArrests[1:10,]), method="med")))
+   dend2 <- USArrests[1:10,] %>% dist %>% hclust(method="med") %>% as.dendrogram %>% shuffle
    #    tanglegram(dend1,dend2)
    expect_identical(round(entanglement(dend1,dend2, L = 2),2) ,  0.35)   
    
@@ -128,7 +128,7 @@ test_that("untangle_step_rotate_2side work",{
 
 
 test_that("untangle (main function) works for random search",{
-   dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+   dend1 <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
    dend2 <- flip_leaves(dend1, c(3,5), c(1,2))
    # tanglegram(dend1,dend2)
    # tanglegram(dend1,flip_leaves(dend1, c(3,5, 1,2), c(4)))
@@ -146,7 +146,7 @@ test_that("untangle (main function) works for random search",{
 
 
 test_that("untangle (main function) works for 2 step",{
-   dend1 <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+   dend1 <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
    dend2 <- flip_leaves(dend1, c(3,5), c(1,2))
    # tanglegram(dend1,dend2)
    # tanglegram(dend1,flip_leaves(dend1, c(3,5, 1,2), c(4)))
