@@ -108,28 +108,38 @@
 
 update.dendrogram <- function(object, 
                               what = c("labels",
-                                       "labels_color",
+                                       "labels_colors",
                                        "labels_cex",
-                                       "branches_color",
-                                       "hang_leaves",
                                        "leaves_pch",
                                        "leaves_cex",
                                        "leaves_col",
-                                       "leaves_xpd",
-                                       "leaves_bg"
+                                       "hang_leaves",
+                                       "branches_k_color",
+                                       "branches_col",
+                                       "branches_lwd",
+                                       "branches_lty",
+                                       "clear_branches",
+                                       "clear_leaves"
+                                       
                               ),
                               with, ...){
    what <- match.arg(what)
    object <- switch(what, 
 #                     labels = dendextend:::`labels<-.dendrogram`(object, value = with)
       labels = `labels<-.dendrogram`(object, value = with, ...),
-      labels_color = `labels_colors<-`(object, value = with, ...),
+      labels_colors = `labels_colors<-`(object, value = with, ...),
+#      labels_colors = assign_values_to_leaves_nodePar(object, with, "lab.col", ...),
       labels_cex = assign_values_to_leaves_nodePar(object, with, "lab.cex", ...),
-      branches_color = color_branches(tree = object, col = with, ...),
-      hang_leaves = hang.dendrogram(dend = object, hang = ifelse(missing(with), .1, with),...),
       leaves_pch = assign_values_to_leaves_nodePar(object, with, "pch", ...),
       leaves_cex =assign_values_to_leaves_nodePar(object, with, "cex", ...),
       leaves_col =assign_values_to_leaves_nodePar(object, with, "col", ...),
+      hang_leaves = hang.dendrogram(dend = object, hang = ifelse(missing(with), .1, with),...),
+      branches_k_color = color_branches(tree = object, col = with,  ...),
+      branches_col = assign_values_to_branches_edgePar(object = object, value = with, edgePar = "col", ...),
+      branches_lwd = assign_values_to_branches_edgePar(object = object, value = with, edgePar = "lwd", ...),
+      branches_lty = assign_values_to_branches_edgePar(object = object, value = with, edgePar = "lty", ...),
+      clear_branches = remove_branches_edgePar(object, ...),
+      clear_leaves = remove_leaves_nodePar(object, ...)
    )
    
    object
@@ -138,35 +148,57 @@ update.dendrogram <- function(object,
 
 
 if(FALSE) {
+
    set.seed(23235)
    ss <- sample(1:150, 10 )
    dend <- iris[ss,-5] %>% dist %>% hclust %>% as.dendrogram
-   labels(dend)
-   update(dend, "labels", 1:10)
+   
+   dend %>% labels
+   dend %>% update("labels", 1:10) %>% labels
    dend %>% update("labels", 1:10) %>% plot # Works :)
    dend %>% update("labels_color") %>% plot # Works :)
-   dend %>% update("labels_color", c(1,2)) %>% plot # Works :)
-   dend %>% update("labels_cex", c(1,1.2)) %>% plot # Works :)
-   dend %>% update("branches_color") %>% plot # Works :)
-   dend %>% update("branches_color", c(1,2)) %>% plot # Works :)
-   dend %>% update("branches_color", c(1,2,3), k=3) %>% plot # Works :)
+   dend %>% update("labels_col", c(1,2)) %>% plot # Works :)
+   dend %>% update("labels_cex", c(1, 1.2)) %>% plot # Works :)
+   dend %>% update("branches_k_col") %>% plot # Works :)
+   dend %>% update("branches_k_col", c(1,2)) %>% plot # Works :)
+   dend %>% update("branches_k_col", c(1,2,3), k=3) %>% plot # Works :)
+   dend %>% update("branches_k_col", k=3) %>% plot # Works :)
    dend %>% update("hang") %>% plot # Works :)
    
    
    
    dend %>% update("leaves_pch", NA) %>% plot # Works :)
-   dend %>% update("leaves_pch", c(1:5)) %>% plot # Works :)
+   dend %>% update("leaves_pch", c(1:5)) %>% plot # Works :)   
    dend %>% update("leaves_pch", c(19)) %>% update("leaves_cex", c(1,2)) %>% plot # Works :)
    dend %>% update("leaves_pch", c(19,19, NA)) %>% 
       update("leaves_cex", c(1,2)) %>%
       update("leaves_col", c(1,1,2,2)) %>% 
       plot # Works :)
-
+   
+   #    clears all of the things added to the leaves
+   dend %>% 
+      update("labels_color", c(19,19, NA)) %>% 
+      update("leaves_pch", c(19,19, NA))  %>%  # plot  
+      update("clear_leaves") %>% # remove all of what was done until this point
+      plot
+   
+   dend %>% 
+      update("leaves_pch", c(19,19, NA)) %>%    
+      update("labels_color", c(2,19, NA)) %>% 
+      plot
+   
+   dend %>% 
+      update("leaves_pch", c(19,19, NA)) %>% 
+      update("labels_color", c(19,19, NA)) %>% 
+      update("clear_leaves") %>% plot
+   
    
    dend %>% 
       update("labels", 1:10) %>%
       update("labels_color") %>%
-      update("branches_color") %>%
+      update("branches_col", c(1,2, 1, 2, NA)) %>%
+      update("branches_lwd", c(2,1,2)) %>%
+      update("branches_lty", c(1,2,1)) %>%
       update("hang") %>%
       plot # Works :)
    
