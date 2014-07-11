@@ -17,12 +17,11 @@
 #
 
 
-
-
 #' @title Color tree's branches according to sub-clusters
 #' @export
 #' @aliases
 #' colour_branches
+#' branches_color
 #' @description
 #' This function is for dendrogram and hclust objects.
 #' This function colors both the terminal leaves of a tree's cluster and the edges 
@@ -170,23 +169,26 @@
 #' 
 #' }
 #' 
-color_branches <- function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
+color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, ...){
    
    if(missing(col)) {
-      if(require(colorspace)) {
-         col <- function(n) rainbow_hcl(n, c=90, l=50)
-      } else {
-         col <- rainbow
-      }      
-   }   
+      col <- if(require(colorspace))
+         function(n) rainbow_hcl(n, c=90, l=50) else
+            col <- rainbow
+   }      
+   
+   if(is.null(k) & is.null(h)) {
+      warning("k (number of clusters) is missing, using the tree size as a default")      
+      k <- nleaves(tree)
+   }
    
    if(!is.dendrogram(tree) && !is.hclust(tree)) stop("tree needs to be either a dendrogram or an hclust object")
-   g <- dendextend::cutree(tree,k=k,h=h, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE)
-   if(is.hclust(tree)) tree=as.dendrogram(tree)
+   g <- dendextend::cutree(tree, k=k, h=h, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE)
+   if(is.hclust(tree)) tree <- as.dendrogram(tree)
    
    k <- max(g)
    if(is.function(col)) {
-      col=col(k)
+      col <- col(k)
    } else {
       if(length(col) < k) {
          #          stop("Must give the same number of colors as number of clusters")
@@ -233,7 +235,7 @@ color_branches <- function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
       if(length(groupsinsubtree)>1){
          # keep descending 
          for(i in seq(sd))
-            sd[[i]]<-descendTree(sd[[i]])
+            sd[[i]] <- descendTree(sd[[i]])
       } else {
          # else assign Colors
          # sd=dendrapply(sd,addcol,col[groupsinsubtree],groupsinsubtree)
@@ -257,8 +259,11 @@ color_branches <- function(tree,k=NULL,h=NULL,col,groupLabels=NULL,...){
 # plot(tree)
 
 # nice idea - make this compatible with colour/color
+#' @export
 colour_branches <- color_branches
 
+#' @export
+branches_color <- color_branches
 
 
 
