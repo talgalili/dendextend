@@ -53,6 +53,10 @@
 #' labels_colors(dend) <- 2:4
 #' labels_colors(dend)
 #' plot(dend)
+#'    
+#'    
+#'    # doesn't work...
+#'  #  get_nodes_attr(dend, "nodePar", include_branches = FALSE)
 #' 
 #' # changing color to black
 #' labels_colors(dend) <- 1
@@ -64,11 +68,11 @@
 #' labels_colors(dend)
 #' plot(dend)
 labels_colors <- function (object, labels = TRUE, ...) {
-   if(!inherits(object,'dendrogram')) stop("'object' should be a dendrogram.")   
+   if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
    
    col <- NULL
    
-   get.col.from.leaf <- function(dend_node)
+   get_col_from_leaf <- function(dend_node)
    {
       if(is.leaf(dend_node))
       {   		
@@ -82,7 +86,7 @@ labels_colors <- function (object, labels = TRUE, ...) {
    # mtrace(".change.label.by.mat")
    i_leaf_number <- 0
    # here I don't care about the classes of the branches of the object.
-   dendrapply(object, get.col.from.leaf) 
+   dendrapply(object, get_col_from_leaf) 
    return(col)
 }
 
@@ -93,7 +97,7 @@ labels_colors <- function (object, labels = TRUE, ...) {
 
 #' @export
 "labels_colors<-" <- function (object, ..., value) {
-   if(!inherits(object,'dendrogram')) stop("'object' should be a dendrogram.")
+   if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")
    
    if(missing(value)) {
       warning("Color values are missing, using default (different) colors")      
@@ -122,7 +126,9 @@ labels_colors <- function (object, labels = TRUE, ...) {
                   lab.col = col[i_leaf_number],
                   pch = NA)
          } else {            
-            attr(dend_node, "nodePar") <- within(attr(dend_node, "nodePar"), {lab.col <- col[i_leaf_number]}) # this way it doesn't erase other nodePar values (if they exist)
+#             attr(dend_node, "nodePar") <- within(attr(dend_node, "nodePar"), {lab.col <- col[i_leaf_number]}) # this way it doesn't erase other nodePar values (if they exist)
+            # Using as.list in order to make the code more robust
+            attr(dend_node, "nodePar") <- within(as.list(attr(dend_node, "nodePar")), {lab.col <- col[i_leaf_number]}) # this way it doesn't erase other nodePar values (if they exist)
          }
          
          if(length(attr(dend_node, "nodePar")) == 0) attr(dend_node, "nodePar") <- NULL # remove nodePar if it is empty
@@ -152,4 +158,13 @@ labels_colors <- function (object, labels = TRUE, ...) {
 # # let's add some color:
 # labels_colors(dend) <- 2:4
 # plot(dend)
+# 
+
+# dend_node <- structure(3L, members = 1L, height = 0, label = "123", leaf = TRUE, nodePar = structure(19, .Names = "pch"))
+# as.list(attr(dend_node, "nodePar"))
+# str(attr(dend_node, "nodePar"))
+# within
+# within(as.list(attr(dend_node, "nodePar")), {print(ls())})
+# within(as.list(attr(dend_node, "nodePar")), {bbb = 4})
+# within(attr(dend_node, "nodePar"), {lab.col <- col[i_leaf_number]}) # this way it doesn't erase other nodePar values (if they exist)
 # 

@@ -64,7 +64,7 @@
 #' 
 #' 
 get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
-   if(!inherits(object,'dendrogram')) warning("'object' should be a dendrogram.")   
+   if(!is.dendrogram(object)) warning("'object' should be a dendrogram.")   
    if(missing(attribute)) stop("'attribute' parameter is missing.")
    
    get_attr_from_leaf <- function(dend_node) {
@@ -151,7 +151,7 @@ get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
 get_nodes_attr <- function (object, attribute, include_leaves = TRUE,
                             include_branches = TRUE,
                             na.rm = FALSE, ...) {
-   if(!inherits(object,'dendrogram')) warning("'object' should be a dendrogram.")   
+   if(!is.dendrogram(object)) warning("'object' should be a dendrogram.")   
    if(missing(attribute)) stop("'attribute' parameter is missing.")
 
    #### for some reason, this doesn't work:   

@@ -48,6 +48,7 @@
 # turning label insertion function into a method:
 
 #' @title "label" assignment operator
+#' @export
 #' @description "label" assignment operator for vectors, dendrogram, and hclust classes.
 #' @rdname labels-assign
 #' @aliases 
