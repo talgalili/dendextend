@@ -3,7 +3,7 @@
 \alias{assign_values_to_branches_edgePar}
 \title{Assign values to edgePar of dendrogram's branches}
 \usage{
-assign_values_to_branches_edgePar(object, value, edgePar, ...)
+assign_values_to_branches_edgePar(object, value, edgePar, warn = TRUE, ...)
 }
 \arguments{
 \item{object}{a dendrogram object}
@@ -11,6 +11,12 @@ assign_values_to_branches_edgePar(object, value, edgePar, ...)
 \item{value}{a new value scalar for the edgePar attribute.}
 
 \item{edgePar}{the value inside edgePar to adjust.}
+
+\item{warn}{logical (TRUE). Should warning be issued?
+Generally, it is safer to keep this at TRUe.
+But for specific uses it might be more user-friendly
+to turn it off (for example, in the \link{tanglegram}
+function)}
 
 \item{...}{not used}
 }

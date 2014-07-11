@@ -563,7 +563,7 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
       return(object)
    }
    
-   leaves_length <- length(order.dendrogram(object)) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
+   leaves_length <- nleaves(object) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
    if(leaves_length > length(value)) {
       if(warn) warning("Length of value vector was shorter than the number of leaves - vector value recycled")
       value <- rep(value, length.out = leaves_length)
@@ -607,6 +607,11 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
 #' @param object a dendrogram object 
 #' @param value a new value scalar for the edgePar attribute. 
 #' @param edgePar the value inside edgePar to adjust.
+#' @param warn logical (TRUE). Should warning be issued?
+#' Generally, it is safer to keep this at TRUe.
+#' But for specific uses it might be more user-friendly
+#' to turn it off (for example, in the \link{tanglegram}
+#' function)
 #' @param ... not used
 #' @return 
 #' A dendrogram, after adjusting the edgePar attribute in all of its branches, 
@@ -626,15 +631,28 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
 #' 
 #' }
 #' 
-assign_values_to_branches_edgePar <- function(object, value, edgePar,...) {
+assign_values_to_branches_edgePar <- function(object, value, edgePar, warn = TRUE, ...) {
    if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
+  
+   if(missing(value)) {
+      warning("value is missing, returning the dendrogram as is.")
+      return(object)
+   }
+   
+   n_branches <- nnodes(object) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
+   if(n_branches > length(value)) {
+      if(warn) warning("Length of value vector was shorter than the number of leaves - vector value recycled")
+      value <- rep(value, length.out = n_branches)
+   }       
    
    set_value_to_branch <- function(dend_node) {
-      attr(dend_node, "edgePar")[[edgePar]] <- value # [i_leaf_number] # this way it doesn't erase other edgePar values (if they exist)
+      i_node <<- i_node + 1
+      attr(dend_node, "edgePar")[[edgePar]] <- value[i_node] # [i_leaf_number] # this way it doesn't erase other edgePar values (if they exist)
       if(length(attr(dend_node, "edgePar")) == 0) attr(dend_node, "edgePar") <- NULL # remove edgePar if it is empty
       return(unclass(dend_node))
    }   
    
+   i_node <- 0 
    new_dend_object <- dendrapply(object, set_value_to_branch)
    class(new_dend_object) <- "dendrogram"
    return(new_dend_object)
