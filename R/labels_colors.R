@@ -93,7 +93,16 @@ labels_colors <- function (object, labels = TRUE, ...) {
 
 #' @export
 "labels_colors<-" <- function (object, ..., value) {
-   if(!inherits(object,'dendrogram')) stop("'object' should be a dendrogram.")   
+   if(!inherits(object,'dendrogram')) stop("'object' should be a dendrogram.")
+   
+   if(missing(value)) {
+      warning("Color values are missing, using default (different) colors")      
+      tree_size <- nleaves(object)
+      value <- if(require(colorspace)) 
+         rainbow_hcl(tree_size) else
+            rainbow(tree_size)
+      }
+   
 
    col <- value
    leaves_length <- length(order.dendrogram(object)) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   

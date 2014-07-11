@@ -16,6 +16,7 @@ NEW FUNCTIONS:
 UPDATED R FUNCTIONS:
    * Made sure that the main untangle functions will return a dendlist (and also that untangle_step_rotate_2side will be able to work with the new untangle_step_rotate_1side output)
    * switched to using match.arg wherever possible (Bk_plot,  cor_cophenetic, entanglement, untangle_random_search, untangle_step_rotate_1side, and untangle_step_rotate_2side).
+   * `labels_colors<-` now has a default behavior if value is missing.
 
 NEW S3 METHODS:
    * tanglegram.dendlist
