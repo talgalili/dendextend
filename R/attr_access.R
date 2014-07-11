@@ -362,9 +362,10 @@ dendextend_get_branches_heights <- function(tree, sort = TRUE, decreasing = FALS
 #' plot(hang.dendrogram(dend), horiz = TRUE)
 #'  
 #'  
-hang.dendrogram <- function(dend,hang = 0.1,hang_height, ...) {
+hang.dendrogram <- function(dend, hang = 0.1, hang_height, ...) {
    if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")   
    
+
    #    get_heights.dendrogram
    if(missing(hang_height)) hang_height <- attr(dend, "height")*hang
    
@@ -556,6 +557,11 @@ rank_branches <- function(dend, diff_height =1, ...) {
 #' 
 assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE, ...) {
    if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
+   
+   if(missing(value)) {
+      warning("value is missing, returning the dendrogram as is.")
+      return(object)
+   }
    
    leaves_length <- length(order.dendrogram(object)) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
    if(leaves_length > length(value)) {

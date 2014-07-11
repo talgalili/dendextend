@@ -136,6 +136,8 @@ labels_colors <- function (object, labels = TRUE, ...) {
 }
 
 
+`labels_colors<-.dendrogram` <- `labels_colors<-`
+
 
 # 
 # #### Tests:

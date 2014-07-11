@@ -11,7 +11,7 @@ NEW FUNCTIONS:
    * click_rotate - interactively rotate a tree (thanks to Andrej-Nikolai Spiess)
    * untangle - a master function to control all untangle functions (making it much easier to navigate this feature, as well as use it through %>% piping)
    * untangle_DendSer - a new untangle function (this time, only for dendlist), for leverging the serialization package for some more heuristics.
-   * update.dendrogram - a new master function to allow various updating of dendrogram objects. It includes options for: labels, labels_colors, branches_color, 
+   * update.dendrogram - a new master function to allow various updating of dendrogram objects. It includes options for: labels, labels_colors, labels_cex, branches_color, hang, leaves_pch, leaves_cex, leaves_col 
 
 
 UPDATED R FUNCTIONS:
@@ -19,6 +19,7 @@ UPDATED R FUNCTIONS:
    * switched to using match.arg wherever possible (Bk_plot,  cor_cophenetic, entanglement, untangle_random_search, untangle_step_rotate_1side, and untangle_step_rotate_2side).
    * `labels_colors<-` - now has a default behavior if value is missing.
    * color_branches - now has a default behavior if k is missing.
+
 
 NEW S3 METHODS:
    * tanglegram.dendlist

@@ -29,9 +29,9 @@
 #' 
 #' @usage
 #' 
-#' \method{update}{dendrogram}(object, which = c(1L,2L), method = c("pearson", "kendall", "spearman"), ...) 
+#' \method{update}{dendrogram}(object, ...) 
 #' 
-#' \method{update}{dendlist}(object, which = c(1L,2L), method = c("pearson", "kendall", "spearman"), ...) 
+#' \method{update}{dendlist}(object, which, ...) 
 #' 
 #' @param object a tree (dendrogram, or \link{dendlist})
 #' @param what a character indicating what property of
@@ -42,7 +42,7 @@
 #' a dendlist, which of the trees should have 
 #' their "what" updated "with" something. If missing - the update
 #' will be performed on all of objects in the dendlist.
-#' @param ... Ignored.
+#' @param ... passed to the specific function for more options.
 #' 
 #' @details
 #' ddd
@@ -104,15 +104,33 @@
 #' )
 #' 
 #' }
-#' 
+
+
 update.dendrogram <- function(object, 
-                              what = c("labels"),
+                              what = c("labels",
+                                       "labels_color",
+                                       "labels_cex",
+                                       "branches_color",
+                                       "hang_leaves",
+                                       "leaves_pch",
+                                       "leaves_cex",
+                                       "leaves_col",
+                                       "leaves_xpd",
+                                       "leaves_bg"
+                              ),
                               with, ...){
    what <- match.arg(what)
    object <- switch(what, 
 #                     labels = dendextend:::`labels<-.dendrogram`(object, value = with)
-                    labels = `labels<-.dendrogram`(object, value = with)
-      )
+      labels = `labels<-.dendrogram`(object, value = with, ...),
+      labels_color = `labels_colors<-`(object, value = with, ...),
+      labels_cex = assign_values_to_leaves_nodePar(object, with, "lab.cex", ...),
+      branches_color = color_branches(tree = object, col = with, ...),
+      hang_leaves = hang.dendrogram(dend = object, hang = ifelse(missing(with), .1, with),...),
+      leaves_pch = assign_values_to_leaves_nodePar(object, with, "pch", ...),
+      leaves_cex =assign_values_to_leaves_nodePar(object, with, "cex", ...),
+      leaves_col =assign_values_to_leaves_nodePar(object, with, "col", ...),
+   )
    
    object
 }
@@ -126,6 +144,32 @@ if(FALSE) {
    labels(dend)
    update(dend, "labels", 1:10)
    dend %>% update("labels", 1:10) %>% plot # Works :)
+   dend %>% update("labels_color") %>% plot # Works :)
+   dend %>% update("labels_color", c(1,2)) %>% plot # Works :)
+   dend %>% update("labels_cex", c(1,1.2)) %>% plot # Works :)
+   dend %>% update("branches_color") %>% plot # Works :)
+   dend %>% update("branches_color", c(1,2)) %>% plot # Works :)
+   dend %>% update("branches_color", c(1,2,3), k=3) %>% plot # Works :)
+   dend %>% update("hang") %>% plot # Works :)
+   
+   
+   
+   dend %>% update("leaves_pch", NA) %>% plot # Works :)
+   dend %>% update("leaves_pch", c(1:5)) %>% plot # Works :)
+   dend %>% update("leaves_pch", c(19)) %>% update("leaves_cex", c(1,2)) %>% plot # Works :)
+   dend %>% update("leaves_pch", c(19,19, NA)) %>% 
+      update("leaves_cex", c(1,2)) %>%
+      update("leaves_col", c(1,1,2,2)) %>% 
+      plot # Works :)
+
+   
+   dend %>% 
+      update("labels", 1:10) %>%
+      update("labels_color") %>%
+      update("branches_color") %>%
+      update("hang") %>%
+      plot # Works :)
+   
 }
 
 
