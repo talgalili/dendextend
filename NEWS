@@ -10,6 +10,8 @@ NEW FUNCTIONS:
    * click_rotate - interactively rotate a tree (thanks to Andrej-Nikolai Spiess)
    * untangle - a master function to control all untangle functions (making it much easier to navigate this feature, as well as use it through %>% piping)
    * untangle_DendSer - a new untangle function (this time, only for dendlist), for leverging the serialization package for some more heuristics.
+   * update.dendrogram - a new master function to allow various updating of dendrogram objects.
+
 
 UPDATED R FUNCTIONS:
    * Made sure that the main untangle functions will return a dendlist (and also that untangle_step_rotate_2side will be able to work with the new untangle_step_rotate_1side output)
