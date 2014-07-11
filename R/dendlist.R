@@ -61,7 +61,7 @@ is_null_list <- function(x) {
 #' # FALSE
 #' is.dendlist(1)
 is.dendlist <- function(x) {
-   class(x) == "dendlist"
+   inherits(x, "dendlist")
 }
 
 
