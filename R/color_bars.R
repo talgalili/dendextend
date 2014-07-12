@@ -20,7 +20,6 @@
 
 color_bars <- function(dendro, colors, rowLabels = NULL, cex.rowLabels = 0.9, ...) 
 {
-
    if(!is.dendrogram(dendro)) dendro <- as.dendrogram(dendro)
    
    dend_order <- order.dendrogram(dendro)
@@ -30,6 +29,8 @@ color_bars <- function(dendro, colors, rowLabels = NULL, cex.rowLabels = 0.9, ..
    dimC = dim(colors)
    
    if (is.null(rowLabels) & (length(dimnames(colors)[[2]])==dimC[2])) rowLabels = names(as.data.frame(colors));
+   
+   op <- options()
    
    options(stringsAsFactors=FALSE);
    if (length(dend_order) != dimC[1] ) 
@@ -58,4 +59,6 @@ color_bars <- function(dendro, colors, rowLabels = NULL, cex.rowLabels = 0.9, ..
       } 
    }
    for (j in 1:nSets) lines(x=c(0,1), y=c(ystep*j,ystep*j));
+   
+   options(op)     # reset (all) initial options   
 }
