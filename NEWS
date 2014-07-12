@@ -13,6 +13,8 @@ NEW FUNCTIONS:
    * untangle_DendSer - a new untangle function (this time, only for dendlist), for leverging the serialization package for some more heuristics.
    * update.dendrogram - a new master function to allow various updating of dendrogram objects. It includes options for: labels, labels_colors, labels_cex, branches_color, hang, leaves_pch, leaves_cex, leaves_col, branches_k_color,      branches_col, branches_lwd, branches_lty, clear_branches, clear_leaves
 
+   * colored_bars - adding colored bars underneath a 
+      dendrogram plot.
 
 
 UPDATED R FUNCTIONS:
