@@ -12,6 +12,8 @@ NEW FUNCTIONS:
    * untangle - a master function to control all untangle functions (making it much easier to navigate this feature, as well as use it through %>% piping)
    * untangle_DendSer - a new untangle function (this time, only for dendlist), for leverging the serialization package for some more heuristics.
    * update.dendrogram - a new master function to allow various updating of dendrogram objects. It includes options for: labels, labels_colors, labels_cex, branches_color, hang, leaves_pch, leaves_cex, leaves_col, branches_k_color,      branches_col, branches_lwd, branches_lty, clear_branches, clear_leaves
+   * update.dendlist - a wrapper to update.dendrogram.
+   
 
    * colored_bars - adding colored bars underneath a 
       dendrogram plot.
@@ -24,7 +26,7 @@ UPDATED R FUNCTIONS:
    * color_branches - now has a default behavior if k is missing.
    * assign_values_to_branches_edgePar - value can now be different than 1 (it now also has a recycle option for the value)
    * Generally - moved to using is.dendrogram more.
-
+   * tanglegram - now preserve and restore previous par options (will no longer have a tiny plot in the left corner, when using a simple plot after tanglegram)
 
 
 NEW S3 METHODS:

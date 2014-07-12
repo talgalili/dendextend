@@ -743,6 +743,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    ord_arrow <- cbind((1:l)[order(order.dendrogram(tree1))],(1:l)[order(order.dendrogram(tree2))]) 
    
    # Set the layout of the plot elements
+   def_par <- par(no.readonly = TRUE) # save default, for resetting...
    layout(matrix(1:3,nrow=1),widths=columns_width)
       
    #################
@@ -794,7 +795,9 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                          #         leaflab="none",        
                          yaxs = "r", xaxs = "i",...)
 
-   
+   # layout(matrix(1)) # not required
+   par(def_par)  #- reset to default
+
    
    
    return(invisible(dendlist(tree1 = tree1, tree2 = tree2)))
