@@ -29,7 +29,100 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 
 
 
+#' @title Add colored bars to a dendrogram
 #' @export
+#' @description
+#' Add colored bars to a dendrogram, usually
+#' corresponding to either clusters or some outside
+#' categorization.
+#' @param dend a dendrogram object 
+#' @param colors Coloring of objects on the dendrogram. Either a vector (one color per object) 
+#' or a matrix (can also be an array or a data frame)
+#' with each column giving one color per object. 
+#' Each column will be plotted as a horizontal row of colors
+#' under the dendrogram.
+#' @param rowLabels Labels for the colorings given in \code{colors}. The labels will be printed to the
+#' left of the color rows in the plot. If the argument is given, it must be a vector of length
+#' equal to the number of columns in \code{colors}. If not given, \code{names(colors)}
+#' will be used if available. If not, sequential numbers
+#' starting from 1 will be used.
+#' @param cex.rowLabels Font size scale factor for the row labels. See \code{\link[graphics]{par}}.
+#' @param add logical(TRUE), should the colored bars be added to an existing
+#' dendrogram plot?
+#' @param y_scale how much should the bars be stretched on the y axis?
+#' @param y_shift where should the bars be plotted underneath the x axis?
+#' @param text_shift a dendrogram object 
+#' @param ... ignored at this point.
+#' @author Steve Horvath \email{SHorvath@@mednet.ucla.edu},
+#' Peter Langfelder \email{Peter.Langfelder@@gmail.com},
+#' Tal Galili \email{Tal.Galili@@gmail.com}
+#' @details
+#' You will often needs to adjust the y_scale, y_shift and the text_shift
+#' parameters, in order to get the bars in the location you would want.
+#' 
+#' (this can probably be done automatically, but will require more work. 
+#' since it has to do with the current mar settings,
+#' the number of groups, and each computer's specific graphic device.
+#' patches for smarter defaults will be appreciated)
+#' @source
+#' This function is based on the \link[moduleColor]{plotHclustColors} from the 
+#' {moduleColor} R package. It was modified so that it would
+#' work with dendrograms (and not just hclust objects), as well allow to
+#' add the colored bars on top of an existing plot (and not only as a seperate plot).
+#' 
+#' See: \url{http://cran.r-project.org/web/packages/moduleColor/}
+#' For more details.
+#' @return 
+#' An invisible vector/matrix with the ordered colors.
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' rows_picking <- c(1:5, 25:30)
+#' dend <- (iris[rows_picking,-5]*10) %>% dist %>% hclust %>% as.dendrogram 
+#' odd_numbers <- rows_picking %% 2
+#' cols <- c("gold", "grey")[odd_numbers+1]
+#' # scale is off
+#' plot(dend)
+#' colored_bars(dend, cols)
+#' # move and scale a bit
+#' plot(dend)
+#' colored_bars(dend, cols, y_shift = -1,
+#'              rowLabels = "Odd\n numbers")
+#' # Now let's cut the tree and add that info to the plot:
+#' k2 <- cutree(dend, k = 2)
+#' cols2 <- c("#0082CE", "#CC476B")[k2]
+#' plot(dend)
+#' # sadly, the shift paramteres need to be handled manually...
+#' colored_bars(dend, cbind(cols2, cols), y_shift = -1,
+#'              rowLabels = c("2 clusters", "Odd numbers"),
+#'              text_shift = 1)
+#' 
+#' # let's add clusters color
+#' # notice how we need to play with the colors a bit
+#' # this is because color_branches places colors from
+#' # left to right. Which means we need to give colored_bars
+#' # the colors of the items so that ofter sorting they would be
+#' # from left to right. Here is how it can be done:
+#' the_k <- 3
+#' cols3 <- rainbow_hcl(the_k, c=90, l=50)
+#' dend %>% update("branches_k_color", k = the_k, with = cols3) %>% plot
+#' 
+#' kx <- cutree(dend, k = the_k)
+#' ord <- order.dendrogram(dend)
+#' kx  <- sort_levels_values(kx[ord])   
+#' kx  <- kx[match(seq_along(ord), ord)]
+#' 
+#' colored_bars(dend, cbind(cols3[kx], cols2, cols), 
+#'              y_shift = -1, y_scale = 1.4,
+#'              rowLabels = c("3 clusters", "2 clusters", "Odd numbers"),
+#'              text_shift = 1)
+#' 
+#' 
+#' 
+#' 
+#' }
+#' 
 colored_bars <- function(dend, colors, rowLabels = NULL, cex.rowLabels = 0.9, 
                        add = TRUE, 
                        y_scale = 1, y_shift = 0,
@@ -114,103 +207,67 @@ colored_bars <- function(dend, colors, rowLabels = NULL, cex.rowLabels = 0.9,
    options(op)     # reset (all) initial options   
    par(mar = old_mar)
    
-   return(C)
+   return(invisible(C))
 }
 
 
 
-if(FALSE) {
-
-rows_picking <- c(1:5, 25:30)
-dend <- (iris[rows_picking,-5]*10) %>% dist %>% hclust %>% as.dendrogram 
-odd_numbers <- rows_picking %% 2
-cols <- c("gold", "grey")[odd_numbers+1]
-# scale is off
-plot(dend)
-colored_bars(dend, cols)
-# move and scale a bit
-plot(dend)
-colored_bars(dend, cols, y_shift = -1,
-           rowLabels = "Odd\n numbers")
-# Now let's cut the tree and add that info to the plot:
-k2 <- cutree(dend, k = 2)
-cols2 <- c("#0082CE", "#CC476B")[k2]
-plot(dend)
-# sadly, the shift paramteres need to be handled manually...
-colored_bars(dend, cbind(cols2, cols), y_shift = -1,
-           rowLabels = c("2 clusters", "Odd numbers"),
-            text_shift = 1)
-
-# let's add clusters color
-# notice how we need to play with the colors a bit
-# this is because color_branches places colors from
-# left to right. Which means we need to give colored_bars
-# the colors of the items so that ofter sorting they would be
-# from left to right. Here is how it can be done:
-the_k <- 3
-cols3 <- rainbow_hcl(the_k, c=90, l=50)
-dend %>% update("branches_k_color", k = the_k, with = cols3) %>% plot
-
-kx <- cutree(dend, k = the_k)
-ord <- order.dendrogram(dend)
-kx  <- sort_levels_values(kx[ord])   
-kx  <- kx[match(seq_along(ord), ord)]
-
-colored_bars(dend, cbind(cols3[kx], cols2, cols), 
-           y_shift = -1, y_scale = 1.4,
-           rowLabels = c("3 clusters", "2 clusters", "Odd numbers"),
-           text_shift = 1)
 
 
 
-colored_bars(dend, the_cols[cutree(dend, k = the_k, sort_cluster_numbers = T)], y_shift = -2)
-plot(1:5, pch = 19, cex = 2, col = the_cols)
-
-cutree(dend, k = the_k)[order.dendrogram(dend)]
-
-kx <- cutree(dend, k = the_k)
-ord <- order.dendrogram(dend)
-kx  <- sort_levels_values(kx[ord])   
-kx  <- kx[match(seq_along(ord), ord)]
-
-require(colorspace)
-dend %>% update("branches_k_color", k = the_k, with = the_cols) %>% plot
-colored_bars(dend, cols3[kx], y_shift = -2)
-
-
-
-
-# of course the pattern we see is just fake.
-
-k4 <- cutree(dend, k = 4)
-plot(dend)
-colored_bars(dend, k4)
-require(colorspace)
-dend %>% update("branches_k_color", k = 4) %>% plot
-colored_bars(dend, rainbow_hcl(4)[c(4,2,3,1)][k4], y_shift = -2)
-
-the_k <- 5
-the_cols <- rainbow_hcl(the_k, c=90, l=50)
-dend %>% update("branches_k_color", k = the_k, with = the_cols) %>% plot
-colored_bars(dend, the_cols[cutree(dend, k = the_k, sort_cluster_numbers = T)], y_shift = -2)
-plot(1:5, pch = 19, cex = 2, col = the_cols)
-
-cutree(dend, k = the_k)[order.dendrogram(dend)]
-
-kx <- cutree(dend, k = the_k)
-ord <- order.dendrogram(dend)
-kx  <- sort_levels_values(kx[ord])   
-kx  <- kx[match(seq_along(ord), ord)]
-
-require(colorspace)
-dend %>% update("branches_k_color", k = the_k, with = the_cols) %>% plot
-colored_bars(dend, the_cols[kx], y_shift = -2)
-
-the_cols <- apply(cutree(dend, k = 2:5), 2, function(x) heat_hcl(5)[x])
-
-plot(dend, las = 1)
-colored_bars(dend, the_cols)
-plot(dend, las = 1)
-colored_bars(dend, the_cols,y_scale = 3, y_shift = -2)
-
-}
+# 
+# if(FALSE) {
+#    
+#    
+#    
+#    colored_bars(dend, the_cols[cutree(dend, k = the_k, sort_cluster_numbers = T)], y_shift = -2)
+#    plot(1:5, pch = 19, cex = 2, col = the_cols)
+#    
+#    cutree(dend, k = the_k)[order.dendrogram(dend)]
+#    
+#    kx <- cutree(dend, k = the_k)
+#    ord <- order.dendrogram(dend)
+#    kx  <- sort_levels_values(kx[ord])   
+#    kx  <- kx[match(seq_along(ord), ord)]
+#    
+#    require(colorspace)
+#    dend %>% update("branches_k_color", k = the_k, with = the_cols) %>% plot
+#    colored_bars(dend, cols3[kx], y_shift = -2)
+#    
+#    
+#    
+#    
+#    # of course the pattern we see is just fake.
+#    
+#    k4 <- cutree(dend, k = 4)
+#    plot(dend)
+#    colored_bars(dend, k4)
+#    require(colorspace)
+#    dend %>% update("branches_k_color", k = 4) %>% plot
+#    colored_bars(dend, rainbow_hcl(4)[c(4,2,3,1)][k4], y_shift = -2)
+#    
+#    the_k <- 5
+#    the_cols <- rainbow_hcl(the_k, c=90, l=50)
+#    dend %>% update("branches_k_color", k = the_k, with = the_cols) %>% plot
+#    colored_bars(dend, the_cols[cutree(dend, k = the_k, sort_cluster_numbers = T)], y_shift = -2)
+#    plot(1:5, pch = 19, cex = 2, col = the_cols)
+#    
+#    cutree(dend, k = the_k)[order.dendrogram(dend)]
+#    
+#    kx <- cutree(dend, k = the_k)
+#    ord <- order.dendrogram(dend)
+#    kx  <- sort_levels_values(kx[ord])   
+#    kx  <- kx[match(seq_along(ord), ord)]
+#    
+#    require(colorspace)
+#    dend %>% update("branches_k_color", k = the_k, with = the_cols) %>% plot
+#    colored_bars(dend, the_cols[kx], y_shift = -2)
+#    
+#    the_cols <- apply(cutree(dend, k = 2:5), 2, function(x) heat_hcl(5)[x])
+#    
+#    plot(dend, las = 1)
+#    colored_bars(dend, the_cols)
+#    plot(dend, las = 1)
+#    colored_bars(dend, the_cols,y_scale = 3, y_shift = -2)
+#    
+# }

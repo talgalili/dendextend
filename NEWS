@@ -33,6 +33,8 @@ NEW S3 METHODS:
 NEW FILES
    * dendlist.R
    * test-dendlist.R
+   * update.dendrogram.R
+   * colored_bars.R
 
 UPDATED TESTS: 
    * Check dendlist works
