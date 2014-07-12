@@ -18,9 +18,13 @@
 
 
 
-plotHclustColors=function(dendro, colors, rowLabels = NULL, cex.rowLabels = 0.9, ...) 
+color_bars <- function(dendro, colors, rowLabels = NULL, cex.rowLabels = 0.9, ...) 
 {
 
+   if(!is.dendrogram(dendro)) dendro <- as.dendrogram(dendro)
+   
+   dend_order <- order.dendrogram(dendro)
+   
    
    colors = as.matrix(colors);
    dimC = dim(colors)
@@ -28,10 +32,10 @@ plotHclustColors=function(dendro, colors, rowLabels = NULL, cex.rowLabels = 0.9,
    if (is.null(rowLabels) & (length(dimnames(colors)[[2]])==dimC[2])) rowLabels = names(as.data.frame(colors));
    
    options(stringsAsFactors=FALSE);
-   if (length(dendro$order) != dimC[1] ) 
+   if (length(dend_order) != dimC[1] ) 
       stop("ERROR: length of colors vector not compatible with number of objects in the hierarchical tree.");
    nSets = dimC[2];
-   C = colors[dendro$order, ]; 
+   C = colors[dend_order, ]; 
    step = 1/(dimC[1]-1);
    ystep = 1/nSets;
    barplot(height=1, col = "white", border=FALSE, space=0, axes=FALSE, ...)
