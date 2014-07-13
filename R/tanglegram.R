@@ -448,7 +448,7 @@ plot_horiz.dendrogram <- function (x,
 #' @description 
 #' Plots a tanglegram plot of a side by side trees.
 #' 
-#' @author Tal Galili, plannapus
+#' @author Tal Galili, Johan Renaudie
 #' 
 #' @usage
 #' tanglegram(tree1, ...)
@@ -571,7 +571,7 @@ plot_horiz.dendrogram <- function (x,
 #' @return An invisible \link{dendlist}, with two trees after being
 #' modified during the creation of the tanglegram.
 #' @source
-#' The function is based on code from plannapus, after major revisions. See:
+#' The function is based on code from Johan Renaudie (plannapus), after major revisions. See:
 #' \url{http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r}
 #' 
 #' As far as I could tell, this code was originally inspired by Dylan Beaudette

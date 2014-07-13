@@ -57,7 +57,7 @@
 #' @param groupLabels If TRUE add numeric group label - see Details for options
 #' @param ... ignored.
 #' @return a tree object of class dendrogram.
-#' @author Tal Galili, extensively based on code by jefferis
+#' @author Tal Galili, extensively based on code by Gregory Jefferis
 #' @source
 #' This function is a derived work from the \code{\link[dendroextras]{color_clusters}}
 #' function, with some ideas from the \code{\link[dendroextras]{slice}} function -
