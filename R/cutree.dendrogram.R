@@ -360,19 +360,20 @@ cutree_1h.dendrogram <- function(tree, h,
 #'        #97.90023 57.41808 16.93594 
 #'        # we do NOT have a height for k=2 because of the tree's structure.
 #'        
-#'        
-#'        
-#' # speed gains:
-#' dat1 <- iris[1:150,-5]
-#' # dat1 <- rbind(dat1,dat1,dat1,dat1,dat1,dat1,dat1)
-#' dend_big = as.dendrogram(hclust(dist(dat1)))
+#'    
 #' require(microbenchmark)
-#' require(dendextendRcpp)
-#' microbenchmark(dendextend_heights_per_k.dendrogram(dend_big),
-#'                heights_per_k.dendrogram(dend_big),
-#'                dendextendRcpp::heights_per_k.dendrogram(dend_big),
-#'                times = 10)
-#' # ~126 times faster!
+#' dend = as.dendrogram(hclust(dist(iris[1:150,-5])))
+#' dend = as.dendrogram(hclust(dist(iris[1:30,-5])))
+#' dend = as.dendrogram(hclust(dist(iris[1:3,-5])))
+#' microbenchmark(
+#'    #    dendextendRcpp::heights_per_k.dendrogram(dend),
+#'    dendextendRcpp::dendextendRcpp_heights_per_k.dendrogram(dend),
+#'    dendextendRcpp::old_heights_per_k.dendrogram(dend)
+#' )
+#' # improvment is 10 times faster (in Rcpp) for a tree of size 3
+#' # 76 times faster for a tree of size 30
+#' # And:
+#' # 134 times faster for a tree of size 150!!
 #' }
 heights_per_k.dendrogram <- function(tree, ...) {
    fo <- dendextend_options("heights_per_k.dendrogram")   

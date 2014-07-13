@@ -13,8 +13,6 @@ NEW FUNCTIONS:
    * untangle_DendSer - a new untangle function (this time, only for dendlist), for leverging the serialization package for some more heuristics (based on the functions rotate_DendSer and DendSer.dendrogram).
    * update.dendrogram - a new master function to allow various updating of dendrogram objects. It includes options for: labels, labels_colors, labels_cex, branches_color, hang, leaves_pch, leaves_cex, leaves_col, branches_k_color,      branches_col, branches_lwd, branches_lty, clear_branches, clear_leaves
    * update.dendlist - a wrapper to update.dendrogram.
-   
-
    * colored_bars - adding colored bars underneath a 
       dendrogram plot.
 
@@ -46,7 +44,9 @@ OTHER NOTES:
       * Added the magrittr package as a Depends.
       * changed stats from depends to imports. Here is a good reference for why to choose the one over the other - http://stackoverflow.com/questions/8637993/better-explanation-of-when-to-use-imports-depends
 And: http://stackoverflow.com/questions/6895852/load-a-package-only-when-needed-in-r-package
-   * Fix typos in vignettes - thank you Bob Muenchen!
+   * Fix errors and typos in vignettes - thank you Bob Muenchen!
+   * Fix the docs of the functions in dendextend which relates to the newer dendextendRcpp (version 0.5.1): cut_lower_fun, get_branches_heights,  heights_per_k.dendrogram
+
 
 dendextend 0.14.4 (2014-07-04)
 ----------------------------
