@@ -70,6 +70,7 @@
 #' \method{labels}{hclust}(object, order = TRUE,...)
 #' 
 #' \method{labels}{hclust}(object, ...) <- value
+#' 
 #' @param object a variable name (possibly quoted) who's label are to be updated
 #' @param which "colnames" or "rownames", to which of the two should labels refer to.
 #' @param ... parameters passed (not currently in use)

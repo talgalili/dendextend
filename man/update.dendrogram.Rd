@@ -58,7 +58,7 @@ might wish to perform on a dendrogram before plotting.
 set.seed(23235)
 ss <- sample(1:150, 10 )
 
-# Getting the dend object onces
+# Getting the dend object
 dend <- iris[ss,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram
 dend \%>\% plot
 

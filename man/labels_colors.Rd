@@ -45,6 +45,10 @@ labels_colors(dend) <- 2:4
 labels_colors(dend)
 plot(dend)
 
+
+   # doesn't work...
+ #  get_nodes_attr(dend, "nodePar", include_branches = FALSE)
+
 # changing color to black
 labels_colors(dend) <- 1
 labels_colors(dend)
