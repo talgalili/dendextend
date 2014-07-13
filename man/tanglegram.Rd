@@ -9,7 +9,7 @@
 \alias{tanglegram.phylo}
 \title{Tanglegram plot}
 \source{
-The function is based on code from plannapus, after major revisions. See:
+The function is based on code from Johan Renaudie (plannapus), after major revisions. See:
 \url{http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r}
 
 As far as I could tell, this code was originally inspired by Dylan Beaudette
@@ -213,7 +213,7 @@ tanglegram(rank_branches(dend1) , rank_branches(dend2), lab.cex = 2, edge.lwd = 
 }
 }
 \author{
-Tal Galili, plannapus
+Tal Galili, Johan Renaudie
 }
 \seealso{
 \link{remove_leaves_nodePar}, \link{plot_horiz.dendrogram}, \link{rank_branches},

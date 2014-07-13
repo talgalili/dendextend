@@ -1194,7 +1194,10 @@ if(F){
 #' @title Tries to run DendSer on a dendrogram
 #' @export
 #' @description
-#' The function tries to turn the dend into hclust.
+#' Implements dendrogram seriation.
+#' The function tries to turn the dend into hclust, on 
+#' which it runs \link[DendSer]{DendSer}.
+#' 
 #' Also, if a distance matrix is missing, it will try
 #' to use the \link{cophenetic} distance.
 #' @param dend An object of class dendrogram
@@ -1205,7 +1208,8 @@ if(F){
 #' If it is missing, the cophenetic distance is used instead.
 #' @param ... parameters passed to \link[DendSer]{DendSer}
 #' @return Numeric vector giving an optimal dendrogram order
-#' @seealso \code{\link[DendSer]{DendSer}}
+#' @seealso \code{\link[DendSer]{DendSer}}, \link{DendSer.dendrogram} ,
+#' \link{untangle_DendSer} 
 #' @examples
 #' \dontrun{
 #' require(DendSer) # already used from within the function
@@ -1221,6 +1225,44 @@ DendSer.dendrogram <- function(dend, ser_weight, ...) {
 }
 
 
+#' @title Rotates dend based on DendSer
+#' @export
+#' @description
+#' Rotates a dendrogram based on its seriation
+#' 
+#' The function tries to turn the dend into hclust using
+#' \link{DendSer.dendrogram} (based on \link[DendSer]{DendSer})
+#' 
+#' Also, if a distance matrix is missing, it will try
+#' to use the \link{cophenetic} distance.
+#' @param dend An object of class dendrogram
+#' @param ser_weight Used by cost function to evaluate
+#'  ordering. For cost=costLS, this is a vector of
+#'   object weights. Otherwise is a dist or symmetric matrix.
+#' passed to \link{DendSer.dendrogram} and from
+#' there to \link[DendSer]{DendSer}.
+#' 
+#' If it is missing, the cophenetic distance is used instead.
+#' @param ... parameters passed to \link[DendSer]{DendSer}
+#' @return Numeric vector giving an optimal dendrogram order
+#' @seealso \code{\link[DendSer]{DendSer}}, \link{DendSer.dendrogram} ,
+#' \link{untangle_DendSer} 
+#' @examples
+#' \dontrun{
+#' require(DendSer) # already used from within the function
+
+#' dend <- USArrests[1:4,] %>% dist %>% hclust("ave") %>% as.dendrogram
+#' DendSer.dendrogram(dend)
+#' 
+#' tanglegram(dend, rotate_DendSer(dend))
+#' 
+#' }
+rotate_DendSer <- function(dend, ser_weight, ...) {
+   ord <- tryCatch(DendSer.dendrogram(dend, ser_weight = ser_weight), error = function(e) seq_len(nleaves(dend)))
+#    print(ord)
+   rotate(dend, ord)
+}
+
 #' @title Tries to run DendSer on a dendrogram
 #' @export
 #' @description
@@ -1232,7 +1274,8 @@ DendSer.dendrogram <- function(dend, ser_weight, ...) {
 #' @param dend An object of class \link{dendlist}
 #' @param ... NOT USED
 #' @return A dendlist object with ordered dends
-#' @seealso \code{\link[DendSer]{DendSer}}
+#' @seealso \code{\link[DendSer]{DendSer}}, \link{DendSer.dendrogram} ,
+#' \link{untangle_DendSer} 
 #' @examples
 #' \dontrun{
 #' set.seed(232)
@@ -1249,16 +1292,9 @@ DendSer.dendrogram <- function(dend, ser_weight, ...) {
 #' dend12 %>% untangle_DendSer %>% untangle("step2") %>% tanglegram
 #' }
 untangle_DendSer <- function(dend, ...) {
-   
-   dend1 <- dend[[1]]
-   dend2 <- dend[[2]]
-   
-   ord_1 <- tryCatch(DendSer.dendrogram(dend1), error = function(e) seq_len(length(dend1)))
-#    dist1 <- cophenetic(dend1) # using the dend1 dist for dend2
-#    ord_2 <- tryCatch(DendSer.dendrogram(dend2, dist1), error = function(e) seq_len(length(dend2)))
-   ord_2 <- tryCatch(DendSer.dendrogram(dend2), error = function(e) seq_len(length(dend2)))
-
    dendlist(
-      dend1 %>% rotate(ord_1),
-      dend2 %>% rotate(ord_2))
+      rotate_DendSer(dend[[1]]),
+      rotate_DendSer(dend[[2]])
+      )
 }
+

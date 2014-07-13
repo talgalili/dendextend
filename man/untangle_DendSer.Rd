@@ -37,6 +37,7 @@ dend12 \%>\% untangle_DendSer \%>\% untangle("step2") \%>\% tanglegram
 }
 }
 \seealso{
-\code{\link[DendSer]{DendSer}}
+\code{\link[DendSer]{DendSer}}, \link{DendSer.dendrogram} ,
+\link{untangle_DendSer}
 }
 

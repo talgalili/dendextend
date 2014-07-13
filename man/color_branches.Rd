@@ -159,7 +159,7 @@ plot(dend_iris1)
 }
 }
 \author{
-Tal Galili, extensively based on code by jefferis
+Tal Galili, extensively based on code by Gregory Jefferis
 }
 \seealso{
 \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
