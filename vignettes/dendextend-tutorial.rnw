@@ -68,9 +68,9 @@ options(replace.assign=TRUE,width=60)
 
 \Abstract{
 
-A dendrogram is a tree diagram which is often used to visualize an hierarchical clustering of items. Dendrograms are used in many dispelines, ranging from Phylogenetic Trees in computational biology to Lexomic Trees in text analysis.
+A dendrogram is a tree diagram which is often used to visualize an hierarchical clustering of items. Dendrograms are used in many disciplines, ranging from Phylogenetic Trees in computational biology to Lexomic Trees in text analysis.
 
-The \pkg{dendextend} package extends the dendrogram objects in the \proglang{R} programming language, allowing for easy manipulation of a dendrogram's shape, color and content. Furthermore, it enable the tools for comparing the similarity of two dendrograms to one another both graphically (using tanglegrems) and statistically (from cophenetic correlations to Bk plots).
+The \pkg{dendextend} package extends the dendrogram objects in the \proglang{R} programming language, allowing for easy manipulation of a dendrogram's shape, color and content. Furthermore, it enable the tools for comparing the similarity of two dendrograms to one another both graphically (using tanglegrams) and statistically (from cophenetic correlations to Bk plots).
 
 The paper gives a detailed exposition of both the internal structure of the package and the provided user interfaces.
 }
@@ -534,7 +534,7 @@ plot(flatten_dend_2, main = "Flatten tree \n(min branches height)"); abline(h = 
 
 \subsection{Coloring labels of leaves}
 
-Coloring labels can sometimes be useful, it is done through the \code{labels_colors} function (which also has assignemnt). Notice the assignment recycling, as well as the differene in the appearence of a dot when labels' color is black, compared to when it is NULL:
+Coloring labels can sometimes be useful, it is done through the \code{labels_colors} function (which also has assignment). Notice the assignment recycling, as well as the difference in the appearance of a dot when labels' color is black, compared to when it is NULL:
 
 <<fig.height=3,fig.align='center'>>=
 
@@ -569,7 +569,7 @@ labels_colors(dend)
 
 \subsection{Hanging a dendrogram}
 
-Hanging a tree means that we change the height of the leaves to be near their parent node. Hanging helps when examining the toplogy of the tree. Currently, hanging of a dendrogram was possible by going through the hclust object, but now you can simply use the \code{hang.dendrogram} function. Here is an example:
+Hanging a tree means that we change the height of the leaves to be near their parent node. Hanging helps when examining the topology of the tree. Currently, hanging of a dendrogram was possible by going through the hclust object, but now you can simply use the \code{hang.dendrogram} function. Here is an example:
 
 
 <<fig.height = 3,fig.align='center'>>=
@@ -645,7 +645,7 @@ plot(dends_12[[2]], main = "Intersected tree - complete method", ylim = c(0,110)
 
 @
 
-Sidenote: a similar function, called \code{plotColoredClusters}, is available in the \pkg{ClassDiscovery} package for \code{hclust} objects.
+Side-note: a similar function, called \code{plotColoredClusters}, is available in the \pkg{ClassDiscovery} package for \code{hclust} objects.
 
 
 \subsection{Rotating branches}
@@ -691,7 +691,7 @@ plot(sort(dend), main = "Sorts the labels by alphabetical order \n
 
 \subsection{Cutting trees}
 
-The \code{hclust} function comes with a very powerfull \code{cutree} function, for extracting cluster grouping of the original data based on cutting the Hierarchical tree at some height (or setting a predefined k - number of clusters). The limitation of this function is that it is only available for \code{hclust} object. Hence, if we are dealing with a tree which is NOT an ultrametric tree (e.g: ultrametric tree = a tree with monotone clustering heights), \code{cutree} would not be available for us (since \code{as.hclust} would not work on our dendrogram).
+The \code{hclust} function comes with a very powerful \code{cutree} function, for extracting cluster grouping of the original data based on cutting the Hierarchical tree at some height (or setting a predefined k - number of clusters). The limitation of this function is that it is only available for \code{hclust} object. Hence, if we are dealing with a tree which is NOT an ultrametric tree (e.g: ultrametric tree = a tree with monotone clustering heights), \code{cutree} would not be available for us (since \code{as.hclust} would not work on our dendrogram).
 
 In \pkg{dendextend}, we extend \code{cutree} by turning it into an S3 method, with methods for dendrogram and phylo objects. The phylo method is only turning the phylo object to an hclust, and tries to work on it there. However, the dendrogram method (\code{cutree.dendrogram}) is a complete re-writing of \code{cutree} based on the \code{cut.dendrogram} function. \code{cutree.dendrogram} fully emulates \code{cutree} by default, but at the same time extends it with the type of trees it can handle, and with some other options.
 
@@ -752,9 +752,9 @@ Having \code{cutree.dendrogram} available to us, we can now gain the ability to 
 \subsection{Coloring branches}
 
 
-Dendrogram plots with colored branches are used to easly distinguishing between different clusters on a tree. They have been available in R for many years in threads on the mailing lists and through various package. However, until recently, all of the functions in packages have always given the user a new \code{plot} function, without seperating the coloring of branches of a dendrogram from its plotting. Often the function for actually plotting the colored branched dendrogram would be hidden from the user. For example, the \pkg{labeltodendro} package \citep{CRAN:labeltodendro} gives a colored branch plot through the \code{colorplot} function, but the work horse for this is available in a hidden function called \code{dendroploth} or \code{dendroplotv}, both take care of the plotting by themselves (instead of modifying the dendrogram object, and then letting the base R function do the work). The same story happens in the \pkg{Heatplus} \citep{CRAN:Heatplus}, where the \code{plot.annHeatmap2} function actually uses the hidden function \code{cutplot.dendrogram} for doing the plotting.
+Dendrogram plots with colored branches are used to easily distinguishing between different clusters on a tree. They have been available in R for many years in threads on the mailing lists and through various package. However, until recently, all of the functions in packages have always given the user a new \code{plot} function, without separating the coloring of branches of a dendrogram from its plotting. Often the function for actually plotting the colored branched dendrogram would be hidden from the user. For example, the \pkg{labeltodendro} package \citep{CRAN:labeltodendro} gives a colored branch plot through the \code{colorplot} function, but the work horse for this is available in a hidden function called \code{dendroploth} or \code{dendroplotv}, both take care of the plotting by themselves (instead of modifying the dendrogram object, and then letting the base R function do the work). The same story happens in the \pkg{Heatplus} \citep{CRAN:Heatplus}, where the \code{plot.annHeatmap2} function actually uses the hidden function \code{cutplot.dendrogram} for doing the plotting.
 
-This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dendroextras} package \citep{CRAN:dendroextras}, which orgranized this through the \code{colour_clusters} function. In the \pkg{dendextend} package we imported his code into a new function called \code{color_branches}, with several useful modifications on the original code. The biggest limitation in the \code{colour_clusters} function is that it relies on changing the \code{dendrogram} into \code{hclust} in order to use \code{cutree} on it and get the clusters. This has the advantage of being fast, but the \textbf{disadvantage} of restricting the function to ultrametric and binary trees (the type of tree \code{hclust} objects can handle). In our implementation we implemented a new function called \code{cutree.dendrogram} (available through an S3 method), which can either relly on \code{hclust} for speed, but in case it is not possible will revert to find the clustering on the dendrogram object itself (the function is completely compatible with the base R \code{cutree} function). Also, our implementation of the \code{color_branches} function allows for repeated-multilayered coloring the branches. Another potential bug which is avoided in our implementation is to handle cases where the labels of the tree are of type Integer instead of Character (this happens if the \code{dendrogram} came from an \code{hclust}, used on the \code{dist} of data that has no \code{rownames}).
+This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dendroextras} package \citep{CRAN:dendroextras}, which organized this through the \code{colour_clusters} function. In the \pkg{dendextend} package we imported his code into a new function called \code{color_branches}, with several useful modifications on the original code. The biggest limitation in the \code{colour_clusters} function is that it relies on changing the \code{dendrogram} into \code{hclust} in order to use \code{cutree} on it and get the clusters. This has the advantage of being fast, but the \textbf{disadvantage} of restricting the function to ultrametric and binary trees (the type of tree \code{hclust} objects can handle). In our implementation we implemented a new function called \code{cutree.dendrogram} (available through an S3 method), which can either rely on \code{hclust} for speed, but in case it is not possible will revert to find the clustering on the dendrogram object itself (the function is completely compatible with the base R \code{cutree} function). Also, our implementation of the \code{color_branches} function allows for repeated-multilayered coloring the branches. Another potential bug which is avoided in our implementation is to handle cases where the labels of the tree are of type Integer instead of Character (this happens if the \code{dendrogram} came from an \code{hclust}, used on the \code{dist} of data that has no \code{rownames}).
 
 Here is an example of using \code{color_branches} combined with \code{labels_colors}:
 
@@ -797,11 +797,11 @@ legend("topleft", legend = iris_species, fill = rainbow_hcl(3))
 
 @
 
-This simple visualization easily demonstrates how the seperation of the Hierarchical clustering is very good with the "setosa" sepcies, but misses in labeling many "versicolor" species as "virginica".
+This simple visualization easily demonstrates how the separation of the Hierarchical clustering is very good with the "setosa" species, but misses in labeling many "versicolor" species as "virginica".
 
-The hanging of the tree also helps to locate extreme observations. For example, we can see that observation "virginica (107)" is not very similar to the Versicolor species, but still, it is amoung them. Also, "Versicolor (71)" is too much "within" the Virginica bush, and it is a wonder why that is.  Of course, the Iris dataset is very well known, and simpler pairs plot often help to locate such problems, yet - dendrogram trees (with all of their limitations) can help gain insights for very high-dimensional data where a simple pairs plot is not possible.
+The hanging of the tree also helps to locate extreme observations. For example, we can see that observation "virginica (107)" is not very similar to the Versicolor species, but still, it is among them. Also, "Versicolor (71)" is too much "within" the Virginica bush, and it is a wonder why that is.  Of course, the Iris data set is very well known, and simpler pairs plot often help to locate such problems, yet - dendrogram trees (with all of their limitations) can help gain insights for very high-dimensional data where a simple pairs plot is not possible.
 
-Here is the similar pairs plot. Notice the filled red and green dots, corrosponding with the extreme observations we have noticed in the dendrogram. Petal.Length vs Petal.Width gives the best example of why the green dot is an outlier. Whereas most plots show why the red dot is an outlier. There are of course other outliers, and a problem with classification, which we will not go futher into.
+Here is the similar pairs plot. Notice the filled red and green dots, corresponding with the extreme observations we have noticed in the dendrogram. Petal.Length vs Petal.Width gives the best example of why the green dot is an outlier. Whereas most plots show why the red dot is an outlier. There are of course other outliers, and a problem with classification, which we will not go further into.
 
 <<iris_colored_pairs_plot, fig.height = 9, fig.width=9>>=
 require(colorspace)
@@ -856,9 +856,9 @@ When comparing two trees via a tanglegram, we can use the \code{entanglement} fu
 
 Entanglement is measured by giving the left tree's labels the values of 1 till tree size, and than match these numbers with the right tree. Now, entanglement is the L norm distance between these two vectors.
 That is, we take the sum of the absolute difference (each one in the power of L). e.g: \code{sum(abs(x-y)**L)}.
-And this is devided by the "worst case" entanglement level (e.g: when the right tree is the complete reverse of the left tree).
+And this is divided by the "worst case" entanglement level (e.g: when the right tree is the complete reverse of the left tree).
 
-L tells us which panelty level we are at (L0, L1, L2, partial L's etc).  L>1 means that we give a big panelty for sharp angles.  While L->0 means that any time something is not a streight horizontal line, it gets a large penalty If L=0.1 it means that we much prefer streight lines over non streight lines
+L tells us which penalty level we are at (L0, L1, L2, partial L's etc).  L>1 means that we give a big penalty for sharp angles.  While L->0 means that any time something is not a straight horizontal line, it gets a large penalty If L=0.1 it means that we much prefer straight lines over non straight lines
 
 
 For example:
@@ -931,7 +931,7 @@ tanglegram(dend1 , dend2, color_lines=col_lines_by_left_groups,
 
 @
 
-One solution for improving the tanglegram would be to randomely search the rotated tree space for a better solution.
+One solution for improving the tanglegram would be to randomly search the rotated tree space for a better solution.
 
 For example:
 
@@ -1006,7 +1006,7 @@ tanglegram(color_branches(dend12[[1]], col=1, k=1) , dend2_4, color_lines=col_li
 
 \subsubsection{A two-side greedy search}
 
-Sometimes, using just one-sise greedy algorithm is not enough. Also, it is probably best to combine the random search with the two sided greedy stepwise search:
+Sometimes, using just one-side greedy algorithm is not enough. Also, it is probably best to combine the random search with the two sided greedy step-wise search:
 
 <<untangle_step_rotate_2side_example>>=
 
@@ -1064,24 +1064,24 @@ tanglegram(dend12_corrected_2[[1]],
 
 \subsection{Baker's Gamma Index}
 
-Baker's Gamma Index \citep{baker1974stability} is a measure of accosiation (similarity) 
+Baker's Gamma Index \citep{baker1974stability} is a measure of association (similarity) 
 between two trees of Hierarchical clustering (dendrograms). It is defined as the rank correlation between the stages at which pairs of objects combine in each of the two trees.
 
-Or more detailed: It is calculated by taking two items, and see what is the heighst
+Or more detailed: It is calculated by taking two items, and see what is the highest
 possible level of k (number of cluster groups created when cutting the tree)
 for which the two item still belongs to the same tree. That k is returned, 
 and the same is done for these two items for the second tree.
 There are n over 2 combinations of such pairs of items from the items in 
 the tree, and all of these numbers are calculated for each of the two trees. 
 Then, these two sets of numbers (a set for the items in each tree)
-are paired according to the pairs of items compared, and a spearman 
+are paired according to the pairs of items compared, and a Spearman 
 correlation is calculated.
 
 The value can range between -1 to 1. With near 0 values meaning that
 the two trees are not statistically similar.
 For exact p-value one should result to a permutation test. One such option
 will be to permute over the labels of one tree many times, and calculating 
-the distriubtion under the null hypothesis (keeping the trees topologies
+the distribution under the null hypothesis (keeping the trees topologies
 constant).
 
 Notice that this measure is not affected by the height of a branch but only
@@ -1145,7 +1145,7 @@ cor_bakers_gamma(dend1, dend1_mixed, use_labels_not_values = TRUE)
 @
 
 
-Since the observations creating the Baker's Gamma Index of such a measure are correlated, we need to perform a permutation test for the calculation of the statistical significance of the index. Let's look at the distribution of Baker's Gamma Index under the null hypothesis (assuming fixed tree topologies). This will be different for different tree structures and sizes. Here are the results when the compared tree is itself (after shuffaling its own labels), and when comparing tree 1 to the shuffled tree 2:
+Since the observations creating the Baker's Gamma Index of such a measure are correlated, we need to perform a permutation test for the calculation of the statistical significance of the index. Let's look at the distribution of Baker's Gamma Index under the null hypothesis (assuming fixed tree topologies). This will be different for different tree structures and sizes. Here are the results when the compared tree is itself (after shuffling its own labels), and when comparing tree 1 to the shuffled tree 2:
 
 
 
@@ -1309,9 +1309,9 @@ We can see that in our case, the non-parametric bootstrap confidence-intervals r
 
 \subsection{Cophenetic correlation}
 
-The cophenetic distance between two observations that have been clustered is defined to be the intergroup dissimilarity at which the two observations are first combined into a single cluster. This distance has many ties and restrictions. The cophenetic correlation \citep{sokal1962comparison} is the correlation between two cophenetic distance matrices of two trees.
+The cophenetic distance between two observations that have been clustered is defined to be the inter-group dissimilarity at which the two observations are first combined into a single cluster. This distance has many ties and restrictions. The cophenetic correlation \citep{sokal1962comparison} is the correlation between two cophenetic distance matrices of two trees.
 
-The value can range between -1 to 1. With near 0 values meaning that the two trees are not statistically similar. For exact p-value one should result to a permutation test. One such option will be to permute over the labels of one tree many times, and calculating the distriubtion under the null hypothesis (keeping the trees topologies constant).
+The value can range between -1 to 1. With near 0 values meaning that the two trees are not statistically similar. For exact p-value one should result to a permutation test. One such option will be to permute over the labels of one tree many times, and calculating the distribution under the null hypothesis (keeping the trees topologies constant).
 
 Here is a simple example:
 
@@ -1595,7 +1595,7 @@ legend("topright", legend = c("asymptotic", "permutation"), fill = c(4,1))
 
 @
 
-It is interesting to compare how the two ditributions diverge when K (3) is smaller:
+It is interesting to compare how the two distributions diverge when K (3) is smaller:
 
 
 <<FM_permutation_example_2, echo=FALSE>>=
@@ -1763,7 +1763,7 @@ Bk_plot(dend1, dend2, main = "CORRECT Bk plot \n(based on dendrograms)")
 
 Since dendrogram objects are often revised through the use of recursion, R often falls short when it comes to speed. In various function which are intended to run only once (such as \code{labels.color}), this does not bother us, and we are content at quickly writing the function with R and let it handle many extreme cases.
 
-However, some functions are intended to be used many times, and in such cases are well served to be handled with \proglang{C++}. Thanks the the \pkg{Rcpp} packabe (\cite{CRAN:Rcpp}, \cite{JSS:Rcpp}), we can comfortably extend several core functions of the dendextend package. These modifications are included in a seperate add-on package called \pkg{dendextendRcpp} \citep{CRAN:dendextendRcpp} by Dirk Eddelbuettel, Romain Fran\c{c}ois and Tal Galili. \pkg{dendextendRcpp} is set to load autmatically when \pkg{dendextend} loads, and its functions are set to properly override the R functions.
+However, some functions are intended to be used many times, and in such cases are well served to be handled with \proglang{C++}. Thanks the the \pkg{Rcpp} package (\cite{CRAN:Rcpp}, \cite{JSS:Rcpp}), we can comfortably extend several core functions of the dendextend package. These modifications are included in a separate add-on package called \pkg{dendextendRcpp} \citep{CRAN:dendextendRcpp} by Dirk Eddelbuettel, Romain Fran\c{c}ois and Tal Galili. \pkg{dendextendRcpp} is set to load automatically when \pkg{dendextend} loads, and its functions are set to properly override the R functions.
 
 Here are a few benchmarks using the \pkg{microbenchmark} package \citep{CRAN:microbenchmark}.
 
