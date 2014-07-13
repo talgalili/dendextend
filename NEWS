@@ -46,6 +46,7 @@ OTHER NOTES:
       * Added the magrittr package as a Depends.
       * changed stats from depends to imports. Here is a good reference for why to choose the one over the other - http://stackoverflow.com/questions/8637993/better-explanation-of-when-to-use-imports-depends
 And: http://stackoverflow.com/questions/6895852/load-a-package-only-when-needed-in-r-package
+   * Fix typos in vignettes - thank you Bob Muenchen!
 
 dendextend 0.14.4 (2014-07-04)
 ----------------------------

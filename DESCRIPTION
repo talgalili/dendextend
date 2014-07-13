@@ -8,13 +8,14 @@ Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
     = "ctb", email = "jefferis@gmail.com", comment ="imported code from his
     dendroextras package"), person("Marco", "Gallotta", role = "ctb", comment =
-    "a.k.a: marcog") , person("Johan", "Renaudie", role = "ctb", comment = "https://github.com/plannapus"),
-    person("Gregory", role = "ctb"), person("R core team", role = "ctb", comment = "Other than
-    the Infastructure, some code came from their examples"), person("Kurt",
-    "Hornik", role = "ctb"), person("Uwe", "Ligges", role = "ctb"),
-    person("Andrej-Nikolai", "Spiess", role = "ctb"),
-    person("Steve", "Horvath",email = "SHorvath@mednet.ucla.edu", role = "ctb"),
-    person("Peter", "Langfelder",email = "Peter.Langfelder@gmail.com", role = "ctb"),
+    "a.k.a: marcog") , person("Johan", "Renaudie", role = "ctb", comment =
+    "https://github.com/plannapus"), person("Gregory", role = "ctb"), person("R
+    core team", role = "ctb", comment = "Other than the Infastructure, some
+    code came from their examples"), person("Kurt", "Hornik", role = "ctb"),
+    person("Uwe", "Ligges", role = "ctb"), person("Andrej-Nikolai", "Spiess",
+    role = "ctb"), person("Steve", "Horvath",email =
+    "SHorvath@mednet.ucla.edu", role = "ctb"), person("Peter",
+    "Langfelder",email = "Peter.Langfelder@gmail.com", role = "ctb"),
     person("Yoav", "Benjamini", role = "ths"))
 Description: Functions and methods for extending dendrogram objects in R.
 Depends:
@@ -32,6 +33,7 @@ Suggests:
     profdpm,
     microbenchmark,
     colorspace,
+    gplots,
     DendSer,labeltodendro,dendroextras,
     dynamicTreeCut,
     ggdendro

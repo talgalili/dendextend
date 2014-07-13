@@ -12,6 +12,7 @@ toBibtex(citation("boot"))
 toBibtex(citation("profdpm"))
 toBibtex(citation("dendextendRcpp"))
 toBibtex(citation("microbenchmark"))
+toBibtex(citation("gplots"))
 
 
 toBibtex(packageDescription("stats"))
@@ -51,7 +52,7 @@ options(replace.assign=TRUE,width=60)
 
 
 \Plaintitle{Visualizing and Comparing Trees of Hierarchical Clustering: Using the dendextend R Package}
-\title{Visualizing and Comparing\\ Trees of Hierarchical Clustering:\\ Using the dendextend \proglang{R} Package}
+\title{Visualizing and Comparing \\ Trees of Hierarchical Clustering: \\ Using the dendextend \proglang{R} Package}
 
 
 % \Plaintitle{Manipulate, Visualize and Compare Dendrograms: The dendextend R Package}
@@ -70,7 +71,7 @@ options(replace.assign=TRUE,width=60)
 
 A dendrogram is a tree diagram which is often used to visualize an hierarchical clustering of items. Dendrograms are used in many disciplines, ranging from Phylogenetic Trees in computational biology to Lexomic Trees in text analysis.
 
-The \pkg{dendextend} package extends the dendrogram objects in the \proglang{R} programming language, allowing for easy manipulation of a dendrogram's shape, color and content. Furthermore, it enable the tools for comparing the similarity of two dendrograms to one another both graphically (using tanglegrams) and statistically (from cophenetic correlations to Bk plots).
+The \pkg{dendextend} package extends the dendrogram objects in the \proglang{R} programming language, allowing for easy manipulation of a dendrogram's shape, color and content. Furthermore, it provides tools for comparing the similarity of two dendrograms to one another both graphically (using tanglegrams) and statistically (from cophenetic correlations to Bk plots).
 
 The paper gives a detailed exposition of both the internal structure of the package and the provided user interfaces.
 }
@@ -151,7 +152,7 @@ str(dend[[2]]) # looking at one branch of the dendrogram
 plot(dend)
 @
 
-You might notice how the order of the items (leaves/terminal nodes) of the dendrogram is different than their order in the table. In order to re-order the rows in the data-table to have the same order as the items in the dendrogram, we can use the \code{order.dendrogram} function:
+You might notice how the order of the items (leaves/terminal nodes) of the dendrogram is different than their order in the original table of data. We can re-order the rows in the table to have the same order as the items in the dendrogram, with the \code{order.dendrogram} function:
 
 <<>>=
 (new_order <- order.dendrogram(dend)) 
@@ -177,14 +178,16 @@ names(attributes(dend)[-4])
 
 A very important function is \code{dendrapply}. It applies some function recursively to each node of a dendrogram. It is often used for adjusting attributes of the object, or extracting something from it. 
 
-One current "feature" with this function is that just sending a dendrogram through it will return it with each of its nodes becoming of class "dendrogram". Notice the use of the \code{unclass_dend} function. Example:
+One current "feature" with this function is that just sending a dendrogram through it will return it with each of its nodes becoming of class "dendrogram". This can lead to trouble when comparing the output of running the functiion with the original object. This can be resolved using the \code{unclass_dend} function. For example:
 
 <<>>=
 # dendrapply(dend, unclass) # in case the  
 itself <- function(x) x
 dend_from_dendrapply <- dendrapply(dend, itself)
 
-# here we must first use unclass since "[[]]" inherits its class to the output:
+identical(dend, dend_from_dendrapply)
+
+# here we must first use unclass since the output of "[[]]" inherits its class from the original object's class:
 class(unclass(dend)[[2]])
 class(unclass(dend_from_dendrapply)[[2]])
 class(unclass_dend(dend_from_dendrapply)[[2]]) # the new uncless_dend solves it.
@@ -200,8 +203,8 @@ The \code{dendrogram} object has several \textbf{advantages}:
 
 \begin{enumerate}
 
-   \item \code{dendrogram} objects are list R objects. This makes their structure very familiar and easy to understand by R users. They are also, relatively, simple to manipulate and extend.
-   \item \code{dendrogram} objects has various methods and functions for using them within R base. 
+   \item \code{dendrogram} objects are nested list of lists (with attributes). This makes their structure familiar and easy to understand by R users. They are also, relatively, simple to manipulate, extend and connect to different packages.
+   \item \code{dendrogram} objects have various methods and functions for using them within R base. 
    \item Other tree objects, such as \code{hclust}, and objects from the \pkg{ape} package \citep{CRAN:ape},  include an \code{as.dendrogram} method for converting their objects into a dendrogram. And also \code{as.phylo.dendrogram}, \code{as.hclust.dendrogram}.
    \item \code{dendrogram} objects are used in various packages as an intermediate step for other purposes (often plotting), such as:
    
@@ -210,6 +213,7 @@ The \code{dendrogram} object has several \textbf{advantages}:
    \item The \pkg{labeltodendro} package \citep{CRAN:labeltodendro}, see the \code{colorplot} function.
    \item The \pkg{bclust} package \citep{CRAN:bclust}, see the \code{bclust} function.
    \item The \pkg{ggdendro} package \citep{CRAN:ggdendro}, see the \code{dendro_data} function.
+   \item The \pkg{gplots} package \citep{CRAN:gplots}, see the \code{heatmap.2} function.
    \item The \pkg{Heatplus} package \citep{CRAN:Heatplus}, see the \code{annHeatmap2} function.
    \item The \pkg{sparcl} package \citep{CRAN:Heatplus}, see the \code{ColorDendrogram} function.
    \end{enumerate}
@@ -223,7 +227,7 @@ However, even with all of its advantages, the \code{dendrogram} class in R still
 
 The \code{dendextend} package aims at filling some gaps in base R, by extending the available functions for dendrogram manipulation, statistical analysis, and visualization.
 
-This vignettes Provides a step-by-step description of the functionality provided by the \code{dendextend} package.
+This vignettes gives a step-by-step description of the functionality available in the \code{dendextend} package.
 
 
 \subsection{Installing \code{dendextend}}
@@ -277,7 +281,7 @@ labels(x)
 @
 
 
-The new labels assignment function will allow a user to change the labels of the vector just as if it was "names":
+The new labels assignment function will allow a user to change the content of the vector's "labels" (similar to what can be done using "names"):
 
 <<>>=
 x <- 1:3 
@@ -295,8 +299,7 @@ We can get a dendrogram's labels using the \code{labels} function from base R. H
 
 <<>>=
 labels(dend) # from base R
-set.seed(2354235)
-labels(dend) <- sample(labels(dend)) # labels assingment - thanks to dendextend
+labels(dend) <- c("OH", "AK", "CA", "NY") # labels assingment - thanks to dendextend
 labels(dend)
 @
 
@@ -371,7 +374,7 @@ par(mfrow = c(1,2))
 count_terminal_nodes(dend) # 3 terminal nodes
 length(labels(dend)) # 3 - the same number
 plot(dend, 
-   main = "This is considered a tree \n with THREE terminal nodes/leaves") 
+   main = "This is considered a tree \n with THREE terminal nodes") 
 
 ###
 # NON-Trivial case
@@ -468,7 +471,7 @@ microbenchmark(   get_leaves_attr_4members = get_leaves_attr(dend, "members"),
 
 \subsection{unbranching and root height}
 
-A tree's nodes has various heights. Sometimes we are interested in changing the height of the entire tree. It is useful when This can be accomplished using \code{raise.dendrogram}. For example (notice how the entire tree's height is changed):
+A tree's nodes have various heights. Sometimes we are interested in changing the height of the entire tree. This can be accomplished using \code{raise.dendrogram}. For example (notice how the entire tree's height is changed):
 
 <<fig.height = 3,fig.align='center'>>=
 
@@ -491,7 +494,7 @@ plot(shorter_dend, ylim = c(0, 70), main = "Shorter dend"); abline(h = c(40, 50,
 
 
 
-Sometimes we wish to "unbranch" the dendrogram, meaning that we merge one of the tree's branches with its root. This is useful, for example, when merging phylogenetic trees from several families, and being unwilling to assume a specific root/height to the merged trees. unbranching can be done using the \code{unbranch} (S3) function (notice the use of the \code{branch_becoming_root} parameter):
+Sometimes we wish to "unbranch" the dendrogram, meaning that we merge one of the tree's branches with its root. This is useful, for example, when merging phylogenetic trees from several families, and being unwilling to assume a specific root/height to the merged trees. Unbranching can be done using the \code{unbranch} (S3) function (notice the use of the \code{branch_becoming_root} parameter):
 
 
 <<fig.height = 3,fig.align='center'>>=
@@ -534,7 +537,7 @@ plot(flatten_dend_2, main = "Flatten tree \n(min branches height)"); abline(h = 
 
 \subsection{Coloring labels of leaves}
 
-Coloring labels can sometimes be useful, it is done through the \code{labels_colors} function (which also has assignment). Notice the assignment recycling, as well as the difference in the appearance of a dot when labels' color is black, compared to when it is NULL:
+Coloring labels can sometimes be useful, it is done through the \code{labels_colors} function (which also has assignment). Notice the assignment recycling, as well as the difference in the appearance of a dot when a label's color is black, compared to when it is NULL:
 
 <<fig.height=3,fig.align='center'>>=
 
@@ -558,7 +561,7 @@ labels_colors(dend) <- 1
 labels_colors(dend)
 plot(dend)
 
-# removing color (and the nodePar completely - if it has no other attributed but lab.col)
+# removing color (and the nodePar completely - if it has no other attribute but lab.col)
 labels_colors(dend) <- NULL
 labels_colors(dend)
 
@@ -570,10 +573,7 @@ labels_colors(dend)
 \subsection{Hanging a dendrogram}
 
 Hanging a tree means that we change the height of the leaves to be near their parent node. Hanging helps when examining the topology of the tree. Currently, hanging of a dendrogram was possible by going through the hclust object, but now you can simply use the \code{hang.dendrogram} function. Here is an example:
-
-
 <<fig.height = 3,fig.align='center'>>=
-
 hc <- hclust(dist(USArrests[1:9,]), "ave")
 dend <- as.dendrogram(hc)
 hang_dend_1 <- hang.dendrogram(dend, hang = 0.1)
@@ -587,14 +587,12 @@ labels_colors(hang_dend_1) <- rainbow_hcl(nleaves(hang_dend_1))
 par(mfrow = c(1,2))
 plot(hc, main ="Hanged hclust tree")
 plot(hang_dend_1, main ="Hanged dendrogram tree")
-
 @
-
 
 
 \subsection{Trimming leaves}
 
-Trimming a tree from some leaves can be done using the \code{prune} (S3 method) function (notice that the attributes of the pruned tree are updated):
+Trimming some leaves from a tree can be done using the \code{prune} (S3 method) function (notice that the attributes of the pruned tree are updated):
 
 <<fig.height = 3,fig.align='center'>>=
 
@@ -609,7 +607,7 @@ str(unclass(pruned_dend))
 
 par(mfrow = c(1,2))
 plot(dend, main = "Original tree")
-plot(pruned_dend, main = "Tree without Alaska and California")
+plot(pruned_dend, main = "Tree without Alaska/California")
 
 @
 
@@ -680,7 +678,7 @@ labels_colors(dend) <- rainbow_hcl(nleaves(dend))
 par(mfrow = c(2,2))
 plot(dend, main = "Original tree") 
 plot(rotate(dend, c(2:5,1)), main = 
-        "Rotates the left most leaf \n into the right side of the tree")
+        "Rotates the left most leaf \n into the right sided of the tree")
 plot(dend, main = "Original tree") 
 plot(sort(dend), main = "Sorts the labels by alphabetical order \n 
      and rotates the tree to give the best fit possible")
@@ -752,9 +750,9 @@ Having \code{cutree.dendrogram} available to us, we can now gain the ability to 
 \subsection{Coloring branches}
 
 
-Dendrogram plots with colored branches are used to easily distinguishing between different clusters on a tree. They have been available in R for many years in threads on the mailing lists and through various package. However, until recently, all of the functions in packages have always given the user a new \code{plot} function, without separating the coloring of branches of a dendrogram from its plotting. Often the function for actually plotting the colored branched dendrogram would be hidden from the user. For example, the \pkg{labeltodendro} package \citep{CRAN:labeltodendro} gives a colored branch plot through the \code{colorplot} function, but the work horse for this is available in a hidden function called \code{dendroploth} or \code{dendroplotv}, both take care of the plotting by themselves (instead of modifying the dendrogram object, and then letting the base R function do the work). The same story happens in the \pkg{Heatplus} \citep{CRAN:Heatplus}, where the \code{plot.annHeatmap2} function actually uses the hidden function \code{cutplot.dendrogram} for doing the plotting.
+Dendrogram plots with colored branches are used to easily distinguish between different clusters on a tree. They have been available in R for many years in threads on the mailing lists and through various package. However, until recently, all of the functions in packages have always given the user a new \code{plot} function, without separating the coloring of branches of a dendrogram from its plotting. Often the function for actually plotting the colored branched dendrogram would be hidden from the user. For example, the \pkg{labeltodendro} package \citep{CRAN:labeltodendro} gives a colored branch plot through the \code{colorplot} function, but the work horse for this is available in a hidden function called \code{dendroploth} or \code{dendroplotv}, both take care of the plotting by themselves (instead of modifying the dendrogram object, and then letting the base R function do the work). The same story happens in the \pkg{Heatplus} \citep{CRAN:Heatplus}, where the \code{plot.annHeatmap2} function actually uses the hidden function \code{cutplot.dendrogram} for doing the plotting.
 
-This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dendroextras} package \citep{CRAN:dendroextras}, which organized this through the \code{colour_clusters} function. In the \pkg{dendextend} package we imported his code into a new function called \code{color_branches}, with several useful modifications on the original code. The biggest limitation in the \code{colour_clusters} function is that it relies on changing the \code{dendrogram} into \code{hclust} in order to use \code{cutree} on it and get the clusters. This has the advantage of being fast, but the \textbf{disadvantage} of restricting the function to ultrametric and binary trees (the type of tree \code{hclust} objects can handle). In our implementation we implemented a new function called \code{cutree.dendrogram} (available through an S3 method), which can either rely on \code{hclust} for speed, but in case it is not possible will revert to find the clustering on the dendrogram object itself (the function is completely compatible with the base R \code{cutree} function). Also, our implementation of the \code{color_branches} function allows for repeated-multilayered coloring the branches. Another potential bug which is avoided in our implementation is to handle cases where the labels of the tree are of type Integer instead of Character (this happens if the \code{dendrogram} came from an \code{hclust}, used on the \code{dist} of data that has no \code{rownames}).
+This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dendroextras} package \citep{CRAN:dendroextras}, which organized this through the \code{colour_clusters} function. In the \pkg{dendextend} package we imported his code into a new function called \code{color_branches}, with several useful modifications on the original code. The biggest limitation in the \code{colour_clusters} function is that it relies on changing the \code{dendrogram} into \code{hclust} in order to use \code{cutree} on it and get the clusters. This has the advantage of being fast, but the \textbf{disadvantage} of restricting the function to ultrametric and binary trees (the type of tree \code{hclust} objects can handle). Here we implemented a new function called \code{cutree.dendrogram} (available as an S3 method), which rely on \code{hclust} for speed, but if it is not possible to convert the dendrogram to hclust, it will find the clustering on the dendrogram object itself (while being fully compatible with the base R \code{cutree} function). Also, our implementation of the \code{color_branches} function allows for repeated-multilayered coloring of the branches. Another potential bug which is avoided in our implementation is to handle cases where the labels of the tree are of type Integer instead of Character (this happens if the \code{dendrogram} came from an \code{hclust}, used on the \code{dist} of data that has no \code{rownames}).
 
 Here is an example of using \code{color_branches} combined with \code{labels_colors}:
 
@@ -947,7 +945,7 @@ tanglegram(dend12[[1]] , dend12[[2]], color_lines=col_lines_by_left_groups,
 We can see we already got something better. An advantage of the random search is the ability to create many many trees and compare them to find the best pair.
 
 
-\subsubsection{A one-side greedy search}
+\subsubsection{A one-sided greedy search}
 
 Let's use a greedy forward step wise rotation of the right tree, to see if we can find a better solution for comparing the two trees. Notice that this may take some time to run (the larger the tree, the longer it would take), but we can limit the search for smaller k's, and see what improvement that can bring us:
 
@@ -979,7 +977,7 @@ entanglement(dend1 , dend2_3)
 
 @
 
-\subsubsection{Combining a one-side greedy search with a random search}
+\subsubsection{Combining a one-sided greedy search with a random search}
 
 As we can see, the random search actually found something better than the forward selection search. But now we can use the forward search on the trees we found in the random search:
 
@@ -1004,9 +1002,9 @@ tanglegram(color_branches(dend12[[1]], col=1, k=1) , dend2_4, color_lines=col_li
 @
 
 
-\subsubsection{A two-side greedy search}
+\subsubsection{A two-sided greedy search}
 
-Sometimes, using just one-side greedy algorithm is not enough. Also, it is probably best to combine the random search with the two sided greedy step-wise search:
+Sometimes, using just one-sided greedy algorithm is not enough. Also, it is probably best to combine the random search with the two sided greedy step-wise search:
 
 <<untangle_step_rotate_2side_example>>=
 
@@ -1079,8 +1077,8 @@ correlation is calculated.
 
 The value can range between -1 to 1. With near 0 values meaning that
 the two trees are not statistically similar.
-For exact p-value one should result to a permutation test. One such option
-will be to permute over the labels of one tree many times, and calculating 
+For exact p-value one should use a permutation test. One such option
+will be to permute over the labels of one tree many times, calculating 
 the distribution under the null hypothesis (keeping the trees topologies
 constant).
 
@@ -1302,7 +1300,7 @@ legend("topleft", legend =c("95% CI", "Baker's Gamma Index"), fill = c(3,2))
 
 @
 
-We can see that in our case, the non-parametric bootstrap confidence-intervals reassures us that the correlation is significantly different than 0 (thank to the confidence-intervals duality with rejection regions). 
+We can see that in our case, the non-parametric bootstrap confidence-intervals reassures us that the correlation is significantly different than 0 (thanks to the confidence-intervals duality with rejection regions). 
 
 
 
@@ -1391,7 +1389,7 @@ for(i in 1:R) {
    cor_cophenetic_results[i] <- cor_cophenetic(dend_mixed1, dend_mixed2)
 }
 plot(density(cor_cophenetic_results),
-     main = "Cophenetic correlation distribution under H0",
+main = "Cophenetic correlation distribution under H0",
      xlim = c(-1,1))
 abline(v = 0, lty = 2)
 abline(v = the_cor, lty = 2, col = 2)
@@ -1698,7 +1696,7 @@ In the Bk method we calculate the FM Index (Bk) for each k (k=2,3,…,n-1) numbe
 
 \[{FM_k} = {B_k} = \frac{{\sum\limits_{}^{} {{a_{uv}}{b_{uv}}} }}{{\sqrt {\sum\limits_{}^{} {{a_{uv}}} \sum\limits_{}^{} {{b_{uv}}} } }}\]
 
-The Bk measure can be plotted for every value of k (except k=n) in order to create the “(k,Bk) plot”.  The plot compares the similarity of the two trees for different cuts. The mean and variance of Bk, under the null hypothesis (that the two trees are not “similar”), and under the assumption that the margins of the matching matrix are fixed, are given in Fowlkes and Mallows \citep{fowlkes1983method}. They allow making inference on whether the results obtained are different from what would have been expected under the null hypothesis (of now particular order of the trees' labels).
+The Bk measure can be plotted for every value of k (except k=n) in order to create the "(k,Bk) plot".  The plot compares the similarity of the two trees for different cuts. The mean and variance of Bk, under the null hypothesis (that the two trees are not "similar"), and under the assumption that the margins of the matching matrix are fixed, are given in Fowlkes and Mallows \citep{fowlkes1983method}. They allow making inference on whether the results obtained are different from what would have been expected under the null hypothesis (of now particular order of the trees' labels).
 
 The \code{Bk} and the \code{Bk_plot} functions allow the calculation of the FM-Index for a range of k values on two trees. Here are examples:
 
@@ -1761,7 +1759,7 @@ Bk_plot(dend1, dend2, main = "CORRECT Bk plot \n(based on dendrograms)")
 
 \section{dendextendRcpp - gaining speed with Rcpp}
 
-Since dendrogram objects are often revised through the use of recursion, R often falls short when it comes to speed. In various function which are intended to run only once (such as \code{labels.color}), this does not bother us, and we are content at quickly writing the function with R and let it handle many extreme cases.
+Since dendrogram objects are often revised through the use of recursion, R often falls short when it comes to speed. In various function which are intended to run only once (such as \code{labels.color}), this does not bother us, and we are content at quickly writing the function with R and letting it handle many extreme cases.
 
 However, some functions are intended to be used many times, and in such cases are well served to be handled with \proglang{C++}. Thanks the the \pkg{Rcpp} package (\cite{CRAN:Rcpp}, \cite{JSS:Rcpp}), we can comfortably extend several core functions of the dendextend package. These modifications are included in a separate add-on package called \pkg{dendextendRcpp} \citep{CRAN:dendextendRcpp} by Dirk Eddelbuettel, Romain Fran\c{c}ois and Tal Galili. \pkg{dendextendRcpp} is set to load automatically when \pkg{dendextend} loads, and its functions are set to properly override the R functions.
 
