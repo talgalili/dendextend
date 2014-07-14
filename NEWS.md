@@ -1,4 +1,4 @@
-dendextend 0.15.0 (2014-07-06)
+dendextend 0.15.0 (2014-07-14)
 ================================
 
 ##NEW FUNCTIONS:
@@ -35,6 +35,7 @@ dendextend 0.15.0 (2014-07-06)
    * test-dendlist.R
    * update.dendrogram.R
    * colored_bars.R
+   * magrittr.R
 
 ##UPDATED TESTS: 
    * Check dendlist works
@@ -46,7 +47,10 @@ dendextend 0.15.0 (2014-07-06)
 And: http://stackoverflow.com/questions/6895852/load-a-package-only-when-needed-in-r-package
    * Fix errors and typos in vignettes - thank you Bob Muenchen!
    * Fix the docs of the functions in dendextend which relates to the newer dendextendRcpp (version 0.5.1): cut_lower_fun, get_branches_heights,  heights_per_k.dendrogram
-
+   * tests - Moved from using test_that with equal() to test_equal (due to some conflict with, possibly, devtools)
+   * roxygen2 - Moved from using @S3method to @export (removed 45 warnings from check() )
+   * Moved all "@import" to the dendextend-package.R file (just to make it easier to follow up on them). This code makes sure that thees packages will be mentioned in the NAMESPACE file.
+   * Imported the %>% function from magrittr (using a trick from the dplyr package)
 
 dendextend 0.14.4 (2014-07-04)
 ================================

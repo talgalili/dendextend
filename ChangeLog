@@ -1,3 +1,80 @@
+* 2014-07-14(Tal Galili) Minor doc fixed for: cor_cophenetic, entanglement. as.phylo.dendrogram, untangle.dendlist, and labels.hclust (which required the use of @rdname) |30c5277| 
+|  R/cor_cophenetic.R     |  7 +++++--
+|  R/dendextend-package.R |  8 ++++++++
+|  R/entanglement.R       |  6 +++---
+|  R/nleaves.R            |  6 ++----
+|  R/untangle.R           |  5 +++--
+|  man/cor_cophenetic.Rd  |  4 +++-
+|  man/entanglement.Rd    |  4 ++--
+|  man/labels-assign.Rd   |  9 +++++++++
+|  man/labels.hclust.Rd   | 11 -----------
+|  man/shuffle.Rd         |  1 +
+|  man/untangle.Rd        |  2 +-
+|  11 files changed, 37 insertions(+), 26 deletions(-)
+
+* 2014-07-14(Tal Galili) Added an internal function "zero_range" |58cf6bc| 
+|  R/colored_bars.R | 19 +++++++++++++++++++
+|  1 file changed, 19 insertions(+)
+
+* 2014-07-14(Tal Galili) Change "" to `` when wrapping a function of style `fo<-`, so to have RStudio pick up on it. |bdca139| 
+|  R/labels.R | 24 ++++++++++++++----------
+|  1 file changed, 14 insertions(+), 10 deletions(-)
+
+* 2014-07-14(Tal Galili) Moved {magrittr} to the "Imports" section in DESCRIPTION. And imported the %>% function from magrittr (using a trick from the dplyr package) |f2bb8be| 
+|  DESCRIPTION  |  4 ++--
+|  NAMESPACE    |  3 ++-
+|  NEWS         |  3 +++
+|  R/magrittr.R | 43 +++++++++++++++++++++++++++++++++++++++++++
+|  man/pipe.Rd  | 32 ++++++++++++++++++++++++++++++++
+|  5 files changed, 82 insertions(+), 3 deletions(-)
+
+* 2014-07-14(Tal Galili) roxygen2 - Moved from using @S3method to @export (removed 45 warnings from check() ) |e036f50| 
+|  NEWS                  |  3 ++-
+|  R/cor_bakers_gamma.R  |  6 ++++--
+|  R/cutree.dendrogram.R |  4 ++--
+|  R/entanglement.R      | 12 ++++++++----
+|  R/labels.R            | 12 ++++++------
+|  R/nleaves.R           | 27 +++++++++++++++++----------
+|  R/rotate.R            | 18 ++++++++++++------
+|  R/tanglegram.R        | 12 ++++++++----
+|  R/trim.R              |  9 ++++++---
+|  R/unbranch.R          |  9 ++++++---
+|  R/untangle.R          | 18 ++++++++++++------
+|  R/update.dendrogram.R |  3 ++-
+|  R/zzz.R               |  1 +
+|  TODO                  |  4 ++++
+|  man/labels.hclust.Rd  | 11 +++++++++++
+|  15 files changed, 101 insertions(+), 48 deletions(-)
+
+* 2014-07-14(Tal Galili) untangle.dendrogram - fix doc, and add \n to massage |0f2afed| 
+|  R/untangle.R                      | 4 ++--
+|  man/untangle_step_rotate_2side.Rd | 2 +-
+|  2 files changed, 3 insertions(+), 3 deletions(-)
+
+* 2014-07-14(Tal Galili) Replace expect_that with expect_equal |8a27370| 
+|  inst/tests/test-labels-assign.R | 49 +++++++++++++++++++++------------------
+|  1 file changed, 27 insertions(+), 22 deletions(-)
+
+* 2014-07-14(Tal Galili) tests - add an option to stop the warnings (I know they are there, so really no point in them keep showing up...) |4862624| 
+|  inst/tests/test-update.dendrogram.R | 7 +++++++
+|  1 file changed, 7 insertions(+)
+
+* 2014-07-14(Tal Galili) add ` to functions in NEWS |ece7863| 
+|  NEWS    | 36 ++++++++++++++++++------------------
+|  NEWS.md | 36 ++++++++++++++++++------------------
+|  2 files changed, 36 insertions(+), 36 deletions(-)
+
+* 2014-07-14(Tal Galili) Turn news to be more marked down... |b231b9b| 
+|  NEWS    | 230 +++++++++++++++++++++++++++++++-------------------------------
+|  NEWS.md | 230 +++++++++++++++++++++++++++++++-------------------------------
+|  2 files changed, 230 insertions(+), 230 deletions(-)
+
+* 2014-07-14(Tal Galili) update NEWS.md and changelog |5f206dd| 
+|  ChangeLog | 232 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  NEWS.md   | 265 +++++++++++++++++++++++++++++++++++++++++++++++++++++++-----
+|  R/zzz.R   |   4 +-
+|  3 files changed, 479 insertions(+), 22 deletions(-)
+
 * 2014-07-14(Tal Galili) Updated the README a bit. |8d6bb95| 
 |  README.md | 37 +++++++------------------------------
 |  1 file changed, 7 insertions(+), 30 deletions(-)
