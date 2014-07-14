@@ -20,6 +20,25 @@
 # source: http://stackoverflow.com/questions/5468280/scale-a-series-between-two-points-in-r
 # from the {scales} package
 # library("scales"); rescale
+
+zero_range <- function (x, tol = .Machine$double.eps * 100) 
+{
+    if (length(x) == 1) 
+        return(TRUE)
+    if (length(x) != 2) 
+        stop("x must be length 1 or 2")
+    if (any(is.na(x))) 
+        return(NA)
+    if (x[1] == x[2]) 
+        return(TRUE)
+    if (all(is.infinite(x))) 
+        return(FALSE)
+    m <- min(abs(x))
+    if (m == 0) 
+        return(FALSE)
+    abs((x[1] - x[2])/m) < tol
+}
+
 rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE)) 
 {
    if (zero_range(from) || zero_range(to)) 
