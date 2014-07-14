@@ -1,3 +1,235 @@
+* 2014-07-14(Tal Galili) Updated the README a bit. |8d6bb95| 
+|  README.md | 37 +++++++------------------------------
+|  1 file changed, 7 insertions(+), 30 deletions(-)
+
+* 2014-07-14(Tal Galili) add .gitignore to not keep the cache and figure folders |5a4028c| 
+|  vignettes/.gitignore | 2 ++
+|  1 file changed, 2 insertions(+)
+
+* 2014-07-14(Tal Galili) update TODO and ChangeLog |99430e2| 
+|  ChangeLog | 400 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  TODO      |  25 ++++
+|  2 files changed, 425 insertions(+)
+
+* 2014-07-14(Tal Galili) Remove all extra doc files |8a3a863| 
+|  inst/doc/2013-09-05_Boston-useR/.gitignore        |    4 -
+|  .../precip_dend_plot_1.png                        |  Bin 3665 -> 0 bytes
+|  .../precip_dend_plot_2.png                        |  Bin 3715 -> 0 bytes
+|  .../precip_subset__hclust_single_plot.png         |  Bin 3900 -> 0 bytes
+|  .../precip_subset__hclust_single_plot_rect.png    |  Bin 3833 -> 0 bytes
+|  .../unnamed-chunk-17.png                          |  Bin 5737 -> 0 bytes
+|  .../unnamed-chunk-19.png                          |  Bin 7510 -> 0 bytes
+|  .../unnamed-chunk-21.png                          |  Bin 3900 -> 0 bytes
+|  .../unnamed-chunk-5.png                           |  Bin 11621 -> 0 bytes
+|  .../2013-09-05_Boston-useR_01_intro.R             |  198 -
+|  .../2013-09-05_Boston-useR_01_intro.Rpres         |  454 --
+|  .../2013-09-05_Boston-useR_01_intro.html          | 1471 ----
+|  .../2013-09-05_Boston-useR_01_intro.md            |  659 --
+|  .../dend_hang_tree_1.png                          |  Bin 4731 -> 0 bytes
+|  .../dend_rotating_example_1.png                   |  Bin 4759 -> 0 bytes
+|  .../dend_trimming_example_1.png                   |  Bin 4139 -> 0 bytes
+|  .../dend_unbranching_example_1.png                |  Bin 4748 -> 0 bytes
+|  .../first_tanglegram.png                          |  Bin 39575 -> 0 bytes
+|  .../first_tanglegram_with_code.png                |  Bin 40772 -> 0 bytes
+|  .../iris_colored_branches.png                     |  Bin 16950 -> 0 bytes
+|  .../simple_tanglegram_1.png                       |  Bin 3256 -> 0 bytes
+|  .../simple_tanglegram_1_worst_case.png            |  Bin 4577 -> 0 bytes
+|  .../simple_tanglegram_one_shuffle_1.png           |  Bin 3621 -> 0 bytes
+|  .../simple_tanglegram_random_search_1.png         |  Bin 2846 -> 0 bytes
+|  ...ple_tanglegram_step_rotate_1side_example_1.png |  Bin 2822 -> 0 bytes
+|  .../tanglegram_iris_untangle_random.png           |  Bin 42100 -> 0 bytes
+|  .../unnamed-chunk-11.png                          |  Bin 5869 -> 0 bytes
+|  .../unnamed-chunk-12.png                          |  Bin 4755 -> 0 bytes
+|  .../unnamed-chunk-14.png                          |  Bin 4755 -> 0 bytes
+|  .../unnamed-chunk-15.png                          |  Bin 4755 -> 0 bytes
+|  .../unnamed-chunk-16.png                          |  Bin 4759 -> 0 bytes
+|  .../unnamed-chunk-17.png                          |  Bin 4748 -> 0 bytes
+|  .../unnamed-chunk-18.png                          |  Bin 22344 -> 0 bytes
+|  .../unnamed-chunk-19.png                          |  Bin 4759 -> 0 bytes
+|  .../unnamed-chunk-2.png                           |  Bin 18023 -> 0 bytes
+|  .../unnamed-chunk-20.png                          |  Bin 4748 -> 0 bytes
+|  .../unnamed-chunk-21.png                          |  Bin 4139 -> 0 bytes
+|  .../unnamed-chunk-22.png                          |  Bin 4748 -> 0 bytes
+|  .../unnamed-chunk-23.png                          |  Bin 4139 -> 0 bytes
+|  .../unnamed-chunk-24.png                          |  Bin 22344 -> 0 bytes
+|  .../unnamed-chunk-25.png                          |  Bin 4139 -> 0 bytes
+|  .../unnamed-chunk-26.png                          |  Bin 22344 -> 0 bytes
+|  .../unnamed-chunk-33.png                          |  Bin 3740 -> 0 bytes
+|  .../unnamed-chunk-4.png                           |  Bin 6132 -> 0 bytes
+|  .../unnamed-chunk-6.png                           |  Bin 6132 -> 0 bytes
+|  .../unnamed-chunk-8.png                           |  Bin 5869 -> 0 bytes
+|  .../unnamed-chunk-9.png                           |  Bin 6132 -> 0 bytes
+|  .../2013-09-05_Boston-useR_02_dendextend.R        |  432 --
+|  .../2013-09-05_Boston-useR_02_dendextend.Rpres    |  676 --
+|  .../2013-09-05_Boston-useR_02_dendextend.html     | 1666 -----
+|  .../2013-09-05_Boston-useR_02_dendextend.md       |  876 ---
+|  .../first_tanglegram_with_2side_untangle.png      |  Bin 18166 -> 0 bytes
+|  .../first_tanglegram_with_2side_untangle_hang.png |  Bin 26292 -> 0 bytes
+|  .../first_tanglegram_with_code.png                |  Bin 29397 -> 0 bytes
+|  .../first_tanglegram_with_random_untangle.png     |  Bin 23574 -> 0 bytes
+|  .../unnamed-chunk-4.png                           |  Bin 23574 -> 0 bytes
+|  .../unnamed-chunk-7.png                           |  Bin 18112 -> 0 bytes
+|  .../unnamed-chunk-9.png                           |  Bin 18112 -> 0 bytes
+|  .../2013-09-05_Boston-useR_03_untangle_iris.R     |  179 -
+|  .../2013-09-05_Boston-useR_03_untangle_iris.Rpres |  184 -
+|  .../2013-09-05_Boston-useR_03_untangle_iris.html  | 1058 ---
+|  .../2013-09-05_Boston-useR_03_untangle_iris.md    |  200 -
+|  .../__packages                                    |    8 -
+|  ...ordered_ca9a216309a7a760068a06f608ab2ccd.RData |  Bin 2844 -> 0 bytes
+|  ...m_ordered_ca9a216309a7a760068a06f608ab2ccd.rdb |  Bin 1975 -> 0 bytes
+|  ...m_ordered_ca9a216309a7a760068a06f608ab2ccd.rdx |  Bin 154 -> 0 bytes
+|  .../dend1_plot_1.png                              |  Bin 3877 -> 0 bytes
+|  .../iris_tanglegram_ordered.png                   |  Bin 18166 -> 0 bytes
+|  .../precip_dend5_plot_2.png                       |  Bin 3334 -> 0 bytes
+|  .../tanglegram_dend12_1.png                       |  Bin 4528 -> 0 bytes
+|  .../unnamed-chunk-10.png                          |  Bin 7186 -> 0 bytes
+|  .../unnamed-chunk-11.png                          |  Bin 2578 -> 0 bytes
+|  .../unnamed-chunk-12.png                          |  Bin 2625 -> 0 bytes
+|  .../unnamed-chunk-5.png                           |  Bin 4055 -> 0 bytes
+|  .../unnamed-chunk-6.png                           |  Bin 6754 -> 0 bytes
+|  .../unnamed-chunk-7.png                           |  Bin 6419 -> 0 bytes
+|  .../unnamed-chunk-9.png                           |  Bin 2000 -> 0 bytes
+|  .../2013-09-05_Boston-useR_04_tree_inference.R    |  125 -
+|  ...2013-09-05_Boston-useR_04_tree_inference.Rpres |  192 -
+|  .../2013-09-05_Boston-useR_04_tree_inference.html | 1100 ---
+|  .../2013-09-05_Boston-useR_04_tree_inference.md   |  255 -
+|  inst/doc/dendextend-tutorial.pdf                  |  Bin 569458 -> 0 bytes
+|  vignettes/.gitignore                              |    1 -
+|  vignettes/cache/__packages                        |   12 -
+|  ...hunk-40_72720aff4e60fb7daa0fc155de695631.RData |  Bin 4201 -> 0 bytes
+|  ...-chunk-40_72720aff4e60fb7daa0fc155de695631.rdb |  Bin 9497 -> 0 bytes
+|  ...-chunk-40_72720aff4e60fb7daa0fc155de695631.rdx |  Bin 179 -> 0 bytes
+|  vignettes/dendextend-tutorial-concordance.tex     |   14 -
+|  vignettes/dendextend-tutorial.blg                 |    5 -
+|  vignettes/dendextend-tutorial.log                 | 3070 --------
+|  vignettes/dendextend-tutorial.pdf                 | 7393 ++++++++++---------
+|  vignettes/dendextend-tutorial.rnw                 |   72 +-
+|  vignettes/dendextend-tutorial.synctex.gz          |  Bin 238204 -> 0 bytes
+|  vignettes/dendextend-tutorial.tex                 | 3434 ---------
+|  vignettes/figure/Bk_examples.pdf                  |  Bin 20539 -> 0 bytes
+|  vignettes/figure/Bk_plot_for_dends_correct.pdf    |  Bin 20591 -> 0 bytes
+|  vignettes/figure/Bk_plot_for_hclust_WRONG.pdf     |  Bin 29264 -> 0 bytes
+|  vignettes/figure/FM_permutation_example_1.pdf     |  Bin 10674 -> 0 bytes
+|  vignettes/figure/FM_permutation_example_2.pdf     |  Bin 10392 -> 0 bytes
+|  vignettes/figure/FM_permutation_example_3.pdf     |  Bin 9977 -> 0 bytes
+|  vignettes/figure/cor_bakers_gamma_example_11.pdf  |  Bin 5053 -> 0 bytes
+|  vignettes/figure/cor_bakers_gamma_example_12.pdf  |  Bin 5082 -> 0 bytes
+|  vignettes/figure/cor_bakers_gamma_example_13.pdf  |  Bin 5054 -> 0 bytes
+|  vignettes/figure/cor_bakers_gamma_example_14.pdf  |  Bin 5057 -> 0 bytes
+|  .../figure/cor_bakers_gamma_simulation_1.pdf      |  Bin 7148 -> 0 bytes
+|  .../figure/cor_bakers_gamma_simulation_2.pdf      |  Bin 7609 -> 0 bytes
+|  .../figure/cor_bakers_gamma_simulation_3.pdf      |  Bin 7596 -> 0 bytes
+|  .../figure/cor_bakers_gamma_simulation_CI_41.pdf  |  Bin 5047 -> 0 bytes
+|  .../figure/cor_bakers_gamma_simulation_CI_42.pdf  |  Bin 4848 -> 0 bytes
+|  .../figure/cor_bakers_gamma_simulation_CI_43.pdf  |  Bin 7485 -> 0 bytes
+|  vignettes/figure/cor_cophenetic_simulation_2.pdf  |  Bin 7663 -> 0 bytes
+|  .../figure/cor_cophenetic_simulation_CI_3.pdf     |  Bin 7152 -> 0 bytes
+|  .../figure/cor_cophenetic_simulation_CI_4.pdf     |  Bin 7524 -> 0 bytes
+|  vignettes/figure/first_tanglegram.pdf             |  Bin 15816 -> 0 bytes
+|  vignettes/figure/first_tanglegram1.pdf            |  Bin 3450 -> 0 bytes
+|  vignettes/figure/first_tanglegram2.pdf            |  Bin 15825 -> 0 bytes
+|  vignettes/figure/iris_colored_branches.pdf        |  Bin 17747 -> 0 bytes
+|  vignettes/figure/iris_colored_pairs_plot.pdf      |  Bin 74472 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-19.pdf             |  Bin 4578 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-23.pdf             |  Bin 4921 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-24.pdf             |  Bin 4576 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-25.pdf             |  Bin 4925 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-26.pdf             |  Bin 4564 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-27.pdf             |  Bin 5273 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-28.pdf             |  Bin 4694 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-29.pdf             |  Bin 5655 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-30.pdf             |  Bin 5374 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-32.pdf             |  Bin 15728 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-321.pdf            |  Bin 3448 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-322.pdf            |  Bin 15508 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-33.pdf             |  Bin 15779 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-331.pdf            |  Bin 3448 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-332.pdf            |  Bin 15665 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-333.pdf            |  Bin 15739 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-34.pdf             |  Bin 6850 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-35.pdf             |  Bin 6847 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-36.pdf             |  Bin 6824 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-37.pdf             |  Bin 6832 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-38.pdf             |  Bin 6815 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-39.pdf             |  Bin 6961 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-4.pdf              |  Bin 4198 -> 0 bytes
+|  vignettes/figure/unnamed-chunk-40.pdf             |  Bin 20539 -> 0 bytes
+|  .../untangle_step_rotate_2side_example1.pdf       |  Bin 6158 -> 0 bytes
+|  .../untangle_step_rotate_2side_example2.pdf       |  Bin 6137 -> 0 bytes
+|  .../untangle_step_rotate_2side_example3.pdf       |  Bin 6154 -> 0 bytes
+|  .../untangle_step_rotate_2side_example4.pdf       |  Bin 6141 -> 0 bytes
+|  .../untangle_step_rotate_2side_example5.pdf       |  Bin 5714 -> 0 bytes
+|  .../untangle_step_rotate_2side_example6.pdf       |  Bin 6163 -> 0 bytes
+|  148 files changed, 3744 insertions(+), 19994 deletions(-)
+
+* 2014-07-14(Tal Galili) Fix the docs of the functions in dendextend which relates to the newer dendextendRcpp (version 0.5.1): cut_lower_fun, get_branches_heights,  heights_per_k.dendrogram |a0382df| 
+|  NEWS                            |  6 +++---
+|  R/attr_access.R                 | 11 +++++------
+|  R/cut_lower_fun.R               | 16 ++++++++--------
+|  R/cutree.dendrogram.R           | 25 +++++++++++++------------
+|  man/cut_lower_fun.Rd            | 16 ++++++++--------
+|  man/get_branches_heights.Rd     | 11 +++++------
+|  man/heights_per_k.dendrogram.Rd | 23 ++++++++++++-----------
+|  7 files changed, 54 insertions(+), 54 deletions(-)
+
+* 2014-07-13(Tal Galili) Fix typos in vignettes - thank you Bob Muenchen! |96692d2| 
+|  DESCRIPTION                       | 16 +++++----
+|  NEWS                              |  1 +
+|  vignettes/dendextend-tutorial.bib | 10 ++++++
+|  vignettes/dendextend-tutorial.rnw | 70 ++++++++++++++++++-------------------
+|  4 files changed, 54 insertions(+), 43 deletions(-)
+
+* 2014-07-13(Tal Galili) rotate_DendSer function added - and a bug was fixed in doing so. (also some credit corrections) |b045289| 
+|  NAMESPACE                 |  1 +
+|  NEWS                      |  2 +-
+|  R/untangle.R              | 64 +++++++++++++++++++++++++++++++++++----------
+|  man/DendSer.dendrogram.Rd |  8 ++++--
+|  man/color_branches.Rd     |  2 +-
+|  man/rotate_DendSer.Rd     | 47 +++++++++++++++++++++++++++++++++
+|  man/tanglegram.Rd         |  4 +--
+|  man/untangle_DendSer.Rd   |  3 ++-
+|  8 files changed, 110 insertions(+), 21 deletions(-)
+
+* 2014-07-13(Tal Galili) Vignettes - fixing spelling mistakes. |cc792b7| 
+|  vignettes/dendextend-tutorial.rnw | 48 ++++++++++++++++++-------------------
+|  1 file changed, 24 insertions(+), 24 deletions(-)
+
+* 2014-07-13(Tal Galili) Update credits. |184907e| 
+|  DESCRIPTION        | 8 +++++---
+|  R/color_branches.R | 2 +-
+|  R/tanglegram.R     | 4 ++--
+|  3 files changed, 8 insertions(+), 6 deletions(-)
+
+* 2014-07-13(Tal Galili) Minor doc changes |210cf71| 
+|  R/labels.R               | 1 +
+|  man/color_branches.Rd    | 1 +
+|  man/labels_colors.Rd     | 4 ++++
+|  man/update.dendrogram.Rd | 2 +-
+|  4 files changed, 7 insertions(+), 1 deletion(-)
+
+* 2014-07-13(Tal Galili) Added tests for update.dendrogram! |ba435a1| 
+|  inst/tests/test-update.dendrogram.R | 136 ++++++++++++++++++++++++++++++++++
+|  1 file changed, 136 insertions(+)
+
+* 2014-07-13(Tal Galili) update.dendrogram - added .Rd docs :) |208af7d| 
+|  NAMESPACE                |   1 +
+|  R/update.dendrogram.R    | 297 ++++++++++++++++++++++-----------------------
+|  man/update.dendrogram.Rd | 135 +++++++++++++++++++++
+|  3 files changed, 282 insertions(+), 151 deletions(-)
+
+* 2014-07-13(Tal Galili) tanglegram - preserve and restore previous par options (will no longer have a tiny plot in the left corner, when using a simple plot after tanglegram) |982053b| 
+|  NEWS           | 4 +++-
+|  R/tanglegram.R | 5 ++++-
+|  2 files changed, 7 insertions(+), 2 deletions(-)
+
+* 2014-07-12(Tal Galili) colored_bars - added docs :) |08a7118| 
+|  DESCRIPTION         |   4 +-
+|  NAMESPACE           |   2 +-
+|  NEWS                |   2 +
+|  R/colored_bars.R    | 243 +++++++++++++++++++++++++++++++-------------------
+|  man/colored_bars.Rd | 116 ++++++++++++++++++++++++
+|  5 files changed, 271 insertions(+), 96 deletions(-)
+
 * 2014-07-12(Tal Galili) color_bars - adding more parameters. Made sure it can now be placed on top of a plot(dend). |a3db1f1| 
 |  NAMESPACE        |   1 +
 |  NEWS             |   2 +
