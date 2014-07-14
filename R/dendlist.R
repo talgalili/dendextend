@@ -25,6 +25,8 @@
 #' @return 
 #' logical
 #' @examples
+#' # I can run this only if I'd make is_null_list exported
+#' \dontrun{
 #' # TRUE:
 #' is_null_list(list())
 #' # FALSE
@@ -40,6 +42,8 @@
 #' ss_list <- sapply(x, is_null_list)
 #' x <- list(list())
 #' x
+#' }
+#' 
 #' \dontrun{
 #' # error
 #' is_null_list() 

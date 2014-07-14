@@ -3,6 +3,7 @@ TODO for future releases:
 
 Next action
 --------------
+* Try and write paper for bioinfo: mention update, cutree, colored_bars, heatmap.2, Rcpp
 * The Vignette needs a major overhall. 
       Various parts are somewhat boarding, while other newer parts (dendlist, update, %>%) are currently missing. Maybe I should create a section called quirks or something like that - and move various sections there...
 * ask the maintainer of "ape" to have rotate S3ed
