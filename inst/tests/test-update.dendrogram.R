@@ -1,6 +1,11 @@
 # require(testthat)
 
 
+# we don't need the warning now... http://stackoverflow.com/questions/16194212/how-to-supress-warnings-globally-in-an-r-script
+old_warn_opt <- options()$warn
+options(warn=-1)
+
+
 context("Checknig update.dendrogram")
 
 
@@ -25,6 +30,7 @@ test_that("labels options works",{
    
    expect_equal(dend %>% update("labels_color") %>% labels_colors,
                 new_col_labels)
+
    
    # we get the correct attribue set...
    tmp <- dend %>%
@@ -134,3 +140,4 @@ test_that("clearing options works",{
 })
 
 
+options(warn=old_warn_opt)
