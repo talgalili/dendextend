@@ -1,3 +1,403 @@
+* 2014-07-12(Tal Galili) color_bars - adding more parameters. Made sure it can now be placed on top of a plot(dend). |a3db1f1| 
+|  NAMESPACE        |   1 +
+|  NEWS             |   2 +
+|  R/color_bars.R   |  64 ----------------
+|  R/colored_bars.R | 216 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  4 files changed, 219 insertions(+), 64 deletions(-)
+
+* 2014-07-12(Tal Galili) color_bars - make sure to keep and reset the options |c13e95b| 
+|  R/color_bars.R | 5 ++++-
+|  1 file changed, 4 insertions(+), 1 deletion(-)
+
+* 2014-07-12(Tal Galili) Rename plotHclustColors to color_bars - and made it work with dendrograms |61f854e| 
+|  R/color_bars.R | 10 +++++++---
+|  1 file changed, 7 insertions(+), 3 deletions(-)
+
+* 2014-07-12(Tal Galili) plotHclustColors - first import into the package |5c5bec8| 
+|  R/color_bars.R | 57 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 57 insertions(+)
+
+* 2014-07-11(Tal Galili) assign_values_to_branches_edgePar - value can now be different than 1 (it now also has a recycle option for the value) |fdc946e| 
+|  NEWS                                     |  5 ++++-
+|  R/attr_access.R                          | 24 +++++++++++++++++++++---
+|  man/assign_values_to_branches_edgePar.Rd |  8 +++++++-
+|  3 files changed, 32 insertions(+), 5 deletions(-)
+
+* 2014-07-11(Tal Galili) update.dendrogram added: branches_color, branches_k_color,      branches_col, branches_lwd, branches_lty, clear_branches, clear_leaves |ee7d0c7| 
+|  R/update.dendrogram.R | 68 ++++++++++++++++++++++++++++++++++++-------------
+|  1 file changed, 50 insertions(+), 18 deletions(-)
+
+* 2014-07-11(Tal Galili) `labels_colors<-` is more robust (for cases with partiel attr in nodePar). Also moved to using is.dendrogram more. |e774148| 
+|  NEWS              |  5 +++--
+|  R/attr_access.R   |  4 ++--
+|  R/labels.R        |  1 +
+|  R/labels_colors.R | 25 ++++++++++++++++++++-----
+|  4 files changed, 26 insertions(+), 9 deletions(-)
+
+* 2014-07-11(Tal Galili) Fix "is.dendlist" to use inherits instead of class |621dc3d| 
+|  R/dendlist.R | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2014-07-11(Tal Galili) update.dendrogram - added options for: labels_colors, labels_cex, branches_color, hang, leaves_pch, leaves_cex, leaves_col |b29fa80| 
+|  NEWS                  |  3 ++-
+|  R/attr_access.R       |  8 ++++++-
+|  R/labels_colors.R     |  2 ++
+|  R/update.dendrogram.R | 58 +++++++++++++++++++++++++++++++++++++++++++------
+|  4 files changed, 62 insertions(+), 9 deletions(-)
+
+* 2014-07-11(Tal Galili) plot.dendlist - a wrapper for tangelgram |05d2fc8| 
+|  NAMESPACE            |  3 +++
+|  NEWS                 |  1 +
+|  R/dendlist.R         | 34 ++++++++++++++++++++++++++++++++++
+|  man/plot.dendlist.Rd | 34 ++++++++++++++++++++++++++++++++++
+|  4 files changed, 72 insertions(+)
+
+* 2014-07-11(Tal Galili) color_branches - now has a default behavior if k is missing. |f37929b| 
+|  NEWS               |  5 +++--
+|  R/color_branches.R | 31 ++++++++++++++++++-------------
+|  2 files changed, 21 insertions(+), 15 deletions(-)
+
+* 2014-07-11(Tal Galili) `labels_colors<-` now has a default behavior if value is missing. |928b499| 
+|  NEWS              |  1 +
+|  R/labels_colors.R | 11 ++++++++++-
+|  2 files changed, 11 insertions(+), 1 deletion(-)
+
+* 2014-07-11(Tal Galili) update.dendrogram - first draft of the function (implements only "labels") |7f76137| 
+|  NAMESPACE             |   1 +
+|  NEWS                  |   2 +
+|  R/update.dendrogram.R | 131 ++++++++++++++++++++++++++++++++++++++++++++++++
+|  3 files changed, 134 insertions(+)
+
+* 2014-07-10(Tal Galili) Added cor_cophenetic.dendlist with tests and docs. |3303e4a| 
+|  NAMESPACE                          |  1 +
+|  R/cor_cophenetic.R                 | 26 ++++++++++++++++++---
+|  inst/tests/test-cor_bakers_gamma.R |  2 +-
+|  inst/tests/test-cor_cophenetic.R   | 44 ++++++++++++++++++++++++++++++++++++
+|  man/cor_cophenetic.Rd              | 19 ++++++++++++----
+|  5 files changed, 83 insertions(+), 9 deletions(-)
+
+* 2014-07-10(Tal Galili) Added entanglement.dendlist to the doc |6ae315a| 
+|  R/entanglement.R    | 1 +
+|  man/entanglement.Rd | 1 +
+|  2 files changed, 2 insertions(+)
+
+* 2014-07-10(Tal Galili) Added match.arg for Bk_plot,  cor_cophenetic, entanglement, untangle_random_search, untangle_step_rotate_1side, and untangle_step_rotate_2side |ec129c1| 
+|  NEWS                  | 1 +
+|  R/bk_method.R         | 3 ++-
+|  R/cor_cophenetic.R    | 7 ++++---
+|  R/entanglement.R      | 3 ++-
+|  R/untangle.R          | 8 +++++---
+|  man/cor_cophenetic.Rd | 3 ++-
+|  6 files changed, 16 insertions(+), 9 deletions(-)
+
+* 2014-07-10(Tal Galili) Fix untangle tests: untangle_step_rotate_1side now outputs a dendlist, so we needed to extract the first element so to get the same results as before. (also added piping) |75f99af| 
+|  inst/tests/test-untangle.R | 18 +++++++++---------
+|  1 file changed, 9 insertions(+), 9 deletions(-)
+
+* 2014-07-10(Tal Galili) Piping %>% some examples |1691c78| 
+|  R/attr_access.R                            | 10 +++++-----
+|  R/color_branches.R                         |  4 ++--
+|  R/entanglement.R                           |  4 ++--
+|  R/nleaves.R                                |  2 +-
+|  R/sample.dendrogram.R                      |  4 ++--
+|  R/tanglegram.R                             |  2 +-
+|  R/untangle.R                               | 12 ++++++------
+|  man/all_couple_rotations_at_k.Rd           |  2 +-
+|  man/assign_values_to_branches_edgePar.Rd   |  2 +-
+|  man/color_branches.Rd                      |  2 +-
+|  man/duplicate_leaf.Rd                      |  2 +-
+|  man/flip_leaves.Rd                         |  2 +-
+|  man/leaf_Colors.Rd                         |  2 +-
+|  man/match_order_by_labels.Rd               |  2 +-
+|  man/match_order_dendrogram_by_old_order.Rd |  2 +-
+|  man/plot_horiz.dendrogram.Rd               |  2 +-
+|  man/rank_branches.Rd                       |  2 +-
+|  man/rank_order.dendrogram.Rd               |  2 +-
+|  man/remove_branches_edgePar.Rd             |  2 +-
+|  man/remove_leaves_nodePar.Rd               |  2 +-
+|  man/sample.dendrogram.Rd                   |  2 +-
+|  man/shuffle.Rd                             |  2 +-
+|  man/untangle_step_rotate_1side.Rd          |  2 +-
+|  man/untangle_step_rotate_2side.Rd          |  4 ++--
+|  24 files changed, 37 insertions(+), 37 deletions(-)
+
+* 2014-07-10(Tal Galili) Added a TODO file |0fbee3a| 
+|  NEWS | 64 -----------------------------------------------------
+|  TODO | 79 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  2 files changed, 79 insertions(+), 64 deletions(-)
+
+* 2014-07-10(Tal Galili) Fix some spaces around "<-" |c141009| 
+|  R/color_branches.R | 18 +++++++++---------
+|  R/untangle.R       |  4 ++--
+|  2 files changed, 11 insertions(+), 11 deletions(-)
+
+* 2014-07-10(Tal Galili) Rename back from .b to .R |c0fd282| 
+|  R/as.dendrogram.randomForest.R                    |   54 +
+|  R/as.dendrogram.randomForest.b                    |   54 -
+|  R/attr_access.R                                   |  814 ++++++++++++
+|  R/attr_access.b                                   |  814 ------------
+|  R/bk_method.R                                     | 1098 ++++++++++++++++
+|  R/bk_method.b                                     | 1098 ----------------
+|  R/color_branches.R                                |  482 +++++++
+|  R/color_branches.b                                |  482 -------
+|  R/cor_bakers_gamma.R                              |  240 ++++
+|  R/cor_bakers_gamma.b                              |  240 ----
+|  R/cor_cophenetic.R                                |  187 +++
+|  R/cor_cophenetic.b                                |  187 ---
+|  R/cut_lower_fun.R                                 |  104 ++
+|  R/cut_lower_fun.b                                 |  104 --
+|  R/cutree.dendrogram.R                             |  952 ++++++++++++++
+|  R/cutree.dendrogram.b                             |  952 --------------
+|  R/dendextend-package.R                            |   30 +
+|  R/dendextend-package.b                            |   30 -
+|  R/dendextend.R                                    |   70 +
+|  R/dendextend.b                                    |   70 -
+|  R/dendlist.R                                      |  222 ++++
+|  R/dendlist.b                                      |  222 ----
+|  R/entanglement.R                                  |  458 +++++++
+|  R/entanglement.b                                  |  458 -------
+|  R/imports_stats.R                                 |  285 +++++
+|  R/imports_stats.b                                 |  285 -----
+|  R/labels.R                                        |  369 ++++++
+|  R/labels.b                                        |  369 ------
+|  R/labels_colors.R                                 |  144 +++
+|  R/labels_colors.b                                 |  144 ---
+|  R/nleaves.R                                       |  316 +++++
+|  R/nleaves.b                                       |  316 -----
+|  R/rotate.R                                        |  337 +++++
+|  R/rotate.b                                        |  337 -----
+|  R/sample.dendrogram.R                             |  267 ++++
+|  R/sample.dendrogram.b                             |  267 ----
+|  R/tanglegram.R                                    |  815 ++++++++++++
+|  R/tanglegram.b                                    |  815 ------------
+|  R/trim.R                                          |  248 ++++
+|  R/trim.b                                          |  248 ----
+|  R/unbranch.R                                      |  246 ++++
+|  R/unbranch.b                                      |  246 ----
+|  R/untangle.R                                      | 1262 +++++++++++++++++++
+|  R/untangle.b                                      | 1262 -------------------
+|  R/zzz.R                                           |  360 ++++++
+|  R/zzz.b                                           |  360 ------
+|  demo/dendextend.R                                 |   23 +
+|  demo/dendextend.b                                 |   23 -
+|  .../2013-09-05_Boston-useR_01_intro.R             |  198 +++
+|  .../2013-09-05_Boston-useR_01_intro.b             |  198 ---
+|  .../2013-09-05_Boston-useR_02_dendextend.R        |  432 +++++++
+|  .../2013-09-05_Boston-useR_02_dendextend.b        |  432 -------
+|  .../2013-09-05_Boston-useR_03_untangle_iris.R     |  179 +++
+|  .../2013-09-05_Boston-useR_03_untangle_iris.b     |  179 ---
+|  .../2013-09-05_Boston-useR_04_tree_inference.R    |  125 ++
+|  .../2013-09-05_Boston-useR_04_tree_inference.b    |  125 --
+|  inst/tests/test-attr_access.R                     |  181 +++
+|  inst/tests/test-attr_access.b                     |  181 ---
+|  inst/tests/test-bk_method.R                       |  286 +++++
+|  inst/tests/test-bk_method.b                       |  286 -----
+|  inst/tests/test-cor_bakers_gamma.R                |   48 +
+|  inst/tests/test-cor_bakers_gamma.b                |   48 -
+|  inst/tests/test-cut_lower_fun.R                   |   95 ++
+|  inst/tests/test-cut_lower_fun.b                   |   95 --
+|  inst/tests/test-cutree.dendrogram.R               |  450 +++++++
+|  inst/tests/test-cutree.dendrogram.b               |  450 -------
+|  inst/tests/test-dendlist.R                        |   61 +
+|  inst/tests/test-dendlist.b                        |   61 -
+|  inst/tests/test-entanglement.R                    |  139 ++
+|  inst/tests/test-entanglement.b                    |  139 --
+|  inst/tests/test-labels-assign.R                   |  193 +++
+|  inst/tests/test-labels-assign.b                   |  193 ---
+|  inst/tests/test-labels_colors.R                   |   81 ++
+|  inst/tests/test-labels_colors.b                   |   81 --
+|  inst/tests/test-nleaves.R                         |   68 +
+|  inst/tests/test-nleaves.b                         |   68 -
+|  inst/tests/test-rotate.R                          |   91 ++
+|  inst/tests/test-rotate.b                          |   91 --
+|  inst/tests/test-trim.R                            |   81 ++
+|  inst/tests/test-trim.b                            |   81 --
+|  inst/tests/test-unbranch.R                        |   45 +
+|  inst/tests/test-unbranch.b                        |   45 -
+|  inst/tests/test-untangle.R                        |  162 +++
+|  inst/tests/test-untangle.b                        |  162 ---
+|  tests/test-all.R                                  |   13 +
+|  tests/test-all.b                                  |   13 -
+|  86 files changed, 12311 insertions(+), 12311 deletions(-)
+
+* 2014-07-10(Tal Galili) rename all .r files to .b (so to allow the renaming from .r to .R on git on windows) |6145838| 
+|  R/as.dendrogram.randomForest.b                    |   54 +
+|  R/as.dendrogram.randomForest.r                    |   54 -
+|  R/attr_access.b                                   |  814 ++++++++++++
+|  R/attr_access.r                                   |  814 ------------
+|  R/bk_method.b                                     | 1098 ++++++++++++++++
+|  R/bk_method.r                                     | 1098 ----------------
+|  R/color_branches.b                                |  482 +++++++
+|  R/color_branches.r                                |  482 -------
+|  R/cor_bakers_gamma.b                              |  240 ++++
+|  R/cor_bakers_gamma.r                              |  240 ----
+|  R/cor_cophenetic.b                                |  187 +++
+|  R/cor_cophenetic.r                                |  187 ---
+|  R/cut_lower_fun.b                                 |  104 ++
+|  R/cut_lower_fun.r                                 |  104 --
+|  R/cutree.dendrogram.b                             |  952 ++++++++++++++
+|  R/cutree.dendrogram.r                             |  952 --------------
+|  R/dendextend-package.b                            |   30 +
+|  R/dendextend-package.r                            |   30 -
+|  R/dendextend.b                                    |   70 +
+|  R/dendextend.r                                    |   70 -
+|  R/dendlist.R                                      |  222 ----
+|  R/dendlist.b                                      |  222 ++++
+|  R/entanglement.b                                  |  458 +++++++
+|  R/entanglement.r                                  |  458 -------
+|  R/imports_stats.b                                 |  285 +++++
+|  R/imports_stats.r                                 |  285 -----
+|  R/labels.b                                        |  369 ++++++
+|  R/labels.r                                        |  369 ------
+|  R/labels_colors.b                                 |  144 +++
+|  R/labels_colors.r                                 |  144 ---
+|  R/nleaves.b                                       |  316 +++++
+|  R/nleaves.r                                       |  316 -----
+|  R/rotate.b                                        |  337 +++++
+|  R/rotate.r                                        |  337 -----
+|  R/sample.dendrogram.b                             |  267 ++++
+|  R/sample.dendrogram.r                             |  267 ----
+|  R/tanglegram.b                                    |  815 ++++++++++++
+|  R/tanglegram.r                                    |  815 ------------
+|  R/trim.b                                          |  248 ++++
+|  R/trim.r                                          |  248 ----
+|  R/unbranch.b                                      |  246 ++++
+|  R/unbranch.r                                      |  246 ----
+|  R/untangle.b                                      | 1262 +++++++++++++++++++
+|  R/untangle.r                                      | 1262 -------------------
+|  R/zzz.b                                           |  360 ++++++
+|  R/zzz.r                                           |  360 ------
+|  demo/dendextend.b                                 |   23 +
+|  demo/dendextend.r                                 |   23 -
+|  .../2013-09-05_Boston-useR_01_intro.R             |  198 ---
+|  .../2013-09-05_Boston-useR_01_intro.b             |  198 +++
+|  .../2013-09-05_Boston-useR_02_dendextend.R        |  432 -------
+|  .../2013-09-05_Boston-useR_02_dendextend.b        |  432 +++++++
+|  .../2013-09-05_Boston-useR_03_untangle_iris.R     |  179 ---
+|  .../2013-09-05_Boston-useR_03_untangle_iris.b     |  179 +++
+|  .../2013-09-05_Boston-useR_04_tree_inference.R    |  125 --
+|  .../2013-09-05_Boston-useR_04_tree_inference.b    |  125 ++
+|  inst/tests/test-attr_access.b                     |  181 +++
+|  inst/tests/test-attr_access.r                     |  181 ---
+|  inst/tests/test-bk_method.b                       |  286 +++++
+|  inst/tests/test-bk_method.r                       |  286 -----
+|  inst/tests/test-cor_bakers_gamma.b                |   48 +
+|  inst/tests/test-cor_bakers_gamma.r                |   48 -
+|  inst/tests/test-cut_lower_fun.b                   |   95 ++
+|  inst/tests/test-cut_lower_fun.r                   |   95 --
+|  inst/tests/test-cutree.dendrogram.b               |  450 +++++++
+|  inst/tests/test-cutree.dendrogram.r               |  450 -------
+|  inst/tests/test-dendlist.R                        |   61 -
+|  inst/tests/test-dendlist.b                        |   61 +
+|  inst/tests/test-entanglement.b                    |  139 ++
+|  inst/tests/test-entanglement.r                    |  139 --
+|  inst/tests/test-labels-assign.b                   |  193 +++
+|  inst/tests/test-labels-assign.r                   |  193 ---
+|  inst/tests/test-labels_colors.b                   |   81 ++
+|  inst/tests/test-labels_colors.r                   |   81 --
+|  inst/tests/test-nleaves.b                         |   68 +
+|  inst/tests/test-nleaves.r                         |   68 -
+|  inst/tests/test-rotate.b                          |   91 ++
+|  inst/tests/test-rotate.r                          |   91 --
+|  inst/tests/test-trim.b                            |   81 ++
+|  inst/tests/test-trim.r                            |   81 --
+|  inst/tests/test-unbranch.b                        |   45 +
+|  inst/tests/test-unbranch.r                        |   45 -
+|  inst/tests/test-untangle.b                        |  162 +++
+|  inst/tests/test-untangle.r                        |  162 ---
+|  tests/test-all.b                                  |   13 +
+|  tests/test-all.r                                  |   13 -
+|  86 files changed, 12311 insertions(+), 12311 deletions(-)
+
+* 2014-07-08(Tal Galili) .Rd files commit |1fdac74| 
+|  man/Bk.Rd                                  |  65 ++++++------
+|  man/Bk_permutations.Rd                     |  69 ++++++------
+|  man/Bk_plot.Rd                             | 150 ++++++++++++---------------
+|  man/FM_index.Rd                            |  85 +++++++--------
+|  man/FM_index_R.Rd                          |  64 ++++++------
+|  man/FM_index_permutation.Rd                |  36 +++----
+|  man/FM_index_profdpm.Rd                    |  81 +++++++--------
+|  man/all_couple_rotations_at_k.Rd           |  29 +++---
+|  man/as_hclust_fixed.Rd                     |  18 ++--
+|  man/assign_dendextend_options.Rd           |   1 +
+|  man/assign_values_to_branches_edgePar.Rd   |  16 ++-
+|  man/assign_values_to_leaves_nodePar.Rd     |  29 +++---
+|  man/bakers_gamma_for_2_k_matrix.Rd         |  16 ++-
+|  man/click_rotate.Rd                        |  10 +-
+|  man/color_branches.Rd                      |  90 +++++++---------
+|  man/color_labels.Rd                        |  53 ++++------
+|  man/cor_bakers_gamma.Rd                    |  90 +++++++---------
+|  man/cor_cophenetic.Rd                      |  63 ++++++-----
+|  man/count_terminal_nodes.Rd                |  26 ++---
+|  man/cut_lower_fun.Rd                       |  34 +++---
+|  man/cutree-methods.Rd                      | 142 ++++++++++++-------------
+|  man/cutree_1h.dendrogram.Rd                |  35 +++----
+|  man/cutree_1k.dendrogram.Rd                |  59 +++++------
+|  man/dendextend-package.Rd                  |   4 +-
+|  man/dendextend_options.Rd                  |  16 +--
+|  man/dendlist.Rd                            |  10 +-
+|  man/duplicate_leaf.Rd                      |  32 +++---
+|  man/entanglement.Rd                        |  93 +++++++++--------
+|  man/fac2num.Rd                             |  24 ++---
+|  man/fix_members_attr.dendrogram.Rd         |  12 +--
+|  man/flatten.dendrogram.Rd                  |  19 ++--
+|  man/flip_leaves.Rd                         |  19 ++--
+|  man/get_branches_attr.Rd                   |  16 ++-
+|  man/get_branches_heights.Rd                |  13 ++-
+|  man/get_childrens_heights.Rd               |   5 +-
+|  man/get_leaves_attr.Rd                     |  23 ++--
+|  man/get_nodes_attr.Rd                      |  35 +++----
+|  man/hang.dendrogram.Rd                     |  32 +++---
+|  man/heights_per_k.dendrogram.Rd            |   9 +-
+|  man/intersect_trees.Rd                     |  14 +--
+|  man/is.dendrogram.Rd                       |   3 +-
+|  man/is.hclust.Rd                           |   3 +-
+|  man/is.natural.number.Rd                   |  17 ++-
+|  man/is.phylo.Rd                            |   3 +-
+|  man/labels-assign.Rd                       |  39 +++----
+|  man/labels_colors.Rd                       |  27 +++--
+|  man/leaf_Colors.Rd                         |   9 +-
+|  man/lowest_common_branch.Rd                |  20 ++--
+|  man/match_order_by_labels.Rd               |  25 +++--
+|  man/match_order_dendrogram_by_old_order.Rd |  45 ++++----
+|  man/nleaves.Rd                             |  33 +++---
+|  man/nnodes.Rd                              |  16 ++-
+|  man/order.dendrogram-assign.Rd             |  13 +--
+|  man/plot_horiz.dendrogram.Rd               |  86 +++++++--------
+|  man/prune.Rd                               |  15 ++-
+|  man/prune_leaf.Rd                          |   8 +-
+|  man/raise.dendrogram.Rd                    |   8 +-
+|  man/rank_branches.Rd                       |  29 +++---
+|  man/rank_order.dendrogram.Rd               |  11 +-
+|  man/remove_branches_edgePar.Rd             |  11 +-
+|  man/remove_leaves_nodePar.Rd               |  11 +-
+|  man/rllply.Rd                              |  27 +++--
+|  man/sample.dendrogram.Rd                   |  62 ++++++-----
+|  man/shuffle.Rd                             |  34 +++---
+|  man/sort_2_clusters_vectors.Rd             |  31 +++---
+|  man/sort_dist_mat.Rd                       |  11 +-
+|  man/sort_levels_values.Rd                  |  49 ++++-----
+|  man/tanglegram.Rd                          |  23 ++--
+|  man/unbranch.Rd                            |  14 ++-
+|  man/unclass_dend.Rd                        |   5 +-
+|  man/untangle_random_search.Rd              |  75 ++++++--------
+|  man/untangle_step_rotate_1side.Rd          |  64 +++++-------
+|  man/untangle_step_rotate_2side.Rd          |  57 +++++-----
+|  73 files changed, 1170 insertions(+), 1351 deletions(-)
+
+* 2014-07-08(Tal Galili) untangle_DendSer - a new untangle function (this time, only for dendlist), for leverging the serialization package for some more heuristics. |e6c4a48| 
+|  ChangeLog                 | 35 ++++++++++++++++--
+|  NAMESPACE                 |  7 ++++
+|  NEWS                      |  1 +
+|  R/untangle.r              | 87 +++++++++++++++++++++++++++++++++++++++++++--
+|  man/DendSer.dendrogram.Rd | 38 ++++++++++++++++++++
+|  man/as.dendlist.Rd        | 33 +++++++++++++++++
+|  man/is.dendlist.Rd        | 23 ++++++++++++
+|  man/is_null_list.Rd       | 38 ++++++++++++++++++++
+|  man/untangle.Rd           | 84 +++++++++++++++++++++++++++++++++++++++++++
+|  man/untangle_DendSer.Rd   | 42 ++++++++++++++++++++++
+|  10 files changed, 382 insertions(+), 6 deletions(-)
+
 * 2014-07-08(Tal Galili) Added tests for empty dendlist |d128b2b| 
 |  inst/tests/test-dendlist.R | 38 ++++++++++++++++++++++++++++++++++++++
 |  1 file changed, 38 insertions(+)

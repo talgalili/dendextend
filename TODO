@@ -1,15 +1,36 @@
 TODO for future releases:
 =========================
 
+Next action
+--------------
+* check warnings for roxygen2/package-build
+* The Vignette needs a major overhall. 
+      Various parts are somewhat boarding, while other newer parts (dendlist, update, %>%) are currently missing. Maybe I should create a section called quirks or something like that - and move various sections there...
+* ask the maintainer of "ape" to have rotate S3ed
+* add the example for heatmap.2 :)
+* Move slides and vignete out of the package (should they be stored somewhere?)
+* update README
 
 New functions
 --------------
+	* Create cor.dendrogram cor.dendlist - to switch between different cor types and methods.
    * add a print/warn parameter to intersect_trees
+   * intersect_trees.dendlist
    * add rect.hclust.nice http://stackoverflow.com/questions/4720307/change-dendrogram-leaves 
    * Give this a thought: http://stackoverflow.com/questions/10088117/exporting-dendrogram-as-table-in-r?rq=1
    * create rect.dendrogram (and make rect generic). http://stackoverflow.com/questions/717747/how-do-i-color-edges-or-draw-rects-correctly-in-an-r-dendrogram
 http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
    * hide some function's doc (labels<-.stuff)
+
+   * color dynamicTreeCut results
+   * manipulate tanglegram using click_rotate
+   * integrate dendextend with some heatmap
+
+   * add heatmap support!
+
+   * colored_bars - add horiz paramter...
+
+   * maybe allow pruning of labels based on their location (since if we get a tree with two identical labels, we may wish to fix it). maybe unique.dendrogram? It can be done by finding duplicate(labels), giving these a new name, and then prune it.
 
 
 New GUIs
@@ -28,6 +49,10 @@ Questions to answer
 ------------------
 	* reply here: http://stackoverflow.com/questions/10571266/colouring-branches-in-a-dendrogram-in-r?rq=1
       
+Places to publish?!
+------------------
+	* http://www.software.ac.uk/resources/guides/which-journals-should-i-publish-my-software?mpw
+	* http://www.statsci.org/compjour.html
    
 General ideas
 ------------------
