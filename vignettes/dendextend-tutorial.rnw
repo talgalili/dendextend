@@ -93,9 +93,9 @@ The paper gives a detailed exposition of both the internal structure of the pack
   Tal Galili \\
    Department of Statistics and Operations Research \\
    Tel Aviv University, Israel \\
-   E-mail: \email{tal.galili@math.tau.ac.il}\\
-   URLs: \url{http://www.r-statistics.com/}, 
-         \url{http://www.r-bloggers.com/}\\
+   E-mail: \email{Tal.Galili@math.tau.ac.il}\\
+   URLs: \url{http://www.R-Statistics.com/}, 
+         \url{http://www.R-Bloggers.com/},\\
 
 %   Yoav Benjamini\\
 %    The Nathan and Lily Silver\\
@@ -955,7 +955,7 @@ Let's use a greedy forward step wise rotation of the right tree, to see if we ca
 best_dend_heights_per_k <- heights_per_k.dendrogram(dend2)
 
 dend2_2 <- untangle_step_rotate_1side(dend2, dend1,
-               k_seq=2:3, best_dend_heights_per_k=best_dend_heights_per_k) 
+               k_seq=2:3, best_dend_heights_per_k=best_dend_heights_per_k)[[1]]
 # notice that here we are only using 
 tanglegram(dend1 , dend2_2, color_lines=col_lines_by_left_groups,
            main = paste("Entanglement =", round(entanglement(dend1 , dend2_2), 2)))
@@ -969,7 +969,7 @@ Let's try to go "all the way down" all possible k's:
 <<>>=
 
 dend2_3 <- untangle_step_rotate_1side(dend2, dend1,
-                                      best_dend_heights_per_k=best_dend_heights_per_k) 
+                                      best_dend_heights_per_k=best_dend_heights_per_k)[[1]]
 tanglegram(dend1 , dend2_3, color_lines=col_lines_by_left_groups,
            main = paste("Entanglement =", round(entanglement(dend1 , dend2_3), 2)))
 entanglement(dend1 , dend2_3)
@@ -984,7 +984,7 @@ As we can see, the random search actually found something better than the forwar
 
 <<>>=
 
-dend2_4 <- untangle_step_rotate_1side(dend12[[2]], dend12[[1]]) 
+dend2_4 <- untangle_step_rotate_1side(dend12[[2]], dend12[[1]])[[1]]
 tanglegram(dend12[[1]] , dend2_4, color_lines=col_lines_by_left_groups,
            main = paste("Entanglement =", round(entanglement(dend12[[1]] , dend2_4), 2)))
 entanglement(dend12[[1]] , dend2_4)
@@ -995,7 +995,7 @@ entanglement(dend12[[1]] , dend2_4)
 We see how this got us with a perfect solution. The trees look almost identical, but they are not (look at label 45 to see a leaf which is differently located between the two trees.). We can use the \code{k_branches} parameter for tanglegram, to help us see the difference between the two trees (notice labels 19 and 45). One could actually do an animation sequence, using various \code{k_branches} values in order to located the differences between the trees.
 
 <<>>=
-
+ 
 tanglegram(color_branches(dend12[[1]], col=1, k=1) , dend2_4, color_lines=col_lines_by_left_groups, k_branches=10, 
            main = paste("Entanglement =", round(entanglement(dend12[[1]] , dend2_4), 2)))
 
@@ -1016,7 +1016,7 @@ dend2 <- shuffle(dend2)
 tanglegram(dend1,dend2, margin_inner=6.5)
 entanglement(dend1,dend2, L = 2) # 0.79
 
-dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)
+dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)[[1]]
 tanglegram(dend1,dend2_corrected, margin_inner=6.5) # Good.
 entanglement(dend1,dend2_corrected, L = 2) # 0.0067
 # it is better, but not perfect. Can we improve it?
@@ -1049,9 +1049,6 @@ tanglegram(dend12_corrected_2[[1]],
            margin_inner=6.5, type = "r", center = TRUE,
            xlim = c(8,0)
            ) # Also Better... 
-
-
-
 
 @
 
@@ -1790,13 +1787,15 @@ For \code{get_branches_heights} (an essential function when using cutree with so
 dend <- as.dendrogram(hclust(dist(iris[,-5])))
 labels(dend) <- as.character(labels(dend))
 
-require(dendextendRcpp) # already loaded by default with dendextend
 require(microbenchmark)
+require(dendextendRcpp)
 microbenchmark(
-old_get_branches_heights(dend),
-dendextendRcpp::get_branches_heights(dend),
-times = 100
-   ) 
+   dendextendRcpp::dendextendRcpp_get_branches_heights(dend),
+   old_get_branches_heights(dend,sort=F),
+   times = 10)
+
+# ~148 times faster! (for larger trees)
+
 # Rcpp is ~90 times faster!
 
 @
@@ -1805,17 +1804,23 @@ For \code{heights_per_k.dendrogram} (an essential function when using cutree wit
 
 <<Rcpp_simu_heights_per_k>>=
 
-dend <- as.dendrogram(hclust(dist(iris[,-5])))
-labels(dend) <- as.character(labels(dend))
-
-require(dendextendRcpp) # already loaded by default with dendextend
 require(microbenchmark)
-microbenchmark(
-old_heights_per_k.dendrogram(dend),
-dendextendRcpp::heights_per_k.dendrogram(dend),
-times = 100
-   ) 
-# Rcpp is ~135 times faster!
+require(dendextendRcpp)
+# dend <- as.dendrogram(hclust(dist(iris[1:150,-5])))
+dend <- as.dendrogram(hclust(dist(iris[1:30,-5])))
+# dend <- as.dendrogram(hclust(dist(iris[1:3,-5])))
+microbenchmark( 
+   #    dendextendRcpp::heights_per_k.dendrogram(dend),
+   dendextendRcpp::dendextendRcpp_heights_per_k.dendrogram(dend),
+   dendextendRcpp::old_heights_per_k.dendrogram(dend),
+   times = 10
+)
+# improvment is 10 times faster (in Rcpp) for a tree of size 3
+# 76 times faster for a tree of size 30
+# And:
+# 134 times faster for a tree of size 150!!
+
+
 
 @
 
@@ -1824,13 +1829,14 @@ For \code{cut_lower_fun} (an essential function when using cutree with some h):
 
 <<Rcpp_simu_cut_lower_fun>>=
 
-dend_big = as.dendrogram(hclust(dist(iris[1:150,-5])))
-require(microbenchmark)
-microbenchmark(old_cut_lower_fun(dend_big,.01),
-               dendextendRcpp::cut_lower_fun(dend_big,.01),
-               times = 100)
-# Rcpp is ~4-14 times faster. depending on the size of the tree, 
-# and the depth of the height
+   # require(dendextend)
+   require(dendextendRcpp)
+   dend_big = as.dendrogram(hclust(dist(iris[1:150,-5])))
+   require(microbenchmark)
+   microbenchmark(old_cut_lower_fun(dend_big,.1),
+                  dendextendRcpp::dendextendRcpp_cut_lower_fun(dend_big,.1),
+                     times = 100)
+   # about 7-15 times faster. It is faster the larger the tree is, and the lower h is.
 
 @
 
