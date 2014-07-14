@@ -633,7 +633,7 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
 #' If k_seq is not NULL, then it overrides "direction".
 #' 
 #' @param max_n_iterations integer. The maximal number of times to switch between optimizing one tree with another.
-#' @param print_times logicla (TRUE), should we print how many times we switched between rotating the two trees?
+#' @param print_times logical (TRUE), should we print how many times we switched between rotating the two trees?
 #' @param k_seq a sequence of k clusters to go through for improving 
 #' dend1. If NULL (default), then we use the "direction" parameter.
 #' @param ... not used
@@ -715,7 +715,7 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
    }
    
    # identical(1,1+.00000000000000000000000001) # T
-   if(print_times) cat("We ran untangle ", times, " times\n")
+   if(print_times) cat("\nWe ran untangle ", times, " times\n")
    
    return(dendlist(dend1 = dend1_better, dend2 = dend2_better))	
 }

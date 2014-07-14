@@ -26,7 +26,7 @@ If k_seq is not NULL, then it overrides "direction".}
 
 \item{max_n_iterations}{integer. The maximal number of times to switch between optimizing one tree with another.}
 
-\item{print_times}{logicla (TRUE), should we print how many times we switched between rotating the two trees?}
+\item{print_times}{logical (TRUE), should we print how many times we switched between rotating the two trees?}
 
 \item{k_seq}{a sequence of k clusters to go through for improving
 dend1. If NULL (default), then we use the "direction" parameter.}
