@@ -4,10 +4,11 @@ context("labels assignment")
 
 test_that("labels assginment works for vectors",{
    x <- 1:3   
-   expect_that(labels(x), equals(as.character(1:3))) # notice this is 1:3 as character
+   # expect_that(labels(x), equals(as.character(1:3))) # notice this is 1:3 as character
+   expect_equal(labels(x), (as.character(1:3))) # notice this is 1:3 as character
 
    labels(x) <- letters[1:3]
-   expect_that(labels(x), equals(letters[1:3]))
+   expect_equal(labels(x), (letters[1:3]))
    # labels(x) # [1] "a" "b" "c"   
    labels(x)[1] <- "one"
    expect_equal(labels(x), c("one", "b", "c")) # checking specific assignment   
@@ -17,15 +18,15 @@ test_that("labels assginment works for vectors",{
 
 test_that("labels assginment works for matrix",{
    y <- matrix(1:9, 3,3)
-   expect_that(labels(y), equals(NULL))
+   expect_equal(labels(y), (NULL))
    
    labels(y) <- letters[1:3] # defaults to assign labels to columns
-   expect_that(labels(y), equals(letters[1:3]))
-   expect_that(colnames(y), equals(letters[1:3]))
+   expect_equal(labels(y), (letters[1:3]))
+   expect_equal(colnames(y), (letters[1:3]))
    
    labels(y, which = "rownames") <- letters[24:26]
-   expect_that(labels(y, which = "rownames"), equals(letters[24:26]))
-   expect_that(rownames(y), equals(letters[24:26]))   
+   expect_equal(labels(y, which = "rownames"), letters[24:26])
+   expect_equal(rownames(y), letters[24:26])
 
    labels(y)[1] <- "one"
    expect_equal(labels(y), c("one", "b", "c")) # checking specific assignment      
@@ -36,10 +37,10 @@ test_that("labels (with order=TRUE, by default), before and after assginment, wo
     
    #    plot(hc)   
 #    expect_that(labels(hc), equals(c("Alabama", "Alaska", "Arizona")))
-   expect_that(labels(hc), equals(c("Arizona", "Alabama", "Alaska")))
+   expect_equal(labels(hc), c("Arizona", "Alabama", "Alaska"))
    
    labels(hc)  <- letters[1:3]
-   expect_that(labels(hc), equals(letters[1:3]))   
+   expect_equal(labels(hc), letters[1:3])
    
    labels(hc)[1] <- "one"
    expect_equal(labels(hc), c("one", "b", "c")) # checking specific assignment         
@@ -49,18 +50,22 @@ test_that("labels (with order=TRUE, by default), before and after assginment, wo
 test_that("labels (without order!) works for hclust",{
    hc <- hclust(dist(USArrests[1:3,]), "ave")
    #    plot(hc)   
-   expect_that(labels(hc, order = FALSE), equals(c("Alabama", "Alaska", "Arizona")))
+   # expect_that(labels(hc, order = FALSE), equals(c("Alabama", "Alaska", "Arizona")))
+   expect_equal(labels(hc, order = FALSE), c("Alabama", "Alaska", "Arizona"))
 })
 
 
 test_that("labels (without order!) works differently than labels assignment (which are WITH order) for hclust",{
    hc <- hclust(dist(USArrests[1:3,]), "ave")
    #    plot(hc)   
-   expect_that(labels(hc, order = FALSE), equals(c("Alabama", "Alaska", "Arizona")))
-   
+   # expect_that(labels(hc, order = FALSE), equals(c("Alabama", "Alaska", "Arizona")))
+	expect_equal(labels(hc, order = FALSE), c("Alabama", "Alaska", "Arizona"))
+	
    labels(hc)  <- letters[1:3]
-   expect_that(identical(labels(hc, order = FALSE) , letters[1:3]),
-               is_false())   
+   
+   # expect_that(identical(labels(hc, order = FALSE) , letters[1:3]),
+               # is_false())   
+   expect_false(identical(labels(hc, order = FALSE) , letters[1:3]))   
 })
 
 
@@ -68,10 +73,10 @@ test_that("labels assginment works for dendrogram",{
    hc <- hclust(dist(USArrests[1:3,]), "ave")
    dend <- as.dendrogram(hc)
    
-   expect_that(labels(dend), equals(c("Arizona", "Alabama", "Alaska")))
+   expect_equal(labels(dend), c("Arizona", "Alabama", "Alaska"))
    
    labels(dend)  <- letters[1:3]
-   expect_that(labels(dend), equals(letters[1:3]))   
+   expect_equal(labels(dend), letters[1:3])
    
    labels(dend)[1] <- "one"
    expect_equal(labels(dend), c("one", "b", "c")) # checking specific assignment            
@@ -82,7 +87,7 @@ test_that("labels for hclust and dendrogram are (by default) the same",{
    hc <- hclust(dist(USArrests[1:3,]), "ave")
    dend <- as.dendrogram(hc)      
    # hc and dend labels should NOT be identical.   
-   expect_that(identical(labels(dend), labels(hc)), is_true())
+   expect_true(identical(labels(dend), labels(hc)))
 })
 
 
@@ -102,11 +107,11 @@ test_that("labels assginment recycles properly and consistently",{
    labels(y, which = "rownames") <- letters[24]
    })
    
-   expect_that(labels(x), equals(rep(letters[1], 3)))
-   expect_that(labels(hc), equals(rep(letters[1], 3)))
-   expect_that(labels(dend), equals(rep(letters[1], 3)))
-   expect_that(labels(y), equals(rep(letters[1], 3)))
-   expect_that(labels(y, which = "rownames"), equals(rep(letters[24], 3)))
+   expect_equal(labels(x), (rep(letters[1], 3)))
+   expect_equal(labels(hc), (rep(letters[1], 3)))
+   expect_equal(labels(dend), (rep(letters[1], 3)))
+   expect_equal(labels(y), (rep(letters[1], 3)))
+   expect_equal(labels(y, which = "rownames"), (rep(letters[24], 3)))
    # labels(x) # [1] "a" "b" "c"      
 })
 
