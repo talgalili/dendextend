@@ -8,11 +8,11 @@
 \alias{entanglement.phylo}
 \title{Measures entanglement between two trees}
 \usage{
-entanglement(tree1, tree2, ...)
+entanglement(tree1, ...)
 
 \method{entanglement}{dendrogram}(tree1, tree2, L = 1.5, leaves_matching_method = c("labels", "order"),...)
 
-\method{tanglegram}{dendlist}(tree1, which = c(1L,2L), ...)
+\method{entanglement}{dendlist}(tree1, which = c(1L,2L), ...)
 
 \method{entanglement}{hclust}(tree1, tree2, ...)
 

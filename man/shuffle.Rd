@@ -2,6 +2,7 @@
 \name{shuffle}
 \alias{shuffle}
 \alias{shuffle.default}
+\alias{shuffle.dendlist}
 \alias{shuffle.dendrogram}
 \alias{shuffle.hclust}
 \alias{shuffle.phylo}

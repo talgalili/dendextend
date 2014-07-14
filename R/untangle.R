@@ -42,7 +42,7 @@
 #'    method = c("random", "step1side", "step2side", "DendSer"),
 #'    ...)
 #' 
-#' \method{untangle}{dendlist}(dend1, which = c(1L,2L), ...)
+#' \method{untangle}{dendlist}(dend1, method, which = c(1L,2L), ...)
 #' 
 #' @param dend1 a dednrogram or a dendlist object
 #' @param dend2 A second dednrogram (to untangle against)
@@ -112,7 +112,7 @@ untangle.dendrogram <- function (dend1, dend2,
 
 # ' @S3method untangle dendlist
 #' @export
-untangle.dendlist <- function (dend1, method, which = c(1L,2L), ...) {
+untangle.dendlist <- function(dend1, method, which = c(1L,2L), ...) {
    untangle(dend1[[which[1]]], dend1[[which[2]]], method = method, ...)
 }
 
@@ -133,6 +133,7 @@ untangle.dendlist <- function (dend1, method, which = c(1L,2L), ...) {
 #' @aliases 
 #' shuffle.default
 #' shuffle.dendrogram
+#' shuffle.dendlist
 #' shuffle.hclust
 #' shuffle.phylo
 #' @usage

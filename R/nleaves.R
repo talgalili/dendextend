@@ -29,9 +29,9 @@ as.dendrogram.phylo <- function(object,...) {
 
 
 # We don't need to export this function (it is S3)
-#' @import ape
 # ' @S3method as.phylo dendrogram
-#' @export
+# ' @export
+#' @method as.phylo dendrogram
 as.phylo.dendrogram <- function(x,...) {
 	# require(ape)
 	ape::as.phylo.hclust(as.hclust(x))
@@ -185,7 +185,6 @@ nnodes.dendrogram <- function(x,...) {
 # nnodes(dend)
 
 
-#' @import stats
 # ' @S3method nnodes hclust
 #' @export
 nnodes.hclust <- function(x,...) {nnodes(as.dendrogram(x))}
@@ -299,7 +298,6 @@ unclass_dend <- function(dend,...)
 
 
 # ' @S3method head dendrogram
-#' @import utils
 #' @export
 head.dendrogram <- function(x, n = 3L, ...) {
 	require(utils)

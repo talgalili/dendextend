@@ -5,7 +5,9 @@
 \alias{cor_cophenetic.dendlist}
 \title{Cophenetic correlation between two trees}
 \usage{
-cor_cophenetic(tree1, tree2, method = c("pearson", "kendall", "spearman"), ...)
+cor_cophenetic(tree1, ...)
+
+\method{cor_cophenetic}{default}(tree1, tree2, method = c("pearson", "kendall", "spearman"), ...)
 
 \method{cor_cophenetic}{dendlist}(tree1, which = c(1L,2L), method = c("pearson", "kendall", "spearman"), ...)
 }

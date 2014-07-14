@@ -54,7 +54,10 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' please first use \link{intersect_trees} to have them matched.
 #' 
 #' @usage
-#' cor_cophenetic(tree1, tree2, method = c("pearson", "kendall", "spearman"), ...) 
+#' 
+#' cor_cophenetic(tree1, ...) 
+#' 
+#' \method{cor_cophenetic}{default}(tree1, tree2, method = c("pearson", "kendall", "spearman"), ...) 
 #' 
 #' \method{cor_cophenetic}{dendlist}(tree1, which = c(1L,2L), method = c("pearson", "kendall", "spearman"), ...) 
 #' 
@@ -155,7 +158,7 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' 
 #' }
 #' 
-cor_cophenetic <- function(tree1, tree2, method = c("pearson", "kendall", "spearman"), ...){
+cor_cophenetic <- function(tree1, ...){
    UseMethod("cor_cophenetic")
 }
 

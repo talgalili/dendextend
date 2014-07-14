@@ -26,6 +26,10 @@ labels(object, ...) <- value
 \method{labels}{hclust}(object, order = TRUE,...)
 
 \method{labels}{hclust}(object, ...) <- value
+
+\method{labels}{hclust}(object, order = TRUE, ...)
+
+\method{labels}{hclust}(object, ...) <- value
 }
 \arguments{
 \item{object}{a variable name (possibly quoted) who's label are to be updated}
@@ -48,6 +52,11 @@ The updated object
 }
 \description{
 "label" assignment operator for vectors, dendrogram, and hclust classes.
+
+# '
+}
+\details{
+###################
 }
 \examples{
 x <- 1:3

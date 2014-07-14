@@ -12,7 +12,7 @@ untangle(dend1, ...)
    method = c("random", "step1side", "step2side", "DendSer"),
    ...)
 
-\method{untangle}{dendlist}(dend1, which = c(1L,2L), ...)
+\method{untangle}{dendlist}(dend1, method, which = c(1L,2L), ...)
 }
 \arguments{
 \item{dend1}{a dednrogram or a dendlist object}
