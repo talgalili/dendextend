@@ -187,8 +187,9 @@ update.dendrogram <-
    }
 
 
+
+# ' @S3method update dendlist
 #' @export
-#' @S3method update dendlist
 update.dendlist <- function(object, ..., which) {
    
    if(missing(which)) which <- 1:length(object)

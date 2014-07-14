@@ -324,14 +324,16 @@ entanglement <- function (tree1, tree2, ...) { UseMethod("entanglement") }
 entanglement.default <- function (tree1, tree2,...) { stop("no default function for entanglement") }
 
 
-#' @S3method entanglement hclust
+# ' @S3method entanglement hclust
+#' @export
 entanglement.hclust <- function (tree1, tree2, ...) { 
    tree1 <- as.dendrogram(tree1)
    tree2 <- as.dendrogram(tree2)
    entanglement(tree1, tree2, ...)
 }
 
-#' @S3method entanglement phylo
+# ' @S3method entanglement phylo
+#' @export
 entanglement.phylo <- function (tree1, tree2,...) { 
    tree1 <- as.dendrogram(tree1)
    tree2 <- as.dendrogram(tree2)
@@ -339,7 +341,8 @@ entanglement.phylo <- function (tree1, tree2,...) {
 }
 
 
-#' @S3method entanglement dendlist
+# ' @S3method entanglement dendlist
+#' @export
 entanglement.dendlist <- function(tree1, which = c(1L,2L), ...) {
    # many things can go wrong here (which we might wish to fix):
    # we could get a dendlist with a length of 1 - in which case, we can't plot
@@ -353,7 +356,8 @@ entanglement.dendlist <- function(tree1, which = c(1L,2L), ...) {
 }
 
 
-#' @S3method entanglement dendrogram
+# ' @S3method entanglement dendrogram
+#' @export
 entanglement.dendrogram <- function(tree1,tree2, L = 1.5, leaves_matching_method = c("labels", "order"),...) {
    # One day, one might think of other measures of entanglement.  
    # But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.

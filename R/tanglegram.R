@@ -617,13 +617,16 @@ tanglegram <- function (tree1, ...) {UseMethod("tanglegram")}
 
 tanglegram.default <- function (tree1, ...) {stop("No default function for tanglegram - must use a dendrogram/hclust/phylo object")}
 
-#' @S3method tanglegram hclust
+# ' @S3method tanglegram hclust
+#' @export
 tanglegram.hclust <- function(tree1, ...) {tanglegram.dendrogram(tree1 = tree1, ...)}
 
-#' @S3method tanglegram phylo
+# ' @S3method tanglegram phylo
+#' @export
 tanglegram.phylo <- function(tree1, ...) {tanglegram.dendrogram(tree1 = tree1, ...)}
 
-#' @S3method tanglegram dendlist
+# ' @S3method tanglegram dendlist
+#' @export
 tanglegram.dendlist <- function(tree1, which = c(1L,2L), ...) {
    # many things can go wrong here (which we might wish to fix):
    # we could get a dendlist with a length of 1 - in which case, we can't plot
@@ -637,7 +640,8 @@ tanglegram.dendlist <- function(tree1, which = c(1L,2L), ...) {
 }
 
 
-#' @S3method tanglegram dendrogram
+# ' @S3method tanglegram dendrogram
+#' @export
 tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE, 
                                   color_lines = "darkgrey", 
                                   lwd = 3.5,

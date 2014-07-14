@@ -769,14 +769,14 @@ cutree.hclust <- function(tree, k = NULL, h = NULL,
 
 
 
+# ' @S3method cutree phylo
 #' @export
-#' @S3method cutree phylo
 cutree.phylo <- function(tree,k=NULL, h=NULL ,...) {cutree(as.dendrogram(tree),k=k,h=h,...)}
    
 
 
+# ' @S3method cutree dendrogram
 #' @export
-#' @S3method cutree dendrogram
 cutree.dendrogram <- function(tree, k = NULL, h = NULL,
                               dend_heights_per_k = NULL,
                               use_labels_not_values = TRUE, 

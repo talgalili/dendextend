@@ -124,7 +124,8 @@ unbranch <- function(x, ...) UseMethod("unbranch")
 unbranch.default <- function(x,...) stop("object x must be a dendrogram/hclust/phylo object")
 
 
-#' @S3method unbranch dendrogram
+# ' @S3method unbranch dendrogram
+#' @export
 unbranch.dendrogram <- function(x, branch_becoming_root = 1, new_root_height,...)
 {
    
@@ -179,7 +180,8 @@ Please choose another branch to be the root.")
 
 
 
-#' @S3method unbranch hclust
+# ' @S3method unbranch hclust
+#' @export
 unbranch.hclust <- function(x, branch_becoming_root = 1, new_root_height, ...) {
    x_dend <- as.dendrogram(x)
    x_dend_unbranch <- unbranch(x_dend, branch_becoming_root , new_root_height, ...)
@@ -189,7 +191,8 @@ unbranch.hclust <- function(x, branch_becoming_root = 1, new_root_height, ...) {
 }
 
 
-#' @S3method unbranch phylo
+# ' @S3method unbranch phylo
+#' @export
 unbranch.phylo <- function(x, ...) {
 		# ape::unbranch(phy = x)
    # require(ape)

@@ -21,7 +21,7 @@
 
 # as.dendrogram(as.hclust(as.phylo(hc)))
 #' @export
-#' @S3method as.dendrogram phylo
+# ' @S3method as.dendrogram phylo
 as.dendrogram.phylo <- function(object,...) {
 	# require(ape)
 	as.dendrogram(as.hclust(object))
@@ -29,9 +29,9 @@ as.dendrogram.phylo <- function(object,...) {
 
 
 # We don't need to export this function (it is S3)
-# ' @export
 #' @import ape
-#' @S3method as.phylo dendrogram
+# ' @S3method as.phylo dendrogram
+#' @export
 as.phylo.dendrogram <- function(x,...) {
 	# require(ape)
 	ape::as.phylo.hclust(as.hclust(x))
@@ -90,7 +90,8 @@ nleaves <- function(x, ...) {UseMethod("nleaves")}
 
 nleaves.default <- function(x,...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
-#' @S3method nleaves dendrogram
+# ' @S3method nleaves dendrogram
+#' @export
 nleaves.dendrogram <- function(x, method = c("members", "order"),...) {
    if(method[1] == "members") {
       return(as.integer(attr(x, "members")))
@@ -112,11 +113,13 @@ nleaves.dendrogram <- function(x, method = c("members", "order"),...) {
 #TODO: add count by number of labels/ or by the number of is.leaf==TRUE
 
 
-#' @S3method nleaves hclust
+# ' @S3method nleaves hclust
+#' @export
 nleaves.hclust <- function(x,...) {length(x$order)}
 
 
-#' @S3method nleaves phylo
+# ' @S3method nleaves phylo
+#' @export
 nleaves.phylo <- function(x,...) {nleaves(as.dendrogram(x))}
 
 # TODO: there is probably a better way for getting the tree size for a phylo object.
@@ -164,7 +167,8 @@ nnodes <- function(x, ...) {UseMethod("nnodes")}
 #' @export
 nnodes.default <- function(x,...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
-#' @S3method nnodes dendrogram
+# ' @S3method nnodes dendrogram
+#' @export
 nnodes.dendrogram <- function(x,...) {
    if(!inherits(x,'dendrogram')) warning("'object' should be a dendrogram.")   
    
@@ -182,10 +186,12 @@ nnodes.dendrogram <- function(x,...) {
 
 
 #' @import stats
-#' @S3method nnodes hclust
+# ' @S3method nnodes hclust
+#' @export
 nnodes.hclust <- function(x,...) {nnodes(as.dendrogram(x))}
 
-#' @S3method nnodes phylo
+# ' @S3method nnodes phylo
+#' @export
 nnodes.phylo <- function(x,...) {nnodes(as.dendrogram(x))}
 
 
@@ -292,8 +298,9 @@ unclass_dend <- function(dend,...)
 
 
 
-#' @S3method head dendrogram
+# ' @S3method head dendrogram
 #' @import utils
+#' @export
 head.dendrogram <- function(x, n = 3L, ...) {
 	require(utils)
    str(x, max.leve = n,...)

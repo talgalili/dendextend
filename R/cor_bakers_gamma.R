@@ -210,7 +210,8 @@ cor_bakers_gamma.default <- function(tree1, tree2, ...) {
    cor_bakers_gamma(tree1, tree2 ,...)
 }
 
-#' @S3method cor_bakers_gamma dendrogram
+# ' @S3method cor_bakers_gamma dendrogram
+#' @export
 cor_bakers_gamma.dendrogram <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = TRUE, ...)
 {
    k_matrix_tree1 <- cutree(tree1, k = 1:nleaves(tree1), use_labels_not_values=use_labels_not_values,warn=warn,...)
@@ -220,7 +221,8 @@ cor_bakers_gamma.dendrogram <- function(tree1, tree2, use_labels_not_values = TR
 }
 
 
-#' @S3method cor_bakers_gamma hclust
+# ' @S3method cor_bakers_gamma hclust
+#' @export
 cor_bakers_gamma.hclust <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = TRUE, ...)
 {
    k_matrix_tree1 <- cutree(tree1, k = 1:nleaves(tree1), use_labels_not_values=use_labels_not_values,warn=warn,...)

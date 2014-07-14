@@ -155,8 +155,8 @@
 
 
 # ' @title "label" assignment operator - dendrogram
+# ' @S3method labels<- dendrogram
 #' @export
-#' @S3method labels<- dendrogram
 "labels<-.dendrogram" <- function(object,..., value) {
    # credit for the help on how to write this type of function goes to:
    # Gavin Simpson and also kohske, see here:
@@ -189,9 +189,9 @@
 }
 
 
-# ' @title Find Labels from hclust Object
+# ' @title Find Labels from hclust Object#' @export
+# ' @S3method labels hclust
 #' @export
-#' @S3method labels hclust
 labels.hclust <- function(object, order = TRUE, ...)  {
    if(order) {
       labels_obj <- as.character(object$labels[object$order])      
@@ -205,8 +205,8 @@ labels.hclust <- function(object, order = TRUE, ...)  {
 
 
 # ' @title "label" assignment operator - hclust
+# ' @S3method labels<- hclust
 #' @export
-#' @S3method labels<- hclust
 "labels<-.hclust" <- function(object,..., value) {
    if(length(value) < length(object$labels)) {
       warning("The lengths of the new labels is shorter than the number of leaves in the hclust - labels are recycled.")
@@ -222,8 +222,8 @@ labels.hclust <- function(object, order = TRUE, ...)  {
 
 
 # ' @title "label" assignment operator for matrix class
+# ' @S3method labels matrix
 #' @export
-#' @S3method labels matrix
 labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
    if(missing(which))
       which <- "colnames"
@@ -239,8 +239,8 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
 # ?"labels.matrix"
 
 # ' @title "label" assignment operator - matrix
+# ' @S3method labels<- matrix
 #' @export
-#' @S3method labels<- matrix
 #' @keywords internal
 'labels<-.matrix' <- function(object, which = c("colnames","rownames"), ..., value) {
    if(missing(which))

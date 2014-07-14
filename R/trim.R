@@ -148,7 +148,8 @@ prune.default <- function(x,...) {
    stop("object x must be a dendrogram/hclust/phylo object")
 }
 
-#' @S3method prune dendrogram
+# ' @S3method prune dendrogram
+#' @export
 prune.dendrogram <- function(x, leaves,...) {
    leaves <- as.character(leaves)
       
@@ -161,7 +162,8 @@ prune.dendrogram <- function(x, leaves,...) {
 }
 
 
-#' @S3method prune hclust
+# ' @S3method prune hclust
+#' @export
 prune.hclust <- function(x, leaves,...) {
    x_dend <- as.dendrogram(x)
    x_dend_pruned <- prune(x_dend, leaves,...)
@@ -170,7 +172,8 @@ prune.hclust <- function(x, leaves,...) {
    return(x_pruned)
 }
 
-#' @S3method prune phylo
+# ' @S3method prune phylo
+#' @export
 prune.phylo <- function(x,...) {
 	# require(ape)
 	ape::drop.tip(phy=x, ...)

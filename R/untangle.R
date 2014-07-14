@@ -96,7 +96,8 @@ untangle <- function (dend1, ...) {UseMethod("untangle")}
 
 untangle.default <- function (dend1, ...) {stop("No default function for tanglegram - must use a dendrogram/hclust/phylo object")}
 
-#' @S3method untangle dendrogram
+# ' @S3method untangle dendrogram
+#' @export
 untangle.dendrogram <- function (dend1, dend2, 
                                  method = c("random", "step1side", "step2side", "DendSer"), ...) {
    method <- match.arg(method)
@@ -109,7 +110,8 @@ untangle.dendrogram <- function (dend1, dend2,
    )
 }
 
-#' @S3method untangle dendlist
+# ' @S3method untangle dendlist
+#' @export
 untangle.dendlist <- function (dend1, method, which = c(1L,2L), ...) {
    untangle(dend1[[which[1]]], dend1[[which[2]]], method = method, ...)
 }
@@ -185,11 +187,13 @@ shuffle.default <- function(object, ...) {
 }
 
 
-#' @S3method shuffle dendrogram
+# ' @S3method shuffle dendrogram
+#' @export
 shuffle.dendrogram <- shuffle.default
 
 
-#' @S3method shuffle dendlist
+# ' @S3method shuffle dendlist
+#' @export
 shuffle.dendlist <- function(object, which, ...) {
    
 #    if(T) 1 else 2
@@ -206,10 +210,12 @@ shuffle.dendlist <- function(object, which, ...) {
 }
 
 
-#' @S3method shuffle hclust
+# ' @S3method shuffle hclust
+#' @export
 shuffle.hclust <- shuffle.default
 
-#' @S3method shuffle phylo
+# ' @S3method shuffle phylo
+#' @export
 shuffle.phylo <- shuffle.default
 
 

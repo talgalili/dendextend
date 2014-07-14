@@ -11,6 +11,10 @@ Next action
 * Move slides and vignete out of the package (should they be stored somewhere?)
 * update README
 
+
+* Maybe add a global package option for printing debugging information, and have many of the logical warn and print stuff be related to these...
+
+
 New functions
 --------------
 	* Create cor.dendrogram cor.dendlist - to switch between different cor types and methods.

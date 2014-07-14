@@ -130,7 +130,8 @@ rotate <- function(x, order,...) {UseMethod("rotate")}
 
 rotate.default <- function(x, order, ...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
-#' @S3method rotate dendrogram
+# ' @S3method rotate dendrogram
+#' @export
 rotate.dendrogram <- function(x, order, ...)
 {
    if(missing(order)) { # if order is missing - return the same tree.
@@ -162,7 +163,8 @@ rotate.dendrogram <- function(x, order, ...)
 }
 
 
-#' @S3method rotate hclust
+# ' @S3method rotate hclust
+#' @export
 rotate.hclust <- function(x, order,...)
 {   
    x_dend <- as.dendrogram(x)
@@ -173,17 +175,20 @@ rotate.hclust <- function(x, order,...)
 }
 
 
-#' @S3method rotate phylo
+# ' @S3method rotate phylo
+#' @export
 rotate.phylo <- function(x, ...) {
 	# require(ape)
 	ape::rotate(phy=x, ...)
 }
 
 
-#' @S3method sort dendrogram
+# ' @S3method sort dendrogram
+#' @export
 sort.dendrogram <- function(x, decreasing = FALSE,...) {rotate(x, order(labels(x),decreasing =decreasing ,...))}
 
-#' @S3method sort hclust
+# ' @S3method sort hclust
+#' @export
 sort.hclust <- function(x, decreasing = FALSE,...) {rotate(x, order(labels(x),decreasing =decreasing ,...))}
 
 
@@ -295,7 +300,8 @@ click_rotate <- function(x, ...) {UseMethod("click_rotate")}
 
 click_rotate.default <- function(x, ...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
-#' @S3method click_rotate dendrogram
+# ' @S3method click_rotate dendrogram
+#' @export
 click_rotate.dendrogram <- function(x, plot = TRUE, plot_after = plot, horiz = FALSE, continue = FALSE, ...)
 {
    if(plot) plot(x, horiz = horiz, ...)
