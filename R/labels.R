@@ -25,10 +25,9 @@
 
 
 
-####################
+#' ###################
 ## Adding labels assignment as an S3 method (and extending it to include hclust)
 ## Also order labels
-####################
 
 
 ### Includes the functions:
@@ -53,12 +52,13 @@
 #' @rdname labels-assign
 #' @aliases 
 #' labels<-.default 
+#' labels.matrix 
+#' labels<-.matrix
 #' labels<-.dendrogram 
 #' labels.hclust 
 #' labels<-.hclust
-#' labels.matrix 
-#' labels<-.matrix
 #' @usage
+#' 
 #' labels(object, ...) <- value
 #' 
 #' \method{labels}{matrix}(object, which = c("colnames", "rownames"), ...)
@@ -84,7 +84,6 @@
 #' @return The updated object
 #' @author Gavin Simpson, Tal Galili 
 #' (with some ideas from Gregory Jefferis's dendroextras package)
-#' @export
 #' @source 
 #' The functions here are based on code by Gavin and kohske from 
 #' (adopted to dendrogram by Tal Galili):
@@ -134,7 +133,9 @@
 #' labels(dend) <- LETTERS[4:6] # will replace the labels correctly 
 #' # (the fact the tree had duplicate labels will not cause a problem)
 #' labels(dend) # "D" "E" "F"
-"labels<-" <- function(object,..., value) UseMethod("labels<-")
+`labels<-` <- function(object,..., value) {
+   UseMethod("labels<-")
+}
 
 # example("labels<-")
 # ?"labels<-"
@@ -142,7 +143,7 @@
 
 # ' @title "label" assignment operator - default
 #' @export
-"labels<-.default" <- function(object,..., value) {
+`labels<-.default` <- function(object,..., value) {
    if(length(value) < length(object)) {
       warning("The lengths of the new labels is shorter than the length of the object - labels are recycled.")
       names(object) <- rep(value, length.out = length(object)) # I assume here that if ever labels will be used in the naive sense, it would be as a synonym to "names"      
@@ -157,7 +158,7 @@
 # ' @title "label" assignment operator - dendrogram
 # ' @S3method labels<- dendrogram
 #' @export
-"labels<-.dendrogram" <- function(object,..., value) {
+`labels<-.dendrogram` <- function(object,..., value) {
    # credit for the help on how to write this type of function goes to:
    # Gavin Simpson and also kohske, see here:
    # http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question
@@ -191,7 +192,9 @@
 
 # ' @title Find Labels from hclust Object#' @export
 # ' @S3method labels hclust
+
 #' @export
+#' @rdname labels-assign
 labels.hclust <- function(object, order = TRUE, ...)  {
    if(order) {
       labels_obj <- as.character(object$labels[object$order])      
@@ -207,7 +210,8 @@ labels.hclust <- function(object, order = TRUE, ...)  {
 # ' @title "label" assignment operator - hclust
 # ' @S3method labels<- hclust
 #' @export
-"labels<-.hclust" <- function(object,..., value) {
+#' @rdname labels-assign
+`labels<-.hclust` <- function(object,..., value) {
    if(length(value) < length(object$labels)) {
       warning("The lengths of the new labels is shorter than the number of leaves in the hclust - labels are recycled.")
    }
@@ -314,7 +318,7 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
 #' order.dendrogram(sub_dend) <- rank(order.dendrogram(sub_dend), ties.method= "first")
 #' labels(as.hclust(sub_dend)) # We now have labels :)
 #' 
-"order.dendrogram<-" <- function(object,..., value) {
+`order.dendrogram<-` <- function(object,..., value) {
 
    # notice that:  is.integer(as.numeric(1L)) == FALSE
    # is.numeric(1L) == TRUE
