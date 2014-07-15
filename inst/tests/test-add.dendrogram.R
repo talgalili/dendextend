@@ -15,27 +15,27 @@ test_that("labels options works",{
    ss <- sample(1:150, 10 )
 	dend <- iris[ss,-5] %>% dist %>% hclust %>% as.dendrogram
 
-   expect_equal(dend %>% add("labels", 1:10) %>% labels,
+   expect_equal(dend %>% set("labels", 1:10) %>% labels,
                 as.character(1:10))
 
-   expect_warning(add(dend, "labels_color"))
+   expect_warning(set(dend, "labels_color"))
 
    # piping is the same as not (just MUCH more readable)
-   expect_equal(labels_colors(add(dend, "labels_color")),
-                dend %>% add("labels_color") %>% labels_colors)
+   expect_equal(labels_colors(set(dend, "labels_color")),
+                dend %>% set("labels_color") %>% labels_colors)
    
    new_col_labels <- structure(c("#E495A5", "#D89F7F", "#BDAB66", "#96B56C", "#65BC8C", 
                                  "#39BEB1", "#55B8D0", "#91ACE1", "#C29DDE", "#DE94C8"), .Names = c("123", 
                                                                                                     "145", "126", "109", "23", "29", "94", "59", "67", "97"))
    
-   expect_equal(dend %>% add("labels_color") %>% labels_colors,
+   expect_equal(dend %>% set("labels_color") %>% labels_colors,
                 new_col_labels)
 
    
    # we get the correct attribue set...
    tmp <- dend %>%
-      add("labels_col", 2) %>% 
-      add("labels_cex", 1.2)
+      set("labels_col", 2) %>% 
+      set("labels_cex", 1.2)
    tmp <- tmp[[1]][[1]]
    #   unclass(tmp)   
    expect_equal(
@@ -57,10 +57,10 @@ test_that("leaves options works",{
    
    tmp <- dend
    tmp <- tmp %>% 
-      add("leaves_pch", 2) %>% 
-	   add("leaves_cex", 1.5) %>%
-	   add("leaves_col", c(3:1)) %>% 
-      add("hang")
+      set("leaves_pch", 2) %>% 
+	   set("leaves_cex", 1.5) %>%
+	   set("leaves_col", c(3:1)) %>% 
+      set("hang")
    tmp <- tmp[[1]][[1]]
 #    unclass(tmp)
 expect_equal(
@@ -88,7 +88,7 @@ test_that("branches options works",{
    dend <- iris[ss,-5] %>% dist %>% hclust %>% as.dendrogram
 
    tmp <- dend %>% 
-      add("branches_k_col", c(3,1,2), k=3) 
+      set("branches_k_col", c(3,1,2), k=3) 
    
    expect_equal(unlist(get_nodes_attr(tmp, "edgePar"))[1:3],
                 c(NA, 3, 3)
@@ -99,9 +99,9 @@ test_that("branches options works",{
 
    tmp <- dend
 	tmp <- tmp %>% 
-      add("branches_col", c(1,2, 1, 2, NA)) %>%
-      add("branches_lwd", c(2,1,2)) %>% 
-      add("branches_lty", c(1,2,1)) # %>% plot
+      set("branches_col", c(1,2, 1, 2, NA)) %>%
+      set("branches_lwd", c(2,1,2)) %>% 
+      set("branches_lty", c(1,2,1)) # %>% plot
 
    # checking two things:
    expect_equal(attr(tmp,"edgePar"),
@@ -125,18 +125,18 @@ test_that("clearing options works",{
 
    tmp <- dend
 	tmp <- tmp %>% 
-	   add("leaves_pch", c(19,19, NA)) %>% 
-	   add("labels_color", c(19,19, NA))# %>% 
-# 	   add("clear_leaves") %>% plot
-   expect_identical(dend, add(tmp, "clear_leaves"))
+	   set("leaves_pch", c(19,19, NA)) %>% 
+	   set("labels_color", c(19,19, NA))# %>% 
+# 	   set("clear_leaves") %>% plot
+   expect_identical(dend, set(tmp, "clear_leaves"))
    
 	tmp <- dend
 	tmp <- tmp %>% 
-	   add("branches_col", c(1,2, 1, 2, NA)) %>%
-	   add("branches_lwd", c(2,1,2)) %>% 
-	   add("branches_lty", c(1,2,1)) # %>% plot
+	   set("branches_col", c(1,2, 1, 2, NA)) %>%
+	   set("branches_lwd", c(2,1,2)) %>% 
+	   set("branches_lty", c(1,2,1)) # %>% plot
 	# We can remove all the branch attributes
-	expect_identical(dend, add(tmp, "clear_branches"))
+	expect_identical(dend, set(tmp, "clear_branches"))
 })
 
 

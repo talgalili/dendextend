@@ -18,17 +18,17 @@
 
 
 
-#' @title Add (/update) features to a dendrogram
+#' @title Set (/update) features to a dendrogram
 #' @export
 #' @aliases 
-#' add.dendrogram
-#' add.dendlist
+#' set.dendrogram
+#' set.dendlist
 #'
 #' @usage 
 #' 
-#' add(object, ...)
+#' set(object, ...)
 #' 
-#' \method{add}{dendrogram}(object,
+#' \method{set}{dendrogram}(object,
 #'    what = c("labels",
 #'             "labels_colors",
 #'             "labels_cex",
@@ -45,7 +45,7 @@
 #'    ),
 #'    value, ...)
 #'    
-#' \method{add}{dendlist}(object, ..., which)
+#' \method{set}{dendlist}(object, ..., which)
 #'
 #' @description
 #' a master function for updating various attributes and 
@@ -53,9 +53,9 @@
 #' 
 #' @param object a tree (\link{dendrogram}, or \link{dendlist})
 #' @param what a character indicating what is the property of
-#' the tree that should be added/updated. (see the usage and the example section
+#' the tree that should be set/updated. (see the usage and the example section
 #' for the different options)
-#' @param value an object with the value to add to the tree.
+#' @param value an object with the value to set in the tree.
 #' (the type of the value depends on the "what")
 #' @param ... passed to the specific function for more options.
 #' @param which an integer vector indicating, in the case "object" is
@@ -91,76 +91,73 @@
 #' dend %>% plot
 #' 
 #' dend %>% labels
-#' dend %>% add("labels", 1:10) %>% labels
-#' dend %>% add("labels", 1:10) %>% plot 
-#' dend %>% add("labels_color") %>% plot 
-#' dend %>% add("labels_col", c(1,2)) %>% plot # Works also with partial matching :)
-#' dend %>% add("labels_cex", c(1, 1.2)) %>% plot 
-#' dend %>% add("leaves_pch", NA) %>% plot 
-#' dend %>% add("leaves_pch", c(1:5)) %>% plot    
-#' dend %>% add("leaves_pch", c(19,19, NA)) %>% 
-#'    add("leaves_cex", c(1,2)) %>% plot 
-#' dend %>% add("leaves_pch", c(19,19, NA)) %>% 
-#'    add("leaves_cex", c(1,2)) %>%
-#'    add("leaves_col", c(1,1,2,2)) %>% 
+#' dend %>% set("labels", 1:10) %>% labels
+#' dend %>% set("labels", 1:10) %>% plot 
+#' dend %>% set("labels_color") %>% plot 
+#' dend %>% set("labels_col", c(1,2)) %>% plot # Works also with partial matching :)
+#' dend %>% set("labels_cex", c(1, 1.2)) %>% plot 
+#' dend %>% set("leaves_pch", NA) %>% plot 
+#' dend %>% set("leaves_pch", c(1:5)) %>% plot    
+#' dend %>% set("leaves_pch", c(19,19, NA)) %>% 
+#'    set("leaves_cex", c(1,2)) %>% plot 
+#' dend %>% set("leaves_pch", c(19,19, NA)) %>% 
+#'    set("leaves_cex", c(1,2)) %>%
+#'    set("leaves_col", c(1,1,2,2)) %>% 
 #'    plot 
-#' dend %>% add("hang") %>% plot 
+#' dend %>% set("hang") %>% plot 
 #' 
-#' dend %>% add("branches_k_col") %>% plot 
-#' dend %>% add("branches_k_col", c(1,2)) %>% plot 
-#' dend %>% add("branches_k_col", c(1,2,3), k=3) %>% plot
-#' dend %>% add("branches_k_col", k=3) %>% plot 
+#' dend %>% set("branches_k_col") %>% plot 
+#' dend %>% set("branches_k_col", c(1,2)) %>% plot 
+#' dend %>% set("branches_k_col", c(1,2,3), k=3) %>% plot
+#' dend %>% set("branches_k_col", k=3) %>% plot 
 #' 
-#' dend %>% add("branches_col", c(1,2, 1, 2, NA)) %>% plot
-#' dend %>% add("branches_lwd", c(2,1,2)) %>% plot
-#' dend %>% add("branches_lty", c(1,2,1)) %>% plot
+#' dend %>% set("branches_col", c(1,2, 1, 2, NA)) %>% plot
+#' dend %>% set("branches_lwd", c(2,1,2)) %>% plot
+#' dend %>% set("branches_lty", c(1,2,1)) %>% plot
 #' 
 #' #    clears all of the things added to the leaves
 #' dend %>% 
-#'    add("labels_color", c(19,19, NA)) %>% 
-#'    add("leaves_pch", c(19,19, NA))  %>%  # plot  
-#'    add("clear_leaves") %>% # remove all of what was done until this point
+#'    set("labels_color", c(19,19, NA)) %>% 
+#'    set("leaves_pch", c(19,19, NA))  %>%  # plot  
+#'    set("clear_leaves") %>% # remove all of what was done until this point
 #'    plot
 #' # Different order
 #' dend %>% 
-#'    add("leaves_pch", c(19,19, NA)) %>% 
-#'    add("labels_color", c(19,19, NA)) %>% 
-#'    add("clear_leaves") %>% plot
+#'    set("leaves_pch", c(19,19, NA)) %>% 
+#'    set("labels_color", c(19,19, NA)) %>% 
+#'    set("clear_leaves") %>% plot
 #' 
 #' 
 #' # doing this without chaining (%>%) will NOT be fun:
 #' dend %>% 
-#'    add("labels", 1:10) %>%
-#'    add("labels_color") %>%
-#'    add("branches_col", c(1,2, 1, 2, NA)) %>%
-#'    add("branches_lwd", c(2,1,2)) %>%
-#'    add("branches_lty", c(1,2,1)) %>%
-#'    add("hang") %>%
+#'    set("labels", 1:10) %>%
+#'    set("labels_color") %>%
+#'    set("branches_col", c(1,2, 1, 2, NA)) %>%
+#'    set("branches_lwd", c(2,1,2)) %>%
+#'    set("branches_lty", c(1,2,1)) %>%
+#'    set("hang") %>%
 #'    plot 
 #' 
 #' # A few dendlist examples:
-#' dendlist(dend,dend) %>% add("hang") %>% plot
-#' dendlist(dend,dend) %>% add("branches_k_col", k=3) %>% plot
-#' dendlist(dend,dend) %>% add("labels_col", c(1,2)) %>% plot
+#' dendlist(dend,dend) %>% set("hang") %>% plot
+#' dendlist(dend,dend) %>% set("branches_k_col", k=3) %>% plot
+#' dendlist(dend,dend) %>% set("labels_col", c(1,2)) %>% plot
 #' 
 #' dendlist(dend,dend) %>% 
-#'    add("hang") %>%
-#'    add("labels_col", c(1,2), which = 1) %>% 
-#'    add("branches_k_col", k=3, which = 2) %>%
-#'    add("labels_cex", 1.2) %>%
+#'    set("hang") %>%
+#'    set("labels_col", c(1,2), which = 1) %>% 
+#'    set("branches_k_col", k=3, which = 2) %>%
+#'    set("labels_cex", 1.2) %>%
 #'    plot
 #' 
 #' }
-add <- function (object, ...) {
-   UseMethod("add")
+set <- function (object, ...) {
+   UseMethod("set")
 }
 
-add.default <- function (object, ...) {
-   magrittr::add(e1 = object, ...)
-}
 
 #' @export
-add.dendrogram <- 
+set.dendrogram <- 
    function(object,
             what = c("labels",
                      "labels_colors",
@@ -200,14 +197,14 @@ add.dendrogram <-
 
 
 
-# ' @S3method add dendlist
+# ' @S3method set dendlist
 #' @export
-add.dendlist <- function(object, ..., which) {
+set.dendlist <- function(object, ..., which) {
    
    if(missing(which)) which <- 1:length(object)
    
    for(i in which) {
-      object[[i]] <- add(object[[i]],...)      
+      object[[i]] <- set(object[[i]],...)      
    }
    object
 }
