@@ -19,7 +19,7 @@
             "clear_branches",
             "clear_leaves"
    ),
-   with, ...)
+   value, ...)
 
 \method{update}{dendlist}(object, ..., which)
 }
@@ -30,8 +30,8 @@
 the tree should be updated. (see the usage and the example section
 for the different options)}
 
-\item{with}{a varying object (it depends on the "what"),
-with it we will update the tree.}
+\item{value}{an object with the value to update the tree with.
+(the type of the value depends on the "what")}
 
 \item{...}{passed to the specific function for more options.}
 

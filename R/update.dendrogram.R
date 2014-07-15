@@ -39,7 +39,7 @@
 #'             "clear_branches",
 #'             "clear_leaves"
 #'    ),
-#'    with, ...)
+#'    value, ...)
 #'    
 #' \method{update}{dendlist}(object, ..., which)
 #'
@@ -51,8 +51,8 @@
 #' @param what a character indicating what property of
 #' the tree should be updated. (see the usage and the example section
 #' for the different options)
-#' @param with a varying object (it depends on the "what"),
-#' with it we will update the tree.
+#' @param value an object with the value to update the tree with.
+#' (the type of the value depends on the "what")
 #' @param ... passed to the specific function for more options.
 #' @param which an integer vector indicating, in the case "object" is
 #' a dendlist, which of the trees should have 
@@ -164,22 +164,22 @@ update.dendrogram <-
                      "clear_branches",
                      "clear_leaves"
             ),
-            with, ...){
+            value, ...){
       what <- match.arg(what)
       object <- switch(what, 
-                       #                     labels = dendextend:::`labels<-.dendrogram`(object, value = with)
-                       labels = `labels<-.dendrogram`(object, value = with, ...),
-                       labels_colors = `labels_colors<-`(object, value = with, ...),
-                       #      labels_colors = assign_values_to_leaves_nodePar(object, with, "lab.col", ...),
-                       labels_cex = assign_values_to_leaves_nodePar(object, with, "lab.cex", ...),
-                       leaves_pch = assign_values_to_leaves_nodePar(object, with, "pch", ...),
-                       leaves_cex =assign_values_to_leaves_nodePar(object, with, "cex", ...),
-                       leaves_col =assign_values_to_leaves_nodePar(object, with, "col", ...),
-                       hang_leaves = hang.dendrogram(dend = object, hang = ifelse(missing(with), .1, with),...),
-                       branches_k_color = color_branches(tree = object, col = with,  ...),
-                       branches_col = assign_values_to_branches_edgePar(object = object, value = with, edgePar = "col", ...),
-                       branches_lwd = assign_values_to_branches_edgePar(object = object, value = with, edgePar = "lwd", ...),
-                       branches_lty = assign_values_to_branches_edgePar(object = object, value = with, edgePar = "lty", ...),
+                       #                     labels = dendextend:::`labels<-.dendrogram`(object, value = value)
+                       labels = `labels<-.dendrogram`(object, value = value, ...),
+                       labels_colors = `labels_colors<-`(object, value = value, ...),
+                       #      labels_colors = assign_values_to_leaves_nodePar(object, value, "lab.col", ...),
+                       labels_cex = assign_values_to_leaves_nodePar(object, value, "lab.cex", ...),
+                       leaves_pch = assign_values_to_leaves_nodePar(object, value, "pch", ...),
+                       leaves_cex =assign_values_to_leaves_nodePar(object, value, "cex", ...),
+                       leaves_col =assign_values_to_leaves_nodePar(object, value, "col", ...),
+                       hang_leaves = hang.dendrogram(dend = object, hang = ifelse(missing(value), .1, value),...),
+                       branches_k_color = color_branches(tree = object, col = value,  ...),
+                       branches_col = assign_values_to_branches_edgePar(object = object, value = value, edgePar = "col", ...),
+                       branches_lwd = assign_values_to_branches_edgePar(object = object, value = value, edgePar = "lwd", ...),
+                       branches_lty = assign_values_to_branches_edgePar(object = object, value = value, edgePar = "lty", ...),
                        clear_branches = remove_branches_edgePar(object, ...),
                        clear_leaves = remove_leaves_nodePar(object, ...)
       )
