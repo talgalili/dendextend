@@ -18,13 +18,17 @@
 
 
 
-#' @title Update a dendrogram
+#' @title Add (/update) features to a dendrogram
 #' @export
 #' @aliases 
-#' update.dendlist
+#' add.dendrogram
+#' add.dendlist
 #'
 #' @usage 
-#' \method{update}{dendrogram}(object,
+#' 
+#' add(object, ...)
+#' 
+#' \method{add}{dendrogram}(object,
 #'    what = c("labels",
 #'             "labels_colors",
 #'             "labels_cex",
@@ -41,23 +45,22 @@
 #'    ),
 #'    value, ...)
 #'    
-#' \method{update}{dendlist}(object, ..., which)
+#' \method{add}{dendlist}(object, ..., which)
 #'
 #' @description
 #' a master function for updating various attributes and 
 #' features of dendrogram objects.
 #' 
 #' @param object a tree (\link{dendrogram}, or \link{dendlist})
-#' @param what a character indicating what property of
-#' the tree should be updated. (see the usage and the example section
+#' @param what a character indicating what is the property of
+#' the tree that should be added/updated. (see the usage and the example section
 #' for the different options)
-#' @param value an object with the value to update the tree with.
+#' @param value an object with the value to add to the tree.
 #' (the type of the value depends on the "what")
 #' @param ... passed to the specific function for more options.
 #' @param which an integer vector indicating, in the case "object" is
-#' a dendlist, which of the trees should have 
-#' their "what" updated "with" something. If missing - the update
-#' will be performed on all of objects in the dendlist.
+#' a dendlist, on which of the trees should the modification be performed.
+#' If missing - the change will be performed on all of objects in the dendlist.
 #' 
 #' @details
 #' This is a wrapper function for many of the main tasks we 
@@ -88,67 +91,76 @@
 #' dend %>% plot
 #' 
 #' dend %>% labels
-#' dend %>% update("labels", 1:10) %>% labels
-#' dend %>% update("labels", 1:10) %>% plot 
-#' dend %>% update("labels_color") %>% plot 
-#' dend %>% update("labels_col", c(1,2)) %>% plot # Works also with partial matching :)
-#' dend %>% update("labels_cex", c(1, 1.2)) %>% plot 
-#' dend %>% update("leaves_pch", NA) %>% plot 
-#' dend %>% update("leaves_pch", c(1:5)) %>% plot    
-#' dend %>% update("leaves_pch", c(19,19, NA)) %>% 
-#'    update("leaves_cex", c(1,2)) %>% plot 
-#' dend %>% update("leaves_pch", c(19,19, NA)) %>% 
-#'    update("leaves_cex", c(1,2)) %>%
-#'    update("leaves_col", c(1,1,2,2)) %>% 
+#' dend %>% add("labels", 1:10) %>% labels
+#' dend %>% add("labels", 1:10) %>% plot 
+#' dend %>% add("labels_color") %>% plot 
+#' dend %>% add("labels_col", c(1,2)) %>% plot # Works also with partial matching :)
+#' dend %>% add("labels_cex", c(1, 1.2)) %>% plot 
+#' dend %>% add("leaves_pch", NA) %>% plot 
+#' dend %>% add("leaves_pch", c(1:5)) %>% plot    
+#' dend %>% add("leaves_pch", c(19,19, NA)) %>% 
+#'    add("leaves_cex", c(1,2)) %>% plot 
+#' dend %>% add("leaves_pch", c(19,19, NA)) %>% 
+#'    add("leaves_cex", c(1,2)) %>%
+#'    add("leaves_col", c(1,1,2,2)) %>% 
 #'    plot 
-#' dend %>% update("hang") %>% plot 
+#' dend %>% add("hang") %>% plot 
 #' 
-#' dend %>% update("branches_k_col") %>% plot 
-#' dend %>% update("branches_k_col", c(1,2)) %>% plot 
-#' dend %>% update("branches_k_col", c(1,2,3), k=3) %>% plot
-#' dend %>% update("branches_k_col", k=3) %>% plot 
+#' dend %>% add("branches_k_col") %>% plot 
+#' dend %>% add("branches_k_col", c(1,2)) %>% plot 
+#' dend %>% add("branches_k_col", c(1,2,3), k=3) %>% plot
+#' dend %>% add("branches_k_col", k=3) %>% plot 
 #' 
-#' dend %>% update("branches_col", c(1,2, 1, 2, NA)) %>% plot
-#' dend %>% update("branches_lwd", c(2,1,2)) %>% plot
-#' dend %>% update("branches_lty", c(1,2,1)) %>% plot
+#' dend %>% add("branches_col", c(1,2, 1, 2, NA)) %>% plot
+#' dend %>% add("branches_lwd", c(2,1,2)) %>% plot
+#' dend %>% add("branches_lty", c(1,2,1)) %>% plot
 #' 
 #' #    clears all of the things added to the leaves
 #' dend %>% 
-#'    update("labels_color", c(19,19, NA)) %>% 
-#'    update("leaves_pch", c(19,19, NA))  %>%  # plot  
-#'    update("clear_leaves") %>% # remove all of what was done until this point
+#'    add("labels_color", c(19,19, NA)) %>% 
+#'    add("leaves_pch", c(19,19, NA))  %>%  # plot  
+#'    add("clear_leaves") %>% # remove all of what was done until this point
 #'    plot
 #' # Different order
 #' dend %>% 
-#'    update("leaves_pch", c(19,19, NA)) %>% 
-#'    update("labels_color", c(19,19, NA)) %>% 
-#'    update("clear_leaves") %>% plot
+#'    add("leaves_pch", c(19,19, NA)) %>% 
+#'    add("labels_color", c(19,19, NA)) %>% 
+#'    add("clear_leaves") %>% plot
 #' 
 #' 
 #' # doing this without chaining (%>%) will NOT be fun:
 #' dend %>% 
-#'    update("labels", 1:10) %>%
-#'    update("labels_color") %>%
-#'    update("branches_col", c(1,2, 1, 2, NA)) %>%
-#'    update("branches_lwd", c(2,1,2)) %>%
-#'    update("branches_lty", c(1,2,1)) %>%
-#'    update("hang") %>%
+#'    add("labels", 1:10) %>%
+#'    add("labels_color") %>%
+#'    add("branches_col", c(1,2, 1, 2, NA)) %>%
+#'    add("branches_lwd", c(2,1,2)) %>%
+#'    add("branches_lty", c(1,2,1)) %>%
+#'    add("hang") %>%
 #'    plot 
 #' 
 #' # A few dendlist examples:
-#' dendlist(dend,dend) %>% update("hang") %>% plot
-#' dendlist(dend,dend) %>% update("branches_k_col", k=3) %>% plot
-#' dendlist(dend,dend) %>% update("labels_col", c(1,2)) %>% plot
+#' dendlist(dend,dend) %>% add("hang") %>% plot
+#' dendlist(dend,dend) %>% add("branches_k_col", k=3) %>% plot
+#' dendlist(dend,dend) %>% add("labels_col", c(1,2)) %>% plot
 #' 
 #' dendlist(dend,dend) %>% 
-#'    update("hang") %>%
-#'    update("labels_col", c(1,2), which = 1) %>% 
-#'    update("branches_k_col", k=3, which = 2) %>%
-#'    update("labels_cex", 1.2) %>%
+#'    add("hang") %>%
+#'    add("labels_col", c(1,2), which = 1) %>% 
+#'    add("branches_k_col", k=3, which = 2) %>%
+#'    add("labels_cex", 1.2) %>%
 #'    plot
 #' 
 #' }
-update.dendrogram <- 
+add <- function (object, ...) {
+   UseMethod("add")
+}
+
+add.default <- function (object, ...) {
+   magrittr::add(e1 = object, ...)
+}
+
+#' @export
+add.dendrogram <- 
    function(object,
             what = c("labels",
                      "labels_colors",
@@ -188,14 +200,14 @@ update.dendrogram <-
 
 
 
-# ' @S3method update dendlist
+# ' @S3method add dendlist
 #' @export
-update.dendlist <- function(object, ..., which) {
+add.dendlist <- function(object, ..., which) {
    
    if(missing(which)) which <- 1:length(object)
    
    for(i in which) {
-      object[[i]] <- update(object[[i]],...)      
+      object[[i]] <- add(object[[i]],...)      
    }
    object
 }

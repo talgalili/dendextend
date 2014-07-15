@@ -344,6 +344,11 @@ dendextendWelcomeMessage <- function(){
 
 
 
+
+
+
+
+
 # when a function is renamed, its document in man must be removed - otherwise it may cause problems with the built check (it will try to run the code in the example, and will fail.)
 # When all is done, run:
 # require(devtools)
