@@ -11,8 +11,8 @@ dendextend 0.15.0 (2014-07-14)
    * `click_rotate` - interactively rotate a tree (thanks to Andrej-Nikolai Spiess)
    * `untangle` - a master function to control all untangle functions (making it much easier to navigate this feature, as well as use it through %>% piping)
    * `untangle_DendSer` - a new untangle function (this time, only for dendlist), for leverging the serialization package for some more heuristics (based on the functions rotate_DendSer and DendSer.dendrogram).
-   * `update.dendrogram` - a new master function to allow various updating of dendrogram objects. It includes options for: labels, labels_colors, labels_cex, branches_color, hang, leaves_pch, leaves_cex, leaves_col, branches_k_color,      branches_col, branches_lwd, branches_lty, clear_branches, clear_leaves
-   * `update.dendlist` - a wrapper to update.dendrogram.
+   * `add.dendrogram` - a new master function to allow various updating of dendrogram objects. It includes options for: labels, labels_colors, labels_cex, branches_color, hang, leaves_pch, leaves_cex, leaves_col, branches_k_color,      branches_col, branches_lwd, branches_lty, clear_branches, clear_leaves
+   * `add.dendlist` - a wrapper to add.dendrogram.
    * `colored_bars` - adding colored bars underneath a 
       dendrogram plot.
 
@@ -33,7 +33,8 @@ dendextend 0.15.0 (2014-07-14)
 ##NEW FILES:
    * dendlist.R
    * test-dendlist.R
-   * update.dendrogram.R
+   * test-add.dendrogram.R
+   * add.dendrogram.R
    * colored_bars.R
    * magrittr.R
 
