@@ -373,3 +373,31 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
 # methods("labels")
 # methods("labels<-")
 # example("labels.matrix")
+
+
+
+#' @title Ordering of the Leaves in a hclust Dendrogram
+#' @export
+#' @param x ab hclust object a distance matrix.
+#' @param ... Ignored.
+#' @seealso
+#' \link{order.dendrogram}
+#' @return 
+#' A vector with length equal to the number of 
+#' leaves in the hclust dendrogram is returned. 
+#' From r <- order.hclust(), each element is 
+#' the index into the original data 
+#' (from which the hclust was computed).
+#' 
+#' @examples
+#' 
+#' set.seed(23235)
+#' ss <- sample(1:150, 10 )
+#' hc <- iris[ss,-5] %>% dist %>% hclust
+#' # dend <- hc %>% as.dendrogram
+#' order.hclust(hc)
+#' 
+order.hclust <- function(x, ...) {
+   if(!is.hclust(x)) stop("x is not an hclust object.")
+   x$order   
+}

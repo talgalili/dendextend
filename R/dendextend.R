@@ -67,4 +67,3 @@ as_hclust_fixed <- function(x, hc, ...) {
 #### This function is added in order to fix the Error of having this function missing in the namespace
 #### There might be a better way to resolve it...
 
-
