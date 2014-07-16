@@ -398,6 +398,6 @@ labels.matrix <- function(object, which = c("colnames","rownames"), ...) {
 #' order.hclust(hc)
 #' 
 order.hclust <- function(x, ...) {
-   if(!is.hclust(x)) stop("x is not an hclust object.")
+   if(!is.hclust(x)) stop("x is not a hclust object.")
    x$order   
 }

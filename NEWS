@@ -1,11 +1,16 @@
-dendextend 0.15.1 (2014-07-15)
+dendextend 0.15.1 (2014-07-16)
 ================================
 
 ##NEW FUNCTIONS:
-   * order.hclust - Ordering of the Leaves in a hclust Dendrogram
+   * `order.hclust` - Ordering of the Leaves in a hclust Dendrogram
+   * `rect.dendrogram` - just like `rect.hclust`, plus: works for dendrograms, passes `...` to rect for lwd lty etc, now has an horiz parameter! 
+
+
+##NEW FILES:
+   rect.dendrogram.R
 
 ##OTHER NOTES:
-   * Rename the "add" functions to be called "set". Reason: both are short names (important for chaining), both are not used in base R. "add" is used in magrittr (not good long term), and "set" sounds better English wise (we are setting labels color, more than adding it...).
+   * Rename the `add` functions to be called `set`. Reason: both are short names (important for chaining), both are not used in base R. "add" is used in magrittr (not good long term), and "set" sounds better English wise (we are setting labels color, more than adding it...).
    * Rename 2 file names from add->set (set.dendrogram.R and tests-set.dendrogram.R)
 
 
