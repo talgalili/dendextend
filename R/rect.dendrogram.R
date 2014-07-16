@@ -140,10 +140,67 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
 
 
 
-
-identify.dendrogram <- function (x, FUN = NULL, N = 20, MAXCLUSTER = 20, DEV.FUN = NULL, 
-          ...) 
+#' @title Identify Clusters in a Dendrogram (not hclust)
+#' @export
+#' @description
+#' Just like \link{identify.hclust}:
+#' reads the position of the graphics pointer when the (first) 
+#' mouse button is pressed. It then cuts the tree at the vertical
+#'  position of the pointer and highlights the cluster containing 
+#'  the horizontal position of the pointer. Optionally a function is applied
+#'  to the index of data points contained in the cluster.
+#' 
+#' @param x a \link{dendrogram} object.
+#' @param FUN (optional) function to be applied to the index numbers of the 
+#' data points in a cluster (see ‘Details’ below).
+#' @param N the maximum number of clusters to be identified.
+#' @param MAXCLUSTER the maximum number of clusters that can be produced by 
+#' a cut (limits the effective vertical range of the pointer).
+#' @param DEV.FUN (optional) integer scalar. If specified, the corresponding 
+#' graphics device is made active before FUN is applied.
+#' @param horiz logical (FALSE), indicating if the rectangles 
+#' should be drawn horizontally or not (for when using 
+#' plot(dend, horiz = TRUE) ) .
+#' @param ... further arguments to FUN.
+#' @details
+#' By default clusters can be identified using the mouse and an invisible 
+#' list of indices of the respective data points is returned.
+#' If FUN is not NULL, then the index vector of data points is passed to this
+#'  function as first argument, see the examples below. The active 
+#'  graphics device for FUN can be specified using DEV.FUN.
+#'  The identification process is terminated by pressing any mouse button other 
+#'  than the first, see also identify.
+#' @seealso
+#' \link{identify.hclust},
+#' \link{rect.hclust}, \link{order.dendrogram}, \link{cutree.dendrogram}
+#' @return 
+#' (Invisibly) returns a list where each element contains a vector
+#'  of data points contained in the respective cluster.
+#' @source
+#' This function is based on \link{identify.hclust}, with slight modifications
+#' to have it work with a dendrogram, as well as adding "horiz"
+#' @examples
+#' 
+#' \dontrun{
+#' set.seed(23235)
+#' ss <- sample(1:150, 10 )
+#' hc <- iris[ss,-5] %>% dist %>% hclust
+#' dend <- hc %>% as.dendrogram
+#' 
+#' plot(dend)
+#' identify.dendrogram(dend)
+#' }
+identify.dendrogram <- function (x, FUN = NULL, N = 20, MAXCLUSTER, DEV.FUN = NULL, 
+                                 horiz =FALSE, ...) 
 {
+ 
+   # In tree_heights I am removing the first element
+   # in order to be consistant with rect.hclust
+   x_heights <- heights_per_k.dendrogram(x)[-1]
+   # this is like rev(x$height)
+#    tree_order <- order.dendrogram(tree)   
+   if(missing(MAXCLUSTER)) MAXCLUSTER <- nleaves(x)
+   
    cluster <- cutree(x, k = 2:MAXCLUSTER)
    retval <- list()
    oldk <- NULL
@@ -154,14 +211,16 @@ identify.dendrogram <- function (x, FUN = NULL, N = 20, MAXCLUSTER = 20, DEV.FUN
       X <- locator(1)
       if (is.null(X)) 
          break
-      k <- min(which(rev(x$height) < X$y), MAXCLUSTER)
+      k <- min(which(x_heights < X$y), MAXCLUSTER)
       k <- max(k, 2)
       if (!is.null(oldx)) {
-         rect.hclust(x, k = oldk, x = oldx, cluster = cluster[, 
-                                                              oldk - 1], border = "grey")
+         rect.dendrogram(x, k = oldk, x = oldx, 
+                         cluster = cluster[, oldk - 1],
+                         border = "grey", horiz = horiz)
       }
-      retval[[n]] <- unlist(rect.hclust(x, k = k, x = X$x, 
-                                        cluster = cluster[, k - 1], border = "red"))
+      retval[[n]] <- unlist(rect.dendrogram(x, k = k, x = X$x, 
+                                        cluster = cluster[, k - 1],
+                                        border = "red", horiz = horiz))
       if (!is.null(FUN)) {
          if (!is.null(DEV.FUN)) {
             grDevices::dev.set(DEV.FUN)
@@ -174,3 +233,4 @@ identify.dendrogram <- function (x, FUN = NULL, N = 20, MAXCLUSTER = 20, DEV.FUN
    grDevices::dev.set(DEV.x)
    invisible(retval)
 }
+

@@ -4,6 +4,8 @@ dendextend 0.15.1 (2014-07-16)
 ##NEW FUNCTIONS:
    * `order.hclust` - Ordering of the Leaves in a hclust Dendrogram
    * `rect.dendrogram` - just like `rect.hclust`, plus: works for dendrograms, passes `...` to rect for lwd lty etc, now has an horiz parameter! 
+   * `identify.dendrogram` - like `identify.hclust`: reads the position of the graphics pointer when the (first) mouse button is pressed. It then cuts the tree at the vertical position of the pointer and highlights the cluster containing the horizontal position of the pointer. Optionally a function is applied to the index of data points contained in the cluster.
+
 
 
 ##NEW FILES:
