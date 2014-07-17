@@ -40,6 +40,18 @@
 #' @param horiz logical (FALSE), indicating if the rectangles 
 #' should be drawn horizontally or not (for when using 
 #' plot(dend, horiz = TRUE) ) .
+#' @param density Passed to \link{rect}: the density of shading lines, 
+#' in lines per inch. The default value of NULL means that 
+#' no shading lines are drawn. A zero value of density means 
+#' no shading lines whereas negative values (and NA) 
+#' suppress shading (and so allow color filling).
+#' If border is a vector of colors, the color of density will default to 1.
+#' @param angle Passed to \link{rect}: angle (in degrees) of the shading lines.
+#' (default is 45)
+#' @param text a character vector of labels to plot underneath the clusters.
+#' When NULL (default), no text is displayed.
+#' @param text_cex a numeric (scalar) value of the text's cex value.
+#' @param text_col a (scalar) value of the text's col(or) value.
 #' @seealso
 #' \link{rect.hclust}, \link{order.dendrogram}, \link{cutree.dendrogram}
 #' @return 
@@ -49,6 +61,11 @@
 #' This function is based on \link{rect.hclust}, with slight modifications
 #' to have it work with a dendrogram, as well as a few added features
 #' (e.g: ... to rect, and horiz)
+#' 
+#' The idea of adding text and shading lines under the clusters comes from
+#' skullkey from here:
+#' \url{http://stackoverflow.com/questions/4720307/change-dendrogram-leaves} 
+#' 
 #' @examples
 #' 
 #' set.seed(23235)
@@ -58,6 +75,11 @@
 #' 
 #' plot(dend)
 #' rect.dendrogram(dend,2, border = 2)
+#' 
+#' plot(dend)
+#' rect.dendrogram(dend, 3 , border = 1:3, 
+#'          density = 2, text = c("1", "b", "miao"), text_cex = 3)
+#'          
 #' plot(dend)
 #' rect.dendrogram(dend,4, which = c(1,3), border = c(2,3))
 #' rect.dendrogram(dend,4, x = 5, border = c(4))
@@ -67,7 +89,8 @@
 #' rect.dendrogram(dend,2, border = 2, horiz = TRUE)
 #' rect.dendrogram(dend,4, border = 4, lty = 2, lwd = 3, horiz = TRUE)
 rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, border = 2, 
-          cluster = NULL, horiz = FALSE, ...) 
+          cluster = NULL, horiz = FALSE, density = NULL, angle = 45, 
+          text = NULL, text_cex = 1, text_col =1 , ...) 
 {
    if(!is.dendrogram(tree)) stop("x is not a dendrogram object.")
 
@@ -103,8 +126,7 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
          stop("specify exactly one of 'which' and 'x'")
       which <- x
       for (n in seq_along(x)) which[n] <- max(which(m < x[n]))
-   }
-   else if (is.null(which)) 
+   } else if (is.null(which))
       which <- 1L:k
    if (any(which > k)) 
       stop(gettextf("all elements of 'which' must be between 1 and %d", 
@@ -128,7 +150,14 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
            ybottom,
            xright , 
            ytop , 
-           border = border[n], ...)
+           border = border[n], density = density, angle = angle, ...)
+
+      # allow for a vectorized version of "text"      
+      if(!is.null(text)) text((m[which[n]] + m[which[n] + 1]+1)/2,
+                              grconvertY(grconvertY(par("usr")[3L],"user","ndc")+0.02,"ndc","user"),
+                              text[n], 
+                                cex = text_cex, col = text_col)
+      
       retval[[n]] <- which(cluster == as.integer(names(clustab)[which[n]]))
    }
    invisible(retval)
@@ -233,4 +262,6 @@ identify.dendrogram <- function (x, FUN = NULL, N = 20, MAXCLUSTER, DEV.FUN = NU
    grDevices::dev.set(DEV.x)
    invisible(retval)
 }
+
+
 

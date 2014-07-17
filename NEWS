@@ -1,3 +1,10 @@
+dendextend 0.15.1 (2014-07-17)
+================================
+##UPDATED FUNCTIONS:
+   * `rect.dendrogram` - adding paramters for creating text under the clusters,
+as well as make it easier to plot lines on the rect (density = 7). props to skullkey for his help.
+
+
 dendextend 0.15.1 (2014-07-16)
 ================================
 

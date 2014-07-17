@@ -6,10 +6,15 @@
 This function is based on \link{rect.hclust}, with slight modifications
 to have it work with a dendrogram, as well as a few added features
 (e.g: ... to rect, and horiz)
+
+The idea of adding text and shading lines under the clusters comes from
+skullkey from here:
+\url{http://stackoverflow.com/questions/4720307/change-dendrogram-leaves}
 }
 \usage{
 rect.dendrogram(tree, k = NULL, which = NULL, x = NULL, h = NULL,
-  border = 2, cluster = NULL, horiz = FALSE, ...)
+  border = 2, cluster = NULL, horiz = FALSE, density = NULL,
+  angle = 45, text = NULL, text_cex = 1, text_col = 1, ...)
 }
 \arguments{
 \item{tree}{a \link{dendrogram} object.}
@@ -36,6 +41,23 @@ cutree(dend_obj, k = k), can be specified for efficiency if already computed.}
 \item{horiz}{logical (FALSE), indicating if the rectangles
 should be drawn horizontally or not (for when using
 plot(dend, horiz = TRUE) ) .}
+
+\item{density}{Passed to \link{rect}: the density of shading lines,
+in lines per inch. The default value of NULL means that
+no shading lines are drawn. A zero value of density means
+no shading lines whereas negative values (and NA)
+suppress shading (and so allow color filling).
+If border is a vector of colors, the color of density will default to 1.}
+
+\item{angle}{Passed to \link{rect}: angle (in degrees) of the shading lines.
+(default is 45)}
+
+\item{text}{a character vector of labels to plot underneath the clusters.
+When NULL (default), no text is displayed.}
+
+\item{text_cex}{a numeric (scalar) value of the text's cex value.}
+
+\item{text_col}{a (scalar) value of the text's col(or) value.}
 }
 \value{
 (Invisibly) returns a list where each element contains a vector
@@ -55,6 +77,11 @@ dend <- hc \%>\% as.dendrogram
 
 plot(dend)
 rect.dendrogram(dend,2, border = 2)
+
+plot(dend)
+rect.dendrogram(dend, 3 , border = 1:3,
+         density = 2, text = c("1", "b", "miao"), text_cex = 3)
+
 plot(dend)
 rect.dendrogram(dend,4, which = c(1,3), border = c(2,3))
 rect.dendrogram(dend,4, x = 5, border = c(4))

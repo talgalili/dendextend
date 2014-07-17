@@ -14,13 +14,14 @@ Next action
 
 * Maybe add a global package option for printing debugging information, and have many of the logical warn and print stuff be related to these...
 
+* maybe show the use of dendextend+ggdend
 
 New functions
 --------------
 	* Create cor.dendrogram cor.dendlist - to switch between different cor types and methods.
    * add a print/warn parameter to intersect_trees
    * intersect_trees.dendlist
-   * add rect.hclust.nice http://stackoverflow.com/questions/4720307/change-dendrogram-leaves 
+   * Mention I've used this rect.hclust.nice code for implementation on my verison of the function. http://stackoverflow.com/questions/4720307/change-dendrogram-leaves 
    * Give this a thought: http://stackoverflow.com/questions/10088117/exporting-dendrogram-as-table-in-r?rq=1
    * create rect.dendrogram (and make rect generic). http://stackoverflow.com/questions/717747/how-do-i-color-edges-or-draw-rects-correctly-in-an-r-dendrogram
 http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
@@ -102,7 +103,8 @@ MDSplot(mod.rf, iris$Species)
 	* give examples with http://cran.r-project.org/web/packages/treemap/index.html
 	
 
-	* Ideas for improving the package: http://robjhyndman.com/hyndsight/jss-rpackages/
-	
-	* use match.arg
-	
+	* Ideas for improving the package: http://robjhyndman.com/hyndsight/jss-rpackages/ - DONE
+
+   * Improve the visualization of Pvclust results
+      http://bioinformatics.oxfordjournals.org/content/22/12/1540.full
+   * and compare it on two clustering algorithms using tanglegram 
