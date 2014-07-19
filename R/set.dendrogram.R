@@ -150,6 +150,34 @@
 #'    set("labels_cex", 1.2) %>%
 #'    plot
 #' 
+#' 
+#' #--------------
+#' # example of modifying the dendrogram in a heatmap:
+#' 
+#' library(gplots)
+#' data(mtcars)
+#' x  <- as.matrix(mtcars)
+#' rc <- rainbow(nrow(x), start=0, end=.3)
+#' cc <- rainbow(ncol(x), start=0, end=.3)
+#' 
+#' ##
+#' ##' demonstrate the effect of row and column dendrogram options
+#' ##
+#' require(magrittr)
+#' Rowv_dend <- x %>% dist %>% hclust %>% 
+#'    as.dendrogram %>% 
+#'    set("branches_k", k = 3) %>% 
+#'    set("branches_lwd", 2) %>%  rotate_DendSer
+#' Colv_dend <- t(x) %>% dist %>% hclust %>% 
+#'    as.dendrogram %>% 
+#'    set("branches_k", k = 3) %>% 
+#'    set("branches_lwd", 2) %>%  rotate_DendSer
+#' heatmap.2(x, Rowv = Rowv_dend, Colv = Colv_dend)  
+#' 
+#' 
+#' 
+#' 
+#' 
 #' }
 set <- function (object, ...) {
    UseMethod("set")
