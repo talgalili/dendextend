@@ -29,7 +29,7 @@ Goes through a tree's nodes in order to return a vector
 with whether (TRUE/FALSE) each node satisies some condition (function)
 }
 \examples{
-\dontrun {
+\dontrun{
 
 require(dendextend)
 require(magrittr)

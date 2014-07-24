@@ -28,7 +28,7 @@ The user supplies a dend, labels, and type of condition (all/any), and TF_values
 And the function returns a dendrogram with branches col/lwd/lty accordingly
 }
 \examples{
-\dontrun {
+\dontrun{
 
 require(dendextend)
 require(magrittr)

@@ -40,7 +40,7 @@
 #' A logical vector with TRUE/FALSE, specifying for each of the dendrogram's nodes if it fulfills the condition or not.
 #' @seealso \link{branches_attr_by_labels}, \link{get_leaves_attr}, \link{nnodes}, \link{nleaves}
 #' @examples
-#' \dontrun {
+#' \dontrun{
 #' 
 #' require(dendextend)
 #' require(magrittr)
@@ -116,7 +116,7 @@ noded_with_condition <- function (dend, condition, include_leaves = TRUE,
 #' A dendrogram with colored branches.
 #' @seealso \link{noded_with_condition}, \link{get_leaves_attr}, \link{nnodes}, \link{nleaves}
 #' @examples
-#' \dontrun {
+#' \dontrun{
 #' 
 #' require(dendextend)
 #' require(magrittr)
