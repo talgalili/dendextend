@@ -23,10 +23,12 @@ install.packages('dendextendRcpp')
 To install the GitHub version:
 
 ```R
-if (!require('installr')) install.packages('installr'); require('installr')
+# if (!require('installr')) install.packages('installr'); require('installr')
 # the installr includes the "require2" function - making it faster to add/load new packages.
 ## install.Rtools() # run this if you are using Windows and don't have Rtools installed
-require2(devtools)
+
+# Load devtools:
+if (!require('devtools')) install.packages('devtools'); require('devtools')
 install_github('talgalili/dendextend')
 require2(Rcpp)
 install_github('talgalili/dendextendRcpp')

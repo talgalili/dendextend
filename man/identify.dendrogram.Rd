@@ -14,7 +14,7 @@ to have it work with a dendrogram, as well as adding "horiz"
 \item{x}{a \link{dendrogram} object.}
 
 \item{FUN}{(optional) function to be applied to the index numbers of the
-data points in a cluster (see ‘Details’ below).}
+data points in a cluster (see 'Details' below).}
 
 \item{N}{the maximum number of clusters to be identified.}
 

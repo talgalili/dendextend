@@ -2,7 +2,7 @@ Package: dendextend
 Type: Package
 Title: Extending R's dendrogram functionality
 Version: 0.15.1
-Date: 2014-07-15
+Date: 2014-07-17
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "http://www.r-statistics.com"),
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
@@ -16,6 +16,7 @@ Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     role = "ctb"), person("Steve", "Horvath",email =
     "SHorvath@mednet.ucla.edu", role = "ctb"), person("Peter",
     "Langfelder",email = "Peter.Langfelder@gmail.com", role = "ctb"),
+    person("skullkey", role = "ctb"),
     person("Yoav", "Benjamini", role = "ths"))
 Description: Functions and methods for extending dendrogram objects in R.
 Depends:
