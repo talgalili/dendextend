@@ -292,7 +292,7 @@ dendextendWelcomeMessage <- function(){
 # 4) use:
 #### tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="ebook") 
 # tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf") 
-###   compacted ‘dendextend-tutorial.pdf’ from 961Kb to 737Kb
+###   compacted 'dendextend-tutorial.pdf' from 961Kb to 737Kb
 
 # For checking:
 # 1) get qpdf
