@@ -1,9 +1,18 @@
-dendextend 0.15.1 (2014-07-17)
+dendextend 0.15.2 (2014-07-24)
 ================================
+
+##NEW FUNCTIONS:
+   * `noded_with_condition` - Find which nodes satisfies a condition
+   * `branches_attr_by_labels` - Change col/lwd/lty of branches matching labels condition
+
+
 ##UPDATED FUNCTIONS:
    * `rect.dendrogram` - adding paramters for creating text under the clusters,
 as well as make it easier to plot lines on the rect (density = 7). props to skullkey for his help.
+   * `set.dendrogram` - added new options: by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
 
+##NEW FILES:
+   * noded_with_condition.R
 
 dendextend 0.15.1 (2014-07-16)
 ================================
