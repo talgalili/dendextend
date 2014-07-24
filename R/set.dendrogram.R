@@ -66,6 +66,11 @@
 #' This is a wrapper function for many of the main tasks we 
 #' might wish to perform on a dendrogram before plotting.
 #' 
+#' The options of by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
+#' have extra parameters: type, attr, TF_value. You can read more about them here:
+#' \link{branches_attr_by_labels}
+#' 
+#' 
 #' @seealso
 #' 
 #' \link{labels<-.dendrogram}, \link{labels_colors<-},
@@ -73,6 +78,7 @@
 #' \link{assign_values_to_leaves_nodePar},
 #' \link{assign_values_to_branches_edgePar},
 #' \link{remove_branches_edgePar}, \link{remove_leaves_nodePar},
+#' \link{noded_with_condition}, \link{branches_attr_by_labels},
 #' \link{dendrogram}
 #' 
 #' @return 
@@ -138,6 +144,30 @@
 #'    set("hang") %>%
 #'    plot 
 #' 
+#' #----------------------------
+#' # Examples for: by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
+#' 
+#' old_labels <- labels(dend)
+#' dend %>% 
+#'    set("labels", seq_len(nleaves(dend))) %>% 
+#'    set("by_labels_branches_col", c(1:4, 7)) %>% 
+#'    set("by_labels_branches_lwd", c(1:4, 7)) %>% 
+#'    set("by_labels_branches_lty", c(1:4, 7)) %>% 
+#'    set("labels", old_labels) %>% 
+#'    plot
+#' 
+#' dend %>% 
+#'    set("labels", seq_len(nleaves(dend))) %>% 
+#'    set("by_labels_branches_col", c(1:4, 7), type = "any", TF_values = c(4,2)) %>% 
+#'    set("by_labels_branches_lwd", c(1:4, 7), type = "all", TF_values = c(4,1)) %>% 
+#'    set("by_labels_branches_lty", c(1:4, 7), TF_values = c(4,1)) %>% 
+#'    plot
+#' 
+#' 
+#' 
+#' 
+#' 
+#' #----------------------------
 #' # A few dendlist examples:
 #' dendlist(dend,dend) %>% set("hang") %>% plot
 #' dendlist(dend,dend) %>% set("branches_k_col", k=3) %>% plot
@@ -151,7 +181,7 @@
 #'    plot
 #' 
 #' 
-#' #--------------
+#' #----------------------------
 #' # example of modifying the dendrogram in a heatmap:
 #' 
 #' library(gplots)
@@ -198,6 +228,9 @@ set.dendrogram <-
                      "branches_col",
                      "branches_lwd",
                      "branches_lty",
+                     "by_labels_branches_col",
+                     "by_labels_branches_lwd",
+                     "by_labels_branches_lty",
                      "clear_branches",
                      "clear_leaves"
             ),
@@ -217,6 +250,9 @@ set.dendrogram <-
                        branches_col = assign_values_to_branches_edgePar(object = object, value = value, edgePar = "col", ...),
                        branches_lwd = assign_values_to_branches_edgePar(object = object, value = value, edgePar = "lwd", ...),
                        branches_lty = assign_values_to_branches_edgePar(object = object, value = value, edgePar = "lty", ...),
+                       by_labels_branches_col = branches_attr_by_labels(object, labels = value, attr = "col", ...),
+                       by_labels_branches_lwd = branches_attr_by_labels(object, labels = value, attr = "lwd", ...),
+                       by_labels_branches_lty = branches_attr_by_labels(object, labels = value, attr = "lty", ...),
                        clear_branches = remove_branches_edgePar(object, ...),
                        clear_leaves = remove_leaves_nodePar(object, ...)
       )

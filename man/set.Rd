@@ -53,6 +53,10 @@ features of dendrogram objects.
 \details{
 This is a wrapper function for many of the main tasks we
 might wish to perform on a dendrogram before plotting.
+
+The options of by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
+have extra parameters: type, attr, TF_value. You can read more about them here:
+\link{branches_attr_by_labels}
 }
 \examples{
 \dontrun{
@@ -112,6 +116,30 @@ dend \%>\%
    set("hang") \%>\%
    plot
 
+#----------------------------
+# Examples for: by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
+
+old_labels <- labels(dend)
+dend \%>\%
+   set("labels", seq_len(nleaves(dend))) \%>\%
+   set("by_labels_branches_col", c(1:4, 7)) \%>\%
+   set("by_labels_branches_lwd", c(1:4, 7)) \%>\%
+   set("by_labels_branches_lty", c(1:4, 7)) \%>\%
+   set("labels", old_labels) \%>\%
+   plot
+
+dend \%>\%
+   set("labels", seq_len(nleaves(dend))) \%>\%
+   set("by_labels_branches_col", c(1:4, 7), type = "any", TF_values = c(4,2)) \%>\%
+   set("by_labels_branches_lwd", c(1:4, 7), type = "all", TF_values = c(4,1)) \%>\%
+   set("by_labels_branches_lty", c(1:4, 7), TF_values = c(4,1)) \%>\%
+   plot
+
+
+
+
+
+#----------------------------
 # A few dendlist examples:
 dendlist(dend,dend) \%>\% set("hang") \%>\% plot
 dendlist(dend,dend) \%>\% set("branches_k_col", k=3) \%>\% plot
@@ -125,7 +153,7 @@ dendlist(dend,dend) \%>\%
    plot
 
 
-#--------------
+#----------------------------
 # example of modifying the dendrogram in a heatmap:
 
 library(gplots)
@@ -160,6 +188,7 @@ heatmap.2(x, Rowv = Rowv_dend, Colv = Colv_dend)
 \link{assign_values_to_leaves_nodePar},
 \link{assign_values_to_branches_edgePar},
 \link{remove_branches_edgePar}, \link{remove_leaves_nodePar},
+\link{noded_with_condition}, \link{branches_attr_by_labels},
 \link{dendrogram}
 }
 
