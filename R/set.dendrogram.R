@@ -40,6 +40,9 @@
 #'             "branches_col",
 #'             "branches_lwd",
 #'             "branches_lty",
+#'             "by_labels_branches_col",
+#'             "by_labels_branches_lwd",
+#'             "by_labels_branches_lty",
 #'             "clear_branches",
 #'             "clear_leaves"
 #'    ),
