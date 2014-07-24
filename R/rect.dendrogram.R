@@ -181,7 +181,7 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
 #' 
 #' @param x a \link{dendrogram} object.
 #' @param FUN (optional) function to be applied to the index numbers of the 
-#' data points in a cluster (see ‘Details’ below).
+#' data points in a cluster (see 'Details' below).
 #' @param N the maximum number of clusters to be identified.
 #' @param MAXCLUSTER the maximum number of clusters that can be produced by 
 #' a cut (limits the effective vertical range of the pointer).
