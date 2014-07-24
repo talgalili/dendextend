@@ -23,7 +23,9 @@ install.packages('dendextendRcpp')
 To install the GitHub version:
 
 ```R
-require2 <- function (package, ...) {if (!require(package)) install.packages(package); require(package)}
+require2 <- function (package, ...) {
+	if (!require(package)) install.packages(package); require(package)
+}
 
 # require2('installr')
 # the installr includes the "require2" function - making it faster to add/load new packages.
@@ -37,7 +39,7 @@ devtools::install_github('talgalili/dendextendRcpp')
 
 # Having colorspace is also useful, since it is used
 # In various examples in the vignettes
-require2("colorspace"")
+require2("colorspace")
 ```
 
 And then you may load the package using:
