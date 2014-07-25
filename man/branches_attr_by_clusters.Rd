@@ -108,6 +108,7 @@ labels(dend2) <- as.character(labels(dend2)) # this needs fixing, since the labe
 \seealso{
 \link{branches_attr_by_labels},
 \link{get_leaves_attr}, \link{nnodes}, \link{nleaves}
-\link[dynamicTreeCut]{cutreeDynamic}
+\link[dynamicTreeCut]{cutreeDynamic},
+\link[WGCNA]{plotDendroAndColors}
 }
 

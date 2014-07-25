@@ -55,7 +55,8 @@
 #' @seealso 
 #' \link{branches_attr_by_labels},
 #' \link{get_leaves_attr}, \link{nnodes}, \link{nleaves}
-#' \link[dynamicTreeCut]{cutreeDynamic}
+#' \link[dynamicTreeCut]{cutreeDynamic},
+#' \link[WGCNA]{plotDendroAndColors}
 #' @examples
 #' 
 #' \dontrun{

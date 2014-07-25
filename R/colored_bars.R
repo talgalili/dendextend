@@ -97,8 +97,8 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' For more details.
 #' 
 #' @seealso 
-#' \link{branches_attr_by_clusters}
-#' 
+#' \link{branches_attr_by_clusters},
+#' \link[WGCNA]{plotDendroAndColors}
 #' @examples
 #' 
 #' \dontrun{
