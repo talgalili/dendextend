@@ -1,12 +1,16 @@
-dendextend 0.15.3 (2014-07-25)
+dendextend 0.16.0 (2014-07-25)
 ================================
+
+##NEW FUNCTIONS:
+   * `branches_attr_by_clusters` - This function was designed to enable the manipulation (mainly coloring) of branches, based on the results from the cutreeDynamic function (from the {dynamicTreeCut} package).
+
 
 ##UPDATED FUNCTIONS:
    * `assign_values_to_branches_edgePar - now can keep existing value, if gets NA.
    * `colored_bars` - change the order of colors and dend, and allowing for dend to be missing.
 
 ##NEW FILES:
-   * dynamicTreeCut.R
+   * branches_attr_by.R - for branches_attr_by_clusters
 
 
 
