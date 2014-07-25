@@ -603,6 +603,11 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
 #' @export
 #' @description
 #' Go through the dendrogram branches and updates the values inside its edgePar
+#' 
+#' If the value has NA then the value in edgePar will not be changed. 
+#' (it could have also been something like NULL or Inf,
+#' but for now it is only NA)
+#' 
 #' @param object a dendrogram object 
 #' @param value a new value scalar for the edgePar attribute. 
 #' @param edgePar the value inside edgePar to adjust.
@@ -646,7 +651,9 @@ assign_values_to_branches_edgePar <- function(object, value, edgePar, warn = TRU
    
    set_value_to_branch <- function(dend_node) {
       i_node <<- i_node + 1
-      attr(dend_node, "edgePar")[[edgePar]] <- value[i_node] # [i_leaf_number] # this way it doesn't erase other edgePar values (if they exist)
+      if(!is.na(value[i_node])) {
+         attr(dend_node, "edgePar")[[edgePar]] <- value[i_node] # [i_leaf_number] # this way it doesn't erase other edgePar values (if they exist)
+      }
       if(length(attr(dend_node, "edgePar")) == 0) attr(dend_node, "edgePar") <- NULL # remove edgePar if it is empty
       return(unclass(dend_node))
    }   

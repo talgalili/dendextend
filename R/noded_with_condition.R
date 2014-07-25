@@ -110,7 +110,8 @@ noded_with_condition <- function (dend, condition, include_leaves = TRUE,
 #' the branches should be painted: ones that all of their labels belong to the supplied labels,
 #' or also ones that even some of their labels are included in the labels vector.
 #' @param TF_values a two dimensional vector with the TF_values to use in case a branch fulfills the condition (TRUE)
-#' and in the case that it does not (FALSE). Defaults are 2/1 for col, lwd and lty.
+#' and in the case that it does not (FALSE). Defaults are 2/NA for col, lwd and lty.
+#' (so it will insert the first value, and will not change all the FALSE cases)
 #' @param ... ignored.
 #' @return 
 #' A dendrogram with colored branches.
@@ -137,7 +138,7 @@ noded_with_condition <- function (dend, condition, include_leaves = TRUE,
 #' dend %>% branches_attr_by_labels(c("123", "126", "23", "29"), "any", "lty", c(2,1)) %>% plot
 #' 
 #' }
-branches_attr_by_labels <- function(dend, labels, type = c("all", "any"), attr = c("col", "lwd", "lty"), TF_values = c(2,1), ...) {
+branches_attr_by_labels <- function(dend, labels, type = c("all", "any"), attr = c("col", "lwd", "lty"), TF_values = c(2,NA), ...) {
    if(!is.dendrogram(dend)) warning("'dend' should be a dendrogram.")   
    if(missing(labels)) stop("'labels' parameter is missing.")
    if(!is.character(labels)) {      
@@ -149,6 +150,9 @@ branches_attr_by_labels <- function(dend, labels, type = c("all", "any"), attr =
    type <- match.arg(type)
    attr <- match.arg(attr)
    
+   # make sure that if the TF_values has only one value, 
+   # the other one will be NA
+   if(length(TF_values) == 1) TF_values <- c(TF_values, NA)
    
    # deal with the case we have labels not included in the tree dend:
    labels_in_dend <- labels %in% labels(dend)

@@ -1,3 +1,11 @@
+dendextend 0.15.3 (2014-07-25)
+================================
+
+##UPDATED FUNCTIONS:
+   * `assign_values_to_branches_edgePar - now can keep existing value, if gets NA.
+
+
+
 dendextend 0.15.2 (2014-07-24)
 ================================
 

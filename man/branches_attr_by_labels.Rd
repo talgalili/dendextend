@@ -4,7 +4,7 @@
 \title{Change col/lwd/lty of branches matching labels condition}
 \usage{
 branches_attr_by_labels(dend, labels, type = c("all", "any"),
-  attr = c("col", "lwd", "lty"), TF_values = c(2, 1), ...)
+  attr = c("col", "lwd", "lty"), TF_values = c(2, NA), ...)
 }
 \arguments{
 \item{dend}{a dendrogram dend}
@@ -16,7 +16,8 @@ the branches should be painted: ones that all of their labels belong to the supp
 or also ones that even some of their labels are included in the labels vector.}
 
 \item{TF_values}{a two dimensional vector with the TF_values to use in case a branch fulfills the condition (TRUE)
-and in the case that it does not (FALSE). Defaults are 2/1 for col, lwd and lty.}
+and in the case that it does not (FALSE). Defaults are 2/NA for col, lwd and lty.
+(so it will insert the first value, and will not change all the FALSE cases)}
 
 \item{...}{ignored.}
 }
