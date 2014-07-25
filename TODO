@@ -27,11 +27,7 @@ New functions
 http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
    * hide some function's doc (labels<-.stuff)
 
-   * color dynamicTreeCut results
    * manipulate tanglegram using click_rotate
-   * integrate dendextend with some heatmap
-
-   * add heatmap support!
 
    * colored_bars - add horiz paramter...
 
