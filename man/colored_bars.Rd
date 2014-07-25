@@ -12,17 +12,18 @@ See: \url{http://cran.r-project.org/web/packages/moduleColor/}
 For more details.
 }
 \usage{
-colored_bars(dend, colors, rowLabels = NULL, cex.rowLabels = 0.9,
+colored_bars(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
   add = TRUE, y_scale = 1, y_shift = 0, text_shift = 1, ...)
 }
 \arguments{
-\item{dend}{a dendrogram object}
-
 \item{colors}{Coloring of objects on the dendrogram. Either a vector (one color per object)
 or a matrix (can also be an array or a data frame)
 with each column giving one color per object.
 Each column will be plotted as a horizontal row of colors
 under the dendrogram.}
+
+\item{dend}{a dendrogram object. If missing, the colors are plotted without and re-ordering
+(this assumes that the colors are already ordered based on the dend's labels)}
 
 \item{rowLabels}{Labels for the colorings given in \code{colors}. The labels will be printed to the
 left of the color rows in the plot. If the argument is given, it must be a vector of length

@@ -54,12 +54,13 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' Add colored bars to a dendrogram, usually
 #' corresponding to either clusters or some outside
 #' categorization.
-#' @param dend a dendrogram object 
 #' @param colors Coloring of objects on the dendrogram. Either a vector (one color per object) 
 #' or a matrix (can also be an array or a data frame)
 #' with each column giving one color per object. 
 #' Each column will be plotted as a horizontal row of colors
 #' under the dendrogram.
+#' @param dend a dendrogram object. If missing, the colors are plotted without and re-ordering
+#' (this assumes that the colors are already ordered based on the dend's labels)
 #' @param rowLabels Labels for the colorings given in \code{colors}. The labels will be printed to the
 #' left of the color rows in the plot. If the argument is given, it must be a vector of length
 #' equal to the number of columns in \code{colors}. If not given, \code{names(colors)}
@@ -142,18 +143,22 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' 
 #' }
 #' 
-colored_bars <- function(dend, colors, rowLabels = NULL, cex.rowLabels = 0.9, 
+colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9, 
                        add = TRUE, 
                        y_scale = 1, y_shift = 0,
                        text_shift = 1,
                        #below_labels = TRUE,
                        ...) 
 {
-   # make sure we are working with a dend:
-   if(!is.dendrogram(dend)) dend <- as.dendrogram(dend)
-   
-   # get labels' order:
-   dend_order <- order.dendrogram(dend)   
+
+   if(missing(dend)) {
+      dend_order <- seq_along(colors)
+   } else {
+      # make sure we are working with a dend:
+      if(!is.dendrogram(dend)) dend <- as.dendrogram(dend)      
+      # get labels' order:
+      dend_order <- order.dendrogram(dend)      
+   }
    # moving the y location and scale of the bars
    # this allows us to have it underneath the dend
    # in a way that would look nice.

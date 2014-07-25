@@ -3,6 +3,10 @@ dendextend 0.15.3 (2014-07-25)
 
 ##UPDATED FUNCTIONS:
    * `assign_values_to_branches_edgePar - now can keep existing value, if gets NA.
+   * `colored_bars` - change the order of colors and dend, and allowing for dend to be missing.
+
+##NEW FILES:
+   * dynamicTreeCut.R
 
 
 
