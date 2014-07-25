@@ -3,26 +3,28 @@
 \alias{branches_attr_by_labels}
 \title{Change col/lwd/lty of branches matching labels condition}
 \usage{
-branches_attr_by_labels(dend, labels, type = c("all", "any"),
-  attr = c("col", "lwd", "lty"), TF_values = c(2, NA), ...)
+branches_attr_by_labels(dend, labels, TF_values = c(2, NA), attr = c("col",
+  "lwd", "lty"), type = c("all", "any"), ...)
 }
 \arguments{
 \item{dend}{a dendrogram dend}
 
 \item{labels}{a character vector of labels from the tree}
 
-\item{type}{a character vector of either "all" or "any", indicating which of
-the branches should be painted: ones that all of their labels belong to the supplied labels,
-or also ones that even some of their labels are included in the labels vector.}
-
 \item{TF_values}{a two dimensional vector with the TF_values to use in case a branch fulfills the condition (TRUE)
 and in the case that it does not (FALSE). Defaults are 2/NA for col, lwd and lty.
 (so it will insert the first value, and will not change all the FALSE cases)}
 
+\item{attr}{a character with one of the following values: col/lwd/lty}
+
+\item{type}{a character vector of either "all" or "any", indicating which of
+the branches should be painted: ones that all of their labels belong to the supplied labels,
+or also ones that even some of their labels are included in the labels vector.}
+
 \item{...}{ignored.}
 }
 \value{
-A dendrogram with colored branches.
+A dendrogram with modified branches (col/lwd/lty).
 }
 \description{
 The user supplies a dend, labels, and type of condition (all/any), and TF_values

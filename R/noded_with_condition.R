@@ -106,15 +106,16 @@ noded_with_condition <- function (dend, condition, include_leaves = TRUE,
 #' And the function returns a dendrogram with branches col/lwd/lty accordingly
 #' @param dend a dendrogram dend 
 #' @param labels a character vector of labels from the tree
-#' @param type a character vector of either "all" or "any", indicating which of 
-#' the branches should be painted: ones that all of their labels belong to the supplied labels,
-#' or also ones that even some of their labels are included in the labels vector.
 #' @param TF_values a two dimensional vector with the TF_values to use in case a branch fulfills the condition (TRUE)
 #' and in the case that it does not (FALSE). Defaults are 2/NA for col, lwd and lty.
 #' (so it will insert the first value, and will not change all the FALSE cases)
+#' @param attr a character with one of the following values: col/lwd/lty
+#' @param type a character vector of either "all" or "any", indicating which of 
+#' the branches should be painted: ones that all of their labels belong to the supplied labels,
+#' or also ones that even some of their labels are included in the labels vector.
 #' @param ... ignored.
 #' @return 
-#' A dendrogram with colored branches.
+#' A dendrogram with modified branches (col/lwd/lty).
 #' @seealso \link{noded_with_condition}, \link{get_leaves_attr}, \link{nnodes}, \link{nleaves}
 #' @examples
 #' \dontrun{
@@ -138,7 +139,7 @@ noded_with_condition <- function (dend, condition, include_leaves = TRUE,
 #' dend %>% branches_attr_by_labels(c("123", "126", "23", "29"), "any", "lty", c(2,1)) %>% plot
 #' 
 #' }
-branches_attr_by_labels <- function(dend, labels, type = c("all", "any"), attr = c("col", "lwd", "lty"), TF_values = c(2,NA), ...) {
+branches_attr_by_labels <- function(dend, labels, TF_values = c(2,NA), attr = c("col", "lwd", "lty"), type = c("all", "any"), ...) {
    if(!is.dendrogram(dend)) warning("'dend' should be a dendrogram.")   
    if(missing(labels)) stop("'labels' parameter is missing.")
    if(!is.character(labels)) {      

@@ -8,6 +8,7 @@ dendextend 0.16.0 (2014-07-25)
 ##UPDATED FUNCTIONS:
    * `assign_values_to_branches_edgePar - now can keep existing value, if gets NA.
    * `colored_bars` - change the order of colors and dend, and allowing for dend to be missing.
+   * `branches_attr_by_labels` - change the order of some parameters (based on how much I expect users to use each of them.)
 
 ##NEW FILES:
    * branches_attr_by.R - for branches_attr_by_clusters
