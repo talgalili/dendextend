@@ -1,3 +1,206 @@
+* 2014-07-25(Tal Galili) Updated TODO :) |82524ce| 
+|  TODO | 4 ----
+|  1 file changed, 4 deletions(-)
+
+* 2014-07-25(Tal Galili) Added ref to plotDendroAndColors |81e15ee| 
+|  R/branches_attr_by.R             | 3 ++-
+|  R/colored_bars.R                 | 4 ++--
+|  man/branches_attr_by_clusters.Rd | 3 ++-
+|  man/colored_bars.Rd              | 3 ++-
+|  4 files changed, 8 insertions(+), 5 deletions(-)
+
+* 2014-07-25(Tal Galili) For now - version 0.16.0 |4c13ada| 
+|  DESCRIPTION | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2014-07-25(Tal Galili) branches_attr_by_clusters - modified the example in the docs a bit (using the original dist matrix for the cutreeDynamic). |04ffde4| 
+|  R/branches_attr_by.R             | 16 +++++++++-------
+|  man/branches_attr_by_clusters.Rd | 16 +++++++++-------
+|  2 files changed, 18 insertions(+), 14 deletions(-)
+
+* 2014-07-25(Tal Galili) `colored_bars` - update docs |6283ece| 
+|  NEWS                | 2 +-
+|  R/colored_bars.R    | 9 +++++++--
+|  man/colored_bars.Rd | 3 +++
+|  3 files changed, 11 insertions(+), 3 deletions(-)
+
+* 2014-07-25(Tal Galili) `branches_attr_by_labels` - change the order of some parameters (based on how much I expect users to use each of them.) |efd8c42| 
+|  NEWS                           |  1 +
+|  R/noded_with_condition.R       | 11 ++++++-----
+|  man/branches_attr_by_labels.Rd | 16 +++++++++-------
+|  3 files changed, 16 insertions(+), 12 deletions(-)
+
+* 2014-07-25(Tal Galili) Added branches_attr_by_clusters - This function was designed to enable the manipulation (mainly coloring) of branches, based on the results from the cutreeDynamic function (from the {dynamicTreeCut} package). |cf18ef3| 
+|  NAMESPACE                        |   1 +
+|  NEWS                             |   8 +-
+|  R/branches_attr_by.R             | 182 +++++++++++++++++++++++++++++++++++++
+|  man/branches_attr_by_clusters.Rd | 111 ++++++++++++++++++++++
+|  4 files changed, 300 insertions(+), 2 deletions(-)
+
+* 2014-07-25(Tal Galili) colored_bars - change the order of colors and dend, and allowing for dend to be missing. |4e85359| 
+|  NEWS                |  4 ++++
+|  R/colored_bars.R    | 19 ++++++++++++-------
+|  man/colored_bars.Rd |  7 ++++---
+|  3 files changed, 20 insertions(+), 10 deletions(-)
+
+* 2014-07-25(Tal Galili) assign_values_to_branches_edgePar - now can keep existing value, if gets NA. |0c29c7b| 
+|  DESCRIPTION                              | 4 ++--
+|  NEWS                                     | 8 ++++++++
+|  R/attr_access.R                          | 9 ++++++++-
+|  R/noded_with_condition.R                 | 8 ++++++--
+|  man/assign_values_to_branches_edgePar.Rd | 4 ++++
+|  man/branches_attr_by_labels.Rd           | 5 +++--
+|  6 files changed, 31 insertions(+), 7 deletions(-)
+
+* 2014-07-24(talgalili) minor fixes |f0306e8| 
+|  README.md | 6 ++++--
+|  1 file changed, 4 insertions(+), 2 deletions(-)
+
+* 2014-07-24(talgalili) Add options to the methods. |922befd| 
+|  R/set.dendrogram.R | 3 +++
+|  man/set.Rd         | 3 +++
+|  2 files changed, 6 insertions(+)
+
+* 2014-07-24(talgalili) In the docs: \dontrun { -> \dontrun{ |76e215f| 
+|  R/noded_with_condition.R       | 4 ++--
+|  man/branches_attr_by_labels.Rd | 2 +-
+|  man/noded_with_condition.Rd    | 2 +-
+|  3 files changed, 4 insertions(+), 4 deletions(-)
+
+* 2014-07-24(talgalili) make package installation easier |859ad72| 
+|  README.md | 14 ++++++++------
+|  1 file changed, 8 insertions(+), 6 deletions(-)
+
+* 2014-07-24(talgalili) Updated DESCRIPTION and NEWS to version 0.15.2 |069acdf| 
+|  DESCRIPTION |  5 +++--
+|  NEWS        | 11 ++++++++++-
+|  2 files changed, 13 insertions(+), 3 deletions(-)
+
+* 2014-07-24(talgalili) set.dendrogram - added new options: by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty |0e4e414| 
+|  R/set.dendrogram.R | 38 +++++++++++++++++++++++++++++++++++++-
+|  man/set.Rd         | 31 ++++++++++++++++++++++++++++++-
+|  2 files changed, 67 insertions(+), 2 deletions(-)
+
+* 2014-07-24(talgalili) NEW FUNCTIONS:    * `noded_with_condition` - Find which nodes satisfies a condition    * `branches_attr_by_labels` - Change col/lwd/lty of branches matching labels condition |1c59527| 
+|  NAMESPACE                      |   2 +
+|  R/noded_with_condition.R       | 184 +++++++++++++++++++++++++++++++++++++++
+|  man/branches_attr_by_labels.Rd |  56 ++++++++++++
+|  man/noded_with_condition.Rd    |  61 +++++++++++++
+|  4 files changed, 303 insertions(+)
+
+* 2014-07-24(talgalili) Minor fixes to get the package to work. Also added some credit, and a more robust installation code to README.md (so it would work on non-Windows OS better) |53046d2| 
+|  DESCRIPTION                | 3 ++-
+|  README.md                  | 6 ++++--
+|  dendextend.Rproj           | 2 +-
+|  man/identify.dendrogram.Rd | 2 +-
+|  4 files changed, 8 insertions(+), 5 deletions(-)
+
+* 2014-07-24(talgalili) Fix malformed character. |5931a29| 
+|  R/zzz.R | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2014-07-24(talgalili) Fix malformed character. |8126b0d| 
+|  R/rect.dendrogram.R | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2014-07-19(Tal Galili) Added Mark van der Loo's first version of d3dendrogram |590e0d7| 
+|  R/d3dendrogram.R | 198 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 198 insertions(+)
+
+* 2014-07-19(Tal Galili) Added a heatmap.2 example to set.dendrogram |ce47f54| 
+|  R/set.dendrogram.R | 28 ++++++++++++++++++++++++++++
+|  man/set.Rd         | 28 ++++++++++++++++++++++++++++
+|  2 files changed, 56 insertions(+)
+
+* 2014-07-18(Tal Galili) `rect.dendrogram` - adding paramters for creating text under the clusters, as well as make it easier to plot lines on the rect (density = 7). props to skullkey for his help. |8706a7d| 
+|  NEWS                   |  7 +++++++
+|  R/rect.dendrogram.R    | 39 +++++++++++++++++++++++++++++++++++----
+|  TODO                   | 12 +++++++-----
+|  man/rect.dendrogram.Rd | 29 ++++++++++++++++++++++++++++-
+|  4 files changed, 77 insertions(+), 10 deletions(-)
+
+* 2014-07-16(Tal Galili) identify.dendrogram - function and docs added. (it might be a bit buggy...) |941521e| 
+|  NAMESPACE                  |  1 +
+|  NEWS                       |  2 ++
+|  R/rect.dendrogram.R        | 78 +++++++++++++++++++++++++++++++++++++++-----
+|  man/identify.dendrogram.Rd | 69 +++++++++++++++++++++++++++++++++++++++
+|  4 files changed, 141 insertions(+), 9 deletions(-)
+
+* 2014-07-16(Tal Galili) `rect.dendrogram` - just like `rect.hclust`, plus: works for dendrograms, passes `...` to rect for lwd lty etc, now has an horiz parameter! |b290b8b| 
+|  NAMESPACE              |   1 +
+|  NEWS                   |  11 ++--
+|  R/labels.R             |   2 +-
+|  R/rect.dendrogram.R    | 136 +++++++++++++++++++++++++++++++++++++++++++----
+|  man/rect.dendrogram.Rd |  70 ++++++++++++++++++++++++
+|  5 files changed, 206 insertions(+), 14 deletions(-)
+
+* 2014-07-16(Tal Galili) rect.dendrogram - started working on the function. (we start with rect.hclust, and move from there) |3c8aa38| 
+|  R/rect.dendrogram.R | 60 +++++++++++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 60 insertions(+)
+
+* 2014-07-16(Tal Galili) order.hclust (new function) - Ordering of the Leaves in a hclust Dendrogram |224f9a0| 
+|  NAMESPACE           |  1 +
+|  NEWS                |  3 +++
+|  R/dendextend.R      |  1 -
+|  R/labels.R          | 28 ++++++++++++++++++++++++++++
+|  man/order.hclust.Rd | 33 +++++++++++++++++++++++++++++++++
+|  5 files changed, 65 insertions(+), 1 deletion(-)
+
+* 2014-07-15(Tal Galili) Rename 2 file names from add->set (set.dendrogram.R and tests-set.dendrogram.R) |6b14d4b| 
+|  DESCRIPTION                      |   4 +-
+|  NEWS                             |  10 ++
+|  R/add.dendrogram.R               | 212 -------------------------------------
+|  R/set.dendrogram.R               | 212 +++++++++++++++++++++++++++++++++++++
+|  inst/tests/test-add.dendrogram.R | 143 -------------------------
+|  inst/tests/test-set.dendrogram.R | 143 +++++++++++++++++++++++++
+|  6 files changed, 367 insertions(+), 357 deletions(-)
+
+* 2014-07-15(Tal Galili) Rename from "add" to "set"! |fb77b15| 
+|  NAMESPACE                        |   6 +-
+|  R/add.dendrogram.R               | 109 ++++++++++++++---------------
+|  inst/tests/test-add.dendrogram.R |  46 ++++++-------
+|  man/add.Rd                       | 137 -------------------------------------
+|  man/set.Rd                       | 137 +++++++++++++++++++++++++++++++++++++
+|  5 files changed, 216 insertions(+), 219 deletions(-)
+
+* 2014-07-15(Tal Galili) Rename files - from update to add |e08cccb| 
+|  NEWS                                |   7 +-
+|  R/add.dendrogram.R                  | 215 ++++++++++++++++++++++++++++++++++
+|  R/update.dendrogram.R               | 215 ----------------------------------
+|  inst/tests/test-add.dendrogram.R    | 143 ++++++++++++++++++++++
+|  inst/tests/test-update.dendrogram.R | 143 ----------------------
+|  5 files changed, 362 insertions(+), 361 deletions(-)
+
+* 2014-07-15(Tal Galili) Changed "update" to be "add". To make it easier to read and write... |cd72d1e| 
+|  NAMESPACE                           |   5 +-
+|  R/update.dendrogram.R               | 118 ++++++++++++++++-------------
+|  R/zzz.R                             |   5 ++
+|  inst/tests/test-update.dendrogram.R |  46 ++++++------
+|  man/add.Rd                          | 137 ++++++++++++++++++++++++++++++++++
+|  man/update.dendrogram.Rd            | 135 ---------------------------------
+|  6 files changed, 233 insertions(+), 213 deletions(-)
+
+* 2014-07-15(Tal Galili) update: change "with" to "value" (probably a better name for this parameter) |e9f44e6| 
+|  R/update.dendrogram.R    | 34 +++++++++++++++++-----------------
+|  man/update.dendrogram.Rd |  6 +++---
+|  2 files changed, 20 insertions(+), 20 deletions(-)
+
+* 2014-07-14(Tal Galili) is_null_list - making the example donotrun. Reason: I can run this only if I'd make is_null_list exported |d7cfcac| 
+|  R/dendlist.R        | 4 ++++
+|  TODO                | 1 +
+|  man/is_null_list.Rd | 4 ++++
+|  3 files changed, 9 insertions(+)
+
+* 2014-07-14(Tal Galili) Updated some docs. |2b98871| 
+|  ChangeLog    | 77 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  DESCRIPTION  |  2 +-
+|  NEWS         |  2 +-
+|  NEWS.md      |  8 ++++--
+|  R/magrittr.R | 10 ++++++++
+|  R/zzz.R      |  1 +
+|  TODO         |  1 -
+|  7 files changed, 96 insertions(+), 5 deletions(-)
+
 * 2014-07-14(Tal Galili) Minor doc fixed for: cor_cophenetic, entanglement. as.phylo.dendrogram, untangle.dendlist, and labels.hclust (which required the use of @rdname) |30c5277| 
 |  R/cor_cophenetic.R     |  7 +++++--
 |  R/dendextend-package.R |  8 ++++++++

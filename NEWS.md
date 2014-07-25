@@ -1,3 +1,56 @@
+dendextend 0.16.0 (2014-07-25)
+================================
+
+##NEW FUNCTIONS:
+   * `branches_attr_by_clusters` - This function was designed to enable the manipulation (mainly coloring) of branches, based on the results from the cutreeDynamic function (from the {dynamicTreeCut} package).
+
+
+##UPDATED FUNCTIONS:
+   * `assign_values_to_branches_edgePar - now can keep existing value, if gets NA.
+   * `colored_bars` - change the order of colors and dend, and allowing for dend to be missing. (also some other doc modifications)
+   * `branches_attr_by_labels` - change the order of some parameters (based on how much I expect users to use each of them.)
+
+##NEW FILES:
+   * branches_attr_by.R - for branches_attr_by_clusters
+
+
+
+dendextend 0.15.2 (2014-07-24)
+================================
+
+##NEW FUNCTIONS:
+   * `noded_with_condition` - Find which nodes satisfies a condition
+   * `branches_attr_by_labels` - Change col/lwd/lty of branches matching labels condition
+
+
+##UPDATED FUNCTIONS:
+   * `rect.dendrogram` - adding paramters for creating text under the clusters,
+as well as make it easier to plot lines on the rect (density = 7). props to skullkey for his help.
+   * `set.dendrogram` - added new options: by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
+
+##NEW FILES:
+   * noded_with_condition.R
+
+dendextend 0.15.1 (2014-07-16)
+================================
+
+##NEW FUNCTIONS:
+   * `order.hclust` - Ordering of the Leaves in a hclust Dendrogram
+   * `rect.dendrogram` - just like `rect.hclust`, plus: works for dendrograms, passes `...` to rect for lwd lty etc, now has an horiz parameter! 
+   * `identify.dendrogram` - like `identify.hclust`: reads the position of the graphics pointer when the (first) mouse button is pressed. It then cuts the tree at the vertical position of the pointer and highlights the cluster containing the horizontal position of the pointer. Optionally a function is applied to the index of data points contained in the cluster.
+
+
+
+##NEW FILES:
+   rect.dendrogram.R
+
+##OTHER NOTES:
+   * Rename the `add` functions to be called `set`. Reason: both are short names (important for chaining), both are not used in base R. "add" is used in magrittr (not good long term), and "set" sounds better English wise (we are setting labels color, more than adding it...).
+   * Rename 2 file names from add->set (set.dendrogram.R and tests-set.dendrogram.R)
+
+
+
+
 dendextend 0.15.0 (2014-07-14)
 ================================
 
@@ -11,8 +64,8 @@ dendextend 0.15.0 (2014-07-14)
    * `click_rotate` - interactively rotate a tree (thanks to Andrej-Nikolai Spiess)
    * `untangle` - a master function to control all untangle functions (making it much easier to navigate this feature, as well as use it through %>% piping)
    * `untangle_DendSer` - a new untangle function (this time, only for dendlist), for leverging the serialization package for some more heuristics (based on the functions rotate_DendSer and DendSer.dendrogram).
-   * `update.dendrogram` - a new master function to allow various updating of dendrogram objects. It includes options for: labels, labels_colors, labels_cex, branches_color, hang, leaves_pch, leaves_cex, leaves_col, branches_k_color,      branches_col, branches_lwd, branches_lty, clear_branches, clear_leaves
-   * `update.dendlist` - a wrapper to update.dendrogram.
+   * `add.dendrogram` - a new master function to allow various updating of dendrogram objects. It includes options for: labels, labels_colors, labels_cex, branches_color, hang, leaves_pch, leaves_cex, leaves_col, branches_k_color,      branches_col, branches_lwd, branches_lty, clear_branches, clear_leaves
+   * `add.dendlist` - a wrapper to add.dendrogram.
    * `colored_bars` - adding colored bars underneath a 
       dendrogram plot.
 
@@ -33,7 +86,8 @@ dendextend 0.15.0 (2014-07-14)
 ##NEW FILES:
    * dendlist.R
    * test-dendlist.R
-   * update.dendrogram.R
+   * test-add.dendrogram.R
+   * add.dendrogram.R
    * colored_bars.R
    * magrittr.R
 

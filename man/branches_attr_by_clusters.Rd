@@ -102,6 +102,7 @@ labels(dend2) <- as.character(labels(dend2)) # this needs fixing, since the labe
             columns_width = c(5,.5,5),
             color_lines = cols[iris[order.dendrogram(dend2),5]])
 # (Notice how the color_lines is of the true Species of each Iris)
+# The main difference is at the bottom,
 
 }
 }
