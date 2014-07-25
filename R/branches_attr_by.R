@@ -61,7 +61,8 @@
 #' \dontrun{
 #' 
 #' ### Getting the hc object
-#' hc <- iris[,-5] %>% dist %>% hclust 
+#' iris_dist <- iris[,-5] %>% dist
+#' hc <-  iris_dist %>% hclust 
 #' # This is how it looks without any colors:
 #' dend <- as.dendrogram(hc)
 #' plot(dend)
@@ -84,7 +85,7 @@
 #' 
 #' # let's get the clusters
 #' require(dynamicTreeCut)
-#' clusters <- cutreeDynamic(hc)
+#' clusters <- cutreeDynamic(hc, distM = as.matrix(iris_dist))
 #' # we need to sort them to the order of the dendrogram:
 #' clusters <- clusters[order.dendrogram(dend)]
 #' 
@@ -110,12 +111,13 @@
 #' # all of the ordering is to handle the fact that the cluster numbers are not ascending...
 #' 
 #' # How is this compared with the usual cutree?
-#' dend3 <- color_branches(dend, k = 4)
+#' dend3 <- color_branches(dend, k = n_clusters)
 #' labels(dend2) <- as.character(labels(dend2)) # this needs fixing, since the labels are not character!
-#' # Well, both cluster solutions are not at all good, but at least they are interesting...
-#' tanglegram(dend2, dend3, 
-#'            columns_width = c(5,.5,5), 
-#'            color_lines = cols[iris[order.dendrogram(dend2),5]])
+#' # Well, both cluster solutions are not perfect, but at least they are interesting...
+#'  tanglegram(dend2, dend3, 
+#'             main_left = "cutreeDynamic", main_right = "cutree",
+#'             columns_width = c(5,.5,5), 
+#'             color_lines = cols[iris[order.dendrogram(dend2),5]])
 #' # (Notice how the color_lines is of the true Species of each Iris)
 #' 
 #' }
