@@ -25,6 +25,7 @@ Imports:
     utils,
     stats,
     magrittr (>= 1.0.1),
+    whisker,
     ape
 Suggests:
     dendextendRcpp (>= 0.5.0),

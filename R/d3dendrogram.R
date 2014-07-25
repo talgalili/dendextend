@@ -31,12 +31,13 @@
 # rightmargin  : pixels to reserve on the right side for leaf labels.
 #
 d3dendrogram <- function(d,height=500,width=700,rightmargin=200){
+#   require(whisker)
   e <- new.env()
   e$json_dendrogram <- as.json.dendrogram(d)
   e$height <- height
   e$width <- width
   e$rightmargin <- rightmargin
-  whisker.render(d3dendro_template(),data=e)
+  whisker::whisker.render(d3dendro_template(),data=e)
 }
 
 

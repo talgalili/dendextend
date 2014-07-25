@@ -31,6 +31,7 @@
 #' @import stats
 #' @import utils
 #' @import magrittr
+#' @import whisker
 NULL
 
 
