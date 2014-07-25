@@ -84,6 +84,9 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' since it has to do with the current mar settings,
 #' the number of groups, and each computer's specific graphic device.
 #' patches for smarter defaults will be appreciated)
+#' @return 
+#' An invisible vector/matrix with the ordered colors.
+#' 
 #' @source
 #' This function is based on the \link[moduleColor]{plotHclustColors} from the 
 #' {moduleColor} R package. It was modified so that it would
@@ -92,8 +95,10 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' 
 #' See: \url{http://cran.r-project.org/web/packages/moduleColor/}
 #' For more details.
-#' @return 
-#' An invisible vector/matrix with the ordered colors.
+#' 
+#' @seealso 
+#' \link{branches_attr_by_clusters}
+#' 
 #' @examples
 #' 
 #' \dontrun{

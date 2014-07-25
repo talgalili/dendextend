@@ -114,4 +114,7 @@ Steve Horvath \email{SHorvath@mednet.ucla.edu},
 Peter Langfelder \email{Peter.Langfelder@gmail.com},
 Tal Galili \email{Tal.Galili@gmail.com}
 }
+\seealso{
+\link{branches_attr_by_clusters}
+}
 
