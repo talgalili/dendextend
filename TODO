@@ -3,7 +3,6 @@ TODO for future releases:
 
 Next action
 --------------
-* add pvclust example (probably using a condition on p-value, and heighlighting branches based on that.)
 * Update the Vignette!
 * Write paper for bioinfo: mention update, cutree, colored_bars, heatmap.2, Rcpp, dynamicCutree and pvclust
 
