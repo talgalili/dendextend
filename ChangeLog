@@ -1,3 +1,50 @@
+* 2014-07-26(Tal Galili) added a pvclust example (using a condition on p-value, and heighlighting branches based on that with lwd/col.) |cbbaae3| 
+|  NEWS        |   2 +
+|  R/pvclust.R | 121 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  TODO        |   1 -
+|  3 files changed, 123 insertions(+), 1 deletion(-)
+
+* 2014-07-26(Tal Galili) `na_locf` - Fill Last Observation Carried Forward |5e764d7| 
+|  DESCRIPTION    |  2 +-
+|  NAMESPACE      |  1 +
+|  NEWS           |  4 +--
+|  R/pvclust.R    | 92 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  man/na_locf.Rd | 57 +++++++++++++++++++++++++++++++++++
+|  5 files changed, 153 insertions(+), 3 deletions(-)
+
+* 2014-07-26(Tal Galili) `which_leaf` - a new function to tell us Which node is a leaf |3658216| 
+|  NAMESPACE                |  1 +
+|  NEWS                     |  1 +
+|  R/noded_with_condition.R | 35 +++++++++++++++++++++++++++++++++++
+|  TODO                     |  1 +
+|  man/which_leaf.Rd        | 40 ++++++++++++++++++++++++++++++++++++++++
+|  5 files changed, 78 insertions(+)
+
+* 2014-07-26(Tal Galili) `assign_values_to_branches_edgePar` - allow the option to skip leaves |9ec9e1d| 
+|  NEWS                                     |  1 +
+|  R/attr_access.R                          | 10 ++++++++--
+|  man/assign_values_to_branches_edgePar.Rd |  5 ++++-
+|  3 files changed, 13 insertions(+), 3 deletions(-)
+
+* 2014-07-26(Tal Galili) branches_attr_by_labels - if dend is not a dendrogram, we should stop and not warn! |591c3b9| 
+|  R/noded_with_condition.R | 6 +++++-
+|  1 file changed, 5 insertions(+), 1 deletion(-)
+
+* 2014-07-25(Tal Galili) various doc updates. |a8863ab| 
+|  ChangeLog                        | 203 +++++++++++++++++++++++++++++++++++++
+|  NEWS.md                          |  60 ++++++++++-
+|  R/branches_attr_by.R             |   1 +
+|  TODO                             |   6 +-
+|  man/branches_attr_by_clusters.Rd |   1 +
+|  5 files changed, 267 insertions(+), 4 deletions(-)
+
+* 2014-07-25(Tal Galili) Added import for "whisker" for d3dendrogram. |426bd4a| 
+|  DESCRIPTION            | 1 +
+|  NAMESPACE              | 1 +
+|  R/d3dendrogram.R       | 3 ++-
+|  R/dendextend-package.R | 1 +
+|  4 files changed, 5 insertions(+), 1 deletion(-)
+
 * 2014-07-25(Tal Galili) Updated TODO :) |82524ce| 
 |  TODO | 4 ----
 |  1 file changed, 4 deletions(-)

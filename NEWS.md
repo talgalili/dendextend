@@ -1,18 +1,22 @@
-dendextend 0.16.0 (2014-07-25)
+dendextend 0.16.0 (2014-07-26)
 ================================
 
 ##NEW FUNCTIONS:
    * `branches_attr_by_clusters` - This function was designed to enable the manipulation (mainly coloring) of branches, based on the results from the cutreeDynamic function (from the {dynamicTreeCut} package).
-
+   * `which_leaf` - Which node is a leaf?
+   * `na_locf` - Fill Last Observation Carried Forward
 
 ##UPDATED FUNCTIONS:
    * `assign_values_to_branches_edgePar - now can keep existing value, if gets NA.
    * `colored_bars` - change the order of colors and dend, and allowing for dend to be missing. (also some other doc modifications)
    * `branches_attr_by_labels` - change the order of some parameters (based on how much I expect users to use each of them.)
+   * `assign_values_to_branches_edgePar` - allow the option to skip leaves
 
 ##NEW FILES:
    * branches_attr_by.R - for branches_attr_by_clusters
 
+##OTHER NOTES:
+   * added a pvclust example (using a condition on p-value, and heighlighting branches based on that with lwd/col.)
 
 
 dendextend 0.15.2 (2014-07-24)
