@@ -3,6 +3,7 @@ dendextend 0.16.0 (2014-07-25)
 
 ##NEW FUNCTIONS:
    * `branches_attr_by_clusters` - This function was designed to enable the manipulation (mainly coloring) of branches, based on the results from the cutreeDynamic function (from the {dynamicTreeCut} package).
+   * `which_leaf` - Which node is a leaf?
 
 
 ##UPDATED FUNCTIONS:

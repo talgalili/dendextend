@@ -103,6 +103,41 @@ noded_with_condition <- function (dend, condition, include_leaves = TRUE,
 
 
 
+
+#' @title Which node is a leaf?
+#' @export
+#' @description
+#' Gives a vector as the number of nodes (\link{nnodes}), 
+#' which gives a TRUE when a node is a leaf. 
+#' @param dend a dendrogram dend 
+#' @param ... ignored.
+#' @return 
+#' A logical vector with the length of \link{nnodes}, 
+#' which gives a TRUE when a node is a leaf. 
+#' @seealso \link{noded_with_condition}, \link{is.leaf}, \link{nnodes}
+#' @examples
+#' \dontrun{
+#' 
+#' require(dendextend)
+#' require(magrittr)
+#' 
+#' # Getting the dend dend
+#' set.seed(23235)
+#' ss <- sample(1:150, 10 )
+#' dend <- iris[ss,-5] %>% dist %>% hclust %>% as.dendrogram
+#' dend %>% plot
+#' 
+#' which_leaf(dend)
+#' 
+#' }
+which_leaf <- function(dend, ...) {
+   if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")   
+   noded_with_condition(dend, is.leaf)
+}
+
+
+
+
 #' @title Change col/lwd/lty of branches matching labels condition
 #' @export
 #' @description
