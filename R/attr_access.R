@@ -611,6 +611,7 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
 #' @param object a dendrogram object 
 #' @param value a new value scalar for the edgePar attribute. 
 #' @param edgePar the value inside edgePar to adjust.
+#' @param skip_leaves logical (FALSE) - should the leaves be skipped/ignored?
 #' @param warn logical (TRUE). Should warning be issued?
 #' Generally, it is safer to keep this at TRUe.
 #' But for specific uses it might be more user-friendly
@@ -635,7 +636,7 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
 #' 
 #' }
 #' 
-assign_values_to_branches_edgePar <- function(object, value, edgePar, warn = TRUE, ...) {
+assign_values_to_branches_edgePar <- function(object, value, edgePar, skip_leaves = FALSE, warn = TRUE, ...) {
    if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
   
    if(missing(value)) {
@@ -643,13 +644,18 @@ assign_values_to_branches_edgePar <- function(object, value, edgePar, warn = TRU
       return(object)
    }
    
-   n_branches <- nnodes(object) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
+   # if we are skipping leaves, than the number of branches should not include the terminal nodes/leaves!
+   n_branches <- nnodes(object) - ifelse(skip_leaves, nleaves(object), 0) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
    if(n_branches > length(value)) {
       if(warn) warning("Length of value vector was shorter than the number of leaves - vector value recycled")
       value <- rep(value, length.out = n_branches)
    }       
    
    set_value_to_branch <- function(dend_node) {
+      # if we ignore leaves, jump the function for leaves:
+      if(skip_leaves & is.leaf(dend_node)) return(unclass(dend_node))         
+      # else - keep as usual.   
+      
       i_node <<- i_node + 1
       if(!is.na(value[i_node])) {
          attr(dend_node, "edgePar")[[edgePar]] <- value[i_node] # [i_leaf_number] # this way it doesn't erase other edgePar values (if they exist)

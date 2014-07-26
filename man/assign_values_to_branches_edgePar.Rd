@@ -3,7 +3,8 @@
 \alias{assign_values_to_branches_edgePar}
 \title{Assign values to edgePar of dendrogram's branches}
 \usage{
-assign_values_to_branches_edgePar(object, value, edgePar, warn = TRUE, ...)
+assign_values_to_branches_edgePar(object, value, edgePar, skip_leaves = FALSE,
+  warn = TRUE, ...)
 }
 \arguments{
 \item{object}{a dendrogram object}
@@ -11,6 +12,8 @@ assign_values_to_branches_edgePar(object, value, edgePar, warn = TRUE, ...)
 \item{value}{a new value scalar for the edgePar attribute.}
 
 \item{edgePar}{the value inside edgePar to adjust.}
+
+\item{skip_leaves}{logical (FALSE) - should the leaves be skipped/ignored?}
 
 \item{warn}{logical (TRUE). Should warning be issued?
 Generally, it is safer to keep this at TRUe.
