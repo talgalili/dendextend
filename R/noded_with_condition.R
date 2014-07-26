@@ -99,6 +99,10 @@ noded_with_condition <- function (dend, condition, include_leaves = TRUE,
 
 
 
+
+
+
+
 #' @title Change col/lwd/lty of branches matching labels condition
 #' @export
 #' @description
@@ -140,7 +144,7 @@ noded_with_condition <- function (dend, condition, include_leaves = TRUE,
 #' 
 #' }
 branches_attr_by_labels <- function(dend, labels, TF_values = c(2,NA), attr = c("col", "lwd", "lty"), type = c("all", "any"), ...) {
-   if(!is.dendrogram(dend)) warning("'dend' should be a dendrogram.")   
+   if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")   
    if(missing(labels)) stop("'labels' parameter is missing.")
    if(!is.character(labels)) {      
       warning("'labels' parameter was not a character vector, and was coerced into one.")
