@@ -1,3 +1,23 @@
+* 2014-07-26(Tal Galili) Comment out example code that won't run. |f39d69e| 
+|  NEWS.md     |   7 ++
+|  R/pvclust.R | 242 +++++++++++++++++++++++++++++-----------------------------
+|  2 files changed, 128 insertions(+), 121 deletions(-)
+
+* 2014-07-26(Tal Galili) Fix: \examples lines wider than 100 characters |051eab6| 
+|  DESCRIPTION                      |  2 +-
+|  NEWS                             |  7 +++++++
+|  R/branches_attr_by.R             |  3 ++-
+|  R/noded_with_condition.R         | 30 ++++++++++++++++++++++--------
+|  man/branches_attr_by_clusters.Rd |  3 ++-
+|  man/branches_attr_by_labels.Rd   | 24 ++++++++++++++++++------
+|  man/noded_with_condition.Rd      |  4 +++-
+|  7 files changed, 55 insertions(+), 18 deletions(-)
+
+* 2014-07-26(Tal Galili) Update NEWS and ChangeLog |9cd933b| 
+|  ChangeLog | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+|  NEWS.md   |  8 ++++++--
+|  2 files changed, 53 insertions(+), 2 deletions(-)
+
 * 2014-07-26(Tal Galili) added a pvclust example (using a condition on p-value, and heighlighting branches based on that with lwd/col.) |cbbaae3| 
 |  NEWS        |   2 +
 |  R/pvclust.R | 121 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
