@@ -45,7 +45,9 @@ dend \%>\% plot
 
 this is the basis for branches_attr_by_labels
 has_any_labels <- function(sub_dend, the_labels) any(labels(sub_dend) \%in\% the_labels)
-cols <- noded_with_condition(dend, has_any_labels, the_labels = c("126","109", "59")) \%>\% ifelse(2,1)
+cols <- noded_with_condition(dend, has_any_labels,
+            the_labels = c("126","109", "59")) \%>\%
+            ifelse(2,1)
 set(dend, "branches_col", cols) \%>\% plot
 
 # Similar to branches_attr_by_labels - but for heights!

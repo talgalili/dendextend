@@ -113,7 +113,8 @@
 #' 
 #' # How is this compared with the usual cutree?
 #' dend3 <- color_branches(dend, k = n_clusters)
-#' labels(dend2) <- as.character(labels(dend2)) # this needs fixing, since the labels are not character!
+#' labels(dend2) <- as.character(labels(dend2)) 
+#' # this needs fixing, since the labels are not character!
 #' # Well, both cluster solutions are not perfect, but at least they are interesting...
 #'  tanglegram(dend2, dend3, 
 #'             main_left = "cutreeDynamic", main_right = "cutree",

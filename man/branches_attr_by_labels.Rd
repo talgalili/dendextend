@@ -43,13 +43,25 @@ ss <- sample(1:150, 10 )
 dend <- iris[ss,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram
 dend \%>\% plot
 
-dend \%>\% branches_attr_by_labels(c("123", "126", "23", "29")) \%>\% plot
-dend \%>\% branches_attr_by_labels(c("123", "126", "23", "29"), "all") \%>\% plot # the same as above
-dend \%>\% branches_attr_by_labels(c("123", "126", "23", "29"), "any") \%>\% plot
+dend \%>\%
+   branches_attr_by_labels(c("123", "126", "23", "29")) \%>\%
+   plot
+dend \%>\%
+   branches_attr_by_labels(c("123", "126", "23", "29"), "all") \%>\%
+   plot # the same as above
+dend \%>\%
+   branches_attr_by_labels(c("123", "126", "23", "29"), "any") \%>\%
+   plot
 
-dend \%>\% branches_attr_by_labels(c("123", "126", "23", "29"), "any", "col", c("blue", "red")) \%>\% plot
-dend \%>\% branches_attr_by_labels(c("123", "126", "23", "29"), "any", "lwd", c(4,1)) \%>\% plot
-dend \%>\% branches_attr_by_labels(c("123", "126", "23", "29"), "any", "lty", c(2,1)) \%>\% plot
+dend \%>\%
+      branches_attr_by_labels(c("123", "126", "23", "29"),
+      "any", "col", c("blue", "red")) \%>\% plot
+dend \%>\%
+      branches_attr_by_labels(c("123", "126", "23", "29"),
+      "any", "lwd", c(4,1)) \%>\% plot
+dend \%>\%
+      branches_attr_by_labels(c("123", "126", "23", "29"),
+       "any", "lty", c(2,1)) \%>\% plot
 
 }
 }

@@ -56,7 +56,9 @@
 #' 
 #' this is the basis for branches_attr_by_labels
 #' has_any_labels <- function(sub_dend, the_labels) any(labels(sub_dend) %in% the_labels)
-#' cols <- noded_with_condition(dend, has_any_labels, the_labels = c("126","109", "59")) %>% ifelse(2,1)
+#' cols <- noded_with_condition(dend, has_any_labels,
+#'             the_labels = c("126","109", "59")) %>% 
+#'             ifelse(2,1)
 #' set(dend, "branches_col", cols) %>% plot
 #' 
 #' # Similar to branches_attr_by_labels - but for heights!
@@ -169,13 +171,25 @@ which_leaf <- function(dend, ...) {
 #' dend <- iris[ss,-5] %>% dist %>% hclust %>% as.dendrogram
 #' dend %>% plot
 #' 
-#' dend %>% branches_attr_by_labels(c("123", "126", "23", "29")) %>% plot
-#' dend %>% branches_attr_by_labels(c("123", "126", "23", "29"), "all") %>% plot # the same as above
-#' dend %>% branches_attr_by_labels(c("123", "126", "23", "29"), "any") %>% plot
+#' dend %>% 
+#'    branches_attr_by_labels(c("123", "126", "23", "29")) %>%
+#'    plot
+#' dend %>% 
+#'    branches_attr_by_labels(c("123", "126", "23", "29"), "all") %>% 
+#'    plot # the same as above
+#' dend %>% 
+#'    branches_attr_by_labels(c("123", "126", "23", "29"), "any") %>% 
+#'    plot
 #' 
-#' dend %>% branches_attr_by_labels(c("123", "126", "23", "29"), "any", "col", c("blue", "red")) %>% plot
-#' dend %>% branches_attr_by_labels(c("123", "126", "23", "29"), "any", "lwd", c(4,1)) %>% plot
-#' dend %>% branches_attr_by_labels(c("123", "126", "23", "29"), "any", "lty", c(2,1)) %>% plot
+#' dend %>% 
+#'       branches_attr_by_labels(c("123", "126", "23", "29"),
+#'       "any", "col", c("blue", "red")) %>% plot
+#' dend %>%
+#'       branches_attr_by_labels(c("123", "126", "23", "29"),
+#'       "any", "lwd", c(4,1)) %>% plot
+#' dend %>%
+#'       branches_attr_by_labels(c("123", "126", "23", "29"),
+#'        "any", "lty", c(2,1)) %>% plot
 #' 
 #' }
 branches_attr_by_labels <- function(dend, labels, TF_values = c(2,NA), attr = c("col", "lwd", "lty"), type = c("all", "any"), ...) {
