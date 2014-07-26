@@ -1,3 +1,10 @@
+dendextend 0.16.1 (2014-07-26)
+================================
+
+##OTHER NOTES:
+   * Minor doc fixes to pass CRAN checks.
+
+
 dendextend 0.16.0 (2014-07-26)
 ================================
 
