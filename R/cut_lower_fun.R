@@ -56,10 +56,10 @@
 #' 
 #' 
 #' \dontrun{
-#' # require(dendextend)
-#' require(dendextendRcpp)
+#' # library(dendextend)
+#' library(dendextendRcpp)
 #' dend_big = as.dendrogram(hclust(dist(iris[1:150,-5])))
-#' require(microbenchmark)
+#' library(microbenchmark)
 #' microbenchmark(old_cut_lower_fun(dend_big,.1),
 #'                dendextendRcpp::dendextendRcpp_cut_lower_fun(dend_big,.1),
 #'                times = 100)
@@ -97,7 +97,7 @@ dendextend_cut_lower_fun <- function(tree, h, FUN = labels, warn = FALSE, ...) {
 # cut(tree, h = .14)$lower
 
 # detach( 'package:dendextendRcpp', unload=TRUE )
-# require( 'dendextendRcpp' )
+# library( 'dendextendRcpp' )
 # labels(dend)
 
 

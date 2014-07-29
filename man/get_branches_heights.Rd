@@ -30,8 +30,8 @@ get_branches_heights(dend)
 dat1 <- iris[1:150,-5]
 dat1 <- rbind(dat1,dat1,dat1,dat1,dat1,dat1,dat1)
 dend = as.dendrogram(hclust(dist(dat1)))
-require(microbenchmark)
-require(dendextendRcpp)
+library(microbenchmark)
+library(dendextendRcpp)
 microbenchmark(
    dendextendRcpp::dendextendRcpp_get_branches_heights(dend),
    old_get_branches_heights(dend,sort=F)

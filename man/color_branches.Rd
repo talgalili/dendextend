@@ -90,14 +90,14 @@ plot(dend_override)
 d5=color_branches(tree=dend[[1]],k=5)
 
 
-require(dendextend)
+library(dendextend)
 data(iris, envir = environment())
 d_iris <- dist(iris[,-5])
 hc_iris <- hclust(d_iris)
 dend_iris <- as.dendrogram(hc_iris)
 dend_iris=color_branches(dend_iris,k=3)
 
-require(colorspace)
+library(colorspace)
 labels_colors(dend_iris) <-
  rainbow_hcl(3)[sort_levels_values(
  as.numeric(iris[,5])[order.dendrogram(dend_iris)]
@@ -114,7 +114,7 @@ main = "Clustered Iris dataset",
 # cutree(dend_iris,k=3, order_clusters_as_data=FALSE,
    # sort_cluster_numbers = TRUE, try_cutree_hclust=TRUE)
 
-require(colorspace)
+library(colorspace)
 
 data(iris, envir = environment())
 d_iris <- dist(iris[,-5])

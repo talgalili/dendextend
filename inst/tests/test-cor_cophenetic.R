@@ -1,4 +1,4 @@
-# require(testthat)
+# library(testthat)
 
 context("Cophenetic correlation between two trees")
 

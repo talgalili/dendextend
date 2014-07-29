@@ -29,7 +29,7 @@ to use the \link{cophenetic} distance.
 }
 \examples{
 \dontrun{
-require(DendSer) # already used from within the function
+library(DendSer) # already used from within the function
 hc <- hclust(dist(USArrests[1:4,]), "ave")
 dend <- as.dendrogram(hc)
 DendSer.dendrogram(dend)

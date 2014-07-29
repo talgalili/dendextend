@@ -1,9 +1,9 @@
-# require(testthat)
+# library(testthat)
 
 context("cut_lower_fun works")
 
-# require(dendextend)
-# require(dendextendRcpp)
+# library(dendextend)
+# library(dendextendRcpp)
 
 test_that("cut_lower_fun works",{
    
@@ -70,7 +70,7 @@ test_that("cut_lower_fun works",{
       
       
       
-      #    require(microbenchmark)
+      #    library(microbenchmark)
    #    microbenchmark(
    #       cut_lower_fun(dend, .4, order.dendrogram),
    #       lapply(cut(dend, h = .4)$lower, order.dendrogram)   

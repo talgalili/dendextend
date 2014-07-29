@@ -141,7 +141,7 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' 
 #' 
 #' # cophenetic correlation is about 10 times (!) faster than bakers_gamma cor:
-#' require(microbenchmark)
+#' library(microbenchmark)
 #' microbenchmark(
 #'    cor_bakers_gamma = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=FALSE),
 #'    cor_cophenetic = cor_cophenetic(dend1, dend2)   ,

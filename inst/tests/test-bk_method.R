@@ -1,4 +1,4 @@
-# require(testthat)
+# library(testthat)
 
 context("Bk method (FM Index) between two trees")
 

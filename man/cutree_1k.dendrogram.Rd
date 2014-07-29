@@ -64,7 +64,7 @@ cutree_1k.dendrogram(dend, k=3, order_clusters_as_data = FALSE)
 
 # make it faster
 \dontrun{
-require(microbenchmark)
+library(microbenchmark)
 dend_ks <- heights_per_k.dendrogram
 microbenchmark(
          cutree_1k.dendrogram = cutree_1k.dendrogram(dend, k=4),

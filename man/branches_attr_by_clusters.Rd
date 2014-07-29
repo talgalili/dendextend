@@ -67,14 +67,14 @@ system.time(branches_attr_by_clusters(dend, clusters)) # 1.61 sec
 #--------------------------
 
 # let's get the clusters
-require(dynamicTreeCut)
+library(dynamicTreeCut)
 clusters <- cutreeDynamic(hc, distM = as.matrix(iris_dist))
 # we need to sort them to the order of the dendrogram:
 clusters <- clusters[order.dendrogram(dend)]
 
 # get some functions:
-require(dendextendRcpp)
-require(colorspace)
+library(dendextendRcpp)
+library(colorspace)
 no0_unique <- function(x) {
    u_x <- unique(x)
    u_x[u_x != 0]

@@ -88,7 +88,7 @@ cor_cophenetic(dend1, dend2, method = "spearman") #
 
 
 # cophenetic correlation is about 10 times (!) faster than bakers_gamma cor:
-require(microbenchmark)
+library(microbenchmark)
 microbenchmark(
    cor_bakers_gamma = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=FALSE),
    cor_cophenetic = cor_cophenetic(dend1, dend2)   ,

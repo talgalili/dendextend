@@ -33,8 +33,8 @@ And the function returns a dendrogram with branches col/lwd/lty accordingly
 \examples{
 \dontrun{
 
-require(dendextend)
-require(magrittr)
+library(dendextend)
+library(magrittr)
 
 set.seed(23235)
 ss <- sample(1:150, 10 )

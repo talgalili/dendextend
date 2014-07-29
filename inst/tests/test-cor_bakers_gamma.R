@@ -1,4 +1,4 @@
-# require(testthat)
+# library(testthat)
 
 context("Baker's gamma correlation between two trees")
 

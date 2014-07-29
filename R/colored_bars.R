@@ -259,7 +259,7 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
 #    kx  <- sort_levels_values(kx[ord])   
 #    kx  <- kx[match(seq_along(ord), ord)]
 #    
-#    require(colorspace)
+#    library(colorspace)
 #    dend %>% update("branches_k_color", k = the_k, with = the_cols) %>% plot
 #    colored_bars(dend, cols3[kx], y_shift = -2)
 #    
@@ -271,7 +271,7 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
 #    k4 <- cutree(dend, k = 4)
 #    plot(dend)
 #    colored_bars(dend, k4)
-#    require(colorspace)
+#    library(colorspace)
 #    dend %>% update("branches_k_color", k = 4) %>% plot
 #    colored_bars(dend, rainbow_hcl(4)[c(4,2,3,1)][k4], y_shift = -2)
 #    
@@ -288,7 +288,7 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
 #    kx  <- sort_levels_values(kx[ord])   
 #    kx  <- kx[match(seq_along(ord), ord)]
 #    
-#    require(colorspace)
+#    library(colorspace)
 #    dend %>% update("branches_k_color", k = the_k, with = the_cols) %>% plot
 #    colored_bars(dend, the_cols[kx], y_shift = -2)
 #    

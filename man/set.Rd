@@ -168,7 +168,7 @@ cc <- rainbow(ncol(x), start=0, end=.3)
 ##
 ##' demonstrate the effect of row and column dendrogram options
 ##
-require(magrittr)
+library(magrittr)
 Rowv_dend <- x \%>\% dist \%>\% hclust \%>\%
    as.dendrogram \%>\%
    set("branches_k", k = 3) \%>\%

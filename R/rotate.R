@@ -178,7 +178,7 @@ rotate.hclust <- function(x, order,...)
 # ' @S3method rotate phylo
 #' @export
 rotate.phylo <- function(x, ...) {
-	# require(ape)
+	# library(ape)
 	ape::rotate(phy=x, ...)
 }
 
@@ -212,8 +212,8 @@ rev.hclust <- function(x, ...) {
 
 
 ###### Some debugging of "rotate" with ape vs dendextend
-# require(ape)
-# require(dendextend)
+# library(ape)
+# library(dendextend)
 # "package:ape" %in% search() # TRUE
 # ### to write: package_in_search ???
 # tre <- rtree(25)

@@ -40,7 +40,7 @@
 #              envir=as.environment("package:dendextend"))
 #       
 # 
-# 	  # require(utils) # doesn't help really...
+# 	  # library(utils) # doesn't help really...
 # 	  # but this does: (!)
 # 		# http://stackoverflow.com/questions/13595145/overriding-a-package-function-inherited-by-another-package
 # # 	  get("assignInNamespace", envir=asNamespace("utils"))
@@ -232,7 +232,7 @@ remove_dendextend_options <- function() {
 
 
 dendextendWelcomeMessage <- function(){
-   require(utils)   
+   library(utils)   
    
    paste("\n",     
          "Welcome to dendextend version ", utils::packageDescription("dendextend")$Version, "\n",
@@ -267,7 +267,7 @@ dendextendWelcomeMessage <- function(){
 
 
 
-# require(dendextend)
+# library(dendextend)
 # environmentIsLocked(as.environment("package:dendextend"))
 # lockEnvironment(env=as.environment("package:dendextend"), bindings = FALSE)
 # lockEnvironment(env=as.environment("package:dendextend"), bindings = TRUE)
@@ -339,7 +339,7 @@ dendextendWelcomeMessage <- function(){
 
 
 # shell("echo %PATH% ", intern= TRUE)
-# require(rmarkdown)
+# library(rmarkdown)
 # render("NEWS",clean = TRUE,output_format = "html_document")
 
 
@@ -351,7 +351,7 @@ dendextendWelcomeMessage <- function(){
 
 # when a function is renamed, its document in man must be removed - otherwise it may cause problems with the built check (it will try to run the code in the example, and will fail.)
 # When all is done, run:
-# require(devtools)
+# library(devtools)
 # check()
 # browseURL(tempdir())
 ### http://www.rstudio.com/ide/docs/packages/build_options

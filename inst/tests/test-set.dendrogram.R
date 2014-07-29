@@ -1,4 +1,4 @@
-# require(testthat)
+# library(testthat)
 
 
 # we don't need the warning now... http://stackoverflow.com/questions/16194212/how-to-supress-warnings-globally-in-an-r-script
@@ -10,7 +10,7 @@ context("Checknig update.dendrogram")
 
 
 test_that("labels options works",{
-#    require(magrittr)
+#    library(magrittr)
    set.seed(23235)
    ss <- sample(1:150, 10 )
 	dend <- iris[ss,-5] %>% dist %>% hclust %>% as.dendrogram
@@ -49,7 +49,7 @@ test_that("labels options works",{
 
 
 test_that("leaves options works",{
-#    require(magrittr)
+#    library(magrittr)
 
    set.seed(23235)
    ss <- sample(1:150, 10 )
@@ -81,7 +81,7 @@ expect_equal(
 
 
 test_that("branches options works",{
-#    require(magrittr)
+#    library(magrittr)
 
    set.seed(23235)
    ss <- sample(1:150, 10 )
@@ -116,7 +116,7 @@ test_that("branches options works",{
 
 
 test_that("clearing options works",{
-#    require(magrittr)
+#    library(magrittr)
 
    set.seed(23235)
    ss <- sample(1:150, 10 )

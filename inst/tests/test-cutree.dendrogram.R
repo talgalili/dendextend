@@ -1,5 +1,5 @@
-# require(testthat)
-# require(dendextend)
+# library(testthat)
+# library(dendextend)
 
 context("Cutting a dendrogram")
 
@@ -399,8 +399,8 @@ test_that("Compare labels which are character vs integer",{
 })
 
 
-require(stats)
-# require(dendextendRcpp)
+library(stats)
+# library(dendextendRcpp)
 
 
 test_that("Having cutree work when using a subsetted tree",{

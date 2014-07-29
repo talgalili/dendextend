@@ -1,4 +1,4 @@
-# require(testthat)
+# library(testthat)
 
 context("attr access (get/set)")
 
@@ -63,7 +63,7 @@ test_that("Get a dendrogram nodes attributes",{
 
 
 # \dontrun{
-# require(microbenchmark)
+# library(microbenchmark)
 # # get_leaves_attr is twice faster than get_nodes_attr
 # microbenchmark(   get_leaves_attr(dend, "members"), # should be 1's
 #                     get_nodes_attr(dend, "members", include_branches = FALSE, na.rm = TRUE)

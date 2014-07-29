@@ -124,7 +124,7 @@ cutree(unbranch_dend, h = c(20, 25.5, 50,170))
 cutree(dend, h = c(20, 25.5, 50,170))
 
 
-require(microbenchmark)
+library(microbenchmark)
 ## this shows how as.hclust is expensive - but still worth it if possible
 microbenchmark(
       cutree(hc, k=2:4),

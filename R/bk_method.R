@@ -438,7 +438,7 @@ FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, w
 #' FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= FALSE) # 1
 #' 
 #' # checking speed gains
-#' require(microbenchmark)
+#' library(microbenchmark)
 #'  microbenchmark(FM_index(cutree(hc1, k=3), cutree(hc1, k=3)),
 #'                  FM_index(cutree(hc1, k=3), cutree(hc1, k=3),
 #'                      include_EV= FALSE),
@@ -541,7 +541,7 @@ FM_index <- function(A1_clusters, A2_clusters, include_EV = TRUE, assume_sorted_
 #' plot(density(FM_index_H0), main = "FM Index distribution under H0\n (10000 permutation)")
 #' abline(v = mean(FM_index_H0), col = 1, lty = 2)
 #' # The permutation distribution is with a heavy right tail:
-#' require(psych)
+#' library(psych)
 #' skew(FM_index_H0) # 1.254
 #' kurtosi(FM_index_H0) # 2.5427
 #' 

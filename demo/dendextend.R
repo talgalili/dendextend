@@ -1,4 +1,4 @@
-require(dendextend)
+library(dendextend)
 
 
 ##############################

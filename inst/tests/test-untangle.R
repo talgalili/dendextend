@@ -1,11 +1,11 @@
-# require(testthat)
+# library(testthat)
 
 
 context("Untangle two dendrograms for plotting a tanglegram")
 
 
 test_that("shuffle works",{
-#    require(magrittr)
+#    library(magrittr)
    dend <- USArrests %>% dist %>% hclust %>% as.dendrogram
    set.seed(234238)
    dend2 <- dend %>% shuffle

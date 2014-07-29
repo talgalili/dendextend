@@ -48,7 +48,7 @@ cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = FALSE)
 
 # make it faster
 \dontrun{
-require(microbenchmark)
+library(microbenchmark)
 microbenchmark(
          cutree_1h.dendrogram(dend, h=50),
          cutree_1h.dendrogram(dend, h=50,use_labels_not_values = FALSE)

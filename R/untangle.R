@@ -397,7 +397,7 @@ flip_leaves <- function(dend, leaves1, leaves2,...) {
 
 
 # I didn't use this evantually:
-# require(combinat)
+# library(combinat)
 # source for this package: http://stackoverflow.com/questions/7906332/how-to-calculate-combination-and-permutation-in-r	
 
 
@@ -572,7 +572,7 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = c("forward", "backward"), 
                                        k_seq = NULL, dend_heights_per_k , ...) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
-   require(plyr)
+   library(plyr)
    n_leaves <- nleaves(dend1)
    best_dend <- dend1
    if(missing(dend_heights_per_k)) dend_heights_per_k <- heights_per_k.dendrogram(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
@@ -760,7 +760,7 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
 # 
 # untangle.forward.step.rotate.1side <- function(dend1, dend2_fixed) {
 #    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
-# 	require(plyr)
+# 	library(plyr)
 # 	leaves_order <- order.dendrogram(dend1)
 # 	best_dend <- dend1
 # 	
@@ -852,7 +852,7 @@ untangle_evolution <- function(brother_1_dend1, brother_1_dend2,
 
 untangle_best_k_to_rotate_by_1side <- function(dend1, dend2_fixed, L = 1) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
-   require(plyr)
+   library(plyr)
    leaves_order <- order.dendrogram(dend1)
    best_dend <- dend1
    dend1_k_rotated <- NULL
@@ -1048,13 +1048,13 @@ if(F) {
    
    
    #### profiling
-   require(profr)
+   library(profr)
    slow_dude <- profr(untangle_step_rotate_1side(dend2, dend1))
    head(slow_dude)
    summary(slow_dude)
    plot(slow_dude)
    
-   require(reshape)
+   library(reshape)
    a <- cast(slow_dude, f~., value="time", fun.aggregate=c(length, sum))
    a[order(a[,3]),]
    ## End(Not run)
@@ -1063,7 +1063,7 @@ if(F) {
    
    # this also helped:
    # 	install.packages("microbenchmark")
-   require(microbenchmark)
+   library(microbenchmark)
    
    system.time(entanglement(dend1, dend2) 	) # 0.01
    microbenchmark( entanglement(dend1, dend2) , times = 10 )# so this is 10 times faster (the medians)
@@ -1219,7 +1219,7 @@ if(F){
 #' \link{untangle_DendSer} 
 #' @examples
 #' \dontrun{
-#' require(DendSer) # already used from within the function
+#' library(DendSer) # already used from within the function
 #' hc <- hclust(dist(USArrests[1:4,]), "ave")
 #' dend <- as.dendrogram(hc)
 #' DendSer.dendrogram(dend)
@@ -1227,7 +1227,7 @@ if(F){
 DendSer.dendrogram <- function(dend, ser_weight, ...) {
    h <- as.hclust(dend)
    if(missing(ser_weight)) ser_weight <- cophenetic(dend)
-   require(DendSer)
+   library(DendSer)
    DendSer(h = h, ser_weight = ser_weight,...)
 }
 
@@ -1256,7 +1256,7 @@ DendSer.dendrogram <- function(dend, ser_weight, ...) {
 #' \link{untangle_DendSer} 
 #' @examples
 #' \dontrun{
-#' require(DendSer) # already used from within the function
+#' library(DendSer) # already used from within the function
 
 #' dend <- USArrests[1:4,] %>% dist %>% hclust("ave") %>% as.dendrogram
 #' DendSer.dendrogram(dend)

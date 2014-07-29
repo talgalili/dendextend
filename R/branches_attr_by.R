@@ -85,14 +85,14 @@
 #' #--------------------------
 #' 
 #' # let's get the clusters
-#' require(dynamicTreeCut)
+#' library(dynamicTreeCut)
 #' clusters <- cutreeDynamic(hc, distM = as.matrix(iris_dist))
 #' # we need to sort them to the order of the dendrogram:
 #' clusters <- clusters[order.dendrogram(dend)]
 #' 
 #' # get some functions:
-#' require(dendextendRcpp)
-#' require(colorspace)
+#' library(dendextendRcpp)
+#' library(colorspace)
 #' no0_unique <- function(x) {
 #'    u_x <- unique(x)   
 #'    u_x[u_x != 0]
@@ -143,7 +143,7 @@ branches_attr_by_clusters <- function(dend, clusters, values, attr = c("col", "l
    
    if(missing(values) & attr == "col" ) {
       values <- rep(1, length(clusters)) # make a vector of black colors
-      require(colorspace) # this might need to be fixed later for getting no error in checks.
+      library(colorspace) # this might need to be fixed later for getting no error in checks.
       values <- rainbow_hcl(n_clusters)
    }
    

@@ -452,7 +452,7 @@ Quick comparison on fetching leaves attributes:
 
 <<>>=
 
-require(microbenchmark)
+library(microbenchmark)
 # get_leaves_attr is twice faster than get_nodes_attr
 microbenchmark(   get_leaves_attr_4members = get_leaves_attr(dend, "members"), 
                   get_nodes_attr_4members = get_nodes_attr(dend, "members", include_branches = FALSE, na.rm = TRUE)
@@ -551,7 +551,7 @@ labels_colors(dend)
 plot(dend)
 
 # let's add some color:
-require(colorspace)
+library(colorspace)
 labels_colors(dend) <- rainbow_hcl(3)
 labels_colors(dend)
 plot(dend)
@@ -581,7 +581,7 @@ hang_dend_2 <- as.dendrogram(hc, hang = 0.1) # another way of doing it, if
                #  we could move from/to hclust
 identical(hang_dend_1, hang_dend_2) # and they are the same :)
 
-require(colorspace)
+library(colorspace)
 labels_colors(hang_dend_1) <- rainbow_hcl(nleaves(hang_dend_1))
 
 par(mfrow = c(1,2))
@@ -672,7 +672,7 @@ hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
 dend <- as.dendrogram(hc)
 
 # For dendrogram objects:
-require(colorspace)
+library(colorspace)
 labels_colors(dend) <- rainbow_hcl(nleaves(dend)) 
 # let's color the labels to make the followup of the rotation easier
 par(mfrow = c(2,2))
@@ -723,7 +723,7 @@ cutree(unbranch_dend, k = 1:4)
 cutree(unbranch_dend, h = c(20, 25.5, 50,170))
 
 
-require(microbenchmark)
+library(microbenchmark)
 ## this shows how as.hclust is expensive - but still worth it if possible
 microbenchmark(
    cutree(hc, k=2:4),
@@ -757,7 +757,7 @@ This was changed in the beginning of 2013 thanks to Gregory Jefferis's \pkg{dend
 Here is an example of using \code{color_branches} combined with \code{labels_colors}:
 
 <<iris_colored_branches, fig.height = 10, fig.width=7 ,fig.align='center'>>=
-require(colorspace)
+library(colorspace)
 
 data(iris) 
 d_iris <- dist(iris[,-5]) # method="man" # is a bit better
@@ -802,7 +802,7 @@ The hanging of the tree also helps to locate extreme observations. For example, 
 Here is the similar pairs plot. Notice the filled red and green dots, corresponding with the extreme observations we have noticed in the dendrogram. Petal.Length vs Petal.Width gives the best example of why the green dot is an outlier. Whereas most plots show why the red dot is an outlier. There are of course other outliers, and a problem with classification, which we will not go further into.
 
 <<iris_colored_pairs_plot, fig.height = 9, fig.width=9>>=
-require(colorspace)
+library(colorspace)
 
 species_col <- rev(rainbow_hcl(3))[as.numeric(iris[,5])]
 # species_col[c(107,71)] <- "red" # highlight the two extreme cases we mentioned
@@ -871,7 +871,7 @@ dend1 <- color_branches(dend1, 3)
 # dend2 <- color_branches(dend2, 3) # colors will not match nicely
 labels(dend2) <- as.character(labels(dend2))
 
-require(colorspace)
+library(colorspace)
 
 col_lines_by_left_groups <- rainbow_hcl(3)[
    cutree(dend1, 3, order_clusters_as_data=FALSE, sort_cluster_numbers=TRUE)]
@@ -920,7 +920,7 @@ dend1 <- color_branches(dend1, 3)
 # dend2 <- color_branches(dend2, 3) # colors will not match nicely
 labels(dend2) <- as.character(labels(dend2))
 
-require(colorspace)
+library(colorspace)
 
 col_lines_by_left_groups <- rainbow_hcl(3)[
    cutree(dend1, 3, order_clusters_as_data=FALSE, sort_cluster_numbers=TRUE)]
@@ -1102,7 +1102,7 @@ cor_bakers_gamma(dend1, dend2)
 # dend1 <- match_order_by_labels(dend1, dend2) # if you are not sure
 # cor_bakers_gamma(dend1, dend2, use_labels_not_values = FALSE)   
 
-require(microbenchmark)
+library(microbenchmark)
 microbenchmark(
    with_labels = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=FALSE)   ,
    with_values = cor_bakers_gamma(dend1, dend2, use_labels_not_values = FALSE, try_cutree_hclust=FALSE)   ,
@@ -1343,7 +1343,7 @@ cor_cophenetic(dend1, dend2, method = "spearman") #
 
 
 # cophenetic correlation is about 10 times (!) faster than bakers_gamma cor:
-require(microbenchmark)
+library(microbenchmark)
 microbenchmark(
    cor_bakers_gamma = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=FALSE),
    cor_cophenetic = cor_cophenetic(dend1, dend2)   ,
@@ -1569,7 +1569,7 @@ FM_index_H0 <- replicate(R, FM_index_permutation(A1_clusters, A2_clusters)) # ca
 plot(density(FM_index_H0), main = "FM Index distribution under H0\n (10000 permutation)")
 abline(v = mean(FM_index_H0), col = 1, lty = 2)
 # The permutation distribution is with a heavy right tail:
-# require(psych)
+# library(psych)
 # skew(FM_index_H0) # 1.254
 # kurtosi(FM_index_H0) # 2.5427
 
@@ -1617,7 +1617,7 @@ FM_index_H0 <- replicate(R, FM_index_permutation(A1_clusters, A2_clusters)) # ca
 plot(density(FM_index_H0), main = "FM Index distribution under H0\n (10000 permutation)")
 abline(v = mean(FM_index_H0), col = 1, lty = 2)
 # The permutation distribution is with a heavy right tail:
-# require(psych)
+# library(psych)
 # skew(FM_index_H0) # 1.254
 # kurtosi(FM_index_H0) # 2.5427
 
@@ -1665,7 +1665,7 @@ FM_index_H0 <- replicate(R, FM_index_permutation(A1_clusters, A2_clusters)) # ca
 plot(density(FM_index_H0), main = "FM Index distribution under H0\n (10000 permutation)")
 abline(v = mean(FM_index_H0), col = 1, lty = 2)
 # The permutation distribution is with a heavy right tail:
-# require(psych)
+# library(psych)
 # skew(FM_index_H0) # 1.254
 # kurtosi(FM_index_H0) # 2.5427
 
@@ -1711,7 +1711,7 @@ dend2 <- as.dendrogram(hc2)
 Bk(hc1, hc2, k = 3)
 Bk(dend1, dend2, k = 3)
 
-require(microbenchmark)
+library(microbenchmark)
 microbenchmark(
       Bk(hc1, hc2, k = 3),
       Bk(dend1, dend2, k = 3),
@@ -1769,8 +1769,8 @@ For \code{labels.dendrogram}:
 dend <- as.dendrogram(hclust(dist(iris[,-5])))
 labels(dend) <- as.character(labels(dend))
 
-require(dendextendRcpp) # already loaded by default with dendextend
-require(microbenchmark)
+library(dendextendRcpp) # already loaded by default with dendextend
+library(microbenchmark)
 microbenchmark(
 stats:::labels.dendrogram(dend),
 dendextendRcpp::labels.dendrogram(dend)
@@ -1787,8 +1787,8 @@ For \code{get_branches_heights} (an essential function when using cutree with so
 dend <- as.dendrogram(hclust(dist(iris[,-5])))
 labels(dend) <- as.character(labels(dend))
 
-require(microbenchmark)
-require(dendextendRcpp)
+library(microbenchmark)
+library(dendextendRcpp)
 microbenchmark(
    dendextendRcpp::dendextendRcpp_get_branches_heights(dend),
    old_get_branches_heights(dend,sort=F),
@@ -1804,8 +1804,8 @@ For \code{heights_per_k.dendrogram} (an essential function when using cutree wit
 
 <<Rcpp_simu_heights_per_k>>=
 
-require(microbenchmark)
-require(dendextendRcpp)
+library(microbenchmark)
+library(dendextendRcpp)
 # dend <- as.dendrogram(hclust(dist(iris[1:150,-5])))
 dend <- as.dendrogram(hclust(dist(iris[1:30,-5])))
 # dend <- as.dendrogram(hclust(dist(iris[1:3,-5])))
@@ -1829,10 +1829,10 @@ For \code{cut_lower_fun} (an essential function when using cutree with some h):
 
 <<Rcpp_simu_cut_lower_fun>>=
 
-   # require(dendextend)
-   require(dendextendRcpp)
+   # library(dendextend)
+   library(dendextendRcpp)
    dend_big = as.dendrogram(hclust(dist(iris[1:150,-5])))
-   require(microbenchmark)
+   library(microbenchmark)
    microbenchmark(old_cut_lower_fun(dend_big,.1),
                   dendextendRcpp::dendextendRcpp_cut_lower_fun(dend_big,.1),
                      times = 100)

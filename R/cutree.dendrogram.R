@@ -214,7 +214,7 @@ is.natural.number <- function(x, tol = .Machine$double.eps^0.5, ...) {
 #' 
 #' # make it faster
 #' \dontrun{
-#' require(microbenchmark)
+#' library(microbenchmark)
 #' microbenchmark(
 #'          cutree_1h.dendrogram(dend, h=50),
 #'          cutree_1h.dendrogram(dend, h=50,use_labels_not_values = FALSE)
@@ -361,7 +361,7 @@ cutree_1h.dendrogram <- function(tree, h,
 #'        # we do NOT have a height for k=2 because of the tree's structure.
 #'        
 #'    
-#' require(microbenchmark)
+#' library(microbenchmark)
 #' dend = as.dendrogram(hclust(dist(iris[1:150,-5])))
 #' dend = as.dendrogram(hclust(dist(iris[1:30,-5])))
 #' dend = as.dendrogram(hclust(dist(iris[1:3,-5])))
@@ -455,7 +455,7 @@ dendextend_heights_per_k.dendrogram <- function(tree,...)
 #' 
 #' # make it faster
 #' \dontrun{
-#' require(microbenchmark)
+#' library(microbenchmark)
 #' dend_ks <- heights_per_k.dendrogram
 #' microbenchmark(
 #'          cutree_1k.dendrogram = cutree_1k.dendrogram(dend, k=4),
@@ -667,7 +667,7 @@ cutree_1k.dendrogram <- function(tree, k,
 #' cutree(dend, h = c(20, 25.5, 50,170))
 #' 
 #' 
-#' require(microbenchmark)
+#' library(microbenchmark)
 #' ## this shows how as.hclust is expensive - but still worth it if possible
 #' microbenchmark(
 #'       cutree(hc, k=2:4),
@@ -878,7 +878,7 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
 
 
 if(FALSE) {
-   require(dendextend)
+   library(dendextend)
    
    set.seed(23235)
    ss <- sample(1:150, 10 )

@@ -42,8 +42,8 @@
 #' @examples
 #' \dontrun{
 #' 
-#' require(dendextend)
-#' require(magrittr)
+#' library(dendextend)
+#' library(magrittr)
 #' 
 #' set.seed(23235)
 #' ss <- sample(1:150, 10 )
@@ -120,8 +120,8 @@ noded_with_condition <- function (dend, condition, include_leaves = TRUE,
 #' @examples
 #' \dontrun{
 #' 
-#' require(dendextend)
-#' require(magrittr)
+#' library(dendextend)
+#' library(magrittr)
 #' 
 #' # Getting the dend dend
 #' set.seed(23235)
@@ -161,8 +161,8 @@ which_leaf <- function(dend, ...) {
 #' @examples
 #' \dontrun{
 #' 
-#' require(dendextend)
-#' require(magrittr)
+#' library(dendextend)
+#' library(magrittr)
 #' 
 #' set.seed(23235)
 #' ss <- sample(1:150, 10 )

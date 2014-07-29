@@ -40,10 +40,10 @@ cut_lower_fun(dend, .4, order.dendrogram)
 
 
 \dontrun{
-# require(dendextend)
-require(dendextendRcpp)
+# library(dendextend)
+library(dendextendRcpp)
 dend_big = as.dendrogram(hclust(dist(iris[1:150,-5])))
-require(microbenchmark)
+library(microbenchmark)
 microbenchmark(old_cut_lower_fun(dend_big,.1),
                dendextendRcpp::dendextendRcpp_cut_lower_fun(dend_big,.1),
                times = 100)

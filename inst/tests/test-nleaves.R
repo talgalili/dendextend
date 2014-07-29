@@ -1,4 +1,4 @@
-# require(testthat)
+# library(testthat)
 
 context("Tree size")
 

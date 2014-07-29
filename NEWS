@@ -1,3 +1,11 @@
+dendextend 0.16.2 (2014-07-29)
+================================
+
+##OTHER NOTES:
+   * require -> library (Thanks Yihui: http://yihui.name/en/2014/07/library-vs-require/)
+
+
+
 dendextend 0.16.1 (2014-07-26)
 ================================
 

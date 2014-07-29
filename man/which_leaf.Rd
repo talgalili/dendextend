@@ -21,8 +21,8 @@ which gives a TRUE when a node is a leaf.
 \examples{
 \dontrun{
 
-require(dendextend)
-require(magrittr)
+library(dendextend)
+library(magrittr)
 
 # Getting the dend dend
 set.seed(23235)

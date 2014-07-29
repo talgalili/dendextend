@@ -75,7 +75,7 @@ cor_bakers_gamma(dend1, dend2)
 dend1 <- match_order_by_labels(dend1, dend2) # if you are not sure
 cor_bakers_gamma(dend1, dend2, use_labels_not_values = FALSE)
 
-require(microbenchmark)
+library(microbenchmark)
 microbenchmark(
    with_labels = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=FALSE)   ,
    with_values = cor_bakers_gamma(dend1, dend2,

@@ -1,5 +1,5 @@
-# require(dendextend)
-# require(testthat)
+# library(dendextend)
+# library(testthat)
 
 
 context("Trimming a tree")

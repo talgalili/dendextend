@@ -4,6 +4,9 @@ TODO for future releases:
 Next action
 --------------
 * Update the Vignette!
+* a mini Vignette (like: http://cran.r-project.org/web/packages/caret/index.html)
+* Adjust the Vignette to be a website (like http://caret.r-forge.r-project.org/)
+
 * Write paper for bioinfo: mention update, cutree, colored_bars, heatmap.2, Rcpp, dynamicCutree and pvclust
 
 * add tests to nodes_with_condition.
@@ -15,6 +18,7 @@ Next action
 * Move slides and vignete out of the package (should they be stored somewhere?)
 * update README
 
+* Invite other package authors to use dendextend and add it to their "suggests" (including pvclut, dynamicTreeCut, gplots, ape, who else?)
 
 * Maybe add a global package option for printing debugging information, and have many of the logical warn and print stuff be related to these...
 

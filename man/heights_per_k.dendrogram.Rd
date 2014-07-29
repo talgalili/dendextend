@@ -36,7 +36,7 @@ heights_per_k.dendrogram(unbranch_dend)
        # we do NOT have a height for k=2 because of the tree's structure.
 
 
-require(microbenchmark)
+library(microbenchmark)
 dend = as.dendrogram(hclust(dist(iris[1:150,-5])))
 dend = as.dendrogram(hclust(dist(iris[1:30,-5])))
 dend = as.dendrogram(hclust(dist(iris[1:3,-5])))

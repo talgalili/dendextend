@@ -51,7 +51,7 @@ FM_index_H0 <- replicate(R, FM_index_permutation(A1_clusters, A2_clusters)) # ca
 plot(density(FM_index_H0), main = "FM Index distribution under H0\\n (10000 permutation)")
 abline(v = mean(FM_index_H0), col = 1, lty = 2)
 # The permutation distribution is with a heavy right tail:
-require(psych)
+library(psych)
 skew(FM_index_H0) # 1.254
 kurtosi(FM_index_H0) # 2.5427
 

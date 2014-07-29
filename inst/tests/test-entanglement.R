@@ -1,4 +1,4 @@
-# require(testthat)
+# library(testthat)
 
 
 context("Measuring entanglement of two trees")
@@ -97,7 +97,7 @@ test_that("Entanglement works",{
    expect_identical(round(entanglement(dend1 , dend2, 2, "labels"), 2), 
                     round(entanglement(dend1 , dend2, 2, "order"), 2))
 
-#    require(microbenchmark)
+#    library(microbenchmark)
 #     microbenchmark(entanglement(dend1 , dend2, 2, "labels"),
 #                    entanglement(dend1 , dend2, 2, "order"), times = 10L )   # order is about twice as fast...
    

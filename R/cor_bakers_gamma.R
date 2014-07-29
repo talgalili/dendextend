@@ -185,7 +185,7 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 #' dend1 <- match_order_by_labels(dend1, dend2) # if you are not sure
 #' cor_bakers_gamma(dend1, dend2, use_labels_not_values = FALSE)   
 #' 
-#' require(microbenchmark)
+#' library(microbenchmark)
 #' microbenchmark(
 #'    with_labels = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=FALSE)   ,
 #'    with_values = cor_bakers_gamma(dend1, dend2, 
@@ -235,7 +235,7 @@ cor_bakers_gamma.hclust <- function(tree1, tree2, use_labels_not_values = TRUE, 
 
 # k_matrix_tree1 <- cutree(hc1, k = 1:nleaves(hc1))
 # k_matrix_tree2 <- cutree(hc2, k = 1:nleaves(hc1))
-# require(compiler)
+# library(compiler)
 # enableJIT(3)
 # system.time(bakers_gamma_for_2_k_matrix(k_matrix_tree1, k_matrix_tree2)) 
 # before: 2.37

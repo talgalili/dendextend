@@ -141,7 +141,7 @@ get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
 #' 
 #' 
 #' \dontrun{
-#' require(microbenchmark)
+#' library(microbenchmark)
 #' # get_leaves_attr is twice faster than get_nodes_attr
 #' microbenchmark(   get_leaves_attr(dend, "members"), # should be 1's
 #'                     get_nodes_attr(dend, "members", include_branches = FALSE, na.rm = TRUE)
@@ -277,8 +277,8 @@ rllply <- function(x, FUN,add_notation = FALSE, ...)
 #' dat1 <- iris[1:150,-5]
 #' dat1 <- rbind(dat1,dat1,dat1,dat1,dat1,dat1,dat1)
 #' dend = as.dendrogram(hclust(dist(dat1)))
-#' require(microbenchmark)
-#' require(dendextendRcpp)
+#' library(microbenchmark)
+#' library(dendextendRcpp)
 #' microbenchmark(
 #'    dendextendRcpp::dendextendRcpp_get_branches_heights(dend),
 #'    old_get_branches_heights(dend,sort=F)

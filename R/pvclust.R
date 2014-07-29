@@ -48,8 +48,8 @@
 #' 
 #' \dontrun{
 #' 
-#' require(microbenchmark)
-#' require(zoo)
+#' library(microbenchmark)
+#' library(zoo)
 #' 
 #' microbenchmark(
 #'    na_locf = na_locf(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4)),

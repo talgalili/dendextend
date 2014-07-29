@@ -19,8 +19,8 @@
 
 
 
-# require(dendextend)
-# require(whisker)
+# library(dendextend)
+# library(whisker)
 
 
 
@@ -31,7 +31,7 @@
 # rightmargin  : pixels to reserve on the right side for leaf labels.
 #
 d3dendrogram <- function(d,height=500,width=700,rightmargin=200){
-#   require(whisker)
+#   library(whisker)
   e <- new.env()
   e$json_dendrogram <- as.json.dendrogram(d)
   e$height <- height

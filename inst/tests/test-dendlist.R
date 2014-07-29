@@ -1,4 +1,4 @@
-# require(testthat)
+# library(testthat)
 suppressPackageStartupMessages(library(dendextend))
 
 test_that("dendlist works",{

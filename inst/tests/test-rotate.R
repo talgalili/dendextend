@@ -1,4 +1,4 @@
-# require(testthat)
+# library(testthat)
 
 
 if("package:dendextendRcpp" %in% search()) {
@@ -9,7 +9,7 @@ if("package:dendextendRcpp" %in% search()) {
 }
 
 detach("package:dendextend")
-require(ape)
+library(ape)
 suppressPackageStartupMessages(library(dendextend))
 if(return_dendextendRcpp) suppressPackageStartupMessages(library(dendextendRcpp))
 rm(return_dendextendRcpp)

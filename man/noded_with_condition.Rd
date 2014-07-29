@@ -31,8 +31,8 @@ with whether (TRUE/FALSE) each node satisies some condition (function)
 \examples{
 \dontrun{
 
-require(dendextend)
-require(magrittr)
+library(dendextend)
+library(magrittr)
 
 set.seed(23235)
 ss <- sample(1:150, 10 )

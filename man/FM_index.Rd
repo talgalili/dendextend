@@ -68,7 +68,7 @@ FM_index(cutree(hc1, k=3), cutree(hc1, k=3)) # 1 with EV
 FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= FALSE) # 1
 
 # checking speed gains
-require(microbenchmark)
+library(microbenchmark)
  microbenchmark(FM_index(cutree(hc1, k=3), cutree(hc1, k=3)),
                  FM_index(cutree(hc1, k=3), cutree(hc1, k=3),
                      include_EV= FALSE),

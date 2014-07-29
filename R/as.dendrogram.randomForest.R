@@ -33,7 +33,7 @@
 # }
 
 
-# require(randomForest)
+# library(randomForest)
 # set.seed(1)
 # data(iris, envir = environment())
 # iris.rf <- randomForest(Species ~ ., iris, proximity=TRUE,
