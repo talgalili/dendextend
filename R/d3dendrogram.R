@@ -17,27 +17,38 @@
 #
 
 
-
-
-# library(dendextend)
-# library(whisker)
-
-
-
 # plot dendrogram to html string. 
 #
 # d a dendrogram object
 # height/widht : pixels, height/widht of the plot
 # rightmargin  : pixels to reserve on the right side for leaf labels.
+# open         : open the graphic in a browser? (see details).
 #
-d3dendrogram <- function(d,height=500,width=700,rightmargin=200){
-#   library(whisker)
+# @details
+# If \code{open=TRUE}, the graphic is opened using the function defined by \code{getOption("viewer")}.
+# If no \code{viewer} option is specified, \code{utils::browseURL} is opened. Specifically, in RStudio
+# this means that the viewer is used.
+#
+#
+# @return
+# If \code{open=TRUE}, a character string containing the html is invisibly retured.
+# If \code{open=TRUE}, a character string containing the html is returned.
+d3dendrogram <- function(d,height=500,width=700,rightmargin=200, open=TRUE){
   e <- new.env()
   e$json_dendrogram <- as.json.dendrogram(d)
   e$height <- height
   e$width <- width
   e$rightmargin <- rightmargin
-  whisker::whisker.render(d3dendro_template(),data=e)
+  html <- whisker::whisker.render(d3dendro_template(),data=e)
+  if (open){ # open in (customized) viewer
+     tmpfile <- tempfile(fileext = ".html")
+     write(html,tmpfile)
+     v <- getOption('viewer')
+     view <- if ( !is.null(v) ) v else function(x) utils::browseURL(x)
+     view(html)
+     return(invisible(html))
+  }
+  return(html)
 }
 
 
