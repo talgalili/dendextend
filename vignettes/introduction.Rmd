@@ -1,0 +1,187 @@
+---
+output:
+  html_document:
+    self_contained: no
+---
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{Introduction to dendextend}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+library(dendextend)
+library(knitr)
+knitr::opts_chunk$set(
+  comment = "#>",
+  error = FALSE,
+  tidy = FALSE,
+  fig_path = "figure-intro\\")
+```
+
+Introduction to dendextend
+===========================
+
+
+When performing hierarchical clustering, we are often interested in improving how our dendrogram looks by **adjusting graphical paramters** of its branches, nodes and labels. Also, when considering several models - to visually and statistically **compare different dendrograms** to one another.
+
+The **_dendextend package_** offers a set of functions for making these tasks both possible and simple to code.
+
+The goal of this document is to introduce you to the basic functions that dendextend provides, and show how they may be applied. As a toy example, we will analyse the (overly famous) Iris dataset, while making extensive use of "chaining". 
+
+
+Elevator pitch (tl;dr version)
+------------------------------
+
+TODO: add a nice plot.
+
+```{r, echo=FALSE}
+library(dendextend)
+library(dendextendRcpp)
+library(colorspace)
+
+dend1 <- c(1:5) %>% # take some data
+         dist %>% # calculate a distance matrix, 
+         hclust(method = "average") %>% # on it compute hierarchical clustering using the "average" method, 
+         as.dendrogram # and lastly, turn that object into a dendrogram.
+dend2 <- c(1:5) %>% # take some data
+         dist %>% # calculate a distance matrix, 
+         hclust(method = "single") %>% # on it compute hierarchical clustering using the "average" method, 
+         as.dendrogram # and lastly, turn that object into a dendrogram.
+dend1 <- rotate(dend1, order = c(as.character(5:1)))
+labels(dend1) <- rev(c("dendextend:", "let's u easily", "control","your", "dendrograms"))
+labels(dend2) <- rev(c("let's u easily","dendextend:" ,"control","your", "dendrograms"))
+dend1 <- dend1 %>% 
+         color_labels %>% 
+         set("labels_cex", c(2.2,1.8)) %>% 
+         set("branches_lwd", c(4,1,4)) %>% 
+         hang.dendrogram
+# dend2 <- color_labels(dend2)
+# dend2 <- color_branches(dend2, k = 5) # TODO: solve!
+tanglegram(dendlist(dend1, dend2), margin_inner = 9, 
+           color_lines = c(rep("darkgreen", 3) , rep("darkred",2)))
+```
+
+
+TODO: change default to not warn so much...
+
+
+**Curious? If so - please read on...** (if not - please let me know: Tal.Galili@gmail.com )
+
+
+
+Prerequisites
+--------------
+
+### The Iris dataset
+
+> The famous (Fisher's or Anderson's) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica. (from `?iris`)
+
+This data is fun for learning supervised classification algorithms, and is known as a difficult case for unsupervised learning. This is easily seen through the following Scatter PLot Matrix:
+
+```{r, fig.width=9, fig.height=9}
+data(iris)
+
+species_labels <- iris[,5]
+library(colorspace) # get nice colors
+species_col <- rev(rainbow_hcl(3))[as.numeric(species_labels)]
+
+# Plot a SPLOM:
+pairs(iris[,-5], col = species_col,
+      lower.panel = NULL,
+       cex.labels=2, pch=19, cex = 1.2)
+```
+
+
+
+
+### Chaining
+
+Function calls in dendextend often get a dendrogram and returns a (modified) dendrogram. This doesn't lead to particularly elegant code if you want to do many operations at once. The same is true when creating a dendrogram.
+
+In order to construct a dendrogram, you will (often) need to go through several steps. You can either do so while keeping the intermediate results:
+
+```{r, eval = FALSE}
+a1 <- iris[,-5]
+a2 <- dist(a1)
+a3 <- hclust(a2, method = "average")
+dend <- as.dendrogram(a3)
+```
+
+You can also wrap the function calls inside each other:
+
+```{r, eval=FALSE}
+dend <- as.dendrogram(hclust(dist(iris[,-5]), method = "average"))
+```
+
+However, both solutions are no ideal. The first is cluttered and includes too much coding overhead, while the second is difficult to read because the order of the operations is from inside to out, while the arguments are a long way away from the function.
+
+To get around this problem, dendextend encourages the use of the `%>%` ("pipe" or "chaining") operator (imported from the magrittr package). This turns `x %>% f(y)` into `f(x, y)` so you can use it to rewrite multiple operations such that they can be read from left-to-right, top-to-bottom. 
+
+For example, the following will be written as it would be explained: 
+
+```{r, eval = FALSE}
+dend <- iris[,-5] %>% # take the iris dataset, 
+         dist %>% # calculate a distance matrix, 
+         hclust(method = "average") %>% # on it compute hierarchical clustering using the "average" method, 
+         as.dendrogram # and lastly, turn that object into a dendrogram.
+```
+
+For more details, you may see
+
+TODO: add links
+
+
+
+### Acknowledgement
+
+The **design** of the dendextend package (and this manual!) is heavily inspired by Hadley Wickham's work. Especially his text on [writing an R package](http://adv-r.had.co.nz/Package-basics.html), the devtools package, and the dplyr package (specifically the use of chaining, and the [Introduction text to dplyr](http://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)).
+
+TODO: mention other contributors.
+
+
+How to set a dendrogram's parameters
+------------------------------------
+
+The best introduction to dendextend's functionality is the `set` function. `set` accepts the following basic parameters:
+
+1. **object**: a dendrogram object, 
+2. **what**: a character indicating what is the property of the tree that should be set/updated
+3. **value**: a vector with the value to set in the tree. (the type of the value depends on the "what")
+
+The **what** parameter accepts the following options:
+
+* labels
+* labels_colors
+* labels_cex
+* leaves_pch
+* leaves_cex
+* leaves_col
+* hang_leaves
+* branches_k_color
+* branches_col
+* branches_lwd
+* branches_lty
+* by_labels_branches_col
+* by_labels_branches_lwd
+* by_labels_branches_lty
+* clear_branches
+* clear_leaves
+
+
+Extending other packages
+-----------------------
+
+### qplots
+
+heatmap.2
+
+### pvclust
+
+### dynamicCutree
+
+`colored_bars`
+
+
+dendextendRcpp - satisfying the need for speed
+----------------------------------------------
+
