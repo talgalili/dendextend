@@ -1,6 +1,12 @@
 dendextend 0.16.3 (2014-08-06)
 ----------------------------------------
 
+###NEW FUNCTIONS:
+   * `assign_values_to_nodes_nodePar` - Assign values to nodePar of dendrogram's nodes
+
+###UPDATED FUNCTIONS:
+   * `assign_values_to_leaves_nodePar` - If the value has NA then the value in edgePar will not be changed. 
+
 ###OTHER NOTES:
    * NEWS - updated to use header 2 and 3 instead of 1 and 2 for the markdown version.
 

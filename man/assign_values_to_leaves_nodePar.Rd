@@ -27,13 +27,13 @@ A dendrogram, after adjusting the nodePar attribute in all of its leaves,
 }
 \description{
 Go through the dendrogram leaves and updates the values inside its nodePar
+
+If the value has NA then the value in edgePar will not be changed.
 }
 \examples{
 \dontrun{
 
-hc <- hclust(dist(USArrests[1:5,]), "ave")
-dend <- as.dendrogram(hc)
-
+dend <- USArrests[1:5,] \%>\% dist \%>\% hclust("ave") \%>\% as.dendrogram
 
 # reproduces "labels_colors<-"
 # although it does force us to run through the tree twice,

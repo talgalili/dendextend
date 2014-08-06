@@ -511,6 +511,8 @@ rank_branches <- function(dend, diff_height =1, ...) {
 #' @export
 #' @description
 #' Go through the dendrogram leaves and updates the values inside its nodePar
+#' 
+#' If the value has NA then the value in edgePar will not be changed. 
 #' @param object a dendrogram object 
 #' @param value a new value vector for the nodePar attribute. It should be 
 #' the same length as the number of leaves in the tree. If not, it will recycle
@@ -529,9 +531,7 @@ rank_branches <- function(dend, diff_height =1, ...) {
 #' 
 #' \dontrun{
 #' 
-#' hc <- hclust(dist(USArrests[1:5,]), "ave")
-#' dend <- as.dendrogram(hc)
-#' 
+#' dend <- USArrests[1:5,] %>% dist %>% hclust("ave") %>% as.dendrogram
 #' 
 #' # reproduces "labels_colors<-" 
 #' # although it does force us to run through the tree twice, 
@@ -571,7 +571,11 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
    set_value_to_leaf <- function(dend_node) {
       if(is.leaf(dend_node)) {			
          i_leaf_number <<- i_leaf_number + 1
-         attr(dend_node, "nodePar")[[nodePar]] <- value[i_leaf_number] # this way it doesn't erase other nodePar values (if they exist)
+
+         if(!is.na(value[i_node_number])) {
+            attr(dend_node, "nodePar")[[nodePar]] <- value[i_leaf_number] # this way it doesn't erase other nodePar values (if they exist)
+         }      
+         
          
          if(length(attr(dend_node, "nodePar")) == 0) {
             attr(dend_node, "nodePar") <- NULL # remove nodePar if it is empty
@@ -595,6 +599,110 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
 # 
 #  tanglegram(dend1 , dend2, lab.cex = 2, edge.lwd = 3,margin_inner= 5, type = "t", center = TRUE)
 # attr(dend[[1]], "nodePar")[["pch"]]
+
+
+
+
+
+
+
+
+
+
+
+#' @title Assign values to nodePar of dendrogram's nodes
+#' @export
+#' @description
+#' Go through the dendrogram nodes and updates the values inside its nodePar
+#' 
+#' The value vector 
+#' 
+#' @param object a dendrogram object 
+#' @param value a new value vector for the nodePar attribute. It should be 
+#' the same length as the number of nodes in the tree. If not, it will recycle
+#' the value and issue a warning.
+#' @param nodePar the value inside nodePar to adjust. 
+#' This may contain components named pch, cex, col, xpd, and/or bg.
+#' @param warn logical (TRUE). Should warning be issued?
+#' Generally, it is safer to keep this at TRUe.
+#' But for specific uses it might be more user-friendly
+#' to turn it off (for example, in the \link{tanglegram}
+#' function)
+#' @param ... not used
+#' @return 
+#' A dendrogram, after adjusting the nodePar attribute in all of its nodes, 
+#' @seealso \link{get_leaves_attr}, \link{assign_values_to_leaves_nodePar}
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' dend <- USArrests[1:5,] %>% dist %>% hclust("ave") %>% as.dendrogram
+#' 
+#' # reproduces "labels_colors<-" 
+#' # although it does force us to run through the tree twice, 
+#' # hence "labels_colors<-" is better...
+#' plot(dend)
+#' dend2 <- dend %>% 
+#'    assign_values_to_nodes_nodePar(value = 19, nodePar = "pch") %>% 
+#'    assign_values_to_nodes_nodePar(value = c(1,2), nodePar = "cex")  %>% 
+#'    assign_values_to_nodes_nodePar(value = c(2,1), nodePar = "col")
+#' plot(dend2)
+#' 
+#' }
+#' 
+assign_values_to_nodes_nodePar <- function(object, value, nodePar = c(pch, cex, col, xpd, bg), warn = TRUE, ...) {
+   if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
+   
+   if(missing(value)) {
+      warning("value is missing, returning the dendrogram as is.")
+      return(object)
+   }
+   
+   nodePar <- match.arg(nodePar)
+   
+   
+   nodes_length <- nnodes(object) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
+   if(nodes_length > length(value)) {
+      if(warn) warning("Length of value vector was shorter than the number of nodes - vector value recycled")
+      value <- rep(value, length.out = nodes_length)
+   }       
+   
+   set_value_to_node <- function(dend_node) {
+      i_node_number <<- i_node_number + 1
+      
+      if(!is.na(value[i_node_number])) {
+         attr(dend_node, "nodePar")[[nodePar]] <- value[i_node_number] # this way it doesn't erase other nodePar values (if they exist)
+      }      
+      
+      if(length(attr(dend_node, "nodePar")) == 0) {
+         attr(dend_node, "nodePar") <- NULL # remove nodePar if it is empty
+      } else {
+         # if we have some nodePar, and we don't have pch - let's make 
+         # sure it is NA - so that we don't see that annoying dot.
+         if(! ("pch"  %in%  names(attr(dend_node, "nodePar"))) ) {
+            attr(dend_node, "nodePar")["pch"] <- NA
+         }               
+      }
+      return(unclass(dend_node))
+   }   
+   i_node_number <- 0
+   new_dend_object <- dendrapply(object, set_value_to_node)
+   class(new_dend_object) <- "dendrogram"
+   return(new_dend_object)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
