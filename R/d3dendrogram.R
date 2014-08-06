@@ -17,17 +17,31 @@
 #
 
 
-#' plot dendrogram to html string. 
+#' Plot dendrogram to webpage and view. 
 #'
-#' @param d a dendrogram object
-#' @param height/widht : pixels, height/widht of the plot
-#' @param rightmargin  : pixels to reserve on the right side for leaf labels.
-#' @param open         : open the graphic in a browser? (see details).
+#' @param d            a dendrogram object
+#' @param height       pixels, height of the plot.  
+#' @param width        pixels, width of the plot
+#' @param rightmargin  pixels to reserve on the right side for leaf labels.
+#' @param open         open the graphic in a browser? (see details).
+#' @param ...          Graphical options, see \code{\link{d3dendro_options}}.
 #'
 #' @details
 #' If \code{open=TRUE}, the graphic is opened using the function defined by \code{getOption("viewer")}.
 #' If no \code{viewer} option is specified, \code{utils::browseURL} is opened. Specifically, in RStudio
 #' this means that the viewer is used.
+#'
+#' @section Tips:
+#' Dendrogram plots with many end-nodes tend to get overlapping labels or (end)nodes. If the number of endnodes
+#' is not too large, there are several ways to overcome this.
+#' \itemize{
+#' \item{Decrease font size of the nodes (\code{node_font}, see \code{\link{d3dendro_options}} on how to specify)} 
+#' \item{Decrease size of node radius (\code{node_radius}, \emph{idem})}
+#' \item{Increase the height of the plot. Use about (2 times font height) times count_terminal_nodes(d).}
+#' \item{Plot sub-dendrograms in stead of the whole dendrogram. There's only so much 
+#'   detail a screen can display and your eye can observe. Consider plotting subdendrograms or other summaries 
+#'   when dendrograms have many, many nodes.}
+#' }
 #'
 #'
 #' @return
@@ -36,10 +50,7 @@
 #' 
 d3dendrogram <- function(d,height=500,width=700,rightmargin=200, open=TRUE,...){
   # set default options.
-  e <- d3dendro_defaults() 
-  # overwrite options if any.
-  opts <- list(...)
-  for ( x in names(opts) ) e[[x]] <- opts[[x]]
+  e <- d3dendro_options(...,copy=TRUE)
   
   # compute json rep of dendrogram
   e$json_dendrogram <- as.json.dendrogram(d)
@@ -84,23 +95,66 @@ as.json.dendrogram <- function(d){
   json
 }
 
-#' Get defaults for d3dendrogram
+#' Get or set current defaults for d3dendrogram
+#' 
+#' @param ... \code{<option>=<value>} pairs (see below). If no option/value pair is given, a list with 
+#'    current settings is returned. If the single input \code{"reset"} is given, options
+#'    are restored to factory settings.
+#' @param copy only when options are set: set global options or return a modified copy of the global
+#'    option environment invisibly?
+#'    
+#' @section Options:
+#' Option values are exported as-is to the generated javascript/webpage. 
+#' 
+#' \tabular{ll}{
+#'   \code{node_fill (char,"#fff")}             \tab Node color (fill) \cr
+#'   \code{node_stroke (char;"steelblue")}      \tab Node color (circumference)\cr
+#'   \code{node_stroke_width (char;"1.5px")}    \tab Width of node circumference \cr
+#'   \code{node_radius (num;4.5)}               \tab Size of node (pixels) \cr
+#'   \code{node_font (char;"14px sans-serif")}  \tab Font used to print labels. Size and type spec\cr
+#'   \code{link_fill (char;"none")}             \tab link fill color (you probably do not want to set this)\cr
+#'   \code{link_stroke (char;"#ccc")}           \tab link line color (that's the one you want)\cr
+#'   \code{link_stroke_width (char;"1.5px")}    \tab link line width (pixels) \cr
+#'   \code{axis_stroke (char;"black")}          \tab Color of axis line\cr
+#'   \code{axis_width (char; "2px")}            \tab Width of axis line\cr
+#'   \code{axis_ntick (num; 5)}                 \tab Approximate nr of tick marks\cr
+#'   \code{axis_ticklength_in (num;5)}          \tab Length of tickmarks into the graph (pixels)  \cr
+#'   \code{axis_ticklength_out (num;5)}         \tab Length of tickmarks out of the graph (pixels)\cr
+#'   \code{axis_tickmark_offset (num;8)}        \tab Distance between axis and tick labels (pixels)
+#' }
 #'
-d3dendro_options <- function(){
-   as.list(d3dendro_defaults())
+#' @export 
+d3dendro_options <- function(...,copy=FALSE){
+   e <- if (!copy) D3DENDRODEFAULTS else as.environment(as.list(D3DENDRODEFAULTS))
+   opts <- list(...)
+   if (length(opts) == 0)
+      return( as.list(e) )
+   if ( length(opts) == 1 && opts[[1]] == "reset" )
+      d3dendro_defaults(e)
+   else
+      for ( n in names(opts) ) assign(n, opts[[n]], e)
+   return(invisible(e))
 }
 
-d3dendro_defaults <- function(){
-   e <- new.env()
+# global variable holding d3 dendro options. Initialized .onLoad()
+D3DENDRODEFAULTS <- new.env()
+# function setting defaults for d3 dendrogram plotting
+# e: an environment
+d3dendro_defaults <- function(e){
    e$node_fill <- "#fff"
    e$node_stroke <- "steelblue"
-   e$node_stroke.width <- "1.5px"
+   e$node_stroke_width <- "1.5px"
+   e$node_radius <- 4.5
    e$node_font <- "14px sans-serif"
    e$link_fill <- "none"
    e$link_stroke <- "#ccc"
    e$link_stroke_width <- "1.5px"
    e$axis_stroke <- "black"
    e$axis_width <- "2px"
+   e$axis_ntick <- 5
+   e$axis_ticklength_in <- 5
+   e$axis_ticklength_out <- 5
+   e$axis_tickmark_offset <- 8
    e
 }
 
@@ -202,7 +256,7 @@ d3dendro_template <- function(){
     return "translate(" + x(d.y) + "," + y(d.x) + ")";               
     });           
     node.append("circle")                   
-      .attr("r", 4.5);           
+      .attr("r", {{{node_radius}}});           
     node.append("text")                   
       .attr("dx", function(d) { return d.children ? -8 : 8; })                   
       .attr("dy", 3)                  
@@ -216,20 +270,20 @@ d3dendro_template <- function(){
       .attr("x2",x(ymax))            
       .attr("y2",0);       
     g.selectAll(".ticks")            
-      .data(x.ticks(5))           
+      .data(x.ticks({{{axis_ntick}}}))           
       .enter().append("line")            
       .attr("class","ticks")            
       .attr("x1", function(d) { return xinv(d); })           
-      .attr("y1", -5)            
+      .attr("y1", -{{{axis_ticklength_out}}})            
       .attr("x2", function(d) {return xinv(d); })            
-      .attr("y2", 5);       
+      .attr("y2", {{{axis_ticklength_in}}});
     g.selectAll(".label")            
-      .data(x.ticks(5))            
+      .data(x.ticks({{{axis_ntick}}}))            
       .enter().append("text")            
       .attr("class","label")            
       .text(String)            
       .attr("x", function(d) {return xinv(d); })            
-      .attr("y", -5)           
+      .attr("y", -{{{axis_tickmark_offset}}})           
       .attr("text-anchor","middle");
   </script>
   </body>

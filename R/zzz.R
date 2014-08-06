@@ -186,6 +186,9 @@ remove_dendextend_options <- function() {
    # adding and removing menus from the Rgui when loading and detaching the library
    # setHook(packageEvent("installr", "attach"), {function(pkgname, libpath) {add.installr.GUI()}  } )
    setHook(packageEvent("dendextend", "detach"), {function(pkgname, libpath) {remove_dendextend_options()}  } )
+
+   # set default options for d3 dendrogram.
+   d3dendro_defaults(D3DENDRODEFAULTS)
 }
 
 # menus are added and removed as needed: !!
