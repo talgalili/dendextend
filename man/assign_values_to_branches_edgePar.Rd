@@ -29,9 +29,7 @@ A dendrogram, after adjusting the edgePar attribute in all of its branches,
 \description{
 Go through the dendrogram branches and updates the values inside its edgePar
 
-If the value has NA then the value in edgePar will not be changed.
-(it could have also been something like NULL or Inf,
-but for now it is only NA)
+If the value has Inf then the value in edgePar will not be changed.
 }
 \examples{
 \dontrun{

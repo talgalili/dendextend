@@ -512,7 +512,7 @@ rank_branches <- function(dend, diff_height =1, ...) {
 #' @description
 #' Go through the dendrogram leaves and updates the values inside its nodePar
 #' 
-#' If the value has NA then the value in edgePar will not be changed. 
+#' If the value has Inf then the value in edgePar will not be changed. 
 #' @param object a dendrogram object 
 #' @param value a new value vector for the nodePar attribute. It should be 
 #' the same length as the number of leaves in the tree. If not, it will recycle
@@ -572,7 +572,7 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
       if(is.leaf(dend_node)) {			
          i_leaf_number <<- i_leaf_number + 1
 
-         if(!is.na(value[i_node_number])) {
+         if(is.finite(value[i_leaf_number])) {
             attr(dend_node, "nodePar")[[nodePar]] <- value[i_leaf_number] # this way it doesn't erase other nodePar values (if they exist)
          }      
          
@@ -615,7 +615,7 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
 #' @description
 #' Go through the dendrogram nodes and updates the values inside its nodePar
 #' 
-#' The value vector 
+#' If the value has Inf then the value in edgePar will not be changed. 
 #' 
 #' @param object a dendrogram object 
 #' @param value a new value vector for the nodePar attribute. It should be 
@@ -650,7 +650,7 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
 #' 
 #' }
 #' 
-assign_values_to_nodes_nodePar <- function(object, value, nodePar = c(pch, cex, col, xpd, bg), warn = TRUE, ...) {
+assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "cex", "col", "xpd", "bg"), warn = TRUE, ...) {
    if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
    
    if(missing(value)) {
@@ -670,7 +670,7 @@ assign_values_to_nodes_nodePar <- function(object, value, nodePar = c(pch, cex, 
    set_value_to_node <- function(dend_node) {
       i_node_number <<- i_node_number + 1
       
-      if(!is.na(value[i_node_number])) {
+      if(is.finite(value[i_node_number])) {
          attr(dend_node, "nodePar")[[nodePar]] <- value[i_node_number] # this way it doesn't erase other nodePar values (if they exist)
       }      
       
@@ -712,9 +712,7 @@ assign_values_to_nodes_nodePar <- function(object, value, nodePar = c(pch, cex, 
 #' @description
 #' Go through the dendrogram branches and updates the values inside its edgePar
 #' 
-#' If the value has NA then the value in edgePar will not be changed. 
-#' (it could have also been something like NULL or Inf,
-#' but for now it is only NA)
+#' If the value has Inf then the value in edgePar will not be changed. 
 #' 
 #' @param object a dendrogram object 
 #' @param value a new value scalar for the edgePar attribute. 
@@ -765,7 +763,7 @@ assign_values_to_branches_edgePar <- function(object, value, edgePar, skip_leave
       # else - keep as usual.   
       
       i_node <<- i_node + 1
-      if(!is.na(value[i_node])) {
+      if(is.finite(value[i_node])) {
          attr(dend_node, "edgePar")[[edgePar]] <- value[i_node] # [i_leaf_number] # this way it doesn't erase other edgePar values (if they exist)
       }
       if(length(attr(dend_node, "edgePar")) == 0) attr(dend_node, "edgePar") <- NULL # remove edgePar if it is empty

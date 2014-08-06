@@ -99,7 +99,7 @@ test_that("branches options works",{
 
    tmp <- dend
 	tmp <- tmp %>% 
-      set("branches_col", c(1,2, 1, 2, NA)) %>%
+      set("branches_col", c(1,2, 1, 2, Inf)) %>%
       set("branches_lwd", c(2,1,2)) %>% 
       set("branches_lty", c(1,2,1)) # %>% plot
 
@@ -125,14 +125,14 @@ test_that("clearing options works",{
 
    tmp <- dend
 	tmp <- tmp %>% 
-	   set("leaves_pch", c(19,19, NA)) %>% 
-	   set("labels_color", c(19,19, NA))# %>% 
+	   set("leaves_pch", c(19,19, Inf)) %>% 
+	   set("labels_color", c(19,19, Inf))# %>% 
 # 	   set("clear_leaves") %>% plot
    expect_identical(dend, set(tmp, "clear_leaves"))
    
 	tmp <- dend
 	tmp <- tmp %>% 
-	   set("branches_col", c(1,2, 1, 2, NA)) %>%
+	   set("branches_col", c(1,2, 1, 2, Inf)) %>%
 	   set("branches_lwd", c(2,1,2)) %>% 
 	   set("branches_lty", c(1,2,1)) # %>% plot
 	# We can remove all the branch attributes

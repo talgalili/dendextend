@@ -3,8 +3,8 @@
 \alias{assign_values_to_nodes_nodePar}
 \title{Assign values to nodePar of dendrogram's nodes}
 \usage{
-assign_values_to_nodes_nodePar(object, value, nodePar = c(pch, cex, col, xpd,
-  bg), warn = TRUE, ...)
+assign_values_to_nodes_nodePar(object, value, nodePar = c("pch", "cex", "col",
+  "xpd", "bg"), warn = TRUE, ...)
 }
 \arguments{
 \item{object}{a dendrogram object}
@@ -30,7 +30,7 @@ A dendrogram, after adjusting the nodePar attribute in all of its nodes,
 \description{
 Go through the dendrogram nodes and updates the values inside its nodePar
 
-The value vector
+If the value has Inf then the value in edgePar will not be changed.
 }
 \examples{
 \dontrun{

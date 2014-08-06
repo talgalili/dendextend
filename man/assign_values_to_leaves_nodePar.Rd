@@ -28,7 +28,7 @@ A dendrogram, after adjusting the nodePar attribute in all of its leaves,
 \description{
 Go through the dendrogram leaves and updates the values inside its nodePar
 
-If the value has NA then the value in edgePar will not be changed.
+If the value has Inf then the value in edgePar will not be changed.
 }
 \examples{
 \dontrun{
