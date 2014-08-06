@@ -1,69 +1,76 @@
-dendextend 0.16.2 (2014-07-29)
-================================
+dendextend 0.16.3 (2014-08-06)
+----------------------------------------
 
-##OTHER NOTES:
+###OTHER NOTES:
+   * NEWS - updated to use header 2 and 3 instead of 1 and 2 for the markdown version.
+
+
+dendextend 0.16.2 (2014-07-29)
+----------------------------------------
+
+###OTHER NOTES:
    * require -> library (Thanks Yihui: http://yihui.name/en/2014/07/library-vs-require/)
 
 
 
 dendextend 0.16.1 (2014-07-26)
-================================
+----------------------------------------
 
-##OTHER NOTES:
+###OTHER NOTES:
    * Minor doc fixes to pass CRAN checks.
 
 
 dendextend 0.16.0 (2014-07-26)
-================================
+----------------------------------------
 
-##NEW FUNCTIONS:
+###NEW FUNCTIONS:
    * `branches_attr_by_clusters` - This function was designed to enable the manipulation (mainly coloring) of branches, based on the results from the cutreeDynamic function (from the {dynamicTreeCut} package).
    * `which_leaf` - Which node is a leaf?
    * `na_locf` - Fill Last Observation Carried Forward
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * `assign_values_to_branches_edgePar - now can keep existing value, if gets NA.
    * `colored_bars` - change the order of colors and dend, and allowing for dend to be missing. (also some other doc modifications)
    * `branches_attr_by_labels` - change the order of some parameters (based on how much I expect users to use each of them.)
    * `assign_values_to_branches_edgePar` - allow the option to skip leaves
 
-##NEW FILES:
+###NEW FILES:
    * branches_attr_by.R - for branches_attr_by_clusters
 
-##OTHER NOTES:
+###OTHER NOTES:
    * added a pvclust example (using a condition on p-value, and heighlighting branches based on that with lwd/col.)
 
 
 dendextend 0.15.2 (2014-07-24)
-================================
+----------------------------------------
 
-##NEW FUNCTIONS:
+###NEW FUNCTIONS:
    * `noded_with_condition` - Find which nodes satisfies a condition
    * `branches_attr_by_labels` - Change col/lwd/lty of branches matching labels condition
 
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * `rect.dendrogram` - adding paramters for creating text under the clusters,
 as well as make it easier to plot lines on the rect (density = 7). props to skullkey for his help.
    * `set.dendrogram` - added new options: by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
 
-##NEW FILES:
+###NEW FILES:
    * noded_with_condition.R
 
 dendextend 0.15.1 (2014-07-16)
-================================
+----------------------------------------
 
-##NEW FUNCTIONS:
+###NEW FUNCTIONS:
    * `order.hclust` - Ordering of the Leaves in a hclust Dendrogram
    * `rect.dendrogram` - just like `rect.hclust`, plus: works for dendrograms, passes `...` to rect for lwd lty etc, now has an horiz parameter! 
    * `identify.dendrogram` - like `identify.hclust`: reads the position of the graphics pointer when the (first) mouse button is pressed. It then cuts the tree at the vertical position of the pointer and highlights the cluster containing the horizontal position of the pointer. Optionally a function is applied to the index of data points contained in the cluster.
 
 
 
-##NEW FILES:
+###NEW FILES:
    rect.dendrogram.R
 
-##OTHER NOTES:
+###OTHER NOTES:
    * Rename the `add` functions to be called `set`. Reason: both are short names (important for chaining), both are not used in base R. "add" is used in magrittr (not good long term), and "set" sounds better English wise (we are setting labels color, more than adding it...).
    * Rename 2 file names from add->set (set.dendrogram.R and tests-set.dendrogram.R)
 
@@ -71,9 +78,9 @@ dendextend 0.15.1 (2014-07-16)
 
 
 dendextend 0.15.0 (2014-07-14)
-================================
+----------------------------------------
 
-##NEW FUNCTIONS:
+###NEW FUNCTIONS:
    * `dendlist` - a function which creates a list of dendrogram of the new "dendlist" class.
       * `tanglegram.dendlist`
       * `entanglement.dendlist`
@@ -89,7 +96,7 @@ dendextend 0.15.0 (2014-07-14)
       dendrogram plot.
 
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * Made sure that the main `untangle` functions will return a `dendlist` (and also that untangle_step_rotate_2side will be able to work with the new untangle_step_rotate_1side output)
    * switched to using match.arg wherever possible (Bk_plot,  cor_cophenetic, entanglement, untangle_random_search, untangle_step_rotate_1side, and untangle_step_rotate_2side).
    * `labels_colors<-` - now has a default behavior if value is missing. Also made sure it is more robust (for cases with partiel attr in nodePar)
@@ -99,10 +106,10 @@ dendextend 0.15.0 (2014-07-14)
    * `tanglegram` - now preserve and restore previous par options (will no longer have a tiny plot in the left corner, when using a simple plot after tanglegram)
 
 
-##NEW S3 METHODS:
+###NEW S3 METHODS:
    * `tanglegram.dendlist`
 
-##NEW FILES:
+###NEW FILES:
    * dendlist.R
    * test-dendlist.R
    * test-add.dendrogram.R
@@ -110,10 +117,10 @@ dendextend 0.15.0 (2014-07-14)
    * colored_bars.R
    * magrittr.R
 
-##UPDATED TESTS: 
+###UPDATED TESTS: 
    * Check dendlist works
 
-##OTHER NOTES:
+###OTHER NOTES:
    * DESCRIPTION - 
       * Added the magrittr package as a Depends.
       * changed stats from depends to imports. Here is a good reference for why to choose the one over the other - http://stackoverflow.com/questions/8637993/better-explanation-of-when-to-use-imports-depends
@@ -126,101 +133,101 @@ And: http://stackoverflow.com/questions/6895852/load-a-package-only-when-needed-
    * Imported the %>% function from magrittr (using a trick from the dplyr package)
 
 dendextend 0.14.4 (2014-07-04)
-================================
+----------------------------------------
 
-##OTHER NOTES:
+###OTHER NOTES:
    * Changed all R script files from .r to .R!
 
 
 dendextend 0.14.3 (2014-04-26)
-================================
-##UPDATED DESCRIPTION:
+----------------------------------------
+###UPDATED DESCRIPTION:
    * Fix an author name.
    * Added dendextendRcpp to suggest
 
-##OTHER NOTES:
+###OTHER NOTES:
    * Minor changes to docs.
 
 dendextend 0.14.2 (2014-03-15)
-================================
+----------------------------------------
 
-##UPDATED DESCRIPTION:
+###UPDATED DESCRIPTION:
    * Added dependency for R (>= 3.0.0)
 
-##OTHER NOTES:
+###OTHER NOTES:
    * dendextend 0.14.2 is intended to be shipped to CRAN.
 
 
 
 dendextend 0.14.1 (2014-03-15)
-================================
+----------------------------------------
 
-##UPDATED DESCRIPTION:
+###UPDATED DESCRIPTION:
    * Added Uwe and Kurt as contributors.
    * Removed Suggests: dendextendRcpp, (until it would be on CRAN)
    * Removed link to google group
 
 
-##NEW FUNCTIONS:
+###NEW FUNCTIONS:
    * dendextend_options (actually an enviornment + a function). Here I've moved the dendextend_options from the global enviornment to the dendextend namespace.
 
-##UPDATED TESTS: 
+###UPDATED TESTS: 
    * update test_rotate.r so it would make sure ape is loaded BEFORE dendextend.
 
-##OTHER NOTES:
+###OTHER NOTES:
    * dendextend 0.14.1 goes with Version 0.5.0 of dendextendRcpp. Previous versions of dendextendRcpp will not be effective for versions of dendextend which are before 0.14.0.
    * dendextend 0.14.1 is intended to be shipped to CRAN.
 
 
 
 dendextend 0.14.0 (2014-03-15)
-================================
+----------------------------------------
 
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * assign_dendextend_options - Moved to passing the functions through "dendextend_options" instead of through "options" (Thanks to suggestions by Kurt Hornik and Uwe Ligges).
    * assign_dendextend_options - is now exported.
    * remove_dendextend_options - now removes the object dendextend_options
    * get_branches_heights, heights_per_k.dendrogram, cut_lower_fun - now all rely on dendextend_options.
 
-##UPDATED TESTS: 
+###UPDATED TESTS: 
    * update tests to the new names in dendextendRcpp (dendextendRcpp_cut_lower_fun, dendextend_options)
 
 
 dendextend 0.13.0 (2014-03-01)
-================================
+----------------------------------------
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * assign_dendextend_options - Moved to passing the functions through "options" instead of through assignInNamespace (which was not intended for production use).
    * get_branches_heights, heights_per_k.dendrogram, cut_lower_fun - now all rely on the function located in the global options. This way, they can be replaced by the dendextebdRcpp version, if available.
 
-##UPDATED TESTS: 
+###UPDATED TESTS: 
    * When comparing to dendextendRcpp - added condition to not make the check if the package is not loaded and in the search path (this way I could compare the tests with and without the dendextendRcpp package).
    * added a minor test for dendextend_get_branches_heights - checking the function directly through the options.
 
-##UPDATED DOCS: 
+###UPDATED DOCS: 
    * dendextend_get_branches_heights, dendextend_heights_per_k.dendrogram, dendextend_cut_lower_fun - gave speed tests
 
 
 
-##NEW FUNCTIONS:
+###NEW FUNCTIONS:
    * assign_dendextend_options - we now pass all functions that have a Rcpp equivalent through "options". While this adds a bit of an overhead (sadly), it still gets a much faster speed gain, and without verious warnings that CRAN checks would not like...
    * dendextend_get_branches_heights, dendextend_heights_per_k.dendrogram, dendextend_cut_lower_fun
 
-##OTHER NOTES:
+###OTHER NOTES:
    * dendextend 0.13.0 goes with Version 0.4.0 of dendextendRcpp. Previous versions of dendextendRcpp will not be effective for versions of dendextend which are before 0.13.0 (however, it would also not conflict with them...)
    * dendextend 0.13.0 is intended to be shipped to CRAN.
 
 
 
 dendextend 0.12.2 (2014-02-03)
-================================
-##UPDATED DESCRIPTION:
+----------------------------------------
+###UPDATED DESCRIPTION:
    * Removed VignetteBuilder: knitr (until later)
    * Removed Suggests: dendextendRcpp, (until later)
    * fixed mis-spelled words: extanding (14:40)
 
-##NEW FUNCTIONS:
+###NEW FUNCTIONS:
    * Hidden "stats" functions have been added to a new file "imports_stats.r"
       with a new local copy for
                            'stats:::.memberDend' 'stats:::.midDend'
@@ -228,34 +235,34 @@ dendextend 0.12.2 (2014-02-03)
                            'stats:::plotNodeLimit'
       with stats::: -> stats_
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * stats:::cutree -> stats::cutree
    * dendextend:::cutree -> dendextend::cutree
 
-##OTHER NOTES:
+###OTHER NOTES:
    * compacted ‘dendextend-tutorial.pdf’ from 961Kb to 737Kb (thanks to tools::compactPDF)
    * dendextend 0.12.2 is intended to be shipped to CRAN.
 
 
 
 dendextend 0.12.1 (2014-02-02)
-================================
+----------------------------------------
 
-##UPDATED TESTS: 
+###UPDATED TESTS: 
    * Made sure to check dendextendRcpp is available before calling it.
 
-##UPDATED DOCS:
+###UPDATED DOCS:
    * data(iris) -> data(iris, envir = environment()) 
    * Fix "\examples lines wider than 100 characters:" in several places.
 
-##OTHER NOTES:
+###OTHER NOTES:
    * Commented out manipulations on the search path and of assignInNamespace (to avoid NOTES/warnings). This was done after moving all of these operations into Rcpp.
    * dendextend 0.12.1 is intended to be shipped to CRAN. (but failed)
 
 dendextend 0.12.0 (2014-02-01)
-================================
+----------------------------------------
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * exported prune_leaf
    * as.dendrogram.phylo as.phylo.dendrogram - turned into S3 (no longer exported)
    * changed functions names:
@@ -267,7 +274,7 @@ dendextend 0.12.0 (2014-02-01)
    * Return "as.phylo.dendrogram" by adding "ape" to "Imports" in DESCRIPTION and "import" to NAMESPACE. Also fixing consistancy (using x instead of object).
    * unbranch.phylo - fix extra parameters.
 
-##UPDATED DOCS:
+###UPDATED DOCS:
    * leaf_Colors - fix example (added "dend").
    * Fix various "Missing link or links in documentation object" for example:
       * remove \link{untangle} from various .Rd (I never created this function...)
@@ -297,14 +304,14 @@ dendextend 0.12.0 (2014-02-01)
    * rotate - Remove the "flip" command in the example (after I noticed that "rev" does this just fine...)
 
 
-##UPDATED TESTS: 
+###UPDATED TESTS: 
    * S3methods no longer seem to be exported (due to something in roxygen2), I chose to update the tests accordingly.
       * cutree.hclust -> dendextend:::cutree.hclust
       * cutree.dendrogram -> dendextend:::cutree.dendrogram
    * cut_lower_fun acts diffirently on dendextendRcpp vs old dendextend, so I updated the tests to reflect that.
    * Fixed the usage of person() in DESCRIPTION. (props goes to Uwe Ligges for his input)
 
-##OTHER NOTES:
+###OTHER NOTES:
    * Fixing .Rd indentation.
    * Fix S3method in NAMESPACE.
    * Added "ape::" to as.phylo.
@@ -319,92 +326,92 @@ dendextend 0.12.0 (2014-02-01)
 
 
 dendextend 0.11.2 (2013-08-31)
-================================
+----------------------------------------
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * tanglegram now has "sub" and "cex_sub" parameters.
    * untangle_step_rotate_2side added k_seq parameter.
    * "trim" is now called "prune"!
 
-##VIGNETTES:
+###VIGNETTES:
    * Finished tanglegram and untangle. 
    * Finished statistical measures of similarity between trees. 
 
 
 dendextend 0.11.1 (2013-08-29)
-================================
-##UPDATED FUNCTIONS:
+----------------------------------------
+###UPDATED FUNCTIONS:
    * color_labels - added a "warn" parameter. And also set the default (in case no k/h is supplied) - to just color all of the labels.
    * Added "warn" parameter to: assign_values_to_leaves_nodePar, And set it to FALSE when used inside "tanglegram".
    * tanglegram now returns an invisible list with the two dendrograms (after they have been modified within the function).
 
-##BUG FIXES:
+###BUG FIXES:
    * untangle_random_search - made sure the function will return the original trees if no better tree was found.
 
-##OTHER NOTES:
+###OTHER NOTES:
    * Seperated 2013-09-05_Boston-useR.Rpres into two files (since RStudio is not able to handle them)
 
 dendextend 0.11.0 (2013-08-24)
-================================
-##VIGNETTES:
+----------------------------------------
+###VIGNETTES:
    * Added a knitr presentation for "Boston-useR" 2013-09-05. Includes an introduction to hclust and dendrogram objects, tree manipulation, and dendextend modules (still needs the dendextend section on tanglegram...)
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * tanglegram - added cex_main parameter.
 
 
-##OTHER NOTES:
+###OTHER NOTES:
    * Gave proper credit to contributers in the DESCRIPTION file (and not just the .Rd files)
 
 dendextend 0.10.0 (2013-08-20)
-================================
-##NEW FUNCTIONS ADDED: 
+----------------------------------------
+###NEW FUNCTIONS ADDED: 
    * cut_lower_fun - it wraps the "cut" function, and is built to be masked by the function in dendextendRcpp in order to gain 4-14 speed gain.
 
-##NEW TESTS ADDED: 
+###NEW TESTS ADDED: 
    * For Bk methods.
 
-##OTHER NOTES:
+###OTHER NOTES:
    * The dendextendRcpp package (version 0.3.0) is now on github, and offers functions for making cutree.dendrogram(h) faster (between 4 to 14 times faster).
 
-##VIGNETTES:
+###VIGNETTES:
    * Added cut_lower_fun to the Rcpp section.
    * Added FM-index and Bk plot sections.
 
 
 
 dendextend 0.9.2 (2013-08-20)
-================================
-##NEW FUNCTIONS ADDED: 
+----------------------------------------
+###NEW FUNCTIONS ADDED: 
    * cor_bakers_gamma.hclust
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * cutree.hclust - added the "use_labels_not_values" paremter (ignored)
 
 
 
 dendextend 0.9.1 (2013-08-19)
-================================
-##UPDATED FUNCTIONS:
+----------------------------------------
+###UPDATED FUNCTIONS:
    * color_labels - added "labels" parameter for selective coloring of labels by name.
    * Bk_plot - now adds dots for the asymptotic lines in case of NA's   
    * Bk - now calculates cutree once for all relevant k's - and only then goes forth with FM_index.
 
-##BUG FIXES: 
+###BUG FIXES: 
    * FM_index_R - now returns NA when comparing NA vectors (when, for example, there is no possible split for some k), instead of crashing (as it did before).
    * Bk_plot - now won't turn one dendrogram into hclust, while leaving the other a dendrogram.
 
-##OTHER NOTES:
+###OTHER NOTES:
    * The dendextendRcpp package (version 0.2.0) is now on github, and offers functions for making cutree.dendrogram(k) MUCH faster (between 20 to 100 times faster). (this is besided having labels.dendrogram now also accept a leaf as a tree.)
 
-##VIGNETTES:
+###VIGNETTES:
    * Added Rcpp section.
    * Started the Bk section (some theory, but no code yet - although it is all written by now...).
 
 
 dendextend 0.9.0 (2013-08-18)
-================================
-##NEW FUNCTIONS ADDED: 
+----------------------------------------
+###NEW FUNCTIONS ADDED: 
    * sort_2_clusters_vectors
    * FM_index_profdpm 
    * FM_index_R
@@ -414,23 +421,23 @@ dendextend 0.9.0 (2013-08-18)
    * Bk_permutations
    * Bk_plot (it can be MUCH slower for dendrograms with large trees, but works great for hclust)
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * color_labels - removed unused 'groupLabels' parameter.
 
-##VIGNETTES:
+###VIGNETTES:
    * Added the FM Index section.
 
 FILE CHANGES:
    * Bk-method.r file added.
 
-##OTHER NOTES:
+###OTHER NOTES:
    * The dendextendRcpp package (version 0.1.1) is now on github, and offers a faster labels.dendrogram function (It is 20 to 40 times faster than the 'stats' function!)
    * Added a commented-out section which could (in the future) be the basis of an Rcpp cutree (actually cutree_1h.dendrogram) function!
 
 
 dendextend 0.8.0 (2013-08-14)
-================================
-##NEW FUNCTIONS ADDED: 
+----------------------------------------
+###NEW FUNCTIONS ADDED: 
    * cor_bakers_gamma
    * sample.dendrogram
    * rank_order.dendrogram - for fixing leaves value order.
@@ -440,10 +447,10 @@ dendextend 0.8.0 (2013-08-14)
    * sort_dist_mat
    * cor_cophenetic
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * tanglegram - added the match_order_by_labels parameter.
 
-##VIGNETTES:
+###VIGNETTES:
    * Added the Baker's Gamma Index section.
    * Added a bootstrap and permutation examples for inference on Baker's Gamma.
    * Also for Cophenetic correlation.
@@ -451,76 +458,76 @@ dendextend 0.8.0 (2013-08-14)
 FILE CHANGES:
    * sample.dendrogram.r file added.
 
-##BUG FIXES: 
+###BUG FIXES: 
    * fix_members_attr.dendrogram - fixed a bug introduced by the new "members" method in nleaves. (test added)
 
 dendextend 0.7.3 (2013-08-14)
-================================
-##NEW FUNCTIONS ADDED: 
+----------------------------------------
+###NEW FUNCTIONS ADDED: 
    * get_childrens_heights - Get height attributes from a dendrogram's children
    * rank_branches - ranks the heights of branches - making comparison of the topologies of two trees easier.
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * sort_levels_values - now returns a vector with NA's as is without changing it. Also, a warning is issued (with a parameter to supress the warning called 'warn')
    * cutree - now supresses warnings produced by sort_levels_values, in the case of NA values.
    * plotNode_horiz now uses "Recall" (I might implement this in more function).
    * tanglegram - added parameters hang and rank_branches.
 
-##BUG FIXES: 
+###BUG FIXES: 
    * tanglegram - fixed the right tree's labels position relative to the leaves tips. (they were too far away because of a combination of text_adj with dLeaf)
 
-##VIGNETTES:
+###VIGNETTES:
    * Fixed the dLeaf in tanglegram plots, and gave an example of using rank_branches. 
 
 
 dendextend 0.7.2 (2013-08-13)
-================================
-##NEW FUNCTIONS ADDED: 
+----------------------------------------
+###NEW FUNCTIONS ADDED: 
    * plotNode_horiz - allows the labels, in plot_horiz.dendrogram, to be aligned to the leaves tips when the tree is plotted horizontally, its leaves facing left.
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * plot_horiz.dendrogram - allows the labels to be aligned to the leaves tips when the tree is plotted horizontally, its leaves facing left. (took a lot of digging into internal functions used by plot.dendrogram)
    * tanglegram - added the parameters: dLeaf_left dLeaf_right. Also, labels are now alligned to the leaves tips in the right dendrogram.
 
-##BUG FIXES: 
+###BUG FIXES: 
    * Fix untangle_step_rotate_1side to work with non-missing dend_heights_per_k
    * Set sort_cluster_numbers = TRUE for cutree, in order to make it compatible with stats::cutree. Added a test for this.
    * Fix cutree.hclust to work with a vector of k when !order_clusters_as_data
    * Fix cutree.dendrogram to give default results as stats::hclust does, by setting the default to sort_cluster_numbers = TRUE.
 
-##OTHER NOTES:
+###OTHER NOTES:
    * Variations of the changes to plot_horiz.dendrogram and plotNode_horiz should be added to R core in order to allow forward compatability.
 
 
 dendextend 0.7.1 (2013-08-12)
-================================
-##NEW FUNCTIONS ADDED: 
+----------------------------------------
+###NEW FUNCTIONS ADDED: 
    * untangle_step_rotate_2side
 
-##VIGNETTES NEW SECTIONS ADDED:
+###VIGNETTES NEW SECTIONS ADDED:
    * untangle_forward_rotate_2side
 
 
 dendextend 0.7 (2013-08-11)
 ---------------------------
-##NEW FUNCTIONS ADDED: 
+###NEW FUNCTIONS ADDED: 
    * shuffle - Random rotation of trees
    * untangle_random_search - random search for two trees with low entanglement.
    * flip_leaves
    * all_couple_rotations_at_k
    * untangle_forward_rotate_1side
 
-##OTHER NOTES:
+###OTHER NOTES:
    * rotate - minor code improvements.
 
-##VIGNETTES NEW SECTIONS ADDED:
+###VIGNETTES NEW SECTIONS ADDED:
    * untangle_random_search 
    * untangle_forward_rotate_1side
 
 
 dendextend 0.6 (2013-08-10) 
 ---------------------------
-##NEW FUNCTIONS ADDED: 
+###NEW FUNCTIONS ADDED: 
    * tanglegram - major addition!
    * plot_horiz.dendrogram - Plotting a left-tip-adjusted horizontal dendrogram
    * remove_leaves_nodePar
@@ -531,37 +538,37 @@ dendextend 0.6 (2013-08-10)
    * match_order_dendrogram_by_old_order - like match_order_by_labels, but faster
    * entanglement
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * assign_values_to_leaves_nodePar - now makes sure pch==NA if we are modifying a nodePar value which is other than pch (and pch did not exist before).
    * nleaves - now allow the use of the "members" attr of a dendrogram for telling us the size of the tree.
 
-##OTHER NOTES:
+###OTHER NOTES:
    * entanglement.r file added
    * untangle.r file added
 
-##VIGNETTES NEW SECTIONS ADDED:
+###VIGNETTES NEW SECTIONS ADDED:
    * Tanglegram
    * Entanglement
 
 
 dendextend 0.5 (2013-08-05) 
 ---------------------------
-##NEW FUNCTIONS ADDED: 
+###NEW FUNCTIONS ADDED: 
    * tanglegram
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * rotate - fixes calling the same functions more than once (minor improvements)
    * fac2num - keep_names parameter added
    * intersect_trees - added the "warn" parameter.
 
-##NEW TESTS:
+###NEW TESTS:
    * order.dendrogram gives warning and can be changed
    * fac2num works
 
 
 dendextend 0.4 (2013-08-02) 
 ---------------------------
-##NEW FUNCTIONS ADDED: 
+###NEW FUNCTIONS ADDED: 
 (including tests and documentation)
    * is.natural.number
    * cutree_1h.dendrogram - like cutree, but only for 1 height value.
@@ -591,7 +598,7 @@ dendextend 0.4 (2013-08-02)
    
    * assign_values_to_leaves_nodePar - allows for complex manipulation of dendrogram's leaves parameters.
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * nleaves - added nleaves.phylo methods, based on as.hclust so it could be improved in the future.
    * "labels_colors<-" - fixed it so that by default it would not add phc=1 to the leaves.
    * "order.dendrogram<-" - now returns an integer (instead of numeric)
@@ -600,30 +607,30 @@ cutree on a subset tree (e.g: dend[[1]])
    * Renaming the unroot function -> to -> unbranch 
    * get_leaves_attr - added a simplify parameter.
 
-##OTHER NOTES:
+###OTHER NOTES:
    * Updated the exact way the GPL was stated in DESCRIPTION and gave a better reference within each file.
 
-##VIGNETTES NEW SECTIONS ADDED:
+###VIGNETTES NEW SECTIONS ADDED:
    * Hanging trees
    * Coloring branches.
    
 
 dendextend 0.3 (2013-07-27) 
 ---------------------------
-##NEW FUNCTIONS ADDED:
+###NEW FUNCTIONS ADDED:
    * removed "flip", added rev.hclust instead (since rev.dendrogram already exists)
 
-##VIGNETTES NEW SECTIONS ADDED:
+###VIGNETTES NEW SECTIONS ADDED:
    * Vignettes created (using LaTeX)
    * Basic introduction to dendrogram objects
    * Labels extraction and assignment, and measuring tree size.
    * Tree manipulation: unrooting, pruning, label coloring, rotation
 
-##NEW TESTS ADDED:
+###NEW TESTS ADDED:
    * labels extraction, assignment and tree size (especially important for comparing hclust and dendrogram!)
    * Tree manipulation: unrooting, pruning, label coloring, rotation
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * "labels.hclust" - added the "order" parameter. (based on some ideas from Gregory Jefferis's dendroextras package)
    * "labels.hclust" and "labels.hclust<-" - now both use order=TRUE as default. this makes them consistent with labels.dendrogram. Proper tests have been implemented.
    * "labels<-.dendrogram" - make sure the new dendrogram does not have each of its node of class "dendrogram" (which happens when using dendrapply)
@@ -633,7 +640,7 @@ dendextend 0.3 (2013-07-27)
    * as_hclust_fixed - now works just as as.hclust when hc is missing.
    * rotate - allowed "order" to accept character vector.
 
-##OTHER NOTES:
+###OTHER NOTES:
    * Extending the documentation for: rotate, labels.hclust,
    * Added a welcome massage to when loading the package (zzz.r file added)
    * Added a first template for browseVignettes(package ='dendextend')
@@ -645,7 +652,7 @@ dendextend 0.3 (2013-07-27)
 
 dendextend 0.2 (2013-04-10) 
 ---------------------------
-##NEW FUNCTIONS ADDED:
+###NEW FUNCTIONS ADDED:
    * count_terminal_nodes
    * labels_colors (retrieving and assignment)
    * unclass_dend
@@ -663,20 +670,20 @@ dendextend 0.2 (2013-04-10)
    * order.dendrogram<-
    * intersect_trees
 
-##UPDATED FUNCTIONS:
+###UPDATED FUNCTIONS:
    * "labels<-.dendrogram" - made sure to allow shorter length of labels than the size of the tree (now uses recycling).  This version is now sure to deal correctly with labeling trees with duplicate labels.
 
-##OTHER NOTES:
+###OTHER NOTES:
    * From here on I will be using "." only for S3 method functions.  Other functions will use "_"
    * Added more .r files, and changed the locations of some functions.
 
 dendextend 0.1 (2013-04-05) - FIRST version!
-================================
+----------------------------------------
 
-##NEW FUNCTIONS ADDED:
+###NEW FUNCTIONS ADDED:
    * S3 methods for label assignment operator for vector, dendrogram, hclust, matrix.
 
-##OTHER NOTES:
+###OTHER NOTES:
 	* Includes skeletons for some functions that will be added in the future.
 	
 
