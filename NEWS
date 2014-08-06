@@ -1,3 +1,19 @@
+dendextend 0.16.4 (2014-08-06)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * `as.dendrogram.pvclust` - extract the hclust from a pvclust object, and turns it into a dendrogram.
+   * `hc2axes` - imported from pvclust, needed for text.pvclust
+   * `text.pvclust` - imported from pvclust, adds text to a dend plot of a pvclust result
+   * `pvclust_show_signif` - Shows the significant branches in a dendrogram, based on a pvclust object
+   * `pvclust_show_signif_gradient` - Shows the gradient of significance of branches in a dendrogram, based on a pvclust object
+
+
+
+###UPDATED FUNCTIONS:
+   * `assign_values_to_leaves_nodePar`, `assign_values_to_nodes_nodePar`, `assign_values_to_branches_edgePar` - If the value has `Inf` (instead of NA!) then the value will not be changed. 
+
+
 dendextend 0.16.3 (2014-08-06)
 ----------------------------------------
 
