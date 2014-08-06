@@ -123,7 +123,6 @@ as.json.dendrogram <- function(d){
 #'   \code{axis_tickmark_offset (num;8)}        \tab Distance between axis and tick labels (pixels)
 #' }
 #'
-#' @export 
 d3dendro_options <- function(...,copy=FALSE){
    e <- if (!copy) D3DENDRODEFAULTS else as.environment(as.list(D3DENDRODEFAULTS))
    opts <- list(...)
