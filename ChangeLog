@@ -1,3 +1,123 @@
+* 2014-08-06(Tal Galili) NEW FUNCTIONS:    * `as.dendrogram.pvclust` - extract the hclust from a pvclust object, and turns it into a dendrogram.    * `hc2axes` - imported from pvclust, needed for text.pvclust    * `text.pvclust` - imported from pvclust, adds text to a dend plot of a pvclust result    * `pvclust_show_signif` - Shows the significant branches in a dendrogram, based on a pvclust object    * `pvclust_show_signif_gradient` - Shows the gradient of significance of branches in a dendrogram, based on a pvclust object |5677850| 
+|  NAMESPACE                           |   4 +
+|  NEWS                                |  16 ++
+|  R/pvclust.R                         | 281 ++++++++++++++++++++++++++++++++--
+|  man/pvclust_show_signif.Rd          |  65 ++++++++
+|  man/pvclust_show_signif_gradient.Rd |  58 +++++++
+|  5 files changed, 412 insertions(+), 12 deletions(-)
+
+* 2014-08-06(Tal Galili) Move from is.finite to !is.infinite - so to be able to handle characters and not just numbers! |c00faa7| 
+|  R/attr_access.R | 6 +++---
+|  1 file changed, 3 insertions(+), 3 deletions(-)
+
+* 2014-08-06(Tal Galili)  `assign_values_to_leaves_nodePar`, `assign_values_to_nodes_nodePar`, `assign_values_to_branches_edgePar` - If the value has `Inf` (instead of NA!) then the value will not be changed. |d44661d| 
+|  R/attr_access.R                          | 16 +++++++---------
+|  inst/tests/test-set.dendrogram.R         |  8 ++++----
+|  man/assign_values_to_branches_edgePar.Rd |  4 +---
+|  man/assign_values_to_leaves_nodePar.Rd   |  2 +-
+|  man/assign_values_to_nodes_nodePar.Rd    |  6 +++---
+|  5 files changed, 16 insertions(+), 20 deletions(-)
+
+* 2014-08-06(Tal Galili) Version bump to 0.16.3 |91b0884| 
+|  DESCRIPTION | 9 +++++----
+|  1 file changed, 5 insertions(+), 4 deletions(-)
+
+* 2014-08-06(Tal Galili) `assign_values_to_nodes_nodePar` - Assign values to nodePar of dendrogram's nodes |5dbfb56| 
+|  NAMESPACE                              |   2 +-
+|  NEWS                                   |   6 ++
+|  R/attr_access.R                        | 116 +++++++++++++++++++++++++++++--
+|  man/assign_values_to_leaves_nodePar.Rd |   6 +-
+|  man/assign_values_to_nodes_nodePar.Rd  |  55 +++++++++++++++
+|  5 files changed, 177 insertions(+), 8 deletions(-)
+
+* 2014-08-06(Tal Galili) NEWS - updated to use header 2 and 3 instead of 1 and 2 for the markdown version. |a025624| 
+|  NEWS | 271 +++++++++++++++++++++++++++++++++--------------------------------
+|  1 file changed, 139 insertions(+), 132 deletions(-)
+
+* 2014-08-06(mark) removed export directive |09030d7| 
+|  R/d3dendrogram.R | 1 -
+|  1 file changed, 1 deletion(-)
+
+* 2014-08-06(mark) Added and documented global options |bfc2809| 
+|  NAMESPACE        |  1 +
+|  R/d3dendrogram.R | 96 ++++++++++++++++++++++++++++++++++++++++++------------
+|  R/zzz.R          |  3 ++
+|  3 files changed, 79 insertions(+), 21 deletions(-)
+
+* 2014-08-06(mark) d3dendrogram accepts global options, e.g. node_fill |2d39826| 
+|  R/d3dendrogram.R | 89 +++++++++++++++++++++++++++++++++++-------------------
+|  1 file changed, 58 insertions(+), 31 deletions(-)
+
+* 2014-08-06(mark) d3dendrogram now opens in (RStudio) viewer by default |10a64b3| 
+|  R/d3dendrogram.R | 33 ++++++++++++++++++++++-----------
+|  1 file changed, 22 insertions(+), 11 deletions(-)
+
+* 2014-07-29(Tal Galili) require -> library (Thanks Yihui: http://yihui.name/en/2014/07/library-vs-require/) |e676951| 
+|  DESCRIPTION                         |  4 +--
+|  NEWS                                |  8 ++++++
+|  R/as.dendrogram.randomForest.R      |  2 +-
+|  R/attr_access.R                     |  6 ++---
+|  R/bk_method.R                       |  4 +--
+|  R/branches_attr_by.R                |  8 +++---
+|  R/color_branches.R                  | 10 ++++----
+|  R/colored_bars.R                    |  6 ++---
+|  R/cor_bakers_gamma.R                |  4 +--
+|  R/cor_cophenetic.R                  |  2 +-
+|  R/cut_lower_fun.R                   |  8 +++---
+|  R/cutree.dendrogram.R               | 10 ++++----
+|  R/d3dendrogram.R                    |  6 ++---
+|  R/nleaves.R                         |  8 +++---
+|  R/noded_with_condition.R            | 12 ++++-----
+|  R/pvclust.R                         |  4 +--
+|  R/rotate.R                          |  6 ++---
+|  R/set.dendrogram.R                  |  2 +-
+|  R/trim.R                            |  2 +-
+|  R/unbranch.R                        |  2 +-
+|  R/untangle.R                        | 20 +++++++--------
+|  R/zzz.R                             | 10 ++++----
+|  TODO                                |  4 +++
+|  demo/dendextend.R                   |  2 +-
+|  inst/tests/test-attr_access.R       |  4 +--
+|  inst/tests/test-bk_method.R         |  2 +-
+|  inst/tests/test-cor_bakers_gamma.R  |  2 +-
+|  inst/tests/test-cor_cophenetic.R    |  2 +-
+|  inst/tests/test-cut_lower_fun.R     |  8 +++---
+|  inst/tests/test-cutree.dendrogram.R |  8 +++---
+|  inst/tests/test-dendlist.R          |  2 +-
+|  inst/tests/test-entanglement.R      |  4 +--
+|  inst/tests/test-labels-assign.R     |  2 +-
+|  inst/tests/test-nleaves.R           |  2 +-
+|  inst/tests/test-rotate.R            |  4 +--
+|  inst/tests/test-set.dendrogram.R    | 10 ++++----
+|  inst/tests/test-trim.R              |  4 +--
+|  inst/tests/test-untangle.R          |  4 +--
+|  man/DendSer.dendrogram.Rd           |  2 +-
+|  man/FM_index.Rd                     |  2 +-
+|  man/FM_index_permutation.Rd         |  2 +-
+|  man/branches_attr_by_clusters.Rd    |  6 ++---
+|  man/branches_attr_by_labels.Rd      |  4 +--
+|  man/color_branches.Rd               |  6 ++---
+|  man/cor_bakers_gamma.Rd             |  2 +-
+|  man/cor_cophenetic.Rd               |  2 +-
+|  man/cut_lower_fun.Rd                |  6 ++---
+|  man/cutree-methods.Rd               |  2 +-
+|  man/cutree_1h.dendrogram.Rd         |  2 +-
+|  man/cutree_1k.dendrogram.Rd         |  2 +-
+|  man/get_branches_heights.Rd         |  4 +--
+|  man/get_nodes_attr.Rd               |  2 +-
+|  man/heights_per_k.dendrogram.Rd     |  2 +-
+|  man/na_locf.Rd                      |  4 +--
+|  man/noded_with_condition.Rd         |  4 +--
+|  man/rotate_DendSer.Rd               |  2 +-
+|  man/set.Rd                          |  2 +-
+|  man/which_leaf.Rd                   |  4 +--
+|  vignettes/dendextend-tutorial.rnw   | 48 +++++++++++++++++------------------
+|  59 files changed, 165 insertions(+), 153 deletions(-)
+
+* 2014-07-26(Tal Galili) ChangeLog |2257d2c| 
+|  ChangeLog | 20 ++++++++++++++++++++
+|  1 file changed, 20 insertions(+)
+
 * 2014-07-26(Tal Galili) Comment out example code that won't run. |f39d69e| 
 |  NEWS.md     |   7 ++
 |  R/pvclust.R | 242 +++++++++++++++++++++++++++++-----------------------------
