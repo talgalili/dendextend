@@ -17,40 +17,49 @@
 #
 
 
-# plot dendrogram to html string. 
-#
-# d a dendrogram object
-# height/widht : pixels, height/widht of the plot
-# rightmargin  : pixels to reserve on the right side for leaf labels.
-# open         : open the graphic in a browser? (see details).
-#
-# @details
-# If \code{open=TRUE}, the graphic is opened using the function defined by \code{getOption("viewer")}.
-# If no \code{viewer} option is specified, \code{utils::browseURL} is opened. Specifically, in RStudio
-# this means that the viewer is used.
-#
-#
-# @return
-# If \code{open=TRUE}, a character string containing the html is invisibly retured.
-# If \code{open=TRUE}, a character string containing the html is returned.
-d3dendrogram <- function(d,height=500,width=700,rightmargin=200, open=TRUE){
-  e <- new.env()
+#' plot dendrogram to html string. 
+#'
+#' @param d a dendrogram object
+#' @param height/widht : pixels, height/widht of the plot
+#' @param rightmargin  : pixels to reserve on the right side for leaf labels.
+#' @param open         : open the graphic in a browser? (see details).
+#'
+#' @details
+#' If \code{open=TRUE}, the graphic is opened using the function defined by \code{getOption("viewer")}.
+#' If no \code{viewer} option is specified, \code{utils::browseURL} is opened. Specifically, in RStudio
+#' this means that the viewer is used.
+#'
+#'
+#' @return
+#' If \code{open=TRUE}, a character string containing the html is invisibly retured.
+#' If \code{open=TRUE}, a character string containing the html is returned.
+#' 
+d3dendrogram <- function(d,height=500,width=700,rightmargin=200, open=TRUE,...){
+  # set default options.
+  e <- d3dendro_defaults() 
+  # overwrite options if any.
+  opts <- list(...)
+  for ( x in names(opts) ) e[[x]] <- opts[[x]]
+  
+  # compute json rep of dendrogram
   e$json_dendrogram <- as.json.dendrogram(d)
   e$height <- height
   e$width <- width
   e$rightmargin <- rightmargin
+  
+  # render webpage.
   html <- whisker::whisker.render(d3dendro_template(),data=e)
+
   if (open){ # open in (customized) viewer
      tmpfile <- tempfile(fileext = ".html")
-     write(html,tmpfile)
+     write(html,file=tmpfile)
      v <- getOption('viewer')
      view <- if ( !is.null(v) ) v else function(x) utils::browseURL(x)
-     view(html)
+     view(tmpfile)
      return(invisible(html))
   }
   return(html)
 }
-
 
 as.json.dendrogram <- function(d){
   # internal helper function
@@ -75,8 +84,25 @@ as.json.dendrogram <- function(d){
   json
 }
 
+#' Get defaults for d3dendrogram
+#'
+d3dendro_options <- function(){
+   as.list(d3dendro_defaults())
+}
 
-
+d3dendro_defaults <- function(){
+   e <- new.env()
+   e$node_fill <- "#fff"
+   e$node_stroke <- "steelblue"
+   e$node_stroke.width <- "1.5px"
+   e$node_font <- "14px sans-serif"
+   e$link_fill <- "none"
+   e$link_stroke <- "#ccc"
+   e$link_stroke_width <- "1.5px"
+   e$axis_stroke <- "black"
+   e$axis_width <- "2px"
+   e
+}
 
 
 
@@ -86,20 +112,21 @@ d3dendro_template <- function(){
 <html><head>
 <style>
   .node circle {           
-    fill: #fff;           
-    stroke: steelblue;           
-    stroke-width: 1.5px;   
+    fill: {{{node_fill}}};
+    stroke: {{{node_stroke}}};           
+    stroke-width: {{{node_stroke_width}}};   
   }   
-  .node {           
-    font: 14px sans-serif;   
+  .node {
+    font: {{{node_font}}};   
   }   
   .link {           
-    fill: none;           
-    stroke: #ccc;          
-    stroke-width: 1.5px;   
+    fill: {{{link_fill}}};           
+    stroke: {{{link_stroke}}};          
+    stroke-width: {{{link_stroke_width}}};   
   }   
   line {           
-    stroke: black;   
+    stroke: {{{axis_stroke}}};
+    stroke-width: {{{axis_width}}};
   }
 </style>
 <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
