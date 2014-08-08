@@ -199,7 +199,7 @@ cor_cophenetic.dendlist <- function(tree1, which = c(1L, 2L), method = c("pearso
 # 
 # 
 # # ' @S3method cor_bakers_gamma dendrogram
-# cor_cophenetic.dendrogram <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = TRUE, ...)
+# cor_cophenetic.dendrogram <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
 # {
 #     return(bakers_gamma)
 # }

@@ -288,14 +288,14 @@ if(F) {
    is.integer(labels(dend_iris)) # this could cause problems...
    
    # than add this function to color_labels, add a labels parameter - and have it override everything else!
-   plot(color_labels_by_labels(dend_iris, c("1","4"), c(2,3,5), warn = T))
+   plot(color_labels_by_labels(dend_iris, c("1","4"), c(2,3,5), warn = TRUE))
    
    # Maybe I should create color_labels_by_kh!!!
    color_labels
    # add a "warn" parameter
 }
 
-color_labels_by_labels <- function(tree, labels, col, warn=FALSE, ...) {
+color_labels_by_labels <- function(tree, labels, col, warn = dendextend_options("warn"), ...) {
    tree_labels <- labels(tree)
    tree_col <- labels_colors(tree)
    
@@ -356,7 +356,9 @@ color_labels_by_labels <- function(tree, labels, col, warn=FALSE, ...) {
 #' It will fall back on the \link{rainbow} function.
 #' @param labels character vecotor. If not missing, it overrides k and h,
 #' and simply colors these labels in the tree based on "col" parameter.
-#' @param warn logical (FALSE). Should warning be issued?
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' (in case h/k/labels are not supplied, or if col is too short)
 #' @param ... ignored.
 #' @return a tree object of class dendrogram.
@@ -388,7 +390,7 @@ color_labels_by_labels <- function(tree, labels, col, warn=FALSE, ...) {
 #' 
 #' } 
 #' 
-color_labels <- function(tree,k=NULL,h=NULL,labels, col,warn =FALSE,...){
+color_labels <- function(tree, k=NULL, h=NULL, labels, col, warn = dendextend_options("warn"),...){
 
    if(!missing(labels)) return(color_labels_by_labels(tree=tree, labels=labels, col=col, warn=warn, ...) )     
    

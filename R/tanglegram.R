@@ -503,11 +503,12 @@ plot_horiz.dendrogram <- function (x,
 #' @param color_lines a vector of colors for the lines connected the labels.
 #' If the colors are shorter than the number of labels, they are recycled 
 #' (and a warning is issued).
-#' @param lwd width of the lines connecting the labels.
+#' @param lwd width of the lines connecting the labels. (default is 3.5)
 #' @param edge.lwd width of the dendrograms lines.
 #' @param columns_width a vector with three elements, giving the relative
 #' sizes of the the three plots (left dendrogram, connecting lines, 
-#' right dendrogram). This is passed to \link{layout}.
+#' right dendrogram). This is passed to \link{layout}. 
+#' The default is: c(5,3,5)
 #' @param margin_top  the number of lines of margin to be specified on the top
 #' of the plots.
 #' @param margin_bottom the number of lines of margin to be specified on the 
@@ -702,8 +703,8 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    }
    # adjust labels cex:
    if(!is.null(lab.cex)) {
-      tree1 <- assign_values_to_leaves_nodePar(tree1, lab.cex, "lab.cex", warn = FALSE)
-      tree2 <- assign_values_to_leaves_nodePar(tree2, lab.cex, "lab.cex", warn = FALSE)
+      tree1 <- assign_values_to_leaves_nodePar(tree1, lab.cex, "lab.cex", warn = dendextend_options("warn"))
+      tree2 <- assign_values_to_leaves_nodePar(tree2, lab.cex, "lab.cex", warn = dendextend_options("warn"))
    }
    if(!is.null(edge.lwd)) {
       tree1 <- assign_values_to_branches_edgePar(tree1, edge.lwd, "lwd")
@@ -754,7 +755,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    # The first dendrogram:	
    #################
    par(mar=left_dendo_mar)
-   plot(tree1,horiz=TRUE, ylim=c(0,l),
+   plot(tree1, horiz = TRUE, ylim = c(0,l),
         dLeaf = dLeaf_left, 
         type = type, axes = axes,
         main = main_left,

@@ -38,8 +38,10 @@
 #' @param tree a dendrogram object.
 #' @param h a scalar of height to cut the tree by.
 #' @param FUN a function to run. (default is "labels")
-#' @param warn logical (FALSE) - should the user be warned if reverting to
-#' default? (I set it to FALSE since it can be very noisy sometimes...)
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
+#' Should the user be warned if reverting to default?
 #' @param ... passed to FUN.
 #' @return A list with the output of running FUN on each of the 
 #' sub trees derived from cutting "tree"
@@ -66,7 +68,7 @@
 #' # about 7-15 times faster. It is faster the larger the tree is, and the lower h is.
 #' }
 #' 
-cut_lower_fun <- function(tree, h, FUN = labels, warn = FALSE, ...) {
+cut_lower_fun <- function(tree, h, FUN = labels, warn = dendextend_options("warn"), ...) {
 #    fo <- options()$dendextend_cut_lower_fun
 #    if(is.null(fo)) fo <- dendextend::cut_lower_fun_dendextend
    # the above is NOT faster then what is below
@@ -77,7 +79,7 @@ cut_lower_fun <- function(tree, h, FUN = labels, warn = FALSE, ...) {
 
 
 #' @export
-dendextend_cut_lower_fun <- function(tree, h, FUN = labels, warn = FALSE, ...) {
+dendextend_cut_lower_fun <- function(tree, h, FUN = labels, warn = dendextend_options("warn"), ...) {
    
    if(!is.dendrogram(tree)) stop("'tree' needs to be a dendrogram. Aborting the function 'cut_lower_labels'.")
    

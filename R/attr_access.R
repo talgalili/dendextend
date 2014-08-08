@@ -518,11 +518,9 @@ rank_branches <- function(dend, diff_height =1, ...) {
 #' the same length as the number of leaves in the tree. If not, it will recycle
 #' the value and issue a warning.
 #' @param nodePar the value inside nodePar to adjust.
-#' @param warn logical (TRUE). Should warning be issued?
-#' Generally, it is safer to keep this at TRUe.
-#' But for specific uses it might be more user-friendly
-#' to turn it off (for example, in the \link{tanglegram}
-#' function)
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' @param ... not used
 #' @return 
 #' A dendrogram, after adjusting the nodePar attribute in all of its leaves, 
@@ -554,7 +552,7 @@ rank_branches <- function(dend, diff_height =1, ...) {
 #' 
 #' }
 #' 
-assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE, ...) {
+assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = dendextend_options("warn"), ...) {
    if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
    
    if(missing(value)) {
@@ -623,11 +621,9 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
 #' the value and issue a warning.
 #' @param nodePar the value inside nodePar to adjust. 
 #' This may contain components named pch, cex, col, xpd, and/or bg.
-#' @param warn logical (TRUE). Should warning be issued?
-#' Generally, it is safer to keep this at TRUe.
-#' But for specific uses it might be more user-friendly
-#' to turn it off (for example, in the \link{tanglegram}
-#' function)
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' @param ... not used
 #' @return 
 #' A dendrogram, after adjusting the nodePar attribute in all of its nodes, 
@@ -650,7 +646,7 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = TRUE,
 #' 
 #' }
 #' 
-assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "cex", "col", "xpd", "bg"), warn = TRUE, ...) {
+assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "cex", "col", "xpd", "bg"), warn = dendextend_options("warn"), ...) {
    if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
    
    if(missing(value)) {
@@ -718,11 +714,9 @@ assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "ce
 #' @param value a new value scalar for the edgePar attribute. 
 #' @param edgePar the value inside edgePar to adjust.
 #' @param skip_leaves logical (FALSE) - should the leaves be skipped/ignored?
-#' @param warn logical (TRUE). Should warning be issued?
-#' Generally, it is safer to keep this at TRUe.
-#' But for specific uses it might be more user-friendly
-#' to turn it off (for example, in the \link{tanglegram}
-#' function)
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' @param ... not used
 #' @return 
 #' A dendrogram, after adjusting the edgePar attribute in all of its branches, 
@@ -742,7 +736,7 @@ assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "ce
 #' 
 #' }
 #' 
-assign_values_to_branches_edgePar <- function(object, value, edgePar, skip_leaves = FALSE, warn = TRUE, ...) {
+assign_values_to_branches_edgePar <- function(object, value, edgePar, skip_leaves = FALSE, warn = dendextend_options("warn"), ...) {
    if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
   
    if(missing(value)) {

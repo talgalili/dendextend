@@ -193,8 +193,10 @@ prune.phylo <- function(x,...) {
 #' @export
 #' @param x1 tree object (dendrogram/hclust/phylo)
 #' @param x2 tree object (dendrogram/hclust/phylo)
-#' @param warn logical (FALSE). Should a warning be issued if there
-#' was a need to perform intersaction.
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
+#' Should a warning be issued if there was a need to perform intersaction.
 #' @param ... passed on
 #' @return A list with two pruned trees
 #' @seealso \link{prune}, \link{intersect}, \link{labels}
@@ -217,7 +219,7 @@ prune.phylo <- function(x,...) {
 #'       main = "Tree 2 pruned
 #'       with the labels that intersected with those of Tree 1")
 #' 
-intersect_trees <- function(x1, x2, warn= FALSE, ...){
+intersect_trees <- function(x1, x2, warn = dendextend_options("warn"), ...){
    labels_x1 <- labels(x1)
    labels_x2 <- labels(x2)
    intersected_labels <- intersect(labels_x1, labels_x2)

@@ -32,7 +32,9 @@
 #' vectors are sorter so that they have the same order of items?
 #' IF FALSE (default), then the vectors will be sorted based on their
 #' name attribute.
-#' @param warn logical (TRUE). Should a warning be issued in case of problems?
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' @param ... Ignored.
 #' 
 #' @seealso
@@ -60,7 +62,7 @@
 #' 
 #' 
 #' }
-sort_2_clusters_vectors <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, warn = TRUE, ...) {
+sort_2_clusters_vectors <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, warn = dendextend_options("warn"), ...) {
    
    # sanity checks in case the names of the vectors do not make sense:
    if(!assume_sorted_vectors) {      
@@ -119,7 +121,9 @@ sort_2_clusters_vectors <- function(A1_clusters, A2_clusters, assume_sorted_vect
 #' vectors are sorter so that they have the same order of items?
 #' IF FALSE (default), then the vectors will be sorted based on their
 #' name attribute.
-#' @param warn logical (TRUE). Should a warning be issued in case of problems?
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' @param ... Ignored.
 #' 
 #' @details
@@ -177,7 +181,7 @@ sort_2_clusters_vectors <- function(A1_clusters, A2_clusters, assume_sorted_vect
 #' plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the iris dataset")
 #' 
 #' }
-FM_index_profdpm <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, warn = TRUE, ...) {
+FM_index_profdpm <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, warn = dendextend_options("warn"), ...) {
    if(!require("profdpm")) {
       if(warn) warning("The 'profdpm' package is not installed. Reverting to using the 'FM_index_R' function.")
       return(FM_index_R(A1_clusters, A2_clusters,assume_sorted_vectors = assume_sorted_vectors, warn= warn,...))
@@ -231,7 +235,9 @@ FM_index_profdpm <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FA
 #' vectors are sorter so that they have the same order of items?
 #' IF FALSE (default), then the vectors will be sorted based on their
 #' name attribute.
-#' @param warn logical (TRUE). Should a warning be issued in case of problems?
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' @param ... Ignored.
 #' 
 #' @details
@@ -291,7 +297,7 @@ FM_index_profdpm <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FA
 #' FM_index_R(clu_1, clu_2) # NA
 #' 
 #' }
-FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, warn = TRUE, ...) {
+FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, warn = dendextend_options("warn"), ...) {
    
    if(!assume_sorted_vectors) {
       sorted_As <- sort_2_clusters_vectors(A1_clusters, A2_clusters,
@@ -392,7 +398,9 @@ FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, w
 #' vectors are sorter so that they have the same order of items?
 #' IF FALSE (default), then the vectors will be sorted based on their
 #' name attribute.
-#' @param warn logical (TRUE). Should a warning be issued in case of problems?
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' @param ... Ignored (passed to FM_index_R/FM_index_profdpm).
 #' 
 #' @details
@@ -463,7 +471,7 @@ FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, w
 #' plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the iris dataset")
 #' 
 #' }
-FM_index <- function(A1_clusters, A2_clusters, include_EV = TRUE, assume_sorted_vectors =FALSE, warn = TRUE, ...) {
+FM_index <- function(A1_clusters, A2_clusters, include_EV = TRUE, assume_sorted_vectors =FALSE, warn = dendextend_options("warn"), ...) {
 
    if(include_EV) {
       FM <- FM_index_R(A1_clusters, A2_clusters, 
@@ -495,7 +503,9 @@ FM_index <- function(A1_clusters, A2_clusters, include_EV = TRUE, assume_sorted_
 #' @param A2_clusters a numeric vector of cluster grouping (numeric) of items,
 #' with a name attribute of item name for each element from group A2.
 #' These are often obtained by using some k cut on a dendrogram.
-#' @param warn logical (TRUE). Should a warning be issued in case of problems?
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' @param ... Ignored (passed to FM_index_R/FM_index_profdpm).
 #' 
 #' 
@@ -560,7 +570,7 @@ FM_index <- function(A1_clusters, A2_clusters, include_EV = TRUE, assume_sorted_
 #' 
 #' legend("topright", legend = c("asymptotic", "permutation"), fill = c(4,1))
 #' }
-FM_index_permutation <- function(A1_clusters, A2_clusters, warn = TRUE, ...) {
+FM_index_permutation <- function(A1_clusters, A2_clusters, warn = dendextend_options("warn"), ...) {
    return(
       as.vector(FM_index(sample(A1_clusters), 
                sample(A2_clusters), 
@@ -604,9 +614,9 @@ FM_index_permutation <- function(A1_clusters, A2_clusters, warn = TRUE, ...) {
 #' of the FM Index under null hypothesis of no relation between the clusterings?
 #' If TRUE (Default) - then the \link{FM_index_R} function, else (FALSE)
 #' we use the (faster) \link{FM_index_profdpm} function.
-#' @param warn logical (TRUE). Should a warning be issued in case of problems?
-#' If set to TRUE, extra checks are made to varify that the two clusters have
-#' the same size and the same labels.
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' @param ... Ignored (passed to FM_index_R/FM_index_profdpm).
 #' 
 #' @details
@@ -674,7 +684,7 @@ FM_index_permutation <- function(A1_clusters, A2_clusters, warn = TRUE, ...) {
 #' # for this we'll have the Bk_plot function.
 #' 
 #' }
-Bk <- function(tree1, tree2, k,  include_EV = TRUE, warn = TRUE, ...) {
+Bk <- function(tree1, tree2, k,  include_EV = TRUE, warn = dendextend_options("warn"), ...) {
    
    # some sanity checks!
    if(warn) {   # the sanity checks are turned off by default since the "labels" function for dendrogram is one which takes some time to run...
@@ -754,7 +764,9 @@ Bk <- function(tree1, tree2, k,  include_EV = TRUE, warn = TRUE, ...) {
 #' 2:(nleaves-1).
 #' No point in checking k=1/k=n, since both will give Bk=1.
 #' @param R integer (Default is 1000). The number of Bk permutation to perform for each k.
-#' @param warn logical (TRUE). Should a warning be issued in case of problems?
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' If set to TRUE, extra checks are made to varify that the two clusters have
 #' the same size and the same labels.
 #' @param ... Ignored (passed to FM_index_R/FM_index_profdpm).
@@ -809,7 +821,7 @@ Bk <- function(tree1, tree2, k,  include_EV = TRUE, warn = TRUE, ...) {
 #' points(1, y= some_Bk, pch = 19, col = 2 )
 #' 
 #' }
-Bk_permutations <- function(tree1, tree2, k,  R = 1000, warn = TRUE, ...) {
+Bk_permutations <- function(tree1, tree2, k,  R = 1000, warn = dendextend_options("warn"), ...) {
    
    # some sanity checks!
    if(warn) {   # the sanity checks are turned off by default since the "labels" function for dendrogram is one which takes some time to run...
@@ -890,7 +902,9 @@ Bk_permutations <- function(tree1, tree2, k,  R = 1000, warn = TRUE, ...) {
 #' @param col_line_Bk the color of the Bk line.
 #' @param col_line_asymptotic the color of the rejection asymptotic Bk line.
 #' @param col_line_permutation the color of the rejection asymptotic Bk line.
-#' @param warn logical (TRUE). Should a warning be issued in case of problems?
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' If set to TRUE, extra checks are made to varify that the two clusters have
 #' the same size and the same labels.
 #' @param main passed to \link{plot}.
@@ -994,7 +1008,7 @@ Bk_plot <- function(tree1, tree2, k,
                     col_line_Bk = 1,
                     col_line_asymptotic = 2,
                     col_line_permutation = 4,
-                    warn = TRUE,
+                    warn = dendextend_options("warn"),
                     main = "Bk plot",
                     xlab = "k (number of clusters)",
                     ylab = "Bk (Fowlkes-Mallows Index)",
