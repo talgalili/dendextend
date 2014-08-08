@@ -678,7 +678,7 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
 #' entanglement(dend12_corrected_2[[1]],dend12_corrected_2[[2]], L=2) # 0 - PERFECT.
 #' 
 #' }                              
-untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("forward", "backward"), max_n_iterations = 10L, print_times = TRUE, 
+untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("forward", "backward"), max_n_iterations = 10L, print_times = dendextend_options("warn"),
                                        k_seq = NULL,...) {
    # this function gets two dendgrams, and orders dend1 and 2 until a best entengelment is reached.
    
