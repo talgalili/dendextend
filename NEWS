@@ -1,3 +1,11 @@
+dendextend 0.16.5 (2014-08-08)
+----------------------------------------
+
+###NEW FILES:
+   * dendextend_options.R - moved `dendextend_options` functions to it.
+
+
+
 dendextend 0.16.4 (2014-08-06)
 ----------------------------------------
 
