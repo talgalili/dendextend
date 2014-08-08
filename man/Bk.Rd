@@ -3,7 +3,8 @@
 \alias{Bk}
 \title{Bk - Calculating Fowlkes-Mallows Index for two dendrogram}
 \usage{
-Bk(tree1, tree2, k, include_EV = TRUE, warn = TRUE, ...)
+Bk(tree1, tree2, k, include_EV = TRUE, warn = dendextend_options("warn"),
+  ...)
 }
 \arguments{
 \item{tree1}{a dendrogram/hclust/phylo object.}
@@ -21,9 +22,9 @@ of the FM Index under null hypothesis of no relation between the clusterings?
 If TRUE (Default) - then the \link{FM_index_R} function, else (FALSE)
 we use the (faster) \link{FM_index_profdpm} function.}
 
-\item{warn}{logical (TRUE). Should a warning be issued in case of problems?
-If set to TRUE, extra checks are made to varify that the two clusters have
-the same size and the same labels.}
+\item{warn}{logical (default from dendextend_options("warn") is FALSE).
+Set if warning are to be issued, it is safer to keep this at TRUE,
+but for keeping the noise down, the default is FALSE.}
 
 \item{...}{Ignored (passed to FM_index_R/FM_index_profdpm).}
 }

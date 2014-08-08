@@ -76,13 +76,14 @@ which of the trees in the dendlist object should be plotted}
 If the colors are shorter than the number of labels, they are recycled
 (and a warning is issued).}
 
-\item{lwd}{width of the lines connecting the labels.}
+\item{lwd}{width of the lines connecting the labels. (default is 3.5)}
 
 \item{edge.lwd}{width of the dendrograms lines.}
 
 \item{columns_width}{a vector with three elements, giving the relative
 sizes of the the three plots (left dendrogram, connecting lines,
-right dendrogram). This is passed to \link{layout}.}
+right dendrogram). This is passed to \link{layout}.
+The default is: c(5,3,5)}
 
 \item{margin_top}{the number of lines of margin to be specified on the top
 of the plots.}

@@ -3,7 +3,8 @@
 \alias{Bk_permutations}
 \title{Bk permutation - Calculating Fowlkes-Mallows Index for two dendrogram}
 \usage{
-Bk_permutations(tree1, tree2, k, R = 1000, warn = TRUE, ...)
+Bk_permutations(tree1, tree2, k, R = 1000,
+  warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{tree1}{a dendrogram/hclust/phylo object.}
@@ -18,7 +19,9 @@ No point in checking k=1/k=n, since both will give Bk=1.}
 
 \item{R}{integer (Default is 1000). The number of Bk permutation to perform for each k.}
 
-\item{warn}{logical (TRUE). Should a warning be issued in case of problems?
+\item{warn}{logical (default from dendextend_options("warn") is FALSE).
+Set if warning are to be issued, it is safer to keep this at TRUE,
+but for keeping the noise down, the default is FALSE.
 If set to TRUE, extra checks are made to varify that the two clusters have
 the same size and the same labels.}
 

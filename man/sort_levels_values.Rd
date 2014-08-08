@@ -4,7 +4,7 @@
 \title{Sort the values level in a vector}
 \usage{
 sort_levels_values(x, MARGIN = 2, decreasing = FALSE,
-  force_integer = FALSE, warn = TRUE, ...)
+  force_integer = FALSE, warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{x}{a numeric vector.}
@@ -19,8 +19,10 @@ which the function will be applied over.
 
 \item{force_integer}{logical (FALSE). Should the values returned be integers?}
 
-\item{warn}{logical (TRUE). Should the function print warnings? (for example
-when x had NA values in it)}
+\item{warn}{logical (default from dendextend_options("warn") is FALSE).
+Set if warning are to be issued, it is safer to keep this at TRUE,
+but for keeping the noise down, the default is FALSE.
+(for example when x had NA values in it)}
 
 \item{...}{ignored.}
 }

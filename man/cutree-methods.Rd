@@ -56,8 +56,10 @@ be sorted? (default is TRUE in order to make the function compatible with
 \code{ \link[stats]{cutree}  } ) from {stats}, but it allows for sensible
 color order when using \link{color_branches}.}
 
-\item{warn}{logical. Should the function send a warning in case the desried
-k is not available? (deafult is TRUE)}
+\item{warn}{logical (default from dendextend_options("warn") is FALSE).
+Set if warning are to be issued, it is safer to keep this at TRUE,
+but for keeping the noise down, the default is FALSE.
+Should the function send a warning in case the desried k is not available?}
 
 \item{try_cutree_hclust}{logical. default is TRUE. Since cutree for hclust is
 MUCH faster than for dendrogram - cutree.dendrogram will first try to change the

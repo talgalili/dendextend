@@ -4,7 +4,7 @@
 \title{Calculating Fowlkes-Mallows Index}
 \usage{
 FM_index(A1_clusters, A2_clusters, include_EV = TRUE,
-  assume_sorted_vectors = FALSE, warn = TRUE, ...)
+  assume_sorted_vectors = FALSE, warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{A1_clusters}{a numeric vector of cluster grouping (numeric) of items,
@@ -25,7 +25,9 @@ vectors are sorter so that they have the same order of items?
 IF FALSE (default), then the vectors will be sorted based on their
 name attribute.}
 
-\item{warn}{logical (TRUE). Should a warning be issued in case of problems?}
+\item{warn}{logical (default from dendextend_options("warn") is FALSE).
+Set if warning are to be issued, it is safer to keep this at TRUE,
+but for keeping the noise down, the default is FALSE.}
 
 \item{...}{Ignored (passed to FM_index_R/FM_index_profdpm).}
 }

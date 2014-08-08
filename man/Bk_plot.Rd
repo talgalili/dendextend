@@ -7,9 +7,9 @@ Bk_plot(tree1, tree2, k, add_E = TRUE, rejection_line_asymptotic = TRUE,
   rejection_line_permutation = FALSE, R = 1000, k_permutation,
   conf.level = 0.95, p.adjust.methods = c("none", "bonferroni"),
   col_line_Bk = 1, col_line_asymptotic = 2, col_line_permutation = 4,
-  warn = TRUE, main = "Bk plot", xlab = "k (number of clusters)",
-  ylab = "Bk (Fowlkes-Mallows Index)", xlim, ylim = c(0, 1),
-  try_cutree_hclust = TRUE, ...)
+  warn = dendextend_options("warn"), main = "Bk plot",
+  xlab = "k (number of clusters)", ylab = "Bk (Fowlkes-Mallows Index)",
+  xlim, ylim = c(0, 1), try_cutree_hclust = TRUE, ...)
 }
 \arguments{
 \item{tree1}{a dendrogram/hclust/phylo object.}
@@ -56,7 +56,9 @@ is implemented (based on the number of different k values).}
 
 \item{col_line_permutation}{the color of the rejection asymptotic Bk line.}
 
-\item{warn}{logical (TRUE). Should a warning be issued in case of problems?
+\item{warn}{logical (default from dendextend_options("warn") is FALSE).
+Set if warning are to be issued, it is safer to keep this at TRUE,
+but for keeping the noise down, the default is FALSE.
 If set to TRUE, extra checks are made to varify that the two clusters have
 the same size and the same labels.}
 

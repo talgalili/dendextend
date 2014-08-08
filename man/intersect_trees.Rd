@@ -3,15 +3,17 @@
 \alias{intersect_trees}
 \title{Intersect trees}
 \usage{
-intersect_trees(x1, x2, warn = FALSE, ...)
+intersect_trees(x1, x2, warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{x1}{tree object (dendrogram/hclust/phylo)}
 
 \item{x2}{tree object (dendrogram/hclust/phylo)}
 
-\item{warn}{logical (FALSE). Should a warning be issued if there
-was a need to perform intersaction.}
+\item{warn}{logical (default from dendextend_options("warn") is FALSE).
+Set if warning are to be issued, it is safer to keep this at TRUE,
+but for keeping the noise down, the default is FALSE.
+Should a warning be issued if there was a need to perform intersaction.}
 
 \item{...}{passed on}
 }

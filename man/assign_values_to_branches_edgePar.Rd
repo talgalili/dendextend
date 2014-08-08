@@ -4,7 +4,7 @@
 \title{Assign values to edgePar of dendrogram's branches}
 \usage{
 assign_values_to_branches_edgePar(object, value, edgePar, skip_leaves = FALSE,
-  warn = TRUE, ...)
+  warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{object}{a dendrogram object}
@@ -15,11 +15,9 @@ assign_values_to_branches_edgePar(object, value, edgePar, skip_leaves = FALSE,
 
 \item{skip_leaves}{logical (FALSE) - should the leaves be skipped/ignored?}
 
-\item{warn}{logical (TRUE). Should warning be issued?
-Generally, it is safer to keep this at TRUe.
-But for specific uses it might be more user-friendly
-to turn it off (for example, in the \link{tanglegram}
-function)}
+\item{warn}{logical (default from dendextend_options("warn") is FALSE).
+Set if warning are to be issued, it is safer to keep this at TRUE,
+but for keeping the noise down, the default is FALSE.}
 
 \item{...}{not used}
 }

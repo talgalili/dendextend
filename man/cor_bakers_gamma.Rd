@@ -4,7 +4,7 @@
 \title{Baker's Gamma correlation coefficient}
 \usage{
 cor_bakers_gamma(tree1, tree2, use_labels_not_values = TRUE,
-  to_plot = FALSE, warn = TRUE, ...)
+  to_plot = FALSE, warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{tree1}{a tree (dendrogram/hclust/phylo)}
@@ -18,7 +18,9 @@ each labels. This can be assured by using \link{match_order_by_labels}.}
 
 \item{to_plot}{logical (FALSE). Passed to \link{bakers_gamma_for_2_k_matrix}}
 
-\item{warn}{logical (TRUE). In case of problems when cutting the tree,
+\item{warn}{logical (default from dendextend_options("warn") is FALSE).
+Set if warning are to be issued, it is safer to keep this at TRUE,
+but for keeping the noise down, the default is FALSE.
 should a warning be issued when using \link[dendextend]{cutree}?}
 
 \item{...}{Passed to \link[dendextend]{cutree}.}

@@ -8,7 +8,8 @@ This function is in the style of \code{\link{color_branches}}, and
 based on \code{\link{labels_colors}}.
 }
 \usage{
-color_labels(tree, k = NULL, h = NULL, labels, col, warn = FALSE, ...)
+color_labels(tree, k = NULL, h = NULL, labels, col,
+  warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{tree}{A \code{dendrogram} or \code{hclust} tree object}
@@ -25,7 +26,9 @@ It will fall back on the \link{rainbow} function.}
 \item{labels}{character vecotor. If not missing, it overrides k and h,
 and simply colors these labels in the tree based on "col" parameter.}
 
-\item{warn}{logical (FALSE). Should warning be issued?
+\item{warn}{logical (default from dendextend_options("warn") is FALSE).
+Set if warning are to be issued, it is safer to keep this at TRUE,
+but for keeping the noise down, the default is FALSE.
 (in case h/k/labels are not supplied, or if col is too short)}
 
 \item{...}{ignored.}

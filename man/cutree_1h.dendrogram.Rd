@@ -4,7 +4,7 @@
 \title{cutree for dendrogram (by 1 height only!)}
 \usage{
 cutree_1h.dendrogram(tree, h, order_clusters_as_data = TRUE,
-  use_labels_not_values = TRUE, warn = TRUE, ...)
+  use_labels_not_values = TRUE, warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{tree}{a dendrogram object}
@@ -20,7 +20,9 @@ to order the clusters: 1) By the order of the original data. 2) by the order of 
 labels in the dendrogram. In order to be consistent with \link[stats]{cutree}, this is set
 to TRUE.}
 
-\item{warn}{logical. Should the function report warning in extreme cases.}
+\item{warn}{logical (default from dendextend_options("warn") is FALSE).
+Set if warning are to be issued, it is safer to keep this at TRUE,
+but for keeping the noise down, the default is FALSE.}
 
 \item{...}{(not currently in use)}
 }

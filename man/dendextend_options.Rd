@@ -19,6 +19,12 @@ a list with functions
 This is a function inside its own environment. This enables a bunch of
 functions to be manipulated outside the package, even when they are called
 from function within the dendextend package.
+
+
+
+TODO: describe options.
+
+A new "warn" dendextend_options parameter. logical (FALSE). Should warning be issued?
 }
 \examples{
 dendextend_options("a")
