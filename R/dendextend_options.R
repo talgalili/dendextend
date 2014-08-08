@@ -39,6 +39,13 @@
 #' This is a function inside its own environment. This enables a bunch of
 #' functions to be manipulated outside the package, even when they are called
 #' from function within the dendextend package.
+#' 
+#' 
+#' 
+#' TODO: describe options.
+#' 
+#' A new "warn" dendextend_options parameter. logical (FALSE). Should warning be issued?
+#' 
 #' @author Kurt Hornik
 #' @param option a character scalar of the value of the options we would
 #' like to access or update.
@@ -86,6 +93,7 @@ assign_dendextend_options <- function() {
    dendextend_options("get_branches_heights" , dendextend::dendextend_get_branches_heights)
    dendextend_options("heights_per_k.dendrogram" , dendextend::dendextend_heights_per_k.dendrogram)
    dendextend_options("cut_lower_fun" , dendextend::dendextend_cut_lower_fun)
+   dendextend_options("warn" , FALSE)
    
 }
 
