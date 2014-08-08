@@ -877,7 +877,8 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
    if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE, warn = FALSE)
          # we know that cluster id is an integer, so it is fine to use force_integer = TRUE
    
-   
+   clusters[is.na(clusters)] <- 0L
+
    return(clusters)
 }
 
