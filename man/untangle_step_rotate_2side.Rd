@@ -4,8 +4,8 @@
 \title{Stepwise untangle two trees one at a time}
 \usage{
 untangle_step_rotate_2side(dend1, dend2, L = 1.5, direction = c("forward",
-  "backward"), max_n_iterations = 10L, print_times = TRUE, k_seq = NULL,
-  ...)
+  "backward"), max_n_iterations = 10L,
+  print_times = dendextend_options("warn"), k_seq = NULL, ...)
 }
 \arguments{
 \item{dend1}{a dendrogram object. The one we will rotate to best fit

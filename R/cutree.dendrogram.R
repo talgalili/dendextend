@@ -758,7 +758,7 @@ cutree.hclust <- function(tree, k = NULL, h = NULL,
    
 
    # sort the clusters id
-   if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE, warn = dendextend_options("warn"))
+   if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE, warn = FALSE)
          # we know that cluster id is an integer, so it is fine to use force_integer = TRUE
    
    return(clusters)
@@ -874,7 +874,7 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
    if(ncol(clusters)==1) clusters <- clusters[,1] # make it NOT a matrix
 
    # sort the clusters id
-   if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE, warn = dendextend_options("warn"))
+   if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE, warn = FALSE)
          # we know that cluster id is an integer, so it is fine to use force_integer = TRUE
    
    

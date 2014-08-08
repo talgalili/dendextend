@@ -1,6 +1,9 @@
 # library(testthat)
 # library(dendextend)
 
+# set this for testing
+dendextend_options("warn", TRUE)
+
 context("Cutting a dendrogram")
 
 
@@ -446,5 +449,5 @@ test_that("Having cutree work when using a subsetted tree",{
 
    
 
-
+dendextend_options("warn", FALSE)
 

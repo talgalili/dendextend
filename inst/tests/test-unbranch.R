@@ -1,5 +1,7 @@
 context("unbranching a tree")
 
+# set this for testing
+dendextend_options("warn", TRUE)
 
 test_that("Get attribute of node's branches (height)",{
    hc <- hclust(dist(USArrests[1:3,]), "ave")
@@ -43,3 +45,4 @@ test_that("unbranching a dendrogram",{
 })
 
 
+dendextend_options("warn", FALSE)
