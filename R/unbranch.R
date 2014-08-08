@@ -23,7 +23,10 @@
 #' @export
 #' @param dend dendrogram object
 #' @param the_attr the attribute to get from the branches (for example "height")
-#' @param warning default is TRUE. Should a warning be printed when 
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
+#' Should a warning be printed when 
 #' the function is used on an object which is NOT a dendrogram.
 #' @param ... passed on to attr
 #' @return The attributes of the branches (often two) of the dendrogram's root
@@ -35,13 +38,12 @@
 #' get_branches_attr(dend, "height") # 0.00000 71.96247
 #' # plot(dend)
 #' str(dend, 2)
-get_branches_attr <- function(dend, the_attr, warning = TRUE,...) {
-   if(class(dend) != "dendrogram")
+get_branches_attr <- function(dend, the_attr, warn = dendextend_options("warn"),...) {
+   if(!is.dendrogram(dend))
    {
-      if(warning) warning("dend wasn't of class dendrogram - class was set to dendrogram by
-              the function - be sure it makes sense...")
+      if(warn) warning("dend wasn't of class dendrogram - be sure it makes sense...")
       # I might make this S3 at some point, but I don't see a need for it...
-      class(dend) <- "dendrogram"
+      # class(dend) <- "dendrogram"
       # dend <- as.dendrogram(dend)
    }
    sapply(dend, function(x) {attr(x, the_attr,...)})
