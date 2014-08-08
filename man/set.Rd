@@ -60,6 +60,27 @@ might wish to perform on a dendrogram before plotting.
 The options of by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
 have extra parameters: type, attr, TF_value. You can read more about them here:
 \link{branches_attr_by_labels}
+
+The "what" parameter" can accept the following options:
+
+\itemize{
+\item{labels - set the labels (\link{labels<-.dendrogram})}
+\item{labels_colors - set the labels' colors (\link{color_labels})}
+\item{labels_cex - set the labels' size (\link{assign_values_to_leaves_nodePar})}
+\item{leaves_pch - set the leaves' point type (\link{assign_values_to_leaves_nodePar})}
+\item{leaves_cex - set the leaves' point size (\link{assign_values_to_leaves_nodePar})}
+\item{leaves_col - set the leaves' point color (\link{assign_values_to_leaves_nodePar})}
+\item{hang_leaves - hang the leaves (\link{hang.dendrogram})}
+\item{branches_k_color - color the branches (\link{color_branches})}
+\item{branches_col - set the color of branches (\link{assign_values_to_branches_edgePar}) }
+\item{branches_lwd - set the line width of branches (\link{assign_values_to_branches_edgePar}) }
+\item{branches_lty - set the line type of branches (\link{assign_values_to_branches_edgePar}) }
+\item{by_labels_branches_col - set the color of branches with specific labels (\link{branches_attr_by_labels}) }
+\item{by_labels_branches_lwd - set the line width of branches with specific labels (\link{branches_attr_by_labels}) }
+\item{by_labels_branches_lty - set the line type of branches with specific labels (\link{branches_attr_by_labels}) }
+\item{clear_branches - clear branches' attributes (\link{remove_branches_edgePar})}
+\item{clear_leaves - clear leaves' attributes (\link{remove_branches_edgePar})}
+}
 }
 \examples{
 \dontrun{

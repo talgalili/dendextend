@@ -7,6 +7,7 @@ dendextend 0.16.5 (2014-08-08)
    * `untangle_step_rotate_2side` - print_times is now dendextend_options("warn"),
    * `color_branches` - now handles flat trees more gracefully. (returns them as they are)
    * `cutree.dendrogram` - now replaces NA values with 0L
+   * set.dendrogram - added explenation in the .Rd docs of the different possible options for "what"
 
 ###NEW FILES:
    * dendextend_options.R - moved `dendextend_options` functions to it.
