@@ -4,8 +4,8 @@ dendextend 0.16.5 (2014-08-08)
 ###UPDATED FUNCTIONS:
    * ALL `warn` paramteres are no set to dendextend_options("warn") (which is FALSE)!
    * `get_branches_attr` - change "warning" to "warn", and it now works with is.dendrogram, and no longer changes the class of something which is not a dendrogram.
-
    * `untangle_step_rotate_2side` - print_times is now dendextend_options("warn"),
+   * `color_branches` - now handles flat trees more gracefully. (returns them as they are)
 
 ###NEW FILES:
    * dendextend_options.R - moved `dendextend_options` functions to it.

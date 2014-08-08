@@ -55,6 +55,9 @@
 #' (with parameters c=90 and l=50). If \code{colorspace} is not available,
 #' It will fall back on the \link{rainbow} function.
 #' @param groupLabels If TRUE add numeric group label - see Details for options
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
 #' @param ... ignored.
 #' @return a tree object of class dendrogram.
 #' @author Tal Galili, extensively based on code by Gregory Jefferis
@@ -167,9 +170,14 @@
 #' # str(dendrapply(d2, unclass))
 #' # unclass(d1)
 #' 
+#' c(1:5) %>% # take some data
+#'    dist %>% # calculate a distance matrix, 
+#'    hclust(method = "single") %>% # on it compute hierarchical clustering using the "average" method, 
+#'    as.dendrogram %>% color_branches(k=3) %>% plot # nice, returns the tree as is...
+#' 
 #' }
 #' 
-color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, ...){
+color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, warn = dendextend_options("warn"), ...){
    
    if(missing(col)) {
       col <- if(require(colorspace))
@@ -187,6 +195,13 @@ color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, ...){
    if(is.hclust(tree)) tree <- as.dendrogram(tree)
    
    k <- max(g)
+   
+   # For when we have flat trees
+   if(k == 0L) {
+      if(warn) warning("Tree has only one level - returning the dendrogram with no colors.")
+      return(tree)
+   }
+   
    if(is.function(col)) {
       col <- col(k)
    } else {
