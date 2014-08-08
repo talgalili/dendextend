@@ -35,6 +35,9 @@
 #'             "leaves_pch",
 #'             "leaves_cex",
 #'             "leaves_col",
+#'             "nodes_pch",
+#'             "nodes_cex",
+#'             "nodes_col",
 #'             "hang_leaves",
 #'             "branches_k_color",
 #'             "branches_col",
@@ -82,6 +85,9 @@
 #' \item{leaves_pch - set the leaves' point type (\link{assign_values_to_leaves_nodePar})}
 #' \item{leaves_cex - set the leaves' point size (\link{assign_values_to_leaves_nodePar})}
 #' \item{leaves_col - set the leaves' point color (\link{assign_values_to_leaves_nodePar})}
+#' \item{nodes_pch - set the nodes' point type (\link{assign_values_to_nodes_nodePar})}
+#' \item{nodes_cex - set the nodes' point size (\link{assign_values_to_nodes_nodePar})}
+#' \item{nodes_col - set the nodes' point color (\link{assign_values_to_nodes_nodePar})}
 #' \item{hang_leaves - hang the leaves (\link{hang.dendrogram})}
 #' \item{branches_k_color - color the branches (\link{color_branches})}
 #' \item{branches_col - set the color of branches (\link{assign_values_to_branches_edgePar}) }
@@ -247,6 +253,9 @@ set.dendrogram <-
                      "leaves_pch",
                      "leaves_cex",
                      "leaves_col",
+                     "nodes_pch",
+                     "nodes_cex",
+                     "nodes_col",
                      "hang_leaves",
                      "branches_k_color",
                      "branches_col",
@@ -269,6 +278,9 @@ set.dendrogram <-
                        leaves_pch = assign_values_to_leaves_nodePar(object, value, "pch", ...),
                        leaves_cex =assign_values_to_leaves_nodePar(object, value, "cex", ...),
                        leaves_col =assign_values_to_leaves_nodePar(object, value, "col", ...),
+                       nodes_pch = assign_values_to_nodes_nodePar(object, value, "pch", ...),
+                       nodes_cex =assign_values_to_nodes_nodePar(object, value, "cex", ...),
+                       nodes_col =assign_values_to_nodes_nodePar(object, value, "col", ...),
                        hang_leaves = hang.dendrogram(dend = object, hang = ifelse(missing(value), .1, value),...),
                        branches_k_color = color_branches(tree = object, col = value,  ...),
                        branches_col = assign_values_to_branches_edgePar(object = object, value = value, edgePar = "col", ...),

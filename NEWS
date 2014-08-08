@@ -8,6 +8,7 @@ dendextend 0.16.5 (2014-08-08)
    * `color_branches` - now handles flat trees more gracefully. (returns them as they are)
    * `cutree.dendrogram` - now replaces NA values with 0L
    * set.dendrogram - added explenation in the .Rd docs of the different possible options for "what"
+   * set.dendrogram - added nodes_pch, nodes_cex and nodes_col - using `assign_values_to_nodes_nodePar`
 
 ###NEW FILES:
    * dendextend_options.R - moved `dendextend_options` functions to it.
