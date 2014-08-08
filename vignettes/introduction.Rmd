@@ -21,22 +21,14 @@ knitr::opts_chunk$set(
 Introduction to dendextend
 ===========================
 
+**Author**: [Tal Galili](http://www.r-statistics.com/) ( Tal.Galili@gmail.com )
 
-When performing hierarchical clustering, we are often interested in improving how our dendrogram looks by **adjusting graphical paramters** of its branches, nodes and labels. Also, when considering several models - to visually and statistically **compare different dendrograms** to one another.
-
-The **_dendextend package_** offers a set of functions for making these tasks both possible and simple to code.
-
-The goal of this document is to introduce you to the basic functions that dendextend provides, and show how they may be applied. As a toy example, we will analyse the (overly famous) Iris dataset, while making extensive use of "chaining". 
+**tl;dr**: the [_dendextend package_](http://cran.r-project.org/web/packages/dendextend/) let's you create figures like this:
 
 
-Elevator pitch (tl;dr version)
-------------------------------
-
-TODO: add a nice plot.
-
-```{r, echo=FALSE}
-library(dendextend)
-library(dendextendRcpp)
+```{r, echo=FALSE, warning=FALSE, fig.align='center'}
+suppressMessages(library(dendextend))
+suppressMessages(library(dendextendRcpp))
 library(colorspace)
 
 dend1 <- c(1:5) %>% # take some data
@@ -48,37 +40,87 @@ dend2 <- c(1:5) %>% # take some data
          hclust(method = "single") %>% # on it compute hierarchical clustering using the "average" method, 
          as.dendrogram # and lastly, turn that object into a dendrogram.
 dend1 <- rotate(dend1, order = c(as.character(5:1)))
-labels(dend1) <- rev(c("dendextend:", "let's u easily", "control","your", "dendrograms"))
-labels(dend2) <- rev(c("let's u easily","dendextend:" ,"control","your", "dendrograms"))
+labels(dend1) <- rev(c("dendextend", "let's u easily", "control","(and compare) your", "dendrograms"))
+labels(dend2) <- rev(c("let's u easily","dendextend" ,"control","(and compare) your", "dendrograms"))
 dend1 <- dend1 %>% 
          color_labels %>% 
-         set("labels_cex", c(2.2,1.8)) %>% 
+         set("labels_cex", c(2.2,1.4)) %>% 
          set("branches_lwd", c(4,1,4)) %>% 
+         set("branches_lty", c(1,2,1)) %>% 
          hang.dendrogram
+dend2 <- color_branches(dend2)
 # dend2 <- color_labels(dend2)
-# dend2 <- color_branches(dend2, k = 5) # TODO: solve!
 tanglegram(dendlist(dend1, dend2), margin_inner = 9, 
-           color_lines = c(rep("darkgreen", 3) , rep("darkred",2)))
+           color_lines = c(rep("darkgreen", 3) , rep("darkred",2)),
+           sub= paste("Entanglement:", round(entanglement(dendlist(dend1, dend2)),2)), cex_sub = 1.5
+           )
+
+# dend2 %>% color_branches %>% plot
+# dend2 %>% color_branches(k=3) %>% plot # nice, returns the tree as is...
+# dend2 %>% color_labels %>% plot
+# cutree(dend2,3)
+
+
 ```
 
 
-TODO: change default to not warn so much...
 
 
-**Curious? If so - please read on...** (if not - please let me know: Tal.Galili@gmail.com )
+Introduction
+--------------
 
+
+When visualizing hierarchical clustering, we are often interested in **adjusting graphical paramters** of our dendrogram: its branches, nodes and labels - be it color, size, type, etc. Also, when considering several models - we would like to visually and statistically **compare different dendrograms** to one another.
+
+The [**_dendextend package_**](http://cran.r-project.org/web/packages/dendextend/) offers a set of functions for making these tasks both possible and simple to do.
+
+The goal of this document is to introduce you to the basic functions that dendextend provides, and show how they may be applied. As a toy example, we will analyse the (overly) famous Iris dataset, while making extensive use of "chaining" (both are explained next).
 
 
 Prerequisites
 --------------
 
+### Acknowledgement
+
+This package was made possible by the the support of my thesis advisot [Yoav Benjamini](http://www.math.tau.ac.il/~ybenja/), as well as code contributions from many R users. They are:
+
+```{r, echo=FALSE}
+
+c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
+    "tal.galili@gmail.com", comment = "http://www.r-statistics.com"),
+    person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
+    = "ctb", email = "jefferis@gmail.com",
+    comment ="imported code from his dendroextras package"),
+    person("Marco", "Gallotta", role = "ctb", comment =
+    "a.k.a: marcog") , person("Johan", "Renaudie", role = "ctb", comment =
+    "https://github.com/plannapus"), person("R core team", role = "ctb",
+    comment = "Thanks for the Infastructure, and code in the examples"),
+    person("Kurt", "Hornik", role = "ctb"), person("Uwe", "Ligges",
+    role = "ctb"), person("Andrej-Nikolai", "Spiess", role = "ctb"),
+    person("Steve", "Horvath",email = "SHorvath@mednet.ucla.edu", role =
+    "ctb"), person("Peter", "Langfelder",email = "Peter.Langfelder@gmail.com",
+    role = "ctb"), person("skullkey", role = "ctb"), person("Mark",
+    "Van Der Loo", email = "mark.vanderloo@gmail.com", comment =
+    "https://github.com/markvanderloo d3dendrogram", role = "ctb"),
+    person("Yoav", "Benjamini", role = "ths"))
+
+```
+
+
+The **design** of the dendextend package (and this manual!) is heavily inspired by [Hadley Wickham's](http://had.co.nz/) work. Especially his text on [writing an R package](http://adv-r.had.co.nz/Package-basics.html), the [devtools package](http://cran.r-project.org/web/packages/devtools/), and the dplyr package (specifically the use of chaining, and the [Introduction text to dplyr](http://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)).
+
+
+
+
 ### The Iris dataset
 
 > The famous (Fisher's or Anderson's) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica. (from `?iris`)
 
-This data is fun for learning supervised classification algorithms, and is known as a difficult case for unsupervised learning. This is easily seen through the following Scatter PLot Matrix:
 
-```{r, fig.width=9, fig.height=9}
+
+The [Iris flower data set](https://en.wikipedia.org/wiki/Iris_flower_data_set) is fun for learning supervised classification algorithms, and is known as a difficult case for unsupervised learning. This is easily seen through the following Scatter PLot Matrix:
+
+```{r, fig.width=9, fig.height=9, fig.show='hold'}
 data(iris)
 
 species_labels <- iris[,5]
@@ -89,54 +131,57 @@ species_col <- rev(rainbow_hcl(3))[as.numeric(species_labels)]
 pairs(iris[,-5], col = species_col,
       lower.panel = NULL,
        cex.labels=2, pch=19, cex = 1.2)
+
+# Add a legend
+par(xpd = TRUE)
+legend(x = 0.05, y = 0.4, cex = 2,
+   legend = as.character(levels(species_labels)),
+		fill = unique(species_col))
+par(xpd = NA)
+
 ```
 
-
+We can see that the *Setosa* species are distincly different than *Versicolor* and *Virginica* (they have lower pater length and width). But *Versicolor* and *Virginica* can not easily be seperated based on measurments of their Sepal and Patal width/length.
 
 
 ### Chaining
 
-Function calls in dendextend often get a dendrogram and returns a (modified) dendrogram. This doesn't lead to particularly elegant code if you want to do many operations at once. The same is true when creating a dendrogram.
+Function calls in dendextend often get a dendrogram and returns a (modified) dendrogram. This doesn't lead to particularly elegant code if you want to do many operations at once. The same is true even in the first stage of creating a dendrogram.
 
 In order to construct a dendrogram, you will (often) need to go through several steps. You can either do so while keeping the intermediate results:
 
 ```{r, eval = FALSE}
-a1 <- iris[,-5]
-a2 <- dist(a1)
-a3 <- hclust(a2, method = "average")
-dend <- as.dendrogram(a3)
+d1 <- iris[,-5]
+d2 <- dist(d1)
+d3 <- hclust(d2, method = "average")
+dend <- as.dendrogram(d3)
 ```
 
-You can also wrap the function calls inside each other:
+Or, you can also wrap the function calls inside each other:
 
 ```{r, eval=FALSE}
 dend <- as.dendrogram(hclust(dist(iris[,-5]), method = "average"))
 ```
 
-However, both solutions are no ideal. The first is cluttered and includes too much coding overhead, while the second is difficult to read because the order of the operations is from inside to out, while the arguments are a long way away from the function.
+However, both solutions are not ideal: the first solution includes redundent intermediate objects, while the second is difficult to read (since the order of the operations is from inside to out, while the arguments are a long way away from the function).
 
-To get around this problem, dendextend encourages the use of the `%>%` ("pipe" or "chaining") operator (imported from the magrittr package). This turns `x %>% f(y)` into `f(x, y)` so you can use it to rewrite multiple operations such that they can be read from left-to-right, top-to-bottom. 
+To get around this problem, dendextend encourages the use of the `%>%` ("pipe" or "chaining") operator (imported from the magrittr package). This turns `x %>% f(y)` into `f(x, y)` so you can use it to rewrite ("chain") multiple operations such that they can be read from left-to-right, top-to-bottom. 
 
 For example, the following will be written as it would be explained: 
 
-```{r, eval = FALSE}
+```{r}
 dend <- iris[,-5] %>% # take the iris dataset, 
          dist %>% # calculate a distance matrix, 
          hclust(method = "average") %>% # on it compute hierarchical clustering using the "average" method, 
          as.dendrogram # and lastly, turn that object into a dendrogram.
 ```
 
-For more details, you may see
+For more details, you may look at:
 
-TODO: add links
+* [magrittr on CRAN](http://cran.r-project.org/web/packages/magrittr/)
+* [Introduction to the magrittr package](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html)
+* [Simpler R coding with pipes > the present and future of the magrittr package](http://www.r-statistics.com/2014/08/simpler-r-coding-with-pipes-the-present-and-future-of-the-magrittr-package/)
 
-
-
-### Acknowledgement
-
-The **design** of the dendextend package (and this manual!) is heavily inspired by Hadley Wickham's work. Especially his text on [writing an R package](http://adv-r.had.co.nz/Package-basics.html), the devtools package, and the dplyr package (specifically the use of chaining, and the [Introduction text to dplyr](http://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)).
-
-TODO: mention other contributors.
 
 
 How to set a dendrogram's parameters
@@ -182,6 +227,8 @@ heatmap.2
 `colored_bars`
 
 
-dendextendRcpp - satisfying the need for speed
+dendextendRcpp - on the need for speed
 ----------------------------------------------
 
+
+TODO: mention: https://en.wikipedia.org/wiki/Depth-first_search
