@@ -268,6 +268,11 @@ set.dendrogram <-
                      "clear_leaves"
             ),
             value, ...){
+      if(missing(what)) {
+         if(dendextend_options("warn")) warning("'what' is missing, returning the dendrogram as is")      
+         return(object)
+      }
+
       what <- match.arg(what)
       object <- switch(what, 
                        #                     labels = dendextend:::`labels<-.dendrogram`(object, value = value)
