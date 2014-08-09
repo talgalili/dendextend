@@ -2,6 +2,7 @@
 output:
   html_document:
     self_contained: no
+    toc: true    
 ---
 <!--
 %\VignetteEngine{knitr}
@@ -47,7 +48,10 @@ dend1 <- dend1 %>%
          set("labels_cex", c(2.2,1.4)) %>% 
          set("branches_lwd", c(4,1,4)) %>% 
          set("branches_lty", c(1,2,1)) %>% 
-         hang.dendrogram
+         set("nodes_pch", c(NA,19,NA)) %>% 
+         set("nodes_cex", c(NA,2.5,NA)) %>% 
+         set("nodes_col", c(NA,3,NA)) %>% 
+         hang.dendrogram # %>% plot
 dend2 <- color_branches(dend2)
 # dend2 <- color_labels(dend2)
 tanglegram(dendlist(dend1, dend2), margin_inner = 9, 
@@ -152,16 +156,17 @@ For more details, you may look at:
 
 
 
+
 How to set a dendrogram's parameters
 ------------------------------------
 
-The best introduction to dendextend's functionality is the `set` function. `set` accepts the following basic parameters:
+The fastest way to start changing a dendextend's parameters is by using the `set` function. It is written as: `set(object, what, value)`, and accepts the following parameters:
 
 1. **object**: a dendrogram object, 
 2. **what**: a character indicating what is the property of the tree that should be set/updated
 3. **value**: a vector with the value to set in the tree. (the type of the value depends on the "what")
 
-The **what** parameter accepts many options, each uses some general function in the background. These options are:
+The **what** parameter accepts many options, each uses some general function in the background. These options deal with labels, nodes and branches. They are:
 
 * labels - set the labels (using `labels<-.dendrogram`)
 * labels_colors - set the labels' colors (using `color_labels`)
@@ -169,6 +174,9 @@ The **what** parameter accepts many options, each uses some general function in 
 * leaves_pch - set the leaves' point type (using `assign_values_to_leaves_nodePar`)
 * leaves_cex - set the leaves' point size (using `assign_values_to_leaves_nodePar`)
 * leaves_col - set the leaves' point color (using `assign_values_to_leaves_nodePar`)
+* nodes_pch - set the nodes' point type (using `assign_values_to_nodes_nodePar`)
+* nodes_cex - set the nodes' point size (using `assign_values_to_nodes_nodePar`)
+* nodes_col - set the nodes' point color (using `assign_values_to_nodes_nodePar`)
 * hang_leaves - hang the leaves (using `hang.dendrogram`)
 * branches_k_color - color the branches (using `color_branches`)
 * branches_col - set the color of branches (using `assign_values_to_branches_edgePar`)
@@ -180,9 +188,9 @@ The **what** parameter accepts many options, each uses some general function in 
 * clear_branches - clear branches' attributes (using `remove_branches_edgePar`)
 * clear_leaves - clear leaves' attributes (using `remove_branches_edgePar`)
 
-We'll create a small tree with 5 leaves, and demonstrate these functions with it.
+For illustration purposes, We'll create a small tree with 5 leaves, and demonstrate these functions with it.
 
-```{r, fig.show='hold'}
+```{r, fig.show='hold', fig.width=4, fig.height=3}
 dend <- c(1:5) %>% # take some data
          dist %>% # calculate a distance matrix, 
          hclust(method = "average") %>% # on it compute hierarchical clustering using the "average" method, 
@@ -203,12 +211,77 @@ dend %>% labels
 # this is just like labels(dend)
 ```
 
+We can change the names of the labels:
+
+```{r, fig.width=8, fig.height=3}
+# change the labels, and then print them:
+dend %>% set("labels", c(111:115)) %>% labels
+# could also be done using:
+# labels(dend) <- c(111:115)
+```
+
+We may also chance their color and size. Notice how the function recycles the vector of values we give it, from left to right:
+
+```{r, fig.width=8, fig.height=3}
+par(mfrow = c(1,2))
+dend %>% plot(main = "Before")
+dend %>% 
+   set("labels", c(111:115)) %>%    # change labels
+   set("labels_col", c(1,2,3)) %>%  # change color 
+   set("labels_cex", c(2,1)) %>%    # change size
+   plot(main = "After")
+```
+
+
+When it comes to color, we can also set the parameter "k", which will cut the tree into k clusters, and assign a different color to each label (based on its cluster):
+
+```{r, fig.width=8, fig.height=3}
+par(mfrow = c(1,2))
+dend %>% set("labels_cex", 2) %>% set("labels_col", value = c(3,4))        %>% plot(main = "Recycles color \nfrom left to right")
+dend %>% set("labels_cex", 2) %>% set("labels_col", value = c(3,4), k=2)   %>% plot(main = "Color labels \nper cluster")
+abline(h = 2, lty = 2)
+```
+
+
+### Changing a dendrogram's nodes/leaves (points)
+
+### Changing a dendrogram's branches
+
+
+
+### Exploring a dendrogram's parameters
+
+While setting parameters, we would also like to be able to check the current parameters in a dendrogram. Here are several functions for doing it for the following tree:
 
 ```{r}
-# change the labels, and then show them:
-dend %>% set("labels", c(11:15)) %>% labels
+dend <- c(1:5) %>% # take the iris dataset, 
+         dist %>% # calculate a distance matrix, 
+         hclust(method = "average") %>% # on it compute hierarchical clustering using the "average" method, 
+         as.dendrogram # and lastly, turn that object into a dendrogram.
+
+dend2 <-
+   dend %>% 
+      assign_values_to_nodes_nodePar(19, "pch") %>% 
+      assign_values_to_nodes_nodePar(2, "col") %>% 
+      assign_values_to_nodes_nodePar(2, "cex") %>% 
+      assign_values_to_leaves_nodePar(3, "col") %>% 
+   plot
+
+dend %>% plot
+```
+
+
+```{r}
+dend %>% labels # get the labels of the tree
+dend %>% nleaves # get the number of leaves of the tree
+dend %>% nnodes # get the number of nodes in the tree (including leaves)
+dend %>% plot
+dend %>% plot
+
+
 
 ```
+
 
 
 
@@ -216,7 +289,24 @@ dend %>% set("labels", c(11:15)) %>% labels
 Changing a dendrogram's structure
 ----------------------------------
 
-TODO: rotation, pruning
+### Rotation
+
+### Pruning
+
+
+Comparing two dendrograms
+--------------------------
+
+### tanglegram
+
+
+### Correlation measures
+
+
+### Bk plots
+
+
+
 
 
 Enhancing other packages
@@ -224,7 +314,7 @@ Enhancing other packages
 
 ### qplots
 
-heatmap.2
+`heatmap.2`
 
 ### pvclust
 
