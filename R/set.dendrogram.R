@@ -272,7 +272,8 @@ set.dendrogram <-
       object <- switch(what, 
                        #                     labels = dendextend:::`labels<-.dendrogram`(object, value = value)
                        labels = `labels<-.dendrogram`(object, value = value, ...),
-                       labels_colors = `labels_colors<-`(object, value = value, ...),
+                       labels_colors = color_labels(object, col = value, ...),
+                       #      labels_colors = `labels_colors<-`(object, value = value, ...),
                        #      labels_colors = assign_values_to_leaves_nodePar(object, value, "lab.col", ...),
                        labels_cex = assign_values_to_leaves_nodePar(object, value, "lab.cex", ...),
                        leaves_pch = assign_values_to_leaves_nodePar(object, value, "pch", ...),

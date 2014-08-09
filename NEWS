@@ -9,6 +9,7 @@ dendextend 0.16.5 (2014-08-08)
    * `cutree.dendrogram` - now replaces NA values with 0L
    * set.dendrogram - added explenation in the .Rd docs of the different possible options for "what"
    * set.dendrogram - added nodes_pch, nodes_cex and nodes_col - using `assign_values_to_nodes_nodePar`
+   * set.dendrogram - changed from using `labels_colors<-` to `color_labels` for "labels_colors" (this will now work with using k...)
    * `labels_colors<-` - added if(dendextend_options("warn")) 
    * `labels<-.dendrogram` - if value is missing, returning the dendrogram as is (this also affects `set`)
 
