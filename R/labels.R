@@ -163,6 +163,12 @@
    # Gavin Simpson and also kohske, see here:
    # http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question
 
+   if(missing(value)) {
+      if(dendextend_options("warn")) warning("value is missing, returning the dendrogram as is")      
+	  return(object)
+      }
+   
+   
    # deals with wrong length of new labels VS tree size
    new_labels <- as.character(value)
    new_labels_length <- length(new_labels)
