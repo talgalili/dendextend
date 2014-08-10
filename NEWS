@@ -1,6 +1,10 @@
 dendextend 0.17.0 (2014-08-09)
 ----------------------------------------
 
+###NEW FUNCTIONS:
+   * get_nodes_xy - Get the x-y coordiantes of a dendrogram's nodes
+
+
 ###UPDATED FUNCTIONS:
    * ALL `warn` paramteres are no set to dendextend_options("warn") (which is FALSE)!
    * `get_branches_attr` - change "warning" to "warn", and it now works with is.dendrogram, and no longer changes the class of something which is not a dendrogram.
@@ -17,6 +21,7 @@ dendextend 0.17.0 (2014-08-09)
 
 ###NEW FILES:
    * dendextend_options.R - moved `dendextend_options` functions to it.
+   * get_nodes_xy.R
 
 ###OTHER NOTES:
 
