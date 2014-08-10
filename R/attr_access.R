@@ -98,6 +98,9 @@ get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
 #' @param include_leaves logical. Should leaves attributes be included as well?
 #' @param include_branches logical. Should non-leaf (branch node) 
 #' attributes be included as well?
+#' @param simplify logical (default is TRUE). should the result be simplified 
+#' to a vector (using \link{simplify2array} ) if possible? If it is not possible
+#' it will return a matrix. When FALSE, a list is returned.
 #' @param na.rm logical. Should NA attributes be REMOVED from the resulting vector?
 #' @param ... not used
 #' @source Heavily inspired by the code in the 
@@ -150,6 +153,7 @@ get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
 #' 
 get_nodes_attr <- function (object, attribute, include_leaves = TRUE,
                             include_branches = TRUE,
+                            simplify = TRUE,
                             na.rm = FALSE, ...) {
    if(!is.dendrogram(object)) warning("'object' should be a dendrogram.")   
    if(missing(attribute)) stop("'attribute' parameter is missing.")
@@ -163,7 +167,10 @@ get_nodes_attr <- function (object, attribute, include_leaves = TRUE,
    #    return((dendrapply(object, get_attr_from_node)))   
    
    
-   object_attr <- rep(NA, nnodes(object))
+#    object_attr <- rep(NA, nnodes(object))
+#   empty_list <- vector("list", nnodes(object))
+   empty_list <- as.list(rep(NA, nnodes(object)))
+   object_attr <- empty_list
    
    # this function is used to modify object_attr. What it returns is not important.
    i_node <- 0
@@ -175,14 +182,22 @@ get_nodes_attr <- function (object, attribute, include_leaves = TRUE,
       if(!include_branches && !is.leaf(dend_node)) return(NULL)      
       
       i_attr <- attr(dend_node, attribute)
-      if(!is.null(i_attr)) object_attr[i_node] <<- i_attr
+      if(!is.null(i_attr)) object_attr[[i_node]] <<- i_attr
       return(NULL)
    }   
    dendrapply(object, get_attr_from_node)   
 
    # as.vector is to remove all classes of the na.omit
    # thank you Prof. Brian Ripley http://tolstoy.newcastle.edu.au/R/e2/devel/07/01/1965.html
+   if(simplify) object_attr <- simplify2array(object_attr)
+
    if(na.rm) object_attr <- as.vector(na.omit(object_attr)) 
+
+   
+   if(identical(object_attr, empty_list)) {
+      if(dendextend_options("warn")) warning("It seems that the attribute '", attribute, "' does not exist - returning NA.")
+      object_attr <- NA
+   }
    
    return(object_attr)   
 }

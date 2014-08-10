@@ -9,7 +9,7 @@ so credit should go to Martin Maechler.
 }
 \usage{
 get_nodes_attr(object, attribute, include_leaves = TRUE,
-  include_branches = TRUE, na.rm = FALSE, ...)
+  include_branches = TRUE, simplify = TRUE, na.rm = FALSE, ...)
 }
 \arguments{
 \item{object}{a dendrogram object}
@@ -21,6 +21,10 @@ we wish to get from the nodes}
 
 \item{include_branches}{logical. Should non-leaf (branch node)
 attributes be included as well?}
+
+\item{simplify}{logical (default is TRUE). should the result be simplified
+to a vector (using \link{simplify2array} ) if possible? If it is not possible
+it will return a matrix. When FALSE, a list is returned.}
 
 \item{na.rm}{logical. Should NA attributes be REMOVED from the resulting vector?}
 

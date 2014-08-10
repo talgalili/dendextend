@@ -25,7 +25,7 @@ test_that("Get a dendrogram leaves attributes",{
 
 
 test_that("Get a dendrogram nodes attributes",{
-   hc <- hclust(dist(USArrests[1:3,]), "ave")
+   hc <- USArrests[1:3,] %>% dist %>% hclust("ave")
    dend <- as.dendrogram(hc)
    
    expect_error(get_nodes_attr(dend)) # we need attribute!
@@ -59,6 +59,12 @@ test_that("Get a dendrogram nodes attributes",{
    )
    
    expect_identical(get_nodes_attr(dend, "members"), c(3L, 1L, 2L, 1L, 1L))
+   
+   
+   expect_identical(get_nodes_attr(dend, "members", simplify = FALSE), 
+                    list(3L, 1L, 2L, 1L, 1L))
+   
+   
 })
 
 
