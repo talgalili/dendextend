@@ -194,10 +194,7 @@ get_nodes_attr <- function (object, attribute, include_leaves = TRUE,
    if(na.rm) object_attr <- as.vector(na.omit(object_attr)) 
 
    
-   if(identical(object_attr, empty_list)) {
-      if(dendextend_options("warn")) warning("It seems that the attribute '", attribute, "' does not exist - returning NA.")
-      object_attr <- NA
-   }
+   if(dendextend_options("warn") && identical(object_attr, simplify2array(empty_list))) warning("It seems that the attribute '", attribute, "' does not exist - returning NA.")
    
    return(object_attr)   
 }

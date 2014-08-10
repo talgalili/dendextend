@@ -64,6 +64,9 @@ test_that("Get a dendrogram nodes attributes",{
    expect_identical(get_nodes_attr(dend, "members", simplify = FALSE), 
                     list(3L, 1L, 2L, 1L, 1L))
    
+   # dealing with a missing/junk attribute:
+   expect_identical(get_nodes_attr(dend, "blablabla"), 
+                    c(NA, NA, NA, NA, NA))   
    
 })
 
