@@ -203,7 +203,7 @@ dend %>% plot
 
 ### Changing a dendrogram's labels
 
-We notice that the tree's labels are not 1 to 5 by order, since the tree happened to place them in a different order:
+We can get a vector with the tree's labels:
 
 ```{r}
 # get the labels:
@@ -211,9 +211,9 @@ dend %>% labels
 # this is just like labels(dend)
 ```
 
-We can change the names of the labels:
+Notice how the tree's labels are not 1 to 5 by order, since the tree happened to place them in a different order. We can change the names of the labels:
 
-```{r, fig.width=8, fig.height=3}
+```{r}
 # change the labels, and then print them:
 dend %>% set("labels", c(111:115)) %>% labels
 # could also be done using:
@@ -244,6 +244,36 @@ abline(h = 2, lty = 2)
 
 
 ### Changing a dendrogram's nodes/leaves (points)
+
+TODO: explain depth first
+
+Many of the functions in dendextend work using a Depth-first search. [Depth-first search](http://en.wikipedia.org/wiki/Depth-first_search) (DFS) is an algorithm for traversing or searching tree or graph data structures. One starts at the root and explores as far as possible along each branch before backtracking. Here is an illustration of this ordering for a simple tree:
+
+
+```{r, echo=FALSE}
+
+dend <- 1:5 %>% dist %>% hclust %>% as.dendrogram
+# get_nodes_xy(dend)
+
+# polygon(get_nodes_xy(dend), col = 2)
+plot(dend, 
+     leaflab = "none",
+     main = "Depth-first search in a dendrogram")
+xy <- get_nodes_xy(dend)
+for(i in 1:(nrow(xy)-1)) {
+   arrows(xy[i,1], xy[i,2], angle = 17,
+          length = .3,
+          xy[i+1,1], xy[i+1,2], 
+          lty = 1, col = 3, lwd = 1.5)   
+}
+points(xy, pch = 19, cex = 3)
+text(xy, labels = 1:nnodes(dend),cex = 1.2, col = "white") #, adj = c(0.4,0.4))
+
+```
+
+
+
+
 
 ### Changing a dendrogram's branches
 
