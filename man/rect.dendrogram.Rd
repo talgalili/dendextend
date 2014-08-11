@@ -14,7 +14,8 @@ skullkey from here:
 \usage{
 rect.dendrogram(tree, k = NULL, which = NULL, x = NULL, h = NULL,
   border = 2, cluster = NULL, horiz = FALSE, density = NULL,
-  angle = 45, text = NULL, text_cex = 1, text_col = 1, ...)
+  angle = 45, text = NULL, text_cex = 1, text_col = 1, xpd = TRUE,
+  lower_rect, ...)
 }
 \arguments{
 \item{tree}{a \link{dendrogram} object.}
@@ -36,8 +37,6 @@ which a rectangle should be drawn. x selects clusters
 \item{cluster}{Optional vector with cluster memberships as returned by
 cutree(dend_obj, k = k), can be specified for efficiency if already computed.}
 
-\item{...}{parameters passed to rect (such as lwd, lty, etc.)}
-
 \item{horiz}{logical (FALSE), indicating if the rectangles
 should be drawn horizontally or not (for when using
 plot(dend, horiz = TRUE) ) .}
@@ -58,6 +57,20 @@ When NULL (default), no text is displayed.}
 \item{text_cex}{a numeric (scalar) value of the text's cex value.}
 
 \item{text_col}{a (scalar) value of the text's col(or) value.}
+
+\item{xpd}{A logical value (or NA.), passed to \link{par}.
+Default is TRUE, in order to allow the rect to be below the labels.
+If FALSE, all plotting is clipped to the plot region, if TRUE,
+all plotting is clipped to the figure region, and if NA, all plotting
+is clipped to the device region. See also \link{clip}.}
+
+\item{lower_rect}{a (scalar) value of how low should the lower part of the rect be.
+If missing, it will take the value of par("usr")[3L] (or par("usr")[2L], depending
+if horiz = TRUE or not), with also the width of the labels. (notice that we
+would like to keep xpd = TRUE if we want the rect to be after the labels!)
+You can use a value such as 0, to get the rect above the labels.}
+
+\item{...}{parameters passed to rect (such as lwd, lty, etc.)}
 }
 \value{
 (Invisibly) returns a list where each element contains a vector
