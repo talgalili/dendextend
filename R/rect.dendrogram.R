@@ -61,6 +61,9 @@
 #' if horiz = TRUE or not), with also the width of the labels. (notice that we
 #' would like to keep xpd = TRUE if we want the rect to be after the labels!)
 #' You can use a value such as 0, to get the rect above the labels.
+#' 
+#' Notice that for a plot with small margins, it would be better to set this 
+#' parameter manually.
 #' @param ... parameters passed to rect (such as lwd, lty, etc.)
 #' @seealso
 #' \link{rect.hclust}, \link{order.dendrogram}, \link{cutree.dendrogram}
@@ -158,7 +161,7 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
       } else {         
          xleft = mean(tree_heights[(k - 1):k])
          ybottom = m[which[n]] + 0.66
-         if(missing(lower_rect)) lower_rect <- par("usr")[2L] - max(strwidth(labels(dend)))
+         if(missing(lower_rect)) lower_rect <- par("usr")[2L] + max(strwidth(labels(dend)))
          xright = lower_rect
          ytop = m[which[n] + 1] + 0.33
       }      

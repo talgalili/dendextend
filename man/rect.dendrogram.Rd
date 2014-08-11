@@ -68,7 +68,10 @@ is clipped to the device region. See also \link{clip}.}
 If missing, it will take the value of par("usr")[3L] (or par("usr")[2L], depending
 if horiz = TRUE or not), with also the width of the labels. (notice that we
 would like to keep xpd = TRUE if we want the rect to be after the labels!)
-You can use a value such as 0, to get the rect above the labels.}
+You can use a value such as 0, to get the rect above the labels.
+
+Notice that for a plot with small margins, it would be better to set this
+parameter manually.}
 
 \item{...}{parameters passed to rect (such as lwd, lty, etc.)}
 }
