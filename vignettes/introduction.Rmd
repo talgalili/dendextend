@@ -154,11 +154,105 @@ For more details, you may look at:
 * [Introduction to the magrittr package](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html)
 * [Simpler R coding with pipes > the present and future of the magrittr package](http://www.r-statistics.com/2014/08/simpler-r-coding-with-pipes-the-present-and-future-of-the-magrittr-package/)
 
+### A dendrogram is a nested list of lists with attributes
 
+For the following tiny tree:
+
+```{r}
+# Create a dend:
+dend <- 1:3 %>% dist %>% hclust %>% as.dendrogram
+```
+
+Here is how it looks:
+
+```{r, fig.width=4, fig.height=3}
+dend %>% plot
+```
+
+And here is its structure (a nested list of lists with attributes):
+
+```{r}
+dend %>% class
+dend %>% unclass %>% str
+```
+
+
+
+
+How to explore a dendrogram's parameters
+---------------------------------------
+
+### Taking a first look at a dendrogram
+
+For the following simple tree:
+
+```{r}
+# Create a dend:
+dend <- 1:5 %>% dist %>% hclust %>% as.dendrogram
+```
+
+Here are some basic paramters we can get:
+
+```{r, fig.width=4, fig.height=3}
+dend %>% labels # get the labels of the tree
+dend %>% nleaves # get the number of leaves of the tree
+dend %>% nnodes # get the number of nodes in the tree (including leaves)
+dend %>% head # A combination of "str" with "head"
+dend %>% plot
+```
+
+Next let us look at more sophisticated outputs.
+
+### Getting nodes attributes in a depth-first search
+
+When extracting (or inserting) attributes from a dendrogram's nodes, it is often in a "depth-first search". [Depth-first search](http://en.wikipedia.org/wiki/Depth-first_search) is when an algorithm for traversing or searching tree or graph data structures. One starts at the root and explores as far as possible along each branch before backtracking. Here is an illustration of this ordering:
+
+We first create a simple tree:
+
+```{r}
+# Create a dend:
+dend <- 1:5 %>% dist %>% hclust %>% as.dendrogram
+```
+
+Here is a plot of the tree, and the order in which you should read the "nodes attributes":
+
+```{r, echo=FALSE, fig.height=5}
+# get_nodes_xy(dend)
+# polygon(get_nodes_xy(dend), col = 2)
+plot(dend, 
+     leaflab = "none", # axes = FALSE, # no labels or y axis
+     main = "Nodes order when using \nDepth-first search in a dendrogram")
+xy <- get_nodes_xy(dend)
+for(i in 1:(nrow(xy)-1)) {
+   arrows(xy[i,1], xy[i,2], angle = 17,
+          length = .3,
+          xy[i+1,1], xy[i+1,2], 
+          lty = 1, col = 3, lwd = 1.5)   
+}
+points(xy, pch = 19, cex = 3)
+text(xy, labels = 1:nnodes(dend),cex = 1.2, col = "white") #, adj = c(0.4,0.4))
+```
+
+We can get several nodes attributes using `get_nodes_attr` (notice the order corrosponds with what is shown in the above figure): 
+
+```{r}
+dend %>% get_nodes_attr("height") # node's height
+dend %>% hang.dendrogram %>% get_nodes_attr("height") # node's height (after raising the leaves)
+dend %>% get_nodes_attr("members") # number of members (leaves) under that node
+dend %>% get_nodes_attr("midpoint") # how much "left" is this node from its left-most child
+dend %>% get_nodes_attr("leaf") # is this node a leaf
+dend %>% get_nodes_attr("label") # what is the label on this node
+dend %>% get_nodes_attr("nodePar") # empty (for now...)
+dend %>% get_nodes_attr("edgePar") # empty (for now...)
+```
 
 
 How to set a dendrogram's parameters
 ------------------------------------
+
+
+### The "set" function
+
 
 The fastest way to start changing a dendextend's parameters is by using the `set` function. It is written as: `set(object, what, value)`, and accepts the following parameters:
 
@@ -201,7 +295,7 @@ dend %>% plot
 ```
 
 
-### Changing a dendrogram's labels
+### Setting a dendrogram's labels
 
 We can get a vector with the tree's labels:
 
@@ -224,12 +318,20 @@ We may also chance their color and size. Notice how the function recycles the ve
 
 ```{r, fig.width=8, fig.height=3}
 par(mfrow = c(1,2))
-dend %>% plot(main = "Before")
-dend %>% 
+dend2 <- dend %>% 
    set("labels", c(111:115)) %>%    # change labels
    set("labels_col", c(1,2,3)) %>%  # change color 
-   set("labels_cex", c(2,1)) %>%    # change size
-   plot(main = "After")
+   set("labels_cex", c(2,1))        # change size
+
+dend %>% plot(main = "Before")
+dend2 %>% plot(main = "After")
+```
+
+Notice how these "labels parameters" are nested within the nodePar attribute:
+
+```{r}
+# looking at only the left-most node of the "after tree":
+dend2[[1]][[1]] %>% unclass %>% str 
 ```
 
 
@@ -243,43 +345,18 @@ abline(h = 2, lty = 2)
 ```
 
 
-### Changing a dendrogram's nodes/leaves (points)
-
-TODO: explain depth first
-
-Many of the functions in dendextend work using a Depth-first search. [Depth-first search](http://en.wikipedia.org/wiki/Depth-first_search) (DFS) is an algorithm for traversing or searching tree or graph data structures. One starts at the root and explores as far as possible along each branch before backtracking. Here is an illustration of this ordering for a simple tree:
-
-
-```{r, echo=FALSE}
-
-dend <- 1:5 %>% dist %>% hclust %>% as.dendrogram
-# get_nodes_xy(dend)
-
-# polygon(get_nodes_xy(dend), col = 2)
-plot(dend, 
-     leaflab = "none",
-     main = "Depth-first search in a dendrogram")
-xy <- get_nodes_xy(dend)
-for(i in 1:(nrow(xy)-1)) {
-   arrows(xy[i,1], xy[i,2], angle = 17,
-          length = .3,
-          xy[i+1,1], xy[i+1,2], 
-          lty = 1, col = 3, lwd = 1.5)   
-}
-points(xy, pch = 19, cex = 3)
-text(xy, labels = 1:nnodes(dend),cex = 1.2, col = "white") #, adj = c(0.4,0.4))
-
-```
+### Setting a dendrogram's nodes/leaves (points)
 
 
 
+### Setting a dendrogram's branches
+
+TODO: `rect.dendrogram`
 
 
-### Changing a dendrogram's branches
+### Exploring a dendrogram's basic parameters
 
-
-
-### Exploring a dendrogram's parameters
+TODO: change!
 
 While setting parameters, we would also like to be able to check the current parameters in a dendrogram. Here are several functions for doing it for the following tree:
 
@@ -294,10 +371,10 @@ dend2 <-
       assign_values_to_nodes_nodePar(19, "pch") %>% 
       assign_values_to_nodes_nodePar(2, "col") %>% 
       assign_values_to_nodes_nodePar(2, "cex") %>% 
-      assign_values_to_leaves_nodePar(3, "col") %>% 
-   plot
+      assign_values_to_leaves_nodePar(3, "col") #%>% 
+#   plot
 
-dend %>% plot
+dend2 %>% plot
 ```
 
 
