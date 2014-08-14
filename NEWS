@@ -11,17 +11,20 @@ dendextend 0.17.0 (2014-08-14)
    * `untangle_step_rotate_2side` - print_times is now dendextend_options("warn"),
    * `color_branches` - now handles flat trees more gracefully. (returns them as they are)
    * `cutree.dendrogram` - now replaces NA values with 0L
-   * set.dendrogram - added explenation in the .Rd docs of the different possible options for "what"
-   * set.dendrogram - added nodes_pch, nodes_cex and nodes_col - using `assign_values_to_nodes_nodePar`
-   * set.dendrogram - changed from using `labels_colors<-` to `color_labels` for "labels_colors" (this will now work with using k...)
-   * set.dendrogram - if "what" is missing, return the object as is.
+   * `set.dendrogram` - added explenation in the .Rd docs of the different possible options for "what"
+   * `set.dendrogram` - added nodes_pch, nodes_cex and nodes_col - using `assign_values_to_nodes_nodePar`
+   * `set.dendrogram` - changed from using `labels_colors<-` to `color_labels` for "labels_colors" (this will now work with using k...)
+   * `set.dendrogram` - if "what" is missing, return the object as is.
    * `labels_colors<-` - added if(dendextend_options("warn")) 
    * `labels<-.dendrogram` - if value is missing, returning the dendrogram as is (this also affects `set`)
    * `get_nodes_attr` - can now return an array or a list for attributes which include a more complex structure (such as nodePar), by working with lists and adding a "simplify" parameter.
    * `rect.dendrogram` - a new xpd and lower_rect parameters - to control how low the rect will be (for example, below or above the labels). The default is below the labels.
-   * `color_branches` - can now work when the labels of the tree are not unique (feature request by Heather Turner - thanks Heather :) )
    * `colored_bars` - added defaults to make the bars be plotted bellow the labels (+allow the order of the bars to be based on the labels' order)
+
+###BUG FIXES:
    * `branches_attr_by_clusters` and `branches_attr_by_labels` - moved from using NA to Inf.
+   * `color_branches` - can now work when the labels of the tree are not unique ("feature"" request by Heather Turner - thanks Heather :) )
+
 
 ###NEW FILES:
    * dendextend_options.R - moved `dendextend_options` functions to it.
