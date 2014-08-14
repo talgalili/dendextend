@@ -211,6 +211,15 @@ all.unique <- function(x, ...) {
 #' }
 #' 
 color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, warn = dendextend_options("warn"), ...){
+
+   # Make sure the function works when the labels of the tree are not all unique
+   old_labels <- labels(tree)
+   labels_arent_unique <- !all.unique(old_labels)
+   if(labels_arent_unique) {
+      if(warn) warning("Your tree labels are NOT unique!\n This may cause an un expected issue with the color of the branches.\n Hence, your labels were temporarily turned unique (and then fixed as they were before).")
+      labels(tree) <- seq_along(old_labels)
+   }
+   
    
    if(missing(col)) {
       col <- if(require(colorspace))
@@ -300,6 +309,10 @@ color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, warn = d
    if(!is.character(labels(tree))) labels(tree) <- as.character(labels(tree))
    tree <- descendTree(tree)
    class(tree) <- "dendrogram"
+
+   # If we previously had "uniqified" the labels, they should now be "fixed back" before returning the tree.
+   if(labels_arent_unique) labels(tree) <- old_labels
+
    tree   
 }
 
