@@ -73,12 +73,12 @@ tanglegram(dendlist(dend1, dend2), margin_inner = 9,
 Introduction
 --------------
 
+The [**_dendextend package_**](http://cran.r-project.org/web/packages/dendextend/) offers a set of functions for extending dendrogram objects in R, letting you **visualize** and **comparing** trees of hierarchical clusterings, you can:
 
-When visualizing a hierarchical clustering as a tree (also known as a *dendrogram*), we are often interested in **adjusting its graphical paramters**: the color, size, type, etc of the branches, nodes and labels. Also, when considering several models - we would like to visually and statistically **compare different dendrograms** to one another.
+* **Adjust a tree's graphical paramters** - the color, size, type, etc of its branches, nodes and labels.
+* Visually and statistically **compare different dendrograms** to one another.
 
-The [**_dendextend package_**](http://cran.r-project.org/web/packages/dendextend/) offers a set of functions for making these tasks both possible and simple to do.
-
-The goal of this document is to introduce you to the basic functions that dendextend provides, and show how they may be applied. As a toy example, we will analyse the (overly) famous Iris dataset, while making extensive use of "chaining" (both are explained next).
+The goal of this document is to introduce you to the basic functions that dendextend provides, and show how they may be applied. We will make extensive use of "chaining" (explained next).
 
 
 Prerequisites

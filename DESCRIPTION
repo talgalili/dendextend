@@ -2,7 +2,7 @@ Package: dendextend
 Type: Package
 Title: Extending R's dendrogram functionality
 Version: 0.17.0
-Date: 2014-08-11
+Date: 2014-08-14
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "http://www.r-statistics.com"),
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
@@ -20,7 +20,11 @@ Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "Van Der Loo", email = "mark.vanderloo@gmail.com", comment =
     "https://github.com/markvanderloo d3dendrogram", role = "ctb"),
     person("Yoav", "Benjamini", role = "ths"))
-Description: Functions and methods for extending dendrogram objects in R.
+Description: The dendextend package offers a set of functions for extending
+    dendrogram objects in R, letting you visualize and compare trees of
+    hierarchical clusterings. You can (1) Adjust a trees graphical paramters
+    - the color, size, type, etc of its branches, nodes and labels. (2)
+    Visually and statistically compare different dendrograms to one another.
 Depends:
     R (>= 3.0.0)
 Imports:
