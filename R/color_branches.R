@@ -228,7 +228,7 @@ color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, warn = d
    }      
    
    if(is.null(k) & is.null(h)) {
-      warning("k (number of clusters) is missing, using the tree size as a default")      
+      if(warn) warning("k (number of clusters) is missing, using the tree size as a default")      
       k <- nleaves(tree)
    }
    
