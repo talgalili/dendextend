@@ -255,7 +255,7 @@ branches_attr_by_labels <- function(dend, labels, TF_values = c(2,Inf), attr = c
    if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")   
    if(missing(labels)) stop("'labels' parameter is missing.")
    if(!is.character(labels)) {      
-      warning("'labels' parameter was not a character vector, and was coerced into one.")
+      if(dendextend_options("warn")) warning("'labels' parameter was not a character vector, and was coerced into one.")
       labels <- as.character(labels)
    }
    
