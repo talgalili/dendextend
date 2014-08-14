@@ -13,7 +13,7 @@ For more details.
 }
 \usage{
 colored_bars(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
-  add = TRUE, y_scale = 1, y_shift = 0, text_shift = 1, ...)
+  add = TRUE, y_scale, y_shift, text_shift = 1, labels_order = FALSE, ...)
 }
 \arguments{
 \item{colors}{Coloring of objects on the dendrogram. Either a vector (one color per object)
@@ -36,11 +36,19 @@ starting from 1 will be used.}
 \item{add}{logical(TRUE), should the colored bars be added to an existing
 dendrogram plot?}
 
-\item{y_scale}{how much should the bars be stretched on the y axis?}
+\item{y_scale}{how much should the bars be stretched on the y axis?
+If no dend is supplied - the default will be 1}
 
-\item{y_shift}{where should the bars be plotted underneath the x axis?}
+\item{y_shift}{where should the bars be plotted underneath the x axis?
+By default it will try to locate the bars underneath the labels (it may miss,
+in which case you would need to enter a number manually)
+If no dend is supplied - the default will be 0}
 
 \item{text_shift}{a dendrogram object}
+
+\item{labels_order}{logical(FALSE) - if TRUE, then the order of the
+dendrogram's labels is ignored (and they are just plotted based on the order
+of the colors vector.}
 
 \item{...}{ignored at this point.}
 }

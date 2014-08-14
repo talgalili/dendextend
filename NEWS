@@ -20,6 +20,7 @@ dendextend 0.17.0 (2014-08-11)
    * `get_nodes_attr` - can now return an array or a list for attributes which include a more complex structure (such as nodePar), by working with lists and adding a "simplify" parameter.
    * `rect.dendrogram` - a new xpd and lower_rect parameters - to control how low the rect will be (for example, below or above the labels). The default is below the labels.
    * `color_branches` - can now work when the labels of the tree are not unique (feature request by Heather Turner - thanks Heather :) )
+   * `colored_bars` - added defaults to make the bars be plotted bellow the labels (+allow the order of the bars to be based on the labels' order)
 
 ###NEW FILES:
    * dendextend_options.R - moved `dendextend_options` functions to it.

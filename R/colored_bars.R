@@ -70,8 +70,15 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' @param add logical(TRUE), should the colored bars be added to an existing
 #' dendrogram plot?
 #' @param y_scale how much should the bars be stretched on the y axis?
+#' If no dend is supplied - the default will be 1
 #' @param y_shift where should the bars be plotted underneath the x axis?
+#' By default it will try to locate the bars underneath the labels (it may miss,
+#' in which case you would need to enter a number manually)
+#' If no dend is supplied - the default will be 0
 #' @param text_shift a dendrogram object 
+#' @param labels_order logical(FALSE) - if TRUE, then the order of the 
+#' dendrogram's labels is ignored (and they are just plotted based on the order
+#' of the colors vector.
 #' @param ... ignored at this point.
 #' @author Steve Horvath \email{SHorvath@@mednet.ucla.edu},
 #' Peter Langfelder \email{Peter.Langfelder@@gmail.com},
@@ -150,13 +157,14 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' 
 colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9, 
                        add = TRUE, 
-                       y_scale = 1, y_shift = 0,
+                       y_scale, y_shift,
                        text_shift = 1,
+                       labels_order = FALSE,
                        #below_labels = TRUE,
                        ...) 
 {
 
-   if(missing(dend)) {
+   if(missing(dend) | labels_order) {
       dend_order <- seq_along(colors)
    } else {
       # make sure we are working with a dend:
@@ -164,6 +172,22 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
       # get labels' order:
       dend_order <- order.dendrogram(dend)      
    }
+   
+   # Get y_shift to be underneath the labels
+   if(missing(dend)) {
+      if(missing(y_shift)) y_shift <- 0
+      if(missing(y_scale)) y_scale <- 1
+      
+   } else {
+      labels_dend <- labels(dend)
+      if(missing(y_shift)) y_shift <- -max(strheight(labels_dend))+par()$usr[3L]-2*strheight("x") # a bit of a hack, oh well...
+      if(missing(y_scale)) y_scale <- median(strheight(labels_dend))
+   }
+   
+   
+   
+   
+   
    # moving the y location and scale of the bars
    # this allows us to have it underneath the dend
    # in a way that would look nice.
