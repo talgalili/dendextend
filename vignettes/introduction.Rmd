@@ -156,24 +156,20 @@ For more details, you may look at:
 
 ### A dendrogram is a nested list of lists with attributes
 
-For the following tiny tree:
-
-```{r}
-# Create a dend:
-dend <- 1:3 %>% dist %>% hclust %>% as.dendrogram
-```
-
-Here is how it looks:
+The first step is working with dendrograms, is to understand that they are just a **nested list of lists with attributes**. Let us explore this for the following (tiny) tree:
 
 ```{r, fig.width=4, fig.height=3}
+# Create a dend:
+dend <- 1:2 %>% dist %>% hclust %>% as.dendrogram
+# and plot it:
 dend %>% plot
 ```
 
 And here is its structure (a nested list of lists with attributes):
 
 ```{r}
-dend %>% class
 dend %>% unclass %>% str
+dend %>% class
 ```
 
 
@@ -186,37 +182,34 @@ How to explore a dendrogram's parameters
 
 For the following simple tree:
 
-```{r}
+```{r, fig.width=4, fig.height=3}
 # Create a dend:
 dend <- 1:5 %>% dist %>% hclust %>% as.dendrogram
+# Plot it:
+dend %>% plot
 ```
 
 Here are some basic paramters we can get:
 
-```{r, fig.width=4, fig.height=3}
+```{r}
 dend %>% labels # get the labels of the tree
 dend %>% nleaves # get the number of leaves of the tree
 dend %>% nnodes # get the number of nodes in the tree (including leaves)
 dend %>% head # A combination of "str" with "head"
-dend %>% plot
 ```
 
 Next let us look at more sophisticated outputs.
 
 ### Getting nodes attributes in a depth-first search
 
-When extracting (or inserting) attributes from a dendrogram's nodes, it is often in a "depth-first search". [Depth-first search](http://en.wikipedia.org/wiki/Depth-first_search) is when an algorithm for traversing or searching tree or graph data structures. One starts at the root and explores as far as possible along each branch before backtracking. Here is an illustration of this ordering:
+When extracting (or inserting) attributes from a dendrogram's nodes, it is often in a "depth-first search". [Depth-first search](http://en.wikipedia.org/wiki/Depth-first_search) is when an algorithm for traversing or searching tree or graph data structures. One starts at the root and explores as far as possible along each branch before backtracking. 
 
-We first create a simple tree:
-
-```{r}
-# Create a dend:
-dend <- 1:5 %>% dist %>% hclust %>% as.dendrogram
-```
-
-Here is a plot of the tree, and the order in which you should read the "nodes attributes":
+Here is a plot of a tree, illustrating the order in which you should read the "nodes attributes":
 
 ```{r, echo=FALSE, fig.height=5}
+# Create a dend:
+dend <- 1:5 %>% dist %>% hclust %>% as.dendrogram
+
 # get_nodes_xy(dend)
 # polygon(get_nodes_xy(dend), col = 2)
 plot(dend, 
@@ -236,18 +229,23 @@ text(xy, labels = 1:nnodes(dend),cex = 1.2, col = "white") #, adj = c(0.4,0.4))
 We can get several nodes attributes using `get_nodes_attr` (notice the order corrosponds with what is shown in the above figure): 
 
 ```{r}
+# Create a dend:
+dend <- 1:5 %>% dist %>% hclust %>% as.dendrogram
+# Get various attributes
 dend %>% get_nodes_attr("height") # node's height
 dend %>% hang.dendrogram %>% get_nodes_attr("height") # node's height (after raising the leaves)
 dend %>% get_nodes_attr("members") # number of members (leaves) under that node
-dend %>% get_nodes_attr("midpoint") # how much "left" is this node from its left-most child
+dend %>% get_nodes_attr("midpoint") # how much "left" is this node from its left-most child's location
 dend %>% get_nodes_attr("leaf") # is this node a leaf
 dend %>% get_nodes_attr("label") # what is the label on this node
 dend %>% get_nodes_attr("nodePar") # empty (for now...)
 dend %>% get_nodes_attr("edgePar") # empty (for now...)
 ```
 
+A similar function for leaves only is `get_leaves_attr`
 
-How to set a dendrogram's parameters
+
+How to change a dendrogram
 ------------------------------------
 
 
@@ -282,15 +280,22 @@ The **what** parameter accepts many options, each uses some general function in 
 * clear_branches - clear branches' attributes (using `remove_branches_edgePar`)
 * clear_leaves - clear leaves' attributes (using `remove_branches_edgePar`)
 
-For illustration purposes, We'll create a small tree with 5 leaves, and demonstrate these functions with it.
 
-```{r, fig.show='hold', fig.width=4, fig.height=3}
-dend <- c(1:5) %>% # take some data
+### Two simple trees to play with
+
+For illustration purposes, we will create several small tree, and demonstrate these functions on them.
+
+```{r, fig.show='hold', fig.width=8, fig.height=3}
+dend13 <- c(1:3) %>% # take some data
          dist %>% # calculate a distance matrix, 
          hclust(method = "average") %>% # on it compute hierarchical clustering using the "average" method, 
          as.dendrogram # and lastly, turn that object into a dendrogram.
+# same, but for 5 leaves:
+dend15 <- c(1:5) %>% dist %>% hclust(method = "average") %>% as.dendrogram
 
-dend %>% plot
+par(mfrow = c(1,2))
+dend13 %>% plot(main="dend13")
+dend15 %>% plot(main="dend15")
 # we could have also used plot(dend)
 ```
 
@@ -301,7 +306,7 @@ We can get a vector with the tree's labels:
 
 ```{r}
 # get the labels:
-dend %>% labels
+dend15 %>% labels
 # this is just like labels(dend)
 ```
 
@@ -309,96 +314,193 @@ Notice how the tree's labels are not 1 to 5 by order, since the tree happened to
 
 ```{r}
 # change the labels, and then print them:
-dend %>% set("labels", c(111:115)) %>% labels
+dend15 %>% set("labels", c(111:115)) %>% labels
 # could also be done using:
 # labels(dend) <- c(111:115)
 ```
 
-We may also chance their color and size. Notice how the function recycles the vector of values we give it, from left to right:
+We may also change their color and size:
 
 ```{r, fig.width=8, fig.height=3}
 par(mfrow = c(1,2))
-dend2 <- dend %>% 
+dend15 %>% set("labels_col", "blue") %>% plot(main = "Change label's color") # change color 
+dend15 %>% set("labels_cex", 2) %>% plot(main = "Change label's size") # change color 
+```
+
+The function recycles, from left to right, the vector of values we give it. We can use this to create more complex patterns:
+
+```{r, fig.width=8, fig.height=3}
+# Produce a more complex dendrogram:
+dend15_2 <- dend15 %>% 
    set("labels", c(111:115)) %>%    # change labels
    set("labels_col", c(1,2,3)) %>%  # change color 
    set("labels_cex", c(2,1))        # change size
 
-dend %>% plot(main = "Before")
-dend2 %>% plot(main = "After")
+par(mfrow = c(1,2))
+dend15 %>% plot(main = "Before")
+dend15_2 %>% plot(main = "After")
 ```
 
 Notice how these "labels parameters" are nested within the nodePar attribute:
 
 ```{r}
 # looking at only the left-most node of the "after tree":
-dend2[[1]][[1]] %>% unclass %>% str 
+dend15_2[[1]][[1]] %>% unclass %>% str 
+# looking at only the nodePar attributes in this sub-tree:
+dend15_2[[1]][[1]] %>% get_nodes_attr("nodePar") 
 ```
-
 
 When it comes to color, we can also set the parameter "k", which will cut the tree into k clusters, and assign a different color to each label (based on its cluster):
 
 ```{r, fig.width=8, fig.height=3}
 par(mfrow = c(1,2))
-dend %>% set("labels_cex", 2) %>% set("labels_col", value = c(3,4))        %>% plot(main = "Recycles color \nfrom left to right")
-dend %>% set("labels_cex", 2) %>% set("labels_col", value = c(3,4), k=2)   %>% plot(main = "Color labels \nper cluster")
+dend15 %>% set("labels_cex", 2) %>% set("labels_col", value = c(3,4))        %>% plot(main = "Recycles color \nfrom left to right")
+dend15 %>% set("labels_cex", 2) %>% set("labels_col", value = c(3,4), k=2)   %>% plot(main = "Color labels \nper cluster")
 abline(h = 2, lty = 2)
 ```
 
 
 ### Setting a dendrogram's nodes/leaves (points)
 
+Each node in a tree can be represented and controllod using the `assign_values_to_nodes_nodePar`, and for the special case of the nodes of leaves, the `assign_values_to_leaves_nodePar` function is more appropriate (and faster) to use. We can control the following properties: pch (point type), cex (point size), and col (point color). For example:
+
+```{r, fig.width=10, fig.height=6}
+par(mfrow = c(2,3))
+dend13 %>% set("nodes_pch", 19) %>% plot(main = "(1) Show the\n nodes (as a dot)") #1
+dend13 %>% set("nodes_pch", 19) %>% set("nodes_cex", 2) %>% plot(main = "(2) Show (larger)\n nodes") #2
+dend13 %>% set("nodes_pch", 19) %>% set("nodes_cex", 2) %>% set("nodes_col", 3) %>% plot(main = "(3) Show (larger+colored)\n nodes") #3
+
+dend13 %>% set("leaves_pch", 19) %>% plot(main = "(4) Show the\n leaves (as a dot)") #4
+dend13 %>% set("leaves_pch", 19) %>% set("leaves_cex", 2) %>% plot(main = "(5) Show (larger)\n leaves") #5
+dend13 %>% set("leaves_pch", 19) %>% set("leaves_cex", 2) %>% set("leaves_col", 3) %>% plot(main = "(6) Show (larger+colored)\n leaves") #6
+```
+
+And with recycling we can produce more complex outputs:
+
+```{r, fig.width=8, fig.height=4}
+par(mfrow = c(1,2))
+dend15 %>% set("nodes_pch", c(19,1,4)) %>% set("nodes_cex", c(2,1,2)) %>% set("nodes_col", c(3,4))        %>% plot(main = "Adjust nodes")
+dend15 %>% set("leaves_pch", c(19,1,4)) %>% set("leaves_cex", c(2,1,2)) %>% set("leaves_col", c(3,4))        %>% plot(main = "Adjust nodes\n(but only for leaves)")
+```
+
+Notice how recycling works in a depth-first order (which is just left to right, when we only adjust the leaves). Here are the node's paramters after adjustment:
+
+```{r}
+dend15 %>% set("nodes_pch", c(19,1,4)) %>% set("nodes_cex", c(2,1,2)) %>% set("nodes_col", c(3,4)) %>% get_nodes_attr("nodePar")
+```
+
+We can also change the height of of the leaves by using the `hang.dendrogram` function:
+
+```{r, fig.width=10, fig.height=3}
+par(mfrow = c(1,3))
+dend13 %>% set("leaves_pch", 19) %>% set("leaves_cex", 2) %>% set("leaves_col", 2) %>% # adjust the leaves
+   hang.dendrogram %>% # hang the leaves
+   plot(main = "Hanging a tree")
+dend13 %>% set("leaves_pch", 19) %>% set("leaves_cex", 2) %>% set("leaves_col", 2) %>% # adjust the leaves
+   hang.dendrogram(hang_height = .6) %>% # hang the leaves (at some height)
+   plot(main = "Hanging a tree (but lower)")
+dend13 %>% set("leaves_pch", 19) %>% set("leaves_cex", 2) %>% set("leaves_col", 2) %>% # adjust the leaves
+   hang.dendrogram %>% # hang the leaves
+   hang.dendrogram(hang = -1) %>% # un-hanging the leaves
+   plot(main = "Not hanging a tree")
+```
+
+An example of what this function does to the leaves heights:
+
+```{r}
+dend13 %>% get_leaves_attr("height")
+dend13 %>% hang.dendrogram %>% get_leaves_attr("height")
+```
+
 
 
 ### Setting a dendrogram's branches
 
+
+#### Adjusting all branches
+
+Similar to adjusting nodes, we can also control line width (lwd), line type (lty), and color (col) for branches:
+
+```{r, fig.width=10, fig.height=3}
+par(mfrow = c(1,3))
+dend13 %>% set("branches_lwd", 4) %>% plot(main = "Thick branches")
+dend13 %>% set("branches_lty", 3) %>% plot(main = "Dashed branches")
+dend13 %>% set("branches_col", 2) %>% plot(main = "Red branches")
+```
+
+We may also use recycling to create more complex patterns:
+
+```{r, fig.width=4, fig.height=3}
+# Produce a more complex dendrogram:
+dend15 %>% 
+   set("branches_lwd", c(4,1)) %>%    
+   set("branches_lty", c(1,1,3)) %>%  
+   set("branches_col", c(1,2,3)) %>% 
+   plot(main = "Complex branches", edge.root = TRUE)
+```
+
+Notice how the first branch (the root) is considered when going through and creating the tree, but it is **ignored** in the actual plotting (this is actually a "missing feature" in `plot.dendrogram`).
+
+#### Coloring branches based on clustering
+
+We may also control the colors of the branches based on using clustering:
+
+```{r, fig.width=8, fig.height=3}
+par(mfrow = c(1,2))
+dend15 %>% set("branches_k_color", k = 3) %>% plot(main = "Nice defaults")
+dend15 %>% set("branches_k_color", value = 3:1, k = 3) %>% plot(main = "Controlling branches' colors\n(via clustering)")
+# This is like using the `color_branches` function
+```
+
+
+
+#### Adjusting branches based on labels
+
+The most powerful way to control branches is through the `branches_attr_by_labels` function (with variations through the `set` function). The function allows you to change col/lwd/lty of branches if they match some "labels condition". Follow carefully:
+
+
+```{r, fig.width=8, fig.height=3}
+par(mfrow = c(1,2))
+dend15 %>% set("by_labels_branches_col", value = c(1,4)) %>% 
+   plot(main = "Adjust the branch\n if ALL (default) of its\n labels are in the list")
+dend15 %>% set("by_labels_branches_col", value = c(1,4), type = "any") %>% 
+   plot(main = "Adjust the branch\n if ANY of its\n labels are in the list")
+```
+
+We can use this to change the size/type/color of the branches:
+
+```{r, fig.width=10, fig.height=3}
+# Using "Inf" in "TF_values" means to let the paramters stay as they are.
+par(mfrow = c(1,3))
+dend15 %>% set("by_labels_branches_col", value = c(1,4), TF_values = c(3,Inf)) %>% 
+   plot(main = "Change colors")
+dend15 %>% set("by_labels_branches_lwd", value = c(1,4), TF_values = c(8,1)) %>% 
+   plot(main = "Change line width")
+dend15 %>% set("by_labels_branches_lty", value = c(1,4), TF_values = c(3,Inf)) %>% 
+   plot(main = "Change line type")
+```
+
+
+### Changing a dendrogram's structure
+
+
+#### Rotation
+
+
+
+#### Pruning
+
+
+### Adding extra bars and rectangles
+
+#### Adding colored rectangles
+
 TODO: `rect.dendrogram`
 
 
-### Exploring a dendrogram's basic parameters
 
-TODO: change!
+#### Adding colored bars
 
-While setting parameters, we would also like to be able to check the current parameters in a dendrogram. Here are several functions for doing it for the following tree:
-
-```{r}
-dend <- c(1:5) %>% # take the iris dataset, 
-         dist %>% # calculate a distance matrix, 
-         hclust(method = "average") %>% # on it compute hierarchical clustering using the "average" method, 
-         as.dendrogram # and lastly, turn that object into a dendrogram.
-
-dend2 <-
-   dend %>% 
-      assign_values_to_nodes_nodePar(19, "pch") %>% 
-      assign_values_to_nodes_nodePar(2, "col") %>% 
-      assign_values_to_nodes_nodePar(2, "cex") %>% 
-      assign_values_to_leaves_nodePar(3, "col") #%>% 
-#   plot
-
-dend2 %>% plot
-```
-
-
-```{r}
-dend %>% labels # get the labels of the tree
-dend %>% nleaves # get the number of leaves of the tree
-dend %>% nnodes # get the number of nodes in the tree (including leaves)
-dend %>% plot
-dend %>% plot
-
-
-
-```
-
-
-
-
-
-Changing a dendrogram's structure
-----------------------------------
-
-### Rotation
-
-### Pruning
 
 
 Comparing two dendrograms
