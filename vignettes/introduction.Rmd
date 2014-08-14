@@ -412,7 +412,20 @@ dend13 %>% get_leaves_attr("height")
 dend13 %>% hang.dendrogram %>% get_leaves_attr("height")
 ```
 
+We can also control the general heights of nodes using `raise.dendrogram`:
 
+```{r, fig.width=10, fig.height=3}
+par(mfrow = c(1,3))
+dend13 %>% plot(main = "First tree", ylim = c(0,3))
+dend13 %>% 
+   raise.dendrogram (-1) %>% 
+   plot(main = "One point lower", ylim = c(0,3))
+dend13 %>% 
+   raise.dendrogram (1) %>% 
+   plot(main = "One point higher", ylim = c(0,3))
+```
+
+If you wish to make the branches under the root have the same height, you can use the `flatten.dendrogram` function.
 
 ### Setting a dendrogram's branches
 
@@ -486,9 +499,60 @@ dend15 %>% set("by_labels_branches_lty", value = c(1,4), TF_values = c(3,Inf)) %
 
 #### Rotation
 
+A dendrogram is an object which can be rotated on its hinges without changing its topology.
+Rotating a dendrogram in base R can be done using the `reorder` function. The problem with
+this function is that it is not very intuitive. For this reason the `rotate` function was written.
+It has two main arguments: the "object" (a dendrogram), and the "order" we wish to rotate it by. The "order" parameter can be either a numeric vector, used in a similar way we would order a simple
+character vector. Or, the order parameter can also be a character vector of the labels of the
+tree, given in the new desired order of the tree.
+It is also worth noting that some order are impossible to achieve for a given tree's topology. In such cases, the function will do its "best" to get as close as possible to the requested rotation.
+
+
+```{r, fig.width=10, fig.height=3}
+par(mfrow = c(1,3))
+dend15 %>% color_labels %>% color_branches %>% 
+   plot(main = "First tree")
+dend15 %>% color_labels %>% color_branches %>% 
+   rotate(as.character(5:1)) %>% 
+   plot(main = "Rotated tree\n based on labels")
+dend15 %>% color_labels %>% color_branches %>% 
+   rotate(5:1) %>% # the fifth label to go first is "4"
+   plot(main = "Rotated tree\n based on order")
+```
+
+
+
+#### Unbranching
+
+
+We can unbranch a tree:
+
+```{r, fig.width=10, fig.height=3}
+par(mfrow = c(1,3))
+dend15 %>% plot(main = "First tree", ylim = c(0,3))
+dend15 %>% 
+   unbranch %>% 
+   plot(main = "Unbranched tree", ylim = c(0,3))
+dend15 %>% 
+   unbranch(2) %>% 
+   plot(main = "Unbranched tree (2)", ylim = c(0,3))
+```
 
 
 #### Pruning
+
+We can prune a tree based on the labels:
+
+```{r, fig.width=7, fig.height=3}
+par(mfrow = c(1,2))
+dend15 %>% color_labels %>% 
+   plot(main = "First tree", ylim = c(0,3))
+dend15 %>% color_labels %>%
+   prune(c("1","5")) %>% 
+   plot(main = "Prunned tree", ylim = c(0,3))
+```
+
+For pruning two trees to have matching labels, we can use the `intersect_trees` function.
 
 
 ### Adding extra bars and rectangles
