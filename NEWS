@@ -3,7 +3,7 @@ dendextend 0.17.0 (2014-08-11)
 
 ###NEW FUNCTIONS:
    * get_nodes_xy - Get the x-y coordiantes of a dendrogram's nodes
-
+   * all.unique - check if all elements in a vector are unique
 
 ###UPDATED FUNCTIONS:
    * ALL `warn` paramteres are no set to dendextend_options("warn") (which is FALSE)!

@@ -17,6 +17,39 @@
 #
 
 
+
+
+
+
+#' @title Check if all the elements in a vector are unique
+#' @export
+#' @param x a vector
+#' @param ... ignored.
+#' @return logical (are all the elements in the vector unique)
+#' @source 
+#' 
+#' \url{http://r.789695.n4.nabble.com/Is-there-a-function-to-test-if-all-the-elements-in-a-vector-are-unique-td931833.html}
+#' 
+#' @seealso \link{unique}
+#' @examples
+#' 
+#' all.unique(c(1:5, 1,1))
+#' all.unique(c(1,1,2))
+#' all.unique(c(1,1,2, 3,3,3,3))
+#' all.unique(c(1,3,2))
+#' all.unique(c(1:10))
+#' 
+all.unique <- function(x, ...) {
+   anyDuplicated(x) == 0L   
+}
+
+
+#
+
+
+
+
+
 #' @title Color tree's branches according to sub-clusters
 #' @export
 #' @aliases
