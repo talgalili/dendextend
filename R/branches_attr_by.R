@@ -174,10 +174,10 @@ branches_attr_by_clusters <- function(dend, clusters, values, attr = c("col", "l
    
    # no we can go through all of the clusters and modify the dend as we should:
    for(i in seq_along(u_clusters)) {
-      # set tmp values to be the cluster value (for relevant nodes) or NA (for the rest):
-      tmp_values <- ifelse(nodes_cluster_TF_mat[,i], values[i], NA)
-      # but if we have an overlap, let's set values back to NA!
-      tmp_values <- ifelse(nodes_cluster_TF_mat_overlap, NA, tmp_values)
+      # set tmp values to be the cluster value (for relevant nodes) or Inf (for the rest):
+      tmp_values <- ifelse(nodes_cluster_TF_mat[,i], values[i], Inf)
+      # but if we have an overlap, let's set values back to Inf!
+      tmp_values <- ifelse(nodes_cluster_TF_mat_overlap, Inf, tmp_values)
       
       # update the dend:
       dend <- assign_values_to_branches_edgePar(object = dend, value = tmp_values, edgePar = attr)     
@@ -207,7 +207,7 @@ branches_attr_by_clusters <- function(dend, clusters, values, attr = c("col", "l
 #' @param dend a dendrogram dend 
 #' @param labels a character vector of labels from the tree
 #' @param TF_values a two dimensional vector with the TF_values to use in case a branch fulfills the condition (TRUE)
-#' and in the case that it does not (FALSE). Defaults are 2/NA for col, lwd and lty.
+#' and in the case that it does not (FALSE). Defaults are 2/Inf for col, lwd and lty.
 #' (so it will insert the first value, and will not change all the FALSE cases)
 #' @param attr a character with one of the following values: col/lwd/lty
 #' @param type a character vector of either "all" or "any", indicating which of 
@@ -251,7 +251,7 @@ branches_attr_by_clusters <- function(dend, clusters, values, attr = c("col", "l
 #'        "any", "lty", c(2,1)) %>% plot
 #' 
 #' }
-branches_attr_by_labels <- function(dend, labels, TF_values = c(2,NA), attr = c("col", "lwd", "lty"), type = c("all", "any"), ...) {
+branches_attr_by_labels <- function(dend, labels, TF_values = c(2,Inf), attr = c("col", "lwd", "lty"), type = c("all", "any"), ...) {
    if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")   
    if(missing(labels)) stop("'labels' parameter is missing.")
    if(!is.character(labels)) {      
@@ -264,8 +264,8 @@ branches_attr_by_labels <- function(dend, labels, TF_values = c(2,NA), attr = c(
    attr <- match.arg(attr)
    
    # make sure that if the TF_values has only one value, 
-   # the other one will be NA
-   if(length(TF_values) == 1) TF_values <- c(TF_values, NA)
+   # the other one will be Inf
+   if(length(TF_values) == 1) TF_values <- c(TF_values, Inf)
    
    # deal with the case we have labels not included in the tree dend:
    labels_in_dend <- labels %in% labels(dend)

@@ -3,7 +3,7 @@
 \alias{branches_attr_by_labels}
 \title{Change col/lwd/lty of branches matching labels condition}
 \usage{
-branches_attr_by_labels(dend, labels, TF_values = c(2, NA), attr = c("col",
+branches_attr_by_labels(dend, labels, TF_values = c(2, Inf), attr = c("col",
   "lwd", "lty"), type = c("all", "any"), ...)
 }
 \arguments{
@@ -12,7 +12,7 @@ branches_attr_by_labels(dend, labels, TF_values = c(2, NA), attr = c("col",
 \item{labels}{a character vector of labels from the tree}
 
 \item{TF_values}{a two dimensional vector with the TF_values to use in case a branch fulfills the condition (TRUE)
-and in the case that it does not (FALSE). Defaults are 2/NA for col, lwd and lty.
+and in the case that it does not (FALSE). Defaults are 2/Inf for col, lwd and lty.
 (so it will insert the first value, and will not change all the FALSE cases)}
 
 \item{attr}{a character with one of the following values: col/lwd/lty}
