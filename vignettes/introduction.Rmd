@@ -9,14 +9,19 @@ output:
 %\VignetteIndexEntry{Introduction to dendextend}
 -->
 
+
 ```{r, echo = FALSE, message = FALSE}
 library(dendextend)
 library(knitr)
 knitr::opts_chunk$set(
+   cache = TRUE,
   comment = "#>",
   error = FALSE,
-  tidy = FALSE,
-  fig_path = "figure-intro\\")
+  tidy = FALSE)
+
+# http://stackoverflow.com/questions/24091735/why-pandoc-does-not-retrieve-the-image-file
+# < ! -- rmarkdown v1 -->
+
 ```
 
 Introduction to dendextend
@@ -510,12 +515,18 @@ It is also worth noting that some order are impossible to achieve for a given tr
 
 ```{r, fig.width=10, fig.height=3}
 par(mfrow = c(1,3))
-dend15 %>% color_labels %>% color_branches %>% 
+dend15 %>% 
+   set("labels_colors") %>% 
+   set("branches_k_color") %>% 
    plot(main = "First tree")
-dend15 %>% color_labels %>% color_branches %>% 
-   rotate(as.character(5:1)) %>% 
+dend15 %>%
+   set("labels_colors") %>% 
+   set("branches_k_color") %>% 
+   rotate(as.character(5:1)) %>% #rotate to match labels new order
    plot(main = "Rotated tree\n based on labels")
-dend15 %>% color_labels %>% color_branches %>% 
+dend15 %>% 
+   set("labels_colors") %>% 
+   set("branches_k_color") %>% 
    rotate(5:1) %>% # the fifth label to go first is "4"
    plot(main = "Rotated tree\n based on order")
 ```
@@ -545,9 +556,9 @@ We can prune a tree based on the labels:
 
 ```{r, fig.width=7, fig.height=3}
 par(mfrow = c(1,2))
-dend15 %>% color_labels %>% 
+dend15 %>% set("labels_colors") %>% 
    plot(main = "First tree", ylim = c(0,3))
-dend15 %>% color_labels %>%
+dend15 %>% set("labels_colors") %>%
    prune(c("1","5")) %>% 
    plot(main = "Prunned tree", ylim = c(0,3))
 ```
@@ -569,6 +580,9 @@ TODO: `rect.dendrogram`
 
 Comparing two dendrograms
 --------------------------
+
+### dendlist
+
 
 ### tanglegram
 
