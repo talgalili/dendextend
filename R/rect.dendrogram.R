@@ -154,14 +154,14 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
       
       if(!horiz) { # the default
          xleft = m[which[n]] + 0.66
-         if(missing(lower_rect)) lower_rect <- par("usr")[3L] - max(strwidth(labels(dend)))
+         if(missing(lower_rect)) lower_rect <- par("usr")[3L] - max(strwidth(labels(tree)))
          ybottom =  lower_rect
          xright = m[which[n] + 1] + 0.33
          ytop = mean(tree_heights[(k - 1):k])
       } else {         
          xleft = mean(tree_heights[(k - 1):k])
          ybottom = m[which[n]] + 0.66
-         if(missing(lower_rect)) lower_rect <- par("usr")[2L] + max(strwidth(labels(dend)))
+         if(missing(lower_rect)) lower_rect <- par("usr")[2L] + max(strwidth(labels(tree)))
          xright = lower_rect
          ytop = m[which[n] + 1] + 0.33
       }      
