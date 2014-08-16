@@ -61,6 +61,8 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' under the dendrogram.
 #' @param dend a dendrogram object. If missing, the colors are plotted without and re-ordering
 #' (this assumes that the colors are already ordered based on the dend's labels)
+#' This is also important in order to get the correct height/location of the colored bars
+#' (i.e.: adjusting the y_scale and y_shift)
 #' @param rowLabels Labels for the colorings given in \code{colors}. The labels will be printed to the
 #' left of the color rows in the plot. If the argument is given, it must be a vector of length
 #' equal to the number of columns in \code{colors}. If not given, \code{names(colors)}
@@ -76,8 +78,10 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' in which case you would need to enter a number manually)
 #' If no dend is supplied - the default will be 0
 #' @param text_shift a dendrogram object 
-#' @param labels_order logical(FALSE) - if TRUE, then the order of the 
-#' dendrogram's labels is ignored (and they are just plotted based on the order
+#' @param sort_by_labels_order logical(FALSE) - if TRUE, then the order of the 
+#' colored bars will be sorted based on the order needed to change the original
+#' order of the observations to the current order of the labels in the dendrogram.
+#' If FALSE (default) the colored bars are plotted as-is, based on the order
 #' of the colors vector.
 #' @param ... ignored at this point.
 #' @author Steve Horvath \email{SHorvath@@mednet.ucla.edu},
@@ -159,13 +163,21 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
                        add = TRUE, 
                        y_scale, y_shift,
                        text_shift = 1,
-                       labels_order = FALSE,
+                       sort_by_labels_order = FALSE,
                        #below_labels = TRUE,
                        ...) 
 {
-
-   if(missing(dend) | labels_order) {
-      dend_order <- seq_along(colors)
+   
+   dim_colors <- dim(colors)
+   num_of_rows <- ifelse(is.null(dim_colors), 0 , dim_colors[2])
+   
+   if(missing(dend) | !sort_by_labels_order) {
+      if(is.null(dim_colors)) { # then colors is a vector
+         dend_order <- seq_along(colors)   
+      } else { # color is a matrix
+         dend_order <- seq_len(dim_colors[1])
+      }
+      
    } else {
       # make sure we are working with a dend:
       if(!is.dendrogram(dend)) dend <- as.dendrogram(dend)      
@@ -176,12 +188,12 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
    # Get y_shift to be underneath the labels
    if(missing(dend)) {
       if(missing(y_shift)) y_shift <- 0
-      if(missing(y_scale)) y_scale <- 1
+      if(missing(y_scale)) y_scale <- 1 * num_of_rows
       
    } else {
       labels_dend <- labels(dend)
       if(missing(y_shift)) y_shift <- -max(strheight(labels_dend))+par()$usr[3L]-2*strheight("x") # a bit of a hack, oh well...
-      if(missing(y_scale)) y_scale <- median(strheight(labels_dend))
+      if(missing(y_scale)) y_scale <- median(strheight(labels_dend)) * num_of_rows
    }
    
    

@@ -19,7 +19,7 @@ dendextend 0.17.0 (2014-08-14)
    * `labels<-.dendrogram` - if value is missing, returning the dendrogram as is (this also affects `set`)
    * `get_nodes_attr` - can now return an array or a list for attributes which include a more complex structure (such as nodePar), by working with lists and adding a "simplify" parameter.
    * `rect.dendrogram` - a new xpd and lower_rect parameters - to control how low the rect will be (for example, below or above the labels). The default is below the labels.
-   * `colored_bars` - added defaults to make the bars be plotted bellow the labels (+allow the order of the bars to be based on the labels' order)
+   * `colored_bars` - added defaults to make the bars be plotted bellow the labels. +allow the order of the bars to be based on the labels' order, made that to be the default +have scale default be better for multiple bars.
    * `branches_attr_by_labels` now uses `dendextend_options("warn")` to decide if to print that labels were coerced into character.
    * `intersect_trees` - now returns a dendlist.
 
@@ -28,6 +28,7 @@ dendextend 0.17.0 (2014-08-14)
    * `color_branches` - can now work when the labels of the tree are not unique ("feature"" request by Heather Turner - thanks Heather :) )
    * `rect.dendrogram` - fix a bug with the location of the rect's (using "tree" and not "dend")
    * `rect.dendrogram` - Made sure the heights are working properly!
+   * `colored_bars` - fix for multiple bars to work.
 
 ###NEW FILES:
    * dendextend_options.R - moved `dendextend_options` functions to it.

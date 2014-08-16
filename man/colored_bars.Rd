@@ -13,7 +13,8 @@ For more details.
 }
 \usage{
 colored_bars(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
-  add = TRUE, y_scale, y_shift, text_shift = 1, labels_order = FALSE, ...)
+  add = TRUE, y_scale, y_shift, text_shift = 1,
+  sort_by_labels_order = FALSE, ...)
 }
 \arguments{
 \item{colors}{Coloring of objects on the dendrogram. Either a vector (one color per object)
@@ -23,7 +24,9 @@ Each column will be plotted as a horizontal row of colors
 under the dendrogram.}
 
 \item{dend}{a dendrogram object. If missing, the colors are plotted without and re-ordering
-(this assumes that the colors are already ordered based on the dend's labels)}
+(this assumes that the colors are already ordered based on the dend's labels)
+This is also important in order to get the correct height/location of the colored bars
+(i.e.: adjusting the y_scale and y_shift)}
 
 \item{rowLabels}{Labels for the colorings given in \code{colors}. The labels will be printed to the
 left of the color rows in the plot. If the argument is given, it must be a vector of length
@@ -46,8 +49,10 @@ If no dend is supplied - the default will be 0}
 
 \item{text_shift}{a dendrogram object}
 
-\item{labels_order}{logical(FALSE) - if TRUE, then the order of the
-dendrogram's labels is ignored (and they are just plotted based on the order
+\item{sort_by_labels_order}{logical(FALSE) - if TRUE, then the order of the
+colored bars will be sorted based on the order needed to change the original
+order of the observations to the current order of the labels in the dendrogram.
+If FALSE (default) the colored bars are plotted as-is, based on the order
 of the colors vector.}
 
 \item{...}{ignored at this point.}
