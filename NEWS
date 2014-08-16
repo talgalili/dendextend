@@ -27,6 +27,7 @@ dendextend 0.17.0 (2014-08-14)
    * `branches_attr_by_clusters` and `branches_attr_by_labels` - moved from using NA to Inf.
    * `color_branches` - can now work when the labels of the tree are not unique ("feature"" request by Heather Turner - thanks Heather :) )
    * `rect.dendrogram` - fix a bug with the location of the rect's (using "tree" and not "dend")
+   * `rect.dendrogram` - Made sure the heights are working properly!
 
 ###NEW FILES:
    * dendextend_options.R - moved `dendextend_options` functions to it.

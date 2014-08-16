@@ -112,8 +112,12 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
    
    # In tree_heights I am removing the first element
    # in order to be consistant with rect.hclust
-   tree_heights <- heights_per_k.dendrogram(tree)[-1]
-   tree_order <- order.dendrogram(tree)   
+   tree_heights <- heights_per_k.dendrogram(tree)[-1] # this is NOT really tree heights, but the height for which you need to cut in order to cut the tree
+   tree_order <- order.dendrogram(tree)
+#    rm0 <- function(x) x[x != 0]
+#    height_to_add <- min(rm0(abs(diff(tree_heights))))/2 # the height to add so to be sure we get a "clear" cut
+   
+   
    
    if (!is.null(h)) {
       if (!is.null(k)) 
@@ -154,21 +158,25 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
       
       if(!horiz) { # the default
          xleft = m[which[n]] + 0.66
-         if(missing(lower_rect)) lower_rect <- par("usr")[3L] - max(strwidth(labels(tree)))
+         if(missing(lower_rect)) lower_rect <- par("usr")[3L] - strheight("W")*(max(nchar(labels(tree))) + 1)
          ybottom =  lower_rect
          xright = m[which[n] + 1] + 0.33
-         ytop = mean(tree_heights[(k - 1):k])
+         #          ytop = mean(tree_heights[(k - 1):k])
+         #          ytop = tree_heights[k] + abs(ybottom)
+#          ytop = mean(tree_heights[(k - 1):k]) + abs(ybottom)
+         ytop = tree_heights[names(tree_heights) == k] # + height_to_add # + abs(ybottom)          
       } else {         
-         xleft = mean(tree_heights[(k - 1):k])
          ybottom = m[which[n]] + 0.66
-         if(missing(lower_rect)) lower_rect <- par("usr")[2L] + max(strwidth(labels(tree)))
+         if(missing(lower_rect)) lower_rect <- par("usr")[2L] + strwidth("X")*(max(nchar(labels(tree))) + 1) 
          xright = lower_rect
          ytop = m[which[n] + 1] + 0.33
+#          xleft = mean(tree_heights[(k - 1):k])
+         xleft = tree_heights[names(tree_heights) == k] # tree_heights[k] + height_to_add # + abs(xright)
       }      
       rect(xleft, 
            ybottom,
            xright , 
-           ytop , 
+           ytop, 
            border = border[n], density = density, angle = angle, ...)
 
       # allow for a vectorized version of "text"      
