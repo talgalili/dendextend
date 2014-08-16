@@ -21,6 +21,7 @@ dendextend 0.17.0 (2014-08-14)
    * `rect.dendrogram` - a new xpd and lower_rect parameters - to control how low the rect will be (for example, below or above the labels). The default is below the labels.
    * `colored_bars` - added defaults to make the bars be plotted bellow the labels (+allow the order of the bars to be based on the labels' order)
    * `branches_attr_by_labels` now uses `dendextend_options("warn")` to decide if to print that labels were coerced into character.
+   * `intersect_trees` - now returns a dendlist.
 
 ###BUG FIXES:
    * `branches_attr_by_clusters` and `branches_attr_by_labels` - moved from using NA to Inf.

@@ -198,7 +198,7 @@ prune.phylo <- function(x,...) {
 #' but for keeping the noise down, the default is FALSE.
 #' Should a warning be issued if there was a need to perform intersaction.
 #' @param ... passed on
-#' @return A list with two pruned trees
+#' @return A \link{dendlist} with two pruned trees
 #' @seealso \link{prune}, \link{intersect}, \link{labels}
 #' @examples
 #' hc <- hclust(dist(USArrests[1:5,]), "ave")
@@ -238,7 +238,7 @@ intersect_trees <- function(x1, x2, warn = dendextend_options("warn"), ...){
       warning("The labels in both tree had different values - trees were pruned.")
    }
    
-   return(list(pruned_x1, pruned_x2))   
+   return(dendlist(pruned_x1, pruned_x2))   
 }
 
 

@@ -18,7 +18,7 @@ Should a warning be issued if there was a need to perform intersaction.}
 \item{...}{passed on}
 }
 \value{
-A list with two pruned trees
+A \link{dendlist} with two pruned trees
 }
 \description{
 Return two trees after pruning them so that the only leaves left are the intersection of their labels.
