@@ -75,7 +75,7 @@ is.dendlist <- function(x) {
 #' It accepts several dendrograms and or dendlist objects
 #' and chain them all together.
 #' This function aim to help with the usability of 
-#' comparing two or more dendrograms
+#' comparing two or more dendrograms.
 #' 
 #' @param ... several dendrogram/hclust/phylo or dendlist objects
 #' If an object is hclust or phylo - it will be converted
