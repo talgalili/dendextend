@@ -619,10 +619,100 @@ colored_bars(colors = the_bars, dend = dend15)
 
 
 
+
+
+Enhancing other packages
+--------------------------
+
+The dendextend package aims to extend and enhance features from the R ecosystem. Let us take a look at several examples.
+
+
+### DendSer
+
+The DendSer package helps in re-arranging a dendrogram to optimize visualisation-based cost functions. Until now it was only used for `hclust` objects, but it can easily be connected to `dendrogram` objects by trying to turn the dendrogram into hclust, on which it runs DendSer. This can be used to rotate the dendrogram easily by using the `rotate_DendSer` function:
+
+
+```{r, fig.width=7, fig.height=3}
+par(mfrow = c(1,2))
+library(DendSer)
+DendSer.dendrogram(dend15)
+
+dend15 %>% color_branches %>%                      plot
+dend15 %>% color_branches %>% rotate_DendSer %>%   plot
+```
+
+
+### gplots
+
+The gplots package brings us the `heatmap.2` function. In it, we can use our modified dendrograms to get more informative heatmaps:
+
+```{r, message=FALSE}
+library(gplots)
+
+data(mtcars) 
+x  <- as.matrix(mtcars)
+
+heatmap.2(x)
+
+# now let's spice up the dendrograms a bit:
+Rowv  <- x %>% dist %>% hclust %>% as.dendrogram %>%
+   set("branches_k_color", k = 3) %>% set("branches_lwd", 4) %>%
+   rotate_DendSer(ser_weight = dist(x))
+Colv  <- x %>% t %>% dist %>% hclust %>% as.dendrogram %>%
+   set("branches_k_color", k = 2) %>% set("branches_lwd", 4) %>%
+   rotate_DendSer(ser_weight = dist(t(x)))
+
+heatmap.2(x, Rowv = Rowv, Colv = Colv)
+```
+
+
+
+### dynamicTreeCut
+
+The `cutreeDynamic` function offers a wrapper for two methods of adaptive branch pruning of hierarchical clustering dendrograms. The results of which can now be visualized by both updating the branches, as well as using the `colored_bars` function (which was adjusted for use with plots of dendrograms):
+
+
+```{r}
+# let's get the clusters
+library(dynamicTreeCut)
+data(iris)
+x  <- iris[,-5] %>% as.matrix
+hc <- x %>% dist %>% hclust
+dend <- hc %>% as.dendrogram 
+
+# Find special clusters:
+clusters <- cutreeDynamic(hc, distM = as.matrix(dist(x)), method = "tree")
+# we need to sort them to the order of the dendrogram:
+clusters <- clusters[order.dendrogram(dend)]
+clusters_numbers <- unique(clusters) - (0 %in% clusters)
+n_clusters <- length(clusters_numbers)
+
+library(colorspace)
+cols <- rainbow_hcl(n_clusters)
+true_species_cols <- rainbow_hcl(3)[as.numeric(iris[,][order.dendrogram(dend),5])]
+dend2 <- dend %>% 
+         branches_attr_by_clusters(clusters, values = cols) %>% 
+         color_labels(col =   true_species_cols)
+plot(dend2)
+clusters <- factor(clusters)
+levels(clusters)[-1]  <- cols[-5][c(1,4,2,3)] 
+   # Get the clusters to have proper colors.
+   # fix the order of the colors to match the branches.
+colored_bars(clusters, dend, y_scale = 1)
+```
+
+
+### pvclust
+
+
+
+
 Comparing two dendrograms
 --------------------------
 
 ### dendlist
+
+It accepts several dendrograms and or dendlist objects and chain them all together. This function aim to help with the usability of comparing two or more dendrograms.
 
 
 ### tanglegram
@@ -639,6 +729,8 @@ Comparing two dendrograms
 
 Enhancing other packages
 --------------------------
+
+TODO: in the `untangle_DendSer` to a sorted dendrogram:
 
 ### ggdendro
 
