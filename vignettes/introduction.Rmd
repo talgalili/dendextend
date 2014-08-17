@@ -563,18 +563,59 @@ dend15 %>% set("labels_colors") %>%
    plot(main = "Prunned tree", ylim = c(0,3))
 ```
 
-For pruning two trees to have matching labels, we can use the `intersect_trees` function.
+For pruning two trees to have matching labels, we can use the `intersect_trees` function:
+
+```{r, fig.width=7, fig.height=3}
+par(mfrow = c(1,2))
+dend_intersected <- intersect_trees(dend13, dend15)
+dend_intersected[[1]] %>% plot
+dend_intersected[[2]] %>% plot
+```
 
 
 ### Adding extra bars and rectangles
 
 #### Adding colored rectangles
 
-TODO: `rect.dendrogram`
+Earlier we have seen how to highlight clusters in a dendrogram by coloring branches. We can also draw rectangles around the branches of a dendrogram in order to highlight the corresponding clusters. First the dendrogram is cut at a certain level, then a rectangle is drawn around selected branches. This is done using the `rect.dendrogram`, which is modeled based on the `rect.hclust` function. One advantage of `rect.dendrogram` over `rect.hclust`, is that it also works on horizontally plotted trees:
+
+
+
+```{r, fig.width=6, fig.height=3}
+layout(t(c(1,1,1,2,2)))
+
+dend15 %>% set("branches_k_color") %>% plot
+dend15 %>% rect.dendrogram(k=3, 
+                           border = 8, lty = 5, lwd = 2)
+
+dend15 %>% set("branches_k_color") %>% plot(horiz = TRUE)
+dend15 %>% rect.dendrogram(k=3, horiz = TRUE,
+                           border = 8, lty = 5, lwd = 2)
+```
+
 
 
 
 #### Adding colored bars
+
+
+Adding colored bars to a dendrogram may be useful to show clusters or some outside categorization of the items. For example:
+
+
+```{r, fig.width=4, fig.height=4}
+is_odd <- ifelse(labels(dend15) %% 2, 2,3)
+is_345 <- ifelse(labels(dend15) > 2, 3,4)
+is_12 <- ifelse(labels(dend15) <= 2, 3,4)
+k_3 <- cutree(dend15,k = 3, order_clusters_as_data = FALSE) 
+# The FALSE above makes sure we get the clusters in the order of the
+# dendrogram, and not in that of the original data. It is like:
+# cutree(dend15, k = 3)[order.dendrogram(dend15)]
+the_bars <- cbind(is_odd, is_345, is_12, k_3)
+the_bars[the_bars==2] <- 8
+
+dend15 %>% plot
+colored_bars(colors = the_bars, dend = dend15)
+```
 
 
 
@@ -599,6 +640,26 @@ Comparing two dendrograms
 Enhancing other packages
 --------------------------
 
+### ggdendro
+
+TODO: find out if there is a connection between denextend and ggdendro
+
+```{r, eval = FALSE}
+library(ggdendro)
+library(ggplot2)
+
+
+ddata <- dend15 %>%
+   set("labels_colors") %>% set("branches_k_color") %>%    
+   dendro_data(type="rectangle")
+ggplot(segment(ddata)) + geom_segment(aes(x=x, y=y, xend=xend, yend=yend)) +
+   	coord_flip() + scale_y_reverse(expand=c(0.2, 0)) + theme_dendro()
+# Triangular lines
+
+
+```
+
+
 ### qplots
 
 `heatmap.2`
@@ -608,6 +669,7 @@ Enhancing other packages
 ### dynamicCutree
 
 `colored_bars`
+
 
 
 dendextendRcpp - on the need for speed
