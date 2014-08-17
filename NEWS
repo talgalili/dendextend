@@ -34,6 +34,7 @@ dendextend 0.17.0 (2014-08-14)
    * dendextend_options.R - moved `dendextend_options` functions to it.
    * get_nodes_xy.R
    * Rename files: trim.R -> prune.R
+   * DendSer.R
 
 ###OTHER NOTES:
    * Move the function `branches_attr_by_labels` between two files.
