@@ -42,6 +42,6 @@ tanglegram(dend, rotate_DendSer(dend))
 }
 \seealso{
 \code{\link[DendSer]{DendSer}}, \link{DendSer.dendrogram} ,
-\link{untangle_DendSer}
+\link{untangle_DendSer}, \link{rotate_DendSer}
 }
 

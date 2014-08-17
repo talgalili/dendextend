@@ -40,7 +40,7 @@
 #' @param ... parameters passed to \link[DendSer]{DendSer}
 #' @return Numeric vector giving an optimal dendrogram order
 #' @seealso \code{\link[DendSer]{DendSer}}, \link{DendSer.dendrogram} ,
-#' \link{untangle_DendSer} 
+#' \link{untangle_DendSer}, \link{rotate_DendSer} 
 #' @examples
 #' \dontrun{
 #' library(DendSer) # already used from within the function
@@ -77,7 +77,7 @@ DendSer.dendrogram <- function(dend, ser_weight, ...) {
 #' @param ... parameters passed to \link[DendSer]{DendSer}
 #' @return Numeric vector giving an optimal dendrogram order
 #' @seealso \code{\link[DendSer]{DendSer}}, \link{DendSer.dendrogram} ,
-#' \link{untangle_DendSer} 
+#' \link{untangle_DendSer}, \link{rotate_DendSer} 
 #' @examples
 #' \dontrun{
 #' library(DendSer) # already used from within the function
@@ -106,7 +106,7 @@ rotate_DendSer <- function(dend, ser_weight, ...) {
 #' @param ... NOT USED
 #' @return A dendlist object with ordered dends
 #' @seealso \code{\link[DendSer]{DendSer}}, \link{DendSer.dendrogram} ,
-#' \link{untangle_DendSer} 
+#' \link{untangle_DendSer}, \link{rotate_DendSer} 
 #' @examples
 #' \dontrun{
 #' set.seed(232)

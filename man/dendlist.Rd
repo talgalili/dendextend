@@ -18,7 +18,7 @@ is a dendrogram
 It accepts several dendrograms and or dendlist objects
 and chain them all together.
 This function aim to help with the usability of
-comparing two or more dendrograms
+comparing two or more dendrograms.
 }
 \details{
 It there are list() in the ..., they are omitted.
