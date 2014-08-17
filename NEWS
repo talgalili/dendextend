@@ -29,12 +29,16 @@ dendextend 0.17.0 (2014-08-14)
    * `rect.dendrogram` - fix a bug with the location of the rect's (using "tree" and not "dend")
    * `rect.dendrogram` - Made sure the heights are working properly!
    * `colored_bars` - fix for multiple bars to work.
+   * `assign_values_to_branches_edgePar`, `assign_values_to_nodes_nodePar`, `assign_values_to_leaves_nodePar` - now ignores "Inf" also when it is a character by adding as.numeric (and not only if it is numeric!) (this might be a problem if someone would try to update a label with the name "Inf").
 
 ###NEW FILES:
    * dendextend_options.R - moved `dendextend_options` functions to it.
    * get_nodes_xy.R
    * Rename files: trim.R -> prune.R
    * DendSer.R
+
+###NEW TESTS:
+   * `assign_values_to_branches_edgePar` - make sure it deals with Inf and "Inf".
 
 ###OTHER NOTES:
    * Move the function `branches_attr_by_labels` between two files.

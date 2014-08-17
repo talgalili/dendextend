@@ -582,7 +582,9 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = dende
       if(is.leaf(dend_node)) {			
          i_leaf_number <<- i_leaf_number + 1
 
-         if(!is.infinite(value[i_leaf_number])) {
+		 to_update_attr <- !is.infinite(as.numeric(value[i_leaf_number]))
+		 if(to_update_attr) {
+         # if(!is.infinite(value[i_leaf_number])) {
             attr(dend_node, "nodePar")[[nodePar]] <- value[i_leaf_number] # this way it doesn't erase other nodePar values (if they exist)
          }      
          
@@ -678,7 +680,9 @@ assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "ce
    set_value_to_node <- function(dend_node) {
       i_node_number <<- i_node_number + 1
       
-      if(!is.infinite(value[i_node_number])) {
+	  to_update_attr <- !is.infinite(as.numeric(value[i_node_number]))
+	  if(to_update_attr) {
+      # if(!is.infinite(value[i_node_number])) {
          attr(dend_node, "nodePar")[[nodePar]] <- value[i_node_number] # this way it doesn't erase other nodePar values (if they exist)
       }      
       
@@ -769,7 +773,8 @@ assign_values_to_branches_edgePar <- function(object, value, edgePar, skip_leave
       # else - keep as usual.   
       
       i_node <<- i_node + 1
-      if(!is.infinite(value[i_node])) {
+	  to_update_attr <- !is.infinite(as.numeric(value[i_node]))
+      if(to_update_attr) {
          attr(dend_node, "edgePar")[[edgePar]] <- value[i_node] # [i_leaf_number] # this way it doesn't erase other edgePar values (if they exist)
       }
       if(length(attr(dend_node, "edgePar")) == 0) attr(dend_node, "edgePar") <- NULL # remove edgePar if it is empty
