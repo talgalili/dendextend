@@ -704,6 +704,56 @@ colored_bars(clusters, dend, y_scale = 1)
 
 ### pvclust
 
+The pvclust library calculates "p-values"" for hierarchical clustering via multiscale bootstrap resampling. Hierarchical clustering is done for given data and p-values are computed for each of the clusters. The dendextend package let's us reproduce the plot from pvclust, but with a dendrogram (instead of an hclust object), which also lets us extend the visualization.
+
+
+```{r, message=FALSE, fig.width=9, results='hide'}
+par(mfrow = c(1,2))
+
+library(pvclust)
+data(lung) # 916 genes for 73 subjects
+set.seed(13134)
+result <- pvclust(lung[1:100, 1:10], 
+                  method.dist="cor", method.hclust="average", nboot=10)
+
+# with pvrect
+plot(result)
+pvrect(result)
+
+# with a dendrogram of pvrect
+dend <- as.dendrogram(result)
+result %>% as.dendrogram %>% 
+   plot(main = "Cluster dendrogram with AU/BP values (%)\n reproduced plot with dendrogram")
+result %>% text
+result %>% pvrect
+```
+
+
+Let's color and thicken the branches based on the p-values:
+
+```{r, fig.height=8, fig.width=8}
+par(mfrow = c(2,2))
+
+# with a modified dendrogram of pvrect
+dend %>% pvclust_show_signif(result) %>% plot(main = "Cluster dendrogram \n bp values are highlighted by signif")
+
+dend %>% pvclust_show_signif(result, show_type = "lwd") %>% 
+   plot(main = "Cluster dendrogram with AU/BP values (%)\n bp values are highlighted by signif")
+result %>% text
+result %>% pvrect(alpha=0.95)
+
+
+dend %>% pvclust_show_signif_gradient(result) %>% 
+   plot(main = "Cluster dendrogram with AU/BP values (%)\n bp values are colored by signif")
+
+dend %>%
+   pvclust_show_signif_gradient(result) %>%
+   pvclust_show_signif(result) %>%
+   plot(main = "Cluster dendrogram with AU/BP values (%)\n bp values are colored+highlighted by signif")
+result %>% text
+result %>% pvrect(alpha=0.95)
+```
+
 
 
 
@@ -712,7 +762,16 @@ Comparing two dendrograms
 
 ### dendlist
 
-It accepts several dendrograms and or dendlist objects and chain them all together. This function aim to help with the usability of comparing two or more dendrograms.
+A `dendlist` is a function which produces the dendlist class. It accepts several dendrograms and/or dendlist objects and chain them all together. This function aim to help with the usability of comparing two or more dendrograms.
+
+```{r}
+dend15 <- c(1:5) %>% dist %>% hclust(method = "average") %>% as.dendrogram
+dend51 <- c(5:1) %>% dist %>% hclust(method = "average") %>% as.dendrogram
+dendlist(dend15, dend51)
+head(dendlist(dend15, dend51))
+
+```
+
 
 
 ### tanglegram
@@ -750,17 +809,6 @@ ggplot(segment(ddata)) + geom_segment(aes(x=x, y=y, xend=xend, yend=yend)) +
 
 
 ```
-
-
-### qplots
-
-`heatmap.2`
-
-### pvclust
-
-### dynamicCutree
-
-`colored_bars`
 
 
 
