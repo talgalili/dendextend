@@ -258,3 +258,18 @@ as.dendlist <- function (x, ...) {
    return(x_final)   
 }
 
+
+
+
+
+#' @export
+head.dendlist <- function (x, ...) {
+   for(i in seq_len(length(x))) {
+      cat("============\n", "dend ", i, "\n", "---------\n")
+      head(x[[i]], ...)
+   }
+}
+
+
+
+
