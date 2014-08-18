@@ -1,3 +1,55 @@
+dendextend 0.17.0 (2014-08-18)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * `get_nodes_xy` - Get the x-y coordiantes of a dendrogram's nodes
+   * `all_unique` - check if all elements in a vector are unique
+   * `head.dendlist`
+
+###UPDATED FUNCTIONS:
+   * ALL `warn` paramteres are no set to dendextend_options("warn") (which is FALSE)!
+   * `get_branches_attr` - change "warning" to "warn", and it now works with is.dendrogram, and no longer changes the class of something which is not a dendrogram.
+   * `untangle_step_rotate_2side` - print_times is now dendextend_options("warn"),
+   * `color_branches` - now handles flat trees more gracefully. (returns them as they are)
+   * `cutree.dendrogram` - now replaces NA values with 0L (fix tests for it), added a parameter (NA_to_0L) to control it.
+   * `Bk` - Have it work with cutree(NA_to_0L = FALSE)
+   * `set.dendrogram` - added explenation in the .Rd docs of the different possible options for "what"
+   * `set.dendrogram` - added nodes_pch, nodes_cex and nodes_col - using `assign_values_to_nodes_nodePar`
+   * `set.dendrogram` - changed from using `labels_colors<-` to `color_labels` for "labels_colors" (this will now work with using k...)
+   * `set.dendrogram` - if "what" is missing, return the object as is.
+   * `set.dendrogram` - added a "labels_to_char" option.
+   * `labels_colors<-` - added if(dendextend_options("warn")) 
+   * `labels<-.dendrogram` - if value is missing, returning the dendrogram as is (this also affects `set`)
+   * `get_nodes_attr` - can now return an array or a list for attributes which include a more complex structure (such as nodePar), by working with lists and adding a "simplify" parameter.
+   * `rect.dendrogram` - a new xpd and lower_rect parameters - to control how low the rect will be (for example, below or above the labels). The default is below the labels.
+   * `colored_bars` - added defaults to make the bars be plotted bellow the labels. +allow the order of the bars to be based on the labels' order, made that to be the default +have scale default be better for multiple bars.
+   * `branches_attr_by_labels` now uses `dendextend_options("warn")` to decide if to print that labels were coerced into character.
+   * `intersect_trees` - now returns a dendlist.
+   * `untangle` - has a default to method (DendSet)
+   * `untangle_step_rotate_1side` - added "leaves_matching_method" parameter.
+   * `entanglement.dendrogram` - changed the default of "leaves_matching_method" to be "labels" (slower, but safer for the user...)
+
+###BUG FIXES:
+   * `branches_attr_by_clusters` and `branches_attr_by_labels` - moved from using NA to Inf.
+   * `color_branches` - can now work when the labels of the tree are not unique ("feature"" request by Heather Turner - thanks Heather :) )
+   * `rect.dendrogram` - fix a bug with the location of the rect's (using "tree" and not "dend")
+   * `rect.dendrogram` - Made sure the heights are working properly!
+   * `colored_bars` - fix for multiple bars to work.
+   * `assign_values_to_branches_edgePar`, `assign_values_to_nodes_nodePar`, `assign_values_to_leaves_nodePar` - now ignores "Inf" also when it is a character by adding as.numeric (and not only if it is numeric!) (this might be a problem if someone would try to update a label with the name "Inf").
+
+###NEW FILES:
+   * dendextend_options.R - moved `dendextend_options` functions to it.
+   * get_nodes_xy.R
+   * Rename files: trim.R -> prune.R
+   * DendSer.R
+
+###NEW TESTS:
+   * `assign_values_to_branches_edgePar` - make sure it deals with Inf and "Inf".
+
+###OTHER NOTES:
+   * Move the function `branches_attr_by_labels` between two files.
+
+
 dendextend 0.16.4 (2014-08-06)
 ----------------------------------------
 

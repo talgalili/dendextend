@@ -7,6 +7,12 @@ Next action
 * a mini Vignette (like: http://cran.r-project.org/web/packages/caret/index.html)
 * Adjust the Vignette to be a website (like http://caret.r-forge.r-project.org/)
 
+* announce the package on r-packages@r-project.org
+* create a relevant tag wiki in SO, just like: http://stackoverflow.com/tags/rcpp/info (do only after intro vignettes is done)
+* get added here: http://bioinfo.unice.fr/biodiv/Tree_editors.html
+* go through this: http://stackoverflow.com/questions/tagged/dendrogram
+
+
 * Write paper for bioinfo: mention update, cutree, colored_bars, heatmap.2, Rcpp, dynamicCutree and pvclust
 
 * add tests to nodes_with_condition.
@@ -23,6 +29,8 @@ Next action
 * Maybe add a global package option for printing debugging information, and have many of the logical warn and print stuff be related to these...
 
 * maybe show the use of dendextend+ggdend
+
+* maybe use "abs" in min(-diff(our_dend_heights))/2 in dendextend_options("heights_per_k.dendrogram") ?
 
 New functions
 --------------

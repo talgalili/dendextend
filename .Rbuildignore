@@ -5,12 +5,13 @@
 .RData
 vignettes/figure
 vignettes/cache
+vignettes/introduction_cache
 vignettes/*\.md
 vignettes/*\.gz
 vignettes/*\.tex
 vignettes/*\.log
 vignettes/*\.blg
 vignettes/*\.bbl
+vignettes/dendextend-tutorial.pdf
 NEWS.md
 inst/doc/2013-09-05_Boston-useR
-vignettes/

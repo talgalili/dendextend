@@ -1,3 +1,407 @@
+* 2014-08-18(Tal Galili) cutree.hclust - added a dummy parameter |786c408| 
+|  R/cutree.dendrogram.R | 1 +
+|  1 file changed, 1 insertion(+)
+
+* 2014-08-18(Tal Galili) Added a dendextendRcpp section. (and removed the not-working ggdendro section) |3d381da| 
+|  vignettes/introduction.Rmd | 38 ++++++--------------------------------
+|  1 file changed, 6 insertions(+), 32 deletions(-)
+
+* 2014-08-18(Tal Galili) `cutree.dendrogram` - added a parameter (NA_to_0L) to control it. Also, make `Bk` work with cutree(NA_to_0L = FALSE) |b33a2a7| 
+|  NEWS                  | 3 ++-
+|  R/bk_method.R         | 4 ++--
+|  R/cutree.dendrogram.R | 6 +++++-
+|  man/cutree-methods.Rd | 4 ++++
+|  4 files changed, 13 insertions(+), 4 deletions(-)
+
+* 2014-08-18(Tal Galili) vignettes: Cophenetic correlation and Bk plots. |9cdc2d5| 
+|  vignettes/introduction.Rmd | 133 ++++++++++++++++++++++++++++++++++++++++++-
+|  1 file changed, 131 insertions(+), 2 deletions(-)
+
+* 2014-08-18(Tal Galili) vignettes: Correlation measures - Baker's Gamma Index |b12f2df| 
+|  vignettes/introduction.Rmd | 68 ++++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 68 insertions(+)
+
+* 2014-08-18(Tal Galili) vignettes: tanglegram |6666a97| 
+|  vignettes/introduction.Rmd | 139 +++++++++++++++++++++++++++++++++++++++++--
+|  1 file changed, 135 insertions(+), 4 deletions(-)
+
+* 2014-08-18(Tal Galili) Fixing how the tests are printed by adding cat("\n") |6d5169c| 
+|  inst/tests/test-entanglement.R | 3 +++
+|  1 file changed, 3 insertions(+)
+
+* 2014-08-18(Tal Galili) Test in set.dendrogram needed - dendextend_options("warn", TRUE) |576f951| 
+|  inst/tests/test-set.dendrogram.R | 23 ++++++++++++++++++-----
+|  1 file changed, 18 insertions(+), 5 deletions(-)
+
+* 2014-08-18(Tal Galili) Test for Color recycling needed - dendextend_options("warn", TRUE) |006168a| 
+|  inst/tests/test-labels_colors.R | 2 ++
+|  1 file changed, 2 insertions(+)
+
+* 2014-08-18(Tal Galili) Rename all.unique to all_unique |3411cc2| 
+|  NAMESPACE                 |  3 ++-
+|  NEWS                      |  4 ++--
+|  R/color_branches.R        | 27 ++++++++++++++++++++-------
+|  inst/tests/test-general.R |  9 +++++----
+|  man/all.unique.Rd         | 32 --------------------------------
+|  man/all_unique.Rd         | 32 ++++++++++++++++++++++++++++++++
+|  6 files changed, 61 insertions(+), 46 deletions(-)
+
+* 2014-08-18(Tal Galili) `cutree.dendrogram` - replaces NA values with 0L - adjust the tests. |49a4bd8| 
+|  NEWS                                | 2 +-
+|  inst/tests/test-cutree.dendrogram.R | 8 ++++----
+|  2 files changed, 5 insertions(+), 5 deletions(-)
+
+* 2014-08-18(Tal Galili)    * `untangle_step_rotate_1side` - added "leaves_matching_method" parameter.    * `entanglement.dendrogram` - changed the default of "leaves_matching_method" to be "labels" (slower, but safer for the user...) |f77b4b6| 
+|  NEWS                              |  2 ++
+|  R/entanglement.R                  |  7 ++++---
+|  R/untangle.R                      | 37 ++++++++++++++++++++++++++++++-------
+|  man/entanglement.Rd               |  7 ++++---
+|  man/untangle_random_search.Rd     |  4 ++--
+|  man/untangle_step_rotate_1side.Rd | 19 ++++++++++++++++++-
+|  6 files changed, 60 insertions(+), 16 deletions(-)
+
+* 2014-08-18(Tal Galili) tanglegram: Changed the deafult in cex_main to 2 |d02bd09| 
+|  R/tanglegram.R    | 4 ++--
+|  man/tanglegram.Rd | 2 +-
+|  2 files changed, 3 insertions(+), 3 deletions(-)
+
+* 2014-08-18(Tal Galili) `untangle` - has a default to method (DendSet) |424b02d| 
+|  NEWS            | 1 +
+|  R/untangle.R    | 9 +++++++--
+|  man/untangle.Rd | 4 +++-
+|  3 files changed, 11 insertions(+), 3 deletions(-)
+
+* 2014-08-18(Tal Galili) `set.dendrogram` - added a "labels_to_char" option. |6f6f0cf| 
+|  NEWS               | 1 +
+|  R/set.dendrogram.R | 4 ++++
+|  man/set.Rd         | 2 ++
+|  3 files changed, 7 insertions(+)
+
+* 2014-08-18(Tal Galili) vignettes: pvclust, and dendlist sections. |fe7206c| 
+|  vignettes/introduction.Rmd | 72 ++++++++++++++++++++++++++++++++++++--------
+|  1 file changed, 60 insertions(+), 12 deletions(-)
+
+* 2014-08-18(Tal Galili) New function: `head.dendlist` |bd03014| 
+|  NAMESPACE    |  1 +
+|  NEWS         |  1 +
+|  R/dendlist.R | 15 +++++++++++++++
+|  3 files changed, 17 insertions(+)
+
+* 2014-08-18(Tal Galili) update pvrect2 - if we'd ever want one with adjustable lower rects... |07866e2| 
+|  R/pvclust.R | 15 ++++++++++++---
+|  1 file changed, 12 insertions(+), 3 deletions(-)
+
+* 2014-08-18(Tal Galili) Added pvrect2 - a copy of pvrect |185e6bf| 
+|  R/pvclust.R | 109 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 109 insertions(+)
+
+* 2014-08-18(Tal Galili) vignettes: "Enhancing other packages" examples for DendSer, gplots and dynamicTreeCut |69d0a52| 
+|  vignettes/introduction.Rmd | 92 ++++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 92 insertions(+)
+
+* 2014-08-18(Tal Galili) Added is.infinite2 and used it so to avoid endless warnings over type coercion... |b778982| 
+|  R/attr_access.R | 22 +++++++++++++++++-----
+|  R/dendlist.R    |  2 +-
+|  2 files changed, 18 insertions(+), 6 deletions(-)
+
+* 2014-08-18(Tal Galili) `assign_values_to_branches_edgePar`, `assign_values_to_nodes_nodePar`, `assign_values_to_leaves_nodePar` - now ignores "Inf" also when it is a character by adding as.numeric (and not only if it is numeric!) (this might be a problem if someone would try to update a label with the name "Inf"). |a6a2a78| 
+|  NEWS                             |  4 ++++
+|  R/attr_access.R                  | 11 ++++++++---
+|  R/branches_attr_by.R             |  2 +-
+|  man/branches_attr_by_clusters.Rd |  2 +-
+|  4 files changed, 14 insertions(+), 5 deletions(-)
+
+* 2014-08-18(Tal Galili) A new test for `assign_values_to_branches_edgePar` - make sure it deals with Inf and "Inf". |9036ac1| 
+|  inst/tests/test-branches_attr_by.R | 76 ++++++++++++++++++++++++++++++++++++
+|  1 file changed, 76 insertions(+)
+
+* 2014-08-17(Tal Galili) Made sure "rotate_DendSer" shows in the docs. |1409976| 
+|  R/DendSer.R               | 6 +++---
+|  man/DendSer.dendrogram.Rd | 2 +-
+|  man/dendlist.Rd           | 2 +-
+|  man/rotate_DendSer.Rd     | 2 +-
+|  man/untangle_DendSer.Rd   | 2 +-
+|  5 files changed, 7 insertions(+), 7 deletions(-)
+
+* 2014-08-17(Tal Galili) Adding DendSer.R (moving functions into it) |c9f589b| 
+|  NEWS         |   1 +
+|  R/DendSer.R  | 130 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  R/untangle.R | 110 ------------------------------------------------
+|  3 files changed, 131 insertions(+), 110 deletions(-)
+
+* 2014-08-17(Tal Galili) vignettes: Adding extra bars and rectangles |9040574| 
+|  vignettes/introduction.Rmd | 66 ++++++++++++++++++++++++++++++++++++++++++--
+|  1 file changed, 64 insertions(+), 2 deletions(-)
+
+* 2014-08-17(Tal Galili) `colored_bars` - fix for multiple bars to work. +have scale default be better for multiple bars. |2feadad| 
+|  NEWS                |  3 ++-
+|  R/colored_bars.R    | 28 ++++++++++++++++++++--------
+|  man/colored_bars.Rd | 13 +++++++++----
+|  3 files changed, 31 insertions(+), 13 deletions(-)
+
+* 2014-08-16(Tal Galili) `rect.dendrogram` - Made sure the heights are working properly! |636a223| 
+|  NEWS                |  1 +
+|  R/rect.dendrogram.R | 22 +++++++++++++++-------
+|  2 files changed, 16 insertions(+), 7 deletions(-)
+
+* 2014-08-16(Tal Galili) rect.dendrogram - fix a bug with the location of the rect's (using "tree" and not "dend") |792929f| 
+|  NEWS                | 2 +-
+|  R/rect.dendrogram.R | 4 ++--
+|  2 files changed, 3 insertions(+), 3 deletions(-)
+
+* 2014-08-16(Tal Galili) `intersect_trees` - now returns a dendlist. |b2fa915| 
+|  NEWS                   | 1 +
+|  R/prune.R              | 4 ++--
+|  man/intersect_trees.Rd | 2 +-
+|  3 files changed, 4 insertions(+), 3 deletions(-)
+
+* 2014-08-16(Tal Galili) Rename files: trim.R -> prune.R |83f6388| 
+|  NEWS      |   1 +
+|  R/prune.R | 253 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  R/trim.R  | 253 ------------------------------------------------------------
+|  3 files changed, 254 insertions(+), 253 deletions(-)
+
+* 2014-08-15(Tal Galili) Use "set" in order to not confuse the reader... |6e048d2| 
+|  vignettes/introduction.Rmd | 30 ++++++++++++++++++++++--------
+|  1 file changed, 22 insertions(+), 8 deletions(-)
+
+* 2014-08-14(Tal Galili) Vignettes: Writing "Changing a dendrogram’s structure" |197d1fd| 
+|  vignettes/introduction.Rmd | 64 ++++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 64 insertions(+)
+
+* 2014-08-14(Tal Galili) color_branches - warn of missing k only if warn=TRUE |f8677ba| 
+|  R/color_branches.R | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2014-08-14(Tal Galili) vignettes: moved to dend15 and dend13. Wrote: * Setting a dendrogram's nodes/leaves (points) * Setting a dendrogram's branches |ffb1aaf| 
+|  vignettes/introduction.Rmd | 226 +++++++++++++++++++++++++++++++------------
+|  1 file changed, 164 insertions(+), 62 deletions(-)
+
+* 2014-08-14(Tal Galili) `branches_attr_by_labels` now uses `dendextend_options("warn")` to decide if to print that labels were coerced into character. |a4fd3ef| 
+|  NEWS                 | 1 +
+|  R/branches_attr_by.R | 2 +-
+|  2 files changed, 2 insertions(+), 1 deletion(-)
+
+* 2014-08-14(Tal Galili) Fix headers. |a3e5f79| 
+|  NEWS | 13 ++++++++-----
+|  1 file changed, 8 insertions(+), 5 deletions(-)
+
+* 2014-08-14(Tal Galili) `branches_attr_by_clusters` and `branches_attr_by_labels` - moved from using NA to Inf. |2f3f5df| 
+|  NEWS                           |  1 +
+|  R/branches_attr_by.R           | 16 ++++++++--------
+|  man/branches_attr_by_labels.Rd |  4 ++--
+|  3 files changed, 11 insertions(+), 10 deletions(-)
+
+* 2014-08-14(Tal Galili) Move the function branches_attr_by_labels between two files |1e65ab0| 
+|  NEWS                     |   2 +-
+|  R/branches_attr_by.R     | 113 +++++++++++++++++++++++++++++++++++++++++++++
+|  R/noded_with_condition.R | 101 ----------------------------------------
+|  3 files changed, 114 insertions(+), 102 deletions(-)
+
+* 2014-08-14(Tal Galili) Simplify the introduction, and use if for DESCRIPTION |4142dd9| 
+|  DESCRIPTION                | 8 ++++++--
+|  NEWS                       | 2 +-
+|  vignettes/introduction.Rmd | 8 ++++----
+|  3 files changed, 11 insertions(+), 7 deletions(-)
+
+* 2014-08-14(Tal Galili) `colored_bars` - added defaults to make the bars be plotted bellow the labels (+allow the order of the bars to be based on the labels' order) |dc0b710| 
+|  NEWS                |  1 +
+|  R/colored_bars.R    | 28 ++++++++++++++++++++++++++--
+|  man/colored_bars.Rd | 14 +++++++++++---
+|  3 files changed, 38 insertions(+), 5 deletions(-)
+
+* 2014-08-14(Tal Galili) `color_branches` - can now work when the labels of the tree are not unique (feature request by Heather Turner - thanks Heather :) ) |5722bcc| 
+|  NEWS               |  5 +++--
+|  R/color_branches.R | 13 +++++++++++++
+|  2 files changed, 16 insertions(+), 2 deletions(-)
+
+* 2014-08-14(Tal Galili) all.unique - check if all elements in a vector are unique (including tests) |0eb8327| 
+|  NAMESPACE                 |  1 +
+|  NEWS                      |  2 +-
+|  R/color_branches.R        | 33 +++++++++++++++++++++++++++++++++
+|  inst/tests/test-general.R | 14 ++++++++++++++
+|  man/all.unique.Rd         | 32 ++++++++++++++++++++++++++++++++
+|  5 files changed, 81 insertions(+), 1 deletion(-)
+
+* 2014-08-14(Tal Galili) vignettes: Explaining depth-first search |b77bded| 
+|  vignettes/introduction.Rmd | 153 ++++++++++++++++++++++++++++++++-----------
+|  1 file changed, 115 insertions(+), 38 deletions(-)
+
+* 2014-08-11(Tal Galili) Fix lower_rect in rect.dendrogram to work with horiz=TRUE |ac6e2f7| 
+|  R/rect.dendrogram.R    | 5 ++++-
+|  man/rect.dendrogram.Rd | 5 ++++-
+|  2 files changed, 8 insertions(+), 2 deletions(-)
+
+* 2014-08-11(Tal Galili) moving the date. |6d7eb14| 
+|  DESCRIPTION | 2 +-
+|  NEWS        | 2 +-
+|  2 files changed, 2 insertions(+), 2 deletions(-)
+
+* 2014-08-11(Tal Galili) `rect.dendrogram` - a new xpd and lower_rect parameters - to control how low the rect will be (for example, below or above the labels). The default is below the labels. |f7e58f6| 
+|  NEWS                   |  2 +-
+|  R/rect.dendrogram.R    | 32 ++++++++++++++++++++++++++++----
+|  man/rect.dendrogram.Rd | 19 ++++++++++++++++---
+|  3 files changed, 45 insertions(+), 8 deletions(-)
+
+* 2014-08-10(Tal Galili) Dealing with a missing/junk attribute |12f3566| 
+|  R/attr_access.R               | 5 +----
+|  inst/tests/test-attr_access.R | 3 +++
+|  2 files changed, 4 insertions(+), 4 deletions(-)
+
+* 2014-08-10(Tal Galili) `get_nodes_attr` - can now return an array or a list for attributes which include a more complex structure (such as nodePar), by working with lists and adding a "simplify" parameter. |f264362| 
+|  NEWS                          |  1 +
+|  R/attr_access.R               | 19 +++++++++++++++++--
+|  inst/tests/test-attr_access.R |  8 +++++++-
+|  man/get_nodes_attr.Rd         |  6 +++++-
+|  4 files changed, 30 insertions(+), 4 deletions(-)
+
+* 2014-08-10(Tal Galili) vignettes introduction: added a first draft of explaining depth first |a99955f| 
+|  vignettes/introduction.Rmd | 36 +++++++++++++++++++++++++++++++++---
+|  1 file changed, 33 insertions(+), 3 deletions(-)
+
+* 2014-08-10(Tal Galili) get_nodes_xy - Get the x-y coordiantes of a dendrogram's nodes |28b8205| 
+|  DESCRIPTION         |   4 +-
+|  NAMESPACE           |   1 +
+|  NEWS                |   5 +
+|  R/get_nodes_xy.R    | 253 ++++++++++++++++++++++++++++++++++++++++++++++++++
+|  man/get_nodes_xy.Rd |  72 ++++++++++++++
+|  5 files changed, 333 insertions(+), 2 deletions(-)
+
+* 2014-08-09(Tal Galili) Changing a dendrogram’s labels |1c2c9d5| 
+|  vignettes/introduction.Rmd | 108 +++++++++++++++++++++++++++++++++++++++----
+|  1 file changed, 99 insertions(+), 9 deletions(-)
+
+* 2014-08-09(Tal Galili) set.dendrogram - if "what" is missing, return the object as is. |27836ee| 
+|  NEWS               | 3 ++-
+|  R/set.dendrogram.R | 5 +++++
+|  2 files changed, 7 insertions(+), 1 deletion(-)
+
+* 2014-08-09(Tal Galili) set.dendrogram - changed from using `labels_colors<-` to `color_labels` for "labels_colors" (this will now work with using k...) |69c8bcf| 
+|  NEWS               | 1 +
+|  R/set.dendrogram.R | 3 ++-
+|  2 files changed, 3 insertions(+), 1 deletion(-)
+
+* 2014-08-09(Tal Galili) `labels<-.dendrogram` - if value is missing, returning the dendrogram as is (this also affects `set`) |0c9d5fb| 
+|  NEWS       | 2 ++
+|  R/labels.R | 6 ++++++
+|  2 files changed, 8 insertions(+)
+
+* 2014-08-09(Tal Galili) `labels_colors<-` - added if(dendextend_options("warn")) |0585aae| 
+|  NEWS              | 1 +
+|  R/labels_colors.R | 4 ++--
+|  2 files changed, 3 insertions(+), 2 deletions(-)
+
+* 2014-08-09(Tal Galili) set.dendrogram - added nodes_pch, nodes_cex and nodes_col - using `assign_values_to_nodes_nodePar` |c638422| 
+|  NEWS               |  1 +
+|  R/set.dendrogram.R | 12 ++++++++++++
+|  man/set.Rd         |  6 ++++++
+|  3 files changed, 19 insertions(+)
+
+* 2014-08-08(Tal Galili) Moved Iris example to the end. And added explenation in the .Rd docs of the different possible options for "what" can get in set.dendrogram. |15c19b7| 
+|  vignettes/introduction.Rmd | 160 +++++++++++++++++++++++++++----------------
+|  1 file changed, 101 insertions(+), 59 deletions(-)
+
+* 2014-08-08(Tal Galili) set.dendrogram - added explenation in the .Rd docs of the different possible options for "what" |8f65726| 
+|  NEWS               |  1 +
+|  R/set.dendrogram.R | 21 +++++++++++++++++++++
+|  man/set.Rd         | 21 +++++++++++++++++++++
+|  3 files changed, 43 insertions(+)
+
+* 2014-08-08(Tal Galili) Added a d3 .Rd |1c70916| 
+|  man/d3dendro_options.Rd | 40 ++++++++++++++++++++++++++++++++++++++++
+|  man/d3dendrogram.Rd     | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+|  2 files changed, 87 insertions(+)
+
+* 2014-08-08(Tal Galili) Introdution vignettes - wrote a decent: tl;dr and Prerequisites (acknowledgement, iris, chaining) |b46135b| 
+|  DESCRIPTION                |  29 +++++-----
+|  vignettes/introduction.Rmd | 131 +++++++++++++++++++++++++++++--------------
+|  2 files changed, 104 insertions(+), 56 deletions(-)
+
+* 2014-08-08(Tal Galili) `cutree.dendrogram` - now replaces NA values with 0L |2061c3e| 
+|  NEWS                  | 1 +
+|  R/cutree.dendrogram.R | 3 ++-
+|  2 files changed, 3 insertions(+), 1 deletion(-)
+
+* 2014-08-08(Tal Galili) `color_branches` - now handles flat trees more gracefully. (returns them as they are) |b999388| 
+|  NEWS                  |  2 +-
+|  R/color_branches.R    | 17 ++++++++++++++++-
+|  man/color_branches.Rd | 12 +++++++++++-
+|  3 files changed, 28 insertions(+), 3 deletions(-)
+
+* 2014-08-08(Tal Galili) Include dendextend_options("warn", TRUE) in tests. |c2f7b68| 
+|  R/cutree.dendrogram.R               | 4 ++--
+|  inst/tests/test-cutree.dendrogram.R | 5 ++++-
+|  inst/tests/test-unbranch.R          | 3 +++
+|  man/untangle_step_rotate_2side.Rd   | 4 ++--
+|  4 files changed, 11 insertions(+), 5 deletions(-)
+
+* 2014-08-08(Tal Galili) untangle_step_rotate_2side` - print_times is now dendextend_options("warn"), |0da7c3f| 
+|  NEWS         | 4 +++-
+|  R/untangle.R | 2 +-
+|  2 files changed, 4 insertions(+), 2 deletions(-)
+
+* 2014-08-08(Tal Galili) Update .Rd docs, now that ALL `warn` paramteres are set to dendextend_options("warn") (which is FALSE) |6f4031f| 
+|  man/Bk.Rd                                |  9 +++++----
+|  man/Bk_permutations.Rd                   |  7 +++++--
+|  man/Bk_plot.Rd                           | 10 ++++++----
+|  man/FM_index.Rd                          |  6 ++++--
+|  man/FM_index_R.Rd                        |  6 ++++--
+|  man/FM_index_permutation.Rd              |  7 +++++--
+|  man/FM_index_profdpm.Rd                  |  6 ++++--
+|  man/assign_values_to_branches_edgePar.Rd | 10 ++++------
+|  man/assign_values_to_leaves_nodePar.Rd   | 11 +++++------
+|  man/assign_values_to_nodes_nodePar.Rd    | 10 ++++------
+|  man/color_labels.Rd                      |  7 +++++--
+|  man/cor_bakers_gamma.Rd                  |  6 ++++--
+|  man/cut_lower_fun.Rd                     |  8 +++++---
+|  man/cutree-methods.Rd                    |  6 ++++--
+|  man/cutree_1h.dendrogram.Rd              |  6 ++++--
+|  man/cutree_1k.dendrogram.Rd              |  8 +++++---
+|  man/dendextend_options.Rd                |  6 ++++++
+|  man/get_branches_attr.Rd                 |  7 +++++--
+|  man/intersect_trees.Rd                   |  8 +++++---
+|  man/sort_2_clusters_vectors.Rd           |  6 ++++--
+|  man/sort_levels_values.Rd                |  8 +++++---
+|  man/tanglegram.Rd                        |  5 +++--
+|  22 files changed, 101 insertions(+), 62 deletions(-)
+
+* 2014-08-08(Tal Galili) ALL `warn` paramteres are no set to dendextend_options("warn") (which is FALSE) |bb759ff| 
+|  NEWS                  |  6 ++++++
+|  R/attr_access.R       | 30 ++++++++++++-----------------
+|  R/bk_method.R         | 50 +++++++++++++++++++++++++++++++------------------
+|  R/color_branches.R    | 10 ++++++----
+|  R/cor_bakers_gamma.R  | 10 ++++++----
+|  R/cor_cophenetic.R    |  2 +-
+|  R/cut_lower_fun.R     | 10 ++++++----
+|  R/cutree.dendrogram.R | 36 +++++++++++++++++++++--------------
+|  R/tanglegram.R        | 11 ++++++-----
+|  R/trim.R              |  8 +++++---
+|  10 files changed, 102 insertions(+), 71 deletions(-)
+
+* 2014-08-08(Tal Galili) `get_branches_attr` - change "warning" to "warn", and it now works with is.dendrogram, and no longer changes the class of something which is not a dendrogram. |73e4ad0| 
+|  R/unbranch.R | 14 ++++++++------
+|  1 file changed, 8 insertions(+), 6 deletions(-)
+
+* 2014-08-08(Tal Galili) A new "warn" dendextend_options parameter. logical (FALSE). Should warning be issued? |d491d43| 
+|  R/dendextend_options.R | 8 ++++++++
+|  1 file changed, 8 insertions(+)
+
+* 2014-08-08(Tal Galili) dendextend_options.R - moved `dendextend_options` functions to it. |8e33740| 
+|  NEWS                   |   8 ++++
+|  R/dendextend_options.R | 110 +++++++++++++++++++++++++++++++++++++++++++++++
+|  R/zzz.R                |  88 -------------------------------------
+|  3 files changed, 118 insertions(+), 88 deletions(-)
+
+* 2014-08-07(Tal Galili) A new draft for introduction.Rmd Vignettes |ddc69d9| 
+|  vignettes/introduction.Rmd | 187 +++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 187 insertions(+)
+
+* 2014-08-06(Tal Galili) Added pvclust - bump to 0.16.4 |e4cca44| 
+|  ChangeLog   | 120 ++++++++++++++++++++++++
+|  DESCRIPTION |   5 +-
+|  NEWS.md     | 297 +++++++++++++++++++++++++++++++++-------------------------
+|  3 files changed, 290 insertions(+), 132 deletions(-)
+
 * 2014-08-06(Tal Galili) NEW FUNCTIONS:    * `as.dendrogram.pvclust` - extract the hclust from a pvclust object, and turns it into a dendrogram.    * `hc2axes` - imported from pvclust, needed for text.pvclust    * `text.pvclust` - imported from pvclust, adds text to a dend plot of a pvclust result    * `pvclust_show_signif` - Shows the significant branches in a dendrogram, based on a pvclust object    * `pvclust_show_signif_gradient` - Shows the gradient of significance of branches in a dendrogram, based on a pvclust object |5677850| 
 |  NAMESPACE                           |   4 +
 |  NEWS                                |  16 ++
