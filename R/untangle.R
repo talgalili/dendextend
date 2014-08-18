@@ -42,7 +42,9 @@
 #'    method = c("random", "step1side", "step2side", "DendSer"),
 #'    ...)
 #' 
-#' \method{untangle}{dendlist}(dend1, method, which = c(1L,2L), ...)
+#' \method{untangle}{dendlist}(dend1, 
+#'    method = c("random", "step1side", "step2side", "DendSer"),
+#'    which = c(1L,2L), ...)
 #' 
 #' @param dend1 a dednrogram or a dendlist object
 #' @param dend2 A second dednrogram (to untangle against)
@@ -112,7 +114,10 @@ untangle.dendrogram <- function (dend1, dend2,
 
 # ' @S3method untangle dendlist
 #' @export
-untangle.dendlist <- function(dend1, method, which = c(1L,2L), ...) {
+untangle.dendlist <- function(dend1, 
+                              method = c("random", "step1side", "step2side", "DendSer"), 
+                              which = c(1L,2L), ...) {
+   method <- match.arg(method)
    untangle(dend1[[which[1]]], dend1[[which[2]]], method = method, ...)
 }
 
