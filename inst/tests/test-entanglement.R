@@ -1,6 +1,9 @@
 # library(testthat)
 
 
+# fixing how the tests are printed
+cat("\n")
+
 context("Measuring entanglement of two trees")
 
 
