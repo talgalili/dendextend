@@ -360,10 +360,10 @@ pvclust_show_signif_gradient <- function(dend, pvclust_obj, signif_type = c("bp"
 
 
 
-
+# TODO: expose this function (if we'd like to have rect which are for lonng labels)
 
 pvrect2 <- function (x, alpha = 0.95, pv = "au", type = "geq", max.only = TRUE, 
-                     border = 2, ...) 
+                     border = 2, xpd = TRUE, ...) 
 {
    len <- nrow(x$edges)
    member <- hc2split(x$hclust)$member
@@ -376,6 +376,10 @@ pvrect2 <- function (x, alpha = 0.95, pv = "au", type = "geq", max.only = TRUE,
    j <- 1
    if (is.na(pm <- pmatch(type, c("geq", "leq", "gt", "lt")))) 
       stop("Invalid type argument: see help(pvrect)")
+   
+   old_xpd <- par()["xpd"]
+   par(xpd=xpd)
+   
    for (i in (len - 1):1) {
       if (pm == 1) 
          wh <- (x$edges[i, pv] >= alpha)
@@ -393,7 +397,8 @@ pvrect2 <- function (x, alpha = 0.95, pv = "au", type = "geq", max.only = TRUE,
             xl <- min(ma)
             xr <- max(ma)
             yt <- x$hclust$height[i]
-            yb <- usr[3]
+            tree <- x$hclust
+            yb <- usr[3] - strheight("W")*(max(nchar(labels(tree))) + 1)            
             mx <- xwd/length(member)/3
             my <- ywd/200
             rect(xl - mx, yb + my, xr + mx, yt + my, border = border, 
@@ -403,6 +408,10 @@ pvrect2 <- function (x, alpha = 0.95, pv = "au", type = "geq", max.only = TRUE,
          ht <- c(ht, ma)
       }
    }
+   
+   par(xpd=old_xpd)   
+   
+   
 }
 
 
