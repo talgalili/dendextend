@@ -80,7 +80,7 @@ Introduction
 
 The [**_dendextend package_**](http://cran.r-project.org/web/packages/dendextend/) offers a set of functions for extending dendrogram objects in R, letting you **visualize** and **comparing** trees of hierarchical clusterings, you can:
 
-* **Adjust a tree's graphical paramters** - the color, size, type, etc of its branches, nodes and labels.
+* **Adjust a tree's graphical parameters** - the color, size, type, etc of its branches, nodes and labels.
 * Visually and statistically **compare different dendrograms** to one another.
 
 The goal of this document is to introduce you to the basic functions that dendextend provides, and show how they may be applied. We will make extensive use of "chaining" (explained next).
@@ -194,7 +194,7 @@ dend <- 1:5 %>% dist %>% hclust %>% as.dendrogram
 dend %>% plot
 ```
 
-Here are some basic paramters we can get:
+Here are some basic parameters we can get:
 
 ```{r}
 dend %>% labels # get the labels of the tree
@@ -397,7 +397,7 @@ dend15 %>% set("nodes_pch", c(19,1,4)) %>% set("nodes_cex", c(2,1,2)) %>% set("n
 dend15 %>% set("leaves_pch", c(19,1,4)) %>% set("leaves_cex", c(2,1,2)) %>% set("leaves_col", c(3,4))        %>% plot(main = "Adjust nodes\n(but only for leaves)")
 ```
 
-Notice how recycling works in a depth-first order (which is just left to right, when we only adjust the leaves). Here are the node's paramters after adjustment:
+Notice how recycling works in a depth-first order (which is just left to right, when we only adjust the leaves). Here are the node's parameters after adjustment:
 
 ```{r}
 dend15 %>% set("nodes_pch", c(19,1,4)) %>% set("nodes_cex", c(2,1,2)) %>% set("nodes_col", c(3,4)) %>% get_nodes_attr("nodePar")
@@ -497,7 +497,7 @@ dend15 %>% set("by_labels_branches_col", value = c(1,4), type = "any") %>%
 We can use this to change the size/type/color of the branches:
 
 ```{r, fig.width=10, fig.height=3}
-# Using "Inf" in "TF_values" means to let the paramters stay as they are.
+# Using "Inf" in "TF_values" means to let the parameters stay as they are.
 par(mfrow = c(1,3))
 dend15 %>% set("by_labels_branches_col", value = c(1,4), TF_values = c(3,Inf)) %>% 
    plot(main = "Change colors")
