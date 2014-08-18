@@ -31,9 +31,10 @@ their entanglement calculated}
 two trees. It can be any positive number, often one will want to
  use 0, 1, 1.5, 2 (see 'details' for more).}
 
-\item{leaves_matching_method}{a character scalar, either "order" (default)
-or "labels". If using "labels", then we use the labels for matching the
-leaves order value.
+\item{leaves_matching_method}{a character scalar, either "order"
+or "labels" (default) . If using "labels", then we use the labels for
+matching the leaves order value (safer).
+
 And if "order" then we use the old leaves order value for matching the
 leaves order value.
 

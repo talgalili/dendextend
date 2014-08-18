@@ -25,6 +25,8 @@ dendextend 0.17.0 (2014-08-14)
    * `branches_attr_by_labels` now uses `dendextend_options("warn")` to decide if to print that labels were coerced into character.
    * `intersect_trees` - now returns a dendlist.
    * `untangle` - has a default to method (DendSet)
+   * `untangle_step_rotate_1side` - added "leaves_matching_method" parameter.
+   * `entanglement.dendrogram` - changed the default of "leaves_matching_method" to be "labels" (slower, but safer for the user...)
 
 ###BUG FIXES:
    * `branches_attr_by_clusters` and `branches_attr_by_labels` - moved from using NA to Inf.

@@ -4,7 +4,7 @@
 \title{Untangle - random search}
 \usage{
 untangle_random_search(tree1, tree2, R = 100L, L = 1,
-  leaves_matching_method = c("order", "labels"), ...)
+  leaves_matching_method = c("labels", "order"), ...)
 }
 \arguments{
 \item{tree1}{a tree object (of class dendrogram/hclust/phylo).}
@@ -19,7 +19,7 @@ two trees. It can be any positive number, often one will want to
  It is passed to \link{entanglement}.}
 
 \item{leaves_matching_method}{a character scalar passed to \link{entanglement}.
-It can be either "order" (default) or "labels". If using "labels",
+It can be either "order" or "labels" (default). If using "labels",
 then we use the labels for matching the leaves order value.
 And if "order" then we use the old leaves order value for matching the
 leaves order value.
