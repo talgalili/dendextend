@@ -33,7 +33,9 @@ set.seed(13134)
 result <- pvclust(lung[, 1:20], method.dist="cor", method.hclust="average", nboot=100)
 
 dend <- as.dendrogram(result)
-result \%>\% as.dendrogram \%>\% hang.dendrogram \%>\% plot(main = "Cluster dendrogram with AU/BP values (\%)")
+result \%>\% as.dendrogram \%>\%
+   hang.dendrogram \%>\%
+   plot(main = "Cluster dendrogram with AU/BP values (\%)")
 result \%>\% text
 result \%>\% pvrect(alpha=0.95)
 

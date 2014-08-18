@@ -229,7 +229,9 @@ text.pvclust <- function (x, col = c(2, 3, 8), print.num = TRUE, float = 0.01,
 #' result <- pvclust(lung[, 1:20], method.dist="cor", method.hclust="average", nboot=100)
 #' 
 #' dend <- as.dendrogram(result)
-#' result %>% as.dendrogram %>% hang.dendrogram %>% plot(main = "Cluster dendrogram with AU/BP values (%)")
+#' result %>% as.dendrogram %>% 
+#'    hang.dendrogram %>%
+#'    plot(main = "Cluster dendrogram with AU/BP values (%)")
 #' result %>% text
 #' result %>% pvrect(alpha=0.95)
 #' 
@@ -300,7 +302,9 @@ pvclust_show_signif <- function(dend, pvclust_obj, signif_type = c("bp","au"), a
 #' result <- pvclust(lung[, 1:20], method.dist="cor", method.hclust="average", nboot=100)
 #' 
 #' dend <- as.dendrogram(result)
-#' result %>% as.dendrogram %>% hang.dendrogram %>% plot(main = "Cluster dendrogram with AU/BP values (%)")
+#' result %>% as.dendrogram %>% 
+#'    hang.dendrogram %>% 
+#'    plot(main = "Cluster dendrogram with AU/BP values (%)")
 #' result %>% text
 #' result %>% pvrect(alpha=0.95)
 #' 
