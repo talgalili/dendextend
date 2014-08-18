@@ -50,7 +50,9 @@ test_that("Color recycling",{
    dend <- as.dendrogram(hc)
       
    # changing color to black, see that recycling works
+      dendextend_options("warn", TRUE)
    expect_warning(labels_colors(dend) <- 1)
+      dendextend_options("warn", FALSE)
    expect_equal(labels_colors(dend, labels = FALSE), rep(1,3))
 
 })
