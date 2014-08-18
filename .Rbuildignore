@@ -13,5 +13,7 @@ vignettes/*\.log
 vignettes/*\.blg
 vignettes/*\.bbl
 vignettes/dendextend-tutorial.pdf
+vignettes/jss.bst
+vignettes/jss.cls
 NEWS.md
 inst/doc/2013-09-05_Boston-useR
