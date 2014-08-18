@@ -49,7 +49,7 @@ tanglegram(tree1, ...)
    rank_branches = FALSE,
    hang = FALSE,
    match_order_by_labels = TRUE,
-   cex_main = 3,
+   cex_main = 2,
    cex_main_left = cex_main,
    cex_main_right = cex_main,
    cex_sub = cex_main,
