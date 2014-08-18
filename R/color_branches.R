@@ -21,16 +21,21 @@
 
 
 
+
+
 #' @title Check if all the elements in a vector are unique
 #' @export
 #' @param x a vector
 #' @param ... ignored.
-#' @return logical (are all the elements in the vector unique)
+#' @return
+#' logical (are all the elements in the vector unique)
+#' 
 #' @source 
 #' 
 #' \url{http://r.789695.n4.nabble.com/Is-there-a-function-to-test-if-all-the-elements-in-a-vector-are-unique-td931833.html}
 #' 
 #' @seealso \link{unique}
+#' 
 #' @examples
 #' 
 #' all.unique(c(1:5, 1,1))
@@ -39,12 +44,10 @@
 #' all.unique(c(1,3,2))
 #' all.unique(c(1:10))
 #' 
-all.unique <- function(x, ...) {
+all_unique <- function(x, ...) {
    anyDuplicated(x) == 0L   
 }
 
-
-#
 
 
 
@@ -214,7 +217,7 @@ color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, warn = d
 
    # Make sure the function works when the labels of the tree are not all unique
    old_labels <- labels(tree)
-   labels_arent_unique <- !all.unique(old_labels)
+   labels_arent_unique <- !all_unique(old_labels)
    if(labels_arent_unique) {
       if(warn) warning("Your tree labels are NOT unique!\n This may cause an un expected issue with the color of the branches.\n Hence, your labels were temporarily turned unique (and then fixed as they were before).")
       labels(tree) <- seq_along(old_labels)
@@ -516,8 +519,7 @@ colour_labels <- color_labels
 
 
 
-#' Return the leaf Colors of a dendrogram
-#' 
+#' @title Return the leaf Colors of a dendrogram
 #' @details The returned Colors will be in dendrogram order.
 #' @param d the dendrogram
 #' @param col_to_return Character scalar - kind of Color attribute to return
@@ -547,4 +549,15 @@ leaf_Colors <- function(d,col_to_return=c("edge",'node','label')){
    unlist(dendrapply(d,leaf_col,col_to_return))
 }
 
+
+#' @export
 leaf_colors <- leaf_Colors
+
+
+
+
+
+
+
+
+
