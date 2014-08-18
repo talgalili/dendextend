@@ -223,7 +223,7 @@ plotNode2 <- function (x1, x2, subtree, type, center, leaflab, horiz = FALSE, no
          
          if (!is.null(attr(child, "edgetext"))) {
             if (getOption("verbose")) 
-               cat("-- with \"edgetext\"", format(edgeText))
+#                cat("-- with \"edgetext\"", format(edgeText))
             if (!is.null(vln)) {
                mx <- if (type == "triangle") 
                   (xTop + xBot + ((xTop - xBot)/(yTop - yBot)) * 
@@ -238,9 +238,9 @@ plotNode2 <- function (x1, x2, subtree, type, center, leaflab, horiz = FALSE, no
                my <- (yTop + yBot)/2
             }
 
-            vlm <- strheight(c(edgeText, "h"), cex = t.cex)/2
-            hlm <- strwidth(c(edgeText, "m"), cex = t.cex)/2
-            hl3 <- c(hlm[1L], hlm[1L] + hlm[2L], hlm[1L])
+#             vlm <- strheight(c(edgeText, "h"), cex = t.cex)/2
+#             hlm <- strwidth(c(edgeText, "m"), cex = t.cex)/2
+#             hl3 <- c(hlm[1L], hlm[1L] + hlm[2L], hlm[1L])
 
          }
          plotNode2(bx$limit[k], bx$limit[k + 1], subtree = child, 
