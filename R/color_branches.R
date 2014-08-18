@@ -38,11 +38,11 @@
 #' 
 #' @examples
 #' 
-#' all.unique(c(1:5, 1,1))
-#' all.unique(c(1,1,2))
-#' all.unique(c(1,1,2, 3,3,3,3))
-#' all.unique(c(1,3,2))
-#' all.unique(c(1:10))
+#' all_unique(c(1:5, 1,1))
+#' all_unique(c(1,1,2))
+#' all_unique(c(1,1,2, 3,3,3,3))
+#' all_unique(c(1,3,2))
+#' all_unique(c(1:10))
 #' 
 all_unique <- function(x, ...) {
    anyDuplicated(x) == 0L   
