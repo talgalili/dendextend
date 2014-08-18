@@ -730,6 +730,7 @@ cutree.hclust <- function(tree, k = NULL, h = NULL,
                           order_clusters_as_data =TRUE,
                           sort_cluster_numbers = TRUE,
                           warn = dendextend_options("warn"),
+                          NA_to_0L = TRUE, # ignored here...
                           ...) { 
    
    ## Add an important warning before R crashes.
