@@ -701,8 +701,8 @@ Bk <- function(tree1, tree2, k,  include_EV = TRUE, warn = dendextend_options("w
    
    
    if(missing(k)) k <- 2:(nleaves(tree1)-1)
-   cutree_tree1 <- cutree(tree1, k)
-   cutree_tree2 <- cutree(tree2, k)   
+   cutree_tree1 <- cutree(tree1, k, NA_to_0L = FALSE)
+   cutree_tree2 <- cutree(tree2, k, NA_to_0L = FALSE)
    # makes sure the output is a matrix:
    # This is if length(k)==1 since in that case
    # the output would be a vector, not a matrix.

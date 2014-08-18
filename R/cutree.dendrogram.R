@@ -580,6 +580,7 @@ cutree_1k.dendrogram <- function(tree, k,
 #'                               sort_cluster_numbers = TRUE,
 #'                               warn = TRUE, 
 #'                               try_cutree_hclust = TRUE,
+#'                               NA_to_0L = TRUE,
 #'                               ...)
 #' 
 #' @param tree   a dendrogram object
@@ -613,6 +614,8 @@ cutree_1k.dendrogram <- function(tree, k,
 #' it will continue using the cutree.dendrogram function.
 #' If try_cutree_hclust=FALSE, it will force to use cutree.dendrogram and not
 #' cutree.hclust.
+#' @param NA_to_0L logical. default is TRUE. When no clusters are possible,
+#' Should the function return 0 (TRUE, default), or NA (when set to FALSE).
 #' @param ... (not currently in use)
 #' 
 #' @details
@@ -792,6 +795,7 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
                               sort_cluster_numbers = TRUE,
                               warn = dendextend_options("warn"), 
                               try_cutree_hclust = TRUE,
+                              NA_to_0L = TRUE,
                               ...)
 {
    
@@ -877,7 +881,7 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
    if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE, warn = FALSE)
          # we know that cluster id is an integer, so it is fine to use force_integer = TRUE
    
-   clusters[is.na(clusters)] <- 0L
+   if(NA_to_0L) clusters[is.na(clusters)] <- 0L
 
    return(clusters)
 }

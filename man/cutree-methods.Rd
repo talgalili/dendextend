@@ -25,6 +25,7 @@ cutree(tree, k = NULL, h = NULL,...)
                               sort_cluster_numbers = TRUE,
                               warn = TRUE,
                               try_cutree_hclust = TRUE,
+                              NA_to_0L = TRUE,
                               ...)
 }
 \arguments{
@@ -67,6 +68,9 @@ dendrogram into an hclust object. If it will fail (for example, with unbranched 
 it will continue using the cutree.dendrogram function.
 If try_cutree_hclust=FALSE, it will force to use cutree.dendrogram and not
 cutree.hclust.}
+
+\item{NA_to_0L}{logical. default is TRUE. When no clusters are possible,
+Should the function return 0 (TRUE, default), or NA (when set to FALSE).}
 
 \item{...}{(not currently in use)}
 }

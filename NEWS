@@ -11,7 +11,8 @@ dendextend 0.17.0 (2014-08-18)
    * `get_branches_attr` - change "warning" to "warn", and it now works with is.dendrogram, and no longer changes the class of something which is not a dendrogram.
    * `untangle_step_rotate_2side` - print_times is now dendextend_options("warn"),
    * `color_branches` - now handles flat trees more gracefully. (returns them as they are)
-   * `cutree.dendrogram` - now replaces NA values with 0L (fix tests for it)
+   * `cutree.dendrogram` - now replaces NA values with 0L (fix tests for it), added a parameter (NA_to_0L) to control it.
+   * `Bk` - Have it work with cutree(NA_to_0L = FALSE)
    * `set.dendrogram` - added explenation in the .Rd docs of the different possible options for "what"
    * `set.dendrogram` - added nodes_pch, nodes_cex and nodes_col - using `assign_values_to_nodes_nodePar`
    * `set.dendrogram` - changed from using `labels_colors<-` to `color_labels` for "labels_colors" (this will now work with using k...)
