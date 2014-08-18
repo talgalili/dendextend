@@ -268,6 +268,7 @@ The **what** parameter accepts many options, each uses some general function in 
 * labels - set the labels (using `labels<-.dendrogram`)
 * labels_colors - set the labels' colors (using `color_labels`)
 * labels_cex - set the labels' size (using `assign_values_to_leaves_nodePar`)
+* labels_to_character - set the labels' to be characters
 * leaves_pch - set the leaves' point type (using `assign_values_to_leaves_nodePar`)
 * leaves_cex - set the leaves' point size (using `assign_values_to_leaves_nodePar`)
 * leaves_col - set the leaves' point color (using `assign_values_to_leaves_nodePar`)
@@ -323,6 +324,14 @@ dend15 %>% set("labels", c(111:115)) %>% labels
 # could also be done using:
 # labels(dend) <- c(111:115)
 ```
+
+We can change the type of labels to be characters. Not doing so may be a source of various bugs and problems in many functions.
+
+```{r}
+dend15 %>% labels
+dend15 %>% set("labels_to_char") %>% labels
+```
+
 
 We may also change their color and size:
 
@@ -766,15 +775,86 @@ A `dendlist` is a function which produces the dendlist class. It accepts several
 
 ```{r}
 dend15 <- c(1:5) %>% dist %>% hclust(method = "average") %>% as.dendrogram
-dend51 <- c(5:1) %>% dist %>% hclust(method = "average") %>% as.dendrogram
-dendlist(dend15, dend51)
-head(dendlist(dend15, dend51))
-
+dend15 <- dend15 %>% set("labels_to_char")
+dend51 <- dend15 %>% set("labels", as.character(5:1)) %>% match_order_by_labels(dend15)
+dends_15_51 <- dendlist(dend15, dend51)
+dends_15_51
+head(dends_15_51)
 ```
 
+The function `match_order_by_labels` makes sure that the order in the leaves correspondes to the same labels in both trees.
 
 
 ### tanglegram
+
+A tanglegram plot gives two dendrogram (with the same set of labels), one facing the other,
+and having their labels connected by lines. Tanglegram can be used for visually comparing
+two methods of Hierarchical clustering, and are sometimes used in biology when comparing
+two phylogenetic trees.
+
+Here is an example of creating a tanglegram using dendextend:
+
+
+```{r, fig.width=5, fig.height=3}
+tanglegram(dends_15_51)
+# Same as using:
+# plot(dends_15_51) # since there is a plot method for dendlist
+# and also: 
+# tanglegram(dend15, dend51)
+```
+
+We may wish to improve the layout of the trees. For this we have the `entanglement`, to measure the quality of the alignment of the two trees in the tanglegram layout, and the `untangle` function, for improving it.
+
+```{r}
+dends_15_51 %>% entanglement # lower is better
+dends_15_51 %>% untangle(method = "DendSer") %>% entanglement # lower is better
+```
+
+
+Entanglement is measured by giving the left tree's labels the values of 1 till tree size, and than match these numbers with the right tree. Now, entanglement is the L norm distance between these two vectors.
+That is, we take the sum of the absolute difference (each one in the power of L). e.g: `sum(abs(x-y)**L)`.
+And this is divided by the "worst case" entanglement level (e.g: when the right tree is the complete reverse of the left tree).
+
+L tells us which penalty level we are at (L0, L1, L2, partial L's etc).  L>1 means that we give a big penalty for sharp angles.  While L->0 means that any time something is not a straight horizontal line, it gets a large penalty If L=0.1 it means that we much prefer straight lines over non straight lines
+
+Finding an optimal rotation for the tanglegram of two dendrogram is a hard problem. This problem is also harder for larger trees.
+
+Let's see how well some untangle methods can do.
+
+Without doing anything:
+
+```{r, fig.width=5, fig.height=3}
+x <- dends_15_51 
+x %>% plot(main = paste("entanglement =", round(entanglement(x), 2)))
+```
+
+Using DendSet:
+
+```{r, fig.width=5, fig.height=3}
+x <- dends_15_51 %>% untangle(method = "DendSer") 
+x %>% plot(main = paste("entanglement =", round(entanglement(x), 2)))
+```
+
+
+One solution for improving the tanglegram would be to randomly search the rotated tree space for a better solution. Here is how to use a random search:
+
+```{r, fig.width=5, fig.height=3}
+x <- dends_15_51 %>% untangle(method = "random", R = 10) 
+x %>% plot(main = paste("entanglement =", round(entanglement(x), 2)))
+```
+
+We can see we already got something better. An advantage of the random search is the ability to create many many trees and compare them to find the best pair.
+
+Let's use a greedy forward step wise rotation of the two trees (first the left, then the right, and so on), to see if we can find a better solution for comparing the two trees. Notice that this may take some time to run (the larger the tree, the longer it would take), but we can limit the search for smaller k's, and see what improvement that can bring us using step2side (slowest):
+
+```{r, fig.width=5, fig.height=3}
+x <- dends_15_51 %>% untangle(method = "step2side") 
+x %>% plot(main = paste("entanglement =", round(entanglement(x), 2)))
+```
+
+We got perfect entanglement (0).
+
+
 
 
 ### Correlation measures
@@ -822,6 +902,9 @@ TODO: mention: https://en.wikipedia.org/wiki/Depth-first_search
 
 
 
+Extras
+----------------------------------------------
+
 
 ### The Iris dataset
 
@@ -853,3 +936,51 @@ par(xpd = NA)
 ```
 
 We can see that the *Setosa* species are distincly different than *Versicolor* and *Virginica* (they have lower pater length and width). But *Versicolor* and *Virginica* can not easily be seperated based on measurments of their Sepal and Patal width/length.
+
+We can nicely visualize this using a dendrogram with the labels colored with the real species cateogry, and branches colored based on cutting the tree to 3 classes.
+
+```{r, fig.height = 10, fig.width=7}
+
+
+data(iris) 
+d_iris <- dist(iris[,-5]) # method="man" # is a bit better
+hc_iris <- hclust(d_iris)
+labels(hc_iris) # no labels, because "iris" has no row names
+dend_iris <- as.dendrogram(hc_iris)
+is.integer(labels(dend_iris)) # this could cause problems...
+
+iris_species <- rev(levels(iris[,5]))
+dend_iris <- color_branches(dend_iris,k=3, groupLabels=iris_species)
+is.character(labels(dend_iris)) # labels are no longer "integer"
+
+# have the labels match the real classification of the flowers:
+labels_colors(dend_iris) <-
+   rainbow_hcl(3)[sort_levels_values(
+      as.numeric(iris[,5])[order.dendrogram(dend_iris)]
+   )]
+
+# We'll add the flower type
+labels(dend_iris) <- paste(as.character(iris[,5])[order.dendrogram(dend_iris)],
+                           "(",labels(dend_iris),")", 
+                           sep = "")
+
+dend_iris <- hang.dendrogram(dend_iris,hang_height=0.1)
+
+# reduce the size of the labels:
+dend_iris <- assign_values_to_leaves_nodePar(dend_iris, 0.5, "lab.cex")
+
+par(mar = c(3,3,3,7))
+plot(dend_iris, 
+     main = "Clustered Iris dataset
+     (the labels give the true flower species)", 
+     horiz =  TRUE,  nodePar = list(cex = .007))
+legend("topleft", legend = iris_species, fill = rainbow_hcl(3))
+
+
+```
+
+
+This simple visualization easily demonstrates how the separation of the Hierarchical clustering is very good with the "setosa" species, but misses in labeling many "versicolor" species as "virginica".
+
+The hanging of the tree also helps to locate extreme observations. For example, we can see that observation "virginica (107)" is not very similar to the Versicolor species, but still, it is among them. Also, "Versicolor (71)" is too much "within" the Virginica bush, and it is a wonder why that is.  Of course, the Iris data set is very well known, and simpler pairs plot often help to locate such problems, yet - dendrogram trees (with all of their limitations) can help gain insights for very high-dimensional data where a simple pairs plot is not possible.
+
