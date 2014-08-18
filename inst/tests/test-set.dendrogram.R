@@ -6,7 +6,7 @@ old_warn_opt <- options()$warn
 options(warn=-1)
 
 
-context("Checknig update.dendrogram")
+context("Checknig set.dendrogram")
 
 
 test_that("labels options works",{
@@ -18,18 +18,30 @@ test_that("labels options works",{
    expect_equal(dend %>% set("labels", 1:10) %>% labels,
                 as.character(1:10))
 
+      dendextend_options("warn", TRUE)
    expect_warning(set(dend, "labels_color"))
+      dendextend_options("warn", FALSE)
 
+
+   # before doing anything, we have NULL labels colors:
+   expect_null(dend %>% labels_colors)
+   
    # piping is the same as not (just MUCH more readable)
+   expect_equal(set(dend, "labels_color"),
+                dend %>% set("labels_color"))
+
+   # here we update the colors, and then try to see them:
    expect_equal(labels_colors(set(dend, "labels_color")),
                 dend %>% set("labels_color") %>% labels_colors)
+      
    
-   new_col_labels <- structure(c("#E495A5", "#D89F7F", "#BDAB66", "#96B56C", "#65BC8C", 
-                                 "#39BEB1", "#55B8D0", "#91ACE1", "#C29DDE", "#DE94C8"), .Names = c("123", 
+   new_col_labels <- structure(c("#CC476B", "#B76100", "#917600", "#518600", "#009232", 
+                                 "#009681", "#008FB7", "#1678D5", "#A352D1", "#CB39AA"), .Names = c("123", 
                                                                                                     "145", "126", "109", "23", "29", "94", "59", "67", "97"))
-   
+#    dend %>% set("labels_color") %>% plot
    expect_equal(dend %>% set("labels_color") %>% labels_colors,
                 new_col_labels)
+#    dend %>% set("labels_color", new_col_labels) %>% plot
 
    
    # we get the correct attribue set...
@@ -89,8 +101,9 @@ test_that("branches options works",{
 
    tmp <- dend %>% 
       set("branches_k_col", c(3,1,2), k=3) 
+#    tmp %>% plot
    
-   expect_equal(unlist(get_nodes_attr(tmp, "edgePar"))[1:3],
+   expect_equal(unname(unlist(get_nodes_attr(tmp, "edgePar"))[1:3]),
                 c(NA, 3, 3)
             )
       
