@@ -13,7 +13,8 @@ cutree(tree, k = NULL, h = NULL,...)
                            use_labels_not_values = TRUE,
                           order_clusters_as_data =TRUE,
                           sort_cluster_numbers = TRUE,
-                          warn = TRUE,
+                          warn = dendextend_options("warn"),
+                          NA_to_0L = TRUE,
                           ...)
 
 \method{cutree}{phylo}(tree, k = NULL, h = NULL,...)
@@ -23,7 +24,7 @@ cutree(tree, k = NULL, h = NULL,...)
                               use_labels_not_values = TRUE,
                               order_clusters_as_data =TRUE,
                               sort_cluster_numbers = TRUE,
-                              warn = TRUE,
+                              warn = dendextend_options("warn"),
                               try_cutree_hclust = TRUE,
                               NA_to_0L = TRUE,
                               ...)
