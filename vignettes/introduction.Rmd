@@ -859,6 +859,74 @@ We got perfect entanglement (0).
 
 ### Correlation measures
 
+#### Baker's Gamma Index
+
+Baker's Gamma Index (see baker's paper from 1974) is a measure of association (similarity) 
+between two trees of Hierarchical clustering (dendrograms). It is defined as the rank correlation between the stages at which pairs of objects combine in each of the two trees.
+
+Or more detailed: It is calculated by taking two items, and see what is the highest
+possible level of k (number of cluster groups created when cutting the tree)
+for which the two item still belongs to the same tree. That k is returned, 
+and the same is done for these two items for the second tree.
+There are n over 2 combinations of such pairs of items from the items in 
+the tree, and all of these numbers are calculated for each of the two trees. 
+Then, these two sets of numbers (a set for the items in each tree)
+are paired according to the pairs of items compared, and a Spearman 
+correlation is calculated.
+
+The value can range between -1 to 1. With near 0 values meaning that
+the two trees are not statistically similar.
+For exact p-value one should use a permutation test. One such option
+will be to permute over the labels of one tree many times, calculating 
+the distribution under the null hypothesis (keeping the trees topologies
+constant).
+
+Notice that this measure is not affected by the height of a branch but only
+of its relative position compared with other branches.
+
+
+```{r}
+cor_bakers_gamma(dend15, dend51)
+```
+
+Even that we can reach perfect entanglement, Baker's gamma shows us that the tree's topology is not identical. As opposed with the correlation of a tree with itself:
+
+```{r}
+cor_bakers_gamma(dend15, dend15)
+```
+
+Since the observations creating the Baker's Gamma Index of such a measure are correlated, we need to perform a permutation test for the calculation of the statistical significance of the index. Let's look at the distribution of Baker's Gamma Index under the null hypothesis (assuming fixed tree topologies). This will be different for different tree structures and sizes. Here are the results when the compared tree is itself (after shuffling its own labels), and when comparing tree 1 to the shuffled tree 2:
+
+
+```{r}
+set.seed(23235)
+the_cor <- cor_bakers_gamma(dend15, dend15)
+the_cor2 <- cor_bakers_gamma(dend15, dend51)
+the_cor
+the_cor2
+
+R <- 100
+cor_bakers_gamma_results <- numeric(R)
+dend_mixed <- dend15
+for(i in 1:R) {
+   dend_mixed <- sample.dendrogram(dend_mixed, replace = FALSE)
+   cor_bakers_gamma_results[i] <- cor_bakers_gamma(dend15, dend_mixed)
+}
+plot(density(cor_bakers_gamma_results),
+     main = "Baker's gamma distribution under H0",
+     xlim = c(-1,1))
+abline(v = 0, lty = 2)
+abline(v = the_cor, lty = 2, col = 2)
+abline(v = the_cor2, lty = 2, col = 4)
+legend("topleft", legend = c("cor", "cor2"), fill = c(2,4))
+round(sum(the_cor2 < cor_bakers_gamma_results)/ R, 4)
+title(sub = paste("One sided p-value:",
+                  "cor =",  round(sum(the_cor < cor_bakers_gamma_results)/ R, 4),
+                  " ; cor2 =",  round(sum(the_cor2 < cor_bakers_gamma_results)/ R, 4)
+                  ))
+```
+
+We can see that we do not have enough evidence that dend15 and dend51 are significantly "similar" (i.e.: with a correlation larger than 0).
 
 ### Bk plots
 
