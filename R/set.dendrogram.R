@@ -32,6 +32,7 @@
 #'    what = c("labels",
 #'             "labels_colors",
 #'             "labels_cex",
+#'             "labels_to_character",
 #'             "leaves_pch",
 #'             "leaves_cex",
 #'             "leaves_col",
@@ -82,6 +83,7 @@
 #' \item{labels - set the labels (\link{labels<-.dendrogram})}
 #' \item{labels_colors - set the labels' colors (\link{color_labels})}
 #' \item{labels_cex - set the labels' size (\link{assign_values_to_leaves_nodePar})}
+#' \item{labels_to_character - set the labels' to be characters}
 #' \item{leaves_pch - set the leaves' point type (\link{assign_values_to_leaves_nodePar})}
 #' \item{leaves_cex - set the leaves' point size (\link{assign_values_to_leaves_nodePar})}
 #' \item{leaves_col - set the leaves' point color (\link{assign_values_to_leaves_nodePar})}
@@ -250,6 +252,7 @@ set.dendrogram <-
             what = c("labels",
                      "labels_colors",
                      "labels_cex",
+                     "labels_to_character",                     
                      "leaves_pch",
                      "leaves_cex",
                      "leaves_col",
@@ -281,6 +284,7 @@ set.dendrogram <-
                        #      labels_colors = `labels_colors<-`(object, value = value, ...),
                        #      labels_colors = assign_values_to_leaves_nodePar(object, value, "lab.col", ...),
                        labels_cex = assign_values_to_leaves_nodePar(object, value, "lab.cex", ...),
+                       labels_to_character = set(object, what = "labels", value = as.character(labels(object)), ...),                                              
                        leaves_pch = assign_values_to_leaves_nodePar(object, value, "pch", ...),
                        leaves_cex =assign_values_to_leaves_nodePar(object, value, "cex", ...),
                        leaves_col =assign_values_to_leaves_nodePar(object, value, "col", ...),

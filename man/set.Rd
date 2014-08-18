@@ -11,6 +11,7 @@ set(object, ...)
    what = c("labels",
             "labels_colors",
             "labels_cex",
+            "labels_to_character",
             "leaves_pch",
             "leaves_cex",
             "leaves_col",
@@ -70,6 +71,7 @@ The "what" parameter" can accept the following options:
 \item{labels - set the labels (\link{labels<-.dendrogram})}
 \item{labels_colors - set the labels' colors (\link{color_labels})}
 \item{labels_cex - set the labels' size (\link{assign_values_to_leaves_nodePar})}
+\item{labels_to_character - set the labels' to be characters}
 \item{leaves_pch - set the leaves' point type (\link{assign_values_to_leaves_nodePar})}
 \item{leaves_cex - set the leaves' point size (\link{assign_values_to_leaves_nodePar})}
 \item{leaves_col - set the leaves' point color (\link{assign_values_to_leaves_nodePar})}

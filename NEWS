@@ -16,6 +16,7 @@ dendextend 0.17.0 (2014-08-14)
    * `set.dendrogram` - added nodes_pch, nodes_cex and nodes_col - using `assign_values_to_nodes_nodePar`
    * `set.dendrogram` - changed from using `labels_colors<-` to `color_labels` for "labels_colors" (this will now work with using k...)
    * `set.dendrogram` - if "what" is missing, return the object as is.
+   * `set.dendrogram` - added a "labels_to_char" option.
    * `labels_colors<-` - added if(dendextend_options("warn")) 
    * `labels<-.dendrogram` - if value is missing, returning the dendrogram as is (this also affects `set`)
    * `get_nodes_attr` - can now return an array or a list for attributes which include a more complex structure (such as nodePar), by working with lists and adding a "simplify" parameter.
