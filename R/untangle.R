@@ -603,7 +603,7 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
    if(leaves_matching_method == "order") {
       old_dend2_fixed <- dend2_fixed
       dend2_fixed <- match_order_by_labels(old_dend2_fixed, dend1)         
-      if(!identical(tree2,old_tree2) & dendextend_options("warn")) warning("The leaves order in 'dend2_fixed' were changed. If you want to avoid that, use leaves_matching_method = 'labels'.")
+      if(!identical(dend2_fixed, old_dend2_fixed) & dendextend_options("warn")) warning("The leaves order in 'dend2_fixed' were changed. If you want to avoid that, use leaves_matching_method = 'labels'.")
    }
    
    direction <- match.arg(direction)
@@ -619,7 +619,7 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
    
    for(k in k_seq) {
       dend1_k_rotated <- all_couple_rotations_at_k(best_dend, k, dend_heights_per_k = dend_heights_per_k)
-      dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, tree2 = dend2_fixed, L = L, leaves_matching_method = leaves_matching_method)
+      dend1_cut_k_entanglements <- lapply(dend1_k_rotated, entanglement, tree2 = dend2_fixed, L = L, leaves_matching_method = leaves_matching_method)
       ss_best_dend <- which.min(dend1_cut_k_entanglements)
       current_best_dend <- dend1_k_rotated[[ss_best_dend]]
       
@@ -801,8 +801,8 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
 # 		dend1_k_p1_rotated <- all_couple_rotations_at_k(best_dend, k+1)
 # 		dend1_k_m1_rotated <- all_couple_rotations_at_k(best_dend, k-1)
 # 		# find the enteglement for all of them:
-# 		dend1_cut_k_p1_entanglements <- laply(dend1_k_p1_rotated, entanglement, dend2 = dend2_fixed)
-# 		dend1_cut_k_m1_entanglements <- laply(dend1_k_m1_rotated, entanglement, dend2 = dend2_fixed)
+# 		dend1_cut_k_p1_entanglements <- lapply(dend1_k_p1_rotated, entanglement, dend2 = dend2_fixed)
+# 		dend1_cut_k_m1_entanglements <- lapply(dend1_k_m1_rotated, entanglement, dend2 = dend2_fixed)
 # 		# what is best, forward or backward?
 # 		if(min(dend1_cut_k_p1_entanglements) > min(dend1_cut_k_m1_entanglements)) {
 # 		
@@ -894,7 +894,7 @@ untangle_best_k_to_rotate_by_1side <- function(dend1, dend2_fixed, L = 1) {
                                                      dend_heights_per_k = best_dend_heights_per_k))
    }
    
-   dend1_cut_k_entanglements <- laply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)
+   dend1_cut_k_entanglements <- lapply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L)
    ss_best_dend <- which.min(dend1_cut_k_entanglements)
    best_dend <- dend1_k_rotated[[ss_best_dend]]
    return(best_dend)	
