@@ -4,15 +4,8 @@
 \title{Try to coerce something into a dendlist}
 \usage{
 as.dendlist(x, ...)
-
-as.dendlist(x, ...)
 }
 \arguments{
-\item{x}{a list with several dendrogram/hclust/phylo or dendlist objects
-and other junk that should be omitted.}
-
-\item{...}{NOT USED}
-
 \item{x}{a list with several dendrogram/hclust/phylo or dendlist objects
 and other junk that should be omitted.}
 
@@ -21,27 +14,12 @@ and other junk that should be omitted.}
 \value{
 A list of class dendlist where each item
 is a dendrogram
-
-A list of class dendlist where each item
-is a dendrogram
 }
 \description{
 It removes stuff that are not dendgrogram/dendlist
 and turns what is left into a dendlist
-
-It removes stuff that are not dendgrogram/dendlist
-and turns what is left into a dendlist
 }
 \examples{
-\dontrun{
-
-dend <- iris[,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram
-dend2 <- iris[,-5] \%>\% dist \%>\% hclust(method = "single") \%>\% as.dendrogram
-
-x = list(dend, 1, dend2)
-as.dendlist(x)
-
-}
 \dontrun{
 
 dend <- iris[,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram
