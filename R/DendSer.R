@@ -52,7 +52,7 @@ DendSer.dendrogram <- function(dend, ser_weight, ...) {
    h <- as.hclust(dend)
    if(missing(ser_weight)) ser_weight <- cophenetic(dend)
    library(DendSer)
-   DendSer(h = h, ser_weight = ser_weight,...)
+   DendSer::DendSer(h = h, ser_weight = ser_weight,...)
 }
 
 

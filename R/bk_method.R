@@ -197,7 +197,7 @@ FM_index_profdpm <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FA
       A2_clusters <- sorted_As[[2]]
    }
 
-   FM_index <- unname(pci(A1_clusters,A2_clusters)[2])
+   FM_index <- unname(profdpm::pci(A1_clusters,A2_clusters)[2])
    attr(FM_index, "E_FM") <- NA
    attr(FM_index, "V_FM") <- NA
    

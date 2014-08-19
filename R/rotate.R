@@ -178,7 +178,7 @@ rotate.hclust <- function(x, order,...)
 # ' @S3method rotate phylo
 #' @export
 rotate.phylo <- function(x, ...) {
-	# library(ape)
+	library(ape)
 	ape::rotate(phy=x, ...)
 }
 

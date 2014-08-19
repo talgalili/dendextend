@@ -27,13 +27,13 @@
 #' @seealso \code{\link{dendrogram}, \link{hclust}} in \code{\link{stats}} package.
 #' @docType package
 #' @keywords package, dendrogram
-#' @import ape
 #' @import stats
 #' @import utils
 #' @import magrittr
 #' @import whisker
 NULL
 
+# ' @import ape
 
 
 

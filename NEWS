@@ -53,7 +53,7 @@ dendextend 0.17.0 (2014-08-19)
    * `assign_values_to_branches_edgePar` - make sure it deals with Inf and "Inf".
 
 ###OTHER NOTES:
-
+   * Moved ggdendro,labeltodendro,dendroextras,ape to "Enhances:" in DESCRIPTION.
 
 dendextend 0.16.4 (2014-08-06)
 ----------------------------------------

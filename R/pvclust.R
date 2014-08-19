@@ -96,7 +96,7 @@ na_locf <- function(x, first_na_value = 0, recursive = TRUE, ...) {
 
 #' @export
 as.dendrogram.pvclust <- function(object,...) {
-   # library(ape)
+   # library(pvclust)
    as.dendrogram(object[["hclust"]])
 }
 
