@@ -24,7 +24,7 @@ To install the GitHub version:
 
 ```R
 require2 <- function (package, ...) {
-	if (!require(package)) install.packages(package); require(package)
+	if (!require(package)) install.packages(package); library(package)
 }
 
 # require2('installr')
@@ -53,9 +53,10 @@ library(colorspace)
 
 ## Usage
 
-Please see:
+Vignettes: 
 
-- Vignette: https://github.com/talgalili/dendextend/blob/master/vignettes/dendextend-tutorial.pdf
+* http://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/introduction.html
+* https://github.com/talgalili/dendextend/blob/master/inst/doc/dendextend-tutorial.pdf  (older)
 
 ## Share your dendrograms!
 
