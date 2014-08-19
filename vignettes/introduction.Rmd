@@ -15,8 +15,8 @@ library(dendextend)
 library(knitr)
 knitr::opts_chunk$set(
    cache = TRUE,
+   dpi = 200,
   comment = "#>",
-  error = FALSE,
   tidy = FALSE)
 
 # http://stackoverflow.com/questions/24091735/why-pandoc-does-not-retrieve-the-image-file
@@ -368,8 +368,10 @@ When it comes to color, we can also set the parameter "k", which will cut the tr
 
 ```{r, fig.width=8, fig.height=3}
 par(mfrow = c(1,2))
-dend15 %>% set("labels_cex", 2) %>% set("labels_col", value = c(3,4))        %>% plot(main = "Recycles color \nfrom left to right")
-dend15 %>% set("labels_cex", 2) %>% set("labels_col", value = c(3,4), k=2)   %>% plot(main = "Color labels \nper cluster")
+dend15 %>% set("labels_cex", 2) %>% set("labels_col", value = c(3,4)) %>% 
+   plot(main = "Recycles color \nfrom left to right")
+dend15 %>% set("labels_cex", 2) %>% set("labels_col", value = c(3,4), k=2) %>% 
+   plot(main = "Color labels \nper cluster")
 abline(h = 2, lty = 2)
 ```
 
@@ -381,26 +383,33 @@ Each node in a tree can be represented and controllod using the `assign_values_t
 ```{r, fig.width=10, fig.height=6}
 par(mfrow = c(2,3))
 dend13 %>% set("nodes_pch", 19) %>% plot(main = "(1) Show the\n nodes (as a dot)") #1
-dend13 %>% set("nodes_pch", 19) %>% set("nodes_cex", 2) %>% plot(main = "(2) Show (larger)\n nodes") #2
-dend13 %>% set("nodes_pch", 19) %>% set("nodes_cex", 2) %>% set("nodes_col", 3) %>% plot(main = "(3) Show (larger+colored)\n nodes") #3
+dend13 %>% set("nodes_pch", 19) %>% set("nodes_cex", 2) %>% 
+   plot(main = "(2) Show (larger)\n nodes") #2
+dend13 %>% set("nodes_pch", 19) %>% set("nodes_cex", 2) %>% set("nodes_col", 3) %>% 
+   plot(main = "(3) Show (larger+colored)\n nodes") #3
 
 dend13 %>% set("leaves_pch", 19) %>% plot(main = "(4) Show the\n leaves (as a dot)") #4
-dend13 %>% set("leaves_pch", 19) %>% set("leaves_cex", 2) %>% plot(main = "(5) Show (larger)\n leaves") #5
-dend13 %>% set("leaves_pch", 19) %>% set("leaves_cex", 2) %>% set("leaves_col", 3) %>% plot(main = "(6) Show (larger+colored)\n leaves") #6
+dend13 %>% set("leaves_pch", 19) %>% set("leaves_cex", 2) %>% 
+   plot(main = "(5) Show (larger)\n leaves") #5
+dend13 %>% set("leaves_pch", 19) %>% set("leaves_cex", 2) %>% set("leaves_col", 3) %>% 
+   plot(main = "(6) Show (larger+colored)\n leaves") #6
 ```
 
 And with recycling we can produce more complex outputs:
 
 ```{r, fig.width=8, fig.height=4}
 par(mfrow = c(1,2))
-dend15 %>% set("nodes_pch", c(19,1,4)) %>% set("nodes_cex", c(2,1,2)) %>% set("nodes_col", c(3,4))        %>% plot(main = "Adjust nodes")
-dend15 %>% set("leaves_pch", c(19,1,4)) %>% set("leaves_cex", c(2,1,2)) %>% set("leaves_col", c(3,4))        %>% plot(main = "Adjust nodes\n(but only for leaves)")
+dend15 %>% set("nodes_pch", c(19,1,4)) %>% set("nodes_cex", c(2,1,2)) %>% set("nodes_col", c(3,4)) %>% 
+   plot(main = "Adjust nodes")
+dend15 %>% set("leaves_pch", c(19,1,4)) %>% set("leaves_cex", c(2,1,2)) %>% set("leaves_col", c(3,4)) %>%
+   plot(main = "Adjust nodes\n(but only for leaves)")
 ```
 
 Notice how recycling works in a depth-first order (which is just left to right, when we only adjust the leaves). Here are the node's parameters after adjustment:
 
 ```{r}
-dend15 %>% set("nodes_pch", c(19,1,4)) %>% set("nodes_cex", c(2,1,2)) %>% set("nodes_col", c(3,4)) %>% get_nodes_attr("nodePar")
+dend15 %>% set("nodes_pch", c(19,1,4)) %>%
+   set("nodes_cex", c(2,1,2)) %>% set("nodes_col", c(3,4)) %>% get_nodes_attr("nodePar")
 ```
 
 We can also change the height of of the leaves by using the `hang.dendrogram` function:
@@ -475,7 +484,8 @@ We may also control the colors of the branches based on using clustering:
 ```{r, fig.width=8, fig.height=3}
 par(mfrow = c(1,2))
 dend15 %>% set("branches_k_color", k = 3) %>% plot(main = "Nice defaults")
-dend15 %>% set("branches_k_color", value = 3:1, k = 3) %>% plot(main = "Controlling branches' colors\n(via clustering)")
+dend15 %>% set("branches_k_color", value = 3:1, k = 3) %>% 
+   plot(main = "Controlling branches' colors\n(via clustering)")
 # This is like using the `color_branches` function
 ```
 
@@ -744,7 +754,8 @@ Let's color and thicken the branches based on the p-values:
 par(mfrow = c(2,2))
 
 # with a modified dendrogram of pvrect
-dend %>% pvclust_show_signif(result) %>% plot(main = "Cluster dendrogram \n bp values are highlighted by signif")
+dend %>% pvclust_show_signif(result) %>% 
+   plot(main = "Cluster dendrogram \n bp values are highlighted by signif")
 
 dend %>% pvclust_show_signif(result, show_type = "lwd") %>% 
    plot(main = "Cluster dendrogram with AU/BP values (%)\n bp values are highlighted by signif")
@@ -1025,7 +1036,7 @@ FM_index_profdpm(cutree(hc1, k=3), cutree(hc2, k=3))
 
 #### The Bk plot
 
-In the Bk method we calculate the FM Index (Bk) for each k (k=2,3,…,n-1) number of clusters, giving the association between the two trees when each is cut to have k groups. The similarity between two hierarchical clustering dendrograms, can be investigated, using the (k,Bk) plot: For every level of splitting of the two dendrograms which produces k clusters in each tree, the plot shows the number Bk, and therefore enables the investigation of potential nuances in the structure of similarity. The Bk measures the number of pairs of items which are in the same cluster in both dendrograms, one of the clusters in one of the trees and one of the clusters in the other tree, divided by the geometric mean of the number of pairs of items which are in the same cluster in each tree. Namely, ${a_{uv}} = 1\left( {or{\rm{ }}{{\rm{b}}_{uv}} = 1} \right)$ if the items u and v are in the same cluster in the first tree (second tree), when it is cut so to give k clusters, and otherwise 0:
+In the Bk method we calculate the FM Index (Bk) for each k (k=2,3,...,n-1) number of clusters, giving the association between the two trees when each is cut to have k groups. The similarity between two hierarchical clustering dendrograms, can be investigated, using the (k,Bk) plot: For every level of splitting of the two dendrograms which produces k clusters in each tree, the plot shows the number Bk, and therefore enables the investigation of potential nuances in the structure of similarity. The Bk measures the number of pairs of items which are in the same cluster in both dendrograms, one of the clusters in one of the trees and one of the clusters in the other tree, divided by the geometric mean of the number of pairs of items which are in the same cluster in each tree. Namely, ${a_{uv}} = 1\left( {or{\rm{ }}{{\rm{b}}_{uv}} = 1} \right)$ if the items u and v are in the same cluster in the first tree (second tree), when it is cut so to give k clusters, and otherwise 0:
 
 \[{FM_k} = {B_k} = \frac{{\sum\limits_{}^{} {{a_{uv}}{b_{uv}}} }}{{\sqrt {\sum\limits_{}^{} {{a_{uv}}} \sum\limits_{}^{} {{b_{uv}}} } }}\]
 
