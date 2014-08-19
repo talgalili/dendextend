@@ -1,3 +1,77 @@
+* 2014-08-19(Tal Galili) Moved ggdendro, labeltodendro, dendroextras, ape to "Enhances:" in DESCRIPTION. (include fixing tests, and adding library - so to through errors in case the package is not available) |992d09d| 
+|  DESCRIPTION              | 11 ++++++-----
+|  NAMESPACE                |  1 -
+|  NEWS                     |  2 +-
+|  R/DendSer.R              |  2 +-
+|  R/bk_method.R            |  2 +-
+|  R/dendextend-package.R   |  2 +-
+|  R/nleaves.R              |  6 +++---
+|  R/prune.R                |  2 +-
+|  R/pvclust.R              |  2 +-
+|  R/rotate.R               |  2 +-
+|  R/unbranch.R             |  2 +-
+|  inst/tests/test-rotate.R |  2 +-
+|  12 files changed, 18 insertions(+), 18 deletions(-)
+
+* 2014-08-19(Tal Galili) Added spaces to docs |d4ce41a| 
+|  man/as.dendlist.Rd | 22 ----------------------
+|  1 file changed, 22 deletions(-)
+
+* 2014-08-19(Tal Galili) new function: `rainbow_fun` - uses rainbow_hcl, or rainbow (if colorspace is not available) |f71d025| 
+|  DESCRIPTION          |   2 +-
+|  NEWS                 |   9 +-
+|  R/branches_attr_by.R |   4 +-
+|  R/color_branches.R   |  14 +--
+|  R/colored_bars.R     |   1 +
+|  R/dendlist - Copy.R  | 275 +++++++++++++++++++++++++++++++++++++++++++++++++
+|  R/labels_colors.R    |   4 +-
+|  R/rainbow_fun.R      |  33 ++++++
+|  man/as.dendlist.Rd   |  22 ++++
+|  man/colored_bars.Rd  |   1 +
+|  10 files changed, 345 insertions(+), 20 deletions(-)
+
+* 2014-08-19(Tal Galili) Break lines which were too long. |fd1f130| 
+|  R/pvclust.R                         | 8 ++++++--
+|  man/pvclust_show_signif.Rd          | 4 +++-
+|  man/pvclust_show_signif_gradient.Rd | 4 +++-
+|  3 files changed, 12 insertions(+), 4 deletions(-)
+
+* 2014-08-19(Tal Galili) Added warn = dendextend_options("warn") to docs |94bd5f4| 
+|  R/cutree.dendrogram.R | 5 +++--
+|  man/cutree-methods.Rd | 5 +++--
+|  2 files changed, 6 insertions(+), 4 deletions(-)
+
+* 2014-08-19(Tal Galili) edgeText is not needed here. |9a4441e| 
+|  R/get_nodes_xy.R | 8 ++++----
+|  1 file changed, 4 insertions(+), 4 deletions(-)
+
+* 2014-08-19(Tal Galili) laply -> lapply , and some tree to dend fixes. |4167e7b| 
+|  R/untangle.R | 10 +++++-----
+|  1 file changed, 5 insertions(+), 5 deletions(-)
+
+* 2014-08-18(Tal Galili) paramters to parameters |b4097c8| 
+|  DESCRIPTION                | 2 +-
+|  vignettes/introduction.Rmd | 8 ++++----
+|  2 files changed, 5 insertions(+), 5 deletions(-)
+
+* 2014-08-18(Tal Galili) The following files are already in R: 'jss.bst', 'jss.cls' and I remove them from the package. |954508e| 
+|  .Rbuildignore | 2 ++
+|  1 file changed, 2 insertions(+)
+
+* 2014-08-18(Tal Galili) all.unique to all_unique in the example. |a100582| 
+|  R/color_branches.R | 10 +++++-----
+|  man/all_unique.Rd  | 10 +++++-----
+|  2 files changed, 10 insertions(+), 10 deletions(-)
+
+* 2014-08-18(Tal Galili) Update various files |6bc8a22| 
+|  .Rbuildignore        |   5 +-
+|  ChangeLog            | 404 +++++++++++++++++++++++++++++++++++++++++++++++++
+|  DESCRIPTION          |   2 +-
+|  NEWS.md              |  52 +++++++
+|  TODO                 |   8 +
+|  vignettes/.gitignore |   3 +-
+|  6 files changed, 470 insertions(+), 4 deletions(-)
+
 * 2014-08-18(Tal Galili) cutree.hclust - added a dummy parameter |786c408| 
 |  R/cutree.dendrogram.R | 1 +
 |  1 file changed, 1 insertion(+)

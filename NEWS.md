@@ -1,10 +1,15 @@
-dendextend 0.17.0 (2014-08-18)
+dendextend 0.17.0 (2014-08-19)
 ----------------------------------------
+
+###VIGNETTE:
+   * Wrote a new vignette "introduction.Rmd", to showcase the new functions since the last vignette, and give a quick-as-possible introduction to the package functions.
+
 
 ###NEW FUNCTIONS:
    * `get_nodes_xy` - Get the x-y coordiantes of a dendrogram's nodes
    * `all_unique` - check if all elements in a vector are unique
    * `head.dendlist`
+   * `rainbow_fun` - uses rainbow_hcl, or rainbow (if colorspace is not available)
 
 ###UPDATED FUNCTIONS:
    * ALL `warn` paramteres are no set to dendextend_options("warn") (which is FALSE)!
@@ -42,13 +47,13 @@ dendextend 0.17.0 (2014-08-18)
    * get_nodes_xy.R
    * Rename files: trim.R -> prune.R
    * DendSer.R
+   * Move the function `branches_attr_by_labels` between two files.
 
 ###NEW TESTS:
    * `assign_values_to_branches_edgePar` - make sure it deals with Inf and "Inf".
 
 ###OTHER NOTES:
-   * Move the function `branches_attr_by_labels` between two files.
-
+   * Moved ggdendro,labeltodendro,dendroextras,ape to "Enhances:" in DESCRIPTION.
 
 dendextend 0.16.4 (2014-08-06)
 ----------------------------------------
