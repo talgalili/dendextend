@@ -218,7 +218,24 @@ dendextendWelcomeMessage <- function(){
 #### tools::compactPDF("vignettes\\dendextend-tutorial.pdf") 
 ###   compacted 'dendextend-tutorial.pdf' from 964Kb to 737Kb
 #### tools::compactPDF("vignettes\\dendextend-tutorial.pdf", gs_quality="ebook") 
+
+# For checking:
+# 1) get qpdf
+#     http://sourceforge.net/projects/qpdf/files/
+# 2) put it somewhere
+# 3) set R_QPDF
+#  Sys.setenv(R_QPDF="C:\\Rtools\\qpdf-5.1.1\\bin\\qpdf.exe")
+#  Sys.which(Sys.getenv("R_QPDF", "qpdf"))
+
+# Also, make sure to add:
+# options(repos=c("http://cran.rstudio.com", "http://www.stats.ox.ac.uk/pub/RWin" ))
+# to D:\R\R-devel\etc\Rprofile.site
+
 ##############
+
+
+
+
 
 
 
@@ -245,18 +262,6 @@ dendextendWelcomeMessage <- function(){
 
 
 
-
-# For checking:
-# 1) get qpdf
-#     http://sourceforge.net/projects/qpdf/files/
-# 2) put it somewhere
-# 3) set R_QPDF
-#  Sys.setenv(R_QPDF="C:\\Rtools\\qpdf-5.1.1\\bin\\qpdf.exe")
-#  Sys.which(Sys.getenv("R_QPDF", "qpdf"))
-   
-# Also, make sure to add:
-# options(repos=c("http://cran.rstudio.com", "http://www.stats.ox.ac.uk/pub/RWin" ))
-# to D:\R\R-devel\etc\Rprofile.site
 
 
 

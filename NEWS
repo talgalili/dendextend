@@ -11,6 +11,7 @@ dendextend 0.17.1 (2014-08-19)
                                  gs_cmd = "C:\\Program Files\\gs\\gs9.14\\bin\\gswin64c.exe",
                                  gs_quality="ebook") 
 
+      And to the help of Prof Brian Ripley and Kurt Hornik
       )
 
 dendextend 0.17.0 (2014-08-19)
