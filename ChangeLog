@@ -1,3 +1,40 @@
+* 2014-08-19(Tal Galili) Have the package build the vignette. |8653ed9| 
+|  DESCRIPTION | 1 +
+|  NEWS        | 1 +
+|  2 files changed, 2 insertions(+)
+
+* 2014-08-19(Tal Galili) Update the location of vignettes on github. |ec66fa0| 
+|  README.md | 7 ++++---
+|  1 file changed, 4 insertions(+), 3 deletions(-)
+
+* 2014-08-19(Tal Galili) Fixed introduction.html to not overlap the bounderies of the code area. |7d47c9e| 
+|  vignettes/introduction.Rmd | 37 ++++++++++++++++++++++++-------------
+|  1 file changed, 24 insertions(+), 13 deletions(-)
+
+* 2014-08-19(Tal Galili) Created a copy of "introduction.html" in inst/ignored (so people could see it on github) |0a1195a| 
+|  .Rbuildignore                  |    7 +-
+|  NEWS                           |    2 +-
+|  inst/ignored/introduction.html | 1543 ++++++++++++++++++++++++++++++++++++++
+|  3 files changed, 1549 insertions(+), 3 deletions(-)
+
+* 2014-08-19(Tal Galili) Moved dendextend-tutorial.rnw to vignettes\disabled - so it is still there, but not compiled. Also moved dendextend-tutorial.pdf to inst\doc - so there is a copy of this older vignette, but without needed to run it with all the benchmarks... (it is also compressed) |5558f2c| 
+|  NEWS                                       |    3 +
+|  R/zzz.R                                    |    7 +-
+|  inst/doc/dendextend-tutorial.pdf           |  Bin 0 -> 754947 bytes
+|  vignettes/dendextend-tutorial.pdf          | 9793 --------------------------
+|  vignettes/dendextend-tutorial.rnw          | 2024 ------
+|  vignettes/disabled/dendextend-tutorial.rnw | 2024 ++++++
+|  6 files changed, 2031 insertions(+), 11820 deletions(-)
+
+* 2014-08-19(Tal Galili) erased file |a97af45| 
+|  R/dendlist - Copy.R | 275 --------------------------------------------------
+|  1 file changed, 275 deletions(-)
+
+* 2014-08-19(Tal Galili) Update NEWS.md and ChangeLog before CRAN release. for 0.17.0 |4e47159| 
+|  ChangeLog | 74 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  NEWS.md   | 11 ++++++---
+|  2 files changed, 82 insertions(+), 3 deletions(-)
+
 * 2014-08-19(Tal Galili) Moved ggdendro, labeltodendro, dendroextras, ape to "Enhances:" in DESCRIPTION. (include fixing tests, and adding library - so to through errors in case the package is not available) |992d09d| 
 |  DESCRIPTION              | 11 ++++++-----
 |  NAMESPACE                |  1 -

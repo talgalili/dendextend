@@ -54,6 +54,10 @@ dendextend 0.17.0 (2014-08-19)
 
 ###OTHER NOTES:
    * Moved ggdendro,labeltodendro,dendroextras,ape to "Enhances:" in DESCRIPTION.
+   * Moved dendextend-tutorial.rnw to vignettes\disabled - so it is still there, but not compiled.
+   * Moved dendextend-tutorial.pdf to inst\doc - so there is a copy of this older vignette, but without needed to run it with all the benchmarks... (it is also compressed)
+   * Created a copy of "introduction.html" in inst/ignored (so people could see it on github)
+   * Have the package build the vignette.
 
 dendextend 0.16.4 (2014-08-06)
 ----------------------------------------
