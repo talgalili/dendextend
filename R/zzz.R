@@ -196,19 +196,55 @@ dendextendWelcomeMessage <- function(){
 # +    'zzz.r'
 
 
+############
+## OLD
 # Steps:
 # http://r.789695.n4.nabble.com/vignettes-problems-with-PDF-compaction-td4664909.html
 # 1) install gs - http://www.ghostscript.com/download/gsdnld.html
 # 2) find where it is, and update R_GSCMD:
 # Sys.setenv(R_GSCMD="C:\\Program Files\\gs\\gs9.10\\bin\\gswin64c.exe")
+# Sys.setenv(R_GSCMD="C:\\Program Files\\gs\\gs9.14\\bin\\gswin64c.exe")
+# Sys.setenv(R_GSCMD="D:\\temp\\qpdf-5.1.2\\bin\\qpdf.exe")
 # Sys.getenv("R_GSCMD")
 # 3) Check that it works: 
 # system2(Sys.getenv("R_GSCMD"), args="--version") 
 # 4) use:
-            #### tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="ebook") 
-            # tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf") 
-#### tools::compactPDF("vignettes\\dendextend-tutorial.pdf", gs_quality="ebook") 
+# library(tools)
+# tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="printer") 
+# tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", 
+# qpdf = "D:\\temp\\qpdf-5.1.2\\bin\\qpdf.exe", gs_cmd = "C:\\Program Files\\gs\\gs9.14\\bin\\gswin64c.exe") 
+#### tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="ebook") 
+#### tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="screen") 
+#### tools::compactPDF("vignettes\\dendextend-tutorial.pdf") 
 ###   compacted 'dendextend-tutorial.pdf' from 964Kb to 737Kb
+#### tools::compactPDF("vignettes\\dendextend-tutorial.pdf", gs_quality="ebook") 
+##############
+
+
+
+##########
+##########
+##########
+##########
+## NEW
+# How to deal with compression:
+# 1) Download the latest qpdf: http://sourceforge.net/projects/qpdf/files/  (and place it somewhere)
+# 2) Install gs - http://www.ghostscript.com/download/gsdnld.html
+# 3) Run the following:
+
+# tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", 
+#                   qpdf = "C:\\Program Files (x86)\\qpdf-5.1.2\\bin\\qpdf.exe", 
+#                   gs_cmd = "C:\\Program Files\\gs\\gs9.14\\bin\\gswin64c.exe",
+#                   gs_quality="ebook") 
+
+##########
+##########
+##########
+
+
+
+
+
 
 # For checking:
 # 1) get qpdf

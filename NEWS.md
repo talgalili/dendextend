@@ -1,3 +1,18 @@
+dendextend 0.17.1 (2014-08-19)
+----------------------------------------
+
+
+###OTHER NOTES:
+   *  compacted ‘dendextend-tutorial.pdf’ from 725Kb to 551Kb
+      (Thanks to using the following:
+
+               tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", 
+                                 qpdf = "C:\\Program Files (x86)\\qpdf-5.1.2\\bin\\qpdf.exe", 
+                                 gs_cmd = "C:\\Program Files\\gs\\gs9.14\\bin\\gswin64c.exe",
+                                 gs_quality="ebook") 
+
+      )
+
 dendextend 0.17.0 (2014-08-19)
 ----------------------------------------
 
