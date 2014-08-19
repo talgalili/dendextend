@@ -205,9 +205,10 @@ dendextendWelcomeMessage <- function(){
 # 3) Check that it works: 
 # system2(Sys.getenv("R_GSCMD"), args="--version") 
 # 4) use:
-#### tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="ebook") 
-# tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf") 
-###   compacted 'dendextend-tutorial.pdf' from 961Kb to 737Kb
+            #### tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="ebook") 
+            # tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf") 
+#### tools::compactPDF("vignettes\\dendextend-tutorial.pdf", gs_quality="ebook") 
+###   compacted 'dendextend-tutorial.pdf' from 964Kb to 737Kb
 
 # For checking:
 # 1) get qpdf
