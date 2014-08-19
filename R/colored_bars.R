@@ -141,6 +141,7 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' # the colors of the items so that ofter sorting they would be
 #' # from left to right. Here is how it can be done:
 #' the_k <- 3
+#' library(colorspace)
 #' cols3 <- rainbow_hcl(the_k, c=90, l=50)
 #' dend %>% update("branches_k_color", k = the_k, with = cols3) %>% plot
 #' 

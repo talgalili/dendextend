@@ -143,8 +143,8 @@ branches_attr_by_clusters <- function(dend, clusters, values, attr = c("col", "l
    
    if(missing(values) & attr == "col" ) {
       values <- rep(1, length(clusters)) # make a vector of black colors
-      library(colorspace) # this might need to be fixed later for getting no error in checks.
-      values <- rainbow_hcl(n_clusters)
+      # library(colorspace) # this package is now in imports
+      values <- rainbow_fun(n_clusters)
    }
    
    

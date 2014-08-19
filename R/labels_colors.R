@@ -102,9 +102,7 @@ labels_colors <- function (object, labels = TRUE, ...) {
    if(missing(value)) {
       if(dendextend_options("warn")) warning("Color values are missing, using default (different) colors")      
       tree_size <- nleaves(object)
-      value <- if(require(colorspace)) 
-         rainbow_hcl(tree_size) else
-            rainbow(tree_size)
+      value <- rainbow_fun(tree_size)
       }
    
 

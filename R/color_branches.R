@@ -224,11 +224,7 @@ color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, warn = d
    }
    
    
-   if(missing(col)) {
-      col <- if(require(colorspace))
-         function(n) rainbow_hcl(n, c=90, l=50) else
-            col <- rainbow
-   }      
+   if(missing(col)) col <- rainbow_fun
    
    if(is.null(k) & is.null(h)) {
       if(warn) warning("k (number of clusters) is missing, using the tree size as a default")      
@@ -459,13 +455,7 @@ color_labels <- function(tree, k=NULL, h=NULL, labels, col, warn = dendextend_op
    if(!missing(labels)) return(color_labels_by_labels(tree=tree, labels=labels, col=col, warn=warn, ...) )     
    
    
-   if(missing(col)) {
-      if(require(colorspace)) {
-         col <- function(n) rainbow_hcl(n, c=90, l=50)
-      } else {
-         col <- rainbow
-      }      
-   }   
+   if(missing(col)) col <- rainbow_fun
    
    if(!is.dendrogram(tree) && !is.hclust(tree)) stop("tree needs to be either a dendrogram or an hclust object")
    
