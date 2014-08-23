@@ -1,8 +1,12 @@
 dendextend 0.17.2 (2014-08-23)
 ----------------------------------------
 
+###NEW FUNCTIONS:
+   * cor_bakers_gamma.dendlist
+
+
 ###VIGNETTE:
-   * Fix some typos
+   * Fix some typos and mistakes.
 
 
 dendextend 0.17.1 (2014-08-19)

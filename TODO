@@ -12,6 +12,9 @@ Next action
 * get added here: http://bioinfo.unice.fr/biodiv/Tree_editors.html
 * go through this: http://stackoverflow.com/questions/tagged/dendrogram
 
+* intersect_trees  - add intersect_trees.dendlist method.
+
+* vignette: mention options warn = FALSE
 
 * Write paper for bioinfo: mention update, cutree, colored_bars, heatmap.2, Rcpp, dynamicCutree and pvclust
 

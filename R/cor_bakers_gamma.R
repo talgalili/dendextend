@@ -235,6 +235,13 @@ cor_bakers_gamma.hclust <- function(tree1, tree2, use_labels_not_values = TRUE, 
 
 
 
+#' @export
+cor_bakers_gamma.dendlist <- function(tree1, which = c(1L, 2L), ...) {
+   cor_bakers_gamma(tree1[[which[1]]], tree1[[which[2]]], ...)
+}
+
+
+
 # k_matrix_tree1 <- cutree(hc1, k = 1:nleaves(hc1))
 # k_matrix_tree2 <- cutree(hc2, k = 1:nleaves(hc1))
 # library(compiler)
