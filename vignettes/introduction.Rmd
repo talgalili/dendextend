@@ -78,7 +78,7 @@ tanglegram(dendlist(dend1, dend2), margin_inner = 9,
 Introduction
 --------------
 
-The [**_dendextend package_**](http://cran.r-project.org/web/packages/dendextend/) offers a set of functions for extending dendrogram objects in R, letting you **visualize** and **comparing** trees of hierarchical clusterings, you can:
+The [**_dendextend package_**](http://cran.r-project.org/web/packages/dendextend/) offers a set of functions for extending dendrogram objects in R, letting you **visualize** and **compare** trees of hierarchical clusterings, you can:
 
 * **Adjust a tree's graphical parameters** - the color, size, type, etc of its branches, nodes and labels.
 * Visually and statistically **compare different dendrograms** to one another.
@@ -91,7 +91,7 @@ Prerequisites
 
 ### Acknowledgement
 
-This package was made possible by the the support of my thesis advisot [Yoav Benjamini](http://www.math.tau.ac.il/~ybenja/), as well as code contributions from many R users. They are:
+This package was made possible by the the support of my thesis advisor [Yoav Benjamini](http://www.math.tau.ac.il/~ybenja/), as well as code contributions from many R users. They are:
 
 ```{r, echo=FALSE}
 
@@ -147,7 +147,7 @@ To get around this problem, dendextend encourages the use of the `%>%` ("pipe" o
 For example, the following will be written as it would be explained: 
 
 ```{r, eval = FALSE}
-dend <- c(1:5) %>% # take the iris dataset, 
+dend <- c(1:5) %>% # take the a vector from 1 to 5
          dist %>% # calculate a distance matrix, 
          hclust(method = "average") %>% # on it compute hierarchical clustering using the "average" method, 
          as.dendrogram # and lastly, turn that object into a dendrogram.
@@ -261,7 +261,7 @@ The fastest way to start changing a dendextend's parameters is by using the `set
 
 1. **object**: a dendrogram object, 
 2. **what**: a character indicating what is the property of the tree that should be set/updated
-3. **value**: a vector with the value to set in the tree. (the type of the value depends on the "what")
+3. **value**: a vector with the value to set in the tree (the type of the value depends on the "what"). Many times, vectors which are too short are recycled.
 
 The **what** parameter accepts many options, each uses some general function in the background. These options deal with labels, nodes and branches. They are:
 
