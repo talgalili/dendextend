@@ -180,6 +180,46 @@ dend %>% class
 
 
 
+
+### Installation
+
+To install the stable version on CRAN use:
+
+```r
+install.packages('dendextend')
+install.packages('dendextendRcpp')
+```
+
+To install the GitHub version:
+
+```R
+require2 <- function (package, ...) {
+   if (!require(package)) install.packages(package); library(package)
+}
+
+## require2('installr')
+## install.Rtools() # run this if you are using Windows and don't have Rtools installed
+
+# Load devtools:
+require2("devtools")
+devtools::install_github('talgalili/dendextend')
+require2("Rcpp")
+devtools::install_github('talgalili/dendextendRcpp')
+
+# Having colorspace is also useful, since it is used
+# In various examples in the vignettes
+require2("colorspace")
+```
+
+And then you may load the package using:
+```R
+library(dendextend)
+library(dendextendRcpp)
+```
+
+
+
+
 How to explore a dendrogram's parameters
 ---------------------------------------
 

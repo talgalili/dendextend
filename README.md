@@ -27,8 +27,7 @@ require2 <- function (package, ...) {
 	if (!require(package)) install.packages(package); library(package)
 }
 
-# require2('installr')
-# the installr includes the "require2" function - making it faster to add/load new packages.
+## require2('installr')
 ## install.Rtools() # run this if you are using Windows and don't have Rtools installed
 
 # Load devtools:
@@ -46,9 +45,6 @@ And then you may load the package using:
 ```R
 library(dendextend)
 library(dendextendRcpp)
-
-# And you might also wish to load:
-library(colorspace)
 ```
 
 ## Usage
