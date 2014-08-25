@@ -580,7 +580,7 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = dende
    if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
    
    if(missing(value)) {
-      warning("value is missing, returning the dendrogram as is.")
+      if(warn) warning("value is missing, returning the dendrogram as is.")
       return(object)
    }
    
@@ -626,6 +626,96 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = dende
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+#' @title Assign values to edgePar of dendrogram's leaves
+#' @export
+#' @description
+#' Go through the dendrogram leaves and updates the values inside its edgePar
+#' 
+#' If the value has Inf then the value in edgePar will not be changed. 
+#' @param object a dendrogram object 
+#' @param value a new value vector for the edgePar attribute. It should be 
+#' the same length as the number of leaves in the tree. If not, it will recycle
+#' the value and issue a warning.
+#' @param edgePar the value inside edgePar to adjust.
+#' @param warn logical (default from dendextend_options("warn") is FALSE).
+#' Set if warning are to be issued, it is safer to keep this at TRUE,
+#' but for keeping the noise down, the default is FALSE.
+#' @param ... not used
+#' @return 
+#' A dendrogram, after adjusting the edgePar attribute in all of its leaves, 
+#' @seealso \link{get_leaves_attr}, link{assign_values_to_leaves_nodePar}
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' dend <- USArrests[1:5,] %>% dist %>% hclust("ave") %>% as.dendrogram
+#' 
+#' plot(dend)
+#' dend <- assign_values_to_leaves_edgePar(object=dend, value = c(3,2), edgePar = "col")
+#' plot(dend)
+#' dend <- assign_values_to_leaves_edgePar(object=dend, value = c(3,2), edgePar = "lwd")
+#' plot(dend)
+#' dend <- assign_values_to_leaves_edgePar(object=dend, value = c(3,2), edgePar = "lty")
+#' plot(dend)
+#' 
+#' get_leaves_attr(dend, "edgePar", simplify=FALSE)
+#' 
+#' }
+#' 
+assign_values_to_leaves_edgePar <- function(object, value, edgePar, warn = dendextend_options("warn"), ...) {
+   if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
+   
+   if(missing(value)) {
+      if(warn) warning("value is missing, returning the dendrogram as is.")
+      return(object)
+   }
+   
+   leaves_length <- nleaves(object) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
+   if(leaves_length > length(value)) {
+      if(warn) warning("Length of value vector was shorter than the number of leaves - vector value recycled")
+      value <- rep(value, length.out = leaves_length)
+   }       
+   
+   set_value_to_leaf <- function(dend_node) {
+      if(is.leaf(dend_node)) {   		
+         i_leaf_number <<- i_leaf_number + 1
+         
+         to_update_attr <- !is.infinite2(value[i_leaf_number])
+         if(to_update_attr) {
+            # if(!is.infinite2(value[i_leaf_number])) {
+            attr(dend_node, "edgePar")[[edgePar]] <- value[i_leaf_number] # this way it doesn't erase other edgePar values (if they exist)
+         }      
+         
+         
+         if(length(attr(dend_node, "edgePar")) == 0) {
+            attr(dend_node, "edgePar") <- NULL # remove edgePar if it is empty
+         } else {
+            # if we have some edgePar, and we don't have pch - let's make 
+            # sure it is NA - so that we don't see that annoying dot.
+            if(! ("pch"  %in%  names(attr(dend_node, "edgePar"))) ) {
+               attr(dend_node, "edgePar")["pch"] <- NA
+            }               
+         }
+      }
+      return(unclass(dend_node))
+   }   
+   i_leaf_number <- 0
+   new_dend_object <- dendrapply(object, set_value_to_leaf)
+   class(new_dend_object) <- "dendrogram"
+   return(new_dend_object)
+}
 
 
 
