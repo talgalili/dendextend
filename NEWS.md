@@ -1,9 +1,23 @@
+dendextend 0.17.2 (2014-08-25)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * cor_bakers_gamma.dendlist
+   * assign_values_to_leaves_edgePar (noticed the need from this question: http://stackoverflow.com/questions/23328663/color-branches-of-dendrogram-using-an-existing-column?rq=1)
+
+###UPDATED FUNCTIONS:
+   * assign_values_to_leaves_nodePar - added if(warn), if value is missing.
+
+###VIGNETTE:
+   * Fix some typos and mistakes.
+   * Add to introduction.Rmd how to install the package from github.
+
 dendextend 0.17.1 (2014-08-19)
 ----------------------------------------
 
 
 ###OTHER NOTES:
-   *  compacted ‘dendextend-tutorial.pdf’ from 725Kb to 551Kb
+   *  compacted 'dendextend-tutorial.pdf' from 725Kb to 551Kb (doc fixes to pass CRAN checks)
       (Thanks to using the following:
 
                tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", 
@@ -11,6 +25,7 @@ dendextend 0.17.1 (2014-08-19)
                                  gs_cmd = "C:\\Program Files\\gs\\gs9.14\\bin\\gswin64c.exe",
                                  gs_quality="ebook") 
 
+      And to the help of Prof Brian Ripley and Kurt Hornik
       )
 
 dendextend 0.17.0 (2014-08-19)
@@ -27,7 +42,7 @@ dendextend 0.17.0 (2014-08-19)
    * `rainbow_fun` - uses rainbow_hcl, or rainbow (if colorspace is not available)
 
 ###UPDATED FUNCTIONS:
-   * ALL `warn` paramteres are no set to dendextend_options("warn") (which is FALSE)!
+   * ALL `warn` paramteres are now set to dendextend_options("warn") (which is FALSE)!
    * `get_branches_attr` - change "warning" to "warn", and it now works with is.dendrogram, and no longer changes the class of something which is not a dendrogram.
    * `untangle_step_rotate_2side` - print_times is now dendextend_options("warn"),
    * `color_branches` - now handles flat trees more gracefully. (returns them as they are)

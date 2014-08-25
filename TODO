@@ -3,7 +3,16 @@ TODO for future releases:
 
 Next action
 --------------
-* Update the Vignette!
+* in hang.dendrogram, check if hang_height can accept a vector (and recycle)
+
+* a tanglegram with different labels. (via J. Aravind)
+As far as I have understood, it can compare only dendrograms from the same dataset with the same labels. Is there a way to create tanglegrams with dissimilar data? Right now I am resorting to using the same labels in both the dendrograms and finally manually editing the labels in one of the dendrograms in Inkscape. However such an exercise in large dendrograms is difficult. So a feature to use dissimilar labels will be great.
+
+* a tanglegram for multiple cases. (via J. Aravind)
+Further is there any way to extend the one-to-one comparison to comparison of multiple cases like in these tanglegrams [ http://www.biomedcentral.com/content/figures/1471-2148-12-1-1-l.jpg , http://origin-ars.els-cdn.com/content/image/1-s2.0-S0966842X14000900-gr2.jpg]. Will such comparisons mess up the entanglement? Right now what I am doing is repeating the elements in one dendrogram wherever multiple comparisons occur. I have tried to merge the repeated elements later in the dendrogram, but not getting the desired results. A feature to do such comparisons in a dendrogram will be useful for creating tanglegrams for cophylogenies.
+
+
+
 * a mini Vignette (like: http://cran.r-project.org/web/packages/caret/index.html)
 * Adjust the Vignette to be a website (like http://caret.r-forge.r-project.org/)
 

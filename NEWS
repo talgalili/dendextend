@@ -1,13 +1,16 @@
-dendextend 0.17.2 (2014-08-23)
+dendextend 0.17.2 (2014-08-25)
 ----------------------------------------
 
 ###NEW FUNCTIONS:
    * cor_bakers_gamma.dendlist
+   * assign_values_to_leaves_edgePar (noticed the need from this question: http://stackoverflow.com/questions/23328663/color-branches-of-dendrogram-using-an-existing-column?rq=1)
 
+###UPDATED FUNCTIONS:
+   * assign_values_to_leaves_nodePar - added if(warn), if value is missing.
 
 ###VIGNETTE:
    * Fix some typos and mistakes.
-
+   * Add to introduction.Rmd how to install the package from github.
 
 dendextend 0.17.1 (2014-08-19)
 ----------------------------------------
