@@ -2,7 +2,7 @@ dendextend 0.17.3 (2014-08-26)
 ----------------------------------------
 
 ###UPDATED FUNCTIONS:
-   * color_labels - now can handle the coloring of labels when the function is without k and h, but that it is not possible to cut the tree to nleaves items (due to several leaves with 0 height). This is done by not doing any cutting in such cases, and just directly using labels_colors. (added tests)
+   * color_labels - now can handle the coloring of labels when the function is without k and h, but that it is not possible to cut the tree to nleaves items (due to several leaves with 0 height). This is done by not doing any cutting in such cases, and just directly using labels_colors. Tests are added. Bug report by varmara (thanks - https://github.com/talgalili/dendextend/issues/3 )
 
 
 dendextend 0.17.2 (2014-08-25)
