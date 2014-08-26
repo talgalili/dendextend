@@ -407,6 +407,8 @@ color_labels_by_labels <- function(tree, labels, col, warn = dendextend_options(
 #' If col is a color vector with a different length than the number of clusters
 #' (k) - then a recycled color vector will be used.
 #' 
+#' 
+#' 
 #' @param tree A \code{dendrogram} or \code{hclust} tree object
 #' @param k number of groups (passed to \code{\link[dendextend]{cutree}})
 #' @param h height at which to cut tree (passed to \code{\link[dendextend]{cutree}})
@@ -422,7 +424,6 @@ color_labels_by_labels <- function(tree, labels, col, warn = dendextend_options(
 #' (in case h/k/labels are not supplied, or if col is too short)
 #' @param ... ignored.
 #' @return a tree object of class dendrogram.
-#' @author Tal Galili
 #' @source
 #' This function is in the style of \code{\link{color_branches}}, and 
 #' based on \code{\link{labels_colors}}.
@@ -460,8 +461,11 @@ color_labels <- function(tree, k=NULL, h=NULL, labels, col, warn = dendextend_op
    if(!is.dendrogram(tree) && !is.hclust(tree)) stop("tree needs to be either a dendrogram or an hclust object")
    
    if(missing(k) & missing(h)) {
-      k = nleaves(tree)
+#       k = nleaves(tree)
       if(warn) warning("Neither k nor h were supplied - coloring all leaves based on 'col'.")
+      if(is.function(col)) col <- col(nleaves(tree)) # if we also didn't get any col, fill the colors with rainbow...
+      labels_colors(tree) <- col      
+      return(tree)
    }
    
    g <- dendextend::cutree(tree,k=k,h=h, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE)

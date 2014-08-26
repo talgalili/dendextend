@@ -81,3 +81,38 @@ test_that("Can't color a non-dendrogram object",{
 })
 
 
+
+
+test_that("Can color the labels of super flat trees",{
+   
+   dend_flat <- structure(list(structure(88L, members = 1L, height = 0, label = "mel Ch   m pe", leaf = TRUE, value = 83), 
+                               structure(list(structure(92L, members = 1L, height = 0, label = "mel Ch   f fo", leaf = TRUE, value = 84), 
+                                              structure(list(structure(90L, members = 1L, height = 0, label = "mel Ch   f he", leaf = TRUE, value = 85), 
+                                                             structure(list(structure(84L, label = "mel Ch   m he", members = 1L, height = 0, leaf = TRUE, value = 86), 
+                                                                            structure(86L, label = "mel Ch   m fo", members = 1L, height = 0, leaf = TRUE, value = 87)), members = 2L, midpoint = 0.5, height = 0, value = 86.5)), members = 3L, midpoint = 0.75, height = 0, value = 85.75)), members = 4L, midpoint = 0.875, height = 0, value = 84.875)), members = 5L, midpoint = 0.9375, height = 0.0697674418604651, value = 83.9375, class = "dendrogram")
+   ### didn't work in dendextend 0.17.2
+#    dend_flat %>% color_labels %>% plot 
+#    dend_flat %>% color_labels(col = 1:2) %>% plot # doesn't works
+
+   # no colors by default
+   expect_null(dend_flat %>% labels_colors)
+   # but now we do get colors:
+   dend_col_1 <- dend_flat %>% color_labels %>% labels_colors %>% unname
+   expect_identical(dend_col_1, 
+                    c("#CC476B", "#917600", "#009232", "#008FB7", "#A352D1")
+                    )
+   dend_col_2 <- dend_flat %>% color_labels(col = 1:2) %>% labels_colors %>% unname
+   expect_identical(dend_col_2, 
+                    c(1L, 2L, 1L, 2L, 1L)
+   )
+# dput(dend_col_2)
+# dput(dend_col_2)
+
+
+})
+
+
+
+# library(testthat)
+
+

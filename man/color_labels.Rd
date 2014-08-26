@@ -67,9 +67,6 @@ plot(d5gr)
 
 }
 }
-\author{
-Tal Galili
-}
 \seealso{
 \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
 \code{\link{hclust}}, \code{\link{labels_colors}}, \code{\link{color_branches}}
