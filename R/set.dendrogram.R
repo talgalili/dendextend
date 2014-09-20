@@ -54,6 +54,8 @@
 #'    
 #' \method{set}{dendlist}(object, ..., which)
 #'
+#' \method{set}{data.table}(...)
+#' 
 #' @description
 #' a master function for updating various attributes and 
 #' features of dendrogram objects.
@@ -317,6 +319,14 @@ set.dendlist <- function(object, ..., which) {
       object[[i]] <- set(object[[i]],...)      
    }
    object
+}
+
+
+#' @export
+set.data.table <- function(...) {
+   warning("set function has been overridden from data.table - which means that data.table's set() is now slower. You may solve this by using the prefix 'data.table::'' in your for loop.")
+   library(data.table)
+   data.table::set(...)   
 }
 
 

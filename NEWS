@@ -1,6 +1,8 @@
 dendextend 0.17.4 (2014-09-20)
 ----------------------------------------
 
+###NEW FUNCTIONS:
+   * set.data.table - informs the user of the conflict in "set" between dendextend and data.table.
 
 ###VIGNETTE:
    * added sessionInfo

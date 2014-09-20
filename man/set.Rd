@@ -32,6 +32,8 @@ set(object, ...)
    value, ...)
 
 \method{set}{dendlist}(object, ..., which)
+
+\method{set}{data.table}(...)
 }
 \arguments{
 \item{object}{a tree (\link{dendrogram}, or \link{dendlist})}
