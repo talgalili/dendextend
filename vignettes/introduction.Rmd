@@ -1206,3 +1206,11 @@ This simple visualization easily demonstrates how the separation of the Hierarch
 
 The hanging of the tree also helps to locate extreme observations. For example, we can see that observation "virginica (107)" is not very similar to the Versicolor species, but still, it is among them. Also, "Versicolor (71)" is too much "within" the Virginica bush, and it is a wonder why that is.  Of course, the Iris data set is very well known, and simpler pairs plot often help to locate such problems, yet - dendrogram trees (with all of their limitations) can help gain insights for very high-dimensional data where a simple pairs plot is not possible.
 
+
+Session info
+=============
+
+```{r, cache=FALSE}
+sessionInfo()
+```
+
