@@ -4,6 +4,17 @@ dendextend 0.17.5 (2014-09-22)
 ###UPDATED FUNCTIONS:
    * `order.dendrogram<-` - commenting off an examples and tests which (as of R 3.1.1-patched) produces an error (as it should). Thanks to Prof Brian Ripley for the e-mail about it.
 
+
+###BUG FIXES:
+   * checking S3 generic/method consistency ... WARNING
+         cor_bakers_gamma:
+           function(tree1, tree2, use_labels_not_values, to_plot, warn, ...)
+         cor_bakers_gamma.dendlist:
+           function(tree1, which, ...)
+   * Undocumented code objects:
+        'plot.dendlist'
+
+
 ###OTHER NOTES:
    * dendextend 0.17.5 is intended to be shipped to CRAN (to stay compatible with R 3.1.1-patched).
 

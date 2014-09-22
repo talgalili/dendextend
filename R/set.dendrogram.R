@@ -23,6 +23,7 @@
 #' @aliases 
 #' set.dendrogram
 #' set.dendlist
+#' set.data.table
 #'
 #' @usage 
 #' 

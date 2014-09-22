@@ -113,6 +113,20 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 
 #' @title Baker's Gamma correlation coefficient
 #' @export
+#' @aliases 
+#' cor_bakers_gamma.dendrogram
+#' cor_bakers_gamma.hclust
+#' cor_bakers_gamma.dendlist
+#'
+#' @usage 
+#' 
+#' cor_bakers_gamma(tree1, ...)
+#' 
+#' \method{cor_bakers_gamma}{dendrogram}(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
+#' \method{cor_bakers_gamma}{hclust}(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
+#' \method{cor_bakers_gamma}{dendlist}(tree1, which = c(1L, 2L), ...)
+#' 
+#' 
 #' @description
 #' Calculate Baker's Gamma correlation coefficient for two trees.
 #' 
@@ -133,6 +147,8 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 #' but for keeping the noise down, the default is FALSE.
 #' should a warning be issued when using \link[dendextend]{cutree}?
 #' @param ... Passed to \link[dendextend]{cutree}.
+#' @param which an integer vector of length 2, indicating
+#' which of the trees in the dendlist object should be plotted (relevant for dendlist)
 #' 
 #' @details
 #' Baker's Gamma (see reference) is a measure of accosiation (similarity) 
@@ -201,7 +217,7 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 #' 
 #' }
 #' 
-cor_bakers_gamma <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...){
+cor_bakers_gamma <- function(tree1, ...){
    UseMethod("cor_bakers_gamma")
 }
 

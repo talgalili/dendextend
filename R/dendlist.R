@@ -71,6 +71,14 @@ is.dendlist <- function(x) {
 
 #' @title Creating a dendlist object from several dendrograms
 #' @export
+#' @aliases 
+#' plot.dendlist
+#' @usage 
+#' 
+#' dendlist(...)
+#' 
+#' \method{plot}{dendlist}(x, which = c(1L, 2L), ...)
+#' 
 #' @description
 #' It accepts several dendrograms and or dendlist objects
 #' and chain them all together.
@@ -80,6 +88,9 @@ is.dendlist <- function(x) {
 #' @param ... several dendrogram/hclust/phylo or dendlist objects
 #' If an object is hclust or phylo - it will be converted
 #' into a dendrogram.
+#' @param x a dendlist object
+#' @param which an integer vector of length 2, indicating
+#' which of the trees in the dendlist object should be plotted (relevant for dendlist)
 #' 
 #' @details
 #' It there are list() in the ..., they are omitted.
@@ -105,6 +116,12 @@ is.dendlist <- function(x) {
 #' dendlist(dend) %>% dendlist(dend2) %>% dendlist(dend)
 #' dendlist(dend, dend2) %>% tanglegram
 #' tanglegram(tree1 = dendlist(dend, dend2))
+#' 
+#' dend <- iris[1:20, -5] %>% dist %>% hclust %>% as.dendrogram
+#' dend2 <- iris[1:20, -5] %>% dist %>% hclust(method = "single") %>% as.dendrogram
+#' 
+#' x <- dendlist(dend, dend2)
+#' plot(x)
 #' 
 #' }
 #' 
@@ -184,29 +201,32 @@ dendlist <- function (...) {
 
 
 
-#' @title A plot S3 method for dendlist
+# @title A plot S3 method for dendlist
+# @export
+# @description
+# If the dendlist if of length 1 - then use a normal plotting method.
+# If it is of length 2 or more, use a tangelgram.
+# @param x a dendlist
+# @param which an integer vector of length 2, indicating
+# which of the trees in the dendlist object should be plotted
+# @param ... parameters to be passed to the plot/tanglegram function
+# @return 
+# A dendlist object
+# @examples
+# 
+# \dontrun{
+# 
+# dend <- iris[1:20, -5] %>% dist %>% hclust %>% as.dendrogram
+# dend2 <- iris[1:20, -5] %>% dist %>% hclust(method = "single") %>% as.dendrogram
+# 
+# x <- dendlist(dend, dend2)
+# plot(x)
+# 
+# }
+# 
+
+
 #' @export
-#' @description
-#' If the dendlist if of length 1 - then use a normal plotting method.
-#' If it is of length 2 or more, use a tangelgram.
-#' @param x a dendlist
-#' @param which an integer vector of length 2, indicating
-#' which of the trees in the dendlist object should be plotted
-#' @param ... parameters to be passed to the plot/tanglegram function
-#' @return 
-#' A dendlist object
-#' @examples
-#' 
-#' \dontrun{
-#' 
-#' dend <- iris[1:20, -5] %>% dist %>% hclust %>% as.dendrogram
-#' dend2 <- iris[1:20, -5] %>% dist %>% hclust(method = "single") %>% as.dendrogram
-#' 
-#' x <- dendlist(dend, dend2)
-#' plot(x)
-#' 
-#' }
-#' 
 plot.dendlist <- function(x, which = c(1L, 2L), ...) {
    if(!is.dendlist(x)) stop("x is not a dendlist")
    
