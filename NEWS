@@ -16,6 +16,9 @@ dendextend 0.17.5 (2014-09-22)
    *  `cor_bakers_gamma.Rd`:
          \usage lines wider than 90 characters
 
+###VIGNETTE:
+   * Fixed several typos and grammatical mistakes.
+
 ###OTHER NOTES:
    * dendextend 0.17.5 is intended to be shipped to CRAN (to stay compatible with R 3.1.1-patched).
 

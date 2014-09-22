@@ -3,6 +3,67 @@ TODO for future releases:
 
 Next action
 --------------
+
+* tanglegram - add a default color to the lines, so that streight lines will be green, and the red ones will be red. (like in the vignette)
+
+
+
+* fix the following case!
+
+
+
+dend_flat <- structure(list(structure(88L, members = 1L, height = 0, label = "mel Ch   m pe", leaf = TRUE, value = 83), 
+                            structure(list(structure(92L, members = 1L, height = 0, label = "mel Ch   f fo", leaf = TRUE, value = 84), 
+                                           structure(list(structure(90L, members = 1L, height = 0, label = "mel Ch   f he", leaf = TRUE, value = 85), 
+                                                          structure(list(structure(84L, label = "mel Ch   m he", members = 1L, height = 0, leaf = TRUE, value = 86), 
+                                                                         structure(86L, label = "mel Ch   m fo", members = 1L, height = 0, leaf = TRUE, value = 87)), members = 2L, midpoint = 0.5, height = 0, value = 86.5)), members = 3L, midpoint = 0.75, height = 0, value = 85.75)), members = 4L, midpoint = 0.875, height = 0, value = 84.875)), members = 5L, midpoint = 0.9375, height = 0.0697674418604651, value = 83.9375, class = "dendrogram")
+
+dend_flat %>% color_labels %>% plot # doesn't work in 0.17.2, but it is fixed in 0.17.3
+dend_flat %>% color_labels(col = 1:2) %>% plot # doesn't work in 0.17.2, but it is fixed in 0.17.3
+# And this is because of:
+nleaves(dend_flat) # 5
+# fix the following two!
+cutree(dend_flat, k = 5) # results in a vector of 0's.
+heights_per_k.dendrogram(tree)
+get_nodes_attr(dend_flat, "height")
+
+
+# debug(cutree)
+
+# nice example:
+dend1 <- 1:5 %>% dist %>% hclust %>% as.dendrogram
+dend1 %>% plot
+get_nodes_attr(dend1, "height")
+dend2 <- dend1 %>% raise.dendrogram(-1)
+dend2 %>% plot
+cutree(dend2, k = 5)
+dend2 %>% color_labels %>% plot # works
+dend2 %>% color_labels %>% plot # works
+
+
+
+
+
+
+
+* add:
+randomForest 4.6-10
+Type rfNews() to see new features/changes/bug fixes.
+> rfNews()
+> rfNews
+function () 
+{
+    newsfile <- file.path(system.file(package = "randomForest"), 
+        "NEWS")
+    file.show(newsfile)
+}
+<environment: namespace:randomForest>
+
+
+* maybe add?
+http://stackoverflow.com/questions/22749634/how-to-append-bootstrapped-values-of-clusters-tree-nodes-in-newick-format-in
+
+
 * in hang.dendrogram, check if hang_height can accept a vector (and recycle)
 
 * a tanglegram with different labels. (via J. Aravind)

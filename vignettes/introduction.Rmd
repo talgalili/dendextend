@@ -91,7 +91,7 @@ Prerequisites
 
 ### Acknowledgement
 
-This package was made possible by the the support of my thesis advisor [Yoav Benjamini](http://www.math.tau.ac.il/~ybenja/), as well as code contributions from many R users. They are:
+This package was made possible by the the support of my thesis adviser [Yoav Benjamini](http://www.math.tau.ac.il/~ybenja/), as well as code contributions from many R users. They are:
 
 ```{r, echo=FALSE}
 
@@ -140,7 +140,7 @@ Or, you can also wrap the function calls inside each other:
 dend <- as.dendrogram(hclust(dist(c(1:5)), method = "average"))
 ```
 
-However, both solutions are not ideal: the first solution includes redundent intermediate objects, while the second is difficult to read (since the order of the operations is from inside to out, while the arguments are a long way away from the function).
+However, both solutions are not ideal: the first solution includes redundant intermediate objects, while the second is difficult to read (since the order of the operations is from inside to out, while the arguments are a long way away from the function).
 
 To get around this problem, dendextend encourages the use of the `%>%` ("pipe" or "chaining") operator (imported from the magrittr package). This turns `x %>% f(y)` into `f(x, y)` so you can use it to rewrite ("chain") multiple operations such that they can be read from left-to-right, top-to-bottom. 
 
@@ -271,7 +271,7 @@ points(xy, pch = 19, cex = 3)
 text(xy, labels = 1:nnodes(dend),cex = 1.2, col = "white") #, adj = c(0.4,0.4))
 ```
 
-We can get several nodes attributes using `get_nodes_attr` (notice the order corrosponds with what is shown in the above figure): 
+We can get several nodes attributes using `get_nodes_attr` (notice the order corresponds with what is shown in the above figure): 
 
 ```{r}
 # Create a dend:
@@ -418,7 +418,7 @@ abline(h = 2, lty = 2)
 
 ### Setting a dendrogram's nodes/leaves (points)
 
-Each node in a tree can be represented and controllod using the `assign_values_to_nodes_nodePar`, and for the special case of the nodes of leaves, the `assign_values_to_leaves_nodePar` function is more appropriate (and faster) to use. We can control the following properties: pch (point type), cex (point size), and col (point color). For example:
+Each node in a tree can be represented and controlled using the `assign_values_to_nodes_nodePar`, and for the special case of the nodes of leaves, the `assign_values_to_leaves_nodePar` function is more appropriate (and faster) to use. We can control the following properties: pch (point type), cex (point size), and col (point color). For example:
 
 ```{r, fig.width=10, fig.height=6}
 par(mfrow = c(2,3))
@@ -688,7 +688,7 @@ The dendextend package aims to extend and enhance features from the R ecosystem.
 
 ### DendSer
 
-The DendSer package helps in re-arranging a dendrogram to optimize visualisation-based cost functions. Until now it was only used for `hclust` objects, but it can easily be connected to `dendrogram` objects by trying to turn the dendrogram into hclust, on which it runs DendSer. This can be used to rotate the dendrogram easily by using the `rotate_DendSer` function:
+The DendSer package helps in re-arranging a dendrogram to optimize visualization-based cost functions. Until now it was only used for `hclust` objects, but it can easily be connected to `dendrogram` objects by trying to turn the dendrogram into hclust, on which it runs DendSer. This can be used to rotate the dendrogram easily by using the `rotate_DendSer` function:
 
 
 ```{r, fig.width=7, fig.height=3}
@@ -703,7 +703,7 @@ dend15 %>% color_branches %>% rotate_DendSer %>%   plot
 
 ### gplots
 
-The gplots package brings us the `heatmap.2` function. In it, we can use our modified dendrograms to get more informative heatmaps:
+The gplots package brings us the `heatmap.2` function. In it, we can use our modified dendrograms to get more informative heat-maps:
 
 ```{r, message=FALSE}
 library(gplots)
@@ -763,7 +763,7 @@ colored_bars(clusters, dend, y_scale = 1)
 
 ### pvclust
 
-The pvclust library calculates "p-values"" for hierarchical clustering via multiscale bootstrap resampling. Hierarchical clustering is done for given data and p-values are computed for each of the clusters. The dendextend package let's us reproduce the plot from pvclust, but with a dendrogram (instead of an hclust object), which also lets us extend the visualization.
+The pvclust library calculates "p-values"" for hierarchical clustering via multiscale bootstrap re-sampling. Hierarchical clustering is done for given data and p-values are computed for each of the clusters. The dendextend package let's us reproduce the plot from pvclust, but with a dendrogram (instead of an hclust object), which also lets us extend the visualization.
 
 
 ```{r, message=FALSE, fig.width=9, results='hide'}
@@ -833,7 +833,7 @@ dends_15_51
 head(dends_15_51)
 ```
 
-The function `match_order_by_labels` makes sure that the order in the leaves correspondes to the same labels in both trees.
+The function `match_order_by_labels` makes sure that the order in the leaves corresponds to the same labels in both trees.
 
 
 ### tanglegram
@@ -879,7 +879,7 @@ x <- dends_15_51
 x %>% plot(main = paste("entanglement =", round(entanglement(x), 2)))
 ```
 
-Using DendSet:
+Using DendSer:
 
 ```{r, fig.width=5, fig.height=3}
 x <- dends_15_51 %>% untangle(method = "DendSer") 
@@ -1045,7 +1045,7 @@ The value can range between -1 to 1. With near 0 values meaning that the two tre
 cor_cophenetic(dend15, dend51)
 ```
 
-The function `cor_cophenetic` is faster than `cor_bakers_gamma`, and might be prefered for that reason.
+The function `cor_cophenetic` is faster than `cor_bakers_gamma`, and might be preferred for that reason.
 
 
 ### The Fowlkes-Mallows Index and the Bk plot
@@ -1116,7 +1116,7 @@ Since dendrogram objects are often revised through the use of recursion, R often
 
 However, some functions are intended to be used many times, and in such cases are well served to be handled with C++. Thanks the the Rcpp package, we can comfortably extend several core functions of the dendextend package. These modifications are included in a separate add-on package called ["dendextendRcpp"](http://cran.r-project.org/web/packages/dendextendRcpp/) by Tal Galili (with essential contributions by Dirk Eddelbuettel, Romain Francois, and Kevin Ushey). When loading dendextendRcpp, it changes (and speeds up) several R functions from dendextend, these are: `get_branches_heights`, `heights_per_k.dendrogram`, `cut_lower_fun` and `labels.dendrogram`. Speed gains can range between 3 times to 100 times faster, depending on the size of the tree. These functions are regularly used by other functions in dendextend.
 
-It is highly recommanded to install dendextendRcpp for regular use, and it is avilable on CRAN:
+It is highly recommended to install dendextendRcpp for regular use, and it is available on CRAN:
 
 ```{r, eval=FALSE}
 install.packages("dendextendRcpp")
@@ -1157,9 +1157,9 @@ par(xpd = NA)
 
 ```
 
-We can see that the *Setosa* species are distincly different than *Versicolor* and *Virginica* (they have lower pater length and width). But *Versicolor* and *Virginica* can not easily be seperated based on measurments of their Sepal and Patal width/length.
+We can see that the *Setosa* species are distinctly different than *Versicolor* and *Virginica* (they have lower petal length and width). But *Versicolor* and *Virginica* can not easily be separated based on measurements of their Sepal and Patel width/length.
 
-We can nicely visualize this using a dendrogram with the labels colored with the real species cateogry, and branches colored based on cutting the tree to 3 classes.
+We can nicely visualize this using a dendrogram with the labels colored with the real species category, and branches colored based on cutting the tree to 3 classes.
 
 ```{r, fig.height = 10, fig.width=7}
 
