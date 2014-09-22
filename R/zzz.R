@@ -314,6 +314,7 @@ dendextendWelcomeMessage <- function(){
 ### http://www.rstudio.com/ide/docs/packages/build_options
 # 
 # check(build_args="--no-build-vignettes --no-manual", args = "--no-examples --no-build-vignettes --no-manual",  cran = FALSE, cleanup = FALSE)
+# check(build_args="--no-build-vignettes --no-manual", args = "--no-build-vignettes --no-manual",  cran = FALSE, cleanup = FALSE)
 # check(build_args="--no-build-vignettes ", args = "--no-build-vignettes",  cran = FALSE, cleanup = FALSE)
 # check(args="--as-cran")
 # check("D:/Dropbox/aaaa good R code/AA - My packages/dendextend", args="--as-cran")

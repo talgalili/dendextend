@@ -36,8 +36,8 @@ hc <- hclust(dist(USArrests[1:6,]), "ave")
 dend <- as.dendrogram(hc)
 sub_dend <- dend[[1]]
 order.dendrogram(sub_dend) # 4 6
-# now using as.hclust(sub_dend) will cause trouble: (a bug in R 3.0.1)
-labels(as.hclust(sub_dend)) # NA NA labels!!!
+# now using as.hclust(sub_dend) will cause trouble:
+# labels(as.hclust(sub_dend)) # As of R 3.1.1-patched - this will produce an Error (as it should) :)
 # let's fix it:
 
 order.dendrogram(sub_dend) <- rank(order.dendrogram(sub_dend), ties.method= "first")
