@@ -122,8 +122,10 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 #' 
 #' cor_bakers_gamma(tree1, ...)
 #' 
-#' \method{cor_bakers_gamma}{dendrogram}(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
-#' \method{cor_bakers_gamma}{hclust}(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
+#' \method{cor_bakers_gamma}{dendrogram}(tree1, tree2, use_labels_not_values = TRUE, 
+#' to_plot = FALSE, warn = dendextend_options("warn"), ...)
+#' \method{cor_bakers_gamma}{hclust}(tree1, tree2, use_labels_not_values = TRUE, 
+#' to_plot = FALSE, warn = dendextend_options("warn"), ...)
 #' \method{cor_bakers_gamma}{dendlist}(tree1, which = c(1L, 2L), ...)
 #' 
 #' 
