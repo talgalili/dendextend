@@ -2,7 +2,7 @@ dendextend 0.17.5 (2014-09-22)
 ----------------------------------------
 
 ###UPDATED FUNCTIONS:
-   * `order.dendrogram<-` - commenting off an example which (as of R 3.1.1-patched) produces an error (as it should). Thanks to Prof Brian Ripley for the e-mail about it.
+   * `order.dendrogram<-` - commenting off an examples and tests which (as of R 3.1.1-patched) produces an error (as it should). Thanks to Prof Brian Ripley for the e-mail about it.
 
 ###OTHER NOTES:
    * dendextend 0.17.5 is intended to be shipped to CRAN (to stay compatible with R 3.1.1-patched).

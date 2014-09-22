@@ -405,49 +405,49 @@ test_that("Compare labels which are character vs integer",{
 library(stats)
 # library(dendextendRcpp)
 
-
-test_that("Having cutree work when using a subsetted tree",{
-   # Wo   
-   # get a dendrogram:
-#    data(iris) 
-   d_iris <- dist(datasets::iris[1:10,-5])
-   hc_iris <- hclust(d_iris)
-   dend_iris <- as.dendrogram(hc_iris) # as.hclust.dendrogram - of course
-   
-   # taking a subset of the dendrogram:
-   sub_dend_iris <- dend_iris[[1]]   
-   hc_sub_dend_iris <- as.hclust(sub_dend_iris)
-   # We will have NA's:
-   expect_true(any(is.na(stats:::labels.dendrogram(as.dendrogram(hc_sub_dend_iris )))))
-   
-   
-   #if(require(dendextendRcpp)) {
-   if("package:dendextendRcpp" %in% search()) {
-         
-	   # notice that for Rcpp this would be false since the returned vector
-	   # has "NA" characters instead of NA:
-	   expect_false(any(is.na(dendextendRcpp::labels.dendrogram(as.dendrogram(hc_sub_dend_iris )))))
-	   # e.g: "NA" "3"  "NA" "NA" "4"  "7" 
-	#    a[which(a == "NA")] <- NA # this is NOT a good idea, in the case we have a label with "NA" as a character.
-   }
-   
-   
-   # we will get warnings, but the functions would not collapse!
-   expect_warning(
-      dendextend:::cutree.dendrogram(as.dendrogram(hc_sub_dend_iris ), 3,  try_cutree_hclust = TRUE)
-   )
-   expect_warning(
-      dendextend:::cutree.dendrogram(as.dendrogram(hc_sub_dend_iris ), 3,  try_cutree_hclust = FALSE)
-   )
-   
-   # remove "iris" from the last test...
-   # if(exists("iris")) # it says it doesn't exists - but it does (in the gloval env)!
-#    suppressWarnings()
-#    rm(iris, pos = 1)
-   
-})
-
-   
+# 
+# test_that("Having cutree work when using a subsetted tree",{
+#    # Wo   
+#    # get a dendrogram:
+# #    data(iris) 
+#    d_iris <- dist(datasets::iris[1:10,-5])
+#    hc_iris <- hclust(d_iris)
+#    dend_iris <- as.dendrogram(hc_iris) # as.hclust.dendrogram - of course
+#    
+#    # taking a subset of the dendrogram:
+#    sub_dend_iris <- dend_iris[[1]]   
+#    hc_sub_dend_iris <- as.hclust(sub_dend_iris)
+#    # We will have NA's:
+#    expect_true(any(is.na(stats:::labels.dendrogram(as.dendrogram(hc_sub_dend_iris )))))
+#    
+#    
+#    #if(require(dendextendRcpp)) {
+#    if("package:dendextendRcpp" %in% search()) {
+#          
+# 	   # notice that for Rcpp this would be false since the returned vector
+# 	   # has "NA" characters instead of NA:
+# 	   expect_false(any(is.na(dendextendRcpp::labels.dendrogram(as.dendrogram(hc_sub_dend_iris )))))
+# 	   # e.g: "NA" "3"  "NA" "NA" "4"  "7" 
+# 	#    a[which(a == "NA")] <- NA # this is NOT a good idea, in the case we have a label with "NA" as a character.
+#    }
+#    
+#    
+#    # we will get warnings, but the functions would not collapse!
+#    expect_warning(
+#       dendextend:::cutree.dendrogram(as.dendrogram(hc_sub_dend_iris ), 3,  try_cutree_hclust = TRUE)
+#    )
+#    expect_warning(
+#       dendextend:::cutree.dendrogram(as.dendrogram(hc_sub_dend_iris ), 3,  try_cutree_hclust = FALSE)
+#    )
+#    
+#    # remove "iris" from the last test...
+#    # if(exists("iris")) # it says it doesn't exists - but it does (in the gloval env)!
+# #    suppressWarnings()
+# #    rm(iris, pos = 1)
+#    
+# })
+# 
+#    
 
 dendextend_options("warn", FALSE)
 

@@ -150,7 +150,8 @@ test_that("order of leaves in sub-dendrogram and as.hclust",{
    # bad order
    expect_equal(order.dendrogram(sub_dend), c(4,6))
    # bad labels:
-   expect_equal(labels(as.hclust(sub_dend)), as.character(rep(NA,2)))
+#    expect_equal(labels(as.hclust(sub_dend)), as.character(rep(NA,2)))
+   # since R 3.1.1-patched - the above will produce an error. (as it should)
    
    # let's fix it:   
    order.dendrogram(sub_dend) <- rank(order.dendrogram(sub_dend), ties.method= "first")
