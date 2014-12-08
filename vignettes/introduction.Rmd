@@ -297,7 +297,7 @@ How to change a dendrogram
 ### The "set" function
 
 
-The fastest way to start changing a dendextend's parameters is by using the `set` function. It is written as: `set(object, what, value)`, and accepts the following parameters:
+The fastest way to start changing parameters with dendextend is by using the `set` function. It is written as: `set(object, what, value)`, and accepts the following parameters:
 
 1. **object**: a dendrogram object, 
 2. **what**: a character indicating what is the property of the tree that should be set/updated
