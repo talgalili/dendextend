@@ -1,3 +1,10 @@
+dendextend 0.17.7 (2015-01-21)
+----------------------------------------
+
+###NEW FILES:
+   * ape.R - moved `as.dendrogram.phylo` and `as.phylo.dendrogram` functions to it.
+
+
 dendextend 0.17.6 (2014-12-08)
 ----------------------------------------
 

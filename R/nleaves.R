@@ -19,28 +19,6 @@
 
 
 
-# as.dendrogram(as.hclust(as.phylo(hc)))
-#' @export
-# ' @S3method as.dendrogram phylo
-as.dendrogram.phylo <- function(object,...) {
-	library(ape)
-	as.dendrogram(as.hclust(object))
-}
-
-
-# We don't need to export this function (it is S3)
-# ' @S3method as.phylo dendrogram
-# ' @export
-#' @method as.phylo dendrogram
-as.phylo.dendrogram <- function(x,...) {
-	library(ape)
-	ape::as.phylo.hclust(as.hclust(x))
-}
-## http://stackoverflow.com/questions/13085481/namespace-dependencies-not-required
-## I also added ape to "Imports" in DESCRIPTION in order to avoid the error:
-##    Namespace dependency not required: 'ape'
-## Update: I removed ape from the imports and NAMESPACE.
-
 
 #' @title Counts the number of leaves in a tree
 #' @export
