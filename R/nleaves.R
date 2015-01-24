@@ -98,7 +98,10 @@ nleaves.hclust <- function(x,...) {length(x$order)}
 
 # ' @S3method nleaves phylo
 #' @export
-nleaves.phylo <- function(x,...) {nleaves(as.dendrogram(x))}
+nleaves.phylo <- function(x,...) {
+   #nleaves(as.dendrogram(x))
+   length(labels(x))
+}
 
 # TODO: there is probably a better way for getting the tree size for a phylo object.
 
