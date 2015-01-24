@@ -2,11 +2,13 @@
 \name{labels<-}
 \alias{labels.hclust}
 \alias{labels.matrix}
+\alias{labels.phylo}
 \alias{labels<-}
 \alias{labels<-.default}
 \alias{labels<-.dendrogram}
 \alias{labels<-.hclust}
 \alias{labels<-.matrix}
+\alias{labels<-.phylo}
 \title{"label" assignment operator}
 \source{
 The functions here are based on code by Gavin and kohske from
@@ -26,6 +28,10 @@ labels(object, ...) <- value
 \method{labels}{hclust}(object, order = TRUE,...)
 
 \method{labels}{hclust}(object, ...) <- value
+
+\method{labels}{phylo}(object, ...)
+
+\method{labels}{phylo}(object, ...) <- value
 
 \method{labels}{hclust}(object, order = TRUE, ...)
 

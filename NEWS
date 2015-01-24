@@ -1,9 +1,14 @@
-dendextend 0.17.7 (2015-01-21)
+dendextend 0.17.7 (2015-01-24)
 ----------------------------------------
 
 ###NEW FILES:
    * ape.R - moved `as.dendrogram.phylo` and `as.phylo.dendrogram` functions to it.
 
+###NEW FUNCTIONS:
+   * A new phylo method for `labels` and `labels<-`
+
+###UPDATED FUNCTIONS:
+   * `nleaves.phylo` - no longer require conversion to a dendrogram in order to compute.
 
 dendextend 0.17.6 (2014-12-08)
 ----------------------------------------

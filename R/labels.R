@@ -57,6 +57,8 @@
 #' labels<-.dendrogram 
 #' labels.hclust 
 #' labels<-.hclust
+#' labels.phylo
+#' labels<-.phylo
 #' @usage
 #' 
 #' labels(object, ...) <- value
@@ -70,6 +72,10 @@
 #' \method{labels}{hclust}(object, order = TRUE,...)
 #' 
 #' \method{labels}{hclust}(object, ...) <- value
+#' 
+#' \method{labels}{phylo}(object, ...)
+#' 
+#' \method{labels}{phylo}(object, ...) <- value
 #' 
 #' @param object a variable name (possibly quoted) who's label are to be updated
 #' @param which "colnames" or "rownames", to which of the two should labels refer to.
@@ -226,6 +232,38 @@ labels.hclust <- function(object, order = TRUE, ...)  {
    return(object)
 }
 
+
+
+#' @export
+# ' @rdname labels-assign
+labels.phylo <- function(object, ...) {
+   object$tip.label
+}
+
+
+
+
+#' @export
+`labels<-.phylo` <- function(object,..., value) { 
+   if(missing(value)) {
+      if(dendextend_options("warn")) warning("value is missing, returning the dendrogram as is")      
+      return(object)
+   }
+   
+   
+   # deals with wrong length of new labels VS tree size
+   new_labels <- as.character(value)
+   new_labels_length <- length(new_labels)
+   leaves_length <- nleaves(object) # labels(object) # it will be faster to use order.dendrogram than labels...   
+   if(new_labels_length < leaves_length) {
+      warning("The lengths of the new labels is shorter than the number of leaves in the dendrogram - labels are recycled.")
+      new_labels <- rep(new_labels, length.out = leaves_length)
+   }
+   
+   object$tip.label <- new_labels
+   
+   return(object)
+}
 
 
 
