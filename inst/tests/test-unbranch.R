@@ -28,7 +28,7 @@ test_that("Raising a dendrogram's root height",{
 
 
 test_that("unbranching a dendrogram",{
-   hc <- hclust(dist(USArrests[10:13,]), "ward")
+   hc <- hclust(dist(USArrests[10:13,]), "ave")
    dend <- as.dendrogram(hc)
 #    plot(dend)
    
