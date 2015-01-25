@@ -13,6 +13,7 @@ dendextend 0.18.0 (2015-01-25)
    * highlight_distinct_edges - Highlight distint edges in a tree (compared to another one)
    * dend_diff - Plots two trees side by side, highlighting edges unique to each tree in red.
    * dist.dendlist - Topological Distances Between Two dendrograms (currently only the Robinson-Foulds distance)
+   * all.equal.dendrogram/all.equal.dendlist - Global Comparison of two (or more) dendrograms
 
 ###NEW TESTS:
    * partition_leaves
