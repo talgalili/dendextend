@@ -830,7 +830,8 @@ assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "ce
 #' 
 #' @param object a dendrogram object 
 #' @param value a new value scalar for the edgePar attribute. 
-#' @param edgePar the value inside edgePar to adjust.
+#' @param edgePar a character indicating the value inside edgePar to adjust.
+#' Can be either "col", "lty", or "lwd".
 #' @param skip_leaves logical (FALSE) - should the leaves be skipped/ignored?
 #' @param warn logical (default from dendextend_options("warn") is FALSE).
 #' Set if warning are to be issued, it is safer to keep this at TRUE,

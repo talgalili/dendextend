@@ -11,7 +11,8 @@ assign_values_to_branches_edgePar(object, value, edgePar, skip_leaves = FALSE,
 
 \item{value}{a new value scalar for the edgePar attribute.}
 
-\item{edgePar}{the value inside edgePar to adjust.}
+\item{edgePar}{a character indicating the value inside edgePar to adjust.
+Can be either "col", "lty", or "lwd".}
 
 \item{skip_leaves}{logical (FALSE) - should the leaves be skipped/ignored?}
 
