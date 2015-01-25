@@ -3,9 +3,11 @@ dendextend 0.17.7 (2015-01-24)
 
 ###NEW FILES:
    * ape.R - moved `as.dendrogram.phylo` and `as.phylo.dendrogram` functions to it.
+   * cor.dendlist.R - For the cor.dendlist function
 
 ###NEW FUNCTIONS:
    * A new phylo method for `labels` and `labels<-`
+   * cor.dendlist - Correlation matrix between a list of trees.
 
 ###UPDATED FUNCTIONS:
    * `nleaves.phylo` - no longer require conversion to a dendrogram in order to compute.
