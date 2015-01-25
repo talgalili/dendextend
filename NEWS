@@ -25,6 +25,7 @@ dendextend 0.18.0 (2015-01-25)
 ###UPDATED FUNCTIONS:
    * `nleaves.phylo` - no longer require conversion to a dendrogram in order to compute.
    * `labels<-.dendrogram` - no longer forces as.character conversion
+   * `tanglegram` - a new highlight_distinct_edges parameter (default is TRUE)
 
 
 

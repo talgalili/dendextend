@@ -564,6 +564,7 @@ plot_horiz.dendrogram <- function (x,
 #' @param cex_main_left see cex_main.
 #' @param cex_main_right see cex_main.
 #' @param cex_sub see cex_main.
+#' @param highlight_distinct_edges logical (default is TRUE). If to highlight distinct edges in each tree (by changing their line types to 2).
 #' @param ... not used.
 #' @details 
 #' Notice that tanglegram does not "resize" well. In case you are resizing your
@@ -676,6 +677,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   cex_main_left=cex_main,
                                   cex_main_right=cex_main,
                                   cex_sub=cex_main,
+                                  highlight_distinct_edges = TRUE,
                                   ... )
 {
    
@@ -728,6 +730,10 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
       tree2 <- hang.dendrogram(tree2)      
    }
    
+   if(highlight_distinct_edges) {
+      tree1 <- highlight_distinct_edges(tree1, tree2, edgePar = "lty")
+      tree2 <- highlight_distinct_edges(tree2, tree1, edgePar = "lty")
+   }
    
    
    l <- nleaves(tree1)

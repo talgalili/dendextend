@@ -167,6 +167,8 @@ should be magnified relative to the default.}
 \item{cex_main_right}{see cex_main.}
 
 \item{cex_sub}{see cex_main.}
+
+\item{highlight_distinct_edges}{logical (default is TRUE). If to highlight distinct edges in each tree (by changing their line types to 2).}
 }
 \value{
 An invisible \link{dendlist}, with two trees after being
