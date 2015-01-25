@@ -30,7 +30,7 @@ dend_diff(x, y)
 }
 \seealso{
 \link{distinct_edges}, \link{highlight_distinct_edges},
-\link{edgeset_dist}, \link{dist.dendlist}, \link{tanglegram}
+\link{dist.dendlist}, \link{tanglegram}
 \link[distory]{distinct.edges}
 }
 

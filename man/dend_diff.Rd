@@ -35,7 +35,7 @@ dend_diff(dend1, dend2)
 }
 \seealso{
 \link{distinct_edges}, \link{highlight_distinct_edges},
-\link{edgeset_dist}, \link{dist.dendlist}, \link{tanglegram}
+\link{dist.dendlist}, \link{tanglegram}
 \link{assign_values_to_branches_edgePar},
 \link[distory]{distinct.edges},
 }

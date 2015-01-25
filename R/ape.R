@@ -31,7 +31,7 @@ as.dendrogram.phylo <- function(object,...) {
 # We can't use an S3 here without switching ape to be a depend/imports, and enhance is more fitting. So I must make this function visible... :\
 # ' @S3method as.phylo dendrogram
 # ' @method as.phylo dendrogram
-#' @export
+# ' @export
 as.phylo.dendrogram <- function(x,...) {
 	library(ape)
 	ape::as.phylo.hclust(as.hclust(x))

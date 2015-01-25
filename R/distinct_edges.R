@@ -33,7 +33,7 @@
 #' 
 #' @seealso
 #' \link{distinct_edges}, \link{highlight_distinct_edges},
-#' \link{edgeset_dist}, \link{dist.dendlist}, \link{tanglegram},
+#' \link{dist.dendlist}, \link{tanglegram},
 #' \link[distory]{partition.leaves}
 #' 
 #' @return 
@@ -88,7 +88,7 @@ partition_leaves <- function(x, ...) {
 #' 
 #' @seealso
 #' \link{distinct_edges}, \link{highlight_distinct_edges},
-#' \link{edgeset_dist}, \link{dist.dendlist}, \link{tanglegram}
+#' \link{dist.dendlist}, \link{tanglegram}
 #' \link[distory]{distinct.edges}
 #' 
 #' @return 
@@ -129,10 +129,10 @@ distinct_edges  <- function (x, y, ...)
 #' @title Highlight distint edges in a tree (compared to another one)
 #' @export
 #' @description
-#' HIghlight distint edges in a tree (compared to another one) by changing
+#' Highlight distint edges in a tree (compared to another one) by changing
 #' the branches' color, line width, or line type.
 #' 
-#' This function enables this feature in \link{dend_diff} and \link{tangelgram}
+#' This function enables this feature in \link{dend_diff} and \link{tanglegram}
 #' 
 #' @param x a dendrogram to find unique edges in
 #' @param y a dendrogram to compare with
@@ -143,7 +143,7 @@ distinct_edges  <- function (x, y, ...)
 #' 
 #' @seealso
 #' \link{distinct_edges}, \link{highlight_distinct_edges},
-#' \link{edgeset_dist}, \link{dist.dendlist}, \link{tanglegram}
+#' \link{dist.dendlist}, \link{tanglegram}
 #' \link{assign_values_to_branches_edgePar},
 #' \link[distory]{distinct.edges}, 
 #' 
@@ -198,7 +198,7 @@ highlight_distinct_edges <- function (x, y,
 #' 
 #' @seealso
 #' \link{distinct_edges}, \link{highlight_distinct_edges},
-#' \link{edgeset_dist}, \link{dist.dendlist}, \link{tanglegram}
+#' \link{dist.dendlist}, \link{tanglegram}
 #' \link{assign_values_to_branches_edgePar},
 #' \link[distory]{distinct.edges}, 
 #' 

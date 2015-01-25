@@ -486,6 +486,7 @@ plot_horiz.dendrogram <- function (x,
 #'    cex_main_left = cex_main,
 #'    cex_main_right = cex_main,
 #'    cex_sub = cex_main,
+#'    highlight_distinct_edges = TRUE,
 #'    ...)
 #' 
 #' \method{tanglegram}{dendlist}(tree1, which = c(1L,2L), ...)

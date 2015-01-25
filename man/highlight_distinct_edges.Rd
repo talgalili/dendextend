@@ -22,10 +22,10 @@ Can be either "col", "lty", or "lwd".}
 A dendrogram with modified edges - the distinct ones are changed (color, line width, or line type)
 }
 \description{
-HIghlight distint edges in a tree (compared to another one) by changing
+Highlight distint edges in a tree (compared to another one) by changing
 the branches' color, line width, or line type.
 
-This function enables this feature in \link{dend_diff} and \link{tangelgram}
+This function enables this feature in \link{dend_diff} and \link{tanglegram}
 }
 \examples{
 x <- 1:5 \%>\% dist \%>\% hclust \%>\% as.dendrogram
@@ -42,7 +42,7 @@ plot(y)
 }
 \seealso{
 \link{distinct_edges}, \link{highlight_distinct_edges},
-\link{edgeset_dist}, \link{dist.dendlist}, \link{tanglegram}
+\link{dist.dendlist}, \link{tanglegram}
 \link{assign_values_to_branches_edgePar},
 \link[distory]{distinct.edges},
 }
