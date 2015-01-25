@@ -16,8 +16,11 @@ test_that("labels options works",{
 	dend <- iris[ss,-5] %>% dist %>% hclust %>% as.dendrogram
 
    expect_equal(dend %>% set("labels", 1:10) %>% labels,
-                as.character(1:10))
+                1:10)
 
+   expect_equal(dend %>% set("labels", as.character(1:10)) %>% labels,
+                as.character(1:10))
+   
       dendextend_options("warn", TRUE)
    expect_warning(set(dend, "labels_color"))
       dendextend_options("warn", FALSE)

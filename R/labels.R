@@ -176,7 +176,8 @@
    
    
    # deals with wrong length of new labels VS tree size
-   new_labels <- as.character(value)
+   # new_labels <- as.character(value) # I shouldn't force this to a character
+   new_labels <- value
    new_labels_length <- length(new_labels)
    leaves_length <- nleaves(object) # labels(object) # it will be faster to use order.dendrogram than labels...   
    if(new_labels_length < leaves_length) {
