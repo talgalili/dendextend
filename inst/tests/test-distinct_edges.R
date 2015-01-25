@@ -30,10 +30,15 @@ test_that("dist.dendlist work",{
    x <- 1:5 %>% dist %>% hclust %>% as.dendrogram
    y <- set(x, "labels", 5:1)
    
-#    dput(dist.dendlist(dendlist(x,x,y)))
 #    dend_diff(x,y)
+   tmp <- dist.dendlist(dendlist(x,x,y))
    
-   expect_identical(dist.dendlist(dendlist(x,x,y)),                 
-                 structure(c(0, 4, 4), Size = 3L, call = as.dist.default(m = the_dist), class = "dist", Diag = FALSE, Upper = FALSE)
+   expect_identical(class(tmp), "dist")
+
+#    dput(as.matrix(tmp))
+   expect_identical(as.matrix(tmp),
+                    structure(c(0, 0, 4, 0, 0, 4, 4, 4, 0), .Dim = c(3L, 3L), .Dimnames = list(
+                       c("1", "2", "3"), c("1", "2", "3")))
             )   
+
 })
