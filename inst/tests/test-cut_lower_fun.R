@@ -93,3 +93,12 @@ test_that("cut_lower_fun works",{
 
 
 
+
+test_that("cut_lower_fun in dendextend",{
+   
+   dend <- as.dendrogram(hclust(dist(c(1,1,1,2,2))))
+   expect_identical(dendextend_cut_lower_fun(dend, -.5, labels),
+                    list())
+   # But this will NOT be the same with dendextendRcpp !!
+   
+})

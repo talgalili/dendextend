@@ -238,6 +238,16 @@ cutree_1h.dendrogram <- function(tree, h,
       if(warn) warning("h has length > 1 and only the first element will be used")
       h <- h[1]
    }
+
+   # deal with cases that we cut the tree to all leaves. (negative h)
+   if(h < 0) {
+      labels_tree <- labels(tree)
+      cluster_vec <- 1:length(labels_tree)
+      names(cluster_vec)[order.dendrogram(tree)] <- labels_tree
+      return(cluster_vec)
+   }
+   
+   
    
    if(use_labels_not_values) {
       FUN <- labels
@@ -299,7 +309,7 @@ cutree_1h.dendrogram <- function(tree, h,
    
    names(cluster_vec) <- unlist(names_in_clusters)
    
-   
+
    # note: The order of the items in cluster_vec, is according to their order in the dendrogram.
    # If the dendrogram was created through as.dendrogram(hclust_object)
    # The original order of the names of the items, from which the hclust (and the dendrogram) object was created from, will not be preserved!
@@ -502,6 +512,15 @@ cutree_1k.dendrogram <- function(tree, k,
                                           ...)
       return(cluster_vec)
    }
+   
+   # deal with cases that we cut the tree to all leaves. (negative h)
+   if(k == nleaves(tree)) {
+      labels_tree <- labels(tree)
+      cluster_vec <- 1:length(labels_tree)
+      names(cluster_vec)[order.dendrogram(tree)] <- labels_tree
+      return(cluster_vec)
+   }
+   
    
    
    # step 1: find all possible h cuts for tree	

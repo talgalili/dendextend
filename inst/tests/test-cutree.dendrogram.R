@@ -65,6 +65,15 @@ test_that("cutree a dendrogram by height h",{
       names(cutree_1h.dendrogram(dend, 100,order_clusters_as_data=FALSE)),
       labels(dend)      )  
    
+   # dealing with cutree_1h.dendrogram in negative h!
+   expect_identical(
+      cutree_1h.dendrogram(dend, h = -1),
+      stats::cutree(as.hclust(dend), h=-1))
+   expect_identical(
+      stats::cutree(as.hclust(dend), k=5),
+      stats::cutree(as.hclust(dend), h=-1))
+   
+   
 })
 
 
@@ -142,7 +151,7 @@ test_that("cutree a dendrogram to k clusters",{
       labels(dend)      )  
    
    # cases of no possible k's:
-   expect_warning(cutree_1k.dendrogram(unbranch_dend, 2))
+   expect_warning(cutree_1k.dendrogram(unbranch_dend, 2, warn = TRUE))
    expect_equal(cutree_1k.dendrogram(unbranch_dend, 2, warn = FALSE), rep(NA,5))
    
    
@@ -213,7 +222,8 @@ test_that("cutree dendrogram method works for k",{
    
    # cases of no possible k's:
    expect_warning(cutree(unbranch_dend, 2))
-   expect_equal(cutree(unbranch_dend, 2, warn = FALSE), rep(0, 5))
+   expect_equal(suppressWarnings(cutree(unbranch_dend, 2, warn = FALSE)),
+                rep(0, 5))
    
    # now to check vectorization
    
@@ -230,12 +240,18 @@ test_that("cutree for flat edges",{
    #    cutree(hclust(dist(c(1,1,1,2,2))), k=1:5)
    
    dend <- as.dendrogram(hclust(dist(c(1,1,1,2,2))))
+   # dendextend:::cutree.dendrogram(dend, k=5)
    # as.hclust(dend) # Error: all(vapply(s, is.integer, NA)) is not TRUE
 #    cutree(dend,k=5)
 #    plot(dend)
+#    dendextend_cut_lower_fun(dend, -.5, labels)
+#    cut_lower_fun(dend, -.5, labels)
+
    expect_equal(unname(cutree(dend, k=2)), c(1,1,1,2,2))
-   expect_warning(cutree(dend,k=5))
-   expect_equal(suppressWarnings(cutree(dend,k=5)), rep(0, 5))
+   expect_equal(unname(cutree(dend, h=-1)), 1:5) #weird definition
+   expect_equal(unname(cutree(dend, k=5)), 1:5)
+   expect_warning(cutree(dend,k=4))
+   expect_equal(suppressWarnings(cutree(dend, k=4)), rep(0, 5))
    
 })
 
@@ -269,14 +285,14 @@ test_that("cutree for dendrogram works (k,h and vectorization)",{
    expect_warning( cutree(unbranch_dend, k=1:2) )    
    
    # it still works for missing k's, it just returns NA's in the second column
-   cutree_unbranch_dend <- cutree(unbranch_dend, k=1:4, warn = FALSE)
+   cutree_unbranch_dend <- suppressWarnings(cutree(unbranch_dend, k=1:4, warn = FALSE))
    expect_true( is.matrix(cutree_unbranch_dend) )
    expect_true( all(cutree_unbranch_dend[,2] == 0) ) # 2nd column is NA.
-   
-   cutree_unbranch_dend_2 <- cutree(unbranch_dend, k=1:4,   
+      
+   cutree_unbranch_dend_2 <- suppressWarnings(cutree(unbranch_dend, k=1:4,   
                                   warn = FALSE, order_clusters_as_data = FALSE,
                                   try_cutree_hclust = FALSE
-   )
+   ))
    expect_identical(rownames(cutree_unbranch_dend_2), labels(unbranch_dend))
    
    
@@ -474,4 +490,3 @@ library(stats)
 #    
 
 dendextend_options("warn", FALSE)
-
