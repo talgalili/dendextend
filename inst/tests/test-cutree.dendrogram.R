@@ -222,6 +222,30 @@ test_that("cutree dendrogram method works for k",{
 
 
 
+
+
+test_that("cutree for flat edges",{
+   
+   #    cutree(hclust(dist(c(1,1,1,2,2))), k=5)
+   #    cutree(hclust(dist(c(1,1,1,2,2))), k=1:5)
+   
+   dend <- as.dendrogram(hclust(dist(c(1,1,1,2,2))))
+   # as.hclust(dend) # Error: all(vapply(s, is.integer, NA)) is not TRUE
+#    cutree(dend,k=5)
+#    plot(dend)
+   expect_equal(unname(cutree(dend, k=2)), c(1,1,1,2,2))
+   expect_warning(cutree(dend,k=5))
+   expect_equal(suppressWarnings(cutree(dend,k=5)), rep(0, 5))
+   
+})
+
+
+
+
+
+
+
+
 test_that("cutree for dendrogram works (k,h and vectorization)",{
    
    # data

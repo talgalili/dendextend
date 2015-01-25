@@ -713,7 +713,12 @@ cutree_1k.dendrogram <- function(tree, k,
 #' ##_trying_to_hclust        6.945375 7.079198 7.148629 7.577536 16.99780   100
 #' ##There were 50 or more warnings (use warnings() to see the first 50)        
 #'                  
-#'                          
+#' # notice that if cutree can't find clusters for the desired k/h, it will produce 0's instead!
+#' # (It will produce a warning though...)
+#' # This is a different behaviout than stats::cutree                        
+#' # For example:
+#' cutree(as.dendrogram(hclust(dist(c(1,1,1,2,2)))),
+#'       k=5)
 #'                                          
 #' }
 #' 
@@ -852,7 +857,7 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
          # since this is a step which takes a long time, If possible, I'd rather supply this to the function, so to make sure it runs faster...
          dend_heights_per_k <- heights_per_k.dendrogram(tree)
       }
-      cutree_per_k <- function(x,...) cutree_1k.dendrogram(k=x,...)
+      cutree_per_k <- function(x, tree, ...) cutree_1k.dendrogram(k=x, tree = tree, ...)
       clusters <- sapply(X=k,FUN = cutree_per_k, 
                          tree=tree ,            
                          dend_heights_per_k= dend_heights_per_k,
@@ -875,7 +880,7 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
                          ...)
       colnames(clusters) <- h            
    }
-      
+   
    # return a vector if h/k are scalars:
    if(ncol(clusters)==1) clusters <- clusters[,1] # make it NOT a matrix
 
@@ -883,6 +888,8 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
    if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE, warn = FALSE)
          # we know that cluster id is an integer, so it is fine to use force_integer = TRUE
    
+   if(any(is.na(clusters))) warning("It is impossible to produce a one-to-one cut for the k/h you specidied. 0's have been introduced.")
+
    if(NA_to_0L) clusters[is.na(clusters)] <- 0L
 
    return(clusters)

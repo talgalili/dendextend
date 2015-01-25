@@ -165,7 +165,12 @@ microbenchmark(
 ##_trying_to_hclust        6.945375 7.079198 7.148629 7.577536 16.99780   100
 ##There were 50 or more warnings (use warnings() to see the first 50)
 
-
+# notice that if cutree can't find clusters for the desired k/h, it will produce 0's instead!
+# (It will produce a warning though...)
+# This is a different behaviout than stats::cutree
+# For example:
+cutree(as.dendrogram(hclust(dist(c(1,1,1,2,2)))),
+      k=5)
 
 }
 }
