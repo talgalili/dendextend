@@ -135,7 +135,6 @@ distinct_edges  <- function (x, y, ...)
 #' @usage 
 #' 
 #' highlight_distinct_edges(x, ...) 
-#' set(object, ...)
 #' 
 #' \method{highlight_distinct_edges}{dendrogram}(x,
 #'                   y, 

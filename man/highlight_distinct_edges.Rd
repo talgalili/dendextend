@@ -6,7 +6,6 @@
 \title{Highlight distint edges in a tree (compared to another one)}
 \usage{
 highlight_distinct_edges(x, ...)
-set(object, ...)
 
 \method{highlight_distinct_edges}{dendrogram}(x,
                   y,
