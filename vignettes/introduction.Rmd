@@ -280,6 +280,7 @@ dend <- 1:5 %>% dist %>% hclust %>% as.dendrogram
 dend %>% get_nodes_attr("height") # node's height
 dend %>% hang.dendrogram %>% get_nodes_attr("height") # node's height (after raising the leaves)
 dend %>% get_nodes_attr("members") # number of members (leaves) under that node
+dend %>% get_nodes_attr("members", id = c(2,5)) # number of members for nodes 2 and 5
 dend %>% get_nodes_attr("midpoint") # how much "left" is this node from its left-most child's location
 dend %>% get_nodes_attr("leaf") # is this node a leaf
 dend %>% get_nodes_attr("label") # what is the label on this node
