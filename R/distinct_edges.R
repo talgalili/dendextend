@@ -128,18 +128,38 @@ distinct_edges  <- function (x, y, ...)
 
 #' @title Highlight distint edges in a tree (compared to another one)
 #' @export
+#' @aliases 
+#' highlight_distinct_edges.dendrogram
+#' highlight_distinct_edges.dendlist
+#'
+#' @usage 
+#' 
+#' highlight_distinct_edges(x, ...) 
+#' set(object, ...)
+#' 
+#' \method{highlight_distinct_edges}{dendrogram}(x,
+#'                   y, 
+#'                   value = 2, 
+#'                   edgePar = c("col", "lty", "lwd"), 
+#'                   ...) 
+#'    
+#' \method{highlight_distinct_edges}{dendlist}(x, ..., which)
+#' 
 #' @description
 #' Highlight distint edges in a tree (compared to another one) by changing
 #' the branches' color, line width, or line type.
 #' 
 #' This function enables this feature in \link{dend_diff} and \link{tanglegram}
 #' 
-#' @param x a dendrogram to find unique edges in
+#' @param x a dendrogram or \link{dendlist} to find unique edges in (to highlight)
 #' @param y a dendrogram to compare with
 #' @param value a new value scalar for the edgePar attribute.
 #' @param edgePar a character indicating the value inside edgePar to adjust.
 #' Can be either "col", "lty", or "lwd".
 #' @param ... Ignored.
+#' @param which an integer vector indicating, in the case "x" is a dendlist, 
+#' on which of the trees should the modification be performed. 
+#' If missing - the change will be performed on all of objects in the dendlist.
 #' 
 #' @seealso
 #' \link{distinct_edges}, \link{highlight_distinct_edges},
@@ -164,7 +184,25 @@ distinct_edges  <- function (x, y, ...)
 #' # tanglegram(highlight_distinct_edges(x, y),y)
 #' # dend_diff(x, y)
 #' 
-highlight_distinct_edges <- function (x, y, 
+#' \dontrun{
+#' 
+#' # using  highlight_distinct_edges combined with dendlist and set
+#' # to clearly highlight "stable" branches.
+#' data(iris); ss <- c(1:5, 51:55, 101:105)
+#' iris1 <-iris[ss,-5] %>% dist %>% hclust(method = "single") %>% as.dendrogram 
+#' iris2 <- iris[ss,-5] %>% dist %>% hclust(method = "complete") %>% as.dendrogram
+#' iris12 <- dendlist(iris1, iris2) %>% set("branches_k_color",k=3) %>% 
+#'    set("branches_lwd", 3) %>%  highlight_distinct_edges(value = 1, edgePar = "lwd")
+#' iris12 %>% untangle(method = "step2side")  %>% tanglegram(sub="Iris dataset", main_left = "'single' clustering", main_right = "'complete' clustering")
+#' }
+#' 
+highlight_distinct_edges <- function (x, ...) {
+   UseMethod("highlight_distinct_edges")
+}
+
+
+#' @export
+highlight_distinct_edges.dendrogram <- function (x, y, 
                                       value = 2, edgePar = c("col", "lty", "lwd"), ...)  {
    
    edgePar <- match.arg(edgePar)
@@ -180,6 +218,15 @@ highlight_distinct_edges <- function (x, y,
 }
 
 
+#' @export
+highlight_distinct_edges.dendlist <- function(x, ..., which = c(1L, 2L)) {
+   l1 <- which[1]
+   l2 <- which[2]
+   x[[l1]] <- highlight_distinct_edges(x[[l1]], x[[l2]], ...)
+   x[[l2]] <- highlight_distinct_edges(x[[l2]], x[[l1]], ...)
+   
+   x
+}
 
 
 
