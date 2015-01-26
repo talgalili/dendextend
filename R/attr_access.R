@@ -190,7 +190,9 @@ get_nodes_attr <- function (object, attribute,
 #   empty_list <- vector("list", nnodes(object))
    empty_list <- as.list(rep(NA, nnodes(object)))
    object_attr <- empty_list
-   
+   missing_id  <-  missing(id)   
+
+
    # this function is used to modify object_attr. What it returns is not important.
    i_node <- 0
    get_attr_from_node <- function(dend_node) {
@@ -199,7 +201,7 @@ get_nodes_attr <- function (object, attribute,
       # if we have id's and this is not it - we can skip it...
       # FALSE & NULL # fails
       # FALSE && NULL # works...
-      if(!missing(id) && !(i_node %in% id) ) return(invisible())
+      if(!missing_id && !(i_node %in% id) ) return(invisible())
       
          
       # if we should not include_leaves, then we skip when a leaf is encountered.
@@ -224,7 +226,7 @@ get_nodes_attr <- function (object, attribute,
    # TODO: this could probably be more optimized - say, by looking only at the above mentioned id's
    # and not create all of the vector and only then take a subset. 
    # But for now, I think this is more maintainable...
-   if(!missing(id)) {
+   if(!missing_id) {
       object_attr <- object_attr[id]
    }
 
