@@ -232,13 +232,29 @@ highlight_distinct_edges.dendlist <- function(x, ..., which = c(1L, 2L)) {
 
 #' @title Plots two trees side by side, highlighting edges unique to each tree in red.
 #' @export
+#' @aliases 
+#' dend_diff.dendrogram
+#' dend_diff.dendlist
+#'
+#' @usage 
+#' 
+#' dend_diff(x, ...) 
+#' 
+#' \method{dend_diff}{dendrogram}(x, y, horiz = TRUE,
+#'                   ...) 
+#'    
+#' \method{dend_diff}{dendlist}(x, ..., which)
+#' 
 #' @description
 #' Plots two trees side by side, highlighting edges unique to each tree in red.
 #' 
-#' @param x a dendrogram to find unique edges in
+#' @param x a dendrogram or \link{dendlist} to compre with
 #' @param y a dendrogram to compare with
 #' @param horiz logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.
 #' @param ... passed to \link{plot.dendrogram}
+#' @param which an integer vector indicating, in the case "x" is a dendlist, 
+#' on which of the trees should the modification be performed. 
+#' If missing - the change will be performed on all of objects in the dendlist.
 #' 
 #' @source
 #' A \link{dendrogram} implementation for \link[distory]{phylo.diff} from the {distory} package
@@ -250,7 +266,7 @@ highlight_distinct_edges.dendlist <- function(x, ..., which = c(1L, 2L)) {
 #' \link[distory]{distinct.edges}, 
 #' 
 #' @return 
-#' Invisible NULL
+#' Invisible \link{dendlist} of both trees.
 #' 
 #' @examples
 #' 
@@ -258,12 +274,20 @@ highlight_distinct_edges.dendlist <- function(x, ..., which = c(1L, 2L)) {
 #' y <- set(x, "labels", 5:1)
 #' 
 #' dend_diff(x, y)
+#' dend_diff(dendlist(x, y))
+#' dend_diff(dendlist(y, x))
 #' 
 #' dend1 <- 1:10 %>% dist %>% hclust %>% as.dendrogram
 #' dend2 <- dend1 %>% set("labels", c(1,3,2,4, 5:10) )
 #' dend_diff(dend1, dend2)
 #' 
-dend_diff <- function(x, y, horiz = TRUE, ...)  {
+dend_diff <- function (x, ...) {
+   UseMethod("dend_diff")
+}
+
+
+#' @export
+dend_diff.dendrogram <- function(x, y, horiz = TRUE, ...)  {
    x2 <- highlight_distinct_edges(x, y)   
    y2 <- highlight_distinct_edges(y, x)   
    
@@ -278,8 +302,22 @@ dend_diff <- function(x, y, horiz = TRUE, ...)  {
    op <- par()$mfrow
    par(mfrow = op)
    
-   invisible() 
+   invisible(dendlist(x, y)) 
 }
+
+
+#' @export
+dend_diff.dendlist <- function(x, ..., which = c(1L, 2L)) {
+   l1 <- which[1]
+   l2 <- which[2]
+   dend_diff(x[[l1]], x[[l2]], ...)
+   
+   invisible(x)
+}
+
+
+
+
 
 
 
