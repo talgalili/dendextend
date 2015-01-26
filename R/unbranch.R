@@ -19,7 +19,7 @@
 
 
 
-#' @title get attributes from the dendrogram's root branches
+#' @title get attributes from the dendrogram's root(!) branches
 #' @export
 #' @param dend dendrogram object
 #' @param the_attr the attribute to get from the branches (for example "height")
@@ -35,10 +35,10 @@
 #' hc <- hclust(dist(USArrests[2:9,]), "com")
 #' dend <- as.dendrogram(hc)
 #' 
-#' get_branches_attr(dend, "height") # 0.00000 71.96247
+#' get_root_branches_attr(dend, "height") # 0.00000 71.96247
 #' # plot(dend)
 #' str(dend, 2)
-get_branches_attr <- function(dend, the_attr, warn = dendextend_options("warn"),...) {
+get_root_branches_attr <- function(dend, the_attr, warn = dendextend_options("warn"),...) {
    if(!is.dendrogram(dend))
    {
       if(warn) warning("dend wasn't of class dendrogram - be sure it makes sense...")
@@ -167,9 +167,9 @@ Please choose another branch to be the root.")
       attr(new_dend, "height") <- attr(dend, "height") # + attr(dend[[branch_becoming_root]], "height") 
    }
    class(new_dend) <- 'dendrogram'
-   attr(new_dend, "members") <- sum(get_branches_attr(new_dend, "members")) # the new members of the root is the sum of the members in all of his branches
+   attr(new_dend, "members") <- sum(get_root_branches_attr(new_dend, "members")) # the new members of the root is the sum of the members in all of his branches
    attr(new_dend, "midpoint") <- 
-      suppressWarnings(mean(get_branches_attr(new_dend, "midpoint"), na.rm = TRUE) )      
+      suppressWarnings(mean(get_root_branches_attr(new_dend, "midpoint"), na.rm = TRUE) )      
    # the new midpoint of the root is the mean of the midpoint in all of his branches
    # if some are NA, they are ignored
 
@@ -242,7 +242,7 @@ unbranch.phylo <- function(x, ...) {
 flatten.dendrogram <- function(dend, FUN = max, new_height,...)
 {
    if(missing(new_height)) {
-      dend_branches_height <- get_branches_attr(dend, "height")
+      dend_branches_height <- get_root_branches_attr(dend, "height")
       new_height <- FUN(dend_branches_height)      
    }
    for(i in seq_len(length(dend))) attr(dend[[i]], "height") <- new_height

@@ -28,6 +28,6 @@ plot(remove_branches_edgePar(dend))
 }
 }
 \seealso{
-\link{get_branches_attr}, \link{assign_values_to_branches_edgePar}
+\link{get_root_branches_attr}, \link{assign_values_to_branches_edgePar}
 }
 

@@ -839,7 +839,7 @@ assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "ce
 #' @param ... not used
 #' @return 
 #' A dendrogram, after adjusting the edgePar attribute in all of its branches, 
-#' @seealso \link{get_branches_attr}
+#' @seealso \link{get_root_branches_attr}
 #' @examples
 #' 
 #' \dontrun{
@@ -903,7 +903,7 @@ assign_values_to_branches_edgePar <- function(object, value, edgePar, skip_leave
 #' @param ... not used
 #' @return 
 #' A dendrogram, after removing the edgePar attribute in all of its branches, 
-#' @seealso \link{get_branches_attr}, \link{assign_values_to_branches_edgePar}
+#' @seealso \link{get_root_branches_attr}, \link{assign_values_to_branches_edgePar}
 #' @examples
 #' 
 #' \dontrun{

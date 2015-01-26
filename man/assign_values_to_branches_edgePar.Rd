@@ -45,6 +45,6 @@ plot(dend)
 }
 }
 \seealso{
-\link{get_branches_attr}
+\link{get_root_branches_attr}
 }
 
