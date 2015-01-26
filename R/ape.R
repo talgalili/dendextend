@@ -20,18 +20,59 @@
 
 
 # as.dendrogram(as.hclust(as.phylo(hc)))
-#' @export
 # ' @S3method as.dendrogram phylo
+#' @export
 as.dendrogram.phylo <- function(object,...) {
 	library(ape)
 	as.dendrogram(as.hclust(object))
 }
 
 
+# Make it so that I can have as.phylo.dendrogram work, without forcing the user to have ape imported
+as.phylo <- function (x, ...) 
+{
+   library(ape)
+   ape::as.phylo(x, ...)   
+#    if (length(class(x)) == 1 && class(x) == "phylo") 
+#       return(x)
+#    UseMethod("as.phylo")
+}
+
+
+
 # We can't use an S3 here without switching ape to be a depend/imports, and enhance is more fitting. So I must make this function visible... :\
-# ' @S3method as.phylo dendrogram
 # ' @method as.phylo dendrogram
-# ' @export
+# ' @S3method as.phylo dendrogram
+
+
+
+#' @title Convert a dendrogram into phylo
+#' @export
+#' @description
+#' Based on \link{as.hclust.dendrogram} with \link[ape]{as.phylo.hclust}
+#' 
+#' In the future I hope a more direct link will be made.
+#' 
+#' @param x a dendrogram
+#' @param ... ignored.
+#' @return 
+#' A phylo class object
+#' @seealso \link{as.dendrogram}, \link{as.hclust}, \link{as.phylo}
+#' @examples
+#' \dontrun{
+#' 
+#' library(dendextend)
+#' library(ape)
+#' dend <- iris[1:30,-5] %>% dist %>% hclust %>% as.dendrogram
+#' dend2 <- as.phylo(dend)
+#' plot(dend2, type = "fan")
+#' 
+#' 
+#' # Also possible to with ggplot2 :)
+#' 
+#' 
+#' 
+#' }
 as.phylo.dendrogram <- function(x,...) {
 	library(ape)
 	ape::as.phylo.hclust(as.hclust(x))

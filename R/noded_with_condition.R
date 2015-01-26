@@ -157,7 +157,7 @@ which_leaf <- function(dend, ...) {
 #' 
 #' @seealso \link{noded_with_condition}, \link{branches_attr_by_clusters}, 
 #' \link{nnodes}, \link{branches_attr_by_labels}, \link{get_nodes_attr}
-#' 
+#' \link[ape]{which.edge}
 #' @examples
 #' 
 #' dend <- iris[1:10,-5] %>% dist %>% hclust %>% as.dendrogram %>% set("labels", 1:10)

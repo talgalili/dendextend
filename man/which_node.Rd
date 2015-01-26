@@ -39,5 +39,6 @@ get_nodes_attr(dend, "members", which_node(dend, c(4,6)))
 \seealso{
 \link{noded_with_condition}, \link{branches_attr_by_clusters},
 \link{nnodes}, \link{branches_attr_by_labels}, \link{get_nodes_attr}
+\link[ape]{which.edge}
 }
 
