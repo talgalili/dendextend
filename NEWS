@@ -4,6 +4,7 @@ dendextend 0.18.0 (2015-01-25)
 ###NEW FILES:
    * ape.R - moved `as.dendrogram.phylo` and `as.phylo.dendrogram` functions to it.
    * cor.dendlist.R - For the cor.dendlist function
+   * renamed imports_stats.R to stats_imports.R
 
 ###NEW FUNCTIONS:
    * A new phylo method for `labels` and `labels<-`
