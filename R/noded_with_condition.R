@@ -139,3 +139,49 @@ which_leaf <- function(dend, ...) {
 
 
 
+
+
+
+
+#' @title Which node id is common to a group of labels
+#' @export
+#' @description
+#' This function identifies which edge(s) in a tree has group of labels ("tips") in common.
+#' By default it only returns the edge (node) with the heighest id.
+#' 
+#' @param dend a dendrogram dend 
+#' @param labels a character vector of labels from the tree
+#' @param max_id logical (TRUE) - if to return only the max id
+#' @param ... ignored.
+#' 
+#' @return 
+#' An integer with the id(s) of the nodes which includes all of the labels.
+#' 
+#' @seealso \link{noded_with_condition}, \link{branches_attr_by_clusters}, 
+#' \link{nnodes}, \link{branches_attr_by_labels}, \link{get_nodes_attr}
+#' 
+#' @examples
+#' 
+#' dend <- iris[1:10,-5] %>% dist %>% hclust %>% as.dendrogram %>% set("labels", 1:10)
+#' dend %>% plot
+#' 
+#' which_node(dend, c(1,2), max_id = FALSE)
+#' which_node(dend, c(2,3), max_id = FALSE)
+#' which_node(dend, c(2,3))
+#' 
+#' dend %>% plot
+#' the_h <- get_nodes_attr(dend, "height", which_node(dend, c(4,6)))
+#' the_h
+#' abline(h = the_h, lty = 2, col = 2)
+#' get_nodes_attr(dend, "height", which_node(dend, c(4,6)))
+#' get_nodes_attr(dend, "members", which_node(dend, c(4,6)))
+#' 
+#' 
+which_node <- function(dend, labels, max_id = TRUE, ...) {
+   tree_has_all_labels <- function(sub_dend, the_labels) all(the_labels %in% labels(sub_dend))
+   nodes_id <- which(noded_with_condition(dend, tree_has_all_labels, the_labels = labels))
+   if(max_id) nodes_id <- max(nodes_id)
+   nodes_id   
+}
+
+

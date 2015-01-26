@@ -14,6 +14,7 @@ dendextend 0.18.0 (2015-01-25)
    * dend_diff - Plots two trees side by side, highlighting edges unique to each tree in red. Works for both dendrogram and dendlist.
    * dist.dendlist - Topological Distances Between Two dendrograms (currently only the Robinson-Foulds distance)
    * all.equal.dendrogram/all.equal.dendlist - Global Comparison of two (or more) dendrograms
+   * `which_node` - finds Which node is common to a group of labels
 
 ###NEW TESTS:
    * partition_leaves
@@ -30,6 +31,7 @@ dendextend 0.18.0 (2015-01-25)
    * `cutree_1h.dendrogram` and `cutree_1k.dendrogram` - will now create clusters as the number of items if k==nleaves(tree) or if h<0. This is both consistent with stats::hclust, but it also "makes sense" (since this is well defined for ANY tree). Also updated the tests.
    * Rename `get_branches_attr` to be `get_root_branches_attr`
    * `get_nodes_attr` - added the "id" parameter (to get attributes of only a subset of id's)
+
 
 
 dendextend 0.17.6 (2014-12-08)
