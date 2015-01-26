@@ -68,6 +68,11 @@ test_that("Get a dendrogram nodes attributes",{
    expect_identical(get_nodes_attr(dend, "blablabla"), 
                     c(NA, NA, NA, NA, NA))   
    
+   # check the id paramter:
+   expect_identical(get_nodes_attr(dend, "member", id = c(1,3)), 
+                    c(3L,2L))   
+   
+   
 })
 
 

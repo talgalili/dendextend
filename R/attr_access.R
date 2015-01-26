@@ -107,6 +107,7 @@ get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
 #' @param object a dendrogram object 
 #' @param attribute character scalar of the attribute (\code{attr})
 #' we wish to get from the nodes
+#' @param id integer vector. If given - only the attr of these nodes id will be returned (via depth first search)
 #' @param include_leaves logical. Should leaves attributes be included as well?
 #' @param include_branches logical. Should non-leaf (branch node) 
 #' attributes be included as well?
@@ -141,8 +142,12 @@ get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
 #' get_leaves_attr(dend, "members") # should be 1's
 #' get_nodes_attr(dend, "members", include_branches = FALSE, na.rm = TRUE) # 
 #' get_nodes_attr(dend, "members") # 
+#' get_nodes_attr(dend, "members",  simplify = FALSE)  
 #' get_nodes_attr(dend, "members", include_leaves = FALSE, na.rm = TRUE) # 
 #' 
+#' get_nodes_attr(dend, "members",  id = c(1,3), simplify = FALSE)  
+#' get_nodes_attr(dend, "members", id = c(1,3)) # 
+#'
 #' 
 #' hang_dend <- hang.dendrogram(dend)
 #' get_leaves_attr(hang_dend, "height") # no longer 0!
@@ -163,7 +168,9 @@ get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
 #'                )
 #' }
 #' 
-get_nodes_attr <- function (object, attribute, include_leaves = TRUE,
+get_nodes_attr <- function (object, attribute, 
+                            id,
+                            include_leaves = TRUE,
                             include_branches = TRUE,
                             simplify = TRUE,
                             na.rm = FALSE, ...) {
@@ -189,13 +196,19 @@ get_nodes_attr <- function (object, attribute, include_leaves = TRUE,
    get_attr_from_node <- function(dend_node) {
       i_node <<- i_node + 1
       
+      # if we have id's and this is not it - we can skip it...
+      # FALSE & NULL # fails
+      # FALSE && NULL # works...
+      if(!missing(id) && !(i_node %in% id) ) return(invisible())
+      
+         
       # if we should not include_leaves, then we skip when a leaf is encountered.
       if(!include_leaves && is.leaf(dend_node)) return(NULL)
       if(!include_branches && !is.leaf(dend_node)) return(NULL)      
       
       i_attr <- attr(dend_node, attribute)
       if(!is.null(i_attr)) object_attr[[i_node]] <<- i_attr
-      return(NULL)
+      return(invisible())
    }   
    dendrapply(object, get_attr_from_node)   
 
@@ -207,7 +220,14 @@ get_nodes_attr <- function (object, attribute, include_leaves = TRUE,
 
    
    if(dendextend_options("warn") && identical(object_attr, simplify2array(empty_list))) warning("It seems that the attribute '", attribute, "' does not exist - returning NA.")
-   
+
+   # TODO: this could probably be more optimized - say, by looking only at the above mentioned id's
+   # and not create all of the vector and only then take a subset. 
+   # But for now, I think this is more maintainable...
+   if(!missing(id)) {
+      object_attr <- object_attr[id]
+   }
+
    return(object_attr)   
 }
 

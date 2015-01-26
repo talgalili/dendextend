@@ -29,6 +29,7 @@ dendextend 0.18.0 (2015-01-25)
    * `cutree` - now produces warnings if it returns 0's. i.e.: when it can't cut the tree based on the required parameter. (following isue #5 reported by grafab)
    * `cutree_1h.dendrogram` and `cutree_1k.dendrogram` - will now create clusters as the number of items if k==nleaves(tree) or if h<0. This is both consistent with stats::hclust, but it also "makes sense" (since this is well defined for ANY tree). Also updated the tests.
    * Rename `get_branches_attr` to be `get_root_branches_attr`
+   * `get_nodes_attr` - added the "id" parameter (to get attributes of only a subset of id's)
 
 
 dendextend 0.17.6 (2014-12-08)

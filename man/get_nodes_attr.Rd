@@ -8,7 +8,7 @@ function \code{labels.dendrogram},
 so credit should go to Martin Maechler.
 }
 \usage{
-get_nodes_attr(object, attribute, include_leaves = TRUE,
+get_nodes_attr(object, attribute, id, include_leaves = TRUE,
   include_branches = TRUE, simplify = TRUE, na.rm = FALSE, ...)
 }
 \arguments{
@@ -16,6 +16,8 @@ get_nodes_attr(object, attribute, include_leaves = TRUE,
 
 \item{attribute}{character scalar of the attribute (\code{attr})
 we wish to get from the nodes}
+
+\item{id}{integer vector. If given - only the attr of these nodes id will be returned (via depth first search)}
 
 \item{include_leaves}{logical. Should leaves attributes be included as well?}
 
@@ -57,7 +59,11 @@ get_nodes_attr(dend, "leaf") # conatins NA's
 get_leaves_attr(dend, "members") # should be 1's
 get_nodes_attr(dend, "members", include_branches = FALSE, na.rm = TRUE) #
 get_nodes_attr(dend, "members") #
+get_nodes_attr(dend, "members",  simplify = FALSE)
 get_nodes_attr(dend, "members", include_leaves = FALSE, na.rm = TRUE) #
+
+get_nodes_attr(dend, "members",  id = c(1,3), simplify = FALSE)
+get_nodes_attr(dend, "members", id = c(1,3)) #
 
 
 hang_dend <- hang.dendrogram(dend)
