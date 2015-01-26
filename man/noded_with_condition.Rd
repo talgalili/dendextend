@@ -32,7 +32,6 @@ with whether (TRUE/FALSE) each node satisies some condition (function)
 \dontrun{
 
 library(dendextend)
-library(magrittr)
 
 set.seed(23235)
 ss <- sample(1:150, 10 )

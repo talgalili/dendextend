@@ -45,7 +45,6 @@ Get the x-y coordiantes of a dendrogram's nodes
 # Draw a depth first search illustration
 # -----
 
-library(magrittr)
 dend <- 1:5 \%>\% dist \%>\% hclust \%>\% as.dendrogram
 get_nodes_xy(dend)
 

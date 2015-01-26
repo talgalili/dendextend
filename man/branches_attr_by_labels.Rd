@@ -34,7 +34,6 @@ And the function returns a dendrogram with branches col/lwd/lty accordingly
 \dontrun{
 
 library(dendextend)
-library(magrittr)
 
 set.seed(23235)
 ss <- sample(1:150, 10 )

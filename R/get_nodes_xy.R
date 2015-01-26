@@ -60,7 +60,6 @@
 #' # Draw a depth first search illustration
 #' # -----
 #' 
-#' library(magrittr)
 #' dend <- 1:5 %>% dist %>% hclust %>% as.dendrogram
 #' get_nodes_xy(dend)
 #' 

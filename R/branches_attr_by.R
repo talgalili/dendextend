@@ -221,7 +221,6 @@ branches_attr_by_clusters <- function(dend, clusters, values, attr = c("col", "l
 #' \dontrun{
 #' 
 #' library(dendextend)
-#' library(magrittr)
 #' 
 #' set.seed(23235)
 #' ss <- sample(1:150, 10 )

@@ -18,7 +18,6 @@ and a third column (distance) with the distance between the two.
 Turns a dist object to a "long" table
 }
 \examples{
-# library(magrittr)
 data(iris)
 iris[2:6,-5] \%>\% dist \%>\% data.matrix
 iris[2:6,-5] \%>\% dist \%>\% as.vector

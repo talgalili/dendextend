@@ -22,7 +22,6 @@ which gives a TRUE when a node is a leaf.
 \dontrun{
 
 library(dendextend)
-library(magrittr)
 
 # Getting the dend dend
 set.seed(23235)

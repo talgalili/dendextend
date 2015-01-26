@@ -44,7 +44,6 @@ Size.dist <- function(d) {
 #' A data.frame with two columns of rows and column names of the dist object
 #' and a third column (distance) with the distance between the two.
 #' @examples
-#' # library(magrittr)
 #' data(iris)
 #' iris[2:6,-5] %>% dist %>% data.matrix
 #' iris[2:6,-5] %>% dist %>% as.vector
