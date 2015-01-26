@@ -26,7 +26,7 @@ This function might implement other topological distances in the future.
 x <- 1:5 \%>\% dist \%>\% hclust \%>\% as.dendrogram
 y <- set(x, "labels", 5:1)
 
-dist.dendlist(dendlist(x,x,y))
+dist.dendlist(dendlist(x1 = x,x2 = x,y1 = y))
 dend_diff(x,y)
 }
 \seealso{

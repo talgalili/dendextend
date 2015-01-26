@@ -354,7 +354,7 @@ edgeset_dist <- function(x, y, ...)  {
 #' x <- 1:5 %>% dist %>% hclust %>% as.dendrogram
 #' y <- set(x, "labels", 5:1)
 #' 
-#' dist.dendlist(dendlist(x,x,y))
+#' dist.dendlist(dendlist(x1 = x,x2 = x,y1 = y))
 #' dend_diff(x,y)
 #' 
 dist.dendlist <- function(x, method = c("edgeset"), ...) {
@@ -370,6 +370,9 @@ dist.dendlist <- function(x, method = c("edgeset"), ...) {
       l2 <-pairwise_combn[2,i]
       the_dist[l1, l2] <- the_dist[l2, l1] <- edgeset_dist(x[[l1]], x[[l2]])
    }
+   
+   rownames(the_dist) <- colnames(the_dist) <- names(x)
+   
    as.dist(the_dist)
 }
 

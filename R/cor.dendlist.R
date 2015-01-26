@@ -50,7 +50,7 @@
 #' dend3 <- iris[ss,-5] %>% dist %>% hclust("ave") %>% as.dendrogram
 #' dend4 <- iris[ss,-5] %>% dist %>% hclust("centroid") %>% as.dendrogram
 #' #    cutree(dend1)   
-#' cor.dendlist(dendlist(dend1, dend2, dend3, dend4))
+#' cor.dendlist(dendlist(d1 = dend1, d2 = dend2, d3 = dend3, d4 = dend4))
 #' 
 #' }
 cor.dendlist <- function(x, method = c("cophenetic", "baker"), ...) {
@@ -71,6 +71,8 @@ cor.dendlist <- function(x, method = c("cophenetic", "baker"), ...) {
          )
       
    }
+   
+   rownames(the_cor) <- colnames(the_cor) <- names(x)
    
    the_cor
 }
