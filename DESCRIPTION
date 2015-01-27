@@ -2,7 +2,7 @@ Package: dendextend
 Type: Package
 Title: Extending R's dendrogram functionality
 Version: 0.18.0
-Date: 2015-01-26
+Date: 2015-01-27
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "http://www.r-statistics.com"),
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
@@ -19,6 +19,9 @@ Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     role = "ctb"), person("skullkey", role = "ctb"), person("Mark",
     "Van Der Loo", email = "mark.vanderloo@gmail.com", comment =
     "https://github.com/markvanderloo d3dendrogram", role = "ctb"),
+    person("Andrie",
+    "de Vries", email = "apdevries@gmail.com", comment =
+    "ggdendro author", role = "ctb"),
     person("Yoav", "Benjamini", role = "ths"))
 Description: Offers a set of functions for extending
     dendrogram objects in R, letting you visualize and compare trees of
@@ -44,7 +47,7 @@ Suggests:
     DendSer,
     dynamicTreeCut,
     pvclust
-Enhances: ggdendro,
+Enhances: ggplot2, ggdendro,
     labeltodendro,dendroextras,
     data.table,
     ape
