@@ -18,7 +18,7 @@ dendextend 0.18.0 (2015-01-25)
    * all.equal.dendrogram/all.equal.dendlist - Global Comparison of two (or more) dendrograms
    * `which_node` - finds Which node is common to a group of labels
    * `dendrogram_data` (internal) function - a copy of the function from the ggdendro package (the basis for the new ggdend class).
-
+   * `get_leaves_nodePar` - Get nodePar of dendrogram's leaves (designed to help with as.ggdend)
 
 ###NEW TESTS:
    * partition_leaves

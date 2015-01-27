@@ -103,6 +103,28 @@ test_that("Get a dendrogram's branches heights",{
 
 
 
+test_that("get_leaves_nodePar works",{
+   hc <- hclust(dist(USArrests[1:3,]), "ave")
+   dend <- as.dendrogram(hc)  
+
+   # get_leaves_attr(dend) # error :)
+   expect_identical(get_leaves_nodePar(dend, simplify = TRUE), rep(NA, 3))
+   
+   labels_colors(dend) <- 1:3
+   should_be <- structure(c(1L, NA, 2L, NA, 3L, NA), .Names = c("lab.col", "pch", 
+                                                                "lab.col", "pch", "lab.col", "pch"))
+   expect_identical(get_leaves_nodePar(dend, simplify = TRUE), should_be)
+   
+   dend <- assign_values_to_leaves_nodePar(dend, 2, "lab.cex")
+#    dput(get_leaves_nodePar(dend))
+   should_be <- list(structure(list(lab.col = 1L, pch = NA, lab.cex = 2), .Names = c("lab.col", 
+                                                                                     "pch", "lab.cex")), structure(list(lab.col = 2L, pch = NA, lab.cex = 2), .Names = c("lab.col", 
+                                                                                                                                                                         "pch", "lab.cex")), structure(list(lab.col = 3L, pch = NA, lab.cex = 2), .Names = c("lab.col", 
+                                                                                                                                                                                                                                                             "pch", "lab.cex")))
+   expect_identical(get_leaves_nodePar(dend), should_be)                
+})
+
+
 
 test_that("Hanging dendrogram works just like hclust",{
    

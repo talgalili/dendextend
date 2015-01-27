@@ -97,6 +97,51 @@ get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
 
 
 
+#' @title Get nodePar of dendrogram's leaves
+#' @export
+#' @param object a dendrogram object 
+#' @param simplify logical (default is FALSE). If TRUE, then the return vector is 
+#' after using \code{unlist} on it.
+#' @param ... not used
+#' @return 
+#' A list (or a vector) with the dendrogram's leaves nodePar attribute
+#' @seealso \link{get_nodes_attr}, \link{assign_values_to_leaves_nodePar}, \link{labels_colors}
+#' @examples
+#' # define dendrogram object to play with:
+#' hc <- hclust(dist(USArrests[1:3,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' # get_leaves_attr(dend) # error :)
+#' get_leaves_nodePar(dend)
+#' labels_colors(dend) <- 1:3
+#' get_leaves_nodePar(dend)
+#' 
+#' dend <- assign_values_to_leaves_nodePar(dend, 2, "lab.cex")
+#' get_leaves_nodePar(dend)
+#' 
+#' plot(dend)
+#' 
+get_leaves_nodePar <- function (object, simplify = FALSE, ...) {
+   if(!is.dendrogram(object)) warning("'object' should be a dendrogram.")   
+   
+   is_node_leaf <- get_nodes_attr(object, "leaf")
+   is_node_leaf[is.na(is_node_leaf)] <- FALSE
+   
+   ret <- get_nodes_attr(object, "nodePar", simplify = FALSE)[is_node_leaf]
+   if(simplify) ret <- unlist(ret)   
+   
+   return(ret)   
+}
+
+
+
+
+
+
+
+
+
+
 
 #' @title Get attributes of dendrogram's nodes
 #' @export
