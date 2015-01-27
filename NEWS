@@ -1,4 +1,4 @@
-dendextend 0.18.0 (2015-01-25)
+dendextend 0.18.0 (2015-01-27)
 ----------------------------------------
 
 ###NEW FILES:
@@ -21,6 +21,7 @@ dendextend 0.18.0 (2015-01-25)
    * `dendrogram_data` (internal) function - a copy of the function from the ggdendro package (the basis for the new ggdend class).
    * `get_leaves_nodePar` - Get nodePar of dendrogram's leaves (designed to help with as.ggdend)
    * `as.ggdend.dendrogram` - turns a dendrogram to the ggdend class, ready to be plotted with ggplot2.
+   * `ggplot.ggdend` - plots a ggdend with the ggplot2 engine.
 
 ###NEW TESTS:
    * partition_leaves

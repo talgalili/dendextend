@@ -38,8 +38,101 @@
 
 
 
-# document HERE!
-ggdend <- function(...) {invisible()}
+#' @title Creates dendrogram plot using ggplot.
+#' @export
+#' @aliases 
+#' as.ggdend
+#' as.ggdend.dendrogram
+#' ggplot.ggdend
+#' ggplot.dendrogram
+#'
+#' @usage 
+#' 
+#' as.ggdend(dend, ...)
+#' 
+#' \method{as.ggdend}{dendrogram}(dend, 
+#'                   type = c("rectangle", "triangle"), edge.root = FALSE, ...)
+#'    
+#' \method{ggplot}{ggdend}(data,  segments = TRUE, leaf_labels = TRUE, 
+#'                         horiz = FALSE, ...)
+#'
+#' \method{ggplot}{dendrogram}(data, ...)
+#' 
+#' @description
+#' Several functions for creating a dendrogram plot using ggplot2.
+#' The core process is to transform a dendrogram into a ggdend object using as.ggdend,
+#' and then plot it using ggplot. These two steps can be done in one command with either the function
+#' ggplot or ggdend. 
+#' 
+#' The reason we want to have as.ggdend (and not only ggplot.dendrogram), is (1) so that you could 
+#' create your own mapping of ggdend and, (2) since as.ggdend might be slow for large trees, 
+#' it is probably better to be able to run it only once for such cases.
+#' 
+#' A ggdend class object is a list with 3 componants: segments, labels, nodes. 
+#' Each one contains the graphical parameters from the original dendrogram, but in a tabular form that
+#' can be used by ggplot2+geom_segment+geom_text to create a dendrogram plot.
+#' 
+#' 
+#' 
+#' @param dend a \link{dendrogram} tree (to turn into a ggdend object)
+#' @param type The type of plot, indicating the shape of the dendrogram.  "rectangle" will draw
+#' rectangular lines, while "triangle" will draw triangular lines.
+#' @param edge.root currently ignored. One day it might do the following: logical; if true, draw an edge to the root node.
+#' @param ... mostly ignored.
+#' @param data a ggdend class object. 
+#' @param segments a logical (TRUE) if to plot the segments (branches).
+#' @param labels a logical (TRUE) if to plot the labels.
+#' @param horiz a logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.
+#' 
+#' @seealso
+#' 
+#' \link{dendrogram}, \link{edgePar_attr}, \link{get_nodes_attr}
+#' \link{leaves_edgePar_attr}, \[ggdendro]{ggdendrogram}, \[ggdendro]{dendrodata},
+#' 
+#' @return 
+#' 
+#' \itemize{
+#' \item{\code{as.ggdend} - returns an object of class ggdend which is a list with 3 componants: segments, labels, nodes.
+#' Each one contains the graphical parameters from the original dendrogram, but in a tabular form that
+#' can be used by ggplot2+geom_segment+geom_text to create a dendrogram plot.}
+#' \item{\code{ggplot.ggdend} - a \link{ggplot} object}
+#' }
+#' 
+#' @source
+#' 
+#' These are extended versions of the functions \[ggdendro]{ggdendrogram}, \[ggdendro]{dendrodata} (and the hidden dendrogram_data) 
+#' from Andrie de Vries's ggdendro package. The motivation for this fork is the need to add more graphical parameters
+#' to the plotted tree. This required a strong mixter of functions from ggdendro and dendextend (to the point that
+#' it seemed better to just fork the code into its current form)
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' library(dendextend)
+#' library(ggplot2)
+#' # library(ggdendro)
+#' dend <- iris[1:30,-5] %>% dist %>% hclust %>% as.dendrogram %>% 
+#'    set("branches_k_color", k=3) %>% set("branches_lwd", c(1.5,1,1.5)) %>% 
+#'    set("branches_lty", c(1:4)) %>%  
+#'    set("labels_colors") %>% set("labels_cex", c(.9,1.2)) 
+#' plot(dend)
+#' # Rectangular lines
+#' ggd1 <- as.ggdend(dend)
+#' ggplot(ggd1) # reproducing the above plot in ggplot2 :)
+#' ggplot(ggd1, horiz = TRUE) # horiz plot in ggplot2
+#' # Adding some extra spice to it...
+#' # creating a radial plot:
+#' ggplot(ggd1) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x") 
+#' # The text doesn't look so great, so let's remove it:
+#' ggplot(ggd1, leaf_labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x") 
+#' 
+#' # This can now be sent to plot.ly - which adds zoom-in abilities, and more.
+#' 
+#' }
+ggdend <- function(...) {
+   cat("Use either as.ggdend or ggplot (or both). \n")
+}
 
 
 
@@ -47,10 +140,13 @@ ggdend <- function(...) {invisible()}
 # I will need this...
 allNA <- function(x) all(is.na(x))
 
+#' @export
 as.ggdend <- function(dend, ...) {
    UseMethod("as.ggdend")   
 }
 
+
+#' @export
 as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.root = FALSE, ...)  {
    
    # Warning: This function is NOT the most optimized function. We would rather use it once and then work with the output (rather than calling it over and over...)
@@ -173,12 +269,12 @@ ggplot <- function (data = NULL, ...) {
 #    set("branches_k_color",k=3) %>% set("branches_lwd", c(1,2)) %>% set("branches_lty", c(1,2,1,3))
 # plot(dend)
 # data <- as.ggdend(dend)
- rm(ggplot)
+#  rm(ggplot)
 # ggplot.ggdend(data)
 
 
 # ggplot(data)
-# ggplot.ggdend(data, rotate = T) +
+# ggplot.ggdend(data, horiz = T) +
 # coord_flip() + 
 #    scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x")
 
@@ -187,8 +283,10 @@ ggplot <- function (data = NULL, ...) {
 # ggplot2:::ggplot.data.frame
 # based on ggdendrogram! from the ggdendro package
 # polar cor is a problem with text: http://stackoverflow.com/questions/8468472/adjusting-position-of-text-labels-in-coord-polar-histogram-in-ggplot2
-ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, leaf_labels = TRUE, 
-                          rotate = FALSE, ...) {
+
+#' @export
+ggplot.ggdend <- function(data,  segments = TRUE, leaf_labels = TRUE, 
+                          horiz = FALSE, ...) {
    #    library(dendextend)
    #    library(ggdendro)
    library(ggplot2)
@@ -268,8 +366,8 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, leaf_labels = T
    # turning off legends.
    # http://stackoverflow.com/questions/14604435/turning-off-some-legends-in-a-ggplot
    
-   angle <- ifelse(rotate, 0, 90)
-   hjust <- ifelse(rotate, 0, 1)
+   angle <- ifelse(horiz, 0, 90)
+   hjust <- ifelse(horiz, 0, 1)
    
    
    
@@ -298,13 +396,13 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, leaf_labels = T
                       hjust = hjust, angle = angle)
    }
    # p <- p + scale_x_discrete(labels = data$labels$label)
-   # if (rotate) {
+   # if (horiz) {
    #    p <- p + scale_x_discrete(labels = data$labels$label)
    # }
    # else {
    #    p <- p + scale_x_discrete(labels = data$labels$label)
    # }
-   if (rotate) {
+   if (horiz) {
    p <- p + coord_flip() + scale_y_reverse(expand = c(0.2, 0))
    }
    # p <- p + scale_y_reverse(expand = c(0.2, 0)) # scale_y_continuous() + 
@@ -347,6 +445,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, leaf_labels = T
 }
 
 
+#' @export
 ggplot.dendrogram <- function(data, ...) {
    ggplot(as.ggdend(data), ...)
 }
@@ -402,4 +501,4 @@ ggplot.dendrogram <- function(data, ...) {
 # do.call(rbind, )
 
 # ggplot.ggdend(data)
-# ggplot.ggdend(data, rotate = T) 
+# ggplot.ggdend(data, horiz = T) 
