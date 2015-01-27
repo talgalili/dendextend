@@ -5,6 +5,7 @@ dendextend 0.18.0 (2015-01-25)
    * ape.R - moved `as.dendrogram.phylo` and `as.phylo.dendrogram` functions to it.
    * cor.dendlist.R - For the cor.dendlist function
    * renamed imports_stats.R to stats_imports.R
+   * ggdendro.R
 
 ###NEW FUNCTIONS:
    * A new phylo method for `labels` and `labels<-`
@@ -16,6 +17,8 @@ dendextend 0.18.0 (2015-01-25)
    * dist.dendlist - Topological Distances Between Two dendrograms (currently only the Robinson-Foulds distance)
    * all.equal.dendrogram/all.equal.dendlist - Global Comparison of two (or more) dendrograms
    * `which_node` - finds Which node is common to a group of labels
+   * `dendrogram_data` (internal) function - a copy of the function from the ggdendro package (the basis for the new ggdend class).
+
 
 ###NEW TESTS:
    * partition_leaves
