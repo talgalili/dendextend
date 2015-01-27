@@ -33,30 +33,13 @@
 
 ## Add this to the vignette!
 # 
-# library(dendextend)
-# library(ggdendro)
-# data(iris) # load data
-# dend <- iris[1:30,-5] %>% dist %>% hclust %>% as.dendrogram %>%
-#          set("branches_k_color",k=3)
-# plot(dend)
-# gg_dend <- ggdendro:::dendrogram_data(dend)
-# 
-# # Getting the colors ready
-# cols <- unname(unlist(get_nodes_attr(dend, "edgePar")))
-# cols <- tail(cols, -1) # Remove the invisible top branch
-# cols <- rep(cols, each = 2) # duplicate it for each segment
-# 
-# p <- ggplot(gg_dend$segments) + 
-#    geom_segment(aes(x = x, y = y, xend = xend, yend = yend, colour = cols), size = 1.2) + 
-#    coord_flip() + 
-#    scale_y_reverse(expand = c(0.2, 0)) +
-#    geom_text(data = gg_dend$labels, 
-#              aes(x = x, y = y, label = label)) +
-#    theme_dendro() + coord_polar(theta="x")
-# p
-# 
-# as.ggdend.dendrogram(dend)
-#    
+
+
+
+
+
+# document HERE!
+ggdend <- function(...) {invisible()}
 
 
 
@@ -64,14 +47,14 @@
 # I will need this...
 allNA <- function(x) all(is.na(x))
 
-
-
-
 as.ggdend <- function(dend, ...) {
    UseMethod("as.ggdend")   
 }
 
 as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.root = FALSE, ...)  {
+   
+   # Warning: This function is NOT the most optimized function. We would rather use it once and then work with the output (rather than calling it over and over...)
+   
    if(!is.dendrogram(dend)) stop("dend is not a dendrogram (and it needs to be...)")
    if(nleaves(dend) == 0) stop("dend must have at least one node")
    if(edge.root) stop("edge.root is not supported at this point (this parameter is a place-holder for when it will)")
@@ -129,19 +112,19 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
    if(!edge.root) edgePar_attr <- edgePar_attr[-1] # remove the first edgePar since we don't support root edge at this point...
 #    default_par <-  rep(NA, nrow(ggdata$segments))
 #    segments_par <- data.frame(col = default_par, lwd = default_par, lty = default_par)
-
-   if(!allNA(edgePar_attr)) {
-      #        edgePar_attr_names <- sapply(edgePar_attr, names)
-      #        ss_col <- sapply(edgePar_attr_names, function(x) {"col" %in% x}) # no longer needed
+   
+   #    if(!allNA(edgePar_attr)) {
+         #        edgePar_attr_names <- sapply(edgePar_attr, names)
+         #        ss_col <- sapply(edgePar_attr_names, function(x) {"col" %in% x}) # no longer needed
       
-      # par is a character of the par to get from edgePar_attr
-      get_edgePar_attr_par <- function(par) rep(unlist(sapply(edgePar_attr,  `[`, name = par)), each = 2) # like doing edgePar_attr[[1]] ["col"]
-      # The rep is because a segment has two lines. So we use each: rep(1:4, each = 2)
-      
-      ggdata$segments$col <- get_edgePar_attr_par("col") # like doing edgePar_attr[[1]] ["col"]
-      ggdata$segments$lwd <- get_edgePar_attr_par("lwd")
-      ggdata$segments$lty <- get_edgePar_attr_par("lty")
-   }
+   # par is a character of the par to get from edgePar_attr
+   get_edgePar_attr_par <- function(par) rep(unlist(sapply(edgePar_attr,  `[`, name = par)), each = 2) # like doing edgePar_attr[[1]] ["col"]
+   # The rep is because a segment has two lines. So we use each: rep(1:4, each = 2)
+   
+   ggdata$segments$col <- get_edgePar_attr_par("col") # like doing edgePar_attr[[1]] ["col"]
+   ggdata$segments$lwd <- get_edgePar_attr_par("lwd")
+   ggdata$segments$lty <- get_edgePar_attr_par("lty")
+      #    }
 
 
    # labels - add graphical
@@ -176,15 +159,194 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
 
 
 
-
+# allows for the S3 to kick in, without calling ggplot2
+# don't run this when testing! (it doesn't have the namespace of ggplot2 for finding ggplot.data.frame etc.)
 ggplot <- function (data = NULL, ...) {
    UseMethod("ggplot")
 }
 
 
+# 
+# 
+# data(iris) # load data
+# dend <- iris[1:30,-5] %>% dist %>% hclust %>% as.dendrogram %>%
+#    set("branches_k_color",k=3) %>% set("branches_lwd", c(1,2)) %>% set("branches_lty", c(1,2,1,3))
+# plot(dend)
+# data <- as.ggdend(dend)
+ rm(ggplot)
+# ggplot.ggdend(data)
 
 
-# ggplot.ggdend
+# ggplot(data)
+# ggplot.ggdend(data, rotate = T) +
+# coord_flip() + 
+#    scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x")
+
+
+
+# ggplot2:::ggplot.data.frame
+# based on ggdendrogram! from the ggdendro package
+# polar cor is a problem with text: http://stackoverflow.com/questions/8468472/adjusting-position-of-text-labels-in-coord-polar-histogram-in-ggplot2
+ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, leaf_labels = TRUE, 
+                          rotate = FALSE, ...) {
+   #    library(dendextend)
+   #    library(ggdendro)
+   library(ggplot2)
+   
+   
+   # Fix segements
+   #===============
+   
+   # Fix lty
+   #-------------
+   # Using scale_linetype_identity() fixed all of this!
+   # Dealing with the linetypes:
+   # http://sape.inf.usi.ch/quick-reference/ggplot2/linetype
+   # http://www.cookbook-r.com/Graphs/Shapes_and_line_types/
+   #   linetypes <- c("blank", "solid", "dashed", "dotted", "dotdash", "longdash", "twodash") # , "1F", "F1", "4C88C488", "12345678")
+   #    # lty must be either numeric or character
+   #    if(is.numeric(data$segments$lty)) {
+   #       data$segments$lty[is.na(data$segments$lty)] <- 1
+   #       data$segments$lty <- factor(data$segments$lty, levels = 0:6)
+   #       levels(data$segments$lty) <- linetypes
+   #       data$segments$lty <- as.character(data$segments$lty)
+   #       
+   #    } else { # character
+   #       # filling missing values (what ever is missing is solid)
+   #       data$segments$lty[is.na(data$segments$lty)] <- "solid"      
+   #    }
+   #    # if lty is NOT numeric or character == a problem...
+   #    if(!is.numeric(data$segments$lty) & !is.character(data$segments$lty)) {
+   #       warning("lty in segments should be either a number or a character. falls back to solid.")
+   #       data$segments$lty <- "solid"      
+   #    }
+   
+   if(is.numeric(data$segments$lty)) {
+      data$segments$lty[is.na(data$segments$lty)] <- 1
+   } else { # character
+      # filling missing values (what ever is missing is solid)
+      data$segments$lty[is.na(data$segments$lty)] <- "solid"      
+   }
+   
+   
+   
+   # Fix lwd
+   #-------------
+   # filling missing values 
+   data$segments$lwd[is.na(data$segments$lwd)] <- 1
+   
+   #    Fix col
+   #    -------------
+   #    filling missing values 
+   if(is.numeric(data$segments$col)) {
+      data$segments$col[is.na(data$segments$col)] <- 1
+   } else { # character
+      # filling missing values (what ever is missing is solid)
+      data$segments$col[is.na(data$segments$col)] <- "black" # "#000000"
+   #       data$segments$col <- "#000000"
+   }
+   
+   
+   # Fix labels
+   #===============
+   
+   #    Fix col
+   #    -------------
+   #    filling missing values 
+   if(is.numeric(data$labels$col)) {
+   data$labels$col[is.na(data$labels$col)] <- 1
+   } else { # character
+   data$labels$col[is.na(data$labels$col)] <- "black" # "#000000"
+   }
+   
+   #    Fix cex
+   #    -------------
+   #    filling missing values 
+   data$labels$cex[is.na(data$labels$cex)] <- 1
+   
+   
+   # turning off legends.
+   # http://stackoverflow.com/questions/14604435/turning-off-some-legends-in-a-ggplot
+   
+   angle <- ifelse(rotate, 0, 90)
+   hjust <- ifelse(rotate, 0, 1)
+   
+   
+   
+   p <- ggplot()
+   
+   
+   # ggplot() + 
+   #    geom_segment(data = data$segments, 
+   #                 aes(x = x, y = y, xend = xend, yend = yend, colour = col, linetype = lty, size = lwd)) +
+   #    guides(linetype = FALSE, col = FALSE) + 
+   #    scale_colour_identity() + scale_size_identity()  + scale_linetype_identity() +
+   #    geom_text(data = data$labels, 
+   #              aes(x = x, y = y, label = label), angle = angle, hjust = 1) #  ,angle = 90
+   
+   
+   if (segments) {
+   p <- p +  geom_segment(data = data$segments, 
+                          aes(x = x, y = y, xend = xend, yend = yend, colour = col, linetype = lty, size = lwd)) +
+            guides(linetype = FALSE, col = FALSE) + 
+            scale_colour_identity() + scale_size_identity()  + scale_linetype_identity()
+   }
+   if (leaf_labels) {
+   # default size is 5!  http://sape.inf.usi.ch/quick-reference/ggplot2/geom_text
+   p <- p + geom_text(data = data$labels, aes(x = x, 
+                                                          y = y, label = label, colour = col, size = 5 * cex), 
+                      hjust = hjust, angle = angle)
+   }
+   # p <- p + scale_x_discrete(labels = data$labels$label)
+   # if (rotate) {
+   #    p <- p + scale_x_discrete(labels = data$labels$label)
+   # }
+   # else {
+   #    p <- p + scale_x_discrete(labels = data$labels$label)
+   # }
+   if (rotate) {
+   p <- p + coord_flip() + scale_y_reverse(expand = c(0.2, 0))
+   }
+   # p <- p + scale_y_reverse(expand = c(0.2, 0)) # scale_y_continuous() + 
+   
+   # if (theme_dendro) 
+   #    p <- p + theme_dendro()
+   # p <- p + theme(axis.text.x = element_text(angle = angle, 
+   #                                           hjust = 1))
+   # p <- p + theme(axis.text.y = element_text(angle = angle, 
+   #                                          hjust = 1))
+   p
+   
+   
+   
+   
+   
+   
+   
+   # + scale_colour_brewer() 
+   #       + scale_color_manual(values = unique(data$segments$col)) 
+   
+   
+   #          scale_linetype_manual(guide=FALSE) # values=linetypes) #, 
+   # 
+   # + # Change linetypes
+   #    scale_color_manual(, guide=FALSE)
+   #    
+   # 
+   #    p <- ggplot() + 
+   #       geom_segment(data = data$segments, 
+   #                    aes(x = x, y = y, xend = xend, yend = yend, colour = col, linetype = "2", size =2)) + 
+   #       coord_flip() + 
+   #       scale_y_reverse(expand = c(0.2, 0)) +
+   #       geom_text(data = data$labels, 
+   #                 aes(x = x, y = y, label = label))
+   #    p   
+   #    + theme_dendro() + coord_polar(theta="x")
+
+
+}
+
+
 ggplot.dendrogram <- function(data, ...) {
    ggplot(as.ggdend(data), ...)
 }
@@ -215,7 +377,7 @@ ggplot.dendrogram <- function(data, ...) {
 
 
 
-###############
+#===
 ## JUNK
 
 # 
@@ -239,3 +401,5 @@ ggplot.dendrogram <- function(data, ...) {
 # sapply(get_nodes_attr(dend2, "edgePar", simplify = FALSE), names)
 # do.call(rbind, )
 
+# ggplot.ggdend(data)
+# ggplot.ggdend(data, rotate = T) 
