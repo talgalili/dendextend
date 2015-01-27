@@ -5,6 +5,7 @@
 \alias{ggdend}
 \alias{ggplot.dendrogram}
 \alias{ggplot.ggdend}
+\alias{prepare.ggdend}
 \title{Creates dendrogram plot using ggplot.}
 \source{
 These are extended versions of the functions \[ggdendro]{ggdendrogram}, \[ggdendro]{dendrodata} (and the hidden dendrogram_data)
@@ -15,18 +16,20 @@ it seemed better to just fork the code into its current form)
 \usage{
 as.ggdend(dend, ...)
 
-\method{as.ggdend}{dendrogram}(dend,
-                  type = c("rectangle", "triangle"), edge.root = FALSE, ...)
+prepare.ggdend(dend, ...)
 
-\method{ggplot}{ggdend}(data,  segments = TRUE, leaf_labels = TRUE,
-                        horiz = FALSE, ...)
+\method{as.ggdend}{dendrogram}(dend,
+      type = c("rectangle", "triangle"), edge.root = FALSE, ...)
+
+\method{ggplot}{ggdend}(data,  segments = TRUE,
+            leaf_labels = TRUE, horiz = FALSE, ...)
 
 \method{ggplot}{dendrogram}(data, ...)
 }
 \arguments{
 \item{...}{mostly ignored.}
 
-\item{dend}{a \link{dendrogram} tree (to turn into a ggdend object)}
+\item{dend}{a \link{dendrogram} tree (to be turned into a ggdend object)}
 
 \item{type}{The type of plot, indicating the shape of the dendrogram.  "rectangle" will draw
 rectangular lines, while "triangle" will draw triangular lines.}
@@ -46,6 +49,7 @@ rectangular lines, while "triangle" will draw triangular lines.}
 \item{\code{as.ggdend} - returns an object of class ggdend which is a list with 3 componants: segments, labels, nodes.
 Each one contains the graphical parameters from the original dendrogram, but in a tabular form that
 can be used by ggplot2+geom_segment+geom_text to create a dendrogram plot.}
+\item{\code{prepare.ggdend} - a \code{ggdend} object (after filling it with various default values)}
 \item{\code{ggplot.ggdend} - a \link{ggplot} object}
 }
 }
@@ -64,8 +68,14 @@ Each one contains the graphical parameters from the original dendrogram, but in 
 can be used by ggplot2+geom_segment+geom_text to create a dendrogram plot.
 }
 \details{
-This is an extension of the function dendrogram_data, from Andrie de Vries's ggdendro package (which is a modified \link{plot.dendrogram}).
-It was created basically to include segments and labels data so that they could be represented in the plot.
+\code{prepare.ggdend} is used by \code{plot.ggdend} to take the \code{ggdend} object
+and prepare it for plotting. This is because the defaults of various parameters in \link{dendrogram}'s
+are not always stored in the object itself, but are built-in into the \link{plot.dendrogram} function.
+For example, the color of the labels is not (by default) specified in the dendrogram (only if we change it
+from black to something else). Hence, when taking the object into a different plotting engine (say ggplot2), we
+want to prepare the object by filling-in various defaults.
+This function is autmatically ivoked within the \code{plot.ggdend} function. You would probably use
+it only if you'd wish to build your own ggplot2 mapping.
 }
 \examples{
 \dontrun{
@@ -94,6 +104,6 @@ ggplot(ggd1, leaf_labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_
 }
 \seealso{
 \link{dendrogram}, \link{edgePar_attr}, \link{get_nodes_attr}
-\link{leaves_edgePar_attr}, \[ggdendro]{ggdendrogram}, \[ggdendro]{dendrodata},
+\link{leaves_edgePar_attr}, \link[ggdendro]{ggdendrogram}, \link[ggdendro]{dendrodata},
 }
 

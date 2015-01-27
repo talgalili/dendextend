@@ -23,26 +23,12 @@
 
 
 
-
-
-#'
-#' 
-#' This is an extension of the function dendrogram_data, from Andrie de Vries's ggdendro package (which is a modified \link{plot.dendrogram}).
-#' It was created basically to include segments and labels data so that they could be represented in the plot.
-
-
-## Add this to the vignette!
-# 
-
-
-
-
-
 #' @title Creates dendrogram plot using ggplot.
 #' @export
 #' @aliases 
 #' as.ggdend
 #' as.ggdend.dendrogram
+#' prepare.ggdend
 #' ggplot.ggdend
 #' ggplot.dendrogram
 #'
@@ -50,11 +36,13 @@
 #' 
 #' as.ggdend(dend, ...)
 #' 
+#' prepare.ggdend(dend, ...)
+#' 
 #' \method{as.ggdend}{dendrogram}(dend, 
-#'                   type = c("rectangle", "triangle"), edge.root = FALSE, ...)
+#'       type = c("rectangle", "triangle"), edge.root = FALSE, ...)
 #'    
-#' \method{ggplot}{ggdend}(data,  segments = TRUE, leaf_labels = TRUE, 
-#'                         horiz = FALSE, ...)
+#' \method{ggplot}{ggdend}(data,  segments = TRUE, 
+#'             leaf_labels = TRUE, horiz = FALSE, ...)
 #'
 #' \method{ggplot}{dendrogram}(data, ...)
 #' 
@@ -74,7 +62,7 @@
 #' 
 #' 
 #' 
-#' @param dend a \link{dendrogram} tree (to turn into a ggdend object)
+#' @param dend a \link{dendrogram} tree (to be turned into a ggdend object)
 #' @param type The type of plot, indicating the shape of the dendrogram.  "rectangle" will draw
 #' rectangular lines, while "triangle" will draw triangular lines.
 #' @param edge.root currently ignored. One day it might do the following: logical; if true, draw an edge to the root node.
@@ -84,10 +72,24 @@
 #' @param labels a logical (TRUE) if to plot the labels.
 #' @param horiz a logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.
 #' 
+#' 
+#' @details
+#' 
+#' \code{prepare.ggdend} is used by \code{plot.ggdend} to take the \code{ggdend} object
+#' and prepare it for plotting. This is because the defaults of various parameters in \link{dendrogram}'s 
+#' are not always stored in the object itself, but are built-in into the \link{plot.dendrogram} function.
+#' For example, the color of the labels is not (by default) specified in the dendrogram (only if we change it
+#' from black to something else). Hence, when taking the object into a different plotting engine (say ggplot2), we
+#' want to prepare the object by filling-in various defaults.
+#' This function is autmatically ivoked within the \code{plot.ggdend} function. You would probably use
+#' it only if you'd wish to build your own ggplot2 mapping.
+#' 
+
+#' 
 #' @seealso
 #' 
 #' \link{dendrogram}, \link{edgePar_attr}, \link{get_nodes_attr}
-#' \link{leaves_edgePar_attr}, \[ggdendro]{ggdendrogram}, \[ggdendro]{dendrodata},
+#' \link{leaves_edgePar_attr}, \link[ggdendro]{ggdendrogram}, \link[ggdendro]{dendrodata},
 #' 
 #' @return 
 #' 
@@ -95,6 +97,7 @@
 #' \item{\code{as.ggdend} - returns an object of class ggdend which is a list with 3 componants: segments, labels, nodes.
 #' Each one contains the graphical parameters from the original dendrogram, but in a tabular form that
 #' can be used by ggplot2+geom_segment+geom_text to create a dendrogram plot.}
+#' \item{\code{prepare.ggdend} - a \code{ggdend} object (after filling it with various default values)}
 #' \item{\code{ggplot.ggdend} - a \link{ggplot} object}
 #' }
 #' 
@@ -280,18 +283,11 @@ ggplot <- function (data = NULL, ...) {
 
 
 
-# ggplot2:::ggplot.data.frame
-# based on ggdendrogram! from the ggdendro package
-# polar cor is a problem with text: http://stackoverflow.com/questions/8468472/adjusting-position-of-text-labels-in-coord-polar-histogram-in-ggplot2
+
+
 
 #' @export
-ggplot.ggdend <- function(data,  segments = TRUE, leaf_labels = TRUE, 
-                          horiz = FALSE, ...) {
-   #    library(dendextend)
-   #    library(ggdendro)
-   library(ggplot2)
-   
-   
+prepare.ggdend <- function(data, ...){
    # Fix segements
    #===============
    
@@ -341,7 +337,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, leaf_labels = TRUE,
    } else { # character
       # filling missing values (what ever is missing is solid)
       data$segments$col[is.na(data$segments$col)] <- "black" # "#000000"
-   #       data$segments$col <- "#000000"
+      #       data$segments$col <- "#000000"
    }
    
    
@@ -352,16 +348,34 @@ ggplot.ggdend <- function(data,  segments = TRUE, leaf_labels = TRUE,
    #    -------------
    #    filling missing values 
    if(is.numeric(data$labels$col)) {
-   data$labels$col[is.na(data$labels$col)] <- 1
+      data$labels$col[is.na(data$labels$col)] <- 1
    } else { # character
-   data$labels$col[is.na(data$labels$col)] <- "black" # "#000000"
+      data$labels$col[is.na(data$labels$col)] <- "black" # "#000000"
    }
    
    #    Fix cex
    #    -------------
    #    filling missing values 
-   data$labels$cex[is.na(data$labels$cex)] <- 1
+   data$labels$cex[is.na(data$labels$cex)] <- 1   
    
+   data
+}
+
+
+
+# ggplot2:::ggplot.data.frame
+# based on ggdendrogram! from the ggdendro package
+# polar cor is a problem with text: http://stackoverflow.com/questions/8468472/adjusting-position-of-text-labels-in-coord-polar-histogram-in-ggplot2
+
+#' @export
+ggplot.ggdend <- function(data,  segments = TRUE, leaf_labels = TRUE, 
+                          horiz = FALSE, ...) {
+   #    library(dendextend)
+   #    library(ggdendro)
+   library(ggplot2)
+   
+   data <- prepare.ggdend(data)
+ 
    
    # turning off legends.
    # http://stackoverflow.com/questions/14604435/turning-off-some-legends-in-a-ggplot
