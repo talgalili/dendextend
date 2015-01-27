@@ -6,6 +6,7 @@ dendextend 0.18.0 (2015-01-25)
    * cor.dendlist.R - For the cor.dendlist function
    * renamed imports_stats.R to stats_imports.R
    * ggdendro.R
+   * ggdend.R
 
 ###NEW FUNCTIONS:
    * A new phylo method for `labels` and `labels<-`
@@ -19,6 +20,7 @@ dendextend 0.18.0 (2015-01-25)
    * `which_node` - finds Which node is common to a group of labels
    * `dendrogram_data` (internal) function - a copy of the function from the ggdendro package (the basis for the new ggdend class).
    * `get_leaves_nodePar` - Get nodePar of dendrogram's leaves (designed to help with as.ggdend)
+   * `as.ggdend.dendrogram` - turns a dendrogram to the ggdend class, ready to be plotted with ggplot2.
 
 ###NEW TESTS:
    * partition_leaves
