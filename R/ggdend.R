@@ -41,10 +41,11 @@
 #' \method{as.ggdend}{dendrogram}(dend, 
 #'       type = c("rectangle", "triangle"), edge.root = FALSE, ...)
 #'    
-#' \method{ggplot}{ggdend}(data,  segments = TRUE, 
+#' ggplot.ggdend(data,  segments = TRUE, 
 #'             leaf_labels = TRUE, horiz = FALSE, theme = theme_dendro(), ...)
-#'
-#' \method{ggplot}{dendrogram}(data, ...)
+#'             
+#' ggplot.dendrogram(data, ...)
+#' 
 #' 
 #' @description
 #' Several functions for creating a dendrogram plot using ggplot2.
@@ -278,9 +279,9 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
 
 # allows for the S3 to kick in, without calling ggplot2
 # don't run this when testing! (it doesn't have the namespace of ggplot2 for finding ggplot.data.frame etc.)
-ggplot <- function (data = NULL, ...) {
-   UseMethod("ggplot")
-}
+# ggplot <- function (data = NULL, ...) {
+#    UseMethod("ggplot")
+# }
 
 
 # 
@@ -477,6 +478,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, leaf_labels = TRUE,
 
 #' @export
 ggplot.dendrogram <- function(data, ...) {
+   library(ggplot2) # must add it so that ggplot will be availble.
    ggplot(as.ggdend(data), ...)
 }
 

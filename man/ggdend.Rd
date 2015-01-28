@@ -21,10 +21,10 @@ prepare.ggdend(dend, ...)
 \method{as.ggdend}{dendrogram}(dend,
       type = c("rectangle", "triangle"), edge.root = FALSE, ...)
 
-\method{ggplot}{ggdend}(data,  segments = TRUE,
+ggplot.ggdend(data,  segments = TRUE,
             leaf_labels = TRUE, horiz = FALSE, theme = theme_dendro(), ...)
 
-\method{ggplot}{dendrogram}(data, ...)
+ggplot.dendrogram(data, ...)
 }
 \arguments{
 \item{...}{mostly ignored.}
