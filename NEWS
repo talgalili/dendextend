@@ -26,6 +26,8 @@ dendextend 0.18.0 (2015-01-27)
       * `as.ggdend.dendrogram` - turns a dendrogram to the ggdend class, ready to be plotted with ggplot2.
       * `prepare.ggdend` - fills a ggdend object with various default values (to be later used when plotted)
       * `ggplot.ggdend` - plots a ggdend with the ggplot2 engine (also the function `theme_dendro` was imported from the ggdendro package).
+   * Others:
+      * `remove_nodes_nodePar` - as the name implies...
 
 ###NEW TESTS:
    * partition_leaves

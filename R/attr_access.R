@@ -987,7 +987,7 @@ remove_branches_edgePar <- function(object, ...) {
    if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
    
    remove_edgePar_from_branch <- function(dend_node) {
-      attr(dend_node, "edgePar") <- NULL # remove edgePar if it is empty
+      attr(dend_node, "edgePar") <- NULL # remove edgePar
       return(unclass(dend_node))
    }   
    new_dend_object <- dendrapply(object, remove_edgePar_from_branch)
@@ -995,6 +995,41 @@ remove_branches_edgePar <- function(object, ...) {
    return(new_dend_object)
 }
 
+
+
+
+#' @title Remove all nodePar values from a dendrogram's nodes
+#' @export
+#' @description
+#' Go through the dendrogram nodes and remove its nodePar
+#' @param object a dendrogram object 
+#' @param ... not used
+#' @return 
+#' A dendrogram, after removing the nodePar attribute in all of its nodes, 
+#' @seealso \link{get_root_branches_attr}, \link{assign_values_to_branches_edgePar}
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' dend <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
+#' dend <- color_branches(dend, 3)
+#' par(mfrow = c(1,2))
+#' plot(dend)
+#' plot(remove_branches_edgePar(dend))
+#' 
+#' }
+#' 
+remove_nodes_nodePar <- function(object, ...) {
+   if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
+   
+   remove_nodePar_from_node <- function(dend_node) {
+      attr(dend_node, "nodePar") <- NULL # remove nodePar
+      return(unclass(dend_node))
+   }   
+   new_dend_object <- dendrapply(object, remove_nodePar_from_node)
+   class(new_dend_object) <- "dendrogram"
+   return(new_dend_object)
+}
 
 
 
