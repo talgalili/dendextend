@@ -24,6 +24,17 @@
 # This function is the basis for the as.ggdend function.
 dendrogram_data <- function (x, type = c("rectangle", "triangle"), ...) 
 {
+#    dev.new()
+#    plot(x) # we must add a new plot of the dend in order to extract features from it!
+
+   # without the following line, we will get:
+#    Error in plot.xy(xy.coords(x, y), type = type, ...) : 
+#       plot.new has not been called yet 
+   # unless a regular plot device was first initiated.
+   # this is resolved by clearing the nodes from attributes!
+   x <- x %>% remove_branches_edgePar %>% remove_nodes_nodePar
+#    x %>% remove_branches_edgePar %>% remove_nodes_nodePar %>% unclass
+   
    leaflab <- "perpendicular"
    center <- FALSE
    xlab <- ""
@@ -160,6 +171,11 @@ dendrogram_data <- function (x, type = c("rectangle", "triangle"), ...)
                       ddlabels = NULL)
    names(ret$segments) <- c("x", "y", "xend", "yend")
    names(ret$labels) <- c("x", "y", "label")
+   
+   
+   
+#    dev.off() # Turn off device!
+   
    ret
 }
 
