@@ -22,7 +22,7 @@ prepare.ggdend(dend, ...)
       type = c("rectangle", "triangle"), edge.root = FALSE, ...)
 
 \method{ggplot}{ggdend}(data,  segments = TRUE,
-            leaf_labels = TRUE, horiz = FALSE, ...)
+            leaf_labels = TRUE, horiz = FALSE, theme = theme_dendro(), ...)
 
 \method{ggplot}{dendrogram}(data, ...)
 }
@@ -43,6 +43,8 @@ rectangular lines, while "triangle" will draw triangular lines.}
 \item{labels}{a logical (TRUE) if to plot the labels.}
 
 \item{horiz}{a logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.}
+
+\item{theme}{the ggplot2 theme to use (default is \link{theme_dendro})}
 }
 \value{
 \itemize{

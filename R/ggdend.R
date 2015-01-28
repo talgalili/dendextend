@@ -42,7 +42,7 @@
 #'       type = c("rectangle", "triangle"), edge.root = FALSE, ...)
 #'    
 #' \method{ggplot}{ggdend}(data,  segments = TRUE, 
-#'             leaf_labels = TRUE, horiz = FALSE, ...)
+#'             leaf_labels = TRUE, horiz = FALSE, theme = theme_dendro(), ...)
 #'
 #' \method{ggplot}{dendrogram}(data, ...)
 #' 
@@ -71,7 +71,7 @@
 #' @param segments a logical (TRUE) if to plot the segments (branches).
 #' @param labels a logical (TRUE) if to plot the labels.
 #' @param horiz a logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.
-#' 
+#' @param theme the ggplot2 theme to use (default is \link{theme_dendro})
 #' 
 #' @details
 #' 
@@ -387,7 +387,7 @@ prepare.ggdend <- function(data, ...){
 
 #' @export
 ggplot.ggdend <- function(data,  segments = TRUE, leaf_labels = TRUE, 
-                          horiz = FALSE, ...) {
+                          horiz = FALSE, theme = theme_dendro(), ...) {
    #    library(dendextend)
    #    library(ggdendro)
    library(ggplot2)
@@ -435,7 +435,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, leaf_labels = TRUE,
    #    p <- p + scale_x_discrete(labels = data$labels$label)
    # }
    if (horiz) {
-   p <- p + coord_flip() + scale_y_reverse(expand = c(0.2, 0))
+      p <- p + coord_flip() + scale_y_reverse(expand = c(0.2, 0))
    }
    # p <- p + scale_y_reverse(expand = c(0.2, 0)) # scale_y_continuous() + 
    
@@ -445,12 +445,10 @@ ggplot.ggdend <- function(data,  segments = TRUE, leaf_labels = TRUE,
    #                                           hjust = 1))
    # p <- p + theme(axis.text.y = element_text(angle = angle, 
    #                                          hjust = 1))
-   p
+
+   p <- p + theme
    
-   
-   
-   
-   
+   p 
    
    
    # + scale_colour_brewer() 
