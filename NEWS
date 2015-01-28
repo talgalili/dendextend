@@ -9,20 +9,23 @@ dendextend 0.18.0 (2015-01-27)
    * ggdend.R
 
 ###NEW FUNCTIONS:
-   * A new phylo method for `labels` and `labels<-`
-   * cor.dendlist - Correlation matrix between a list of trees.
-   * partition_leaves - A list with labels for each subtree (edge)
-   * distinct_edges - Finds the edges present in the first tree but not in the second
-   * highlight_distinct_edges - Highlight distint edges in a tree (compared to another one). Works for both dendrogram and dendlist.
-   * dend_diff - Plots two trees side by side, highlighting edges unique to each tree in red. Works for both dendrogram and dendlist.
-   * dist.dendlist - Topological Distances Between Two dendrograms (currently only the Robinson-Foulds distance)
-   * all.equal.dendrogram/all.equal.dendlist - Global Comparison of two (or more) dendrograms
-   * `which_node` - finds Which node is common to a group of labels
-   * `dendrogram_data` (internal) function - a copy of the function from the ggdendro package (the basis for the new ggdend class).
-   * `get_leaves_nodePar` - Get nodePar of dendrogram's leaves (designed to help with as.ggdend)
-   * `as.ggdend.dendrogram` - turns a dendrogram to the ggdend class, ready to be plotted with ggplot2.
-   * `prepare.ggdend` - fills a ggdend object with various default values (to be later used when plotted)
-   * `ggplot.ggdend` - plots a ggdend with the ggplot2 engine.
+   * More connections:
+      * A new phylo method for `labels` and `labels<-`
+   * More ways to compare trees:
+      * cor.dendlist - Correlation matrix between a list of trees.
+      * partition_leaves - A list with labels for each subtree (edge)
+      * distinct_edges - Finds the edges present in the first tree but not in the second
+      * highlight_distinct_edges - Highlight distint edges in a tree (compared to another one). Works for both dendrogram and dendlist.
+      * dend_diff - Plots two trees side by side, highlighting edges unique to each tree in red. Works for both dendrogram and dendlist.
+      * dist.dendlist - Topological Distances Between Two dendrograms (currently only the Robinson-Foulds distance)
+      * all.equal.dendrogram/all.equal.dendlist - Global Comparison of two (or more) dendrograms
+      * `which_node` - finds Which node is common to a group of labels
+   * Dendrograms in ggplot2! (enhancing the ggdendro package)
+      * `dendrogram_data` (internal) function - a copy of the function from the ggdendro package (the basis for the new ggdend class).
+      * `get_leaves_nodePar` - Get nodePar of dendrogram's leaves (designed to help with as.ggdend)
+      * `as.ggdend.dendrogram` - turns a dendrogram to the ggdend class, ready to be plotted with ggplot2.
+      * `prepare.ggdend` - fills a ggdend object with various default values (to be later used when plotted)
+      * `ggplot.ggdend` - plots a ggdend with the ggplot2 engine (also the function `theme_dendro` was imported from the ggdendro package).
 
 ###NEW TESTS:
    * partition_leaves
