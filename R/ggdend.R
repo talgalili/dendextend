@@ -169,14 +169,15 @@ as.ggdend <- function(dend, ...) {
 
 
 #' @export
-as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.root = FALSE, ...)  {
+as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.root = FALSE, ...)     {
+   
    
    # Warning: This function is NOT the most optimized function. We would rather use it once and then work with the output (rather than calling it over and over...)
    
    if(!is.dendrogram(dend)) stop("dend is not a dendrogram (and it needs to be...)")
    if(nleaves(dend) == 0) stop("dend must have at least one node")
    if(edge.root) stop("edge.root is not supported at this point (this parameter is a place-holder for when it will)")
-   
+      
    ggdata <- dendrogram_data(dend, type = type) # ggdendro:::dendrogram_data(dend)
    
    
@@ -247,6 +248,8 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
 
    # labels - add graphical
    
+
+
    
    leaves_edgePar_attr <- get_leaves_nodePar(dend)
       # [[1]]
@@ -259,8 +262,17 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
    get_leaves_edgePar_attr_par <- function(par) unlist(sapply(leaves_edgePar_attr,  `[`, name = par)) # like doing edgePar_attr[[1]] ["col"]
    # The rep is because a segment has two lines. So we use each: rep(1:4, each = 2)
    
-   ggdata$labels$col <- get_leaves_edgePar_attr_par("lab.col") # like doing edgePar_attr[[1]] ["col"]
-   ggdata$labels$cex <- get_leaves_edgePar_attr_par("lab.cex") # like doing edgePar_attr[[1]] ["col"]
+
+   the_lab.col <- get_leaves_edgePar_attr_par("lab.col") # like doing edgePar_attr[[1]] ["col"]
+   the_lab.cex <- get_leaves_edgePar_attr_par("lab.cex") # like doing edgePar_attr[[1]] ["col"]
+   ggdata$labels$col <- ifelse(is.null(the_lab.col), NA, the_lab.col)
+   ggdata$labels$cex <- ifelse(is.null(the_lab.cex), NA, the_lab.cex)
+         # The above saves us from errors such as:
+         # Error in eval(expr, envir, enclos) : object 'cex' not found
+         # In addition: Warning message:
+         #    In is.na(data$labels$cex) :
+         #    is.na() applied to non-(list or vector) of type 'NULL'
+
 
    class(ggdata) <- "ggdend"
    ggdata
@@ -375,7 +387,7 @@ prepare.ggdend <- function(data, ...){
    #    Fix cex
    #    -------------
    #    filling missing values 
-   data$labels$cex[is.na(data$labels$cex)] <- 1   
+   if(any(is.na(data$labels$cex))) data$labels$cex[is.na(data$labels$cex)] <- 1   
    
    data
 }
