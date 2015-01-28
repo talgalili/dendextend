@@ -120,6 +120,9 @@ ggplot(ggd1, leaf_labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_
 
 }
 }
+\author{
+Tal Galili, using code modified from Andrie de Vries
+}
 \seealso{
 \link{dendrogram}, \link{edgePar_attr}, \link{get_nodes_attr}
 \link{leaves_edgePar_attr}, \link[ggdendro]{ggdendrogram}, \link[ggdendro]{dendrodata},

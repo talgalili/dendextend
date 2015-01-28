@@ -84,7 +84,7 @@
 #' This function is autmatically ivoked within the \code{plot.ggdend} function. You would probably use
 #' it only if you'd wish to build your own ggplot2 mapping.
 #' 
-
+#' @author Tal Galili, using code modified from Andrie de Vries
 #' 
 #' @seealso
 #' 

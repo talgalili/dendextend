@@ -163,3 +163,35 @@ dendrogram_data <- function (x, type = c("rectangle", "triangle"), ...)
    ret
 }
 
+
+
+
+
+
+#' @title Creates completely blank theme in ggplot
+#' @export
+#' @description
+#' Sets most of the ggplot options to blank, by returning blank theme elements for the panel grid, panel background, axis title, axis text, axis line and axis ticks.
+#' @author Andrie de Vries
+#' @seealso \link{ggdend}
+#' @source
+#' 
+#' This function is from Andrie de Vries's ggdendro package. 
+#' 
+#' The motivation for this fork is the need to add more graphical parameters to the plotted tree.
+#' This required a strong mixter of functions from ggdendro and dendextend (to the point that
+#' it seemed better to just fork the code into its current form)
+#' 
+theme_dendro <- function() 
+{
+   library(ggplot2)
+   element_blank <- ggplot2::element_blank
+   ggplot2::theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+                  panel.background = element_blank(), axis.title.x = element_text(colour = NA), 
+                  axis.title.y = element_blank(), axis.text.x = element_blank(), 
+                  axis.text.y = element_blank(), axis.line = element_blank(), 
+                  axis.ticks = element_blank())
+}
+
+
+
