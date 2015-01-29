@@ -6,7 +6,7 @@
 \alias{ladderize.phylo}
 \title{Ladderize a Tree}
 \usage{
-ladderize(x, ...)
+ladderize(x, right = TRUE, ...)
 
 \method{ladderize}{dendrogram}(x, right = TRUE, ...)
 
@@ -37,8 +37,8 @@ dend <- shuffle(dend)
 
 par(mfrow = c(1,3))
 dend \%>\% plot(main = "Original")
-dend \%>\% ladderize(T) \%>\% plot(main = "Right (default)")
-dend \%>\% ladderize(F) \%>\% plot(main = "Left (rev of right)")
+dend \%>\% ladderize(TRUE) \%>\% plot(main = "Right (default)")
+dend \%>\% ladderize(FALSE) \%>\% plot(main = "Left (rev of right)")
 }
 \seealso{
 \code{\link[ape]{ladderize}},

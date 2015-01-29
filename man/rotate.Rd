@@ -10,13 +10,13 @@
 \alias{sort.hclust}
 \title{Rotate a tree object}
 \usage{
-rotate(x, order, ...)
+rotate(x, ...)
 
 \method{rotate}{dendrogram}(x, order, ...)
 
 \method{rotate}{hclust}(x, order, ...)
 
-\method{rotate}{phylo}(x, phy, ...)
+\method{rotate}{phylo}(x, ..., phy)
 
 \method{rev}{hclust}(x, ...)
 
@@ -27,6 +27,8 @@ rotate(x, order, ...)
 \arguments{
 \item{x}{a tree object (either a \code{dendrogram} or \code{hclust})}
 
+\item{...}{parameters passed (for example, in case of sort)}
+
 \item{order}{Either numeric or character vector.
 Is numeric: it is a numeric vector with the order of the value to be
 assigned to object's label. The numbers say are just like when you use \link{order}:
@@ -34,8 +36,6 @@ which of the items on the tree-plot should be "first" (e.g: most left),
 second etc. (this is relevant only to \code{rotate})
 Is character: it must be a vector with the content of labels(x), in the
 order we'd like to have the new tree.}
-
-\item{...}{parameters passed (for example, in case of sort)}
 
 \item{decreasing}{logical. Should the sort be increasing or decreasing? Not available for partial sorting. (relevant only to \code{sort})}
 

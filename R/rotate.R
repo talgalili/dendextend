@@ -33,13 +33,13 @@
 #' sort.dendrogram
 #' rev.hclust
 #' @usage
-#' rotate(x, order, ...)
+#' rotate(x, ...)
 #' 
 #' \method{rotate}{dendrogram}(x, order, ...)
 #' 
 #' \method{rotate}{hclust}(x, order, ...)
 #' 
-#' \method{rotate}{phylo}(x, phy, ...)
+#' \method{rotate}{phylo}(x, ..., phy)
 #' 
 #' \method{rev}{hclust}(x, ...)
 #' 
@@ -120,7 +120,7 @@
 #' plot(rotate(hc, c(2:5,1)), main = "Rotates the left most leaf \n 
 #' into the right side of the tree")
 #' 
-rotate <- function(x, order,...) {
+rotate <- function(x, ...) {
    UseMethod("rotate")
 }
 
@@ -180,7 +180,7 @@ rotate.hclust <- function(x, order,...)
 
 # ' @S3method rotate phylo
 #' @export
-rotate.phylo <- function(x, phy, ...) {
+rotate.phylo <- function(x, ..., phy) {
    if(!missing(phy)) x <- phy
    library(ape)
 	ape::rotate(phy=x, ...)
@@ -369,7 +369,7 @@ click_rotate.dendrogram <- function(x, plot = TRUE, plot_after = plot, horiz = F
 #' ladderize.phylo
 #' ladderize.dendlist
 #' @usage
-#' ladderize(x, ...)
+#' ladderize(x, right = TRUE, ...)
 #' 
 #' \method{ladderize}{dendrogram}(x, right = TRUE, ...)
 #' 
@@ -394,8 +394,8 @@ click_rotate.dendrogram <- function(x, plot = TRUE, plot_after = plot, horiz = F
 #' 
 #' par(mfrow = c(1,3))
 #' dend %>% plot(main = "Original")
-#' dend %>% ladderize(T) %>% plot(main = "Right (default)")
-#' dend %>% ladderize(F) %>% plot(main = "Left (rev of right)")
+#' dend %>% ladderize(TRUE) %>% plot(main = "Right (default)")
+#' dend %>% ladderize(FALSE) %>% plot(main = "Left (rev of right)")
 #' 
 ladderize <- function(x, right = TRUE,...) {
    UseMethod("ladderize")
@@ -407,7 +407,7 @@ ladderize.dendrogram <- function (x, right = TRUE, ...)  {
    if(!is.dendrogram(x)) stop("'object' should be a dendrogram.")   
    
    ladderize_node <- function(node) {
-      all_children_leaves <- all(sapply(dend, is.leaf))
+      all_children_leaves <- all(sapply(x, is.leaf))
       if(is.leaf(node) | all_children_leaves) {return(unclass(node))}
       # else
       attr_backup <- attributes(node)
@@ -449,3 +449,4 @@ ladderize.dendlist <- function (x, right = TRUE, ...)  {
 }
    
 # TODO: add tests to ladderize!
+# TODO: this is probably a nice starting point for untangle (better than sort). Maybe play with it.
