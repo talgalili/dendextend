@@ -16,7 +16,7 @@ rotate(x, order, ...)
 
 \method{rotate}{hclust}(x, order, ...)
 
-\method{rotate}{phylo}(x, ...)
+\method{rotate}{phylo}(x, phy, ...)
 
 \method{rev}{hclust}(x, ...)
 
@@ -38,6 +38,8 @@ order we'd like to have the new tree.}
 \item{...}{parameters passed (for example, in case of sort)}
 
 \item{decreasing}{logical. Should the sort be increasing or decreasing? Not available for partial sorting. (relevant only to \code{sort})}
+
+\item{phy}{a placeholder in case the user uses "phy ="}
 }
 \value{
 A rotated tree object

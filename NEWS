@@ -30,6 +30,7 @@ dendextend 0.18.0 (2015-01-27)
    * Others:
       * `remove_nodes_nodePar` - as the name implies...
       * `collapse_branch` - simplifies a tree with branches lower than some tollerance level   
+      * `ladderize` - Ladderize a Tree (reorganizes the internal structure of the tree to get the ladderized effect when plotted)
 
 ###NEW TESTS:
    * partition_leaves
