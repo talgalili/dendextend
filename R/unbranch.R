@@ -300,7 +300,7 @@ collapse_branch <- function(dend, tol = 1e-08, lower = TRUE, ...)
    if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")   
    if(nleaves(dend) == 1) {
       warning("nleaves(dend) == 1  - returning dend")
-      if(attr(dend_node, "height") < tol) warning("dend height < tol")
+      if(attr(dend, "height") < tol) warning("dend height < tol")
       return(dend)
    }
    
