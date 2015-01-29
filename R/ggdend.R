@@ -423,7 +423,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE,
    geom_text <- ggplot2::geom_text
    coord_flip <- ggplot2::coord_flip
    scale_y_reverse <- ggplot2::scale_y_reverse
-   
+   aes_string <- ggplot2::aes_string
    
    # By using "x" instead of x - we avoid the error:
    # ggplot.ggdend: no visible binding for global variable ‘x’
