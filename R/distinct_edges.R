@@ -192,7 +192,9 @@ distinct_edges  <- function (x, y, ...)
 #' iris2 <- iris[ss,-5] %>% dist %>% hclust(method = "complete") %>% as.dendrogram
 #' iris12 <- dendlist(iris1, iris2) %>% set("branches_k_color",k=3) %>% 
 #'    set("branches_lwd", 3) %>%  highlight_distinct_edges(value = 1, edgePar = "lwd")
-#' iris12 %>% untangle(method = "step2side")  %>% tanglegram(sub="Iris dataset", main_left = "'single' clustering", main_right = "'complete' clustering")
+#' iris12 %>% untangle(method = "step2side")  %>% 
+#' tanglegram(sub="Iris dataset", main_left = "'single' clustering", 
+#' 				main_right = "'complete' clustering")
 #' }
 #' 
 highlight_distinct_edges <- function (x, ...) {
