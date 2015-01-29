@@ -40,17 +40,18 @@ Suggests:
     knitr,
     testthat,
     colorspace,
+    ggplot2,
     plyr,
+    ape,
     profdpm,
     microbenchmark,
     gplots,
     DendSer,
     dynamicTreeCut,
     pvclust
-Enhances: ggplot2, ggdendro,
+Enhances: ggdendro,
     labeltodendro,dendroextras,
-    data.table,
-    ape
+    data.table
 VignetteBuilder: knitr
 License: GPL-2 | GPL-3
 URL: https://github.com/talgalili/dendextend/,
