@@ -42,7 +42,7 @@
 #'       type = c("rectangle", "triangle"), edge.root = FALSE, ...)
 #'    
 #' ggplot.ggdend(data,  segments = TRUE, 
-#'             leaf_labels = TRUE, horiz = FALSE, theme = theme_dendro(), ...)
+#'             labels = TRUE, horiz = FALSE, theme = theme_dendro(), ...)
 #'             
 #' ggplot.dendrogram(data, ...)
 #' 
@@ -131,7 +131,7 @@
 #' # creating a radial plot:
 #' ggplot(ggd1) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x") 
 #' # The text doesn't look so great, so let's remove it:
-#' ggplot(ggd1, leaf_labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x") 
+#' ggplot(ggd1, labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x") 
 #' 
 #' # This can now be sent to plot.ly - which adds zoom-in abilities, and more.
 #' # Here is how it might look like: https://plot.ly/~talgalili/6/y-vs-x/
@@ -399,7 +399,7 @@ prepare.ggdend <- function(data, ...){
 # polar cor is a problem with text: http://stackoverflow.com/questions/8468472/adjusting-position-of-text-labels-in-coord-polar-histogram-in-ggplot2
 
 #' @export
-ggplot.ggdend <- function(data,  segments = TRUE, leaf_labels = TRUE, 
+ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, 
                           horiz = FALSE, theme = theme_dendro(), ...) {
    #    library(dendextend)
    #    library(ggdendro)
@@ -434,7 +434,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, leaf_labels = TRUE,
             guides(linetype = FALSE, col = FALSE) + 
             scale_colour_identity() + scale_size_identity()  + scale_linetype_identity()
    }
-   if (leaf_labels) {
+   if (labels) {
    # default size is 5!  http://sape.inf.usi.ch/quick-reference/ggplot2/geom_text
    p <- p + geom_text(data = data$labels, aes(x = x, 
                                                           y = y, label = label, colour = col, size = 5 * cex), 
