@@ -57,7 +57,7 @@ as.phylo <- function (x, ...)
 #' @param ... ignored.
 #' @return 
 #' A phylo class object
-#' @seealso \link{as.dendrogram}, \link{as.hclust}, \link{as.phylo}
+#' @seealso \link{as.dendrogram}, \link{as.hclust}, \link[ape]{as.phylo}
 #' @examples
 #' \dontrun{
 #' 
