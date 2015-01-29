@@ -1,3 +1,105 @@
+dendextend 0.18.0 (2015-01-29)
+----------------------------------------
+
+###NEW FILES:
+   * ape.R - moved `as.dendrogram.phylo` and `as.phylo.dendrogram` functions to it.
+   * cor.dendlist.R - For the cor.dendlist function
+   * renamed imports_stats.R to stats_imports.R
+   * ggdendro.R
+   * ggdend.R
+   * dist_long.R
+
+###NEW FUNCTIONS:
+   * More connections:
+      * A new phylo method for `labels` and `labels<-`
+   * More ways to compare trees:
+      * cor.dendlist - Correlation matrix between a list of trees.
+      * partition_leaves - A list with labels for each subtree (edge)
+      * distinct_edges - Finds the edges present in the first tree but not in the second
+      * highlight_distinct_edges - Highlight distint edges in a tree (compared to another one). Works for both dendrogram and dendlist.
+      * dend_diff - Plots two trees side by side, highlighting edges unique to each tree in red. Works for both dendrogram and dendlist.
+      * dist.dendlist - Topological Distances Between Two dendrograms (currently only the Robinson-Foulds distance)
+      * all.equal.dendrogram/all.equal.dendlist - Global Comparison of two (or more) dendrograms
+      * `which_node` - finds Which node is common to a group of labels
+   * Dendrograms in ggplot2! (enhancing the ggdendro package)
+      * `dendrogram_data` (internal) function - a copy of the function from the ggdendro package (the basis for the new ggdend class).
+      * `get_leaves_nodePar` - Get nodePar of dendrogram's leaves (designed to help with as.ggdend)
+      * `as.ggdend.dendrogram` - turns a dendrogram to the ggdend class, ready to be plotted with ggplot2.
+      * `prepare.ggdend` - fills a ggdend object with various default values (to be later used when plotted)
+      * `ggplot.ggdend` - plots a ggdend with the ggplot2 engine (also the function `theme_dendro` was imported from the ggdendro package).
+   * Others:
+      * `remove_nodes_nodePar` - as the name implies...
+      * `collapse_branch` - simplifies a tree with branches lower than some tollerance level   
+      * `ladderize` - Ladderize a Tree (reorganizes the internal structure of the tree to get the ladderized effect when plotted)
+
+###NEW TESTS:
+   * partition_leaves
+   * distinct_edges
+   * dend_diff 
+   * dist.dendlist
+
+
+###UPDATED FUNCTIONS:
+   * `nleaves.phylo` - no longer require conversion to a dendrogram in order to compute.
+   * `labels<-.dendrogram` - no longer forces as.character conversion
+   * `tanglegram` - a new highlight_distinct_edges parameter (default is TRUE)
+   * `cutree` - now produces warnings if it returns 0's. i.e.: when it can't cut the tree based on the required parameter. (following isue #5 reported by grafab)
+   * `cutree_1h.dendrogram` and `cutree_1k.dendrogram` - will now create clusters as the number of items if k==nleaves(tree) or if h<0. This is both consistent with stats::hclust, but it also "makes sense" (since this is well defined for ANY tree). Also updated the tests.
+   * Rename `get_branches_attr` to be `get_root_branches_attr`
+   * `get_nodes_attr` - added the "id" parameter (to get attributes of only a subset of id's)
+   * `as.dendrogram.phylo` is properly exported now.
+
+
+dendextend 0.17.6 (2014-12-08)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * dist_long - Turns a dist object to a "long" table.
+
+
+
+dendextend 0.17.5 (2014-09-22)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+   * `order.dendrogram<-` - commenting off an examples and tests which (as of R 3.1.1-patched) produces an error (as it should). Thanks to Prof Brian Ripley for the e-mail about it.
+
+
+###BUG FIXES:
+   * checking S3 generic/method consistency ... WARNING
+         cor_bakers_gamma:
+           function(tree1, tree2, use_labels_not_values, to_plot, warn, ...)
+         cor_bakers_gamma.dendlist:
+           function(tree1, which, ...)
+   * Undocumented code objects:
+        'plot.dendlist'
+   *  `cor_bakers_gamma.Rd`:
+         \usage lines wider than 90 characters
+
+###VIGNETTE:
+   * Fixed several typos and grammatical mistakes.
+
+###OTHER NOTES:
+   * dendextend 0.17.5 is intended to be shipped to CRAN (to stay compatible with R 3.1.1-patched).
+
+
+dendextend 0.17.4 (2014-09-20)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * set.data.table - informs the user of the conflict in "set" between dendextend and data.table.
+
+###VIGNETTE:
+   * added sessionInfo
+
+
+dendextend 0.17.3 (2014-08-26)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+   * color_labels - now can handle the coloring of labels when the function is without k and h, but that it is not possible to cut the tree to nleaves items (due to several leaves with 0 height). This is done by not doing any cutting in such cases, and just directly using labels_colors. Tests are added. Bug report by Marina Varfolomeeva, a.k.a varmara - thanks! (https://github.com/talgalili/dendextend/issues/3 )
+
+
 dendextend 0.17.2 (2014-08-25)
 ----------------------------------------
 
