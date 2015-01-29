@@ -184,6 +184,7 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
    
    
    # create nodes_xy 
+   # ==========================
    nodes_xy <- with(ggdata$segments, {
 #       > ggdata$segments
 #                   x         y     xend      yend
@@ -218,6 +219,7 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
    ggdata$nodes <- nodes_xy
 
    # segments (edges) - add graphical parameters   
+   # ==========================
    edgePar_attr <- get_nodes_attr(dend, "edgePar", simplify = FALSE)
             # [[1]]
             # [1] NA
@@ -249,7 +251,7 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
 
 
    # labels - add graphical
-   
+   # ==========================
 
 
    
@@ -453,16 +455,17 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE,
    
    if (segments) {
    p <- p +  geom_segment(data = data$segments, 
-                                   aes(x = "x", y = "y", xend = "xend", yend = "yend", colour = "col", linetype = "lty", size = "lwd")) +
+                          aes_string(x = "x", y = "y", xend = "xend", yend = "yend", colour = "col", linetype = "lty", size = "lwd")) +
             guides(linetype = FALSE, col = FALSE) + 
       scale_colour_identity() + scale_size_identity()  + scale_linetype_identity()
    }
    
    
    if (labels) {
-   # default size is 5!  http://sape.inf.usi.ch/quick-reference/ggplot2/geom_text
-   p <- p + geom_text(data = data$labels, aes(x = "x", 
-                                                          y = "y", label = "label", colour = "col", size = 5 * data$labels$cex), 
+      # default size is 5!  http://sape.inf.usi.ch/quick-reference/ggplot2/geom_text
+      data$labels$cex <- 5 * data$labels$cex
+      p <- p + geom_text(data = data$labels, aes_string(x = "x", 
+                                                          y = "y", label = "label", colour = "col", size = "cex"), 
                       hjust = hjust, angle = angle)
    }
    # p <- p + scale_x_discrete(labels = data$labels$label)
