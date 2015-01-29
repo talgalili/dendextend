@@ -36,7 +36,7 @@
 #' 
 #' as.ggdend(dend, ...)
 #' 
-#' prepare.ggdend(dend, ...)
+#' prepare.ggdend(data, ...)
 #' 
 #' \method{as.ggdend}{dendrogram}(dend, 
 #'       type = c("rectangle", "triangle"), edge.root = FALSE, ...)
