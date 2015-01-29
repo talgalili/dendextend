@@ -28,6 +28,7 @@ dendextend 0.18.0 (2015-01-27)
       * `ggplot.ggdend` - plots a ggdend with the ggplot2 engine (also the function `theme_dendro` was imported from the ggdendro package).
    * Others:
       * `remove_nodes_nodePar` - as the name implies...
+      * `collapse_branch` - simplifies a tree with branches lower than some tollerance level   
 
 ###NEW TESTS:
    * partition_leaves
