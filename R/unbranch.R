@@ -339,3 +339,4 @@ collapse_branch <- function(dend, tol = 1e-08, lower = TRUE, ...)
    return(dend)
 }
 
+#TODO: add tests
