@@ -267,8 +267,11 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
 
    the_lab.col <- get_leaves_edgePar_attr_par("lab.col") # like doing edgePar_attr[[1]] ["col"]
    the_lab.cex <- get_leaves_edgePar_attr_par("lab.cex") # like doing edgePar_attr[[1]] ["col"]
-   ggdata$labels$col <- ifelse(is.null(the_lab.col), NA, the_lab.col)
-   ggdata$labels$cex <- ifelse(is.null(the_lab.cex), NA, the_lab.cex)
+   if(is.null(the_lab.col)) the_lab.col <- NA
+   if(is.null(the_lab.cex)) the_lab.cex <- NA
+
+   ggdata$labels$col <- the_lab.col
+   ggdata$labels$cex <- the_lab.cex
          # The above saves us from errors such as:
          # Error in eval(expr, envir, enclos) : object 'cex' not found
          # In addition: Warning message:
