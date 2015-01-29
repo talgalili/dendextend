@@ -4,7 +4,12 @@ TODO for future releases:
 Next action
 --------------
 
+* Make a cheat sheet!
+
 * tanglegram - add a default color to the lines, so that streight lines will be green, and the red ones will be red. (like in the vignette)
+
+
+* vignette - add examples of using color_labels, color_branches (just because people are likely to want to use it)
 
 
 
