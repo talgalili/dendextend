@@ -89,8 +89,9 @@
 #' 
 #' @seealso
 #' 
-#' \link{dendrogram}, \link{edgePar_attr}, \link{get_nodes_attr}
-#' \link{leaves_edgePar_attr}, \link[ggdendro]{ggdendrogram}, \link[ggdendro]{dendrodata},
+#' \link{dendrogram}, \link{get_nodes_attr}, \link{get_leaves_nodePar}, 
+#' \link[ggplot2]{ggplot},
+#' \link[ggdendro]{ggdendrogram}, \link[ggdendro]{dendro_data},
 #' 
 #' @return 
 #' 
@@ -99,12 +100,12 @@
 #' Each one contains the graphical parameters from the original dendrogram, but in a tabular form that
 #' can be used by ggplot2+geom_segment+geom_text to create a dendrogram plot.}
 #' \item{\code{prepare.ggdend} - a \code{ggdend} object (after filling it with various default values)}
-#' \item{\code{ggplot.ggdend} - a \link{ggplot} object}
+#' \item{\code{ggplot.ggdend} - a \link[ggplot2]{ggplot} object}
 #' }
 #' 
 #' @source
 #' 
-#' These are extended versions of the functions \[ggdendro]{ggdendrogram}, \[ggdendro]{dendrodata} (and the hidden dendrogram_data) 
+#' These are extended versions of the functions \[ggdendro]{ggdendrogram}, \[ggdendro]{dendro_data} (and the hidden dendrogram_data) 
 #' from Andrie de Vries's ggdendro package. The motivation for this fork is the need to add more graphical parameters
 #' to the plotted tree. This required a strong mixter of functions from ggdendro and dendextend (to the point that
 #' it seemed better to just fork the code into its current form)
@@ -141,7 +142,8 @@
 #' # library("devtools")
 #' # devtools::install_github("ropensci/plotly")
 #' # library(plotly)
-#' # set_credentials_file(...) # you'll need to get it from here: https://plot.ly/ggplot2/getting-started/
+#' # set_credentials_file(...) 
+#' # you'll need to get it from here: https://plot.ly/ggplot2/getting-started/
 #' 
 #' # ggplot(ggd1)
 #' # py <- plotly()
@@ -403,7 +405,25 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE,
                           horiz = FALSE, theme = theme_dendro(), ...) {
    #    library(dendextend)
    #    library(ggdendro)
+   # Get all the ggplot2 functions ready: (this could have been evoided if ggplot2 was imported...)
+   # This saves us from the error: "ggplot.ggdend: no visible global function definition for ..."
    library(ggplot2)
+   ggplot <- ggplot2::ggplot
+   geom_segment <- ggplot2::geom_segment
+   aes <- ggplot2::aes   
+   guides <- ggplot2::guides
+   scale_colour_identity <- ggplot2::scale_colour_identity
+   scale_size_identity <- ggplot2::scale_size_identity
+   scale_linetype_identity <- ggplot2::scale_linetype_identity
+   geom_text <- ggplot2::geom_text
+   coord_flip <- ggplot2::coord_flip
+   scale_y_reverse <- ggplot2::scale_y_reverse
+   
+   
+   # By using "x" instead of x - we avoid the error:
+   # ggplot.ggdend: no visible binding for global variable ‘x’
+   
+   
    
    data <- prepare.ggdend(data)
  
@@ -430,14 +450,16 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE,
    
    if (segments) {
    p <- p +  geom_segment(data = data$segments, 
-                          aes(x = x, y = y, xend = xend, yend = yend, colour = col, linetype = lty, size = lwd)) +
+                                   aes(x = "x", y = "y", xend = "xend", yend = "yend", colour = "col", linetype = "lty", size = "lwd")) +
             guides(linetype = FALSE, col = FALSE) + 
-            scale_colour_identity() + scale_size_identity()  + scale_linetype_identity()
+      scale_colour_identity() + scale_size_identity()  + scale_linetype_identity()
    }
+   
+   
    if (labels) {
    # default size is 5!  http://sape.inf.usi.ch/quick-reference/ggplot2/geom_text
-   p <- p + geom_text(data = data$labels, aes(x = x, 
-                                                          y = y, label = label, colour = col, size = 5 * cex), 
+   p <- p + geom_text(data = data$labels, aes(x = "x", 
+                                                          y = "y", label = "label", colour = "col", size = 5 * data$labels$cex), 
                       hjust = hjust, angle = angle)
    }
    # p <- p + scale_x_discrete(labels = data$labels$label)
@@ -491,7 +513,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE,
 #' @export
 ggplot.dendrogram <- function(data, ...) {
    library(ggplot2) # must add it so that ggplot will be availble.
-   ggplot(as.ggdend(data), ...)
+   ggplot2::ggplot(as.ggdend(data), ...)
 }
 
 

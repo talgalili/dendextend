@@ -8,7 +8,7 @@
 \alias{prepare.ggdend}
 \title{Creates dendrogram plot using ggplot.}
 \source{
-These are extended versions of the functions \[ggdendro]{ggdendrogram}, \[ggdendro]{dendrodata} (and the hidden dendrogram_data)
+These are extended versions of the functions \[ggdendro]{ggdendrogram}, \[ggdendro]{dendro_data} (and the hidden dendrogram_data)
 from Andrie de Vries's ggdendro package. The motivation for this fork is the need to add more graphical parameters
 to the plotted tree. This required a strong mixter of functions from ggdendro and dendextend (to the point that
 it seemed better to just fork the code into its current form)
@@ -16,13 +16,13 @@ it seemed better to just fork the code into its current form)
 \usage{
 as.ggdend(dend, ...)
 
-prepare.ggdend(dend, ...)
+prepare.ggdend(data, ...)
 
 \method{as.ggdend}{dendrogram}(dend,
       type = c("rectangle", "triangle"), edge.root = FALSE, ...)
 
 ggplot.ggdend(data,  segments = TRUE,
-            leaf_labels = TRUE, horiz = FALSE, theme = theme_dendro(), ...)
+            labels = TRUE, horiz = FALSE, theme = theme_dendro(), ...)
 
 ggplot.dendrogram(data, ...)
 }
@@ -52,7 +52,7 @@ rectangular lines, while "triangle" will draw triangular lines.}
 Each one contains the graphical parameters from the original dendrogram, but in a tabular form that
 can be used by ggplot2+geom_segment+geom_text to create a dendrogram plot.}
 \item{\code{prepare.ggdend} - a \code{ggdend} object (after filling it with various default values)}
-\item{\code{ggplot.ggdend} - a \link{ggplot} object}
+\item{\code{ggplot.ggdend} - a \link[ggplot2]{ggplot} object}
 }
 }
 \description{
@@ -100,7 +100,7 @@ ggplot(ggd1, horiz = TRUE) # horiz plot in ggplot2
 # creating a radial plot:
 ggplot(ggd1) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x")
 # The text doesn't look so great, so let's remove it:
-ggplot(ggd1, leaf_labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x")
+ggplot(ggd1, labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x")
 
 # This can now be sent to plot.ly - which adds zoom-in abilities, and more.
 # Here is how it might look like: https://plot.ly/~talgalili/6/y-vs-x/
@@ -110,7 +110,8 @@ ggplot(ggd1, leaf_labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_
 # library("devtools")
 # devtools::install_github("ropensci/plotly")
 # library(plotly)
-# set_credentials_file(...) # you'll need to get it from here: https://plot.ly/ggplot2/getting-started/
+# set_credentials_file(...)
+# you'll need to get it from here: https://plot.ly/ggplot2/getting-started/
 
 # ggplot(ggd1)
 # py <- plotly()
@@ -126,7 +127,8 @@ ggplot(ggd1, leaf_labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_
 Tal Galili, using code modified from Andrie de Vries
 }
 \seealso{
-\link{dendrogram}, \link{edgePar_attr}, \link{get_nodes_attr}
-\link{leaves_edgePar_attr}, \link[ggdendro]{ggdendrogram}, \link[ggdendro]{dendrodata},
+\link{dendrogram}, \link{get_nodes_attr}, \link{get_leaves_nodePar},
+\link[ggplot2]{ggplot},
+\link[ggdendro]{ggdendrogram}, \link[ggdendro]{dendro_data},
 }
 
