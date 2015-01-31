@@ -1,3 +1,32 @@
+dendextend 0.18.1 (2015-01-31)
+----------------------------------------
+
+###VIGNETTE - new sections!
+   * Quick functions for FAQ
+      * How to colour the labels of a dendrogram by an additional factor variable
+      * How to color a dendrogram's branches/labels based on cluster (i.e.: cutree result)
+      * Change dendrogram's labels
+      * Larger font for leaves in a dendrogram
+      * How to view attributes of a dendrogram
+   * ggplot2 integration (!)
+   * Comparing trees: 
+      * dend_diff
+      * all.equal
+      * dist.dendlist
+      * cor.dendlist
+   * Others
+      * rotate - explain about sort
+      * collapse_branch
+
+
+###UPDATED FUNCTIONS:
+   * `sort.dendrogram` - added a new parameter: type = c("labels", "nodes"), to use `ladderize` for sorting
+   * `ggplot.ggdend` - support theme = NULL
+
+###OTHER NOTES:
+   * dendextend 0.18.1 is intended to be shipped to CRAN.
+
+
 dendextend 0.18.0 (2015-01-29)
 ----------------------------------------
 

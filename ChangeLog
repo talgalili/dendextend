@@ -1,3 +1,42 @@
+* 2015-01-31(Tal Galili) Add ladderize to collapse_branch example |f7043c6| 
+|  R/rotate.R             | 2 +-
+|  R/unbranch.R           | 8 +++++---
+|  man/collapse_branch.Rd | 7 ++++---
+|  man/rotate.Rd          | 2 +-
+|  4 files changed, 11 insertions(+), 8 deletions(-)
+
+* 2015-01-31(Tal Galili) ###VIGNETTE - new sections!    * Quick functions for FAQ       * How to colour the labels of a dendrogram by an additional factor variable       * How to color a dendrogram's branches/labels based on cluster (i.e.: cutree result)       * Change dendrogram's labels       * Larger font for leaves in a dendrogram       * How to view attributes of a dendrogram    * rotate - explain about sort    * ggplot2 integration (!)    * Comparing trees:       * dend_diff       * all.equal       * dist.dendlist       * cor.dendlist |84335e7| 
+|  NEWS                       |  15 +++
+|  vignettes/introduction.Rmd | 305 +++++++++++++++++++++++++++++++++++++++++++
+|  2 files changed, 320 insertions(+)
+
+* 2015-01-31(Tal Galili) `ggplot.ggdend` - support theme = NULL |d94efb6| 
+|  NEWS          | 2 +-
+|  R/ggdend.R    | 9 ++++++---
+|  man/ggdend.Rd | 5 +++--
+|  3 files changed, 10 insertions(+), 6 deletions(-)
+
+* 2015-01-31(Tal Galili) Minor .Rd fixes. |d69de40| 
+|  R/ggdend.R    | 4 ++--
+|  man/ggdend.Rd | 4 ++--
+|  2 files changed, 4 insertions(+), 4 deletions(-)
+
+* 2015-01-31(Tal Galili) `sort.dendrogram` - added a new parameter: type = c("labels", "nodes"), to use `ladderize` for sorting |2d4fe25| 
+|  DESCRIPTION   |  4 ++--
+|  NEWS          |  8 ++++++++
+|  R/rotate.R    | 17 +++++++++++++++--
+|  man/rotate.Rd | 11 ++++++++++-
+|  4 files changed, 35 insertions(+), 5 deletions(-)
+
+* 2015-01-30(Tal Galili) cheatsheet? |1f2c862| 
+|  TODO | 5 +++++
+|  1 file changed, 5 insertions(+)
+
+* 2015-01-30(Tal Galili) Updated ChangeLog and NEWS.md |d3b1613| 
+|  ChangeLog | 674 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+|  NEWS.md   | 102 +++++++++
+|  2 files changed, 768 insertions(+), 8 deletions(-)
+
 * 2015-01-30(Tal Galili) Fix package date. |10d25e2| 
 |  DESCRIPTION | 2 +-
 |  NEWS        | 2 +-
