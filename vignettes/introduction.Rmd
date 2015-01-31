@@ -86,6 +86,169 @@ The [**_dendextend package_**](http://cran.r-project.org/web/packages/dendextend
 The goal of this document is to introduce you to the basic functions that dendextend provides, and show how they may be applied. We will make extensive use of "chaining" (explained next).
 
 
+Quick functions for FAQ
+------------------------------
+
+Questions are often taken from here the [stackoverflow `dendrogram` tag](http://stackoverflow.com/questions/tagged/dendrogram+r).
+
+
+### How to colour the labels of a dendrogram by an additional factor variable
+
+Asked (http://stackoverflow.com/questions/27485549/how-to-colour-the-labels-of-a-dendrogram-by-an-additional-factor-variable-in-r)[here].
+
+Solution: use the `labels_colors` function.
+
+```{r}
+# install.packages("dendextend")
+library(dendextend)
+
+dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+# Like: 
+# dend <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
+
+# By default, the dend has no colors to the labels
+labels_colors(dend)
+par(mfrow = c(1,2))
+plot(dend, main = "Original dend")
+
+# let's add some color:
+labels_colors(dend) <- 1:5
+# Now each state has a color
+labels_colors(dend) 
+plot(dend, main = "A color for every state")
+```
+
+Instead of using `1:5`, we can obviously use colors which are based on another factor (organized) the labels themseslves. But in such a case, we want to map between the order of the labels, and the order of the items in the original dataset. Here is another example based on the iris dataset:
+
+```{r}
+# install.packages("dendextend")
+library(dendextend)
+
+small_iris <- iris[c(1, 51, 101, 2, 52, 102), ]
+dend <- as.dendrogram(hclust(dist(small_iris[,-5])))
+# Like: 
+# dend <- small_iris[,-5] %>% dist %>% hclust %>% as.dendrogram
+
+# By default, the dend has no colors to the labels
+labels_colors(dend)
+par(mfrow = c(1,2))
+plot(dend, main = "Original dend")
+
+# let's add some color:
+colors_to_use <- as.numeric(small_iris[,5])
+colors_to_use
+# But sort them based on their order in dend:
+colors_to_use <- colors_to_use[order.dendrogram(dend)]
+colors_to_use
+# Now we can use them
+labels_colors(dend) <- colors_to_use
+# Now each state has a color
+labels_colors(dend) 
+plot(dend, main = "A color for every Species")
+```
+
+
+### How to color a dendrogram's branches/labels based on cluster (i.e.: cutree result)
+
+Use the `color_branches` and `color_labels` functions, with the `k` (or`h`) parameter:
+
+
+```{r}
+# install.packages("dendextend")
+library(dendextend)
+
+dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+# Like: 
+# dend <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
+
+dend1 <- color_branches(dend, k = 3)
+dend2 <- color_labels(dend, k = 3)
+
+par(mfrow = c(1,2))
+plot(dend1, main = "Colored branches")
+plot(dend2, main = "Colored labels")
+```
+
+
+
+### Change dendrogram's labels
+
+Use the left assign `labels<-` function:
+
+
+```{r}
+# install.packages("dendextend")
+library(dendextend)
+
+dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+# Like: 
+# dend <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
+
+labels(dend)
+labels(dend) <- 1:5
+labels(dend)
+```
+
+
+### Larger font for leaves in a dendrogram
+
+Asked (http://stackoverflow.com/questions/26965390/larger-font-and-spacing-between-leaves-in-r-dendrogram)[here].
+
+Solution: use the `set` function, with the "labels_cex" parameter.
+
+```{r}
+# install.packages("dendextend")
+library(dendextend)
+
+dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+# Like: 
+# dend <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
+
+# By default, the dend has no text size to it (showing only the first leaf)
+get_leaves_nodePar(dend)[[1]]
+par(mfrow = c(1,2), mar = c(10,4,4,2))
+plot(dend, main = "Original dend")
+
+# let's increase the size of the labels:
+dend <- set(dend, "labels_cex", 2)
+# Now each state has a larger label
+get_leaves_nodePar(dend)[[1]]
+plot(dend, main = "A larger font for labels")
+```
+
+(note that changing the spacing between the labels is currently not implemented)
+
+
+
+
+
+### How to view attributes of a dendrogram
+
+Asked (http://stackoverflow.com/questions/26240200/how-to-access-attributes-of-a-dendrogram-in-r)[here], and (http://stackoverflow.com/questions/25664911/r-hclust-height-of-final-merge)[here].
+
+It generally depends on which attribute we want to view, for "midpoint" (or height) use the `get_nodes_attr` function, with the "midpoint" parameter.
+
+```{r}
+# install.packages("dendextend")
+library(dendextend)
+
+dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
+# Like: 
+# dend <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
+
+# midpoint for all nodes
+get_nodes_attr(dend, "midpoint")
+# Maybe also the height:
+get_nodes_attr(dend, "height")
+```
+
+To also change an attribute, you can use the various assign functions from the package: `assign_values_to_leaves_nodePar`, `assign_values_to_leaves_edgePar`, `assign_values_to_nodes_nodePar`, `assign_values_to_branches_edgePar`, `remove_branches_edgePar`, `remove_nodes_nodePar`
+
+
+
+
+
+
 Prerequisites
 --------------
 
@@ -592,6 +755,21 @@ dend15 %>%
 ```
 
 
+A new convenience S3 function for `sort` (`sort.dendrogram`) was added:
+
+```{r}
+dend110 <- c(1, 3:5, 7,9,10) %>% dist %>% hclust(method = "average") %>% 
+   as.dendrogram %>% color_labels %>% color_branches
+
+par(mfrow = c(1,3))
+dend110 %>% plot(main = "Original tree")
+dend110 %>% sort %>% plot(main = "labels sort")
+dend110 %>% sort(type = "nodes") %>% plot(main = "nodes (ladderize) sort")
+```
+
+
+
+
 
 #### Unbranching
 
@@ -678,6 +856,41 @@ colored_bars(colors = the_bars, dend = dend15)
 ```
 
 
+
+
+ggplot2 integration
+--------------------------
+
+The core process is to transform a dendrogram into a `ggdend` object using `as.ggdend`, and then plot it using `ggplot` (a new S3 `ggplot.ggdend` function is available). These two steps can be done in one command with either the function `ggplot` or `ggdend`.
+
+The reason we want to have `as.ggdend` (and not only `ggplot.dendrogram`), is (1) so that you could create your own mapping of `ggdend` and, (2) since `as.ggdend` might be slow for large trees, it is probably better to be able to run it only once for such cases.
+
+A `ggdend` class object is a list with 3 componants: segments, labels, nodes. Each one contains the graphical parameters from the original dendrogram, but in a tabular form that can be used by `ggplot2+geom_segment+geom_text` to create a dendrogram plot.
+
+The function `prepare.ggdend` is used by `plot.ggdend` to take the ggdend object and prepare it for plotting. This is because the defaults of various parameters in dendrogram's are not always stored in the object itself, but are built-in into the `plot.dendrogram` function. For example, the color of the labels is not (by default) specified in the dendrogram (only if we change it from black to something else). Hence, when taking the object into a different plotting engine (say ggplot2), we want to prepare the object by filling-in various defaults. This function is autmatically invoked within the `plot.ggdend` function. You would probably use it only if you'd wish to build your own ggplot2 mapping.
+
+```{r}
+# Create a complex dend:
+dend <- iris[1:30,-5] %>% dist %>% hclust %>% as.dendrogram %>%
+   set("branches_k_color", k=3) %>% set("branches_lwd", c(1.5,1,1.5)) %>%
+   set("branches_lty", c(1,1,3,1,1,2)) %>%
+   set("labels_colors") %>% set("labels_cex", c(.9,1.2))
+# plot the dend in usual "base" plotting engine:
+plot(dend)
+# Now let's do it in ggplot2 :)
+ggd1 <- as.ggdend(dend)
+library(ggplot2)
+ggplot(ggd1) # reproducing the above plot in ggplot2 :)
+ggplot(ggd1, horiz = TRUE, theme = NULL) # horiz plot (and let's remove theme) in ggplot2
+# Adding some extra spice to it...
+# creating a radial plot:
+# ggplot(ggd1) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x")
+# The text doesn't look so great, so let's remove it:
+ggplot(ggd1, labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x")
+```
+
+
+**Credit:** These functions are *extended* versions of the functions `ggdendrogram`, `dendro_data` (and the hidden `dendrogram_data`) from Andrie de Vries's (http://cran.r-project.org/web/packages/ggdendro/index.html)[ggdendro] package. The motivation for this fork is the need to add more graphical parameters to the plotted tree. This required a strong mixter of functions from ggdendro and dendextend (to the point that it seemed better to just fork the code into its current form).
 
 
 
@@ -836,6 +1049,25 @@ head(dends_15_51)
 
 The function `match_order_by_labels` makes sure that the order in the leaves corresponds to the same labels in both trees.
 
+### dend_diff
+
+The `dend_diff` function plots two trees side by side, highlighting edges unique to each tree in red, it relies on the `distinct_edges` function.
+
+For example:
+
+```{r}
+# example 1
+x <- 1:5 %>% dist %>% hclust %>% as.dendrogram
+y <- set(x, "labels", 5:1)
+
+# example 2
+dend1 <- 1:10 %>% dist %>% hclust %>% as.dendrogram
+dend2 <- dend1 %>% set("labels", c(1,3,2,4, 5:10) )
+dend_diff(dend1, dend2)
+```
+
+See the `highlight_distinct_edges` function for more control over how to create the distinction (color, line width, line type).
+
 
 ### tanglegram
 
@@ -910,6 +1142,79 @@ We got perfect entanglement (0).
 
 
 ### Correlation measures
+
+We shall use the following for the upcoming examples:
+
+```{r}
+set.seed(23235)
+ss <- sample(1:150, 10 )
+dend1 <- iris[ss,-5] %>% dist %>% hclust("com") %>% as.dendrogram
+dend2 <- iris[ss,-5] %>% dist %>% hclust("single") %>% as.dendrogram
+dend3 <- iris[ss,-5] %>% dist %>% hclust("ave") %>% as.dendrogram
+dend4 <- iris[ss,-5] %>% dist %>% hclust("centroid") %>% as.dendrogram
+
+dend1234 <- dendlist("Complete" = dend1, "Single" = dend2, "Average" = dend3, "Centroid" = dend4)
+
+par(mfrow = c(2,2))
+plot(dend1, main = "Complete")
+plot(dend2, main = "Single")
+plot(dend3, main = "Average")
+plot(dend4, main = "Centroid")
+
+```
+
+
+#### Global Comparison of two (or more) dendrograms
+
+The `all.equal.dendrogram` function makes a global comparison of two or more dendrograms trees.
+
+```{r}
+all.equal(dend1, dend1)
+all.equal(dend1, dend2)
+all.equal(dend1, dend2, use.edge.length = FALSE)
+all.equal(dend1, dend2, use.edge.length = FALSE, use.topology = FALSE)
+
+all.equal(dend2, dend4, use.edge.length = TRUE)
+all.equal(dend2, dend4, use.edge.length = FALSE)
+
+all.equal(dendlist(dend1, dend1, dend1))
+
+all.equal(dend1234)
+all.equal(dend1234, use.edge.length = FALSE)
+```
+
+
+
+#### Distance matrix using dist.dendlist
+
+The `dist.dendlist` function computes the Robinson-Foulds distance (also known as symmetric difference) between two dendrograms. This is the sum of edges in both trees with labels that exist in only one of the two trees (i.e.: the length of `distinct_edges`). 
+
+```{r}
+x <- 1:5 %>% dist %>% hclust %>% as.dendrogram
+y <- set(x, "labels", 5:1)
+
+dist.dendlist(dendlist(x1 = x,x2 = x,y1 = y))
+dend_diff(x,y)
+
+dist.dendlist(dend1234)
+```
+
+
+
+This function might implement other topological distances in the future.
+
+
+
+#### Correlation matrix using cor.dendlist
+
+Both Baker's Gamma and cophenetic correlation (Which will be introduced shortly), can be calculated to create a corelation matrix using the `cor.dendlist` function (the default method is cophenetic correlation):
+
+
+```{r}
+cor.dendlist(dend1234)
+```
+
+
 
 #### Baker's Gamma Index
 
