@@ -1,3 +1,8 @@
+dendextend 0.18.3 (2015-01-31)
+----------------------------------------
+
+###OTHER NOTES:
+   * Fix "title case" for the package's Title in the DESCRIPTION
 dendextend 0.18.2 (2015-01-31)
 ----------------------------------------
 
