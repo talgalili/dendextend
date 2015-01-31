@@ -98,7 +98,7 @@
 #'  
 #' @return A rotated tree object
 #' @seealso \code{\link{order.dendrogram}},  \code{\link{order}}, 
-#' \code{\link{rev.dendrogram}}, \code{\link[ape]{rotate}} ({ape})
+#' \code{\link{rev.dendrogram}}, \code{\link[ape]{rotate}} ({ape}), \link{ladderize}
 #' @examples
 #' hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
 #' dend <- as.dendrogram(hc)

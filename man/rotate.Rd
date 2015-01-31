@@ -119,6 +119,6 @@ dend \%>\% sort(type = "nodes") \%>\% plot(main = "nodes (ladderize) sort")
 }
 \seealso{
 \code{\link{order.dendrogram}},  \code{\link{order}},
-\code{\link{rev.dendrogram}}, \code{\link[ape]{rotate}} ({ape})
+\code{\link{rev.dendrogram}}, \code{\link[ape]{rotate}} ({ape}), \link{ladderize}
 }
 
