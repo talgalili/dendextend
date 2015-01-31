@@ -82,7 +82,7 @@
 #' For example, the color of the labels is not (by default) specified in the dendrogram (only if we change it
 #' from black to something else). Hence, when taking the object into a different plotting engine (say ggplot2), we
 #' want to prepare the object by filling-in various defaults.
-#' This function is autmatically ivoked within the \code{plot.ggdend} function. You would probably use
+#' This function is autmatically invoked within the \code{plot.ggdend} function. You would probably use
 #' it only if you'd wish to build your own ggplot2 mapping.
 #' 
 #' @author Tal Galili, using code modified from Andrie de Vries
@@ -105,7 +105,7 @@
 #' 
 #' @source
 #' 
-#' These are extended versions of the functions \[ggdendro]{ggdendrogram}, \[ggdendro]{dendro_data} (and the hidden dendrogram_data) 
+#' These are extended versions of the functions \link[ggdendro]{ggdendrogram}, \link[ggdendro]{dendro_data} (and the hidden dendrogram_data) 
 #' from Andrie de Vries's ggdendro package. The motivation for this fork is the need to add more graphical parameters
 #' to the plotted tree. This required a strong mixter of functions from ggdendro and dendextend (to the point that
 #' it seemed better to just fork the code into its current form)
