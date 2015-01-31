@@ -1,3 +1,23 @@
+dendextend 0.18.3 (2015-01-31)
+----------------------------------------
+
+###OTHER NOTES: (Thanks to Prof Brian Ripley for help.)
+   * Fix "title case" for the package's Title in the DESCRIPTION
+   * Fix "No package encoding and non-ASCII characters in the following R files"
+   * Fix "Please use :: or requireNamespace() instead." by commenting out all "library", since using "::" is enough!
+   * dendextend 0.18.3 is intended to be shipped to CRAN.
+
+
+
+dendextend 0.18.2 (2015-01-31)
+----------------------------------------
+
+###OTHER NOTES:
+   * Minor doc fix for `collapse_branch`
+   * dendextend 0.18.2 is intended to be shipped to CRAN.
+
+
+
 dendextend 0.18.1 (2015-01-31)
 ----------------------------------------
 

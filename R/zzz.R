@@ -323,5 +323,5 @@ dendextendWelcomeMessage <- function(){
 
 # shell('git log --graph --stat --date=short --pretty=format:"%ad(%an) %s |%h" > ChangeLog', intern = TRUE)
 # file.copy("NEWS", "NEWS.md",overwrite = TRUE)
-# build_win(version="R-devel")
+# devtools::build_win(version="R-devel")
 # release()

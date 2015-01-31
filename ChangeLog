@@ -1,3 +1,45 @@
+* 2015-01-31(Tal Galili) Fix "Please use :: or requireNamespace() instead." by commenting out all "library", since using "::" is enough! |fc73295| 
+|  NEWS                  |   6 +
+|  R/DendSer.R           |   2 +-
+|  R/ape.R               |   8 +-
+|  R/cutree.dendrogram.R |  42 +++---
+|  R/ggdend.R            |   4 +-
+|  R/ggdendro.R          |   2 +-
+|  R/nleaves.R           |   4 +-
+|  R/prune.R             |   2 +-
+|  R/rotate.R            |   4 +-
+|  R/set.dendrogram.R    |   2 +-
+|  R/unbranch.R          |   2 +-
+|  R/untangle.R          | 358 ++++++++++++++++++++++++------------------------
+|  R/zzz.R               |   2 +-
+|  13 files changed, 222 insertions(+), 216 deletions(-)
+
+* 2015-01-31(Tal Galili) Fix "title case" for the package's Title in the DESCRIPTION |ccf93c3| 
+|  DESCRIPTION | 4 ++--
+|  NEWS        | 5 +++++
+|  2 files changed, 7 insertions(+), 2 deletions(-)
+
+* 2015-01-31(Tal Galili) Fix "No package encoding and non-ASCII characters in the following R files" |bba4e4c| 
+|  R/ggdend.R | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2015-01-31(Tal Galili) Minor doc fix for `collapse_branch` |2f3019b| 
+|  DESCRIPTION            | 2 +-
+|  NEWS                   | 9 +++++++++
+|  R/unbranch.R           | 3 ++-
+|  man/collapse_branch.Rd | 3 ++-
+|  4 files changed, 14 insertions(+), 3 deletions(-)
+
+* 2015-01-31(Tal Galili) Update NEWS.md and changelog |e0ef4b5| 
+|  ChangeLog | 39 +++++++++++++++++++++++++++++++++++++++
+|  NEWS.md   | 29 +++++++++++++++++++++++++++++
+|  2 files changed, 68 insertions(+)
+
+* 2015-01-31(Tal Galili) collapse_branch to vignette |4cafe05| 
+|  NEWS                       |  8 +++++++-
+|  vignettes/introduction.Rmd | 17 +++++++++++++++++
+|  2 files changed, 24 insertions(+), 1 deletion(-)
+
 * 2015-01-31(Tal Galili) Add ladderize to collapse_branch example |f7043c6| 
 |  R/rotate.R             | 2 +-
 |  R/unbranch.R           | 8 +++++---
