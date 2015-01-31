@@ -190,7 +190,7 @@ rotate.hclust <- function(x, order,...)
 #' @export
 rotate.phylo <- function(x, ..., phy) {
    if(!missing(phy)) x <- phy
-   library(ape)
+   # library(ape)
 	ape::rotate(phy=x, ...)
 }
 
@@ -449,7 +449,7 @@ ladderize.dendrogram <- function (x, right = TRUE, ...)  {
 #' @export
 ladderize.phylo <- function(x, right = TRUE, phy, ...) {
    if(!missing(phy)) x <- phy
-   library(ape)
+   # library(ape)
    ape::ladderize(phy=x, right = right)
 }
 

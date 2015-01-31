@@ -23,15 +23,15 @@
 # ' @S3method as.dendrogram phylo
 #' @export
 as.dendrogram.phylo <- function(object,...) {
-	library(ape)
-	as.dendrogram(as.hclust(object))
+	# library(ape)
+	as.dendrogram(ape::as.hclust.phylo(object))
 }
 
 
 # Make it so that I can have as.phylo.dendrogram work, without forcing the user to have ape imported
 as.phylo <- function (x, ...) 
 {
-   library(ape)
+   # library(ape)
    ape::as.phylo(x, ...)   
 #    if (length(class(x)) == 1 && class(x) == "phylo") 
 #       return(x)
@@ -86,7 +86,7 @@ as.phylo <- function (x, ...)
 #' 
 #' }
 as.phylo.dendrogram <- function(x,...) {
-	library(ape)
+	# library(ape)
 	ape::as.phylo.hclust(as.hclust(x))
 }
 ## http://stackoverflow.com/questions/13085481/namespace-dependencies-not-required

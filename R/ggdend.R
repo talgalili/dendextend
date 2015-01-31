@@ -413,7 +413,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE,
    #    library(ggdendro)
    # Get all the ggplot2 functions ready: (this could have been evoided if ggplot2 was imported...)
    # This saves us from the error: "ggplot.ggdend: no visible global function definition for ..."
-   library(ggplot2)
+   # library(ggplot2)
    ggplot <- ggplot2::ggplot
    geom_segment <- ggplot2::geom_segment
    aes <- ggplot2::aes   
@@ -521,7 +521,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE,
 
 #' @export
 ggplot.dendrogram <- function(data, ...) {
-   library(ggplot2) # must add it so that ggplot will be availble.
+   # library(ggplot2) # enough to use ggplot2::
    ggplot2::ggplot(as.ggdend(data), ...)
 }
 

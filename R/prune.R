@@ -175,7 +175,7 @@ prune.hclust <- function(x, leaves,...) {
 # ' @S3method prune phylo
 #' @export
 prune.phylo <- function(x,...) {
-	library(ape)
+	# library(ape)
 	ape::drop.tip(phy=x, ...)
 }
 

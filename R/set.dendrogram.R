@@ -325,7 +325,7 @@ set.dendlist <- function(object, ..., which) {
 #' @export
 set.data.table <- function(...) {
    warning("set function has been overridden from data.table - which means that data.table's set() is now slower. You may solve this by using the prefix 'data.table::'' in your for loop.")
-   library(data.table)
+   # library(data.table)
    data.table::set(...)   
 }
 

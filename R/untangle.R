@@ -594,7 +594,7 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = c("forward", "backward"), 
                                        k_seq = NULL, dend_heights_per_k, leaves_matching_method = c("labels", "order"), ...) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
-   library(plyr)
+   # library(plyr)
    n_leaves <- nleaves(dend1)
    best_dend <- dend1
    if(missing(dend_heights_per_k)) dend_heights_per_k <- heights_per_k.dendrogram(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
@@ -880,7 +880,7 @@ untangle_evolution <- function(brother_1_dend1, brother_1_dend2,
 
 untangle_best_k_to_rotate_by_1side <- function(dend1, dend2_fixed, L = 1) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
-   library(plyr)
+   # library(plyr)
    leaves_order <- order.dendrogram(dend1)
    best_dend <- dend1
    dend1_k_rotated <- NULL
@@ -975,183 +975,183 @@ odd_locations <- function(x) {
 }
 # odd_locations(1:6)
 
-
-
-if(F) {
-   
-   dist_DATA <- dist(USArrests[1:30,])
-   dist_DATA <- dist(USArrests[1:10,])
-   # First two dummy clusters (since you didn't provide with some...)
-   hc1 <- hclust(dist_DATA , "single")
-   hc2 <- hclust(dist_DATA , "complete")
-   dend1 <- as.dendrogram(hc1)
-   dend2 <- as.dendrogram(hc2)
-   
-   tanglegram(dend1, dend2) 
-   entanglement(dend1, dend2) # 0.8
-   
-   # after sorting we get a better measure of entanglement and also a better looking plot
-   tanglegram(sort(dend1), sort(dend2))
-   entanglement(sort(dend1), sort(dend2)) # 0.1818
-   
-   # let's cause some shuffle... (e.g: mix the dendrogram, and see how that effects the outcome)
-   set.seed(134)
-   s_dend1 <- shuffle(dend1)
-   s_dend2 <- shuffle(dend2)
-   tanglegram(s_dend1, s_dend2)
-   entanglement(s_dend1, s_dend2) # 0.7515
-   
-   
-   set.seed(1234)
-   dend12s <- untangle.random.search(dend1, dend2, R = 10)
-   entanglement(dend12s[[1]], dend12s[[2]]) # 0.042
-   tanglegram(dend12s[[1]], dend12s[[2]]) # 
-   # this is a case where it is CLEAR that the simplest heuristic would improve this to 0 entanglement...	
-   
-   # let's see if we can reach a good solution using a greedy forward selection algorithm
-   dend12s_1_better <- untangle_step_rotate_1side(dend12s[[1]], dend12s[[2]])
-   entanglement(dend12s_1_better, dend12s[[2]]) # from 0.042 to 0.006 !!
-   tanglegram(dend12s_1_better, dend12s[[2]]) # 
-   
-   # let's see from the beginning
-   entanglement(dend1, dend2) # 0.6
-   tanglegram(dend1, dend2) # 0.6
-   dend12s_1_better <- untangle_step_rotate_1side(dend1, dend2)
-   entanglement(dend12s_1_better, dend2) # from 0.6 to 0.036
-   tanglegram(dend12s_1_better, dend2) # 
-   # let's try the other side:
-   dend12s_2_better <- untangle_step_rotate_1side(dend2, dend12s_1_better)
-   entanglement(dend12s_1_better, dend12s_2_better) # no improvment
-   
-   
-   
-   dend2_01 <- untangle_step_rotate_1side(dend2, dend1)
-   dend2_02 <- untangle.backward.rotate.1side(dend2, dend1)
-   dend2_03 <- untangle.backward.rotate.1side(dend2_01, dend1)
-   dend2_04 <- untangle_step_rotate_1side(dend2_02, dend1)
-   dend2_05 <- untangle_evolution(dend1, dend2 , dend1, dend2_01 )
-   entanglement(dend1, dend2) 
-   entanglement(dend1, dend2_01) 
-   
-   entanglement(dend1, dend2_02) 
-   entanglement(dend1, dend2_03) 
-   entanglement(dend1, dend2_04) 
-   entanglement(dend2_05[[1]], dend2_05[[2]]) 
-   tanglegram(dend1, dend2) 
-   tanglegram(dend1, dend2_01) 
-   tanglegram(dend1, dend2_02) 
-   tanglegram(dend1, dend2_03) 
-   tanglegram(dend1, dend2_04) 
-   tanglegram(dend2_05[[1]], dend2_05[[2]]) 
-   
-   
-   
-   entanglement(dend1, dend2) 
-   tanglegram(dend1, dend2) 
-   dend2_01 <- untangle_step_rotate_1side(dend2, dend1)
-   dend2_01 <- untangle.backward.rotate.1side(dend2, dend1)
-   tanglegram(dend1, dend2_01) 
-   
-   
-   
-   # 
-   dist_DATA <- dist(USArrests[1:10,])
-   # First two dummy clusters (since you didn't provide with some...)
-   hc1 <- hclust(dist_DATA , "single")
-   hc2 <- hclust(dist_DATA , "complete")
-   dend1 <- as.dendrogram(hc1)
-   dend2 <- as.dendrogram(hc2)
-   dend1_01 <- untangle_step_rotate_1side(dend1, dend2)
-   entanglement(dend1, dend2) 
-   entanglement(dend1_01, dend2) 
-   tanglegram(dend1, dend2) 
-   tanglegram(dend1_01, dend2) 
-   
-   system.time(dend1_01 <- untangle_step_rotate_1side(dend1, dend2)) # 0.47 sec
-   system.time(dend1_01 <- untangle.best.k.to.rotate.by(dend1, dend2)) # 0.44 sec
-   tanglegram(dend1, dend2) 
-   tanglegram(dend1_01, dend2) 
-   
-   
-   
-   
-   #### profiling
-   library(profr)
-   slow_dude <- profr(untangle_step_rotate_1side(dend2, dend1))
-   head(slow_dude)
-   summary(slow_dude)
-   plot(slow_dude)
-   
-   library(reshape)
-   a <- cast(slow_dude, f~., value="time", fun.aggregate=c(length, sum))
-   a[order(a[,3]),]
-   ## End(Not run)
-   slow_dude[slow_dude$time > .079991, ]
-   
-   
-   # this also helped:
-   # 	install.packages("microbenchmark")
-   library(microbenchmark)
-   
-   system.time(entanglement(dend1, dend2) 	) # 0.01
-   microbenchmark( entanglement(dend1, dend2) , times = 10 )# so this is 10 times faster (the medians)
-   #		betweem 0.011 to 0.038
-   
-}
-
-
-
-
-
-
-if(F){
-   
-   # Finding the BEST tree by going through many random seeds and looking for a good solution :)
-   
-   entanglement_history <- c()
-   
-   
-   get.seed <- function(max_lengh = 10e7) round(runif(1)*max_lengh)
-   
-   best_seed <- 28754448 # 55639690 # 5462457 # 75173309 # 20295644
-   set.seed(best_seed) 
-   times_a_better_seed_was_found <- 0
-   random_dendros <- untangle.random.search(yoavs_tree, Dan_arc_tree, R = 1, L = 1.5)
-   rotated_dendros <- untangle_step_rotate_2side(random_dendros[[1]], random_dendros[[2]], L = 1.5)
-   best_entanglement <- entanglement(rotated_dendros[[1]], rotated_dendros[[2]], L = 1.5)
-   # tanglegram(rotated_dendros[[1]], rotated_dendros[[2]])
-   
-   
-   for(i in 1:100000) {
-      print(i)
-      current_seed <- get.seed()
-      set.seed(current_seed)
-      random_dendros <- untangle.random.search(yoavs_tree, Dan_arc_tree, R = 10, L = 1.5)
-      rotated_dendros <- untangle_step_rotate_2side(random_dendros[[1]], random_dendros[[2]], L = 1.5)
-      new_entanglement <- entanglement(rotated_dendros[[1]], rotated_dendros[[2]], L = 1.5)
-      
-      entanglement_history <- c(entanglement_history, new_entanglement)		
-      
-      if(new_entanglement < best_entanglement ){
-         times_a_better_seed_was_found <- times_a_better_seed_was_found + 1
-         best_seed <- current_seed
-         print(best_seed)
-         print(new_entanglement)
-         best_entanglement <- new_entanglement
-         tanglegram(rotated_dendros[[1]], rotated_dendros[[2]])
-      }	
-      flush.console()
-   }
-   
-   
-   hist(entanglement_history)
-   
-}
-
-
-
-
-
+# 
+# 
+# if(FALSE) {
+#    
+#    dist_DATA <- dist(USArrests[1:30,])
+#    dist_DATA <- dist(USArrests[1:10,])
+#    # First two dummy clusters (since you didn't provide with some...)
+#    hc1 <- hclust(dist_DATA , "single")
+#    hc2 <- hclust(dist_DATA , "complete")
+#    dend1 <- as.dendrogram(hc1)
+#    dend2 <- as.dendrogram(hc2)
+#    
+#    tanglegram(dend1, dend2) 
+#    entanglement(dend1, dend2) # 0.8
+#    
+#    # after sorting we get a better measure of entanglement and also a better looking plot
+#    tanglegram(sort(dend1), sort(dend2))
+#    entanglement(sort(dend1), sort(dend2)) # 0.1818
+#    
+#    # let's cause some shuffle... (e.g: mix the dendrogram, and see how that effects the outcome)
+#    set.seed(134)
+#    s_dend1 <- shuffle(dend1)
+#    s_dend2 <- shuffle(dend2)
+#    tanglegram(s_dend1, s_dend2)
+#    entanglement(s_dend1, s_dend2) # 0.7515
+#    
+#    
+#    set.seed(1234)
+#    dend12s <- untangle.random.search(dend1, dend2, R = 10)
+#    entanglement(dend12s[[1]], dend12s[[2]]) # 0.042
+#    tanglegram(dend12s[[1]], dend12s[[2]]) # 
+#    # this is a case where it is CLEAR that the simplest heuristic would improve this to 0 entanglement...	
+#    
+#    # let's see if we can reach a good solution using a greedy forward selection algorithm
+#    dend12s_1_better <- untangle_step_rotate_1side(dend12s[[1]], dend12s[[2]])
+#    entanglement(dend12s_1_better, dend12s[[2]]) # from 0.042 to 0.006 !!
+#    tanglegram(dend12s_1_better, dend12s[[2]]) # 
+#    
+#    # let's see from the beginning
+#    entanglement(dend1, dend2) # 0.6
+#    tanglegram(dend1, dend2) # 0.6
+#    dend12s_1_better <- untangle_step_rotate_1side(dend1, dend2)
+#    entanglement(dend12s_1_better, dend2) # from 0.6 to 0.036
+#    tanglegram(dend12s_1_better, dend2) # 
+#    # let's try the other side:
+#    dend12s_2_better <- untangle_step_rotate_1side(dend2, dend12s_1_better)
+#    entanglement(dend12s_1_better, dend12s_2_better) # no improvment
+#    
+#    
+#    
+#    dend2_01 <- untangle_step_rotate_1side(dend2, dend1)
+#    dend2_02 <- untangle.backward.rotate.1side(dend2, dend1)
+#    dend2_03 <- untangle.backward.rotate.1side(dend2_01, dend1)
+#    dend2_04 <- untangle_step_rotate_1side(dend2_02, dend1)
+#    dend2_05 <- untangle_evolution(dend1, dend2 , dend1, dend2_01 )
+#    entanglement(dend1, dend2) 
+#    entanglement(dend1, dend2_01) 
+#    
+#    entanglement(dend1, dend2_02) 
+#    entanglement(dend1, dend2_03) 
+#    entanglement(dend1, dend2_04) 
+#    entanglement(dend2_05[[1]], dend2_05[[2]]) 
+#    tanglegram(dend1, dend2) 
+#    tanglegram(dend1, dend2_01) 
+#    tanglegram(dend1, dend2_02) 
+#    tanglegram(dend1, dend2_03) 
+#    tanglegram(dend1, dend2_04) 
+#    tanglegram(dend2_05[[1]], dend2_05[[2]]) 
+#    
+#    
+#    
+#    entanglement(dend1, dend2) 
+#    tanglegram(dend1, dend2) 
+#    dend2_01 <- untangle_step_rotate_1side(dend2, dend1)
+#    dend2_01 <- untangle.backward.rotate.1side(dend2, dend1)
+#    tanglegram(dend1, dend2_01) 
+#    
+#    
+#    
+#    # 
+#    dist_DATA <- dist(USArrests[1:10,])
+#    # First two dummy clusters (since you didn't provide with some...)
+#    hc1 <- hclust(dist_DATA , "single")
+#    hc2 <- hclust(dist_DATA , "complete")
+#    dend1 <- as.dendrogram(hc1)
+#    dend2 <- as.dendrogram(hc2)
+#    dend1_01 <- untangle_step_rotate_1side(dend1, dend2)
+#    entanglement(dend1, dend2) 
+#    entanglement(dend1_01, dend2) 
+#    tanglegram(dend1, dend2) 
+#    tanglegram(dend1_01, dend2) 
+#    
+#    system.time(dend1_01 <- untangle_step_rotate_1side(dend1, dend2)) # 0.47 sec
+#    system.time(dend1_01 <- untangle.best.k.to.rotate.by(dend1, dend2)) # 0.44 sec
+#    tanglegram(dend1, dend2) 
+#    tanglegram(dend1_01, dend2) 
+#    
+#    
+#    
+#    
+#    #### profiling
+#    library(profr)
+#    slow_dude <- profr(untangle_step_rotate_1side(dend2, dend1))
+#    head(slow_dude)
+#    summary(slow_dude)
+#    plot(slow_dude)
+#    
+#    library(reshape)
+#    a <- cast(slow_dude, f~., value="time", fun.aggregate=c(length, sum))
+#    a[order(a[,3]),]
+#    ## End(Not run)
+#    slow_dude[slow_dude$time > .079991, ]
+#    
+#    
+#    # this also helped:
+#    # 	install.packages("microbenchmark")
+#    library(microbenchmark)
+#    
+#    system.time(entanglement(dend1, dend2) 	) # 0.01
+#    microbenchmark( entanglement(dend1, dend2) , times = 10 )# so this is 10 times faster (the medians)
+#    #		betweem 0.011 to 0.038
+#    
+# }
+# 
+# 
+# 
+# 
+# 
+# 
+# if(FALSE){
+#    
+#    # Finding the BEST tree by going through many random seeds and looking for a good solution :)
+#    
+#    entanglement_history <- c()
+#    
+#    
+#    get.seed <- function(max_lengh = 10e7) round(runif(1)*max_lengh)
+#    
+#    best_seed <- 28754448 # 55639690 # 5462457 # 75173309 # 20295644
+#    set.seed(best_seed) 
+#    times_a_better_seed_was_found <- 0
+#    random_dendros <- untangle.random.search(yoavs_tree, Dan_arc_tree, R = 1, L = 1.5)
+#    rotated_dendros <- untangle_step_rotate_2side(random_dendros[[1]], random_dendros[[2]], L = 1.5)
+#    best_entanglement <- entanglement(rotated_dendros[[1]], rotated_dendros[[2]], L = 1.5)
+#    # tanglegram(rotated_dendros[[1]], rotated_dendros[[2]])
+#    
+#    
+#    for(i in 1:100000) {
+#       print(i)
+#       current_seed <- get.seed()
+#       set.seed(current_seed)
+#       random_dendros <- untangle.random.search(yoavs_tree, Dan_arc_tree, R = 10, L = 1.5)
+#       rotated_dendros <- untangle_step_rotate_2side(random_dendros[[1]], random_dendros[[2]], L = 1.5)
+#       new_entanglement <- entanglement(rotated_dendros[[1]], rotated_dendros[[2]], L = 1.5)
+#       
+#       entanglement_history <- c(entanglement_history, new_entanglement)		
+#       
+#       if(new_entanglement < best_entanglement ){
+#          times_a_better_seed_was_found <- times_a_better_seed_was_found + 1
+#          best_seed <- current_seed
+#          print(best_seed)
+#          print(new_entanglement)
+#          best_entanglement <- new_entanglement
+#          tanglegram(rotated_dendros[[1]], rotated_dendros[[2]])
+#       }	
+#       flush.console()
+#    }
+#    
+#    
+#    hist(entanglement_history)
+#    
+# }
+# 
+# 
+# 
+# 
+# 
 
 
 

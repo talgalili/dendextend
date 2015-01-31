@@ -281,8 +281,8 @@ unclass_dend <- function(dend,...)
 # ' @S3method head dendrogram
 #' @export
 head.dendrogram <- function(x, n = 3L, ...) {
-	library(utils)
-   str(x, max.leve = n,...)
+	# library(utils)
+   utils::str(x, max.leve = n,...)
    cat( "etc...","\n")
 }
 # hc <- hclust(dist(USArrests), "ave")

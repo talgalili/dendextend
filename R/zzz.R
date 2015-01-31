@@ -147,7 +147,7 @@
 
 
 dendextendWelcomeMessage <- function(){
-   library(utils)   
+   # library(utils)   
    
    paste("\n",     
          "Welcome to dendextend version ", utils::packageDescription("dendextend")$Version, "\n",

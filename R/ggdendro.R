@@ -200,7 +200,7 @@ dendrogram_data <- function (x, type = c("rectangle", "triangle"), ...)
 #' 
 theme_dendro <- function() 
 {
-   library(ggplot2)
+   # library(ggplot2)
    element_blank <- ggplot2::element_blank
    element_text <- ggplot2::element_text
    theme <- ggplot2::theme

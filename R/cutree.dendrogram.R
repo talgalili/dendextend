@@ -918,34 +918,34 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
 
 
 
-if(FALSE) {
-   library(dendextend)
+# if(FALSE) {
+   # library(dendextend)
    
-   set.seed(23235)
-   ss <- sample(1:150, 10 )
-   hc1 <- hclust(dist(iris[ss,-5]), "com")
-   dend1 <- as.dendrogram(hc1)
+   # set.seed(23235)
+   # ss <- sample(1:150, 10 )
+   # hc1 <- hclust(dist(iris[ss,-5]), "com")
+   # dend1 <- as.dendrogram(hc1)
 
-   # does not give the same results!
-   cutree(dend1, k=2:3, order_clusters_as_data=TRUE, try_cutree_hclust=FALSE, sort_cluster_numbers=FALSE) 
+   ##does not give the same results!
+   # cutree(dend1, k=2:3, order_clusters_as_data=TRUE, try_cutree_hclust=FALSE, sort_cluster_numbers=FALSE) 
    
-   # this gives the same results as the default:
-   cutree.hclust(as.hclust(dend1), k = 3, order_clusters_as_data=TRUE, sort_cluster_numbers=FALSE)
-   stats::cutree(as.hclust(dend1), k = 3)
-   # but not for dendrogram:   
-   cutree(dend1, k=3, order_clusters_as_data=TRUE, try_cutree_hclust=FALSE, sort_cluster_numbers=TRUE) 
-   cutree(dend1, k=3, order_clusters_as_data=TRUE, try_cutree_hclust=FALSE, sort_cluster_numbers=FALSE) 
-   
-   
-   # this gives the same results as the default:
-   cutree.hclust(as.hclust(dend1), k = 3, order_clusters_as_data=TRUE, sort_cluster_numbers=TRUE)
-   stats::cutree(as.hclust(dend1), k = 3)
-   stats::cutree(hc1, k = 3)
-   cutree.dendrogram(dend1, k=3, order_clusters_as_data=TRUE, try_cutree_hclust=FALSE, 
-          sort_cluster_numbers=TRUE) 
+   ##this gives the same results as the default:
+   # cutree.hclust(as.hclust(dend1), k = 3, order_clusters_as_data=TRUE, sort_cluster_numbers=FALSE)
+   # stats::cutree(as.hclust(dend1), k = 3)
+   ##but not for dendrogram:   
+   # cutree(dend1, k=3, order_clusters_as_data=TRUE, try_cutree_hclust=FALSE, sort_cluster_numbers=TRUE) 
+   # cutree(dend1, k=3, order_clusters_as_data=TRUE, try_cutree_hclust=FALSE, sort_cluster_numbers=FALSE) 
    
    
-}
+   ##this gives the same results as the default:
+   # cutree.hclust(as.hclust(dend1), k = 3, order_clusters_as_data=TRUE, sort_cluster_numbers=TRUE)
+   # stats::cutree(as.hclust(dend1), k = 3)
+   # stats::cutree(hc1, k = 3)
+   # cutree.dendrogram(dend1, k=3, order_clusters_as_data=TRUE, try_cutree_hclust=FALSE, 
+          # sort_cluster_numbers=TRUE) 
+   
+   
+# }
 
 
 
