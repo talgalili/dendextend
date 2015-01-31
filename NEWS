@@ -1,3 +1,12 @@
+dendextend 0.18.2 (2015-01-31)
+----------------------------------------
+
+###OTHER NOTES:
+   * Minor doc fix for `collapse_branch`
+   * dendextend 0.18.2 is intended to be shipped to CRAN.
+
+
+
 dendextend 0.18.1 (2015-01-31)
 ----------------------------------------
 

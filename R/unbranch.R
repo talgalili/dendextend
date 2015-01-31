@@ -291,7 +291,8 @@ get_all_leaves <- function(dend, ...) {
 #' par(mfrow = c(1,3))
 #' dend %>% ladderize %>% plot(horiz = TRUE); abline(v = .2, col = 2, lty = 2)
 #' dend %>% collapse_branch(tol = 0.2) %>% ladderize %>% plot(horiz = TRUE)
-#' dend %>% collapse_branch(tol = 0.2) %>% ladderize %>% hang.dendrogram(hang = 0) %>% plot(horiz = TRUE)
+#' dend %>% collapse_branch(tol = 0.2) %>% ladderize %>% 
+#'       hang.dendrogram(hang = 0) %>% plot(horiz = TRUE)
 #' 
 #' par(mfrow = c(1,2))
 #' dend %>% collapse_branch(tol = 0.2, lower = FALSE) %>% plot(horiz = TRUE, main = "dendrogram")
