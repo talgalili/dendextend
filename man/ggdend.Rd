@@ -44,7 +44,8 @@ rectangular lines, while "triangle" will draw triangular lines.}
 
 \item{horiz}{a logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.}
 
-\item{theme}{the ggplot2 theme to use (default is \link{theme_dendro})}
+\item{theme}{the ggplot2 theme to use (default is \link{theme_dendro}, can also be NULL
+for the default ggplot2 theme)}
 }
 \value{
 \itemize{
@@ -87,7 +88,7 @@ library(dendextend)
 # Create a complex dend:
 dend <- iris[1:30,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram \%>\%
    set("branches_k_color", k=3) \%>\% set("branches_lwd", c(1.5,1,1.5)) \%>\%
-   set("branches_lty", c(1:4)) \%>\%
+   set("branches_lty", c(1,1,3,1,1,2)) \%>\%
    set("labels_colors") \%>\% set("labels_cex", c(.9,1.2))
 # plot the dend in usual "base" plotting engine:
 plot(dend)
