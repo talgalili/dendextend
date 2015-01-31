@@ -1,3 +1,16 @@
+* 2015-01-31(Tal Galili) require -> requireNamespace |6dcc805| 
+|  .Rbuildignore   | 2 +-
+|  R/bk_method.R   | 2 +-
+|  R/rainbow_fun.R | 2 +-
+|  3 files changed, 3 insertions(+), 3 deletions(-)
+
+* 2015-01-31(Tal Galili) update NEWS.md and changelog |e8b9e78| 
+|  ChangeLog | 42 ++++++++++++++++++++++++++++++++++++++++++
+|  NEWS      |  2 +-
+|  NEWS.md   | 20 ++++++++++++++++++++
+|  R/zzz.R   |  2 +-
+|  4 files changed, 64 insertions(+), 2 deletions(-)
+
 * 2015-01-31(Tal Galili) Fix "Please use :: or requireNamespace() instead." by commenting out all "library", since using "::" is enough! |fc73295| 
 |  NEWS                  |   6 +
 |  R/DendSer.R           |   2 +-
