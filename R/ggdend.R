@@ -427,7 +427,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE,
    aes_string <- ggplot2::aes_string
    
    # By using "x" instead of x - we avoid the error:
-   # ggplot.ggdend: no visible binding for global variable ‘x’
+   # ggplot.ggdend: no visible binding for global variable 'x'
    
    
    
