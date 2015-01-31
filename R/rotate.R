@@ -43,7 +43,7 @@
 #' 
 #' \method{rev}{hclust}(x, ...)
 #' 
-#' \method{sort}{dendrogram}(x, decreasing=FALSE, ...)
+#' \method{sort}{dendrogram}(x, decreasing=FALSE, type = c("labels", "nodes"), ...)
 #' 
 #' \method{sort}{hclust}(x, decreasing=FALSE, ...)
 #' 
@@ -57,6 +57,9 @@
 #' order we'd like to have the new tree.
 #' @param decreasing logical. Should the sort be increasing or decreasing? Not available for partial sorting. (relevant only to \code{sort})
 #' @param ... parameters passed (for example, in case of sort)
+#' @param type a character indicating how to sort. If "labels" then by lexicographic
+#' order of the labels. If "nodes", then by using \link{ladderize} (order so that 
+#' recursively, the leftmost branch will be the smallest)
 #' @param phy a placeholder in case the user uses "phy ="
 #' @details 
 #' The motivation for this function came from the function 
@@ -119,6 +122,11 @@
 #' plot(hc) 
 #' plot(rotate(hc, c(2:5,1)), main = "Rotates the left most leaf \n 
 #' into the right side of the tree")
+#' 
+#' par(mfrow = c(1,3))
+#' dend %>% plot(main = "Original tree") 
+#' dend %>% sort %>% plot(main = "labels sort") 
+#' dend %>% sort(type = "nodes") %>% plot(main = "nodes (ladderize) sort") 
 #' 
 rotate <- function(x, ...) {
    UseMethod("rotate")
@@ -189,7 +197,12 @@ rotate.phylo <- function(x, ..., phy) {
 
 # ' @S3method sort dendrogram
 #' @export
-sort.dendrogram <- function(x, decreasing = FALSE,...) {rotate(x, order(labels(x),decreasing =decreasing ,...))}
+sort.dendrogram <- function(x, decreasing = FALSE, type = c("labels", "nodes"), ...) {
+   type <- match.arg(type)
+   switch(type, 
+          "labels" = rotate(x, order(labels(x),decreasing =decreasing ,...)),
+          "nodes" = ladderize(x, right = decreasing, ...))   
+}
 
 # ' @S3method sort hclust
 #' @export

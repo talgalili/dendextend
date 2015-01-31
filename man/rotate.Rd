@@ -20,7 +20,7 @@ rotate(x, ...)
 
 \method{rev}{hclust}(x, ...)
 
-\method{sort}{dendrogram}(x, decreasing=FALSE, ...)
+\method{sort}{dendrogram}(x, decreasing=FALSE, type = c("labels", "nodes"), ...)
 
 \method{sort}{hclust}(x, decreasing=FALSE, ...)
 }
@@ -38,6 +38,10 @@ Is character: it must be a vector with the content of labels(x), in the
 order we'd like to have the new tree.}
 
 \item{decreasing}{logical. Should the sort be increasing or decreasing? Not available for partial sorting. (relevant only to \code{sort})}
+
+\item{type}{a character indicating how to sort. If "labels" then by lexicographic
+order of the labels. If "nodes", then by using \link{ladderize} (order so that
+recursively, the leftmost branch will be the smallest)}
 
 \item{phy}{a placeholder in case the user uses "phy ="}
 }
@@ -107,6 +111,11 @@ plot(rev(dend), main = "Reverses the order of the tree labels")
 plot(hc)
 plot(rotate(hc, c(2:5,1)), main = "Rotates the left most leaf \\n
 into the right side of the tree")
+
+par(mfrow = c(1,3))
+dend \%>\% plot(main = "Original tree")
+dend \%>\% sort \%>\% plot(main = "labels sort")
+dend \%>\% sort(type = "nodes") \%>\% plot(main = "nodes (ladderize) sort")
 }
 \seealso{
 \code{\link{order.dendrogram}},  \code{\link{order}},
