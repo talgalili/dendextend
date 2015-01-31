@@ -182,7 +182,7 @@ sort_2_clusters_vectors <- function(A1_clusters, A2_clusters, assume_sorted_vect
 #' 
 #' }
 FM_index_profdpm <- function(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE, warn = dendextend_options("warn"), ...) {
-   if(!require("profdpm")) {
+   if(!requireNamespace("profdpm")) {
       if(warn) warning("The 'profdpm' package is not installed. Reverting to using the 'FM_index_R' function.")
       return(FM_index_R(A1_clusters, A2_clusters,assume_sorted_vectors = assume_sorted_vectors, warn= warn,...))
    }
