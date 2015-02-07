@@ -14,6 +14,8 @@ prune(x, ...)
 \method{prune}{hclust}(x, leaves,...)
 
 \method{prune}{phylo}(x, ...)
+
+\method{prune}{rpart}(x, ...)
 }
 \arguments{
 \item{x}{tree object (dendrogram/hclust/phylo)}

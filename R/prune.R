@@ -126,6 +126,9 @@ prune_leaf <- function(x, leaf_name,...)
 #' \method{prune}{hclust}(x, leaves,...)
 #' 
 #' \method{prune}{phylo}(x, ...)
+#' 
+#' \method{prune}{rpart}(x, ...)
+#' 
 #' @param x tree object (dendrogram/hclust/phylo)
 #' @param leaves a character vector of the label(S) of the tip(s) (leaves) we wish to prune off the tree.
 #' @param ... passed on
@@ -180,6 +183,11 @@ prune.phylo <- function(x,...) {
 }
 
 
+#' @export
+prune.rpart <- function(x,...) {
+   # library(ape)
+   rpart::prune.rpart(tree = x, ...)
+}
 
 
 
