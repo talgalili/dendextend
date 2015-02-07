@@ -22,6 +22,8 @@ rotate(x, ...)
 
 \method{sort}{dendrogram}(x, decreasing=FALSE, type = c("labels", "nodes"), ...)
 
+\method{sort}{dendlist}(x, ...)
+
 \method{sort}{hclust}(x, decreasing=FALSE, ...)
 }
 \arguments{

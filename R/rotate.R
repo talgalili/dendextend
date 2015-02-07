@@ -45,6 +45,8 @@
 #' 
 #' \method{sort}{dendrogram}(x, decreasing=FALSE, type = c("labels", "nodes"), ...)
 #' 
+#' \method{sort}{dendlist}(x, ...)
+#' 
 #' \method{sort}{hclust}(x, decreasing=FALSE, ...)
 #' 
 #' @param x a tree object (either a \code{dendrogram} or \code{hclust})
@@ -207,6 +209,15 @@ sort.dendrogram <- function(x, decreasing = FALSE, type = c("labels", "nodes"), 
 # ' @S3method sort hclust
 #' @export
 sort.hclust <- function(x, decreasing = FALSE,...) {rotate(x, order(labels(x),decreasing =decreasing ,...))}
+
+
+#' @export
+sort.dendlist <- function (x, ...)  {
+   for(i in seq_len(length(x))) {
+      x[[i]]  <- sort(x[[i]], ...)
+   }
+   x
+}
 
 
 

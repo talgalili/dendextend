@@ -3,6 +3,7 @@ dendextend 0.18.4 (2015-02-07)
 
 ###NEW FUNCTIONS:
    * prune.rpart added
+   * sort.dendlist
 
 ###OTHER NOTES:
 
