@@ -5,7 +5,7 @@ output:
     toc: true    
 ---
 <!--
-%\VignetteEngine{knitr}
+%\VignetteEngine{knitr::docco_linear}
 %\VignetteIndexEntry{Introduction to dendextend}
 -->
 
@@ -98,7 +98,7 @@ Asked (http://stackoverflow.com/questions/27485549/how-to-colour-the-labels-of-a
 
 Solution: use the `labels_colors` function.
 
-```{r}
+```{r, fig.show='hold', fig.width=8, fig.height=3}
 # install.packages("dendextend")
 library(dendextend)
 
@@ -120,7 +120,7 @@ plot(dend, main = "A color for every state")
 
 Instead of using `1:5`, we can obviously use colors which are based on another factor (organized) the labels themseslves. But in such a case, we want to map between the order of the labels, and the order of the items in the original dataset. Here is another example based on the iris dataset:
 
-```{r}
+```{r, fig.show='hold', fig.width=8, fig.height=3}
 # install.packages("dendextend")
 library(dendextend)
 
@@ -153,7 +153,7 @@ plot(dend, main = "A color for every Species")
 Use the `color_branches` and `color_labels` functions, with the `k` (or`h`) parameter:
 
 
-```{r}
+```{r, fig.show='hold', fig.width=8, fig.height=3}
 # install.packages("dendextend")
 library(dendextend)
 
@@ -196,7 +196,7 @@ Asked (http://stackoverflow.com/questions/26965390/larger-font-and-spacing-betwe
 
 Solution: use the `set` function, with the "labels_cex" parameter.
 
-```{r}
+```{r, fig.show='hold', fig.width=8, fig.height=4}
 # install.packages("dendextend")
 library(dendextend)
 
