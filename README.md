@@ -3,6 +3,16 @@
 
 # dendextend
 
+**Table of content:**
+
+* [Introduction](#introduction)
+* [Motivation](#motivation)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Share your dendrograms!](#share-your-dendrograms)
+* [Contact](#contact)
+
+
 ## Introduction
 
 Class "dendrogram" provides general functions for handling tree-like structures in R. It is intended as a replacement for similar functions in hierarchical clustering and classification/regression trees, such that all of these can use the same engine for plotting or cutting trees.
@@ -70,7 +80,7 @@ You are welcome to:
 * compose a friendly e-mail to: <tal.galili@gmail.com>
 
 
-## Available functions
+## Latest news
 
 You can see the most recent changes to the package in the NEWS.md file:
 
