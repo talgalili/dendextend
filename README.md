@@ -3,7 +3,7 @@
 
 # dendextend
 
-**Table of content:**
+**Table of contents:**
 
 * [Introduction](#introduction)
 * [Motivation](#motivation)
