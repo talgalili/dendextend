@@ -250,7 +250,7 @@ To also change an attribute, you can use the various assign functions from the p
 
 Asked (http://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2?)[here].
 
-Solution: use the `set` function, with the `branches_k_color`, `k`, and `value` parameters (could also be done using `color_branches`).
+Solution: use the `color_branches` function (or the `set` function, with the "branches_k_color", "k", and "value" parameters ).
 
 (Getting the data for this example is from the (http://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2?)[original SO question])
 
@@ -850,7 +850,9 @@ library(dendextend)
 # get some colors
 cols_branches <- c("darkred", "forestgreen", "orange", "blue")
 # Set the colors of 4 branches
-dend1 <- set(dend1, "branches_k_color", k = 4, value = cols_branches)
+dend1 <- color_branches(dend1, k = 4, col = cols_branches)
+# or with:
+# dend1 <- set(dend1, "branches_k_color", k = 4, value = cols_branches)
 
 # get the colors of the tips of the dendrogram:
 col_labels <- cols_branches[cutree(dend1, k = 4)]
