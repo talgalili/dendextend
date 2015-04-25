@@ -229,15 +229,11 @@ get_leaves_branches_attr <- function (object, attr = c("col", "lwd", "lty"), ...
    if(!is.dendrogram(object)) warning("'object' should be a dendrogram.")   
    attr <- match.arg(attr)
    
-   dend_leaves_edgePar <- get_leaves_edgePar(dend)
+   dend_leaves_edgePar <- get_leaves_edgePar(object)
    
-   get_attr <- function(element) {
-      attr_in_dend <- names(element)
-      has_attr <- attr_in_dend %in% attr
-      the_attr_value <- ifelse(any(has_attr), element[has_attr], NA)
-      the_attr_value      
-   }
-   unlist(sapply(dend_leaves_edgePar, get_attr))   
+   get_attr <- function(element) element[attr]
+   
+   unname(unlist(lapply(dend_leaves_edgePar, get_attr))   )
 }
 
 
