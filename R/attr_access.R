@@ -106,6 +106,7 @@ get_leaves_attr <- function (object, attribute, simplify = TRUE, ...) {
 #' @return 
 #' A list (or a vector) with the dendrogram's leaves nodePar attribute
 #' @seealso \link{get_nodes_attr}, \link{assign_values_to_leaves_nodePar}, \link{labels_colors}
+#' \link{get_leaves_edgePar}
 #' @examples
 #' # define dendrogram object to play with:
 #' hc <- hclust(dist(USArrests[1:3,]), "ave")
@@ -140,6 +141,146 @@ get_leaves_nodePar <- function (object, simplify = FALSE, ...) {
 
 
 
+#' @title Get edgePar of dendrogram's leaves
+#' @export
+#' @description
+#' This is helpful to get the attributes of branches of the leaves.
+#' For example, after we use \link{color_branches}, to get the colors
+#' of the labels to match (since getting the colors of branches to match
+#' those of the labels can be tricky).
+#' @param object a dendrogram object 
+#' @param simplify logical (default is FALSE). If TRUE, then the return vector is 
+#' after using \code{unlist} on it.
+#' @param ... not used
+#' @return 
+#' A list (or a vector) with the dendrogram's leaves edgePar attribute
+#' @seealso \link{get_nodes_attr}, \link{assign_values_to_leaves_nodePar}, \link{labels_colors}
+#' \link{get_leaves_nodePar}
+#' @examples
+#' # define dendrogram object to play with:
+#' hc <- hclust(dist(USArrests[1:5,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' # get_leaves_edgePar(dend) # error :)
+#' get_leaves_edgePar(dend)
+#' dend <- color_branches(dend, k = 3)
+#' get_leaves_edgePar(dend)
+#' get_leaves_edgePar(dend, TRUE)
+#' 
+#' dend <- dend %>% set("branches_lwd", c(2,1,2))
+#' get_leaves_edgePar(dend)
+#' 
+#' plot(dend)
+#' 
+get_leaves_edgePar <- function (object, simplify = FALSE, ...) {
+   if(!is.dendrogram(object)) warning("'object' should be a dendrogram.")   
+   
+   is_node_leaf <- get_nodes_attr(object, "leaf")
+   is_node_leaf[is.na(is_node_leaf)] <- FALSE
+   
+   ret <- get_nodes_attr(object, "edgePar", simplify = FALSE)[is_node_leaf]
+   if(simplify) ret <- unlist(ret)   
+   
+   return(ret)   
+}
+
+
+
+
+
+
+#' @title Get an attribute of the branches of a dendrogram's leaves
+#' @export
+#' @description
+#' This is helpful to get the attributes of branches of the leaves.
+#' For example, after we use \link{color_branches}, to get the colors
+#' of the labels to match (since getting the colors of branches to match
+#' those of the labels can be tricky).
+#' This is based on \link{get_leaves_edgePar}.
+#' 
+#' @param object a dendrogram object 
+#' @param attr character, the attr to get. Can be either "col", "lwd", or "lty".
+#' @param ... not used
+#' @return 
+#' A vector with the dendrogram's leaves nodePar attribute
+#' @seealso \link{get_nodes_attr}, \link{assign_values_to_leaves_nodePar}, \link{labels_colors}
+#' \link{get_leaves_nodePar}, \link{get_leaves_edgePar}
+#' @examples
+#' # define dendrogram object to play with:
+#' hc <- hclust(dist(USArrests[1:5,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' dend <- dend %>% 
+#'          color_branches(k = 3) %>%
+#'          set("branches_lwd", c(2,1,2)) %>%
+#'          set("branches_lty", c(1,2,1))
+#'          
+#' plot(dend)
+#' 
+#' get_leaves_branches_attr(dend, "col")
+#' get_leaves_branches_attr(dend, "lwd")
+#' get_leaves_branches_attr(dend, "lty")
+#' 
+#' labels_colors(dend)  <- get_leaves_branches_attr(dend, "col")
+#' plot(dend)
+#' 
+#' 
+get_leaves_branches_attr <- function (object, attr = c("col", "lwd", "lty"), ...) {
+   if(!is.dendrogram(object)) warning("'object' should be a dendrogram.")   
+   attr <- match.arg(attr)
+   
+   dend_leaves_edgePar <- get_leaves_edgePar(dend)
+   
+   get_attr <- function(element) {
+      attr_in_dend <- names(element)
+      has_attr <- attr_in_dend %in% attr
+      the_attr_value <- ifelse(any(has_attr), element[has_attr], NA)
+      the_attr_value      
+   }
+   unlist(sapply(dend_leaves_edgePar, get_attr))   
+}
+
+
+
+
+
+#' @title Get the colors of the branches of a dendrogram's leaves
+#' @export
+#' @description
+#' It is useful to get the colors of branches of the leaves,
+#' after we use \link{color_branches}, so to then match the colors of the labels
+#' to that of the branches (since getting the colors of branches to match
+#' those of the labels can be tricky).
+#' This is based on \link{get_leaves_branches_attr} which is based on 
+#' \link{get_leaves_edgePar}.
+#' 
+#' 
+#' @param object a dendrogram object 
+#' @param ... not used
+#' @return 
+#' A vector with the dendrogram's leaves' branches' colors
+#' @seealso \link{get_nodes_attr}, \link{assign_values_to_leaves_nodePar}, \link{labels_colors}
+#' \link{get_leaves_nodePar}, \link{get_leaves_edgePar}, \link{get_leaves_branches_attr}
+#' @examples
+#' # define dendrogram object to play with:
+#' hc <- hclust(dist(USArrests[1:5,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' par(mfrow = c(1,2))
+#' dend <- dend %>% 
+#'          color_branches(k = 3) %>%
+#'          set("branches_lwd", c(2,1,2)) %>%
+#'          set("branches_lty", c(1,2,1)) 
+#'          
+#' plot(dend)
+#' 
+#' labels_colors(dend)  <- get_leaves_branches_col(dend)
+#' plot(dend)
+#' 
+#' 
+get_leaves_branches_col <- function (object, ...) {
+   get_leaves_branches_attr(object, attr = "col", ...)
+}
 
 
 

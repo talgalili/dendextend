@@ -1,3 +1,11 @@
+dendextend 0.18.6 (2015-04-25)
+----------------------------------------
+###NEW FUNCTIONS:
+   * get_leaves_edgePar - Get edgePar of dendrogram's leaves
+   * get_leaves_branches_attr - Get an attribute of the branches of a dendrogram's leaves
+   * get_leaves_branches_col - Get the colors of the branches of a dendrogram's leaves. This function is actually the point of the two other functions. It is meant to help match the color of the labels with that of the branches - after running color_branches.
+
+
 dendextend 0.18.5 (2015-04-22)
 ----------------------------------------
 
