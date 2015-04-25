@@ -1871,6 +1871,15 @@ Both Baker's Gamma and cophenetic correlation (Which will be introduced shortly)
 cor.dendlist(dend1234)
 ```
 
+The corrplot library offers a nice visualization:
+
+```{r}
+library(corrplot)
+corrplot(cor.dendlist(dend1234), "pie", "lower")
+```
+
+Which easily tells us that single, average and centroid give similar results, while complete is somewhat different.
+
 
 
 #### Baker's Gamma Index

@@ -11,6 +11,8 @@ dendextend 0.18.6 (2015-04-25)
 ###VIGNETTE
    * added example for using "get_leaves_branches_col" in "How to color the branches in heatmap.2?"
 
+###OTHER NOTES:
+   * library corrplot added to plot cor.dendlist results. Examples added to vignette and function's example.
 
 dendextend 0.18.5 (2015-04-22)
 ----------------------------------------
@@ -27,7 +29,6 @@ dendextend 0.18.4 (2015-02-07)
    * sort.dendlist
    * as.hclust.pvclust
 
-###OTHER NOTES:
 
 
 

@@ -48,7 +48,8 @@ Suggests:
     gplots,
     DendSer,
     dynamicTreeCut,
-    pvclust
+    pvclust,
+    corrplot
 Enhances: ggdendro,
     labeltodendro,dendroextras,
     data.table

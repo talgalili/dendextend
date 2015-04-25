@@ -33,7 +33,13 @@ dend2 <- iris[ss,-5] \%>\% dist \%>\% hclust("single") \%>\% as.dendrogram
 dend3 <- iris[ss,-5] \%>\% dist \%>\% hclust("ave") \%>\% as.dendrogram
 dend4 <- iris[ss,-5] \%>\% dist \%>\% hclust("centroid") \%>\% as.dendrogram
 #    cutree(dend1)
-cor.dendlist(dendlist(d1 = dend1, d2 = dend2, d3 = dend3, d4 = dend4))
+cors <- cor.dendlist(dendlist(d1 = dend1, d2 = dend2, d3 = dend3, d4 = dend4))
+
+cors
+
+# a nice plot for them:
+library(corrplot)
+corrplot(cor.dendlist(dend1234), "pie", "lower")
 
 }
 }
