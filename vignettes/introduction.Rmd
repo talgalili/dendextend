@@ -855,7 +855,12 @@ dend1 <- color_branches(dend1, k = 4, col = cols_branches)
 # dend1 <- set(dend1, "branches_k_color", k = 4, value = cols_branches)
 
 # get the colors of the tips of the dendrogram:
-col_labels <- cols_branches[cutree(dend1, k = 4)]
+# col_labels <- cols_branches[cutree(dend1, k = 4)] # this may need tweaking in various cases - the following is a more general solution.
+
+col_labels <- get_leaves_branches_col(dend1)
+# But due to the way heatmap.2 works - we need to fix it to be in the 
+# order of the data!	
+col_labels <- col_labels[order(order.dendrogram(dend1))]
 
 # Creating Heat Map
 if(!require(gplots)) install.packages("gplots")
@@ -874,6 +879,7 @@ heatmap.2(test,
 		cexCol = 0.8,
 		na.rm = TRUE,
 		RowSideColors = col_labels # to add nice colored strips		
+      # colRow = col_labels # to add nice colored labels - only for qplots 2.17.0 and higher
 		) 
 		
 
