@@ -56,7 +56,7 @@ tanglegram(tree1, ...)
    highlight_distinct_edges = TRUE,
    ...)
 
-\method{tanglegram}{dendlist}(tree1, which = c(1L,2L), ...)
+\method{tanglegram}{dendlist}(tree1, which = c(1L,2L), main_left, main_right, ...)
 
 \method{tanglegram}{hclust}(tree1, ...)
 

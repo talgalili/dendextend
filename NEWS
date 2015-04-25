@@ -5,6 +5,9 @@ dendextend 0.18.6 (2015-04-25)
    * get_leaves_branches_attr - Get an attribute of the branches of a dendrogram's leaves
    * get_leaves_branches_col - Get the colors of the branches of a dendrogram's leaves. This function is actually the point of the two other functions. It is meant to help match the color of the labels with that of the branches - after running color_branches.
 
+###UPDATED FUNCTIONS:
+   * tanglegram.dendlist - now gets main_left and main_right (if they are null) from the names in dendlist (if they exist)
+
 ###VIGNETTE
    * added example for using "get_leaves_branches_col" in "How to color the branches in heatmap.2?"
 

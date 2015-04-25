@@ -489,7 +489,7 @@ plot_horiz.dendrogram <- function (x,
 #'    highlight_distinct_edges = TRUE,
 #'    ...)
 #' 
-#' \method{tanglegram}{dendlist}(tree1, which = c(1L,2L), ...)
+#' \method{tanglegram}{dendlist}(tree1, which = c(1L,2L), main_left, main_right, ...)
 #' 
 #' \method{tanglegram}{hclust}(tree1, ...)
 #' 
@@ -630,13 +630,21 @@ tanglegram.phylo <- function(tree1, ...) {tanglegram.dendrogram(tree1 = tree1, .
 
 # ' @S3method tanglegram dendlist
 #' @export
-tanglegram.dendlist <- function(tree1, which = c(1L,2L), ...) {
+tanglegram.dendlist <- function(tree1, which = c(1L,2L), main_left, main_right, ...) {
    # many things can go wrong here (which we might wish to fix):
    # we could get a dendlist with a length of 1 - in which case, we can't plot
    if(length(tree1) == 1) stop("Your dendlist has only 1 dendrogram - a tanglegram can not be plotted")
    # we could get a dendlist with a length of >2 - in which case, should we only plot the first two items?
    if(all(which %in% seq_len(length(tree1)))) {
-      tanglegram.dendrogram(tree1[[which[1]]], tree1[[which[2]]], ...)
+      l1 <- which[1]
+      l2 <- which[2]
+      
+      if(!is.null(names(tree1))) {
+         if(missing(main_left)) main_left <- names(tree1)[l1]
+         if(missing(main_right)) main_right <- names(tree1)[l2]               
+      }      
+      
+      tanglegram.dendrogram(tree1[[l1]], tree1[[l2]], main_left = main_left, main_right = main_right, ...)
    } else {
       stop("You are trying to plot trees which are outside the range of trees in your dendlist")
    }   
