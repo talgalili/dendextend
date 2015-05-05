@@ -39,11 +39,11 @@
 #' untangle(dend1, ...)
 #' 
 #' \method{untangle}{dendrogram}(dend1, dend2 ,
-#'    method = c("random", "step1side", "step2side", "DendSer"),
+#'    method = c("random", "step1side", "step2side", "DendSer", "ladderize"),
 #'    ...)
 #' 
 #' \method{untangle}{dendlist}(dend1, 
-#'    method = c("random", "step1side", "step2side", "DendSer"),
+#'    method = c("random", "step1side", "step2side", "DendSer", "ladderize"),
 #'    which = c(1L,2L), ...)
 #' 
 #' @param dend1 a dednrogram or a dendlist object
@@ -101,21 +101,22 @@ untangle.default <- function (dend1, ...) {stop("No default function for tangleg
 # ' @S3method untangle dendrogram
 #' @export
 untangle.dendrogram <- function (dend1, dend2, 
-                                 method = c("random", "step1side", "step2side", "DendSer"), ...) {
+                                 method = c("random", "step1side", "step2side", "DendSer", "ladderize"), ...) {
    method <- match.arg(method)
    
    switch(method,
           random = untangle_random_search(dend1, dend2, ...),
           step1side = untangle_step_rotate_1side(dend1, dend2, ...),
           step2side = untangle_step_rotate_2side(dend1, dend2, ...),
-          DendSer = untangle_DendSer(dendlist(dend1, dend2), ...)
+          DendSer = untangle_DendSer(dendlist(dend1, dend2), ...),
+          ladderize = ladderize(dendlist(dend1, dend2), ...),          
    )
 }
 
 # ' @S3method untangle dendlist
 #' @export
 untangle.dendlist <- function(dend1, 
-                              method = c("random", "step1side", "step2side", "DendSer"), 
+                              method = c("random", "step1side", "step2side", "DendSer", "ladderize"), 
                               which = c(1L,2L), ...) {
    method <- match.arg(method)
    untangle(dend1[[which[1]]], dend1[[which[2]]], method = method, ...)
