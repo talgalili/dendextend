@@ -642,7 +642,10 @@ tanglegram.dendlist <- function(tree1, which = c(1L,2L), main_left, main_right, 
       if(!is.null(names(tree1))) {
          if(missing(main_left)) main_left <- names(tree1)[l1]
          if(missing(main_right)) main_right <- names(tree1)[l2]               
-      }      
+      } else {
+         if(missing(main_left)) main_left <- ""
+         if(missing(main_right)) main_right <- ""                        
+      }
       
       tanglegram.dendrogram(tree1[[l1]], tree1[[l2]], main_left = main_left, main_right = main_right, ...)
    } else {

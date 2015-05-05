@@ -3,6 +3,7 @@ dendextend 0.18.7 (2015-05-05)
 
 ###UPDATED FUNCTIONS:
    * untangle - added method="ladderize"
+   * tanglegram.dendlist - fix it when names is null to have the default be ""
 
 
 dendextend 0.18.6 (2015-04-25)
