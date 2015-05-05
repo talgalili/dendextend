@@ -32,6 +32,8 @@ Introduction to dendextend
 **tl;dr**: the [_dendextend package_](http://cran.r-project.org/web/packages/dendextend/) let's you create figures like this:
 
 
+
+
 ```{r, echo=FALSE, warning=FALSE, fig.align='center'}
 suppressMessages(library(dendextend))
 suppressMessages(library(dendextendRcpp))
@@ -859,7 +861,7 @@ dend1 <- color_branches(dend1, k = 4, col = cols_branches)
 
 col_labels <- get_leaves_branches_col(dend1)
 # But due to the way heatmap.2 works - we need to fix it to be in the 
-# order of the data!	
+# order of the data!   
 col_labels <- col_labels[order(order.dendrogram(dend1))]
 
 # Creating Heat Map
@@ -1563,12 +1565,13 @@ The DendSer package helps in re-arranging a dendrogram to optimize visualization
 
 
 ```{r, fig.width=7, fig.height=3}
-par(mfrow = c(1,2))
-library(DendSer)
-DendSer.dendrogram(dend15)
-
-dend15 %>% color_branches %>%                      plot
-dend15 %>% color_branches %>% rotate_DendSer %>%   plot
+if(require(DendSer)) {
+   par(mfrow = c(1,2))
+   DendSer.dendrogram(dend15)
+   
+   dend15 %>% color_branches %>%                      plot
+   dend15 %>% color_branches %>% rotate_DendSer %>%   plot
+}
 ```
 
 
@@ -1587,10 +1590,12 @@ heatmap.2(x)
 # now let's spice up the dendrograms a bit:
 Rowv  <- x %>% dist %>% hclust %>% as.dendrogram %>%
    set("branches_k_color", k = 3) %>% set("branches_lwd", 4) %>%
-   rotate_DendSer(ser_weight = dist(x))
+   ladderize
+#    rotate_DendSer(ser_weight = dist(x))
 Colv  <- x %>% t %>% dist %>% hclust %>% as.dendrogram %>%
    set("branches_k_color", k = 2) %>% set("branches_lwd", 4) %>%
-   rotate_DendSer(ser_weight = dist(t(x)))
+   ladderize
+#    rotate_DendSer(ser_weight = dist(t(x)))
 
 heatmap.2(x, Rowv = Rowv, Colv = Colv)
 ```
@@ -1748,7 +1753,8 @@ We may wish to improve the layout of the trees. For this we have the `entangleme
 
 ```{r}
 dends_15_51 %>% entanglement # lower is better
-dends_15_51 %>% untangle(method = "DendSer") %>% entanglement # lower is better
+# dends_15_51 %>% untangle(method = "DendSer") %>% entanglement # lower is better
+dends_15_51 %>% untangle(method = "ladderize") %>% entanglement # lower is better
 ```
 
 
@@ -1772,7 +1778,8 @@ x %>% plot(main = paste("entanglement =", round(entanglement(x), 2)))
 Using DendSer:
 
 ```{r, fig.width=5, fig.height=3}
-x <- dends_15_51 %>% untangle(method = "DendSer") 
+# x <- dends_15_51 %>% untangle(method = "DendSer") 
+x <- dends_15_51 %>% untangle(method = "ladderize") 
 x %>% plot(main = paste("entanglement =", round(entanglement(x), 2)))
 ```
 
@@ -2185,4 +2192,3 @@ Session info
 ```{r, cache=FALSE}
 sessionInfo()
 ```
-

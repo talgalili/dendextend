@@ -1,5 +1,7 @@
 dendextend 0.18.7 (2015-05-05)
 ----------------------------------------
+###VIGNETTE
+   * remove dependancy on DendSer (using require instead of library)
 
 ###UPDATED FUNCTIONS:
    * untangle - added method="ladderize"
