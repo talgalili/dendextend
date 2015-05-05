@@ -231,11 +231,11 @@
 #' Rowv_dend <- x %>% dist %>% hclust %>% 
 #'    as.dendrogram %>% 
 #'    set("branches_k", k = 3) %>% 
-#'    set("branches_lwd", 2) %>%  rotate_DendSer
+#'    set("branches_lwd", 2) %>%  ladderize # rotate_DendSer
 #' Colv_dend <- t(x) %>% dist %>% hclust %>% 
 #'    as.dendrogram %>% 
 #'    set("branches_k", k = 3) %>% 
-#'    set("branches_lwd", 2) %>%  rotate_DendSer
+#'    set("branches_lwd", 2) %>%  ladderize # rotate_DendSer
 #' heatmap.2(x, Rowv = Rowv_dend, Colv = Colv_dend)  
 #' 
 #' 
