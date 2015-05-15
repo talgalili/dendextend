@@ -513,7 +513,7 @@ cutree_1k.dendrogram <- function(tree, k,
       return(cluster_vec)
    }
    
-   # deal with cases that we cut the tree to all leaves. (negative h)
+   # deal with cases that we cut the tree to all leaves. (k == nleaves)
    if(k == nleaves(tree)) {
       labels_tree <- labels(tree)
       cluster_vec <- 1:length(labels_tree)
