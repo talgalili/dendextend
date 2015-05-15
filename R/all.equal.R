@@ -89,8 +89,21 @@ all.equal.dendrogram <- function (target, current,
    
    
    if(use.edge.length) {
-      result <-all.equal(get_branches_heights(target) ,
-                get_branches_heights(current),tolerance = tolerance, scale = scale)
+      
+#       suppressWarnings is in order to deal with the case
+      # of a tree with just one item.
+      # If Rcpp is on, we would get
+            #  In Rcpp_get_dend_heights(tree, branches_heights = TRUE, labels_heights = FALSE) :
+            #       'height' attr is missing from node, 0 is returned, please check your tree.
+      
+      target_branches_heights <- suppressWarnings(
+               get_branches_heights(target) )
+      current_branches_heights <- suppressWarnings(
+               get_branches_heights(current) )
+      
+      result <- all.equal(target_branches_heights,
+                         current_branches_heights,
+                         tolerance = tolerance, scale = scale)
       if(!is.logical(result)) return(paste("Difference in branch heights - ", result, collapse = ""))      
    }
    

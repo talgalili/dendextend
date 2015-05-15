@@ -7,8 +7,7 @@ context("cut_lower_fun works")
 
 test_that("cut_lower_fun works",{
    
-      dend = as.dendrogram(hclust(dist(datasets::iris[1:4,-5])))
-   
+      dend <- datasets::iris[1:4,-5] %>% dist %>% hclust %>% as.dendrogram
       # this is really cool!
       expect_identical(
          cut_lower_fun(dend, .4, labels),
@@ -39,10 +38,17 @@ test_that("cut_lower_fun works",{
    			 lapply(cut(dend, h = -1)$lower, labels)   )
    	   )
    	   
-   	   expect_identical(
-   		  dendextendRcpp::dendextendRcpp_cut_lower_fun(dend[[1]], .4, function(x)x),
+         tmp <- dendextendRcpp::dendextendRcpp_cut_lower_fun(dend[[1]], .4, function(x) {x})
+   	   expect_identical(tmp,
    		  list(dend[[1]])  
    	   )
+
+         # Here we should get:
+            #  In Rcpp_get_dend_heights(tree, branches_heights = TRUE, labels_heights = FALSE) :
+            #    	'height' attr is missing from node, 0 is returned, please check your tree.
+#          expect_warning(all.equal(tmp,
+#                    list(dend[[1]])))
+         
    	}  # run only if dendextendRcpp was loaded
 
       
