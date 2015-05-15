@@ -33,6 +33,11 @@ between target and current.
 }
 \description{
 This function makes a global comparison of two or more dendrograms trees.
+
+The function can get two \link{dendlist} objects and compare
+them using \link{all.equal.list}. If a dendlist is in only "target"
+(and not "current"), it will go through the dendlist and
+compare all of the dendrograms within it to one another.
 }
 \examples{
 \dontrun{

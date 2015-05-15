@@ -27,6 +27,11 @@
 #' @description
 #' This function makes a global comparison of two or more dendrograms trees.
 #' 
+#' The function can get two \link{dendlist} objects and compare
+#' them using \link{all.equal.list}. If a dendlist is in only "target" 
+#' (and not "current"), it will go through the dendlist and
+#' compare all of the dendrograms within it to one another.
+#' 
 #' @param target an object of type \link{dendrogram} or \link{dendlist}
 #' @param current an object of type \link{dendrogram} 
 #' @param use.edge.length logical (TRUE). If to check branches' heights.
@@ -134,7 +139,21 @@ all.equal.dendrogram <- function (target, current,
 all.equal.dendlist <- function(target, current, ...) {
    if(!is.dendlist(target)) stop("target needs to be a dendlist object")
    
+   # If we have only 1 item in the dendlist - then compare the internal items only
+   if(!missing(current)) {
+      return(base::all.equal.list(target, current))
+   }
+   # else - if we ONLY have targer, then we must want to 
+   # compare all of the dendrograms inside it:
+   
    n_list <- length(target)
+      
+   if(n_list < 2) {
+      warning("Did you really want to compare 'all.equal' with a dendlist which contains only 1 item? (with no 'current' parameter?!)") 
+      return(TRUE)
+   }
+
+   
    are_equal <- vector("list", n_list)
    pairwise_combn <- combn(n_list, 2)
    

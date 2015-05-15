@@ -24,6 +24,10 @@ test_that("dendlist works",{
    expect_identical(
       dendlist(dend), dendlist(dendlist(dend))
    )
+#    dendextend:::all.equal.dendlist(dendlist(dend), dendlist(dendlist(dend))) 
+# This fails?
+
+
    expect_identical(
       dendlist(dend, dend), dendlist(dendlist(dend, dend))
    )
@@ -55,7 +59,33 @@ test_that("dendlist works",{
    expect_true(is.dendlist(dendlist(dend)))
    
    
-   
+
    
 })
 
+
+
+
+
+test_that("all.equal.dendlist works",{
+   dend <- iris[,-5] %>% dist %>% hclust %>% as.dendrogram
+
+   expect_true(
+      all.equal(dendlist(dend, dend))
+   )
+   expect_true(
+      all.equal(dendlist(dend, dend, dend))
+   )
+   
+   expect_true(
+      all.equal(dendlist(dend, dend), dendlist(dend, dend))
+   )
+   
+   p_dend <- prune(dend, "1")
+   expect_true(
+      is.character(
+         all.equal(dendlist(dend, p_dend))
+         )
+   )
+   
+})

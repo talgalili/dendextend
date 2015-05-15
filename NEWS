@@ -1,3 +1,10 @@
+dendextend 0.18.8 (2015-05-15)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+   * all.equal.dendlist - can now compare two dendlist objects to one another, and not only the dendrograms inside one dendlist. (also added new tests that all.equal.dendlist works)
+
+
 dendextend 0.18.7 (2015-05-05)
 ----------------------------------------
 ###VIGNETTE
