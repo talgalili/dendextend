@@ -6,6 +6,9 @@ dendextend 0.18.8 (2015-05-16)
    * all.equal.dendrogram - suppress warning for a dend with only 1 item, when using dendextendRcpp.
    * rect.dendrogram - make the heights of the rects be in the middle of the two clusters so that they would look nicer. Added prop_k_height to state which proportion of the height the rect should be (between k and k+1 heights). Also added upper_rect to allow the user to customize the exact height.
 
+###BUG FIXES:
+   * identify.dendrogram - parameter horiz now works (fixes #4)
+
 dendextend 0.18.7 (2015-05-05)
 ----------------------------------------
 ###VIGNETTE

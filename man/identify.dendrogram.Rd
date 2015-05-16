@@ -59,7 +59,11 @@ hc <- iris[ss,-5] \%>\% dist \%>\% hclust
 dend <- hc \%>\% as.dendrogram
 
 plot(dend)
-identify.dendrogram(dend)
+identify(dend)
+
+plot(dend, horiz = TRUE)
+identify(dend, horiz = TRUE)
+
 }
 }
 \seealso{

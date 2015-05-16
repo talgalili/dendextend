@@ -264,10 +264,14 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
 #' dend <- hc %>% as.dendrogram
 #' 
 #' plot(dend)
-#' identify.dendrogram(dend)
+#' identify(dend)
+#' 
+#' plot(dend, horiz = TRUE)
+#' identify(dend, horiz = TRUE)
+#' 
 #' }
 identify.dendrogram <- function (x, FUN = NULL, N = 20, MAXCLUSTER, DEV.FUN = NULL, 
-                                 horiz =FALSE, ...) 
+                                 horiz = FALSE, ...) 
 {
  
    # In tree_heights I am removing the first element
@@ -284,7 +288,13 @@ identify.dendrogram <- function (x, FUN = NULL, N = 20, MAXCLUSTER, DEV.FUN = NU
    DEV.x <- grDevices::dev.cur()
    for (n in 1L:N) {
       grDevices::dev.set(DEV.x)
-      X <- locator(1)
+      X <- locator(1)      
+      if(horiz) {
+         tmp <- X$x
+         X$x <- X$y
+         X$y <- tmp
+      }
+      
       if (is.null(X)) 
          break
       k <- min(which(x_heights < X$y), MAXCLUSTER)
