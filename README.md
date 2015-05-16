@@ -52,8 +52,8 @@ install.packages.2('colorspace')
 And then you may load the package using:
 
 ```R
-library(dendextend)
-library(dendextendRcpp)
+library("dendextend")
+library("dendextendRcpp")
 ```
 
 ## Usage
