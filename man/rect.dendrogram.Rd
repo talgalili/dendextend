@@ -98,6 +98,8 @@ dend <- hc \%>\% as.dendrogram
 
 plot(dend)
 rect.dendrogram(dend,2, border = 2)
+rect.dendrogram(dend,3, border = 4)
+Vectorize(rect.dendrogram, "k")(dend,4:5, border = 6)
 
 plot(dend)
 rect.dendrogram(dend, 3 , border = 1:3,
