@@ -15,7 +15,7 @@ skullkey from here:
 rect.dendrogram(tree, k = NULL, which = NULL, x = NULL, h = NULL,
   border = 2, cluster = NULL, horiz = FALSE, density = NULL,
   angle = 45, text = NULL, text_cex = 1, text_col = 1, xpd = TRUE,
-  lower_rect, ...)
+  lower_rect, upper_rect = 0, prop_k_height = 0.5, ...)
 }
 \arguments{
 \item{tree}{a \link{dendrogram} object.}
@@ -72,6 +72,11 @@ You can use a value such as 0, to get the rect above the labels.
 
 Notice that for a plot with small margins, it would be better to set this
 parameter manually.}
+
+\item{upper_rect}{a (scalar) value to add (default is 0) to how high should the upper part of the rect be.}
+
+\item{prop_k_height}{a (scalar) value (should be between 0 to 1), indicating what proportion
+of the height our rect will be between the height needed for k and k+1 clustering.}
 
 \item{...}{parameters passed to rect (such as lwd, lty, etc.)}
 }

@@ -64,6 +64,9 @@
 #' 
 #' Notice that for a plot with small margins, it would be better to set this 
 #' parameter manually.
+#' @param upper_rect a (scalar) value to add (default is 0) to how high should the upper part of the rect be.
+#' @param prop_k_height a (scalar) value (should be between 0 to 1), indicating what proportion
+#' of the height our rect will be between the height needed for k and k+1 clustering.
 #' @param ... parameters passed to rect (such as lwd, lty, etc.)
 #' @seealso
 #' \link{rect.hclust}, \link{order.dendrogram}, \link{cutree.dendrogram}
@@ -103,7 +106,8 @@
 #' rect.dendrogram(dend,4, border = 4, lty = 2, lwd = 3, horiz = TRUE)
 rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, border = 2, 
           cluster = NULL, horiz = FALSE, density = NULL, angle = 45, 
-          text = NULL, text_cex = 1, text_col = 1 , xpd = TRUE, lower_rect, ...) 
+          text = NULL, text_cex = 1, text_col = 1 , xpd = TRUE, 
+          lower_rect, upper_rect = 0, prop_k_height = 0.5, ...) 
 {
    if(!is.dendrogram(tree)) stop("x is not a dendrogram object.")
 
@@ -164,14 +168,20 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
          #          ytop = mean(tree_heights[(k - 1):k])
          #          ytop = tree_heights[k] + abs(ybottom)
 #          ytop = mean(tree_heights[(k - 1):k]) + abs(ybottom)
-         ytop = tree_heights[names(tree_heights) == k] # + height_to_add # + abs(ybottom)          
+         ytop <-  tree_heights[names(tree_heights) == k] * prop_k_height + 
+                  tree_heights[names(tree_heights) == k+1] * (1-prop_k_height) + 
+                  upper_rect # tree_heights[k] + height_to_add # + abs(xright)
+
       } else {         
          ybottom = m[which[n]] + 0.66
          if(missing(lower_rect)) lower_rect <- par("usr")[2L] + strwidth("X")*(max(nchar(labels(tree))) + 1) 
          xright = lower_rect
          ytop = m[which[n] + 1] + 0.33
 #          xleft = mean(tree_heights[(k - 1):k])
-         xleft = tree_heights[names(tree_heights) == k] # tree_heights[k] + height_to_add # + abs(xright)
+         xleft <- 
+               tree_heights[names(tree_heights) == k] * prop_k_height + 
+               tree_heights[names(tree_heights) == k+1] * (1-prop_k_height) + 
+               upper_rect # tree_heights[k] + height_to_add # + abs(xright)
       }      
       rect(xleft, 
            ybottom,
