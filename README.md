@@ -36,15 +36,17 @@ install.packages('dendextendRcpp')
 To install the GitHub version:
 
 ```R
-if (!require('devtools')) install.packages('devtools'); # make sure you have Rtools installed first! if not, then run:
-#install.packages('installr')
-#install.Rtools()
+install.packages.2 <- function (pkg) if (!require(pkg)) install.packages(pkg);
+install.packages.2('devtools')
+install.packages.2('Rcpp')
+# make sure you have Rtools installed first! if not, then run:
+#install.packages('installr'); install.Rtools()
 devtools::install_github('talgalili/dendextend')
 devtools::install_github('talgalili/dendextendRcpp')
 
 # Having colorspace is also useful, since it is used
 # In various examples in the vignettes
-if (!require('colorspace')) install.packages('colorspace'); # make sure you have Rtools
+install.packages.2('colorspace')
 ```
 
 And then you may load the package using:
