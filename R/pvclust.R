@@ -98,7 +98,7 @@ na_locf <- function(x, first_na_value = 0, recursive = TRUE, ...) {
 #' @export
 as.hclust.pvclust <- function(x,...) {
    # library(pvclust)
-   object[["hclust"]]
+   x[["hclust"]]
 }
 
 
