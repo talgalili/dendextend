@@ -265,6 +265,17 @@ dendextendWelcomeMessage <- function(){
 
 
 
+####### Cool stuff to add:
+# library(devtools)
+# use_code_of_conduct()
+# use_cran_badge()
+# use_coveralls()
+# #
+
+
+
+
+
 # 
 # # Run once:
 # shell('set PATH=%PATH%;"C:\\Program%20Files%20(x86)\\Git\\bin"', intern = TRUE)

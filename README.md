@@ -82,3 +82,9 @@ You can see the most recent changes to the package in the NEWS.md file:
 
 - https://github.com/talgalili/dendextend/blob/master/NEWS.md
 
+
+
+## Code of conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
