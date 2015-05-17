@@ -117,6 +117,7 @@ prune_leaf <- function(x, leaf_name,...)
 #' prune.dendrogram
 #' prune.hclust
 #' prune.phylo
+#' prune.rpart
 #' @description  Trimms a tree (dendrogram, hclust) from a set of leaves based on their labels.
 #' @usage
 #' prune(x, ...)

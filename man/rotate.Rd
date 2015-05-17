@@ -6,6 +6,7 @@
 \alias{rotate.dendrogram}
 \alias{rotate.hclust}
 \alias{rotate.phylo}
+\alias{sort.dendlist}
 \alias{sort.dendrogram}
 \alias{sort.hclust}
 \title{Rotate a tree object}

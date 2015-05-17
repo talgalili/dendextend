@@ -31,6 +31,7 @@
 #' rotate.phylo
 #' sort.hclust
 #' sort.dendrogram
+#' sort.dendlist
 #' rev.hclust
 #' @usage
 #' rotate(x, ...)
