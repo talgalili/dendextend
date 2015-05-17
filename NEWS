@@ -4,6 +4,7 @@ dendextend 0.19.0 (2015-05-17)
 
 ###BUG FIXES:
    * Fix "'::' or ':::' import not declared from: ‘rpart’" by adding rpart to DESCRIPTION.
+   * as.hclust.pvclust - use "x" instead of "object", to avoid "checking S3 generic/method consistency ... WARNING"
 
 
 dendextend 0.18.8 (2015-05-17)
