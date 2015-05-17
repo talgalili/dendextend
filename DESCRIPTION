@@ -1,7 +1,7 @@
 Package: dendextend
 Type: Package
 Title: Extending R's Dendrogram Functionality
-Version: 0.18.8
+Version: 0.19.0
 Date: 2015-05-17
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "http://www.r-statistics.com"),
@@ -52,7 +52,7 @@ Suggests:
     DendSer
 Enhances: ggdendro,
     labeltodendro,dendroextras,
-    data.table
+    data.table, rpart
 VignetteBuilder: knitr
 License: GPL-2 | GPL-3
 URL: https://github.com/talgalili/dendextend/,
