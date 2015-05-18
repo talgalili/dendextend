@@ -14,5 +14,3 @@ test_package("dendextend")
 # system.time(test_dir("inst\\tests")) # 13.4
 # search()
 
-# Remember to do somthing.
-

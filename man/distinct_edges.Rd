@@ -28,6 +28,7 @@ y <- set(x, "labels", 5:1)
 distinct_edges(x, y)
 distinct_edges(y, x)
 dend_diff(x, y)
+# tanglegram(x, y)
 }
 \seealso{
 \link{distinct_edges}, \link{highlight_distinct_edges},
