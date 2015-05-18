@@ -104,6 +104,7 @@ partition_leaves <- function(x, ...) {
 #' distinct_edges(x, y)
 #' distinct_edges(y, x)
 #' dend_diff(x, y)
+#' # tanglegram(x, y)
 #' 
 distinct_edges  <- function (x, y, ...) 
 {
@@ -116,8 +117,9 @@ distinct_edges  <- function (x, y, ...)
    bp2 <- lapply(bp2, sort_a_character)
    p = c()
    for (i in 1:length(bp1)) {
-      if (!(list(bp1[[i]]) %in% bp2)) {
-         p <- append(p, i)
+#      if (!(list(bp1[[i]]) %in% bp2)) {
+      if (!(bp1[i] %in% bp2)) {
+            p <- append(p, i)
       }
    }
    p
