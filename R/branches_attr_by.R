@@ -40,7 +40,7 @@
 #' 
 #' @param dend a dendrogram dend 
 #' @param clusters an integer vector of clusters.
-#' This HAS to be of the size of the number of leaves.
+#' This HAS to be of the same length as the number of leaves.
 #' Items that belong to no cluster should get the value 0.
 #' The vector should be of the same order as that of the labels in the dendrogram.
 #' If you create the clusters from something like \link{cutree} you would first

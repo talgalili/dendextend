@@ -91,6 +91,12 @@ all_unique <- function(x, ...) {
 #' (with parameters c=90 and l=50). If \code{colorspace} is not available,
 #' It will fall back on the \link{rainbow} function.
 #' @param groupLabels If TRUE add numeric group label - see Details for options
+#' @param clusters an integer vector of clusters. This is passed to \link{branches_attr_by_clusters}.
+#' This HAS to be of the same length as the number of leaves.
+#' Items that belong to no cluster should get the value 0.
+#' The vector should be of the same order as that of the labels in the dendrogram.
+#' If you create the clusters from something like \link{cutree} you would first
+#' need to use \link{order.dendrogram} on it, before using it in the function.
 #' @param warn logical (default from dendextend_options("warn") is FALSE).
 #' Set if warning are to be issued, it is safer to keep this at TRUE,
 #' but for keeping the noise down, the default is FALSE.
@@ -109,7 +115,9 @@ all_unique <- function(x, ...) {
 #' the same tree. Something which the original function was not able to handle.
 #' 
 #' @seealso \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
-#' \code{\link{hclust}}, \code{\link{labels_colors}}
+#' \code{\link{hclust}}, \code{\link{labels_colors}},
+#' \code{\link{branches_attr_by_clusters}}
+#' 
 #' @examples
 #' 
 #' \dontrun{
@@ -211,10 +219,60 @@ all_unique <- function(x, ...) {
 #'    hclust(method = "single") %>% # on it compute hierarchical clustering using the "average" method, 
 #'    as.dendrogram %>% color_branches(k=3) %>% plot # nice, returns the tree as is...
 #' 
+#' 
+#' # Example of the "clusters" parameter
+#' par(mfrow =c(1,2))
+#' dend <- c(1:5) %>% dist %>% hclust %>% as.dendrogram 
+#' dend %>% color_branches(k=3) %>% plot
+#' dend %>% color_branches(clusters=c(1,1,2,2,3)) %>% plot
+#' 
+#' 
 #' }
 #' 
-color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, warn = dendextend_options("warn"), ...){
+color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, 
+                           clusters,
+                           warn = dendextend_options("warn"), ...){
 
+   # This function makes sure a col vector is produced from various outputs.
+   get_col <- function(col, k) {
+      if(is.function(col)) {
+         col <- col(k)
+      } else {
+         if(length(col) < k) {
+            #          stop("Must give the same number of colors as number of clusters")
+            warning("Length of color vector was shorter than the number of clusters - color vector was recycled")
+            col <- rep(col, length.out = k)
+         }
+         if(length(col) > k) {
+            #          stop("Must give the same number of colors as number of clusters")
+            warning("Length of color vector was longer than the number of clusters - first k elements are used")
+            col <- col[seq_len(k)]
+         }
+      }
+      return(col)
+   }
+   
+   
+   
+#    col <- colorspace::rainbow_hcl
+   if(missing(col)) col <- rainbow_fun
+   
+   
+   if(!missing(clusters)) {
+      if(!missing(k)) warning("Both the parameters 'cluster' and 'k' are not missing - k is ignored.")
+      
+      if(length(clusters) != nleaves(tree)) {
+         warning("'clusters' is not of the same length as the number of labels. The tree is returned as is.")
+         return(tree)
+      }
+      
+      k <- length(unique(clusters))
+      col <- get_col(col, k)
+      return(branches_attr_by_clusters(tree, clusters, values = cols, attr = "col")   )
+   }
+   
+   
+   
    # Make sure the function works when the labels of the tree are not all unique
    old_labels <- labels(tree)
    labels_arent_unique <- !all_unique(old_labels)
@@ -223,8 +281,6 @@ color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, warn = d
       labels(tree) <- seq_along(old_labels)
    }
    
-   
-   if(missing(col)) col <- rainbow_fun
    
    if(is.null(k) & is.null(h)) {
       if(warn) warning("k (number of clusters) is missing, using the tree size as a default")      
@@ -243,22 +299,7 @@ color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL, warn = d
       return(tree)
    }
    
-   if(is.function(col)) {
-      col <- col(k)
-   } else {
-      if(length(col) < k) {
-         #          stop("Must give the same number of colors as number of clusters")
-         warning("Length of color vector was shorter than the number of clusters - color vector was recycled")
-         col <- rep(col, length.out = k)
-      }
-      if(length(col) > k) {
-         #          stop("Must give the same number of colors as number of clusters")
-         warning("Length of color vector was longer than the number of clusters - first k elements are used")
-         col <- col[seq_len(k)]
-      }
-      
-   }
-   
+   col <- get_col(col, k)
    
    if(!is.null(groupLabels)){
       if(length(groupLabels)==1){

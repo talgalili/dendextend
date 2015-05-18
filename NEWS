@@ -1,5 +1,9 @@
-dendextend 0.19.0 (2015-05-17)
+dendextend 0.19.0 (2015-05-18)
 ----------------------------------------
+
+###UPDATED FUNCTIONS:
+   * color_branches - gained a new "cluster" parameter to allow for easy uneven coloring of branches (using branches_attr_by_clusters). This is not a new feature, as it is an attempt to have the user access more options from one place (i.e.: color_branches).
+
 
 
 ###BUG FIXES:

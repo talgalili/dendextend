@@ -18,7 +18,7 @@ the same tree. Something which the original function was not able to handle.
 }
 \usage{
 color_branches(tree, k = NULL, h = NULL, col, groupLabels = NULL,
-  warn = dendextend_options("warn"), ...)
+  clusters, warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{tree}{A \code{dendrogram} or \code{hclust} tree object}
@@ -33,6 +33,13 @@ color_branches(tree, k = NULL, h = NULL, col, groupLabels = NULL,
 It will fall back on the \link{rainbow} function.}
 
 \item{groupLabels}{If TRUE add numeric group label - see Details for options}
+
+\item{clusters}{an integer vector of clusters. This is passed to \link{branches_attr_by_clusters}.
+This HAS to be of the same length as the number of leaves.
+Items that belong to no cluster should get the value 0.
+The vector should be of the same order as that of the labels in the dendrogram.
+If you create the clusters from something like \link{cutree} you would first
+need to use \link{order.dendrogram} on it, before using it in the function.}
 
 \item{warn}{logical (default from dendextend_options("warn") is FALSE).
 Set if warning are to be issued, it is safer to keep this at TRUE,
@@ -167,6 +174,14 @@ c(1:5) \%>\% # take some data
    hclust(method = "single") \%>\% # on it compute hierarchical clustering using the "average" method,
    as.dendrogram \%>\% color_branches(k=3) \%>\% plot # nice, returns the tree as is...
 
+
+# Example of the "clusters" parameter
+par(mfrow =c(1,2))
+dend <- c(1:5) \%>\% dist \%>\% hclust \%>\% as.dendrogram
+dend \%>\% color_branches(k=3) \%>\% plot
+dend \%>\% color_branches(clusters=c(1,1,2,2,3)) \%>\% plot
+
+
 }
 }
 \author{
@@ -174,6 +189,7 @@ Tal Galili, extensively based on code by Gregory Jefferis
 }
 \seealso{
 \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
-\code{\link{hclust}}, \code{\link{labels_colors}}
+\code{\link{hclust}}, \code{\link{labels_colors}},
+\code{\link{branches_attr_by_clusters}}
 }
 
