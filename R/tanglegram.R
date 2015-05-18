@@ -690,7 +690,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   cex_main_left=cex_main,
                                   cex_main_right=cex_main,
                                   cex_sub=cex_main,
-                                  highlight_distinct_edges = TRUE,
+                                  highlight_distinct_edges = FALSE,
                                   ... )
 {
    
