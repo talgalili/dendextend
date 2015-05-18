@@ -567,6 +567,13 @@ plot_horiz.dendrogram <- function (x,
 #' @param cex_main_right see cex_main.
 #' @param cex_sub see cex_main.
 #' @param highlight_distinct_edges logical (default is TRUE). If to highlight distinct edges in each tree (by changing their line types to 2).
+
+
+#' @param common_subtrees_color_lines logical (default is TRUE). color the connecting line based on the common subtrees of both dends.
+#' This only works if 
+#' @param common_subtrees_color_branches logical (default is FALSE). color the branches of both dends based on the common subtrees.
+
+
 #' @param ... not used.
 #' @details 
 #' Notice that tanglegram does not "resize" well. In case you are resizing your
@@ -616,6 +623,30 @@ plot_horiz.dendrogram <- function (x,
 #'   dLeaf = -0.1, xlim = c(5.1,0), columns_width= c(5,1,5),
 #'    k_branches=3)
 #' 
+#' 
+#' 
+#' ########
+#' ## Nice example of some colored trees
+#' 
+#' # see the coloring of common sub trees:
+#' set.seed(23235)
+#' ss <- sample(1:150, 10 )
+#' dend1 <- iris[ss,-5] %>% dist %>% hclust("com") %>% as.dendrogram
+#' dend2 <- iris[ss,-5] %>% dist %>% hclust("sin") %>% as.dendrogram
+#' dend12 <- dendlist(dend1, dend2)
+#' # dend12 %>% untangle %>% tanglegram
+#' dend12 %>% tanglegram(common_subtrees_color_branches = TRUE)
+#' 
+#' 
+#' set.seed(22133513)
+#' ss <- sample(1:150, 10 )
+#' dend1 <- iris[ss,-5] %>% dist %>% hclust("com") %>% as.dendrogram
+#' dend2 <- iris[ss,-5] %>% dist %>% hclust("sin") %>% as.dendrogram
+#' dend12 <- dendlist(dend1, dend2)
+#' # dend12 %>% untangle %>% tanglegram
+#' dend12 %>% tanglegram(common_subtrees_color_branches = TRUE)
+#' dend12 %>% tanglegram
+#' 
 #' }
 tanglegram <- function (tree1, ...) {UseMethod("tanglegram")}
 
@@ -658,7 +689,7 @@ tanglegram.dendlist <- function(tree1, which = c(1L,2L), main_left, main_right, 
 # ' @S3method tanglegram dendrogram
 #' @export
 tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE, 
-                                  color_lines = "darkgrey", 
+                                  color_lines, 
                                   lwd = 3.5,
                                   edge.lwd = NULL,
                                   # columns_width = c(5,2,3,2,5),
@@ -691,9 +722,10 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   cex_main_right=cex_main,
                                   cex_sub=cex_main,
                                   highlight_distinct_edges = FALSE,
+                                  common_subtrees_color_lines = TRUE,
+                                  common_subtrees_color_branches = FALSE,                                     
                                   ... )
 {
-   
    
    # characters_to_prune = the number of characters to leave after pruning the labels.		
    # remove_nodePar = makes sure that we won't have any dots at the end of leaves
@@ -747,6 +779,42 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
       tree1 <- highlight_distinct_edges(tree1, tree2, edgePar = "lty")
       tree2 <- highlight_distinct_edges(tree2, tree1, edgePar = "lty")
    }
+
+   if(missing(color_lines)) {
+      if(common_subtrees_color_lines) {
+#          color_lines <- rep("black", nleaves(tree1))
+#          lines_color_clusters <- common_subtrees_clusters(tree1, tree2, leaves_get_0_cluster = TRUE)
+#          ss_not_0s <- lines_color_clusters != 0
+#          colors_for_lines_color <- lines_color_clusters[ss_not_0s] %>% unique %>% length %>% rainbow_fun
+#          color_lines[ss_not_0s] <- colors_for_lines_color[lines_color_clusters[ss_not_0s]]
+
+         lines_color_clusters <- common_subtrees_clusters(tree1, tree2, leaves_get_0_cluster = FALSE)
+         colors_for_lines_color <- lines_color_clusters %>% unique %>% length %>% rainbow_fun
+         color_lines <- colors_for_lines_color[lines_color_clusters]
+
+         ss_0s <- replace_unique_items_with_0_and_rank(lines_color_clusters) == 0         
+         color_lines[ss_0s] <- "black"
+         
+      } else {
+         color_lines <- "darkgrey"   
+      }
+   }    
+
+   if(common_subtrees_color_branches) {
+      clusters1 <- common_subtrees_clusters(tree1, tree2)      
+      clusters2 <- common_subtrees_clusters(tree2, tree1)
+      tree1 <- color_branches(tree1, clusters = clusters1)
+      tree2 <- color_branches(tree2, clusters = clusters2)      
+      
+      # If I know I am using the common_subtrees_color_branches
+      # I might as well match them to the lines:
+      if(common_subtrees_color_lines) {
+         color_lines <- get_leaves_branches_col(tree1)         
+         color_lines[is.na(color_lines)] <- "black"
+      }
+   }
+   
+   
    
    
    l <- nleaves(tree1)

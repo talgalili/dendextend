@@ -172,6 +172,11 @@ should be magnified relative to the default.}
 \item{cex_sub}{see cex_main.}
 
 \item{highlight_distinct_edges}{logical (default is TRUE). If to highlight distinct edges in each tree (by changing their line types to 2).}
+
+\item{common_subtrees_color_lines}{logical (default is TRUE). color the connecting line based on the common subtrees of both dends.
+This only works if}
+
+\item{common_subtrees_color_branches}{logical (default is FALSE). color the branches of both dends based on the common subtrees.}
 }
 \value{
 An invisible \link{dendlist}, with two trees after being
@@ -215,6 +220,30 @@ tanglegram(rank_branches(dend1) , rank_branches(dend2), lab.cex = 2, edge.lwd = 
  margin_inner= 3.5, type = "t", center = TRUE,
   dLeaf = -0.1, xlim = c(5.1,0), columns_width= c(5,1,5),
    k_branches=3)
+
+
+
+########
+## Nice example of some colored trees
+
+# see the coloring of common sub trees:
+set.seed(23235)
+ss <- sample(1:150, 10 )
+dend1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
+dend2 <- iris[ss,-5] \%>\% dist \%>\% hclust("sin") \%>\% as.dendrogram
+dend12 <- dendlist(dend1, dend2)
+# dend12 \%>\% untangle \%>\% tanglegram
+dend12 \%>\% tanglegram(common_subtrees_color_branches = TRUE)
+
+
+set.seed(22133513)
+ss <- sample(1:150, 10 )
+dend1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
+dend2 <- iris[ss,-5] \%>\% dist \%>\% hclust("sin") \%>\% as.dendrogram
+dend12 <- dendlist(dend1, dend2)
+# dend12 \%>\% untangle \%>\% tanglegram
+dend12 \%>\% tanglegram(common_subtrees_color_branches = TRUE)
+dend12 \%>\% tanglegram
 
 }
 }
