@@ -504,6 +504,7 @@ plot_horiz.dendrogram <- function (x,
 #' @param color_lines a vector of colors for the lines connected the labels.
 #' If the colors are shorter than the number of labels, they are recycled 
 #' (and a warning is issued).
+#' The colors in the vector are applied on the lines from the bottom up.
 #' @param lwd width of the lines connecting the labels. (default is 3.5)
 #' @param edge.lwd width of the dendrograms lines.
 #' @param columns_width a vector with three elements, giving the relative
