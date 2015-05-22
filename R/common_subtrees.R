@@ -92,10 +92,39 @@ replace_unique_items_with_0_and_rank <- function(x, ...) {
 
 
 
-# Gets a dend and the output from "nodes_with_shared_labels"
-# and returns a vector (length of labels), indicating the clusters
-# forming shared subtrees
 
+#' Find clusters of common subtrees
+#' @export
+#' @description 
+#' Gets a dend and the output from "nodes_with_shared_labels"
+#' and returns a vector (length of labels), indicating the clusters
+#' forming shared subtrees
+#' @param dend1 a \link{dendrogram}.
+#' @param dend2 a \link{dendrogram}.
+#' @param leaves_get_0_cluster logical (TRUE). Should the leaves which are not part of
+#' a larger common subtree get a unique cluster number, or the value 0.
+#' @param ... not used.
+#'
+#' @return
+#' An integer vector, with values indicating which leaves in dend1 form
+#' a common subtree cluster, with ones available in dend2
+#' @seealso  \link{color_branches}, \link{tanglegram}
+#' 
+#' @examples
+#' 
+#' 
+#' library(dendextend)
+#' dend1 <- 1:6 %>% dist %>% hclust %>% as.dendrogram
+#' dend2 <- dend1 %>% set("labels", c(1:4,6:5))
+#' tanglegram(dend1, dend2)
+#' 
+#' clusters1 <- common_subtrees_clusters(dend1, dend2)
+#' dend1_2 <- color_branches(dend1, clusters = clusters1)
+#' plot(dend1_2)
+#' plot(dend1_2, horiz = TRUE)
+#' tanglegram(dend1_2, dend2, highlight_distinct_edges = FALSE)
+#' tanglegram(dend1_2, dend2)
+#' 
 common_subtrees_clusters <- function(dend1, dend2, leaves_get_0_cluster = TRUE, ...) {
    
    good_nodes <- nodes_with_shared_labels(dend1, dend2)
@@ -153,23 +182,5 @@ common_subtrees_clusters <- function(dend1, dend2, leaves_get_0_cluster = TRUE, 
 
 
 
-
-
-if(FALSE) {
-   
-   
-   library(dendextend)
-   dend1 <- 1:6 %>% dist %>% hclust %>% as.dendrogram
-   dend2 <- dend1 %>% set("labels", c(1:4,6:5))
-   tanglegram(dend1, dend2)
-   
-   clusters1 <- common_subtrees_clusters(dend1, dend2)
-   dend1_2 <- color_branches(dend1, clusters = clusters1)
-   plot(dend1_2)
-   plot(dend1_2, horiz = T)
-   tanglegram(dend1_2, dend2, highlight_distinct_edges = F)
-   tanglegram(dend1_2, dend2)
-   
-}
 
 
