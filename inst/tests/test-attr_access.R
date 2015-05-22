@@ -170,7 +170,9 @@ test_that("Assigning several values to a tree's leaves nodePar",{
    # notice how pch is added automatically!
    expect_identical(length(dend_leaf_nodePar), 3L) 
    expect_identical(names(dend_leaf_nodePar), c("lab.cex", "pch", "lab.col"))
-   expect_identical(unname(dend_leaf_nodePar), c(2,NA, 3))
+   should_be <- structure(list(lab.cex = 2, pch = NA, lab.col = 3), .Names = c("lab.cex", 
+                                                                               "pch", "lab.col"))
+   expect_identical(dend_leaf_nodePar, should_be)
    
    
 })

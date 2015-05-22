@@ -119,14 +119,12 @@ test_that("branches options works",{
       set("branches_lwd", c(2,1,2)) %>% 
       set("branches_lty", c(1,2,1)) # %>% plot
 
-   # checking two things:
-   expect_equal(attr(tmp,"edgePar"),
-                structure(c(1, 2, 1), .Names = c("col", "lwd", "lty")))
-   expect_equal(attr(tmp[[1]],"edgePar"),
-                structure(c(2, 1, 2), .Names = c("col", "lwd", "lty")))
-#              dput(attr(tmp[[1]],"edgePar"))
+	# checking we got a nice list:
+	# dput(attr(tmp,"edgePar"))
+	should_be <- structure(list(col = 1, lwd = 2, lty = 1), .Names = c("col", 
+	                                                                   "lwd", "lty"))
+   expect_equal(attr(tmp,"edgePar"), should_be)
 
-   
 })
 
 
@@ -152,7 +150,10 @@ test_that("clearing options works",{
 	   set("branches_lwd", c(2,1,2)) %>% 
 	   set("branches_lty", c(1,2,1)) # %>% plot
 	# We can remove all the branch attributes
+	expect_false(identical(dend, tmp))
 	expect_identical(dend, set(tmp, "clear_branches"))
+	
+	
 })
 
 

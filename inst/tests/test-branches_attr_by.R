@@ -85,3 +85,13 @@ test_that("assign_values_to_branches_edgePar - when trying to keep a value un-to
    
    
 })
+
+
+
+# dend_node <- 1
+# dend_node
+# attr(dend_node, "edgePar")[["a"]] <- list(1) # doesn't work
+# attr(dend_node, "edgePar")["a"] <- list(1) # works!
+# attr(dend_node, "edgePar")["b"] <- list(1) # works!
+# attr(dend_node, "edgePar")[["b"]] <- list(1) # doesn't work
+
