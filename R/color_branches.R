@@ -268,7 +268,7 @@ color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL,
       
       k <- length(unique(clusters))
       col <- get_col(col, k)
-      return(branches_attr_by_clusters(tree, clusters, values = cols, attr = "col")   )
+      return(branches_attr_by_clusters(tree, clusters, values = col, attr = "col")   )
    }
    
    
