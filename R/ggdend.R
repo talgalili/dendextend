@@ -474,6 +474,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
    scale_colour_identity <- ggplot2::scale_colour_identity
    scale_size_identity <- ggplot2::scale_size_identity
    scale_linetype_identity <- ggplot2::scale_linetype_identity
+   scale_shape_identity <- ggplot2::scale_shape_identity
    geom_text <- ggplot2::geom_text
    coord_flip <- ggplot2::coord_flip
    scale_y_reverse <- ggplot2::scale_y_reverse
