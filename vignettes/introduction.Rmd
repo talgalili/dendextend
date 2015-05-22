@@ -1549,7 +1549,7 @@ ggplot(ggd1, labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar
 ```
 
 
-**Credit:** These functions are *extended* versions of the functions `ggdendrogram`, `dendro_data` (and the hidden `dendrogram_data`) from Andrie de Vries's (http://cran.r-project.org/web/packages/ggdendro/index.html)[ggdendro] package. The motivation for this fork is the need to add more graphical parameters to the plotted tree. This required a strong mixter of functions from ggdendro and dendextend (to the point that it seemed better to just fork the code into its current form).
+**Credit:** These functions are *extended* versions of the functions `ggdendrogram`, `dendro_data` (and the hidden `dendrogram_data`) from Andrie de Vries's [ggdendro](http://cran.r-project.org/web/packages/ggdendro/index.html) package. The motivation for this fork is the need to add more graphical parameters to the plotted tree. This required a strong mixter of functions from ggdendro and dendextend (to the point that it seemed better to just fork the code into its current form).
 
 
 
