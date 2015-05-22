@@ -114,6 +114,14 @@ rect.dendrogram(dend,3, border = 3, lwd = 2, lty = 2)
 plot(dend, horiz = TRUE)
 rect.dendrogram(dend,2, border = 2, horiz = TRUE)
 rect.dendrogram(dend,4, border = 4, lty = 2, lwd = 3, horiz = TRUE)
+
+# This had previously failed since it worked with a wrong k.
+
+   dend15 <- c(1:5) \%>\% dist \%>\% hclust(method = "average") \%>\% as.dendrogram
+   # dend15 <- c(1:25) \%>\% dist \%>\% hclust(method = "average") \%>\% as.dendrogram
+   dend15 \%>\% set("branches_k_color") \%>\% plot
+   dend15 \%>\% rect.dendrogram(k=3,
+                              border = 8, lty = 5, lwd = 2)
 }
 \seealso{
 \link{rect.hclust}, \link{order.dendrogram}, \link{cutree.dendrogram}

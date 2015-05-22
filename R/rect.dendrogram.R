@@ -106,6 +106,14 @@
 #' plot(dend, horiz = TRUE)
 #' rect.dendrogram(dend,2, border = 2, horiz = TRUE)
 #' rect.dendrogram(dend,4, border = 4, lty = 2, lwd = 3, horiz = TRUE)
+#' 
+#' # This had previously failed since it worked with a wrong k.
+#' 
+#'    dend15 <- c(1:5) %>% dist %>% hclust(method = "average") %>% as.dendrogram
+#'    # dend15 <- c(1:25) %>% dist %>% hclust(method = "average") %>% as.dendrogram
+#'    dend15 %>% set("branches_k_color") %>% plot
+#'    dend15 %>% rect.dendrogram(k=3, 
+#'                               border = 8, lty = 5, lwd = 2)
 rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, border = 2, 
           cluster = NULL, horiz = FALSE, density = NULL, angle = 45, 
           text = NULL, text_cex = 1, text_col = 1 , xpd = TRUE, 
@@ -161,6 +169,14 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
    par(xpd=xpd)
    
    for (n in seq_along(which)) {
+      # this is to deal with the case when k is not defined for all values
+      # and that we can not use the next k+1 value to decide on the height to use.
+      next_k_height <- tree_heights[names(tree_heights) == k+1]
+      if(length(next_k_height) == 0) {
+         next_k_height <- 0
+         prop_k_height <- 1 # use only the "k" now.
+         # if(upper_rect == 0) upper_rect <- min(abs(diff(tree_heights))) / 2
+      }
       
       if(!horiz) { # the default
          xleft = m[which[n]] + 0.66
@@ -170,8 +186,9 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
          #          ytop = mean(tree_heights[(k - 1):k])
          #          ytop = tree_heights[k] + abs(ybottom)
 #          ytop = mean(tree_heights[(k - 1):k]) + abs(ybottom)
+
          ytop <-  tree_heights[names(tree_heights) == k] * prop_k_height + 
-                  tree_heights[names(tree_heights) == k+1] * (1-prop_k_height) + 
+                  next_k_height * (1-prop_k_height) + 
                   upper_rect # tree_heights[k] + height_to_add # + abs(xright)
 
       } else {         
@@ -182,7 +199,7 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
 #          xleft = mean(tree_heights[(k - 1):k])
          xleft <- 
                tree_heights[names(tree_heights) == k] * prop_k_height + 
-               tree_heights[names(tree_heights) == k+1] * (1-prop_k_height) + 
+               next_k_height * (1-prop_k_height) + 
                upper_rect # tree_heights[k] + height_to_add # + abs(xright)
       }      
       rect(xleft, 
