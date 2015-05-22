@@ -42,7 +42,8 @@
 #'       type = c("rectangle", "triangle"), edge.root = FALSE, ...)
 #'    
 #' ggplot.ggdend(data,  segments = TRUE, 
-#'             labels = TRUE, horiz = FALSE, theme = theme_dendro(), ...)
+#'             labels = TRUE, nodes = TRUE,
+#'             horiz = FALSE, theme = theme_dendro(), ...)
 #'             
 #' ggplot.dendrogram(data, ...)
 #' 
@@ -520,7 +521,8 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
          # scale_colour_identity() + scale_size_identity()  + 
          scale_shape_identity()
    }
-
+   # http://docs.ggplot2.org/0.9.3.1/geom_point.html
+   
 #    p +  geom_point(data = data$nodes, 
 #                    aes_string(x = "x", y = "y", colour = "col", shape = "pch", size = 3.5)) +
 #       guides(shape = FALSE, col = FALSE, size = FALSE) + 

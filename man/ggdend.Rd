@@ -23,7 +23,8 @@ prepare.ggdend(data, ...)
       type = c("rectangle", "triangle"), edge.root = FALSE, ...)
 
 ggplot.ggdend(data,  segments = TRUE,
-            labels = TRUE, horiz = FALSE, theme = theme_dendro(), ...)
+            labels = TRUE, nodes = TRUE,
+            horiz = FALSE, theme = theme_dendro(), ...)
 
 ggplot.dendrogram(data, ...)
 }
@@ -42,6 +43,8 @@ rectangular lines, while "triangle" will draw triangular lines.}
 \item{segments}{a logical (TRUE) if to plot the segments (branches).}
 
 \item{labels}{a logical (TRUE) if to plot the labels.}
+
+\item{nodes}{a logical (TRUE) if to plot the nodes (points).}
 
 \item{horiz}{a logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.}
 
