@@ -409,6 +409,11 @@ dendextend_heights_per_k.dendrogram <- function(tree,...)
                           (our_dend_heights - heights_to_remove_for_A_cut))
    # 	names(heights_to_cut_by) <- sapply(heights_to_cut_by, function(h) {length(cut(tree, h = h)$lower)}) # this is the SLOW line - I need to do it differently...
    names(heights_to_cut_by) <- sapply(heights_to_cut_by, function(h) {length(cut(tree, h = h)$lower)}) # this is the SLOW line - I need to do it differently...
+   
+   
+   tree_size <- nleaves(tree)
+   # I use "length(heights_to_cut_by)" for cases when I don't have a height for every possible cut
+   names(heights_to_cut_by)[length(heights_to_cut_by)] <- as.character(tree_size) # should always be the max...
    names(heights_to_cut_by)[1] <- "1" # should always be 1. (the fact that it's currently not is a bug - remove this line once it is fixed)
    return(heights_to_cut_by)
    # notice we might have certion k's that won't exist in this list!
