@@ -34,7 +34,9 @@ If the value has Inf then the value in edgePar will not be changed.
 \examples{
 # This failed before - now it works fine. (thanks to Martin Maechler)
 dend <- 1:2 \%>\% dist \%>\% hclust \%>\% as.dendrogram
-dend \%>\% set("branches_lty", 1:2) \%>\% set("branches_col", c("topbranch_never_plots", "black", "orange")) \%>\% plot
+dend \%>\% set("branches_lty", 1:2) \%>\%
+   set("branches_col", c("topbranch_never_plots", "black", "orange")) \%>\%
+   plot
 
 
 \dontrun{

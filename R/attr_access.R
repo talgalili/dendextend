@@ -1048,7 +1048,9 @@ assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "ce
 #' 
 #' # This failed before - now it works fine. (thanks to Martin Maechler)
 #' dend <- 1:2 %>% dist %>% hclust %>% as.dendrogram
-#' dend %>% set("branches_lty", 1:2) %>% set("branches_col", c("topbranch_never_plots", "black", "orange")) %>% plot
+#' dend %>% set("branches_lty", 1:2) %>%
+#'    set("branches_col", c("topbranch_never_plots", "black", "orange")) %>% 
+#'    plot
 #' 
 #' 
 #' \dontrun{
