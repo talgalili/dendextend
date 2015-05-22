@@ -801,7 +801,7 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = dende
 		 to_update_attr <- !is.infinite2(value[i_leaf_number])
 		 if(to_update_attr) {
          # if(!is.infinite2(value[i_leaf_number])) {
-            attr(dend_node, "nodePar")[[nodePar]] <- value[i_leaf_number] # this way it doesn't erase other nodePar values (if they exist)
+            attr(dend_node, "nodePar")[nodePar] <- list(value[i_leaf_number]) # this way it doesn't erase other nodePar values (if they exist)
          }      
          
          
@@ -811,7 +811,7 @@ assign_values_to_leaves_nodePar <- function(object, value, nodePar, warn = dende
             # if we have some nodePar, and we don't have pch - let's make 
             # sure it is NA - so that we don't see that annoying dot.
             if(! ("pch"  %in%  names(attr(dend_node, "nodePar"))) ) {
-               attr(dend_node, "nodePar")["pch"] <- NA
+               attr(dend_node, "nodePar")["pch"] <- list(NA)
             }               
          }
       }
@@ -899,7 +899,7 @@ assign_values_to_leaves_edgePar <- function(object, value, edgePar, warn = dende
          to_update_attr <- !is.infinite2(value[i_leaf_number])
          if(to_update_attr) {
             # if(!is.infinite2(value[i_leaf_number])) {
-            attr(dend_node, "edgePar")[[edgePar]] <- value[i_leaf_number] # this way it doesn't erase other edgePar values (if they exist)
+            attr(dend_node, "edgePar")[edgePar] <- list(value[i_leaf_number]) # this way it doesn't erase other edgePar values (if they exist)
          }      
          
          
@@ -909,7 +909,7 @@ assign_values_to_leaves_edgePar <- function(object, value, edgePar, warn = dende
             # if we have some edgePar, and we don't have pch - let's make 
             # sure it is NA - so that we don't see that annoying dot.
             if(! ("pch"  %in%  names(attr(dend_node, "edgePar"))) ) {
-               attr(dend_node, "edgePar")["pch"] <- NA
+               attr(dend_node, "edgePar")["pch"] <- list(NA)
             }               
          }
       }
@@ -989,7 +989,7 @@ assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "ce
 	  to_update_attr <- !is.infinite2(value[i_node_number])
 	  if(to_update_attr) {
       # if(!is.infinite2(value[i_node_number])) {
-         attr(dend_node, "nodePar")[[nodePar]] <- value[i_node_number] # this way it doesn't erase other nodePar values (if they exist)
+         attr(dend_node, "nodePar")[nodePar] <- list(value[i_node_number]) # this way it doesn't erase other nodePar values (if they exist)
       }      
       
       if(length(attr(dend_node, "nodePar")) == 0) {
@@ -998,7 +998,7 @@ assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "ce
          # if we have some nodePar, and we don't have pch - let's make 
          # sure it is NA - so that we don't see that annoying dot.
          if(! ("pch"  %in%  names(attr(dend_node, "nodePar"))) ) {
-            attr(dend_node, "nodePar")["pch"] <- NA
+            attr(dend_node, "nodePar")["pch"] <- list(NA)
          }               
       }
       return(unclass(dend_node))
@@ -1046,6 +1046,11 @@ assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "ce
 #' @seealso \link{get_root_branches_attr}
 #' @examples
 #' 
+#' # This failed before - now it works fine. (thanks to Martin Maechler)
+#' dend <- 1:2 %>% dist %>% hclust %>% as.dendrogram
+#' dend %>% set("branches_lty", 1:2) %>% set("branches_col", c("topbranch_never_plots", "black", "orange")) %>% plot
+#' 
+#' 
 #' \dontrun{
 #' 
 #' dend <- USArrests[1:5,] %>% dist %>% hclust %>% as.dendrogram
@@ -1054,10 +1059,18 @@ assign_values_to_nodes_nodePar <- function(object, value, nodePar = c("pch", "ce
 #' plot(dend)
 #' dend <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "col")
 #' plot(dend)
-#' dend <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "lty")
+#' dend <- assign_values_to_branches_edgePar(object=dend, value = "orange", edgePar = "col")
 #' plot(dend)
+#' dend2 <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "lty")
+#' plot(dend2)
+#' 
+#' dend2 %>% unclass %>% str
+#' 
+#' 
+#' 
 #' 
 #' }
+#' 
 #' 
 assign_values_to_branches_edgePar <- function(object, value, edgePar, skip_leaves = FALSE, warn = dendextend_options("warn"), ...) {
    if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
@@ -1082,7 +1095,7 @@ assign_values_to_branches_edgePar <- function(object, value, edgePar, skip_leave
       i_node <<- i_node + 1
 	  to_update_attr <- !is.infinite2(value[i_node])
       if(to_update_attr) {
-         attr(dend_node, "edgePar")[[edgePar]] <- value[i_node] # [i_leaf_number] # this way it doesn't erase other edgePar values (if they exist)
+         attr(dend_node, "edgePar")[edgePar] <- list(value[i_node]) # [i_leaf_number] # this way it doesn't erase other edgePar values (if they exist)
       }
       if(length(attr(dend_node, "edgePar")) == 0) attr(dend_node, "edgePar") <- NULL # remove edgePar if it is empty
       return(unclass(dend_node))

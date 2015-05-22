@@ -40,16 +40,23 @@ test_that("assign_values_to_branches_edgePar - when trying to keep a value un-to
    #    str(unclass(assign_values_to_branches_edgePar(a, value = c(1,Inf), edgePar = "col")))
    
    
+   # answer %>% unclass %>% str
+   # plot(answer)
+   # dput(answer)
    answer <- assign_values_to_branches_edgePar(a, value = c(1,"Inf"), edgePar = "col")
    true_answer <- structure(list(structure(1L, label = 1L, members = 1L, height = 0, leaf = TRUE), 
-                                 structure(2L, label = 2L, members = 1L, height = 0, leaf = TRUE, edgePar = structure("1", .Names = "col"))), members = 2L, midpoint = 0.5, height = 1, edgePar = structure("1", .Names = "col"), class = "dendrogram")
+                                 structure(2L, label = 2L, members = 1L, height = 0, leaf = TRUE, edgePar = structure(list(
+                                    col = "1"), .Names = "col"))), members = 2L, midpoint = 0.5, height = 1, edgePar = structure(list(
+                                       col = "1"), .Names = "col"), class = "dendrogram")
    expect_true( 
       identical(answer,true_answer)
    )
    
    answer <- assign_values_to_branches_edgePar(a, value = c(1,Inf), edgePar = "col")
    true_answer <- structure(list(structure(1L, label = 1L, members = 1L, height = 0, leaf = TRUE), 
-                                 structure(2L, label = 2L, members = 1L, height = 0, leaf = TRUE, edgePar = structure(1, .Names = "col"))), members = 2L, midpoint = 0.5, height = 1, edgePar = structure(1, .Names = "col"), class = "dendrogram")
+                                 structure(2L, label = 2L, members = 1L, height = 0, leaf = TRUE, edgePar = structure(list(
+                                    col = 1), .Names = "col"))), members = 2L, midpoint = 0.5, height = 1, edgePar = structure(list(
+                                       col = 1), .Names = "col"), class = "dendrogram")
    
    expect_true( 
       identical(answer,true_answer)
@@ -58,16 +65,20 @@ test_that("assign_values_to_branches_edgePar - when trying to keep a value un-to
    
    
    answer <- assign_values_to_branches_edgePar(a, value = c(1,NULL), edgePar = "col")
-   true_answer <- structure(list(structure(1L, label = 1L, members = 1L, height = 0, leaf = TRUE, edgePar = structure(1, .Names = "col")), 
-                                 structure(2L, label = 2L, members = 1L, height = 0, leaf = TRUE, edgePar = structure(1, .Names = "col"))), members = 2L, midpoint = 0.5, height = 1, edgePar = structure(1, .Names = "col"), class = "dendrogram")
+   true_answer <- structure(list(structure(1L, label = 1L, members = 1L, height = 0, leaf = TRUE, edgePar = structure(list(
+      col = 1), .Names = "col")), structure(2L, label = 2L, members = 1L, height = 0, leaf = TRUE, edgePar = structure(list(
+         col = 1), .Names = "col"))), members = 2L, midpoint = 0.5, height = 1, edgePar = structure(list(
+            col = 1), .Names = "col"), class = "dendrogram")
    expect_true( 
       identical(answer,true_answer)
    )
    
    
    answer <- assign_values_to_branches_edgePar(a, value = c(1,NA), edgePar = "col")
-   true_answer <- structure(list(structure(1L, label = 1L, members = 1L, height = 0, leaf = TRUE, edgePar = structure(NA_real_, .Names = "col")), 
-                                 structure(2L, label = 2L, members = 1L, height = 0, leaf = TRUE, edgePar = structure(1, .Names = "col"))), members = 2L, midpoint = 0.5, height = 1, edgePar = structure(1, .Names = "col"), class = "dendrogram")
+   true_answer <- structure(list(structure(1L, label = 1L, members = 1L, height = 0, leaf = TRUE, edgePar = structure(list(
+      col = NA_real_), .Names = "col")), structure(2L, label = 2L, members = 1L, height = 0, leaf = TRUE, edgePar = structure(list(
+         col = 1), .Names = "col"))), members = 2L, midpoint = 0.5, height = 1, edgePar = structure(list(
+            col = 1), .Names = "col"), class = "dendrogram")
    expect_true( 
       identical(answer,true_answer)
    )

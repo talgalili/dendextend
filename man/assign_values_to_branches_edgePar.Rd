@@ -32,6 +32,11 @@ Go through the dendrogram branches and updates the values inside its edgePar
 If the value has Inf then the value in edgePar will not be changed.
 }
 \examples{
+# This failed before - now it works fine. (thanks to Martin Maechler)
+dend <- 1:2 \%>\% dist \%>\% hclust \%>\% as.dendrogram
+dend \%>\% set("branches_lty", 1:2) \%>\% set("branches_col", c("topbranch_never_plots", "black", "orange")) \%>\% plot
+
+
 \dontrun{
 
 dend <- USArrests[1:5,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
@@ -40,8 +45,15 @@ dend <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "lwd
 plot(dend)
 dend <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "col")
 plot(dend)
-dend <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "lty")
+dend <- assign_values_to_branches_edgePar(object=dend, value = "orange", edgePar = "col")
 plot(dend)
+dend2 <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "lty")
+plot(dend2)
+
+dend2 \%>\% unclass \%>\% str
+
+
+
 
 }
 }
