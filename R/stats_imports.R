@@ -26,6 +26,41 @@
   # 'stats:::plotNodeLimit'
 
 
+
+
+
+
+#' Labels of the Leaves in a Dendrogram
+#' @export
+#' @description 
+#' This is the same function as \link[stats]{labels.dendrogram}. It is used inside
+#'  \link{dendextend_options}, and thus allows the function to be updated when loading
+#'  the dendextendRcpp package.
+#' @param object a \link{dendrogram}.
+#' @param ... not used.
+#'
+#' @return
+#' A vector with length equal to the number of leaves in the dendrogram is returned. From r <- order.dendrogram(), each element is the index into the original data (from which the dendrogram was computed).
+#' @seealso \link[stats]{labels.dendrogram}
+#' @examples
+#' 
+#' # stats:::labels.dendrogram
+#' 
+dendextend_labels.dendrogram <- function (object, ...) {
+   # cat("I used internal function")
+   unlist(dendrapply(object, function(n) attr(n, "label")))
+}
+
+# labels <- function (object, ...) UseMethod("labels")
+
+labels.dendrogram <- function (object, ...) {
+   fo <- dendextend_options("labels.dendrogram")   
+   fo(object, ...)
+}
+
+
+
+
 # stats:::.memberDend
 stats_.memberDend <- function (x) 
 {

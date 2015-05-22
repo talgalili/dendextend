@@ -93,6 +93,7 @@ assign_dendextend_options <- function() {
    dendextend_options("get_branches_heights" , dendextend::dendextend_get_branches_heights)
    dendextend_options("heights_per_k.dendrogram" , dendextend::dendextend_heights_per_k.dendrogram)
    dendextend_options("cut_lower_fun" , dendextend::dendextend_cut_lower_fun)
+   dendextend_options("labels.dendrogram" , dendextend::dendextend_labels.dendrogram)
    dendextend_options("warn" , FALSE)
    
 }

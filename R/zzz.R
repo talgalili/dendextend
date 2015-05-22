@@ -134,6 +134,8 @@
    
    # move some functions to the "options" so that they would later be overridden.
 #    create_dendextend_options()
+   
+   # details in dendextend_options.R
    assign_dendextend_options()
    
    packageStartupMessage(dendextendWelcomeMessage())  
@@ -327,7 +329,7 @@ dendextendWelcomeMessage <- function(){
 # check(build_args="--no-build-vignettes --no-manual", args = "--no-examples --no-build-vignettes --no-manual",  cran = FALSE, cleanup = FALSE)
 # check(build_args="--no-build-vignettes --no-manual", args = "--no-build-vignettes --no-manual",  cran = FALSE, cleanup = FALSE)
 # check(build_args="--no-build-vignettes ", args = "--no-build-vignettes",  cran = FALSE, cleanup = FALSE)
-# check(args="--as-cran")
+# devtools::check(args="--as-cran")
 # devtools::check("C:/Dropbox/aaaa good R code/AA - My packages/dendextend", args="--as-cran")
 #                 Thanks to: http://stackoverflow.com/questions/10017702/r-cmd-check-options-for-more-rigorous-testing-2-15-0
 
