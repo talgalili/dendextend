@@ -181,6 +181,7 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
    if(nleaves(dend) == 0) stop("dend must have at least one node")
    if(edge.root) stop("edge.root is not supported at this point (this parameter is a place-holder for when it will)")
       
+   # ggdata <- dendextend:::dendrogram_data(dend, type = "rectangle")
    ggdata <- dendrogram_data(dend, type = type) # ggdendro:::dendrogram_data(dend)
    
    
@@ -201,15 +202,37 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
    })
    # nnodes(dend) == nrow(nodes_xy) # sanity check
    
+   
+   
+   
+   # dend %>% unclass %>% str
+   
    # add parameters to nodes_xy
    # graphical parameters
-   nodes_attr <- get_nodes_attr(dend, "nodePar", simplify = TRUE)
-   if(!allNA(nodes_attr)) {
-      nodes_attr_names <- rownames(nodes_attr)
-      if("pch" %in% nodes_attr_names) nodes_xy$pch <- nodes_attr["pch",] # should actually ALWAYS be here...
-      if("cex" %in% nodes_attr_names) nodes_xy$cex <- nodes_attr["cex",]
-      if("col" %in% nodes_attr_names) nodes_xy$col <- nodes_attr["col",]
+   nodes_attr <- get_nodes_attr(dend, "nodePar", simplify = FALSE)
+
+            # nodes_attr <- get_nodes_attr(d1, "nodePar", simplify = FALSE)
+   get_nodePar_attr_par <- function(par) {
+               # The rep is because a segment has two lines. So we use each: rep(1:4, each = 2)
+               # tmp <- rep(unlist(sapply(nodes_attr,  `[`, name = par)), each = 1) # like doing edgePar_attr[[1]] ["col"]
+      values <- sapply(nodes_attr,  `[`, name = par) # like doing edgePar_attr[[1]] ["col"]
+      null2NA <- function(x) ifelse(is.null(x), NA, x)
+      values <- sapply(values, null2NA) # in case the attr is missing, it fills the NULL with NA
+      # if(is.null(tmp)) tmp <- rep(NA, length(nodes_attr))
+      unlist(values)
    }
+
+
+   
+   nodes_xy$pch <- get_nodePar_attr_par("pch") 
+   nodes_xy$cex <- get_nodePar_attr_par("cex") 
+   nodes_xy$col <- get_nodePar_attr_par("col") 
+
+##########################################
+   
+   
+   
+   
    # others: (won't be used for plotts, but in the future someone might want to use them in some graphical way...)
    nodes_xy$members <- get_nodes_attr(dend, "members")
    nodes_xy$midpoint <- get_nodes_attr(dend, "midpoint")
@@ -242,9 +265,19 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
          #        ss_col <- sapply(edgePar_attr_names, function(x) {"col" %in% x}) # no longer needed
       
    # par is a character of the par to get from edgePar_attr
-   get_edgePar_attr_par <- function(par) rep(unlist(sapply(edgePar_attr,  `[`, name = par)), each = 2) # like doing edgePar_attr[[1]] ["col"]
+   get_edgePar_attr_par <- function(par) {
+      values <- sapply(edgePar_attr,  `[[`, name = par)
+      null2NA <- function(x) ifelse(is.null(x), NA, x)
+      values <- sapply(values, null2NA) # in case the attr is missing, it fills the NULL with NA
+      rep(unlist(values), each = 2) # like doing edgePar_attr[[1]] ["col"]
+   }
+      
    # The rep is because a segment has two lines. So we use each: rep(1:4, each = 2)
    
+#    length(get_edgePar_attr_par("col"))
+   # length(get_edgePar_attr_par("lwd"))
+#    dim(ggdata$segments)
+
    ggdata$segments$col <- get_edgePar_attr_par("col") # like doing edgePar_attr[[1]] ["col"]
    ggdata$segments$lwd <- get_edgePar_attr_par("lwd")
    ggdata$segments$lty <- get_edgePar_attr_par("lty")
@@ -264,8 +297,14 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
       # [[1]]$pch
       # [1] NA   
 
-   get_leaves_edgePar_attr_par <- function(par) unlist(sapply(leaves_edgePar_attr,  `[`, name = par)) # like doing edgePar_attr[[1]] ["col"]
-   # The rep is because a segment has two lines. So we use each: rep(1:4, each = 2)
+
+   get_leaves_edgePar_attr_par <- function(par) {
+      values <- sapply(leaves_edgePar_attr,  `[[`, name = par)
+      null2NA <- function(x) ifelse(is.null(x), NA, x)
+      values <- sapply(values, null2NA) # in case the attr is missing, it fills the NULL with NA
+      unlist(values) # like doing edgePar_attr[[1]] ["col"]
+   }
+   
    
 
    the_lab.col <- get_leaves_edgePar_attr_par("lab.col") # like doing edgePar_attr[[1]] ["col"]
