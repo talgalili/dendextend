@@ -455,7 +455,7 @@ plot_horiz.dendrogram <- function (x,
 #' 
 #' \method{tanglegram}{dendrogram}(tree1, tree2 ,
 #'    sort = FALSE, 
-#'    color_lines = "darkgrey", 
+#'    color_lines, 
 #'    lwd = 3.5,
 #'    edge.lwd = NULL,
 #'    columns_width = c(5,3,5),
@@ -487,6 +487,8 @@ plot_horiz.dendrogram <- function (x,
 #'    cex_main_right = cex_main,
 #'    cex_sub = cex_main,
 #'    highlight_distinct_edges = TRUE,
+#'    common_subtrees_color_lines = TRUE,
+#'    common_subtrees_color_branches = FALSE,
 #'    ...)
 #' 
 #' \method{tanglegram}{dendlist}(tree1, which = c(1L,2L), main_left, main_right, ...)
@@ -572,7 +574,6 @@ plot_horiz.dendrogram <- function (x,
 #' @param common_subtrees_color_lines logical (default is TRUE). color the connecting line based on the common subtrees of both dends.
 #' This only works if 
 #' @param common_subtrees_color_branches logical (default is FALSE). color the branches of both dends based on the common subtrees.
-
 
 #' @param ... not used.
 #' @details 
@@ -721,7 +722,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   cex_main_left=cex_main,
                                   cex_main_right=cex_main,
                                   cex_sub=cex_main,
-                                  highlight_distinct_edges = FALSE,
+                                  highlight_distinct_edges = TRUE,
                                   common_subtrees_color_lines = TRUE,
                                   common_subtrees_color_branches = FALSE,                                     
                                   ... )
