@@ -71,7 +71,20 @@ test_that("Get a dendrogram nodes attributes",{
    # check the id paramter:
    expect_identical(get_nodes_attr(dend, "member", id = c(1,3)), 
                     c(3L,2L))   
+
    
+   dend <- 1:3 %>% dist %>% hclust %>% as.dendrogram %>%
+      set("branches_k_color", k=2) %>% set("branches_lwd", c(1.5,1,1.5)) %>%
+      set("branches_lty", c(1,1,3,1,1,2)) %>%
+      set("labels_colors") %>% set("labels_cex", c(.9,1.2))
+   # plot(dend)
+   # dput(get_nodes_attr(dend, "nodePar"))
+   should_be <- list(NA, structure(list(lab.col = "#CC476B", pch = NA, lab.cex = 0.9), .Names = c("lab.col", 
+                                                                                                  "pch", "lab.cex")), NA, structure(list(lab.col = "#228B00", pch = NA, 
+                                                                                                                                         lab.cex = 1.2), .Names = c("lab.col", "pch", "lab.cex")), 
+                     structure(list(lab.col = "#0082CE", pch = NA, lab.cex = 0.9), .Names = c("lab.col", 
+                                                                                              "pch", "lab.cex")))
+   expect_identical(get_nodes_attr(dend, "nodePar"), should_be)
    
 })
 
