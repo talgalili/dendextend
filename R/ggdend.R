@@ -71,6 +71,7 @@
 #' @param data a ggdend class object. 
 #' @param segments a logical (TRUE) if to plot the segments (branches).
 #' @param labels a logical (TRUE) if to plot the labels.
+#' @param nodes a logical (TRUE) if to plot the nodes (points).
 #' @param horiz a logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.
 #' @param theme the ggplot2 theme to use (default is \link{theme_dendro}, can also be NULL
 #' for the default ggplot2 theme)
@@ -436,6 +437,17 @@ prepare.ggdend <- function(data, ...){
    #    filling missing values 
    if(any(is.na(data$labels$cex))) data$labels$cex[is.na(data$labels$cex)] <- 1   
    
+   
+   #    Fix the "nodes" table
+   #    -------------
+   # We fix a row only if we have some value for pch/cex/col in that row.
+   ss_has_value <- !apply(data$nodes[,c("pch", "cex", "col")], 1, allNA)
+   #    filling missing values 
+   data$nodes$pch <- ifelse(ss_has_value & is.na(data$nodes$pch), 1 , data$nodes$pch)
+   data$nodes$cex <- ifelse(ss_has_value & is.na(data$nodes$cex), 3.5 , data$nodes$cex)
+   data$nodes$col <- ifelse(ss_has_value & is.na(data$nodes$col), 1 , data$nodes$col)
+   
+   
    data
 }
 
@@ -446,7 +458,7 @@ prepare.ggdend <- function(data, ...){
 # polar cor is a problem with text: http://stackoverflow.com/questions/8468472/adjusting-position-of-text-labels-in-coord-polar-histogram-in-ggplot2
 
 #' @export
-ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, 
+ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
                           horiz = FALSE, theme = theme_dendro(), ...) {
    #    library(dendextend)
    #    library(ggdendro)
@@ -455,6 +467,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE,
    # library(ggplot2)
    ggplot <- ggplot2::ggplot
    geom_segment <- ggplot2::geom_segment
+   geom_point <- ggplot2::geom_point
    aes <- ggplot2::aes   
    guides <- ggplot2::guides
    scale_colour_identity <- ggplot2::scale_colour_identity
@@ -499,6 +512,19 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE,
             guides(linetype = FALSE, col = FALSE) + 
       scale_colour_identity() + scale_size_identity()  + scale_linetype_identity()
    }
+   
+   if (nodes) {
+      p <- p +  geom_point(data = data$nodes, 
+                             aes_string(x = "x", y = "y", colour = "col", shape = "pch", size = "cex")) +
+         guides(shape = FALSE, col = FALSE, size = FALSE) + 
+         # scale_colour_identity() + scale_size_identity()  + 
+         scale_shape_identity()
+   }
+
+#    p +  geom_point(data = data$nodes, 
+#                    aes_string(x = "x", y = "y", colour = "col", shape = "pch", size = 3.5)) +
+#       guides(shape = FALSE, col = FALSE, size = FALSE) + 
+#       scale_shape_identity()
    
    
    if (labels) {

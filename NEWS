@@ -10,6 +10,7 @@ dendextend 0.19.0 (2015-05-22)
    * color_branches - gained a new "cluster" parameter to allow for easy uneven coloring of branches (using branches_attr_by_clusters). This is not a new feature, as it is an attempt to have the user access more options from one place (i.e.: color_branches).
    * tanglegram - turned "highlight_distinct_edges = FALSE". This is due to a bug in R that causes plot.dendrogram to crash when trying to plot a tree with both lty and some character color for the branch.
    * tanglegram - Added new parameters: common_subtrees_color_lines and common_subtrees_color_branches to color connecting-lines and/or the dendrograms themsleves, to help detect commonly shared subtrees.
+   * plot.ggdend - added support to plot nodes
 
 ###BUG FIXES:
    * Fix "'::' or ':::' import not declared from: ‘rpart’" by adding rpart to DESCRIPTION.
@@ -17,7 +18,8 @@ dendextend 0.19.0 (2015-05-22)
    * Fix "Objects in \usage without \alias in documentation object". For ‘prune.rpart’ and ‘sort.dendlist’.
    * rect.dendrogram - deals with the case we want to use k for which k+1 is not defined.
    * Parameters are now stored as a list for (allows for branches to have colors/linetype/linewidth, some are numeric and some character): assign_values_to_branches_edgePar / assign_values_to_leaves_nodePar / assign_values_to_leaves_edgePar / assign_values_to_nodes_nodePar - the parameters are stored as a list in edgePar/nodePar (instead of a vector). Discovered thanks to Martin Maechler.  Fixes: "Error in segments(x0, y0, x1, y1, col = col, lty = lty, lwd = lwd) : invalid line type: must be length 2, 4, 6 or 8"
-   
+   * made sure that the end of the vector in "dendextend_heights_per_k.dendrogram" will give the tree size (and not 0) as its name.
+   * as.ggdend - now supports edgePar and nodePar which are lists.
    
 ###OTHER NOTES:
    * Added Code of conduct
