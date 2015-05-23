@@ -1,0 +1,88 @@
+---
+title: "Iris Analysis"
+author: "Tal Galili"
+date: "May 23 2015"
+output: html_document
+---
+
+
+
+### The Iris dataset
+
+> The famous (Fisher's or Anderson's) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica. (from `?iris`)
+
+
+
+The [Iris flower data set](https://en.wikipedia.org/wiki/Iris_flower_data_set) is fun for learning supervised classification algorithms, and is known as a difficult case for unsupervised learning. This is easily seen through the following Scatter PLot Matrix:
+
+```{r, fig.width=9, fig.height=9, fig.show='hold'}
+data(iris)
+
+species_labels <- iris[,5]
+library(colorspace) # get nice colors
+species_col <- rev(rainbow_hcl(3))[as.numeric(species_labels)]
+
+# Plot a SPLOM:
+pairs(iris[,-5], col = species_col,
+      lower.panel = NULL,
+       cex.labels=2, pch=19, cex = 1.2)
+
+# Add a legend
+par(xpd = TRUE)
+legend(x = 0.05, y = 0.4, cex = 2,
+   legend = as.character(levels(species_labels)),
+   	fill = unique(species_col))
+par(xpd = NA)
+
+```
+
+We can see that the *Setosa* species are distinctly different than *Versicolor* and *Virginica* (they have lower petal length and width). But *Versicolor* and *Virginica* can not easily be separated based on measurements of their Sepal and Patel width/length.
+
+We can nicely visualize this using a dendrogram with the labels colored with the real species category, and branches colored based on cutting the tree to 3 classes.
+
+```{r, fig.height = 10, fig.width=7}
+
+
+data(iris) 
+d_iris <- dist(iris[,-5]) # method="man" # is a bit better
+hc_iris <- hclust(d_iris)
+labels(hc_iris) # no labels, because "iris" has no row names
+dend_iris <- as.dendrogram(hc_iris)
+is.integer(labels(dend_iris)) # this could cause problems...
+
+iris_species <- rev(levels(iris[,5]))
+dend_iris <- color_branches(dend_iris,k=3, groupLabels=iris_species)
+is.character(labels(dend_iris)) # labels are no longer "integer"
+
+# have the labels match the real classification of the flowers:
+labels_colors(dend_iris) <-
+   rainbow_hcl(3)[sort_levels_values(
+      as.numeric(iris[,5])[order.dendrogram(dend_iris)]
+   )]
+
+# We'll add the flower type
+labels(dend_iris) <- paste(as.character(iris[,5])[order.dendrogram(dend_iris)],
+                           "(",labels(dend_iris),")", 
+                           sep = "")
+
+dend_iris <- hang.dendrogram(dend_iris,hang_height=0.1)
+
+# reduce the size of the labels:
+dend_iris <- assign_values_to_leaves_nodePar(dend_iris, 0.5, "lab.cex")
+
+par(mar = c(3,3,3,7))
+plot(dend_iris, 
+     main = "Clustered Iris dataset
+     (the labels give the true flower species)", 
+     horiz =  TRUE,  nodePar = list(cex = .007))
+legend("topleft", legend = iris_species, fill = rainbow_hcl(3))
+
+
+```
+
+
+This simple visualization easily demonstrates how the separation of the Hierarchical clustering is very good with the "setosa" species, but misses in labeling many "versicolor" species as "virginica".
+
+The hanging of the tree also helps to locate extreme observations. For example, we can see that observation "virginica (107)" is not very similar to the Versicolor species, but still, it is among them. Also, "Versicolor (71)" is too much "within" the Virginica bush, and it is a wonder why that is.  Of course, the Iris data set is very well known, and simpler pairs plot often help to locate such problems, yet - dendrogram trees (with all of their limitations) can help gain insights for very high-dimensional data where a simple pairs plot is not possible.
+
+
