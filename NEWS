@@ -22,6 +22,8 @@ dendextend 1.0.0 (2015-05-23)
       * can now return a dendlist with more than two elements.
       * now preserve the names in the dendlist
    * dendlist - added the `which` parameter (for indicating which elements in the dendlist to pick out)
+   * set
+      * added "rank_branches"
       
 
 ###BUG FIXES:

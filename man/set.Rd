@@ -21,6 +21,7 @@ set(object, ...)
             "nodes_cex",
             "nodes_col",
             "hang_leaves",
+            "rank_branches",
             "branches_k_color",
             "branches_col",
             "branches_lwd",
