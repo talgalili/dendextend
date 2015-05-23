@@ -173,12 +173,16 @@ should be magnified relative to the default.}
 
 \item{cex_sub}{see cex_main.}
 
-\item{highlight_distinct_edges}{logical (default is TRUE). If to highlight distinct edges in each tree (by changing their line types to 2).}
+\item{highlight_distinct_edges}{logical (default is TRUE). If to highlight distinct edges in each tree (by changing their line types to 2).
+(notice that this can be slow on large trees)}
 
 \item{common_subtrees_color_lines}{logical (default is TRUE). color the connecting line based on the common subtrees of both dends.
-This only works if}
+This only works if
+(notice that this can be slow on large trees)}
 
-\item{common_subtrees_color_branches}{logical (default is FALSE). color the branches of both dends based on the common subtrees.}
+\item{common_subtrees_color_branches}{logical (default is FALSE).
+Color the branches of both dends based on the common subtrees.
+(notice that this can be slow on large trees)}
 }
 \value{
 An invisible \link{dendlist}, with two trees after being
