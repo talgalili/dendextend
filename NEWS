@@ -25,6 +25,7 @@ dendextend 1.0.0 (2015-05-23)
    * made sure that the end of the vector in "dendextend_heights_per_k.dendrogram" will give the tree size (and not 0) as its name.
    * as.ggdend - now supports edgePar and nodePar which are lists.
    * dendlist - removed warning when creating an empty dendlist (since we also don't get a warning when creating a list() )
+   * ladderize - added the `which` parameter (for indicating which elements in the dendlist to ladderize)
    
 ###OTHER NOTES:
    * Added Code of conduct

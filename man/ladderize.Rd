@@ -13,7 +13,7 @@ ladderize(x, right = TRUE, ...)
 
 \method{ladderize}{phylo}(x, right = TRUE, phy, ...)
 
-\method{ladderize}{dendlist}(x, right = TRUE, ...)
+\method{ladderize}{dendlist}(x, right = TRUE, which, ...)
 }
 \arguments{
 \item{x}{a tree object (either a \link{dendrogram}, \link{dendlist}, or \link[ape]{phylo})}
@@ -21,6 +21,10 @@ ladderize(x, right = TRUE, ...)
 \item{right}{a logical (TRUE) specifying whether the smallest clade is on the right-hand side (when the tree is plotted upwards), or the opposite (if FALSE).}
 
 \item{...}{Currently ignored.}
+
+\item{which}{an integer (can have any number of elements).
+It indicates the elements in the \link{dendlist} to ladderize.
+If missing, it will ladderize all the dendrograms in the dendlist.}
 
 \item{phy}{a placeholder in case the user uses "phy ="}
 }

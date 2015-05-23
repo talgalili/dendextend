@@ -400,10 +400,13 @@ click_rotate.dendrogram <- function(x, plot = TRUE, plot_after = plot, horiz = F
 #' 
 #' \method{ladderize}{phylo}(x, right = TRUE, phy, ...)
 #' 
-#' \method{ladderize}{dendlist}(x, right = TRUE, ...)
+#' \method{ladderize}{dendlist}(x, right = TRUE, which, ...)
 #' 
 #' @param x a tree object (either a \link{dendrogram}, \link{dendlist}, or \link[ape]{phylo})
 #' @param right a logical (TRUE) specifying whether the smallest clade is on the right-hand side (when the tree is plotted upwards), or the opposite (if FALSE).
+#' @param which an integer (can have any number of elements).
+#' It indicates the elements in the \link{dendlist} to ladderize.
+#' If missing, it will ladderize all the dendrograms in the dendlist.
 #' @param ... Currently ignored.
 #' @param phy a placeholder in case the user uses "phy ="
 #' 
@@ -466,9 +469,12 @@ ladderize.phylo <- function(x, right = TRUE, phy, ...) {
 }
 
 #' @export
-ladderize.dendlist <- function (x, right = TRUE, ...)  {
-   for(i in seq_len(length(x))) {
-      x[[i]]  <- ladderize(x[[i]], right = right, ...)
+ladderize.dendlist <- function (x, right = TRUE, which, ...)  {
+   seq_trees <- seq_len(length(x))
+   if(missing(which)) which <- seq_trees
+   
+   for(i in seq_trees) {
+      if(i %in% which) x[[i]]  <- ladderize(x[[i]], right = right, ...)
    }
    x
 }
