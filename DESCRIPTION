@@ -49,7 +49,7 @@ Suggests:
     dynamicTreeCut,
     pvclust,
     corrplot,
-    DendSer
+    DendSer, MASS
 Enhances: ggdendro,
     labeltodendro,dendroextras,
     data.table, rpart
