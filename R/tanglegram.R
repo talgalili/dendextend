@@ -728,6 +728,10 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   common_subtrees_color_branches = FALSE,                                     
                                   ... )
 {
+
+   # save default, for resetting...
+   def_par <- par(no.readonly = TRUE) 
+   
    
    # characters_to_prune = the number of characters to leave after pruning the labels.		
    # remove_nodePar = makes sure that we won't have any dots at the end of leaves
@@ -857,7 +861,6 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    ord_arrow <- cbind((1:l)[order(order.dendrogram(tree1))],(1:l)[order(order.dendrogram(tree2))]) 
    
    # Set the layout of the plot elements
-   def_par <- par(no.readonly = TRUE) # save default, for resetting...
    layout(matrix(1:3,nrow=1),widths=columns_width)
       
    #################
