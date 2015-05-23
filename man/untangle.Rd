@@ -33,6 +33,9 @@ heuristic to use.}
 \value{
 A \link{dendlist}, with two trees after
 they have been untangled.
+
+If the dendlist was originally larger than 2, it will return the original dendlist
+but with the relevant trees properly rotate.
 }
 \description{
 One untangle function to rule them all.

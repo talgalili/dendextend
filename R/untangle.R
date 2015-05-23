@@ -59,6 +59,9 @@
 #' @return A \link{dendlist}, with two trees after 
 #' they have been untangled.
 #' 
+#' If the dendlist was originally larger than 2, it will return the original dendlist
+#' but with the relevant trees properly rotate.
+#' 
 #' @seealso 
 #' \link{tanglegram}, \link{untangle_random_search}, 
 #' \link{untangle_step_rotate_1side}, \link{untangle_step_rotate_2side},
@@ -119,7 +122,15 @@ untangle.dendlist <- function(dend1,
                               method = c("random", "step1side", "step2side", "DendSer", "ladderize"), 
                               which = c(1L,2L), ...) {
    method <- match.arg(method)
-   untangle(dend1[[which[1]]], dend1[[which[2]]], method = method, ...)
+   untangle_result <- untangle(dend1[[which[1]]], dend1[[which[2]]], method = method, ...)
+   
+   if(length(dend1) > 2) {
+      dend1[[which[1]]] <- untangle_result[[1]]
+      dend1[[which[2]]] <- untangle_result[[2]]
+      return(dend1)
+   } else { # no need for all the copying if the list had only two elements in it.
+      return(untangle_result)
+   }
 }
 
 
