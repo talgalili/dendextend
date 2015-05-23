@@ -24,12 +24,12 @@ dendextend 1.0.0 (2015-05-23)
    * Parameters are now stored as a list for (allows for branches to have colors/linetype/linewidth, some are numeric and some character): assign_values_to_branches_edgePar / assign_values_to_leaves_nodePar / assign_values_to_leaves_edgePar / assign_values_to_nodes_nodePar - the parameters are stored as a list in edgePar/nodePar (instead of a vector). Discovered thanks to Martin Maechler.  Fixes: "Error in segments(x0, y0, x1, y1, col = col, lty = lty, lwd = lwd) : invalid line type: must be length 2, 4, 6 or 8"
    * made sure that the end of the vector in "dendextend_heights_per_k.dendrogram" will give the tree size (and not 0) as its name.
    * as.ggdend - now supports edgePar and nodePar which are lists.
+   * dendlist - removed warning when creating an empty dendlist (since we also don't get a warning when creating a list() )
    
 ###OTHER NOTES:
    * Added Code of conduct
    * Added CRAN status
    * Added coveralls 
-
 
 
 

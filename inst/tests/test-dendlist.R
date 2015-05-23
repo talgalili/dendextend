@@ -39,17 +39,20 @@ test_that("dendlist works",{
    expect_error(
       dendlist(unclass(dendlist(dend, dend)))
    )
-   # but it handles empty lists just fine:
-   expect_warning(
-      dendlist()
-   )
-   expect_warning(
-      dendlist(list())
-   )
-   # It can merge a dendlist of an empty list with a dend just fine:
-   expect_warning(
-      dendlist(dendlist(list()), dend)
-   )
+   
+### I removed the warning when creating an empty dendlist   
+#    # but it handles empty lists just fine:
+#    expect_warning(
+#       dendlist()
+#    )
+#    expect_warning(
+#       dendlist(list())
+#    )
+#    # It can merge a dendlist of an empty list with a dend just fine:
+#    expect_warning(
+#       dendlist(dendlist(list()), dend)
+#    )
+   
    # and the result is of length 1! (as we wanted it to)
    expect_equal(
       suppressWarnings(length(dendlist(dendlist(list()), dend))),

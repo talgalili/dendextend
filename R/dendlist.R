@@ -134,7 +134,7 @@ dendlist <- function (...) {
    x <- x[!ss_list]   
    # if we are left with nothing, return an empty dendlist
    if(identical(x, list())) {
-      warning("You entered an empty (or no) list to dendlist, a dendlist of length 0 is created.")
+      # warning("You entered an empty (or no) list to dendlist, a dendlist of length 0 is created.")
       x_final <- list()
       class(x_final) <- "dendlist"
       return(x_final)   
