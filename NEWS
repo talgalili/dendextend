@@ -4,7 +4,7 @@ dendextend 1.0.0 (2015-05-23)
 ###NEW FUNCTIONS:
    * common_subtrees_clusters - a (currently hidden) function to get clusters for labels of common subtrees between two trees.
    * labels.dendrogram is now working through dendextend_options("labels.dendrogram"). The defualt is the new dendextend_labels.dendrogram (which is just stats:::labels.dendrogram), but this allows the package dendextendRcpp to change the function used by the package (without masking the function in base R) - thus making both me, and CRAN, happy :)
-   * rank_values_with_clusters - Rank a vector based on clusters (important for various functions.)
+   * rank_values_with_clusters - Rank a vector based on clusters (important for various functions.) Added tests.
    
 ###UPDATED FUNCTIONS:
    * color_branches - gained a new "cluster" parameter to allow for easy uneven coloring of branches (using branches_attr_by_clusters). This is not a new feature, as it is an attempt to have the user access more options from one place (i.e.: color_branches).
