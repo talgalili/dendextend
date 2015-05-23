@@ -46,10 +46,21 @@
 #' If you create the clusters from something like \link{cutree} you would first
 #' need to use \link{order.dendrogram} on it, before using it in the function.
 #' @param values the attributes to use for non 0 values.
-#' This should be of the same length as the number of non-0 clusters.
-#' If it is not, it is recycled.
+#' This should be of the same length as the number of unique non-0 clusters.
+#' If it is shorter, it is recycled.
+#' 
+#' OR, this can also be of the same length as the number of leaves in the tree
+#' In which case, the values will be aggreagted (i.e.: \link{tapply}), to match
+#' the number of clusters. The first value of each cluster will be used as the main
+#' value.
+#' 
+#' TODO: So far, the function doesn't deal well with NA values. (this might be changed in the future)
+#' 
 #' @param attr a character with one of the following values: col/lwd/lty
+#' @param branches_changed_have_which_labels character with either "any" (default) or "all".
+#' Inidicates how the branches should be updated.
 #' @param ... ignored.
+#'
 #' @return 
 #' A dendrogram with modified branches (col/lwd/lty).
 #' @seealso 
@@ -124,7 +135,9 @@
 #' # The main difference is at the bottom,
 #' 
 #' }
-branches_attr_by_clusters <- function(dend, clusters, values, attr = c("col", "lwd", "lty"),  ...) {
+branches_attr_by_clusters <- function(dend, clusters, values, attr = c("col", "lwd", "lty"), 
+                                      branches_changed_have_which_labels = c("any", "all"),
+                                      ...) {
    attr <- match.arg(attr)
    
    if(!is.dendrogram(dend)) warning("'dend' should be a dendrogram.")   
@@ -134,37 +147,74 @@ branches_attr_by_clusters <- function(dend, clusters, values, attr = c("col", "l
       clusters <- as.numeric(clusters)
    }
    
-   if(nleaves(dend) != length(clusters)) stop("The number of values in 'clusters' does not equal the number of leaves.")
+   n_leaves <- nleaves(dend)
+   
+   if(n_leaves != length(clusters)) stop("The number of values in 'clusters' does not equal the number of leaves.")
    
    u_clusters <- unique(clusters)
    u_clusters <- u_clusters[u_clusters != 0] # we only care about the unique clusters which are not 0!
 #    u_clusters <- sort(u_clusters) # and let's sort the clusters so that we would go 
-   n_clusters <- length(u_clusters)
+   n_u_clusters <- length(u_clusters)
    
    if(missing(values) & attr == "col" ) {
       values <- rep(1, length(clusters)) # make a vector of black colors
       # library(colorspace) # this package is now in imports
-      values <- rainbow_fun(n_clusters)
+      values <- rainbow_fun(n_u_clusters)
    }
    
+
+   n_values <- length(values)
+
+   # if the value is of the length of the leaves
+   # then we aggregate the values to have one value for each cluster!
+   if(n_values == n_leaves) {
+      ss_not0 <- clusters != 0
+      values <- tapply(values[ss_not0], clusters[ss_not0], function(x) {x[1]} )
+   }
    
-   if(length(values) < n_clusters) {
+   if(n_values < n_u_clusters) {
       #          stop("Must give the same number of colors as number of clusters")
       warning("Length of values vector was shorter than the number of clusters (Excluding 0) - vector was recycled")
-      values <- rep(values, length.out = n_clusters)
+      values <- rep(values, length.out = n_u_clusters)
    }
    
 
    # let's find out which nodes we should modify for each cluster
-   nodes_cluster_TF_mat <- matrix(FALSE, nrow = nnodes(dend), ncol = n_clusters)
+   nodes_cluster_TF_mat <- matrix(FALSE, nrow = nnodes(dend), ncol = n_u_clusters)
    dend_labels <- labels(dend)
+   
    has_any_labels <- function(sub_dend, the_labels) any(labels(sub_dend) %in% the_labels)
+   has_all_labels <- function(sub_dend, the_labels) all(labels(sub_dend) %in% the_labels)
+   
+   branches_changed_have_which_labels <- match.arg(branches_changed_have_which_labels)
+   #### This doesn't seem to work. Not sure why...
+   has_x_labels <- switch(branches_changed_have_which_labels,
+                          all = has_all_labels,
+                           any = has_any_labels
+                          )
+#    if(branches_changed_have_which_labels == "any") has_x_labels <- has_any_labels
+#    if(branches_changed_have_which_labels == "all") has_x_labels <- has_all_labels
+   
+   
    for(i in seq_along(u_clusters)) {
       # looking at the labels of the current cluster:
       ss <- clusters == u_clusters[i]
       tmp_labels <- dend_labels[ss]
       # find which node belongs to it:
-      tmp_nodes_TF <- noded_with_condition(dend, has_any_labels, the_labels = tmp_labels)      
+
+      #### DELETE:      
+# #       tmp_nodes_TF <- noded_with_condition(dend, condition = has_x_labels, 
+# #                                            the_labels = tmp_labels)      
+#       if(branches_changed_have_which_labels == "any") {
+#          tmp_nodes_TF <- noded_with_condition(dend, condition = has_any_labels, the_labels = tmp_labels)
+#       }
+#       if(branches_changed_have_which_labels == "all") {
+#          tmp_nodes_TF <- noded_with_condition(dend, condition = has_all_labels, the_labels = tmp_labels)
+#       }
+      
+      tmp_nodes_TF <- noded_with_condition(dend, condition = has_x_labels, the_labels = tmp_labels)
+      
+      
       # and modify our TF cluster matrix:
       nodes_cluster_TF_mat[,i] <- tmp_nodes_TF
    }

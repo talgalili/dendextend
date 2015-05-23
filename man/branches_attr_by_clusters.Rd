@@ -5,7 +5,7 @@
 \title{Change col/lwd/lty of branches based on clusters}
 \usage{
 branches_attr_by_clusters(dend, clusters, values, attr = c("col", "lwd",
-  "lty"), ...)
+  "lty"), branches_changed_have_which_labels = c("any", "all"), ...)
 }
 \arguments{
 \item{dend}{a dendrogram dend}
@@ -18,10 +18,20 @@ If you create the clusters from something like \link{cutree} you would first
 need to use \link{order.dendrogram} on it, before using it in the function.}
 
 \item{values}{the attributes to use for non 0 values.
-This should be of the same length as the number of non-0 clusters.
-If it is not, it is recycled.}
+This should be of the same length as the number of unique non-0 clusters.
+If it is shorter, it is recycled.
+
+OR, this can also be of the same length as the number of leaves in the tree
+In which case, the values will be aggreagted (i.e.: \link{tapply}), to match
+the number of clusters. The first value of each cluster will be used as the main
+value.
+
+TODO: So far, the function doesn't deal well with NA values. (this might be changed in the future)}
 
 \item{attr}{a character with one of the following values: col/lwd/lty}
+
+\item{branches_changed_have_which_labels}{character with either "any" (default) or "all".
+Inidicates how the branches should be updated.}
 
 \item{...}{ignored.}
 }

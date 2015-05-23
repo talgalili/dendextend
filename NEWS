@@ -11,6 +11,10 @@ dendextend 0.19.0 (2015-05-22)
    * tanglegram - turned "highlight_distinct_edges = FALSE". This is due to a bug in R that causes plot.dendrogram to crash when trying to plot a tree with both lty and some character color for the branch.
    * tanglegram - Added new parameters: common_subtrees_color_lines and common_subtrees_color_branches to color connecting-lines and/or the dendrograms themsleves, to help detect commonly shared subtrees.
    * plot.ggdend - added support to plot nodes
+   * branches_attr_by_clusters - 
+      * can now accept a vector of values with the length of the labels.
+      * new parameter "branches_changed_have_which_labels" - allows the user the decide if the change in parameters will be for branches with all/any of the labels (useful for tanglegram - since we would like to color common subtrees with all of the labels, not just any.)
+      
 
 ###BUG FIXES:
    * Fix "'::' or ':::' import not declared from: ‘rpart’" by adding rpart to DESCRIPTION.
