@@ -26,7 +26,9 @@ dendextend 1.0.0 (2015-05-23)
    * as.ggdend - now supports edgePar and nodePar which are lists.
    * dendlist - removed warning when creating an empty dendlist (since we also don't get a warning when creating a list() )
    * ladderize - added the `which` parameter (for indicating which elements in the dendlist to ladderize)
-   * untangle.dendlist - can now return a dendlist with more than two elements.
+   * untangle.dendlist - 
+      * can now return a dendlist with more than two elements.
+      * now preserve the names in the dendlist
    * dendlist - added the `which` parameter (for indicating which elements in the dendlist to pick out)
    
 ###OTHER NOTES:

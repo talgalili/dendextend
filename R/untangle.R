@@ -122,13 +122,17 @@ untangle.dendlist <- function(dend1,
                               method = c("random", "step1side", "step2side", "DendSer", "ladderize"), 
                               which = c(1L,2L), ...) {
    method <- match.arg(method)
+   the_names <- names(dend1)[which]
+   
    untangle_result <- untangle(dend1[[which[1]]], dend1[[which[2]]], method = method, ...)
    
    if(length(dend1) > 2) {
       dend1[[which[1]]] <- untangle_result[[1]]
       dend1[[which[2]]] <- untangle_result[[2]]
+      names(dend1) <- the_names
       return(dend1)
    } else { # no need for all the copying if the list had only two elements in it.
+      names(untangle_result) <- the_names
       return(untangle_result)
    }
 }
