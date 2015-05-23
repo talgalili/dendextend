@@ -64,11 +64,53 @@ nodes_with_shared_labels <- function(dend1, dend2, ...) {
 }
 
 
-# rank_values_with_clustrs(c(1,3,3,3,2,2))
-rank_values_with_clustrs <- function(x) {
+
+
+#' Rank a vector based on clusters
+#' @export
+#'
+#' @param x numeric vector
+#' @param ignore0 logical (FALSE). If TRUE, will ignore the 0's in the vector
+#' @param ... not used
+#'
+#' @return
+#' an integer vector with the number of unique values
+#' as the number of uniques in the original vector.
+#' And the values are ranked from 1 (in the beginning of the vector)
+#' to the number of unique clusters.
+#'
+#' @examples
+#' 
+#' rank_values_with_clusters(c(1,2,3))
+#' rank_values_with_clusters(c(1,1,3))
+#' rank_values_with_clusters(c(0.1,0.1,3000))
+#' rank_values_with_clusters(c(3,1,2))
+#' rank_values_with_clusters(c(1,3,3,3,3,3,3,4,2,2))
+#' 
+#' rank_values_with_clusters(c(3,1,2), ignore0 = TRUE)
+#' rank_values_with_clusters(c(3,1,2), ignore0 = FALSE)
+#' rank_values_with_clusters(c(3,1,0,2), ignore0 = TRUE)
+#' rank_values_with_clusters(c(3,1,0,2), ignore0 = FALSE)
+#' 
+#' 
+rank_values_with_clusters <- function(x, ignore0 = FALSE, ...) {
+   if(ignore0) {
+      old_x <- x
+      x <- old_x[old_x != 0]
+   }
+   
    rle_lengths <- rle(x)$lengths
-   rep(seq_along(rle_lengths), times = rle_lengths)   
+   x <- rep(seq_along(rle_lengths), times = rle_lengths)   
+   
+   if(ignore0) {
+      old_x[old_x != 0] <- x
+      x <- old_x
+   }
+   
+   x
 }
+
+
 
 
 replace_unique_items_with_0_and_rank <- function(x, ...) {
@@ -83,7 +125,7 @@ replace_unique_items_with_0_and_rank <- function(x, ...) {
    ### x[!ss_unique] <- rank(x[!ss_unique], ties = "min")
    
    # now we rank
-   x[!ss_unique] <- rank_values_with_clustrs(x[!ss_unique])
+   x[!ss_unique] <- rank_values_with_clusters(x[!ss_unique])
    #    rep(1:3, times = c(1,3,3))
    #    rle(c(1,2,2,3,3,4))   
    x
@@ -162,7 +204,7 @@ common_subtrees_clusters <- function(dend1, dend2, leaves_get_0_cluster = TRUE, 
    
    fill_clusters(dend)
    
-   clusters <- rank_values_with_clustrs(clusters)
+   clusters <- rank_values_with_clusters(clusters)
    
    if(leaves_get_0_cluster) {
       clusters <- replace_unique_items_with_0_and_rank(clusters)
