@@ -75,7 +75,7 @@ is.dendlist <- function(x) {
 #' plot.dendlist
 #' @usage 
 #' 
-#' dendlist(...)
+#' dendlist(..., which)
 #' 
 #' \method{plot}{dendlist}(x, which = c(1L, 2L), ...)
 #' 
@@ -91,6 +91,9 @@ is.dendlist <- function(x) {
 #' @param x a dendlist object
 #' @param which an integer vector of length 2, indicating
 #' which of the trees in the dendlist object should be plotted (relevant for dendlist)
+#' 
+#' When used inside dendlist, which is still an integer, but it can be of any length,
+#' and it can be used to create a smaller dendlist.
 #' 
 #' @details
 #' It there are list() in the ..., they are omitted.
@@ -125,9 +128,13 @@ is.dendlist <- function(x) {
 #' 
 #' }
 #' 
-dendlist <- function (...) {
+dendlist <- function (..., which) {
    x <- list(...)
-   
+
+   if(!missing(which)) {
+      the_names <- names(x[[1]])[which]
+   }
+      
    # dendlist on a list will return a length 0 dendlist
    # First, let's remove all "list()" from the object
    ss_list <- sapply(x, is_null_list)
@@ -194,6 +201,11 @@ dendlist <- function (...) {
    
    # else - everything is either c("dendrogram", "dendlist"))
    # let's make it
+   
+   if(!missing(which)) {
+      x_final <- x_final[which]
+      names(x_final) <- the_names
+   }
    
    class(x_final) <- "dendlist"
    return(x_final)   

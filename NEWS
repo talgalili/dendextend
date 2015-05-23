@@ -27,6 +27,7 @@ dendextend 1.0.0 (2015-05-23)
    * dendlist - removed warning when creating an empty dendlist (since we also don't get a warning when creating a list() )
    * ladderize - added the `which` parameter (for indicating which elements in the dendlist to ladderize)
    * untangle.dendlist - can now return a dendlist with more than two elements.
+   * dendlist - added the `which` parameter (for indicating which elements in the dendlist to pick out)
    
 ###OTHER NOTES:
    * Added Code of conduct

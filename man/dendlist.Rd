@@ -5,7 +5,7 @@
 \alias{plot.dendlist}
 \title{Creating a dendlist object from several dendrograms}
 \usage{
-dendlist(...)
+dendlist(..., which)
 
 \method{plot}{dendlist}(x, which = c(1L, 2L), ...)
 }
@@ -14,10 +14,13 @@ dendlist(...)
 If an object is hclust or phylo - it will be converted
 into a dendrogram.}
 
-\item{x}{a dendlist object}
-
 \item{which}{an integer vector of length 2, indicating
-which of the trees in the dendlist object should be plotted (relevant for dendlist)}
+which of the trees in the dendlist object should be plotted (relevant for dendlist)
+
+When used inside dendlist, which is still an integer, but it can be of any length,
+and it can be used to create a smaller dendlist.}
+
+\item{x}{a dendlist object}
 }
 \value{
 A list of class dendlist where each item
