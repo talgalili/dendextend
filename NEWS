@@ -14,6 +14,12 @@ dendextend 1.0.0 (2015-05-23)
    * branches_attr_by_clusters - 
       * can now accept a vector of values with the length of the labels.
       * new parameter "branches_changed_have_which_labels" - allows the user the decide if the change in parameters will be for branches with all/any of the labels (useful for tanglegram - since we would like to color common subtrees with all of the labels, not just any.)
+   * dendlist - removed warning when creating an empty dendlist (since we also don't get a warning when creating a list() )
+   * ladderize - added the `which` parameter (for indicating which elements in the dendlist to ladderize)
+   * untangle.dendlist - 
+      * can now return a dendlist with more than two elements.
+      * now preserve the names in the dendlist
+   * dendlist - added the `which` parameter (for indicating which elements in the dendlist to pick out)
       
 
 ###BUG FIXES:
@@ -24,12 +30,6 @@ dendextend 1.0.0 (2015-05-23)
    * Parameters are now stored as a list for (allows for branches to have colors/linetype/linewidth, some are numeric and some character): assign_values_to_branches_edgePar / assign_values_to_leaves_nodePar / assign_values_to_leaves_edgePar / assign_values_to_nodes_nodePar - the parameters are stored as a list in edgePar/nodePar (instead of a vector). Discovered thanks to Martin Maechler.  Fixes: "Error in segments(x0, y0, x1, y1, col = col, lty = lty, lwd = lwd) : invalid line type: must be length 2, 4, 6 or 8"
    * made sure that the end of the vector in "dendextend_heights_per_k.dendrogram" will give the tree size (and not 0) as its name.
    * as.ggdend - now supports edgePar and nodePar which are lists.
-   * dendlist - removed warning when creating an empty dendlist (since we also don't get a warning when creating a list() )
-   * ladderize - added the `which` parameter (for indicating which elements in the dendlist to ladderize)
-   * untangle.dendlist - 
-      * can now return a dendlist with more than two elements.
-      * now preserve the names in the dendlist
-   * dendlist - added the `which` parameter (for indicating which elements in the dendlist to pick out)
    
 ###OTHER NOTES:
    * Added Code of conduct
