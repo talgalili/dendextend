@@ -6,6 +6,21 @@ output: html_document
 ---
 
 
+```{r, echo = FALSE, message = FALSE, warning=FALSE}
+library(dendextend)
+library(knitr)
+knitr::opts_chunk$set(
+   cache = TRUE,
+   dpi = 200,
+  comment = "#>",
+  tidy = FALSE)
+
+# http://stackoverflow.com/questions/24091735/why-pandoc-does-not-retrieve-the-image-file
+# < ! -- rmarkdown v1 -->
+
+```
+
+
 
 ### The Iris dataset
 
