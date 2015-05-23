@@ -1,6 +1,9 @@
 # library(testthat)
 suppressPackageStartupMessages(library(dendextend))
 
+context("dendlist")
+
+
 test_that("dendlist works",{
 
    dend <- iris[,-5] %>% dist %>% hclust %>% as.dendrogram
