@@ -39,7 +39,7 @@ dendextend 1.0.0 (2015-05-23)
    * Added Code of conduct
    * Added CRAN status
    * Added coveralls 
-
+   * Moved FAQ from introduction.Rmd to FAQ.Rmd
 
 
 dendextend 0.18.8 (2015-05-17)
