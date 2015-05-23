@@ -257,7 +257,7 @@ Solution: use the `color_branches` function (or the `set` function, with the "br
 (Getting the data for this example is from the (http://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2?)[original SO question])
 
 ```{r, echo = FALSE}
-test <- structure(c(0.641122711554543, 1.23425751165366, -0.325822271157288, 
+test0 <- structure(c(0.641122711554543, 1.23425751165366, -0.325822271157288, 
 -0.452769780259602, 0.0544008811521789, -0.419431342616865, -0.972784235576774, 
 -1.08436301942649, 0.80835607360689, 0.265694432492288, -0.394391484747309, 
 -0.309391545578684, -0.564119988114909, -0.348052747180059, -0.337073599674073, 
@@ -821,9 +821,9 @@ NA), .Dim = c(23L, 96L), .Dimnames = list(c("varA", "varB", "varC",
 ```
 
 
-```{r}
+```{r, eval = FALSE}
 
-
+test <- test0
 rnames <- test[,1] 
 test <- data.matrix(test[,2:ncol(test)]) # to matrix
 rownames(test) <- rnames                 
@@ -840,7 +840,7 @@ col_breaks = c(seq(-1,-0.5,length=100),  # forestgreen
                seq(0.5,1,length=100))    # red
 
 # distance & hierarchical clustering
-distance= dist(test, method ="euclidean")    
+distance = dist(test, method ="euclidean")    
 hcluster = hclust(distance, method ="ward.D")
 
 
@@ -864,8 +864,16 @@ col_labels <- get_leaves_branches_col(dend1)
 # order of the data!   
 col_labels <- col_labels[order(order.dendrogram(dend1))]
 
+dend1
+# plot(dend1)
+# a <- heights_per_k.dendrogram(dend1)
+# library(dendextendRcpp)
+# a2 <- heights_per_k.dendrogram(dend1)
+# nleaves(dend1)
+
+
 # Creating Heat Map
-if(!require(gplots)) install.packages("gplots")
+# if(!require(gplots)) install.packages("gplots")
 library(gplots)
 heatmap.2(test,  
    	main = paste( "test"),  
@@ -1488,6 +1496,7 @@ dend15 %>% rect.dendrogram(k=3,
 dend15 %>% set("branches_k_color") %>% plot(horiz = TRUE)
 dend15 %>% rect.dendrogram(k=3, horiz = TRUE,
                            border = 8, lty = 5, lwd = 2)
+
 ```
 
 
@@ -1533,12 +1542,14 @@ The function `prepare.ggdend` is used by `plot.ggdend` to take the ggdend object
 dend <- iris[1:30,-5] %>% dist %>% hclust %>% as.dendrogram %>%
    set("branches_k_color", k=3) %>% set("branches_lwd", c(1.5,1,1.5)) %>%
    set("branches_lty", c(1,1,3,1,1,2)) %>%
-   set("labels_colors") %>% set("labels_cex", c(.9,1.2))
+   set("labels_colors") %>% set("labels_cex", c(.9,1.2)) %>% 
+   set("nodes_pch", 19) %>% set("nodes_col", c("orange", "black", "plum", "NA"))
 # plot the dend in usual "base" plotting engine:
 plot(dend)
 # Now let's do it in ggplot2 :)
 ggd1 <- as.ggdend(dend)
 library(ggplot2)
+# the nodes are not implemented yet.
 ggplot(ggd1) # reproducing the above plot in ggplot2 :)
 ggplot(ggd1, horiz = TRUE, theme = NULL) # horiz plot (and let's remove theme) in ggplot2
 # Adding some extra spice to it...
@@ -1749,13 +1760,31 @@ tanglegram(dends_15_51)
 # tanglegram(dend15, dend51)
 ```
 
+Notice how "unique" nodes are heilighted with dashed lines (i.e.: nodes which contains a combination of labels/items, which are not present in the other tree). This can be turned off using `highlight_distinct_edges = FALSE`.
+Also notice how the connecting lines are colored to highlight two subtrees which are present in both dendrograms. This can be turned off by setting `common_subtrees_color_lines = FALSE`. We can also color the branches of the trees to show the two common subtrees using `common_subtrees_color_branches = TRUE`:
+
+```{r, fig.width=5, fig.height=3}
+tanglegram(dends_15_51, common_subtrees_color_branches = TRUE)
+```
+
+
+
 We may wish to improve the layout of the trees. For this we have the `entanglement`, to measure the quality of the alignment of the two trees in the tanglegram layout, and the `untangle` function, for improving it.
 
 ```{r}
 dends_15_51 %>% entanglement # lower is better
 # dends_15_51 %>% untangle(method = "DendSer") %>% entanglement # lower is better
-dends_15_51 %>% untangle(method = "ladderize") %>% entanglement # lower is better
+dends_15_51 %>% untangle(method = "step1side") %>% entanglement # lower is better
 ```
+
+Notice that just because we can get two trees to have horizontal connecting lines, it doesn't mean these trees are identical (or even very similar topologically):
+
+```{r, fig.width=5, fig.height=3}
+dends_15_51 %>% untangle(method = "step1side") %>% 
+   tanglegram(common_subtrees_color_branches = TRUE)
+```
+
+
 
 
 Entanglement is measured by giving the left tree's labels the values of 1 till tree size, and than match these numbers with the right tree. Now, entanglement is the L norm distance between these two vectors.
@@ -1787,6 +1816,7 @@ x %>% plot(main = paste("entanglement =", round(entanglement(x), 2)))
 One solution for improving the tanglegram would be to randomly search the rotated tree space for a better solution. Here is how to use a random search:
 
 ```{r, fig.width=5, fig.height=3}
+set.seed(3958)
 x <- dends_15_51 %>% untangle(method = "random", R = 10) 
 x %>% plot(main = paste("entanglement =", round(entanglement(x), 2)))
 ```
@@ -1886,6 +1916,16 @@ corrplot(cor.dendlist(dend1234), "pie", "lower")
 ```
 
 Which easily tells us that single, average and centroid give similar results, while complete is somewhat different.
+
+
+```{r, fig.width=5, fig.height=3}
+# same subtrees, so there is no need to color the branches
+dend1234 %>% tanglegram(which = c(2,3)) 
+# Here the branches colors are very helpful:
+dend1234 %>% tanglegram(which = c(1,2), 
+                        common_subtrees_color_branches = TRUE)
+
+```
 
 
 
