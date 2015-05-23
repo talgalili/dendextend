@@ -57,6 +57,7 @@ tanglegram(tree1, ...)
    highlight_distinct_edges = TRUE,
    common_subtrees_color_lines = TRUE,
    common_subtrees_color_branches = FALSE,
+   faster = FALSE,
    ...)
 
 \method{tanglegram}{dendlist}(tree1, which = c(1L,2L), main_left, main_right, ...)
@@ -183,6 +184,9 @@ This only works if
 \item{common_subtrees_color_branches}{logical (default is FALSE).
 Color the branches of both dends based on the common subtrees.
 (notice that this can be slow on large trees)}
+
+\item{faster}{logical (FALSE). If TRUE, it overrides some other parameters to
+have them turned off so that the plotting will go a tiny bit faster.}
 }
 \value{
 An invisible \link{dendlist}, with two trees after being

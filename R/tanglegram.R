@@ -489,6 +489,7 @@ plot_horiz.dendrogram <- function (x,
 #'    highlight_distinct_edges = TRUE,
 #'    common_subtrees_color_lines = TRUE,
 #'    common_subtrees_color_branches = FALSE,
+#'    faster = FALSE,
 #'    ...)
 #' 
 #' \method{tanglegram}{dendlist}(tree1, which = c(1L,2L), main_left, main_right, ...)
@@ -576,6 +577,8 @@ plot_horiz.dendrogram <- function (x,
 #' @param common_subtrees_color_branches logical (default is FALSE). 
 #' Color the branches of both dends based on the common subtrees.
 #' (notice that this can be slow on large trees)
+#' @param faster logical (FALSE). If TRUE, it overrides some other parameters to 
+#' have them turned off so that the plotting will go a tiny bit faster.
 #' @param ... not used.
 #' @details 
 #' Notice that tanglegram does not "resize" well. In case you are resizing your
@@ -726,9 +729,16 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
                                   highlight_distinct_edges = TRUE,
                                   common_subtrees_color_lines = TRUE,
                                   common_subtrees_color_branches = FALSE,                                     
+                                  faster = FALSE, 
                                   ... )
 {
 
+   if(faster) {
+      highlight_distinct_edges = FALSE
+      common_subtrees_color_lines = FALSE
+      common_subtrees_color_branches = FALSE
+   }
+   
    # save default, for resetting...
    def_par <- par(no.readonly = TRUE) 
    
