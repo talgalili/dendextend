@@ -640,3 +640,4 @@ We removed the "median" method since it did not have k=4 possible. In general, t
 
 
 
+(Other possible datasets for the future: chorSub, flower, plantTraits, pluton, ruspini, agriculture)
