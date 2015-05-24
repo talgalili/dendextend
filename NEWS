@@ -45,6 +45,7 @@ dendextend 1.0.0 (2015-05-23)
    * Added CRAN status
    * Added coveralls 
    * Moved FAQ from introduction.Rmd to FAQ.Rmd
+   * New vignette "Cluster_Analysis.Rmd" - demonstrating the use of the package on three famous datasets (Iris, votes.repub, animals)
 
 
 dendextend 0.18.8 (2015-05-17)

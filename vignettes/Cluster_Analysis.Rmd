@@ -525,3 +525,118 @@ There are also several other subtrees which are identical between the two method
 A better understanding of the data requires a much more in-depth historical perspective than is within the scope of the current analysis.
 
 
+
+## animals - Attributes of Animals
+
+
+### background
+
+> This data set considers 6 binary attributes for 20 animals.
+
+> see Struyf, Hubert & Rousseeuw (1996), in agnes.
+
+
+
+
+Define variables:
+
+```{r}
+animals <- cluster::animals
+
+colnames(animals) <- c("warm-blooded", 
+                       "can fly",
+                       "vertebrate",
+                       "endangered",
+                       "live in groups",
+                       "have hair")
+```
+
+
+### Heatmap 
+
+This is a good example for using a heatmap + colored branches.
+
+
+```{r}
+
+dend_r <- animals %>% dist(method = "man") %>% hclust(method = "ward.D") %>% as.dendrogram %>% ladderize %>%
+    color_branches(k=4)
+
+dend_c <- t(animals) %>% dist(method = "man") %>% hclust(method = "com") %>% as.dendrogram %>% ladderize%>%
+    color_branches(k=3)
+
+
+# some_col_func <- function(n) rev(colorspace::heat_hcl(n, c = c(80, 30), l = c(30, 90), power = c(1/5, 1.5)))
+# some_col_func <- colorspace::diverge_hcl
+# some_col_func <- colorspace::sequential_hcl
+some_col_func <- function(n) (colorspace::diverge_hcl(n, h = c(246, 40), c = 96, l = c(65, 90)))
+
+
+
+# par(mar = c(3,3,3,3))
+# library(gplots)
+gplots::heatmap.2(as.matrix(animals-1), 
+          main = "Attributes of Animals",
+          srtCol = 35,
+          Rowv = dend_r,
+          Colv = dend_c,
+          trace="row", hline = NA, tracecol = "darkgrey",         
+          margins =c(6,3),      
+          key.xlab = "no / yes",
+          denscol = "grey",
+          density.info = "density",
+          col = some_col_func
+         )
+
+```
+
+We see that we have several groups of variables: the "can fly" and "endangered" (which usually are both "no"), the "have hair", and the "warm-blooded", "vertebrate" and "live in groups".
+
+We see that within the animals there are (roughly!) the following 4 groups: 
+
+1. The cold-blooded non-vertebrates, which are mostly not endangered.
+2. The warm-blooded vertebrates, which live in groups, have hair, can't fly, and mostly aren't endangered.
+3. The cold-blooded vertebrates, without hair, can't fly, and aren't endangered.
+4. The (mostly) warm-blooded vertebrates, without hair, some can fly, and some aren endangered.
+
+
+How much of a difference would we get if we used another clustering algorithm?
+
+We first calculate the clustering using 8 different methods:
+
+```{r}
+
+hclust_methods <- c("ward.D", "single", "complete", "average", "mcquitty", 
+        "median", "centroid", "ward.D2")
+animals_dendlist <- dendlist()
+
+for(i in seq_along(hclust_methods)) {
+   tmp_dend <-  animals %>% dist(method = "man") %>% 
+      hclust(method = hclust_methods[i]) %>% as.dendrogram 
+   animals_dendlist <- dendlist(animals_dendlist, tmp_dend)
+}
+names(animals_dendlist) <- hclust_methods
+# votes.repub_dendlist
+```
+
+Next, we can look at the cophenetic correlation between each clustering result using `cor.dendlist` (this can be nicely plotted using the `corrplot` function from the _corrplot_ package):
+
+```{r, fig.width=8, fig.height=8}
+cophenetic_cors <- cor.dendlist(animals_dendlist)
+corrplot::corrplot(cophenetic_cors, "pie", "lower")
+```
+
+We see that the the different methods (other than ward.D and ward.D2), all give quite different results. So would the above analysis be different if we had used another clustering algorithm?
+
+For this purpose we compare the clustering solution of each algorithm with one another, when cut to k=4 clusters, using the Fowlkes-Mallows Index. This measure is similar to rand (or rand adjusted) index, and gives a value of 1 when the two clusters confirm, and 0 when they do not:
+
+```{r}
+remove_median <- dendlist(animals_dendlist, which = c(1:8)[-6] )
+FM_cors <- cor.dendlist(remove_median, method = "FM_index", k = 4)
+corrplot::corrplot(FM_cors, "pie", "lower")
+```
+
+We removed the "median" method since it did not have k=4 possible. In general, the results seems sensitive the the algorithm used, and the different algorithm methods do not seem to agree with one another (with regards to k=4), so further analyses may be in place in order to decide on which algorithm and interpretation are most appropriate for this data.
+
+
+
