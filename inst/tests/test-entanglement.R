@@ -2,7 +2,7 @@
 
 
 # fixing how the tests are printed
-cat("\n")
+# cat("\n")
 
 context("Measuring entanglement of two trees")
 
