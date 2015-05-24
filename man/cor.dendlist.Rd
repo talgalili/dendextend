@@ -45,6 +45,7 @@ corrplot(cor.dendlist(dend1234), "pie", "lower")
 }
 }
 \seealso{
-\link{cophenetic}, \link{cor_cophenetic}, \link{cor_bakers_gamma}
+\link{cophenetic}, \link{cor_cophenetic}, \link{cor_bakers_gamma},
+\link{cor_common_nodes}
 }
 
