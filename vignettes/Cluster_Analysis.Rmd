@@ -1,5 +1,5 @@
 ---
-title: "Hierarchical cluster analysis on famous datasets - enhanced with the _dendextend_ package)"
+title: "Hierarchical cluster analysis on famous data-sets - enhanced with the _dendextend_ package)"
 author: "Tal Galili"
 output: 
   html_document: 
@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-This document demonstrats, on several famous datasets, how the _dendextend_ R package can be used to enhance Hierarchical Cluster Analysis (through better visualization and sensitivity analysis). 
+This document demonstrates, on several famous data-sets, how the _dendextend_ R package can be used to enhance Hierarchical Cluster Analysis (through better visualization and sensitivity analysis). 
 
 
 
@@ -148,9 +148,9 @@ The hanging of the tree also helps to locate extreme observations. For example, 
 
 ```
 
-We can also explore the data using a heatmap. The rows are ordered based on the order of the hierarchical clustering (using the "complete" method). The colored bar indicates the species category each row belongs to. The color in the heatmap indicates the length of each measurment (from light yelow to dark red).
+We can also explore the data using a heatmap. The rows are ordered based on the order of the hierarchical clustering (using the "complete" method). The colored bar indicates the species category each row belongs to. The color in the heatmap indicates the length of each measurement (from light yellow to dark red).
 
-In the heatmap we also see how the Setosa species has low Petal values (in light yelow), but it is very difficult to see any clear distinction in between the other two species.
+In the heatmap we also see how the Setosa species has low Petal values (in light yellow), but it is very difficult to see any clear distinction in between the other two species.
 
 
 ```{r}
@@ -242,7 +242,7 @@ iris_dendlist %>% dendlist(which = c(1,4)) %>% ladderize %>%
    tanglegram(common_subtrees_color_branches = TRUE)
 ```
 
-We have 39 subtrees which are identical between the two dendrograms:
+We have 39 sub-trees which are identical between the two dendrograms:
 
 ```{r}
 length(unique(common_subtrees_clusters(iris_dendlist[[1]], iris_dendlist[[4]]))[-1])
@@ -272,7 +272,7 @@ for(i in 1:8) {
 }
 ```
 
-It seems that the cophenetic correlation is very biased towards the influance of the main clusters. Another correlation measure to use is the `cor_common_nodes` correlation (giving the proportion of nodes which share the exact same list of labels in both dendrograms). We can also check it out:
+It seems that the cophenetic correlation is very biased towards the influence of the main clusters. Another correlation measure to use is the `cor_common_nodes` correlation (giving the proportion of nodes which share the exact same list of labels in both dendrograms). We can also check it out:
 
 ```{r, fig.width=8, fig.height=8}
 iris_dendlist_cor2 <- cor.dendlist(iris_dendlist, method = "common")
@@ -313,15 +313,15 @@ We can see that the "median" method did the best, although similar results were 
 
 ### Conclusion
 
-The Iris dataset is only 4-dimensional, making it possible to explore using pairs plot (SPLOM) or parallel coordinates plot. It is clear from these that two main clusters are visible, while the seperation of the third cluster is difficult.
+The Iris data-set is only 4-dimensional, making it possible to explore using pairs plot (SPLOM) or parallel coordinates plot. It is clear from these that two main clusters are visible, while the separation of the third cluster is difficult.
 
-In the above analysis we learned that the complete method fails to do the proper seperation of the two main clusters when cut in k=2 (but succeds in doing it, if moving to k=3 clusters). This is different than all the other 7 methods available in `hclust`, which do succeed in seperating the 2 main clusters from the beginning (i.e.: for k=2).
+In the above analysis we learned that the complete method fails to do the proper separation of the two main clusters when cut in k=2 (but succeeds in doing it, if moving to k=3 clusters). This is different than all the other 7 methods available in `hclust`, which do succeed in separating the 2 main clusters from the beginning (i.e.: for k=2).
 
 We also noticed that all clustering algorithms share a relatively high proportion of common nodes (between 75% to 90%).
 
-Lastely, when it came to seperating the flowers to the 3 species, the median clustering method did the best, while the single method did the worst in this regards. 
+Lastly, when it came to separating the flowers to the 3 species, the median clustering method did the best, while the single method did the worst in this regards. 
 
-While the Iris dataset is well known, I hope the above analysis was able to offer some new perspectives on the performance of the different hierarchical clustering methods.
+While the Iris data-set is well known, I hope the above analysis was able to offer some new perspectives on the performance of the different hierarchical clustering methods.
 
 
 
@@ -519,7 +519,7 @@ dends  %>% tanglegram(margin_inner = 7)
 
 We see that the two clustering give similar results for: "Alabama", "Georgia", "Louisiana", "Arkansas", "Florida", "Texas", "South Carolina", "Mississippi".
 
-There are also several other subtrees which are identical between the two methods. The biggest diffence lies in several "rougue" states which are placed differently in the two clustering algorithms. They are: Vermont, Michigan, Maine, Hawaii, New Jersey, West Virinia, and Oklahoma.
+There are also several other sub-trees which are identical between the two methods. The biggest difference lies in several "rouge" states which are placed differently in the two clustering algorithms. They are: Vermont, Michigan, Maine, Hawaii, New Jersey, West Virginia, and Oklahoma.
 
 
 A better understanding of the data requires a much more in-depth historical perspective than is within the scope of the current analysis.
@@ -597,7 +597,7 @@ We see that within the animals there are (roughly!) the following 4 groups:
 1. The cold-blooded non-vertebrates, which are mostly not endangered.
 2. The warm-blooded vertebrates, which live in groups, have hair, can't fly, and mostly aren't endangered.
 3. The cold-blooded vertebrates, without hair, can't fly, and aren't endangered.
-4. The (mostly) warm-blooded vertebrates, without hair, some can fly, and some aren endangered.
+4. The (mostly) warm-blooded vertebrates, without hair, some can fly, and some are endangered.
 
 
 How much of a difference would we get if we used another clustering algorithm?
