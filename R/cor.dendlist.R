@@ -30,13 +30,14 @@
 #' 
 #' @param x a \link{dendlist} of trees
 #' @param method a character string indicating which correlation coefficient 
-#' is to be computed. One of "cophenetic" (default),  "baker", or "common_nodes".
+#' is to be computed. One of "cophenetic" (default),  "baker", 
+#' "common_nodes", or "FM_index".
 #' It can be abbreviated. 
-#' @param ... Ignored.
+#' @param ... passed to cor functions.
 #' 
 #' @seealso
 #' \link{cophenetic}, \link{cor_cophenetic}, \link{cor_bakers_gamma},
-#' \link{cor_common_nodes}
+#' \link{cor_common_nodes}, \link{cor_FM_index}
 #' @return 
 #' A correlation matrix between the different trees
 #' 
@@ -60,7 +61,7 @@
 #' corrplot(cor.dendlist(dend1234), "pie", "lower")
 #' 
 #' }
-cor.dendlist <- function(x, method = c("cophenetic", "baker",  "common_nodes"), ...) {
+cor.dendlist <- function(x, method = c("cophenetic", "baker",  "common_nodes", "FM_index"), ...) {
    if(!is.dendlist(x)) stop("x needs to be a dendlist object")
    method <- match.arg(method)
    
@@ -73,9 +74,10 @@ cor.dendlist <- function(x, method = c("cophenetic", "baker",  "common_nodes"), 
       l2 <-pairwise_combn[2,i]
       the_cor[l1, l2] <- the_cor[l2, l1] <- 
          switch(method, 
-                cophenetic = cor_cophenetic(x[[l1]], x[[l2]]),
-                baker = cor_bakers_gamma(x[[l1]], x[[l2]]),
-                common_nodes = cor_common_nodes(x[[l1]], x[[l2]])
+                cophenetic = cor_cophenetic(x[[l1]], x[[l2]], ...),
+                baker = cor_bakers_gamma(x[[l1]], x[[l2]], ...),
+                common_nodes = cor_common_nodes(x[[l1]], x[[l2]], ...),
+                FM_index = cor_FM_index(x[[l1]], x[[l2]], ...)
          )
       
    }
@@ -135,4 +137,47 @@ cor_common_nodes <- function(tree1, tree2, ...) {
 
 
 
+
+
+#' Correlation of FM_index for some k
+#' @export
+#' @description 
+#' Calculates the FM_index Correlation for some k.
+#' 
+#' 
+#' @param tree1 a dendrogram.
+#' @param tree2 a dendrogram.
+#' @param k an integer (number of clusters to cut the tree)
+#' @param ... not used.
+#'
+#' @return
+#' A correlation value between 0 to 1 (almost identical clusters for some k)
+#' @seealso \link{FM_index}, \link{cor.dendlist}, \link{Bk}
+#'
+#' @examples
+#' 
+#' set.seed(23235)
+#' ss <- sample(1:150, 10 )
+#' hc1 <- iris[ss,-5] %>% dist %>% hclust("com")
+#' hc2 <- iris[ss,-5] %>% dist %>% hclust("single")
+#' dend1 <- as.dendrogram(hc1)
+#' dend2 <- as.dendrogram(hc2)
+#' 
+#' cor_FM_index(dend1, dend2, k = 2)
+#' cor_FM_index(dend1, dend2, k = 3)
+#' cor_FM_index(dend1, dend2, k = 4)
+#' 
+cor_FM_index <- function(tree1, tree2, k, ...) {
+   if(missing(k)) stop("You need to specifiy k.")
+   # dendextend:::edgeset_dist
+   clus1 <- cutree(tree1, k = k)[order.dendrogram(tree1)]
+   clus2 <- cutree(tree2, k = k)[order.dendrogram(tree2)]
+   
+   if(all(clus1==0) | all(clus2==0)) {
+      warning("Can't calculate k - returning NA")
+      return(NA)
+   }
+   
+   FM_index(clus1, clus2, assume_sorted_vectors = TRUE)
+}
 

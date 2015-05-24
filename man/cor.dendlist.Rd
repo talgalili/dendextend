@@ -4,16 +4,18 @@
 \alias{cor.dendlist}
 \title{Correlation matrix between a list of trees.}
 \usage{
-cor.dendlist(x, method = c("cophenetic", "baker", "common_nodes"), ...)
+cor.dendlist(x, method = c("cophenetic", "baker", "common_nodes", "FM_index"),
+  ...)
 }
 \arguments{
 \item{x}{a \link{dendlist} of trees}
 
 \item{method}{a character string indicating which correlation coefficient
-is to be computed. One of "cophenetic" (default),  "baker", or "common_nodes".
+is to be computed. One of "cophenetic" (default),  "baker",
+"common_nodes", or "FM_index".
 It can be abbreviated.}
 
-\item{...}{Ignored.}
+\item{...}{passed to cor functions.}
 }
 \value{
 A correlation matrix between the different trees
@@ -46,6 +48,6 @@ corrplot(cor.dendlist(dend1234), "pie", "lower")
 }
 \seealso{
 \link{cophenetic}, \link{cor_cophenetic}, \link{cor_bakers_gamma},
-\link{cor_common_nodes}
+\link{cor_common_nodes}, \link{cor_FM_index}
 }
 

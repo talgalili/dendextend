@@ -6,6 +6,8 @@ dendextend 1.0.0 (2015-05-23)
    * labels.dendrogram is now working through dendextend_options("labels.dendrogram"). The defualt is the new dendextend_labels.dendrogram (which is just stats:::labels.dendrogram), but this allows the package dendextendRcpp to change the function used by the package (without masking the function in base R) - thus making both me, and CRAN, happy :)
    * rank_values_with_clusters - Rank a vector based on clusters (important for various functions.) Added tests.
    * cor_common_nodes - a new correlation measure between dendrograms.
+   * cor_FM_index - Correlation of FM_index for some k (similar to Bk actually)
+   
    
 ###UPDATED FUNCTIONS:
    * color_branches - gained a new "cluster" parameter to allow for easy uneven coloring of branches (using branches_attr_by_clusters). This is not a new feature, as it is an attempt to have the user access more options from one place (i.e.: color_branches).
@@ -26,6 +28,7 @@ dendextend 1.0.0 (2015-05-23)
    * set
       * added "rank_branches"
    * untangle_random_search/untangle_step_rotate_2side/untangle_best_k_to_rotate_by_2side_backNforth - no longer returns a dendlist with names (it shouldn't, they didn't have a name to begin with.)
+   * cor.dendlist - added methods "common_nodes", "FM_index".
    
 
 ###BUG FIXES:
