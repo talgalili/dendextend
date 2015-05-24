@@ -1,3 +1,108 @@
+dendextend 1.0.0 (2015-05-24)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * common_subtrees_clusters - a (currently hidden) function to get clusters for labels of common subtrees between two trees.
+   * labels.dendrogram is now working through dendextend_options("labels.dendrogram"). The defualt is the new dendextend_labels.dendrogram (which is just stats:::labels.dendrogram), but this allows the package dendextendRcpp to change the function used by the package (without masking the function in base R) - thus making both me, and CRAN, happy :)
+   * rank_values_with_clusters - Rank a vector based on clusters (important for various functions.) Added tests.
+   * cor_common_nodes - a new correlation measure between dendrograms.
+   * cor_FM_index - Correlation of FM_index for some k (similar to Bk actually)
+   
+   
+###UPDATED FUNCTIONS:
+   * color_branches - gained a new "cluster" parameter to allow for easy uneven coloring of branches (using branches_attr_by_clusters). This is not a new feature, as it is an attempt to have the user access more options from one place (i.e.: color_branches).
+   * tanglegram - turned "highlight_distinct_edges = FALSE". This is due to a bug in R that causes plot.dendrogram to crash when trying to plot a tree with both lty and some character color for the branch.
+   * tanglegram - 
+      * Added new parameters: common_subtrees_color_lines and common_subtrees_color_branches to color connecting-lines and/or the dendrograms themsleves, to help detect commonly shared subtrees.
+      * new parameter: faster.
+   * plot.ggdend - added support to plot nodes
+   * branches_attr_by_clusters - 
+      * can now accept a vector of values with the length of the labels.
+      * new parameter "branches_changed_have_which_labels" - allows the user the decide if the change in parameters will be for branches with all/any of the labels (useful for tanglegram - since we would like to color common subtrees with all of the labels, not just any.)
+   * dendlist - removed warning when creating an empty dendlist (since we also don't get a warning when creating a list() )
+   * ladderize - added the `which` parameter (for indicating which elements in the dendlist to ladderize)
+   * untangle.dendlist - 
+      * can now return a dendlist with more than two elements.
+      * now preserve the names in the dendlist
+   * dendlist - added the `which` parameter (for indicating which elements in the dendlist to pick out)
+   * set
+      * added "rank_branches"
+   * untangle_random_search/untangle_step_rotate_2side/untangle_best_k_to_rotate_by_2side_backNforth - no longer returns a dendlist with names (it shouldn't, they didn't have a name to begin with.)
+   * cor.dendlist - added methods "common_nodes", "FM_index".
+   
+
+###BUG FIXES:
+   * Fix "'::' or ':::' import not declared from: ‘rpart’" by adding rpart to DESCRIPTION.
+   * as.hclust.pvclust - use "x" instead of "object", to avoid "checking S3 generic/method consistency ... WARNING"
+   * Fix "Objects in \usage without \alias in documentation object". For ‘prune.rpart’ and ‘sort.dendlist’.
+   * rect.dendrogram - deals with the case we want to use k for which k+1 is not defined.
+   * Parameters are now stored as a list for (allows for branches to have colors/linetype/linewidth, some are numeric and some character): assign_values_to_branches_edgePar / assign_values_to_leaves_nodePar / assign_values_to_leaves_edgePar / assign_values_to_nodes_nodePar - the parameters are stored as a list in edgePar/nodePar (instead of a vector). Discovered thanks to Martin Maechler.  Fixes: "Error in segments(x0, y0, x1, y1, col = col, lty = lty, lwd = lwd) : invalid line type: must be length 2, 4, 6 or 8"
+   * made sure that the end of the vector in "dendextend_heights_per_k.dendrogram" will give the tree size (and not 0) as its name.
+   * as.ggdend - now supports edgePar and nodePar which are lists.
+   
+###OTHER NOTES:
+   * Added Code of conduct
+   * Added CRAN status
+   * Added coveralls 
+   * Moved FAQ from introduction.Rmd to FAQ.Rmd
+   * New vignette "Cluster_Analysis.Rmd" - demonstrating the use of the package on three famous datasets (Iris, votes.repub, animals)
+
+
+dendextend 0.18.8 (2015-05-17)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+   * all.equal.dendlist - can now compare two dendlist objects to one another, and not only the dendrograms inside one dendlist. (also added new tests that all.equal.dendlist works)
+   * all.equal.dendrogram - suppress warning for a dend with only 1 item, when using dendextendRcpp.
+   * rect.dendrogram - make the heights of the rects be in the middle of the two clusters so that they would look nicer. Added prop_k_height to state which proportion of the height the rect should be (between k and k+1 heights). Also added upper_rect to allow the user to customize the exact height.
+
+###BUG FIXES:
+   * identify.dendrogram - parameter horiz now works (fixes #4)
+
+dendextend 0.18.7 (2015-05-05)
+----------------------------------------
+###VIGNETTE
+   * remove dependancy on DendSer (using require instead of library)
+
+###UPDATED FUNCTIONS:
+   * untangle - added method="ladderize"
+   * tanglegram.dendlist - fix it when names is null to have the default be ""
+
+
+dendextend 0.18.6 (2015-04-25)
+----------------------------------------
+###NEW FUNCTIONS:
+   * get_leaves_edgePar - Get edgePar of dendrogram's leaves
+   * get_leaves_branches_attr - Get an attribute of the branches of a dendrogram's leaves
+   * get_leaves_branches_col - Get the colors of the branches of a dendrogram's leaves. This function is actually the point of the two other functions. It is meant to help match the color of the labels with that of the branches - after running color_branches.
+
+###UPDATED FUNCTIONS:
+   * tanglegram.dendlist - now gets main_left and main_right (if they are null) from the names in dendlist (if they exist)
+
+###VIGNETTE
+   * added example for using "get_leaves_branches_col" in "How to color the branches in heatmap.2?"
+
+###OTHER NOTES:
+   * library corrplot added to plot cor.dendlist results. Examples added to vignette and function's example.
+
+dendextend 0.18.5 (2015-04-22)
+----------------------------------------
+
+###VIGNETTE
+   * added: "How to color the branches in heatmap.2?"
+
+
+dendextend 0.18.4 (2015-02-07)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * prune.rpart added
+   * sort.dendlist
+   * as.hclust.pvclust
+
+
+
+
 dendextend 0.18.3 (2015-01-31)
 ----------------------------------------
 
