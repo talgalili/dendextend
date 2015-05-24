@@ -28,7 +28,7 @@ This document demonstrats, on several famous datasets, how the _dendextend_ R pa
 
 
 
-## The Iris dataset
+## iris - Edgar Anderson's Iris Data
 
 ### background
 
@@ -71,9 +71,8 @@ The same conclusion can be made by looking at the parallel coordinates plot of t
 
 ```{r, fig.height=3}
 # http://blog.safaribooksonline.com/2014/03/31/mastering-parallel-coordinate-charts-r/
-library(MASS)
 par(las = 1, mar = c(4.5, 3, 3, 2) + 0.1, cex = .8)
-parcoord(iris2, col = species_col, var.label = TRUE, lwd = 2)
+MASS::parcoord(iris2, col = species_col, var.label = TRUE, lwd = 2)
 
 # Add Title
 title("Parallel coordinates plot of the Iris data")
@@ -159,8 +158,8 @@ In the heatmap we also see how the Setosa species has low Petal values (in light
 some_col_func <- function(n) rev(colorspace::heat_hcl(n, c = c(80, 30), l = c(30, 90), power = c(1/5, 1.5)))
 
 # scaled_iris2 <- iris2 %>% as.matrix %>% scale
-library(gplots)
-heatmap.2(as.matrix(iris2), 
+# library(gplots)
+gplots::heatmap.2(as.matrix(iris2), 
           main = "Heatmap for the Iris dataset",
           srtCol = 20,
           dendrogram = "row",
@@ -326,7 +325,203 @@ While the Iris dataset is well known, I hope the above analysis was able to offe
 
 
 
+## votes.repub - Votes for Republican Candidate in Presidential Elections
 
 
+### background
+
+> A data frame with the percents of votes given to the republican candidate in presidential elections from 1856 to 1976. Rows represent the 50 states, and columns the 31 elections.
+
+
+> Source: S. Peterson (1973): A Statistical History of the American Presidential Elections. New York: Frederick Ungar Publishing Co.
+Data from 1964 to 1976 is from R. M. Scammon, American Votes 12, Congressional Quarterly.
+
+
+Define variables:
+
+```{r}
+votes.repub <- cluster::votes.repub
+```
+
+This data can be visualized using a (costumed made) parallel coordinates plot:
+
+
+```{r, fig.height=5}
+years <- as.numeric(gsub("X", "", colnames(votes.repub)))
+
+par(las = 2, mar = c(4.5, 3, 3, 2) + 0.1, cex = .8)
+# MASS::parcoord(votes.repub, var.label = FALSE, lwd = 1)
+matplot(1L:ncol(votes.repub), t(votes.repub), type = "l", col = 1, lty = 1,
+        axes = F, xlab = "", ylab = "")
+axis(1, at = seq_along(years), labels = years)
+axis(2)
+# Add Title
+title("Votes for Republican Candidate\n in Presidential Elections \n (each line is a country - over the years)")
+```
+
+
+### Heatmap 
+
+This is a nice example when the parallel coordinates plot has some serious limitations: it does not help us detect the states, we fail to see the missing value patterns, and it is tricky to see clusters in general (due to the large number of threads).
+
+For this data, it can be quite helpful to see a heatmap of the votes across the years. The ordering of the rows is tricky. First, the distance of the vectors (later used for the clustering) should be done after transformation (since we are dealing with proportion of votes). In this case I used the arcsin transformation (a logit transformation could also work, but the arcsin is safer for dealing with 0/1 observations). But given the clusters, we wish to order the leaves (as much as possible), so to take into account the missing value clusterings. So we in fact have two clusters, one for the raw values, and another for the "shadow matrix" (i.e.: the matrix with 0/1, indicating if a value was missing or not).
+
+
+```{r}
+arcsin_transformation <- function(x) asin(x/100)
+
+dend_NA <- votes.repub %>% is.na %>%
+   dist %>% hclust %>% as.dendrogram %>% ladderize
+
+dend <- votes.repub %>% arcsin_transformation %>%
+   dist %>% hclust(method = "com") %>% as.dendrogram %>%
+   rotate(labels(dend_NA)) %>%
+   color_branches(k=3)
+
+# some_col_func <- function(n) rev(colorspace::heat_hcl(n, c = c(80, 30), l = c(30, 90), power = c(1/5, 1.5)))
+some_col_func <- colorspace::diverge_hcl
+
+
+# par(mar = c(3,3,3,3))
+# library(gplots)
+gplots::heatmap.2(as.matrix(votes.repub), 
+          main = "Votes for\n Republican Presidential Candidate\n (clustered using complete)",
+          srtCol = 60,
+          dendrogram = "row",
+          Rowv = dend,
+          Colv = "NA", # this to make sure the columns are not ordered
+          trace="none",          
+          margins =c(3,6),      
+          key.xlab = "% Votes for Republican\n Presidential Candidate",
+          labCol = years,
+          denscol = "grey",
+          density.info = "density",
+          col = some_col_func
+         )
+          # RowSideColors = rev(labels_colors(dend)), # to add nice colored strips		
+```
+
+
+How much of a difference would we get if we used another clustering algorithm?
+
+We first calculate the clustering using 8 different methods:
+
+```{r}
+
+hclust_methods <- c("ward.D", "single", "complete", "average", "mcquitty", 
+        "median", "centroid", "ward.D2")
+votes.repub_dendlist <- dendlist()
+
+for(i in seq_along(hclust_methods)) {
+   tmp_dend <- votes.repub %>% arcsin_transformation %>% dist %>% hclust(method = hclust_methods[i]) %>% as.dendrogram 
+   votes.repub_dendlist <- dendlist(votes.repub_dendlist, tmp_dend)
+}
+names(votes.repub_dendlist) <- hclust_methods
+# votes.repub_dendlist
+```
+
+Next, we can look at the cophenetic correlation between each clustering result using `cor.dendlist` (this can be nicely plotted using the `corrplot` function from the _corrplot_ package):
+
+```{r, fig.width=8, fig.height=8}
+corrplot::corrplot(cor.dendlist(votes.repub_dendlist), "pie", "lower")
+```
+
+We see that the "complete" method is somewhat similar to the ward.D/ward.D2 methods, but there is less similarity with the other methods. We can see that the methods "average", "mcquitty" and "median", all give somewhat similar results. So by using "average", we will see an alternative presentation which represent (in a sense) 3 other clustering solutions. 
+
+We can look at the heatmap of the "average" method. However, as you can see, it is not very helpful in seeing the difference between the two clustering solutions.
+
+```{r, echo=FALSE}
+arcsin_transformation <- function(x) asin(x/100)
+
+dend_NA <- votes.repub %>% is.na %>%
+   dist %>% hclust %>% as.dendrogram %>% ladderize
+
+dend <- votes.repub %>% arcsin_transformation %>%
+   dist %>% hclust(method = "ave") %>% as.dendrogram %>%
+   rotate(labels(dend_NA)) %>%
+   color_branches(k=3)
+
+# some_col_func <- function(n) rev(colorspace::heat_hcl(n, c = c(80, 30), l = c(30, 90), power = c(1/5, 1.5)))
+some_col_func <- colorspace::diverge_hcl
+
+
+# par(mar = c(3,3,3,3))
+# library(gplots)
+gplots::heatmap.2(as.matrix(votes.repub), 
+          main = "Votes for\n Republican Presidential Candidate\n (clustered using average)",
+          srtCol = 60,
+          dendrogram = "row",
+          Rowv = dend,
+          Colv = "NA", # this to make sure the columns are not ordered
+          trace="none",          
+          margins =c(3,6),      
+          key.xlab = "% Votes for Republican\n Presidential Candidate",
+          labCol = years,
+          denscol = "grey",
+          density.info = "density",
+          col = some_col_func
+         )
+          # RowSideColors = rev(labels_colors(dend)), # to add nice colored strips		
+```
+
+
+Let's look at the tanglegram of the two methods to get a better insight into the differences between the two:
+
+
+```{r, echo=FALSE}
+
+ord1 <- c("North Carolina", "Virginia", "Tennessee", "Kentucky", "Maryland", 
+"Delaware", "Oklahoma", "Missouri", "New Mexico", "Oregon", "Washington", 
+"California", "West Virginia", "Hawaii", "Nevada", "Arizona", 
+"Montana", "Idaho", "Wyoming", "Utah", "Colorado", "Alaska", 
+"Illinois", "New York", "Indiana", "Ohio", "Connecticut", "New Hampshire", 
+"New Jersey", "Pennsylvania", "Iowa", "South Dakota", "North Dakota", 
+"Wisconsin", "Minnesota", "Nebraska", "Kansas", "Maine", "Michigan", 
+"Massachusetts", "Rhode Island", "Vermont", "Alabama", "Georgia", 
+"Louisiana", "Arkansas", "Florida", "Texas", "South Carolina", 
+"Mississippi")
+
+ord2 <- c("North Carolina", "Virginia", "Tennessee", "Oklahoma", "Kentucky", 
+"Maryland", "Delaware", "Missouri", "New Mexico", "West Virginia", 
+"Oregon", "Washington", "California", "Nevada", "Arizona", "Montana", 
+"Colorado", "Alaska", "Idaho", "Wyoming", "Utah", "Hawaii", "Maine", 
+"Illinois", "New York", "New Jersey", "Indiana", "Ohio", "Connecticut", 
+"New Hampshire", "Pennsylvania", "Michigan", "Iowa", "South Dakota", 
+"North Dakota", "Wisconsin", "Minnesota", "Massachusetts", "Rhode Island", 
+"Nebraska", "Kansas", "Vermont", "Alabama", "Georgia", "Louisiana", 
+"Arkansas", "Florida", "Texas", "South Carolina", "Mississippi"
+)
+
+# dput(lapply(dends, labels)[[2]])
+
+```
+
+
+```{r}
+dend_com <- votes.repub %>% arcsin_transformation %>%
+   dist %>% hclust(method = "com") %>% as.dendrogram %>%
+   rotate(labels(dend_NA)) %>%
+   color_branches(k=3) # %>% ladderize
+dend_ave <- votes.repub %>% arcsin_transformation %>%
+   dist %>% hclust(method = "ave") %>% as.dendrogram %>%
+   rotate(labels(dend_NA)) %>%
+   color_branches(k=3) # %>% ladderize
+
+# the orders were predefined after using untangle("step2side")
+# they are omitted here to save running time.
+dend_com <- rotate(dend_com, ord1)
+dend_ave <- rotate(dend_ave, ord2)
+
+dends <- dendlist(complete = dend_com, average = dend_ave) # %>% untangle("step2side")
+dends  %>% tanglegram(margin_inner = 7)
+
+```
+
+We see that the two clustering give similar results for: "Alabama", "Georgia", "Louisiana", "Arkansas", "Florida", "Texas", "South Carolina", "Mississippi".
+
+There are also several other subtrees which are identical between the two methods. The biggest diffence lies in several "rougue" states which are placed differently in the two clustering algorithms. They are: Vermont, Michigan, Maine, Hawaii, New Jersey, West Virinia, and Oklahoma.
+
+
+A better understanding of the data requires a much more in-depth historical perspective than is within the scope of the current analysis.
 
 
