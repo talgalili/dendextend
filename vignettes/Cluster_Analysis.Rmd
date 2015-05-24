@@ -1,5 +1,5 @@
 ---
-title: "Hierarchical cluster analysis on famous data-sets - enhanced with the _dendextend_ package)"
+title: "Hierarchical cluster analysis on famous data-sets - enhanced with the _dendextend_ package"
 author: "Tal Galili"
 output: 
   html_document: 
@@ -12,8 +12,8 @@ library(dendextend)
 library(knitr)
 knitr::opts_chunk$set(
    cache = TRUE,
-   dpi = 200,
-  comment = "#>",
+   dpi = 80,
+  # comment = "#>",
   tidy = FALSE)
 
 # http://stackoverflow.com/questions/24091735/why-pandoc-does-not-retrieve-the-image-file
