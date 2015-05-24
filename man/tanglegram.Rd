@@ -183,7 +183,8 @@ This only works if
 
 \item{common_subtrees_color_branches}{logical (default is FALSE).
 Color the branches of both dends based on the common subtrees.
-(notice that this can be slow on large trees)}
+(notice that this can be slow on large trees)
+This is FALSE by default since it will override the colors of the existing tree.}
 
 \item{faster}{logical (FALSE). If TRUE, it overrides some other parameters to
 have them turned off so that the plotting will go a tiny bit faster.}

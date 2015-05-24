@@ -266,8 +266,10 @@ color_branches <- function(tree, k=NULL, h=NULL, col, groupLabels=NULL,
          return(tree)
       }
       
-      k <- length(unique(clusters))
+      u_clusters <- unique(clusters)
+      k <- length(u_clusters)
       col <- get_col(col, k)
+      # col[u_clusters==0] <- "black"
       return(branches_attr_by_clusters(tree, clusters, values = col, attr = "col",
                                        branches_changed_have_which_labels = "all")   )
    }
