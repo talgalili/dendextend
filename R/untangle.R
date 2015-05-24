@@ -333,7 +333,7 @@ untangle_random_search <- function(tree1, tree2, R = 100L, L = 1, leaves_matchin
       }
    }
    
-   return(dendlist(tree1 = optimal_tree1, tree2 = optimal_tree2))
+   return(dendlist(optimal_tree1, optimal_tree2))
 }
 
 
@@ -768,7 +768,7 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
    # identical(1,1+.00000000000000000000000001) # T
    if(print_times) cat("\nWe ran untangle ", times, " times\n")
    
-   return(dendlist(dend1 = dend1_better, dend2 = dend2_better))	
+   return(dendlist(dend1_better, dend2_better))	
 }
 
 
@@ -937,7 +937,7 @@ untangle_best_k_to_rotate_by_2side_backNforth <- function(dend1, dend2, times_to
    # identical(1,1+.00000000000000000000000001) # T
    if(print_times) cat("We ran untangle_best_k_to_rotate_by_2side_backNforth ", counter, " times")
    
-   return(dendlist(dend1 = dend1, dend2 = dend2))	
+   return(dendlist(dend1, dend2))	
 }
 
 

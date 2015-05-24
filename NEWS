@@ -25,7 +25,8 @@ dendextend 1.0.0 (2015-05-23)
    * dendlist - added the `which` parameter (for indicating which elements in the dendlist to pick out)
    * set
       * added "rank_branches"
-      
+   * untangle_random_search/untangle_step_rotate_2side/untangle_best_k_to_rotate_by_2side_backNforth - no longer returns a dendlist with names (it shouldn't, they didn't have a name to begin with.)
+   
 
 ###BUG FIXES:
    * Fix "'::' or ':::' import not declared from: ‘rpart’" by adding rpart to DESCRIPTION.
