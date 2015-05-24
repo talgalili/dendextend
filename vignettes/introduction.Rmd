@@ -724,9 +724,9 @@ The core process is to transform a dendrogram into a `ggdend` object using `as.g
 
 The reason we want to have `as.ggdend` (and not only `ggplot.dendrogram`), is (1) so that you could create your own mapping of `ggdend` and, (2) since `as.ggdend` might be slow for large trees, it is probably better to be able to run it only once for such cases.
 
-A `ggdend` class object is a list with 3 componants: segments, labels, nodes. Each one contains the graphical parameters from the original dendrogram, but in a tabular form that can be used by `ggplot2+geom_segment+geom_text` to create a dendrogram plot.
+A `ggdend` class object is a list with 3 components: segments, labels, nodes. Each one contains the graphical parameters from the original dendrogram, but in a tabular form that can be used by `ggplot2+geom_segment+geom_text` to create a dendrogram plot.
 
-The function `prepare.ggdend` is used by `plot.ggdend` to take the ggdend object and prepare it for plotting. This is because the defaults of various parameters in dendrogram's are not always stored in the object itself, but are built-in into the `plot.dendrogram` function. For example, the color of the labels is not (by default) specified in the dendrogram (only if we change it from black to something else). Hence, when taking the object into a different plotting engine (say ggplot2), we want to prepare the object by filling-in various defaults. This function is autmatically invoked within the `plot.ggdend` function. You would probably use it only if you'd wish to build your own ggplot2 mapping.
+The function `prepare.ggdend` is used by `plot.ggdend` to take the ggdend object and prepare it for plotting. This is because the defaults of various parameters in dendrogram's are not always stored in the object itself, but are built-in into the `plot.dendrogram` function. For example, the color of the labels is not (by default) specified in the dendrogram (only if we change it from black to something else). Hence, when taking the object into a different plotting engine (say ggplot2), we want to prepare the object by filling-in various defaults. This function is automatically invoked within the `plot.ggdend` function. You would probably use it only if you'd wish to build your own ggplot2 mapping.
 
 ```{r}
 # Create a complex dend:
@@ -751,7 +751,7 @@ ggplot(ggd1, labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar
 ```
 
 
-**Credit:** These functions are *extended* versions of the functions `ggdendrogram`, `dendro_data` (and the hidden `dendrogram_data`) from Andrie de Vries's [ggdendro](http://cran.r-project.org/web/packages/ggdendro/index.html) package. The motivation for this fork is the need to add more graphical parameters to the plotted tree. This required a strong mixter of functions from ggdendro and dendextend (to the point that it seemed better to just fork the code into its current form).
+**Credit:** These functions are *extended* versions of the functions `ggdendrogram`, `dendro_data` (and the hidden `dendrogram_data`) from Andrie de Vries's [ggdendro](http://cran.r-project.org/web/packages/ggdendro/index.html) package. The motivation for this fork is the need to add more graphical parameters to the plotted tree. This required a strong mixture of functions from ggdendro and dendextend (to the point that it seemed better to just fork the code into its current form).
 
 
 
@@ -951,8 +951,8 @@ tanglegram(dends_15_51)
 # tanglegram(dend15, dend51)
 ```
 
-Notice how "unique" nodes are heilighted with dashed lines (i.e.: nodes which contains a combination of labels/items, which are not present in the other tree). This can be turned off using `highlight_distinct_edges = FALSE`.
-Also notice how the connecting lines are colored to highlight two subtrees which are present in both dendrograms. This can be turned off by setting `common_subtrees_color_lines = FALSE`. We can also color the branches of the trees to show the two common subtrees using `common_subtrees_color_branches = TRUE`:
+Notice how "unique" nodes are highlighted with dashed lines (i.e.: nodes which contains a combination of labels/items, which are not present in the other tree). This can be turned off using `highlight_distinct_edges = FALSE`.
+Also notice how the connecting lines are colored to highlight two sub-trees which are present in both dendrograms. This can be turned off by setting `common_subtrees_color_lines = FALSE`. We can also color the branches of the trees to show the two common sub-trees using `common_subtrees_color_branches = TRUE`:
 
 ```{r, fig.width=5, fig.height=3}
 tanglegram(dends_15_51, common_subtrees_color_branches = TRUE)
@@ -1092,7 +1092,7 @@ This function might implement other topological distances in the future.
 
 #### Correlation matrix using cor.dendlist
 
-Both Baker's Gamma and cophenetic correlation (Which will be introduced shortly), can be calculated to create a corelation matrix using the `cor.dendlist` function (the default method is cophenetic correlation):
+Both Baker's Gamma and cophenetic correlation (Which will be introduced shortly), can be calculated to create a correlation matrix using the `cor.dendlist` function (the default method is cophenetic correlation):
 
 
 ```{r}
