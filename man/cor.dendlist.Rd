@@ -4,14 +4,14 @@
 \alias{cor.dendlist}
 \title{Correlation matrix between a list of trees.}
 \usage{
-cor.dendlist(x, method = c("cophenetic", "baker"), ...)
+cor.dendlist(x, method = c("cophenetic", "baker", "common_nodes"), ...)
 }
 \arguments{
 \item{x}{a \link{dendlist} of trees}
 
 \item{method}{a character string indicating which correlation coefficient
-is to be computed. One of "cophenetic" (default), or "baker",
-can be abbreviated.}
+is to be computed. One of "cophenetic" (default),  "baker", or "common_nodes".
+It can be abbreviated.}
 
 \item{...}{Ignored.}
 }

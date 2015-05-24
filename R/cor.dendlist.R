@@ -30,8 +30,8 @@
 #' 
 #' @param x a \link{dendlist} of trees
 #' @param method a character string indicating which correlation coefficient 
-#' is to be computed. One of "cophenetic" (default), or "baker",
-#' can be abbreviated. 
+#' is to be computed. One of "cophenetic" (default),  "baker", or "common_nodes".
+#' It can be abbreviated. 
 #' @param ... Ignored.
 #' 
 #' @seealso
@@ -59,7 +59,7 @@
 #' corrplot(cor.dendlist(dend1234), "pie", "lower")
 #' 
 #' }
-cor.dendlist <- function(x, method = c("cophenetic", "baker"), ...) {
+cor.dendlist <- function(x, method = c("cophenetic", "baker",  "common_nodes"), ...) {
    if(!is.dendlist(x)) stop("x needs to be a dendlist object")
    method <- match.arg(method)
    
@@ -73,7 +73,8 @@ cor.dendlist <- function(x, method = c("cophenetic", "baker"), ...) {
       the_cor[l1, l2] <- the_cor[l2, l1] <- 
          switch(method, 
                 cophenetic = cor_cophenetic(x[[l1]], x[[l2]]),
-                baker = cor_bakers_gamma(x[[l1]], x[[l2]])
+                baker = cor_bakers_gamma(x[[l1]], x[[l2]]),
+                common_nodes = cor_common_nodes(x[[l1]], x[[l2]])
          )
       
    }
@@ -82,4 +83,55 @@ cor.dendlist <- function(x, method = c("cophenetic", "baker"), ...) {
    
    the_cor
 }
+
+
+
+
+# edgeset_dist
+
+
+#' Proportion of commong nodes between two trees
+#' @export
+#' @description 
+#' Calculates the number of nodes, in each tree, that are common (i.e.: that have the same exact list of labels).
+#' The correlation is between 0 (actually, 2*(nnodes-1)/(2*nnodes), for two trees with 
+#' the same list of labels - since the top node will always be identical for them).
+#' Where 1 means that every node in the one tree, has a node in the other tree with the exact
+#' same list of labels.
+#' Notice this measure is non-parameteric (it ignores the heights and relative position of the nodes).
+#' 
+#' @param tree1 a dendrogram.
+#' @param tree2 a dendrogram.
+#' @param ... not used.
+#'
+#' @return
+#' A correlation value between 0 to 1 (almost identical trees)
+#' @seealso \link{distinct_edges}, \link{cor.dendlist}
+#'
+#' @examples
+#' 
+#' set.seed(23235)
+#' ss <- sample(1:150, 10 )
+#' hc1 <- iris[ss,-5] %>% dist %>% hclust("com")
+#' hc2 <- iris[ss,-5] %>% dist %>% hclust("single")
+#' dend1 <- as.dendrogram(hc1)
+#' dend2 <- as.dendrogram(hc2)
+#' 
+#' cor_cophenetic(dend1, dend2)
+#' cor_common_nodes(dend1, dend2)
+#' tanglegram(dend1, dend2) 
+#' # we can see we have only two nodes which are different...
+#' 
+cor_common_nodes <- function(tree1, tree2, ...) {
+   # dendextend:::edgeset_dist
+   n_diff_nodes <- edgeset_dist(tree1, tree2)
+   nnodes_trees <- nnodes(tree1) + nnodes(tree2)
+   
+   (nnodes_trees - n_diff_nodes)/ nnodes_trees
+}
+
+
+
+
+
 
