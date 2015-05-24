@@ -6,6 +6,7 @@
 .RData
 vignettes/figure
 vignettes/cache
+vignettes/.*cache
 vignettes/introduction_cache
 vignettes/*\.md
 vignettes/*\.gz
