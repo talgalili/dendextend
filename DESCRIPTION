@@ -50,7 +50,8 @@ Suggests:
     pvclust,
     corrplot,
     DendSer, 
-    MASS, cluster
+    MASS, cluster,
+    covr
 Enhances: ggdendro,
     labeltodendro,dendroextras,
     data.table, rpart
