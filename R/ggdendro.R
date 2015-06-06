@@ -20,7 +20,7 @@
 # source("R\\stats_imports.R")
 
 # This is a copy (import) of the function dendrogram_data, from Andrie de Vries's ggdendro package (which is a modified \link{plot.dendrogram}).
-# http://cran.r-project.org/web/packages/ggdendro/
+# http://cran.r-project.org/package=ggdendro
 # This function is the basis for the as.ggdend function.
 dendrogram_data <- function (x, type = c("rectangle", "triangle"), ...) 
 {

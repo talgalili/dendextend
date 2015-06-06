@@ -45,8 +45,8 @@
 
 # For making this decision, I followed the text from:
 # http://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-structure
-# http://cran.r-project.org/web/packages/dplyr/index.html
-# http://cran.r-project.org/web/packages/magrittr/index.html
+# http://cran.r-project.org/package=dplyr
+# http://cran.r-project.org/package=magrittr
 # http://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html
 # http://cran.r-project.org/web/packages/roxygen2/vignettes/namespace.html 
 # http://stackoverflow.com/questions/8637993/better-explanation-of-when-to-use-imports-depends

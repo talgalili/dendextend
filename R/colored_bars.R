@@ -104,7 +104,7 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' work with dendrograms (and not just hclust objects), as well allow to
 #' add the colored bars on top of an existing plot (and not only as a seperate plot).
 #' 
-#' See: \url{http://cran.r-project.org/web/packages/moduleColor/}
+#' See: \url{http://cran.r-project.org/package=moduleColor}
 #' For more details.
 #' 
 #' @seealso 

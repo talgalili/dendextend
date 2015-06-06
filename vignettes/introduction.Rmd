@@ -29,7 +29,7 @@ Introduction to dendextend
 
 **Author**: [Tal Galili](http://www.r-statistics.com/) ( Tal.Galili@gmail.com )
 
-**tl;dr**: the [_dendextend package_](http://cran.r-project.org/web/packages/dendextend/) let's you create figures like this:
+**tl;dr**: the [_dendextend package_](http://cran.r-project.org/package=dendextend) let's you create figures like this:
 
 
 
@@ -80,7 +80,7 @@ tanglegram(dendlist(dend1, dend2), margin_inner = 9,
 Introduction
 --------------
 
-The [**_dendextend package_**](http://cran.r-project.org/web/packages/dendextend/) offers a set of functions for extending dendrogram objects in R, letting you **visualize** and **compare** trees of hierarchical clusterings, you can:
+The [**_dendextend package_**](http://cran.r-project.org/package=dendextend) offers a set of functions for extending dendrogram objects in R, letting you **visualize** and **compare** trees of hierarchical clusterings, you can:
 
 * **Adjust a tree's graphical parameters** - the color, size, type, etc of its branches, nodes and labels.
 * Visually and statistically **compare different dendrograms** to one another.
@@ -120,7 +120,7 @@ c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
 ```
 
 
-The **design** of the dendextend package (and this manual!) is heavily inspired by [Hadley Wickham's](http://had.co.nz/) work. Especially his text on [writing an R package](http://adv-r.had.co.nz/Package-basics.html), the [devtools package](http://cran.r-project.org/web/packages/devtools/), and the dplyr package (specifically the use of chaining, and the [Introduction text to dplyr](http://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)).
+The **design** of the dendextend package (and this manual!) is heavily inspired by [Hadley Wickham's](http://had.co.nz/) work. Especially his text on [writing an R package](http://adv-r.had.co.nz/Package-basics.html), the [devtools package](http://cran.r-project.org/package=devtools), and the dplyr package (specifically the use of chaining, and the [Introduction text to dplyr](http://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)).
 
 
 
@@ -159,7 +159,7 @@ dend <- c(1:5) %>% # take the a vector from 1 to 5
 
 For more details, you may look at:
 
-* [magrittr on CRAN](http://cran.r-project.org/web/packages/magrittr/)
+* [magrittr on CRAN](http://cran.r-project.org/package=magrittr)
 * [Introduction to the magrittr package](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html)
 * [Simpler R coding with pipes > the present and future of the magrittr package](http://www.r-statistics.com/2014/08/simpler-r-coding-with-pipes-the-present-and-future-of-the-magrittr-package/)
 
@@ -751,7 +751,7 @@ ggplot(ggd1, labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar
 ```
 
 
-**Credit:** These functions are *extended* versions of the functions `ggdendrogram`, `dendro_data` (and the hidden `dendrogram_data`) from Andrie de Vries's [ggdendro](http://cran.r-project.org/web/packages/ggdendro/index.html) package. The motivation for this fork is the need to add more graphical parameters to the plotted tree. This required a strong mixture of functions from ggdendro and dendextend (to the point that it seemed better to just fork the code into its current form).
+**Credit:** These functions are *extended* versions of the functions `ggdendrogram`, `dendro_data` (and the hidden `dendrogram_data`) from Andrie de Vries's [ggdendro](http://cran.r-project.org/package=ggdendro) package. The motivation for this fork is the need to add more graphical parameters to the plotted tree. This required a strong mixture of functions from ggdendro and dendextend (to the point that it seemed better to just fork the code into its current form).
 
 
 
@@ -1324,7 +1324,7 @@ dendextendRcpp - on the need for speed
 
 Since dendrogram objects are often revised through the use of recursion, R often falls short when it comes to speed. In various function which are intended to run only once (such as `labels.color`), this does not bother us, and we are content at quickly writing the function with R and letting it handle many extreme cases.
 
-However, some functions are intended to be used many times, and in such cases are well served to be handled with C++. Thanks the the Rcpp package, we can comfortably extend several core functions of the dendextend package. These modifications are included in a separate add-on package called ["dendextendRcpp"](http://cran.r-project.org/web/packages/dendextendRcpp/) by Tal Galili (with essential contributions by Dirk Eddelbuettel, Romain Francois, and Kevin Ushey). When loading dendextendRcpp, it changes (and speeds up) several R functions from dendextend, these are: `get_branches_heights`, `heights_per_k.dendrogram`, `cut_lower_fun` and `labels.dendrogram`. Speed gains can range between 3 times to 100 times faster, depending on the size of the tree. These functions are regularly used by other functions in dendextend.
+However, some functions are intended to be used many times, and in such cases are well served to be handled with C++. Thanks the the Rcpp package, we can comfortably extend several core functions of the dendextend package. These modifications are included in a separate add-on package called ["dendextendRcpp"](http://cran.r-project.org/package=dendextendRcpp) by Tal Galili (with essential contributions by Dirk Eddelbuettel, Romain Francois, and Kevin Ushey). When loading dendextendRcpp, it changes (and speeds up) several R functions from dendextend, these are: `get_branches_heights`, `heights_per_k.dendrogram`, `cut_lower_fun` and `labels.dendrogram`. Speed gains can range between 3 times to 100 times faster, depending on the size of the tree. These functions are regularly used by other functions in dendextend.
 
 It is highly recommended to install dendextendRcpp for regular use. It is available on CRAN:
 
