@@ -30,7 +30,7 @@ dendextend 1.0.0 (2015-06-06)
       * added "rank_branches"
    * untangle_random_search/untangle_step_rotate_2side/untangle_best_k_to_rotate_by_2side_backNforth - no longer returns a dendlist with names (it shouldn't, they didn't have a name to begin with.)
    * cor.dendlist - added methods "common_nodes", "FM_index".
-   
+   * cor_cophenetic - changed method to method_coef (so it could be updated when using cor.dendlist)
 
 ###BUG FIXES:
    * Fix "'::' or ':::' import not declared from: ‘rpart’" by adding rpart to DESCRIPTION.

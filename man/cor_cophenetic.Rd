@@ -23,7 +23,7 @@ cor_cophenetic(tree1, ...)
 which of the trees in a dendlist object should have
 their cor_cophenetic calculated.}
 
-\item{method}{a character string indicating which correlation coefficient
+\item{method_coef}{a character string indicating which correlation coefficient
 is to be computed. One of "pearson" (default), "kendall", or "spearman",
 can be abbreviated. Passed to \link{cor}.}
 }

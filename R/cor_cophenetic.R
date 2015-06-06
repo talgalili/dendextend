@@ -66,7 +66,7 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' @param which an integer vector of length 2, indicating
 #' which of the trees in a dendlist object should have 
 #' their cor_cophenetic calculated.
-#' @param method a character string indicating which correlation coefficient 
+#' @param method_coef a character string indicating which correlation coefficient 
 #' is to be computed. One of "pearson" (default), "kendall", or "spearman", 
 #' can be abbreviated. Passed to \link{cor}.
 #' @param ... Ignored.
@@ -165,7 +165,7 @@ cor_cophenetic <- function(tree1, ...){
 
 
 #' @export
-cor_cophenetic.default <- function(tree1, tree2, method = c("pearson", "kendall", "spearman"), ...) {
+cor_cophenetic.default <- function(tree1, tree2, method_coef = c("pearson", "kendall", "spearman"), ...) {
    dist_tree1 <- cophenetic(tree1)
    dist_tree2 <- cophenetic(tree2)
 
@@ -175,13 +175,13 @@ cor_cophenetic.default <- function(tree1, tree2, method = c("pearson", "kendall"
       dist_tree2 <- sort_dist_mat(dist_tree2)
    }
    
-   method <- match.arg(method)
-   cor(dist_tree1, dist_tree2 , method=method)
+   method_coef <- match.arg(method_coef)
+   cor(dist_tree1, dist_tree2 , method=method_coef)
 }
 
 
 #' @export
-cor_cophenetic.dendlist <- function(tree1, which = c(1L, 2L), method = c("pearson", "kendall", "spearman"), ...) {
+cor_cophenetic.dendlist <- function(tree1, which = c(1L, 2L), method_coef = c("pearson", "kendall", "spearman"), ...) {
    method <- match.arg(method)
    cor_cophenetic(tree1[[which[1]]], tree1[[which[2]]], method=method ,...)
 }
