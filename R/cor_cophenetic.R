@@ -59,7 +59,9 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' 
 #' \method{cor_cophenetic}{default}(tree1, tree2, method_coef = c("pearson", "kendall", "spearman"), ...) 
 #' 
-#' \method{cor_cophenetic}{dendlist}(tree1, which = c(1L,2L), method_coef = c("pearson", "kendall", "spearman"), ...) 
+#' \method{cor_cophenetic}{dendlist}(tree1, which = c(1L,2L), 
+#'       method_coef = c("pearson", "kendall", "spearman"), 
+#'       ...) 
 #' 
 #' @param tree1 a tree (dendrogram/hclust/phylo, or dendlist)
 #' @param tree2 a tree (dendrogram/hclust/phylo)

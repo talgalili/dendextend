@@ -10,7 +10,9 @@ cor_cophenetic(tree1, ...)
 
 \method{cor_cophenetic}{default}(tree1, tree2, method_coef = c("pearson", "kendall", "spearman"), ...)
 
-\method{cor_cophenetic}{dendlist}(tree1, which = c(1L,2L), method_coef = c("pearson", "kendall", "spearman"), ...)
+\method{cor_cophenetic}{dendlist}(tree1, which = c(1L,2L),
+      method_coef = c("pearson", "kendall", "spearman"),
+      ...)
 }
 \arguments{
 \item{tree1}{a tree (dendrogram/hclust/phylo, or dendlist)}
