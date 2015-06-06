@@ -68,7 +68,7 @@ Vignettes:
 
 ## Share your dendrograms!
 
-If you have made interesting work using the dendextend package, I would LOVE to know about it. It can be a blog post, an academic paper, or just some plots you made for your work in the industry. Please contact me with what you have done, and I would also be happy to promote it in this page.
+If you have made interesting work using the dendextend package, I would LOVE to know about it. It can be a blog post, an academic paper, or just some plots you made for your work in the industry. Please contact me (see below) with what you have done, and I would also be happy to promote it in this page.
 
 ## Contact
 
@@ -81,9 +81,7 @@ You are welcome to:
 
 ## Latest news
 
-You can see the most recent changes to the package in the NEWS.md file:
-
-- https://github.com/talgalili/dendextend/blob/master/NEWS.md
+You can see the most recent changes to the package in the [NEWS.md file](https://github.com/talgalili/dendextend/blob/master/NEWS.md)
 
 
 
