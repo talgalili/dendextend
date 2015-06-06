@@ -193,6 +193,39 @@ prune.rpart <- function(x,...) {
 
 
 
+#' Prune trees to their common subtrees
+#'
+#' @param dend a \link{dendlist} of length two
+#' @param ... ignored
+#'
+#' @return
+#' A dendlist after prunning the labels to only include 
+#' those that are part of common subtrees in both dendrograms.
+#' 
+#' @export
+#' @seealso \link{common_subtrees_clusters}
+#'
+#' @examples
+#' 
+#' # NULL
+#' 
+prune_common_subtrees.dendlist <- function(dend, ...) {
+   if(!length(dend)==2) stop("The dend must of be of length 2")
+   if(!is.dendlist(dend)) stop("The dend must of be of class dendlist")
+   
+   # dend <- d_train_test
+   clusters <- common_subtrees_clusters(dend[[1]], dend[[2]])
+   labels_to_prune <- labels(dend[[1]])[clusters == 0]
+   dend1 <- prune(dend[[1]], labels_to_prune)
+   dend2 <- prune(dend[[2]], labels_to_prune)
+   dend_12 <- dendlist(dend1, dend2)
+   names(dend_12) <- names(dend)
+   dend_12
+}
+
+
+
+
 
 
 

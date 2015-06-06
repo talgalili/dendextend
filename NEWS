@@ -7,7 +7,7 @@ dendextend 1.0.0 (2015-06-06)
    * rank_values_with_clusters - Rank a vector based on clusters (important for various functions.) Added tests.
    * cor_common_nodes - a new correlation measure between dendrograms.
    * cor_FM_index - Correlation of FM_index for some k (similar to Bk actually)
-   
+   * prune_common_subtrees.dendlist - Prune trees to their common subtrees
    
 ###UPDATED FUNCTIONS:
    * color_branches - gained a new "cluster" parameter to allow for easy uneven coloring of branches (using branches_attr_by_clusters). This is not a new feature, as it is an attempt to have the user access more options from one place (i.e.: color_branches).
