@@ -182,8 +182,8 @@ cor_cophenetic.default <- function(tree1, tree2, method_coef = c("pearson", "ken
 
 #' @export
 cor_cophenetic.dendlist <- function(tree1, which = c(1L, 2L), method_coef = c("pearson", "kendall", "spearman"), ...) {
-   method <- match.arg(method)
-   cor_cophenetic(tree1[[which[1]]], tree1[[which[2]]], method=method ,...)
+   method_coef <- match.arg(method_coef)
+   cor_cophenetic(tree1[[which[1]]], tree1[[which[2]]], method=method_coef ,...)
 }
 
 
