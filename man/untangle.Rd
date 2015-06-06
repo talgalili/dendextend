@@ -10,11 +10,11 @@
 untangle(dend1, ...)
 
 \method{untangle}{dendrogram}(dend1, dend2 ,
-   method = c("random", "step1side", "step2side", "DendSer", "ladderize"),
+   method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"),
    ...)
 
 \method{untangle}{dendlist}(dend1,
-   method = c("random", "step1side", "step2side", "DendSer", "ladderize"),
+   method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"),
    which = c(1L,2L), ...)
 }
 \arguments{

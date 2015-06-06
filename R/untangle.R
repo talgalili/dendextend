@@ -39,11 +39,11 @@
 #' untangle(dend1, ...)
 #' 
 #' \method{untangle}{dendrogram}(dend1, dend2 ,
-#'    method = c("random", "step1side", "step2side", "DendSer", "ladderize"),
+#'    method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"),
 #'    ...)
 #' 
 #' \method{untangle}{dendlist}(dend1, 
-#'    method = c("random", "step1side", "step2side", "DendSer", "ladderize"),
+#'    method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"),
 #'    which = c(1L,2L), ...)
 #' 
 #' @param dend1 a dednrogram or a dendlist object
@@ -101,10 +101,20 @@ untangle <- function (dend1, ...) {UseMethod("untangle")}
 
 untangle.default <- function (dend1, ...) {stop("No default function for tanglegram - must use a dendrogram/hclust/phylo object")}
 
+
+
+untangle_labels <- function(dend1, dend2, ...) {
+   dend2 <- rotate(dend2, labels(dend1))
+   dendlist(dend1, dend2)
+}
+
+
+
+
 # ' @S3method untangle dendrogram
 #' @export
 untangle.dendrogram <- function (dend1, dend2, 
-                                 method = c("random", "step1side", "step2side", "DendSer", "ladderize"), ...) {
+                                 method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"), ...) {
    method <- match.arg(method)
    
    switch(method,
@@ -112,14 +122,15 @@ untangle.dendrogram <- function (dend1, dend2,
           step1side = untangle_step_rotate_1side(dend1, dend2, ...),
           step2side = untangle_step_rotate_2side(dend1, dend2, ...),
           DendSer = untangle_DendSer(dendlist(dend1, dend2), ...),
-          ladderize = ladderize(dendlist(dend1, dend2), ...),          
+          ladderize = ladderize(dendlist(dend1, dend2), ...),
+          labels = untangle_labels(dend1, dend2, ...)
    )
 }
 
 # ' @S3method untangle dendlist
 #' @export
 untangle.dendlist <- function(dend1, 
-                              method = c("random", "step1side", "step2side", "DendSer", "ladderize"), 
+                              method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"), 
                               which = c(1L,2L), ...) {
    method <- match.arg(method)
    the_names <- names(dend1)[which]

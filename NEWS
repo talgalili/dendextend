@@ -24,6 +24,7 @@ dendextend 1.0.0 (2015-06-06)
    * untangle.dendlist - 
       * can now return a dendlist with more than two elements.
       * now preserve the names in the dendlist
+      * now has a new "labels" method, and it is now the default.
    * dendlist - added the `which` parameter (for indicating which elements in the dendlist to pick out)
    * set
       * added "rank_branches"
