@@ -1,4 +1,4 @@
-dendextend 1.0.0 (2015-05-24)
+dendextend 1.0.0 (2015-06-06)
 ----------------------------------------
 
 ###NEW FUNCTIONS:
@@ -7,7 +7,8 @@ dendextend 1.0.0 (2015-05-24)
    * rank_values_with_clusters - Rank a vector based on clusters (important for various functions.) Added tests.
    * cor_common_nodes - a new correlation measure between dendrograms.
    * cor_FM_index - Correlation of FM_index for some k (similar to Bk actually)
-   
+   * prune_common_subtrees.dendlist - Prune trees to their common subtrees
+   * nleaves.dendlist
    
 ###UPDATED FUNCTIONS:
    * color_branches - gained a new "cluster" parameter to allow for easy uneven coloring of branches (using branches_attr_by_clusters). This is not a new feature, as it is an attempt to have the user access more options from one place (i.e.: color_branches).
@@ -24,12 +25,13 @@ dendextend 1.0.0 (2015-05-24)
    * untangle.dendlist - 
       * can now return a dendlist with more than two elements.
       * now preserve the names in the dendlist
+      * now has a new "labels" method, and it is now the default.
    * dendlist - added the `which` parameter (for indicating which elements in the dendlist to pick out)
    * set
       * added "rank_branches"
    * untangle_random_search/untangle_step_rotate_2side/untangle_best_k_to_rotate_by_2side_backNforth - no longer returns a dendlist with names (it shouldn't, they didn't have a name to begin with.)
    * cor.dendlist - added methods "common_nodes", "FM_index".
-   
+   * cor_cophenetic - changed method to method_coef (so it could be updated when using cor.dendlist)
 
 ###BUG FIXES:
    * Fix "'::' or ':::' import not declared from: ‘rpart’" by adding rpart to DESCRIPTION.
@@ -43,10 +45,10 @@ dendextend 1.0.0 (2015-05-24)
 ###OTHER NOTES:
    * Added Code of conduct
    * Added CRAN status
-   * Added coveralls 
+   * Added codecov
    * Moved FAQ from introduction.Rmd to FAQ.Rmd
-   * New vignette "Cluster_Analysis.Rmd" - demonstrating the use of the package on three famous datasets (Iris, votes.repub, animals)
-
+   * New vignette "Cluster_Analysis.Rmd" - demonstrating the use of the package on three famous datasets (Iris, khan, votes.repub, animals)
+   * Added the khan dataset to the package.
 
 dendextend 0.18.8 (2015-05-17)
 ----------------------------------------
