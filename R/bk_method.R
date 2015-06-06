@@ -631,7 +631,7 @@ FM_index_permutation <- function(A1_clusters, A2_clusters, warn = dendextend_opt
 #' classifications.
 #' 
 #' @seealso
-#' \code{\link{FM_index}}, \link{cor_bakers_gamma}
+#' \link{FM_index}, \link{cor_bakers_gamma}, \link{Bk_plot}
 #' @return 
 #' A list (of k's length) of Fowlkes-Mallows index between two dendrogram for 
 #' a scalar/vector of k values.

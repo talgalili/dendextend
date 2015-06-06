@@ -96,6 +96,6 @@ Journal of the American Statistical Association 78 (383): 553.
 \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 }
 \seealso{
-\code{\link{FM_index}}, \link{cor_bakers_gamma}
+\link{FM_index}, \link{cor_bakers_gamma}, \link{Bk_plot}
 }
 
