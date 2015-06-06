@@ -3,6 +3,7 @@
 \name{nleaves}
 \alias{nleaves}
 \alias{nleaves.default}
+\alias{nleaves.dendlist}
 \alias{nleaves.dendrogram}
 \alias{nleaves.hclust}
 \alias{nleaves.phylo}
@@ -12,12 +13,14 @@ nleaves(x, ...)
 
 \method{nleaves}{dendrogram}(x, method = c("members", "order"), ...)
 
+\method{nleaves}{dendlist}(x, ...)
+
 \method{nleaves}{hclust}(x, ...)
 
 \method{nleaves}{phylo}(x, ...)
 }
 \arguments{
-\item{x}{tree object (dendrogram/hclust/phylo)}
+\item{x}{tree object (dendrogram/hclust/phylo,\link{dendlist})}
 
 \item{...}{not used}
 

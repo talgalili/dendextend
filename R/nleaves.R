@@ -25,6 +25,7 @@
 #' @aliases 
 #' nleaves.default
 #' nleaves.dendrogram
+#' nleaves.dendlist
 #' nleaves.hclust
 #' nleaves.phylo
 #' @description 
@@ -34,11 +35,13 @@
 #' 
 #' \method{nleaves}{dendrogram}(x, method = c("members", "order"), ...)
 #' 
+#' \method{nleaves}{dendlist}(x, ...)
+#' 
 #' \method{nleaves}{hclust}(x, ...)
 #' 
 #' \method{nleaves}{phylo}(x, ...)
 #' 
-#' @param x tree object (dendrogram/hclust/phylo)
+#' @param x tree object (dendrogram/hclust/phylo,\link{dendlist})
 #' @param method a character scalar (default is "members"). If "order" 
 #' than nleaves is based on length of \link{order.dendrogram}. 
 #' If "members", than length is trusting what is written in the 
@@ -78,6 +81,14 @@ nleaves.dendrogram <- function(x, method = c("members", "order"),...) {
       return(length(order.dendrogram(x)))
    }
 }
+
+
+# ' @S3method set dendlist
+#' @export
+nleaves.dendlist <- function(x, ...) {
+   sapply(x, nleaves, ...)
+}
+
 
 
 # library(microbenchmark)
