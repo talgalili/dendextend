@@ -1,4 +1,4 @@
-dendextend 1.0.0 (2015-05-24)
+dendextend 1.0.0 (2015-06-06)
 ----------------------------------------
 
 ###NEW FUNCTIONS:
@@ -43,10 +43,10 @@ dendextend 1.0.0 (2015-05-24)
 ###OTHER NOTES:
    * Added Code of conduct
    * Added CRAN status
-   * Added coveralls 
+   * Added codecov
    * Moved FAQ from introduction.Rmd to FAQ.Rmd
    * New vignette "Cluster_Analysis.Rmd" - demonstrating the use of the package on three famous datasets (Iris, votes.repub, animals)
-
+   * Added the khan dataset to the package.
 
 dendextend 0.18.8 (2015-05-17)
 ----------------------------------------
