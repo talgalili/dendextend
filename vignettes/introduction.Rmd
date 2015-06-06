@@ -1,4 +1,6 @@
 ---
+title: "Introduction to dendextend"
+author: "Tal Galili"
 output:
   html_document:
     self_contained: yes
@@ -24,8 +26,6 @@ knitr::opts_chunk$set(
 
 ```
 
-Introduction to dendextend
-===========================
 
 **Author**: [Tal Galili](http://www.r-statistics.com/) ( Tal.Galili@gmail.com )
 
