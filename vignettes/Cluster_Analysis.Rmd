@@ -91,6 +91,9 @@ par(xpd = NA)
 
 The default hierarchical clustering method in `hclust` is "complete". We can visualize the result of running it by turning the object to a dendrogram and making several adjustments to the object, such as: changing the labels, coloring the labels based on the real species category, and color the branches based on cutting the tree to 3 produce clusters.
 
+
+
+
 ```{r, fig.height = 10, fig.width=7}
 
 d_iris <- dist(iris2) # method="man" # is a bit better
@@ -147,6 +150,13 @@ The hanging of the tree also helps to locate extreme observations. For example, 
 # } 
 
 ```
+
+
+
+
+
+
+
 
 We can also explore the data using a heatmap. The rows are ordered based on the order of the hierarchical clustering (using the "complete" method). The colored bar indicates the species category each row belongs to. The color in the heatmap indicates the length of each measurement (from light yellow to dark red).
 
@@ -365,6 +375,10 @@ title("Votes for Republican Candidate\n in Presidential Elections \n (each line 
 This is a nice example when the parallel coordinates plot has some serious limitations: it does not help us detect the states, we fail to see the missing value patterns, and it is tricky to see clusters in general (due to the large number of threads).
 
 For this data, it can be quite helpful to see a heatmap of the votes across the years. The ordering of the rows is tricky. First, the distance of the vectors (later used for the clustering) should be done after transformation (since we are dealing with proportion of votes). In this case I used the arcsin transformation (a logit transformation could also work, but the arcsin is safer for dealing with 0/1 observations). But given the clusters, we wish to order the leaves (as much as possible), so to take into account the missing value clusterings. So we in fact have two clusters, one for the raw values, and another for the "shadow matrix" (i.e.: the matrix with 0/1, indicating if a value was missing or not).
+
+
+
+
 
 
 ```{r}
