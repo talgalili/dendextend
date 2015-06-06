@@ -214,7 +214,18 @@ iris_dendlist_cor
 corrplot::corrplot(iris_dendlist_cor, "pie", "lower")
 ```
 
+
 From the above figure we can easily see that most clustering methods yield very similar results, except for the complete method (the default method in `hclust`), which yields a correlation measure of around 0.6. 
+
+The default cophenetic correlation uses pearson's measure, but what if we use the spearman's correlation coefficient?
+
+```{r, fig.width=8, fig.height=8}
+iris_dendlist_cor_spearman <- cor.dendlist(iris_dendlist, method_coef = "spearman")
+corrplot::corrplot(iris_dendlist_cor_spearman, "pie", "lower")
+```
+
+We can see that the correlations are not so strong, indicating a behaviour which is dependent on some items which are very distant from one another having an influence on the pearson's correlation more than the spearman one.
+
 
 To further explore the similarity and difference between the alternative clustering algorithms, we can turn to using the `tanglegram` function (which works for either two `dendrogram`s, or a `dendlist`). 
 
@@ -333,6 +344,123 @@ Lastly, when it came to separating the flowers to the 3 species, the median clus
 
 While the Iris data-set is well known, I hope the above analysis was able to offer some new perspectives on the performance of the different hierarchical clustering methods.
 
+
+
+## khan - Microarray gene expression dataset from Khan et al., 2001. Subset of 306 genes.
+
+
+### background
+
+> Khan contains gene expression profiles of four types of small round blue cell tumours of childhood (SRBCT) published by Khan et al. (2001). It also contains further gene annotation retrieved from SOURCE at http://source.stanford.edu/.
+
+This interesting dataset offers two interesting items:
+
+* train: data.frame of 306 rows and 64 columns. The training dataset of 64 arrays and 306 gene expression values
+* test: data.frame, of 306 rows and 25 columns. The test dataset of 25 arrays and 306 genes expression values
+
+This way we can create an hierarchical clustering on the 306 genes expression values on the train and the test data and compare the two to see how stable are the results.
+
+We define the variables:
+
+```{r}
+train <- dendextend::khan$train
+test <- dendextend::khan$test
+```
+
+And create the dendrograms:
+
+```{r}
+d_train <- train %>% dist %>% hclust %>% as.dendrogram
+d_test <- test %>% dist %>% hclust %>% as.dendrogram
+d_train_test <- dendlist(train = d_train, test = d_test)
+```
+
+
+### Comparing the train vs test dendrograms
+
+Using a cophenetic correlation we can see the two trees have some similarity (0.57):
+
+```{r}
+d_train_test %>% cor.dendlist
+```
+
+However, when looking at the cophenetic correlation with the spearman correlation coefficiant the value is lower (0.49) indicating that some of the similarity is due to a small number of items, distant from the others, which are correlated similarly in the two trees:
+
+```{r}
+d_train_test %>% cor.dendlist(method_coef = "spearman")
+```
+
+We may ask at which level of cutting the dendrogram we get the "best" level of similarity. For this we may turn to the Bk plot. The plots shows us that at around 7 clusters the groups in the two are starting to look significantly similar (note that significantly does not mean substantially)
+
+```{r}
+Bk_plot(d_train, d_test, k = 2:30, xlim = c(2,30))
+```
+
+Next, we compare the results with a tanglegram. We make sure to color the connecting line with the colors of the branches of the train (left) dendrogram. This can help us see which patterns are somewhat preserved between the two trees.
+
+```{r, fig.width=8, fig.height=5}
+pre_tang_d_train_test <- d_train_test %>% ladderize %>% # untangle %>%
+   set("branches_k_color", k = 7)
+train_branches_colors <- get_leaves_branches_col(pre_tang_d_train_test$train)
+pre_tang_d_train_test %>% tanglegram(fast = TRUE, color_lines = train_branches_colors)
+```
+
+We can see that the top most (small) cluster is somewhat preserved between the two trees. However, a large spageti-like tangle of lines is indicating the the two trees are far from beeing identical.
+
+```{r, echo = FALSE}
+# dput(d_train_test_common)
+d_train_test_common <- structure(list(train = structure(list(structure(list(structure(171L, label = "491565", members = 1L, height = 0, leaf = TRUE), 
+    structure(178L, label = "505491", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 7.1369942952198), 
+    structure(list(structure(list(structure(8L, label = "283315", members = 1L, height = 0, leaf = TRUE), 
+        structure(9L, label = "897177", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 2.55936539399907), 
+        structure(list(structure(list(structure(106L, label = "345553", members = 1L, height = 0, leaf = TRUE), 
+            structure(112L, label = "307660", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 5.17910461856101), 
+            structure(list(structure(list(structure(268L, label = "504791", members = 1L, height = 0, leaf = TRUE), 
+                structure(306L, label = "782503", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 4.27052507661529), 
+                structure(list(structure(list(structure(246L, label = "81518", members = 1L, height = 0, leaf = TRUE), 
+                  structure(290L, label = "280837", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 1.37572388944875), 
+                  structure(list(structure(list(structure(266L, label = "866694", members = 1L, height = 0, leaf = TRUE), 
+                    structure(277L, label = "811956", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 3.31301518861595), 
+                    structure(list(structure(273L, label = "842918", members = 1L, height = 0, leaf = TRUE), 
+                      structure(274L, label = "626555", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 2.71864544948399)), members = 4, midpoint = 1.5, height = 6.35097701381449)), members = 6, midpoint = 2, height = 8.7097033164167)), members = 8, midpoint = 2.25, height = 9.23807936424017)), members = 10, midpoint = 2.375, height = 11.6573350998416)), members = 12, midpoint = 2.4375, height = 17.5620766260713)), members = 14, midpoint = 2.46875, height = 30.2363452779928, class = "dendrogram"), 
+    test = structure(list(structure(list(structure(list(structure(171L, label = "491565", members = 1L, height = 0, leaf = TRUE), 
+        structure(178L, label = "505491", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 3.96666017450449), 
+        structure(list(structure(list(structure(list(structure(268L, label = "504791", members = 1L, height = 0, leaf = TRUE), 
+            structure(306L, label = "782503", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 2.31497882927685), 
+            structure(list(structure(list(structure(266L, label = "866694", members = 1L, height = 0, leaf = TRUE), 
+                structure(277L, label = "811956", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 1.75475236429532), 
+                structure(list(structure(273L, label = "842918", members = 1L, height = 0, leaf = TRUE), 
+                  structure(274L, label = "626555", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 1.34617375921535)), members = 4, midpoint = 1.5, height = 2.76465021476497)), members = 6, midpoint = 2, height = 4.52927251774499), 
+            structure(list(structure(list(structure(246L, label = "81518", members = 1L, height = 0, leaf = TRUE), 
+                structure(290L, label = "280837", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 0.714433271901582), 
+                structure(list(structure(8L, label = "283315", members = 1L, height = 0, leaf = TRUE), 
+                  structure(9L, label = "897177", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 1.71895552589356)), members = 4, midpoint = 1.5, height = 6.44143803354499)), members = 10, midpoint = 4.75, height = 7.736516720075)), members = 12, midpoint = 3.625, height = 11.0066972375913), 
+        structure(list(structure(106L, label = "345553", members = 1L, height = 0, leaf = TRUE), 
+            structure(112L, label = "307660", members = 1L, height = 0, leaf = TRUE)), members = 2L, midpoint = 0.5, height = 3.6486307417989)), members = 14, midpoint = 8.0625, height = 18.2331742971431, class = "dendrogram")), class = "dendlist", .Names = c("train", 
+"test"))
+```
+
+If we look only on subtrees of the two dendrograms so that they only include  genes that are clustered with genes in both trees, we get only 14 genes (while the original trees had 306 genes). We can see how we have several groups of pairs of genes, and one group with four genes clustered together in both trees:
+
+```{r}
+# This was calculated before
+# d_train_test_common <- d_train_test %>% prune_common_subtrees.dendlist
+# d_train_test_common
+d_train_test_common %>% untangle %>%  tanglegram(common_subtrees_color_branches = TRUE)
+```
+
+Trees' sizes:
+
+```{r}
+d_train_test %>% nleaves
+d_train_test_common %>% nleaves
+```
+
+
+
+### Conclusion
+
+To conclude: we see that the clustering alogirthm resulted in trees which are singnificantly similar in both the training and the test datasets beyond chance, but that this similarity is ristricted to only a very small proportion of genes.
 
 
 ## votes.repub - Votes for Republican Candidate in Presidential Elections
