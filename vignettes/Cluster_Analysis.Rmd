@@ -1,11 +1,15 @@
 ---
 title: "Hierarchical cluster analysis on famous data-sets - enhanced with the _dendextend_ package"
+date: "`r Sys.Date()`"
 author: "Tal Galili"
 output: 
   html_document: 
     toc: yes
 ---
-
+<!--
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteIndexEntry{Hierarchical cluster analysis on famous data-sets}
+-->
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
 library(dendextend)

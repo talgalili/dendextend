@@ -1,10 +1,15 @@
 ---
 title: "Frequantly asked questions"
+date: "`r Sys.Date()`"
 author: "Tal Galili"
 output: 
   html_document: 
     toc: yes
 ---
+<!--
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteIndexEntry{Frequantly asked questions}
+-->
 
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
