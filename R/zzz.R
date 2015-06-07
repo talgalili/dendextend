@@ -155,7 +155,7 @@ dendextendWelcomeMessage <- function(){
          "Welcome to dendextend version ", utils::packageDescription("dendextend")$Version, "\n",
          "\n",
          "Type ?dendextend to access the overall documentation and\n",
-         "vignette('dendextend') for the package vignette.\n",
+         "browseVignettes(package = 'dendextend') for the package vignette.\n",
          "You can execute a demo of the package via: demo(dendextend)\n",
          "\n",  
          "More information is available on the dendextend project web-site:\n",
