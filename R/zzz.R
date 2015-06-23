@@ -97,8 +97,19 @@
    
    # adding and removing menus from the Rgui when loading and detaching the library
    # setHook(packageEvent("installr", "attach"), {function(pkgname, libpath) {add.installr.GUI()}  } )
-   setHook(packageEvent("dendextend", "detach"), {function(pkgname, libpath) {remove_dendextend_options()}  } )
+   # setHook(packageEvent("dendextend", "detach"), {function(pkgname, libpath) {remove_dendextend_options()}  } )
 
+   # set default options for dendextend
+   setHook(packageEvent("dendextend", "onLoad"), {function(pkgname, libpath) {assign_dendextend_options()}  } )
+   
+   # Does NOT work!
+   # remove_dendextend_options is currently an empty function. In the future, it should
+   # remove default options for dendextend when unloading
+   setHook(packageEvent("dendextend", "onUnload"), {function(pkgname, libpath) {remove_dendextend_options()}  } )
+   setHook(packageEvent("dendextend", "detach"), {function(pkgname, libpath) {remove_dendextend_options()}  } )
+   
+   # dendextend::dendextend_options()
+   
    # set default options for d3 dendrogram.
    d3dendro_defaults(D3DENDRODEFAULTS)
 }
@@ -136,7 +147,7 @@
 #    create_dendextend_options()
    
    # details in dendextend_options.R
-   assign_dendextend_options()
+   # assign_dendextend_options()
    
    packageStartupMessage(dendextendWelcomeMessage())  
    
@@ -276,7 +287,7 @@ dendextendWelcomeMessage <- function(){
 
 
 
-
+# install.packages("C:\\Dropbox\\aaaa good R code\\AA - My packages\\dendextend_1.0.0.tar.gz", repos = NULL, type="source")
 
 # 
 # # Run once:

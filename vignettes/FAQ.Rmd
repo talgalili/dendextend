@@ -836,3 +836,16 @@ heatmap.2(test,
 ```
 
 
+
+
+### For package developers - how to call imported calls from dendextend 0.18.3?
+
+If you are developing a package and you wish to use dendextend as an imported package, that is - without loading it to the search path, you should run:
+
+```{r, eval = FALSE}
+dendextend::assign_dendextend_options()
+# This populates the dendextend::dendextend_options() space
+```
+
+Before using any of its function (for example: `dendextend::color_branches` ). As of dendextend version 1.0.0, this is no longer required.
+
