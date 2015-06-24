@@ -46,6 +46,7 @@ Suggests:
     profdpm,
     microbenchmark,
     gplots,
+    d3heatmap,
     dynamicTreeCut,
     pvclust,
     corrplot,
