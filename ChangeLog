@@ -1,3 +1,319 @@
+* 2015-06-27(Tal Galili) update date |a85432c| 
+|  DESCRIPTION | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2015-06-27(Tal Galili) object -> dend  for: shuffle |ec62d71| 
+|  NEWS           |  2 +-
+|  R/untangle.R   | 30 +++++++++++++++---------------
+|  man/shuffle.Rd | 12 ++++++------
+|  3 files changed, 22 insertions(+), 22 deletions(-)
+
+* 2015-06-27(Tal Galili) x -> dend  for: unbranch |541d5ef| 
+|  NEWS            |  2 +-
+|  R/unbranch.R    | 26 +++++++++++++-------------
+|  man/unbranch.Rd | 10 +++++-----
+|  3 files changed, 19 insertions(+), 19 deletions(-)
+
+* 2015-06-27(Tal Galili) tree1/tree2 -> dend1/dend2  for: tanglegram |5517d9b| 
+|  NEWS              |   2 +-
+|  R/tanglegram.R    | 136 ++++++++++++++++++++++++++--------------------------
+|  man/tanglegram.Rd |  14 +++---
+|  3 files changed, 76 insertions(+), 76 deletions(-)
+
+* 2015-06-27(Tal Galili) x -> dend  for: prune |8660626| 
+|  NEWS              |  2 +-
+|  R/prune.R         | 94 ++++++++++++++++++++++++++---------------------------
+|  man/prune.Rd      | 12 +++----
+|  man/prune_leaf.Rd |  4 +--
+|  4 files changed, 56 insertions(+), 56 deletions(-)
+
+* 2015-06-27(Tal Galili) intersect_trees x1/x2 -> dend1/dend2 |e87987d| 
+|  NEWS                   |  3 +--
+|  R/prune.R              | 22 +++++++++++-----------
+|  man/intersect_trees.Rd |  6 +++---
+|  3 files changed, 15 insertions(+), 16 deletions(-)
+
+* 2015-06-27(Tal Galili) object -> dend  for: labels_colors |a306bb1| 
+|  NEWS                 |  1 +
+|  R/labels_colors.R    | 28 ++++++++++++++--------------
+|  man/labels_colors.Rd |  6 +++---
+|  3 files changed, 18 insertions(+), 17 deletions(-)
+
+* 2015-06-27(Tal Galili) x -> dend  for: get_nodes_xy |3f50252| 
+|  NEWS                | 2 +-
+|  R/get_nodes_xy.R    | 6 ++++--
+|  man/get_nodes_xy.Rd | 4 ++--
+|  3 files changed, 7 insertions(+), 5 deletions(-)
+
+* 2015-06-27(Tal Galili) tree1/tree2 -> dend1/dend2  for: untangle_random_search |9fa317f| 
+|  NEWS                          |  2 +-
+|  R/untangle.R                  | 32 ++++++++++++++++----------------
+|  man/untangle_random_search.Rd |  6 +++---
+|  3 files changed, 20 insertions(+), 20 deletions(-)
+
+* 2015-06-27(Tal Galili) tree1/tree2 -> dend1/dend2  for: entanglement |5610519| 
+|  NEWS                |  2 +-
+|  R/entanglement.R    | 88 +++++++++++++++++++++++++--------------------------
+|  man/entanglement.Rd | 14 ++++----
+|  3 files changed, 52 insertions(+), 52 deletions(-)
+
+* 2015-06-27(Tal Galili) y to dend2 |2e653c5| 
+|  R/distinct_edges.R              | 34 +++++++++++++++++-----------------
+|  man/dend_diff.Rd                |  4 ++--
+|  man/distinct_edges.Rd           |  6 +++---
+|  man/highlight_distinct_edges.Rd |  4 ++--
+|  4 files changed, 24 insertions(+), 24 deletions(-)
+
+* 2015-06-27(Tal Galili) x -> dend  for: dend_diff, dist.dendlist, distinct_edges, highlight_distinct_edges, partition_leaves |1da678e| 
+|  NEWS                            |  2 +-
+|  R/distinct_edges.R              | 94 +++++++++++++++++++--------------------
+|  man/dend_diff.Rd                |  8 ++--
+|  man/dist.dendlist.Rd            |  4 +-
+|  man/distinct_edges.Rd           |  6 +--
+|  man/highlight_distinct_edges.Rd | 10 ++---
+|  man/partition_leaves.Rd         |  4 +-
+|  7 files changed, 64 insertions(+), 64 deletions(-)
+
+* 2015-06-27(Tal Galili) tree -> dend  for: cutree_1h.dendrogram, cutree_1k.dendrogram, heights_per_k.dendrogram |7ec15a4| 
+|  NEWS                            |  2 +-
+|  R/cutree.dendrogram.R           | 95 ++++++++++++++++++++-------------------
+|  man/cutree_1h.dendrogram.Rd     |  6 +--
+|  man/cutree_1k.dendrogram.Rd     |  4 +-
+|  man/heights_per_k.dendrogram.Rd |  4 +-
+|  5 files changed, 57 insertions(+), 54 deletions(-)
+
+* 2015-06-27(Tal Galili) tree -> dend  for: dendextend_cut_lower_fun |d13b9c6| 
+|  NEWS                 |  2 +-
+|  R/cut_lower_fun.R    | 24 ++++++++++++------------
+|  man/cut_lower_fun.Rd | 10 +++++-----
+|  3 files changed, 18 insertions(+), 18 deletions(-)
+
+* 2015-06-27(Tal Galili) tree1/tree2 -> dend1/dend2  for: cor_cophenetic |4c987d3| 
+|  NEWS                  |  2 +-
+|  R/cor_cophenetic.R    | 40 ++++++++++++++++++++--------------------
+|  man/cor_cophenetic.Rd | 10 +++++-----
+|  3 files changed, 26 insertions(+), 26 deletions(-)
+
+* 2015-06-27(Tal Galili) cor_bakers_gamma: tree1/2 -> dend1/2 |9641738| 
+|  NEWS                               |  2 +-
+|  R/cor_bakers_gamma.R               | 76 ++++++++++++++++++------------------
+|  man/bakers_gamma_for_2_k_matrix.Rd |  6 +--
+|  man/cor_bakers_gamma.Rd            | 12 +++---
+|  4 files changed, 48 insertions(+), 48 deletions(-)
+
+* 2015-06-27(Tal Galili)       * x -> dend  for: cor.dendlist       * tree1/tree2 -> dend1/dend2  for: cor_FM_index, cor_common_nodes |b62be29| 
+|  NEWS                    |  2 ++
+|  R/cor.dendlist.R        | 38 +++++++++++++++++++-------------------
+|  man/cor.dendlist.Rd     |  6 +++---
+|  man/cor_FM_index.Rd     |  6 +++---
+|  man/cor_common_nodes.Rd |  6 +++---
+|  5 files changed, 30 insertions(+), 28 deletions(-)
+
+* 2015-06-27(Tal Galili) bug fix (renaming object to dend) |952667f| 
+|  R/branches_attr_by.R | 2 +-
+|  R/distinct_edges.R   | 2 +-
+|  2 files changed, 2 insertions(+), 2 deletions(-)
+
+* 2015-06-27(Tal Galili) tree -> dend  for:                color_branches, color_labels_by_labels, color_labels, get_branches_heights, dendextend_get_branches_heights |7fd2a2c| 
+|  NEWS                         |   2 +
+|  R/attr_access.R              |  16 +++----
+|  R/color_branches.R           | 100 ++++++++++++++++++++---------------------
+|  R/set.dendrogram.R           |   6 +--
+|  man/color_branches.Rd        |  10 ++---
+|  man/color_labels.Rd          |   6 +--
+|  man/get_branches_heights.Rd  |   4 +-
+|  man/rank_order.dendrogram.Rd |   2 +-
+|  8 files changed, 74 insertions(+), 72 deletions(-)
+
+* 2015-06-27(Tal Galili) object -> dend  for: |95856ed| 
+|  NEWS                                     |  13 +-
+|  R/ape.R                                  |   1 +
+|  R/attr_access.R                          | 194 ++++++++++++++---------------
+|  inst/tests/test-attr_access.R            |   2 +-
+|  man/assign_values_to_branches_edgePar.Rd |  12 +-
+|  man/assign_values_to_leaves_edgePar.Rd   |  10 +-
+|  man/assign_values_to_leaves_nodePar.Rd   |   6 +-
+|  man/assign_values_to_nodes_nodePar.Rd    |   4 +-
+|  man/get_leaves_attr.Rd                   |   4 +-
+|  man/get_leaves_branches_attr.Rd          |   4 +-
+|  man/get_leaves_branches_col.Rd           |   4 +-
+|  man/get_leaves_edgePar.Rd                |   4 +-
+|  man/get_leaves_nodePar.Rd                |   4 +-
+|  man/get_nodes_attr.Rd                    |   4 +-
+|  man/remove_branches_edgePar.Rd           |   4 +-
+|  man/remove_leaves_nodePar.Rd             |   4 +-
+|  man/remove_nodes_nodePar.Rd              |   4 +-
+|  17 files changed, 145 insertions(+), 133 deletions(-)
+
+* 2015-06-27(Tal Galili) roxygen 4.1.1 |b1723fe| 
+|  NAMESPACE                                  | 2 +-
+|  man/Bk.Rd                                  | 2 +-
+|  man/Bk_permutations.Rd                     | 2 +-
+|  man/Bk_plot.Rd                             | 2 +-
+|  man/DendSer.dendrogram.Rd                  | 2 +-
+|  man/FM_index.Rd                            | 2 +-
+|  man/FM_index_R.Rd                          | 2 +-
+|  man/FM_index_permutation.Rd                | 2 +-
+|  man/FM_index_profdpm.Rd                    | 2 +-
+|  man/all.equal.dendrogram.Rd                | 2 +-
+|  man/all_couple_rotations_at_k.Rd           | 2 +-
+|  man/all_unique.Rd                          | 2 +-
+|  man/as.dendlist.Rd                         | 2 +-
+|  man/as.phylo.dendrogram.Rd                 | 2 +-
+|  man/as_hclust_fixed.Rd                     | 2 +-
+|  man/assign_dendextend_options.Rd           | 2 +-
+|  man/assign_values_to_branches_edgePar.Rd   | 2 +-
+|  man/assign_values_to_leaves_edgePar.Rd     | 2 +-
+|  man/assign_values_to_leaves_nodePar.Rd     | 2 +-
+|  man/assign_values_to_nodes_nodePar.Rd      | 2 +-
+|  man/bakers_gamma_for_2_k_matrix.Rd         | 2 +-
+|  man/branches_attr_by_clusters.Rd           | 2 +-
+|  man/branches_attr_by_labels.Rd             | 2 +-
+|  man/click_rotate.Rd                        | 2 +-
+|  man/collapse_branch.Rd                     | 2 +-
+|  man/color_branches.Rd                      | 2 +-
+|  man/color_labels.Rd                        | 2 +-
+|  man/colored_bars.Rd                        | 2 +-
+|  man/common_subtrees_clusters.Rd            | 2 +-
+|  man/cor.dendlist.Rd                        | 2 +-
+|  man/cor_FM_index.Rd                        | 2 +-
+|  man/cor_bakers_gamma.Rd                    | 2 +-
+|  man/cor_common_nodes.Rd                    | 2 +-
+|  man/cor_cophenetic.Rd                      | 2 +-
+|  man/count_terminal_nodes.Rd                | 2 +-
+|  man/cut_lower_fun.Rd                       | 2 +-
+|  man/cutree-methods.Rd                      | 2 +-
+|  man/cutree_1h.dendrogram.Rd                | 2 +-
+|  man/cutree_1k.dendrogram.Rd                | 2 +-
+|  man/d3dendro_options.Rd                    | 2 +-
+|  man/d3dendrogram.Rd                        | 2 +-
+|  man/dend_diff.Rd                           | 2 +-
+|  man/dendextend-package.Rd                  | 2 +-
+|  man/dendextend_labels.dendrogram.Rd        | 2 +-
+|  man/dendextend_options.Rd                  | 2 +-
+|  man/dendlist.Rd                            | 2 +-
+|  man/dist.dendlist.Rd                       | 2 +-
+|  man/dist_long.Rd                           | 2 +-
+|  man/distinct_edges.Rd                      | 2 +-
+|  man/duplicate_leaf.Rd                      | 2 +-
+|  man/entanglement.Rd                        | 2 +-
+|  man/fac2num.Rd                             | 2 +-
+|  man/fix_members_attr.dendrogram.Rd         | 2 +-
+|  man/flatten.dendrogram.Rd                  | 2 +-
+|  man/flip_leaves.Rd                         | 2 +-
+|  man/get_branches_heights.Rd                | 2 +-
+|  man/get_childrens_heights.Rd               | 2 +-
+|  man/get_leaves_attr.Rd                     | 2 +-
+|  man/get_leaves_branches_attr.Rd            | 2 +-
+|  man/get_leaves_branches_col.Rd             | 2 +-
+|  man/get_leaves_edgePar.Rd                  | 2 +-
+|  man/get_leaves_nodePar.Rd                  | 2 +-
+|  man/get_nodes_attr.Rd                      | 2 +-
+|  man/get_nodes_xy.Rd                        | 2 +-
+|  man/get_root_branches_attr.Rd              | 2 +-
+|  man/ggdend.Rd                              | 2 +-
+|  man/hang.dendrogram.Rd                     | 2 +-
+|  man/heights_per_k.dendrogram.Rd            | 2 +-
+|  man/highlight_distinct_edges.Rd            | 2 +-
+|  man/identify.dendrogram.Rd                 | 2 +-
+|  man/intersect_trees.Rd                     | 2 +-
+|  man/is.dendlist.Rd                         | 2 +-
+|  man/is.dendrogram.Rd                       | 2 +-
+|  man/is.hclust.Rd                           | 2 +-
+|  man/is.natural.number.Rd                   | 2 +-
+|  man/is.phylo.Rd                            | 2 +-
+|  man/is_null_list.Rd                        | 2 +-
+|  man/khan.Rd                                | 2 +-
+|  man/labels-assign.Rd                       | 2 +-
+|  man/labels_colors.Rd                       | 2 +-
+|  man/ladderize.Rd                           | 2 +-
+|  man/leaf_Colors.Rd                         | 2 +-
+|  man/lowest_common_branch.Rd                | 2 +-
+|  man/match_order_by_labels.Rd               | 2 +-
+|  man/match_order_dendrogram_by_old_order.Rd | 2 +-
+|  man/na_locf.Rd                             | 2 +-
+|  man/nleaves.Rd                             | 2 +-
+|  man/nnodes.Rd                              | 2 +-
+|  man/noded_with_condition.Rd                | 2 +-
+|  man/order.dendrogram-assign.Rd             | 2 +-
+|  man/order.hclust.Rd                        | 2 +-
+|  man/partition_leaves.Rd                    | 2 +-
+|  man/pipe.Rd                                | 2 +-
+|  man/plot_horiz.dendrogram.Rd               | 2 +-
+|  man/prune.Rd                               | 2 +-
+|  man/prune_common_subtrees.dendlist.Rd      | 2 +-
+|  man/prune_leaf.Rd                          | 2 +-
+|  man/pvclust_show_signif.Rd                 | 2 +-
+|  man/pvclust_show_signif_gradient.Rd        | 2 +-
+|  man/raise.dendrogram.Rd                    | 2 +-
+|  man/rank_branches.Rd                       | 2 +-
+|  man/rank_order.dendrogram.Rd               | 2 +-
+|  man/rank_values_with_clusters.Rd           | 2 +-
+|  man/rect.dendrogram.Rd                     | 2 +-
+|  man/remove_branches_edgePar.Rd             | 2 +-
+|  man/remove_leaves_nodePar.Rd               | 2 +-
+|  man/remove_nodes_nodePar.Rd                | 2 +-
+|  man/rllply.Rd                              | 2 +-
+|  man/rotate.Rd                              | 2 +-
+|  man/rotate_DendSer.Rd                      | 2 +-
+|  man/sample.dendrogram.Rd                   | 2 +-
+|  man/shuffle.Rd                             | 2 +-
+|  man/sort_2_clusters_vectors.Rd             | 2 +-
+|  man/sort_dist_mat.Rd                       | 2 +-
+|  man/sort_levels_values.Rd                  | 2 +-
+|  man/tanglegram.Rd                          | 2 +-
+|  man/theme_dendro.Rd                        | 2 +-
+|  man/unbranch.Rd                            | 2 +-
+|  man/unclass_dend.Rd                        | 2 +-
+|  man/untangle.Rd                            | 2 +-
+|  man/untangle_DendSer.Rd                    | 2 +-
+|  man/untangle_random_search.Rd              | 2 +-
+|  man/untangle_step_rotate_1side.Rd          | 2 +-
+|  man/untangle_step_rotate_2side.Rd          | 2 +-
+|  man/which_leaf.Rd                          | 2 +-
+|  man/which_node.Rd                          | 2 +-
+|  126 files changed, 126 insertions(+), 126 deletions(-)
+
+* 2015-06-27(Tal Galili) object -> dend |8a2f94a| 
+|  R/set.dendrogram.R | 80 ++++++++++++++++++++++++++--------------------------
+|  man/set.Rd         | 16 +++++------
+|  2 files changed, 48 insertions(+), 48 deletions(-)
+
+* 2015-06-24(Tal Galili) Added d3heatmap example to vignette + as suggests to DESCRIPTION |f8a4926| 
+|  DESCRIPTION                |  1 +
+|  vignettes/introduction.Rmd | 33 ++++++++++++++++++++++++++++++++-
+|  2 files changed, 33 insertions(+), 1 deletion(-)
+
+* 2015-06-23(Tal Galili) moved assign_dendextend_options to ".onLoad" - this now allows the use of dendextend::some_func |bf35c68| 
+|  DESCRIPTION            |  2 +-
+|  NEWS                   |  3 ++-
+|  R/dendextend_options.R | 45 +++++++++++++++++++++++++++++++++++++++++++--
+|  R/zzz.R                | 17 ++++++++++++++---
+|  vignettes/FAQ.Rmd      | 13 +++++++++++++
+|  5 files changed, 73 insertions(+), 7 deletions(-)
+
+* 2015-06-07(Tal Galili) Added VignetteIndexEntry information (and Sys.Date) |5adda4c| 
+|  vignettes/Cluster_Analysis.Rmd | 6 +++++-
+|  vignettes/FAQ.Rmd              | 5 +++++
+|  vignettes/introduction.Rmd     | 1 +
+|  3 files changed, 11 insertions(+), 1 deletion(-)
+
+* 2015-06-07(Tal Galili) Update instructions on viewing the vignette |4ca1df8| 
+|  R/zzz.R | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2015-06-06(Tal Galili) Better format. |89a8aee| 
+|  README.md                                    |    2 +-
+|  inst/ignored/Introduction to dendextend.html | 1218 ++++++++++++++++++++++++
+|  inst/ignored/introduction.html               | 1218 ------------------------
+|  vignettes/introduction.Rmd                   |    4 +-
+|  4 files changed, 1221 insertions(+), 1221 deletions(-)
+
+* 2015-06-06(Tal Galili) misc |b8c68cd| 
+|  ChangeLog | 892 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  NEWS.md   |  14 +-
+|  2 files changed, 900 insertions(+), 6 deletions(-)
+
 * 2015-06-06(Tal Galili) Fix "CRAN URL not in canonical form" |59b2397| 
 |  DESCRIPTION                    |  2 +-
 |  R/bk_method.R                  |  2 +-

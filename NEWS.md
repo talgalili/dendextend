@@ -1,4 +1,4 @@
-dendextend 1.0.0 (2015-06-06)
+dendextend 1.0.0 (2015-06-27)
 ----------------------------------------
 
 ###NEW FUNCTIONS:
@@ -33,6 +33,21 @@ dendextend 1.0.0 (2015-06-06)
    * cor.dendlist - added methods "common_nodes", "FM_index".
    * cor_cophenetic - changed method to method_coef (so it could be updated when using cor.dendlist)
 
+   * use "dend" as a standard name for all the parameters that accept dendrograms (whenever possible, in some cases I preferred to keep another name due to other conventions.)
+      * object -> dend  for: 
+               set, set.dendrogram, set.dendlist, 
+               get_leaves_attr, get_leaves_nodePar, get_leaves_edgePar, 
+               get_leaves_branches_attr, get_leaves_branches_col, get_nodes_attr, 
+               assign_values_to_leaves_nodePar, assign_values_to_leaves_edgePar, 
+               assign_values_to_nodes_nodePar, assign_values_to_branches_edgePar, 
+               remove_branches_edgePar, remove_nodes_nodePar, remove_leaves_nodePar, 
+               labels_colors, shuffle
+      * tree -> dend  for: 
+               color_branches, color_labels_by_labels, color_labels, get_branches_heights, dendextend_get_branches_heights, dendextend_cut_lower_fun, cutree_1h.dendrogram, cutree_1k.dendrogram, heights_per_k.dendrogram
+      * x -> dend  for: cor.dendlist, dend_diff, dist.dendlist, distinct_edges, highlight_distinct_edges, partition_leaves, get_nodes_xy, prune, unbranch
+      * tree1/tree2 or x1/x2 -> dend1/dend2  for: cor_FM_index, cor_common_nodes, cor_bakers_gamma, cor_cophenetic, entanglement, untangle_random_search, intersect_trees, tanglegram
+
+
 ###BUG FIXES:
    * Fix "'::' or ':::' import not declared from: ‘rpart’" by adding rpart to DESCRIPTION.
    * as.hclust.pvclust - use "x" instead of "object", to avoid "checking S3 generic/method consistency ... WARNING"
@@ -49,6 +64,7 @@ dendextend 1.0.0 (2015-06-06)
    * Moved FAQ from introduction.Rmd to FAQ.Rmd
    * New vignette "Cluster_Analysis.Rmd" - demonstrating the use of the package on three famous datasets (Iris, khan, votes.repub, animals)
    * Added the khan dataset to the package.
+   * moved assign_dendextend_options to ".onLoad" - this now allows the use of dendextend::some_func
 
 dendextend 0.18.8 (2015-05-17)
 ----------------------------------------
