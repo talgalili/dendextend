@@ -4,13 +4,13 @@
 \alias{cutree_1h.dendrogram}
 \title{cutree for dendrogram (by 1 height only!)}
 \usage{
-cutree_1h.dendrogram(tree, h, order_clusters_as_data = TRUE,
+cutree_1h.dendrogram(dend, h, order_clusters_as_data = TRUE,
   use_labels_not_values = TRUE, warn = dendextend_options("warn"), ...)
 }
 \arguments{
-\item{tree}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
-\item{h}{numeric scalar (NOT a vector) with a height where the tree should be cut.}
+\item{h}{numeric scalar (NOT a vector) with a height where the dend should be cut.}
 
 \item{order_clusters_as_data}{logical, defaults to TRUE. There are two ways by which
 to order the clusters: 1) By the order of the original data. 2) by the order of the

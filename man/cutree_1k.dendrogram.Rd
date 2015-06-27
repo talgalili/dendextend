@@ -4,12 +4,12 @@
 \alias{cutree_1k.dendrogram}
 \title{cutree for dendrogram (by 1 k value only!)}
 \usage{
-cutree_1k.dendrogram(tree, k, dend_heights_per_k = NULL,
+cutree_1k.dendrogram(dend, k, dend_heights_per_k = NULL,
   use_labels_not_values = TRUE, order_clusters_as_data = TRUE,
   warn = dendextend_options("warn"), ...)
 }
 \arguments{
-\item{tree}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{k}{numeric scalar (not a vector!) with the number of clusters
 the tree should be cut into.}

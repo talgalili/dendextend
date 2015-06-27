@@ -5,10 +5,10 @@
 \alias{heights_per_k.dendrogram}
 \title{Which height will result in which k for a dendrogram}
 \usage{
-heights_per_k.dendrogram(tree, ...)
+heights_per_k.dendrogram(dend, ...)
 }
 \arguments{
-\item{tree}{a dendrogram.}
+\item{dend}{a dendrogram.}
 
 \item{...}{not used.}
 }
