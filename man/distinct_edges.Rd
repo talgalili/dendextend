@@ -7,17 +7,17 @@
 A \link{dendrogram} implementation for \link[distory]{distinct.edges} from the {distory} package
 }
 \usage{
-distinct_edges(x, y, ...)
+distinct_edges(dend, y, ...)
 }
 \arguments{
-\item{x}{a dendrogram to find unique edges in}
+\item{dend}{a dendrogram to find unique edges in}
 
 \item{y}{a dendrogram to compare with}
 
 \item{...}{Ignored.}
 }
 \value{
-A numeric vector of edge ids for the first tree (x) that are not present in the second tree (y).
+A numeric vector of edge ids for the first tree (dend) that are not present in the second tree (y).
 }
 \description{
 Finds the edges present in the first tree but not in the second

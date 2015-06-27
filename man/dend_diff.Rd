@@ -9,15 +9,15 @@
 A \link{dendrogram} implementation for \link[distory]{phylo.diff} from the {distory} package
 }
 \usage{
-dend_diff(x, ...)
+dend_diff(dend, ...)
 
 \method{dend_diff}{dendrogram}(x, y, horiz = TRUE,
                   ...)
 
-\method{dend_diff}{dendlist}(x, ..., which)
+\method{dend_diff}{dendlist}(dend, ..., which)
 }
 \arguments{
-\item{x}{a dendrogram or \link{dendlist} to compre with}
+\item{dend}{a dendrogram or \link{dendlist} to compre with}
 
 \item{...}{passed to \link{plot.dendrogram}}
 
@@ -25,7 +25,7 @@ dend_diff(x, ...)
 
 \item{horiz}{logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.}
 
-\item{which}{an integer vector indicating, in the case "x" is a dendlist,
+\item{which}{an integer vector indicating, in the case "dend" is a dendlist,
 on which of the trees should the modification be performed.
 If missing - the change will be performed on all of objects in the dendlist.}
 }

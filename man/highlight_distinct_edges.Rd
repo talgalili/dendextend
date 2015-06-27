@@ -6,18 +6,18 @@
 \alias{highlight_distinct_edges.dendrogram}
 \title{Highlight distint edges in a tree (compared to another one)}
 \usage{
-highlight_distinct_edges(x, ...)
+highlight_distinct_edges(dend, ...)
 
-\method{highlight_distinct_edges}{dendrogram}(x,
+\method{highlight_distinct_edges}{dendrogram}(dend,
                   y,
                   value = 2,
                   edgePar = c("col", "lty", "lwd"),
                   ...)
 
-\method{highlight_distinct_edges}{dendlist}(x, ..., which)
+\method{highlight_distinct_edges}{dendlist}(dend, ..., which)
 }
 \arguments{
-\item{x}{a dendrogram or \link{dendlist} to find unique edges in (to highlight)}
+\item{dend}{a dendrogram or \link{dendlist} to find unique edges in (to highlight)}
 
 \item{...}{Ignored.}
 
@@ -28,7 +28,7 @@ highlight_distinct_edges(x, ...)
 \item{edgePar}{a character indicating the value inside edgePar to adjust.
 Can be either "col", "lty", or "lwd".}
 
-\item{which}{an integer vector indicating, in the case "x" is a dendlist,
+\item{which}{an integer vector indicating, in the case "dend" is a dendlist,
 on which of the trees should the modification be performed.
 If missing - the change will be performed on all of objects in the dendlist.}
 }

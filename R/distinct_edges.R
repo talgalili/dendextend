@@ -28,7 +28,7 @@
 #' @description
 #' Returns the set of all bipartitions from all edges, that is: a list with the labels
 #' for each of the nodes in the dendrogram.
-#' @param x a dendrogram
+#' @param dend a dendrogram
 #' @param ... Ignored.
 #' 
 #' @seealso
@@ -58,10 +58,10 @@
 #' partition_leaves(dend2)
 #' }
 #' 
-partition_leaves <- function(x, ...) {
-   if (!is.dendrogram(x)) stop("'x' is not a dendrogram")
+partition_leaves <- function(dend, ...) {
+   if (!is.dendrogram(dend)) stop("'dend' is not a dendrogram")
    
-   nodes_labels <- vector("list", length = nnodes(x))
+   nodes_labels <- vector("list", length = nnodes(dend))
    
    i_counter <- 0
    push_node_labels <- function(dend_node) {
@@ -70,7 +70,7 @@ partition_leaves <- function(x, ...) {
       nodes_labels[[i_counter]] <<- labels(dend_node)
       return(NULL)
    }   
-   dendrapply(x, push_node_labels) 
+   dendrapply(dend, push_node_labels) 
    
    return(nodes_labels)
 }
@@ -82,7 +82,7 @@ partition_leaves <- function(x, ...) {
 #' @title Finds the edges present in the first tree but not in the second
 #' @export
 #' 
-#' @param x a dendrogram to find unique edges in
+#' @param dend a dendrogram to find unique edges in
 #' @param y a dendrogram to compare with
 #' @param ... Ignored.
 #' 
@@ -92,7 +92,7 @@ partition_leaves <- function(x, ...) {
 #' \link[distory]{distinct.edges}
 #' 
 #' @return 
-#' A numeric vector of edge ids for the first tree (x) that are not present in the second tree (y).
+#' A numeric vector of edge ids for the first tree (dend) that are not present in the second tree (y).
 #' 
 #' @source
 #' A \link{dendrogram} implementation for \link[distory]{distinct.edges} from the {distory} package
@@ -106,12 +106,12 @@ partition_leaves <- function(x, ...) {
 #' dend_diff(x, y)
 #' # tanglegram(x, y)
 #' 
-distinct_edges  <- function (x, y, ...) 
+distinct_edges  <- function (dend, y, ...) 
 {
    
-   sort_a_character <- function(x) x %>% as.character %>% sort
+   sort_a_character <- function(dend) dend %>% as.character %>% sort
    
-   bp1 <- partition_leaves(x)
+   bp1 <- partition_leaves(dend)
    bp1 <- lapply(bp1, sort_a_character)
    bp2 <- partition_leaves(y)
    bp2 <- lapply(bp2, sort_a_character)
@@ -136,15 +136,15 @@ distinct_edges  <- function (x, y, ...)
 #'
 #' @usage 
 #' 
-#' highlight_distinct_edges(x, ...) 
+#' highlight_distinct_edges(dend, ...) 
 #' 
-#' \method{highlight_distinct_edges}{dendrogram}(x,
+#' \method{highlight_distinct_edges}{dendrogram}(dend,
 #'                   y, 
 #'                   value = 2, 
 #'                   edgePar = c("col", "lty", "lwd"), 
 #'                   ...) 
 #'    
-#' \method{highlight_distinct_edges}{dendlist}(x, ..., which)
+#' \method{highlight_distinct_edges}{dendlist}(dend, ..., which)
 #' 
 #' @description
 #' Highlight distint edges in a tree (compared to another one) by changing
@@ -152,13 +152,13 @@ distinct_edges  <- function (x, y, ...)
 #' 
 #' This function enables this feature in \link{dend_diff} and \link{tanglegram}
 #' 
-#' @param x a dendrogram or \link{dendlist} to find unique edges in (to highlight)
+#' @param dend a dendrogram or \link{dendlist} to find unique edges in (to highlight)
 #' @param y a dendrogram to compare with
 #' @param value a new value scalar for the edgePar attribute.
 #' @param edgePar a character indicating the value inside edgePar to adjust.
 #' Can be either "col", "lty", or "lwd".
 #' @param ... Ignored.
-#' @param which an integer vector indicating, in the case "x" is a dendlist, 
+#' @param which an integer vector indicating, in the case "dend" is a dendlist, 
 #' on which of the trees should the modification be performed. 
 #' If missing - the change will be performed on all of objects in the dendlist.
 #' 
@@ -199,36 +199,36 @@ distinct_edges  <- function (x, y, ...)
 #' 				main_right = "'complete' clustering")
 #' }
 #' 
-highlight_distinct_edges <- function (x, ...) {
+highlight_distinct_edges <- function (dend, ...) {
    UseMethod("highlight_distinct_edges")
 }
 
 
 #' @export
-highlight_distinct_edges.dendrogram <- function (x, y, 
+highlight_distinct_edges.dendrogram <- function (dend, y, 
                                       value = 2, edgePar = c("col", "lty", "lwd"), ...)  {
    
    edgePar <- match.arg(edgePar)
    
-   the_distinct_edges <- distinct_edges(x, y)
-   x_nnoded <- nnodes(x)
-   new_value <- rep(Inf, x_nnoded)
+   the_distinct_edges <- distinct_edges(dend, y)
+   dend_nnoded <- nnodes(dend)
+   new_value <- rep(Inf, dend_nnoded)
    new_value[the_distinct_edges] <- value
    
-   new_x <- assign_values_to_branches_edgePar(x, value = new_value, edgePar = edgePar)
+   new_dend <- assign_values_to_branches_edgePar(dend, value = new_value, edgePar = edgePar)
       
-   return(new_x)
+   return(new_dend)
 }
 
 
 #' @export
-highlight_distinct_edges.dendlist <- function(x, ..., which = c(1L, 2L)) {
+highlight_distinct_edges.dendlist <- function(dend, ..., which = c(1L, 2L)) {
    l1 <- which[1]
    l2 <- which[2]
-   x[[l1]] <- highlight_distinct_edges(x[[l1]], x[[l2]], ...)
-   x[[l2]] <- highlight_distinct_edges(x[[l2]], x[[l1]], ...)
+   dend[[l1]] <- highlight_distinct_edges(dend[[l1]], dend[[l2]], ...)
+   dend[[l2]] <- highlight_distinct_edges(dend[[l2]], dend[[l1]], ...)
    
-   x
+   dend
 }
 
 
@@ -241,21 +241,21 @@ highlight_distinct_edges.dendlist <- function(x, ..., which = c(1L, 2L)) {
 #'
 #' @usage 
 #' 
-#' dend_diff(x, ...) 
+#' dend_diff(dend, ...) 
 #' 
 #' \method{dend_diff}{dendrogram}(x, y, horiz = TRUE,
 #'                   ...) 
 #'    
-#' \method{dend_diff}{dendlist}(x, ..., which)
+#' \method{dend_diff}{dendlist}(dend, ..., which)
 #' 
 #' @description
 #' Plots two trees side by side, highlighting edges unique to each tree in red.
 #' 
-#' @param x a dendrogram or \link{dendlist} to compre with
+#' @param dend a dendrogram or \link{dendlist} to compre with
 #' @param y a dendrogram to compare with
 #' @param horiz logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.
 #' @param ... passed to \link{plot.dendrogram}
-#' @param which an integer vector indicating, in the case "x" is a dendlist, 
+#' @param which an integer vector indicating, in the case "dend" is a dendlist, 
 #' on which of the trees should the modification be performed. 
 #' If missing - the change will be performed on all of objects in the dendlist.
 #' 
@@ -284,38 +284,38 @@ highlight_distinct_edges.dendlist <- function(x, ..., which = c(1L, 2L)) {
 #' dend2 <- dend1 %>% set("labels", c(1,3,2,4, 5:10) )
 #' dend_diff(dend1, dend2)
 #' 
-dend_diff <- function (x, ...) {
+dend_diff <- function (dend, ...) {
    UseMethod("dend_diff")
 }
 
 
 #' @export
-dend_diff.dendrogram <- function(x, y, horiz = TRUE, ...)  {
-   x2 <- highlight_distinct_edges(x, y)   
-   y2 <- highlight_distinct_edges(y, x)   
+dend_diff.dendrogram <- function(dend, y, horiz = TRUE, ...)  {
+   dend2 <- highlight_distinct_edges(dend, y)   
+   y2 <- highlight_distinct_edges(y, dend)   
    
    # change mfrow
    op <- par()$mfrow
    par(mfrow = c(1, 2))
    
-   plot(x2, horiz = horiz, ...)
+   plot(dend2, horiz = horiz, ...)
    plot(y2, horiz = horiz, ...)
    
    # return mfrow
    op <- par()$mfrow
    par(mfrow = op)
    
-   invisible(dendlist(x, y)) 
+   invisible(dendlist(dend, y)) 
 }
 
 
 #' @export
-dend_diff.dendlist <- function(x, ..., which = c(1L, 2L)) {
+dend_diff.dendlist <- function(dend, ..., which = c(1L, 2L)) {
    l1 <- which[1]
    l2 <- which[2]
-   dend_diff(x[[l1]], x[[l2]], ...)
+   dend_diff(dend[[l1]], dend[[l2]], ...)
    
-   invisible(x)
+   invisible(dend)
 }
 
 
@@ -325,8 +325,8 @@ dend_diff.dendlist <- function(x, ..., which = c(1L, 2L)) {
 
 
 
-edgeset_dist <- function(x, y, ...)  {
-   length(distinct_edges(x, y)) + length(distinct_edges(y, x))
+edgeset_dist <- function(dend, y, ...)  {
+   length(distinct_edges(dend, y)) + length(distinct_edges(y, dend))
 }
 
 
@@ -340,7 +340,7 @@ edgeset_dist <- function(x, y, ...)  {
 #' 
 #' This function might implement other topological distances in the future.
 #' 
-#' @param x a \link{dendlist}
+#' @param dend a \link{dendlist}
 #' @param method currently only 'edgeset' is implemented. 
 #' @param ... Ignored.
 #' 
@@ -361,21 +361,21 @@ edgeset_dist <- function(x, y, ...)  {
 #' dist.dendlist(dendlist(x1 = x,x2 = x,y1 = y))
 #' dend_diff(x,y)
 #' 
-dist.dendlist <- function(x, method = c("edgeset"), ...) {
-   if(!is.dendlist(x)) stop("x needs to be a dendlist object")
+dist.dendlist <- function(dend, method = c("edgeset"), ...) {
+   if(!is.dendlist(dend)) stop("dend needs to be a dendlist object")
    method <- match.arg(method)
    
-   n_list <- length(x)
+   n_list <- length(dend)
    the_dist <- matrix(0, n_list, n_list)
    pairwise_combn <- combn(n_list, 2)
    
    for(i in 1:ncol(pairwise_combn)) {      
       l1 <- pairwise_combn[1,i]
       l2 <-pairwise_combn[2,i]
-      the_dist[l1, l2] <- the_dist[l2, l1] <- edgeset_dist(x[[l1]], x[[l2]])
+      the_dist[l1, l2] <- the_dist[l2, l1] <- edgeset_dist(dend[[l1]], dend[[l2]])
    }
    
-   rownames(the_dist) <- colnames(the_dist) <- names(x)
+   rownames(the_dist) <- colnames(the_dist) <- names(dend)
    
    as.dist(the_dist)
 }

@@ -7,10 +7,10 @@
 A \link{dendrogram} implementation for \link[distory]{partition.leaves} from the {distory} package
 }
 \usage{
-partition_leaves(x, ...)
+partition_leaves(dend, ...)
 }
 \arguments{
-\item{x}{a dendrogram}
+\item{dend}{a dendrogram}
 
 \item{...}{Ignored.}
 }

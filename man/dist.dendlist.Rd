@@ -4,10 +4,10 @@
 \alias{dist.dendlist}
 \title{Topological Distances Between Two dendrograms}
 \usage{
-dist.dendlist(x, method = c("edgeset"), ...)
+dist.dendlist(dend, method = c("edgeset"), ...)
 }
 \arguments{
-\item{x}{a \link{dendlist}}
+\item{dend}{a \link{dendlist}}
 
 \item{method}{currently only 'edgeset' is implemented.}
 
