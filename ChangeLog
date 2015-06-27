@@ -1,3 +1,22 @@
+* 2015-06-27(Tal Galili) fix url |6b6bafd| 
+|  inst/ignored/Introduction to dendextend.html | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2015-06-27(Tal Galili) fix dpi to get smaller vignettes |f53c729| 
+|  vignettes/Cluster_Analysis.Rmd | 2 +-
+|  vignettes/introduction.Rmd     | 4 ++--
+|  2 files changed, 3 insertions(+), 3 deletions(-)
+
+* 2015-06-27(Tal Galili) fix: prune.hclust: no visible binding for global variable 'x' unbranch.hclust: no visible binding for global variable 'x' |30804af| 
+|  R/prune.R    | 2 +-
+|  R/unbranch.R | 2 +-
+|  2 files changed, 2 insertions(+), 2 deletions(-)
+
+* 2015-06-27(Tal Galili) updated for 1.0.0. |69c26b4| 
+|  ChangeLog | 316 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  NEWS.md   |  18 +++-
+|  2 files changed, 333 insertions(+), 1 deletion(-)
+
 * 2015-06-27(Tal Galili) update date |a85432c| 
 |  DESCRIPTION | 2 +-
 |  1 file changed, 1 insertion(+), 1 deletion(-)
