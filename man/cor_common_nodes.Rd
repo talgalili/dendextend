@@ -4,12 +4,12 @@
 \alias{cor_common_nodes}
 \title{Proportion of commong nodes between two trees}
 \usage{
-cor_common_nodes(tree1, tree2, ...)
+cor_common_nodes(dend1, dend2, ...)
 }
 \arguments{
-\item{tree1}{a dendrogram.}
+\item{dend1}{a dendrogram.}
 
-\item{tree2}{a dendrogram.}
+\item{dend2}{a dendrogram.}
 
 \item{...}{not used.}
 }

@@ -28,7 +28,7 @@
 #' Assumes the labels in the two trees fully match. If they do not
 #' please first use \link{intersect_trees} to have them matched.
 #' 
-#' @param x a \link{dendlist} of trees
+#' @param dend a \link{dendlist} of trees
 #' @param method a character string indicating which correlation coefficient 
 #' is to be computed. One of "cophenetic" (default),  "baker", 
 #' "common_nodes", or "FM_index".
@@ -61,11 +61,11 @@
 #' corrplot(cor.dendlist(dend1234), "pie", "lower")
 #' 
 #' }
-cor.dendlist <- function(x, method = c("cophenetic", "baker",  "common_nodes", "FM_index"), ...) {
-   if(!is.dendlist(x)) stop("x needs to be a dendlist object")
+cor.dendlist <- function(dend, method = c("cophenetic", "baker",  "common_nodes", "FM_index"), ...) {
+   if(!is.dendlist(dend)) stop("dend needs to be a dendlist object")
    method <- match.arg(method)
    
-   n_list <- length(x)
+   n_list <- length(dend)
    the_cor <- matrix(1, n_list, n_list)
    pairwise_combn <- combn(n_list, 2)
    
@@ -74,15 +74,15 @@ cor.dendlist <- function(x, method = c("cophenetic", "baker",  "common_nodes", "
       l2 <-pairwise_combn[2,i]
       the_cor[l1, l2] <- the_cor[l2, l1] <- 
          switch(method, 
-                cophenetic = cor_cophenetic(x[[l1]], x[[l2]], ...),
-                baker = cor_bakers_gamma(x[[l1]], x[[l2]], ...),
-                common_nodes = cor_common_nodes(x[[l1]], x[[l2]], ...),
-                FM_index = cor_FM_index(x[[l1]], x[[l2]], ...)
+                cophenetic = cor_cophenetic(dend[[l1]], dend[[l2]], ...),
+                baker = cor_bakers_gamma(dend[[l1]], dend[[l2]], ...),
+                common_nodes = cor_common_nodes(dend[[l1]], dend[[l2]], ...),
+                FM_index = cor_FM_index(dend[[l1]], dend[[l2]], ...)
          )
       
    }
    
-   rownames(the_cor) <- colnames(the_cor) <- names(x)
+   rownames(the_cor) <- colnames(the_cor) <- names(dend)
    
    the_cor
 }
@@ -103,8 +103,8 @@ cor.dendlist <- function(x, method = c("cophenetic", "baker",  "common_nodes", "
 #' same list of labels.
 #' Notice this measure is non-parameteric (it ignores the heights and relative position of the nodes).
 #' 
-#' @param tree1 a dendrogram.
-#' @param tree2 a dendrogram.
+#' @param dend1 a dendrogram.
+#' @param dend2 a dendrogram.
 #' @param ... not used.
 #'
 #' @return
@@ -125,10 +125,10 @@ cor.dendlist <- function(x, method = c("cophenetic", "baker",  "common_nodes", "
 #' tanglegram(dend1, dend2) 
 #' # we can see we have only two nodes which are different...
 #' 
-cor_common_nodes <- function(tree1, tree2, ...) {
+cor_common_nodes <- function(dend1, dend2, ...) {
    # dendextend:::edgeset_dist
-   n_diff_nodes <- edgeset_dist(tree1, tree2)
-   nnodes_trees <- nnodes(tree1) + nnodes(tree2)
+   n_diff_nodes <- edgeset_dist(dend1, dend2)
+   nnodes_trees <- nnodes(dend1) + nnodes(dend2)
    
    (nnodes_trees - n_diff_nodes)/ nnodes_trees
 }
@@ -145,8 +145,8 @@ cor_common_nodes <- function(tree1, tree2, ...) {
 #' Calculates the FM_index Correlation for some k.
 #' 
 #' 
-#' @param tree1 a dendrogram.
-#' @param tree2 a dendrogram.
+#' @param dend1 a dendrogram.
+#' @param dend2 a dendrogram.
 #' @param k an integer (number of clusters to cut the tree)
 #' @param ... not used.
 #'
@@ -167,11 +167,11 @@ cor_common_nodes <- function(tree1, tree2, ...) {
 #' cor_FM_index(dend1, dend2, k = 3)
 #' cor_FM_index(dend1, dend2, k = 4)
 #' 
-cor_FM_index <- function(tree1, tree2, k, ...) {
+cor_FM_index <- function(dend1, dend2, k, ...) {
    if(missing(k)) stop("You need to specifiy k.")
    # dendextend:::edgeset_dist
-   clus1 <- cutree(tree1, k = k)[order.dendrogram(tree1)]
-   clus2 <- cutree(tree2, k = k)[order.dendrogram(tree2)]
+   clus1 <- cutree(dend1, k = k)[order.dendrogram(dend1)]
+   clus2 <- cutree(dend2, k = k)[order.dendrogram(dend2)]
    
    if(all(clus1==0) | all(clus2==0)) {
       warning("Can't calculate k - returning NA")

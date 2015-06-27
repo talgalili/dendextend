@@ -4,12 +4,12 @@
 \alias{cor_FM_index}
 \title{Correlation of FM_index for some k}
 \usage{
-cor_FM_index(tree1, tree2, k, ...)
+cor_FM_index(dend1, dend2, k, ...)
 }
 \arguments{
-\item{tree1}{a dendrogram.}
+\item{dend1}{a dendrogram.}
 
-\item{tree2}{a dendrogram.}
+\item{dend2}{a dendrogram.}
 
 \item{k}{an integer (number of clusters to cut the tree)}
 
