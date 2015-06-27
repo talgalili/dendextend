@@ -19,9 +19,9 @@ function \code{dueling.dendrograms} from the sharpshootR package:
 tanglegram
 }
 \usage{
-tanglegram(tree1, ...)
+tanglegram(dend1, ...)
 
-\method{tanglegram}{dendrogram}(tree1, tree2 ,
+\method{tanglegram}{dendrogram}(dend1, dend2 ,
    sort = FALSE,
    color_lines,
    lwd = 3.5,
@@ -60,18 +60,18 @@ tanglegram(tree1, ...)
    faster = FALSE,
    ...)
 
-\method{tanglegram}{dendlist}(tree1, which = c(1L,2L), main_left, main_right, ...)
+\method{tanglegram}{dendlist}(dend1, which = c(1L,2L), main_left, main_right, ...)
 
-\method{tanglegram}{hclust}(tree1, ...)
+\method{tanglegram}{hclust}(dend1, ...)
 
-\method{tanglegram}{phylo}(tree1, ...)
+\method{tanglegram}{phylo}(dend1, ...)
 }
 \arguments{
-\item{tree1}{tree object (dendrogram/dendlist/hclust/phylo), plotted on the left}
+\item{dend1}{tree object (dendrogram/dendlist/hclust/phylo), plotted on the left}
 
 \item{...}{not used.}
 
-\item{tree2}{tree object (dendrogram/hclust/phylo), plotted on the right}
+\item{dend2}{tree object (dendrogram/hclust/phylo), plotted on the right}
 
 \item{which}{an integer vector of length 2, indicating
 which of the trees in the dendlist object should be plotted}

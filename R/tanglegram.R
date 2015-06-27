@@ -451,9 +451,9 @@ plot_horiz.dendrogram <- function (x,
 #' @author Tal Galili, Johan Renaudie
 #' 
 #' @usage
-#' tanglegram(tree1, ...)
+#' tanglegram(dend1, ...)
 #' 
-#' \method{tanglegram}{dendrogram}(tree1, tree2 ,
+#' \method{tanglegram}{dendrogram}(dend1, dend2 ,
 #'    sort = FALSE, 
 #'    color_lines, 
 #'    lwd = 3.5,
@@ -492,14 +492,14 @@ plot_horiz.dendrogram <- function (x,
 #'    faster = FALSE,
 #'    ...)
 #' 
-#' \method{tanglegram}{dendlist}(tree1, which = c(1L,2L), main_left, main_right, ...)
+#' \method{tanglegram}{dendlist}(dend1, which = c(1L,2L), main_left, main_right, ...)
 #' 
-#' \method{tanglegram}{hclust}(tree1, ...)
+#' \method{tanglegram}{hclust}(dend1, ...)
 #' 
-#' \method{tanglegram}{phylo}(tree1, ...)
+#' \method{tanglegram}{phylo}(dend1, ...)
 #' 
-#' @param tree1 tree object (dendrogram/dendlist/hclust/phylo), plotted on the left
-#' @param tree2 tree object (dendrogram/hclust/phylo), plotted on the right
+#' @param dend1 tree object (dendrogram/dendlist/hclust/phylo), plotted on the left
+#' @param dend2 tree object (dendrogram/hclust/phylo), plotted on the right
 #' @param which an integer vector of length 2, indicating
 #' which of the trees in the dendlist object should be plotted
 #' @param sort logical (FALSE). Should the dendrogram's labels be "sorted"?
@@ -654,38 +654,38 @@ plot_horiz.dendrogram <- function (x,
 #' dend12 %>% tanglegram
 #' 
 #' }
-tanglegram <- function (tree1, ...) {UseMethod("tanglegram")}
+tanglegram <- function (dend1, ...) {UseMethod("tanglegram")}
 
-tanglegram.default <- function (tree1, ...) {stop("No default function for tanglegram - must use a dendrogram/hclust/phylo object")}
+tanglegram.default <- function (dend1, ...) {stop("No default function for tanglegram - must use a dendrogram/hclust/phylo object")}
 
 # ' @S3method tanglegram hclust
 #' @export
-tanglegram.hclust <- function(tree1, ...) {tanglegram.dendrogram(tree1 = tree1, ...)}
+tanglegram.hclust <- function(dend1, ...) {tanglegram.dendrogram(dend1 = dend1, ...)}
 
 # ' @S3method tanglegram phylo
 #' @export
-tanglegram.phylo <- function(tree1, ...) {tanglegram.dendrogram(tree1 = tree1, ...)}
+tanglegram.phylo <- function(dend1, ...) {tanglegram.dendrogram(dend1 = dend1, ...)}
 
 # ' @S3method tanglegram dendlist
 #' @export
-tanglegram.dendlist <- function(tree1, which = c(1L,2L), main_left, main_right, ...) {
+tanglegram.dendlist <- function(dend1, which = c(1L,2L), main_left, main_right, ...) {
    # many things can go wrong here (which we might wish to fix):
    # we could get a dendlist with a length of 1 - in which case, we can't plot
-   if(length(tree1) == 1) stop("Your dendlist has only 1 dendrogram - a tanglegram can not be plotted")
+   if(length(dend1) == 1) stop("Your dendlist has only 1 dendrogram - a tanglegram can not be plotted")
    # we could get a dendlist with a length of >2 - in which case, should we only plot the first two items?
-   if(all(which %in% seq_len(length(tree1)))) {
+   if(all(which %in% seq_len(length(dend1)))) {
       l1 <- which[1]
       l2 <- which[2]
       
-      if(!is.null(names(tree1))) {
-         if(missing(main_left)) main_left <- names(tree1)[l1]
-         if(missing(main_right)) main_right <- names(tree1)[l2]               
+      if(!is.null(names(dend1))) {
+         if(missing(main_left)) main_left <- names(dend1)[l1]
+         if(missing(main_right)) main_right <- names(dend1)[l2]               
       } else {
          if(missing(main_left)) main_left <- ""
          if(missing(main_right)) main_right <- ""                        
       }
       
-      tanglegram.dendrogram(tree1[[l1]], tree1[[l2]], main_left = main_left, main_right = main_right, ...)
+      tanglegram.dendrogram(dend1[[l1]], dend1[[l2]], main_left = main_left, main_right = main_right, ...)
    } else {
       stop("You are trying to plot trees which are outside the range of trees in your dendlist")
    }   
@@ -694,7 +694,7 @@ tanglegram.dendlist <- function(tree1, which = c(1L,2L), main_left, main_right, 
 
 # ' @S3method tanglegram dendrogram
 #' @export
-tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE, 
+tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE, 
                                   color_lines, 
                                   lwd = 3.5,
                                   edge.lwd = NULL,
@@ -747,79 +747,79 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    # characters_to_prune = the number of characters to leave after pruning the labels.		
    # remove_nodePar = makes sure that we won't have any dots at the end of leaves
    
-   if(!is.dendrogram(tree1)) tree1 <- as.dendrogram(tree1)
-   if(!is.dendrogram(tree2)) tree2 <- as.dendrogram(tree2)
+   if(!is.dendrogram(dend1)) dend1 <- as.dendrogram(dend1)
+   if(!is.dendrogram(dend2)) dend2 <- as.dendrogram(dend2)
    
    # remove colors from the tips of leaves
    if(remove_nodePar) {
-      tree1 <- remove_leaves_nodePar(tree1)
-      tree2 <- remove_leaves_nodePar(tree2)
+      dend1 <- remove_leaves_nodePar(dend1)
+      dend2 <- remove_leaves_nodePar(dend2)
    }
    # sort them for better graph
    if(sort == TRUE) {	# based on the "rotate.dendrogram" function
-      tree1 <- sort(tree1)
-      tree2 <- sort(tree2)
+      dend1 <- sort(dend1)
+      dend2 <- sort(dend2)
    }   
    if(intersecting) {
-      tree12 <- intersect_trees(tree1, tree2, warn = TRUE)
-      tree1 <- tree12[[1]]
-      tree2 <- tree12[[2]]
+      dend12 <- intersect_trees(dend1, dend2, warn = TRUE)
+      dend1 <- dend12[[1]]
+      dend2 <- dend12[[2]]
    }
    # adjust labels cex:
    if(!is.null(lab.cex)) {
-      tree1 <- assign_values_to_leaves_nodePar(tree1, lab.cex, "lab.cex", warn = dendextend_options("warn"))
-      tree2 <- assign_values_to_leaves_nodePar(tree2, lab.cex, "lab.cex", warn = dendextend_options("warn"))
+      dend1 <- assign_values_to_leaves_nodePar(dend1, lab.cex, "lab.cex", warn = dendextend_options("warn"))
+      dend2 <- assign_values_to_leaves_nodePar(dend2, lab.cex, "lab.cex", warn = dendextend_options("warn"))
    }
    if(!is.null(edge.lwd)) {
-      tree1 <- assign_values_to_branches_edgePar(tree1, edge.lwd, "lwd")
-      tree2 <- assign_values_to_branches_edgePar(tree2, edge.lwd, "lwd")
+      dend1 <- assign_values_to_branches_edgePar(dend1, edge.lwd, "lwd")
+      dend2 <- assign_values_to_branches_edgePar(dend2, edge.lwd, "lwd")
    }
    if(!is.null(k_labels)) {
-      tree1 <- color_labels(tree1, k=k_labels)
-      tree2 <- color_labels(tree2, k=k_labels)
+      dend1 <- color_labels(dend1, k=k_labels)
+      dend2 <- color_labels(dend2, k=k_labels)
    }
    if(!is.null(k_branches)) {
-      tree1 <- color_branches(tree1, k=k_branches)
-      tree2 <- color_branches(tree2, k=k_branches)
+      dend1 <- color_branches(dend1, k=k_branches)
+      dend2 <- color_branches(dend2, k=k_branches)
    }
    if(rank_branches) {
-      tree1 <- rank_branches(tree1)
-      tree2 <- rank_branches(tree2)      
+      dend1 <- rank_branches(dend1)
+      dend2 <- rank_branches(dend2)      
    }
    # MUST    
    if(hang) {
-      tree1 <- hang.dendrogram(tree1)
-      tree2 <- hang.dendrogram(tree2)      
+      dend1 <- hang.dendrogram(dend1)
+      dend2 <- hang.dendrogram(dend2)      
    }
    
    if(highlight_distinct_edges) {
-      tree1 <- highlight_distinct_edges(tree1, tree2, edgePar = "lty")
-      tree2 <- highlight_distinct_edges(tree2, tree1, edgePar = "lty")
+      dend1 <- highlight_distinct_edges(dend1, dend2, edgePar = "lty")
+      dend2 <- highlight_distinct_edges(dend2, dend1, edgePar = "lty")
    }
 
 
    if(common_subtrees_color_branches) {
-      clusters1 <- common_subtrees_clusters(tree1, tree2)      
-      # clusters2 <- common_subtrees_clusters(tree2, tree1)
-      tree1 <- color_branches(tree1, clusters = clusters1)
-      # tree2 <- color_branches(tree2, clusters = clusters2)      
-      tree1_leaves_colors <- get_leaves_branches_col(tree1)
+      clusters1 <- common_subtrees_clusters(dend1, dend2)      
+      # clusters2 <- common_subtrees_clusters(dend2, dend1)
+      dend1 <- color_branches(dend1, clusters = clusters1)
+      # dend2 <- color_branches(dend2, clusters = clusters2)      
+      dend1_leaves_colors <- get_leaves_branches_col(dend1)
       
       # match_1_to_be_2
-      ss <- match(labels(tree2), labels(tree1))
-      #       labels(tree1)[ss]
-      #       labels(tree2)
-      tree2_clusters <- rank_values_with_clusters(clusters1[ss], ignore0 = TRUE)
-      tree2 <- branches_attr_by_clusters(tree2, tree2_clusters,
-                                         values = tree1_leaves_colors[ss], attr = "col",
+      ss <- match(labels(dend2), labels(dend1))
+      #       labels(dend1)[ss]
+      #       labels(dend2)
+      dend2_clusters <- rank_values_with_clusters(clusters1[ss], ignore0 = TRUE)
+      dend2 <- branches_attr_by_clusters(dend2, dend2_clusters,
+                                         values = dend1_leaves_colors[ss], attr = "col",
                                          branches_changed_have_which_labels = "all")
       
-      # tanglegram(tree1,tree2)
+      # tanglegram(dend1,dend2)
 #       a <- clusters1[ss]
 #       a[c(1,2,6)] <- 4:6
-#       b <- tree1_leaves_colors[ss]
+#       b <- dend1_leaves_colors[ss]
 #       b[is.na(b)] <- "black"
-#       branches_attr_by_clusters(tree2, a,
+#       branches_attr_by_clusters(dend2, a,
 #                                          values = b, attr = "col")
 
       
@@ -827,7 +827,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
       # If I know I am using the common_subtrees_color_branches
       # I might as well match them to the lines:
       if(common_subtrees_color_lines) {
-         color_lines <- tree1_leaves_colors
+         color_lines <- dend1_leaves_colors
          color_lines[is.na(color_lines)] <- "black"
       }
    }
@@ -835,13 +835,13 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    # if we didn't resolve color_lines yet - let's figure it out now:
    if(missing(color_lines)) {
       if(common_subtrees_color_lines) {
-         #          color_lines <- rep("black", nleaves(tree1))
-         #          lines_color_clusters <- common_subtrees_clusters(tree1, tree2, leaves_get_0_cluster = TRUE)
+         #          color_lines <- rep("black", nleaves(dend1))
+         #          lines_color_clusters <- common_subtrees_clusters(dend1, dend2, leaves_get_0_cluster = TRUE)
          #          ss_not_0s <- lines_color_clusters != 0
          #          colors_for_lines_color <- lines_color_clusters[ss_not_0s] %>% unique %>% length %>% rainbow_fun
          #          color_lines[ss_not_0s] <- colors_for_lines_color[lines_color_clusters[ss_not_0s]]
          
-         lines_color_clusters <- common_subtrees_clusters(tree1, tree2, leaves_get_0_cluster = FALSE)
+         lines_color_clusters <- common_subtrees_clusters(dend1, dend2, leaves_get_0_cluster = FALSE)
          colors_for_lines_color <- lines_color_clusters %>% unique %>% length %>% rainbow_fun
          color_lines <- colors_for_lines_color[lines_color_clusters]
          
@@ -854,7 +854,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    }    
    
    
-   l <- nleaves(tree1)
+   l <- nleaves(dend1)
    
    # makes sure that dLeaf gives a symmetric result.
    if(!is.null(dLeaf) && dLeaf_right==dLeaf_left) {dLeaf_right <- -dLeaf_left }
@@ -863,13 +863,13 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    #####  Plotting.
    ##########################################
    
-   labels_tree1 <- labels(tree1)
-   max_labels_tree1 <- labels_tree1[which.max(nchar(labels_tree1))]
+   labels_dend1 <- labels(dend1)
+   max_labels_dend1 <- labels_dend1[which.max(nchar(labels_dend1))]
    
    
    # The matrix to draw the arrows:
-   if(match_order_by_labels) tree1 <- match_order_by_labels(tree1, tree2)
-   ord_arrow <- cbind((1:l)[order(order.dendrogram(tree1))],(1:l)[order(order.dendrogram(tree2))]) 
+   if(match_order_by_labels) dend1 <- match_order_by_labels(dend1, dend2)
+   ord_arrow <- cbind((1:l)[order(order.dendrogram(dend1))],(1:l)[order(order.dendrogram(dend2))]) 
    
    # Set the layout of the plot elements
    layout(matrix(1:3,nrow=1),widths=columns_width)
@@ -878,7 +878,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    # The first dendrogram:	
    #################
    par(mar=left_dendo_mar)
-   plot(tree1, horiz = TRUE, ylim = c(0,l),
+   plot(dend1, horiz = TRUE, ylim = c(0,l),
         dLeaf = dLeaf_left, 
         type = type, axes = axes,
         main = main_left,
@@ -914,7 +914,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
    # And the second dendrogram (to reverse it I reversed the xlim vector:
    #################
    par(mar=right_dendo_mar)
-   plot_horiz.dendrogram(tree2, side=TRUE, dLeaf=dLeaf_right,
+   plot_horiz.dendrogram(dend2, side=TRUE, dLeaf=dLeaf_right,
                          type = type, axes = axes,
                          ylim=c(0,l),
                          cex.main = cex_main_left,
@@ -928,7 +928,7 @@ tanglegram.dendrogram <- function(tree1,tree2 , sort = FALSE,
 
    
    
-   return(invisible(dendlist(tree1 = tree1, tree2 = tree2)))
+   return(invisible(dendlist(dend1 = dend1, dend2 = dend2)))
 }
 
 
