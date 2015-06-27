@@ -27,9 +27,9 @@
 #'
 #' @usage 
 #' 
-#' set(object, ...)
+#' set(dend, ...)
 #' 
-#' \method{set}{dendrogram}(object,
+#' \method{set}{dendrogram}(dend,
 #'    what = c("labels",
 #'             "labels_colors",
 #'             "labels_cex",
@@ -54,7 +54,7 @@
 #'    ),
 #'    value, ...)
 #'    
-#' \method{set}{dendlist}(object, ..., which)
+#' \method{set}{dendlist}(dend, ..., which)
 #'
 #' \method{set}{data.table}(...)
 #' 
@@ -62,16 +62,16 @@
 #' a master function for updating various attributes and 
 #' features of dendrogram objects.
 #' 
-#' @param object a tree (\link{dendrogram}, or \link{dendlist})
+#' @param dend a tree (\link{dendrogram}, or \link{dendlist})
 #' @param what a character indicating what is the property of
 #' the tree that should be set/updated. (see the usage and the example section
 #' for the different options)
-#' @param value an object with the value to set in the tree.
+#' @param value an object with the value to set in the dendrogram tree.
 #' (the type of the value depends on the "what")
 #' @param ... passed to the specific function for more options.
-#' @param which an integer vector indicating, in the case "object" is
+#' @param which an integer vector indicating, in the case "dend" is
 #' a dendlist, on which of the trees should the modification be performed.
-#' If missing - the change will be performed on all of objects in the dendlist.
+#' If missing - the change will be performed on all of dends in the dendlist.
 #' 
 #' @details
 #' This is a wrapper function for many of the main tasks we 
@@ -244,14 +244,14 @@
 #' 
 #' 
 #' }
-set <- function (object, ...) {
+set <- function (dend, ...) {
    UseMethod("set")
 }
 
 
 #' @export
 set.dendrogram <- 
-   function(object,
+   function(dend,
             what = c("labels",
                      "labels_colors",
                      "labels_cex",
@@ -277,51 +277,51 @@ set.dendrogram <-
             value, ...){
       if(missing(what)) {
          if(dendextend_options("warn")) warning("'what' is missing, returning the dendrogram as is")      
-         return(object)
+         return(dend)
       }
 
       what <- match.arg(what)
-      object <- switch(what, 
-                       #                     labels = dendextend:::`labels<-.dendrogram`(object, value = value)
-                       labels = `labels<-.dendrogram`(object, value = value, ...),
-                       labels_colors = color_labels(object, col = value, ...),
-                       #      labels_colors = `labels_colors<-`(object, value = value, ...),
-                       #      labels_colors = assign_values_to_leaves_nodePar(object, value, "lab.col", ...),
-                       labels_cex = assign_values_to_leaves_nodePar(object, value, "lab.cex", ...),
-                       labels_to_character = set(object, what = "labels", value = as.character(labels(object)), ...),                                              
-                       leaves_pch = assign_values_to_leaves_nodePar(object, value, "pch", ...),
-                       leaves_cex =assign_values_to_leaves_nodePar(object, value, "cex", ...),
-                       leaves_col =assign_values_to_leaves_nodePar(object, value, "col", ...),
-                       nodes_pch = assign_values_to_nodes_nodePar(object, value, "pch", ...),
-                       nodes_cex =assign_values_to_nodes_nodePar(object, value, "cex", ...),
-                       nodes_col =assign_values_to_nodes_nodePar(object, value, "col", ...),
-                       hang_leaves = hang.dendrogram(dend = object, hang = ifelse(missing(value), .1, value),...),
-                       rank_branches = rank_branches(dend = object, ...),
-                       branches_k_color = color_branches(tree = object, col = value,  ...),
-                       branches_col = assign_values_to_branches_edgePar(object = object, value = value, edgePar = "col", ...),
-                       branches_lwd = assign_values_to_branches_edgePar(object = object, value = value, edgePar = "lwd", ...),
-                       branches_lty = assign_values_to_branches_edgePar(object = object, value = value, edgePar = "lty", ...),
-                       by_labels_branches_col = branches_attr_by_labels(object, labels = value, attr = "col", ...),
-                       by_labels_branches_lwd = branches_attr_by_labels(object, labels = value, attr = "lwd", ...),
-                       by_labels_branches_lty = branches_attr_by_labels(object, labels = value, attr = "lty", ...),
-                       clear_branches = remove_branches_edgePar(object, ...),
-                       clear_leaves = remove_leaves_nodePar(object, ...)
+      dend <- switch(what, 
+                       #                     labels = dendextend:::`labels<-.dendrogram`(dend, value = value)
+                       labels = `labels<-.dendrogram`(dend, value = value, ...),
+                       labels_colors = color_labels(dend, col = value, ...),
+                       #      labels_colors = `labels_colors<-`(dend, value = value, ...),
+                       #      labels_colors = assign_values_to_leaves_nodePar(dend, value, "lab.col", ...),
+                       labels_cex = assign_values_to_leaves_nodePar(dend, value, "lab.cex", ...),
+                       labels_to_character = set(dend, what = "labels", value = as.character(labels(dend)), ...),                                              
+                       leaves_pch = assign_values_to_leaves_nodePar(dend, value, "pch", ...),
+                       leaves_cex =assign_values_to_leaves_nodePar(dend, value, "cex", ...),
+                       leaves_col =assign_values_to_leaves_nodePar(dend, value, "col", ...),
+                       nodes_pch = assign_values_to_nodes_nodePar(dend, value, "pch", ...),
+                       nodes_cex =assign_values_to_nodes_nodePar(dend, value, "cex", ...),
+                       nodes_col =assign_values_to_nodes_nodePar(dend, value, "col", ...),
+                       hang_leaves = hang.dendrogram(dend = dend, hang = ifelse(missing(value), .1, value),...),
+                       rank_branches = rank_branches(dend = dend, ...),
+                       branches_k_color = color_branches(tree = dend, col = value,  ...),
+                       branches_col = assign_values_to_branches_edgePar(dend, value = value, edgePar = "col", ...),
+                       branches_lwd = assign_values_to_branches_edgePar(dend, value = value, edgePar = "lwd", ...),
+                       branches_lty = assign_values_to_branches_edgePar(dend, value = value, edgePar = "lty", ...),
+                       by_labels_branches_col = branches_attr_by_labels(dend, labels = value, attr = "col", ...),
+                       by_labels_branches_lwd = branches_attr_by_labels(dend, labels = value, attr = "lwd", ...),
+                       by_labels_branches_lty = branches_attr_by_labels(dend, labels = value, attr = "lty", ...),
+                       clear_branches = remove_branches_edgePar(dend, ...),
+                       clear_leaves = remove_leaves_nodePar(dend, ...)
       )
-      object
+      dend
    }
 
 
 
 # ' @S3method set dendlist
 #' @export
-set.dendlist <- function(object, ..., which) {
+set.dendlist <- function(dend, ..., which) {
    
-   if(missing(which)) which <- 1:length(object)
+   if(missing(which)) which <- 1:length(dend)
    
    for(i in which) {
-      object[[i]] <- set(object[[i]],...)      
+      dend[[i]] <- set(dend[[i]],...)      
    }
-   object
+   dend
 }
 
 
