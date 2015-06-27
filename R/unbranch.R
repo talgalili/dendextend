@@ -187,7 +187,7 @@ Please choose another branch to be the root.")
 unbranch.hclust <- function(dend, branch_becoming_root = 1, new_root_height, ...) {
    x_dend <- as.dendrogram(dend)
    x_dend_unbranch <- unbranch(x_dend, branch_becoming_root , new_root_height, ...)
-   x_unbranch <- as_hclust_fixed(x_dend_unbranch, x)  
+   x_unbranch <- as_hclust_fixed(x_dend_unbranch, dend)  
    
    return(x_unbranch)
 }

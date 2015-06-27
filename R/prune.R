@@ -171,7 +171,7 @@ prune.dendrogram <- function(dend, leaves,...) {
 prune.hclust <- function(dend, leaves,...) {
    x_dend <- as.dendrogram(dend)
    x_dend_pruned <- prune(x_dend, leaves,...)
-   x_pruned <- as_hclust_fixed(x_dend_pruned, x)  
+   x_pruned <- as_hclust_fixed(x_dend_pruned, dend)  
    
    return(x_pruned)
 }
