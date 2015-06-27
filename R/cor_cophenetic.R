@@ -55,16 +55,16 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' 
 #' @usage
 #' 
-#' cor_cophenetic(tree1, ...) 
+#' cor_cophenetic(dend1, ...) 
 #' 
-#' \method{cor_cophenetic}{default}(tree1, tree2, method_coef = c("pearson", "kendall", "spearman"), ...) 
+#' \method{cor_cophenetic}{default}(dend1, dend2, method_coef = c("pearson", "kendall", "spearman"), ...) 
 #' 
-#' \method{cor_cophenetic}{dendlist}(tree1, which = c(1L,2L), 
+#' \method{cor_cophenetic}{dendlist}(dend1, which = c(1L,2L), 
 #'       method_coef = c("pearson", "kendall", "spearman"), 
 #'       ...) 
 #' 
-#' @param tree1 a tree (dendrogram/hclust/phylo, or dendlist)
-#' @param tree2 a tree (dendrogram/hclust/phylo)
+#' @param dend1 a tree (dendrogram/hclust/phylo, or dendlist)
+#' @param dend2 a tree (dendrogram/hclust/phylo)
 #' @param which an integer vector of length 2, indicating
 #' which of the trees in a dendlist object should have 
 #' their cor_cophenetic calculated.
@@ -160,48 +160,48 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' 
 #' }
 #' 
-cor_cophenetic <- function(tree1, ...){
+cor_cophenetic <- function(dend1, ...){
    UseMethod("cor_cophenetic")
 }
 
 
 
 #' @export
-cor_cophenetic.default <- function(tree1, tree2, method_coef = c("pearson", "kendall", "spearman"), ...) {
-   dist_tree1 <- cophenetic(tree1)
-   dist_tree2 <- cophenetic(tree2)
+cor_cophenetic.default <- function(dend1, dend2, method_coef = c("pearson", "kendall", "spearman"), ...) {
+   dist_dend1 <- cophenetic(dend1)
+   dist_dend2 <- cophenetic(dend2)
 
    # hclust objects actually don't need the sorting...
-   if(!is.hclust(tree1)) {
-      dist_tree1 <- sort_dist_mat(dist_tree1)
-      dist_tree2 <- sort_dist_mat(dist_tree2)
+   if(!is.hclust(dend1)) {
+      dist_dend1 <- sort_dist_mat(dist_dend1)
+      dist_dend2 <- sort_dist_mat(dist_dend2)
    }
    
    method_coef <- match.arg(method_coef)
-   cor(dist_tree1, dist_tree2 , method=method_coef)
+   cor(dist_dend1, dist_dend2 , method=method_coef)
 }
 
 
 #' @export
-cor_cophenetic.dendlist <- function(tree1, which = c(1L, 2L), method_coef = c("pearson", "kendall", "spearman"), ...) {
+cor_cophenetic.dendlist <- function(dend1, which = c(1L, 2L), method_coef = c("pearson", "kendall", "spearman"), ...) {
    method_coef <- match.arg(method_coef)
-   cor_cophenetic(tree1[[which[1]]], tree1[[which[2]]], method=method_coef ,...)
+   cor_cophenetic(dend1[[which[1]]], dend1[[which[2]]], method=method_coef ,...)
 }
 
 
 # 
 # 
-# cor_cophenetic.hclust <- function(tree1, tree2, method = c("pearson", "kendall", "spearman"), ...) {
+# cor_cophenetic.hclust <- function(dend1, dend2, method = c("pearson", "kendall", "spearman"), ...) {
 #    # hclust keeps things consistant
-#    dist_tree1 <- cophenetic(tree1)
-#    dist_tree2 <- cophenetic(tree2)
+#    dist_dend1 <- cophenetic(dend1)
+#    dist_dend2 <- cophenetic(dend2)
 #    
-#    cor(dist_tree1, dist_tree2 , method=method)
+#    cor(dist_dend1, dist_dend2 , method=method)
 # }
 # 
 # 
 # # ' @S3method cor_bakers_gamma dendrogram
-# cor_cophenetic.dendrogram <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
+# cor_cophenetic.dendrogram <- function(dend1, dend2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
 # {
 #     return(bakers_gamma)
 # }
