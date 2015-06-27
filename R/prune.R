@@ -233,8 +233,8 @@ prune_common_subtrees.dendlist <- function(dend, ...) {
 #' @description 
 #' Return two trees after pruning them so that the only leaves left are the intersection of their labels.
 #' @export
-#' @param x1 tree object (dendrogram/hclust/phylo)
-#' @param x2 tree object (dendrogram/hclust/phylo)
+#' @param dend1 tree object (dendrogram/hclust/phylo)
+#' @param dend2 tree object (dendrogram/hclust/phylo)
 #' @param warn logical (default from dendextend_options("warn") is FALSE).
 #' Set if warning are to be issued, it is safer to keep this at TRUE,
 #' but for keeping the noise down, the default is FALSE.
@@ -261,26 +261,26 @@ prune_common_subtrees.dendlist <- function(dend, ...) {
 #'       main = "Tree 2 pruned
 #'       with the labels that intersected with those of Tree 1")
 #' 
-intersect_trees <- function(x1, x2, warn = dendextend_options("warn"), ...){
-   labels_x1 <- labels(x1)
-   labels_x2 <- labels(x2)
-   intersected_labels <- intersect(labels_x1, labels_x2)
+intersect_trees <- function(dend1, dend2, warn = dendextend_options("warn"), ...){
+   labels_dend1 <- labels(dend1)
+   labels_dend2 <- labels(dend2)
+   intersected_labels <- intersect(labels_dend1, labels_dend2)
    
    # prune tree 1
-   ss_labels_to_keep  <- labels_x1 %in% intersected_labels
+   ss_labels_to_keep  <- labels_dend1 %in% intersected_labels
    ss_labels_to_prune_1 <- !ss_labels_to_keep
-   pruned_x1 <- prune(x1, labels_x1[ss_labels_to_prune_1])
+   pruned_dend1 <- prune(dend1, labels_dend1[ss_labels_to_prune_1])
       
    # prune tree 2
-   ss_labels_to_keep  <- labels_x2 %in% intersected_labels
+   ss_labels_to_keep  <- labels_dend2 %in% intersected_labels
    ss_labels_to_prune_2 <- !ss_labels_to_keep
-   pruned_x2 <- prune(x2, labels_x2[ss_labels_to_prune_2])
+   pruned_dend2 <- prune(dend2, labels_dend2[ss_labels_to_prune_2])
    
    if(warn && any(c(ss_labels_to_prune_1, ss_labels_to_prune_2)))  {
       warning("The labels in both tree had different values - trees were pruned.")
    }
    
-   return(dendlist(pruned_x1, pruned_x2))   
+   return(dendlist(pruned_dend1, pruned_dend2))   
 }
 
 

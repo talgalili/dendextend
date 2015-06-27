@@ -4,12 +4,12 @@
 \alias{intersect_trees}
 \title{Intersect trees}
 \usage{
-intersect_trees(x1, x2, warn = dendextend_options("warn"), ...)
+intersect_trees(dend1, dend2, warn = dendextend_options("warn"), ...)
 }
 \arguments{
-\item{x1}{tree object (dendrogram/hclust/phylo)}
+\item{dend1}{tree object (dendrogram/hclust/phylo)}
 
-\item{x2}{tree object (dendrogram/hclust/phylo)}
+\item{dend2}{tree object (dendrogram/hclust/phylo)}
 
 \item{warn}{logical (default from dendextend_options("warn") is FALSE).
 Set if warning are to be issued, it is safer to keep this at TRUE,
