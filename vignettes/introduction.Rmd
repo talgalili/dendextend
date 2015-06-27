@@ -18,7 +18,7 @@ library(dendextend)
 library(knitr)
 knitr::opts_chunk$set(
    cache = TRUE,
-   dpi = 80,
+   dpi = 60,
   comment = "#>",
   tidy = FALSE)
 
@@ -121,7 +121,7 @@ c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
 ```
 
 
-The **design** of the dendextend package (and this manual!) is heavily inspired by [Hadley Wickham's](http://had.co.nz/) work. Especially his text on [writing an R package](http://adv-r.had.co.nz/Package-basics.html), the [devtools package](http://cran.r-project.org/package=devtools), and the dplyr package (specifically the use of chaining, and the [Introduction text to dplyr](http://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)).
+The **design** of the dendextend package (and this manual!) is heavily inspired by [Hadley Wickham's](http://had.co.nz/) work. Especially his text on [writing an R package](http://r-pkgs.had.co.nz/), the [devtools package](http://cran.r-project.org/package=devtools), and the dplyr package (specifically the use of chaining, and the [Introduction text to dplyr](http://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)).
 
 
 
