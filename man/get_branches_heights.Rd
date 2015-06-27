@@ -5,10 +5,10 @@
 \alias{get_branches_heights}
 \title{Get height attributes from a dendrogram}
 \usage{
-get_branches_heights(tree, sort = TRUE, decreasing = FALSE, ...)
+get_branches_heights(dend, sort = TRUE, decreasing = FALSE, ...)
 }
 \arguments{
-\item{tree}{a dendrogram.}
+\item{dend}{a dendrogram.}
 
 \item{sort}{logical. Should the heights be sorted?}
 

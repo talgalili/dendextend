@@ -488,7 +488,7 @@ rllply <- function(x, FUN,add_notation = FALSE, ...)
 #' @export
 #' @aliases
 #' dendextend_get_branches_heights
-#' @param tree a dendrogram.
+#' @param dend a dendrogram.
 #' @param sort logical. Should the heights be sorted?
 #' @param decreasing logical. Should the sort be increasing or decreasing? Not available for partial sorting.
 #' @param ... not used.
@@ -513,21 +513,21 @@ rllply <- function(x, FUN,add_notation = FALSE, ...)
 #' )
 #' }
 #' 
-get_branches_heights <- function(tree, sort = TRUE, decreasing = FALSE, ...) {
+get_branches_heights <- function(dend, sort = TRUE, decreasing = FALSE, ...) {
    fo <- dendextend_options("get_branches_heights")
-   fo(tree=tree, sort = sort, decreasing = decreasing, ...)
+   fo(dend, sort = sort, decreasing = decreasing, ...)
 }
 
 
 
 #' @export
-dendextend_get_branches_heights <- function(tree, sort = TRUE, decreasing = FALSE, ...)
+dendextend_get_branches_heights <- function(dend, sort = TRUE, decreasing = FALSE, ...)
 {
-#    height <- unlist(rllply(tree, function(x){attr(x, "height")}))
-#    height <- get_nodes_attr(tree, "height") 
+#    height <- unlist(rllply(dend, function(x){attr(x, "height")}))
+#    height <- get_nodes_attr(dend, "height") 
 #    height <- height[height != 0] # include only the non zero values
    
-   height <- get_nodes_attr(tree, "height", include_leaves = FALSE, na.rm = TRUE)   
+   height <- get_nodes_attr(dend, "height", include_leaves = FALSE, na.rm = TRUE)   
    if(sort) height <- sort(height, decreasing=decreasing) 	# sort the height
    
    return(height)
@@ -1292,7 +1292,7 @@ fix_members_attr.dendrogram <- function(dend,...) {
 #' @export
 #' @description
 #' Generally, leaves order value should be a sequence of integer values.
-#' From 1 to nleaves(tree). 
+#' From 1 to nleaves(dend). 
 #' This function fixes trees by using \link{rank} on existing leaves order
 #' values.
 #' @param dend a dendrogram object 

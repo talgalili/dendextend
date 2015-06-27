@@ -41,6 +41,8 @@ dendextend 1.0.0 (2015-06-27)
                assign_values_to_leaves_nodePar, assign_values_to_leaves_edgePar, 
                assign_values_to_nodes_nodePar, assign_values_to_branches_edgePar, 
                remove_branches_edgePar, remove_nodes_nodePar, remove_leaves_nodePar, 
+      * tree -> dend  for: 
+               color_branches, color_labels_by_labels, color_labels, get_branches_heights, dendextend_get_branches_heights
 
 
 

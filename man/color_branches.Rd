@@ -17,11 +17,11 @@ Also, it allows REPEATED cluster color assignments to branches on to
 the same tree. Something which the original function was not able to handle.
 }
 \usage{
-color_branches(tree, k = NULL, h = NULL, col, groupLabels = NULL,
+color_branches(dend, k = NULL, h = NULL, col, groupLabels = NULL,
   clusters, warn = dendextend_options("warn"), ...)
 }
 \arguments{
-\item{tree}{A \code{dendrogram} or \code{hclust} tree object}
+\item{dend}{A \code{dendrogram} or \code{hclust} tree object}
 
 \item{k}{number of groups (passed to \code{\link[dendextend]{cutree}})}
 
@@ -48,11 +48,11 @@ but for keeping the noise down, the default is FALSE.}
 \item{...}{ignored.}
 }
 \value{
-a tree object of class dendrogram.
+a tree object of class \link{dendrogram}.
 }
 \description{
 This function is for dendrogram and hclust objects.
-This function colors both the terminal leaves of a tree's cluster and the edges
+This function colors both the terminal leaves of a dend's cluster and the edges
 leading to those leaves. The edgePar attribute of nodes will be augmented by
 a new list item col.
 The groups will be defined by a call to \code{\link[dendextend]{cutree}}
@@ -100,7 +100,7 @@ dend_override=color_branches(dend_override,4,groupLabels=as.roman)
 dend_override=color_branches(dend_override,7,groupLabels=as.roman)
 plot(dend_override)
 
-d5=color_branches(tree=dend[[1]],k=5)
+d5=color_branches(dend=dend[[1]],k=5)
 
 
 library(dendextend)

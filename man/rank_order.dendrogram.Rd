@@ -16,7 +16,7 @@ A dendrogram, after fixing its leaves order values.
 }
 \description{
 Generally, leaves order value should be a sequence of integer values.
-From 1 to nleaves(tree).
+From 1 to nleaves(dend).
 This function fixes trees by using \link{rank} on existing leaves order
 values.
 }

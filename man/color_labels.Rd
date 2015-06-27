@@ -3,17 +3,17 @@
 \name{color_labels}
 \alias{color_labels}
 \alias{colour_labels}
-\title{Color tree's labels according to sub-clusters}
+\title{Color dend's labels according to sub-clusters}
 \source{
 This function is in the style of \code{\link{color_branches}}, and
 based on \code{\link{labels_colors}}.
 }
 \usage{
-color_labels(tree, k = NULL, h = NULL, labels, col,
+color_labels(dend, k = NULL, h = NULL, labels, col,
   warn = dendextend_options("warn"), ...)
 }
 \arguments{
-\item{tree}{A \code{dendrogram} or \code{hclust} tree object}
+\item{dend}{A \code{dendrogram} or \code{hclust} tree object}
 
 \item{k}{number of groups (passed to \code{\link[dendextend]{cutree}})}
 
