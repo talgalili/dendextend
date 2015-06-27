@@ -9,22 +9,22 @@
 \alias{entanglement.phylo}
 \title{Measures entanglement between two trees}
 \usage{
-entanglement(tree1, ...)
+entanglement(dend1, ...)
 
-\method{entanglement}{dendrogram}(tree1, tree2, L = 1.5, leaves_matching_method = c("labels", "order"),...)
+\method{entanglement}{dendrogram}(dend1, dend2, L = 1.5, leaves_matching_method = c("labels", "order"),...)
 
-\method{entanglement}{dendlist}(tree1, which = c(1L,2L), ...)
+\method{entanglement}{dendlist}(dend1, which = c(1L,2L), ...)
 
-\method{entanglement}{hclust}(tree1, tree2, ...)
+\method{entanglement}{hclust}(dend1, dend2, ...)
 
-\method{entanglement}{phylo}(tree1, tree2, ...)
+\method{entanglement}{phylo}(dend1, dend2, ...)
 }
 \arguments{
-\item{tree1}{a tree object (of class dendrogram/hclust/phylo).}
+\item{dend1}{a tree object (of class dendrogram/hclust/phylo).}
 
 \item{...}{not used}
 
-\item{tree2}{a tree object (of class dendrogram/hclust/phylo).}
+\item{dend2}{a tree object (of class dendrogram/hclust/phylo).}
 
 \item{which}{an integer vector of length 2, indicating
 which of the trees in a dendlist object should have
