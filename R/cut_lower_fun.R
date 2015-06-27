@@ -27,7 +27,7 @@
 #' @aliases
 #' dendextend_cut_lower_fun
 #' @description 
-#' Cuts the a tree at height h and returns a list with the FUN function
+#' Cuts the dend at height h and returns a list with the FUN function
 #' implemented on all the sub trees created by cut at height h.
 #' This is used for creating a \link[dendextend]{cutree.dendrogram} function,
 #' by using the \code{labels} function as FUN.
@@ -35,8 +35,8 @@
 #' This is the Rcpp version of the function, offering a 10-60 times improvement
 #' in speed (depending on the tree size it is used on).
 #' 
-#' @param tree a dendrogram object.
-#' @param h a scalar of height to cut the tree by.
+#' @param dend a dendrogram object.
+#' @param h a scalar of height to cut the dend by.
 #' @param FUN a function to run. (default is "labels")
 #' @param warn logical (default from dendextend_options("warn") is FALSE).
 #' Set if warning are to be issued, it is safer to keep this at TRUE,
@@ -44,7 +44,7 @@
 #' Should the user be warned if reverting to default?
 #' @param ... passed to FUN.
 #' @return A list with the output of running FUN on each of the 
-#' sub trees derived from cutting "tree"
+#' sub dends derived from cutting "dend"
 #' @author Tal Galili
 #' @seealso \code{\link{labels}}, \code{\link{dendrogram}},
 #' \link[dendextend]{cutree.dendrogram}
@@ -68,35 +68,35 @@
 #' # about 7-15 times faster. It is faster the larger the tree is, and the lower h is.
 #' }
 #' 
-cut_lower_fun <- function(tree, h, FUN = labels, warn = dendextend_options("warn"), ...) {
+cut_lower_fun <- function(dend, h, FUN = labels, warn = dendextend_options("warn"), ...) {
 #    fo <- options()$dendextend_cut_lower_fun
 #    if(is.null(fo)) fo <- dendextend::cut_lower_fun_dendextend
    # the above is NOT faster then what is below
    fo <- dendextend_options("cut_lower_fun")   
-   fo(tree=tree, h=h, FUN = FUN, warn = warn, ...)
+   fo(dend, h=h, FUN = FUN, warn = warn, ...)
 }
 
 
 
 #' @export
-dendextend_cut_lower_fun <- function(tree, h, FUN = labels, warn = dendextend_options("warn"), ...) {
+dendextend_cut_lower_fun <- function(dend, h, FUN = labels, warn = dendextend_options("warn"), ...) {
    
-   if(!is.dendrogram(tree)) stop("'tree' needs to be a dendrogram. Aborting the function 'cut_lower_labels'.")
+   if(!is.dendrogram(dend)) stop("'dend' needs to be a dendrogram. Aborting the function 'cut_lower_labels'.")
    
-   if(is.leaf(tree)) return(list(FUN(tree)))
+   if(is.leaf(dend)) return(list(FUN(dend)))
    # else:
 #    dend_and_FUN <- function(x) {
 #       class(x) = "dendrogram"
 #       FUN(x,...)
 #    }
-#    return(lapply(Rcpp_cut_lower(tree, h), dend_and_FUN))
+#    return(lapply(Rcpp_cut_lower(dend, h), dend_and_FUN))
    
-   return(lapply(cut(tree, h = h)$lower, FUN))   # If the proper labels are not important, this function is around 10 times faster than using labels (so it is much better for some other algorithms)
+   return(lapply(cut(dend, h = h)$lower, FUN))   # If the proper labels are not important, this function is around 10 times faster than using labels (so it is much better for some other algorithms)
    
 }
 
 
-# cut(tree, h = .14)$lower
+# cut(dend, h = .14)$lower
 
 # detach( 'package:dendextendRcpp', unload=TRUE )
 # library( 'dendextendRcpp' )

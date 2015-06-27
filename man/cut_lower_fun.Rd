@@ -5,12 +5,12 @@
 \alias{dendextend_cut_lower_fun}
 \title{Cut a dendrogram - and run a function on the output}
 \usage{
-cut_lower_fun(tree, h, FUN = labels, warn = dendextend_options("warn"), ...)
+cut_lower_fun(dend, h, FUN = labels, warn = dendextend_options("warn"), ...)
 }
 \arguments{
-\item{tree}{a dendrogram object.}
+\item{dend}{a dendrogram object.}
 
-\item{h}{a scalar of height to cut the tree by.}
+\item{h}{a scalar of height to cut the dend by.}
 
 \item{FUN}{a function to run. (default is "labels")}
 
@@ -23,10 +23,10 @@ Should the user be warned if reverting to default?}
 }
 \value{
 A list with the output of running FUN on each of the
-sub trees derived from cutting "tree"
+sub dends derived from cutting "dend"
 }
 \description{
-Cuts the a tree at height h and returns a list with the FUN function
+Cuts the dend at height h and returns a list with the FUN function
 implemented on all the sub trees created by cut at height h.
 This is used for creating a \link[dendextend]{cutree.dendrogram} function,
 by using the \code{labels} function as FUN.
