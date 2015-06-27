@@ -4,11 +4,11 @@
 \alias{assign_values_to_branches_edgePar}
 \title{Assign values to edgePar of dendrogram's branches}
 \usage{
-assign_values_to_branches_edgePar(object, value, edgePar, skip_leaves = FALSE,
+assign_values_to_branches_edgePar(dend, value, edgePar, skip_leaves = FALSE,
   warn = dendextend_options("warn"), ...)
 }
 \arguments{
-\item{object}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{value}{a new value scalar for the edgePar attribute.}
 
@@ -43,13 +43,13 @@ dend \%>\% set("branches_lty", 1:2) \%>\%
 
 dend <- USArrests[1:5,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
 plot(dend)
-dend <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "lwd")
+dend <- assign_values_to_branches_edgePar(dend=dend, value = 2, edgePar = "lwd")
 plot(dend)
-dend <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "col")
+dend <- assign_values_to_branches_edgePar(dend=dend, value = 2, edgePar = "col")
 plot(dend)
-dend <- assign_values_to_branches_edgePar(object=dend, value = "orange", edgePar = "col")
+dend <- assign_values_to_branches_edgePar(dend=dend, value = "orange", edgePar = "col")
 plot(dend)
-dend2 <- assign_values_to_branches_edgePar(object=dend, value = 2, edgePar = "lty")
+dend2 <- assign_values_to_branches_edgePar(dend=dend, value = 2, edgePar = "lty")
 plot(dend2)
 
 dend2 \%>\% unclass \%>\% str

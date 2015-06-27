@@ -4,10 +4,10 @@
 \alias{remove_branches_edgePar}
 \title{Remove all edgePar values from a dendrogram's branches}
 \usage{
-remove_branches_edgePar(object, ...)
+remove_branches_edgePar(dend, ...)
 }
 \arguments{
-\item{object}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{...}{not used}
 }

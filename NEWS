@@ -1,4 +1,4 @@
-dendextend 1.0.0 (2015-06-23)
+dendextend 1.0.0 (2015-06-27)
 ----------------------------------------
 
 ###NEW FUNCTIONS:
@@ -32,6 +32,17 @@ dendextend 1.0.0 (2015-06-23)
    * untangle_random_search/untangle_step_rotate_2side/untangle_best_k_to_rotate_by_2side_backNforth - no longer returns a dendlist with names (it shouldn't, they didn't have a name to begin with.)
    * cor.dendlist - added methods "common_nodes", "FM_index".
    * cor_cophenetic - changed method to method_coef (so it could be updated when using cor.dendlist)
+
+   * use "dend" as a standard name for all the parameters that accept dendrograms (whenever possible, in some cases I preferred to keep another name due to other conventions.)
+      * object -> dend  for: 
+               set, set.dendrogram, set.dendlist, 
+               get_leaves_attr, get_leaves_nodePar, get_leaves_edgePar, 
+               get_leaves_branches_attr, get_leaves_branches_col, get_nodes_attr, 
+               assign_values_to_leaves_nodePar, assign_values_to_leaves_edgePar, 
+               assign_values_to_nodes_nodePar, assign_values_to_branches_edgePar, 
+               remove_branches_edgePar, remove_nodes_nodePar, remove_leaves_nodePar, 
+
+
 
 ###BUG FIXES:
    * Fix "'::' or ':::' import not declared from: ‘rpart’" by adding rpart to DESCRIPTION.

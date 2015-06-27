@@ -4,10 +4,10 @@
 \alias{get_leaves_branches_col}
 \title{Get the colors of the branches of a dendrogram's leaves}
 \usage{
-get_leaves_branches_col(object, ...)
+get_leaves_branches_col(dend, ...)
 }
 \arguments{
-\item{object}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{...}{not used}
 }

@@ -4,10 +4,10 @@
 \alias{remove_nodes_nodePar}
 \title{Remove all nodePar values from a dendrogram's nodes}
 \usage{
-remove_nodes_nodePar(object, ...)
+remove_nodes_nodePar(dend, ...)
 }
 \arguments{
-\item{object}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{...}{not used}
 }

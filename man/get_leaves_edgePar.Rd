@@ -4,10 +4,10 @@
 \alias{get_leaves_edgePar}
 \title{Get edgePar of dendrogram's leaves}
 \usage{
-get_leaves_edgePar(object, simplify = FALSE, ...)
+get_leaves_edgePar(dend, simplify = FALSE, ...)
 }
 \arguments{
-\item{object}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{simplify}{logical (default is FALSE). If TRUE, then the return vector is
 after using \code{unlist} on it.}

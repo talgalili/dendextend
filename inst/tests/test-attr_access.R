@@ -176,7 +176,7 @@ test_that("Assigning several values to a tree's leaves nodePar",{
    dend <- as.dendrogram(hc)
    
    dend <- suppressWarnings(assign_values_to_leaves_nodePar(dend, 2, "lab.cex"))
-   dend <- suppressWarnings(assign_values_to_leaves_nodePar(object=dend, value = c(3,2), nodePar = "lab.col"))
+   dend <- suppressWarnings(assign_values_to_leaves_nodePar(dend, value = c(3,2), nodePar = "lab.col"))
    
    dend_leaf_nodePar <- get_leaves_attr(dend, "nodePar", simplify=FALSE)[[1]]
    

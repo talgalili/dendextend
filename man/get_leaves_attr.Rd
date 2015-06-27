@@ -9,10 +9,10 @@ function \code{labels.dendrogram},
 so credit should go to Martin Maechler.
 }
 \usage{
-get_leaves_attr(object, attribute, simplify = TRUE, ...)
+get_leaves_attr(dend, attribute, simplify = TRUE, ...)
 }
 \arguments{
-\item{object}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{attribute}{character scalar of the attribute (\code{attr})
 we wish to get/set from the leaves}

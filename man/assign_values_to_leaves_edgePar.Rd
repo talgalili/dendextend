@@ -4,11 +4,11 @@
 \alias{assign_values_to_leaves_edgePar}
 \title{Assign values to edgePar of dendrogram's leaves}
 \usage{
-assign_values_to_leaves_edgePar(object, value, edgePar,
+assign_values_to_leaves_edgePar(dend, value, edgePar,
   warn = dendextend_options("warn"), ...)
 }
 \arguments{
-\item{object}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{value}{a new value vector for the edgePar attribute. It should be
 the same length as the number of leaves in the tree. If not, it will recycle
@@ -36,11 +36,11 @@ If the value has Inf then the value in edgePar will not be changed.
 dend <- USArrests[1:5,] \%>\% dist \%>\% hclust("ave") \%>\% as.dendrogram
 
 plot(dend)
-dend <- assign_values_to_leaves_edgePar(object=dend, value = c(3,2), edgePar = "col")
+dend <- assign_values_to_leaves_edgePar(dend=dend, value = c(3,2), edgePar = "col")
 plot(dend)
-dend <- assign_values_to_leaves_edgePar(object=dend, value = c(3,2), edgePar = "lwd")
+dend <- assign_values_to_leaves_edgePar(dend=dend, value = c(3,2), edgePar = "lwd")
 plot(dend)
-dend <- assign_values_to_leaves_edgePar(object=dend, value = c(3,2), edgePar = "lty")
+dend <- assign_values_to_leaves_edgePar(dend=dend, value = c(3,2), edgePar = "lty")
 plot(dend)
 
 get_leaves_attr(dend, "edgePar", simplify=FALSE)

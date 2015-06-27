@@ -9,11 +9,11 @@ function \code{labels.dendrogram},
 so credit should go to Martin Maechler.
 }
 \usage{
-get_nodes_attr(object, attribute, id, include_leaves = TRUE,
+get_nodes_attr(dend, attribute, id, include_leaves = TRUE,
   include_branches = TRUE, simplify = TRUE, na.rm = FALSE, ...)
 }
 \arguments{
-\item{object}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{attribute}{character scalar of the attribute (\code{attr})
 we wish to get from the nodes}

@@ -4,11 +4,11 @@
 \alias{assign_values_to_leaves_nodePar}
 \title{Assign values to nodePar of dendrogram's leaves}
 \usage{
-assign_values_to_leaves_nodePar(object, value, nodePar,
+assign_values_to_leaves_nodePar(dend, value, nodePar,
   warn = dendextend_options("warn"), ...)
 }
 \arguments{
-\item{object}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{value}{a new value vector for the nodePar attribute. It should be
 the same length as the number of leaves in the tree. If not, it will recycle
@@ -39,7 +39,7 @@ dend <- USArrests[1:5,] \%>\% dist \%>\% hclust("ave") \%>\% as.dendrogram
 # although it does force us to run through the tree twice,
 # hence "labels_colors<-" is better...
 plot(dend)
-dend <- assign_values_to_leaves_nodePar(object=dend, value = c(3,2), nodePar = "lab.col")
+dend <- assign_values_to_leaves_nodePar(dend=dend, value = c(3,2), nodePar = "lab.col")
 plot(dend)
 
 dend <- assign_values_to_leaves_nodePar(dend, 1, "pch")

@@ -4,10 +4,10 @@
 \alias{get_leaves_branches_attr}
 \title{Get an attribute of the branches of a dendrogram's leaves}
 \usage{
-get_leaves_branches_attr(object, attr = c("col", "lwd", "lty"), ...)
+get_leaves_branches_attr(dend, attr = c("col", "lwd", "lty"), ...)
 }
 \arguments{
-\item{object}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{attr}{character, the attr to get. Can be either "col", "lwd", or "lty".}
 

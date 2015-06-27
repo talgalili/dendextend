@@ -93,3 +93,4 @@ as.phylo.dendrogram <- function(x,...) {
 ## I also added ape to "Imports" in DESCRIPTION in order to avoid the error:
 ##    Namespace dependency not required: 'ape'
 ## Update: I removed ape from the imports and NAMESPACE.
+

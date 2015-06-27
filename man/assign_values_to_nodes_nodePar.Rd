@@ -4,11 +4,11 @@
 \alias{assign_values_to_nodes_nodePar}
 \title{Assign values to nodePar of dendrogram's nodes}
 \usage{
-assign_values_to_nodes_nodePar(object, value, nodePar = c("pch", "cex", "col",
+assign_values_to_nodes_nodePar(dend, value, nodePar = c("pch", "cex", "col",
   "xpd", "bg"), warn = dendextend_options("warn"), ...)
 }
 \arguments{
-\item{object}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{value}{a new value vector for the nodePar attribute. It should be
 the same length as the number of nodes in the tree. If not, it will recycle
