@@ -169,15 +169,15 @@ untangle.dendlist <- function(dend1,
 #' shuffle.hclust
 #' shuffle.phylo
 #' @usage
-#' shuffle(object, ...)
+#' shuffle(dend, ...)
 #' 
-#' \method{shuffle}{dendrogram}(object, ...)
+#' \method{shuffle}{dendrogram}(dend, ...)
 #' 
-#' \method{shuffle}{dendlist}(object, which, ...)
+#' \method{shuffle}{dendlist}(dend, which, ...)
 #' 
-#' \method{shuffle}{hclust}(object, ...)
+#' \method{shuffle}{hclust}(dend, ...)
 #' 
-#' \method{shuffle}{phylo}(object, ...)
+#' \method{shuffle}{phylo}(dend, ...)
 #' 
 #' @description 
 #' 'shuffle' randomilly rotates ("shuffles") a tree, changing its presentation 
@@ -187,7 +187,7 @@ untangle.dendlist <- function(dend1,
 #' 
 #' This function is useful in combination with \link{tanglegram} and \link{entanglement}.
 #' 
-#' @param object a tree object (\link{dendrogram}/\link{hclust}/\link[ape]{phylo})
+#' @param dend a tree object (\link{dendrogram}/\link{hclust}/\link[ape]{phylo})
 #' @param which an integer vector for indicating
 #' which of the trees in the dendlist object should be plotted
 #' default is missing, in which case all the dends in dendlist
@@ -209,14 +209,14 @@ untangle.dendlist <- function(dend1,
 #' tanglegram(sort(dend), sort(dend2), margin_inner=7)
 #' 
 #' 
-shuffle <- function (object, ...) {UseMethod("shuffle")}
+shuffle <- function (dend, ...) {UseMethod("shuffle")}
 
-shuffle.default <- function(object, ...) {
+shuffle.default <- function(dend, ...) {
    # takes a dendrogram object and shuffles its branches in a random fashion
-   # 	n_leaves <- length(labels(object))	# leaves.value is faster then labels!
-   n_leaves <- nleaves(object)
+   # 	n_leaves <- length(labels(dend))	# leaves.value is faster then labels!
+   n_leaves <- nleaves(dend)
    random_weights <- sample(seq_len(n_leaves)) # a random ordaring of 1:n_leaves weights
-   rotate(object, random_weights) # since we have a method here for dend/hclust/phylo - this makes this function rather generic...
+   rotate(dend, random_weights) # since we have a method here for dend/hclust/phylo - this makes this function rather generic...
 }
 
 
@@ -227,19 +227,19 @@ shuffle.dendrogram <- shuffle.default
 
 # ' @S3method shuffle dendlist
 #' @export
-shuffle.dendlist <- function(object, which, ...) {
+shuffle.dendlist <- function(dend, which, ...) {
    
 #    if(T) 1 else 2
 #    if(F) 1 else 2   
    #    if(F) 1 else
    #       2   
-   what_to_shuffle <- if(missing(which)) seq_len(length(object)) else which
+   what_to_shuffle <- if(missing(which)) seq_len(length(dend)) else which
    
    for(i in what_to_shuffle) {
-      object[[i]] <- shuffle(object[[i]])
+      dend[[i]] <- shuffle(dend[[i]])
    }
    
-   object
+   dend
 }
 
 

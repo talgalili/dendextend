@@ -9,18 +9,18 @@
 \alias{shuffle.phylo}
 \title{Random rotation of trees}
 \usage{
-shuffle(object, ...)
+shuffle(dend, ...)
 
-\method{shuffle}{dendrogram}(object, ...)
+\method{shuffle}{dendrogram}(dend, ...)
 
-\method{shuffle}{dendlist}(object, which, ...)
+\method{shuffle}{dendlist}(dend, which, ...)
 
-\method{shuffle}{hclust}(object, ...)
+\method{shuffle}{hclust}(dend, ...)
 
-\method{shuffle}{phylo}(object, ...)
+\method{shuffle}{phylo}(dend, ...)
 }
 \arguments{
-\item{object}{a tree object (\link{dendrogram}/\link{hclust}/\link[ape]{phylo})}
+\item{dend}{a tree object (\link{dendrogram}/\link{hclust}/\link[ape]{phylo})}
 
 \item{...}{Ignored.}
 
