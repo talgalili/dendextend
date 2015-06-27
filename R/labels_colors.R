@@ -24,11 +24,11 @@
 #' @aliases 
 #' labels_colors<-
 #' @usage
-#' labels_colors(object, labels = TRUE,...)
+#' labels_colors(dend, labels = TRUE,...)
 #' 
-#' labels_colors(object, ...) <- value
+#' labels_colors(dend, ...) <- value
 #' @export
-#' @param object a dendrogram object 
+#' @param dend a dendrogram object 
 #' @param labels Boolean (default is TRUE), should the returned vector of colors
 #' return with the leaves labels as names.
 #' @param ... not used
@@ -67,8 +67,8 @@
 #' labels_colors(dend) <- NULL
 #' labels_colors(dend)
 #' plot(dend)
-labels_colors <- function (object, labels = TRUE, ...) {
-   if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")   
+labels_colors <- function (dend, labels = TRUE, ...) {
+   if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")   
    
    col <- NULL
    
@@ -85,8 +85,8 @@ labels_colors <- function (object, labels = TRUE, ...) {
    }
    # mtrace(".change.label.by.mat")
    i_leaf_number <- 0
-   # here I don't care about the classes of the branches of the object.
-   dendrapply(object, get_col_from_leaf) 
+   # here I don't care about the classes of the branches of the dend.
+   dendrapply(dend, get_col_from_leaf) 
    return(col)
 }
 
@@ -96,18 +96,18 @@ labels_colors <- function (object, labels = TRUE, ...) {
 
 
 #' @export
-"labels_colors<-" <- function (object, ..., value) {
-   if(!is.dendrogram(object)) stop("'object' should be a dendrogram.")
+"labels_colors<-" <- function (dend, ..., value) {
+   if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")
    
    if(missing(value)) {
       if(dendextend_options("warn")) warning("Color values are missing, using default (different) colors")      
-      tree_size <- nleaves(object)
+      tree_size <- nleaves(dend)
       value <- rainbow_fun(tree_size)
       }
    
 
    col <- value
-   leaves_length <- length(order.dendrogram(object)) # length(labels(object)) # it will be faster to use order.dendrogram than labels...   
+   leaves_length <- length(order.dendrogram(dend)) # length(labels(dend)) # it will be faster to use order.dendrogram than labels...   
    if(leaves_length > length(col)) {
       if(dendextend_options("warn")) warning("Length of color vector was shorter than the number of leaves - vector color recycled")
       col <- rep(col, length.out = leaves_length)
@@ -134,9 +134,9 @@ labels_colors <- function (object, labels = TRUE, ...) {
       return(unclass(dend_node))
    }   
    i_leaf_number <- 0
-   new_dend_object <- dendrapply(object, set.col.to.leaf)
-   class(new_dend_object) <- "dendrogram"
-   return(new_dend_object)
+   new_dend <- dendrapply(dend, set.col.to.leaf)
+   class(new_dend) <- "dendrogram"
+   return(new_dend)
 }
 
 

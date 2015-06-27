@@ -11,12 +11,12 @@ I also implemented some ideas from Gregory Jefferis's dendroextras package
 (having the "names" of the returned vector be the labels).
 }
 \usage{
-labels_colors(object, labels = TRUE,...)
+labels_colors(dend, labels = TRUE,...)
 
-labels_colors(object, ...) <- value
+labels_colors(dend, ...) <- value
 }
 \arguments{
-\item{object}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{labels}{Boolean (default is TRUE), should the returned vector of colors
 return with the leaves labels as names.}
