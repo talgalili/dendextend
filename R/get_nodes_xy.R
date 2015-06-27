@@ -31,7 +31,7 @@
 
 #' @title Get the x-y coordiantes of a dendrogram's nodes
 #' @export
-#' @param x a dendrogram object 
+#' @param dend a dendrogram object 
 #' @param type type of plot.
 #' @param center logical; if TRUE, nodes are plotted centered with respect to the 
 #' leaves in the branch. Otherwise (default), 
@@ -78,9 +78,11 @@
 #' text(xy, labels = 1:nnodes(dend),cex = 1.2, col = "white", adj = c(0.4,0.4))
 #' 
 #' }
-get_nodes_xy <- function (x, type = c("rectangle", "triangle"), center = FALSE, 
+get_nodes_xy <- function (dend, type = c("rectangle", "triangle"), center = FALSE, 
           horiz = FALSE, ...) 
 {
+   
+   x <- dend # TODO: this code could be cleaned
    
    # this function/env let's us keep a "stack" of the xy matrix, and update it
    # no matter how deep we get in the recursion...

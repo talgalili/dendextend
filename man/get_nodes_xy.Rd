@@ -10,11 +10,11 @@ It performs (almost) the same task, only it does not do any plotting
 but it does save the x-y coordiantes of the nodes.
 }
 \usage{
-get_nodes_xy(x, type = c("rectangle", "triangle"), center = FALSE,
+get_nodes_xy(dend, type = c("rectangle", "triangle"), center = FALSE,
   horiz = FALSE, ...)
 }
 \arguments{
-\item{x}{a dendrogram object}
+\item{dend}{a dendrogram object}
 
 \item{type}{type of plot.}
 
