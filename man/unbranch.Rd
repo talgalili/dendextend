@@ -8,16 +8,16 @@
 \alias{unbranch.phylo}
 \title{unbranch trees}
 \usage{
-unbranch(x, ...)
+unbranch(dend, ...)
 
-\method{unbranch}{dendrogram}(x, branch_becoming_root = 1, new_root_height, ...)
+\method{unbranch}{dendrogram}(dend, branch_becoming_root = 1, new_root_height, ...)
 
-\method{unbranch}{hclust}(x, branch_becoming_root = 1, new_root_height, ...)
+\method{unbranch}{hclust}(dend, branch_becoming_root = 1, new_root_height, ...)
 
-\method{unbranch}{phylo}(x, ...)
+\method{unbranch}{phylo}(dend, ...)
 }
 \arguments{
-\item{x}{tree (dendrogram/hclust) object}
+\item{dend}{a dendrogram (or hclust) object}
 
 \item{...}{passed on}
 

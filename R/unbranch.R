@@ -98,14 +98,14 @@ raise.dendrogram <- function(dend, heiget_to_add,...)
 #' unbranch.hclust
 #' unbranch.phylo
 #' @usage
-#' unbranch(x, ...)
+#' unbranch(dend, ...)
 #' 
-#' \method{unbranch}{dendrogram}(x, branch_becoming_root = 1, new_root_height, ...)
+#' \method{unbranch}{dendrogram}(dend, branch_becoming_root = 1, new_root_height, ...)
 #' 
-#' \method{unbranch}{hclust}(x, branch_becoming_root = 1, new_root_height, ...)
+#' \method{unbranch}{hclust}(dend, branch_becoming_root = 1, new_root_height, ...)
 #' 
-#' \method{unbranch}{phylo}(x, ...)
-#' @param x tree (dendrogram/hclust) object
+#' \method{unbranch}{phylo}(dend, ...)
+#' @param dend a dendrogram (or hclust) object
 #' @param branch_becoming_root a numeric choosing the branch of the root which will become the new root (from left to right)
 #' @param new_root_height the new height of the branch which will become the new root.
 #' If the parameter is not given - the height of the original root is used.
@@ -120,18 +120,18 @@ raise.dendrogram <- function(dend, heiget_to_add,...)
 #' plot(dend, main = "original tree")
 #' plot(unbranch(dend , 1), main = "unbranched tree (left branch)")
 #' plot(unbranch(dend , 2), main = "tree without  (right branch)")
-unbranch <- function(x, ...) UseMethod("unbranch")
+unbranch <- function(dend, ...) UseMethod("unbranch")
 
 #' @export
-unbranch.default <- function(x,...) stop("object x must be a dendrogram/hclust/phylo object")
+unbranch.default <- function(dend,...) stop("object dend must be a dendrogram/hclust/phylo object")
 
 
 # ' @S3method unbranch dendrogram
 #' @export
-unbranch.dendrogram <- function(x, branch_becoming_root = 1, new_root_height,...)
+unbranch.dendrogram <- function(dend, branch_becoming_root = 1, new_root_height,...)
 {
    
-   dend <- x # (since this function is based on dendrograms)
+   # dend <- x # (since this function is based on dendrograms)
    if(is.leaf(dend[[branch_becoming_root]])) {
       warning("unbranch.dendrogram can't have the new root being a leaf.
 The original dendrogram is returned.
@@ -184,8 +184,8 @@ Please choose another branch to be the root.")
 
 # ' @S3method unbranch hclust
 #' @export
-unbranch.hclust <- function(x, branch_becoming_root = 1, new_root_height, ...) {
-   x_dend <- as.dendrogram(x)
+unbranch.hclust <- function(dend, branch_becoming_root = 1, new_root_height, ...) {
+   x_dend <- as.dendrogram(dend)
    x_dend_unbranch <- unbranch(x_dend, branch_becoming_root , new_root_height, ...)
    x_unbranch <- as_hclust_fixed(x_dend_unbranch, x)  
    
@@ -195,10 +195,10 @@ unbranch.hclust <- function(x, branch_becoming_root = 1, new_root_height, ...) {
 
 # ' @S3method unbranch phylo
 #' @export
-unbranch.phylo <- function(x, ...) {
+unbranch.phylo <- function(dend, ...) {
 		# ape::unbranch(phy = x)
    # library(ape)
-   x_dend <- as.dendrogram(x)
+   x_dend <- as.dendrogram(dend)
    x_dend_unbranch <- unbranch(x_dend, ...) # branch_becoming_root , new_root_height,
    x_unbranch <- ape::as.phylo(x_dend_unbranch)  
 
