@@ -234,7 +234,7 @@ branches_attr_by_clusters <- function(dend, clusters, values, attr = c("col", "l
       tmp_values <- ifelse(nodes_cluster_TF_mat_overlap, Inf, tmp_values)
       
       # update the dend:
-      dend <- assign_values_to_branches_edgePar(object = dend, value = tmp_values, edgePar = attr)     
+      dend <- assign_values_to_branches_edgePar(dend, value = tmp_values, edgePar = attr)     
    }
    
    return(dend)

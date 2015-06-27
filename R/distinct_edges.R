@@ -215,7 +215,7 @@ highlight_distinct_edges.dendrogram <- function (x, y,
    new_value <- rep(Inf, x_nnoded)
    new_value[the_distinct_edges] <- value
    
-   new_x <- assign_values_to_branches_edgePar(object = x, value = new_value, edgePar = edgePar)
+   new_x <- assign_values_to_branches_edgePar(x, value = new_value, edgePar = edgePar)
       
    return(new_x)
 }
