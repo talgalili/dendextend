@@ -11,7 +11,7 @@ A \link{dendrogram} implementation for \link[distory]{phylo.diff} from the {dist
 \usage{
 dend_diff(dend, ...)
 
-\method{dend_diff}{dendrogram}(x, y, horiz = TRUE,
+\method{dend_diff}{dendrogram}(dend, dend2, horiz = TRUE,
                   ...)
 
 \method{dend_diff}{dendlist}(dend, ..., which)
@@ -21,7 +21,7 @@ dend_diff(dend, ...)
 
 \item{...}{passed to \link{plot.dendrogram}}
 
-\item{y}{a dendrogram to compare with}
+\item{dend2}{a dendrogram to compare with}
 
 \item{horiz}{logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.}
 

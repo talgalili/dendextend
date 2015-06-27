@@ -9,7 +9,7 @@
 highlight_distinct_edges(dend, ...)
 
 \method{highlight_distinct_edges}{dendrogram}(dend,
-                  y,
+                  dend2,
                   value = 2,
                   edgePar = c("col", "lty", "lwd"),
                   ...)
@@ -21,7 +21,7 @@ highlight_distinct_edges(dend, ...)
 
 \item{...}{Ignored.}
 
-\item{y}{a dendrogram to compare with}
+\item{dend2}{a dendrogram to compare with}
 
 \item{value}{a new value scalar for the edgePar attribute.}
 

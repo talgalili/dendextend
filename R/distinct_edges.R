@@ -83,7 +83,7 @@ partition_leaves <- function(dend, ...) {
 #' @export
 #' 
 #' @param dend a dendrogram to find unique edges in
-#' @param y a dendrogram to compare with
+#' @param dend2 a dendrogram to compare with
 #' @param ... Ignored.
 #' 
 #' @seealso
@@ -92,7 +92,7 @@ partition_leaves <- function(dend, ...) {
 #' \link[distory]{distinct.edges}
 #' 
 #' @return 
-#' A numeric vector of edge ids for the first tree (dend) that are not present in the second tree (y).
+#' A numeric vector of edge ids for the first tree (dend) that are not present in the second tree (dend2).
 #' 
 #' @source
 #' A \link{dendrogram} implementation for \link[distory]{distinct.edges} from the {distory} package
@@ -106,14 +106,14 @@ partition_leaves <- function(dend, ...) {
 #' dend_diff(x, y)
 #' # tanglegram(x, y)
 #' 
-distinct_edges  <- function (dend, y, ...) 
+distinct_edges  <- function (dend, dend2, ...) 
 {
    
    sort_a_character <- function(dend) dend %>% as.character %>% sort
    
    bp1 <- partition_leaves(dend)
    bp1 <- lapply(bp1, sort_a_character)
-   bp2 <- partition_leaves(y)
+   bp2 <- partition_leaves(dend2)
    bp2 <- lapply(bp2, sort_a_character)
    p = c()
    for (i in 1:length(bp1)) {
@@ -139,7 +139,7 @@ distinct_edges  <- function (dend, y, ...)
 #' highlight_distinct_edges(dend, ...) 
 #' 
 #' \method{highlight_distinct_edges}{dendrogram}(dend,
-#'                   y, 
+#'                   dend2, 
 #'                   value = 2, 
 #'                   edgePar = c("col", "lty", "lwd"), 
 #'                   ...) 
@@ -153,7 +153,7 @@ distinct_edges  <- function (dend, y, ...)
 #' This function enables this feature in \link{dend_diff} and \link{tanglegram}
 #' 
 #' @param dend a dendrogram or \link{dendlist} to find unique edges in (to highlight)
-#' @param y a dendrogram to compare with
+#' @param dend2 a dendrogram to compare with
 #' @param value a new value scalar for the edgePar attribute.
 #' @param edgePar a character indicating the value inside edgePar to adjust.
 #' Can be either "col", "lty", or "lwd".
@@ -205,12 +205,12 @@ highlight_distinct_edges <- function (dend, ...) {
 
 
 #' @export
-highlight_distinct_edges.dendrogram <- function (dend, y, 
+highlight_distinct_edges.dendrogram <- function (dend, dend2, 
                                       value = 2, edgePar = c("col", "lty", "lwd"), ...)  {
    
    edgePar <- match.arg(edgePar)
    
-   the_distinct_edges <- distinct_edges(dend, y)
+   the_distinct_edges <- distinct_edges(dend, dend2)
    dend_nnoded <- nnodes(dend)
    new_value <- rep(Inf, dend_nnoded)
    new_value[the_distinct_edges] <- value
@@ -243,7 +243,7 @@ highlight_distinct_edges.dendlist <- function(dend, ..., which = c(1L, 2L)) {
 #' 
 #' dend_diff(dend, ...) 
 #' 
-#' \method{dend_diff}{dendrogram}(x, y, horiz = TRUE,
+#' \method{dend_diff}{dendrogram}(dend, dend2, horiz = TRUE,
 #'                   ...) 
 #'    
 #' \method{dend_diff}{dendlist}(dend, ..., which)
@@ -252,7 +252,7 @@ highlight_distinct_edges.dendlist <- function(dend, ..., which = c(1L, 2L)) {
 #' Plots two trees side by side, highlighting edges unique to each tree in red.
 #' 
 #' @param dend a dendrogram or \link{dendlist} to compre with
-#' @param y a dendrogram to compare with
+#' @param dend2 a dendrogram to compare with
 #' @param horiz logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.
 #' @param ... passed to \link{plot.dendrogram}
 #' @param which an integer vector indicating, in the case "dend" is a dendlist, 
@@ -290,22 +290,22 @@ dend_diff <- function (dend, ...) {
 
 
 #' @export
-dend_diff.dendrogram <- function(dend, y, horiz = TRUE, ...)  {
-   dend2 <- highlight_distinct_edges(dend, y)   
-   y2 <- highlight_distinct_edges(y, dend)   
+dend_diff.dendrogram <- function(dend, dend2, horiz = TRUE, ...)  {
+   dend2 <- highlight_distinct_edges(dend, dend2)   
+   dend22 <- highlight_distinct_edges(dend2, dend)   
    
    # change mfrow
    op <- par()$mfrow
    par(mfrow = c(1, 2))
    
    plot(dend2, horiz = horiz, ...)
-   plot(y2, horiz = horiz, ...)
+   plot(dend22, horiz = horiz, ...)
    
    # return mfrow
    op <- par()$mfrow
    par(mfrow = op)
    
-   invisible(dendlist(dend, y)) 
+   invisible(dendlist(dend, dend2)) 
 }
 
 
@@ -325,8 +325,8 @@ dend_diff.dendlist <- function(dend, ..., which = c(1L, 2L)) {
 
 
 
-edgeset_dist <- function(dend, y, ...)  {
-   length(distinct_edges(dend, y)) + length(distinct_edges(y, dend))
+edgeset_dist <- function(dend, dend2, ...)  {
+   length(distinct_edges(dend, dend2)) + length(distinct_edges(dend2, dend))
 }
 
 
