@@ -7,20 +7,20 @@
 \alias{cor_bakers_gamma.hclust}
 \title{Baker's Gamma correlation coefficient}
 \usage{
-cor_bakers_gamma(tree1, ...)
+cor_bakers_gamma(dend1, ...)
 
-\method{cor_bakers_gamma}{dendrogram}(tree1, tree2, use_labels_not_values = TRUE,
+\method{cor_bakers_gamma}{dendrogram}(dend1, dend2, use_labels_not_values = TRUE,
 to_plot = FALSE, warn = dendextend_options("warn"), ...)
-\method{cor_bakers_gamma}{hclust}(tree1, tree2, use_labels_not_values = TRUE,
+\method{cor_bakers_gamma}{hclust}(dend1, dend2, use_labels_not_values = TRUE,
 to_plot = FALSE, warn = dendextend_options("warn"), ...)
-\method{cor_bakers_gamma}{dendlist}(tree1, which = c(1L, 2L), ...)
+\method{cor_bakers_gamma}{dendlist}(dend1, which = c(1L, 2L), ...)
 }
 \arguments{
-\item{tree1}{a tree (dendrogram/hclust/phylo)}
+\item{dend1}{a tree (dendrogram/hclust/phylo)}
 
 \item{...}{Passed to \link[dendextend]{cutree}.}
 
-\item{tree2}{a tree (dendrogram/hclust/phylo)}
+\item{dend2}{a tree (dendrogram/hclust/phylo)}
 
 \item{use_labels_not_values}{logical (TRUE). Should labels be used in the
 k matrix when using cutree? Set to FALSE will make the function a bit faster

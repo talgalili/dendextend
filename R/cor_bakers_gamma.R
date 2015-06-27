@@ -50,8 +50,8 @@ lowest_common_branch <- function(item1, item2,...)
 
 
 #' @title Bakers Gamma for two k matrices
-#' @param k_matrix_tree1 a matrix of k cluster groupings from a dendrogram
-#' @param k_matrix_tree2 a (second) matrix of k cluster groupings from a dendrogram
+#' @param k_matrix_dend1 a matrix of k cluster groupings from a dendrogram
+#' @param k_matrix_dend2 a (second) matrix of k cluster groupings from a dendrogram
 #' @param to_plot logical (FALSE). Should a scaterplot be plotted, showing the
 #' correlation between the lowest shared branch between two items in the two
 #' compared trees.
@@ -60,18 +60,18 @@ lowest_common_branch <- function(item1, item2,...)
 #' \link{cor_bakers_gamma}
 #' @return 
 #' Baker's Gamma coefficient.
-bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot = FALSE)
+bakers_gamma_for_2_k_matrix <- function(k_matrix_dend1, k_matrix_dend2, to_plot = FALSE)
 {
    
-   if(dim(k_matrix_tree1)[1] != dim(k_matrix_tree2)[1]) stop("The k_matrixes seems to show a different number of items - we can not compare trees in this case!")
-   if(!all(sort(rownames(k_matrix_tree1)) == sort(rownames(k_matrix_tree2)))) 
+   if(dim(k_matrix_dend1)[1] != dim(k_matrix_dend2)[1]) stop("The k_matrixes seems to show a different number of items - we can not compare trees in this case!")
+   if(!all(sort(rownames(k_matrix_dend1)) == sort(rownames(k_matrix_dend2)))) 
    {		# we are using "sort" since the rownames may be of different order - depending on the way the two trees were constructed.
-      print(paste("Item names (rownames) of k_matrix_tree1:" ,rownames(k_matrix_tree1)))
-      print(paste("Item names (rownames) of k_matrix_tree2:" ,rownames(k_matrix_tree2)))
+      print(paste("Item names (rownames) of k_matrix_dend1:" ,rownames(k_matrix_dend1)))
+      print(paste("Item names (rownames) of k_matrix_dend2:" ,rownames(k_matrix_dend2)))
       stop("The k_matrixes seems to have different item names - \n we can not compare trees in this case! \n Consider using use_labels_not_values = T (or F) in cutree")
    }
    
-   all_combinations_of_items <- t(combn(seq_len(dim(k_matrix_tree1)[1]),2))
+   all_combinations_of_items <- t(combn(seq_len(dim(k_matrix_dend1)[1]),2))
    number_of_combinations_of_items <- dim(all_combinations_of_items)[1]
    
    
@@ -80,16 +80,16 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
    
    for(i in seq_len(number_of_combinations_of_items))
    {
-      item_id_1_name <- rownames(k_matrix_tree1)[all_combinations_of_items[i,1]]
-      item_id_2_name <- rownames(k_matrix_tree1)[all_combinations_of_items[i,2]]
+      item_id_1_name <- rownames(k_matrix_dend1)[all_combinations_of_items[i,1]]
+      item_id_2_name <- rownames(k_matrix_dend1)[all_combinations_of_items[i,2]]
       # The names must be identical in both trees - we've made a stopping rule for that already.
-      item1 <- k_matrix_tree1[item_id_1_name,]
-      item2 <- k_matrix_tree1[item_id_2_name,]
+      item1 <- k_matrix_dend1[item_id_1_name,]
+      item2 <- k_matrix_dend1[item_id_2_name,]
       # print(paste(i, item1, item2))
       cor_mat[i,1] <- lowest_common_branch(item1,  item2)
       
-      item1 <- k_matrix_tree2[item_id_1_name,]
-      item2 <- k_matrix_tree2[item_id_2_name,]
+      item1 <- k_matrix_dend2[item_id_1_name,]
+      item2 <- k_matrix_dend2[item_id_2_name,]
       cor_mat[i,2] <- lowest_common_branch(item1,  item2)
    }
    
@@ -120,13 +120,13 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 #'
 #' @usage 
 #' 
-#' cor_bakers_gamma(tree1, ...)
+#' cor_bakers_gamma(dend1, ...)
 #' 
-#' \method{cor_bakers_gamma}{dendrogram}(tree1, tree2, use_labels_not_values = TRUE, 
+#' \method{cor_bakers_gamma}{dendrogram}(dend1, dend2, use_labels_not_values = TRUE, 
 #' to_plot = FALSE, warn = dendextend_options("warn"), ...)
-#' \method{cor_bakers_gamma}{hclust}(tree1, tree2, use_labels_not_values = TRUE, 
+#' \method{cor_bakers_gamma}{hclust}(dend1, dend2, use_labels_not_values = TRUE, 
 #' to_plot = FALSE, warn = dendextend_options("warn"), ...)
-#' \method{cor_bakers_gamma}{dendlist}(tree1, which = c(1L, 2L), ...)
+#' \method{cor_bakers_gamma}{dendlist}(dend1, which = c(1L, 2L), ...)
 #' 
 #' 
 #' @description
@@ -137,8 +137,8 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 #' 
 #' WARNING: this can be quite slow for medium/large trees.
 #' 
-#' @param tree1 a tree (dendrogram/hclust/phylo)
-#' @param tree2 a tree (dendrogram/hclust/phylo)
+#' @param dend1 a tree (dendrogram/hclust/phylo)
+#' @param dend2 a tree (dendrogram/hclust/phylo)
 #' @param use_labels_not_values logical (TRUE). Should labels be used in the 
 #' k matrix when using cutree? Set to FALSE will make the function a bit faster
 #' BUT, it assumes the two trees have the exact same leaves order values for 
@@ -219,51 +219,51 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_tree1, k_matrix_tree2, to_plot 
 #' 
 #' }
 #' 
-cor_bakers_gamma <- function(tree1, ...){
+cor_bakers_gamma <- function(dend1, ...){
    UseMethod("cor_bakers_gamma")
 }
 
 #' @export
-cor_bakers_gamma.default <- function(tree1, tree2, ...) {
-   tree1 <- as.dendrogram(tree1)
-   tree2 <- as.dendrogram(tree2)
-   cor_bakers_gamma(tree1, tree2 ,...)
+cor_bakers_gamma.default <- function(dend1, dend2, ...) {
+   dend1 <- as.dendrogram(dend1)
+   dend2 <- as.dendrogram(dend2)
+   cor_bakers_gamma(dend1, dend2 ,...)
 }
 
 # ' @S3method cor_bakers_gamma dendrogram
 #' @export
-cor_bakers_gamma.dendrogram <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
+cor_bakers_gamma.dendrogram <- function(dend1, dend2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
 {
-   k_matrix_tree1 <- cutree(tree1, k = 1:nleaves(tree1), use_labels_not_values=use_labels_not_values,warn=warn,...)
-   k_matrix_tree2 <- cutree(tree2, k = 1:nleaves(tree2), use_labels_not_values=use_labels_not_values,warn=warn,...)
-   bakers_gamma <- bakers_gamma_for_2_k_matrix(k_matrix_tree1, k_matrix_tree2, to_plot = to_plot)
+   k_matrix_dend1 <- cutree(dend1, k = 1:nleaves(dend1), use_labels_not_values=use_labels_not_values,warn=warn,...)
+   k_matrix_dend2 <- cutree(dend2, k = 1:nleaves(dend2), use_labels_not_values=use_labels_not_values,warn=warn,...)
+   bakers_gamma <- bakers_gamma_for_2_k_matrix(k_matrix_dend1, k_matrix_dend2, to_plot = to_plot)
    return(bakers_gamma)
 }
 
 
 # ' @S3method cor_bakers_gamma hclust
 #' @export
-cor_bakers_gamma.hclust <- function(tree1, tree2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
+cor_bakers_gamma.hclust <- function(dend1, dend2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
 {
-   k_matrix_tree1 <- cutree(tree1, k = 1:nleaves(tree1), use_labels_not_values=use_labels_not_values,warn=warn,...)
-   k_matrix_tree2 <- cutree(tree2, k = 1:nleaves(tree2), use_labels_not_values=use_labels_not_values,warn=warn,...)
-   bakers_gamma <- bakers_gamma_for_2_k_matrix(k_matrix_tree1, k_matrix_tree2, to_plot = to_plot)
+   k_matrix_dend1 <- cutree(dend1, k = 1:nleaves(dend1), use_labels_not_values=use_labels_not_values,warn=warn,...)
+   k_matrix_dend2 <- cutree(dend2, k = 1:nleaves(dend2), use_labels_not_values=use_labels_not_values,warn=warn,...)
+   bakers_gamma <- bakers_gamma_for_2_k_matrix(k_matrix_dend1, k_matrix_dend2, to_plot = to_plot)
    return(bakers_gamma)
 }
 
 
 
 #' @export
-cor_bakers_gamma.dendlist <- function(tree1, which = c(1L, 2L), ...) {
-   cor_bakers_gamma(tree1[[which[1]]], tree1[[which[2]]], ...)
+cor_bakers_gamma.dendlist <- function(dend1, which = c(1L, 2L), ...) {
+   cor_bakers_gamma(dend1[[which[1]]], dend1[[which[2]]], ...)
 }
 
 
 
-# k_matrix_tree1 <- cutree(hc1, k = 1:nleaves(hc1))
-# k_matrix_tree2 <- cutree(hc2, k = 1:nleaves(hc1))
+# k_matrix_dend1 <- cutree(hc1, k = 1:nleaves(hc1))
+# k_matrix_dend2 <- cutree(hc2, k = 1:nleaves(hc1))
 # library(compiler)
 # enableJIT(3)
-# system.time(bakers_gamma_for_2_k_matrix(k_matrix_tree1, k_matrix_tree2)) 
+# system.time(bakers_gamma_for_2_k_matrix(k_matrix_dend1, k_matrix_dend2)) 
 # before: 2.37
 # after: 1.97

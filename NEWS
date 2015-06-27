@@ -44,7 +44,7 @@ dendextend 1.0.0 (2015-06-27)
       * tree -> dend  for: 
                color_branches, color_labels_by_labels, color_labels, get_branches_heights, dendextend_get_branches_heights
       * x -> dend  for: cor.dendlist
-      * tree1/tree2 -> dend1/dend2  for: cor_FM_index, cor_common_nodes
+      * tree1/tree2 -> dend1/dend2  for: cor_FM_index, cor_common_nodes, cor_bakers_gamma
 
 
 
