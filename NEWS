@@ -44,7 +44,7 @@ dendextend 1.0.0 (2015-06-27)
                labels_colors
       * tree -> dend  for: 
                color_branches, color_labels_by_labels, color_labels, get_branches_heights, dendextend_get_branches_heights, dendextend_cut_lower_fun, cutree_1h.dendrogram, cutree_1k.dendrogram, heights_per_k.dendrogram
-      * x -> dend  for: cor.dendlist, dend_diff, dist.dendlist, distinct_edges, highlight_distinct_edges, partition_leaves, get_nodes_xy
+      * x -> dend  for: cor.dendlist, dend_diff, dist.dendlist, distinct_edges, highlight_distinct_edges, partition_leaves, get_nodes_xy, prune
       * tree1/tree2 or x1/x2 -> dend1/dend2  for: cor_FM_index, cor_common_nodes, cor_bakers_gamma, cor_cophenetic, entanglement, untangle_random_search, intersect_trees
 
 

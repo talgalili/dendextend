@@ -4,10 +4,10 @@
 \alias{prune_leaf}
 \title{Trimms one leaf from a dendrogram}
 \usage{
-prune_leaf(x, leaf_name, ...)
+prune_leaf(dend, leaf_name, ...)
 }
 \arguments{
-\item{x}{dendrogram object}
+\item{dend}{dendrogram object}
 
 \item{leaf_name}{a character string as the label of the tip we wish to prune}
 

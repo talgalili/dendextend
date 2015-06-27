@@ -9,18 +9,18 @@
 \alias{prune.rpart}
 \title{Prunes a tree (using leaves' labels)}
 \usage{
-prune(x, ...)
+prune(dend, ...)
 
-\method{prune}{dendrogram}(x, leaves,...)
+\method{prune}{dendrogram}(dend, leaves,...)
 
-\method{prune}{hclust}(x, leaves,...)
+\method{prune}{hclust}(dend, leaves,...)
 
-\method{prune}{phylo}(x, ...)
+\method{prune}{phylo}(dend, ...)
 
-\method{prune}{rpart}(x, ...)
+\method{prune}{rpart}(dend, ...)
 }
 \arguments{
-\item{x}{tree object (dendrogram/hclust/phylo)}
+\item{dend}{tree object (dendrogram/hclust/phylo)}
 
 \item{...}{passed on}
 
