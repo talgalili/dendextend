@@ -261,8 +261,8 @@ shuffle.phylo <- shuffle.default
 #' Searches for two untangled dendrogram by randomlly shuflling them and each 
 #' time checking if their entanglement was improved.
 #' 
-#' @param tree1 a tree object (of class dendrogram/hclust/phylo).
-#' @param tree2 a tree object (of class dendrogram/hclust/phylo).
+#' @param dend1 a tree object (of class dendrogram/hclust/phylo).
+#' @param dend2 a tree object (of class dendrogram/hclust/phylo).
 #' @param R numeric (default is 100). The number of shuffles to perform.
 #' @param L the distance norm to use for measuring the distance between the
 #' two trees. It can be any positive number, often one will want to
@@ -315,36 +315,36 @@ shuffle.phylo <- shuffle.default
 #' 
 #' 
 #' }
-untangle_random_search <- function(tree1, tree2, R = 100L, L = 1, leaves_matching_method = c("labels", "order"), ...) {
+untangle_random_search <- function(dend1, dend2, R = 100L, L = 1, leaves_matching_method = c("labels", "order"), ...) {
    # this is a simple random search algorithm for the optimal tanglegram layout problem.
    # it shufflers the trees, and see if we got a better entanglement or not
    
    leaves_matching_method <- match.arg(leaves_matching_method)
    if(leaves_matching_method == "order") {
-      old_tree2 <- tree2
-      tree2 <- match_order_by_labels(old_tree2, tree1)         
-      if(!identical(tree2,old_tree2) & dendextend_options("warn")) warning("The leaves order in 'tree2' were changed. If you want to avoid that, use leaves_matching_method = 'labels'.")
+      old_dend2 <- dend2
+      dend2 <- match_order_by_labels(old_dend2, dend1)         
+      if(!identical(dend2,old_dend2) & dendextend_options("warn")) warning("The leaves order in 'dend2' were changed. If you want to avoid that, use leaves_matching_method = 'labels'.")
    }
    
-   optimal_tree1 <- tree1
-   optimal_tree2 <- tree2   		
+   optimal_dend1 <- dend1
+   optimal_dend2 <- dend2   		
    
-   best_ordaring_entanglement <- entanglement(tree1, tree2, L, leaves_matching_method)
+   best_ordaring_entanglement <- entanglement(dend1, dend2, L, leaves_matching_method)
    
    for(i in 1:R) {
-      s_tree1 <- shuffle(tree1)
-      s_tree2 <- shuffle(tree2)
-      current_entanglement <- entanglement(s_tree1, s_tree2, L, leaves_matching_method)
+      s_dend1 <- shuffle(dend1)
+      s_dend2 <- shuffle(dend2)
+      current_entanglement <- entanglement(s_dend1, s_dend2, L, leaves_matching_method)
       
       # if we came across a better ordaring, then update the "Best" treerograms 
       if(current_entanglement < best_ordaring_entanglement) {
          best_ordaring_entanglement <- current_entanglement
-         optimal_tree1 <- s_tree1
-         optimal_tree2 <- s_tree2			
+         optimal_dend1 <- s_dend1
+         optimal_dend2 <- s_dend2			
       }
    }
    
-   return(dendlist(optimal_tree1, optimal_tree2))
+   return(dendlist(optimal_dend1, optimal_dend2))
 }
 
 
@@ -646,7 +646,7 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
    
    for(k in k_seq) {
       dend1_k_rotated <- all_couple_rotations_at_k(best_dend, k, dend_heights_per_k = dend_heights_per_k)
-      dend1_cut_k_entanglements <- lapply(dend1_k_rotated, entanglement, tree2 = dend2_fixed, L = L, leaves_matching_method = leaves_matching_method)
+      dend1_cut_k_entanglements <- lapply(dend1_k_rotated, entanglement, dend2 = dend2_fixed, L = L, leaves_matching_method = leaves_matching_method)
       ss_best_dend <- which.min(dend1_cut_k_entanglements)
       current_best_dend <- dend1_k_rotated[[ss_best_dend]]
       

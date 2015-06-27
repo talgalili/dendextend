@@ -4,13 +4,13 @@
 \alias{untangle_random_search}
 \title{Untangle - random search}
 \usage{
-untangle_random_search(tree1, tree2, R = 100L, L = 1,
+untangle_random_search(dend1, dend2, R = 100L, L = 1,
   leaves_matching_method = c("labels", "order"), ...)
 }
 \arguments{
-\item{tree1}{a tree object (of class dendrogram/hclust/phylo).}
+\item{dend1}{a tree object (of class dendrogram/hclust/phylo).}
 
-\item{tree2}{a tree object (of class dendrogram/hclust/phylo).}
+\item{dend2}{a tree object (of class dendrogram/hclust/phylo).}
 
 \item{R}{numeric (default is 100). The number of shuffles to perform.}
 
