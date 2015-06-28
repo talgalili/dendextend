@@ -1,8 +1,8 @@
 Package: dendextend
 Type: Package
 Title: Extending R's Dendrogram Functionality
-Version: 1.0.0
-Date: 2015-06-27
+Version: 1.0.1
+Date: 2015-06-28
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "http://www.r-statistics.com"),
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
@@ -50,8 +50,9 @@ Suggests:
     dynamicTreeCut,
     pvclust,
     corrplot,
-    DendSer, 
-    MASS, cluster,
+    DendSer,
+    MASS,
+    cluster,
     covr
 Enhances: ggdendro,
     labeltodendro,dendroextras,

@@ -1,3 +1,11 @@
+dendextend 1.0.1 (2015-06-28)
+----------------------------------------
+
+###OTHER NOTES:
+   * Added import to NAMESPACE: graphics, grDevices
+   * dendextend 1.0.1 is intended to be shipped to CRAN.
+
+
 dendextend 1.0.0 (2015-06-27)
 ----------------------------------------
 

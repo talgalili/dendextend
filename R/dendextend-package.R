@@ -29,6 +29,8 @@
 #' @keywords package, dendrogram
 #' @import stats
 #' @import utils
+#' @import graphics
+#' @import grDevices
 #' @import magrittr
 #' @import whisker
 NULL
