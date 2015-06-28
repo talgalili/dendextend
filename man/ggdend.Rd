@@ -24,7 +24,8 @@ prepare.ggdend(data, ...)
 
 ggplot.ggdend(data,  segments = TRUE,
             labels = TRUE, nodes = TRUE,
-            horiz = FALSE, theme = theme_dendro(), ...)
+            horiz = FALSE, theme = theme_dendro(),
+            offset_labels = 0, ...)
 
 ggplot.dendrogram(data, ...)
 }
@@ -43,6 +44,8 @@ rectangular lines, while "triangle" will draw triangular lines.}
 \item{segments}{a logical (TRUE) if to plot the segments (branches).}
 
 \item{labels}{a logical (TRUE) if to plot the labels.}
+
+\item{offset_labels}{a numeric value to offset the labels from the leaves}
 
 \item{nodes}{a logical (TRUE) if to plot the nodes (points).}
 

@@ -43,7 +43,8 @@
 #'    
 #' ggplot.ggdend(data,  segments = TRUE, 
 #'             labels = TRUE, nodes = TRUE,
-#'             horiz = FALSE, theme = theme_dendro(), ...)
+#'             horiz = FALSE, theme = theme_dendro(), 
+#'             offset_labels = 0, ...)
 #'             
 #' ggplot.dendrogram(data, ...)
 #' 
@@ -72,6 +73,7 @@
 #' @param data a ggdend class object. 
 #' @param segments a logical (TRUE) if to plot the segments (branches).
 #' @param labels a logical (TRUE) if to plot the labels.
+#' @param offset_labels a numeric value to offset the labels from the leaves
 #' @param nodes a logical (TRUE) if to plot the nodes (points).
 #' @param horiz a logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.
 #' @param theme the ggplot2 theme to use (default is \link{theme_dendro}, can also be NULL
@@ -460,7 +462,9 @@ prepare.ggdend <- function(data, ...){
 
 #' @export
 ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
-                          horiz = FALSE, theme = theme_dendro(), ...) {
+                          horiz = FALSE, theme = theme_dendro(), 
+                          offset_labels = 0,
+                          ...) {
    #    library(dendextend)
    #    library(ggdendro)
    # Get all the ggplot2 functions ready: (this could have been evoided if ggplot2 was imported...)
@@ -533,6 +537,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
    if (labels) {
       # default size is 5!  http://sape.inf.usi.ch/quick-reference/ggplot2/geom_text
       data$labels$cex <- 5 * data$labels$cex
+      data$labels$y <- data$labels$y + offset_labels
       p <- p + geom_text(data = data$labels, aes_string(x = "x", 
                                                           y = "y", label = "label", colour = "col", size = "cex"), 
                       hjust = hjust, angle = angle)

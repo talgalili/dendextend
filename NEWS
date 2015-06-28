@@ -1,3 +1,10 @@
+dendextend 1.0.2 (2015-06-28)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+   * ggplot.ggdend - added offset_labels (TODO: still needs to fix the figure margins)
+
+
 dendextend 1.0.1 (2015-06-28)
 ----------------------------------------
 
