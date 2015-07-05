@@ -964,6 +964,13 @@ assign_values_to_leaves_edgePar <- function(dend, value, edgePar, warn = dendext
 #'    assign_values_to_nodes_nodePar(value = c(2,1), nodePar = "col")
 #' plot(dend2)
 #' 
+#' 
+#' ### Making sure this works for NA with character.
+#' dend %>% 
+#' assign_values_to_nodes_nodePar(value = 19, nodePar = "pch") %>% 
+#' assign_values_to_nodes_nodePar(value = c("red", NA), nodePar = "col") -> dend2
+#' plot(dend2)
+#' 
 #' }
 #' 
 assign_values_to_nodes_nodePar <- function(dend, value, nodePar = c("pch", "cex", "col", "xpd", "bg"), warn = dendextend_options("warn"), ...) {
@@ -986,7 +993,7 @@ assign_values_to_nodes_nodePar <- function(dend, value, nodePar = c("pch", "cex"
    set_value_to_node <- function(dend_node) {
       i_node_number <<- i_node_number + 1
       
-	  to_update_attr <- !is.infinite2(value[i_node_number])
+	  to_update_attr <- !is.infinite2(value[i_node_number]) | is.na(value[i_node_number])
 	  if(to_update_attr) {
       # if(!is.infinite2(value[i_node_number])) {
          attr(dend_node, "nodePar")[nodePar] <- list(value[i_node_number]) # this way it doesn't erase other nodePar values (if they exist)

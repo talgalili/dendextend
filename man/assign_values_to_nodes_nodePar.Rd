@@ -46,6 +46,13 @@ dend2 <- dend \%>\%
    assign_values_to_nodes_nodePar(value = c(2,1), nodePar = "col")
 plot(dend2)
 
+
+### Making sure this works for NA with character.
+dend \%>\%
+assign_values_to_nodes_nodePar(value = 19, nodePar = "pch") \%>\%
+assign_values_to_nodes_nodePar(value = c("red", NA), nodePar = "col") -> dend2
+plot(dend2)
+
 }
 }
 \seealso{

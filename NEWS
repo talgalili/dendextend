@@ -1,3 +1,10 @@
+dendextend 1.0.3 (2015-07-05)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+   assign_values_to_nodes_nodePar - can now handle NA with a character string vector in value. Fixes #10
+
+
 dendextend 1.0.2 (2015-06-28)
 ----------------------------------------
 
