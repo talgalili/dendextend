@@ -1,8 +1,8 @@
 Package: dendextend
 Type: Package
 Title: Extending R's Dendrogram Functionality
-Version: 1.0.3
-Date: 2015-07-05
+Version: 1.0.4
+Date: 2015-07-10
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "http://www.r-statistics.com"),
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
@@ -22,6 +22,9 @@ Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     person("Andrie",
     "de Vries", email = "apdevries@gmail.com", comment =
     "ggdendro author", role = "ctb"),
+    person("Zuguang",
+    "Gu", email = "z.gu@dkfz-heidelberg.de", comment =
+    "circlize author", role = "ctb"),
     person("Yoav", "Benjamini", role = "ths"))
 Description: Offers a set of functions for extending
     dendrogram objects in R, letting you visualize and compare trees of
@@ -53,6 +56,7 @@ Suggests:
     DendSer,
     MASS,
     cluster,
+    circlize (>= 0.2.5),
     covr
 Enhances: ggdendro,
     labeltodendro,dendroextras,

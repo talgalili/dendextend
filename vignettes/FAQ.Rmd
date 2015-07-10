@@ -849,3 +849,32 @@ dendextend::assign_dendextend_options()
 
 Before using any of its function (for example: `dendextend::color_branches` ). As of dendextend version 1.0.0, this is no longer required.
 
+
+
+
+### How to plot a fan (Polar) Dendrogram in R?
+
+Asked (http://stats.stackexchange.com/questions/4062/how-to-plot-a-fan-polar-dendrogram-in-r)[here].
+
+Solution: use the `circlize_dendrogram` function.
+
+```{r, fig.show='hold', fig.width=8, fig.height=8}
+# install.packages("dendextend")
+# install.packages("circlize")
+library(dendextend)
+library(circlize)
+
+hc <- hclust(dist(datasets::mtcars))
+dend <- as.dendrogram(hc)
+
+
+dend <- dend %>% 
+   color_branches(k=4) %>% 
+   color_labels
+
+par(mar = rep(0,4))
+# circlize_dendrogram(dend, dend_track_height = 0.8) 
+circlize_dendrogram(dend, labels_track_height = NA, dend_track_height = .4) 
+
+```
+

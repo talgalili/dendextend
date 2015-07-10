@@ -70,6 +70,15 @@ Vignettes:
 
 If you have made interesting work using the dendextend package, I would LOVE to know about it. It can be a blog post, an academic paper, or just some plots you made for your work in the industry. Please contact me (see below) with what you have done, and I would also be happy to promote it in this page.
 
+### Usages of dendextend
+
+Packages:
+* [ComplexHeatmap](http://www.bioconductor.org/packages/release/bioc/vignettes/ComplexHeatmap/inst/doc/ComplexHeatmap.html)
+* [d3heatmap](http://cran.r-project.org/web/packages/d3heatmap/vignettes/Introduction.html)
+
+
+
+
 ## Contact
 
 You are welcome to:
