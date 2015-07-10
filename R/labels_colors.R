@@ -22,9 +22,12 @@
 
 #' @title Retrieve/assign colors to the labels of a dendrogram
 #' @aliases 
+#' labels_col
 #' labels_colors<-
 #' @usage
 #' labels_colors(dend, labels = TRUE,...)
+#' 
+#' labels_col(dend, labels = TRUE,...)
 #' 
 #' labels_colors(dend, ...) <- value
 #' @export
@@ -91,7 +94,8 @@ labels_colors <- function (dend, labels = TRUE, ...) {
 }
 
 
-
+#' @export
+labels_col <- labels_colors
 
 
 
