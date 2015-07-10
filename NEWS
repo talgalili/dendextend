@@ -3,6 +3,7 @@ dendextend 1.0.4 (2015-07-10)
 
 ###NEW FUNCTIONS:
    * labels_col - Added as an alias of labels_colors
+   * labels_cex
 
 dendextend 1.0.3 (2015-07-05)
 ----------------------------------------
