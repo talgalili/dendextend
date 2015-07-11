@@ -941,6 +941,7 @@ dend <- iris[1:40,-5] %>% dist %>% hclust %>% as.dendrogram %>%
    set("labels_colors") %>% set("labels_cex", c(.6,1.5)) %>%
    set("nodes_pch", 19) %>% set("nodes_col", c("orange", "black", "plum", NA))
 
+par(mfrow = rep(0,4))
 circlize_dendrogram(dend)
 # circlize_dendrogram(dend, labels = FALSE)
 # circlize_dendrogram(dend, facing = "inside", labels = FALSE)

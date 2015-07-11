@@ -864,17 +864,71 @@ Solution: use the `circlize_dendrogram` function.
 library(dendextend)
 library(circlize)
 
+# create a dendrogram
 hc <- hclust(dist(datasets::mtcars))
 dend <- as.dendrogram(hc)
 
-
+# modify the dendrogram to have some colors in the branches and labels
 dend <- dend %>% 
    color_branches(k=4) %>% 
    color_labels
 
+# plot the radial plot
 par(mar = rep(0,4))
 # circlize_dendrogram(dend, dend_track_height = 0.8) 
 circlize_dendrogram(dend, labels_track_height = NA, dend_track_height = .4) 
 
 ```
+
+
+
+
+
+### A way to calculate lowest value of h in cut that produces groupings of a given minimum size?
+
+Asked (http://stackoverflow.com/questions/31124810/r-cut-dendrogram-into-groups-with-minimum-size/)[here].
+
+Solution: use the `heights_per_k.dendrogram` function.
+
+This feature is available in the dendextend package with the heights_per_k.dendrogram function (which also has a faster C++ implementation when loading the dendextendRcpp function).
+
+```{r}
+hc <- hclust(dist(USArrests[1:4,]), "ave")
+dend <- as.dendrogram(hc)
+heights_per_k.dendrogram(dend)
+```
+
+As a sidenote, the dendextend package has a `cutree.dendrogram` S3 method for dendrograms (which works very similarly to `cutree` for `hclust` objects).
+
+
+
+### Coloring dendrogram’s end branches (or leaves) based on column number of data frame in R
+
+Asked (http://stackoverflow.com/questions/30062187/coloring-dendrogram-s-end-branches-or-leaves-based-on-column-number-of-data-fr)[here].
+
+Solution: use the `assign_values_to_leaves_edgePar` function.
+
+
+
+```{r}
+aa1 <- c(2,4,6,8)
+bb1 <- c(1,3,7,11)
+aa2 <- c(3,6,9,12)
+bb2 <- c(3,5,7,9)
+data.main <- data.frame(aa1,bb1,aa2,bb2)
+d1 <- dist(t(data.main))
+hcl1 <- hclust(d1)
+# plot(hcl1)
+
+dend <- as.dendrogram(hcl1)
+col_aa_red <- ifelse(grepl("aa", labels(dend)), "red", "blue")
+dend2 <- assign_values_to_leaves_edgePar(dend=dend, value = col_aa_red, edgePar = "col")
+plot(dend2)
+
+```
+
+
+
+
+
 
