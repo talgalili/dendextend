@@ -890,7 +890,7 @@ Asked (http://stackoverflow.com/questions/31124810/r-cut-dendrogram-into-groups-
 
 Solution: use the `heights_per_k.dendrogram` function.
 
-This feature is available in the dendextend package with the heights_per_k.dendrogram function (which also has a faster C++ implementation when loading the dendextendRcpp function).
+This feature is available in the dendextend package with the `heights_per_k.dendrogram` function (which also has a faster C++ implementation when loading the dendextendRcpp function).
 
 ```{r}
 hc <- hclust(dist(USArrests[1:4,]), "ave")
@@ -902,7 +902,7 @@ As a sidenote, the dendextend package has a `cutree.dendrogram` S3 method for de
 
 
 
-### Coloring dendrogram’s end branches (or leaves) based on column number of data frame in R
+### Coloring dendrogram's end branches (or leaves) based on column number of data frame in R
 
 Asked (http://stackoverflow.com/questions/30062187/coloring-dendrogram-s-end-branches-or-leaves-based-on-column-number-of-data-fr)[here].
 

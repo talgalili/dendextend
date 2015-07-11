@@ -273,6 +273,9 @@ dendextendWelcomeMessage <- function(){
 
 
 
+# https://stat.ethz.ch/pipermail/r-help/2010-September/251194.html
+# tools::showNonASCII( readLines("vignettes\\FAQ.Rmd"))
+#
 
 
 
