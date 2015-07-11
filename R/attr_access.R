@@ -262,7 +262,7 @@ get_leaves_branches_attr <- function (dend, attr = c("col", "lwd", "lty"), ...) 
 #' hc <- hclust(dist(USArrests[1:5,]), "ave")
 #' dend <- as.dendrogram(hc)
 #' 
-#' par(mfrow = c(1,2))
+#' par(mfrow = c(1,2), mar = c(5,2,1,0))
 #' dend <- dend %>% 
 #'          color_branches(k = 3) %>%
 #'          set("branches_lwd", c(2,1,2)) %>%

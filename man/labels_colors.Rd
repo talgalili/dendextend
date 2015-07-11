@@ -66,6 +66,6 @@ plot(dend)
 \seealso{
 \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
 \code{\link{hclust}}, \code{\link{color_labels}}, \code{\link{color_branches}},
-\link{assign_values_to_leaves_edgePar}
+\link{assign_values_to_leaves_edgePar}, \link{get_leaves_branches_col}
 }
 
