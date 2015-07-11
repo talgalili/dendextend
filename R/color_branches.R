@@ -116,7 +116,8 @@ all_unique <- function(x, ...) {
 #' 
 #' @seealso \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
 #' \code{\link{hclust}}, \code{\link{labels_colors}},
-#' \code{\link{branches_attr_by_clusters}}
+#' \code{\link{branches_attr_by_clusters}}, \link{get_leaves_branches_col},
+#' \link{color_labels}
 #' 
 #' @examples
 #' 

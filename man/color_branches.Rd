@@ -190,6 +190,7 @@ Tal Galili, extensively based on code by Gregory Jefferis
 \seealso{
 \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
 \code{\link{hclust}}, \code{\link{labels_colors}},
-\code{\link{branches_attr_by_clusters}}
+\code{\link{branches_attr_by_clusters}}, \link{get_leaves_branches_col},
+\link{color_labels}
 }
 
