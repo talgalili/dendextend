@@ -90,6 +90,40 @@ plot(dend, main = "A color for every Species")
 ```
 
 
+
+### How to color a dendrogram's labels according to defined groups? (in R)
+
+Asked (http://stackoverflow.com/questions/31117849/how-to-color-a-dendrograms-labels-according-to-defined-groups-in-r)[here].
+
+Solution: use the `color_labels` function.
+
+I suspect the function you are looking for is either `color_labels` or `get_leaves_branches_col`. The first color your labels based on `cutree` (like `color_branches` do) and the second allows you to get the colors of the branch of each leaf, and then use it to color the labels of the tree (if you use unusual methods for coloring the branches (as happens when using `branches_attr_by_labels`). For example:
+
+```{r}
+ # define dendrogram object to play with:
+ hc <- hclust(dist(USArrests[1:5,]), "ave")
+ dend <- as.dendrogram(hc)
+
+ library(dendextend)
+ par(mfrow = c(1,2), mar = c(5,2,1,0))
+ dend <- dend %>%
+          color_branches(k = 3) %>%
+          set("branches_lwd", c(2,1,2)) %>%
+          set("branches_lty", c(1,2,1))
+ 
+ plot(dend)
+
+ dend <- color_labels(dend, k = 3)
+ # The same as:
+ # labels_colors(dend)  <- get_leaves_branches_col(dend)
+ plot(dend)
+```
+
+
+Either way, you should always have a look at the `set` function, for ideas on what can be done to your dendrogram (this saves the hassle of remembering all the different functions names).
+
+
+
 ### How to color a dendrogram's branches/labels based on cluster (i.e.: cutree result)
 
 Use the `color_branches` and `color_labels` functions, with the `k` (or`h`) parameter:
