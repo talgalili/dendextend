@@ -472,7 +472,8 @@ color_labels_by_labels <- function(dend, labels, col, warn = dendextend_options(
 #' This function is in the style of \code{\link{color_branches}}, and 
 #' based on \code{\link{labels_colors}}.
 #' @seealso \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
-#' \code{\link{hclust}}, \code{\link{labels_colors}}, \code{\link{color_branches}}
+#' \code{\link{hclust}}, \code{\link{labels_colors}}, \code{\link{color_branches}},
+#' \link{assign_values_to_leaves_edgePar}
 #' @examples
 #' 
 #' \dontrun{

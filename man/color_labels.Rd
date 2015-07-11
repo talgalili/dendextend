@@ -70,6 +70,7 @@ plot(d5gr)
 }
 \seealso{
 \code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
-\code{\link{hclust}}, \code{\link{labels_colors}}, \code{\link{color_branches}}
+\code{\link{hclust}}, \code{\link{labels_colors}}, \code{\link{color_branches}},
+\link{assign_values_to_leaves_edgePar}
 }
 

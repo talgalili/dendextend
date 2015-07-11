@@ -63,4 +63,9 @@ labels_colors(dend) <- NULL
 labels_colors(dend)
 plot(dend)
 }
+\seealso{
+\code{\link[dendextend]{cutree}},\code{\link{dendrogram}},
+\code{\link{hclust}}, \code{\link{color_labels}}, \code{\link{color_branches}},
+\link{assign_values_to_leaves_edgePar}
+}
 
