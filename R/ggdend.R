@@ -303,7 +303,7 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
 
 
    get_leaves_edgePar_attr_par <- function(par) {
-      values <- sapply(leaves_edgePar_attr,  `[[`, name = par)
+      values <- sapply(leaves_edgePar_attr,  `[`, name = par)
       null2NA <- function(x) ifelse(is.null(x), NA, x)
       values <- sapply(values, null2NA) # in case the attr is missing, it fills the NULL with NA
       unlist(values) # like doing edgePar_attr[[1]] ["col"]

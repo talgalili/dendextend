@@ -1,10 +1,13 @@
-dendextend 1.0.4 (2015-07-10)
+dendextend 1.0.4 (2015-07-14)
 ----------------------------------------
 
 ###NEW FUNCTIONS:
    * labels_col - Added as an alias of labels_colors
    * labels_cex
    * circlize_dendrogram - a function for creating radial dendrogram plots
+
+###BUG FIXES:
+   * as.ggdend.dendrogram - fix "Error in FUN(X[[i]], ...) : subscript out of bounds" problem for some trees.
 
 dendextend 1.0.3 (2015-07-05)
 ----------------------------------------
