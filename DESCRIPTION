@@ -64,7 +64,7 @@ Enhances: ggdendro,
 VignetteBuilder: knitr
 LazyData: true
 License: GPL-2 | GPL-3
-URL: https://github.com/talgalili/dendextend/,
-    http://cran.r-project.org/package=dendextend,
+URL: http://cran.r-project.org/package=dendextend,
+    https://github.com/talgalili/dendextend/,
     http://www.r-statistics.com/tag/dendextend/
 BugReports: https://github.com/talgalili/dendextend/issues
