@@ -46,7 +46,8 @@
 #' \link[circlize]{circos.dendrogram}
 #' 
 #' @source 
-#' This code is based on the work of Zuguang Gu
+#' This code is based on the work of Zuguang Gu. If you use the function, please cite both
+#' dendextend (see: \code{citation("dendextend")}), as well as the circlize package (see: \code{citation("circlize")}).
 #' 
 #' @return 
 #' The dend that was used for plotting.
