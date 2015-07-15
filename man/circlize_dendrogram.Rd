@@ -34,6 +34,9 @@ The dend that was used for plotting.
 \description{
 Plot a circlized dendrograms using the circlize package (must be installed for the function to work).
 
+This type of plot is also sometimes called fan tree plot (although the name fan-plot is also used for a different
+plot in time series analysis), radial tree plot, polar tree plot, circular tree plot, and probably other names as well.
+
 An advantage for using the circlize package directly is for plotting a
 circular dendrogram so that you can add more graphics for the elements
 in the tree just by adding more tracks using \link[circlize]{circos.track}.
