@@ -545,6 +545,19 @@ colour_labels <- color_labels
 
 
 
+lty_branches <- function(dend, k=NULL, h=NULL, 
+                  lty,
+                 ...) {
+   
+   clusters <- cutree(dend, k = k, h = h)[order.dendrogram(dend)]
+   if(missing( lty))  lty <- clusters
+   dend <- branches_attr_by_clusters(dend, clusters, values =  lty, attr = "lty",
+                             branches_changed_have_which_labels = c("all"))
+   dend   
+}
+# dend <- USArrests %>% dist %>% hclust(method = "ave") %>% as.dendrogram
+# dend %>% lty_branches(k = 3) %>% plot
+
 # 
 # library(microbenchmark)
 # microbenchmark(

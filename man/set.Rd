@@ -23,6 +23,7 @@ set(dend, ...)
             "hang_leaves",
             "rank_branches",
             "branches_k_color",
+            "branches_k_lty",
             "branches_col",
             "branches_lwd",
             "branches_lty",
@@ -84,7 +85,8 @@ The "what" parameter" can accept the following options:
 \item{nodes_cex - set the nodes' point size (\link{assign_values_to_nodes_nodePar})}
 \item{nodes_col - set the nodes' point color (\link{assign_values_to_nodes_nodePar})}
 \item{hang_leaves - hang the leaves (\link{hang.dendrogram})}
-\item{branches_k_color - color the branches (\link{color_branches})}
+\item{branches_k_color - color the branches (\link{color_branches}), a \code{k} parameter needs to be supplied.}
+\item{branches_k_lty - updates the lwd of the branches (similar to branches_k_color), a \code{k} parameter needs to be supplied.}
 \item{branches_col - set the color of branches (\link{assign_values_to_branches_edgePar}) }
 \item{branches_lwd - set the line width of branches (\link{assign_values_to_branches_edgePar}) }
 \item{branches_lty - set the line type of branches (\link{assign_values_to_branches_edgePar}) }

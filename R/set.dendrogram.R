@@ -43,6 +43,7 @@
 #'             "hang_leaves",
 #'             "rank_branches",
 #'             "branches_k_color",
+#'             "branches_k_lty",
 #'             "branches_col",
 #'             "branches_lwd",
 #'             "branches_lty",
@@ -95,7 +96,8 @@
 #' \item{nodes_cex - set the nodes' point size (\link{assign_values_to_nodes_nodePar})}
 #' \item{nodes_col - set the nodes' point color (\link{assign_values_to_nodes_nodePar})}
 #' \item{hang_leaves - hang the leaves (\link{hang.dendrogram})}
-#' \item{branches_k_color - color the branches (\link{color_branches})}
+#' \item{branches_k_color - color the branches (\link{color_branches}), a \code{k} parameter needs to be supplied.}
+#' \item{branches_k_lty - updates the lwd of the branches (similar to branches_k_color), a \code{k} parameter needs to be supplied.}
 #' \item{branches_col - set the color of branches (\link{assign_values_to_branches_edgePar}) }
 #' \item{branches_lwd - set the line width of branches (\link{assign_values_to_branches_edgePar}) }
 #' \item{branches_lty - set the line type of branches (\link{assign_values_to_branches_edgePar}) }
@@ -152,6 +154,9 @@
 #' dend %>% set("branches_k_col", c(1,2)) %>% plot 
 #' dend %>% set("branches_k_col", c(1,2,3), k=3) %>% plot
 #' dend %>% set("branches_k_col", k=3) %>% plot 
+#' 
+#' dend %>% set("branches_k_lty", k=3) %>% plot 
+#' dend %>% set("branches_k_col", k=3) %>% set("branches_k_lty", k=3) %>% plot 
 #' 
 #' dend %>% set("branches_col", c(1,2, 1, 2, NA)) %>% plot
 #' dend %>% set("branches_lwd", c(2,1,2)) %>% plot
@@ -265,6 +270,7 @@ set.dendrogram <-
                      "hang_leaves",
                      "rank_branches",
                      "branches_k_color",
+                     "branches_k_lty",
                      "branches_col",
                      "branches_lwd",
                      "branches_lty",
@@ -297,8 +303,9 @@ set.dendrogram <-
                        nodes_col =assign_values_to_nodes_nodePar(dend, value, "col", ...),
                        hang_leaves = hang.dendrogram(dend, hang = ifelse(missing(value), .1, value),...),
                        rank_branches = rank_branches(dend, ...),
-                       branches_k_color = color_branches(dend, col = value,  ...),
-                       branches_col = assign_values_to_branches_edgePar(dend, value = value, edgePar = "col", ...),
+                     branches_k_color = color_branches(dend, col = value,  ...),
+                     branches_k_lty = lty_branches(dend, lty = value,  ...),
+                     branches_col = assign_values_to_branches_edgePar(dend, value = value, edgePar = "col", ...),
                        branches_lwd = assign_values_to_branches_edgePar(dend, value = value, edgePar = "lwd", ...),
                        branches_lty = assign_values_to_branches_edgePar(dend, value = value, edgePar = "lty", ...),
                        by_labels_branches_col = branches_attr_by_labels(dend, labels = value, attr = "col", ...),
