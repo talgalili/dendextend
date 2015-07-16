@@ -62,8 +62,8 @@ library("dendextendRcpp")
 Vignettes: 
 
 * [Introduction to dendextend](http://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Introduction%20to%20dendextend.html)
-* [Frequantly asked questions](http://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Frequantly%20asked%20questions.html)
-* [Hierarchical cluster analysis on famous data-sets - enhanced with the dendextend package](http://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Hierarchical%20cluster%20analysis%20on%20famous%20data-sets%20-%20enhanced%20with%20the%20dendextend%20package.html)
+* [Frequently asked questions](http://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Frequently%20asked%20questions.html)
+* [Hierarchical cluster analysis on famous data sets - enhanced with the dendextend package](http://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Hierarchical%20cluster%20analysis%20on%20famous%20data%20sets%20-%20enhanced%20with%20the%20dendextend%20package.html)
 * [Introduction vignette (older)](https://github.com/talgalili/dendextend/blob/master/inst/doc/dendextend-tutorial.pdf)  (older)
 
 ## Share your dendrograms!
