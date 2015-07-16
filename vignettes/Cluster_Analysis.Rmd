@@ -17,6 +17,7 @@ library(knitr)
 knitr::opts_chunk$set(
    cache = TRUE,
    dpi = 60,
+   # dev = "svg",
   # comment = "#>",
   tidy = FALSE)
 
@@ -141,8 +142,16 @@ legend("topleft", legend = iris_species, fill = rainbow_hcl(3))
 # is.character(labels(dend)) # labels are no longer "integer"
 ```
 
+The same can be presented in a circular layout:
 
-This visualization easily demonstrates how the separation of the hierarchical clustering is very good with the "Setosa" species, but misses in labeling many "Versicolor" species as "Virginica".
+```{r, fig.width=7, fig.height=7}
+# Requires that the circlize package will be installed
+par(mar = rep(0,4))
+circlize_dendrogram(dend)
+```
+
+
+These visualizations easily demonstrates how the separation of the hierarchical clustering is very good with the "Setosa" species, but misses in labeling many "Versicolor" species as "Virginica".
 
 The hanging of the tree also helps to locate extreme observations. For example, we can see that observation "virginica (107)" is not very similar to the Versicolor species, but still, it is among them. Also, "Versicolor (71)" is located too much "within" the group of Virginica flowers.
 
@@ -298,9 +307,14 @@ for(i in 1:8) {
 
 It seems that the cophenetic correlation is very biased towards the influence of the main clusters. Another correlation measure to use is the `cor_common_nodes` correlation (giving the proportion of nodes which share the exact same list of labels in both dendrograms). We can also check it out:
 
-```{r, fig.width=8, fig.height=8}
+```{r}
 iris_dendlist_cor2 <- cor.dendlist(iris_dendlist, method = "common")
 iris_dendlist_cor2
+```
+
+And plot it:
+
+```{r, fig.width=8, fig.height=8}
 corrplot::corrplot(iris_dendlist_cor2, "pie", "lower")
 ```
 
