@@ -1,5 +1,5 @@
 ---
-title: "Hierarchical cluster analysis on famous data-sets - enhanced with the _dendextend_ package"
+title: "Hierarchical cluster analysis on famous data sets - enhanced with the _dendextend_ package"
 date: "`r Sys.Date()`"
 author: "Tal Galili"
 output: 
@@ -8,7 +8,7 @@ output:
 ---
 <!--
 %\VignetteEngine{knitr::rmarkdown}
-%\VignetteIndexEntry{Hierarchical cluster analysis on famous data-sets}
+%\VignetteIndexEntry{Hierarchical cluster analysis on famous data sets}
 -->
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
@@ -28,19 +28,19 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-This document demonstrates, on several famous data-sets, how the _dendextend_ R package can be used to enhance Hierarchical Cluster Analysis (through better visualization and sensitivity analysis). 
+This document demonstrates, on several famous data sets, how the _dendextend_ R package can be used to enhance Hierarchical Cluster Analysis (through better visualization and sensitivity analysis). 
 
 
 
 ## iris - Edgar Anderson's Iris Data
 
-### background
+### Background
 
 > The famous (Fisher's or Anderson's) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica. (from `?iris`)
 
 
 
-The [Iris flower data set](https://en.wikipedia.org/wiki/Iris_flower_data_set) is fun for learning supervised classification algorithms, and is known as a difficult case for unsupervised learning. This is easily seen through the following Scatter PLot Matrix (SPLOM):
+The [Iris flower data set](https://en.wikipedia.org/wiki/Iris_flower_data_set) is fun for learning supervised classification algorithms, and is known as a difficult case for unsupervised learning. This is easily seen through the following Scatter Plot Matrix (SPLOM):
 
 Define variables:
 
@@ -69,7 +69,7 @@ par(xpd = NA)
 
 ```
 
-We can see that the *Setosa* species are distinctly different than *Versicolor* and *Virginica* (they have lower petal length and width). But *Versicolor* and *Virginica* can not easily be separated based on measurements of their Sepal and Patel width/length.
+We can see that the *Setosa* species are distinctly different from *Versicolor* and *Virginica* (they have lower petal length and width). But *Versicolor* and *Virginica* cannot easily be separated based on measurements of their sepal and petal width/length.
 
 The same conclusion can be made by looking at the parallel coordinates plot of the data:
 
@@ -93,7 +93,7 @@ par(xpd = NA)
 ### The 3 clusters from the "complete" method vs the real species category
 
 
-The default hierarchical clustering method in `hclust` is "complete". We can visualize the result of running it by turning the object to a dendrogram and making several adjustments to the object, such as: changing the labels, coloring the labels based on the real species category, and color the branches based on cutting the tree to 3 produce clusters.
+The default hierarchical clustering method in `hclust` is "complete". We can visualize the result of running it by turning the object to a dendrogram and making several adjustments to the object, such as: changing the labels, coloring the labels based on the real species category, and coloring the branches based on cutting the tree into three clusters.
 
 
 
@@ -112,17 +112,17 @@ dend <- rotate(dend, 1:150)
 # Color the branches based on the clusters:
 dend <- color_branches(dend, k=3) #, groupLabels=iris_species)
 
-# manually match the labels, as much as possible, to the real classification of the flowers:
+# Manually match the labels, as much as possible, to the real classification of the flowers:
 labels_colors(dend) <-
    rainbow_hcl(3)[sort_levels_values(
       as.numeric(iris[,5])[order.dendrogram(dend)]
    )]
 
-# We'll add the flower type to the labels:
+# We shall add the flower type to the labels:
 labels(dend) <- paste(as.character(iris[,5])[order.dendrogram(dend)],
                            "(",labels(dend),")", 
                            sep = "")
-# we hang the dendrogram a bit:
+# We hang the dendrogram a bit:
 dend <- hang.dendrogram(dend,hang_height=0.1)
 # reduce the size of the labels:
 # dend <- assign_values_to_leaves_nodePar(dend, 0.5, "lab.cex")
@@ -130,7 +130,7 @@ dend <- set(dend, "labels_cex", 0.5)
 # And plot:
 par(mar = c(3,3,3,7))
 plot(dend, 
-     main = "Clustered Iris dataset
+     main = "Clustered Iris data set
      (the labels give the true flower species)", 
      horiz =  TRUE,  nodePar = list(cex = .007))
 legend("topleft", legend = iris_species, fill = rainbow_hcl(3))
@@ -142,9 +142,9 @@ legend("topleft", legend = iris_species, fill = rainbow_hcl(3))
 ```
 
 
-This visualization easily demonstrates how the separation of the Hierarchical clustering is very good with the "Setosa" species, but misses in labeling many "Versicolor" species as "Virginica".
+This visualization easily demonstrates how the separation of the hierarchical clustering is very good with the "Setosa" species, but misses in labeling many "Versicolor" species as "Virginica".
 
-The hanging of the tree also helps to locate extreme observations. For example, we can see that observation "virginica (107)" is not very similar to the Versicolor species, but still, it is among them. Also, "Versicolor (71)" is too much "within" the Virginica bush, and it is a wonder why that is.  
+The hanging of the tree also helps to locate extreme observations. For example, we can see that observation "virginica (107)" is not very similar to the Versicolor species, but still, it is among them. Also, "Versicolor (71)" is located too much "within" the group of Virginica flowers.
 
 ```{r, echo=FALSE, eval=FALSE}
 # some_col_func <- function(n, top_color = "red4") {
@@ -164,7 +164,7 @@ The hanging of the tree also helps to locate extreme observations. For example, 
 
 We can also explore the data using a heatmap. The rows are ordered based on the order of the hierarchical clustering (using the "complete" method). The colored bar indicates the species category each row belongs to. The color in the heatmap indicates the length of each measurement (from light yellow to dark red).
 
-In the heatmap we also see how the Setosa species has low Petal values (in light yellow), but it is very difficult to see any clear distinction in between the other two species.
+In the heatmap we also see how the Setosa species has low petal values (in light yellow), but it is very difficult to see any clear distinction between the other two species.
 
 
 ```{r}
@@ -174,7 +174,7 @@ some_col_func <- function(n) rev(colorspace::heat_hcl(n, c = c(80, 30), l = c(30
 # scaled_iris2 <- iris2 %>% as.matrix %>% scale
 # library(gplots)
 gplots::heatmap.2(as.matrix(iris2), 
-          main = "Heatmap for the Iris dataset",
+          main = "Heatmap for the Iris data set",
           srtCol = 20,
           dendrogram = "row",
           Rowv = dend,
@@ -192,10 +192,10 @@ gplots::heatmap.2(as.matrix(iris2),
 ```
 
 
-### Similarity/difference between various clustering algorithems
+### Similarity/difference between various clustering algorithms
 
 
-We may ask ourselves how much different results we could get if we would use different clustering algorithms  would different clustering algorithms (`hclust` has 8 different algorithms implemented). For the purpose of this analysis we will create all 8 hclust objects, and chain them together into a single `dendlist` object (which, as the name implies, can hold a bunch of dendrograms together for the purpose of further analysis).
+We may ask ourselves how many different results we could get if we would use different clustering algorithms (`hclust` has 8 different algorithms implemented). For the purpose of this analysis, we will create all 8 hclust objects, and chain them together into a single `dendlist` object (which, as the name implies, can hold a bunch of dendrograms together for the purpose of further analysis).
 
 ```{r}
 
@@ -210,7 +210,7 @@ names(iris_dendlist) <- hclust_methods
 iris_dendlist
 ```
 
-Next, we can look at the cophenetic correlation between each clustering result using `cor.dendlist` (this can be nicely plotted using the `corrplot` function from the _corrplot_ package):
+Next, we can look at the cophenetic correlation between each clustering result using `cor.dendlist`. (This can be nicely plotted using the `corrplot` function from the _corrplot_ package):
 
 ```{r, fig.width=8, fig.height=8}
 iris_dendlist_cor <- cor.dendlist(iris_dendlist)
@@ -219,7 +219,7 @@ corrplot::corrplot(iris_dendlist_cor, "pie", "lower")
 ```
 
 
-From the above figure we can easily see that most clustering methods yield very similar results, except for the complete method (the default method in `hclust`), which yields a correlation measure of around 0.6. 
+From the above figure, we can easily see that most clustering methods yield very similar results, except for the complete method (the default method in `hclust`), which yields a correlation measure of around 0.6. 
 
 The default cophenetic correlation uses pearson's measure, but what if we use the spearman's correlation coefficient?
 
@@ -228,15 +228,15 @@ iris_dendlist_cor_spearman <- cor.dendlist(iris_dendlist, method_coef = "spearma
 corrplot::corrplot(iris_dendlist_cor_spearman, "pie", "lower")
 ```
 
-We can see that the correlations are not so strong, indicating a behaviour which is dependent on some items which are very distant from one another having an influence on the pearson's correlation more than the spearman one.
+We can see that the correlations are not so strong, indicating a behavior that is dependent on some items which are very distant from one another having an influence on the pearson's correlation more than that of the spearman's correlation.
 
 
 To further explore the similarity and difference between the alternative clustering algorithms, we can turn to using the `tanglegram` function (which works for either two `dendrogram`s, or a `dendlist`). 
 
-First, let's see two methods which are very similar: ward.D vs ward.D2. From a first glance we can see how they both give the same result for the top 3 clusters. However, since they are both ladderizes (i.e.: having their smaller branch rotated to be higher for each node), we can see that their clustering is not identical (due to the crossings).
+First, let us see two methods which are very similar: ward.D vs ward.D2. From a first glance, we can see how they both give the same result for the top 3 clusters. However, since they are both ladderizes (i.e.: having their smaller branch rotated to be higher for each node), we can see that their clustering is not identical (due to the crossings).
 
 ```{r, fig.height=5}
-# the which parameter allows us to pick the elements in the list to compare
+# The `which` parameter allows us to pick the elements in the list to compare
 iris_dendlist %>% dendlist(which = c(1,8)) %>% ladderize %>% 
    set("branches_k_color", k=3) %>% 
    # untangle(method = "step1side", k_seq = 3:20) %>%
@@ -245,10 +245,10 @@ iris_dendlist %>% dendlist(which = c(1,8)) %>% ladderize %>%
 ```
 
 
-Next, let's look at two methods which also have a high cophenetic correlation: ward.D vs the average:
+Next, let us look at two methods which also have a high cophenetic correlation: ward.D vs the average:
 
 ```{r, fig.height=5}
-# the which parameter allows us to pick the elements in the list to compare
+# The `which` parameter allows us to pick the elements in the list to compare
 iris_dendlist %>% dendlist(which = c(1,4)) %>% ladderize %>% 
    set("branches_k_color", k=2) %>% 
    # untangle(method = "step1side", k_seq = 3:20) %>%
@@ -257,17 +257,17 @@ iris_dendlist %>% dendlist(which = c(1,4)) %>% ladderize %>%
 
 We see that when it comes to the major clusters, the two algorithms perform quite similarly.
 
-However, how are they doing inside each of the clusters? It is quite difficult to compare the two because of the high value in ward.D. For comparison purposes, we can "rank" the heights of the branches in the two dendrogram (while still preserving their internal order). Next, we can highlight the shared common sub-trees (With different colors), and the distinct edges (with a dashed line):
+However, how are they doing inside each of the clusters? It is quite difficult to compare the two because of the high value in ward.D. For comparison purposes, we can "rank" the heights of the branches in the two dendrograms (while still preserving their internal order). Next, we can highlight the shared common sub-trees (with different colors), and the distinct edges (with a dashed line):
 
 ```{r, fig.height=5}
-# the which parameter allows us to pick the elements in the list to compare
+# The `which` parameter allows us to pick the elements in the list to compare
 iris_dendlist %>% dendlist(which = c(1,4)) %>% ladderize %>% 
    # untangle(method = "step1side", k_seq = 3:20) %>%
    set("rank_branches") %>%
    tanglegram(common_subtrees_color_branches = TRUE)
 ```
 
-We have 39 sub-trees which are identical between the two dendrograms:
+We have 39 sub-trees that are identical between the two dendrograms:
 
 ```{r}
 length(unique(common_subtrees_clusters(iris_dendlist[[1]], iris_dendlist[[4]]))[-1])
@@ -276,10 +276,9 @@ length(unique(common_subtrees_clusters(iris_dendlist[[1]], iris_dendlist[[4]]))[
 
 What we can learn from this is that actually the two algorithms seem to give quite different results in the high resolution (higher cuts). However, since both capture the two major clusters (Setosa vs the others), they are considered quite similar by the cophenetic correlation.
 
-But what about the "complete" method (which got a lower cophenetic correlation with the other methods)? When we compare complete vs average, we can quickly see that "complete" the splitting of the clusters is much more balanced, and mixes the "Setosa" species with another one. This is probably the cause for the big difference found in the cophenetic correlation between the "complete method" and the other clustering methods:
+But what about the "complete" method (that got a lower cophenetic correlation than the other methods)? When we compare "complete" vs "average", we can quickly see that in the "complete" method, the splitting of the clusters is much more balanced, and mixes the "Setosa" species with another one. This is probably the cause for the big difference found in the cophenetic correlation between the "complete method" and the other clustering methods:
 
 ```{r, fig.height=5}
-# the which parameter allows us to pick the elements in the list to compare
 iris_dendlist %>% dendlist(which = c(3,4)) %>% ladderize %>% 
    untangle(method = "step1side", k_seq = 2:6) %>%
    set("branches_k_color", k=2) %>% 
@@ -287,7 +286,7 @@ iris_dendlist %>% dendlist(which = c(3,4)) %>% ladderize %>%
 ```
 
 
-We can quickly plot all 8 methods to see this phenomenon (i.e.: that complete has its smaller cluster larger than it is in all the other clustering methods):
+We can quickly plot all 8 methods to see this phenomenon (i.e.: that "complete" has its smaller cluster larger than it is in all the other clustering methods):
 
 ```{r, fig.height=15}
 par(mfrow = c(4,2))
@@ -305,14 +304,14 @@ iris_dendlist_cor2
 corrplot::corrplot(iris_dendlist_cor2, "pie", "lower")
 ```
 
-This gives us an another perspective on our clustering algorithms. We can see that most methods have around 75% common nodes with one another. centroid and median seem relatively close to one another, as well as ward.D2 and ward.D to one another and to complete, average, and mcquitty (as compared to the other methods).
+This gives us another perspective on our clustering algorithms. We can see that most methods have around 75% common nodes with one another. Centroid and median seem relatively close to one another, as well as ward.D2 and ward.D to one another and to complete, average, and mcquitty (as compared to the other methods).
 
 
 ### Clustering prediction of the 3 species classes
 
 Lastly, we would like to see which of the different clustering algorithms came the closest to detecting the 3 flower species (when using a cut of k=3).
 
-For this purpose we compare the clustering solution of each algorithm with the real clusters, using the Fowlkes-Mallows Index (also using in the package for the `Bk_plot`). This measure is similar to rand (or rand adjusted) index, and gives a value of 1 when the two clusters confirm, and 0 when they do not.
+For this purpose, we compare the clustering solution of each algorithm with the real clusters, using the Fowlkes-Mallows Index (also using in the package for the `Bk_plot`). This measure is similar to rand (or rand adjusted) index, and gives a value of 1 when the two clusters confirm, and 0 when they do not.
 
 ```{r}
 
@@ -331,38 +330,38 @@ dotchart(sort(clusters_performance), xlim = c(0.7,1),
          pch = 19)
 ```
 
-We can see that the "median" method did the best, although similar results were achieved by ward.D2, average, ward.D, and mcquitty. However, the complete, centroid, and single method did quite worse in our case.
+We can see that the "median" method did the best, although similar results were achieved by ward.D2, average, ward.D, and mcquitty. However, the complete, centroid, and single method did worse in our case.
 
 
 
 
 ### Conclusion
 
-The Iris data-set is only 4-dimensional, making it possible to explore using pairs plot (SPLOM) or parallel coordinates plot. It is clear from these that two main clusters are visible, while the separation of the third cluster is difficult.
+The Iris data set is only 4-dimensional, making it possible to explore using pairs plot (SPLOM) or parallel coordinates plot. It is clear from these that two main clusters are visible, while the separation of the third cluster is difficult.
 
-In the above analysis we learned that the complete method fails to do the proper separation of the two main clusters when cut in k=2 (but succeeds in doing it, if moving to k=3 clusters). This is different than all the other 7 methods available in `hclust`, which do succeed in separating the 2 main clusters from the beginning (i.e.: for k=2).
+In the above analysis, we learned that the complete method fails to do the proper separation of the two main clusters when cut in k=2 (but succeeds in doing it, if moving to k=3 clusters). This is different from all the other 7 methods available in `hclust`, which do succeed in separating the 2 main clusters from the beginning (i.e.: for k=2).
 
 We also noticed that all clustering algorithms share a relatively high proportion of common nodes (between 75% to 90%).
 
-Lastly, when it came to separating the flowers to the 3 species, the median clustering method did the best, while the single method did the worst in this regards. 
+Lastly, when it came to trying to separating the flowers into 3 species, the median clustering method did the best, while the single method did the worst in this regard. 
 
-While the Iris data-set is well known, I hope the above analysis was able to offer some new perspectives on the performance of the different hierarchical clustering methods.
-
-
-
-## khan - Microarray gene expression dataset from Khan et al., 2001. Subset of 306 genes.
+While the Iris data set is well known, I hope the above analysis was able to offer some new perspectives on the performance of the different hierarchical clustering methods.
 
 
-### background
 
-> Khan contains gene expression profiles of four types of small round blue cell tumours of childhood (SRBCT) published by Khan et al. (2001). It also contains further gene annotation retrieved from SOURCE at http://source.stanford.edu/.
+## khan - Microarray gene expression data set from Khan et al., 2001. Subset of 306 genes.
 
-This interesting dataset offers two interesting items:
 
-* train: data.frame of 306 rows and 64 columns. The training dataset of 64 arrays and 306 gene expression values
-* test: data.frame, of 306 rows and 25 columns. The test dataset of 25 arrays and 306 genes expression values
+### Background
 
-This way we can create an hierarchical clustering on the 306 genes expression values on the train and the test data and compare the two to see how stable are the results.
+> Khan contains gene expression profiles of four types of small, round, blue cell tumors of childhood (SRBCT) published by Khan et al. (2001). It also contains further gene annotation retrieved from SOURCE at http://source.stanford.edu/.
+
+This interesting data set offers two interesting items:
+
+* train: data.frame of 306 rows and 64 columns. The training data set of 64 arrays and 306 gene expression values
+* test: data.frame, of 306 rows and 25 columns. The test data set of 25 arrays and 306 genes expression values
+
+This way we can create a hierarchical clustering on the 306 genes expression values on the train and the test data and compare the two to see the stability of the results.
 
 We define the variables:
 
@@ -382,19 +381,19 @@ d_train_test <- dendlist(train = d_train, test = d_test)
 
 ### Comparing the train vs test dendrograms
 
-Using a cophenetic correlation we can see the two trees have some similarity (0.57):
+Using a cophenetic correlation, we can see the two trees have some similarity (0.57):
 
 ```{r}
 d_train_test %>% cor.dendlist
 ```
 
-However, when looking at the cophenetic correlation with the spearman correlation coefficiant the value is lower (0.49) indicating that some of the similarity is due to a small number of items, distant from the others, which are correlated similarly in the two trees:
+However, when looking at the cophenetic correlation with the spearman correlation coefficiant, the value is lower (0.49) indicating that some of the similarity is due to a small number of items, distant from the others, which are correlated similarly in the two trees:
 
 ```{r}
 d_train_test %>% cor.dendlist(method_coef = "spearman")
 ```
 
-We may ask at which level of cutting the dendrogram we get the "best" level of similarity. For this we may turn to the Bk plot. The plots shows us that at around 7 clusters the groups in the two are starting to look significantly similar (note that significantly does not mean substantially)
+We may ask at which level of cutting the dendrogram we get the "best" level of similarity. For this we may turn to the Bk plot. The plots shows us that at around 7 clusters the groups in the two are starting to look significantly similar. (Note that significantly does not mean substantially)
 
 ```{r}
 Bk_plot(d_train, d_test, k = 2:30, xlim = c(2,30))
@@ -409,7 +408,7 @@ train_branches_colors <- get_leaves_branches_col(pre_tang_d_train_test$train)
 pre_tang_d_train_test %>% tanglegram(fast = TRUE, color_lines = train_branches_colors)
 ```
 
-We can see that the top most (small) cluster is somewhat preserved between the two trees. However, a large spageti-like tangle of lines is indicating the the two trees are far from beeing identical.
+We can see that the top most (small) cluster is somewhat preserved between the two trees. However, a large spaghetti-like tangle of lines is indicating that the two trees are far from being identical.
 
 ```{r, echo = FALSE}
 # dput(d_train_test_common)
@@ -444,7 +443,7 @@ d_train_test_common <- structure(list(train = structure(list(structure(list(stru
 "test"))
 ```
 
-If we look only on subtrees of the two dendrograms so that they only include  genes that are clustered with genes in both trees, we get only 14 genes (while the original trees had 306 genes). We can see how we have several groups of pairs of genes, and one group with four genes clustered together in both trees:
+If we look only at subtrees of the two dendrograms so that they include only genes that are clustered with genes in both trees, we get only 14 genes (while the original trees had 306 genes). We can see how we have several groups of pairs of genes, and one group with four genes clustered together in both trees:
 
 ```{r}
 # This was calculated before
@@ -464,15 +463,15 @@ d_train_test_common %>% nleaves
 
 ### Conclusion
 
-To conclude: we see that the clustering alogirthm resulted in trees which are singnificantly similar in both the training and the test datasets beyond chance, but that this similarity is ristricted to only a very small proportion of genes.
+To conclude: we see that the clustering algorithm resulted in trees which are significantly similar in both the training and the test data sets beyond chance, but that this similarity is restricted to only a very small proportion of genes.
 
 
 ## votes.repub - Votes for Republican Candidate in Presidential Elections
 
 
-### background
+### Background
 
-> A data frame with the percents of votes given to the republican candidate in presidential elections from 1856 to 1976. Rows represent the 50 states, and columns the 31 elections.
+> This is a data frame with the percentage of votes given to the republican candidate in presidential elections from 1856 to 1976. Rows represent the 50 states, and columns the 31 elections.
 
 
 > Source: S. Peterson (1973): A Statistical History of the American Presidential Elections. New York: Frederick Ungar Publishing Co.
@@ -485,7 +484,7 @@ Define variables:
 votes.repub <- cluster::votes.repub
 ```
 
-This data can be visualized using a (costumed made) parallel coordinates plot:
+These data can be visualized using a (costumed made) parallel coordinates plot:
 
 
 ```{r, fig.height=5}
@@ -506,7 +505,7 @@ title("Votes for Republican Candidate\n in Presidential Elections \n (each line 
 
 This is a nice example when the parallel coordinates plot has some serious limitations: it does not help us detect the states, we fail to see the missing value patterns, and it is tricky to see clusters in general (due to the large number of threads).
 
-For this data, it can be quite helpful to see a heatmap of the votes across the years. The ordering of the rows is tricky. First, the distance of the vectors (later used for the clustering) should be done after transformation (since we are dealing with proportion of votes). In this case I used the arcsin transformation (a logit transformation could also work, but the arcsin is safer for dealing with 0/1 observations). But given the clusters, we wish to order the leaves (as much as possible), so to take into account the missing value clusterings. So we in fact have two clusters, one for the raw values, and another for the "shadow matrix" (i.e.: the matrix with 0/1, indicating if a value was missing or not).
+For these data, it can be quite helpful to see a heatmap of the votes across the years. The ordering of the rows is tricky. First, the distance of the vectors (later used for the clustering) should be done after transformation (since we are dealing with proportion of votes). In this case, I used the arcsin transformation (a logit transformation could also work, but the arcsin is safer for dealing with 0/1 observations). But given the clusters, we wish to order the leaves (as much as possible), in order to take into account the missing value clusterings. So we, in fact, have two clusters, one for the raw values, and another for the "shadow matrix" (i.e.: the matrix with 0/1, indicating if a value was missing or not).
 
 
 
@@ -566,13 +565,13 @@ names(votes.repub_dendlist) <- hclust_methods
 # votes.repub_dendlist
 ```
 
-Next, we can look at the cophenetic correlation between each clustering result using `cor.dendlist` (this can be nicely plotted using the `corrplot` function from the _corrplot_ package):
+Next, we can look at the cophenetic correlation between each clustering result using `cor.dendlist`. (This can be nicely plotted using the `corrplot` function from the _corrplot_ package):
 
 ```{r, fig.width=8, fig.height=8}
 corrplot::corrplot(cor.dendlist(votes.repub_dendlist), "pie", "lower")
 ```
 
-We see that the "complete" method is somewhat similar to the ward.D/ward.D2 methods, but there is less similarity with the other methods. We can see that the methods "average", "mcquitty" and "median", all give somewhat similar results. So by using "average", we will see an alternative presentation which represent (in a sense) 3 other clustering solutions. 
+We see that the "complete" method is somewhat similar to the ward.D/ward.D2 methods, but there is less similarity with the other methods. We can see that the methods "average", "mcquitty" and "median", all give somewhat similar results. So by using "average", we will see an alternative presentation that represents (in a sense) three other clustering solutions. 
 
 We can look at the heatmap of the "average" method. However, as you can see, it is not very helpful in seeing the difference between the two clustering solutions.
 
@@ -653,8 +652,8 @@ dend_ave <- votes.repub %>% arcsin_transformation %>%
    rotate(labels(dend_NA)) %>%
    color_branches(k=3) # %>% ladderize
 
-# the orders were predefined after using untangle("step2side")
-# they are omitted here to save running time.
+# The orders were predefined after using untangle("step2side")
+# They are omitted here to save running time.
 dend_com <- rotate(dend_com, ord1)
 dend_ave <- rotate(dend_ave, ord2)
 
@@ -663,9 +662,9 @@ dends  %>% tanglegram(margin_inner = 7)
 
 ```
 
-We see that the two clustering give similar results for: "Alabama", "Georgia", "Louisiana", "Arkansas", "Florida", "Texas", "South Carolina", "Mississippi".
+We see that the two clusterings give similar results for: "Alabama", "Georgia", "Louisiana", "Arkansas", "Florida", "Texas", "South Carolina", "Mississippi".
 
-There are also several other sub-trees which are identical between the two methods. The biggest difference lies in several "rouge" states which are placed differently in the two clustering algorithms. They are: Vermont, Michigan, Maine, Hawaii, New Jersey, West Virginia, and Oklahoma.
+There are also several other sub-trees which are identical between the two methods. The biggest difference lies in several "rouge" states that are placed differently in the two clustering algorithms. They are: Vermont, Michigan, Maine, Hawaii, New Jersey, West Virginia, and Oklahoma.
 
 
 A better understanding of the data requires a much more in-depth historical perspective than is within the scope of the current analysis.
@@ -675,7 +674,7 @@ A better understanding of the data requires a much more in-depth historical pers
 ## animals - Attributes of Animals
 
 
-### background
+### Background
 
 > This data set considers 6 binary attributes for 20 animals.
 
@@ -736,13 +735,13 @@ gplots::heatmap.2(as.matrix(animals-1),
 
 ```
 
-We see that we have several groups of variables: the "can fly" and "endangered" (which usually are both "no"), the "have hair", and the "warm-blooded", "vertebrate" and "live in groups".
+We see that we have several groups of variables: the "can fly" and "endangered" (which usually are both "no"), the "have hair", and the "warm-blooded", "vertebrate", and "live in groups".
 
 We see that within the animals there are (roughly!) the following 4 groups: 
 
 1. The cold-blooded non-vertebrates, which are mostly not endangered.
-2. The warm-blooded vertebrates, which live in groups, have hair, can't fly, and mostly aren't endangered.
-3. The cold-blooded vertebrates, without hair, can't fly, and aren't endangered.
+2. The warm-blooded vertebrates, which live in groups, have hair, cannot fly, and mostly are not endangered.
+3. The cold-blooded vertebrates, without hair, cannot fly, and are not endangered.
 4. The (mostly) warm-blooded vertebrates, without hair, some can fly, and some are endangered.
 
 
@@ -765,16 +764,16 @@ names(animals_dendlist) <- hclust_methods
 # votes.repub_dendlist
 ```
 
-Next, we can look at the cophenetic correlation between each clustering result using `cor.dendlist` (this can be nicely plotted using the `corrplot` function from the _corrplot_ package):
+Next, we can look at the cophenetic correlation between each clustering result using `cor.dendlist` (This can be nicely plotted using the `corrplot` function from the _corrplot_ package):
 
 ```{r, fig.width=8, fig.height=8}
 cophenetic_cors <- cor.dendlist(animals_dendlist)
 corrplot::corrplot(cophenetic_cors, "pie", "lower")
 ```
 
-We see that the the different methods (other than ward.D and ward.D2), all give quite different results. So would the above analysis be different if we had used another clustering algorithm?
+We see that the different methods (other than ward.D and ward.D2), all give quite different results. So would the above analysis be different if we had used another clustering algorithm?
 
-For this purpose we compare the clustering solution of each algorithm with one another, when cut to k=4 clusters, using the Fowlkes-Mallows Index. This measure is similar to rand (or rand adjusted) index, and gives a value of 1 when the two clusters confirm, and 0 when they do not:
+For this purpose, we compare the clustering solution of each algorithm with one another, when cut to k=4 clusters, using the Fowlkes-Mallows Index. This measure is similar to rand (or rand adjusted) index, and gives a value of 1 when the two clusters conform, and 0 when they do not:
 
 ```{r}
 remove_median <- dendlist(animals_dendlist, which = c(1:8)[-6] )
@@ -782,8 +781,8 @@ FM_cors <- cor.dendlist(remove_median, method = "FM_index", k = 4)
 corrplot::corrplot(FM_cors, "pie", "lower")
 ```
 
-We removed the "median" method since it did not have k=4 possible. In general, the results seems sensitive the the algorithm used, and the different algorithm methods do not seem to agree with one another (with regards to k=4), so further analyses may be in place in order to decide on which algorithm and interpretation are most appropriate for this data.
+We removed the "median" method since it did not have k=4 possible. In general, the results seems sensitive to the algorithm used, and the different algorithm methods do not seem to agree with one another (with regards to k=4), so further analyses may be in place in order to decide on which algorithm and interpretation are most appropriate for these data.
 
 
 
-(Other possible datasets for the future: chorSub, flower, plantTraits, pluton, ruspini, agriculture)
+(Other possible data sets for the future: chorSub, flower, plantTraits, pluton, ruspini, agriculture)

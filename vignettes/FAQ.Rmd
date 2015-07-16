@@ -60,7 +60,7 @@ labels_colors(dend)
 plot(dend, main = "A color for every state")
 ```
 
-Instead of using `1:5`, we can obviously use colors which are based on another factor (organized) the labels themseslves. But in such a case, we want to map between the order of the labels, and the order of the items in the original dataset. Here is another example based on the iris dataset:
+Instead of using `1:5`, we can obviously use colors that are based on another factor (organized): the labels themselves. But in such a case, we want to map between the order of the labels and the order of the items in the original dataset. Here is another example based on the iris dataset:
 
 ```{r, fig.show='hold', fig.width=8, fig.height=3}
 # install.packages("dendextend")
@@ -76,7 +76,7 @@ labels_colors(dend)
 par(mfrow = c(1,2))
 plot(dend, main = "Original dend")
 
-# let's add some color:
+# Let's add some color:
 colors_to_use <- as.numeric(small_iris[,5])
 colors_to_use
 # But sort them based on their order in dend:
@@ -192,7 +192,7 @@ get_leaves_nodePar(dend)[[1]]
 plot(dend, main = "A larger font for labels")
 ```
 
-(note that changing the spacing between the labels is currently not implemented)
+(Note that changing the spacing between the labels is currently not implemented)
 
 
 
@@ -202,7 +202,7 @@ plot(dend, main = "A larger font for labels")
 
 Asked (http://stackoverflow.com/questions/26240200/how-to-access-attributes-of-a-dendrogram-in-r)[here], and (http://stackoverflow.com/questions/25664911/r-hclust-height-of-final-merge)[here].
 
-It generally depends on which attribute we want to view, for "midpoint" (or height) use the `get_nodes_attr` function, with the "midpoint" parameter.
+It generally depends on which attribute we want to view. For "midpoint" (or height) use the `get_nodes_attr` function, with the "midpoint" parameter.
 
 ```{r}
 # install.packages("dendextend")
@@ -214,7 +214,7 @@ dend <- as.dendrogram(hclust(dist(USArrests[1:5,])))
 
 # midpoint for all nodes
 get_nodes_attr(dend, "midpoint")
-# Maybe also the height:
+# Perhaps also for the height:
 get_nodes_attr(dend, "height")
 ```
 
@@ -226,9 +226,9 @@ To also change an attribute, you can use the various assign functions from the p
 
 Asked (http://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2?)[here].
 
-Solution: use the `color_branches` function (or the `set` function, with the "branches_k_color", "k", and "value" parameters ).
+Solution: use the `color_branches` function (or the `set` function, with the "branches_k_color", "k", and "value" parameters).
 
-(Getting the data for this example is from the (http://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2?)[original SO question])
+(Getting the data for this example is from the (http://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2)[original SO question])
 
 ```{r, echo = FALSE}
 test0 <- structure(c(0.641122711554543, 1.23425751165366, -0.325822271157288, 
@@ -830,7 +830,7 @@ dend1 <- color_branches(dend1, k = 4, col = cols_branches)
 # or with:
 # dend1 <- set(dend1, "branches_k_color", k = 4, value = cols_branches)
 
-# get the colors of the tips of the dendrogram:
+# Get the colors of the tips of the dendrogram:
 # col_labels <- cols_branches[cutree(dend1, k = 4)] # this may need tweaking in various cases - the following is a more general solution.
 
 col_labels <- get_leaves_branches_col(dend1)
