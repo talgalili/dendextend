@@ -85,6 +85,7 @@ Tal Galili
 \seealso{
 \link{tanglegram}, \link{untangle_random_search},
 \link{untangle_step_rotate_1side}, \link{untangle_step_rotate_2side},
+\link{untangle_DendSer},
 \link{entanglement}
 }
 

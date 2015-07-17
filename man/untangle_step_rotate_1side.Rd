@@ -58,7 +58,7 @@ Given a fixed tree and a tree we wish to rotate, this function goes
 through all of the k number of clusters (from 2 onward), and each time
 rotates the branch which was introduced in the new k'th cluster.
 This rotated tree is compared with the fixed tree, and if it has a better
-entanglement, it will be used for the following interations.
+entanglement, it will be used for the following iterations.
 
 This is a greedy forward selection algorithm for rotating the tree and
 looking for a better match.

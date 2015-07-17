@@ -128,6 +128,9 @@ dend \%>\% set("branches_k_col", c(1,2)) \%>\% plot
 dend \%>\% set("branches_k_col", c(1,2,3), k=3) \%>\% plot
 dend \%>\% set("branches_k_col", k=3) \%>\% plot
 
+dend \%>\% set("branches_k_lty", k=3) \%>\% plot
+dend \%>\% set("branches_k_col", k=3) \%>\% set("branches_k_lty", k=3) \%>\% plot
+
 dend \%>\% set("branches_col", c(1,2, 1, 2, NA)) \%>\% plot
 dend \%>\% set("branches_lwd", c(2,1,2)) \%>\% plot
 dend \%>\% set("branches_lty", c(1,2,1)) \%>\% plot

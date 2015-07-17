@@ -65,6 +65,7 @@
 #' @seealso 
 #' \link{tanglegram}, \link{untangle_random_search}, 
 #' \link{untangle_step_rotate_1side}, \link{untangle_step_rotate_2side},
+#' \link{untangle_DendSer},
 #' \link{entanglement}
 #' @examples
 #' \dontrun{
@@ -554,7 +555,7 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 #' through all of the k number of clusters (from 2 onward), and each time 
 #' rotates the branch which was introduced in the new k'th cluster.
 #' This rotated tree is compared with the fixed tree, and if it has a better
-#' entanglement, it will be used for the following interations.
+#' entanglement, it will be used for the following iterations.
 #' 
 #' This is a greedy forward selection algorithm for rotating the tree and
 #' looking for a better match.
@@ -679,6 +680,14 @@ untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = 
 #' This is useful for finding good trees for a \link{tanglegram}.
 #' 
 #' It goes through rotating dend1, then dend2, and so on - until a locally optimal solution is found.
+#' 
+#' Similar to "step1side", one tree is held fixed and the other tree is rotated.
+#' This function goes through all of the k number of clusters (from 2 onward),
+#' and each time rotates the branch which was introduced in the new k'th cluster.
+#' This rotated tree is compared with the fixed tree, and if it has a better 
+#' entanglement, it will be used for the following iterations. 
+#' Once finished the rotated tree is held fixed, and the fixed tree 
+#' is now rotated. This continues until a local optimal solution is reached. 
 #' 
 #' @param dend1 a dendrogram object. The one we will rotate to best fit
 #' dend2.
