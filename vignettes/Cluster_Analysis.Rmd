@@ -16,7 +16,7 @@ library(dendextend)
 library(knitr)
 knitr::opts_chunk$set(
    cache = TRUE,
-   dpi = 55,
+   dpi = 65,
    # dev = "svg",
   # comment = "#>",
   tidy = FALSE)
@@ -200,9 +200,9 @@ gplots::heatmap.2(as.matrix(iris2),
 
 ```
 
-We can get an interactive heatmap by using the `d3heatmap` package/function:
+We can get an interactive heatmap by using the `d3heatmap` package/function: (code is not evaluated in order to keep the HTML size)
 
-```{r, cache = FALSE}
+```{r, cache = FALSE, eval = FALSE}
 d3heatmap::d3heatmap(as.matrix(iris2),
           dendrogram = "row",
           Rowv = dend,
