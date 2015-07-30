@@ -1,3 +1,190 @@
+* 2015-07-30(Tal Galili) Added an example for using NMF::aheatmap |9d75974| 
+|  DESCRIPTION                |  1 +
+|  vignettes/introduction.Rmd | 26 ++++++++++++++++++++++++--
+|  2 files changed, 25 insertions(+), 2 deletions(-)
+
+* 2015-07-30(Tal Galili) Added a link to the paper from the DESCRIPTION |5d3763e| 
+|  DESCRIPTION | 3 ++-
+|  1 file changed, 2 insertions(+), 1 deletion(-)
+
+* 2015-07-30(Tal Galili) Added a CITATION file |086d89e| 
+|  DESCRIPTION   |  2 +-
+|  NEWS          |  6 +++++-
+|  inst/CITATION | 19 +++++++++++++++++++
+|  3 files changed, 25 insertions(+), 2 deletions(-)
+
+* 2015-07-17(Tal Galili) Another step towards 1.1.0 (but not there yet...) |5d141ea| 
+|  DESCRIPTION | 2 +-
+|  NEWS        | 6 ++++--
+|  2 files changed, 5 insertions(+), 3 deletions(-)
+
+* 2015-07-17(Tal Galili) minor typo fixes and doc-inter-linking |abcc402| 
+|  R/untangle.R                      | 11 ++++++++++-
+|  man/set.Rd                        |  3 +++
+|  man/untangle.Rd                   |  1 +
+|  man/untangle_step_rotate_1side.Rd |  2 +-
+|  man/untangle_step_rotate_2side.Rd |  8 ++++++++
+|  5 files changed, 23 insertions(+), 2 deletions(-)
+
+* 2015-07-17(Tal Galili) Adding a d3heatmap example |c5de02c| 
+|  ...ta sets - enhanced with the dendextend package.html | 16 ++++++++++++++++
+|  vignettes/Cluster_Analysis.Rmd                         | 14 ++++++++++++++
+|  2 files changed, 30 insertions(+)
+
+* 2015-07-17(Tal Galili) Updated FAQ HTML file. |cc851f6| 
+|  inst/ignored/Frequently asked questions.html | 143 +++++++++++++++++++++----
+|  1 file changed, 123 insertions(+), 20 deletions(-)
+
+* 2015-07-17(Tal Galili) Rename vignette files |2dd4fcd| 
+|  README.md                                         |   4 +-
+|  inst/ignored/Frequantly asked questions.html      | 325 ----------
+|  inst/ignored/Frequently asked questions.html      | 325 ++++++++++
+|  ...ts - enhanced with the dendextend package.html | 668 ++++++++++++++++++++
+|  ...ts - enhanced with the dendextend package.html | 668 --------------------
+|  5 files changed, 995 insertions(+), 995 deletions(-)
+
+* 2015-07-17(Tal Galili) added a circular example of Iris |4848a5d| 
+|  vignettes/Cluster_Analysis.Rmd | 18 ++++++++++++++++--
+|  1 file changed, 16 insertions(+), 2 deletions(-)
+
+* 2015-07-17(Tal Galili) implemented various fixes |5455bdc| 
+|  ...ts - enhanced with the dendextend package.html | 240 +++++++++++---------
+|  1 file changed, 131 insertions(+), 109 deletions(-)
+
+* 2015-07-16(Tal Galili) Various fixes to spelling and grammatical mistakes |e9ea9f9| 
+|  vignettes/Cluster_Analysis.Rmd | 137 +++++++++++++++++++--------------------
+|  vignettes/FAQ.Rmd              |  16 ++---
+|  2 files changed, 76 insertions(+), 77 deletions(-)
+
+* 2015-07-15(Tal Galili) set - added "branches_k_lty" parameter |a81ca28| 
+|  DESCRIPTION        |  4 ++--
+|  NEWS               |  5 ++++-
+|  R/color_branches.R | 13 +++++++++++++
+|  R/set.dendrogram.R | 13 ++++++++++---
+|  man/set.Rd         |  4 +++-
+|  5 files changed, 32 insertions(+), 7 deletions(-)
+
+* 2015-07-15(Tal Galili) Mention other names for the circlized dendrogram plot. |1d8a78b| 
+|  R/circlize.R               | 3 +++
+|  man/circlize_dendrogram.Rd | 3 +++
+|  2 files changed, 6 insertions(+)
+
+* 2015-07-15(Tal Galili) switch URL order |7bac0fe| 
+|  DESCRIPTION | 4 ++--
+|  1 file changed, 2 insertions(+), 2 deletions(-)
+
+* 2015-07-15(Tal Galili) explain proper citation of circlize function. |636c15f| 
+|  R/circlize.R               | 3 ++-
+|  man/circlize_dendrogram.Rd | 3 ++-
+|  2 files changed, 4 insertions(+), 2 deletions(-)
+
+* 2015-07-14(Tal Galili) as.ggdend.dendrogram - fix "Error in FUN(X[[i]], ...) : subscript out of bounds" problem for some trees. |418cc2c| 
+|  DESCRIPTION | 2 +-
+|  NEWS        | 5 ++++-
+|  R/ggdend.R  | 2 +-
+|  3 files changed, 6 insertions(+), 3 deletions(-)
+
+* 2015-07-11(Tal Galili) seealso linking |4b0d157| 
+|  R/color_branches.R    | 3 ++-
+|  man/color_branches.Rd | 3 ++-
+|  2 files changed, 4 insertions(+), 2 deletions(-)
+
+* 2015-07-11(Tal Galili) Another SO question |07abbc3| 
+|  vignettes/FAQ.Rmd | 34 ++++++++++++++++++++++++++++++++++
+|  1 file changed, 34 insertions(+)
+
+* 2015-07-11(Tal Galili) fix "graphical parameter "mfrow" has the wrong length" |edb9613| 
+|  vignettes/introduction.Rmd | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2015-07-11(Tal Galili) inte-linking and misc |fe50082| 
+|  R/attr_access.R                | 2 +-
+|  R/labels_colors.R              | 2 +-
+|  man/get_leaves_branches_col.Rd | 2 +-
+|  man/labels_colors.Rd           | 2 +-
+|  4 files changed, 4 insertions(+), 4 deletions(-)
+
+* 2015-07-11(Tal Galili) Fix "Error: Vignette 'FAQ.Rmd' is non-ASCII but has no declared encoding" (thanks to Duncan Murdoch :) ) |22c9e44| 
+|  R/zzz.R           | 3 +++
+|  vignettes/FAQ.Rmd | 4 ++--
+|  2 files changed, 5 insertions(+), 2 deletions(-)
+
+* 2015-07-11(Tal Galili) Added 2 new SO questions to FAQ |7f9a3ae| 
+|  vignettes/FAQ.Rmd          | 56 +++++++++++++++++++++++++++++++++++++++++++-
+|  vignettes/introduction.Rmd |  1 +
+|  2 files changed, 56 insertions(+), 1 deletion(-)
+
+* 2015-07-11(Tal Galili) more links |84ae6d0| 
+|  R/color_branches.R   | 3 ++-
+|  R/labels_colors.R    | 3 +++
+|  man/color_labels.Rd  | 3 ++-
+|  man/labels_colors.Rd | 5 +++++
+|  4 files changed, 12 insertions(+), 2 deletions(-)
+
+* 2015-07-10(Tal Galili) circlize_dendrogram - a function for creating radial dendrogram plots! (based on the circlize package) |8b080d7| 
+|  DESCRIPTION                |   8 ++-
+|  NAMESPACE                  |   1 +
+|  NEWS                       |   1 +
+|  R/circlize.R               | 141 +++++++++++++++++++++++++++++++++++++++++++
+|  README.md                  |   9 +++
+|  man/circlize_dendrogram.Rd |  79 ++++++++++++++++++++++++
+|  vignettes/FAQ.Rmd          |  29 +++++++++
+|  vignettes/introduction.Rmd |  54 +++++++++++++++++
+|  8 files changed, 320 insertions(+), 2 deletions(-)
+
+* 2015-07-10(Tal Galili) Added labels_cex |da35752| 
+|  NAMESPACE         |  2 ++
+|  NEWS              |  1 +
+|  R/labels_colors.R | 50 ++++++++++++++++++++++++++++++++++++++++++++++++++
+|  man/labels_cex.Rd | 42 ++++++++++++++++++++++++++++++++++++++++++
+|  4 files changed, 95 insertions(+)
+
+* 2015-07-10(Tal Galili) Added labels_col as an alias of labels_colors |01ba9e6| 
+|  NAMESPACE            | 1 +
+|  NEWS                 | 8 +++++++-
+|  R/labels_colors.R    | 6 +++++-
+|  man/labels_colors.Rd | 3 +++
+|  4 files changed, 16 insertions(+), 2 deletions(-)
+
+* 2015-07-05(Tal Galili) assign_values_to_nodes_nodePar - can now handle NA with a character string vector in value. Fixes #10 |9ceadb1| 
+|  DESCRIPTION                           | 4 ++--
+|  NEWS                                  | 7 +++++++
+|  R/attr_access.R                       | 9 ++++++++-
+|  man/assign_values_to_nodes_nodePar.Rd | 7 +++++++
+|  vignettes/introduction.Rmd            | 2 +-
+|  5 files changed, 25 insertions(+), 4 deletions(-)
+
+* 2015-06-28(Tal Galili) update DESCRIPTION to 1.0.2 |64bc90f| 
+|  DESCRIPTION | 2 +-
+|  NEWS        | 4 ++++
+|  2 files changed, 5 insertions(+), 1 deletion(-)
+
+* 2015-06-28(Tal Galili) A new minimal quick introduction vignette |7ee0812| 
+|  vignettes/Quick_Introduction.Rmd | 127 +++++++++++++++++++++++++++++++++++++
+|  1 file changed, 127 insertions(+)
+
+* 2015-06-28(Tal Galili) fix typo |ffc2c00| 
+|  DESCRIPTION       | 2 +-
+|  vignettes/FAQ.Rmd | 4 ++--
+|  2 files changed, 3 insertions(+), 3 deletions(-)
+
+* 2015-06-28(Tal Galili) ggplot.ggdend - added offset_labels |578e70f| 
+|  NEWS          | 7 +++++++
+|  R/ggdend.R    | 9 +++++++--
+|  man/ggdend.Rd | 5 ++++-
+|  3 files changed, 18 insertions(+), 3 deletions(-)
+
+* 2015-06-28(Tal Galili) Added import to NAMESPACE: graphics, grDevices |0148a92| 
+|  DESCRIPTION            | 9 +++++----
+|  NAMESPACE              | 2 ++
+|  NEWS                   | 8 ++++++++
+|  R/dendextend-package.R | 2 ++
+|  4 files changed, 17 insertions(+), 4 deletions(-)
+
+* 2015-06-27(Tal Galili) misc |f6890d6| 
+|  ChangeLog | 19 +++++++++++++++++++
+|  1 file changed, 19 insertions(+)
+
 * 2015-06-27(Tal Galili) fix url |6b6bafd| 
 |  inst/ignored/Introduction to dendextend.html | 2 +-
 |  1 file changed, 1 insertion(+), 1 deletion(-)

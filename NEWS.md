@@ -1,3 +1,49 @@
+dendextend 1.1.0 (2015-07-30)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * circlize_dendrogram - a function for creating radial dendrogram plots
+   * labels_col - Added as an alias of labels_colors
+   * labels_cex
+
+###UPDATED FUNCTIONS:
+   * set - added "branches_k_lty" parameter
+
+###BUG FIXES:
+   * as.ggdend.dendrogram - fix "Error in FUN(X[[i]], ...) : subscript out of bounds" problem for some trees.
+   * Various typo fixes to the vignettes.
+
+###OTHER NOTES:
+   * Added a CITATION file!
+
+
+
+dendextend 1.0.3 (2015-07-05)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+   * assign_values_to_nodes_nodePar - can now handle NA with a character string vector in value. Fixes #10
+
+
+dendextend 1.0.2 (2015-06-28)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+   * ggplot.ggdend - added offset_labels (TODO: still needs to fix the figure margins)
+
+###OTHER NOTES:
+   * minor typo fixes
+
+
+
+dendextend 1.0.1 (2015-06-28)
+----------------------------------------
+
+###OTHER NOTES:
+   * Added import to NAMESPACE: graphics, grDevices
+   * dendextend 1.0.1 is intended to be shipped to CRAN.
+
+
 dendextend 1.0.0 (2015-06-27)
 ----------------------------------------
 
