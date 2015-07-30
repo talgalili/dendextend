@@ -1,4 +1,4 @@
-dendextend 1.1.0 (2015-07-17)
+dendextend 1.1.0 (2015-07-30)
 ----------------------------------------
 
 ###NEW FUNCTIONS:
@@ -12,6 +12,10 @@ dendextend 1.1.0 (2015-07-17)
 ###BUG FIXES:
    * as.ggdend.dendrogram - fix "Error in FUN(X[[i]], ...) : subscript out of bounds" problem for some trees.
    * Various typo fixes to the vignettes.
+
+###OTHER NOTES:
+   * Added a CITATION file!
+
 
 
 dendextend 1.0.3 (2015-07-05)
