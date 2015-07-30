@@ -66,5 +66,6 @@ LazyData: true
 License: GPL-2 | GPL-3
 URL: http://cran.r-project.org/package=dendextend,
     https://github.com/talgalili/dendextend/,
-    http://www.r-statistics.com/tag/dendextend/
+    http://www.r-statistics.com/tag/dendextend/,
+    http://bioinformatics.oxfordjournals.org/content/early/2015/07/23/bioinformatics.btv428
 BugReports: https://github.com/talgalili/dendextend/issues
