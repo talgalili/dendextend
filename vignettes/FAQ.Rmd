@@ -17,7 +17,7 @@ library(dendextend)
 library(knitr)
 knitr::opts_chunk$set(
    cache = TRUE,
-   dpi = 75,
+   dpi = 65,
   # comment = "#>",
   tidy = FALSE)
 
@@ -892,7 +892,7 @@ Asked (http://stats.stackexchange.com/questions/4062/how-to-plot-a-fan-polar-den
 
 Solution: use the `circlize_dendrogram` function.
 
-```{r, fig.show='hold', fig.width=8, fig.height=8}
+```{r, fig.width=10, fig.height=10}
 # install.packages("dendextend")
 # install.packages("circlize")
 library(dendextend)
@@ -910,7 +910,7 @@ dend <- dend %>%
 # plot the radial plot
 par(mar = rep(0,4))
 # circlize_dendrogram(dend, dend_track_height = 0.8) 
-circlize_dendrogram(dend, labels_track_height = NA, dend_track_height = .4) 
+circlize_dendrogram(dend, labels_track_height = NA, dend_track_height = .3) 
 
 ```
 
