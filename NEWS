@@ -1,3 +1,11 @@
+dendextend 1.1.1 (2015-08-14)
+----------------------------------------
+
+###BUG FIXES:
+   * as.ggdend.dendrogram - fix "Error in FUN(X[[i]], ...) : subscript out of bounds" problem for some (more) trees. Fixes bug #12
+
+
+
 dendextend 1.1.0 (2015-07-30)
 ----------------------------------------
 

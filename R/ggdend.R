@@ -184,7 +184,8 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
    if(!is.dendrogram(dend)) stop("dend is not a dendrogram (and it needs to be...)")
    if(nleaves(dend) == 0) stop("dend must have at least one node")
    if(edge.root) stop("edge.root is not supported at this point (this parameter is a place-holder for when it will)")
-      
+    
+   # source('R/stats_imports.R', echo=FALSE)
    # ggdata <- dendextend:::dendrogram_data(dend, type = "rectangle")
    ggdata <- dendrogram_data(dend, type = type) # ggdendro:::dendrogram_data(dend)
    
@@ -270,7 +271,8 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
       
    # par is a character of the par to get from edgePar_attr
    get_edgePar_attr_par <- function(par) {
-      values <- sapply(edgePar_attr,  `[[`, name = par)
+      values <- sapply(edgePar_attr,  `[`, name = par)
+#       null2NA <- function(x) ifelse(is.na(x) || is.null(x), NA, x)
       null2NA <- function(x) ifelse(is.null(x), NA, x)
       values <- sapply(values, null2NA) # in case the attr is missing, it fills the NULL with NA
       rep(unlist(values), each = 2) # like doing edgePar_attr[[1]] ["col"]
