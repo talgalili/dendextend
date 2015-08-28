@@ -1,5 +1,8 @@
-dendextend 1.1.1 (2015-08-14)
+dendextend 1.1.1 (2015-08-28)
 ----------------------------------------
+
+###UPDATED FUNCTIONS:
+   * intersect_trees - return dendlist() and a warning if there are no shared labels between the two trees.
 
 ###BUG FIXES:
    * as.ggdend.dendrogram - fix "Error in FUN(X[[i]], ...) : subscript out of bounds" problem for some (more) trees. Fixes bug #12

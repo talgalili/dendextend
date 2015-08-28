@@ -266,6 +266,11 @@ intersect_trees <- function(dend1, dend2, warn = dendextend_options("warn"), ...
    labels_dend2 <- labels(dend2)
    intersected_labels <- intersect(labels_dend1, labels_dend2)
    
+   if(length(intersected_labels) == 0) {
+      warning("The two trees had no common labels!")
+      return(dendlist())
+   }
+   
    # prune tree 1
    ss_labels_to_keep  <- labels_dend1 %in% intersected_labels
    ss_labels_to_prune_1 <- !ss_labels_to_keep
