@@ -1,8 +1,9 @@
-dendextend 1.1.1 (2015-08-28)
+dendextend 1.1.1 (2015-09-03)
 ----------------------------------------
 
 ###UPDATED FUNCTIONS:
    * intersect_trees - return dendlist() and a warning if there are no shared labels between the two trees.
+   * Removed functions labels.matrix and labels<-.matrix, in order to avoid conflicts with arules (and since these functions are not really used in other parts of the package) - reported by Maja Alicja.
 
 ###BUG FIXES:
    * as.ggdend.dendrogram - fix "Error in FUN(X[[i]], ...) : subscript out of bounds" problem for some (more) trees. Fixes bug #12

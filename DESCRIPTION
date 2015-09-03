@@ -2,7 +2,7 @@ Package: dendextend
 Type: Package
 Title: Extending R's Dendrogram Functionality
 Version: 1.1.1
-Date: 2015-08-28
+Date: 2015-09-03
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "http://www.r-statistics.com"),
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role

@@ -2,13 +2,11 @@
 % Please edit documentation in R/labels.R
 \name{labels<-}
 \alias{labels.hclust}
-\alias{labels.matrix}
 \alias{labels.phylo}
 \alias{labels<-}
 \alias{labels<-.default}
 \alias{labels<-.dendrogram}
 \alias{labels<-.hclust}
-\alias{labels<-.matrix}
 \alias{labels<-.phylo}
 \title{"label" assignment operator}
 \source{
@@ -20,9 +18,6 @@ Also with some ideas from Gregory Jefferis's dendroextras package.
 \usage{
 labels(object, ...) <- value
 
-\method{labels}{matrix}(object, which = c("colnames", "rownames"), ...)
-
-\method{labels}{matrix}(object, which = c("colnames", "rownames"), ...) <- value
 
 \method{labels}{dendrogram}(object, ...) <- value
 
