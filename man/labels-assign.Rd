@@ -46,8 +46,6 @@ labels in their order in the dendrogram, instead of the riginal labels order
 retained from object$labels - which ususally corresponding to
 the row or column names of the \link{dist} object provided to
 the \link{hclust} function.}
-
-\item{which}{"colnames" or "rownames", to which of the two should labels refer to.}
 }
 \value{
 The updated object
@@ -73,21 +71,6 @@ x
 # get("labels<-")
 
 ################
-# Example for matrix objects
-
-x <- matrix(1:9, 3,3)
-labels(x)
-x
-labels(x) <- letters[1:3]
-x
-labels(x, which = "rownames") <- LETTERS[24:26]
-x
-#  a b c
-#X 1 4 7
-#Y 2 5 8
-#Z 3 6 9
-
-################
 # Example for using the assignment with dendrogram and hclust objects:
 hc <- hclust(dist(USArrests[1:3,]), "ave")
 dend <- as.dendrogram(hc)
@@ -109,6 +92,6 @@ Gavin Simpson, Tal Galili
 (with some ideas from Gregory Jefferis's dendroextras package)
 }
 \seealso{
-\code{\link{labels}}, \code{\link{labels.matrix}}
+\code{\link{labels}}
 }
 

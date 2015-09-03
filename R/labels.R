@@ -73,7 +73,6 @@
 #' \method{labels}{phylo}(object, ...) <- value
 #' 
 #' @param object a variable name (possibly quoted) who's label are to be updated
-#' @param which "colnames" or "rownames", to which of the two should labels refer to.
 #' @param ... parameters passed (not currently in use)
 #' @param value a value to be assigned to object's label
 #' @param order default is FALSE. Only relevant for extracting labels from an
@@ -90,7 +89,7 @@
 #' (adopted to dendrogram by Tal Galili):
 #' \url{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}
 #' Also with some ideas from Gregory Jefferis's dendroextras package.
-#' @seealso \code{\link{labels}}, \code{\link{labels.matrix}}
+#' @seealso \code{\link{labels}}
 #' @examples
 #' x <- 1:3 
 #' labels(x)
@@ -102,21 +101,6 @@
 #' 
 #' 
 #' # get("labels<-")
-#' 
-#' ################
-#' # Example for matrix objects
-#' 
-#' x <- matrix(1:9, 3,3)
-#' labels(x)
-#' x
-#' labels(x) <- letters[1:3]
-#' x
-#' labels(x, which = "rownames") <- LETTERS[24:26]
-#' x
-#' #  a b c
-#' #X 1 4 7
-#' #Y 2 5 8
-#' #Z 3 6 9
 #' 
 #' ################
 #' # Example for using the assignment with dendrogram and hclust objects:
