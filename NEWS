@@ -1,4 +1,4 @@
-dendextend 1.1.1 (2015-09-03)
+dendextend 1.1.1 (2015-09-06)
 ----------------------------------------
 
 ###UPDATED FUNCTIONS:
@@ -7,7 +7,7 @@ dendextend 1.1.1 (2015-09-03)
 
 ###BUG FIXES:
    * as.ggdend.dendrogram - fix "Error in FUN(X[[i]], ...) : subscript out of bounds" problem for some (more) trees. Fixes bug #12
-
+   * as.ggdend.dendrogram - can now handle different label heights. (for example, the ones produces when using hang.dendrogram)
 
 
 dendextend 1.1.0 (2015-07-30)
