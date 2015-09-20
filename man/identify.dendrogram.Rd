@@ -9,7 +9,7 @@ to have it work with a dendrogram, as well as adding "horiz"
 }
 \usage{
 \method{identify}{dendrogram}(x, FUN = NULL, N = 20, MAXCLUSTER,
-  DEV.FUN = NULL, horiz = FALSE, ...)
+  DEV.FUN = NULL, horiz = FALSE, stop_if_out = FALSE, ...)
 }
 \arguments{
 \item{x}{a \link{dendrogram} object.}
@@ -28,6 +28,10 @@ graphics device is made active before FUN is applied.}
 \item{horiz}{logical (FALSE), indicating if the rectangles
 should be drawn horizontally or not (for when using
 plot(dend, horiz = TRUE) ) .}
+
+\item{stop_if_out}{logical (default is FALSE). This default makes the function
+NOT stop if k of the locator is outside the range (this default is different than the behavior
+of the identify.hclust function - but it is nicer for the user.).}
 
 \item{...}{further arguments to FUN.}
 }

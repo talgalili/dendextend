@@ -16,7 +16,8 @@ skullkey from here:
 rect.dendrogram(tree, k = NULL, which = NULL, x = NULL, h = NULL,
   border = 2, cluster = NULL, horiz = FALSE, density = NULL,
   angle = 45, text = NULL, text_cex = 1, text_col = 1, xpd = TRUE,
-  lower_rect, upper_rect = 0, prop_k_height = 0.5, ...)
+  lower_rect, upper_rect = 0, prop_k_height = 0.5, stop_if_out = FALSE,
+  ...)
 }
 \arguments{
 \item{tree}{a \link{dendrogram} object.}
@@ -78,6 +79,10 @@ parameter manually.}
 
 \item{prop_k_height}{a (scalar) value (should be between 0 to 1), indicating what proportion
 of the height our rect will be between the height needed for k and k+1 clustering.}
+
+\item{stop_if_out}{logical (default is TRUE). This makes the function
+stop if k of the locator is outside the range (this default reproduces the behavior
+of the rect.hclust function).}
 
 \item{...}{parameters passed to rect (such as lwd, lty, etc.)}
 }

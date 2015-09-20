@@ -67,6 +67,9 @@
 #' @param upper_rect a (scalar) value to add (default is 0) to how high should the upper part of the rect be.
 #' @param prop_k_height a (scalar) value (should be between 0 to 1), indicating what proportion
 #' of the height our rect will be between the height needed for k and k+1 clustering.
+#' @param stop_if_out logical (default is TRUE). This makes the function
+#' stop if k of the locator is outside the range (this default reproduces the behavior
+#' of the rect.hclust function).
 #' @param ... parameters passed to rect (such as lwd, lty, etc.)
 #' @seealso
 #' \link{rect.hclust}, \link{order.dendrogram}, \link{cutree.dendrogram}
@@ -117,7 +120,9 @@
 rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, border = 2, 
           cluster = NULL, horiz = FALSE, density = NULL, angle = 45, 
           text = NULL, text_cex = 1, text_col = 1 , xpd = TRUE, 
-          lower_rect, upper_rect = 0, prop_k_height = 0.5, ...) 
+          lower_rect, upper_rect = 0, prop_k_height = 0.5, 
+          stop_if_out = FALSE,
+          ...) 
 {
    if(!is.dendrogram(tree)) stop("x is not a dendrogram object.")
 
@@ -143,9 +148,15 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
    }
    else if (is.null(k)) 
       stop("specify exactly one of 'k' and 'h'")
-   if (k < 2 | k > length(tree_heights)) 
-      stop(gettextf("k must be between 2 and %d", length(tree_heights)), 
+   if (k < 2 | k > length(tree_heights)) {
+      if(stop_if_out) {
+         stop(gettextf("k must be between 2 and %d", length(tree_heights)), 
            domain = NA)
+      } else {
+         warning(gettextf("k must be between 2 and %d", length(tree_heights)), 
+              domain = NA)
+         }
+   }
    if (is.null(cluster)) 
       cluster <- cutree(tree, k = k)
    
@@ -254,6 +265,9 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
 #' @param horiz logical (FALSE), indicating if the rectangles 
 #' should be drawn horizontally or not (for when using 
 #' plot(dend, horiz = TRUE) ) .
+#' @param stop_if_out logical (default is FALSE). This default makes the function
+#' NOT stop if k of the locator is outside the range (this default is different than the behavior
+#' of the identify.hclust function - but it is nicer for the user.).
 #' @param ... further arguments to FUN.
 #' @details
 #' By default clusters can be identified using the mouse and an invisible 
@@ -288,7 +302,9 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
 #' 
 #' }
 identify.dendrogram <- function (x, FUN = NULL, N = 20, MAXCLUSTER, DEV.FUN = NULL, 
-                                 horiz = FALSE, ...) 
+                                 horiz = FALSE,
+                                 stop_if_out = FALSE,
+                                 ...) 
 {
  
    # In tree_heights I am removing the first element
@@ -319,11 +335,11 @@ identify.dendrogram <- function (x, FUN = NULL, N = 20, MAXCLUSTER, DEV.FUN = NU
       if (!is.null(oldx)) {
          rect.dendrogram(x, k = oldk, x = oldx, 
                          cluster = cluster[, oldk - 1],
-                         border = "grey", horiz = horiz)
+                         border = "grey", horiz = horiz, stop_if_out = stop_if_out)
       }
       retval[[n]] <- unlist(rect.dendrogram(x, k = k, x = X$x, 
                                         cluster = cluster[, k - 1],
-                                        border = "red", horiz = horiz))
+                                        border = "red", horiz = horiz, stop_if_out = stop_if_out))
       if (!is.null(FUN)) {
          if (!is.null(DEV.FUN)) {
             grDevices::dev.set(DEV.FUN)
