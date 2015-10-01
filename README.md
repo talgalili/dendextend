@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/talgalili/dendextend.png?branch=master)](https://travis-ci.org/talgalili/dendextend)
 [![codecov.io](http://codecov.io/github/talgalili/dendextend/coverage.svg?branch=master)](http://codecov.io/github/talgalili/dendextend?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/dendextend)](http://cran.r-project.org/package=dendextend)
+![](http://cranlogs.r-pkg.org/badges/dendextend?color=yellow)
+![](http://cranlogs.r-pkg.org/badges/grand-total/dendextend?color=yellowgreen)
 
 # dendextend
 
