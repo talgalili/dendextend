@@ -7,8 +7,8 @@ citEntry(
    journal = "Bioinformatics",
    year = 2015,
    doi = "10.1093/bioinformatics/btv428",
-   URL = "http://bioinformatics.oxfordjournals.org/content/early/2015/07/23/bioinformatics.btv428.abstract", 
-   eprint = "http://bioinformatics.oxfordjournals.org/content/early/2015/07/23/bioinformatics.btv428.full.pdf+html", 
+   URL = "http://bioinformatics.oxfordjournals.org/content/early/2015/08/18/bioinformatics.btv428.abstract", 
+   eprint = "http://bioinformatics.oxfordjournals.org/content/early/2015/08/18/bioinformatics.btv428.full.pdf+html", 
    textVersion = "Tal Galili (2015). dendextend: an R package for visualizing, adjusting, and comparing trees of hierarchical clustering. Bioinformatics. DOI: 10.1093/bioinformatics/btv428"   
 )
 

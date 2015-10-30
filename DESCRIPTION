@@ -2,7 +2,7 @@ Package: dendextend
 Type: Package
 Title: Extending R's Dendrogram Functionality
 Version: 1.1.2
-Date: 2015-09-20
+Date: 2015-10-30
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "http://www.r-statistics.com"),
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
@@ -68,5 +68,5 @@ License: GPL-2 | GPL-3
 URL: http://cran.r-project.org/package=dendextend,
     https://github.com/talgalili/dendextend/,
     http://www.r-statistics.com/tag/dendextend/,
-    http://bioinformatics.oxfordjournals.org/content/early/2015/07/23/bioinformatics.btv428
+    http://bioinformatics.oxfordjournals.org/content/early/2015/08/18/bioinformatics.btv428
 BugReports: https://github.com/talgalili/dendextend/issues
