@@ -324,7 +324,7 @@ dendextendWelcomeMessage <- function(){
 
 # shell("echo %PATH% ", intern= TRUE)
 # library(rmarkdown)
-# render("NEWS",clean = TRUE,output_format = "html_document")
+# rmarkdown::render("NEWS",clean = TRUE,output_format = "html_document")
 
 
 

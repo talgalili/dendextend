@@ -1,3 +1,20 @@
+dendextend 1.1.2 (2015-10-30)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+   * intersect_trees - return dendlist() and a warning if there are no shared labels between the two trees.
+   * Removed functions labels.matrix and labels<-.matrix, in order to avoid conflicts with arules (and since these functions are not really used in other parts of the package) - reported by Maja Alicja.
+   * rect.dendrogram and identify.dendrogram - gain the stop_if_out parameter. The defaults for this parameter makes the error of "Error in rect.dendrogram(x, k = k, x = X$x, cluster = cluster[, k - 1],  : 
+k must be between 2 and 10" - to become less common (since it replaces it with a warning). Feature request by jedgroev from http://stackoverflow.com/questions/32648935/how-to-use-identify-to-a-horizontal-dendrogram-of-class-dendrogram-in-r
+
+###BUG FIXES:
+   * as.ggdend.dendrogram - fix "Error in FUN(X[[i]], ...) : subscript out of bounds" problem for some (more) trees. Fixes bug #12
+   * as.ggdend.dendrogram - can now handle different label heights. (for example, the ones produces when using hang.dendrogram)
+
+###OTHER NOTES:
+   * Updated CITATION file.
+
+
 dendextend 1.1.0 (2015-07-30)
 ----------------------------------------
 

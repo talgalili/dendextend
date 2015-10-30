@@ -1,3 +1,74 @@
+* 2015-10-30(Tal Galili) update citations |483b935| 
+|  DESCRIPTION   | 4 ++--
+|  NEWS          | 5 ++++-
+|  inst/CITATION | 4 ++--
+|  3 files changed, 8 insertions(+), 5 deletions(-)
+
+* 2015-10-01(Tal Galili) added counter badges |b53cba4| 
+|  README.md | 2 ++
+|  1 file changed, 2 insertions(+)
+
+* 2015-09-20(Tal Galili) rect.dendrogram and identify.dendrogram - gain the stop_if_out parameter. The defaults for this parameter makes the error of "Error in rect.dendrogram(x, k = k, x = X$x, cluster = cluster[, k - 1],  : k must be between 2 and 10" - to become less common (since it replaces it with a warning). |9b0ea47| 
+|  DESCRIPTION                |  4 ++--
+|  NEWS                       |  4 +++-
+|  R/rect.dendrogram.R        | 28 ++++++++++++++++++++++------
+|  man/identify.dendrogram.Rd |  6 +++++-
+|  man/rect.dendrogram.Rd     |  7 ++++++-
+|  5 files changed, 38 insertions(+), 11 deletions(-)
+
+* 2015-09-06(Tal Galili) as.ggdend.dendrogram - can now handle different label heights. (for example, the ones produces when using hang.dendrogram) |6548b02| 
+|  DESCRIPTION | 2 +-
+|  NEWS        | 4 ++--
+|  R/ggdend.R  | 2 ++
+|  3 files changed, 5 insertions(+), 3 deletions(-)
+
+* 2015-09-03(Tal Galili) Fix 2 warnings |0e05202| 
+|  R/labels.R           | 18 +-----------------
+|  man/labels-assign.Rd | 19 +------------------
+|  2 files changed, 2 insertions(+), 35 deletions(-)
+
+* 2015-09-03(Tal Galili) Removed functions labels.matrix and labels<-.matrix, in order to avoid conflicts with arules (and since these functions are not really used in other parts of the package)- reported by Maja Alicja. |ebcae92| 
+|  DESCRIPTION                     |   2 +-
+|  NAMESPACE                       |   2 -
+|  NEWS                            |   3 +-
+|  R/labels.R                      | 111 ++++++++++++++++++--------------------
+|  inst/tests/test-labels-assign.R |  43 ++++++++-------
+|  man/labels-assign.Rd            |   5 --
+|  6 files changed, 79 insertions(+), 87 deletions(-)
+
+* 2015-08-28(Tal Galili) intersect_trees - return dendlist() and a warning if there are no shared labels between the two trees. |9de3f36| 
+|  DESCRIPTION | 2 +-
+|  NEWS        | 5 ++++-
+|  R/prune.R   | 5 +++++
+|  3 files changed, 10 insertions(+), 2 deletions(-)
+
+* 2015-08-14(Tal Galili) Basic test for as.ggdend |f1ab77f| 
+|  inst/tests/test-ggdend.R | 29 +++++++++++++++++++++++++++++
+|  1 file changed, 29 insertions(+)
+
+* 2015-08-14(Tal Galili) as.ggdend.dendrogram - fix "Error in FUN(X[[i]], ...) : subscript out of bounds" problem for some (more) trees. Fixes bug #12 |15ce942| 
+|  DESCRIPTION | 4 ++--
+|  NEWS        | 8 ++++++++
+|  R/ggdend.R  | 6 ++++--
+|  3 files changed, 14 insertions(+), 4 deletions(-)
+
+* 2015-07-30(Tal Galili) Remove d3heatmap example so to reduce package size |81c707d| 
+|  vignettes/Cluster_Analysis.Rmd | 6 +++---
+|  1 file changed, 3 insertions(+), 3 deletions(-)
+
+* 2015-07-30(Tal Galili) reduce sizes of files (for CRAN) |c62be8e| 
+|  ...ts - enhanced with the dendextend package.html | 191 +++++------
+|  inst/ignored/Introduction to dendextend.html      | 356 +++++++++++++-------
+|  vignettes/Cluster_Analysis.Rmd                    |   2 +-
+|  vignettes/FAQ.Rmd                                 |   6 +-
+|  vignettes/introduction.Rmd                        |   2 +-
+|  5 files changed, 310 insertions(+), 247 deletions(-)
+
+* 2015-07-30(Tal Galili) misc |c85c6ee| 
+|  ChangeLog | 187 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  NEWS.md   |  46 +++++++++++++++
+|  2 files changed, 233 insertions(+)
+
 * 2015-07-30(Tal Galili) Added an example for using NMF::aheatmap |9d75974| 
 |  DESCRIPTION                |  1 +
 |  vignettes/introduction.Rmd | 26 ++++++++++++++++++++++++--
