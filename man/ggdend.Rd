@@ -103,6 +103,14 @@ plot(dend)
 ggd1 <- as.ggdend(dend)
 library(ggplot2)
 ggplot(ggd1) # reproducing the above plot in ggplot2 :)
+
+
+labels(dend) <- paste0(labels(dend), "00000")
+ggd1 <- as.ggdend(dend)
+# Use ylim to deal with long labels in ggplot2
+ggplot(ggd1) + ylim(-.4, max(get_branches_heights(dend)) )
+
+
 ggplot(ggd1, horiz = TRUE) # horiz plot in ggplot2
 # Adding some extra spice to it...
 # creating a radial plot:
