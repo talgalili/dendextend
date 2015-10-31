@@ -7,6 +7,7 @@
 vignettes/figure
 vignettes/cache
 vignettes/.*cache
+vignettes/Cluster_Analysis_cache
 vignettes/introduction_cache
 vignettes/*\.md
 vignettes/*\.gz
@@ -21,5 +22,6 @@ vignettes/dendextend-tutorial.bib
 vignettes/jsslogo.jpg
 NEWS\.md
 inst/doc/2013-09-05_Boston-useR
+inst/doc/dendextend-tutorial.pdf
 inst/ignored
 ^CONDUCT\.md$
