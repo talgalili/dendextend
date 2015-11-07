@@ -200,6 +200,54 @@ labels_cex <- function(dend, ...) {
 
 
 
+
+
+
+
+
+
+
+
+
+#' Color unique labels in a dendrogram
+#'
+#' @param dend a dend object
+#' @param ... 
+#'
+#' @return
+#' A dendrogram after the colors of its labels have been updated (a different color for each unique label).
+#' @export
+#'
+#' @examples
+#' 
+#' x <- c(2011,2011,2012,2012,2015,2015,2015)
+#' names(x) <- x
+#' dend <- as.dendrogram(hclust(dist(x)))
+#' 
+#' par(mfrow = c(1,2))
+#' plot(dend)
+#' dend2 <- color_unique_labels(dend)
+#' plot(dend2)
+color_unique_labels <- function(dend, ...) {
+#    if(!require(dendextend)) install.packages("dendextend")
+#    if(!require(colorspace)) install.packages("colorspace")
+#    library("dendextend")
+   # original request: http://stackoverflow.com/questions/33567508/how-to-color-the-same-labels-on-dendorgram-in-one-colour-in-r/
+   
+   n_unique_labels <- length(unique(labels(dend)))
+   colors <- colorspace::rainbow_hcl(n_unique_labels)
+   labels_number <- as.numeric(factor(labels(dend)))
+   labels_colors(dend) <- colors[labels_number]
+   dend
+}
+
+
+
+
+
+
+
+
 # 
 # #### Tests:
 # # define dendrogram object to play with:
