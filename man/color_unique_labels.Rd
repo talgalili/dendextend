@@ -9,7 +9,7 @@ color_unique_labels(dend, ...)
 \arguments{
 \item{dend}{a dend object}
 
-\item{...}{}
+\item{...}{NOT USED}
 }
 \value{
 A dendrogram after the colors of its labels have been updated (a different color for each unique label).

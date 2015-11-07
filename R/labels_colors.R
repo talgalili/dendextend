@@ -212,7 +212,7 @@ labels_cex <- function(dend, ...) {
 #' Color unique labels in a dendrogram
 #'
 #' @param dend a dend object
-#' @param ... 
+#' @param ... NOT USED
 #'
 #' @return
 #' A dendrogram after the colors of its labels have been updated (a different color for each unique label).
