@@ -169,19 +169,23 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
                        ...) 
 {
    
-   dim_colors <- dim(colors)
-   num_of_rows <- ifelse(is.null(dim_colors), 0 , dim_colors[2])
+   ncol_colors <- ncol(colors)
+   num_of_rows <- if(is.null(ncol_colors)) 1 else ncol_colors
+   
+#    if(T) 2 else 1
+#    if(F) 2 else 1
    
    if(missing(dend) | !sort_by_labels_order) {
-      if(is.null(dim_colors)) { # then colors is a vector
+      if(is.null(ncol_colors)) { # then colors is a vector
          dend_order <- seq_along(colors)   
       } else { # color is a matrix
-         dend_order <- seq_len(dim_colors[1])
+         dend_order <- seq_len(nrow(colors))
       }
       
    } else {
       # make sure we are working with a dend:
-      if(!is.dendrogram(dend)) dend <- as.dendrogram(dend)      
+      if(is.hclust(dend)) dend <- as.dendrogram(dend) 
+      if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")   
       # get labels' order:
       dend_order <- order.dendrogram(dend)      
    }

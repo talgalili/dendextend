@@ -2,7 +2,10 @@ dendextend 1.1.4 (2015-12-31)
 ----------------------------------------
 
 ###BUG FIXES:
-   * Fix the example in the documentation of `colored_bars`
+   * colored_bars
+      * Fix the default position of the bars when dend is provided.
+      * Made more checks on the object type of dend
+      * Fix the example in the documentation of `colored_bars`
 
 
 
