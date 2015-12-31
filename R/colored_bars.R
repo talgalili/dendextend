@@ -120,17 +120,17 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' cols <- c("gold", "grey")[odd_numbers+1]
 #' # scale is off
 #' plot(dend)
-#' colored_bars(dend, cols)
+#' colored_bars(cols, dend)
 #' # move and scale a bit
 #' plot(dend)
-#' colored_bars(dend, cols, y_shift = -1,
+#' colored_bars(cols, dend, y_shift = -1,
 #'              rowLabels = "Odd\n numbers")
 #' # Now let's cut the tree and add that info to the plot:
 #' k2 <- cutree(dend, k = 2)
 #' cols2 <- c("#0082CE", "#CC476B")[k2]
 #' plot(dend)
 #' # sadly, the shift paramteres need to be handled manually...
-#' colored_bars(dend, cbind(cols2, cols), y_shift = -1,
+#' colored_bars(cbind(cols2, cols), dend, y_shift = -1,
 #'              rowLabels = c("2 clusters", "Odd numbers"),
 #'              text_shift = 1)
 #' 
@@ -150,7 +150,7 @@ rescale <- function (x, to = c(0, 1), from = range(x, na.rm = TRUE))
 #' kx  <- sort_levels_values(kx[ord])   
 #' kx  <- kx[match(seq_along(ord), ord)]
 #' 
-#' colored_bars(dend, cbind(cols3[kx], cols2, cols), 
+#' colored_bars(cbind(cols3[kx], cols2, cols), dend,
 #'              y_shift = -1, y_scale = 1.4,
 #'              rowLabels = c("3 clusters", "2 clusters", "Odd numbers"),
 #'              text_shift = 1)
