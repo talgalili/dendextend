@@ -15,14 +15,17 @@ For more details.
 \usage{
 colored_bars(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
   add = TRUE, y_scale, y_shift, text_shift = 1,
-  sort_by_labels_order = FALSE, ...)
+  sort_by_labels_order = TRUE, horiz = FALSE, ...)
 }
 \arguments{
 \item{colors}{Coloring of objects on the dendrogram. Either a vector (one color per object) 
 or a matrix (can also be an array or a data frame)
-with each column giving one color per object. 
-Each column will be plotted as a horizontal row of colors
-under the dendrogram.}
+with each column giving one group with color per object. 
+Each column will be plotted as a horizontal row of colors (when horiz = FALSE)
+under the dendrogram.
+As long as the sort_by_labels_order paramter is TRUE (default), the colors vector/matrix should
+be provided in the order of the original data order (and it will be re-ordered automaticall to 
+the order of the dendrogram)}
 
 \item{dend}{a dendrogram object. If missing, the colors are plotted without and re-ordering
 (this assumes that the colors are already ordered based on the dend's labels)
@@ -50,11 +53,13 @@ If no dend is supplied - the default will be 0}
 
 \item{text_shift}{a dendrogram object}
 
-\item{sort_by_labels_order}{logical(FALSE) - if TRUE, then the order of the 
+\item{sort_by_labels_order}{logical(TRUE) - if TRUE (default), then the order of the 
 colored bars will be sorted based on the order needed to change the original
 order of the observations to the current order of the labels in the dendrogram.
-If FALSE (default) the colored bars are plotted as-is, based on the order
+If FALSE the colored bars are plotted as-is, based on the order
 of the colors vector.}
+
+\item{horiz}{logical (FALSE by default). Set to TRUE when using plot(dend, horiz = TRUE)}
 
 \item{...}{ignored at this point.}
 }
@@ -77,7 +82,6 @@ patches for smarter defaults will be appreciated)
 }
 \examples{
 
-\dontrun{
 
 rows_picking <- c(1:5, 25:30)
 dend <- (iris[rows_picking,-5]*10) \%>\% dist \%>\% hclust \%>\% as.dendrogram 
@@ -94,10 +98,17 @@ colored_bars(cols, dend, y_shift = -1,
 k2 <- cutree(dend, k = 2)
 cols2 <- c("#0082CE", "#CC476B")[k2]
 plot(dend)
-# sadly, the shift paramteres need to be handled manually...
-colored_bars(cbind(cols2, cols), dend, y_shift = -1,
+colored_bars(cbind(cols2, cols), dend, 
+            rowLabels = c("2 clusters", "Odd numbers"))
+
+# The same, but with an horizontal plot!
+par(mar = c(6,2,2,4))
+plot(dend, horiz = TRUE)
+colored_bars(cbind(cols2, cols), dend, 
              rowLabels = c("2 clusters", "Odd numbers"),
-             text_shift = 1)
+              horiz = TRUE)
+
+
 
 # let's add clusters color
 # notice how we need to play with the colors a bit
@@ -115,15 +126,49 @@ ord <- order.dendrogram(dend)
 kx  <- sort_levels_values(kx[ord])   
 kx  <- kx[match(seq_along(ord), ord)]
 
+par(mar = c(5,5,2,2))
+plot(dend)
 colored_bars(cbind(cols3[kx], cols2, cols), dend,
-             y_shift = -1, y_scale = 1.4,
-             rowLabels = c("3 clusters", "2 clusters", "Odd numbers"),
-             text_shift = 1)
+             rowLabels = c("3 clusters", "2 clusters", "Odd numbers")) 
 
 
 
+## mtcars example
 
-}
+# Create the dend:
+dend <- as.dendrogram(hclust(dist(mtcars)))
+
+# Create a vector giving a color for each car to which company it belongs to
+car_type <- rep("Other", length(rownames(mtcars)))
+is_x <- grepl("Merc", rownames(mtcars))
+car_type[is_x] <- "Mercedes"
+is_x <- grepl("Mazda", rownames(mtcars))
+car_type[is_x] <- "Mazda"
+is_x <- grepl("Toyota", rownames(mtcars))
+car_type[is_x] <- "Toyota"
+car_type <- factor(car_type)
+n_car_types <- length(unique(car_type))
+col_car_type <- colorspace::rainbow_hcl(n_car_types, c = 70, l  = 50)[car_type]
+
+# extra: showing the various clusters cuts 
+k234 <- cutree(dend, k = 2:4)
+
+# color labels by car company:
+labels_colors(dend) <- col_car_type[order.dendrogram(dend)]
+# color branches based on cutting the tree into 4 clusters:
+dend <- color_branches(dend, k = 4)
+
+### plots
+par(mar = c(12,4,1,1))
+plot(dend)
+colored_bars(cbind(k234[,3:1], col_car_type), dend, rowLabels = c(paste0("k = ", 4:2), "Car Type"))
+
+# horiz version:
+par(mar = c(4,1,1,12))
+plot(dend, horiz = TRUE)
+colored_bars(cbind(k234[,3:1], col_car_type), dend, rowLabels = c(paste0("k = ", 4:2), "Car Type"), horiz = TRUE)
+
+
 
 }
 \author{
