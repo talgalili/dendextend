@@ -243,10 +243,10 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
    if(!horiz) {
       # We shift y with the max height of the rotated labels + plot region + one row of values (the height of X)
       if(missing(y_shift)) y_shift <- -max_labels_height(dend_labels) + par("usr")[3L] - strheight("X")
-      if(missing(y_scale)) y_scale <- strheight("X") * n_groups # median(strheight(dend_labels)) * nrow_colors * .8
+      if(missing(y_scale)) y_scale <- strheight("X") * n_groups 
    } else {
-      if(missing(y_shift)) y_shift <- max(abs(strwidth(dend_labels)))+par()$usr[3L]-3*strwidth("X") # a bit of a hack, oh well...
-      if(missing(y_scale)) y_scale <- median(abs(strwidth(dend_labels))) * nrow_colors * .8
+      if(missing(y_shift)) y_shift <- -(min(strwidth(dend_labels)) + par("usr")[2L] + strwidth("X"))
+      if(missing(y_scale)) y_scale <- strwidth("X") * n_groups 
    }
    
    
@@ -338,10 +338,10 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
    }
    # we start j from 0 so that it will add a line below the bars (and not just above them)
 
+   
+   # Adds lines to seperate the clusters
    for (j in 0:n_groups) {
       the_x <- rescale(c(0,1), to = c(1-.5, n_colors+.5))
-      
-      
       if(horiz) { 
          lines(y=the_x, x=-(c(ystep*j,ystep*j)*y_scale + y_shift));
       } else {
