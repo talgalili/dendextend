@@ -889,7 +889,9 @@ clusters <- factor(clusters)
 levels(clusters)[-1]  <- cols[-5][c(1,4,2,3)] 
    # Get the clusters to have proper colors.
    # fix the order of the colors to match the branches.
-colored_bars(clusters, dend, y_scale = 1)
+colored_bars(clusters, dend, sort_by_labels_order = FALSE)
+# here we used sort_by_labels_order = FALSE since the clusters were already sorted based on the dendrogram's order
+
 ```
 
 

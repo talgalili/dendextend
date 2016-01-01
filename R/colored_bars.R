@@ -250,10 +250,12 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
    
    
    # number of color boxes per row (i.e.: number of dend leaves)
-   n_colors <- if(is.vector(colors)) length(colors) else nrow(colors)
+   n_colors <- if(is.null(dim(colors))) length(colors) else nrow(colors)
    # number of rows (groups) of colors
-   n_groups <- if(is.vector(colors)) 1 else ncol(colors)
+   n_groups <- if(is.null(dim(colors))) 1 else ncol(colors)
 
+   
+   
    if(!missing(dend)) {
       # make sure we are working with a dend:
       if(is.hclust(dend)) dend <- as.dendrogram(dend) 
