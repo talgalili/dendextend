@@ -412,7 +412,7 @@ click_rotate.dendrogram <- function(x, plot = TRUE, plot_after = plot, horiz = F
 #' 
 #' @return A rotated tree object
 #' @seealso \code{\link[ape]{ladderize}},
-#' \code{\link{rev.dendrogram}}, \code{\link[ape]{rotate}} ({ape})
+#' \code{\link{rev.dendrogram}}, \code{\link{rotate}} ({dendextend}), \code{\link[ape]{rotate}} ({ape})
 #' @examples
 #' 
 #' dend <- USArrests[1:8,] %>% dist %>% hclust %>% as.dendrogram %>% 
