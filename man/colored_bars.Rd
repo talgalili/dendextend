@@ -119,7 +119,7 @@ colored_bars(cbind(cols2, cols), dend,
 the_k <- 3
 library(colorspace)
 cols3 <- rainbow_hcl(the_k, c=90, l=50)
-dend \%>\% update("branches_k_color", k = the_k, with = cols3) \%>\% plot
+dend \%>\% set("branches_k_color", k = the_k, with = cols3) \%>\% plot
 
 kx <- cutree(dend, k = the_k)
 ord <- order.dendrogram(dend)

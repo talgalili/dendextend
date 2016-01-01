@@ -185,7 +185,7 @@ max_labels_height <- function(s) {
 #' the_k <- 3
 #' library(colorspace)
 #' cols3 <- rainbow_hcl(the_k, c=90, l=50)
-#' dend %>% update("branches_k_color", k = the_k, with = cols3) %>% plot
+#' dend %>% set("branches_k_color", k = the_k, with = cols3) %>% plot
 #' 
 #' kx <- cutree(dend, k = the_k)
 #' ord <- order.dendrogram(dend)
@@ -418,7 +418,7 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
 #    kx  <- kx[match(seq_along(ord), ord)]
 #    
 #    library(colorspace)
-#    dend %>% update("branches_k_color", k = the_k, with = the_cols) %>% plot
+#    dend %>% set("branches_k_color", k = the_k, with = the_cols) %>% plot
 #    colored_bars(dend, cols3[kx], y_shift = -2)
 #    
 #    
@@ -430,12 +430,12 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
 #    plot(dend)
 #    colored_bars(dend, k4)
 #    library(colorspace)
-#    dend %>% update("branches_k_color", k = 4) %>% plot
+#    dend %>% set("branches_k_color", k = 4) %>% plot
 #    colored_bars(dend, rainbow_hcl(4)[c(4,2,3,1)][k4], y_shift = -2)
 #    
 #    the_k <- 5
 #    the_cols <- rainbow_hcl(the_k, c=90, l=50)
-#    dend %>% update("branches_k_color", k = the_k, with = the_cols) %>% plot
+#    dend %>% set("branches_k_color", k = the_k, with = the_cols) %>% plot
 #    colored_bars(dend, the_cols[cutree(dend, k = the_k, sort_cluster_numbers = T)], y_shift = -2)
 #    plot(1:5, pch = 19, cex = 2, col = the_cols)
 #    
@@ -447,7 +447,7 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
 #    kx  <- kx[match(seq_along(ord), ord)]
 #    
 #    library(colorspace)
-#    dend %>% update("branches_k_color", k = the_k, with = the_cols) %>% plot
+#    dend %>% set("branches_k_color", k = the_k, with = the_cols) %>% plot
 #    colored_bars(dend, the_cols[kx], y_shift = -2)
 #    
 #    the_cols <- apply(cutree(dend, k = 2:5), 2, function(x) heat_hcl(5)[x])
