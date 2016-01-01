@@ -245,8 +245,9 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
                        #below_labels = TRUE,
                        ...) 
 {
-   # should either be a vector or a matrix
-   if(!(is.vector(colors) | is.matrix(colors))) stop("colors must be either a vector or a matrix")
+   # should either be a vector or a matrix (it could also work with data.frames)
+   # if(!(is.vector(colors) | is.matrix(colors))) stop("colors must be either a vector or a matrix")
+   
    
    # number of color boxes per row (i.e.: number of dend leaves)
    n_colors <- if(is.vector(colors)) length(colors) else nrow(colors)
