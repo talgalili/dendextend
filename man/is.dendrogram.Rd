@@ -12,4 +12,7 @@ is.dendrogram(x)
 \value{
 logical - is the object of class dendrogram.
 }
+\description{
+Is the object of class dendrogram. Very basic for many functions in the package.
+}
 

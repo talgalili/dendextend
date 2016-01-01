@@ -92,6 +92,8 @@ dendextend_options <- local({
 
 
 #' @title Populates dendextend functions into dendextend_options
+#' @description
+#' Populates dendextend functions into dendextend_options
 #' @export
 #' @return NULL
 assign_dendextend_options <- function() { 

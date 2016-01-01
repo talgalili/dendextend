@@ -21,6 +21,7 @@
 
 
 #' @title Checks if the value is and empty list()
+#' @description Checks if the value is and empty list(). Can be useful.
 #' @param x whatever object to check
 #' @return 
 #' logical
@@ -55,6 +56,7 @@ is_null_list <- function(x) {
 
 
 #' @title Checks if an object is of class dendlist
+#' @description Checks if an object is of class dendlist (returns TRUE if it is).
 #' @export
 #' @param x whatever object to check
 #' @return 

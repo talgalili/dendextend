@@ -25,6 +25,9 @@ after using \code{unlist} on it.}
 \value{
 A vector (or a list) with the dendrogram's leaves attribute
 }
+\description{
+Get/set attributes of dendrogram's leaves
+}
 \examples{
 # define dendrogram object to play with:
 hc <- hclust(dist(USArrests[1:3,]), "ave")

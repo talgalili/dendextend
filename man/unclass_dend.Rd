@@ -14,6 +14,9 @@ unclass_dend(dend, ...)
 \value{
 The list which was the dendrogram (but without a class)
 }
+\description{
+unclass all the nodes in a dendrogram tree. (Helps in cases when a dendrapply function was used wrongly)
+}
 \examples{
 # define dendrogram object to play with:
 hc <- hclust(dist(USArrests[1:3,]), "ave")

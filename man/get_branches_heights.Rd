@@ -19,6 +19,9 @@ get_branches_heights(dend, sort = TRUE, decreasing = FALSE, ...)
 \value{
 a vector of the dendrogram's nodes heights (excluding leaves).
 }
+\description{
+Get height attributes of a dendrogram's branches
+}
 \examples{
 
 hc <- hclust(dist(USArrests[1:4,]), "ave")

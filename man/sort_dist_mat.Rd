@@ -2,7 +2,7 @@
 % Please edit documentation in R/cor_cophenetic.R
 \name{sort_dist_mat}
 \alias{sort_dist_mat}
-\title{Sorts a distance matrix by rows and columns}
+\title{Sorts a distance matrix by rows and columns names}
 \usage{
 sort_dist_mat(dist_mat, by_rows = TRUE, by_cols = TRUE, ...)
 }
@@ -17,6 +17,9 @@ sort_dist_mat(dist_mat, by_rows = TRUE, by_cols = TRUE, ...)
 }
 \value{
 A distance matrix (after sorting)
+}
+\description{
+Sorts a distance matrix by the names of the rows and columns.
 }
 \seealso{
 \link{dist}, \link{cor_cophenetic}

@@ -16,6 +16,10 @@ heights_per_k.dendrogram(dend, ...)
 a vector of heights, with its names being the k clusters that will
 result for cutting the dendrogram at each height.
 }
+\description{
+Which height will result in which k for a dendrogram.
+This helps with speeding up the \link{cutree.dendrogram} function.
+}
 \examples{
 \dontrun{
 hc <- hclust(dist(USArrests[1:4,]), "ave")

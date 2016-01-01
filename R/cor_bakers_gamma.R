@@ -50,6 +50,7 @@ lowest_common_branch <- function(item1, item2,...)
 
 
 #' @title Bakers Gamma for two k matrices
+#' @description Bakers Gamma for two k matrices
 #' @param k_matrix_dend1 a matrix of k cluster groupings from a dendrogram
 #' @param k_matrix_dend2 a (second) matrix of k cluster groupings from a dendrogram
 #' @param to_plot logical (FALSE). Should a scaterplot be plotted, showing the

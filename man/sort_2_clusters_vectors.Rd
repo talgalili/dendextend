@@ -28,7 +28,10 @@ but for keeping the noise down, the default is FALSE.}
 \item{...}{Ignored.}
 }
 \value{
-A list with two elements, corrosponding two the two clustering vectors.
+A list with two elements, corresponding to the two clustering vectors.
+}
+\description{
+Sorts two clusters vector by their names and returns a list with the sorted vectors.
 }
 \examples{
 

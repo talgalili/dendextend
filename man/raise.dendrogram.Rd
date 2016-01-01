@@ -16,6 +16,9 @@ raise.dendrogram(dend, heiget_to_add, ...)
 \value{
 A raised dendrogram
 }
+\description{
+Raise the height of nodes in a dendrogram tree.
+}
 \examples{
 hc <- hclust(dist(USArrests[2:9,]), "com")
 dend <- as.dendrogram(hc)

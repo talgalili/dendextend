@@ -21,6 +21,7 @@
 
 
 #' @title Retrieve/assign colors to the labels of a dendrogram
+#' @description Retrieve/assign colors to the labels of a dendrogram. Note that usually dend objects come without any color assignment (and the output will be NULL, until colors are assigned).
 #' @aliases 
 #' labels_col
 #' labels_colors<-
@@ -155,6 +156,7 @@ labels_col <- labels_colors
 
 
 #' @title Retrieve/assign cex to the labels of a dendrogram
+#' @description Retrieve/assign cex to the labels of a dendrogram
 #' @aliases 
 #' labels_cex<-
 #' @usage

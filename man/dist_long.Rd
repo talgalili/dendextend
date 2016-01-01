@@ -15,6 +15,9 @@ dist_long(d, ...)
 A data.frame with two columns of rows and column names of the dist object
 and a third column (distance) with the distance between the two.
 }
+\description{
+Turns a dist object from a "wide" to a "long" table
+}
 \examples{
 data(iris)
 iris[2:6,-5] \%>\% dist \%>\% data.matrix

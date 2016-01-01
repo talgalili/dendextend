@@ -242,6 +242,7 @@ count_terminal_nodes <- function(dend_node,...) {
 
 
 #' @title unclass an entire dendrogram tree
+#' @description unclass all the nodes in a dendrogram tree. (Helps in cases when a dendrapply function was used wrongly)
 #' @export
 #' @param dend a dendrogram object 
 #' @param ... not used

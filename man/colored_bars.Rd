@@ -161,12 +161,14 @@ dend <- color_branches(dend, k = 4)
 ### plots
 par(mar = c(12,4,1,1))
 plot(dend)
-colored_bars(cbind(k234[,3:1], col_car_type), dend, rowLabels = c(paste0("k = ", 4:2), "Car Type"))
+colored_bars(cbind(k234[,3:1], col_car_type), dend, 
+      rowLabels = c(paste0("k = ", 4:2), "Car Type"))
 
 # horiz version:
 par(mar = c(4,1,1,12))
 plot(dend, horiz = TRUE)
-colored_bars(cbind(k234[,3:1], col_car_type), dend, rowLabels = c(paste0("k = ", 4:2), "Car Type"), horiz = TRUE)
+colored_bars(cbind(k234[,3:1], col_car_type), dend, 
+      rowLabels = c(paste0("k = ", 4:2), "Car Type"), horiz = TRUE)
 
 
 

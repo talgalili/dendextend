@@ -21,6 +21,7 @@
 
 
 #' @title Sorts two clusters vector by their names
+#' @description Sorts two clusters vector by their names and returns a list with the sorted vectors.
 #' @export
 #' @param A1_clusters a numeric vector of cluster grouping (numeric) of items,
 #' with a name attribute of item name for each element from group A1.
@@ -40,7 +41,7 @@
 #' @seealso
 #' \link{FM_index_profdpm}
 #' @return 
-#' A list with two elements, corrosponding two the two clustering vectors.
+#' A list with two elements, corresponding to the two clustering vectors.
 #' 
 #' @examples
 #' 

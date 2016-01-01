@@ -12,6 +12,9 @@ is_null_list(x)
 \value{
 logical
 }
+\description{
+Checks if the value is and empty list(). Can be useful.
+}
 \examples{
 # I can run this only if I'd make is_null_list exported
 \dontrun{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_nodes_xy.R
 \name{get_nodes_xy}
 \alias{get_nodes_xy}
-\title{Get the x-y coordiantes of a dendrogram's nodes}
+\title{Get the x-y coordinates of a dendrogram's nodes}
 \source{
 This is a striped down version of the 
 function \code{\link{plot.dendrogram}}.
@@ -30,6 +30,9 @@ plot them in the middle of all direct child nodes.}
 A 2-dimensional matrix, with rows as the number of nodes,
 and the first column is the x location, while the second is the
 y location.
+}
+\description{
+Get the x-y coordinates of a dendrogram's nodes. Can be used to add text or images on the tree.
 }
 \examples{
 \dontrun{

@@ -79,7 +79,8 @@ partition_leaves <- function(dend, ...) {
 
 
 
-#' @title Finds the edges present in the first tree but not in the second
+#' @title Finds distinct edges in one tree compared to another
+#' @description Finds the edges present in the first tree but not in the second
 #' @export
 #' 
 #' @param dend a dendrogram to find unique edges in

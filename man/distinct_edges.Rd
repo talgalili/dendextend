@@ -2,7 +2,7 @@
 % Please edit documentation in R/distinct_edges.R
 \name{distinct_edges}
 \alias{distinct_edges}
-\title{Finds the edges present in the first tree but not in the second}
+\title{Finds distinct edges in one tree compared to another}
 \source{
 A \link{dendrogram} implementation for \link[distory]{distinct.edges} from the {distory} package
 }
@@ -18,6 +18,9 @@ distinct_edges(dend, dend2, ...)
 }
 \value{
 A numeric vector of edge ids for the first tree (dend) that are not present in the second tree (dend2).
+}
+\description{
+Finds the edges present in the first tree but not in the second
 }
 \examples{
 

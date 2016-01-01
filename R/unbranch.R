@@ -20,6 +20,7 @@
 
 
 #' @title get attributes from the dendrogram's root(!) branches
+#' @description get attributes from the dendrogram's root(!) branches
 #' @export
 #' @param dend dendrogram object
 #' @param the_attr the attribute to get from the branches (for example "height")
@@ -55,6 +56,7 @@ get_root_branches_attr <- function(dend, the_attr, warn = dendextend_options("wa
 
 
 #' @title Raise the height of a dendrogram tree
+#' @description Raise the height of nodes in a dendrogram tree.
 #' @export
 #' @param dend dendrogram object
 #' @param heiget_to_add how much height to add to all the branches (not leaves) in the dendrogram
@@ -91,6 +93,7 @@ raise.dendrogram <- function(dend, heiget_to_add,...)
 
 
 #' @title unbranch trees
+#' @description unbranch trees and merges the subtree to the parent node.
 #' @export
 #' @aliases 
 #' unbranch.default
@@ -120,7 +123,9 @@ raise.dendrogram <- function(dend, heiget_to_add,...)
 #' plot(dend, main = "original tree")
 #' plot(unbranch(dend , 1), main = "unbranched tree (left branch)")
 #' plot(unbranch(dend , 2), main = "tree without  (right branch)")
-unbranch <- function(dend, ...) UseMethod("unbranch")
+unbranch <- function(dend, ...) {
+	UseMethod("unbranch")
+}
 
 #' @export
 unbranch.default <- function(dend,...) stop("object dend must be a dendrogram/hclust/phylo object")

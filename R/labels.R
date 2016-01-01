@@ -401,6 +401,7 @@ labels.phylo <- function(object, ...) {
 
 
 #' @title Ordering of the Leaves in a hclust Dendrogram
+#' @description Ordering of the Leaves in a hclust Dendrogram. Like \link{order.dendrogram}.
 #' @export
 #' @param x ab hclust object a distance matrix.
 #' @param ... Ignored.

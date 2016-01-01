@@ -172,7 +172,8 @@ plot(dend_iris1)
 
 c(1:5) \%>\% # take some data
    dist \%>\% # calculate a distance matrix, 
-   hclust(method = "single") \%>\% # on it compute hierarchical clustering using the "average" method, 
+  # on it compute hierarchical clustering using the "average" method, 
+   hclust(method = "single") \%>\% 
    as.dendrogram \%>\% color_branches(k=3) \%>\% plot # nice, returns the tree as is...
 
 

@@ -17,6 +17,9 @@ all_unique(x, ...)
 \value{
 logical (are all the elements in the vector unique)
 }
+\description{
+Checks if all the elements in a vector are unique
+}
 \examples{
 
 all_unique(c(1:5, 1,1))

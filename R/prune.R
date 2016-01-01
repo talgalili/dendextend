@@ -21,7 +21,8 @@
 
 
 
-#' @title Trimms one leaf from a dendrogram
+#' @title Trims one leaf from a dendrogram
+#' @description Trims (prunes) one leaf from a dendrogram.
 #' @export
 #' @param dend dendrogram object
 #' @param leaf_name a character string as the label of the tip we wish to prune
@@ -58,7 +59,7 @@ prune_leaf <- function(dend, leaf_name,...)
    is.father.of.leaf.to.remove <- function(dend, leaf_name)
    {
       # this function checks if the leaf we wish to remove is the direct child of the current branch (dend) we entered the function
-      is.father <- F
+      is.father <- FALSE
       for(i in seq_len(length(dend)))
       {
          if(is.leaf(dend[[i]]) == TRUE  &&  labels(dend[[i]]) == leaf_name) is.father <- TRUE

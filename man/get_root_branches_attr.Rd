@@ -22,6 +22,9 @@ the function is used on an object which is NOT a dendrogram.}
 \value{
 The attributes of the branches (often two) of the dendrogram's root
 }
+\description{
+get attributes from the dendrogram's root(!) branches
+}
 \examples{
 hc <- hclust(dist(USArrests[2:9,]), "com")
 dend <- as.dendrogram(hc)

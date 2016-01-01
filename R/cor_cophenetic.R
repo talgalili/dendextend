@@ -18,7 +18,8 @@
 
 
 
-#' @title Sorts a distance matrix by rows and columns
+#' @title Sorts a distance matrix by rows and columns names
+#' @description Sorts a distance matrix by the names of the rows and columns.
 #' @export
 #' @param dist_mat a distance matrix.
 #' @param by_rows logical (TRUE). Sort the distance matrix by rows?

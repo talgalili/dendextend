@@ -15,7 +15,7 @@ leaf_Colors(d, col_to_return = c("edge", "node", "label"))
 \value{
 named character vector of Colors, NA_character_ where missing
 }
-\details{
+\description{
 The returned Colors will be in dendrogram order.
 }
 \examples{

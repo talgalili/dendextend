@@ -37,6 +37,7 @@ Size.dist <- function(d) {
 
 
 #' @title Turns a dist object to a "long" table
+#' @description Turns a dist object from a "wide" to a "long" table
 #' @export
 #' @param d a distance object
 #' @param ... not used

@@ -24,6 +24,8 @@
 
 
 #' @title Check if all the elements in a vector are unique
+#' @description
+#' Checks if all the elements in a vector are unique
 #' @export
 #' @param x a vector
 #' @param ... ignored.
@@ -217,7 +219,8 @@ all_unique <- function(x, ...) {
 #' 
 #' c(1:5) %>% # take some data
 #'    dist %>% # calculate a distance matrix, 
-#'    hclust(method = "single") %>% # on it compute hierarchical clustering using the "average" method, 
+#'   # on it compute hierarchical clustering using the "average" method, 
+#'    hclust(method = "single") %>% 
 #'    as.dendrogram %>% color_branches(k=3) %>% plot # nice, returns the tree as is...
 #' 
 #' 
@@ -573,7 +576,7 @@ lty_branches <- function(dend, k=NULL, h=NULL,
 
 
 #' @title Return the leaf Colors of a dendrogram
-#' @details The returned Colors will be in dendrogram order.
+#' @description The returned Colors will be in dendrogram order.
 #' @param d the dendrogram
 #' @param col_to_return Character scalar - kind of Color attribute to return
 #' @return named character vector of Colors, NA_character_ where missing

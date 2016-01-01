@@ -29,6 +29,9 @@ If the parameter is not given - the height of the original root is used.}
 \value{
 An unbranched dendrogram
 }
+\description{
+unbranch trees and merges the subtree to the parent node.
+}
 \examples{
 hc <- hclust(dist(USArrests[2:9,]), "com")
 dend <- as.dendrogram(hc)

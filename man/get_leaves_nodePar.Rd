@@ -17,6 +17,9 @@ after using \code{unlist} on it.}
 \value{
 A list (or a vector) with the dendrogram's leaves nodePar attribute
 }
+\description{
+Get the nodePar attributes of dendrogram's leaves (includes pch, color, and cex)
+}
 \examples{
 # define dendrogram object to play with:
 hc <- hclust(dist(USArrests[1:3,]), "ave")

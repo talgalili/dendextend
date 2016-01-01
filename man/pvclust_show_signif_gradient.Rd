@@ -2,7 +2,7 @@
 % Please edit documentation in R/pvclust.R
 \name{pvclust_show_signif_gradient}
 \alias{pvclust_show_signif_gradient}
-\title{Shows the gradient of significance of branches in a dendrogram, based on a pvclust object}
+\title{Significance gradient of branches in a dendrogram (via pvclust)}
 \usage{
 pvclust_show_signif_gradient(dend, pvclust_obj, signif_type = c("bp", "au"),
   signif_col_fun = colorRampPalette(c("black", "darkred", "red")), ...)
@@ -22,6 +22,9 @@ gradient. Default is: colorRampPalette(c("black", "darkred", "red"))}
 }
 \value{
 A dendrogram with updated branches
+}
+\description{
+Shows the gradient of significance of branches in a dendrogram, based on a pvclust object
 }
 \examples{
 \dontrun{

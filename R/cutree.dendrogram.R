@@ -19,18 +19,21 @@
 
 
 #' @title Is the object of class hclust
+#' @description Is the object of class hclust.
 #' @export
 #' @param x an object.
 #' @return logical - is the object of class hclust.
 is.hclust <- function(x) { inherits(x,"hclust") }
 
 #' @title Is the object of class dendrogram
+#' @description Is the object of class dendrogram. Very basic for many functions in the package.
 #' @export
 #' @param x an object.
 #' @return logical - is the object of class dendrogram.
 is.dendrogram <- function(x) { inherits(x,"dendrogram") }
 
 #' @title Is the object of class phylo
+#' @description checks if the object of class phylo.
 #' @export
 #' @param x an object.
 #' @return logical - is the object of class phylo.
@@ -349,6 +352,8 @@ cutree_1h.dendrogram <- function(dend, h,
 
 
 #' @title Which height will result in which k for a dendrogram
+#' @description Which height will result in which k for a dendrogram.
+#' This helps with speeding up the \link{cutree.dendrogram} function.
 #' @export
 #' @aliases
 #' dendextend_heights_per_k.dendrogram

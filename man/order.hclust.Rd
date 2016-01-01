@@ -18,6 +18,9 @@ From r <- order.hclust(), each element is
 the index into the original data 
 (from which the hclust was computed).
 }
+\description{
+Ordering of the Leaves in a hclust Dendrogram. Like \link{order.dendrogram}.
+}
 \examples{
 
 set.seed(23235)

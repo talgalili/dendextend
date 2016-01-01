@@ -1,11 +1,15 @@
-dendextend 1.1.4 (2015-12-31)
+dendextend 1.1.4 (2016-01-01)
 ----------------------------------------
+
 
 ###BUG FIXES:
    * colored_bars
-      * Fix the default position of the bars when dend is provided.
-      * Made more checks on the object type of dend
+      * Fix the default position of the bars (i.e.: y_shift) when dend is provided. (this is a major corrections to the way the bars are located automatically via y_shift)
       * Fix the example in the documentation of `colored_bars`
+      * NEW parameter horiz - now allows for adding bars to horizontal dendrograms
+      * sort_by_labels_order is now set to TRUE by default
+      * Made more checks on the object type of dend
+   * Added many description elements in .Rd files. 
 
 
 

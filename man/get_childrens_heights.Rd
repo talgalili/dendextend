@@ -15,6 +15,9 @@ get_childrens_heights(dend, ...)
 a vector of the heights of a dendrogram's current node's 
 (first level) children.
 }
+\description{
+Get height attributes from a dendrogram's children nodes
+}
 \examples{
 
 hc <- hclust(dist(USArrests[1:4,]), "ave")

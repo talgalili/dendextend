@@ -35,7 +35,9 @@ is.infinite2 <- function(x) {
 ### # ' get_leaves_attr(dend, labels = TRUE,...)
 ### # ' 
 ### # ' set_leaves_attr(dend, ...) <- value
+
 #' @title Get/set attributes of dendrogram's leaves
+#' @description Get/set attributes of dendrogram's leaves
 #' @export
 #' @param dend a dendrogram object 
 #' @param attribute character scalar of the attribute (\code{attr})
@@ -98,6 +100,7 @@ get_leaves_attr <- function (dend, attribute, simplify = TRUE, ...) {
 
 
 #' @title Get nodePar of dendrogram's leaves
+#' @description Get the nodePar attributes of dendrogram's leaves (includes pch, color, and cex)
 #' @export
 #' @param dend a dendrogram object 
 #' @param simplify logical (default is FALSE). If TRUE, then the return vector is 
@@ -485,6 +488,7 @@ rllply <- function(x, FUN,add_notation = FALSE, ...)
 
 
 #' @title Get height attributes from a dendrogram
+#' @description Get height attributes of a dendrogram's branches
 #' @export
 #' @aliases
 #' dendextend_get_branches_heights
@@ -631,6 +635,7 @@ hang.dendrogram <- function(dend, hang = 0.1, hang_height, ...) {
 
 
 #' @title Get height attributes from a dendrogram's children
+#' @description Get height attributes from a dendrogram's children nodes
 #' @export
 #' @param dend a dendrogram.
 #' @param ... not used.

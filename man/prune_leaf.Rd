@@ -2,7 +2,7 @@
 % Please edit documentation in R/prune.R
 \name{prune_leaf}
 \alias{prune_leaf}
-\title{Trimms one leaf from a dendrogram}
+\title{Trims one leaf from a dendrogram}
 \usage{
 prune_leaf(dend, leaf_name, ...)
 }
@@ -15,6 +15,9 @@ prune_leaf(dend, leaf_name, ...)
 }
 \value{
 A dendrogram with a leaf pruned
+}
+\description{
+Trims (prunes) one leaf from a dendrogram.
 }
 \details{
 Used through \link{prune}

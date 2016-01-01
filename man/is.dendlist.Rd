@@ -12,6 +12,9 @@ is.dendlist(x)
 \value{
 logical
 }
+\description{
+Checks if an object is of class dendlist (returns TRUE if it is).
+}
 \examples{
 # TRUE:
 is.dendlist(dendlist())

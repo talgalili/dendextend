@@ -32,6 +32,9 @@ return with the leaves labels as names.}
 A vector with the dendrogram's labels colors (or a colored dendrogram,
 in case assignment is used). The colors are labeled.
 }
+\description{
+Retrieve/assign colors to the labels of a dendrogram. Note that usually dend objects come without any color assignment (and the output will be NULL, until colors are assigned).
+}
 \examples{
 # define dendrogram object to play with:
 hc <- hclust(dist(USArrests[1:3,]), "ave")

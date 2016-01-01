@@ -2,7 +2,7 @@
 % Please edit documentation in R/pvclust.R
 \name{pvclust_show_signif}
 \alias{pvclust_show_signif}
-\title{Shows the significant branches in a dendrogram, based on a pvclust object}
+\title{The significant branches in a dendrogram, based on a pvclust object}
 \usage{
 pvclust_show_signif(dend, pvclust_obj, signif_type = c("bp", "au"),
   alpha = 0.05, signif_value = c(5, 1), show_type = c("lwd", "col"), ...)
@@ -29,6 +29,9 @@ which parameter of the branches should be updated based on significance.}
 }
 \value{
 A dendrogram with updated branches
+}
+\description{
+Shows the significant branches in a dendrogram, based on a pvclust object
 }
 \examples{
 \dontrun{

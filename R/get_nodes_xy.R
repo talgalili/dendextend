@@ -29,7 +29,8 @@
 
 
 
-#' @title Get the x-y coordiantes of a dendrogram's nodes
+#' @title Get the x-y coordinates of a dendrogram's nodes
+#' @description Get the x-y coordinates of a dendrogram's nodes. Can be used to add text or images on the tree.
 #' @export
 #' @param dend a dendrogram object 
 #' @param type type of plot.

@@ -12,4 +12,7 @@ is.phylo(x)
 \value{
 logical - is the object of class phylo.
 }
+\description{
+checks if the object of class phylo.
+}
 

@@ -19,6 +19,9 @@ labels_cex(dend, ...) <- value
 \value{
 A vector with the dendrogram's labels sizes (NULL if none are supplied).
 }
+\description{
+Retrieve/assign cex to the labels of a dendrogram
+}
 \examples{
 # define dendrogram object to play with:
 dend <- as.dendrogram(hclust(dist(USArrests[1:3,]), "ave"))

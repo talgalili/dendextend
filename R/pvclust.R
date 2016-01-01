@@ -212,7 +212,8 @@ text.pvclust <- function (x, col = c(2, 3, 8), print.num = TRUE, float = 0.01,
 
 
 
-#' @title Shows the significant branches in a dendrogram, based on a pvclust object
+#' @title The significant branches in a dendrogram, based on a pvclust object
+#' @description Shows the significant branches in a dendrogram, based on a pvclust object
 #' @export
 #' @param dend a dendrogram object 
 #' @param pvclust_obj a pvclust object 
@@ -290,7 +291,8 @@ pvclust_show_signif <- function(dend, pvclust_obj, signif_type = c("bp","au"), a
 
 
 
-#' @title Shows the gradient of significance of branches in a dendrogram, based on a pvclust object
+#' @title Significance gradient of branches in a dendrogram (via pvclust)
+#' @description Shows the gradient of significance of branches in a dendrogram, based on a pvclust object
 #' @export
 #' @param dend a dendrogram object 
 #' @param pvclust_obj a pvclust object 
