@@ -276,6 +276,7 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
    if (length(dend_order) != dimC[1] ) 
       stop("ERROR: length of colors vector not compatible with number of objects in the hierarchical tree.");
    C <- colors[dend_order, ] # new colors vector
+   C <- as.matrix(C)
    step <- 1/(n_colors-1)
    ystep <- 1/n_groups
    
@@ -297,34 +298,30 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
       if(add) {
          xl <- rescale(xl, to = c(1-.5, n_colors-.5))
          xr <- rescale(xl, to = c(1+.5, n_colors+.5))
-         yb <- yb + y_shift
+         yb <- yb*y_scale + y_shift
          yt <- yt*y_scale + y_shift         
       }
       
       if(horiz) {
+         rect(-yb, xl, -yt, xr, col = as.character(C[,j]), border = as.character(C[,j]));
          
+         # plot the rowLabels text:
          par(srt = 90)
          
-         if (is.null(dim(C))) {
-            rect(-yb, xl, -yt, xr, col = as.character(C), border = as.character(C));
-         } else {
-            rect(-yb, xl, -yt, xr, col = as.character(C[,j]), border = as.character(C[,j]));
-         }
          if (is.null(rowLabels))
          {
-            text(as.character(j), adj = c(1,NA), y = charHeight*text_shift, x = -(ystep*(j-0.5)*y_scale + y_shift), cex=cex.rowLabels)
+            s <- as.character(j)
+            text(s, pos=1, offset = 0.5, y = charHeight*text_shift-rotated_str_dim(s)[2]/2, x = -(ystep*(j)*y_scale + y_shift), cex=cex.rowLabels)
             #          text(as.character(j), pos=2, x= -charWidth -0.5*step, y=ystep*(j-0.5), cex=cex.rowLabels, xpd = TRUE);
          } else {
-            text(rowLabels[j], adj = c(1,NA), y = charHeight*text_shift, x = -(ystep*(j-0.5)*y_scale + y_shift), cex=cex.rowLabels)
+            s <- rowLabels[j]
+            text(s, pos=1, offset = 0.5, y = charHeight*text_shift-rotated_str_dim(s)[2]/2, x = -(ystep*(j)*y_scale + y_shift), cex=cex.rowLabels)
             #          text(rowLabels[j], pos=2, x= -charWidth -0.5*step, y=ystep*(j-0.5), cex=cex.rowLabels, xpd = TRUE);
          } 
          
       } else { # default
-         if (is.null(dim(C))) {
-            rect(xl, yb, xr, yt, col = as.character(C), border = as.character(C));
-         } else {
-            rect(xl, yb, xr, yt, col = as.character(C[,j]), border = as.character(C[,j]));
-         }
+         rect(xl, yb, xr, yt, col = as.character(C[,j]), border = as.character(C[,j]));
+         
          if (is.null(rowLabels))
          {
             text(as.character(j), pos=2, x = charWidth*text_shift, y = ystep*(j-0.5)*y_scale + y_shift, cex=cex.rowLabels);
