@@ -988,7 +988,8 @@ is_x <- grepl("Toyota", rownames(mtcars))
 car_type[is_x] <- "Toyota"
 car_type <- factor(car_type)
 n_car_types <- length(unique(car_type))
-col_car_type <- colorspace::rainbow_hcl(n_car_types, c = 70, l  = 50)[car_type]
+cols_4 <- colorspace::rainbow_hcl(n_car_types, c = 70, l  = 50)
+col_car_type <- cols_4[car_type]
 
 # extra: showing the various clusters cuts 
 k234 <- cutree(dend, k = 2:4)
@@ -1004,9 +1005,11 @@ plot(dend)
 colored_bars(cbind(k234[,3:1], col_car_type), dend, rowLabels = c(paste0("k = ", 4:2), "Car Type"))
 
 # horiz version:
+# dend <- sort(dend)
 par(mar = c(4,1,1,12))
 plot(dend, horiz = TRUE)
 colored_bars(cbind(k234[,3:1], col_car_type), dend, rowLabels = c(paste0("k = ", 4:2), "Car Type"), horiz = TRUE)
+legend("topleft", legend = levels(car_type), fill = cols_4)
 
 ```
 
