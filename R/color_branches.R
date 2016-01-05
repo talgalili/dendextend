@@ -171,9 +171,9 @@ all_unique <- function(x, ...) {
 #' 
 #' 
 #' # cutree(dend_iris,k=3, order_clusters_as_data=FALSE,
-#'    # sort_cluster_numbers = TRUE, try_cutree_hclust=FALSE)
+#'    #  try_cutree_hclust=FALSE)
 #' # cutree(dend_iris,k=3, order_clusters_as_data=FALSE,
-#'    # sort_cluster_numbers = TRUE, try_cutree_hclust=TRUE)
+#'    # sort_cluster_numbers = TRUE)
 #' 
 #' library(colorspace)
 #' 
@@ -295,7 +295,7 @@ color_branches <- function(dend, k=NULL, h=NULL, col, groupLabels=NULL,
    }
    
    if(!is.dendrogram(dend) && !is.hclust(dend)) stop("dend needs to be either a dendrogram or an hclust object")
-   g <- dendextend::cutree(dend, k=k, h=h, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE)
+   g <- dendextend::cutree(dend, k=k, h=h, order_clusters_as_data=FALSE)
    if(is.hclust(dend)) dend <- as.dendrogram(dend)
    
    k <- max(g)
@@ -517,7 +517,7 @@ color_labels <- function(dend, k=NULL, h=NULL, labels, col, warn = dendextend_op
       return(dend)
    }
    
-   g <- dendextend::cutree(dend,k=k,h=h, order_clusters_as_data=FALSE, sort_cluster_numbers = TRUE)
+   g <- dendextend::cutree(dend,k=k,h=h, order_clusters_as_data=FALSE)
    if(is.hclust(dend)) dend <- as.dendrogram(dend)
    
    k <- max(g)

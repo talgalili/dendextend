@@ -13,7 +13,6 @@ cutree(tree, k = NULL, h = NULL,...)
 \method{cutree}{hclust}(tree, k = NULL, h = NULL,
                            use_labels_not_values = TRUE, 
                           order_clusters_as_data =TRUE,
-                          sort_cluster_numbers = TRUE,
                           warn = dendextend_options("warn"),
                           NA_to_0L = TRUE,
                           ...)
@@ -24,7 +23,6 @@ cutree(tree, k = NULL, h = NULL,...)
                               dend_heights_per_k = NULL,
                               use_labels_not_values = TRUE, 
                               order_clusters_as_data =TRUE, 
-                              sort_cluster_numbers = TRUE,
                               warn = dendextend_options("warn"), 
                               try_cutree_hclust = TRUE,
                               NA_to_0L = TRUE,
@@ -55,11 +53,6 @@ to order the clusters: 1) By the order of the original data. 2) by the order of 
 labels in the dendrogram. In order to be consistent with \link[stats]{cutree}, this is set
 to TRUE.
 This is passed to \code{cutree_1h.dendrogram}.}
-
-\item{sort_cluster_numbers}{logical (TRUE). Should the resulting cluster id numbers
-be sorted? (default is TRUE in order to make the function compatible with
-\code{ \link[stats]{cutree}  } ) from {stats}, but it allows for sensible
-color order when using \link{color_branches}.}
 
 \item{warn}{logical (default from dendextend_options("warn") is FALSE).
 Set if warning are to be issued, it is safer to keep this at TRUE,
@@ -100,11 +93,6 @@ At least one of k or h must be specified, k overrides h if both are given.
 as opposed to \link[stats]{cutree} for hclust, \code{cutree.dendrogram} allows the
 cutting of trees at a given height also for non-ultrametric trees 
 (ultrametric tree == a tree with monotone clustering heights).
-This \code{sort_cluster_numbers} parameter is based on the 
-\link{sort_levels_values} function. Using that parameter with TRUE
-makes the clusters id's from cutree to be ordered from left to right. 
-e.g: the left most cluster in the tree will be numbered "1", the one
-after it will be "2" etc...).
 }
 \examples{
 

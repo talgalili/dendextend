@@ -409,7 +409,7 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
 #    
 #    
 #    
-#    colored_bars(dend, the_cols[cutree(dend, k = the_k, sort_cluster_numbers = T)], y_shift = -2)
+#    colored_bars(dend, the_cols[cutree(dend, k = the_k)], y_shift = -2)
 #    plot(1:5, pch = 19, cex = 2, col = the_cols)
 #    
 #    cutree(dend, k = the_k)[order.dendrogram(dend)]
@@ -438,7 +438,7 @@ colored_bars <- function(colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
 #    the_k <- 5
 #    the_cols <- rainbow_hcl(the_k, c=90, l=50)
 #    dend %>% set("branches_k_color", k = the_k, with = the_cols) %>% plot
-#    colored_bars(dend, the_cols[cutree(dend, k = the_k, sort_cluster_numbers = T)], y_shift = -2)
+#    colored_bars(dend, the_cols[cutree(dend, k = the_k)], y_shift = -2)
 #    plot(1:5, pch = 19, cex = 2, col = the_cols)
 #    
 #    cutree(dend, k = the_k)[order.dendrogram(dend)]

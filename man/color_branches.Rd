@@ -124,9 +124,9 @@ main = "Clustered Iris dataset",
 
 
 # cutree(dend_iris,k=3, order_clusters_as_data=FALSE,
-   # sort_cluster_numbers = TRUE, try_cutree_hclust=FALSE)
+   #  try_cutree_hclust=FALSE)
 # cutree(dend_iris,k=3, order_clusters_as_data=FALSE,
-   # sort_cluster_numbers = TRUE, try_cutree_hclust=TRUE)
+   # sort_cluster_numbers = TRUE)
 
 library(colorspace)
 
