@@ -172,8 +172,7 @@ all_unique <- function(x, ...) {
 #' 
 #' # cutree(dend_iris,k=3, order_clusters_as_data=FALSE,
 #'    #  try_cutree_hclust=FALSE)
-#' # cutree(dend_iris,k=3, order_clusters_as_data=FALSE,
-#'    # sort_cluster_numbers = TRUE)
+#' # cutree(dend_iris,k=3, order_clusters_as_data=FALSE)
 #' 
 #' library(colorspace)
 #' 

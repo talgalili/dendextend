@@ -874,7 +874,7 @@ labels(dend2) <- as.character(labels(dend2))
 library(colorspace)
 
 col_lines_by_left_groups <- rainbow_hcl(3)[
-   cutree(dend1, 3, order_clusters_as_data=FALSE, sort_cluster_numbers=TRUE)]
+   cutree(dend1, 3, order_clusters_as_data=FALSE)]
 tanglegram(dend1 , dend2, color_lines=col_lines_by_left_groups,
            main = paste("Entanglement =", round(entanglement(dend1 , dend2), 2)))
 
@@ -923,7 +923,7 @@ labels(dend2) <- as.character(labels(dend2))
 library(colorspace)
 
 col_lines_by_left_groups <- rainbow_hcl(3)[
-   cutree(dend1, 3, order_clusters_as_data=FALSE, sort_cluster_numbers=TRUE)]
+   cutree(dend1, 3, order_clusters_as_data=FALSE)]
 tanglegram(dend1 , dend2, color_lines=col_lines_by_left_groups,
            main = paste("Entanglement =", round(entanglement(dend1 , dend2), 2)))
 

@@ -361,8 +361,8 @@ test_that("Making cutted clusters be numbered from left to right",{
    dend <- as.dendrogram(hc)
    
    sorted_cutree_hc_orig <-stats::cutree(hc, k=1:4)
-   sorted_cutree_hc <-dendextend:::cutree.hclust(hc, k=1:4, sort_cluster_numbers=TRUE)
-   sorted_cutree_dend <-dendextend:::cutree.dendrogram(dend, k=1:4, sort_cluster_numbers=TRUE,try_cutree_hclust=FALSE)
+   sorted_cutree_hc <-dendextend:::cutree.hclust(hc, k=1:4)
+   sorted_cutree_dend <-dendextend:::cutree.dendrogram(dend, k=1:4,try_cutree_hclust=FALSE)
 
    expect_identical( 
       sorted_cutree_hc_orig,
@@ -382,8 +382,8 @@ test_that("Making cutted clusters be numbered from left to right",{
    
    # the same as cutree
    expect_identical( 
-      as.integer(cutree(dend, k=1:4, sort_cluster_numbers=TRUE,try_cutree_hclust=FALSE)),
-      as.integer(cutree(hc, k=1:4, sort_cluster_numbers=TRUE))      )
+      as.integer(cutree(dend, k=1:4, try_cutree_hclust=FALSE)),
+      as.integer(cutree(hc, k=1:4))      )
    
    expect_identical( 
       as.vector(sorted_cutree_hc),
