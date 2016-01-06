@@ -1,9 +1,11 @@
-dendextend 1.1.5 (2016-01-05)
+dendextend 1.1.5 (2016-01-06)
 ----------------------------------------
 
 ###BUG FIXES:
-   * cutree - Fix #18 by removing the sort_cluster_numbers parameter.
+   * cutree - Fix #18 by updating the sort_cluster_numbers parameter.
 
+###OTHER NOTES:
+   * Adding Gregory Jefferis as an author (thanks to his work on dendroextras, which was later reused in the dendextend package)
 
 dendextend 1.1.4 (2016-01-01)
 ----------------------------------------

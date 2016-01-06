@@ -2,11 +2,11 @@ Package: dendextend
 Type: Package
 Title: Extending R's Dendrogram Functionality
 Version: 1.1.5
-Date: 2016-01-05
+Date: 2016-01-06
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "http://www.r-statistics.com"),
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
-    = "ctb", email = "jefferis@gmail.com",
+    = c("aut", "ctb"), email = "jefferis@gmail.com",
     comment ="imported code from his dendroextras package"),
     person("Marco", "Gallotta", role = "ctb", comment =
     "a.k.a: marcog") , person("Johan", "Renaudie", role = "ctb", comment =
