@@ -8,7 +8,7 @@ test_package("dendextend")
 library(dendextendRcpp)
 test_package("dendextend")
 
-# testthat::test_dir("inst\\tests")
+# testthat::test_dir("tests\\testthat")
 
 # library(dendextend)
 # system.time(test_dir("inst\\tests")) # 12.8  (- 21)
