@@ -911,7 +911,7 @@ cutree.dendrogram <- function(tree, k = NULL, h = NULL,
    if(sort_cluster_numbers) clusters <- sort_levels_values(clusters, force_integer = TRUE, warn = FALSE)
          # we know that cluster id is an integer, so it is fine to use force_integer = TRUE
    
-   if(any(is.na(clusters))) warning("It is impossible to produce a one-to-one cut for the k/h you specidied. 0's have been introduced.")
+   if(any(is.na(clusters))) warning("It is impossible to produce a one-to-one cut for the k/h you specidied. 0's have been introduced. Note that this result would be different from R's default cutree output.")
 
    if(NA_to_0L) clusters[is.na(clusters)] <- 0L
 

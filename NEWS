@@ -3,6 +3,7 @@ dendextend 1.1.6 (2016-02-10)
 
 ###BUG FIXES:
    * Moved `inst/tests/` to `tests/testthat/`
+   * Tests fixed to deal with the new R's ability to run as.hclust on dendrogram with ties.
 
 
 dendextend 1.1.5 (2016-01-06)

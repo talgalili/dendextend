@@ -251,7 +251,14 @@ test_that("cutree for flat edges",{
    expect_equal(unname(cutree(dend, h=-1)), 1:5) #weird definition
    expect_equal(unname(cutree(dend, k=5)), 1:5)
    expect_warning(cutree(dend,k=4))
-   expect_equal(suppressWarnings(cutree(dend, k=4)), rep(0, 5))
+   expect_equal(suppressWarnings(cutree(dend, k=4, try_cutree_hclust = FALSE)), rep(0, 5))
+   
+   # as of R R 3.2.4 (or 3.3.0 -not sure ) - as.hclust was fixed to deal better with ties on the branch heights.
+   # That means that:
+   # cutree(as.hclust(dend), k=4)
+   # would work (it will give hard-to-interpret results - but it would work)
+   
+   # as.hclust(dend)
    
 })
 
