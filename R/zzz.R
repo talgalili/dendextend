@@ -175,7 +175,7 @@ dendextendWelcomeMessage <- function(){
          "Contact: <tal.galili@gmail.com>\n",
          "Suggestions and bug-reports can be submitted at: https://github.com/talgalili/dendextend/issues\n",
          "\n",
-         "\t\t\tTo suppress the this message use:\n",
+         "\t\t\tTo suppress this message use:\n",
          "\t\t\tsuppressPackageStartupMessages(library(dendextend))\n",  
          sep="")
 }
