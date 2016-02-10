@@ -1,3 +1,369 @@
+* 2016-02-10(Tal Galili) another fix for the warning. |3708e45| 
+|  tests/testthat/test-cutree.dendrogram.R | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2016-02-10(Tal Galili) Added  rmarkdown in Suggests of DESCRIPTION |881733a| 
+|  DESCRIPTION | 3 ++-
+|  NEWS        | 7 +++++++
+|  2 files changed, 9 insertions(+), 1 deletion(-)
+
+* 2016-02-10(Tal Galili) typo |77ccd5f| 
+|  R/zzz.R | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2016-02-10(Tal Galili) Tests fixed to deal with the new R's ability to run as.hclust on dendrogram with ties. |f0ee811| 
+|  DESCRIPTION                             | 4 ++--
+|  NEWS                                    | 1 +
+|  R/cutree.dendrogram.R                   | 2 +-
+|  tests/testthat/test-cutree.dendrogram.R | 9 ++++++++-
+|  4 files changed, 12 insertions(+), 4 deletions(-)
+
+* 2016-02-10(Tal Galili) Moved `inst/tests/` to `tests/testthat/` |b4c7fbc| 
+|  NEWS                                    |   7 +
+|  inst/tests/test-attr_access.R           | 232 -------------
+|  inst/tests/test-bk_method.R             | 286 ----------------
+|  inst/tests/test-branches_attr_by.R      |  97 ------
+|  inst/tests/test-common_subtrees.R       |  49 ---
+|  inst/tests/test-cor_bakers_gamma.R      |  48 ---
+|  inst/tests/test-cor_cophenetic.R        |  44 ---
+|  inst/tests/test-cut_lower_fun.R         | 110 -------
+|  inst/tests/test-cutree.dendrogram.R     | 520 ------------------------------
+|  inst/tests/test-dendlist.R              |  97 ------
+|  inst/tests/test-distinct_edges.R        |  45 ---
+|  inst/tests/test-entanglement.R          | 142 --------
+|  inst/tests/test-general.R               |  15 -
+|  inst/tests/test-ggdend.R                |  79 -----
+|  inst/tests/test-labels-assign.R         | 202 ------------
+|  inst/tests/test-labels_colors.R         | 118 -------
+|  inst/tests/test-nleaves.R               |  68 ----
+|  inst/tests/test-rect.dendrogram.R       |  26 --
+|  inst/tests/test-rotate.R                |  91 ------
+|  inst/tests/test-set.dendrogram.R        | 160 ---------
+|  inst/tests/test-trim.R                  |  81 -----
+|  inst/tests/test-unbranch.R              |  48 ---
+|  inst/tests/test-untangle.R              | 162 ----------
+|  tests/test-all.R                        |   2 +-
+|  tests/testthat/test-attr_access.R       | 232 +++++++++++++
+|  tests/testthat/test-bk_method.R         | 286 ++++++++++++++++
+|  tests/testthat/test-branches_attr_by.R  |  97 ++++++
+|  tests/testthat/test-common_subtrees.R   |  49 +++
+|  tests/testthat/test-cor_bakers_gamma.R  |  48 +++
+|  tests/testthat/test-cor_cophenetic.R    |  44 +++
+|  tests/testthat/test-cut_lower_fun.R     | 110 +++++++
+|  tests/testthat/test-cutree.dendrogram.R | 520 ++++++++++++++++++++++++++++++
+|  tests/testthat/test-dendlist.R          |  97 ++++++
+|  tests/testthat/test-distinct_edges.R    |  45 +++
+|  tests/testthat/test-entanglement.R      | 142 ++++++++
+|  tests/testthat/test-general.R           |  15 +
+|  tests/testthat/test-ggdend.R            |  79 +++++
+|  tests/testthat/test-labels-assign.R     | 202 ++++++++++++
+|  tests/testthat/test-labels_colors.R     | 118 +++++++
+|  tests/testthat/test-nleaves.R           |  68 ++++
+|  tests/testthat/test-rect.dendrogram.R   |  26 ++
+|  tests/testthat/test-rotate.R            |  91 ++++++
+|  tests/testthat/test-set.dendrogram.R    | 160 +++++++++
+|  tests/testthat/test-trim.R              |  81 +++++
+|  tests/testthat/test-unbranch.R          |  48 +++
+|  tests/testthat/test-untangle.R          | 162 ++++++++++
+|  46 files changed, 2728 insertions(+), 2721 deletions(-)
+
+* 2016-01-06(Tal Galili) Adding Gregory Jefferis as an author (thanks to his work on dendroextras, which was later reused in the dendextend package) |818aa14| 
+|  DESCRIPTION | 4 ++--
+|  NEWS        | 6 ++++--
+|  2 files changed, 6 insertions(+), 4 deletions(-)
+
+* 2016-01-05(Tal Galili) remove sort_cluster_numbers from another place... |d42be6f| 
+|  R/color_branches.R                         | 3 +--
+|  R/cutree.dendrogram.R                      | 2 +-
+|  inst/tests/test-cutree.dendrogram.R        | 8 ++++----
+|  man/color_branches.Rd                      | 3 +--
+|  vignettes/disabled/dendextend-tutorial.rnw | 4 ++--
+|  5 files changed, 9 insertions(+), 11 deletions(-)
+
+* 2016-01-05(Tal Galili) Fix #18 by removing the sort_cluster_numbers parameter. |287b1fd| 
+|  DESCRIPTION           |  4 ++--
+|  NEWS                  |  7 +++++++
+|  R/color_branches.R    |  8 ++++----
+|  R/colored_bars.R      |  4 ++--
+|  R/cutree.dendrogram.R | 21 ++++++---------------
+|  man/color_branches.Rd |  4 ++--
+|  man/cutree-methods.Rd | 12 ------------
+|  7 files changed, 23 insertions(+), 37 deletions(-)
+
+* 2016-01-02(Tal Galili) Add legend to a SO example |655a0aa| 
+|  vignettes/FAQ.Rmd | 5 ++++-
+|  1 file changed, 4 insertions(+), 1 deletion(-)
+
+* 2016-01-02(Tal Galili) Added many description elements in .Rd files. |d10d082| 
+|  NEWS                                | 10 +++++++---
+|  R/attr_access.R                     |  5 +++++
+|  R/bk_method.R                       |  3 ++-
+|  R/color_branches.R                  |  7 +++++--
+|  R/colored_bars.R                    |  6 ++++--
+|  R/cor_bakers_gamma.R                |  1 +
+|  R/cor_cophenetic.R                  |  3 ++-
+|  R/cutree.dendrogram.R               |  5 +++++
+|  R/dendextend_options.R              |  2 ++
+|  R/dendlist.R                        |  2 ++
+|  R/dist_long.R                       |  1 +
+|  R/distinct_edges.R                  |  3 ++-
+|  R/get_nodes_xy.R                    |  3 ++-
+|  R/labels.R                          |  1 +
+|  R/labels_colors.R                   |  2 ++
+|  R/nleaves.R                         |  1 +
+|  R/prune.R                           |  5 +++--
+|  R/pvclust.R                         |  6 ++++--
+|  R/unbranch.R                        |  7 ++++++-
+|  man/all_unique.Rd                   |  3 +++
+|  man/assign_dendextend_options.Rd    |  3 +++
+|  man/bakers_gamma_for_2_k_matrix.Rd  |  3 +++
+|  man/color_branches.Rd               |  3 ++-
+|  man/colored_bars.Rd                 |  6 ++++--
+|  man/dist_long.Rd                    |  3 +++
+|  man/distinct_edges.Rd               |  5 ++++-
+|  man/get_branches_heights.Rd         |  3 +++
+|  man/get_childrens_heights.Rd        |  3 +++
+|  man/get_leaves_attr.Rd              |  3 +++
+|  man/get_leaves_nodePar.Rd           |  3 +++
+|  man/get_nodes_xy.Rd                 |  5 ++++-
+|  man/get_root_branches_attr.Rd       |  3 +++
+|  man/heights_per_k.dendrogram.Rd     |  4 ++++
+|  man/is.dendlist.Rd                  |  3 +++
+|  man/is.dendrogram.Rd                |  3 +++
+|  man/is.hclust.Rd                    |  3 +++
+|  man/is.phylo.Rd                     |  3 +++
+|  man/is_null_list.Rd                 |  3 +++
+|  man/labels_cex.Rd                   |  3 +++
+|  man/labels_colors.Rd                |  3 +++
+|  man/leaf_Colors.Rd                  |  2 +-
+|  man/order.hclust.Rd                 |  3 +++
+|  man/prune_leaf.Rd                   |  5 ++++-
+|  man/pvclust_show_signif.Rd          |  5 ++++-
+|  man/pvclust_show_signif_gradient.Rd |  5 ++++-
+|  man/raise.dendrogram.Rd             |  3 +++
+|  man/sort_2_clusters_vectors.Rd      |  5 ++++-
+|  man/sort_dist_mat.Rd                |  5 ++++-
+|  man/unbranch.Rd                     |  3 +++
+|  man/unclass_dend.Rd                 |  3 +++
+|  50 files changed, 156 insertions(+), 27 deletions(-)
+
+* 2016-01-01(Tal Galili) change update to set in the document |758eb9b| 
+|  R/colored_bars.R    | 10 +++++-----
+|  man/colored_bars.Rd |  2 +-
+|  2 files changed, 6 insertions(+), 6 deletions(-)
+
+* 2016-01-01(Tal Galili) having colored_bars more robust to various types of vectors. And updated the introduction vignette to use sort_by_labels_order properly in the example. |f0f96c5| 
+|  R/colored_bars.R           | 6 ++++--
+|  vignettes/introduction.Rmd | 4 +++-
+|  2 files changed, 7 insertions(+), 3 deletions(-)
+
+* 2016-01-01(Tal Galili) Updated the vignette (and removed the check in colored_bars for matrix/vector) |8aa9e78| 
+|  DESCRIPTION       |  2 +-
+|  R/colored_bars.R  |  5 +++--
+|  vignettes/FAQ.Rmd | 46 ++++++++++++++++++++++++++++++++++++++++++++++
+|  3 files changed, 50 insertions(+), 3 deletions(-)
+
+* 2016-01-01(Tal Galili) colored_bars - updated example (a new mtcars example) |a89df04| 
+|  R/colored_bars.R    | 39 +++++++++++++++++++++++++++
+|  man/colored_bars.Rd | 73 +++++++++++++++++++++++++++++++++++++++++----------
+|  2 files changed, 98 insertions(+), 14 deletions(-)
+
+* 2016-01-01(Tal Galili) colored_bars - Fixed many bugs (in the horiz string location, and in the display of multiple bars) |b394170| 
+|  R/colored_bars.R | 23 ++++++++++-------------
+|  1 file changed, 10 insertions(+), 13 deletions(-)
+
+* 2016-01-01(Tal Galili) Fixes to the bars' positions for horiz = TRUE |6cf4e2e| 
+|  R/colored_bars.R | 10 +++++-----
+|  1 file changed, 5 insertions(+), 5 deletions(-)
+
+* 2016-01-01(Tal Galili) colored_bars - Major corrections to the way the bars are located automatically (it is now positioned underneath the labels automatically!) |ce47da4| 
+|  R/colored_bars.R | 226 +++++++++++++++++++++++++++++++++++------------------
+|  1 file changed, 152 insertions(+), 74 deletions(-)
+
+* 2016-01-01(Tal Galili) rxoygen2 edit |ccbbf4f| 
+|  NAMESPACE                                  |  2 +-
+|  R/dendextend_options.R                     |  8 +--
+|  R/rotate.R                                 |  2 +-
+|  man/Bk.Rd                                  | 19 +++---
+|  man/Bk_permutations.Rd                     | 19 +++---
+|  man/Bk_plot.Rd                             | 37 +++++------
+|  man/DendSer.dendrogram.Rd                  |  4 +-
+|  man/FM_index.Rd                            | 17 ++---
+|  man/FM_index_R.Rd                          | 13 ++--
+|  man/FM_index_permutation.Rd                |  9 +--
+|  man/FM_index_profdpm.Rd                    | 15 +++--
+|  man/all.equal.dendrogram.Rd                |  9 +--
+|  man/all_couple_rotations_at_k.Rd           |  5 +-
+|  man/all_unique.Rd                          |  7 +-
+|  man/as.dendlist.Rd                         |  4 +-
+|  man/as.phylo.dendrogram.Rd                 |  8 +--
+|  man/as_hclust_fixed.Rd                     | 10 +--
+|  man/assign_dendextend_options.Rd           |  5 +-
+|  man/assign_values_to_branches_edgePar.Rd   |  7 +-
+|  man/assign_values_to_leaves_edgePar.Rd     |  6 +-
+|  man/assign_values_to_leaves_nodePar.Rd     | 10 +--
+|  man/assign_values_to_nodes_nodePar.Rd      | 22 ++++---
+|  man/bakers_gamma_for_2_k_matrix.Rd         |  5 +-
+|  man/branches_attr_by_clusters.Rd           | 15 +++--
+|  man/branches_attr_by_labels.Rd             | 16 ++---
+|  man/circlize_dendrogram.Rd                 |  9 +--
+|  man/click_rotate.Rd                        |  7 +-
+|  man/collapse_branch.Rd                     |  7 +-
+|  man/color_branches.Rd                      | 56 ++++++++--------
+|  man/color_labels.Rd                        | 14 ++--
+|  man/color_unique_labels.Rd                 |  3 +-
+|  man/common_subtrees_clusters.Rd            |  5 +-
+|  man/cor.dendlist.Rd                        |  9 +--
+|  man/cor_FM_index.Rd                        |  4 +-
+|  man/cor_bakers_gamma.Rd                    | 36 ++++++-----
+|  man/cor_common_nodes.Rd                    |  8 ++-
+|  man/cor_cophenetic.Rd                      | 40 ++++++------
+|  man/count_terminal_nodes.Rd                | 10 +--
+|  man/cut_lower_fun.Rd                       |  8 ++-
+|  man/cutree-methods.Rd                      | 79 +++++++++++-----------
+|  man/cutree_1h.dendrogram.Rd                | 18 +++---
+|  man/cutree_1k.dendrogram.Rd                | 30 +++++----
+|  man/d3dendro_options.Rd                    |  8 +--
+|  man/d3dendrogram.Rd                        |  8 +--
+|  man/dend_diff.Rd                           | 14 ++--
+|  man/dendextend-package.Rd                  |  2 +-
+|  man/dendextend_labels.dendrogram.Rd        |  4 +-
+|  man/dendextend_options.Rd                  |  4 +-
+|  man/dendlist.Rd                            |  8 ++-
+|  man/dist.dendlist.Rd                       | 14 ++--
+|  man/dist_long.Rd                           |  6 +-
+|  man/distinct_edges.Rd                      |  7 +-
+|  man/duplicate_leaf.Rd                      |  4 +-
+|  man/entanglement.Rd                        | 27 ++++----
+|  man/fac2num.Rd                             |  4 +-
+|  man/fix_members_attr.dendrogram.Rd         |  5 +-
+|  man/flatten.dendrogram.Rd                  |  4 +-
+|  man/flip_leaves.Rd                         |  3 +-
+|  man/get_branches_heights.Rd                |  7 +-
+|  man/get_childrens_heights.Rd               | 10 +--
+|  man/get_leaves_attr.Rd                     | 21 +++---
+|  man/get_leaves_branches_attr.Rd            |  8 ++-
+|  man/get_leaves_branches_col.Rd             | 12 ++--
+|  man/get_leaves_edgePar.Rd                  |  5 +-
+|  man/get_leaves_nodePar.Rd                  |  8 +--
+|  man/get_nodes_attr.Rd                      | 29 +++++----
+|  man/get_nodes_xy.Rd                        | 17 ++---
+|  man/get_root_branches_attr.Rd              |  7 +-
+|  man/ggdend.Rd                              | 43 ++++++------
+|  man/hang.dendrogram.Rd                     | 13 ++--
+|  man/heights_per_k.dendrogram.Rd            | 17 ++---
+|  man/highlight_distinct_edges.Rd            | 28 ++++----
+|  man/identify.dendrogram.Rd                 | 23 +++----
+|  man/intersect_trees.Rd                     |  5 +-
+|  man/is.dendlist.Rd                         |  5 +-
+|  man/is.dendrogram.Rd                       |  5 +-
+|  man/is.hclust.Rd                           |  5 +-
+|  man/is.natural.number.Rd                   |  3 +-
+|  man/is.phylo.Rd                            |  5 +-
+|  man/is_null_list.Rd                        |  7 +-
+|  man/khan.Rd                                | 40 ++++++------
+|  man/labels-assign.Rd                       | 22 +++----
+|  man/labels_cex.Rd                          |  8 +--
+|  man/labels_colors.Rd                       | 11 ++--
+|  man/ladderize.Rd                           |  8 ++-
+|  man/leaf_Colors.Rd                         |  5 +-
+|  man/lowest_common_branch.Rd                |  4 +-
+|  man/match_order_by_labels.Rd               |  4 +-
+|  man/match_order_dendrogram_by_old_order.Rd | 12 ++--
+|  man/na_locf.Rd                             |  8 ++-
+|  man/nleaves.Rd                             | 16 ++---
+|  man/nnodes.Rd                              |  4 +-
+|  man/noded_with_condition.Rd                |  9 +--
+|  man/order.dendrogram-assign.Rd             |  5 +-
+|  man/order.hclust.Rd                        | 15 ++---
+|  man/partition_leaves.Rd                    |  4 +-
+|  man/pipe.Rd                                |  8 +--
+|  man/plot_horiz.dendrogram.Rd               | 26 ++++----
+|  man/prune.Rd                               |  2 +-
+|  man/prune_common_subtrees.dendlist.Rd      |  6 +-
+|  man/prune_leaf.Rd                          |  7 +-
+|  man/pvclust_show_signif.Rd                 | 11 ++--
+|  man/pvclust_show_signif_gradient.Rd        | 15 ++---
+|  man/raise.dendrogram.Rd                    |  5 +-
+|  man/rank_branches.Rd                       | 13 ++--
+|  man/rank_order.dendrogram.Rd               |  6 +-
+|  man/rank_values_with_clusters.Rd           |  5 +-
+|  man/rect.dendrogram.Rd                     | 33 +++++-----
+|  man/remove_branches_edgePar.Rd             |  4 +-
+|  man/remove_leaves_nodePar.Rd               |  4 +-
+|  man/remove_nodes_nodePar.Rd                |  4 +-
+|  man/rllply.Rd                              | 10 +--
+|  man/rotate.Rd                              | 61 ++++++++---------
+|  man/rotate_DendSer.Rd                      |  2 +-
+|  man/sample.dendrogram.Rd                   | 16 +++--
+|  man/set.Rd                                 | 97 ++++++++++++++--------------
+|  man/shuffle.Rd                             |  8 ++-
+|  man/sort_2_clusters_vectors.Rd             | 10 ++-
+|  man/sort_dist_mat.Rd                       |  5 +-
+|  man/sort_levels_values.Rd                  | 16 +++--
+|  man/tanglegram.Rd                          | 46 ++++++-------
+|  man/theme_dendro.Rd                        |  4 +-
+|  man/unbranch.Rd                            |  5 +-
+|  man/unclass_dend.Rd                        | 13 ++--
+|  man/untangle.Rd                            | 12 ++--
+|  man/untangle_DendSer.Rd                    |  2 +-
+|  man/untangle_random_search.Rd              | 17 ++---
+|  man/untangle_step_rotate_1side.Rd          | 23 +++----
+|  man/untangle_step_rotate_2side.Rd          | 19 +++---
+|  man/which_leaf.Rd                          |  6 +-
+|  man/which_node.Rd                          |  7 +-
+|  131 files changed, 891 insertions(+), 834 deletions(-)
+
+* 2015-12-31(Tal Galili) colored_bars - Fix the default position of the bars when dend is provided. |28eb04d| 
+|  NEWS             |  5 ++++-
+|  R/colored_bars.R | 14 +++++++++-----
+|  2 files changed, 13 insertions(+), 6 deletions(-)
+
+* 2015-12-31(Tal Galili) Fix the example in the documentation of `colored_bars` |d49f883| 
+|  DESCRIPTION         |  5 +++--
+|  NEWS                |  7 +++++++
+|  R/colored_bars.R    |  8 ++++----
+|  man/colored_bars.Rd | 26 ++++++++++++++------------
+|  4 files changed, 28 insertions(+), 18 deletions(-)
+
+* 2015-11-07(Tal Galili) ::: instead of :: (does it work?) |c80aa2e| 
+|  R/dendextend_options.R | 8 ++++----
+|  1 file changed, 4 insertions(+), 4 deletions(-)
+
+* 2015-11-07(Tal Galili) ... not used |2454971| 
+|  R/labels_colors.R          | 2 +-
+|  man/color_unique_labels.Rd | 2 +-
+|  2 files changed, 2 insertions(+), 2 deletions(-)
+
+* 2015-11-07(Tal Galili) color_unique_labels  - a function to Color unique labels in a dendrogram |3d385af| 
+|  DESCRIPTION                |  4 ++--
+|  NAMESPACE                  |  1 +
+|  NEWS                       |  9 +++++++++
+|  R/labels_colors.R          | 48 ++++++++++++++++++++++++++++++++++++++++++++
+|  man/color_unique_labels.Rd | 30 +++++++++++++++++++++++++++
+|  5 files changed, 90 insertions(+), 2 deletions(-)
+
+* 2015-11-07(Tal Galili) update citation. (bioinformatics paper is published :) ) |5751356| 
+|  DESCRIPTION   | 2 +-
+|  inst/CITATION | 4 ++--
+|  2 files changed, 3 insertions(+), 3 deletions(-)
+
+* 2015-10-31(Tal Galili) ignore caching and an old tutorial |8f58f47| 
+|  .Rbuildignore    | 2 ++
+|  dendextend.Rproj | 1 +
+|  2 files changed, 3 insertions(+)
+
+* 2015-10-31(Tal Galili) # Use ylim to deal with long labels in ggplot2 |50eb921| 
+|  R/ggdend.R    | 8 ++++++++
+|  man/ggdend.Rd | 8 ++++++++
+|  2 files changed, 16 insertions(+)
+
+* 2015-10-30(Tal Galili) update changelog and NEWS |4ab0bcc| 
+|  ChangeLog | 71 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  NEWS.md   | 17 +++++++++++++++
+|  R/zzz.R   |  2 +-
+|  3 files changed, 89 insertions(+), 1 deletion(-)
+
 * 2015-10-30(Tal Galili) update citations |483b935| 
 |  DESCRIPTION   | 4 ++--
 |  NEWS          | 5 ++++-

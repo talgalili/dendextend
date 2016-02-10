@@ -1,12 +1,15 @@
 library(testthat)
 
 library(dendextend)
-test_package("dendextend")
+tryCatch(test_package("dendextend"), 
+         error = function(e) testthat::test_dir("tests\\testthat"))
 
 #
 
 library(dendextendRcpp)
-test_package("dendextend")
+tryCatch(test_package("dendextend"), 
+         error = function(e) testthat::test_dir("tests\\testthat"))
+
 
 # testthat::test_dir("tests\\testthat")
 
