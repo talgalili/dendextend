@@ -1,3 +1,8 @@
+dendextend 1.1.8 (2016-02-10)
+----------------------------------------
+###BUG FIXES:
+   * added tryCatch to tests so it would pass github.
+
 dendextend 1.1.7 (2016-02-10)
 ----------------------------------------
 
