@@ -1,8 +1,57 @@
 TODO for future releases:
 =========================
 
+
+Maybe add this function:
+http://stackoverflow.com/questions/33567508/how-to-color-the-same-labels-on-dendorgram-in-one-colour-in-r/33580763#33580763
+
+
+Added citation info to:
+http://cran.r-project.org/web/packages/circlize/citation.html
+when using the circlize_dendrogram function.
+
+
+add Bk class, and plot.Bk method (this makes more sense
+than having a plot_Bk function)
+
+Have a more consistent naming convention on the 
+dend, dendlist, dend1, dend2, x, tree, etc.
+Decide how I want to do it.
+
+Help make:
+aheatmap(NMF pkg)
+pheatmap
+compatible with dendextend
+
+
+
 Next action
 --------------
+
+Get the output of untangle.dendlist to include the entire dendlist (but only modify the ones asked for)
+
+
+add to vignette:
+0) get_leaves_branches_col - Get the colors of the branches of a dendrogram's leaves. This function is actually the point of the two other functions. It is meant to help match the color of the labels with that of the branches - after running color_branches.
+1) examples of using ggdendro for plotting a dendrogram!
+2) דוגמא לפונקציות נוחות הכי חשובות 
+labels <-
+labels_colors
+branches_colors
+לדבר על ברירות המחדל שלהם.
+לדבר על כך שהפונקציות הללו מאפשרות לשנות את הפרמטרים הללו של האובייקט.
+אבל שדרך עבודה יותר נוחה היא פונקציה שמקבלת עץ ופולטת עץ.
+
+
+
+לתקן את המשפט על דנדאקסטנד שמופיע כאן:
+http://cran.r-project.org/web/views/Phylogenetics.html
+
+
+להוסיף ל installr
+עוד תפריט של "להתקין חבילת ZIP מ URL" - שיקפיץ חלון טקסט, ואז יריץ את 
+install.packages.zip("http://www.christophheibl.de/phyloch_1.5-5.zip")
+
 
 * Make a cheat sheet!
 
@@ -79,7 +128,7 @@ Further is there any way to extend the one-to-one comparison to comparison of mu
 
 
 
-* a mini Vignette (like: http://cran.r-project.org/web/packages/caret/index.html)
+* a mini Vignette (like: http://cran.r-project.org/package=caret)
 * Adjust the Vignette to be a website (like http://caret.r-forge.r-project.org/)
 
 * announce the package on r-packages@r-project.org
