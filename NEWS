@@ -3,7 +3,7 @@ dendextend 1.1.7 (2016-02-10)
 
 ###BUG FIXES:
    * Added  rmarkdown in Suggests of DESCRIPTION. This fixes the travis-ci error: "  The vignette engine knitr::rmarkdown is not available, because the rmarkdown package is not installed. Please install it." as was suggested in: https://github.com/rstudio/rmarkdown/issues/609
-
+   * Another minor error in tests due to cutree in R-devel.
 
 dendextend 1.1.6 (2016-02-10)
 ----------------------------------------

@@ -1,3 +1,50 @@
+dendextend 1.1.7 (2016-02-10)
+----------------------------------------
+
+###BUG FIXES:
+   * Added  rmarkdown in Suggests of DESCRIPTION. This fixes the travis-ci error: "  The vignette engine knitr::rmarkdown is not available, because the rmarkdown package is not installed. Please install it." as was suggested in: https://github.com/rstudio/rmarkdown/issues/609
+   * Another minor error in tests due to cutree in R-devel.
+
+dendextend 1.1.6 (2016-02-10)
+----------------------------------------
+
+###BUG FIXES:
+   * Moved `inst/tests/` to `tests/testthat/`
+   * Tests fixed to deal with the new R's ability to run as.hclust on dendrogram with ties.
+
+
+dendextend 1.1.5 (2016-01-06)
+----------------------------------------
+
+###BUG FIXES:
+   * cutree - Fix #18 by updating the sort_cluster_numbers parameter.
+
+###OTHER NOTES:
+   * Adding Gregory Jefferis as an author (thanks to his work on dendroextras, which was later reused in the dendextend package)
+
+dendextend 1.1.4 (2016-01-01)
+----------------------------------------
+
+
+###BUG FIXES:
+   * colored_bars
+      * Fix the default position of the bars (i.e.: y_shift) when dend is provided. (this is a major corrections to the way the bars are located automatically via y_shift)
+      * Fix the example in the documentation of `colored_bars`
+      * NEW parameter horiz - now allows for adding bars to horizontal dendrograms
+      * sort_by_labels_order is now set to TRUE by default
+      * Made more checks on the object type of dend
+   * Added many description elements in .Rd files. 
+
+
+
+dendextend 1.1.3 (2015-11-07)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * color_unique_labels
+
+
+
 dendextend 1.1.2 (2015-10-30)
 ----------------------------------------
 
