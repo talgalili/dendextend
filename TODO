@@ -6,17 +6,10 @@ Maybe add this function:
 http://stackoverflow.com/questions/33567508/how-to-color-the-same-labels-on-dendorgram-in-one-colour-in-r/33580763#33580763
 
 
-Added citation info to:
-http://cran.r-project.org/web/packages/circlize/citation.html
-when using the circlize_dendrogram function.
-
 
 add Bk class, and plot.Bk method (this makes more sense
 than having a plot_Bk function)
 
-Have a more consistent naming convention on the 
-dend, dendlist, dend1, dend2, x, tree, etc.
-Decide how I want to do it.
 
 Help make:
 aheatmap(NMF pkg)
@@ -28,20 +21,9 @@ compatible with dendextend
 Next action
 --------------
 
-Get the output of untangle.dendlist to include the entire dendlist (but only modify the ones asked for)
-
 
 add to vignette:
 0) get_leaves_branches_col - Get the colors of the branches of a dendrogram's leaves. This function is actually the point of the two other functions. It is meant to help match the color of the labels with that of the branches - after running color_branches.
-1) examples of using ggdendro for plotting a dendrogram!
-2) דוגמא לפונקציות נוחות הכי חשובות 
-labels <-
-labels_colors
-branches_colors
-לדבר על ברירות המחדל שלהם.
-לדבר על כך שהפונקציות הללו מאפשרות לשנות את הפרמטרים הללו של האובייקט.
-אבל שדרך עבודה יותר נוחה היא פונקציה שמקבלת עץ ופולטת עץ.
-
 
 
 לתקן את המשפט על דנדאקסטנד שמופיע כאן:
@@ -56,10 +38,6 @@ install.packages.zip("http://www.christophheibl.de/phyloch_1.5-5.zip")
 * Make a cheat sheet!
 
 * tanglegram - add a default color to the lines, so that streight lines will be green, and the red ones will be red. (like in the vignette)
-
-
-* vignette - add examples of using color_labels, color_branches (just because people are likely to want to use it)
-
 
 
 * fix the following case!
@@ -140,28 +118,18 @@ Further is there any way to extend the one-to-one comparison to comparison of mu
 
 * vignette: mention options warn = FALSE
 
-* Write paper for bioinfo: mention update, cutree, colored_bars, heatmap.2, Rcpp, dynamicCutree and pvclust
-
 * add tests to nodes_with_condition.
 
-* The Vignette needs a major overhall. 
-      Various parts are somewhat boarding, while other newer parts (dendlist, update, %>%) are currently missing. Maybe I should create a section called quirks or something like that - and move various sections there...
 * ask the maintainer of "ape" to have rotate S3ed
-* add the example for heatmap.2 :)
-* Move slides and vignete out of the package (should they be stored somewhere?)
-* update README
 
 * Invite other package authors to use dendextend and add it to their "suggests" (including pvclut, dynamicTreeCut, gplots, ape, who else?)
 
 * Maybe add a global package option for printing debugging information, and have many of the logical warn and print stuff be related to these...
 
-* maybe show the use of dendextend+ggdend
-
 * maybe use "abs" in min(-diff(our_dend_heights))/2 in dendextend_options("heights_per_k.dendrogram") ?
 
 New functions
 --------------
-	* Create cor.dendrogram cor.dendlist - to switch between different cor types and methods.
    * add a print/warn parameter to intersect_trees
    * intersect_trees.dendlist
    * Mention I've used this rect.hclust.nice code for implementation on my verison of the function. http://stackoverflow.com/questions/4720307/change-dendrogram-leaves 
@@ -171,8 +139,6 @@ http://stackoverflow.com/questions/4720307/change-dendrogram-leaves
    * hide some function's doc (labels<-.stuff)
 
    * manipulate tanglegram using click_rotate
-
-   * colored_bars - add horiz paramter...
 
    * maybe allow pruning of labels based on their location (since if we get a tree with two identical labels, we may wish to fix it). maybe unique.dendrogram? It can be done by finding duplicate(labels), giving these a new name, and then prune it.
 
