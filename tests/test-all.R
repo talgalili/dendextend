@@ -2,13 +2,17 @@ library(testthat)
 
 library(dendextend)
 tryCatch(test_package("dendextend"), 
-         error = function(e) testthat::test_dir("tests\\testthat"))
+         error = function(e) 
+            cat('Please run: testthat::test_dir("tests\\testthat")')
+         )
 
 #
 
 library(dendextendRcpp)
 tryCatch(test_package("dendextend"), 
-         error = function(e) testthat::test_dir("tests\\testthat"))
+         error = function(e) 
+            cat('Please run: testthat::test_dir("tests\\testthat")')
+)
 
 
 # testthat::test_dir("tests\\testthat")
