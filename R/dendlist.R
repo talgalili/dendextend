@@ -55,21 +55,6 @@ is_null_list <- function(x) {
 
 
 
-#' @title Checks if an object is of class dendlist
-#' @description Checks if an object is of class dendlist (returns TRUE if it is).
-#' @export
-#' @param x whatever object to check
-#' @return 
-#' logical
-#' @examples
-#' # TRUE:
-#' is.dendlist(dendlist())
-#' # FALSE
-#' is.dendlist(1)
-is.dendlist <- function(x) {
-   inherits(x, "dendlist")
-}
-
 
 #' @title Creating a dendlist object from several dendrograms
 #' @export
