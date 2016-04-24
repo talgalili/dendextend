@@ -263,7 +263,7 @@ match_order_dendrogram_by_old_order <- function(dend_change, dend_template ,
 #' 1 till tree size, and than match these numbers with the right tree.
 #' Now, entanglement is the L norm distance between these two vectors.
 #' That is, we take the sum of the absolute difference (each one in the power
-#' of L). e.g: \code{sum(abs(x-y)**L)}.
+#' of L). e.g: \code{sum(abs(x-y)^L)}.
 #' And this is devided by the "worst case" entanglement level (e.g:
 #' when the right tree is the complete reverse of the left tree).
 #' 
@@ -386,7 +386,7 @@ entanglement.dendrogram <- function(dend1, dend2, L = 1.5, leaves_matching_metho
       dend2 <- match_order_by_labels(dend2 , dend1) # This one is "slow"
    }
    
-   sum_abs_diff_L <- function(x,y,L) sum(abs(x-y)**L)
+   sum_abs_diff_L <- function(x,y,L) {sum(abs(x-y)^L)}
    
    entanglement_result <- sum_abs_diff_L(order.dendrogram(dend1), order.dendrogram(dend2), L)	
    worse_entanglement_result <- sum_abs_diff_L(one_to_n_leaves, rev(one_to_n_leaves), L)		
@@ -449,7 +449,7 @@ entanglement.dendrogram <- function(dend1, dend2, L = 1.5, leaves_matching_metho
 #    order.dendrogram(dend1) <- one_to_n_leaves # change the leaves of dend1 to be 1:n
 #    dend2 <- match_order_by_labels(dend2	, dend1) # make sure that the numbers if the 
 #    
-#    sum_abs_diff_L <- function(x,y,L) sum(abs(x-y)**L)
+#    sum_abs_diff_L <- function(x,y,L) {sum(abs(x-y)^L)}
 #    
 #    entanglement_result <- sum_abs_diff_L(order.dendrogram(dend1), order.dendrogram(dend2), L)	
 #    worse_entanglement_result <- sum_abs_diff_L(one_to_n_leaves, rev(one_to_n_leaves), L)		
