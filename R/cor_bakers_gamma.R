@@ -131,7 +131,8 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_dend1, k_matrix_dend2, to_plot 
 #' 
 #' 
 #' @description
-#' Calculate Baker's Gamma correlation coefficient for two trees.
+#' Calculate Baker's Gamma correlation coefficient for two trees 
+#' (also known as Goodman-Kruskal-gamma index).
 #' 
 #' Assumes the labels in the two trees fully match. If they do not
 #' please first use \link{intersect_trees} to have them matched.

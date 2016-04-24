@@ -62,7 +62,7 @@ Entanglement is measured by giving the left tree's labels the values of
 1 till tree size, and than match these numbers with the right tree.
 Now, entanglement is the L norm distance between these two vectors.
 That is, we take the sum of the absolute difference (each one in the power
-of L). e.g: \code{sum(abs(x-y)**L)}.
+of L). e.g: \code{sum(abs(x-y)^L)}.
 And this is devided by the "worst case" entanglement level (e.g:
 when the right tree is the complete reverse of the left tree).
 

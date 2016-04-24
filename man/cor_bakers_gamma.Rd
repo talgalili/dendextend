@@ -41,7 +41,8 @@ which of the trees in the dendlist object should be plotted (relevant for dendli
 Baker's Gamma association Index between two trees (a number between -1 to 1)
 }
 \description{
-Calculate Baker's Gamma correlation coefficient for two trees.
+Calculate Baker's Gamma correlation coefficient for two trees 
+(also known as Goodman-Kruskal-gamma index).
 
 Assumes the labels in the two trees fully match. If they do not
 please first use \link{intersect_trees} to have them matched.
