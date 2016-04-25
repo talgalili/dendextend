@@ -1,11 +1,20 @@
 library(testthat)
 
 library(dendextend)
-test_package("dendextend")
+test_check("dendextend")
 
 library(dendextendRcpp)
-test_package("dendextend")
+test_check("dendextend")
 
+
+
+# 
+# library(dendextend)
+# test_package("dendextend")
+# 
+# library(dendextendRcpp)
+# test_package("dendextend")
+# 
 # 
 # library(dendextend)
 # tryCatch(test_package("dendextend"), 
