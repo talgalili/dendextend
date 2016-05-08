@@ -1394,6 +1394,21 @@ FM_index_R(cutree(hc1, k=3), cutree(hc2, k=3))
 FM_index_profdpm(cutree(hc1, k=3), cutree(hc2, k=3))
 ```
 
+The E_FM and V_FM are the values expected under the null hypothesis that the two trees have the same topology but one is a random shuffle of the labels of the other (i.e.: "no connection" between the trees).
+
+So for the values:
+```{r}
+FM_index(cutree(hc1, k=3), cutree(hc2, k=3)) 
+```
+
+We can take (under a normal asymptotic distribution)
+```{r}
+0.4462 + 1.645 * sqrt(6.464092e-05)
+```
+
+
+And since 0.8059 (our value) > 0.4594 (the critical value under H0, with alpha=5% for a one sided test) - then we can say that we significantly reject the hypothesis that the two trees are "not-similar".
+
 
 #### The Bk plot
 
