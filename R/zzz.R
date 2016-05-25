@@ -162,22 +162,39 @@
 dendextendWelcomeMessage <- function(){
    # library(utils)   
    
-   paste("\n",     
-         "Welcome to dendextend version ", utils::packageDescription("dendextend")$Version, "\n",
-         "\n",
-         "Type ?dendextend to access the overall documentation and\n",
-         "browseVignettes(package = 'dendextend') for the package vignette.\n",
-         "You can execute a demo of the package via: demo(dendextend)\n",
-         "\n",  
-         "More information is available on the dendextend project web-site:\n",
-         "https://github.com/talgalili/dendextend/\n",
-         "\n",               
-         "Contact: <tal.galili@gmail.com>\n",
-         "Suggestions and bug-reports can be submitted at: https://github.com/talgalili/dendextend/issues\n",
-         "\n",
-         "\t\t\tTo suppress this message use:\n",
-         "\t\t\tsuppressPackageStartupMessages(library(dendextend))\n",  
-         sep="")
+   # paste("\n",     
+   #       "Welcome to dendextend version ", utils::packageDescription("dendextend")$Version, "\n",
+   #       "\n",
+   #       "Type ?dendextend to access the overall documentation and\n",
+   #       "browseVignettes(package = 'dendextend') for the package vignette.\n",
+   #       "You can execute a demo of the package via: demo(dendextend)\n",
+   #       "\n",  
+   #       "More information is available on the dendextend project web-site:\n",
+   #       "https://github.com/talgalili/dendextend/\n",
+   #       "\n",               
+   #       "Contact: <tal.galili@gmail.com>\n",
+   #       "Suggestions and bug-reports can be submitted at: https://github.com/talgalili/dendextend/issues\n",
+   #       "\n",
+   #       "\t\t\tTo suppress this message use:\n",
+   #       "\t\t\tsuppressPackageStartupMessages(library(dendextend))\n",  
+   #       sep="")
+   # 
+   paste0("\n",
+          "---------------------\n",
+          "Welcome to dendextend version ", utils::packageDescription("dendextend")$Version, "\n",
+          # "\n",
+          "Type browseVignettes(package = 'dendextend') for the package vignette.\n",
+          "The github page is: ",
+          "https://github.com/talgalili/dendextend/\n",
+          "\n",
+          "Suggestions and bug-reports can be submitted at: https://github.com/talgalili/dendextend/issues\n",
+          "Or contact: <tal.galili@gmail.com>\n",
+          "\n",
+          "\tTo suppress this message use:  ", "suppressPackageStartupMessages(library(dendextend))\n",
+          "---------------------\n"
+   )
+   
+   
 }
 
 

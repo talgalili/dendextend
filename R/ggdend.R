@@ -546,7 +546,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
 #       scale_shape_identity()
    
    
-   if (labels) {
+   if(labels) {
       # default size is 5!  http://sape.inf.usi.ch/quick-reference/ggplot2/geom_text
       data$labels$cex <- 5 * data$labels$cex
       data$labels$y <- data$labels$y + offset_labels
