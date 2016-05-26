@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/talgalili/dendextend.png?branch=master)](https://travis-ci.org/talgalili/dendextend)
-[![codecov.io](http://codecov.io/github/talgalili/dendextend/coverage.svg?branch=master)](http://codecov.io/github/talgalili/dendextend?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/dendextend)](http://cran.r-project.org/package=dendextend)
+[![codecov.io](https://codecov.io/github/talgalili/dendextend/coverage.svg?branch=master)](https://codecov.io/github/talgalili/dendextend?branch=master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/dendextend)](https://cran.r-project.org/package=dendextend)
 ![](http://cranlogs.r-pkg.org/badges/dendextend?color=yellow)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/dendextend?color=yellowgreen)
 
@@ -63,9 +63,9 @@ library("dendextendRcpp")
 
 Vignettes: 
 
-* [Introduction to dendextend](http://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Introduction%20to%20dendextend.html)
-* [Frequently asked questions](http://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Frequently%20asked%20questions.html)
-* [Hierarchical cluster analysis on famous data sets - enhanced with the dendextend package](http://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Hierarchical%20cluster%20analysis%20on%20famous%20data%20sets%20-%20enhanced%20with%20the%20dendextend%20package.html)
+* [Introduction to dendextend](https://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Introduction%20to%20dendextend.html)
+* [Frequently asked questions](https://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Frequently%20asked%20questions.html)
+* [Hierarchical cluster analysis on famous data sets - enhanced with the dendextend package](https://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Hierarchical%20cluster%20analysis%20on%20famous%20data%20sets%20-%20enhanced%20with%20the%20dendextend%20package.html)
 * [Introduction vignette (older)](https://github.com/talgalili/dendextend/blob/master/inst/doc/dendextend-tutorial.pdf)  (older)
 
 ## Share your dendrograms!
@@ -75,8 +75,9 @@ If you have made interesting work using the dendextend package, I would LOVE to 
 ### Usages of dendextend
 
 Packages:
-* [ComplexHeatmap](http://www.bioconductor.org/packages/release/bioc/vignettes/ComplexHeatmap/inst/doc/ComplexHeatmap.html)
-* [d3heatmap](http://cran.r-project.org/web/packages/d3heatmap/vignettes/Introduction.html)
+* [heatmaply](https://github.com/talgalili/heatmaply)
+* [ComplexHeatmap](https://www.bioconductor.org/packages/3.3/bioc/html/ComplexHeatmap.html)
+* [d3heatmap](https://cran.r-project.org/web/packages/d3heatmap/vignettes/Introduction.html)
 
 
 
