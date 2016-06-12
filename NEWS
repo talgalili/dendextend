@@ -1,10 +1,15 @@
+dendextend 1.2.0 (2016-06-12)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * find_k - Find the (estimated) number of clusters for a dendrogram using average silhouette width
+
+
 dendextend 1.1.9 (2016-03-17)
 ----------------------------------------
 
-
 ###OTHER NOTES:
    * Move is.X style functions to a new file: is.functions.R
-
 
 
 dendextend 1.1.8 (2016-02-10)
