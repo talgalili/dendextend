@@ -468,6 +468,12 @@ prepare.ggdend <- function(data, ...){
 
 
 
+# ' @ importFrom ggplot2 ggplot geom_segment geom_point aes guides scale_colour_identity scale_size_identity scale_linetype_identity scale_shape_identity geom_text coord_flip scale_y_reverse aes_string
+# NULL
+
+#' @import ggplot2
+
+
 # ggplot2:::ggplot.data.frame
 # based on ggdendrogram! from the ggdendro package
 # polar cor is a problem with text: http://stackoverflow.com/questions/8468472/adjusting-position-of-text-labels-in-coord-polar-histogram-in-ggplot2
@@ -482,19 +488,19 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
    # Get all the ggplot2 functions ready: (this could have been evoided if ggplot2 was imported...)
    # This saves us from the error: "ggplot.ggdend: no visible global function definition for ..."
    # library(ggplot2)
-   ggplot <- ggplot2::ggplot
-   geom_segment <- ggplot2::geom_segment
-   geom_point <- ggplot2::geom_point
-   aes <- ggplot2::aes   
-   guides <- ggplot2::guides
-   scale_colour_identity <- ggplot2::scale_colour_identity
-   scale_size_identity <- ggplot2::scale_size_identity
-   scale_linetype_identity <- ggplot2::scale_linetype_identity
-   scale_shape_identity <- ggplot2::scale_shape_identity
-   geom_text <- ggplot2::geom_text
-   coord_flip <- ggplot2::coord_flip
-   scale_y_reverse <- ggplot2::scale_y_reverse
-   aes_string <- ggplot2::aes_string
+   # ggplot <- ggplot2::ggplot
+   # geom_segment <- ggplot2::geom_segment
+   # geom_point <- ggplot2::geom_point
+   # aes <- ggplot2::aes   
+   # guides <- ggplot2::guides
+   # scale_colour_identity <- ggplot2::scale_colour_identity
+   # scale_size_identity <- ggplot2::scale_size_identity
+   # scale_linetype_identity <- ggplot2::scale_linetype_identity
+   # scale_shape_identity <- ggplot2::scale_shape_identity
+   # geom_text <- ggplot2::geom_text
+   # coord_flip <- ggplot2::coord_flip
+   # scale_y_reverse <- ggplot2::scale_y_reverse
+   # aes_string <- ggplot2::aes_string
    
    # By using "x" instead of x - we avoid the error:
    # ggplot.ggdend: no visible binding for global variable 'x'
