@@ -20,7 +20,6 @@ vignettes/jss.bst
 vignettes/jss.cls
 vignettes/dendextend-tutorial.bib
 vignettes/jsslogo.jpg
-NEWS\.md
 inst/doc/2013-09-05_Boston-useR
 inst/doc/dendextend-tutorial.pdf
 inst/ignored
