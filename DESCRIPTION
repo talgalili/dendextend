@@ -37,6 +37,7 @@ Imports:
     utils,
     stats,
     magrittr (>= 1.0.1),
+    ggplot2,
     fpc,
     whisker
 Suggests:
@@ -45,7 +46,6 @@ Suggests:
     rmarkdown,
     testthat,
     colorspace,
-    ggplot2,
     plyr,
     ape,
     profdpm,

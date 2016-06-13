@@ -4,6 +4,12 @@ dendextend 1.2.0 (2016-06-12)
 ###NEW FUNCTIONS:
    * find_k - Find the (estimated) number of clusters for a dendrogram using average silhouette width
 
+###BUG FIXES:
+   * ggplot.ggdend - Fix the tiny notch in angle of the branches
+
+###OTHER NOTES:
+   * ggplot2 is now imported (instead of just suggested). This is because the use of dendextend for transforming dendrograms into ggplot2 has become more important (thanks to the new plotly package).
+   * Fix various small issues (importing functions from other packages, the documents, etc.)
 
 dendextend 1.1.9 (2016-03-17)
 ----------------------------------------
