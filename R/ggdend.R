@@ -532,7 +532,9 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
    
    if (segments) {
    p <- p +  geom_segment(data = data$segments, 
-                          aes_string(x = "x", y = "y", xend = "xend", yend = "yend", colour = "col", linetype = "lty", size = "lwd")) +
+                          aes_string(x = "x", y = "y", xend = "xend", yend = "yend", 
+                                     colour = "col", linetype = "lty", size = "lwd"),
+                          lineend = "square") +
             guides(linetype = FALSE, col = FALSE) + 
       scale_colour_identity() + scale_size_identity()  + scale_linetype_identity()
    }
