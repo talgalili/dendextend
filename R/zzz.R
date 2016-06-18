@@ -16,6 +16,35 @@
 #  http://www.r-project.org/Licenses/
 #
 
+
+
+# Add myself to github:
+# http://www.r-bloggers.com/rstudio-and-github/
+
+# git remote add origin https://github.com/talgalili/dendextend.git
+# git config remote.origin.url git@github.com:talgalili/dendextend.git
+# git pull -u origin master
+# git push -u origin master
+
+# https://nathanj.github.io/gitguide/tour.html
+# add "git@github.com:talgalili/dendextend.git"
+
+# if the RStudio buttons are greyed out, then run the following in git shell:
+# git push -u origin master
+# source: http://www.r-bloggers.com/things-i-forget-pushpull-greyed-out-in-rstudio/
+# this updates \\.git\\config with the following lines:
+# [branch "master"]
+#     remote = origin
+#     merge = refs/heads/master
+
+
+
+
+
+
+
+
+
 # 
 # 
 # 
