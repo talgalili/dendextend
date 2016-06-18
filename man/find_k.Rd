@@ -5,7 +5,7 @@
 \alias{plot.find_k}
 \title{Find the (estimated) number of clusters for a dendrogram using average silhouette width}
 \usage{
-find_k(dend, krange = 2:10, ...)
+find_k(dend, krange = 2:min(10, (nleaves(dend) - 1)), ...)
 }
 \arguments{
 \item{dend}{A dendrogram (or hclust) tree object}

@@ -43,7 +43,7 @@ NULL
 #' plot(dend_k)
 #' plot(color_branches(dend, k = dend_k$nc))
 #' 
-find_k <- function(dend, krange=2:10, ...)
+find_k <- function(dend, krange= 2:min(10, (nleaves(dend)-1)), ...)
 {
    # library(fpc)
    # krange = 2:10
