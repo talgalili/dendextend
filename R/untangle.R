@@ -952,6 +952,50 @@ untangle_best_k_to_rotate_by_2side_backNforth <- function(dend1, dend2, times_to
 
 
 # 
+# 
+# untangle_OLO <- function(dend1, dend2, ...) {
+#    
+#    if(is.dendlist(dend1)) {
+#       dend2 <- dend1[[2]]
+#       dend1 <- dend1[[1]]
+#    }
+#    
+#    # hmap(sqrt(d2), Colv = "none", trace = "none", col = viridis(200))
+#    # Error in (function (x, Rowv = TRUE, Colv = if (symm) "Rowv" else TRUE,  : 
+#    #                       formal argument "Colv" matched by multiple actual arguments
+#    # d <- cophenetic(dend2) # doesn't work so great
+#    
+#    vec <- cbind(order.dendrogram(dend1), order.dendrogram(dend2))
+#    rownames(vec) <- labels(dend1)[order.dendrogram(dend1)]
+#    d <- dist(vec)
+#    o <- seriate(d, method = "OLO", control = list(hclust = as.hclust(dend1)) )
+#    dend1 <- rotate(dend1, order = rev(labels(d)[get_order(o)]))
+#    # library(dendextend)
+#    # o <- seriate(d, method = "OLO", control = list(hclust = as.hclust(dend2)) )
+#    # dend2 <- rotate(dend2, order = labels(d)[get_order(o)])
+#    return(dendlist(dend1, dend2))
+# }
+# 
+# 
+# 
+# if(F) {
+#    ## Not run: 
+#    require(dendextend)
+#    set.seed(23235)
+#    ss <- sample(1:150, 10 )
+#    dend1 <- iris[ss,-5] %>% dist %>% hclust("com") %>% as.dendrogram
+#    dend2 <- iris[ss,-5] %>% dist %>% hclust("sin") %>% as.dendrogram
+#    dend12 <- dendlist(dend1, sort(dend2, type = "nodes", decreasing= T))
+#    # dend12 <- dendlist(dend1, sort(dend1))
+#    dend12 %>% tanglegram
+#    dend12_OLO <- untangle_OLO(dend12)
+#    dend12_OLO %>% tanglegram
+#    dend12_OLO %>% sort(type = "nodes") %>%  tanglegram
+#    
+# }
+
+
+# 
 # if(F) {
 #    # example
 #    dist_DATA <- dist(USArrests[1:20,])
