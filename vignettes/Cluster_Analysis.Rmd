@@ -16,7 +16,7 @@ library(dendextend)
 library(knitr)
 knitr::opts_chunk$set(
    cache = TRUE,
-   dpi = 65,
+   dpi = 50,
    # dev = "svg",
   # comment = "#>",
   tidy = FALSE)
