@@ -3,7 +3,7 @@ title: "Hierarchical cluster analysis on famous data sets - enhanced with the _d
 date: "`r Sys.Date()`"
 author: "Tal Galili"
 output: 
-  html_document: 
+  html_vignette: 
     toc: yes
 ---
 <!--
@@ -16,7 +16,8 @@ library(dendextend)
 library(knitr)
 knitr::opts_chunk$set(
    cache = TRUE,
-   dpi = 50,
+   dpi = 75,
+   fig.width = 6, fig.height = 6,
    # dev = "svg",
   # comment = "#>",
   tidy = FALSE)
@@ -176,7 +177,7 @@ We can also explore the data using a heatmap. The rows are ordered based on the 
 In the heatmap we also see how the Setosa species has low petal values (in light yellow), but it is very difficult to see any clear distinction between the other two species.
 
 
-```{r}
+```{r, fig.width=9, fig.height=9}
 
 some_col_func <- function(n) rev(colorspace::heat_hcl(n, c = c(80, 30), l = c(30, 90), power = c(1/5, 1.5)))
 
@@ -328,8 +329,8 @@ iris_dendlist_cor2
 
 And plot it:
 
-```{r, fig.width=8, fig.height=8}
-corrplot::corrplot(iris_dendlist_cor2, "pie", "lower")
+```{r, fig.width=5, fig.height=5}
+# corrplot::corrplot(iris_dendlist_cor2, "pie", "lower")
 ```
 
 This gives us another perspective on our clustering algorithms. We can see that most methods have around 75% common nodes with one another. Centroid and median seem relatively close to one another, as well as ward.D2 and ward.D to one another and to complete, average, and mcquitty (as compared to the other methods).
@@ -540,7 +541,7 @@ For these data, it can be quite helpful to see a heatmap of the votes across the
 
 
 
-```{r}
+```{r, fig.width=9, fig.height=9}
 arcsin_transformation <- function(x) asin(x/100)
 
 dend_NA <- votes.repub %>% is.na %>%
@@ -603,7 +604,7 @@ We see that the "complete" method is somewhat similar to the ward.D/ward.D2 meth
 
 We can look at the heatmap of the "average" method. However, as you can see, it is not very helpful in seeing the difference between the two clustering solutions.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.width=9, fig.height=9}
 arcsin_transformation <- function(x) asin(x/100)
 
 dend_NA <- votes.repub %>% is.na %>%
@@ -730,7 +731,7 @@ colnames(animals) <- c("warm-blooded",
 This is a good example for using a heatmap + colored branches.
 
 
-```{r}
+```{r, fig.width=9, fig.height=9}
 
 dend_r <- animals %>% dist(method = "man") %>% hclust(method = "ward.D") %>% as.dendrogram %>% ladderize %>%
     color_branches(k=4)

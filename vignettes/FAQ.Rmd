@@ -3,7 +3,7 @@ title: "Frequently asked questions"
 date: "`r Sys.Date()`"
 author: "Tal Galili"
 output: 
-  html_document: 
+  html_vignette: 
     toc: yes
 ---
 <!--
@@ -17,7 +17,8 @@ library(dendextend)
 library(knitr)
 knitr::opts_chunk$set(
    cache = TRUE,
-   dpi = 65,
+   dpi = 75,
+   fig.width = 6, fig.height = 6,
   # comment = "#>",
   tidy = FALSE)
 

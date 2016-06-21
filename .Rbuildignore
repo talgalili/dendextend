@@ -9,6 +9,7 @@ vignettes/cache
 vignettes/.*cache
 vignettes/Cluster_Analysis_cache
 vignettes/introduction_cache
+vignettes/Quick_Introduction_cache
 vignettes/*\.md
 vignettes/*\.gz
 vignettes/*\.tex

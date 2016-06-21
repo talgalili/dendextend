@@ -3,7 +3,7 @@ title: "Introduction to dendextend"
 date: "`r Sys.Date()`"
 author: "Tal Galili"
 output:
-  html_document:
+  html_vignette:
     self_contained: yes
     toc: true    
 ---
@@ -18,7 +18,8 @@ library(dendextend)
 library(knitr)
 knitr::opts_chunk$set(
    cache = TRUE,
-   dpi = 50,
+   dpi = 75,
+   fig.width = 6, fig.height = 6,
   comment = "#>",
   tidy = FALSE)
 
@@ -35,7 +36,7 @@ knitr::opts_chunk$set(
 
 
 
-```{r, echo=FALSE, warning=FALSE, fig.align='center'}
+```{r, echo=FALSE, warning=FALSE, fig.align='center', fig.width=7, fig.height=7}
 suppressMessages(library(dendextend))
 suppressMessages(library(dendextendRcpp))
 library(colorspace)
@@ -782,7 +783,7 @@ if(require(DendSer)) {
 
 The gplots package brings us the `heatmap.2` function. In it, we can use our modified dendrograms to get more informative heat-maps:
 
-```{r, message=FALSE}
+```{r, message=FALSE, fig.width=7, fig.height=7}
 library(gplots)
 
 x  <- as.matrix(datasets::mtcars)
