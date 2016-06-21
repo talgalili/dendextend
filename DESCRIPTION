@@ -2,7 +2,7 @@ Package: dendextend
 Type: Package
 Title: Extending R's Dendrogram Functionality
 Version: 1.2.0
-Date: 2016-06-18
+Date: 2016-06-21
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "http://www.r-statistics.com"),
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
@@ -45,6 +45,7 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
+    seriation,
     colorspace,
     plyr,
     ape,
@@ -52,6 +53,7 @@ Suggests:
     microbenchmark,
     gplots,
     NMF,
+    heatmaply,
     d3heatmap,
     dynamicTreeCut,
     pvclust,
