@@ -3,6 +3,7 @@ dendextend 1.2.0 (2016-06-18)
 
 ###NEW FUNCTIONS:
    * find_k - Find the (estimated) number of clusters for a dendrogram using average silhouette width
+   * is.dist - checks class to be `dist`
 
 ###BUG FIXES:
    * ggplot.ggdend - Fix the tiny notch in angle of the branches

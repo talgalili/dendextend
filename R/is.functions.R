@@ -60,6 +60,24 @@ is.dendlist <- function(x) {
 
 
 
+
+#' @title Checks if an object is of class dist
+#' @description Checks if an object is of class dist (returns TRUE if it is).
+#' @export
+#' @param x whatever object to check
+#' @return 
+#' logical
+#' @examples
+#' # TRUE:
+#' is.dist(dist(mtcars))
+#' # FALSE
+#' is.dist(mtcars)
+is.dist <- function(x) {
+   inherits(x, "dist")
+}
+
+
+
 #' @title Turns a factor into a number
 #' @export
 #' @description
