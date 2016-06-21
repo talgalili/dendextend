@@ -59,6 +59,8 @@
 #' }
 seriate_dendrogram <- function(dend, x, method = c("OLO", "GW"), ...) {
    
+   if(!requireNamespace("seriation")) stop("Please first install seriation:\n install.packages('seriaten') ")
+   
    if(!is.dendrogram(dend) & !is.hclust(dend)) stop("dend must be either a dendrogram or an hclust object")
    if(!is.dist(x)) stop("x must be a dist object")
    if(!identical(sort(labels(x)), sort(labels(dend)))) stop("The labels of dend and x must be identical.")
