@@ -1,3 +1,167 @@
+* 2016-06-21(Tal Galili) Improve vignette size for CRAN (moving to html_vignette) |ad2880c| 
+|  .Rbuildignore                    |  1 +
+|  NEWS                             |  1 +
+|  vignettes/Cluster_Analysis.Rmd   | 17 +++++++++--------
+|  vignettes/FAQ.Rmd                |  5 +++--
+|  vignettes/Quick_Introduction.Rmd |  3 ++-
+|  vignettes/introduction.Rmd       |  9 +++++----
+|  6 files changed, 21 insertions(+), 15 deletions(-)
+
+* 2016-06-21(Tal Galili) add requireNamespace("seriation") (since I can't use imports) |8c5ae04| 
+|  R/seriate_dendrogram.R | 2 ++
+|  1 file changed, 2 insertions(+)
+
+* 2016-06-21(Tal Galili) Added seriate_dendrogram - rotates a dendrogram to fit the optimal ordering (via OLO or GW) of some distance matrix (very useful for heatmaps) |113c354| 
+|  DESCRIPTION               |  4 ++-
+|  NAMESPACE                 |  2 ++
+|  NEWS                      |  3 +-
+|  R/seriate_dendrogram.R    | 79 +++++++++++++++++++++++++++++++++++++++++++++
+|  man/seriate_dendrogram.Rd | 48 +++++++++++++++++++++++++++
+|  5 files changed, 134 insertions(+), 2 deletions(-)
+
+* 2016-06-21(Tal Galili) reduce dpi to deal with vignette size |5245c28| 
+|  vignettes/Cluster_Analysis.Rmd | 2 +-
+|  vignettes/introduction.Rmd     | 2 +-
+|  2 files changed, 2 insertions(+), 2 deletions(-)
+
+* 2016-06-21(Tal Galili) trying a new untangle method (didn't work) |77e933c| 
+|  R/untangle.R | 44 ++++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 44 insertions(+)
+
+* 2016-06-21(Tal Galili) copyright notice |c2b044b| 
+|  R/find_k.R | 18 ++++++++++++++++++
+|  1 file changed, 18 insertions(+)
+
+* 2016-06-21(Tal Galili) added is.dist |d508a51| 
+|  NEWS             |  1 +
+|  R/is.functions.R | 18 ++++++++++++++++++
+|  man/is.dist.Rd   | 24 ++++++++++++++++++++++++
+|  3 files changed, 43 insertions(+)
+
+* 2016-06-18(Tal Galili) reminder to myself on how to add SSH to github and connect it to RStudio |e59b44d| 
+|  R/zzz.R | 29 +++++++++++++++++++++++++++++
+|  1 file changed, 29 insertions(+)
+
+* 2016-06-18(Tal Galili) bump date |3fd6e7f| 
+|  DESCRIPTION | 2 +-
+|  NAMESPACE   | 4 ++--
+|  NEWS        | 2 +-
+|  3 files changed, 4 insertions(+), 4 deletions(-)
+
+* 2016-06-18(Tal Galili) find_k can now deal with smaller trees (n<10) by default. |3ff51db| 
+|  R/find_k.R    | 2 +-
+|  man/find_k.Rd | 2 +-
+|  2 files changed, 2 insertions(+), 2 deletions(-)
+
+* 2016-06-13(Tal Galili) ggplot2 is now imported (instead of just suggested). This is because the use of dendextend for transforming dendrograms into ggplot2 has become more important (thanks to the new plotly package). |3ab1886| 
+|  DESCRIPTION | 2 +-
+|  NEWS        | 6 ++++++
+|  2 files changed, 7 insertions(+), 1 deletion(-)
+
+* 2016-06-13(Tal Galili) Fix the tiny notch in angle of the branches (in ggplot.ggdend) |b085046| 
+|  R/ggdend.R | 4 +++-
+|  1 file changed, 3 insertions(+), 1 deletion(-)
+
+* 2016-06-12(Tal Galili) import(ggplot2) (instead of manually copying each function - which is NOT a good way to do this) |7de4df9| 
+|  NAMESPACE  |  1 +
+|  R/ggdend.R | 32 +++++++++++++++++++-------------
+|  2 files changed, 20 insertions(+), 13 deletions(-)
+
+* 2016-06-12(Tal Galili) New function: find_k - Find the (estimated) number of clusters for a dendrogram using average silhouette width |5b6a666| 
+|  DESCRIPTION   |  5 ++--
+|  NAMESPACE     |  3 +++
+|  NEWS          |  9 +++++--
+|  R/find_k.R    | 81 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  man/find_k.Rd | 52 ++++++++++++++++++++++++++++++++++++
+|  5 files changed, 146 insertions(+), 4 deletions(-)
+
+* 2016-06-12(Tal Galili) allow NEWS.md to be listed on CRAN |dbfd35c| 
+|  .Rbuildignore | 1 -
+|  1 file changed, 1 deletion(-)
+
+* 2016-05-26(Tal Galili) would this help codecov to work?! |6a0d6f8| 
+|  .travis.yml | 8 +++++---
+|  1 file changed, 5 insertions(+), 3 deletions(-)
+
+* 2016-05-26(Tal Galili) http -> https |68350b2| 
+|  DESCRIPTION |  4 ++--
+|  README.md   | 15 ++++++++-------
+|  2 files changed, 10 insertions(+), 9 deletions(-)
+
+* 2016-05-25(Tal Galili) Update Startup Message |b529c5f| 
+|  R/ggdend.R |  2 +-
+|  R/zzz.R    | 49 +++++++++++++++++++++++++++++++++----------------
+|  2 files changed, 34 insertions(+), 17 deletions(-)
+
+* 2016-05-23(Tal Galili) Fix (as is done now in dplyr): Warning: replacing previous import 'dendextend::%>%' by 'plotly::%>%' when loading 'heatmaply' |f97c47b| 
+|  NAMESPACE        |  1 +
+|  R/magrittr.R     | 24 ++----------------------
+|  man/pipe.Rd      | 33 ---------------------------------
+|  man/reexports.Rd | 16 ++++++++++++++++
+|  4 files changed, 19 insertions(+), 55 deletions(-)
+
+* 2016-05-08(Tal Galili) more info on the statistical use of E_FM and V_FM |08351a2| 
+|  vignettes/introduction.Rmd | 15 +++++++++++++++
+|  1 file changed, 15 insertions(+)
+
+* 2016-04-25(Tal Galili) Use test_check instead of test_package |7af67a3| 
+|  tests/test-all.R | 13 +++++++++++--
+|  1 file changed, 11 insertions(+), 2 deletions(-)
+
+* 2016-04-25(Tal Galili) check if the tests now work (if I place them in the tests\\testthat |362e0b0| 
+|  tests/test-all.R | 29 ++++++++++++++++++-----------
+|  1 file changed, 18 insertions(+), 11 deletions(-)
+
+* 2016-04-24(Tal Galili) alternative name of Baker's Gamma |270dd40| 
+|  R/cor_bakers_gamma.R    | 3 ++-
+|  man/cor_bakers_gamma.Rd | 3 ++-
+|  man/entanglement.Rd     | 2 +-
+|  3 files changed, 5 insertions(+), 3 deletions(-)
+
+* 2016-04-24(Tal Galili) ^ instead of ** |884c01d| 
+|  R/entanglement.R | 6 +++---
+|  1 file changed, 3 insertions(+), 3 deletions(-)
+
+* 2016-03-24(Tal Galili) update documentation of the functions' location. |1325bbb| 
+|  man/fac2num.Rd       | 2 +-
+|  man/is.dendlist.Rd   | 2 +-
+|  man/is.dendrogram.Rd | 2 +-
+|  man/is.hclust.Rd     | 2 +-
+|  man/is.phylo.Rd      | 2 +-
+|  5 files changed, 5 insertions(+), 5 deletions(-)
+
+* 2016-03-17(Tal Galili) Move is.X style functions to a new file: is.functions.R |2b533fe| 
+|  DESCRIPTION           |  4 +--
+|  NEWS                  |  9 +++++
+|  R/cutree.dendrogram.R | 52 ----------------------------
+|  R/dendlist.R          | 15 ---------
+|  R/is.functions.R      | 90 +++++++++++++++++++++++++++++++++++++++++++++++++
+|  5 files changed, 101 insertions(+), 69 deletions(-)
+
+* 2016-02-10(Tal Galili) until tests\\testthat will work. |dd25ff2| 
+|  tests/test-all.R | 8 ++++++--
+|  1 file changed, 6 insertions(+), 2 deletions(-)
+
+* 2016-02-10(Tal Galili) 1.1.8 bump |6e490e0| 
+|  DESCRIPTION | 2 +-
+|  NEWS        | 5 +++++
+|  2 files changed, 6 insertions(+), 1 deletion(-)
+
+* 2016-02-10(Tal Galili) some updates |634511f| 
+|  TODO | 34 ----------------------------------
+|  1 file changed, 34 deletions(-)
+
+* 2016-02-10(Tal Galili) ideas |90a4627| 
+|  TODO | 51 ++++++++++++++++++++++++++++++++++++++++++++++++++-
+|  1 file changed, 50 insertions(+), 1 deletion(-)
+
+* 2016-02-10(Tal Galili) Added "tryCatch" to deal with the tests issue. + updated changelog and NEWS |3f2c1a2| 
+|  ChangeLog        | 366 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  NEWS             |   2 +-
+|  NEWS.md          |  47 +++++++
+|  tests/test-all.R |   7 +-
+|  4 files changed, 419 insertions(+), 3 deletions(-)
+
 * 2016-02-10(Tal Galili) another fix for the warning. |3708e45| 
 |  tests/testthat/test-cutree.dendrogram.R | 2 +-
 |  1 file changed, 1 insertion(+), 1 deletion(-)

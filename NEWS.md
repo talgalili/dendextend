@@ -1,3 +1,31 @@
+dendextend 1.2.0 (2016-06-21)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * find_k - Find the (estimated) number of clusters for a dendrogram using average silhouette width
+   * is.dist - checks class to be `dist`
+   * seriate_dendrogram - rotates a dendrogram to fit the optimal ordering (via OLO or GW) of some distance matrix (very useful for heatmaps)
+
+###BUG FIXES:
+   * ggplot.ggdend - Fix the tiny notch in angle of the branches
+
+###OTHER NOTES:
+   * ggplot2 is now imported (instead of just suggested). This is because the use of dendextend for transforming dendrograms into ggplot2 has become more important (thanks to the new plotly package).
+   * Fix various small issues (importing functions from other packages, the documents, etc.)
+   * Improve vignette size for CRAN (moving to html_vignette)
+
+dendextend 1.1.9 (2016-03-17)
+----------------------------------------
+
+###OTHER NOTES:
+   * Move is.X style functions to a new file: is.functions.R
+
+
+dendextend 1.1.8 (2016-02-10)
+----------------------------------------
+###BUG FIXES:
+   * added tryCatch to tests so it would pass github.
+
 dendextend 1.1.7 (2016-02-10)
 ----------------------------------------
 
