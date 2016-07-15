@@ -781,6 +781,8 @@ rank_branches <- function(dend, diff_height =1, ...) {
 #' dend <- assign_values_to_leaves_nodePar(dend, 2, "lab.cex")
 #' plot(dend)
 #' 
+#' str(unclass(dend))
+#' 
 #' get_leaves_attr(dend, "nodePar", simplify=FALSE)
 #' 
 #' }

@@ -134,7 +134,8 @@ labels_col <- labels_colors
          } else {            
 #             attr(dend_node, "nodePar") <- within(attr(dend_node, "nodePar"), {lab.col <- col[i_leaf_number]}) # this way it doesn't erase other nodePar values (if they exist)
             # Using as.list in order to make the code more robust
-            attr(dend_node, "nodePar") <- within(as.list(attr(dend_node, "nodePar")), {lab.col <- col[i_leaf_number]}) # this way it doesn't erase other nodePar values (if they exist)
+            # attr(dend_node, "nodePar") <- within(as.list(attr(dend_node, "nodePar")), {lab.col <- col[i_leaf_number]}) # this way it doesn't erase other nodePar values (if they exist)
+            attr(dend_node, "nodePar")[["lab.col"]] <- col[i_leaf_number] # this way it doesn't erase other nodePar values (if they exist)
          }
          
          if(length(attr(dend_node, "nodePar")) == 0) attr(dend_node, "nodePar") <- NULL # remove nodePar if it is empty

@@ -53,6 +53,8 @@ dend <- assign_values_to_leaves_nodePar(dend, 19, "pch")
 dend <- assign_values_to_leaves_nodePar(dend, 2, "lab.cex")
 plot(dend)
 
+str(unclass(dend))
+
 get_leaves_attr(dend, "nodePar", simplify=FALSE)
 
 }

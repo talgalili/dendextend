@@ -113,6 +113,25 @@ test_that("Can color the labels of super flat trees",{
 
 
 
+
+test_that("Using set leaves_col still allows for set labels_colors",{
+   
+   dend <- USArrests[1:5,] %>% dist %>% hclust("ave") %>% as.dendrogram
+   dend <- dend %>% 
+      # set("leaves_pch", c(4, 1)) %>%
+      set("leaves_col", c(5, 1)) %>%
+      set("labels_colors", c(3, 1)) 
+   
+   # plot(dend)
+   # str(unclass(dend))
+   # dput(unname(labels_colors(dend)))
+   
+   expect_identical(unname(labels_colors(dend)), c(3, 1, 3, 1, 3))
+})
+
+
+
 # library(testthat)
+
 
 
