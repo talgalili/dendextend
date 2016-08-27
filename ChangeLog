@@ -1,3 +1,34 @@
+* 2016-08-27(Tal Galili) v1.3.0 |abb2d7f| 
+|  NEWS.md | 13 +++++++++++++
+|  1 file changed, 13 insertions(+)
+
+* 2016-08-27(Tal Galili) http to https |fc6f403| 
+|  DESCRIPTION       | 2 +-
+|  man/set_labels.Rd | 2 +-
+|  2 files changed, 2 insertions(+), 2 deletions(-)
+
+* 2016-07-15(Tal Galili) Fix "labels_colors<-" - make it more robust for combinations of using it with assign_values_to_leaves_nodePar (as used in set("labels_colors", ...) for example) |1fa259e| 
+|  DESCRIPTION                            |  2 +-
+|  NEWS                                   |  5 ++++-
+|  R/attr_access.R                        |  2 ++
+|  R/labels_colors.R                      |  3 ++-
+|  man/assign_values_to_leaves_nodePar.Rd |  2 ++
+|  tests/testthat/test-labels_colors.R    | 19 +++++++++++++++++++
+|  6 files changed, 30 insertions(+), 3 deletions(-)
+
+* 2016-07-06(Tal Galili) Added set_labels and place_labels. These are convenience functions for updating the labels of a dendrogram. Props to Garrett Grolemund for the idea. |ccc43bc| 
+|  DESCRIPTION       |  4 +--
+|  NAMESPACE         |  2 ++
+|  NEWS              | 10 +++++++
+|  R/labels.R        | 85 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  man/set_labels.Rd | 69 +++++++++++++++++++++++++++++++++++++++++++
+|  5 files changed, 168 insertions(+), 2 deletions(-)
+
+* 2016-06-22(Tal Galili) update log files. |962ea87| 
+|  ChangeLog | 164 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  NEWS.md   |  28 +++++++++++
+|  2 files changed, 192 insertions(+)
+
 * 2016-06-21(Tal Galili) Improve vignette size for CRAN (moving to html_vignette) |ad2880c| 
 |  .Rbuildignore                    |  1 +
 |  NEWS                             |  1 +
