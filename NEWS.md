@@ -1,3 +1,16 @@
+dendextend 1.3.0 (2016-07-15)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * Added set_labels and place_labels. These are convenience functions for updating the labels of a dendrogram. They differ in their assumption about the order of the labels. Props to Garrett Grolemund for the idea.
+      * set_labels assumes the labels are in the same order as that of the labels in the dendrogram.
+      * place_labels assumes the labels has the same order as that of the items in the original data matrix. This is useful for renaming labels based on some other columns in the data matrix.
+
+###BUG FIXES:
+   * "labels_colors<-" - make it more robust for combinations of using it with assign_values_to_leaves_nodePar (as used in set("labels_colors", ...) for example)
+
+
+
 dendextend 1.2.0 (2016-06-21)
 ----------------------------------------
 
