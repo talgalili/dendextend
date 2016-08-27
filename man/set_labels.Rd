@@ -22,7 +22,7 @@ Convenience functions for updating the labels of a dendrogram.
 set_labels and place_labels differs in their assumption about the order of the labels.
 * set_labels assumes the labels are in the same order as that of the labels in the dendrogram.
 * place_labels assumes the labels has the same order as that of the items in the original data matrix. 
-   this is useful for renaming labels based on some other columns in the data matrix.
+   This is useful for renaming labels based on some other columns in the data matrix.
 }
 \examples{
 
