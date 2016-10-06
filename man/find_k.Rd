@@ -23,6 +23,7 @@ A \link[fpc]{pamk} output. This is a list with the following components:
 1) pamobject - The output of the optimal run of the pam-function.
 2) nc	- the optimal number of clusters.
 3) crit - vector of criterion values for numbers of clusters. crit[1] is the p-value of the Duda-Hart test if 1 is in krange and diss=FALSE.
+4) k - a copy of nc (just to make it easier to extract - since k is often used in other functions)
 }
 \description{
 This function estimates the number of clusters based on the maximal average \link[cluster]{silhouette} width 

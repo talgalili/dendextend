@@ -1,3 +1,10 @@
+dendextend 1.4.0 (2016-10-06)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+   * find_k - now includes `k` in the output, which is a copy of `nc`. This is to make it easier to extract the value (i.e.: the suggested number of clusters).
+
+
 dendextend 1.3.0 (2016-07-15)
 ----------------------------------------
 

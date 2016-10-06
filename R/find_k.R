@@ -45,6 +45,7 @@ NULL
 #' 1) pamobject - The output of the optimal run of the pam-function.
 #' 2) nc	- the optimal number of clusters.
 #' 3) crit - vector of criterion values for numbers of clusters. crit[1] is the p-value of the Duda-Hart test if 1 is in krange and diss=FALSE.
+#' 4) k - a copy of nc (just to make it easier to extract - since k is often used in other functions)
 #' @examples
 #' 
 #' dend <- iris[,-5] %>% dist %>% hclust %>% as.dendrogram
@@ -68,6 +69,7 @@ find_k <- function(dend, krange= 2:min(10, (nleaves(dend)-1)), ...)
    # criterion = "asw"
    d <- cophenetic(dend) # this will work for both a dendrogram and an hclust object.
    out <- pamk(d, krange = krange, criterion="asw", usepam=TRUE, ...)
+   out$k <- out$nc # just to make it easier to find.
    class(out) <- "find_k"
    out
 }
