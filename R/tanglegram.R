@@ -735,7 +735,7 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
                                   common_subtrees_color_lines = TRUE,
                                   common_subtrees_color_branches = FALSE,                                     
                                   faster = FALSE, 
-                                  just_one=TRUE,
+                                  just_one = TRUE,
                                   ... )
 {
 
