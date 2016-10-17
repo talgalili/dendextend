@@ -490,6 +490,7 @@ plot_horiz.dendrogram <- function (x,
 #'    common_subtrees_color_lines = TRUE,
 #'    common_subtrees_color_branches = FALSE,
 #'    faster = FALSE,
+#'    just_one = TRUE,      
 #'    ...)
 #' 
 #' \method{tanglegram}{dendlist}(dend1, which = c(1L,2L), main_left, main_right, ...)
@@ -512,7 +513,7 @@ plot_horiz.dendrogram <- function (x,
 #' @param edge.lwd width of the dendrograms lines.
 #' @param columns_width a vector with three elements, giving the relative
 #' sizes of the the three plots (left dendrogram, connecting lines, 
-#' right dendrogram). This is passed to \link{layout}. 
+#' right dendrogram). This is passed to \link{layout} if parameter just_one is TRUE. 
 #' The default is: c(5,3,5)
 #' @param margin_top  the number of lines of margin to be specified on the top
 #' of the plots.
@@ -580,6 +581,9 @@ plot_horiz.dendrogram <- function (x,
 #' This is FALSE by default since it will override the colors of the existing tree.
 #' @param faster logical (FALSE). If TRUE, it overrides some other parameters to 
 #' have them turned off so that the plotting will go a tiny bit faster.
+#' @param just_one logical (TRUE). If FALSE, it means at least two tanglegrams
+#' will be plotted on the same page and so \link{layout} is not passed.
+#' See: \url{http://stackoverflow.com/q/39784746/4137985}
 #' @param ... not used.
 #' @details 
 #' Notice that tanglegram does not "resize" well. In case you are resizing your
@@ -731,6 +735,7 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
                                   common_subtrees_color_lines = TRUE,
                                   common_subtrees_color_branches = FALSE,                                     
                                   faster = FALSE, 
+                                  juste_one=TRUE,
                                   ... )
 {
 
@@ -740,9 +745,7 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
       common_subtrees_color_branches = FALSE
    }
    
-   # save default, for resetting...
-   def_par <- par(no.readonly = TRUE) 
-   
+  
    
    # characters_to_prune = the number of characters to leave after pruning the labels.		
    # remove_nodePar = makes sure that we won't have any dots at the end of leaves
@@ -872,7 +875,7 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
    ord_arrow <- cbind((1:l)[order(order.dendrogram(dend1))],(1:l)[order(order.dendrogram(dend2))]) 
    
    # Set the layout of the plot elements
-   layout(matrix(1:3,nrow=1),widths=columns_width)
+   if (just_one) layout(matrix(1:3, nrow=1), widths=columns_width)
       
    #################
    # The first dendrogram:	
@@ -924,7 +927,6 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
                          yaxs = "r", xaxs = "i",...)
 
    # layout(matrix(1)) # not required
-   par(def_par)  #- reset to default
 
    
    
