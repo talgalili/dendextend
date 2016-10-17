@@ -58,6 +58,7 @@ tanglegram(dend1, ...)
    common_subtrees_color_lines = TRUE,
    common_subtrees_color_branches = FALSE,
    faster = FALSE,
+   just_one = TRUE,      
    ...)
 
 \method{tanglegram}{dendlist}(dend1, which = c(1L,2L), main_left, main_right, ...)
@@ -90,7 +91,7 @@ The colors in the vector are applied on the lines from the bottom up.}
 
 \item{columns_width}{a vector with three elements, giving the relative
 sizes of the the three plots (left dendrogram, connecting lines, 
-right dendrogram). This is passed to \link{layout}. 
+right dendrogram). This is passed to \link{layout} if parameter just_one is TRUE. 
 The default is: c(5,3,5)}
 
 \item{margin_top}{the number of lines of margin to be specified on the top
@@ -188,6 +189,10 @@ This is FALSE by default since it will override the colors of the existing tree.
 
 \item{faster}{logical (FALSE). If TRUE, it overrides some other parameters to 
 have them turned off so that the plotting will go a tiny bit faster.}
+
+\item{just_one}{logical (TRUE). If FALSE, it means at least two tanglegrams
+will be plotted on the same page and so \link{layout} is not passed.
+See: \url{http://stackoverflow.com/q/39784746/4137985}}
 }
 \value{
 An invisible \link{dendlist}, with two trees after being
