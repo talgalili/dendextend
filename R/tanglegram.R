@@ -672,7 +672,7 @@ tanglegram.phylo <- function(dend1, ...) {tanglegram.dendrogram(dend1 = dend1, .
 
 # ' @S3method tanglegram dendlist
 #' @export
-tanglegram.dendlist <- function(dend1, which = c(1L,2L), main_left, main_right, ...) {
+tanglegram.dendlist <- function(dend1, which = c(1L,2L), main_left, main_right, just_one=TRUE...) {
    # many things can go wrong here (which we might wish to fix):
    # we could get a dendlist with a length of 1 - in which case, we can't plot
    if(length(dend1) == 1) stop("Your dendlist has only 1 dendrogram - a tanglegram can not be plotted")
@@ -689,7 +689,7 @@ tanglegram.dendlist <- function(dend1, which = c(1L,2L), main_left, main_right, 
          if(missing(main_right)) main_right <- ""                        
       }
       
-      tanglegram.dendrogram(dend1[[l1]], dend1[[l2]], main_left = main_left, main_right = main_right, ...)
+      tanglegram.dendrogram(dend1[[l1]], dend1[[l2]], main_left = main_left, main_right = main_right, just_one=just_one, ...)
    } else {
       stop("You are trying to plot trees which are outside the range of trees in your dendlist")
    }   
@@ -735,7 +735,7 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
                                   common_subtrees_color_lines = TRUE,
                                   common_subtrees_color_branches = FALSE,                                     
                                   faster = FALSE, 
-                                  juste_one=TRUE,
+                                  just_one=TRUE,
                                   ... )
 {
 
