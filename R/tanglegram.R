@@ -674,6 +674,8 @@ tanglegram.phylo <- function(dend1, ...) {tanglegram.dendrogram(dend1 = dend1, .
 #' @export
 tanglegram.dendlist <- function(dend1, which = c(1L,2L), main_left, main_right, just_one=TRUE...) {
    # many things can go wrong here (which we might wish to fix):
+   # we could have parameter just_one set to FALSE but no layout predefined, in which case we can't plot
+   if(!just_one & identical(par("mfrow"), c(1, 1))) stop("A layout must be defined when just_one is FALSE")
    # we could get a dendlist with a length of 1 - in which case, we can't plot
    if(length(dend1) == 1) stop("Your dendlist has only 1 dendrogram - a tanglegram can not be plotted")
    # we could get a dendlist with a length of >2 - in which case, should we only plot the first two items?
