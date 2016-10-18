@@ -61,7 +61,7 @@ tanglegram(dend1, ...)
    just_one = TRUE,      
    ...)
 
-\method{tanglegram}{dendlist}(dend1, which = c(1L,2L), main_left, main_right, ...)
+\method{tanglegram}{dendlist}(dend1, which = c(1L,2L), main_left, main_right, just_one=TRUE, ...)
 
 \method{tanglegram}{hclust}(dend1, ...)
 
