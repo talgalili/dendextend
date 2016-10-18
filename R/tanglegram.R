@@ -672,7 +672,7 @@ tanglegram.phylo <- function(dend1, ...) {tanglegram.dendrogram(dend1 = dend1, .
 
 # ' @S3method tanglegram dendlist
 #' @export
-tanglegram.dendlist <- function(dend1, which = c(1L,2L), main_left, main_right, just_one=TRUE...) {
+tanglegram.dendlist <- function(dend1, which = c(1L,2L), main_left, main_right, just_one=TRUE, ...) {
    # many things can go wrong here (which we might wish to fix):
    # we could have parameter just_one set to FALSE but no layout predefined, in which case we can't plot
    if(!just_one & identical(par("mfrow"), c(1, 1))) stop("A layout must be defined when just_one is FALSE")
