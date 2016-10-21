@@ -212,6 +212,8 @@ dendextendWelcomeMessage <- function(){
           "---------------------\n",
           "Welcome to dendextend version ", utils::packageDescription("dendextend")$Version, "\n",
           # "\n",
+          "Type citation('dendextend') for how to cite the package.\n",
+          "\n",
           "Type browseVignettes(package = 'dendextend') for the package vignette.\n",
           "The github page is: ",
           "https://github.com/talgalili/dendextend/\n",
