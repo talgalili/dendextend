@@ -748,6 +748,12 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
    }
    
   
+   if(just_one) {
+      # save default, for resetting...
+      def_par <- par(no.readonly = TRUE) 
+   }
+   
+   
    
    # characters_to_prune = the number of characters to leave after pruning the labels.		
    # remove_nodePar = makes sure that we won't have any dots at the end of leaves
@@ -930,6 +936,10 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
 
    # layout(matrix(1)) # not required
 
+   if(just_one) {
+      par(def_par)  #- reset to default
+   }
+   
    
    
    return(invisible(dendlist(dend1 = dend1, dend2 = dend2)))
