@@ -1,6 +1,11 @@
 TODO for future releases:
 =========================
 
+* Remove DendSer.dendrogram - I don't think it adds any value (but DO add examples for using seriation to rotate the dendrogram...)
+
+
+Interactive tanglegrams using plotly?!
+
 
 Maybe add this function:
 http://stackoverflow.com/questions/33567508/how-to-color-the-same-labels-on-dendorgram-in-one-colour-in-r/33580763#33580763
