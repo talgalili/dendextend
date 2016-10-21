@@ -490,9 +490,10 @@ plot_horiz.dendrogram <- function (x,
 #'    common_subtrees_color_lines = TRUE,
 #'    common_subtrees_color_branches = FALSE,
 #'    faster = FALSE,
+#'    just_one = TRUE,      
 #'    ...)
 #' 
-#' \method{tanglegram}{dendlist}(dend1, which = c(1L,2L), main_left, main_right, ...)
+#' \method{tanglegram}{dendlist}(dend1, which = c(1L,2L), main_left, main_right, just_one=TRUE, ...)
 #' 
 #' \method{tanglegram}{hclust}(dend1, ...)
 #' 
@@ -512,7 +513,7 @@ plot_horiz.dendrogram <- function (x,
 #' @param edge.lwd width of the dendrograms lines.
 #' @param columns_width a vector with three elements, giving the relative
 #' sizes of the the three plots (left dendrogram, connecting lines, 
-#' right dendrogram). This is passed to \link{layout}. 
+#' right dendrogram). This is passed to \link{layout} if parameter just_one is TRUE. 
 #' The default is: c(5,3,5)
 #' @param margin_top  the number of lines of margin to be specified on the top
 #' of the plots.
@@ -580,6 +581,9 @@ plot_horiz.dendrogram <- function (x,
 #' This is FALSE by default since it will override the colors of the existing tree.
 #' @param faster logical (FALSE). If TRUE, it overrides some other parameters to 
 #' have them turned off so that the plotting will go a tiny bit faster.
+#' @param just_one logical (TRUE). If FALSE, it means at least two tanglegrams
+#' will be plotted on the same page and so \link{layout} is not passed.
+#' See: \url{http://stackoverflow.com/q/39784746/4137985}
 #' @param ... not used.
 #' @details 
 #' Notice that tanglegram does not "resize" well. In case you are resizing your
@@ -668,8 +672,10 @@ tanglegram.phylo <- function(dend1, ...) {tanglegram.dendrogram(dend1 = dend1, .
 
 # ' @S3method tanglegram dendlist
 #' @export
-tanglegram.dendlist <- function(dend1, which = c(1L,2L), main_left, main_right, ...) {
+tanglegram.dendlist <- function(dend1, which = c(1L,2L), main_left, main_right, just_one=TRUE, ...) {
    # many things can go wrong here (which we might wish to fix):
+   # we could have parameter just_one set to FALSE but no layout predefined, in which case we can't plot
+   if(!just_one & identical(par("mfrow"), c(1, 1))) stop("A layout must be defined when just_one is FALSE")
    # we could get a dendlist with a length of 1 - in which case, we can't plot
    if(length(dend1) == 1) stop("Your dendlist has only 1 dendrogram - a tanglegram can not be plotted")
    # we could get a dendlist with a length of >2 - in which case, should we only plot the first two items?
@@ -685,7 +691,7 @@ tanglegram.dendlist <- function(dend1, which = c(1L,2L), main_left, main_right, 
          if(missing(main_right)) main_right <- ""                        
       }
       
-      tanglegram.dendrogram(dend1[[l1]], dend1[[l2]], main_left = main_left, main_right = main_right, ...)
+      tanglegram.dendrogram(dend1[[l1]], dend1[[l2]], main_left = main_left, main_right = main_right, just_one=just_one, ...)
    } else {
       stop("You are trying to plot trees which are outside the range of trees in your dendlist")
    }   
@@ -698,14 +704,14 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
                                   color_lines, 
                                   lwd = 3.5,
                                   edge.lwd = NULL,
-                                  # columns_width = c(5,2,3,2,5),
-                                  columns_width = c(5,3,5),
+                                  # columns_width = c(5, 2, 3, 2, 5),
+                                  columns_width = c(5, 3, 5),
                                   margin_top = 3,
                                   margin_bottom = 2.5,
                                   margin_inner = 3,
                                   margin_outer = 0.5,
-                                  left_dendo_mar = c(margin_bottom,margin_outer,margin_top,margin_inner),
-                                  right_dendo_mar=c(margin_bottom,margin_inner,margin_top,margin_outer),
+                                  left_dendo_mar = c(margin_bottom, margin_outer, margin_top, margin_inner),
+                                  right_dendo_mar=c(margin_bottom, margin_inner, margin_top, margin_outer),
                                   intersecting = TRUE,
                                   dLeaf = NULL, # -.3,
                                    dLeaf_left = dLeaf,
@@ -731,6 +737,7 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
                                   common_subtrees_color_lines = TRUE,
                                   common_subtrees_color_branches = FALSE,                                     
                                   faster = FALSE, 
+                                  just_one = TRUE,
                                   ... )
 {
 
@@ -740,9 +747,7 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
       common_subtrees_color_branches = FALSE
    }
    
-   # save default, for resetting...
-   def_par <- par(no.readonly = TRUE) 
-   
+  
    
    # characters_to_prune = the number of characters to leave after pruning the labels.		
    # remove_nodePar = makes sure that we won't have any dots at the end of leaves
@@ -872,7 +877,7 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
    ord_arrow <- cbind((1:l)[order(order.dendrogram(dend1))],(1:l)[order(order.dendrogram(dend2))]) 
    
    # Set the layout of the plot elements
-   layout(matrix(1:3,nrow=1),widths=columns_width)
+   if (just_one) layout(matrix(1:3, nrow=1), widths=columns_width)
       
    #################
    # The first dendrogram:	
@@ -924,7 +929,6 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
                          yaxs = "r", xaxs = "i",...)
 
    # layout(matrix(1)) # not required
-   par(def_par)  #- reset to default
 
    
    
