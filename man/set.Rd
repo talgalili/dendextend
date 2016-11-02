@@ -2,9 +2,9 @@
 % Please edit documentation in R/set.dendrogram.R
 \name{set}
 \alias{set}
-\alias{set.data.table}
-\alias{set.dendlist}
 \alias{set.dendrogram}
+\alias{set.dendlist}
+\alias{set.data.table}
 \title{Set (/update) features to a dendrogram}
 \usage{
 set(dend, ...)
@@ -33,7 +33,9 @@ set(dend, ...)
             "clear_branches",
             "clear_leaves"
    ),
-   value, ...)
+   value, 
+   order_value = FALSE,
+   ...)
    
 \method{set}{dendlist}(dend, ..., which)
 
@@ -50,6 +52,10 @@ for the different options)}
 
 \item{value}{an object with the value to set in the dendrogram tree.
 (the type of the value depends on the "what")}
+
+\item{order_value}{logical. Default is FALSE. If TRUE, it means the order of 
+the value is in the order of the data which produced the \link{hclust} or \link{dendrogram} - 
+and will reorder the value to conform with the order of the labels in the dendrogram.}
 
 \item{which}{an integer vector indicating, in the case "dend" is
 a dendlist, on which of the trees should the modification be performed.
@@ -177,6 +183,12 @@ dend \%>\%
    set("by_labels_branches_lwd", c(1:4, 7), type = "all", TF_values = c(4,1)) \%>\% 
    set("by_labels_branches_lty", c(1:4, 7), TF_values = c(4,1)) \%>\% 
    plot
+
+#---- using order_value
+# This is probably not what you want, since cutree returns clusters in the order of the original data:
+dend \%>\% set("labels_colors", cutree(dend, k = 3)) \%>\% plot
+# The way to fix it, is to use order_value = TRUE so that value is assumed to be in the order of the data:
+dend \%>\% set("labels_colors", cutree(dend, k = 3), order_value = TRUE) \%>\% plot
 
 
 

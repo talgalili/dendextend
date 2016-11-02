@@ -1,9 +1,13 @@
+
+
+
 dendextend 1.4.0 (2016-10-21)
 ----------------------------------------
 
 ###UPDATED FUNCTIONS:
    * find_k - now includes `k` in the output, which is a copy of `nc`. This is to make it easier to extract the value (i.e.: the suggested number of clusters).
    * tanglegram - Add possibility to draw several tanglegrams on same page via the `just_one` paramter.
+   * set - added the parameter `order_value` to easily use values which are in the order of the original data.
 
 
 dendextend 1.3.0 (2016-07-15)
