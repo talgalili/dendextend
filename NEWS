@@ -1,8 +1,11 @@
 
 
 
-dendextend 1.4.0 (2016-10-21)
+dendextend 1.4.0 (2016-11-08)
 ----------------------------------------
+
+###NEW FUNCTIONS:
+   * as.dendrogram.varclus (found in Hmisc)
 
 ###UPDATED FUNCTIONS:
    * find_k - now includes `k` in the output, which is a copy of `nc`. This is to make it easier to extract the value (i.e.: the suggested number of clusters).

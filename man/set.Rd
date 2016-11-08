@@ -2,9 +2,9 @@
 % Please edit documentation in R/set.dendrogram.R
 \name{set}
 \alias{set}
-\alias{set.dendrogram}
-\alias{set.dendlist}
 \alias{set.data.table}
+\alias{set.dendlist}
+\alias{set.dendrogram}
 \title{Set (/update) features to a dendrogram}
 \usage{
 set(dend, ...)

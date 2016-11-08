@@ -2,7 +2,7 @@ Package: dendextend
 Type: Package
 Title: Extending R's Dendrogram Functionality
 Version: 1.4.0
-Date: 2016-11-02
+Date: 2016-11-08
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "https://www.r-statistics.com"),
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
@@ -66,7 +66,7 @@ Suggests:
     circlize (>= 0.2.5),
     covr
 Enhances: ggdendro,
-    labeltodendro,dendroextras,
+    labeltodendro,dendroextras, Hmisc,
     data.table, rpart
 VignetteBuilder: knitr
 LazyData: true
@@ -76,4 +76,4 @@ URL: https://cran.r-project.org/package=dendextend,
     https://www.r-statistics.com/tag/dendextend/,
     https://bioinformatics.oxfordjournals.org/content/31/22/3718
 BugReports: https://github.com/talgalili/dendextend/issues
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 5.0.1
