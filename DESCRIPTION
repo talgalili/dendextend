@@ -41,7 +41,8 @@ Imports:
     magrittr (>= 1.0.1),
     ggplot2,
     fpc,
-    whisker
+    whisker,
+    viridis
 Suggests:
     dendextendRcpp (>= 0.5.0),
     knitr,

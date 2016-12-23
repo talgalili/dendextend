@@ -14,7 +14,14 @@
 #
 #  A copy of the GNU General Public License is available at
 #  http://www.r-project.org/Licenses/
-#
+
+
+
+# http://stackoverflow.com/questions/10325231/when-writing-my-own-r-package-i-cant-seem-to-get-other-packages-to-import-corr
+#' @importFrom viridis viridis
+
+
+
 
 
 
