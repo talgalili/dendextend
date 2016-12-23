@@ -495,6 +495,7 @@ rllply <- function(x, FUN,add_notation = FALSE, ...)
 #' @param dend a dendrogram.
 #' @param sort logical. Should the heights be sorted?
 #' @param decreasing logical. Should the sort be increasing or decreasing? Not available for partial sorting.
+#' @param include_leaves logical (FALSE). Should the output include the leaves value (0's).
 #' @param ... not used.
 #' @return 
 #' a vector of the dendrogram's nodes heights (excluding leaves).
@@ -525,13 +526,13 @@ get_branches_heights <- function(dend, sort = TRUE, decreasing = FALSE, ...) {
 
 
 #' @export
-dendextend_get_branches_heights <- function(dend, sort = TRUE, decreasing = FALSE, ...)
+dendextend_get_branches_heights <- function(dend, sort = TRUE, decreasing = FALSE, include_leaves = FALSE, ...)
 {
 #    height <- unlist(rllply(dend, function(x){attr(x, "height")}))
 #    height <- get_nodes_attr(dend, "height") 
 #    height <- height[height != 0] # include only the non zero values
    
-   height <- get_nodes_attr(dend, "height", include_leaves = FALSE, na.rm = TRUE)   
+   height <- get_nodes_attr(dend, "height", include_leaves = include_leaves, na.rm = TRUE)   
    if(sort) height <- sort(height, decreasing=decreasing) 	# sort the height
    
    return(height)
