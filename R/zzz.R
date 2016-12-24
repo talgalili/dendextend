@@ -396,6 +396,7 @@ dendextendWelcomeMessage <- function(){
 ### http://www.rstudio.com/ide/docs/packages/build_options
 # 
 # check(build_args="--no-build-vignettes --no-manual", args = "--no-examples --no-build-vignettes --no-manual",  cran = FALSE, cleanup = FALSE)
+# devtools::check(build_args="--no-build-vignettes --no-manual", args = " --no-build-vignettes --no-manual",  cran = FALSE, cleanup = FALSE)
 # check(build_args="--no-build-vignettes --no-manual", args = "--no-build-vignettes --no-manual",  cran = FALSE, cleanup = FALSE)
 # check(build_args="--no-build-vignettes ", args = "--no-build-vignettes",  cran = FALSE, cleanup = FALSE)
 # devtools::check(args="--as-cran")

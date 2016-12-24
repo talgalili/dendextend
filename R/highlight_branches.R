@@ -39,8 +39,8 @@ highlight_branches_col <- function(dend, values = rev(viridis(1000)), ...) {
    
    # library(viridis)
    # h <- get_branches_heights(dend, sort = FALSE, include_leaves = T)
-   # h <- get_nodes_attr(dend, "height", include_leaves = T, na.rm = TRUE) # works
-   h <- get_branches_heights(dend, sort = FALSE, include_leaves = T) # works
+   # h <- get_nodes_attr(dend, "height", include_leaves = TRUE, na.rm = TRUE) # works
+   h <- dendextend_get_branches_heights(dend, sort = FALSE, include_leaves = TRUE) # works
    # h <- round(normalize(h) * (length(cols)-1) ) + 1
    # library(scales)
    # f <- scales::col_numeric(rev(cols), h)
@@ -61,8 +61,8 @@ highlight_branches_lwd <- function(dend, values = seq(1, 10, length.out = 1000),
    
    # library(viridis)
    # h <- get_branches_heights(dend, sort = FALSE, include_leaves = T)
-   # h <- get_nodes_attr(dend, "height", include_leaves = T, na.rm = TRUE) # works
-   h <- get_branches_heights(dend, sort = FALSE, include_leaves = T) # works
+   # h <- get_nodes_attr(dend, "height", include_leaves = TRUE, na.rm = TRUE) # works
+   h <- dendextend_get_branches_heights(dend, sort = FALSE, include_leaves = TRUE) # works
    
    lwds <- map_values_to_scale(h, values)
    # dend2 <- set(dend, "branches_col", cols)
@@ -140,17 +140,17 @@ highlight_branches_lwd <- function(dend, values = seq(1, 10, length.out = 1000),
 #' dend %>% highlight_branches_col(rev(magma(1000))) %>% plot(main = "The magma color pallatte\n is also good")
 #' 
 #' dl <- dendlist(dend, dend2) 
-#' tanglegram(dl, sort = T, common_subtrees_color_lines = F, highlight_distinct_edges  = F, highlight_branches_lwd = F)
+#' tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE, highlight_branches_lwd = FALSE)
 #' tanglegram(dl)
 #' tanglegram(dl, fast = TRUE)
 #' 
 #' dl <- dendlist(highlight_branches(dend), highlight_branches(dend2))
-#' tanglegram(dl, sort = T, common_subtrees_color_lines = F, highlight_distinct_edges  = F)
+#' tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE)
 #' 
 #' dend %>% set("highlight_branches_col") %>% plot
 #' 
 #' dl <- dendlist(dend, dend2) %>% set("highlight_branches_col") 
-#' tanglegram(dl, sort = T, common_subtrees_color_lines = F, highlight_distinct_edges  = F)
+#' tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE)
 #' 
 highlight_branches <- function(dend, type = c("col", "lwd"), ...) {
    

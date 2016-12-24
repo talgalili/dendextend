@@ -60,17 +60,17 @@ dend \%>\% highlight_branches_col(viridis(100)) \%>\% plot(main = "It is better 
 dend \%>\% highlight_branches_col(rev(magma(1000))) \%>\% plot(main = "The magma color pallatte\\n is also good")
 
 dl <- dendlist(dend, dend2) 
-tanglegram(dl, sort = T, common_subtrees_color_lines = F, highlight_distinct_edges  = F, highlight_branches_lwd = F)
+tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE, highlight_branches_lwd = FALSE)
 tanglegram(dl)
 tanglegram(dl, fast = TRUE)
 
 dl <- dendlist(highlight_branches(dend), highlight_branches(dend2))
-tanglegram(dl, sort = T, common_subtrees_color_lines = F, highlight_distinct_edges  = F)
+tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE)
 
 dend \%>\% set("highlight_branches_col") \%>\% plot
 
 dl <- dendlist(dend, dend2) \%>\% set("highlight_branches_col") 
-tanglegram(dl, sort = T, common_subtrees_color_lines = F, highlight_distinct_edges  = F)
+tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE)
 
 }
 \seealso{
