@@ -520,7 +520,7 @@ rllply <- function(x, FUN,add_notation = FALSE, ...)
 #' 
 get_branches_heights <- function(dend, sort = TRUE, decreasing = FALSE, include_leaves = FALSE, ...) {
    fo <- dendextend_options("get_branches_heights")
-   fo(dend, sort = sort, decreasing = decreasing, ...)
+   fo(dend, sort = sort, decreasing = decreasing, include_leaves = include_leaves, ...)
 }
 
 
