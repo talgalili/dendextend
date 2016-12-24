@@ -195,6 +195,12 @@
 #'    set("hang") %>%
 #'    plot 
 #' 
+#' par(mfrow = c(1,3))
+#' dend %>% set("highlight_branches_col") %>% plot 
+#' dend %>% set("highlight_branches_lwd") %>% plot 
+#' dend %>% set("highlight_branches_col") %>% set("highlight_branches_lwd") %>% plot 
+#' par(mfrow = c(1,1))
+#' 
 #' #----------------------------
 #' # Examples for: by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
 #' 
