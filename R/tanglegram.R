@@ -489,6 +489,8 @@ plot_horiz.dendrogram <- function (x,
 #'    highlight_distinct_edges = TRUE,
 #'    common_subtrees_color_lines = TRUE,
 #'    common_subtrees_color_branches = FALSE,
+#'    highlight_branches_col = FALSE,
+#'    highlight_branches_lwd = TRUE,
 #'    faster = FALSE,
 #'    just_one = TRUE,      
 #'    ...)
@@ -579,6 +581,8 @@ plot_horiz.dendrogram <- function (x,
 #' Color the branches of both dends based on the common subtrees.
 #' (notice that this can be slow on large trees)
 #' This is FALSE by default since it will override the colors of the existing tree.
+#' @param highlight_branches_col logical (default is FALSE). Should \link{highlight_branches_col} be used on the dendrograms.
+#' @param highlight_branches_lwd logical (default is TRUE). Should \link{highlight_branches_lwd} be used on the dendrograms.
 #' @param faster logical (FALSE). If TRUE, it overrides some other parameters to 
 #' have them turned off so that the plotting will go a tiny bit faster.
 #' @param just_one logical (TRUE). If FALSE, it means at least two tanglegrams
@@ -736,15 +740,18 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
                                   highlight_distinct_edges = TRUE,
                                   common_subtrees_color_lines = TRUE,
                                   common_subtrees_color_branches = FALSE,                                     
+                                  highlight_branches_col = FALSE,
+                                  highlight_branches_lwd = TRUE,
                                   faster = FALSE, 
                                   just_one = TRUE,
                                   ... )
 {
 
    if(faster) {
-      highlight_distinct_edges = FALSE
-      common_subtrees_color_lines = FALSE
-      common_subtrees_color_branches = FALSE
+      highlight_distinct_edges <- FALSE
+      common_subtrees_color_lines <- FALSE
+      common_subtrees_color_branches <- FALSE
+      highlight_branches_lwd <- FALSE
    }
    
   
@@ -864,7 +871,16 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
       }
    }    
    
+   if(highlight_branches_col) {
+      dend1 <- highlight_branches_col(dend1)
+      dend2 <- highlight_branches_col(dend2)
+   }
+   if(highlight_branches_lwd) {
+      dend1 <- highlight_branches_lwd(dend1)
+      dend2 <- highlight_branches_lwd(dend2)
+   }
    
+      
    l <- nleaves(dend1)
    
    # makes sure that dLeaf gives a symmetric result.

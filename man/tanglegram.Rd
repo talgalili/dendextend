@@ -57,6 +57,8 @@ tanglegram(dend1, ...)
    highlight_distinct_edges = TRUE,
    common_subtrees_color_lines = TRUE,
    common_subtrees_color_branches = FALSE,
+   highlight_branches_col = FALSE,
+   highlight_branches_lwd = TRUE,
    faster = FALSE,
    just_one = TRUE,      
    ...)
@@ -186,6 +188,10 @@ This only works if
 Color the branches of both dends based on the common subtrees.
 (notice that this can be slow on large trees)
 This is FALSE by default since it will override the colors of the existing tree.}
+
+\item{highlight_branches_col}{logical (default is FALSE). Should \link{highlight_branches_col} be used on the dendrograms.}
+
+\item{highlight_branches_lwd}{logical (default is TRUE). Should \link{highlight_branches_lwd} be used on the dendrograms.}
 
 \item{faster}{logical (FALSE). If TRUE, it overrides some other parameters to 
 have them turned off so that the plotting will go a tiny bit faster.}
