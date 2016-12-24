@@ -33,9 +33,9 @@ map_values_to_scale <- function(values, scale) {
 
 
 #' @export
-highlight_branches_col <- function(dend, values = rev(viridis(1000)), ...) {
+highlight_branches_col <- function(dend, values = rev(viridis(1000, end = .9)), ...) {
    
-   if(missing(values)) values <- rev(viridis(1000))
+   if(missing(values)) values <- rev(viridis(1000, end = .9))
    
    # library(viridis)
    # h <- get_branches_heights(dend, sort = FALSE, include_leaves = T)
@@ -87,7 +87,7 @@ highlight_branches_lwd <- function(dend, values = seq(1, 10, length.out = 1000),
 #' 
 #' highlight_branches(dend, type = c("col", "lwd"), ...)
 #' 
-#' highlight_branches_col(dend, values = rev(viridis(1000)), ...)
+#' highlight_branches_col(dend, values = rev(viridis(1000, end = .9)), ...)
 #' 
 #' highlight_branches_lwd(dend, values = seq(1, 10, length.out = 1000), ...)
 #' 

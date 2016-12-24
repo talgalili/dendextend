@@ -8,7 +8,7 @@
 \usage{
 highlight_branches(dend, type = c("col", "lwd"), ...)
 
-highlight_branches_col(dend, values = rev(viridis(1000)), ...)
+highlight_branches_col(dend, values = rev(viridis(1000, end = .9)), ...)
 
 highlight_branches_lwd(dend, values = seq(1, 10, length.out = 1000), ...)
 }
