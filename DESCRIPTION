@@ -38,6 +38,7 @@ Depends:
 Imports:
     utils,
     stats,
+    datasets,
     magrittr (>= 1.0.1),
     ggplot2,
     fpc,

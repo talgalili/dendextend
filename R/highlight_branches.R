@@ -152,6 +152,25 @@ highlight_branches_lwd <- function(dend, values = seq(1, 10, length.out = 1000),
 #' dl <- dendlist(dend, dend2) %>% set("highlight_branches_col") 
 #' tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE)
 #' 
+#' 
+#' # This is also useful for heatmaps
+#' # --------------------------
+#' # library(dendextend)
+#' 
+#' x  <- as.matrix(datasets::mtcars)
+#' 
+#' Rowv  <- x %>% dist %>% hclust %>% as.dendrogram %>%
+#'    set("branches_k_color", k = 3) %>% set("highlight_branches_lwd") %>%
+#'    ladderize
+#' #    rotate_DendSer(ser_weight = dist(x))
+#' Colv  <- x %>% t %>% dist %>% hclust %>% as.dendrogram %>%
+#'    set("branches_k_color", k = 2) %>% set("highlight_branches_lwd") %>%
+#'    ladderize
+#' #    rotate_DendSer(ser_weight = dist(t(x)))
+#' 
+#' library(gplots)
+#' heatmap.2(x, Rowv = Rowv, Colv = Colv)
+#' 
 highlight_branches <- function(dend, type = c("col", "lwd"), ...) {
    
    if(!is.dendrogram(dend)) stop("dend is not a dendrogram (and it needs to be...)")

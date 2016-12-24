@@ -72,6 +72,25 @@ dend \%>\% set("highlight_branches_col") \%>\% plot
 dl <- dendlist(dend, dend2) \%>\% set("highlight_branches_col") 
 tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE)
 
+
+# This is also useful for heatmaps
+# --------------------------
+# library(dendextend)
+
+x  <- as.matrix(datasets::mtcars)
+
+Rowv  <- x \%>\% dist \%>\% hclust \%>\% as.dendrogram \%>\%
+   set("branches_k_color", k = 3) \%>\% set("highlight_branches_lwd") \%>\%
+   ladderize
+#    rotate_DendSer(ser_weight = dist(x))
+Colv  <- x \%>\% t \%>\% dist \%>\% hclust \%>\% as.dendrogram \%>\%
+   set("branches_k_color", k = 2) \%>\% set("highlight_branches_lwd") \%>\%
+   ladderize
+#    rotate_DendSer(ser_weight = dist(t(x)))
+
+library(gplots)
+heatmap.2(x, Rowv = Rowv, Colv = Colv)
+
 }
 \seealso{
 \link{set}, \link{color_branches}, \link{get_branches_heights}, 
