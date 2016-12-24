@@ -5,7 +5,8 @@
 \alias{get_branches_heights}
 \title{Get height attributes from a dendrogram}
 \usage{
-get_branches_heights(dend, sort = TRUE, decreasing = FALSE, ...)
+get_branches_heights(dend, sort = TRUE, decreasing = FALSE,
+  include_leaves = FALSE, ...)
 }
 \arguments{
 \item{dend}{a dendrogram.}
@@ -14,9 +15,9 @@ get_branches_heights(dend, sort = TRUE, decreasing = FALSE, ...)
 
 \item{decreasing}{logical. Should the sort be increasing or decreasing? Not available for partial sorting.}
 
-\item{...}{not used.}
-
 \item{include_leaves}{logical (FALSE). Should the output include the leaves value (0's).}
+
+\item{...}{not used.}
 }
 \value{
 a vector of the dendrogram's nodes heights (excluding leaves).
