@@ -133,6 +133,7 @@ highlight_branches_lwd <- function(dend, values = seq(1, 10, length.out = 1000),
 #' dend %>% highlight_branches_lwd %>% plot(main = "Emphasizing line-width")
 #' dend %>% highlight_branches %>% plot(main = "Emphasizing color\n and line-width")
 #' 
+#' library(viridis)
 #' par(mfrow = c(1,3))
 #' dend %>% highlight_branches_col %>% plot(main = "Coloring branches \n(default is reversed viridis)")
 #' dend %>% highlight_branches_col(viridis(100)) %>% plot(main = "It is better to use\nlighter colors in the leaves")
