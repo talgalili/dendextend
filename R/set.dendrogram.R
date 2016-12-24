@@ -50,6 +50,8 @@
 #'             "by_labels_branches_col",
 #'             "by_labels_branches_lwd",
 #'             "by_labels_branches_lty",
+#'             "highlight_branches_col",
+#'             "highlight_branches_lwd",
 #'             "clear_branches",
 #'             "clear_leaves"
 #'    ),
@@ -110,6 +112,8 @@
 #' \item{by_labels_branches_col - set the color of branches with specific labels (\link{branches_attr_by_labels}) }
 #' \item{by_labels_branches_lwd - set the line width of branches with specific labels (\link{branches_attr_by_labels}) }
 #' \item{by_labels_branches_lty - set the line type of branches with specific labels (\link{branches_attr_by_labels}) }
+#' \item{highlight_branches_col - highlight branches color based on branches' heights (\link{highlight_branches_col}) }
+#' \item{highlight_branches_lwd - highlight branches line-width based on branches' heights (\link{highlight_branches_lwd}) }
 #' \item{clear_branches - clear branches' attributes (\link{remove_branches_edgePar})}
 #' \item{clear_leaves - clear leaves' attributes (\link{remove_branches_edgePar})}
 #' }
@@ -291,6 +295,8 @@ set.dendrogram <-
                      "by_labels_branches_col",
                      "by_labels_branches_lwd",
                      "by_labels_branches_lty",
+                     "highlight_branches_col",
+                     "highlight_branches_lwd",
                      "clear_branches",
                      "clear_leaves"
             ),
@@ -329,6 +335,8 @@ set.dendrogram <-
                        by_labels_branches_col = branches_attr_by_labels(dend, labels = value, attr = "col", ...),
                        by_labels_branches_lwd = branches_attr_by_labels(dend, labels = value, attr = "lwd", ...),
                        by_labels_branches_lty = branches_attr_by_labels(dend, labels = value, attr = "lty", ...),
+                     highlight_branches_col = highlight_branches_col(dend, values = value, ...),
+                     highlight_branches_lwd = highlight_branches_lwd(dend, values = value, ...),
                        clear_branches = remove_branches_edgePar(dend, ...),
                        clear_leaves = remove_leaves_nodePar(dend, ...)
       )
