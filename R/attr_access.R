@@ -253,6 +253,10 @@ get_leaves_branches_attr <- function (dend, attr = c("col", "lwd", "lty"), ...) 
 #' This is based on \link{get_leaves_branches_attr} which is based on 
 #' \link{get_leaves_edgePar}.
 #' 
+#' TODO: The function get_leaves_branches_col may behave oddly when extracting
+#' colors with missing col attributes when the lwd attribute is available. 
+#' This may resolt in a vector with the wrong length (with omitted NA values).
+#' This might need to be fixed in the future, and attention should be given to this case.
 #' 
 #' @param dend a dendrogram object 
 #' @param ... not used

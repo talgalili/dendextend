@@ -512,7 +512,10 @@ plot_horiz.dendrogram <- function (x,
 #' (and a warning is issued).
 #' The colors in the vector are applied on the lines from the bottom up.
 #' @param lwd width of the lines connecting the labels. (default is 3.5)
-#' @param edge.lwd width of the dendrograms lines.
+#' @param edge.lwd width of the dendrograms lines. Default is NULL.
+#' If set, then it switches `highlight_branches_lwd` to FALSE. If you want thicker
+#' lines which reflect the height, please use \link{highlight_branches_lwd} on the 
+#' dendrograms/dendlist.
 #' @param columns_width a vector with three elements, giving the relative
 #' sizes of the the three plots (left dendrogram, connecting lines, 
 #' right dendrogram). This is passed to \link{layout} if parameter just_one is TRUE. 
@@ -789,6 +792,7 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
       dend2 <- assign_values_to_leaves_nodePar(dend2, lab.cex, "lab.cex", warn = dendextend_options("warn"))
    }
    if(!is.null(edge.lwd)) {
+      highlight_branches_lwd <- FALSE # so that it does not override this parameter
       dend1 <- assign_values_to_branches_edgePar(dend1, edge.lwd, "lwd")
       dend2 <- assign_values_to_branches_edgePar(dend2, edge.lwd, "lwd")
    }
@@ -823,13 +827,25 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
       # dend2 <- color_branches(dend2, clusters = clusters2)      
       dend1_leaves_colors <- get_leaves_branches_col(dend1)
       
+      # in cases when lwd is defined, the NAs are not provided and the two vectors
+      # (clusters1 and dend1_leaves_colors) have different lengths.
+      # I repeat this to all cases by removing the NAs. Knowing where they should be,
+      # based on the 0s in clusters1, I am able to fit the colors properly in both cases.
+      dend1_leaves_colors <- as.vector(na.omit(dend1_leaves_colors))
+      tmp <- clusters1
+      tmp[tmp != 0] <- dend1_leaves_colors
+      dend1_leaves_colors <- tmp
+      dend1_leaves_colors[tmp == 0] <- "black"
+      
       # match_1_to_be_2
       ss <- match(labels(dend2), labels(dend1))
       #       labels(dend1)[ss]
       #       labels(dend2)
+      the_leaves_colors <- dend1_leaves_colors[ss]
+      # the_leaves_colors[is.na(the_leaves_colors)] <- 1
       dend2_clusters <- rank_values_with_clusters(clusters1[ss], ignore0 = TRUE)
       dend2 <- branches_attr_by_clusters(dend2, dend2_clusters,
-                                         values = dend1_leaves_colors[ss], attr = "col",
+                                         values = the_leaves_colors, attr = "col",
                                          branches_changed_have_which_labels = "all")
       
       # tanglegram(dend1,dend2)

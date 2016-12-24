@@ -21,6 +21,11 @@ to that of the branches (since getting the colors of branches to match
 those of the labels can be tricky).
 This is based on \link{get_leaves_branches_attr} which is based on 
 \link{get_leaves_edgePar}.
+
+TODO: The function get_leaves_branches_col may behave oddly when extracting
+colors with missing col attributes when the lwd attribute is available. 
+This may resolt in a vector with the wrong length (with omitted NA values).
+This might need to be fixed in the future, and attention should be given to this case.
 }
 \examples{
 # define dendrogram object to play with:

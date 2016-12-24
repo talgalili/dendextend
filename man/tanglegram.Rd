@@ -89,7 +89,10 @@ The colors in the vector are applied on the lines from the bottom up.}
 
 \item{lwd}{width of the lines connecting the labels. (default is 3.5)}
 
-\item{edge.lwd}{width of the dendrograms lines.}
+\item{edge.lwd}{width of the dendrograms lines. Default is NULL.
+If set, then it switches `highlight_branches_lwd` to FALSE. If you want thicker
+lines which reflect the height, please use \link{highlight_branches_lwd} on the 
+dendrograms/dendlist.}
 
 \item{columns_width}{a vector with three elements, giving the relative
 sizes of the the three plots (left dendrogram, connecting lines, 
