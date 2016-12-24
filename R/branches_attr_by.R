@@ -180,7 +180,7 @@ branches_attr_by_clusters <- function(dend, clusters, values, attr = c("col", "l
    
    if(any(is.na(values))) {
       warning("There are NA's in the colors used by branches_attr_by_clusters. This probably means a bug somewhere. The color was replaced by 'black', but make sure your code does what you wanted it to...")
-      value[is.na(values)] <- "black"
+      values[is.na(values)] <- "black"
    }
 
    # let's find out which nodes we should modify for each cluster
