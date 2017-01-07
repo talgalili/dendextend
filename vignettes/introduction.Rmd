@@ -565,6 +565,58 @@ dend15 %>% set("by_labels_branches_lty", value = c(1,4), TF_values = c(3,Inf)) %
 ```
 
 
+
+#### Highlighting branches' different heights using line width and color
+
+
+The `highlight_branches` function helps to more easily see the topological structure of a tree, by adjusting branches appearence (color and line width) based on their height in the tree. For example:
+
+
+
+```{r, fig.width=8, fig.height=3}
+
+dat <- iris[1:20,-5]
+hca <- hclust(dist(dat))
+hca2 <- hclust(dist(dat), method = "single")
+dend <- as.dendrogram(hca)
+dend2 <- as.dendrogram(hca2)
+
+par(mfrow = c(1,3))
+dend %>% highlight_branches_col %>% plot(main = "Coloring branches")
+dend %>% highlight_branches_lwd %>% plot(main = "Emphasizing line-width")
+dend %>% highlight_branches %>% plot(main = "Emphasizing color\n and line-width")
+
+```
+
+Tanglegrams are even easier to compare when using
+
+
+
+```{r, fig.width=8, fig.height=4}
+
+library(viridis)
+par(mfrow = c(1,3))
+dend %>% highlight_branches_col %>% plot(main = "Coloring branches \n(default is reversed viridis)")
+dend %>% highlight_branches_col(viridis(100)) %>% plot(main = "It is better to use\nlighter colors in the leaves")
+dend %>% highlight_branches_col(rev(magma(1000))) %>% plot(main = "The magma color pallatte\n is also good")
+
+dl <- dendlist(dend, dend2)
+tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE, highlight_branches_lwd = FALSE)
+tanglegram(dl)
+tanglegram(dl, fast = TRUE)
+
+dl <- dendlist(highlight_branches(dend), highlight_branches(dend2))
+tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE)
+
+# dend %>% set("highlight_branches_col") %>% plot
+
+dl <- dendlist(dend, dend2) %>% set("highlight_branches_col")
+tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE)
+
+```
+
+
+
 ### Changing a dendrogram's structure
 
 
@@ -1151,7 +1203,6 @@ x %>% plot(main = paste("entanglement =", round(entanglement(x), 2)))
 ```
 
 We got perfect entanglement (0).
-
 
 
 
