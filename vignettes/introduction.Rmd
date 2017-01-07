@@ -713,7 +713,24 @@ the_bars <- cbind(is_odd, is_345, is_12, k_3)
 the_bars[the_bars==2] <- 8
 
 dend15 %>% plot
-colored_bars(colors = the_bars, dend = dend15)
+colored_bars(colors = the_bars, dend = dend15, sort_by_labels_order = FALSE)
+# we use sort_by_labels_order = FALSE since "the_bars" were set based on the
+# labels order. The more common use case is when the bars are based on a second variable
+# from the same data.frame as dend was created from. Thus, the default 
+# sort_by_labels_order = TRUE would make more sense.
+```
+
+Another example, based on mtcars (in which the default of `sort_by_labels_order = TRUE` makes sense):
+
+```{r}
+
+dend_mtcars <- mtcars[, c("mpg", "disp")] %>% dist %>% hclust(method = "average") %>% as.dendrogram
+
+par(mar = c(10,2,1,1))
+plot(dend_mtcars)
+the_bars <- ifelse(mtcars$am, "grey", "gold")
+colored_bars(colors = the_bars, dend = dend_mtcars, rowLabels = "am")
+
 ```
 
 
