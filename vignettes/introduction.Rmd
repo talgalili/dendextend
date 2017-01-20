@@ -122,7 +122,7 @@ c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
 ```
 
 
-The **design** of the dendextend package (and this manual!) is heavily inspired by [Hadley Wickham's](http://had.co.nz/) work. Especially his text on [writing an R package](http://r-pkgs.had.co.nz/), the [devtools package](https://cran.r-project.org/package=devtools), and the dplyr package (specifically the use of chaining, and the [Introduction text to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)).
+The **design** of the dendextend package (and this manual!) is heavily inspired by [Hadley Wickham's](http://had.co.nz/) work. Especially his text on [writing an R package](http://r-pkgs.had.co.nz/), the [devtools package](https://cran.r-project.org/package=devtools), and the dplyr package (specifically the use of chaining, and the [Introduction text to dplyr](https://CRAN.R-project.org/package=dplyr/vignettes/introduction.html)).
 
 
 
@@ -162,7 +162,7 @@ dend <- c(1:5) %>% # take the a vector from 1 to 5
 For more details, you may look at:
 
 * [magrittr on CRAN](https://cran.r-project.org/package=magrittr)
-* [Introduction to the magrittr package](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html)
+* [Introduction to the magrittr package](https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html)
 * [Simpler R coding with pipes > the present and future of the magrittr package](http://www.r-statistics.com/2014/08/simpler-r-coding-with-pipes-the-present-and-future-of-the-magrittr-package/)
 
 ### A dendrogram is a nested list of lists with attributes

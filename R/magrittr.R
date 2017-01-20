@@ -27,7 +27,7 @@ magrittr::`%>%`
 # https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-structure
 # https://cran.r-project.org/package=dplyr
 # https://cran.r-project.org/package=magrittr
-# https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html
-# https://cran.r-project.org/web/packages/roxygen2/vignettes/namespace.html 
+# https://CRAN.R-project.org/package=roxygen2/vignettes/rd.html
+# https://CRAN.R-project.org/package=roxygen2/vignettes/namespace.html 
 # http://stackoverflow.com/questions/8637993/better-explanation-of-when-to-use-imports-depends
 

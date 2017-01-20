@@ -77,7 +77,7 @@ If you have made interesting work using the dendextend package, I would LOVE to 
 Packages:
 * [heatmaply](https://github.com/talgalili/heatmaply)
 * [ComplexHeatmap](https://www.bioconductor.org/packages/3.3/bioc/html/ComplexHeatmap.html)
-* [d3heatmap](https://cran.r-project.org/web/packages/d3heatmap/vignettes/Introduction.html)
+* [d3heatmap](https://CRAN.R-project.org/package=d3heatmap/vignettes/Introduction.html)
 
 
 
