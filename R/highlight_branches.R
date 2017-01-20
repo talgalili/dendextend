@@ -136,11 +136,14 @@ highlight_branches_lwd <- function(dend, values = seq(1, 10, length.out = 1000),
 #' library(viridis)
 #' par(mfrow = c(1,3))
 #' dend %>% highlight_branches_col %>% plot(main = "Coloring branches \n(default is reversed viridis)")
-#' dend %>% highlight_branches_col(viridis(100)) %>% plot(main = "It is better to use\nlighter colors in the leaves")
-#' dend %>% highlight_branches_col(rev(magma(1000))) %>% plot(main = "The magma color pallatte\n is also good")
+#' dend %>% highlight_branches_col(viridis(100)) %>% 
+#'    plot(main = "It is better to use\nlighter colors in the leaves")
+#' dend %>% highlight_branches_col(rev(magma(1000))) %>% 
+#'    plot(main = "The magma color pallatte\n is also good")
 #' 
 #' dl <- dendlist(dend, dend2) 
-#' tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE, highlight_branches_lwd = FALSE)
+#' tanglegram(dl, sort = TRUE, common_subtrees_color_lines = FALSE, 
+#' highlight_distinct_edges  = FALSE, highlight_branches_lwd = FALSE)
 #' tanglegram(dl)
 #' tanglegram(dl, fast = TRUE)
 #' 
