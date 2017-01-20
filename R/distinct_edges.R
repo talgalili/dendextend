@@ -18,7 +18,7 @@
 
 
 # Re-coding phylo.diff from the distory package, but for dendrograms
-# http://cran.r-project.org/package=distory
+# https://cran.r-project.org/package=distory
 
 
 

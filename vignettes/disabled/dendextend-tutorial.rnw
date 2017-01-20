@@ -1851,7 +1851,7 @@ For \code{cut_lower_fun} (an essential function when using cutree with some h):
 % the package. % , both as explicit examples and as part of the numerous unit tests.
 % %
 % The \pkg{dendextend} package is available from the Comprehensive \proglang{R} Archive Network (CRAN)
-% at \url{http://CRAN.R-project.org/package=dendextend}.
+% at \url{https://cran.r-project.org/package=dendextend}.
 % 
 % \makeatletter
 % \if@nojss

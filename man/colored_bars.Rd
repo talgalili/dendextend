@@ -9,7 +9,7 @@ This function is based on the \link[moduleColor]{plotHclustColors} from the
 work with dendrograms (and not just hclust objects), as well allow to
 add the colored bars on top of an existing plot (and not only as a seperate plot).
 
-See: \url{http://cran.r-project.org/package=moduleColor}
+See: \url{https://cran.r-project.org/package=moduleColor}
 For more details.
 }
 \usage{

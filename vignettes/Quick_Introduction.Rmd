@@ -39,7 +39,7 @@ library(dendextend)
 ```
 
 
-Create a dendrogram (if you don't know what `%>%` is, read about it [here](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) ) :
+Create a dendrogram (if you don't know what `%>%` is, read about it [here](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) ) :
 
 ```{r}
 dend <- c(1:5) %>% dist %>% hclust("ave") %>% as.dendrogram

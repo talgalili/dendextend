@@ -594,7 +594,7 @@ pvrect2 <- function (x, alpha = 0.95, pv = "au", type = "geq", max.only = TRUE,
 #    # http://www.is.titech.ac.jp/~shimo/pub/Shimodaira%20and%20Hasegawa%20MBE1999.pdf
 #    # http://scholar.google.co.il/scholar?hl=en&q=Ryota+Suzuki+&btnG=&as_sdt=1%2C5&as_sdtp=
 #    # http://www.is.titech.ac.jp/~shimo/prog/pvclust/
-#    # http://cran.r-project.org/package=pvclust
+#    # https://cran.r-project.org/package=pvclust
 #    
 # }
 # 

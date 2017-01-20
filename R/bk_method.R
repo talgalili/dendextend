@@ -1107,8 +1107,8 @@ Bk_plot <- function(tree1, tree2, k,
 # Bk_plot(tree1, tree2)
 
 # The Bk function was previously also implemented by Matt in:
-#   	 http://cran.r-project.org/package=profdpm
-# See pages 9 and 10 here: http://cran.r-project.org/web/packages/profdpm/vignettes/profdpm.pdf
+#   	 https://cran.r-project.org/package=profdpm
+# See pages 9 and 10 here: https://cran.r-project.org/web/packages/profdpm/vignettes/profdpm.pdf
 # I came by this package thanks to chl: http://stats.stackexchange.com/questions/3672/a-measure-to-describe-the-distribution-of-a-dendrogram	
 # Also, there is a great overview of similarity measures on this here:
 # http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.164.6189&rep=rep1&type=pdf
