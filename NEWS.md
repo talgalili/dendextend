@@ -1,3 +1,22 @@
+
+
+
+dendextend 1.4.0 (2017-01-21)
+----------------------------------------
+
+###NEW FUNCTIONS:
+   * as.dendrogram.varclus (found in Hmisc)
+   * highlight_branches, highlight_branches_col, highlight_branches_lwd - Highlight a dendrogram's branches heights via color and line-width.
+   * has_edgePar, has_nodePar - Does a dendrogram has an edgePar/nodePar component?
+
+###UPDATED FUNCTIONS:
+   * find_k - now includes `k` in the output, which is a copy of `nc`. This is to make it easier to extract the value (i.e.: the suggested number of clusters).
+   * set - added the parameter `order_value` to easily use values which are in the order of the original data.
+   * tanglegram
+      * Add possibility to draw several tanglegrams on same page via the `just_one` paramter.
+      * added highlight_branches_col (FALSE) and highlight_branches_lwd (TRUE) parameters. These will only be turned on if the relevant attribute is not already present in the tree. If the tree already has lty/lwd/col - these will not be updated by this parameter. These parameters can be removed from the tree by using `dend %>% set("clear_branches")`.
+
+
 dendextend 1.3.0 (2016-07-15)
 ----------------------------------------
 
