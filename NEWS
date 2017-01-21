@@ -1,12 +1,13 @@
 
 
 
-dendextend 1.4.0 (2016-12-24)
+dendextend 1.4.0 (2017-01-21)
 ----------------------------------------
 
 ###NEW FUNCTIONS:
    * as.dendrogram.varclus (found in Hmisc)
    * highlight_branches, highlight_branches_col, highlight_branches_lwd - Highlight a dendrogram's branches heights via color and line-width.
+   * has_edgePar, has_nodePar - Does a dendrogram has an edgePar/nodePar component?
 
 ###UPDATED FUNCTIONS:
    * find_k - now includes `k` in the output, which is a copy of `nc`. This is to make it easier to extract the value (i.e.: the suggested number of clusters).
