@@ -181,7 +181,11 @@ should be magnified relative to the default.}
 \item{cex_sub}{see cex_main.}
 
 \item{highlight_distinct_edges}{logical (default is TRUE). If to highlight distinct edges in each tree (by changing their line types to 2).
-(notice that this can be slow on large trees)}
+(notice that this can be slow on large trees)
+
+This parameter will automatically be turned off if the tree already comes with a "lty" edgePar 
+(this is checked using \link{has_edgePar}). A "lty" can be removed by using set("clear_branches"), by
+removing all of the edgePar parameters of the dendrogram.}
 
 \item{common_subtrees_color_lines}{logical (default is TRUE). color the connecting line based on the common subtrees of both dends.
 This only works if 
@@ -192,9 +196,17 @@ Color the branches of both dends based on the common subtrees.
 (notice that this can be slow on large trees)
 This is FALSE by default since it will override the colors of the existing tree.}
 
-\item{highlight_branches_col}{logical (default is FALSE). Should \link{highlight_branches_col} be used on the dendrograms.}
+\item{highlight_branches_col}{logical (default is FALSE). Should \link{highlight_branches_col} be used on the dendrograms.
 
-\item{highlight_branches_lwd}{logical (default is TRUE). Should \link{highlight_branches_lwd} be used on the dendrograms.}
+This parameter will automatically be turned off if the tree already comes with a "col" edgePar 
+(this is checked using \link{has_edgePar}). A "lty" can be removed by using set("clear_branches"), by
+removing all of the edgePar parameters of the dendrogram.}
+
+\item{highlight_branches_lwd}{logical (default is TRUE). Should \link{highlight_branches_lwd} be used on the dendrograms.
+
+This parameter will automatically be turned off if the tree already comes with a "lwd" edgePar 
+(this is checked using \link{has_edgePar}). A "lty" can be removed by using set("clear_branches"), by
+removing all of the edgePar parameters of the dendrogram.}
 
 \item{faster}{logical (FALSE). If TRUE, it overrides some other parameters to 
 have them turned off so that the plotting will go a tiny bit faster.}

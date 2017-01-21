@@ -14,7 +14,7 @@ dendextend 1.4.0 (2017-01-21)
    * tanglegram - Add possibility to draw several tanglegrams on same page via the `just_one` paramter.
    * set - added the parameter `order_value` to easily use values which are in the order of the original data.
    * set - added highlight_branches_col and highlight_branches_lwd
-   * tanglegram - added highlight_branches_col (FALSE) and highlight_branches_lwd (TRUE) parameters.
+   * tanglegram - added highlight_branches_col (FALSE) and highlight_branches_lwd (TRUE) parameters. These will only be turned on if the relevant attribute is not already present in the tree. If the tree already has lty/lwd/col - these will not be updated by this parameter. These parameters can be removed from the tree by using `dend %>% set("clear_branches")`.
 
 
 dendextend 1.3.0 (2016-07-15)

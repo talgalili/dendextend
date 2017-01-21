@@ -29,6 +29,8 @@
 #' dend %>% set("branches_lwd", 2) %>% has_edgePar("lty")
 #' dend %>% set("branches_lwd", 2) %>% has_edgePar("lwd")
 #' 
+#' dend %>% set("branches_lwd", 2) %>% set("clear_branches") %>% has_edgePar("lwd")
+#' 
 has_component_in_attribute <- function(dend, component, the_attrib = "edgePar", ...) {
    list_of_names <- dend %>% get_nodes_attr(the_attrib, simplify = FALSE) %>% lapply(names)
    

@@ -577,6 +577,11 @@ plot_horiz.dendrogram <- function (x,
 #' @param cex_sub see cex_main.
 #' @param highlight_distinct_edges logical (default is TRUE). If to highlight distinct edges in each tree (by changing their line types to 2).
 #' (notice that this can be slow on large trees)
+#' 
+#' This parameter will automatically be turned off if the tree already comes with a "lty" edgePar 
+#' (this is checked using \link{has_edgePar}). A "lty" can be removed by using set("clear_branches"), by
+#' removing all of the edgePar parameters of the dendrogram.
+#' 
 #' @param common_subtrees_color_lines logical (default is TRUE). color the connecting line based on the common subtrees of both dends.
 #' This only works if 
 #' (notice that this can be slow on large trees)
@@ -585,7 +590,17 @@ plot_horiz.dendrogram <- function (x,
 #' (notice that this can be slow on large trees)
 #' This is FALSE by default since it will override the colors of the existing tree.
 #' @param highlight_branches_col logical (default is FALSE). Should \link{highlight_branches_col} be used on the dendrograms.
+#' 
+#' This parameter will automatically be turned off if the tree already comes with a "col" edgePar 
+#' (this is checked using \link{has_edgePar}). A "lty" can be removed by using set("clear_branches"), by
+#' removing all of the edgePar parameters of the dendrogram.
+#' 
 #' @param highlight_branches_lwd logical (default is TRUE). Should \link{highlight_branches_lwd} be used on the dendrograms.
+#' 
+#' This parameter will automatically be turned off if the tree already comes with a "lwd" edgePar 
+#' (this is checked using \link{has_edgePar}). A "lty" can be removed by using set("clear_branches"), by
+#' removing all of the edgePar parameters of the dendrogram.
+#' 
 #' @param faster logical (FALSE). If TRUE, it overrides some other parameters to 
 #' have them turned off so that the plotting will go a tiny bit faster.
 #' @param just_one logical (TRUE). If FALSE, it means at least two tanglegrams
@@ -815,8 +830,9 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
    }
    
    if(highlight_distinct_edges) {
-      dend1 <- highlight_distinct_edges(dend1, dend2, edgePar = "lty")
-      dend2 <- highlight_distinct_edges(dend2, dend1, edgePar = "lty")
+      ## 
+      if(!has_edgePar(dend1, "lty")) dend1 <- highlight_distinct_edges(dend1, dend2, edgePar = "lty")
+      if(!has_edgePar(dend2, "lty")) dend2 <- highlight_distinct_edges(dend2, dend1, edgePar = "lty")
    }
 
 
@@ -888,12 +904,12 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
    }    
    
    if(highlight_branches_col) {
-      dend1 <- highlight_branches_col(dend1)
-      dend2 <- highlight_branches_col(dend2)
+      if(!has_edgePar(dend1, "col")) dend1 <- highlight_branches_col(dend1)
+      if(!has_edgePar(dend2, "col")) dend2 <- highlight_branches_col(dend2)
    }
    if(highlight_branches_lwd) {
-      dend1 <- highlight_branches_lwd(dend1)
-      dend2 <- highlight_branches_lwd(dend2)
+      if(!has_edgePar(dend1, "lwd")) dend1 <- highlight_branches_lwd(dend1)
+      if(!has_edgePar(dend2, "lwd")) dend2 <- highlight_branches_lwd(dend2)
    }
    
       
