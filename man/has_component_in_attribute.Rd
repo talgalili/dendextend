@@ -15,6 +15,9 @@ has_component_in_attribute(dend, component, the_attrib = "edgePar", ...)
 "p.col", "p.lwd", and "p.lty" (for the polygon around the text) and "t.col" for the text color.
 For edgePar "pch", "cex", "col", "xpd", and/or "bg".}
 
+\item{the_attrib}{A character of the attribute for which to check the existence of the component. 
+Often either "edgePar" or "nodePar".}
+
 \item{...}{ignored}
 }
 \value{

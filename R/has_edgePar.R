@@ -10,6 +10,8 @@
 #' @param component a character value to be checked if exists in the tree. For edgePar the list: "col", "lty" and "lwd" (for the segments), 
 #' "p.col", "p.lwd", and "p.lty" (for the polygon around the text) and "t.col" for the text color.
 #' For edgePar "pch", "cex", "col", "xpd", and/or "bg".
+#' @param the_attrib A character of the attribute for which to check the existence of the component. 
+#' Often either "edgePar" or "nodePar".
 #' @param ... ignored
 #'
 #' @seealso \link{get_nodes_attr}, \link{set}
