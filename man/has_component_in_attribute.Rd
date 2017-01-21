@@ -19,6 +19,7 @@ For edgePar "pch", "cex", "col", "xpd", and/or "bg".}
 }
 \value{
 Logical. TRUE if such a component is defined somewhere in the tree, FALSE otherwise.
+If dend is not a dendrogram, the function will return FALSE.
 }
 \description{
 Does a dendrogram has an edgePar/nodePar component?

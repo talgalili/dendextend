@@ -15,6 +15,7 @@
 #' @seealso \link{get_nodes_attr}, \link{set}
 #' @return
 #' Logical. TRUE if such a component is defined somewhere in the tree, FALSE otherwise.
+#' If dend is not a dendrogram, the function will return FALSE.
 #'
 #' @examples
 #' 
@@ -32,6 +33,8 @@
 #' dend %>% set("branches_lwd", 2) %>% set("clear_branches") %>% has_edgePar("lwd")
 #' 
 has_component_in_attribute <- function(dend, component, the_attrib = "edgePar", ...) {
+   if(!is.dendrogram(dend)) return(FALSE)
+   
    list_of_names <- dend %>% get_nodes_attr(the_attrib, simplify = FALSE) %>% lapply(names)
    
    has_component_fun <- function(node_names) any(node_names %in% component)
