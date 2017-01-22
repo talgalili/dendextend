@@ -831,8 +831,8 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
    
    if(highlight_distinct_edges) {
       ## 
-      if(!has_edgePar(dend1, "lty")) dend1 <- highlight_distinct_edges(dend1, dend2, edgePar = "lty")
-      if(!has_edgePar(dend2, "lty")) dend2 <- highlight_distinct_edges(dend2, dend1, edgePar = "lty")
+      if(!has_edgePar(dend1, "lty")) dend1 <- highlight_distinct_edges(dend1, dend2, edgePar = "lty", value = 3)
+      if(!has_edgePar(dend2, "lty")) dend2 <- highlight_distinct_edges(dend2, dend1, edgePar = "lty", value = 3)
    }
 
 

@@ -5,7 +5,7 @@ dendextend 1.4.0 (2017-01-21)
 ----------------------------------------
 
 ###NEW FUNCTIONS:
-   * as.dendrogram.varclus (found in Hmisc)
+   * as.dendrogram.varclus (enhances in Hmisc)
    * highlight_branches, highlight_branches_col, highlight_branches_lwd - Highlight a dendrogram's branches heights via color and line-width.
    * has_edgePar, has_nodePar - Does a dendrogram has an edgePar/nodePar component?
 
