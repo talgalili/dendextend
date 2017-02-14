@@ -302,8 +302,8 @@ dend_diff.dendrogram <- function(dend, dend2, horiz = TRUE, ...)  {
    plot(dend2, horiz = horiz, ...)
    plot(dend22, horiz = horiz, ...)
    
-   # return mfrow
-   op <- par()$mfrow
+   # return mfrow to what it was before.
+   # op <- par()$mfrow
    par(mfrow = op)
    
    invisible(dendlist(dend, dend2)) 
