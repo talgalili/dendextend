@@ -22,7 +22,6 @@
 #' @name is_some_class
 #' @description 
 #' Returns TRUE if some class (based on the name of the function).
-#' @export
 #' @param x an object.
 #' @return 
 #' Returns TRUE if some class (based on the name of the function).
