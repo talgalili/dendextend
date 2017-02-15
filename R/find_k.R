@@ -36,6 +36,7 @@ NULL
 #' Note: average silhouette width and Calinski-Harabasz can't estimate number 
 #' of clusters nc=1. If 1 is included, a Duda-Hart test is applied and 1 is 
 #' estimated if this is not significant.
+#' @param x An object of class "find_k" (has its own S3 plot method).
 #' @param xlab,ylab,main parameters passed to plot.
 #' @param ... passed to \link[fpc]{pamk} (the current defaults criterion="asw" and usepam=TRUE can not be changes).
 #' @seealso

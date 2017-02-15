@@ -23,6 +23,8 @@ estimated if this is not significant.}
 
 \item{...}{passed to \link[fpc]{pamk} (the current defaults criterion="asw" and usepam=TRUE can not be changes).}
 
+\item{x}{An object of class "find_k" (has its own S3 plot method).}
+
 \item{xlab, ylab, main}{parameters passed to plot.}
 }
 \value{
