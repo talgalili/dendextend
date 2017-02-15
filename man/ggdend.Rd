@@ -24,10 +24,11 @@ as.ggdend(dend, ...)
 
 prepare.ggdend(data, ...)
 
-ggplot.ggdend(data, segments = TRUE, labels = TRUE, nodes = TRUE,
-  horiz = FALSE, theme = theme_dendro(), offset_labels = 0, ...)
+\method{ggplot}{ggdend}(data, segments = TRUE, labels = TRUE,
+  nodes = TRUE, horiz = FALSE, theme = theme_dendro(),
+  offset_labels = 0, ...)
 
-ggplot.dendrogram(data, ...)
+\method{ggplot}{dendrogram}(data, ...)
 }
 \arguments{
 \item{...}{mostly ignored.}
