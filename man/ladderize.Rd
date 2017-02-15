@@ -22,11 +22,11 @@ ladderize(x, right = TRUE, ...)
 
 \item{...}{Currently ignored.}
 
+\item{phy}{a placeholder in case the user uses "phy ="}
+
 \item{which}{an integer (can have any number of elements).
 It indicates the elements in the \link{dendlist} to ladderize.
 If missing, it will ladderize all the dendrograms in the dendlist.}
-
-\item{phy}{a placeholder in case the user uses "phy ="}
 }
 \value{
 A rotated tree object

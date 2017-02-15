@@ -23,10 +23,7 @@
 
 #' @title untangle dendrograms
 #' @export
-#' @aliases 
-#' untangle.default
-#' untangle.dendrogram
-#' untangle.dendlist
+#' @rdname untangle
 #' @description 
 #' One untangle function to rule them all.
 #' 
@@ -34,17 +31,6 @@
 #' Using various heuristics.
 #' 
 #' @author Tal Galili
-#' 
-#' @usage
-#' untangle(dend1, ...)
-#' 
-#' \method{untangle}{dendrogram}(dend1, dend2 ,
-#'    method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"),
-#'    ...)
-#' 
-#' \method{untangle}{dendlist}(dend1, 
-#'    method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"),
-#'    which = c(1L,2L), ...)
 #' 
 #' @param dend1 a dednrogram or a dendlist object
 #' @param dend2 A second dednrogram (to untangle against)
@@ -100,10 +86,14 @@
 #' }
 untangle <- function (dend1, ...) {UseMethod("untangle")}
 
+#' @export
+#' @rdname untangle
 untangle.default <- function (dend1, ...) {stop("No default function for tanglegram - must use a dendrogram/hclust/phylo object")}
 
 
 
+#' @export
+#' @rdname untangle
 untangle_labels <- function(dend1, dend2, ...) {
    dend2 <- rotate(dend2, labels(dend1))
    dendlist(dend1, dend2)
@@ -112,8 +102,8 @@ untangle_labels <- function(dend1, dend2, ...) {
 
 
 
-# ' @S3method untangle dendrogram
 #' @export
+#' @rdname untangle
 untangle.dendrogram <- function (dend1, dend2, 
                                  method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"), ...) {
    method <- match.arg(method)
@@ -128,8 +118,8 @@ untangle.dendrogram <- function (dend1, dend2,
    )
 }
 
-# ' @S3method untangle dendlist
 #' @export
+#' @rdname untangle
 untangle.dendlist <- function(dend1, 
                               method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"), 
                               which = c(1L,2L), ...) {
@@ -163,22 +153,7 @@ untangle.dendlist <- function(dend1,
 
 #' @title Random rotation of trees
 #' @export
-#' @aliases 
-#' shuffle.default
-#' shuffle.dendrogram
-#' shuffle.dendlist
-#' shuffle.hclust
-#' shuffle.phylo
-#' @usage
-#' shuffle(dend, ...)
-#' 
-#' \method{shuffle}{dendrogram}(dend, ...)
-#' 
-#' \method{shuffle}{dendlist}(dend, which, ...)
-#' 
-#' \method{shuffle}{hclust}(dend, ...)
-#' 
-#' \method{shuffle}{phylo}(dend, ...)
+#' @rdname shuffle
 #' 
 #' @description 
 #' 'shuffle' randomilly rotates ("shuffles") a tree, changing its presentation 
@@ -212,6 +187,8 @@ untangle.dendlist <- function(dend1,
 #' 
 shuffle <- function (dend, ...) {UseMethod("shuffle")}
 
+#' @export
+#' @rdname shuffle
 shuffle.default <- function(dend, ...) {
    # takes a dendrogram object and shuffles its branches in a random fashion
    # 	n_leaves <- length(labels(dend))	# leaves.value is faster then labels!
@@ -221,13 +198,13 @@ shuffle.default <- function(dend, ...) {
 }
 
 
-# ' @S3method shuffle dendrogram
 #' @export
+#' @rdname shuffle
 shuffle.dendrogram <- shuffle.default
 
 
-# ' @S3method shuffle dendlist
 #' @export
+#' @rdname shuffle
 shuffle.dendlist <- function(dend, which, ...) {
    
 #    if(T) 1 else 2
@@ -244,12 +221,12 @@ shuffle.dendlist <- function(dend, which, ...) {
 }
 
 
-# ' @S3method shuffle hclust
 #' @export
+#' @rdname shuffle
 shuffle.hclust <- shuffle.default
 
-# ' @S3method shuffle phylo
 #' @export
+#' @rdname shuffle
 shuffle.phylo <- shuffle.default
 
 

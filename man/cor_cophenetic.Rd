@@ -6,13 +6,13 @@
 \alias{cor_cophenetic.dendlist}
 \title{Cophenetic correlation between two trees}
 \usage{
-cor_cophenetic(dend1, ...) 
+cor_cophenetic(dend1, ...)
 
-\method{cor_cophenetic}{default}(dend1, dend2, method_coef = c("pearson", "kendall", "spearman"), ...) 
+\method{cor_cophenetic}{default}(dend1, dend2, method_coef = c("pearson",
+  "kendall", "spearman"), ...)
 
-\method{cor_cophenetic}{dendlist}(dend1, which = c(1L,2L), 
-      method_coef = c("pearson", "kendall", "spearman"), 
-      ...)
+\method{cor_cophenetic}{dendlist}(dend1, which = c(1L, 2L),
+  method_coef = c("pearson", "kendall", "spearman"), ...)
 }
 \arguments{
 \item{dend1}{a tree (dendrogram/hclust/phylo, or dendlist)}
@@ -21,13 +21,13 @@ cor_cophenetic(dend1, ...)
 
 \item{dend2}{a tree (dendrogram/hclust/phylo)}
 
-\item{which}{an integer vector of length 2, indicating
-which of the trees in a dendlist object should have 
-their cor_cophenetic calculated.}
-
 \item{method_coef}{a character string indicating which correlation coefficient 
 is to be computed. One of "pearson" (default), "kendall", or "spearman", 
 can be abbreviated. Passed to \link{cor}.}
+
+\item{which}{an integer vector of length 2, indicating
+which of the trees in a dendlist object should have 
+their cor_cophenetic calculated.}
 }
 \value{
 The correlation between cophenetic

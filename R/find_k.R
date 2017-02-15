@@ -24,9 +24,8 @@ NULL
 
 
 #' @title Find the (estimated) number of clusters for a dendrogram using average silhouette width
+#' @rdname find_k
 #' @export
-#' @aliases 
-#' plot.find_k
 #' @description
 #' This function estimates the number of clusters based on the maximal average \link[cluster]{silhouette} width 
 #' derived from running \link[cluster]{pam} on the \link[stats]{cophenetic} distance matrix of 
@@ -37,6 +36,7 @@ NULL
 #' Note: average silhouette width and Calinski-Harabasz can't estimate number 
 #' of clusters nc=1. If 1 is included, a Duda-Hart test is applied and 1 is 
 #' estimated if this is not significant.
+#' @param xlab,ylab,main parameters passed to plot.
 #' @param ... passed to \link[fpc]{pamk} (the current defaults criterion="asw" and usepam=TRUE can not be changes).
 #' @seealso
 #' \link[fpc]{pamk}, \link[cluster]{pam}, \link[cluster]{silhouette}.
@@ -76,6 +76,7 @@ find_k <- function(dend, krange= 2:min(10, (nleaves(dend)-1)), ...)
 
 
 #' @export
+#' @rdname find_k
 plot.find_k <- function(x , 
                         xlab = "Number of clusters (k)", 
                         ylab = "Average silhouette width", 

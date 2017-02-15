@@ -6,6 +6,11 @@
 \title{Find the (estimated) number of clusters for a dendrogram using average silhouette width}
 \usage{
 find_k(dend, krange = 2:min(10, (nleaves(dend) - 1)), ...)
+
+\method{plot}{find_k}(x, xlab = "Number of clusters (k)",
+  ylab = "Average silhouette width",
+  main = "Estimating the number of clusters using\\n average silhouette width",
+  ...)
 }
 \arguments{
 \item{dend}{A dendrogram (or hclust) tree object}
@@ -17,6 +22,8 @@ of clusters nc=1. If 1 is included, a Duda-Hart test is applied and 1 is
 estimated if this is not significant.}
 
 \item{...}{passed to \link[fpc]{pamk} (the current defaults criterion="asw" and usepam=TRUE can not be changes).}
+
+\item{xlab, ylab, main}{parameters passed to plot.}
 }
 \value{
 A \link[fpc]{pamk} output. This is a list with the following components: 

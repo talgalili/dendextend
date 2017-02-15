@@ -10,6 +10,8 @@
 \usage{
 nnodes(x, ...)
 
+\method{nnodes}{default}(x, ...)
+
 \method{nnodes}{dendrogram}(x, ...)
 
 \method{nnodes}{hclust}(x, ...)

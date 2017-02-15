@@ -33,6 +33,7 @@ map_values_to_scale <- function(values, scale) {
 
 
 #' @export
+#' @rdname highlight_branches
 highlight_branches_col <- function(dend, values = rev(viridis(1000, end = .9)), ...) {
    
    if(missing(values)) values <- rev(viridis(1000, end = .9))
@@ -55,6 +56,7 @@ highlight_branches_col <- function(dend, values = rev(viridis(1000, end = .9)), 
 
 
 #' @export
+#' @rdname highlight_branches
 highlight_branches_lwd <- function(dend, values = seq(1, 10, length.out = 1000), ...) {
    
    if(missing(values)) values <- seq(1, 10, length.out = 1000)
@@ -79,17 +81,8 @@ highlight_branches_lwd <- function(dend, values = seq(1, 10, length.out = 1000),
 
 
 #' @title Highlight a dendrogram's branches heights via color and line-width
+#' @rdname highlight_branches
 #' @export
-#' @aliases 
-#' highlight_branches_col
-#' highlight_branches_lwd
-#' @usage 
-#' 
-#' highlight_branches(dend, type = c("col", "lwd"), ...)
-#' 
-#' highlight_branches_col(dend, values = rev(viridis(1000, end = .9)), ...)
-#' 
-#' highlight_branches_lwd(dend, values = seq(1, 10, length.out = 1000), ...)
 #' 
 #' @description
 #' Highlights (update) the color (col) and/or line width (lwd) of each branch in 

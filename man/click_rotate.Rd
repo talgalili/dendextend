@@ -8,7 +8,10 @@
 \usage{
 click_rotate(x, ...)
 
-\method{click_rotate}{dendrogram}(x, plot = TRUE, plot_after = plot, horiz = FALSE, continue = FALSE, ...)
+\method{click_rotate}{default}(x, ...)
+
+\method{click_rotate}{dendrogram}(x, plot = TRUE, plot_after = plot,
+  horiz = FALSE, continue = FALSE, ...)
 }
 \arguments{
 \item{x}{a tree object (either a \code{dendrogram} or \code{hclust})}

@@ -11,6 +11,8 @@
 \usage{
 shuffle(dend, ...)
 
+\method{shuffle}{default}(dend, ...)
+
 \method{shuffle}{dendrogram}(dend, ...)
 
 \method{shuffle}{dendlist}(dend, which, ...)

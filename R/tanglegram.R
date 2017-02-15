@@ -438,68 +438,12 @@ plot_horiz.dendrogram <- function (x,
 
 #' @title Tanglegram plot
 #' @export
-#' @aliases 
-#' tanglegram.default
-#' tanglegram.dendrogram
-#' tanglegram.dendlist
-#' tanglegram.hclust
-#' tanglegram.phylo
-#' dendbackback
+#' @rdname tanglegram
 #' @description 
 #' Plots a tanglegram plot of a side by side trees.
 #' 
 #' @author Tal Galili, Johan Renaudie
 #' 
-#' @usage
-#' tanglegram(dend1, ...)
-#' 
-#' \method{tanglegram}{dendrogram}(dend1, dend2 ,
-#'    sort = FALSE, 
-#'    color_lines, 
-#'    lwd = 3.5,
-#'    edge.lwd = NULL,
-#'    columns_width = c(5,3,5),
-#'    margin_top = 3,
-#'    margin_bottom = 2.5,
-#'    margin_inner = 3,
-#'    margin_outer = 0.5,
-#'    left_dendo_mar = c(margin_bottom,margin_outer,margin_top,margin_inner),
-#'    right_dendo_mar = c(margin_bottom,margin_inner,margin_top,margin_outer),
-#'    intersecting = TRUE,
-#'    dLeaf = NULL,
-#'    dLeaf_left = dLeaf,
-#'    dLeaf_right = dLeaf,
-#'    axes = TRUE, 
-#'    type = "r", # can also be "t"
-#'    lab.cex = NULL,
-#'    remove_nodePar =FALSE,
-#'    main = "",
-#'    main_left = "",
-#'    main_right = "",
-#'    sub = "",
-#'    k_labels = NULL,
-#'    k_branches = NULL,
-#'    rank_branches = FALSE,
-#'    hang = FALSE,
-#'    match_order_by_labels = TRUE,
-#'    cex_main = 2,
-#'    cex_main_left = cex_main,
-#'    cex_main_right = cex_main,
-#'    cex_sub = cex_main,
-#'    highlight_distinct_edges = TRUE,
-#'    common_subtrees_color_lines = TRUE,
-#'    common_subtrees_color_branches = FALSE,
-#'    highlight_branches_col = FALSE,
-#'    highlight_branches_lwd = TRUE,
-#'    faster = FALSE,
-#'    just_one = TRUE,      
-#'    ...)
-#' 
-#' \method{tanglegram}{dendlist}(dend1, which = c(1L,2L), main_left, main_right, just_one=TRUE, ...)
-#' 
-#' \method{tanglegram}{hclust}(dend1, ...)
-#' 
-#' \method{tanglegram}{phylo}(dend1, ...)
 #' 
 #' @param dend1 tree object (dendrogram/dendlist/hclust/phylo), plotted on the left
 #' @param dend2 tree object (dendrogram/hclust/phylo), plotted on the right
@@ -682,18 +626,20 @@ plot_horiz.dendrogram <- function (x,
 #' }
 tanglegram <- function (dend1, ...) {UseMethod("tanglegram")}
 
+#' @export
+#' @rdname tanglegram
 tanglegram.default <- function (dend1, ...) {stop("No default function for tanglegram - must use a dendrogram/hclust/phylo object")}
 
-# ' @S3method tanglegram hclust
 #' @export
+#' @rdname tanglegram
 tanglegram.hclust <- function(dend1, ...) {tanglegram.dendrogram(dend1 = dend1, ...)}
 
-# ' @S3method tanglegram phylo
 #' @export
+#' @rdname tanglegram
 tanglegram.phylo <- function(dend1, ...) {tanglegram.dendrogram(dend1 = dend1, ...)}
 
-# ' @S3method tanglegram dendlist
 #' @export
+#' @rdname tanglegram
 tanglegram.dendlist <- function(dend1, which = c(1L,2L), main_left, main_right, just_one=TRUE, ...) {
    # many things can go wrong here (which we might wish to fix):
    # we could have parameter just_one set to FALSE but no layout predefined, in which case we can't plot
@@ -720,8 +666,8 @@ tanglegram.dendlist <- function(dend1, which = c(1L,2L), main_left, main_right, 
 }
 
 
-# ' @S3method tanglegram dendrogram
 #' @export
+#' @rdname tanglegram
 tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE, 
                                   color_lines, 
                                   lwd = 3.5,
@@ -1000,6 +946,7 @@ tanglegram.dendrogram <- function(dend1,dend2 , sort = FALSE,
 
 
 #' @export
+#' @rdname tanglegram
 dendbackback <- tanglegram.dendrogram # another name for the same function.
 # hclustbackback <- tanglegram.hclust # another name for the same function.
 

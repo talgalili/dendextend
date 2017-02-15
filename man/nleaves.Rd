@@ -11,6 +11,8 @@
 \usage{
 nleaves(x, ...)
 
+\method{nleaves}{default}(x, ...)
+
 \method{nleaves}{dendrogram}(x, method = c("members", "order"), ...)
 
 \method{nleaves}{dendlist}(x, ...)

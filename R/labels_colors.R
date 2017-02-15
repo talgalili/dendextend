@@ -21,17 +21,9 @@
 
 
 #' @title Retrieve/assign colors to the labels of a dendrogram
-#' @description Retrieve/assign colors to the labels of a dendrogram. Note that usually dend objects come without any color assignment (and the output will be NULL, until colors are assigned).
-#' @aliases 
-#' labels_col
-#' labels_colors<-
-#' @usage
-#' labels_colors(dend, labels = TRUE,...)
-#' 
-#' labels_col(dend, labels = TRUE,...)
-#' 
-#' labels_colors(dend, ...) <- value
 #' @export
+#' @rdname labels_colors
+#' @description Retrieve/assign colors to the labels of a dendrogram. Note that usually dend objects come without any color assignment (and the output will be NULL, until colors are assigned).
 #' @param dend a dendrogram object 
 #' @param labels Boolean (default is TRUE), should the returned vector of colors
 #' return with the leaves labels as names.
@@ -99,11 +91,13 @@ labels_colors <- function (dend, labels = TRUE, ...) {
 
 
 #' @export
+#' @rdname labels_colors
 labels_col <- labels_colors
 
 
 
 #' @export
+#' @rdname labels_colors
 "labels_colors<-" <- function (dend, ..., value) {
    if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")
    
@@ -157,13 +151,8 @@ labels_col <- labels_colors
 
 
 #' @title Retrieve/assign cex to the labels of a dendrogram
+#' @rdname labels_cex
 #' @description Retrieve/assign cex to the labels of a dendrogram
-#' @aliases 
-#' labels_cex<-
-#' @usage
-#' labels_cex(dend, ...)
-#' 
-#' labels_cex(dend, ...) <- value
 #' @export
 #' @param dend a dendrogram object 
 #' @param ... not used
@@ -193,6 +182,7 @@ labels_cex <- function(dend, ...) {
 }
    
 #' @export
+#' @rdname labels_cex
 "labels_cex<-" <- function (dend, ..., value) {
    if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")
    assign_values_to_leaves_nodePar(dend, value, "lab.cex", ...)

@@ -2,6 +2,7 @@
 % Please edit documentation in R/cor_bakers_gamma.R
 \name{cor_bakers_gamma}
 \alias{cor_bakers_gamma}
+\alias{cor_bakers_gamma.default}
 \alias{cor_bakers_gamma.dendlist}
 \alias{cor_bakers_gamma.dendrogram}
 \alias{cor_bakers_gamma.hclust}
@@ -9,10 +10,15 @@
 \usage{
 cor_bakers_gamma(dend1, ...)
 
-\method{cor_bakers_gamma}{dendrogram}(dend1, dend2, use_labels_not_values = TRUE, 
-to_plot = FALSE, warn = dendextend_options("warn"), ...)
-\method{cor_bakers_gamma}{hclust}(dend1, dend2, use_labels_not_values = TRUE, 
-to_plot = FALSE, warn = dendextend_options("warn"), ...)
+\method{cor_bakers_gamma}{default}(dend1, dend2, ...)
+
+\method{cor_bakers_gamma}{dendrogram}(dend1, dend2,
+  use_labels_not_values = TRUE, to_plot = FALSE,
+  warn = dendextend_options("warn"), ...)
+
+\method{cor_bakers_gamma}{hclust}(dend1, dend2, use_labels_not_values = TRUE,
+  to_plot = FALSE, warn = dendextend_options("warn"), ...)
+
 \method{cor_bakers_gamma}{dendlist}(dend1, which = c(1L, 2L), ...)
 }
 \arguments{

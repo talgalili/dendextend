@@ -24,30 +24,8 @@
 
 
 #' @title Creates dendrogram plot using ggplot.
+#' @rdname ggdend
 #' @export
-#' @aliases 
-#' as.ggdend
-#' as.ggdend.dendrogram
-#' prepare.ggdend
-#' ggplot.ggdend
-#' ggplot.dendrogram
-#'
-#' @usage 
-#' 
-#' as.ggdend(dend, ...)
-#' 
-#' prepare.ggdend(data, ...)
-#' 
-#' \method{as.ggdend}{dendrogram}(dend, 
-#'       type = c("rectangle", "triangle"), edge.root = FALSE, ...)
-#'    
-#' ggplot.ggdend(data,  segments = TRUE, 
-#'             labels = TRUE, nodes = TRUE,
-#'             horiz = FALSE, theme = theme_dendro(), 
-#'             offset_labels = 0, ...)
-#'             
-#' ggplot.dendrogram(data, ...)
-#' 
 #' 
 #' @description
 #' Several functions for creating a dendrogram plot using ggplot2.
@@ -178,12 +156,14 @@ ggdend <- function(...) {
 allNA <- function(x) all(is.na(x))
 
 #' @export
+#' @rdname ggdend
 as.ggdend <- function(dend, ...) {
    UseMethod("as.ggdend")   
 }
 
 
 #' @export
+#' @rdname ggdend
 as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.root = FALSE, ...)     {
    
    
@@ -381,6 +361,7 @@ as.ggdend.dendrogram <- function (dend, type = c("rectangle", "triangle"), edge.
 
 
 #' @export
+#' @rdname ggdend
 prepare.ggdend <- function(data, ...){
    # Fix segements
    #===============
@@ -479,6 +460,7 @@ prepare.ggdend <- function(data, ...){
 # polar cor is a problem with text: http://stackoverflow.com/questions/8468472/adjusting-position-of-text-labels-in-coord-polar-histogram-in-ggplot2
 
 #' @export
+#' @rdname ggdend
 ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
                           horiz = FALSE, theme = theme_dendro(), 
                           offset_labels = 0,
@@ -613,6 +595,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
 
 
 #' @export
+#' @rdname ggdend
 ggplot.dendrogram <- function(data, ...) {
    # library(ggplot2) # enough to use ggplot2::
    ggplot2::ggplot(as.ggdend(data), ...)

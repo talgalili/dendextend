@@ -20,48 +20,7 @@
 
 #' @title Set (/update) features to a dendrogram
 #' @export
-#' @aliases 
-#' set.dendrogram
-#' set.dendlist
-#' set.data.table
-#'
-#' @usage 
-#' 
-#' set(dend, ...)
-#' 
-#' \method{set}{dendrogram}(dend,
-#'    what = c("labels",
-#'             "labels_colors",
-#'             "labels_cex",
-#'             "labels_to_character",
-#'             "leaves_pch",
-#'             "leaves_cex",
-#'             "leaves_col",
-#'             "nodes_pch",
-#'             "nodes_cex",
-#'             "nodes_col",
-#'             "hang_leaves",
-#'             "rank_branches",
-#'             "branches_k_color",
-#'             "branches_k_lty",
-#'             "branches_col",
-#'             "branches_lwd",
-#'             "branches_lty",
-#'             "by_labels_branches_col",
-#'             "by_labels_branches_lwd",
-#'             "by_labels_branches_lty",
-#'             "highlight_branches_col",
-#'             "highlight_branches_lwd",
-#'             "clear_branches",
-#'             "clear_leaves"
-#'    ),
-#'    value, 
-#'    order_value = FALSE,
-#'    ...)
-#'    
-#' \method{set}{dendlist}(dend, ..., which)
-#'
-#' \method{set}{data.table}(...)
+#' @rdname set
 #' 
 #' @description
 #' a master function for updating various attributes and 
@@ -279,6 +238,7 @@ set <- function (dend, ...) {
 
 
 #' @export
+#' @rdname set
 set.dendrogram <- 
    function(dend,
             what = c("labels",
@@ -351,8 +311,8 @@ set.dendrogram <-
 
 
 
-# ' @S3method set dendlist
 #' @export
+#' @rdname set
 set.dendlist <- function(dend, ..., which) {
    
    if(missing(which)) which <- 1:length(dend)
@@ -365,6 +325,7 @@ set.dendlist <- function(dend, ..., which) {
 
 
 #' @export
+#' @rdname set
 set.data.table <- function(...) {
    warning("set function has been overridden from data.table - which means that data.table's set() is now slower. You may solve this by using the prefix 'data.table::'' in your for loop.")
    # library(data.table)

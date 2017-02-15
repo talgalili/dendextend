@@ -9,36 +9,14 @@
 \usage{
 set(dend, ...)
 
-\method{set}{dendrogram}(dend,
-   what = c("labels",
-            "labels_colors",
-            "labels_cex",
-            "labels_to_character",
-            "leaves_pch",
-            "leaves_cex",
-            "leaves_col",
-            "nodes_pch",
-            "nodes_cex",
-            "nodes_col",
-            "hang_leaves",
-            "rank_branches",
-            "branches_k_color",
-            "branches_k_lty",
-            "branches_col",
-            "branches_lwd",
-            "branches_lty",
-            "by_labels_branches_col",
-            "by_labels_branches_lwd",
-            "by_labels_branches_lty",
-            "highlight_branches_col",
-            "highlight_branches_lwd",
-            "clear_branches",
-            "clear_leaves"
-   ),
-   value, 
-   order_value = FALSE,
-   ...)
-   
+\method{set}{dendrogram}(dend, what = c("labels", "labels_colors",
+  "labels_cex", "labels_to_character", "leaves_pch", "leaves_cex", "leaves_col",
+  "nodes_pch", "nodes_cex", "nodes_col", "hang_leaves", "rank_branches",
+  "branches_k_color", "branches_k_lty", "branches_col", "branches_lwd",
+  "branches_lty", "by_labels_branches_col", "by_labels_branches_lwd",
+  "by_labels_branches_lty", "highlight_branches_col", "highlight_branches_lwd",
+  "clear_branches", "clear_leaves"), value, order_value = FALSE, ...)
+
 \method{set}{dendlist}(dend, ..., which)
 
 \method{set}{data.table}(...)

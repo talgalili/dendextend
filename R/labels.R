@@ -48,29 +48,8 @@
 
 #' @title "label" assignment operator
 #' @export
-#' @description "label" assignment operator for vectors, dendrogram, and hclust classes.
 #' @rdname labels-assign
-#' @aliases 
-#' labels<-.default 
-#' labels<-.dendrogram 
-#' labels.hclust 
-#' labels<-.hclust
-#' labels.phylo
-#' labels<-.phylo
-#' @usage
-#' 
-#' labels(object, ...) <- value
-#' 
-#' 
-#' \method{labels}{dendrogram}(object, ...) <- value
-#' 
-#' \method{labels}{hclust}(object, order = TRUE,...)
-#' 
-#' \method{labels}{hclust}(object, ...) <- value
-#' 
-#' \method{labels}{phylo}(object, ...)
-#' 
-#' \method{labels}{phylo}(object, ...) <- value
+#' @description "label" assignment operator for vectors, dendrogram, and hclust classes.
 #' 
 #' @param object a variable name (possibly quoted) who's label are to be updated
 #' @param ... parameters passed (not currently in use)
@@ -126,8 +105,8 @@
 # ?"labels<-"
 
 
-# ' @title "label" assignment operator - default
 #' @export
+#' @rdname labels-assign
 `labels<-.default` <- function(object,..., value) {
    if(length(value) < length(object)) {
       warning("The lengths of the new labels is shorter than the length of the object - labels are recycled.")
@@ -140,9 +119,8 @@
 
 
 
-# ' @title "label" assignment operator - dendrogram
-# ' @S3method labels<- dendrogram
 #' @export
+#' @rdname labels-assign
 `labels<-.dendrogram` <- function(object,..., value) {
    # credit for the help on how to write this type of function goes to:
    # Gavin Simpson and also kohske, see here:
@@ -182,8 +160,6 @@
 }
 
 
-# ' @title Find Labels from hclust Object#' @export
-# ' @S3method labels hclust
 
 #' @export
 #' @rdname labels-assign
@@ -198,9 +174,6 @@ labels.hclust <- function(object, order = TRUE, ...)  {
 }
 
 
-
-# ' @title "label" assignment operator - hclust
-# ' @S3method labels<- hclust
 #' @export
 #' @rdname labels-assign
 `labels<-.hclust` <- function(object,..., value) {
@@ -215,7 +188,7 @@ labels.hclust <- function(object, order = TRUE, ...)  {
 
 
 #' @export
-# ' @rdname labels-assign
+#' @rdname labels-assign
 labels.phylo <- function(object, ...) {
    object$tip.label
 }
@@ -224,6 +197,7 @@ labels.phylo <- function(object, ...) {
 
 
 #' @export
+#' @rdname labels-assign
 `labels<-.phylo` <- function(object,..., value) { 
    if(missing(value)) {
       if(dendextend_options("warn")) warning("value is missing, returning the dendrogram as is")      
@@ -313,8 +287,6 @@ labels.phylo <- function(object, ...) {
 #' @param object a variable name (possibly quoted) who's label are to be updated
 #' @param ... parameters passed (not currently in use)
 #' @param value a value to be assigned to object's leaves value (their "order")
-#' @usage
-#' order.dendrogram(object, ...) <- value
 #' @return dendrogram with updated order leaves values
 #' @seealso \code{\link{order.dendrogram}}, \code{\link{labels<-}} 
 #' @examples

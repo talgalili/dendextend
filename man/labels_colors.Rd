@@ -12,9 +12,9 @@ I also implemented some ideas from Gregory Jefferis's dendroextras package
 (having the "names" of the returned vector be the labels).
 }
 \usage{
-labels_colors(dend, labels = TRUE,...)
+labels_colors(dend, labels = TRUE, ...)
 
-labels_col(dend, labels = TRUE,...)
+labels_col(dend, labels = TRUE, ...)
 
 labels_colors(dend, ...) <- value
 }

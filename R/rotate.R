@@ -20,35 +20,11 @@
 
 #' @title Rotate a tree object
 #' @export
+#' @rdname rotate
 #' @description 
 #' Rotates, rev and sort the branches of a tree object (dendrogram, hclust) 
 #' based on a vector - eithor of labels order (numbers) or the labels in their
 #' new order (character).
-#' @aliases 
-#' rotate.default
-#' rotate.dendrogram
-#' rotate.hclust
-#' rotate.phylo
-#' sort.hclust
-#' sort.dendrogram
-#' sort.dendlist
-#' rev.hclust
-#' @usage
-#' rotate(x, ...)
-#' 
-#' \method{rotate}{dendrogram}(x, order, ...)
-#' 
-#' \method{rotate}{hclust}(x, order, ...)
-#' 
-#' \method{rotate}{phylo}(x, ..., phy)
-#' 
-#' \method{rev}{hclust}(x, ...)
-#' 
-#' \method{sort}{dendrogram}(x, decreasing=FALSE, type = c("labels", "nodes"), ...)
-#' 
-#' \method{sort}{dendlist}(x, ...)
-#' 
-#' \method{sort}{hclust}(x, decreasing=FALSE, ...)
 #' 
 #' @param x a tree object (either a \code{dendrogram} or \code{hclust})
 #' @param order Either numeric or character vector.
@@ -142,10 +118,12 @@ rotate <- function(x, ...) {
 # ' should be cut. The tree is rotate based on the cluster groups.
 
 
+#' @export
+#' @rdname rotate
 rotate.default <- function(x, order, ...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
-# ' @S3method rotate dendrogram
 #' @export
+#' @rdname rotate
 rotate.dendrogram <- function(x, order, ...)
 {
    if(missing(order)) { # if order is missing - return the same tree.
@@ -177,8 +155,8 @@ rotate.dendrogram <- function(x, order, ...)
 }
 
 
-# ' @S3method rotate hclust
 #' @export
+#' @rdname rotate
 rotate.hclust <- function(x, order,...)
 {   
    x_dend <- as.dendrogram(x)
@@ -189,8 +167,8 @@ rotate.hclust <- function(x, order,...)
 }
 
 
-# ' @S3method rotate phylo
 #' @export
+#' @rdname rotate
 rotate.phylo <- function(x, ..., phy) {
    if(!missing(phy)) x <- phy
    # library(ape)
@@ -198,8 +176,8 @@ rotate.phylo <- function(x, ..., phy) {
 }
 
 
-# ' @S3method sort dendrogram
 #' @export
+#' @rdname rotate
 sort.dendrogram <- function(x, decreasing = FALSE, type = c("labels", "nodes"), ...) {
    type <- match.arg(type)
    switch(type, 
@@ -207,12 +185,13 @@ sort.dendrogram <- function(x, decreasing = FALSE, type = c("labels", "nodes"), 
           "nodes" = ladderize(x, right = decreasing, ...))   
 }
 
-# ' @S3method sort hclust
 #' @export
+#' @rdname rotate
 sort.hclust <- function(x, decreasing = FALSE,...) {rotate(x, order(labels(x),decreasing =decreasing ,...))}
 
 
 #' @export
+#' @rdname rotate
 sort.dendlist <- function (x, ...)  {
    for(i in seq_len(length(x))) {
       x[[i]]  <- sort(x[[i]], ...)
@@ -228,6 +207,7 @@ sort.dendlist <- function (x, ...)  {
 # }
 
 #' @export
+#' @rdname rotate
 rev.hclust <- function(x, ...) {
    rev_order <- rev(seq_len(nleaves(x)))
    rotate(x, rev_order,...)
@@ -284,16 +264,10 @@ rev.hclust <- function(x, ...) {
 
 #' @title Interactively rotate a tree object
 #' @export
+#' @rdname click_rotate
 #' @description 
 #' Lets te user click a plot of dendrogram
 #' and rotates the tree based on the location of the click.
-#' @aliases 
-#' click_rotate.default
-#' click_rotate.dendrogram
-#' @usage
-#' click_rotate(x, ...)
-#' 
-#' \method{click_rotate}{dendrogram}(x, plot = TRUE, plot_after = plot, horiz = FALSE, continue = FALSE, ...)
 #' 
 #' @description
 #' Code for mouse selection of (sub-)cluster to be rotated
@@ -327,10 +301,12 @@ rev.hclust <- function(x, ...) {
 #' 
 click_rotate <- function(x, ...) {UseMethod("click_rotate")}
 
+#' @export
+#' @rdname click_rotate
 click_rotate.default <- function(x, ...) {stop("object x must be a dendrogram/hclust/phylo object")}
 
-# ' @S3method click_rotate dendrogram
 #' @export
+#' @rdname click_rotate
 click_rotate.dendrogram <- function(x, plot = TRUE, plot_after = plot, horiz = FALSE, continue = FALSE, ...)
 {
    if(plot) plot(x, horiz = horiz, ...)
@@ -387,20 +363,9 @@ click_rotate.dendrogram <- function(x, plot = TRUE, plot_after = plot, horiz = F
 
 #' @title Ladderize a Tree
 #' @export
+#' @rdname ladderize
 #' @description 
 #' This function reorganizes the internal structure of the tree to get the ladderized effect when plotted.
-#' @aliases 
-#' ladderize.dendrogram
-#' ladderize.phylo
-#' ladderize.dendlist
-#' @usage
-#' ladderize(x, right = TRUE, ...)
-#' 
-#' \method{ladderize}{dendrogram}(x, right = TRUE, ...)
-#' 
-#' \method{ladderize}{phylo}(x, right = TRUE, phy, ...)
-#' 
-#' \method{ladderize}{dendlist}(x, right = TRUE, which, ...)
 #' 
 #' @param x a tree object (either a \link{dendrogram}, \link{dendlist}, or \link[ape]{phylo})
 #' @param right a logical (TRUE) specifying whether the smallest clade is on the right-hand side (when the tree is plotted upwards), or the opposite (if FALSE).
@@ -431,6 +396,7 @@ ladderize <- function(x, right = TRUE,...) {
 
 
 #' @export
+#' @rdname ladderize
 ladderize.dendrogram <- function (x, right = TRUE, ...)  {
    if(!is.dendrogram(x)) stop("'object' should be a dendrogram.")   
    
@@ -462,6 +428,7 @@ ladderize.dendrogram <- function (x, right = TRUE, ...)  {
 
 
 #' @export
+#' @rdname ladderize
 ladderize.phylo <- function(x, right = TRUE, phy, ...) {
    if(!missing(phy)) x <- phy
    # library(ape)
@@ -469,6 +436,7 @@ ladderize.phylo <- function(x, right = TRUE, phy, ...) {
 }
 
 #' @export
+#' @rdname ladderize
 ladderize.dendlist <- function (x, right = TRUE, which, ...)  {
    seq_trees <- seq_len(length(x))
    if(missing(which)) which <- seq_trees

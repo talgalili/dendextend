@@ -57,14 +57,8 @@ is_null_list <- function(x) {
 
 
 #' @title Creating a dendlist object from several dendrograms
+#' @rdname dendlist
 #' @export
-#' @aliases 
-#' plot.dendlist
-#' @usage 
-#' 
-#' dendlist(..., which)
-#' 
-#' \method{plot}{dendlist}(x, which = c(1L, 2L), ...)
 #' 
 #' @description
 #' It accepts several dendrograms and or dendlist objects
@@ -226,6 +220,7 @@ dendlist <- function (..., which) {
 
 
 #' @export
+#' @rdname dendlist
 plot.dendlist <- function(x, which = c(1L, 2L), ...) {
    if(!is.dendlist(x)) stop("x is not a dendlist")
    

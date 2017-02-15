@@ -533,31 +533,6 @@ cutree_1k.dendrogram <- function(dend, k,
 #' In case there exists no such k for which exists a relevant split of the 
 #' dendrogram, a warning is issued to the user, and NA is returned.
 #' @rdname cutree-methods
-#' @aliases 
-#' cutree.default 
-#' cutree.dendrogram 
-#' cutree.hclust 
-#' cutree.phylo 
-#' @usage
-#' cutree(tree, k = NULL, h = NULL,...)   
-#' 
-#' \method{cutree}{hclust}(tree, k = NULL, h = NULL,
-#'                            use_labels_not_values = TRUE, 
-#'                           order_clusters_as_data =TRUE,
-#'                           warn = dendextend_options("warn"),
-#'                           NA_to_0L = TRUE,
-#'                           ...)
-#' 
-#' \method{cutree}{phylo}(tree, k = NULL, h = NULL,...)
-#' 
-#' \method{cutree}{dendrogram}(tree, k = NULL, h = NULL,
-#'                               dend_heights_per_k = NULL,
-#'                               use_labels_not_values = TRUE, 
-#'                               order_clusters_as_data =TRUE, 
-#'                               warn = dendextend_options("warn"), 
-#'                               try_cutree_hclust = TRUE,
-#'                               NA_to_0L = TRUE,
-#'                               ...)
 #' 
 #' @param tree   a dendrogram object
 #' @param k    numeric scalar (OR a vector) with the number of clusters
@@ -692,10 +667,12 @@ cutree <- function(tree, k = NULL, h = NULL,...)  {UseMethod("cutree")}
 
 
 #' @export
+#' @rdname cutree-methods
 cutree.default <- function(tree, k = NULL, h = NULL,...) {
    stop("Function cutree is only available for hclust/dendrogram/phylo objects only.")}
 
 #' @export
+#' @rdname cutree-methods
 cutree.hclust <- function(tree, k = NULL, h = NULL,
                           use_labels_not_values = TRUE, # ignored here...
                           order_clusters_as_data =TRUE,
@@ -755,6 +732,7 @@ cutree.hclust <- function(tree, k = NULL, h = NULL,
 
 # ' @S3method cutree phylo
 #' @export
+#' @rdname cutree-methods
 cutree.phylo <- function(tree,k=NULL, h=NULL ,...) {cutree(as.dendrogram(tree),k=k,h=h,...)}
    
 
@@ -764,6 +742,7 @@ cutree.phylo <- function(tree,k=NULL, h=NULL ,...) {cutree(as.dendrogram(tree),k
 
 # ' @S3method cutree dendrogram
 #' @export
+#' @rdname cutree-methods
 cutree.dendrogram <- function(tree, k = NULL, h = NULL,
                               dend_heights_per_k = NULL,
                               use_labels_not_values = TRUE, 

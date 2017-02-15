@@ -6,15 +6,12 @@
 \alias{highlight_distinct_edges.dendrogram}
 \title{Highlight distint edges in a tree (compared to another one)}
 \usage{
-highlight_distinct_edges(dend, ...) 
+highlight_distinct_edges(dend, ...)
 
-\method{highlight_distinct_edges}{dendrogram}(dend,
-                  dend2, 
-                  value = 2, 
-                  edgePar = c("col", "lty", "lwd"), 
-                  ...) 
-   
-\method{highlight_distinct_edges}{dendlist}(dend, ..., which)
+\method{highlight_distinct_edges}{dendrogram}(dend, dend2, value = 2,
+  edgePar = c("col", "lty", "lwd"), ...)
+
+\method{highlight_distinct_edges}{dendlist}(dend, ..., which = c(1L, 2L))
 }
 \arguments{
 \item{dend}{a dendrogram or \link{dendlist} to find unique edges in (to highlight)}

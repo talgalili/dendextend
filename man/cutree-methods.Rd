@@ -8,25 +8,20 @@
 \alias{cutree.phylo}
 \title{Cut a Tree (Dendrogram/hclust/phylo) into Groups of Data}
 \usage{
-cutree(tree, k = NULL, h = NULL,...)   
+cutree(tree, k = NULL, h = NULL, ...)
+
+\method{cutree}{default}(tree, k = NULL, h = NULL, ...)
 
 \method{cutree}{hclust}(tree, k = NULL, h = NULL,
-                           use_labels_not_values = TRUE, 
-                          order_clusters_as_data =TRUE,
-                          warn = dendextend_options("warn"),
-                          NA_to_0L = TRUE,
-                          ...)
+  use_labels_not_values = TRUE, order_clusters_as_data = TRUE,
+  warn = dendextend_options("warn"), NA_to_0L = TRUE, ...)
 
-\method{cutree}{phylo}(tree, k = NULL, h = NULL,...)
+\method{cutree}{phylo}(tree, k = NULL, h = NULL, ...)
 
 \method{cutree}{dendrogram}(tree, k = NULL, h = NULL,
-                              dend_heights_per_k = NULL,
-                              use_labels_not_values = TRUE, 
-                              order_clusters_as_data =TRUE, 
-                              warn = dendextend_options("warn"), 
-                              try_cutree_hclust = TRUE,
-                              NA_to_0L = TRUE,
-                              ...)
+  dend_heights_per_k = NULL, use_labels_not_values = TRUE,
+  order_clusters_as_data = TRUE, warn = dendextend_options("warn"),
+  try_cutree_hclust = TRUE, NA_to_0L = TRUE, ...)
 }
 \arguments{
 \item{tree}{a dendrogram object}
@@ -38,10 +33,6 @@ the tree should be cut into.}
 should be cut.}
 
 \item{...}{(not currently in use)}
-
-\item{dend_heights_per_k}{a named vector that resulted from running.
-\code{heights_per_k.dendrogram}. When running the function many times,
-supplying this object will help improve the running time if using k!=NULL .}
 
 \item{use_labels_not_values}{logical, defaults to TRUE. If the actual labels of the 
 clusters do not matter - and we want to gain speed (say, 10 times faster) - 
@@ -59,15 +50,19 @@ Set if warning are to be issued, it is safer to keep this at TRUE,
 but for keeping the noise down, the default is FALSE.
 Should the function send a warning in case the desried k is not available?}
 
+\item{NA_to_0L}{logical. default is TRUE. When no clusters are possible,
+Should the function return 0 (TRUE, default), or NA (when set to FALSE).}
+
+\item{dend_heights_per_k}{a named vector that resulted from running.
+\code{heights_per_k.dendrogram}. When running the function many times,
+supplying this object will help improve the running time if using k!=NULL .}
+
 \item{try_cutree_hclust}{logical. default is TRUE. Since cutree for hclust is 
 MUCH faster than for dendrogram - cutree.dendrogram will first try to change the 
 dendrogram into an hclust object. If it will fail (for example, with unbranched trees),
 it will continue using the cutree.dendrogram function.
 If try_cutree_hclust=FALSE, it will force to use cutree.dendrogram and not
 cutree.hclust.}
-
-\item{NA_to_0L}{logical. default is TRUE. When no clusters are possible,
-Should the function return 0 (TRUE, default), or NA (when set to FALSE).}
 }
 \value{
 If k or h are scalar - \code{cutree.dendrogram} returns an integer vector with group 

@@ -113,22 +113,13 @@ bakers_gamma_for_2_k_matrix <- function(k_matrix_dend1, k_matrix_dend2, to_plot 
 
 
 #' @title Baker's Gamma correlation coefficient
+#' @name cor_bakers_gamma
 #' @export
 #' @aliases 
 #' cor_bakers_gamma.dendrogram
 #' cor_bakers_gamma.hclust
 #' cor_bakers_gamma.dendlist
 #'
-#' @usage 
-#' 
-#' cor_bakers_gamma(dend1, ...)
-#' 
-#' \method{cor_bakers_gamma}{dendrogram}(dend1, dend2, use_labels_not_values = TRUE, 
-#' to_plot = FALSE, warn = dendextend_options("warn"), ...)
-#' \method{cor_bakers_gamma}{hclust}(dend1, dend2, use_labels_not_values = TRUE, 
-#' to_plot = FALSE, warn = dendextend_options("warn"), ...)
-#' \method{cor_bakers_gamma}{dendlist}(dend1, which = c(1L, 2L), ...)
-#' 
 #' 
 #' @description
 #' Calculate Baker's Gamma correlation coefficient for two trees 
@@ -225,15 +216,17 @@ cor_bakers_gamma <- function(dend1, ...){
    UseMethod("cor_bakers_gamma")
 }
 
+
 #' @export
+#' @rdname cor_bakers_gamma
 cor_bakers_gamma.default <- function(dend1, dend2, ...) {
    dend1 <- as.dendrogram(dend1)
    dend2 <- as.dendrogram(dend2)
    cor_bakers_gamma(dend1, dend2 ,...)
 }
 
-# ' @S3method cor_bakers_gamma dendrogram
 #' @export
+#' @rdname cor_bakers_gamma
 cor_bakers_gamma.dendrogram <- function(dend1, dend2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
 {
    k_matrix_dend1 <- cutree(dend1, k = 1:nleaves(dend1), use_labels_not_values=use_labels_not_values,warn=warn,...)
@@ -243,8 +236,8 @@ cor_bakers_gamma.dendrogram <- function(dend1, dend2, use_labels_not_values = TR
 }
 
 
-# ' @S3method cor_bakers_gamma hclust
 #' @export
+#' @rdname cor_bakers_gamma
 cor_bakers_gamma.hclust <- function(dend1, dend2, use_labels_not_values = TRUE, to_plot = FALSE, warn = dendextend_options("warn"), ...)
 {
    k_matrix_dend1 <- cutree(dend1, k = 1:nleaves(dend1), use_labels_not_values=use_labels_not_values,warn=warn,...)
@@ -256,6 +249,7 @@ cor_bakers_gamma.hclust <- function(dend1, dend2, use_labels_not_values = TRUE, 
 
 
 #' @export
+#' @rdname cor_bakers_gamma
 cor_bakers_gamma.dendlist <- function(dend1, which = c(1L, 2L), ...) {
    cor_bakers_gamma(dend1[[which[1]]], dend1[[which[2]]], ...)
 }

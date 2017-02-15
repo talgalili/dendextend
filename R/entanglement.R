@@ -207,13 +207,8 @@ match_order_dendrogram_by_old_order <- function(dend_change, dend_template ,
 
 
 #' @title Measures entanglement between two trees
+#' @rdname entanglement
 #' @export
-#' @aliases 
-#' entanglement.default
-#' entanglement.dendrogram
-#' entanglement.hclust
-#' entanglement.phylo
-#' entanglement.dendlist
 #' @description 
 #' Measures the entanglement between two trees. 
 #' Entanglement is a measure between 1 (full entanglement) and 0 
@@ -222,16 +217,6 @@ match_order_dendrogram_by_old_order <- function(dend_change, dend_template ,
 #' 
 #' 
 #' 
-#' @usage
-#' entanglement(dend1, ...) 
-#' 
-#' \method{entanglement}{dendrogram}(dend1, dend2, L = 1.5, leaves_matching_method = c("labels", "order"),...)
-#' 
-#' \method{entanglement}{dendlist}(dend1, which = c(1L,2L), ...)
-#' 
-#' \method{entanglement}{hclust}(dend1, dend2, ...)
-#' 
-#' \method{entanglement}{phylo}(dend1, dend2, ...)
 #' 
 #' @param dend1 a tree object (of class dendrogram/hclust/phylo).
 #' @param dend2 a tree object (of class dendrogram/hclust/phylo).
@@ -325,16 +310,16 @@ entanglement <- function (dend1, ...) { UseMethod("entanglement") }
 entanglement.default <- function (dend1, dend2,...) { stop("no default function for entanglement") }
 
 
-# ' @S3method entanglement hclust
 #' @export
+#' @rdname entanglement
 entanglement.hclust <- function (dend1, dend2, ...) { 
    dend1 <- as.dendrogram(dend1)
    dend2 <- as.dendrogram(dend2)
    entanglement(dend1, dend2, ...)
 }
 
-# ' @S3method entanglement phylo
 #' @export
+#' @rdname entanglement
 entanglement.phylo <- function (dend1, dend2,...) { 
    dend1 <- as.dendrogram(dend1)
    dend2 <- as.dendrogram(dend2)
@@ -342,8 +327,8 @@ entanglement.phylo <- function (dend1, dend2,...) {
 }
 
 
-# ' @S3method entanglement dendlist
 #' @export
+#' @rdname entanglement
 entanglement.dendlist <- function(dend1, which = c(1L,2L), ...) {
    # many things can go wrong here (which we might wish to fix):
    # we could get a dendlist with a length of 1 - in which case, we can't plot
@@ -357,8 +342,8 @@ entanglement.dendlist <- function(dend1, which = c(1L,2L), ...) {
 }
 
 
-# ' @S3method entanglement dendrogram
 #' @export
+#' @rdname entanglement
 entanglement.dendrogram <- function(dend1, dend2, L = 1.5, leaves_matching_method = c("labels", "order"),...) {
    # One day, one might think of other measures of entanglement.  
    # But for now, we have only one method ("cor.spearman").  Which is the 1-absolute value of the tanks of the values in the two dendrograms.

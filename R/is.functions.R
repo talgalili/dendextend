@@ -18,41 +18,42 @@
 
 
 
-#' @title Is the object of class hclust
-#' @description Is the object of class hclust.
+#' @title Is the object of some class
+#' @name is_some_class
+#' @description 
+#' Returns TRUE if some class (based on the name of the function).
 #' @export
 #' @param x an object.
-#' @return logical - is the object of class hclust.
-is.hclust <- function(x) { inherits(x,"hclust") }
-
-#' @title Is the object of class dendrogram
-#' @description Is the object of class dendrogram. Very basic for many functions in the package.
-#' @export
-#' @param x an object.
-#' @return logical - is the object of class dendrogram.
-is.dendrogram <- function(x) { inherits(x,"dendrogram") }
-
-#' @title Is the object of class phylo
-#' @description checks if the object of class phylo.
-#' @export
-#' @param x an object.
-#' @return logical - is the object of class phylo.
-is.phylo <- function(x) { inherits(x,"phylo") }
-
-
-
-
-#' @title Checks if an object is of class dendlist
-#' @description Checks if an object is of class dendlist (returns TRUE if it is).
-#' @export
-#' @param x whatever object to check
 #' @return 
-#' logical
+#' Returns TRUE if some class (based on the name of the function).
 #' @examples
 #' # TRUE:
 #' is.dendlist(dendlist())
 #' # FALSE
 #' is.dendlist(1)
+#' # TRUE:
+#' is.dist(dist(mtcars))
+#' # FALSE
+#' is.dist(mtcars)
+NULL
+
+#' @export
+#' @rdname is_some_class
+is.hclust <- function(x) { inherits(x,"hclust") }
+
+#' @export
+#' @rdname is_some_class
+is.dendrogram <- function(x) { inherits(x,"dendrogram") }
+
+#' @export
+#' @rdname is_some_class
+is.phylo <- function(x) { inherits(x,"phylo") }
+
+
+
+
+#' @export
+#' @rdname is_some_class
 is.dendlist <- function(x) {
    inherits(x, "dendlist")
 }
@@ -61,17 +62,8 @@ is.dendlist <- function(x) {
 
 
 
-#' @title Checks if an object is of class dist
-#' @description Checks if an object is of class dist (returns TRUE if it is).
 #' @export
-#' @param x whatever object to check
-#' @return 
-#' logical
-#' @examples
-#' # TRUE:
-#' is.dist(dist(mtcars))
-#' # FALSE
-#' is.dist(mtcars)
+#' @rdname is_some_class
 is.dist <- function(x) {
    inherits(x, "dist")
 }

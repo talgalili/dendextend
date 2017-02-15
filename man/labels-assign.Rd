@@ -18,20 +18,17 @@ Also with some ideas from Gregory Jefferis's dendroextras package.
 \usage{
 labels(object, ...) <- value
 
+\method{labels}{default}(object, ...) <- value
 
 \method{labels}{dendrogram}(object, ...) <- value
 
-\method{labels}{hclust}(object, order = TRUE,...)
+\method{labels}{hclust}(object, order = TRUE, ...)
 
 \method{labels}{hclust}(object, ...) <- value
 
 \method{labels}{phylo}(object, ...)
 
 \method{labels}{phylo}(object, ...) <- value
-
-\method{labels}{hclust}(object, order = TRUE, ...)
-
-\method{labels}{hclust}(object, ...) <- value
 }
 \arguments{
 \item{object}{a variable name (possibly quoted) who's label are to be updated}

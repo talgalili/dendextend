@@ -15,18 +15,18 @@ to the plotted tree. This required a strong mixter of functions from ggdendro an
 it seemed better to just fork the code into its current form)
 }
 \usage{
+ggdend(...)
+
 as.ggdend(dend, ...)
+
+\method{as.ggdend}{dendrogram}(dend, type = c("rectangle", "triangle"),
+  edge.root = FALSE, ...)
 
 prepare.ggdend(data, ...)
 
-\method{as.ggdend}{dendrogram}(dend, 
-      type = c("rectangle", "triangle"), edge.root = FALSE, ...)
-   
-ggplot.ggdend(data,  segments = TRUE, 
-            labels = TRUE, nodes = TRUE,
-            horiz = FALSE, theme = theme_dendro(), 
-            offset_labels = 0, ...)
-            
+ggplot.ggdend(data, segments = TRUE, labels = TRUE, nodes = TRUE,
+  horiz = FALSE, theme = theme_dendro(), offset_labels = 0, ...)
+
 ggplot.dendrogram(data, ...)
 }
 \arguments{
@@ -45,14 +45,14 @@ rectangular lines, while "triangle" will draw triangular lines.}
 
 \item{labels}{a logical (TRUE) if to plot the labels.}
 
-\item{offset_labels}{a numeric value to offset the labels from the leaves}
-
 \item{nodes}{a logical (TRUE) if to plot the nodes (points).}
 
 \item{horiz}{a logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.}
 
 \item{theme}{the ggplot2 theme to use (default is \link{theme_dendro}, can also be NULL
 for the default ggplot2 theme)}
+
+\item{offset_labels}{a numeric value to offset the labels from the leaves}
 }
 \value{
 \itemize{

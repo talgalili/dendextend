@@ -14,19 +14,22 @@
 \usage{
 rotate(x, ...)
 
+\method{rotate}{default}(x, order, ...)
+
 \method{rotate}{dendrogram}(x, order, ...)
 
 \method{rotate}{hclust}(x, order, ...)
 
 \method{rotate}{phylo}(x, ..., phy)
 
-\method{rev}{hclust}(x, ...)
+\method{sort}{dendrogram}(x, decreasing = FALSE, type = c("labels",
+  "nodes"), ...)
 
-\method{sort}{dendrogram}(x, decreasing=FALSE, type = c("labels", "nodes"), ...)
+\method{sort}{hclust}(x, decreasing = FALSE, ...)
 
 \method{sort}{dendlist}(x, ...)
 
-\method{sort}{hclust}(x, decreasing=FALSE, ...)
+\method{rev}{hclust}(x, ...)
 }
 \arguments{
 \item{x}{a tree object (either a \code{dendrogram} or \code{hclust})}
@@ -41,13 +44,13 @@ second etc. (this is relevant only to \code{rotate})
 Is character: it must be a vector with the content of labels(x), in the 
 order we'd like to have the new tree.}
 
+\item{phy}{a placeholder in case the user uses "phy ="}
+
 \item{decreasing}{logical. Should the sort be increasing or decreasing? Not available for partial sorting. (relevant only to \code{sort})}
 
 \item{type}{a character indicating how to sort. If "labels" then by lexicographic
 order of the labels. If "nodes", then by using \link{ladderize} (order so that 
 recursively, the leftmost branch will be the smallest)}
-
-\item{phy}{a placeholder in case the user uses "phy ="}
 }
 \value{
 A rotated tree object

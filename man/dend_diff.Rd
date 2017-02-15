@@ -9,12 +9,11 @@
 A \link{dendrogram} implementation for \link[distory]{phylo.diff} from the {distory} package
 }
 \usage{
-dend_diff(dend, ...) 
+dend_diff(dend, ...)
 
-\method{dend_diff}{dendrogram}(dend, dend2, horiz = TRUE,
-                  ...) 
-   
-\method{dend_diff}{dendlist}(dend, ..., which)
+\method{dend_diff}{dendrogram}(dend, dend2, horiz = TRUE, ...)
+
+\method{dend_diff}{dendlist}(dend, ..., which = c(1L, 2L))
 }
 \arguments{
 \item{dend}{a dendrogram or \link{dendlist} to compre with}

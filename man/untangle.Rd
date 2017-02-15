@@ -5,17 +5,20 @@
 \alias{untangle.default}
 \alias{untangle.dendlist}
 \alias{untangle.dendrogram}
+\alias{untangle_labels}
 \title{untangle dendrograms}
 \usage{
 untangle(dend1, ...)
 
-\method{untangle}{dendrogram}(dend1, dend2 ,
-   method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"),
-   ...)
+\method{untangle}{default}(dend1, ...)
 
-\method{untangle}{dendlist}(dend1, 
-   method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"),
-   which = c(1L,2L), ...)
+untangle_labels(dend1, dend2, ...)
+
+\method{untangle}{dendrogram}(dend1, dend2, method = c("labels", "ladderize",
+  "random", "step1side", "step2side", "DendSer"), ...)
+
+\method{untangle}{dendlist}(dend1, method = c("labels", "ladderize", "random",
+  "step1side", "step2side", "DendSer"), which = c(1L, 2L), ...)
 }
 \arguments{
 \item{dend1}{a dednrogram or a dendlist object}
@@ -24,11 +27,11 @@ untangle(dend1, ...)
 
 \item{dend2}{A second dednrogram (to untangle against)}
 
-\item{which}{an integer vector of length 2, indicating
-which of the trees in the dendlist object should be plotted}
-
 \item{method}{a character indicating the type of untangle
 heuristic to use.}
+
+\item{which}{an integer vector of length 2, indicating
+which of the trees in the dendlist object should be plotted}
 }
 \value{
 A \link{dendlist}, with two trees after 

@@ -130,22 +130,8 @@ distinct_edges  <- function (dend, dend2, ...)
 
 
 #' @title Highlight distint edges in a tree (compared to another one)
+#' @rdname highlight_distinct_edges
 #' @export
-#' @aliases 
-#' highlight_distinct_edges.dendrogram
-#' highlight_distinct_edges.dendlist
-#'
-#' @usage 
-#' 
-#' highlight_distinct_edges(dend, ...) 
-#' 
-#' \method{highlight_distinct_edges}{dendrogram}(dend,
-#'                   dend2, 
-#'                   value = 2, 
-#'                   edgePar = c("col", "lty", "lwd"), 
-#'                   ...) 
-#'    
-#' \method{highlight_distinct_edges}{dendlist}(dend, ..., which)
 #' 
 #' @description
 #' Highlight distint edges in a tree (compared to another one) by changing
@@ -206,6 +192,7 @@ highlight_distinct_edges <- function (dend, ...) {
 
 
 #' @export
+#' @rdname highlight_distinct_edges
 highlight_distinct_edges.dendrogram <- function (dend, dend2, 
                                       value = 2, edgePar = c("col", "lty", "lwd"), ...)  {
    
@@ -223,6 +210,7 @@ highlight_distinct_edges.dendrogram <- function (dend, dend2,
 
 
 #' @export
+#' @rdname highlight_distinct_edges
 highlight_distinct_edges.dendlist <- function(dend, ..., which = c(1L, 2L)) {
    l1 <- which[1]
    l2 <- which[2]
@@ -234,20 +222,10 @@ highlight_distinct_edges.dendlist <- function(dend, ..., which = c(1L, 2L)) {
 
 
 
+
 #' @title Plots two trees side by side, highlighting edges unique to each tree in red.
+#' @rdname dend_diff
 #' @export
-#' @aliases 
-#' dend_diff.dendrogram
-#' dend_diff.dendlist
-#'
-#' @usage 
-#' 
-#' dend_diff(dend, ...) 
-#' 
-#' \method{dend_diff}{dendrogram}(dend, dend2, horiz = TRUE,
-#'                   ...) 
-#'    
-#' \method{dend_diff}{dendlist}(dend, ..., which)
 #' 
 #' @description
 #' Plots two trees side by side, highlighting edges unique to each tree in red.
@@ -291,6 +269,7 @@ dend_diff <- function (dend, ...) {
 
 
 #' @export
+#' @rdname dend_diff
 dend_diff.dendrogram <- function(dend, dend2, horiz = TRUE, ...)  {
    dend2 <- highlight_distinct_edges(dend, dend2)   
    dend22 <- highlight_distinct_edges(dend2, dend)   
@@ -311,6 +290,7 @@ dend_diff.dendrogram <- function(dend, dend2, horiz = TRUE, ...)  {
 
 
 #' @export
+#' @rdname dend_diff
 dend_diff.dendlist <- function(dend, ..., which = c(1L, 2L)) {
    l1 <- which[1]
    l2 <- which[2]

@@ -1,6 +1,16 @@
 
 
 
+dendextend 1.5.0 (2017-02-15)
+----------------------------------------
+
+###BUG FIXES:
+   * dend_diff - now restore to the par(mfrow) value before running the function.
+
+###OTHER NOTES:
+   * Simplified the roxygen2 code by using @rdname (and removing many instances of @allias and @usage).
+
+
 dendextend 1.4.0 (2017-01-21)
 ----------------------------------------
 

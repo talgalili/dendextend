@@ -2,22 +2,22 @@
 % Please edit documentation in R/entanglement.R
 \name{entanglement}
 \alias{entanglement}
-\alias{entanglement.default}
 \alias{entanglement.dendlist}
 \alias{entanglement.dendrogram}
 \alias{entanglement.hclust}
 \alias{entanglement.phylo}
 \title{Measures entanglement between two trees}
 \usage{
-entanglement(dend1, ...) 
-
-\method{entanglement}{dendrogram}(dend1, dend2, L = 1.5, leaves_matching_method = c("labels", "order"),...)
-
-\method{entanglement}{dendlist}(dend1, which = c(1L,2L), ...)
+entanglement(dend1, ...)
 
 \method{entanglement}{hclust}(dend1, dend2, ...)
 
 \method{entanglement}{phylo}(dend1, dend2, ...)
+
+\method{entanglement}{dendlist}(dend1, which = c(1L, 2L), ...)
+
+\method{entanglement}{dendrogram}(dend1, dend2, L = 1.5,
+  leaves_matching_method = c("labels", "order"), ...)
 }
 \arguments{
 \item{dend1}{a tree object (of class dendrogram/hclust/phylo).}
