@@ -37,7 +37,7 @@ the \link{cophenetic} distance of the hclust object.
 
 find_dend: A dendrogram which is "optimal" based on the output from dend_expend.
 }
-\details{
+\description{
 There are many options for choosing distance and linkage functions for hclust.
 This function goes through various combinations of the two and helps find the one
 that is most "similar" to the original distance matrix.
