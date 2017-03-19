@@ -1,8 +1,13 @@
 dendextend 1.6.0 (2017-03-19)
 ----------------------------------------
 
+###NEW FUNCTIONS:
+   * dend_expend and find_dend - functions for finding a "good" dendrogram for a dist
+   
 ###UPDATED FUNCTIONS:
    * cor_cophenetic - dend2 can now also be a dist object (allowing to check how close is some clustering to the original distance matrix).
+
+
 
 
 dendextend 1.5.0 (2017-02-15)
