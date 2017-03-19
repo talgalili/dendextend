@@ -55,7 +55,7 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' 
 #' 
 #' @param dend1 a tree (dendrogram/hclust/phylo, or dendlist)
-#' @param dend2 a tree (dendrogram/hclust/phylo)
+#' @param dend2 Either a tree (dendrogram/hclust/phylo), or a \link{dist} object (for example, from the original data matrix).
 #' @param which an integer vector of length 2, indicating
 #' which of the trees in a dendlist object should have 
 #' their cor_cophenetic calculated.
@@ -160,8 +160,16 @@ cor_cophenetic <- function(dend1, ...){
 #' @export
 #' @rdname cor_cophenetic
 cor_cophenetic.default <- function(dend1, dend2, method_coef = c("pearson", "kendall", "spearman"), ...) {
+   
    dist_dend1 <- cophenetic(dend1)
-   dist_dend2 <- cophenetic(dend2)
+   
+   if(!is.dist(dend2) & !is.dendrogram(dend2)) stop("dend2 must be either a dendrogram or a dist object")
+   if(is.dendrogram(dend2)) {
+      dist_dend2 <- cophenetic(dend2)
+   } else {
+      dist_dend2 <- dend2
+   }
+   # else - dend2 must be a distance matrix
 
    # hclust objects actually don't need the sorting...
    if(!is.hclust(dend1)) {

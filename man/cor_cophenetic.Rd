@@ -19,7 +19,7 @@ cor_cophenetic(dend1, ...)
 
 \item{...}{Ignored.}
 
-\item{dend2}{a tree (dendrogram/hclust/phylo)}
+\item{dend2}{Either a tree (dendrogram/hclust/phylo), or a \link{dist} object (for example, from the original data matrix).}
 
 \item{method_coef}{a character string indicating which correlation coefficient 
 is to be computed. One of "pearson" (default), "kendall", or "spearman", 
