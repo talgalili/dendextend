@@ -163,11 +163,11 @@ cor_cophenetic.default <- function(dend1, dend2, method_coef = c("pearson", "ken
    
    dist_dend1 <- cophenetic(dend1)
    
-   if(!is.dist(dend2) & !is.dendrogram(dend2)) stop("dend2 must be either a dendrogram or a dist object")
-   if(is.dendrogram(dend2)) {
-      dist_dend2 <- cophenetic(dend2)
-   } else {
+   # if(!is.dist(dend2)) stop("dend2 must be either a dendrogram or a dist object")
+   if(is.dist(dend2)) {
       dist_dend2 <- dend2
+   } else { # either dendrogram or hclust or other
+      dist_dend2 <- cophenetic(dend2)
    }
    # else - dend2 must be a distance matrix
 
