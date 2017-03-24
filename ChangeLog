@@ -1,7 +1,130 @@
-* 2017-01-21(Tal Galili) update dates |5da4af6| 
-|  DESCRIPTION | 2 +-
-|  NEWS        | 6 +++---
-|  2 files changed, 4 insertions(+), 4 deletions(-)
+* 2017-03-24(Tal Galili) 1.5.0 |d574b43| 
+|  DESCRIPTION | 4 ++--
+|  NEWS        | 9 ++-------
+|  2 files changed, 4 insertions(+), 9 deletions(-)
+
+* 2017-03-24(Tal Galili) # this is behaving different for R 3.3.3 and 3.4 - I'm not sure why... (removing the test for now) |57042f7| 
+|  tests/testthat/test-untangle.R | 23 ++++++++++++++++-------
+|  1 file changed, 16 insertions(+), 7 deletions(-)
+
+* 2017-03-19(Tal Galili) description not details! |6c7a8b0| 
+|  R/find_dend.R    | 2 +-
+|  man/find_dend.Rd | 2 +-
+|  2 files changed, 2 insertions(+), 2 deletions(-)
+
+* 2017-03-19(Tal Galili) Get cor_cophenetic to work with hclust again |3ee25a1| 
+|  R/cor_cophenetic.R | 8 ++++----
+|  1 file changed, 4 insertions(+), 4 deletions(-)
+
+* 2017-03-19(Tal Galili) dend_expend and find_dend - functions for finding a "good" dendrogram for a dist |350de5d| 
+|  NAMESPACE        |   2 +
+|  NEWS             |   5 +++
+|  R/find_dend.R    | 111 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  man/find_dend.Rd |  58 ++++++++++++++++++++++++++++
+|  4 files changed, 176 insertions(+)
+
+* 2017-03-19(Tal Galili) cor_cophenetic - dend2 can now also be a dist object (allowing to check how close is some clustering to the original distance matrix). |76a479c| 
+|  DESCRIPTION           |  4 ++--
+|  NEWS                  |  4 ++++
+|  R/cor_cophenetic.R    | 12 ++++++++++--
+|  man/cor_cophenetic.Rd |  2 +-
+|  4 files changed, 17 insertions(+), 5 deletions(-)
+
+* 2017-02-15(Tal Galili) Fix "Undocumented arguments in documentation object 'find_k' ‘x’" |496294c| 
+|  R/find_k.R    | 1 +
+|  man/find_k.Rd | 2 ++
+|  2 files changed, 3 insertions(+)
+
+* 2017-02-15(Tal Galili) Fix "is_some_class" from being exported. |ef537ff| 
+|  NAMESPACE        | 5 ++---
+|  R/is.functions.R | 1 -
+|  2 files changed, 2 insertions(+), 4 deletions(-)
+
+* 2017-02-15(Tal Galili) document new ggplot S3 methods. |348d8ab| 
+|  man/ggdend.Rd | 7 ++++---
+|  1 file changed, 4 insertions(+), 3 deletions(-)
+
+* 2017-02-15(Tal Galili) Simplified the roxygen2 code by using @rdname (and removing many instances of @allias and @usage) |71c8a0d| 
+|  DESCRIPTION                     |  4 +-
+|  NAMESPACE                       | 12 ++++-
+|  NEWS                            | 10 ++++
+|  R/cor_bakers_gamma.R            | 18 +++----
+|  R/cor_cophenetic.R              | 16 ++-----
+|  R/cutree.dendrogram.R           | 29 ++----------
+|  R/dendlist.R                    |  9 +---
+|  R/distinct_edges.R              | 34 +++-----------
+|  R/entanglement.R                | 25 ++--------
+|  R/find_k.R                      |  5 +-
+|  R/ggdend.R                      | 29 +++---------
+|  R/highlight_branches.R          | 13 ++----
+|  R/is.functions.R                | 54 +++++++++------------
+|  R/labels.R                      | 38 ++-------------
+|  R/labels_colors.R               | 22 +++------
+|  R/nleaves.R                     | 53 ++++++---------------
+|  R/rotate.R                      | 68 +++++++--------------------
+|  R/set.dendrogram.R              | 47 ++-----------------
+|  R/tanglegram.R                  | 69 ++++-----------------------
+|  R/unbranch.R                    | 20 ++------
+|  R/untangle.R                    | 51 ++++++--------------
+|  man/click_rotate.Rd             |  5 +-
+|  man/cor_bakers_gamma.Rd         | 14 ++++--
+|  man/cor_cophenetic.Rd           | 18 +++----
+|  man/cutree-methods.Rd           | 37 +++++++--------
+|  man/dend_diff.Rd                |  9 ++--
+|  man/entanglement.Rd             | 12 ++---
+|  man/find_k.Rd                   |  7 +++
+|  man/ggdend.Rd                   | 20 ++++----
+|  man/highlight_branches.Rd       | 18 +++----
+|  man/highlight_distinct_edges.Rd | 13 ++----
+|  man/is.dendlist.Rd              | 24 ----------
+|  man/is.dendrogram.Rd            | 18 -------
+|  man/is.dist.Rd                  | 24 ----------
+|  man/is.hclust.Rd                | 18 -------
+|  man/is.phylo.Rd                 | 18 -------
+|  man/is_some_class.Rd            | 41 ++++++++++++++++
+|  man/labels-assign.Rd            |  7 +--
+|  man/labels_colors.Rd            |  4 +-
+|  man/ladderize.Rd                |  4 +-
+|  man/nleaves.Rd                  |  2 +
+|  man/nnodes.Rd                   |  2 +
+|  man/rotate.Rd                   | 13 ++++--
+|  man/set.Rd                      | 38 ++++-----------
+|  man/shuffle.Rd                  |  2 +
+|  man/tanglegram.Rd               | 98 ++++++++++++++++++---------------------
+|  man/unbranch.Rd                 |  8 +++-
+|  man/untangle.Rd                 | 21 +++++----
+|  48 files changed, 370 insertions(+), 751 deletions(-)
+
+* 2017-02-14(Tal Galili) Fix dend_diff.dendrogram to return to original mfrow after finish plotting. ( fix issue #37 ) |a75223c| 
+|  R/distinct_edges.R | 4 ++--
+|  1 file changed, 2 insertions(+), 2 deletions(-)
+
+* 2017-01-22(Tal Galili) highlight_distinct_edges is now value 3 instead of 2 for tanglegram - so that the gap from lty are not too wide. |01d4a47| 
+|  NEWS           | 2 +-
+|  R/tanglegram.R | 4 ++--
+|  2 files changed, 3 insertions(+), 3 deletions(-)
+
+* 2017-01-21(Tal Galili) Namespace in Imports field not imported from: 'datasets' |89a52f4| 
+|  NAMESPACE | 1 +
+|  R/zzz.R   | 1 +
+|  2 files changed, 2 insertions(+)
+
+* 2017-01-21(Tal Galili) Fix  Undocumented arguments in documentation object 'has_component_in_attribute': 'the_attrib' |4e90cf3| 
+|  R/has_edgePar.R                   | 2 ++
+|  man/has_component_in_attribute.Rd | 3 +++
+|  2 files changed, 5 insertions(+)
+
+* 2017-01-21(Tal Galili) If dend is not a dendrogram, then has_edgePar will return FALSE. |25f4b4d| 
+|  R/has_edgePar.R                   | 3 +++
+|  man/has_component_in_attribute.Rd | 1 +
+|  2 files changed, 4 insertions(+)
+
+* 2017-01-21(Tal Galili) update dates |c612a6e| 
+|  ChangeLog   | 254 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  DESCRIPTION |   2 +-
+|  NEWS        |   6 +-
+|  NEWS.md     |  19 +++++
+|  4 files changed, 277 insertions(+), 4 deletions(-)
 
 * 2017-01-21(Tal Galili) tanglegram function now highlights branches only if these parameters are NOT already set in the object. If the tree already has lty/lwd/col - these will not be updated by this parameter. These parameters can be removed from the tree by using `dend %>% set("clear_branches")`. |aef480e| 
 |  NEWS                              |  2 +-

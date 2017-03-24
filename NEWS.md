@@ -1,11 +1,25 @@
+dendextend 1.5.0 (2017-03-24)
+----------------------------------------
 
+###NEW FUNCTIONS:
+   * dend_expend and find_dend - functions for finding a "good" dendrogram for a dist
+   
+###UPDATED FUNCTIONS:
+   * cor_cophenetic - dend2 can now also be a dist object (allowing to check how close is some clustering to the original distance matrix).
+
+###BUG FIXES:
+   * dend_diff - now restore to the par(mfrow) value before running the function.
+
+###OTHER NOTES:
+   * Simplified the roxygen2 code by using @rdname (and removing many instances of @allias and @usage).
+   * remove a test in untangle due to different outputs in R 3.3.3 and R 3.4.0. More tests are probably needed for the bytecompiler for extreme cases (i.e.: dendrograms with odd branch heights)
 
 
 dendextend 1.4.0 (2017-01-21)
 ----------------------------------------
 
 ###NEW FUNCTIONS:
-   * as.dendrogram.varclus (found in Hmisc)
+   * as.dendrogram.varclus (enhances in Hmisc)
    * highlight_branches, highlight_branches_col, highlight_branches_lwd - Highlight a dendrogram's branches heights via color and line-width.
    * has_edgePar, has_nodePar - Does a dendrogram has an edgePar/nodePar component?
 
