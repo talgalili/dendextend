@@ -43,7 +43,7 @@ Imports:
     ggplot2,
     fpc,
     whisker,
-    viridisLite
+    viridis
 Suggests:
     knitr,
     rmarkdown,

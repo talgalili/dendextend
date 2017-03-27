@@ -18,7 +18,7 @@
 
 
 # http://stackoverflow.com/questions/10325231/when-writing-my-own-r-package-i-cant-seem-to-get-other-packages-to-import-corr
-#' @importFrom viridisLite viridis
+#' @importFrom viridis viridis
 
 #' @import datasets
 
