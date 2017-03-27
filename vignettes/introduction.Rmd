@@ -38,7 +38,7 @@ knitr::opts_chunk$set(
 
 ```{r, echo=FALSE, warning=FALSE, fig.align='center', fig.width=7, fig.height=7}
 suppressMessages(library(dendextend))
-suppressMessages(library(dendextendRcpp))
+# suppressMessages(library(dendextendRcpp))
 library(colorspace)
 
 dend1 <- c(1:5) %>% # take some data
@@ -193,7 +193,7 @@ To install the stable version on CRAN use:
 
 ```r
 install.packages('dendextend')
-install.packages('dendextendRcpp')
+<!-- install.packages('dendextendRcpp') -->
 ```
 
 To install the GitHub version:
@@ -209,8 +209,8 @@ require2 <- function (package, ...) {
 # Load devtools:
 require2("devtools")
 devtools::install_github('talgalili/dendextend')
-require2("Rcpp")
-devtools::install_github('talgalili/dendextendRcpp')
+<!-- require2("Rcpp") -->
+<!-- devtools::install_github('talgalili/dendextendRcpp') -->
 
 # Having colorspace is also useful, since it is used
 # In various examples in the vignettes
@@ -220,7 +220,7 @@ require2("colorspace")
 And then you may load the package using:
 ```R
 library(dendextend)
-library(dendextendRcpp)
+<!-- library(dendextendRcpp) -->
 ```
 
 
@@ -1516,6 +1516,8 @@ Bk_plot(dend1, dend2, main = "CORRECT Bk plot \n(based on dendrograms)")
 
 dendextendRcpp - on the need for speed
 ----------------------------------------------
+
+*Update (2017-03-27): dendextendRcpp is currently unavailable since it requires some code improvements in order to stay up-to-date with current CRAN standards. People who knows Rcpp and are interested in helping are welcome to contact me.*
 
 Since dendrogram objects are often revised through the use of recursion, R often falls short when it comes to speed. In various function which are intended to run only once (such as `labels.color`), this does not bother us, and we are content at quickly writing the function with R and letting it handle many extreme cases.
 
