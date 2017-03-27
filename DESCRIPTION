@@ -45,7 +45,6 @@ Imports:
     whisker,
     viridis
 Suggests:
-    dendextendRcpp (>= 0.5.0),
     knitr,
     rmarkdown,
     testthat,

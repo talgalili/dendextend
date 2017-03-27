@@ -1,3 +1,8 @@
+dendextend 1.5.1 (2017-03-27)
+----------------------------------------
+###OTHER NOTES:
+   * Remove dendextendRcpp :(  (from tests and suggests)
+
 dendextend 1.5.0 (2017-03-24)
 ----------------------------------------
 

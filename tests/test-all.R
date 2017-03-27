@@ -3,8 +3,8 @@ library(testthat)
 library(dendextend)
 test_check("dendextend")
 
-library(dendextendRcpp)
-test_check("dendextend")
+# library(dendextendRcpp)
+# test_check("dendextend")
 
 
 
