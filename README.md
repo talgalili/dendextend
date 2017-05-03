@@ -33,7 +33,7 @@ To install the stable version on CRAN:
 
 ```r
 install.packages('dendextend')
-install.packages('dendextendRcpp')
+# install.packages('dendextendRcpp')
 ```
 
 To install the GitHub version:
@@ -41,11 +41,11 @@ To install the GitHub version:
 ```R
 install.packages.2 <- function (pkg) if (!require(pkg)) install.packages(pkg);
 install.packages.2('devtools')
-install.packages.2('Rcpp')
+# install.packages.2('Rcpp')
 # make sure you have Rtools installed first! if not, then run:
 #install.packages('installr'); install.Rtools()
 devtools::install_github('talgalili/dendextend')
-devtools::install_github('talgalili/dendextendRcpp')
+# devtools::install_github('talgalili/dendextendRcpp')
 
 # Having colorspace is also useful, since it is used
 # In various examples in the vignettes
@@ -56,7 +56,7 @@ And then you may load the package using:
 
 ```R
 library("dendextend")
-library("dendextendRcpp")
+# library("dendextendRcpp") # dendextendRcpp is no longer supported (or available on CRAN). Still, dendextend is faster these days, in recent versions of R, thanks to some updates to labels.dendrogram and other modifications to R.
 ```
 
 ## Usage
