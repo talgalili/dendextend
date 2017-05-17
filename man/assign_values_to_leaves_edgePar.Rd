@@ -52,4 +52,3 @@ get_leaves_attr(dend, "edgePar", simplify=FALSE)
 \seealso{
 \link{get_leaves_attr}, link{assign_values_to_leaves_nodePar}
 }
-

@@ -90,4 +90,3 @@ microbenchmark(   get_leaves_attr(dend, "members"), # should be 1's
 \seealso{
 \link{get_leaves_attr}, \link{nnodes}, \link{nleaves}
 }
-

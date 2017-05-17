@@ -48,4 +48,3 @@ plot(unbranch(dend , 2), main = "tree without  (right branch)")
 \seealso{
 \link[ape]{unroot} {ape}
 }
-

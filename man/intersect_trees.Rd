@@ -47,4 +47,3 @@ plot(intersect_dend[[1]],
 \seealso{
 \link{prune}, \link{intersect}, \link{labels}
 }
-

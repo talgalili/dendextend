@@ -69,4 +69,3 @@ text(xy, labels = 1:nnodes(dend),cex = 1.2, col = "white", adj = c(0.4,0.4))
 \link{get_nodes_attr}, \link{nnodes},
 \link{nleaves}
 }
-

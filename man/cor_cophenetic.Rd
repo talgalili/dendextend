@@ -122,4 +122,3 @@ and Practice of Numerical Classification, p. 278 ff; Freeman, San Francisco.
 \seealso{
 \link{cophenetic}, \link{cor_bakers_gamma}
 }
-

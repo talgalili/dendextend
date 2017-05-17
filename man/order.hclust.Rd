@@ -33,4 +33,3 @@ order.hclust(hc)
 \seealso{
 \link{order.dendrogram}
 }
-

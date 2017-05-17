@@ -57,4 +57,3 @@ sort_2_clusters_vectors(A1_clusters, A2_clusters, assume_sorted_vectors =FALSE) 
 \seealso{
 \link{FM_index_profdpm}
 }
-

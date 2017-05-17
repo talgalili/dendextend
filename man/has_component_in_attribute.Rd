@@ -46,4 +46,3 @@ dend \%>\% set("branches_lwd", 2) \%>\% set("clear_branches") \%>\% has_edgePar(
 \seealso{
 \link{get_nodes_attr}, \link{set}
 }
-

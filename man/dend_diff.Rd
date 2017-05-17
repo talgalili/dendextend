@@ -2,8 +2,8 @@
 % Please edit documentation in R/distinct_edges.R
 \name{dend_diff}
 \alias{dend_diff}
-\alias{dend_diff.dendlist}
 \alias{dend_diff.dendrogram}
+\alias{dend_diff.dendlist}
 \title{Plots two trees side by side, highlighting edges unique to each tree in red.}
 \source{
 A \link{dendrogram} implementation for \link[distory]{phylo.diff} from the {distory} package
@@ -54,4 +54,3 @@ dend_diff(dend1, dend2)
 \link{assign_values_to_branches_edgePar},
 \link[distory]{distinct.edges},
 }
-

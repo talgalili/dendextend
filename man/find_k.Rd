@@ -59,4 +59,3 @@ plot(color_branches(dend, k = dend_k$nc))
 \seealso{
 \link[fpc]{pamk}, \link[cluster]{pam}, \link[cluster]{silhouette}.
 }
-

@@ -75,10 +75,9 @@ circos.clear()
 
 }
 }
-\author{
-Zuguang Gu, Tal Galili
-}
 \seealso{
 \link[circlize]{circos.dendrogram}
 }
-
+\author{
+Zuguang Gu, Tal Galili
+}

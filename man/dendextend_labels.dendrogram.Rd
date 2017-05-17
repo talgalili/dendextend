@@ -27,4 +27,3 @@ This is the same function as \link[stats]{labels.dendrogram}. It is used inside
 \seealso{
 \link[stats]{labels.dendrogram}
 }
-

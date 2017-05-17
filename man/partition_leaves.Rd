@@ -43,4 +43,3 @@ partition_leaves(dend2)
 \link{dist.dendlist}, \link{tanglegram},
 \link[distory]{partition.leaves}
 }
-

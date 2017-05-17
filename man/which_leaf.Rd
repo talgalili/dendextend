@@ -37,4 +37,3 @@ which_leaf(dend)
 \seealso{
 \link{noded_with_condition}, \link{is.leaf}, \link{nnodes}
 }
-

@@ -48,4 +48,3 @@ plot(dend)
 \link{get_nodes_attr}, \link{assign_values_to_leaves_nodePar}, \link{labels_colors}
 \link{get_leaves_nodePar}, \link{get_leaves_edgePar}
 }
-

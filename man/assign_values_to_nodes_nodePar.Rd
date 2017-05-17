@@ -60,4 +60,3 @@ plot(dend2)
 \seealso{
 \link{get_leaves_attr}, \link{assign_values_to_leaves_nodePar}
 }
-

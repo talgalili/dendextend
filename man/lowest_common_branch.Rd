@@ -31,4 +31,3 @@ lowest_common_branch(item1, item2)
 \seealso{
 \link{cor_bakers_gamma}
 }
-

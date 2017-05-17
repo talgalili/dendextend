@@ -2,8 +2,8 @@
 % Please edit documentation in R/distinct_edges.R
 \name{highlight_distinct_edges}
 \alias{highlight_distinct_edges}
-\alias{highlight_distinct_edges.dendlist}
 \alias{highlight_distinct_edges.dendrogram}
+\alias{highlight_distinct_edges.dendlist}
 \title{Highlight distint edges in a tree (compared to another one)}
 \usage{
 highlight_distinct_edges(dend, ...)
@@ -73,4 +73,3 @@ tanglegram(sub="Iris dataset", main_left = "'single' clustering",
 \link{assign_values_to_branches_edgePar},
 \link[distory]{distinct.edges},
 }
-

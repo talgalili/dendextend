@@ -46,4 +46,3 @@ plot(prune(dend , c("Alaska", "California")), main = "tree without Alaska and Ca
 \seealso{
 \link{prune_leaf}, \link[ape]{drop.tip} {ape}
 }
-

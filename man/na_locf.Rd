@@ -57,4 +57,3 @@ microbenchmark(
 \seealso{
 \link[zoo]{na.locf}
 }
-

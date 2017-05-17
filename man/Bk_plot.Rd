@@ -166,4 +166,3 @@ Journal of the American Statistical Association 78 (383): 553.
 \seealso{
 \code{\link{FM_index}}, \link{Bk}, \link{Bk_permutations}
 }
-

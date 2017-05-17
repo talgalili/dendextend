@@ -9,4 +9,3 @@ assign_dendextend_options()
 \description{
 Populates dendextend functions into dendextend_options
 }
-

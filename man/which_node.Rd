@@ -45,4 +45,3 @@ get_nodes_attr(dend, "members", which_node(dend, c(4,6)))
 \link{nnodes}, \link{branches_attr_by_labels}, \link{get_nodes_attr}
 \link[ape]{which.edge}
 }
-

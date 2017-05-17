@@ -44,4 +44,3 @@ tanglegram(dend1_2, dend2)
 \seealso{
 \link{color_branches}, \link{tanglegram}
 }
-

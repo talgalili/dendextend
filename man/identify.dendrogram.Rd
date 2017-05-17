@@ -76,4 +76,3 @@ identify(dend, horiz = TRUE)
 \link{identify.hclust},
 \link{rect.hclust}, \link{order.dendrogram}, \link{cutree.dendrogram}
 }
-

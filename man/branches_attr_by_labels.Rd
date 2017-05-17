@@ -68,4 +68,3 @@ dend \%>\%
 \seealso{
 \link{noded_with_condition}, \link{get_leaves_attr}, \link{nnodes}, \link{nleaves}
 }
-

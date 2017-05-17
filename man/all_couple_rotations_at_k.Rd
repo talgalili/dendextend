@@ -49,4 +49,3 @@ entanglement(dend1,dend2, L = 2) # 0.05
 \link{tanglegram}, \link{match_order_by_labels},
 \link{entanglement}, \link{flip_leaves}.
 }
-

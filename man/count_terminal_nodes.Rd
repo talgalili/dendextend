@@ -45,4 +45,3 @@ main = "This is considered a tree \\n with TWO terminal nodes only")
 # while we have 3 leaves, in practice we have only 2 terminal nodes 
 # (this is a feature, not a bug.)
 }
-

@@ -63,4 +63,3 @@ get_leaves_attr(dend, "nodePar", simplify=FALSE)
 \seealso{
 \link{get_leaves_attr}
 }
-

@@ -39,4 +39,3 @@ get_leaves_attr(remove_leaves_nodePar(dend), "nodePar")
 \seealso{
 \link{get_leaves_attr}, \link{assign_values_to_leaves_nodePar}
 }
-

@@ -45,4 +45,3 @@ plot(hang.dendrogram(rank_branches(dend)))
 \link{get_branches_heights}, \link{get_childrens_heights},
 \link{hang.dendrogram}, \link{tanglegram}
 }
-

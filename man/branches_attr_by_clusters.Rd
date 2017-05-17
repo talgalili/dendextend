@@ -125,4 +125,3 @@ labels(dend2) <- as.character(labels(dend2))
 \link[dynamicTreeCut]{cutreeDynamic},
 \link[WGCNA]{plotDendroAndColors}
 }
-

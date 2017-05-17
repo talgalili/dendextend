@@ -16,10 +16,9 @@ theme_dendro()
 \description{
 Sets most of the ggplot options to blank, by returning blank theme elements for the panel grid, panel background, axis title, axis text, axis line and axis ticks.
 }
-\author{
-Andrie de Vries
-}
 \seealso{
 \link{ggdend}
 }
-
+\author{
+Andrie de Vries
+}

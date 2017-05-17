@@ -3,8 +3,8 @@
 \name{nleaves}
 \alias{nleaves}
 \alias{nleaves.default}
-\alias{nleaves.dendlist}
 \alias{nleaves.dendrogram}
+\alias{nleaves.dendlist}
 \alias{nleaves.hclust}
 \alias{nleaves.phylo}
 \title{Counts the number of leaves in a tree}
@@ -58,4 +58,3 @@ nleaves(hc) # 5
 \seealso{
 \link{nrow}, \link{count_terminal_nodes}
 }
-

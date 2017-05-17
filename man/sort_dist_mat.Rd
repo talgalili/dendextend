@@ -24,4 +24,3 @@ Sorts a distance matrix by the names of the rows and columns.
 \seealso{
 \link{dist}, \link{cor_cophenetic}
 }
-

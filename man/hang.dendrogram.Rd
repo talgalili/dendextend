@@ -57,4 +57,3 @@ plot(hang.dendrogram(dend), horiz = TRUE)
  
  
 }
-

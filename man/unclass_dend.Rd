@@ -38,4 +38,3 @@ str(unclass_dend(dend)) # NOW we can more easily understand
 \seealso{
 \link{nleaves}
 }
-

@@ -85,4 +85,3 @@ entanglement(dend1,dend2_corrected, L = 2) # 0
 \link{entanglement}, \link{flip_leaves}, \link{all_couple_rotations_at_k},
 \link{untangle_step_rotate_2side}.
 }
-

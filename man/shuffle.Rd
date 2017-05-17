@@ -3,8 +3,8 @@
 \name{shuffle}
 \alias{shuffle}
 \alias{shuffle.default}
-\alias{shuffle.dendlist}
 \alias{shuffle.dendrogram}
+\alias{shuffle.dendlist}
 \alias{shuffle.hclust}
 \alias{shuffle.phylo}
 \title{Random rotation of trees}
@@ -63,4 +63,3 @@ tanglegram(sort(dend), sort(dend2), margin_inner=7)
 \code{\link{tanglegram}},  \code{\link{entanglement}}, 
 \code{\link[dendextend]{rotate}}
 }
-

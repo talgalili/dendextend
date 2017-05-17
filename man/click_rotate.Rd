@@ -53,10 +53,9 @@ dend <- click_rotate(dend, continue = TRUE)
 }
 
 }
-\author{
-Andrej-Nikolai Spiess, Tal Galili
-}
 \seealso{
 \code{\link{rotate.dendrogram}}
 }
-
+\author{
+Andrej-Nikolai Spiess, Tal Galili
+}

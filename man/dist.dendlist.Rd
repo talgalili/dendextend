@@ -38,4 +38,3 @@ dend_diff(x,y)
 \link[distory]{dist.multiPhylo}, 
 \link[phangorn]{treedist},
 }
-

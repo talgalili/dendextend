@@ -65,4 +65,3 @@ dend2 \%>\% unclass \%>\% str
 \seealso{
 \link{get_root_branches_attr}
 }
-

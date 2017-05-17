@@ -26,4 +26,3 @@ Prune trees to their common subtrees
 \seealso{
 \link{common_subtrees_clusters}
 }
-

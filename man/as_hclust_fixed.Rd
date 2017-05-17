@@ -33,4 +33,3 @@ as_hclust_fixed(dend, hc)
 \seealso{
 \link{as.hclust}
 }
-

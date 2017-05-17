@@ -32,4 +32,3 @@ plot(prune_leaf(dend , "Alaska"), main = "tree without Alaska")
 
 
 }
-

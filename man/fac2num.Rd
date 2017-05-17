@@ -32,4 +32,3 @@ as.numeric(x) # 1 2 3
 fac2num(x) # 3 4 5
 
 }
-

@@ -68,4 +68,3 @@ expect_identical(order.dendrogram(dend_changed), order.dendrogram(dend))
 \link{entanglement} , \link{tanglegram},
 \link{match_order_by_labels}
 }
-

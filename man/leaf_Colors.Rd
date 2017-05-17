@@ -23,10 +23,9 @@ dend <- USArrests \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
 d5=color_branches(dend,5)
 leaf_Colors(d5)
 }
-\author{
-jefferis
-}
 \seealso{
 \code{\link[dendroextras]{slice},\link{color_branches}}
 }
-
+\author{
+jefferis
+}

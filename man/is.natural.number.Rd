@@ -32,10 +32,9 @@ is.natural.number( x )
 all(is.natural.number( x ))
 
 }
-\author{
-Marco Gallotta (a.k.a: marcog), Tal Galili
-}
 \seealso{
 \code{\link{is.numeric}}, \code{\link{is.double}}, \code{\link{is.integer}}
 }
-
+\author{
+Marco Gallotta (a.k.a: marcog), Tal Galili
+}

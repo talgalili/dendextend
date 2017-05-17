@@ -45,4 +45,3 @@ heatmap(as.matrix(USArrests), Rowv = dend)
 \seealso{
 \code{\link[dendextend]{rotate}}, \link[seriation]{seriate}
 }
-

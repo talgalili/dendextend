@@ -49,4 +49,3 @@ plot(duplicate_leaf(dend, "Arizona", 4))
 }
 
 }
-

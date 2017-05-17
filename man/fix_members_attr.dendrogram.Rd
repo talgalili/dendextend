@@ -37,4 +37,3 @@ identical(prune_leaf(dend , "Alaska"), fix_members_attr.dendrogram(prune_leaf(de
 str(unclass(prune_leaf(dend , "Alaska")))
 str(unclass(fix_members_attr.dendrogram(prune_leaf(dend , "Alaska"))))
 }
-

@@ -40,4 +40,3 @@ x
 is_null_list() 
 }
 }
-

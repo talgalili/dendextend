@@ -37,4 +37,3 @@ dend_diff(x, y)
 \link{dist.dendlist}, \link{tanglegram}
 \link[distory]{distinct.edges}
 }
-

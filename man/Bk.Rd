@@ -99,4 +99,3 @@ Journal of the American Statistical Association 78 (383): 553.
 \seealso{
 \link{FM_index}, \link{cor_bakers_gamma}, \link{Bk_plot}
 }
-

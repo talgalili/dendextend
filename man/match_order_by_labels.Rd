@@ -48,4 +48,3 @@ order.dendrogram(dend))
 \seealso{
 \link{entanglement} , \link{tanglegram}
 }
-

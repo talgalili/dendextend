@@ -45,4 +45,3 @@ nnodes(hc) # 9
 \seealso{
 \link{nrow}, \link{count_terminal_nodes}, \link{nleaves}
 }
-

@@ -132,4 +132,3 @@ rect.dendrogram(dend,4, border = 4, lty = 2, lwd = 3, horiz = TRUE)
 \seealso{
 \link{rect.hclust}, \link{order.dendrogram}, \link{cutree.dendrogram}
 }
-

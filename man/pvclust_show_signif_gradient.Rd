@@ -58,4 +58,3 @@ result \%>\% pvrect(alpha=0.95)
 \seealso{
 \link{pvclust_show_signif}, \link{pvclust_show_signif_gradient}
 }
-

@@ -38,4 +38,3 @@ cor_FM_index(dend1, dend2, k = 4)
 \seealso{
 \link{FM_index}, \link{cor.dendlist}, \link{Bk}
 }
-

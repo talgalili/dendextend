@@ -2,9 +2,9 @@
 % Please edit documentation in R/set.dendrogram.R
 \name{set}
 \alias{set}
-\alias{set.data.table}
-\alias{set.dendlist}
 \alias{set.dendrogram}
+\alias{set.dendlist}
+\alias{set.data.table}
 \title{Set (/update) features to a dendrogram}
 \usage{
 set(dend, ...)
@@ -236,4 +236,3 @@ heatmap.2(x, Rowv = Rowv_dend, Colv = Colv_dend)
 \link{noded_with_condition}, \link{branches_attr_by_labels},
 \link{dendrogram}
 }
-

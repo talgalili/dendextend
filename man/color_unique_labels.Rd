@@ -28,4 +28,3 @@ plot(dend)
 dend2 <- color_unique_labels(dend)
 plot(dend2)
 }
-

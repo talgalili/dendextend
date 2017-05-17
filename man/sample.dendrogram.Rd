@@ -70,4 +70,3 @@ plot(sample.dendrogram(dend, replace = TRUE))
 \seealso{
 \link{sample}, \link{duplicate_leaf}
 }
-

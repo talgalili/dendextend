@@ -26,4 +26,3 @@ Bakers Gamma for two k matrices
 \seealso{
 \link{cor_bakers_gamma}
 }
-

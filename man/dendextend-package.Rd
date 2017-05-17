@@ -2,8 +2,8 @@
 % Please edit documentation in R/dendextend-package.R
 \docType{package}
 \name{dendextend-package}
-\alias{dendextend}
 \alias{dendextend-package}
+\alias{dendextend}
 \title{Functions for extending dendrogram objects}
 \description{
 Functions for extending dendrogram objects
@@ -13,4 +13,3 @@ Functions for extending dendrogram objects
 }
 \keyword{dendrogram}
 \keyword{package,}
-

@@ -2,9 +2,9 @@
 % Please edit documentation in R/rotate.R
 \name{ladderize}
 \alias{ladderize}
-\alias{ladderize.dendlist}
 \alias{ladderize.dendrogram}
 \alias{ladderize.phylo}
+\alias{ladderize.dendlist}
 \title{Ladderize a Tree}
 \usage{
 ladderize(x, right = TRUE, ...)
@@ -51,4 +51,3 @@ dend \%>\% ladderize(FALSE) \%>\% plot(main = "Left (rev of right)")
 \code{\link[ape]{ladderize}},
 \code{\link{rev.dendrogram}}, \code{\link{rotate}} ({dendextend}), \code{\link[ape]{rotate}} ({ape})
 }
-

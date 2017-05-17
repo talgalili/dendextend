@@ -31,4 +31,3 @@ par(mfrow = c(1,2))
 plot(dend, main = "original tree")
 plot(flatten.dendrogram(dend), main = "Raised tree")
 }
-

@@ -75,4 +75,3 @@ plot(d5gr)
 \code{\link{hclust}}, \code{\link{labels_colors}}, \code{\link{color_branches}},
 \link{assign_values_to_leaves_edgePar}
 }
-

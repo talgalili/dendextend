@@ -50,4 +50,3 @@ p
 \seealso{
 \link{as.dendrogram}, \link{as.hclust}, \link[ape]{as.phylo}
 }
-

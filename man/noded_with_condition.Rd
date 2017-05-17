@@ -61,4 +61,3 @@ set(dend, "branches_col", cols) \%>\% plot
 \seealso{
 \link{branches_attr_by_labels}, \link{get_leaves_attr}, \link{nnodes}, \link{nleaves}
 }
-

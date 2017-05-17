@@ -39,4 +39,3 @@ dend \%>\% as.phylo \%>\% di2multi(tol = 0.2) \%>\% plot(main = "phylo")
 \seealso{
 \link[ape]{multi2di}
 }
-

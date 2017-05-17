@@ -58,4 +58,3 @@ get_leaves_attr(dend, "members",simplify = FALSE) # should be 1's
 \link{get_nodes_attr}, \link{nnodes},
 \link{nleaves}, \link{assign_values_to_leaves_nodePar}
 }
-

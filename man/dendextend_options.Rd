@@ -40,4 +40,3 @@ dendextend_options()
 \author{
 Kurt Hornik
 }
-

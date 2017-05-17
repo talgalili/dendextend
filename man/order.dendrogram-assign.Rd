@@ -48,4 +48,3 @@ labels(as.hclust(sub_dend)) # We now have labels :)
 \seealso{
 \code{\link{order.dendrogram}}, \code{\link{labels<-}}
 }
-

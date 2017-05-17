@@ -173,13 +173,12 @@ colored_bars(cbind(k234[,3:1], col_car_type), dend,
 
 
 }
+\seealso{
+\link{branches_attr_by_clusters},
+\link[WGCNA]{plotDendroAndColors}
+}
 \author{
 Steve Horvath \email{SHorvath@mednet.ucla.edu},
 Peter Langfelder \email{Peter.Langfelder@gmail.com},
 Tal Galili \email{Tal.Galili@gmail.com}
 }
-\seealso{
-\link{branches_attr_by_clusters},
-\link[WGCNA]{plotDendroAndColors}
-}
-

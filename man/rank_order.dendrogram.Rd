@@ -34,4 +34,3 @@ order.dendrogram(rank_order.dendrogram(dend2))
 \seealso{
 \link{prune}
 }
-

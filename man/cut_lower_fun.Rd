@@ -55,11 +55,10 @@ microbenchmark(old_cut_lower_fun(dend_big,.1),
 }
 
 }
-\author{
-Tal Galili
-}
 \seealso{
 \code{\link{labels}}, \code{\link{dendrogram}},
 \link[dendextend]{cutree.dendrogram}
 }
-
+\author{
+Tal Galili
+}

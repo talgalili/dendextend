@@ -3,9 +3,9 @@
 \name{untangle}
 \alias{untangle}
 \alias{untangle.default}
-\alias{untangle.dendlist}
-\alias{untangle.dendrogram}
 \alias{untangle_labels}
+\alias{untangle.dendrogram}
+\alias{untangle.dendlist}
 \title{untangle dendrograms}
 \usage{
 untangle(dend1, ...)
@@ -82,13 +82,12 @@ dend12 \%>\%
 
 }
 }
-\author{
-Tal Galili
-}
 \seealso{
 \link{tanglegram}, \link{untangle_random_search}, 
 \link{untangle_step_rotate_1side}, \link{untangle_step_rotate_2side},
 \link{untangle_DendSer},
 \link{entanglement}
 }
-
+\author{
+Tal Galili
+}

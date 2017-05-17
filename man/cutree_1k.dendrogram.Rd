@@ -82,11 +82,10 @@ microbenchmark(
 
 
 }
-\author{
-Tal Galili
-}
 \seealso{
 \code{\link{hclust}}, \code{\link{cutree}}, 
 \code{\link{cutree_1h.dendrogram}}
 }
-
+\author{
+Tal Galili
+}

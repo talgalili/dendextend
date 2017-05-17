@@ -36,4 +36,3 @@ str(dend, 2)
 \seealso{
 \link{attr}
 }
-

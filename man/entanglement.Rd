@@ -2,10 +2,10 @@
 % Please edit documentation in R/entanglement.R
 \name{entanglement}
 \alias{entanglement}
-\alias{entanglement.dendlist}
-\alias{entanglement.dendrogram}
 \alias{entanglement.hclust}
 \alias{entanglement.phylo}
+\alias{entanglement.dendlist}
+\alias{entanglement.dendrogram}
 \title{Measures entanglement between two trees}
 \usage{
 entanglement(dend1, ...)
@@ -120,4 +120,3 @@ entanglement(dend1 , dend2, 1.5, "order") # 0.91
 \seealso{
 \link{tanglegram}, \link{match_order_by_labels}.
 }
-

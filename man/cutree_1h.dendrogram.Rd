@@ -61,10 +61,9 @@ microbenchmark(
 
 
 }
-\author{
-Tal Galili
-}
 \seealso{
 \code{\link{hclust}}, \code{\link{cutree}}
 }
-
+\author{
+Tal Galili
+}

@@ -32,4 +32,3 @@ all_unique(c(1:10))
 \seealso{
 \link{unique}
 }
-

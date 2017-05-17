@@ -67,4 +67,3 @@ apply(x, 2, sort_levels_values)
 \seealso{
 \code{\link{sort}}, \code{\link{fac2num}}, \code{\link[dendextend]{cutree}}
 }
-

@@ -97,4 +97,3 @@ Journal of Statistical Software 53: 1-18.
 \seealso{
 \link{cor_bakers_gamma}
 }
-

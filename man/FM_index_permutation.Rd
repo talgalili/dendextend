@@ -87,4 +87,3 @@ Journal of the American Statistical Association 78 (383): 553.
 \link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}}, 
 \code{\link{FM_index_R}}, \code{\link{FM_index}}
 }
-

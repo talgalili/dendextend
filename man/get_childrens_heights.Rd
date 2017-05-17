@@ -29,4 +29,3 @@ get_childrens_heights(dend)
 \seealso{
 \link{get_branches_heights}
 }
-

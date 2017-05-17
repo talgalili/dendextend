@@ -42,4 +42,3 @@ tanglegram(dend1, dend2)
 \seealso{
 \link{distinct_edges}, \link{cor.dendlist}
 }
-
