@@ -1,6 +1,9 @@
 dendextend 1.5.2 (2017-03-27)
 ----------------------------------------
 
+###NEW FUNCTIONS:
+   * print.ggdend - a wrapper for ggplot2::ggplot of a ggdend object.
+
 ###OTHER NOTES:
    * Remove dendextendRcpp :(  (from tests and suggests)
 

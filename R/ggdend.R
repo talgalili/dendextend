@@ -48,7 +48,7 @@
 #' rectangular lines, while "triangle" will draw triangular lines.
 #' @param edge.root currently ignored. One day it might do the following: logical; if true, draw an edge to the root node.
 #' @param ... mostly ignored.
-#' @param data a ggdend class object. 
+#' @param data,x a ggdend class object (passed to ggplot.dendrogram or print.ggdend). 
 #' @param segments a logical (TRUE) if to plot the segments (branches).
 #' @param labels a logical (TRUE) if to plot the labels.
 #' @param offset_labels a numeric value to offset the labels from the leaves
@@ -602,6 +602,12 @@ ggplot.dendrogram <- function(data, ...) {
 }
 
 
+#' @export
+#' @rdname ggdend
+print.ggdend <- function(x, ...) {
+   # library(ggplot2) # enough to use ggplot2::
+   ggplot2::ggplot(x, ...)
+}
 
 
 

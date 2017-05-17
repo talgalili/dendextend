@@ -3,9 +3,9 @@
 \name{cutree}
 \alias{cutree}
 \alias{cutree.default}
-\alias{cutree.dendrogram}
 \alias{cutree.hclust}
 \alias{cutree.phylo}
+\alias{cutree.dendrogram}
 \title{Cut a Tree (Dendrogram/hclust/phylo) into Groups of Data}
 \usage{
 cutree(tree, k = NULL, h = NULL, ...)
@@ -161,13 +161,12 @@ cutree(as.dendrogram(hclust(dist(c(1,1,1,2,2)))),
 
 
 }
+\seealso{
+\code{\link{hclust}}, \code{\link[stats]{cutree}}, 
+\code{\link{cutree_1h.dendrogram}}, \code{\link{cutree_1k.dendrogram}},
+}
 \author{
 \code{cutree.dendrogram} was written by Tal Galili.
 \code{cutree.hclust} is redirecting the function
 to \link[stats]{cutree} from base R.
 }
-\seealso{
-\code{\link{hclust}}, \code{\link[stats]{cutree}}, 
-\code{\link{cutree_1h.dendrogram}}, \code{\link{cutree_1k.dendrogram}},
-}
-

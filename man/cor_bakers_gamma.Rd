@@ -2,10 +2,13 @@
 % Please edit documentation in R/cor_bakers_gamma.R
 \name{cor_bakers_gamma}
 \alias{cor_bakers_gamma}
-\alias{cor_bakers_gamma.default}
-\alias{cor_bakers_gamma.dendlist}
 \alias{cor_bakers_gamma.dendrogram}
 \alias{cor_bakers_gamma.hclust}
+\alias{cor_bakers_gamma.dendlist}
+\alias{cor_bakers_gamma.default}
+\alias{cor_bakers_gamma.dendrogram}
+\alias{cor_bakers_gamma.hclust}
+\alias{cor_bakers_gamma.dendlist}
 \title{Baker's Gamma correlation coefficient}
 \usage{
 cor_bakers_gamma(dend1, ...)
@@ -120,4 +123,3 @@ Baker, F. B., Stability of Two Hierarchical Grouping Techniques Case
 \seealso{
 \link{cor_cophenetic}
 }
-
