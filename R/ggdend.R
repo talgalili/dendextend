@@ -606,7 +606,7 @@ ggplot.dendrogram <- function(data, ...) {
 #' @rdname ggdend
 print.ggdend <- function(x, ...) {
    # library(ggplot2) # enough to use ggplot2::
-   ggplot2::ggplot(x, ...)
+   print(ggplot2::ggplot(x, ...))
 }
 
 
