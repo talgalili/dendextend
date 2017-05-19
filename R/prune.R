@@ -172,7 +172,7 @@ prune.dendrogram <- function(dend, leaves,...) {
 prune.hclust <- function(dend, leaves,...) {
    x_dend <- as.dendrogram(dend)
    x_dend_pruned <- prune(x_dend, leaves,...)
-   x_pruned <- as_hclust_fixed(x_dend_pruned, dend)  
+   x_pruned <- as_hclust_fixed(reindex_dendro(x_dend_pruned), dend)  
    
    return(x_pruned)
 }
@@ -289,7 +289,59 @@ intersect_trees <- function(dend1, dend2, warn = dendextend_options("warn"), ...
    return(dendlist(pruned_dend1, pruned_dend2))   
 }
 
-
+#' Reindexing a pruned dendrogram
+#' 
+#' @description \code{prune_leaf} does not update leaf indices as it prune
+#' leaves. As a result, some leaves of the pruned dendrogram may have leaf
+#' indeices larger than the number of leaves in the pruned dendrogram, which may
+#' cause errors in downstream functions such as \code{as.hclust}.
+#' 
+#' This function re-indexes the leaves such that the leaf indices are no larger
+#' than the total number of leaves.
+#' 
+#' @param d dendrogram object
+#'   
+#' @return A \code{dendrogram} object with the leaf reindexed
+#' @export
+#' 
+#' @examples
+#' hc <- hclust(dist(USArrests[1:5,]), "ave")
+#' dend <- as.dendrogram(hc)
+#' 
+#' dend_pruned <-prune(dend , c("Alaska", "California")
+#' 
+#' ## A leave have an index larger than the number of leaves:
+#' unlist (dend_pruned)
+#' # [1] 4 3 1
+#' #' 
+#' dend_pruned_reindexed <- reindex_dendro (dend_pruned)
+#' 
+#' ## All leaf indices are no larger than the number of leaves:
+#' unlist (dend_pruned_reindexed)
+#' # [1] 3 2 1
+#' 
+#' ## The dendrograms are equal:
+#' all.equal (dendro_pruned, dendro_pruned_reindexed)
+#' # TRUE
+reindex_dendro <- function (dend){
+  
+  reindexVec <- seq_along(1:nleaves(dend))
+  names (reindexVec) <- sort (unlist(reindexVec))
+  
+  reindex_node <- function (node, reindex_vec){
+    if (is.leaf(node)){
+      new_node <- reindex_vec [as.character(node)]
+      attributes(new_node) <- attributes (node)
+      new_node
+    } else {
+      node
+    }
+  }
+  dend_reindex <- dendrapply(dend, 
+                             function(n) reindex_node (node=n, 
+                                                      reindex_vec=reindexVec))
+  return (dend_reindex)
+}
 
 
 
