@@ -11,9 +11,11 @@
 \usage{
 prune(dend, ...)
 
-\method{prune}{dendrogram}(dend, leaves,...)
+\method{prune}{default}(dend, ...)
 
-\method{prune}{hclust}(dend, leaves,...)
+\method{prune}{dendrogram}(dend, leaves, reindex_dend = FALSE, ...)
+
+\method{prune}{hclust}(dend, leaves, ...)
 
 \method{prune}{phylo}(dend, ...)
 
@@ -25,6 +27,10 @@ prune(dend, ...)
 \item{...}{passed on}
 
 \item{leaves}{a character vector of the label(S) of the tip(s) (leaves) we wish to prune off the tree.}
+
+\item{reindex_dend}{logical (default is FALSE). If TRUE, the leaves of the new dendrograms
+include the rank of the old order.dendrogram. This insures that their values are just like
+the number of leaves.}
 }
 \value{
 A pruned tree

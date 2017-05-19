@@ -5,7 +5,7 @@ dendextend 1.5.2 (2017-05-19)
    * print.ggdend - a wrapper for ggplot2::ggplot of a ggdend object.
 
 ###BUG FIXES:
-   * Adding function reindex_dendro to resolve problems with as.hclust (#39)
+   * Adding function reindex_dend to resolve problems with as.hclust (#39)
 
 
 ###OTHER NOTES:

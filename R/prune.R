@@ -112,27 +112,16 @@ prune_leaf <- function(dend, leaf_name,...)
 
 
 #' @title Prunes a tree (using leaves' labels)
+#' @rdname prune
 #' @export
-#' @aliases 
-#' prune.default
-#' prune.dendrogram
-#' prune.hclust
-#' prune.phylo
-#' prune.rpart
+#' 
 #' @description  Trimms a tree (dendrogram, hclust) from a set of leaves based on their labels.
-#' @usage
-#' prune(dend, ...)
-#' 
-#' \method{prune}{dendrogram}(dend, leaves,...)
-#' 
-#' \method{prune}{hclust}(dend, leaves,...)
-#' 
-#' \method{prune}{phylo}(dend, ...)
-#' 
-#' \method{prune}{rpart}(dend, ...)
 #' 
 #' @param dend tree object (dendrogram/hclust/phylo)
 #' @param leaves a character vector of the label(S) of the tip(s) (leaves) we wish to prune off the tree.
+#' @param reindex_dend logical (default is FALSE). If TRUE, the leaves of the new dendrograms
+#' include the rank of the old order.dendrogram. This insures that their values are just like
+#' the number of leaves.
 #' @param ... passed on
 #' @details 
 #' I was not sure if to call this function drop.tip (from ape), snip/prune (from rpart) or just remove.leaves.  I ended up deciding on prune.
@@ -149,13 +138,15 @@ prune_leaf <- function(dend, leaf_name,...)
 prune <- function(dend, ...) {UseMethod("prune")}
 
 #' @export
+#' @rdname prune
 prune.default <- function(dend,...) {
    stop("object dend must be a dendrogram/hclust/phylo object")
 }
 
 # ' @S3method prune dendrogram
 #' @export
-prune.dendrogram <- function(dend, leaves,...) {
+#' @rdname prune
+prune.dendrogram <- function(dend, leaves, reindex_dend = FALSE, ...) {
    leaves <- as.character(leaves)
       
    for(i in seq_along(leaves))
@@ -163,22 +154,27 @@ prune.dendrogram <- function(dend, leaves,...) {
       # this function is probably not the fastest - but it works...
       dend <- prune_leaf(dend, leaves[i])	# move step by stem to remove all of these leaves...
    }
+   
+   if(reindex_dend) dend <- reindex_dend(reindex_dend)
+   
    return(dend)
 }
 
 
 # ' @S3method prune hclust
 #' @export
+#' @rdname prune
 prune.hclust <- function(dend, leaves,...) {
    x_dend <- as.dendrogram(dend)
    x_dend_pruned <- prune(x_dend, leaves,...)
-   x_pruned <- as_hclust_fixed(reindex_dendro(x_dend_pruned), dend)  
+   x_pruned <- as_hclust_fixed(x_dend_pruned, dend)  
    
    return(x_pruned)
 }
 
 # ' @S3method prune phylo
 #' @export
+#' @rdname prune
 prune.phylo <- function(dend,...) {
 	# library(ape)
 	ape::drop.tip(phy=dend, ...)
@@ -186,6 +182,7 @@ prune.phylo <- function(dend,...) {
 
 
 #' @export
+#' @rdname prune
 prune.rpart <- function(dend,...) {
    # library(ape)
    rpart::prune.rpart(tree = dend, ...)
@@ -289,7 +286,10 @@ intersect_trees <- function(dend1, dend2, warn = dendextend_options("warn"), ...
    return(dendlist(pruned_dend1, pruned_dend2))   
 }
 
-#' Reindexing a pruned dendrogram
+
+
+#' @title Reindexing a pruned dendrogram
+#' @export
 #' 
 #' @description \code{prune_leaf} does not update leaf indices as it prune
 #' leaves. As a result, some leaves of the pruned dendrogram may have leaf
@@ -299,48 +299,35 @@ intersect_trees <- function(dend1, dend2, warn = dendextend_options("warn"), ...
 #' This function re-indexes the leaves such that the leaf indices are no larger
 #' than the total number of leaves.
 #' 
-#' @param d dendrogram object
+#' @param dend dendrogram object
 #'   
 #' @return A \code{dendrogram} object with the leaf reindexed
-#' @export
+#' 
 #' 
 #' @examples
 #' hc <- hclust(dist(USArrests[1:5,]), "ave")
 #' dend <- as.dendrogram(hc)
 #' 
-#' dend_pruned <-prune(dend , c("Alaska", "California")
+#' dend_pruned <- prune(dend , c("Alaska", "California") )
 #' 
 #' ## A leave have an index larger than the number of leaves:
 #' unlist (dend_pruned)
 #' # [1] 4 3 1
 #' #' 
-#' dend_pruned_reindexed <- reindex_dendro (dend_pruned)
+#' dend_pruned_reindexed <- reindex_dend (dend_pruned)
 #' 
 #' ## All leaf indices are no larger than the number of leaves:
 #' unlist (dend_pruned_reindexed)
 #' # [1] 3 2 1
 #' 
 #' ## The dendrograms are equal:
-#' all.equal (dendro_pruned, dendro_pruned_reindexed)
+#' all.equal (dend_pruned, dend_pruned_reindexed)
 #' # TRUE
-reindex_dendro <- function (dend){
-  
-  reindexVec <- seq_along(1:nleaves(dend))
-  names (reindexVec) <- sort (unlist(reindexVec))
-  
-  reindex_node <- function (node, reindex_vec){
-    if (is.leaf(node)){
-      new_node <- reindex_vec [as.character(node)]
-      attributes(new_node) <- attributes (node)
-      new_node
-    } else {
-      node
-    }
-  }
-  dend_reindex <- dendrapply(dend, 
-                             function(n) reindex_node (node=n, 
-                                                      reindex_vec=reindexVec))
-  return (dend_reindex)
+#' 
+#' 
+reindex_dend <- function (dend){
+   order.dendrogram(dend) <- rank(order.dendrogram(dend))
+   return(dend)
 }
 
 
@@ -350,4 +337,3 @@ reindex_dendro <- function (dend){
 # example(rotate)
 # example(prune)
 # example(intersect_trees)
-
