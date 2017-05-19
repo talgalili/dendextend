@@ -13,7 +13,7 @@ prune(dend, ...)
 
 \method{prune}{default}(dend, ...)
 
-\method{prune}{dendrogram}(dend, leaves, reindex_dend = FALSE, ...)
+\method{prune}{dendrogram}(dend, leaves, reindex_dend = TRUE, ...)
 
 \method{prune}{hclust}(dend, leaves, ...)
 
@@ -28,9 +28,13 @@ prune(dend, ...)
 
 \item{leaves}{a character vector of the label(S) of the tip(s) (leaves) we wish to prune off the tree.}
 
-\item{reindex_dend}{logical (default is FALSE). If TRUE, the leaves of the new dendrograms
-include the rank of the old order.dendrogram. This insures that their values are just like
-the number of leaves.}
+\item{reindex_dend}{logical (default is TRUE). If TRUE, the leaves of the new dendrograms
+include the rank of the old order.dendrogram. 
+This insures that their values are just like the number of leaves.
+When FALSE, the values in the leaves is that of the original dendrogram. Thie is useful
+if prunning a dendrogram but then wanting to use \link{order.dendrogram} with the original values.
+When using prune.hclust, then reindex_dend is used by default since otherwise the \link{as.hclust} function
+would return an error.}
 }
 \value{
 A pruned tree
@@ -48,6 +52,13 @@ dend <- as.dendrogram(hc)
 par(mfrow = c(1,2))
 plot(dend, main = "original tree")
 plot(prune(dend , c("Alaska", "California")), main = "tree without Alaska and California")
+
+
+# this works because prune uses reindex_dend = TRUE by default
+as.hclust(prune(dend , c("Alaska", "California")))
+prune(hc , c("Alaska", "California"))
+
+
 }
 \seealso{
 \link{prune_leaf}, \link[ape]{drop.tip} {ape}

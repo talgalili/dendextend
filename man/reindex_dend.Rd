@@ -25,7 +25,7 @@ than the total number of leaves.
 hc <- hclust(dist(USArrests[1:5,]), "ave")
 dend <- as.dendrogram(hc)
 
-dend_pruned <- prune(dend , c("Alaska", "California") )
+dend_pruned <- prune(dend , c("Alaska", "California"), reindex_dend = FALSE )
 
 ## A leave have an index larger than the number of leaves:
 unlist (dend_pruned)
