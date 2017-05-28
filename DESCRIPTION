@@ -73,9 +73,9 @@ Enhances: ggdendro,
 VignetteBuilder: knitr
 LazyData: true
 License: GPL-2 | GPL-3
-URL: https://cran.r-project.org/package=dendextend,
-    https://github.com/talgalili/dendextend/,
+URL: https://github.com/talgalili/dendextend/,
+    https://cran.r-project.org/package=dendextend,
     https://www.r-statistics.com/tag/dendextend/,
-    https://bioinformatics.oxfordjournals.org/content/31/22/3718
+    https://academic.oup.com/bioinformatics/article/31/22/3718/240978/dendextend-an-R-package-for-visualizing-adjusting
 BugReports: https://github.com/talgalili/dendextend/issues
 RoxygenNote: 6.0.1
