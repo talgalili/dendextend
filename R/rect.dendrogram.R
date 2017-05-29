@@ -191,7 +191,14 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
       
       if(!horiz) { # the default
          xleft = m[which[n]] + 0.66
-         if(missing(lower_rect)) lower_rect <- par("usr")[3L] - strheight("W")*(max(nchar(labels(tree))) + 1)
+         # if(missing(lower_rect)) lower_rect <- par("usr")[3L] - strheight("W")*(max(nchar(labels(tree))) + 1)
+         if(missing(lower_rect)) {
+            lower_rect <- -max(strheight2(labels(tree)))
+            dLeaf <- -0.75 * strheight("x")
+            extra_space <- -strheight2("_")
+            lower_rect <- lower_rect + dLeaf + extra_space
+         }
+         
          ybottom =  lower_rect
          xright = m[which[n] + 1] + 0.33
          #          ytop = mean(tree_heights[(k - 1):k])
@@ -204,8 +211,18 @@ rect.dendrogram <- function (tree, k = NULL, which = NULL, x = NULL, h = NULL, b
 
       } else {         
          ybottom = m[which[n]] + 0.66
-         if(missing(lower_rect)) lower_rect <- par("usr")[2L] + strwidth("X")*(max(nchar(labels(tree))) + 1) 
+         # if(missing(lower_rect)) lower_rect <- par("usr")[2L] + strwidth("X")*(max(nchar(labels(tree))) + 1) 
+         # if(missing(lower_rect)) lower_rect <- -max(strwidth(labels(dend)))
+         
+         if(missing(lower_rect)) {
+            lower_rect <- min(strwidth(labels(tree))) # notice the char length is negative!
+            dLeaf <- 0.75 * strwidth("w")
+            extra_space <- strwidth("_")
+            lower_rect <- lower_rect + dLeaf + extra_space
+         }
+         
          xright = lower_rect
+         
          ytop = m[which[n] + 1] + 0.33
 #          xleft = mean(tree_heights[(k - 1):k])
          xleft <- 
