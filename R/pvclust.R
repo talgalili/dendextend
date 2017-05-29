@@ -375,11 +375,98 @@ pvclust_show_signif_gradient <- function(dend, pvclust_obj, signif_type = c("bp"
 
 
 
-# TODO: expose this function (if we'd like to have rect which are for lonng labels)
+##################################
+#### Required functions
+##################################
 
+
+# Based on:
+# https://stat.ethz.ch/pipermail/r-help/2007-November/145106.html
+# strheight for rotated text
+strheight2 <- function(s, ...) {
+   xusr <- par("usr")
+   xh <- strwidth(s, cex = par("cex"), ...)
+   yh <- strheight(s, cex = par("cex"), ...) * 5/3
+   tmp <- xh
+   xh <- yh/(xusr[4]-xusr[3])*par("pin")[2]
+   xh <- xh/ par("pin")[1] * (xusr[2]-xusr[1])
+   yh <- tmp/(xusr[2]-xusr[1])* par("pin")[1]
+   yh <- yh/ par("pin")[2] * (xusr[4]-xusr[3])
+   yh
+}
+
+
+# strwidth for rotated text
+strwidth2 <- function(s, ...) {
+   xusr <- par("usr")
+   xh <- strwidth(s, cex = par("cex"), ...)
+   yh <- strheight(s, cex = par("cex"), ...) * 5/3
+   tmp <- xh
+   xh <- yh/(xusr[4]-xusr[3])*par("pin")[2]
+   xh <- xh/ par("pin")[1] * (xusr[2]-xusr[1])
+   yh <- tmp/(xusr[2]-xusr[1])* par("pin")[1]
+   yh <- yh/ par("pin")[2] * (xusr[4]-xusr[3])
+   xh
+}
+
+
+# http://r-posts.com/adding-sinew-to-roxygen2-skeletons/
+# sinew::makeOxygen(pvrect2)
+
+
+
+
+
+#' @title Draw Rectangles Around a Dendrogram's Clusters with High/Low P-values
+#' @export
+#' @description 
+#' Draws rectangles around the branches of a dendrogram highlighting the corresponding clusters with low p-values.
+#' This is based on \link[pvclust]{pvrect}, allowing to draw the rects till the bottom of the labels.
+#' @param x object of class pvclust.
+#' @param alpha threshold value for p-values., Default: 0.95
+#' @param pv character string which specifies the p-value to be used. It should be either of "au" or "bp", corresponding to AU p-value or BP value, respectively. See plot.pvclust for details. , Default: 'au'
+#' @param type one of "geq", "leq", "gt" or "lt". If "geq" is specified, clusters with p-value greater than or equals the threshold given by "alpha" are returned or displayed. Likewise "leq" stands for lower than or equals, "gt" for greater than and "lt" for lower than the threshold value. The default is "geq"., Default: 'geq'
+#' @param max.only logical. If some of clusters with high/low p-values have inclusion relation, only the largest cluster is returned (or displayed) when max.only=TRUE., Default: TRUE
+#' @param border numeric value which specifies the color of borders of rectangles., Default: 2
+#' @param xpd A logical value (or NA.), passed to par. Default is TRUE, in order to allow the rect to be below the labels. If FALSE, all plotting is clipped to the plot region, if TRUE, all plotting is clipped to the figure region, and if NA, all plotting is clipped to the device region. See also clip., Default: TRUE
+#' @param lower_rect a (scalar) value of how low should the lower part of the rect be. If missing, it will take the value of par("usr")[3L] (or par("usr")[2L], depending if horiz = TRUE or not), with also the width of the labels. (notice that we would like to keep xpd = TRUE if we want the rect to be after the labels!) You can use a value such as 0, to get the rect above the labels.
+#' @param ... passed to \link{rect}
+#' @return NULL
+#' @seealso 
+#' \link[pvclust]{pvrect}, \link{pvclust_show_signif}
+#' @examples 
+#' \dontrun{
+#' 
+#' 
+#' 
+#' library(pvclust)
+#' data(lung) # 916 genes for 73 subjects
+#' set.seed(13134)
+#' result <- pvclust(lung[, 1:20], method.dist="cor", method.hclust="average", nboot=10)
+#' 
+#' par(mar = c(9,2.5,2,0))
+#' dend <- as.dendrogram(result)
+#' dend %>%    
+#'    pvclust_show_signif(result, signif_value = c(3,.5)) %>%
+#'    pvclust_show_signif(result, signif_value = c("black", "grey"), show_type = "col") %>% 
+#'    plot(main = "Cluster dendrogram with AU/BP values (%)")
+#' pvrect2(result, alpha=0.95)
+#' # getting the rects to the tips / above the labels
+#' pvrect2(result, lower_rect = .15, border = 4, alpha=0.95, lty = 2)
+#' # Original function
+#' # pvrect(result, alpha=0.95)
+#' 
+#' 
+#' }
+#' 
 pvrect2 <- function (x, alpha = 0.95, pv = "au", type = "geq", max.only = TRUE, 
-                     border = 2, xpd = TRUE, ...) 
+                     border = 2,
+                     xpd = TRUE, lower_rect,
+                     ...) 
 {
+   
+   dend <- as.dendrogram(x)
+   
    len <- nrow(x$edges)
    member <- hc2split(x$hclust)$member
    order <- x$hclust$order
@@ -392,8 +479,10 @@ pvrect2 <- function (x, alpha = 0.95, pv = "au", type = "geq", max.only = TRUE,
    if (is.na(pm <- pmatch(type, c("geq", "leq", "gt", "lt")))) 
       stop("Invalid type argument: see help(pvrect)")
    
+   
    old_xpd <- par()["xpd"]
    par(xpd=xpd)
+   
    
    for (i in (len - 1):1) {
       if (pm == 1) 
@@ -412,11 +501,21 @@ pvrect2 <- function (x, alpha = 0.95, pv = "au", type = "geq", max.only = TRUE,
             xl <- min(ma)
             xr <- max(ma)
             yt <- x$hclust$height[i]
-            tree <- x$hclust
-            yb <- usr[3] - strheight("W")*(max(nchar(labels(tree))) + 1)            
+            yb <- usr[3]
             mx <- xwd/length(member)/3
             my <- ywd/200
-            rect(xl - mx, yb + my, xr + mx, yt + my, border = border, 
+            
+            # if(missing(lower_rect)) lower_rect <- par("usr")[3L] - strwidth("W")*(max(nchar(labels(dend))) + 1)
+            if(missing(lower_rect)) lower_rect <- -max(strheight2(labels(dend)))
+            
+            dLeaf <- -0.75 * strheight("x")
+            extra_space <- -strheight2("_")
+            
+            rect(xl - mx, 
+                 # 0,
+                 lower_rect + dLeaf + extra_space,
+                 # yb + my + lower_rect,
+                 xr + mx, yt + my, border = border, 
                  shade = NULL, ...)
             j <- j + 1
          }
@@ -426,8 +525,11 @@ pvrect2 <- function (x, alpha = 0.95, pv = "au", type = "geq", max.only = TRUE,
    
    par(xpd=old_xpd)   
    
-   
+   invisible()
 }
+
+
+
 
 
 
