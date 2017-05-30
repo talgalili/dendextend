@@ -34,7 +34,7 @@ This is based on \link[pvclust]{pvrect}, allowing to draw the rects till the bot
 \dontrun{
 
 
-
+library(dendextend)
 library(pvclust)
 data(lung) # 916 genes for 73 subjects
 set.seed(13134)
@@ -51,7 +51,7 @@ pvrect2(result, alpha=0.95)
 pvrect2(result, lower_rect = .15, border = 4, alpha=0.95, lty = 2)
 # Original function
 # pvrect(result, alpha=0.95)
-
+text(result, alpha=0.95)
 
 }
 

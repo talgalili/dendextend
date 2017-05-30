@@ -438,7 +438,7 @@ strwidth2 <- function(s, ...) {
 #' \dontrun{
 #' 
 #' 
-#' 
+#' library(dendextend)
 #' library(pvclust)
 #' data(lung) # 916 genes for 73 subjects
 #' set.seed(13134)
@@ -455,7 +455,7 @@ strwidth2 <- function(s, ...) {
 #' pvrect2(result, lower_rect = .15, border = 4, alpha=0.95, lty = 2)
 #' # Original function
 #' # pvrect(result, alpha=0.95)
-#' 
+#' text(result, alpha=0.95)
 #' 
 #' }
 #' 
