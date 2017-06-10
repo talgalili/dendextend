@@ -3,6 +3,7 @@ dendextend 1.6.0 (2017-05-29)
 
 ###NEW FUNCTIONS
 * pvrect2 - Draw Rectangles Around a Dendrogram's Clusters with High/Low P-values
+* min_depth, max_depth - measures the min/max depth of a tree (from the root to the closest/furtherest leaf).
 
 ###BUG FIXES
    * rect.dendrogram - it now deals much better with setting the lower part of the rectangle to be below the labels.
