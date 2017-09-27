@@ -183,6 +183,27 @@ dend \%>\% color_branches(k=3) \%>\% plot
 dend \%>\% color_branches(clusters=c(1,1,2,2,3)) \%>\% plot
 
 
+# another example, based on the question here:
+# https://stackoverflow.com/questions/45432271/how-to-color-branches-in-r-dendogram-by-the-a-function-of-the-classes-in-it/
+
+
+library(cluster)
+set.seed(999)
+iris2 <- iris[sample(x = 1:150,size = 50,replace = F),]
+clust <- diana(iris2)
+dend <- as.dendrogram(clust)
+
+temp_col <- c("red", "blue", "green")[as.numeric(iris2$Species)]
+temp_col <- temp_col[order.dendrogram(dend)]
+temp_col <- factor(temp_col, unique(temp_col))
+
+library(dendextend)
+dend \%>\% color_branches(clusters = as.numeric(temp_col), col = levels(temp_col)) \%>\% 
+   set("labels_colors", as.character(temp_col)) \%>\% 
+   plot
+
+
+
 }
 
 }

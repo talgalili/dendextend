@@ -230,6 +230,28 @@ all_unique <- function(x, ...) {
 #' dend %>% color_branches(clusters=c(1,1,2,2,3)) %>% plot
 #' 
 #' 
+#' # another example, based on the question here:
+#' # https://stackoverflow.com/questions/45432271/how-to-color-branches-in-r-dendogram-by-the-a-function-of-the-classes-in-it/
+#' 
+#'
+#' library(cluster)
+#' set.seed(999)
+#' iris2 <- iris[sample(x = 1:150,size = 50,replace = F),]
+#' clust <- diana(iris2)
+#' dend <- as.dendrogram(clust)
+#' 
+#' temp_col <- c("red", "blue", "green")[as.numeric(iris2$Species)]
+#' temp_col <- temp_col[order.dendrogram(dend)]
+#' temp_col <- factor(temp_col, unique(temp_col))
+#' 
+#' library(dendextend)
+#' dend %>% color_branches(clusters = as.numeric(temp_col), col = levels(temp_col)) %>% 
+#'    set("labels_colors", as.character(temp_col)) %>% 
+#'    plot
+
+#' 
+#' 
+#' 
 #' }
 #' 
 color_branches <- function(dend, k=NULL, h=NULL, col, groupLabels=NULL, 
@@ -613,6 +635,18 @@ leaf_colors <- leaf_Colors
 
 
 
+
+color_branches_by_clusters <- function(dend, clusters, unique_colors, order_value = FALSE, ...) {
+   if(length(clusters) != length(labels(dend))) stop("clusters must be of the same length as the labels in dend.")
+   
+   if(order_value) clusters <- clusters[order.dendrogram(dend)]
+   
+   clusters <- factor(clusters, levels = unique(clusters))
+   if(missing(unique_colors)) unique_colors <- levels(clusters)
+   clusters <- as.numeric(clusters)
+   
+   branches_attr_by_clusters(dend, clusters = clusters, values = unique_colors)
+}
 
 
 
