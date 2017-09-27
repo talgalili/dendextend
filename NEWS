@@ -1,4 +1,4 @@
-dendextend 1.6.0 (2017-06-10)
+dendextend 1.6.0 (2017-09-27)
 ----------------------------------------
 
 ###NEW FUNCTIONS
@@ -7,6 +7,7 @@ dendextend 1.6.0 (2017-06-10)
 
 ###BUG FIXES
    * rect.dendrogram - it now deals much better with setting the lower part of the rectangle to be below the labels.
+   * circlize_dendrogram - can now handle dendrograms with non unique labels. A warning is issued, and a running number is padded to the labels. Problem first reported here: https://stackoverflow.com/questions/46238364/labelling-circular-dendextend-dendrogram/46438501#46438501
 
 
 

@@ -100,6 +100,14 @@ circlize_dendrogram <- function(dend, facing = c("outside", "inside"), labels = 
    dend_labels_colors <- labels_colors(dend)
    dend_labels_cex <- labels_cex(dend)
    labels_dend <- labels(dend)
+   if(as.logical(anyDuplicated(labels_dend))) {
+      warning("Not all labels are unique. Therefore, we pad the labels with a running number, so to be able to produce the plot.")
+      labels(dend) <- paste0(seq_along(labels_dend), "_", labels_dend)
+      labels_dend <- labels(dend)
+   }
+   
+   
+   
    if(is.null(dend_labels_cex)) dend_labels_cex <- rep(1, n_labaels)
    
    circlize::circos.initialize("dendrogram", xlim = c(0, n_labaels))
