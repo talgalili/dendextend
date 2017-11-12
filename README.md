@@ -13,6 +13,7 @@
 * [Installation](#installation)
 * [Usage](#usage)
 * [Share your dendrograms!](#share-your-dendrograms)
+* [How to cite the dendextend package](#how-to-cite-the-dendextend-package)
 * [Contact](#contact)
 
 
@@ -79,6 +80,28 @@ Packages:
 * [ComplexHeatmap](https://www.bioconductor.org/packages/3.3/bioc/html/ComplexHeatmap.html)
 * [d3heatmap](https://CRAN.R-project.org/package=d3heatmap/vignettes/Introduction.html)
 
+
+## How to cite the dendextend package
+
+The methods within the code package can be cited as:
+
+     Tal Galili (2015). dendextend: an R package for visualizing, adjusting, and comparing trees of
+     hierarchical clustering. Bioinformatics. DOI: 10.1093/bioinformatics/btv428
+
+A BibTeX entry for LaTeX users is
+
+     @Article{,
+       author = {Tal Galili},
+       title = {dendextend: an R package for visualizing, adjusting, and comparing trees of hierarchical clustering},
+       journal = {Bioinformatics},
+       year = {2015},
+       doi = {10.1093/bioinformatics/btv428},
+       url = {https://academic.oup.com/bioinformatics/article/31/22/3718/240978/dendextend-an-R-package-for-visualizing-adjusting},
+       eprint = {https://academic.oup.com/bioinformatics/article-pdf/31/22/3718/17122682/btv428.pdf},
+     }
+
+This free open-source software implements academic research by the authors and co-workers. If you use
+it, please support the project by citing the appropriate journal articles.
 
 
 
