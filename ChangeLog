@@ -1,3 +1,278 @@
+* 2017-11-13(Tal Galili) fix long url: |3e9f0d6| 
+|  R/color_branches.R    | 2 +-
+|  man/color_branches.Rd | 2 +-
+|  2 files changed, 2 insertions(+), 2 deletions(-)
+
+* 2017-11-13(Tal Galili) Fix: (invalid URL) |e0386e1| 
+|  vignettes/introduction.Rmd | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2017-11-13(Tal Galili) how to cite |eeb1c1e| 
+|  README.md | 23 +++++++++++++++++++++++
+|  1 file changed, 23 insertions(+)
+
+* 2017-10-26(Tal Galili) typo |c806acf| 
+|  inst/CITATION | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2017-09-27(Tal Galili) Another example for color_branches |99bfa39| 
+|  R/color_branches.R    | 34 ++++++++++++++++++++++++++++++++++
+|  man/color_branches.Rd | 21 +++++++++++++++++++++
+|  2 files changed, 55 insertions(+)
+
+* 2017-09-27(Tal Galili) circlize_dendrogram - can now handle dendrograms with non unique labels. A warning is issued, and a running number is padded to the labels. |44d1ca9| 
+|  DESCRIPTION  | 2 +-
+|  NEWS         | 3 ++-
+|  R/circlize.R | 8 ++++++++
+|  3 files changed, 11 insertions(+), 2 deletions(-)
+
+* 2017-06-10(Tal Galili) update date |2a303ef| 
+|  DESCRIPTION | 2 +-
+|  NEWS        | 2 +-
+|  2 files changed, 2 insertions(+), 2 deletions(-)
+
+* 2017-06-10(Tal Galili) Added min_depth, max_depth - measures the min/max depth of a tree (from the root to the closest/furtherest leaf). |d88249c| 
+|  NAMESPACE    |  2 ++
+|  NEWS         |  1 +
+|  R/depth.R    | 60 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  man/depth.Rd | 34 +++++++++++++++++++++++++++++++++
+|  4 files changed, 97 insertions(+)
+
+* 2017-05-31(Tal Galili) Updating pvrect2 example |33efee8| 
+|  R/pvclust.R    | 4 ++--
+|  man/pvrect2.Rd | 4 ++--
+|  2 files changed, 4 insertions(+), 4 deletions(-)
+
+* 2017-05-29(Tal Galili) Fix rect.dendrogram - it now deals much better with setting the lower part of the rectangle to be below the labels. |a756d9a| 
+|  NEWS                |  2 ++
+|  R/rect.dendrogram.R | 21 +++++++++++++++++++--
+|  2 files changed, 21 insertions(+), 2 deletions(-)
+
+* 2017-05-29(Tal Galili) pvrect2 function added - Draw Rectangles Around a Dendrogram's Clusters with High/Low P-values |56f9e92| 
+|  DESCRIPTION    |   4 +-
+|  NAMESPACE      |   1 +
+|  NEWS           | 187 +++++++++++++++++++++++++++++--------------------------
+|  R/pvclust.R    | 114 +++++++++++++++++++++++++++++++--
+|  man/pvrect2.Rd |  61 ++++++++++++++++++
+|  5 files changed, 271 insertions(+), 96 deletions(-)
+
+* 2017-05-28(Tal Galili) Update bioinformatics link |82a3df7| 
+|  DESCRIPTION   | 6 +++---
+|  inst/CITATION | 4 ++--
+|  2 files changed, 5 insertions(+), 5 deletions(-)
+
+* 2017-05-19(Tal Galili) Fix #38 by using alternative default for prune (i.e.: reindex_dend=TRUE). Also added examples in the doc to demonstrate its use. |8b948b6| 
+|  R/prune.R           | 28 ++++++++++++++++++++--------
+|  man/prune.Rd        | 19 +++++++++++++++----
+|  man/reindex_dend.Rd |  2 +-
+|  3 files changed, 36 insertions(+), 13 deletions(-)
+
+* 2017-05-19(Tal Galili) * refactor reindex_dend to use order.dendrogram * Simpler consolidation of the prune documentation. * added reindex_dend parameter to allow the leaves of a pruned dendrogram to be of the vector of 1:nleaves |f5f09f7| 
+|  NAMESPACE             |  2 +-
+|  NEWS                  |  2 +-
+|  R/prune.R             | 72 ++++++++++++++++++++-----------------------------
+|  man/prune.Rd          | 10 +++++--
+|  man/reindex_dend.Rd   | 45 +++++++++++++++++++++++++++++++
+|  man/reindex_dendro.Rd | 43 -----------------------------
+|  6 files changed, 84 insertions(+), 90 deletions(-)
+
+* 2017-05-19(Tal Galili) Added John Ma as contributor |10d732d| 
+|  DESCRIPTION | 7 ++++---
+|  NEWS        | 6 +++++-
+|  2 files changed, 9 insertions(+), 4 deletions(-)
+
+* 2017-05-19(Tal Galili) Added reindex_dendro doc |9cc6ca6| 
+|  NAMESPACE             |  1 +
+|  man/reindex_dendro.Rd | 43 +++++++++++++++++++++++++++++++++++++++++++
+|  2 files changed, 44 insertions(+)
+
+*   2017-05-19(Tal Galili) Merge pull request #39 from JohnMCMa/master |b02dcca
+|\  
+| * 2017-03-30(John Ma) Adding function reindex_dendro to resolve problems with as.hclust |1e25e5b| | 
+| |  R/prune.R | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+| |  1 file changed, 54 insertions(+), 2 deletions(-)
+
+* | 2017-05-17(Tal Galili) Fix print.ggdend |c3c0a00| | 
+| |  R/ggdend.R | 2 +-
+| |  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* | 2017-05-17(Tal Galili) refresh .Rd files. |8b0df89| | 
+| |  man/Bk.Rd                                  |  1 -
+| |  man/Bk_permutations.Rd                     |  1 -
+| |  man/Bk_plot.Rd                             |  1 -
+| |  man/DendSer.dendrogram.Rd                  |  1 -
+| |  man/FM_index.Rd                            |  1 -
+| |  man/FM_index_R.Rd                          |  1 -
+| |  man/FM_index_permutation.Rd                |  1 -
+| |  man/FM_index_profdpm.Rd                    |  1 -
+| |  man/all.equal.dendrogram.Rd                |  3 +--
+| |  man/all_couple_rotations_at_k.Rd           |  1 -
+| |  man/all_unique.Rd                          |  1 -
+| |  man/as.dendlist.Rd                         |  1 -
+| |  man/as.phylo.dendrogram.Rd                 |  1 -
+| |  man/as_hclust_fixed.Rd                     |  1 -
+| |  man/assign_dendextend_options.Rd           |  1 -
+| |  man/assign_values_to_branches_edgePar.Rd   |  1 -
+| |  man/assign_values_to_leaves_edgePar.Rd     |  1 -
+| |  man/assign_values_to_leaves_nodePar.Rd     |  1 -
+| |  man/assign_values_to_nodes_nodePar.Rd      |  1 -
+| |  man/bakers_gamma_for_2_k_matrix.Rd         |  1 -
+| |  man/branches_attr_by_clusters.Rd           |  1 -
+| |  man/branches_attr_by_labels.Rd             |  1 -
+| |  man/circlize_dendrogram.Rd                 |  7 +++----
+| |  man/click_rotate.Rd                        |  7 +++----
+| |  man/collapse_branch.Rd                     |  1 -
+| |  man/color_branches.Rd                      |  9 ++++-----
+| |  man/color_labels.Rd                        |  1 -
+| |  man/color_unique_labels.Rd                 |  1 -
+| |  man/colored_bars.Rd                        |  9 ++++-----
+| |  man/common_subtrees_clusters.Rd            |  1 -
+| |  man/cor.dendlist.Rd                        |  1 -
+| |  man/cor_FM_index.Rd                        |  1 -
+| |  man/cor_common_nodes.Rd                    |  1 -
+| |  man/cor_cophenetic.Rd                      |  1 -
+| |  man/count_terminal_nodes.Rd                |  1 -
+| |  man/cut_lower_fun.Rd                       |  7 +++----
+| |  man/cutree_1h.dendrogram.Rd                |  7 +++----
+| |  man/cutree_1k.dendrogram.Rd                |  7 +++----
+| |  man/dend_diff.Rd                           |  3 +--
+| |  man/dendextend-package.Rd                  |  3 +--
+| |  man/dendextend_labels.dendrogram.Rd        |  1 -
+| |  man/dendextend_options.Rd                  |  1 -
+| |  man/dendlist.Rd                            |  1 -
+| |  man/dist.dendlist.Rd                       |  1 -
+| |  man/dist_long.Rd                           |  1 -
+| |  man/distinct_edges.Rd                      |  1 -
+| |  man/duplicate_leaf.Rd                      |  1 -
+| |  man/entanglement.Rd                        |  5 ++---
+| |  man/fac2num.Rd                             |  1 -
+| |  man/find_dend.Rd                           |  1 -
+| |  man/find_k.Rd                              |  1 -
+| |  man/fix_members_attr.dendrogram.Rd         |  1 -
+| |  man/flatten.dendrogram.Rd                  |  1 -
+| |  man/flip_leaves.Rd                         |  1 -
+| |  man/get_branches_heights.Rd                |  3 +--
+| |  man/get_childrens_heights.Rd               |  1 -
+| |  man/get_leaves_attr.Rd                     |  1 -
+| |  man/get_leaves_branches_attr.Rd            |  1 -
+| |  man/get_leaves_branches_col.Rd             |  1 -
+| |  man/get_leaves_edgePar.Rd                  |  1 -
+| |  man/get_leaves_nodePar.Rd                  |  1 -
+| |  man/get_nodes_attr.Rd                      |  1 -
+| |  man/get_nodes_xy.Rd                        |  1 -
+| |  man/get_root_branches_attr.Rd              |  1 -
+| |  man/hang.dendrogram.Rd                     |  1 -
+| |  man/has_component_in_attribute.Rd          |  1 -
+| |  man/heights_per_k.dendrogram.Rd            |  3 +--
+| |  man/highlight_branches.Rd                  |  3 +--
+| |  man/highlight_distinct_edges.Rd            |  3 +--
+| |  man/identify.dendrogram.Rd                 |  1 -
+| |  man/intersect_trees.Rd                     |  1 -
+| |  man/is.natural.number.Rd                   |  7 +++----
+| |  man/is_null_list.Rd                        |  1 -
+| |  man/is_some_class.Rd                       |  9 ++++-----
+| |  man/khan.Rd                                |  1 -
+| |  man/labels-assign.Rd                       | 11 +++++------
+| |  man/labels_cex.Rd                          |  1 -
+| |  man/labels_colors.Rd                       |  3 +--
+| |  man/ladderize.Rd                           |  3 +--
+| |  man/leaf_Colors.Rd                         |  7 +++----
+| |  man/lowest_common_branch.Rd                |  1 -
+| |  man/match_order_by_labels.Rd               |  1 -
+| |  man/match_order_dendrogram_by_old_order.Rd |  1 -
+| |  man/na_locf.Rd                             |  1 -
+| |  man/nleaves.Rd                             |  3 +--
+| |  man/nnodes.Rd                              |  1 -
+| |  man/noded_with_condition.Rd                |  1 -
+| |  man/order.dendrogram-assign.Rd             |  1 -
+| |  man/order.hclust.Rd                        |  1 -
+| |  man/partition_leaves.Rd                    |  1 -
+| |  man/plot_horiz.dendrogram.Rd               |  1 -
+| |  man/prune.Rd                               |  1 -
+| |  man/prune_common_subtrees.dendlist.Rd      |  1 -
+| |  man/prune_leaf.Rd                          |  1 -
+| |  man/pvclust_show_signif.Rd                 |  1 -
+| |  man/pvclust_show_signif_gradient.Rd        |  1 -
+| |  man/raise.dendrogram.Rd                    |  1 -
+| |  man/rank_branches.Rd                       |  1 -
+| |  man/rank_order.dendrogram.Rd               |  1 -
+| |  man/rank_values_with_clusters.Rd           |  1 -
+| |  man/rect.dendrogram.Rd                     |  1 -
+| |  man/reexports.Rd                           |  4 ++--
+| |  man/remove_branches_edgePar.Rd             |  1 -
+| |  man/remove_leaves_nodePar.Rd               |  1 -
+| |  man/remove_nodes_nodePar.Rd                |  1 -
+| |  man/rllply.Rd                              |  1 -
+| |  man/rotate.Rd                              |  5 ++---
+| |  man/rotate_DendSer.Rd                      |  1 -
+| |  man/sample.dendrogram.Rd                   |  1 -
+| |  man/seriate_dendrogram.Rd                  |  1 -
+| |  man/set.Rd                                 |  5 ++---
+| |  man/set_labels.Rd                          |  9 ++++-----
+| |  man/shuffle.Rd                             |  3 +--
+| |  man/sort_2_clusters_vectors.Rd             |  1 -
+| |  man/sort_dist_mat.Rd                       |  1 -
+| |  man/sort_levels_values.Rd                  |  1 -
+| |  man/tanglegram.Rd                          | 13 ++++++-------
+| |  man/theme_dendro.Rd                        |  7 +++----
+| |  man/unbranch.Rd                            |  1 -
+| |  man/unclass_dend.Rd                        |  1 -
+| |  man/untangle.Rd                            | 11 +++++------
+| |  man/untangle_DendSer.Rd                    |  1 -
+| |  man/untangle_random_search.Rd              |  1 -
+| |  man/untangle_step_rotate_1side.Rd          |  1 -
+| |  man/untangle_step_rotate_2side.Rd          |  1 -
+| |  man/which_leaf.Rd                          |  1 -
+| |  man/which_node.Rd                          |  1 -
+| |  127 files changed, 75 insertions(+), 201 deletions(-)
+
+* | 2017-05-17(Tal Galili) Add print.ggdend - a wrapper for ggplot2::ggplot of a ggdend object. |95ae952| | 
+| |  DESCRIPTION             |  2 +-
+| |  NAMESPACE               |  1 +
+| |  NEWS                    |  3 +++
+| |  R/ggdend.R              |  8 +++++++-
+| |  man/cor_bakers_gamma.Rd |  6 ++++--
+| |  man/cutree-methods.Rd   | 11 +++++------
+| |  man/ggdend.Rd           | 18 ++++++++++--------
+| |  7 files changed, 31 insertions(+), 18 deletions(-)
+
+* | 2017-05-04(Tal Galili) Mention that dendextendRcpp is no longer supported. |f3e28e6
+|/  |   
+|    README.md | 8 ++++----
+|    1 file changed, 4 insertions(+), 4 deletions(-)
+
+* 2017-03-27(Tal Galili) remove dendextendRcpp further |af9921e| 
+|  DESCRIPTION                |  4 ++--
+|  NEWS                       |  3 ++-
+|  vignettes/introduction.Rmd | 12 +++++++-----
+|  3 files changed, 11 insertions(+), 8 deletions(-)
+
+* 2017-03-27(Tal Galili) Rollback viridisLite to viridis (to check if this is what's breaking everything) |abe5348| 
+|  DESCRIPTION | 2 +-
+|  NAMESPACE   | 2 +-
+|  R/zzz.R     | 2 +-
+|  3 files changed, 3 insertions(+), 3 deletions(-)
+
+* 2017-03-27(Tal Galili) Fix viridis to viridisLite in NAMESPACE |7ae8a29| 
+|  NAMESPACE | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2017-03-27(Tal Galili) viridis to viridisLite |d183226| 
+|  DESCRIPTION | 6 +++---
+|  R/zzz.R     | 2 +-
+|  2 files changed, 4 insertions(+), 4 deletions(-)
+
+* 2017-03-27(Tal Galili) Remove dendextendRcpp :(  (from tests and suggests) |986bce1| 
+|  DESCRIPTION      | 1 -
+|  NEWS             | 5 +++++
+|  tests/test-all.R | 4 ++--
+|  3 files changed, 7 insertions(+), 3 deletions(-)
+
+* 2017-03-24(Tal Galili) update NEWS |ba11350| 
+|  ChangeLog | 131 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+|  NEWS.md   |  16 +++++++-
+|  2 files changed, 142 insertions(+), 5 deletions(-)
+
 * 2017-03-24(Tal Galili) 1.5.0 |d574b43| 
 |  DESCRIPTION | 4 ++--
 |  NEWS        | 9 ++-------
