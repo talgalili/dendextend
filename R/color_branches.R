@@ -231,7 +231,7 @@ all_unique <- function(x, ...) {
 #' 
 #' 
 #' # another example, based on the question here:
-#' # https://stackoverflow.com/questions/45432271/how-to-color-branches-in-r-dendogram-by-the-a-function-of-the-classes-in-it/
+#' # https://stackoverflow.com/q/45432271/256662
 #' 
 #'
 #' library(cluster)
