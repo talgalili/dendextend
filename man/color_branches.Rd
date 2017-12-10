@@ -77,23 +77,28 @@ of an object without \link{rownames}.
 \examples{
 
 \dontrun{
+par(mfrow = c(1,2))
 dend <- USArrests \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
-d1=color_branches(dend,5, col = c(3,1,1,4,1))
+d1=color_branches(dend, k = 5, col = c(3,1,1,4,1))
 plot(d1) # selective coloring of branches :)
 d2=color_branches(d1,5)
 plot(d2) 
 
+par(mfrow = c(1,2))
 d1=color_branches(dend,5, col = c(3,1,1,4,1),groupLabels=TRUE)
 plot(d1) # selective coloring of branches :)
 d2=color_branches(d1,5,groupLabels=TRUE)
 plot(d2) 
 
+par(mfrow = c(1,3))
 d5=color_branches(dend,5)
 plot(d5)
 d5g=color_branches(dend,5,groupLabels=TRUE)
 plot(d5g)
 d5gr=color_branches(dend,5,groupLabels=as.roman)
 plot(d5gr)
+
+par(mfrow = c(1,1))
 
 # messy - but interesting:
 dend_override=color_branches(dend,2,groupLabels=as.roman)
