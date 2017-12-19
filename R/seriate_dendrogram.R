@@ -28,19 +28,19 @@
 #' @export
 #' @description
 #' Rotates a dendrogram so it confirms to an order of a provided distance object.
-#' The seriation algorithm is based on \link[seriation]{seriate}, which tries to find 
+#' The seriation algorithm is based on \link[seriation]{seriate}, which tries to find
 #' a linear order for objects using data in form of a dissimilarity matrix (one mode data).
-#' 
+#'
 #' This is useful for heatmap visualization.
-#' 
+#'
 #' @param dend An object of class \link{dendrogram} or \link{hclust}
 #' @param x a \link{dist} object.
 #' @param method a character vector of either "OLO" or "GW":
-#' "OLO" - Optimal leaf ordering, optimzes the Hamiltonian path length that is restricted by the dendrogram structure - works in O(n^4) 
+#' "OLO" - Optimal leaf ordering, optimzes the Hamiltonian path length that is restricted by the dendrogram structure - works in O(n^4)
 #' "GW" - Gruvaeus and Wainer heuristic to optimze the Hamiltonian path length that is restricted by the dendrogram structure
-#' 
+#'
 #' @param ... parameters passed to \link[seriation]{seriate}
-#' @return 
+#' @return
 #' A dendrogram that is rotated based on the optimal ordering of the distance matrix
 #' @seealso \code{\link[dendextend]{rotate}}, \link[seriation]{seriate}
 #' @examples
@@ -49,33 +49,33 @@
 #' d <- dist(USArrests)
 #' hc <- hclust(d, "ave")
 #' dend <- as.dendrogram(hc)
-#' 
+#'
 #' heatmap(as.matrix(USArrests))
-#' 
+#'
 #' dend2 <- seriate_dendrogram(dend, d)
 #' heatmap(as.matrix(USArrests), Rowv = dend)
-#' 
-#' 
+#'
+#'
 #' }
 seriate_dendrogram <- function(dend, x, method = c("OLO", "GW"), ...) {
-   
+
    if(!requireNamespace("seriation")) stop("Please first install seriation:\n install.packages('seriaten') ")
-   
+
    if(!is.dendrogram(dend) & !is.hclust(dend)) stop("dend must be either a dendrogram or an hclust object")
    if(!is.dist(x)) stop("x must be a dist object")
    if(!identical(sort(labels(x)), sort(labels(dend)))) stop("The labels of dend and x must be identical.")
    method <- match.arg(method)
-   
+
    # o <- seriate(d, method = "GW", control = list(hclust = as.hclust(dend)) )
    # get_order(o)
    # library(seriation)
    # hmap(sqrt(d2), Colv = "none", trace = "none", col = viridis(200))
-   # Error in (function (x, Rowv = TRUE, Colv = if (symm) "Rowv" else TRUE,  : 
+   # Error in (function (x, Rowv = TRUE, Colv = if (symm) "Rowv" else TRUE,  :
    #                       formal argument "Colv" matched by multiple actual arguments
-   o <- seriation::seriate(x, method = "OLO", control = list(hclust = as.hclust(dend)), ... )
+   o <- seriation::seriate(x, method = method, control = list(hclust = as.hclust(dend)), ... )
    # library(dendextend)
    dend <- rotate(dend, order = rev(labels(x)[seriation::get_order(o)]))
    dend
 }
-   
+
 
