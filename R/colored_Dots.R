@@ -61,8 +61,8 @@ max_labels_height <- function(s) {
 
 
 colored_dots<-function (colors, dend, rowLabels = NULL, cex.rowLabels = 0.9, 
-                  add = TRUE, y_scale, y_shift, text_shift = 1, sort_by_labels_order = TRUE, 
-                  horiz = FALSE, ...) 
+                        add = TRUE, y_scale, y_shift, text_shift = 1, sort_by_labels_order = TRUE, 
+                        horiz = FALSE, ...) 
 {
   n_colors <- if (is.null(dim(colors))) 
     length(colors)
@@ -133,6 +133,7 @@ colored_dots<-function (colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
       yt <- yt * y_scale + y_shift
     }
     if (horiz) {
+      # Instead of rectangles, put in points at 1/2 x and y coordinates 
       #rect(-yb, xl, -yt, xr, col = as.character(C[, j]), 
       #     border = as.character(C[, j]))
       
@@ -154,10 +155,11 @@ colored_dots<-function (colors, dend, rowLabels = NULL, cex.rowLabels = 0.9,
       }
     }
     else {
+      # Instead of rectangles, put in points at 1/2 x and y coordinates
       #rect(xl, yb, xr, yt, col = as.character(C[, j]), 
       #    border = as.character(C[, j]))
       points((xl1+xr)/2,(yb+yt)/2,pch=19,col = as.character(C[, j]))
-     
+      
       
       
       if (is.null(rowLabels)) {
