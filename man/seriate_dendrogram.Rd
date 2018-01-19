@@ -12,7 +12,7 @@ seriate_dendrogram(dend, x, method = c("OLO", "GW"), ...)
 \item{x}{a \link{dist} object.}
 
 \item{method}{a character vector of either "OLO" or "GW":
-"OLO" - Optimal leaf ordering, optimzes the Hamiltonian path length that is restricted by the dendrogram structure - works in O(n^4) 
+"OLO" - Optimal leaf ordering, optimzes the Hamiltonian path length that is restricted by the dendrogram structure - works in O(n^4)
 "GW" - Gruvaeus and Wainer heuristic to optimze the Hamiltonian path length that is restricted by the dendrogram structure}
 
 \item{...}{parameters passed to \link[seriation]{seriate}}
@@ -22,7 +22,7 @@ A dendrogram that is rotated based on the optimal ordering of the distance matri
 }
 \description{
 Rotates a dendrogram so it confirms to an order of a provided distance object.
-The seriation algorithm is based on \link[seriation]{seriate}, which tries to find 
+The seriation algorithm is based on \link[seriation]{seriate}, which tries to find
 a linear order for objects using data in form of a dissimilarity matrix (one mode data).
 
 This is useful for heatmap visualization.
