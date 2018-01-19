@@ -15,25 +15,22 @@
 #' clusters.
 #' @examples
 #' 
-#' \dontrun{
 #' # define dendrogram object to play with:
 #' dend <- iris[,-5] %>% dist %>% hclust %>% as.dendrogram %>%  set("labels_to_character") %>% color_branches(k=5)
-#' dend.list <- get.subdendrograms(dend, 5)
+#' dend_list <- get_subdendrograms(dend, 5)
 #'
 #' # Plotting the result
 #' par(mfrow = c(2,3))
 #' plot(dend, main = "Original dendrogram")
-#' sapply(ll, plot)
-#' }
+#' sapply(dend_list, plot)
 #' 
-
-get.subdendrograms <- function(dend, k, ...) {
+get_subdendrograms <- function(dend, k, ...) {
     clusters <- cutree(dend, k, ...)
-    dend.list <- lapply(unique(clusters), function(cluster.id){
-       find.dendrogram(dend, which(clusters == cluster.id))
+    dend_list <- lapply(unique(clusters), function(cluster.id){
+       find_dendrogram(dend, which(clusters == cluster.id))
     })  
-    class(dend.list) <- "dendlist"
-    dend.list
+    class(dend_list) <- "dendlist"
+    dend_list
 }
 
 #' @title Search for the subdendrogram structure composed of indicated labels
@@ -44,7 +41,7 @@ get.subdendrograms <- function(dend, k, ...) {
 #' which should compose the subdendrogram are marked as TRUE in the logical
 #' vector of length \code{nleaves(dend)} 
 #' @param dend a dendrogram object 
-#' @param selected.labels logical vector with TRUE values at positions of
+#' @param selected_labels logical vector with TRUE values at positions of
 #' members which should be included in the resulting subdendrogram
 #' @return 
 #' A subdendrogram composed of only members indicated in the given logical
@@ -56,22 +53,21 @@ get.subdendrograms <- function(dend, k, ...) {
 #' # define dendrogram object to play with:
 #' dend <- iris[,-5] %>% dist %>% hclust %>% as.dendrogram %>%  set("labels_to_character") %>% color_branches(k=5)
 #' first.subdend.only <- cutree(dend, 4) == 1
-#' sub.dend <- find.dendrogram(dend, first.subdend.only)
+#' sub.dend <- find_dendrogram(dend, first.subdend.only)
 #' # Plotting the result
 #' par(mfrow=c(1,2))
 #' plot(dend, main = "Original dendrogram")
 #' plot(sub.dend, main = "First subdendrogram")
 #' }
 #' 
-
-find.dendrogram<-function(dendr, selected.labels){
-    if(all(unlist(dendr) %in% selected.labels))
-        return(dendr)
+find_dendrogram<-function(dend, selected_labels){
+    if(all(unlist(dend) %in% selected_labels))
+        return(dend)
     
-    if(any(unlist(dendr[[1]]) %in% selected.labels))
-        return(find.dendrogram(dendr[[1]], selected.labels))
+    if(any(unlist(dend[[1]]) %in% selected_labels))
+        return(find_dendrogram(dend[[1]], selected_labels))
     else 
-        return(find.dendrogram(dendr[[2]], selected.labels))
+        return(find_dendrogram(dend[[2]], selected_labels))
 }
 
 
