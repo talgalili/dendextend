@@ -69,7 +69,7 @@ Suggests:
     circlize (>= 0.2.5),
     covr
 Enhances: ggdendro,
-    labeltodendro,dendroextras, Hmisc,
+    dendroextras, Hmisc,
     data.table, rpart
 VignetteBuilder: knitr
 LazyData: true

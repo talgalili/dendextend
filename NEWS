@@ -9,7 +9,7 @@ dendextend 1.7.0 (2018-02-10)
    * seriate_dendrogram = stop seriate_dendrogram from always using OLO #57
    
 ###OTHER NOTES
-   * Remove NMF from suggested (as it is about to be removed from CRAN).
+   * Remove NMF from suggested (as it is about to be removed from CRAN). And also labeltodendro.
  
 
 
