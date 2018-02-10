@@ -2,7 +2,7 @@ Package: dendextend
 Type: Package
 Title: Extending 'dendrogram' Functionality in R
 Version: 1.7.0
-Date: 2018-01-19
+Date: 2018-02-10
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "https://www.r-statistics.com"),
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
@@ -58,7 +58,6 @@ Suggests:
     profdpm,
     microbenchmark,
     gplots,
-    NMF,
     heatmaply,
     d3heatmap,
     dynamicTreeCut,
