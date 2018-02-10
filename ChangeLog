@@ -1,3 +1,56 @@
+* 2018-02-10(Tal Galili) Remove NMF from suggested |846f881| 
+|  DESCRIPTION                |  3 +--
+|  NEWS                       |  7 +++++--
+|  vignettes/introduction.Rmd | 34 ++++++++++++++++++++--------------
+|  3 files changed, 26 insertions(+), 18 deletions(-)
+
+* 2018-01-19(Tal Galili) add docs and fix #61 |1d12d13| 
+|  NAMESPACE                 |  2 ++
+|  man/find_dendrogram.Rd    | 39 ++++++++++++++++++++++++++++++
+|  man/get_subdendrograms.Rd | 59 +++++++++++++++++++++++++++++++++++++++++++++
+|  man/seriate_dendrogram.Rd |  4 +--
+|  4 files changed, 102 insertions(+), 2 deletions(-)
+
+* 2018-01-19(Tal Galili) Updated NEWS and added storaged as a contributor |dccff9b| 
+|  DESCRIPTION | 10 ++++++----
+|  NEWS        | 13 +++++++++++++
+|  2 files changed, 19 insertions(+), 4 deletions(-)
+
+* 2018-01-19(Tal Galili) update get_dendrograms example to demonstrate how to plot it in a heatmap.2 |f9c576e| 
+|  R/get_subdendrograms.R | 24 ++++++++++++++++++++++--
+|  1 file changed, 22 insertions(+), 2 deletions(-)
+
+* 2018-01-19(Tal Galili) styler the functions |e02364d| 
+|  R/get_subdendrograms.R | 52 ++++++++++++++++++++++++------------------------
+|  1 file changed, 26 insertions(+), 26 deletions(-)
+
+* 2018-01-19(Tal Galili) move to using _ instead of . |cb1f7bb| 
+|  R/get_subdendrograms.R | 34 +++++++++++++++-------------------
+|  1 file changed, 15 insertions(+), 19 deletions(-)
+
+* 2018-01-11(storaged) Functions that help to extract subdendrogram structures based on given number of expected stuctures |14130e4| 
+|  R/get_subdendrograms.R | 77 ++++++++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 77 insertions(+)
+
+*   2017-12-19(Tal Galili) Merge pull request #58 from Alanocallaghan/master |7d11920
+|\  
+| * 2017-12-19(Alan O'Callaghan) Bugfix seriate_dendrogram |e77e2be
+|/  |   
+|    R/seriate_dendrogram.R | 32 ++++++++++++++++----------------
+|    1 file changed, 16 insertions(+), 16 deletions(-)
+
+* 2017-12-10(Tal Galili) Adding some #' par(mfrow = c(1,2)) |f5ad443| 
+|  R/color_branches.R    | 7 ++++++-
+|  man/color_branches.Rd | 7 ++++++-
+|  2 files changed, 12 insertions(+), 2 deletions(-)
+
+* 2017-11-13(Tal Galili) Bump version to 0.16.0 |879d98c| 
+|  ChangeLog   | 275 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  DESCRIPTION |   2 +-
+|  NEWS        |   2 +-
+|  NEWS.md     | 198 ++++++++++++++++++++++++------------------
+|  4 files changed, 390 insertions(+), 87 deletions(-)
+
 * 2017-11-13(Tal Galili) fix long url: |3e9f0d6| 
 |  R/color_branches.R    | 2 +-
 |  man/color_branches.Rd | 2 +-

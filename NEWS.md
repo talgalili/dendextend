@@ -1,3 +1,19 @@
+dendextend 1.7.0 (2018-02-10)
+----------------------------------------
+
+###NEW FUNCTIONS
+* get_subdendrograms (and find_dendrogram) - getting subtrees from dendrogram based on cutree labels (fixes #61 and https://stackoverflow.com/questions/48167369/r-getting-subtrees-from-dendrogram-based-on-cutree-labels/)
+
+
+###BUG FIXES
+   * seriate_dendrogram = stop seriate_dendrogram from always using OLO #57
+   
+###OTHER NOTES
+   * Remove NMF from suggested (as it is about to be removed from CRAN).
+ 
+
+
+
 dendextend 1.6.0 (2017-11-13)
 ----------------------------------------
 
