@@ -34,7 +34,8 @@ investigation of clustering results.
 # devtools::install_github('talgalili/dendextend') #' dendextend from github
 
 # define dendrogram object to play with:
-dend <- iris[,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram \%>\%  set("labels_to_character") \%>\% color_branches(k=5)
+dend <- iris[,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram \%>\%  
+      set("labels_to_character") \%>\% color_branches(k=5)
 dend_list <- get_subdendrograms(dend, 5)
 
 # Plotting the result
