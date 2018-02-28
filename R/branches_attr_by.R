@@ -351,3 +351,78 @@ branches_attr_by_labels <- function(dend, labels, TF_values = c(2,Inf), attr = c
 
 
 
+
+
+
+## provided by Manuela Hummel (m.hummel@dkfz.de)
+# code partly taken from the 'globaltest' package (Jelle Goeman, Jan Oosting)
+
+#' @title Change col/lwd/lty of branches from the root down to clusters defined by list of labels of respective members
+#' @export
+#' @description
+#' The user supplies a dend, lists, and type of condition (all/any), and TF_values
+#' And the function returns a dendrogram with branches col/lwd/lty accordingly
+#' @param dend a dendrogram dend 
+#' @param lists a list where each element contains the labels of members in selected nodes 
+#' down to which the branches shall be adapted
+#' @param TF_values a two dimensional vector with the TF_values to use in case a branch fulfills the condition (TRUE)
+#' and in the case that it does not (FALSE). Defaults are 2/1 for col, lwd and lty.
+#' (so it will insert the first value, and will not change all the FALSE cases)
+#' @param attr a character with one of the following values: col/lwd/lty
+#' @param ... ignored.
+#' @return 
+#' A dendrogram with modified branches (col/lwd/lty).
+#' @seealso \link{branches_attr_by_labels}
+#' @examples
+#' \dontrun{
+#' 
+#' library(dendextend)
+#' 
+#' set.seed(23235)
+#' ss <- sample(1:150, 10 )
+#' 
+#' # Getting the dend dend
+#' dend <- iris[ss,-5] %>% dist %>% hclust %>% as.dendrogram
+#' dend %>% plot
+#' 
+#' # define a list of nodes
+#' L <- list(c("109", "123", "126", "145"), "29", c("59", "67", "97"))
+#' dend %>% 
+#'    branches_attr_by_lists(L) %>%
+#'    plot
+#'
+#' # choose different color, and also change lwd and lty 
+#' dend %>% 
+#'    branches_attr_by_lists(L, TF_value = "blue") %>%
+#'    branches_attr_by_lists(L, attr = "lwd", TF_value = 4) %>%
+#'    branches_attr_by_lists(L, attr = "lty", TF_value = 3) %>%
+#'    plot
+#' }
+branches_attr_by_lists <- function(dend, lists, TF_values = c(2,1), attr = c("col", "lwd", "lty"), ...) {
+  if(!is.dendrogram(dend)) stop("'dend' should be a dendrogram.")   
+  if(missing(lists)) stop("'lists' parameter is missing.")
+
+  attr <- match.arg(attr)
+  if(length(TF_values) == 1) TF_values <- c(TF_values, 1)
+  uit <- dend
+  
+  # get nodes down to which attribute shall be changed
+  sig <- any(sapply(lists, function(x) all(x %in% labels(uit))))
+  
+  attr(uit, "edgePar") <- switch(attr,
+                                 col = c(attr(uit, "edgePar"), list(col = ifelse(sig, TF_values[1], TF_values[2]))),
+                                 lwd = c(attr(uit, "edgePar"), list(lwd = ifelse(sig, TF_values[1], TF_values[2]))),
+                                 lty = c(attr(uit, "edgePar"), list(lty = ifelse(sig, TF_values[1], TF_values[2])))
+                          )
+                                 
+  # continue with the child branches
+  if (!is.leaf(dend)) {
+    select.branch <- 1:length(dend)
+    for (i in 1:length(select.branch)) 
+      uit[[i]] <- Recall(dend[[select.branch[i]]], lists, TF_values, attr)
+  }
+  return(uit)
+}  
+  
+
+
