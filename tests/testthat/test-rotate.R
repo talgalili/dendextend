@@ -91,7 +91,8 @@ test_that("Rotate a hclust (but not exactly to what we asked for)",{
 
 
 test_that("seriate fails with duplicated labels", {
-    dist <- dist(mtcars[c(1, 1, 2:5)])
+    m <- as.matrix(mtcars)[c(1, 1, 2:5), ]
+    dist <- dist(mtcars[c(1, 1, 2:5), ])
     dend <- as.dendrogram(hclust(dist))
-    expect_error(seriate_dendrogram(dend, dist), "Cannot use duplicated labels with rotate\\.dendrogram")
+    expect_error(dendextend::seriate_dendrogram(dend, dist), "Cannot use duplicated labels with rotate\\.dendrogram")
 })
