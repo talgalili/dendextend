@@ -84,15 +84,26 @@ prune_leaf <- function(dend, leaf_name,...)
                dend[[i]] <- remove_leaf_if_child(dend[[i]], leaf_name)
             }
          } else { # we'll merge 
-            if(length(dend) != 2) stop("This function doesn't work for non binary branches where the leaf to remove is located")	# this should be fixed in the future...				
-            # if leaf location is 1, then move branch in leaf 2 to be the new x
-            leaf_location <- 1 			
-            if(is.leaf(dend[[leaf_location]]) == T  &&  labels(dend[[leaf_location]]) == leaf_name) {
-               branch_to_bumpup <- 2
-               dend <- dend[[branch_to_bumpup]]
-            } else { # else - the leaf location must be located in position "2"
-               branch_to_bumpup <- 1
-               dend <- dend[[branch_to_bumpup]]
+            if(length(dend) == 2) {
+              leaf_location <- 1 
+              # if leaf location is 1, then move branch in leaf 2 to be the new x
+              if(is.leaf(dend[[leaf_location]]) == T  &&  labels(dend[[leaf_location]]) == leaf_name) {
+                branch_to_bumpup <- 2
+                dend <- dend[[branch_to_bumpup]]
+              } else { # else - the leaf location must be located in position "2"
+                branch_to_bumpup <- 1
+                dend <- dend[[branch_to_bumpup]]
+              }
+            } else if(length(dend) > 2) {
+              # If more than 2 branches, check if any are leaves
+              dend_leaves <- unlist(lapply(dend, is.leaf))
+              if(sum(dend_leaves) > 0) {
+                # If so, check for matching labels to the leaf to prune
+                dend_labels <- unlist(lapply(dend, function(x) attr(x, "label")))
+                dend_matches <- dend_labels == leaf_name
+                # Return a list containing the non-matching branches
+                dend <- dend[!(dend_leaves & dend_matches)]
+              }
             }				
          }
       }		
