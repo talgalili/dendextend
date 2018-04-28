@@ -1,3 +1,12 @@
+dendextend 1.9.0 (2018-04-28)
+----------------------------------------
+
+###NEW FUNCTIONS
+
+* colored_dots - Add colored dots beside a dendrogram
+
+
+
 dendextend 1.8.0 (2018-03-16)
 ----------------------------------------
 
