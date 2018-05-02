@@ -1,3 +1,84 @@
+* 2018-04-28(Tal Galili) update docs |4cb6652| 
+|  NAMESPACE           |   1 +
+|  man/colored_dots.Rd | 192 ++++++++++++++++++++++++++++++++++++++++++++++++++
+|  2 files changed, 193 insertions(+)
+
+* 2018-04-28(Tal Galili) temp rename 2 |2be950c| 
+|  R/colored_dots.R    | 441 ++++++++++++++++++++++++++++++++++++++++++++++++++
+|  R/colored_dots111.R | 441 --------------------------------------------------
+|  2 files changed, 441 insertions(+), 441 deletions(-)
+
+* 2018-04-28(Tal Galili) temp rename |d8b1ce7| 
+|  R/colored_Dots.R    | 441 --------------------------------------------------
+|  R/colored_dots.R    | 441 --------------------------------------------------
+|  R/colored_dots111.R | 441 ++++++++++++++++++++++++++++++++++++++++++++++++++
+|  3 files changed, 441 insertions(+), 882 deletions(-)
+
+* 2018-04-28(Tal Galili) stlyr the colored_dots file/functions |3f9da97| 
+|  NEWS             |   9 +
+|  R/colored_Dots.R | 493 ++++++++++++++++++++++++++---------------------------
+|  R/colored_dots.R | 493 ++++++++++++++++++++++++++---------------------------
+|  3 files changed, 485 insertions(+), 510 deletions(-)
+
+* 2018-04-28(Tal Galili) rename color_dots file to be lower case |c1351e3| 
+|  R/colored_dots.R | 458 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 458 insertions(+)
+
+* 2018-04-28(Tal Galili) Added Chase Clark as a contributor |949cebf| 
+|  DESCRIPTION | 10 +++++++---
+|  1 file changed, 7 insertions(+), 3 deletions(-)
+
+* 2018-03-03(Chase Clark) Added Roxygen, added examples similar to "colored_bars" |9cb4b46| 
+|  R/colored_Dots.R | 504 ++++++++++++++++++++++++++++++++++++++++-------------
+|  1 file changed, 385 insertions(+), 119 deletions(-)
+
+* 2018-01-15(Chase Clark) Add two comments |cbd2e2d| 
+|  R/colored_Dots.R | 8 +++++---
+|  1 file changed, 5 insertions(+), 3 deletions(-)
+
+* 2018-01-01(Chase Clark) Create colored_Dots.R |501fa8b| 
+|  R/colored_Dots.R | 190 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 190 insertions(+)
+
+* 2018-03-16(Tal Galili) Update version and added Manuela Hummel as author of: branches_attr_by_lists - Change col/lwd/lty of branches from the root down to clusters defined by list of labels of respective members |26f20b6| 
+|  DESCRIPTION | 8 +++++---
+|  NEWS        | 9 +++++++++
+|  2 files changed, 14 insertions(+), 3 deletions(-)
+
+* 2018-03-14(Hummel) added test unit for branches_attr_by_labels |6cf0d62| 
+|  tests/testthat/test-branches_attr_by.R | 32 ++++++++++++++++++++++++++++++++
+|  1 file changed, 32 insertions(+)
+
+* 2018-02-28(Hummel) added documentation for branches_attr_by_lists |1950401| 
+|  man/branches_attr_by_lists.Rd | 59 +++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 59 insertions(+)
+
+* 2018-02-28(Hummel) added documentation for branches_attr_by_lists |e02f1ef| 
+|  man/set.Rd | 21 +++++++++++++++++----
+|  1 file changed, 17 insertions(+), 4 deletions(-)
+
+* 2018-02-28(Hummel) added function branches_attr_by_lists |11a232f| 
+|  NAMESPACE            |  1 +
+|  R/branches_attr_by.R | 75 ++++++++++++++++++++++++++++++++++++++++++++++++++
+|  R/set.dendrogram.R   | 24 ++++++++++++++--
+|  3 files changed, 97 insertions(+), 3 deletions(-)
+
+* 2018-02-10(Tal Galili) remove labeltodendro. |49dde87| 
+|  DESCRIPTION | 2 +-
+|  NEWS        | 2 +-
+|  2 files changed, 2 insertions(+), 2 deletions(-)
+
+* 2018-02-10(Tal Galili) Fix: Rd line widths ... NOTE |54b9889| 
+|  R/get_subdendrograms.R    | 6 ++++--
+|  man/find_dendrogram.Rd    | 3 ++-
+|  man/get_subdendrograms.Rd | 3 ++-
+|  3 files changed, 8 insertions(+), 4 deletions(-)
+
+* 2018-02-10(Tal Galili) update NEWS.md |c13a2c6| 
+|  ChangeLog | 53 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  NEWS.md   | 16 ++++++++++++++++
+|  2 files changed, 69 insertions(+)
+
 * 2018-02-10(Tal Galili) Remove NMF from suggested |846f881| 
 |  DESCRIPTION                |  3 +--
 |  NEWS                       |  7 +++++--

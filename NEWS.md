@@ -1,3 +1,13 @@
+dendextend 1.8.0 (2018-04-28)
+----------------------------------------
+
+###NEW FUNCTIONS
+
+* branches_attr_by_lists - Change col/lwd/lty of branches from the root down to clusters defined by list of labels of respective members
+* colored_dots - Add colored dots beside a dendrogram
+
+
+
 dendextend 1.7.0 (2018-02-10)
 ----------------------------------------
 
@@ -9,7 +19,7 @@ dendextend 1.7.0 (2018-02-10)
    * seriate_dendrogram = stop seriate_dendrogram from always using OLO #57
    
 ###OTHER NOTES
-   * Remove NMF from suggested (as it is about to be removed from CRAN).
+   * Remove NMF from suggested (as it is about to be removed from CRAN). And also labeltodendro.
  
 
 
