@@ -59,11 +59,12 @@
 #' }
 seriate_dendrogram <- function(dend, x, method = c("OLO", "GW"), ...) {
 
-   if(!requireNamespace("seriation")) stop("Please first install seriation:\n install.packages('seriaten') ")
+   if (!requireNamespace("seriation")) stop("Please first install seriation:\n install.packages('seriaten') ")
 
-   if(!is.dendrogram(dend) & !is.hclust(dend)) stop("dend must be either a dendrogram or an hclust object")
-   if(!is.dist(x)) stop("x must be a dist object")
-   if(!identical(sort(labels(x)), sort(labels(dend)))) stop("The labels of dend and x must be identical.")
+   if (!is.dendrogram(dend) & !is.hclust(dend)) stop("dend must be either a dendrogram or an hclust object")
+   if (!is.dist(x)) stop("x must be a dist object")
+   if (!identical(sort(labels(x)), sort(labels(dend)))) stop("The labels of dend and x must be identical.")
+   if (any(duplicated(labels(dend)))) stop("Cannot use duplicated labels with rotate.dendrogram")
    method <- match.arg(method)
 
    # o <- seriate(d, method = "GW", control = list(hclust = as.hclust(dend)) )
