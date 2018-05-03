@@ -95,3 +95,35 @@ test_that("assign_values_to_branches_edgePar - when trying to keep a value un-to
 # attr(dend_node, "edgePar")["b"] <- list(1) # works!
 # attr(dend_node, "edgePar")[["b"]] <- list(1) # doesn't work
 
+
+
+test_that("branches_attr_by_labels works",{
+  
+  dend <- c(1:4) %>% dist %>% hclust %>% as.dendrogram
+  L <- list(1:2, 3)
+  tmp <- dend %>% branches_attr_by_lists(L)
+  expect_equal(attr(tmp[[1]], "edgePar")$col, 2)
+  expect_equal(attr(tmp[[2]], "edgePar")$col, 2)
+  expect_equal(attr(tmp[[1]][[1]], "edgePar")$col, 1)
+  expect_equal(attr(tmp[[1]][[2]], "edgePar")$col, 1)
+  expect_equal(attr(tmp[[2]][[1]], "edgePar")$col, 2)
+  expect_equal(attr(tmp[[2]][[2]], "edgePar")$col, 1)
+  
+  # with changed col/lwd/lty
+  tmp <- dend %>% 
+        branches_attr_by_lists(L, TF_value = "blue") %>%
+        branches_attr_by_lists(L, attr = "lwd", TF_value = 4) %>%
+        branches_attr_by_lists(L, attr = "lty", TF_value = 3)
+  expect_equal(attr(tmp[[1]], "edgePar")$col, "blue")
+  expect_equal(attr(tmp[[1]], "edgePar")$lwd, 4)
+  expect_equal(attr(tmp[[1]], "edgePar")$lty, 3)
+  
+  # when individual features are selected
+  tmp <- dend %>% branches_attr_by_lists(c(1, 4))
+  expect_equal(attr(tmp[[1]], "edgePar")$col, 2)
+  expect_equal(attr(tmp[[2]], "edgePar")$col, 2)
+  expect_equal(attr(tmp[[1]][[1]], "edgePar")$col, 2)
+  expect_equal(attr(tmp[[1]][[2]], "edgePar")$col, 1)
+  expect_equal(attr(tmp[[2]][[1]], "edgePar")$col, 1)
+  expect_equal(attr(tmp[[2]][[2]], "edgePar")$col, 2)
+})

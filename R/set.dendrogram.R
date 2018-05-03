@@ -46,8 +46,9 @@
 #' might wish to perform on a dendrogram before plotting.
 #' 
 #' The options of by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
-#' have extra parameters: type, attr, TF_value. You can read more about them here:
-#' \link{branches_attr_by_labels}
+#' have extra parameters: type, attr, TF_value, and by_lists_branches_col, by_lists_branches_lwd,
+#' by_lists_branches_lty have extra parameters: attr, TF_value. You can read more about them here:
+#' \link{branches_attr_by_labels} and \link{branches_attr_by_lists}
 #' 
 #' The "what" parameter" can accept the following options:
 #' 
@@ -71,6 +72,9 @@
 #' \item{by_labels_branches_col - set the color of branches with specific labels (\link{branches_attr_by_labels}) }
 #' \item{by_labels_branches_lwd - set the line width of branches with specific labels (\link{branches_attr_by_labels}) }
 #' \item{by_labels_branches_lty - set the line type of branches with specific labels (\link{branches_attr_by_labels}) }
+#' \item{by_lists_branches_col - set the color of branches from the root of the tree down to (possibly inner) nodes with specified members (\link{branches_attr_by_lists}) }
+#' \item{by_lists_branches_lwd - set the line width of branches from the root of the tree down to (possibly inner) nodes with specified members (\link{branches_attr_by_lists}) }
+#' \item{by_lists_branches_lty - set the line type of branches from the root of the tree down to (possibly inner) nodes with specified members (\link{branches_attr_by_lists}) }
 #' \item{highlight_branches_col - highlight branches color based on branches' heights (\link{highlight_branches_col}) }
 #' \item{highlight_branches_lwd - highlight branches line-width based on branches' heights (\link{highlight_branches_lwd}) }
 #' \item{clear_branches - clear branches' attributes (\link{remove_branches_edgePar})}
@@ -85,7 +89,7 @@
 #' \link{assign_values_to_leaves_nodePar},
 #' \link{assign_values_to_branches_edgePar},
 #' \link{remove_branches_edgePar}, \link{remove_leaves_nodePar},
-#' \link{noded_with_condition}, \link{branches_attr_by_labels},
+#' \link{noded_with_condition}, \link{branches_attr_by_labels}, \link{branches_attr_by_lists},
 #' \link{dendrogram}
 #' 
 #' @return 
@@ -188,7 +192,15 @@
 #' dend %>% set("labels_colors", cutree(dend, k = 3), order_value = TRUE) %>% plot
 #' 
 #' 
+#' #----------------------------
+#' # Example for: by_lists_branches_col, by_lists_branches_lwd, by_lists_branches_lty
 #' 
+#' L <- list(c("109", "123", "126", "145"), "29", c("59", "67", "97"))
+#' dend %>% 
+#'    set("by_lists_branches_col", L, TF_value = "blue") %>%
+#'    set("by_lists_branches_lwd", L, TF_value = 4) %>%
+#'    set("by_lists_branches_lty", L, TF_value = 3) %>%
+#'    plot
 #' 
 #' 
 #' #----------------------------
@@ -261,6 +273,9 @@ set.dendrogram <-
                      "by_labels_branches_col",
                      "by_labels_branches_lwd",
                      "by_labels_branches_lty",
+                     "by_lists_branches_col",
+                     "by_lists_branches_lwd",
+                     "by_lists_branches_lty",
                      "highlight_branches_col",
                      "highlight_branches_lwd",
                      "clear_branches",
@@ -301,6 +316,9 @@ set.dendrogram <-
                        by_labels_branches_col = branches_attr_by_labels(dend, labels = value, attr = "col", ...),
                        by_labels_branches_lwd = branches_attr_by_labels(dend, labels = value, attr = "lwd", ...),
                        by_labels_branches_lty = branches_attr_by_labels(dend, labels = value, attr = "lty", ...),
+                     by_lists_branches_col = branches_attr_by_lists(dend, lists = value, attr = "col", ...),
+                     by_lists_branches_lwd = branches_attr_by_lists(dend, lists = value, attr = "lwd", ...),
+                     by_lists_branches_lty = branches_attr_by_lists(dend, lists = value, attr = "lty", ...),
                      highlight_branches_col = highlight_branches_col(dend, values = value, ...),
                      highlight_branches_lwd = highlight_branches_lwd(dend, values = value, ...),
                        clear_branches = remove_branches_edgePar(dend, ...),
