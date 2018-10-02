@@ -57,9 +57,9 @@
 #' \item{labels_colors - set the labels' colors (\link{color_labels})}
 #' \item{labels_cex - set the labels' size (\link{assign_values_to_leaves_nodePar})}
 #' \item{labels_to_character - set the labels' to be characters}
-#' \item{leaves_pch - set the leaves' point type (\link{assign_values_to_leaves_nodePar})}
-#' \item{leaves_cex - set the leaves' point size (\link{assign_values_to_leaves_nodePar})}
-#' \item{leaves_col - set the leaves' point color (\link{assign_values_to_leaves_nodePar})}
+#' \item{leaves_pch - set the leaves' point type (\link{assign_values_to_leaves_nodePar}). A leave is the terminal node of the tree.}
+#' \item{leaves_cex - set the leaves' point size (\link{assign_values_to_leaves_nodePar}). For using this you MUST also set leaves_pch, a good value to use is 19.}
+#' \item{leaves_col - set the leaves' point color (\link{assign_values_to_leaves_nodePar}). For using this you MUST also set leaves_pch, a good value to use is 19.}
 #' \item{nodes_pch - set the nodes' point type (\link{assign_values_to_nodes_nodePar})}
 #' \item{nodes_cex - set the nodes' point size (\link{assign_values_to_nodes_nodePar})}
 #' \item{nodes_col - set the nodes' point color (\link{assign_values_to_nodes_nodePar})}

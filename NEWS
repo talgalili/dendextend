@@ -1,9 +1,17 @@
-dendextend 1.8.0 (2018-03-16)
+dendextend 1.8.1 (2018-07-21)
+----------------------------------------
+
+###OTHER NOTES
+   * Minor edits to the doc.
+   
+
+dendextend 1.8.0 (2018-04-28)
 ----------------------------------------
 
 ###NEW FUNCTIONS
 
 * branches_attr_by_lists - Change col/lwd/lty of branches from the root down to clusters defined by list of labels of respective members
+* colored_dots - Add colored dots beside a dendrogram
 
 
 
