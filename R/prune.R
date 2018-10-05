@@ -43,8 +43,8 @@ prune_leaf <- function(dend, leaf_name,...)
 {
    labels_dend <- labels(dend)
    
-   if(length(labels_dend) != length(unique(labels_dend)))	warning("Found dubplicate labels in the tree (this might indicate a problem in the tree you supplied)")
-
+   if(length(labels_dend) != length(unique(labels_dend)))	warning("Found duplicate labels in the tree (this might indicate a problem in the tree you supplied)")
+   
    if(!(leaf_name %in% labels_dend)) {	# what to do if there is no such leaf inside the tree
       warning(paste("There is no leaf with the label", leaf_name , "in the tree you supplied", "\n" , "Returning original tree", "\n" ))
       return(dend)
@@ -72,7 +72,7 @@ prune_leaf <- function(dend, leaf_name,...)
    {
       # print(labels(dend))
       if(all(labels(dend) != leaf_name))
-      {	# if the leaf we want to remove is not in this branch, simply return the branch without going deeper intoit.
+      {	# if the leaf we want to remove is not in this branch, simply return the branch without going deeper into it.
          return(dend)
       } else {	# but if the leaf we want to remove is here somewhere, go on searching
          attr(dend, "members") <- attr(dend, "members") - 1 
@@ -83,44 +83,50 @@ prune_leaf <- function(dend, leaf_name,...)
             {
                dend[[i]] <- remove_leaf_if_child(dend[[i]], leaf_name)
             }
+            
          } else { # we'll merge 
             if(length(dend) == 2) {
-              leaf_location <- 1 
-              # if leaf location is 1, then move branch in leaf 2 to be the new x
-              if(is.leaf(dend[[leaf_location]]) == T  &&  labels(dend[[leaf_location]]) == leaf_name) {
-                branch_to_bumpup <- 2
-                dend <- dend[[branch_to_bumpup]]
-              } else { # else - the leaf location must be located in position "2"
-                branch_to_bumpup <- 1
-                dend <- dend[[branch_to_bumpup]]
-              }
+               leaf_location <- 1 
+               # if leaf location is 1, then move branch in leaf 2 to be the new x
+               if(is.leaf(dend[[leaf_location]]) == T  &&  labels(dend[[leaf_location]]) == leaf_name) {
+                  
+                  branch_to_bumpup <- 2
+                  dend <- dend[[branch_to_bumpup]]
+               } else { # else - the leaf location must be located in position "2"
+                  
+                  branch_to_bumpup <- 1
+                  dend <- dend[[branch_to_bumpup]]
+               }
             } else if(length(dend) > 2) {
-              # If more than 2 branches, check if any are leaves
-              dend_leaves <- unlist(lapply(dend, is.leaf))
-              if(sum(dend_leaves) > 0) {
-                # If so, check for matching labels to the leaf to prune
-                dend_labels <- unlist(lapply(dend, function(x) attr(x, "label")))
-                dend_matches <- dend_labels == leaf_name
-                # Return a list containing the non-matching branches
-                dend <- dend[!(dend_leaves & dend_matches)]
-              }
-            }				
+               # If more than 2 branches, check if any are leaves
+               dend_leaves <- unlist(lapply(dend, is.leaf))
+               dend_labels <- character(length = length(dend_leaves))
+               dend_labels[!dend_leaves] <- NA
+               if(sum(dend_leaves) > 0) {
+                  # If so, check for matching labels to the leaf to prune
+                  dend_labels[dend_leaves] <- unlist(lapply(dend, function(x) attr(x, "label")))
+                  dend_matches <- dend_labels == leaf_name
+                  dend_keep <- which(!(dend_leaves & dend_matches))
+                  # Filter for only the non-matching members
+                  pruned <- dend[dend_keep]
+                  # Transfer attributes to the pruned list
+                  attributes(pruned) <- attributes(dend)
+                  # Adjust the "members" attribute of the dend.
+                  attr(pruned, "members") <- length(dend_keep)
+                  dend <- pruned
+               }
+            }
          }
-      }		
+      }
       return(dend)
    }
    
    
    new_dend <- remove_leaf_if_child(dend, leaf_name)
    new_dend <- suppressWarnings(stats_midcache.dendrogram(new_dend)) # fixes the attributes
-#   new_x <- fix_members_attr.dendrogram(new_x) # fix the number of memebers attr for each node
+   #   new_x <- fix_members_attr.dendrogram(new_x) # fix the number of memebers attr for each node
    return(new_dend)
 }
-
-
-
-
-
 
 #' @title Prunes a tree (using leaves' labels)
 #' @rdname prune
