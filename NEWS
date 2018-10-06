@@ -1,8 +1,15 @@
-dendextend 1.8.1 (2018-07-21)
+dendextend 1.8.1 (2018-10-06)
 ----------------------------------------
 
 ###OTHER NOTES
    * Minor edits to the doc.
+
+###UPDATED FUNCTIONS:
+   * prune_leaf - now works properly with non-binary trees. The modified code in prune_leaf() now trim leaves from splits with more than 2 branches. This simply involves removing the list elements from the dendrogram that match the leaf_name to be removed. Also added tests to verify it works. (props @hypercompetent)
+   
+###BUG FIXES
+   * dend_diff - now works properly (props @jdetribol)
+   
    
 
 dendextend 1.8.0 (2018-04-28)
