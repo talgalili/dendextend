@@ -271,14 +271,14 @@ dend_diff <- function (dend, ...) {
 #' @export
 #' @rdname dend_diff
 dend_diff.dendrogram <- function(dend, dend2, horiz = TRUE, ...)  {
-   dend2 <- highlight_distinct_edges(dend, dend2)   
+   dend12 <- highlight_distinct_edges(dend, dend2)   
    dend22 <- highlight_distinct_edges(dend2, dend)   
    
    # change mfrow
    op <- par()$mfrow
    par(mfrow = c(1, 2))
    
-   plot(dend2, horiz = horiz, ...)
+   plot(dend12, horiz = horiz, ...)
    plot(dend22, horiz = horiz, ...)
    
    # return mfrow to what it was before.
