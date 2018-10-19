@@ -41,7 +41,7 @@ highlight_branches_col <- function(dend, values = rev(viridis(1000, end = .9)), 
    # library(viridis)
    # h <- get_branches_heights(dend, sort = FALSE, include_leaves = T)
    # h <- get_nodes_attr(dend, "height", include_leaves = TRUE, na.rm = TRUE) # works
-   h <- dendextend_get_branches_heights(dend, sort = FALSE, include_leaves = TRUE) # works
+   h <- get_branches_heights(dend, sort = FALSE, include_leaves = TRUE) # works
    # h <- round(normalize(h) * (length(cols)-1) ) + 1
    # library(scales)
    # f <- scales::col_numeric(rev(cols), h)
@@ -64,7 +64,7 @@ highlight_branches_lwd <- function(dend, values = seq(1, 10, length.out = 1000),
    # library(viridis)
    # h <- get_branches_heights(dend, sort = FALSE, include_leaves = T)
    # h <- get_nodes_attr(dend, "height", include_leaves = TRUE, na.rm = TRUE) # works
-   h <- dendextend_get_branches_heights(dend, sort = FALSE, include_leaves = TRUE) # works
+   h <- get_branches_heights(dend, sort = FALSE, include_leaves = TRUE) # works
    
    lwds <- map_values_to_scale(h, values)
    # dend2 <- set(dend, "branches_col", cols)
