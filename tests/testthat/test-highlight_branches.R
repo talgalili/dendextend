@@ -24,6 +24,7 @@ test_that("highlight_branches can be run",{
                                                                          col = "#440154FF", lwd = 10), .Names = c("col", "lwd")), class = "dendrogram")
    
    
-   expect_identical(dend2, dend_expected)
+   expect_equal(dend2, dend_expected)
+   # expect_identical(dend2, dend_expected)
 })
 
