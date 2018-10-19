@@ -1,4 +1,4 @@
-dendextend 1.8.1 (2018-10-06)
+dendextend 1.8.1 (2018-10-19)
 ----------------------------------------
 
 ###OTHER NOTES
@@ -9,6 +9,8 @@ dendextend 1.8.1 (2018-10-06)
    
 ###BUG FIXES
    * dend_diff - now works properly (props @jdetribol)
+   * Fix "S3 method lookup found 'as.phylo.dendrogram' on search path" by using @rawNamespace in roxygen.
+
    
    
 
