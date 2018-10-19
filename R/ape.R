@@ -44,14 +44,6 @@ as.phylo <- function (x, ...)
 # ' @S3method as.phylo dendrogram
 
 
-# see: https://github.com/klutometis/roxygen/issues/796
-# 
-#' 
-#' @rawNamespace 
-#' if(getRversion() >= "3.6.0") {
-#'   S3method(ape::as.phylo, dendrogram)
-#' } else {export(as.phylo.dendrogram)}
-#' 
 
 
 #' @title Convert a dendrogram into phylo
@@ -92,6 +84,16 @@ as.phylo <- function (x, ...)
 #' 
 #' 
 #' }
+#' 
+#' 
+#' # see: https://github.com/klutometis/roxygen/issues/796
+#' # 
+#' 
+#' @rawNamespace 
+#' if(getRversion() >= "3.6.0") {
+#'   S3method(ape::as.phylo, dendrogram)
+#' } else {export(as.phylo.dendrogram)}
+#' 
 as.phylo.dendrogram <- function(x,...) {
 	# library(ape)
    ape::as.phylo.hclust(as.hclust(x))

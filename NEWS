@@ -1,7 +1,8 @@
-dendextend 1.8.1 (2018-10-19)
+dendextend 1.9.0 (2018-10-19)
 ----------------------------------------
 
 ###OTHER NOTES
+   * Removed some old deprecated code relating to dendextendRcpp.
    * Minor edits to the doc.
 
 ###UPDATED FUNCTIONS:

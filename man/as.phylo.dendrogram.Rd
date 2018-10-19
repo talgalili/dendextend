@@ -46,6 +46,11 @@ p
 
 
 }
+
+
+# see: https://github.com/klutometis/roxygen/issues/796
+# 
+
 }
 \seealso{
 \link{as.dendrogram}, \link{as.hclust}, \link[ape]{as.phylo}

@@ -69,18 +69,6 @@
 #' }
 #' 
 cut_lower_fun <- function(dend, h, FUN = labels, warn = dendextend_options("warn"), ...) {
-#    fo <- options()$dendextend_cut_lower_fun
-#    if(is.null(fo)) fo <- dendextend::cut_lower_fun_dendextend
-   # the above is NOT faster then what is below
-   fo <- dendextend_options("cut_lower_fun")   
-   fo(dend, h=h, FUN = FUN, warn = warn, ...)
-}
-
-
-
-#' @export
-dendextend_cut_lower_fun <- function(dend, h, FUN = labels, warn = dendextend_options("warn"), ...) {
-   
    if(!is.dendrogram(dend)) stop("'dend' needs to be a dendrogram. Aborting the function 'cut_lower_labels'.")
    
    if(is.leaf(dend)) return(list(FUN(dend)))

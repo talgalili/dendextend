@@ -2,7 +2,6 @@
 % Please edit documentation in R/attr_access.R
 \name{get_branches_heights}
 \alias{get_branches_heights}
-\alias{dendextend_get_branches_heights}
 \title{Get height attributes from a dendrogram}
 \usage{
 get_branches_heights(dend, sort = TRUE, decreasing = FALSE,
@@ -31,16 +30,5 @@ hc <- hclust(dist(USArrests[1:4,]), "ave")
 dend <- as.dendrogram(hc)
 get_branches_heights(dend)
 
-\dontrun{
-dat1 <- iris[1:150,-5]
-dat1 <- rbind(dat1,dat1,dat1,dat1,dat1,dat1,dat1)
-dend = as.dendrogram(hclust(dist(dat1)))
-library(microbenchmark)
-library(dendextendRcpp)
-microbenchmark(
-   dendextendRcpp::dendextendRcpp_get_branches_heights(dend),
-   old_get_branches_heights(dend,sort=F)
-)
-}
 
 }

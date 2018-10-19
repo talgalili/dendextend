@@ -343,15 +343,6 @@ cutree_1h.dendrogram <- function(dend, h,
 #' # 134 times faster for a tree of size 150!!
 #' }
 heights_per_k.dendrogram <- function(dend, ...) {
-   fo <- dendextend_options("heights_per_k.dendrogram")   
-   fo(dend, ...)
-}
-
-
-
-#' @export
-dendextend_heights_per_k.dendrogram <- function(dend,...)
-{
    # gets a dendro tree
    # returns a vector of heights, and the k clusters we'll get for each of them.
    

@@ -18,45 +18,7 @@ test_that("cut_lower_fun works",{
          cut_lower_fun(dend, 0, labels),
          lapply(cut(dend, h = 0)$lower, labels)   
       )
-   
-      if("package:dendextendRcpp" %in% search()) {
-      
-   	   # cut should have returned the tree itself
-   	   # but it FORCES a cut - as opposed to the cut_lower_fun (within the dendextendRcpp) function...
-   	   expect_false(
-   		  identical(
-   			 dendextendRcpp::dendextendRcpp_cut_lower_fun(dend, 40, labels),
-   			 lapply(cut(dend, h = 40)$lower, labels)   
-   		  )
-   	   )
-   	   
-   	   # cut should have returned the tree itself - instead it returns list()
-   	   # as opposed to the cut_lower_fun (in the dendextendRcpp package) function...
-   	   expect_false(
-   		  identical(
-   			 dendextendRcpp::dendextendRcpp_cut_lower_fun(dend, -1, labels),
-   			 lapply(cut(dend, h = -1)$lower, labels)   )
-   	   )
-   	   
-         tmp <- dendextendRcpp::dendextendRcpp_cut_lower_fun(dend[[1]], .4, function(x) {x})
-   	   expect_identical(tmp,
-   		  list(dend[[1]])  
-   	   )
 
-         # Here we should get:
-            #  In Rcpp_get_dend_heights(tree, branches_heights = TRUE, labels_heights = FALSE) :
-            #    	'height' attr is missing from node, 0 is returned, please check your tree.
-#          expect_warning(all.equal(tmp,
-#                    list(dend[[1]])))
-         
-   	}  # run only if dendextendRcpp was loaded
-
-      
-      # returns itself as it should:
-      expect_identical(
-         dendextend::dendextend_cut_lower_fun(dend[[1]], .4, function(x)x),
-         list(dend[[1]])  
-      )
       # this is the way to test this:
    #    expect_identical(
    #       old_cut_lower_fun(dend[[1]], .4, function(x)x),
@@ -103,7 +65,7 @@ test_that("cut_lower_fun works",{
 test_that("cut_lower_fun in dendextend",{
    
    dend <- as.dendrogram(hclust(dist(c(1,1,1,2,2))))
-   expect_identical(dendextend_cut_lower_fun(dend, -.5, labels),
+   expect_identical(cut_lower_fun(dend, -.5, labels),
                     list())
    # But this will NOT be the same with dendextendRcpp !!
    

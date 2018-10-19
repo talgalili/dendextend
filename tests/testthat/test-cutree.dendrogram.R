@@ -452,15 +452,15 @@ test_that("Compare labels which are character vs integer",{
 
 
 
-test_that("dendextend_heights_per_k.dendrogram",{
+test_that("heights_per_k.dendrogram",{
    dend15 <- c(1:5) %>% dist %>% hclust(method = "average") %>% as.dendrogram
-   tmp <- dendextend_heights_per_k.dendrogram(dend15)
+   tmp <- heights_per_k.dendrogram(dend15)
    tmp_should_be <- structure(c(2.75, 2.25, 1.25, 0.75), .Names = c("1", "2", "3", "5"))
    expect_equal(tmp, tmp_should_be)
    
    dend15 <- c(1:5) %>% dist %>% hclust(method = "sin") %>% as.dendrogram
    # dput(tmp)
-   expect_warning(tmp <- dendextend_heights_per_k.dendrogram(dend15))
+   expect_warning(tmp <- heights_per_k.dendrogram(dend15))
    tmp_should_be <- structure(c(Inf, -Inf), .Names = c("1", "5"))
    expect_equal(tmp, tmp_should_be)
    

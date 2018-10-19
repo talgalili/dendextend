@@ -494,8 +494,6 @@ rllply <- function(x, FUN,add_notation = FALSE, ...)
 #' @title Get height attributes from a dendrogram
 #' @description Get height attributes of a dendrogram's branches
 #' @export
-#' @aliases
-#' dendextend_get_branches_heights
 #' @param dend a dendrogram.
 #' @param sort logical. Should the heights be sorted?
 #' @param decreasing logical. Should the sort be increasing or decreasing? Not available for partial sorting.
@@ -510,27 +508,8 @@ rllply <- function(x, FUN,add_notation = FALSE, ...)
 #' dend <- as.dendrogram(hc)
 #' get_branches_heights(dend)
 #' 
-#' \dontrun{
-#' dat1 <- iris[1:150,-5]
-#' dat1 <- rbind(dat1,dat1,dat1,dat1,dat1,dat1,dat1)
-#' dend = as.dendrogram(hclust(dist(dat1)))
-#' library(microbenchmark)
-#' library(dendextendRcpp)
-#' microbenchmark(
-#'    dendextendRcpp::dendextendRcpp_get_branches_heights(dend),
-#'    old_get_branches_heights(dend,sort=F)
-#' )
-#' }
 #' 
-get_branches_heights <- function(dend, sort = TRUE, decreasing = FALSE, include_leaves = FALSE, ...) {
-   fo <- dendextend_options("get_branches_heights")
-   fo(dend, sort = sort, decreasing = decreasing, include_leaves = include_leaves, ...)
-}
-
-
-
-#' @export
-dendextend_get_branches_heights <- function(dend, sort = TRUE, decreasing = FALSE, include_leaves = FALSE, ...)
+get_branches_heights <- function(dend, sort = TRUE, decreasing = FALSE, include_leaves = FALSE, ...)
 {
 #    height <- unlist(rllply(dend, function(x){attr(x, "height")}))
 #    height <- get_nodes_attr(dend, "height") 
