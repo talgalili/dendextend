@@ -138,22 +138,23 @@ Please choose another branch to be the root.")
    
    # add branches from the new root branch to the new tree
    number_of_branches_in_root <- length(dend[[branch_becoming_root]])
+   i_new_root <- branch_becoming_root + 0:(number_of_branches_in_root-1)
    for(i in seq_len(number_of_branches_in_root))
    {
-      new_dend[[i_new_dend_branch]] <- dend[[branch_becoming_root]][[i]]   # add the branches of the branc_becoming_root to the new tree
-      i_new_dend_branch <- i_new_dend_branch + 1
+      new_dend[[i_new_root[i]]] <- dend[[branch_becoming_root]][[i]]   # add the branches of the branc_becoming_root to the new tree
    }
    
    # add all other branches of the old tree to the root of the new tree
    number_of_branches_in_dend <- length(dend)
    number_of_branches_in_dend_minus_root <-  number_of_branches_in_dend- 1
-   branches_to_add_to_root <- seq_len(number_of_branches_in_dend)[-branch_becoming_root]   
-      # id of branches to add to the root of the new tree
+   branches_to_add_to_root <- seq_len(number_of_branches_in_dend)[-branch_becoming_root]
+   i_old_root <- (1:(number_of_branches_in_dend+branches_to_add_to_root))[-i_new_root]
+   # id of branches to add to the root of the new tree
    for(i in seq_len(number_of_branches_in_dend_minus_root))
    {
-      new_dend[[i_new_dend_branch]] <- dend[[branches_to_add_to_root[i] ]]	# add the branches of the branc_becoming_root to the new tree
-      i_new_dend_branch <- i_new_dend_branch + 1
+      new_dend[[i_old_root[i]]] <- dend[[branches_to_add_to_root[i]]]	# add the branches of the branc_becoming_root to the new tree
    }
+   
    
    # set the proper attributes of the root of the new tree 
    if(!missing(new_root_height)){			
