@@ -147,7 +147,7 @@ Please choose another branch to be the root.")
    number_of_branches_in_dend <- length(dend)
    number_of_branches_in_dend_minus_root <-  number_of_branches_in_dend- 1
    branches_to_add_to_root <- seq_len(number_of_branches_in_dend)[-branch_becoming_root]
-   i_old_root <- (1:(number_of_branches_in_dend+branches_to_add_to_root))[-i_new_root]
+   i_old_root <- (1:(number_of_branches_in_dend+length(branches_to_add_to_root)-1))[-i_new_root]
    # id of branches to add to the root of the new tree
    for(i in seq_len(number_of_branches_in_dend_minus_root))
    {
