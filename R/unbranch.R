@@ -134,8 +134,7 @@ Please choose another branch to be the root.")
       return(dend)
    }
    new_dend <- list()
-   i_new_dend_branch <- 1
-   
+
    # add branches from the new root branch to the new tree
    number_of_branches_in_root <- length(dend[[branch_becoming_root]])
    i_new_root <- branch_becoming_root + 0:(number_of_branches_in_root-1)
