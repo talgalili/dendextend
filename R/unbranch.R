@@ -167,7 +167,13 @@ Please choose another branch to be the root.")
       suppressWarnings(mean(get_root_branches_attr(new_dend, "midpoint"), na.rm = TRUE) )      
    # the new midpoint of the root is the mean of the midpoint in all of his branches
    # if some are NA, they are ignored
-
+   
+   # dirty fix... When all roots are leafs, mean returns NA as well and problems
+   # occur when trying to plot the dendrogram. In this case, we could simply return
+   # the original midpoint:
+   if(is.na(attr(new_dend,"midpoint")) & !is.leaf(new_dend)) attr(new_dend, "midpoint") <- attr(dend, "midpoint")
+   
+   
    # Bad idea: we only use labels for the leafs...
    #    attr(new_dend, "label") <- "merged root" # might cause problems in the future?
    new_dend <- suppressWarnings(stats_midcache.dendrogram(new_dend)) # might through warnings if we have 3 branches (but it will keep the "midpoints" in check 
