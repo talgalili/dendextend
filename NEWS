@@ -1,3 +1,10 @@
+dendextend 1.10.0 (2019-02-08)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+* cutree.default now works with any object that has an as.dendrogram method by default. (including agnes and diana)
+
+
 dendextend 1.9.0 (2018-10-19)
 ----------------------------------------
 
