@@ -1,0 +1,12 @@
+context("Test extract au")
+
+test_that("extract au",{
+  set.seed(123)
+dend <- USArrests[1:5,] %>% pvclust
+#plot(dend)
+#pvclust.edges(dend)
+expect_identical(as.character(pvclust.edges(dend)[,1]), c("Assault","UrbanPop","Murder"))
+expect_identical(as.character(pvclust.edges(dend)[,2]), c("Rape","1","2"))
+expect_identical(round(pvclust.edges(dend)[,3], digits = 2), c(0.97,1.00,1.00))
+
+})

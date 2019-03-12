@@ -703,3 +703,22 @@ pvrect2 <- function (x, alpha = 0.95, pv = "au", type = "geq", max.only = TRUE,
 
 
 
+#' @title Get Pvclust Edges Information
+#' @export
+#' @description
+#' Get pvclust edges information such as au and bp and return dataframe with proper sample labels.
+#' @examples
+#' pvclust.edges(pvclust_obj)
+#'
+#' @param pvclust_obj pvclust object
+#' @return data.frame with leaves on column 1 and 2, followed by the rest of the information from edge
+#' @references hclust object descriptions \url{https://stat.ethz.ch/R-manual/R-patched/library/stats/html/hclust.html}
+
+
+pvclust.edges <- function(pvclust_obj){
+  hclust_merge <- pvclust_obj$hclust$merge
+  hclust_merge[hclust_merge < 0] <- pvclust_obj$hclust$labels[abs(hclust_merge[hclust_merge < 0])] # get sample name
+  hclust_merge <- cbind(hclust_merge, pvclust_obj$edges) # combine with edge table
+  colnames(hclust_merge)[1:2] <- c("branch_L","branch_R")
+  return(hclust_merge)
+}
