@@ -1,3 +1,11 @@
+dendextend 1.11.0 (2019-03-13)
+----------------------------------------
+
+###NEW FUNCTIONS
+
+* pvclust_edges - extracting edge information from pvclust object based on hclust labels (Issues #83)
+
+
 dendextend 1.10.0 (2019-02-08)
 ----------------------------------------
 
