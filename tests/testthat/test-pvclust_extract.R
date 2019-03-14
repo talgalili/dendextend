@@ -1,6 +1,7 @@
 context("Test extract au")
 
 test_that("extract au",{
+library(pvclust)
   set.seed(123)
 dend <- USArrests[1:5,] %>% pvclust
 #plot(dend)
