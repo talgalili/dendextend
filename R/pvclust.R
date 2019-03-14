@@ -708,7 +708,7 @@ pvrect2 <- function (x, alpha = 0.95, pv = "au", type = "geq", max.only = TRUE,
 #' @description
 #' Get pvclust edges information such as au and bp and return dataframe with proper sample labels. This function is useful when there is a lot of samples involved.
 #' @examples
-#' pvclust.edges(pvclust_obj)
+#' pvclust_edges(pvclust_obj)
 #'
 #' @param pvclust_obj pvclust object
 #' @return data.frame with leaves on column 1 and 2, followed by the rest of the information from edge
