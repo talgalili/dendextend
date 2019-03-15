@@ -1,4 +1,5 @@
 context("Test extract au")
+RNGversion("3.5.0")
 
 test_that("extract au",{
 library(pvclust)

@@ -1,4 +1,5 @@
 # library(testthat)
+RNGversion("3.5.0")
 
 context("Bk method (FM Index) between two trees")
 

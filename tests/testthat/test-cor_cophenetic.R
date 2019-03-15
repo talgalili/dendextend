@@ -1,4 +1,5 @@
 # library(testthat)
+RNGversion("3.5.0")
 
 context("Cophenetic correlation between two trees")
 
