@@ -164,15 +164,10 @@ Please choose another branch to be the root.")
    class(new_dend) <- 'dendrogram'
    attr(new_dend, "members") <- sum(get_root_branches_attr(new_dend, "members")) # the new members of the root is the sum of the members in all of his branches
    attr(new_dend, "midpoint") <- 
-      suppressWarnings(mean(get_root_branches_attr(new_dend, "midpoint"), na.rm = TRUE) )      
+      suppressWarnings(mean(unlist(get_root_branches_attr(new_dend, "midpoint")), na.rm = TRUE) )      
    # the new midpoint of the root is the mean of the midpoint in all of his branches
    # if some are NA, they are ignored
-   
-   # dirty fix... When all roots are leafs, mean returns NA as well and problems
-   # occur when trying to plot the dendrogram. In this case, we could simply return
-   # the original midpoint:
-   if(is.na(attr(new_dend,"midpoint")) & !is.leaf(new_dend)) attr(new_dend, "midpoint") <- attr(dend, "midpoint")
-   
+
    
    # Bad idea: we only use labels for the leafs...
    #    attr(new_dend, "label") <- "merged root" # might cause problems in the future?
