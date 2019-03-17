@@ -660,7 +660,9 @@ cutree <- function(tree, k = NULL, h = NULL,...)  {UseMethod("cutree")}
 #' @export
 #' @rdname cutree-methods
 cutree.default <- function(tree, k = NULL, h = NULL,...) {
-   stop("Function cutree is only available for hclust/dendrogram/phylo objects only.")}
+      cutree(as.dendrogram(tree),k=k,h=h,...)
+      # stop("Function cutree is only available for hclust/dendrogram/phylo objects only.")
+   }
 
 #' @export
 #' @rdname cutree-methods
@@ -726,6 +728,21 @@ cutree.hclust <- function(tree, k = NULL, h = NULL,
 #' @rdname cutree-methods
 cutree.phylo <- function(tree,k=NULL, h=NULL ,...) {cutree(as.dendrogram(tree),k=k,h=h,...)}
    
+
+# ' @S3method cutree phylo
+#' @export
+#' @rdname cutree-methods
+cutree.phylo <- function(tree,k=NULL, h=NULL ,...) {cutree(as.dendrogram(tree),k=k,h=h,...)}
+
+# ' @S3method cutree phylo
+#' @export
+#' @rdname cutree-methods
+cutree.agnes <- function(tree,k=NULL, h=NULL ,...) {cutree(as.dendrogram(tree),k=k,h=h,...)}
+# stats::cutree
+
+#' @export
+#' @rdname cutree-methods
+cutree.diana <- function(tree,k=NULL, h=NULL ,...) {cutree(as.dendrogram(tree),k=k,h=h,...)}
 
 
 # In "cutree.dendrogram" I use "tree" instead of "dend" - in order to stay compatible with stats:cutree

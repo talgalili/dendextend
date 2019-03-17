@@ -1,3 +1,28 @@
+dendextend 1.11.0 (2019-03-17)
+----------------------------------------
+
+###BUG FIXES
+   * unbranch - before: unbranch(dend,k), for k > 1, moved the new roots (the roots of dend[[k]]) at the
+   			beginning of the new_dend. Hence, whenever k>1, the order of the leaves was changed;
+			that is, get_nodes_attr(dend,"label") != get_nodes_attr(unbranch(dend,k),"label").
+			
+		now: the new roots, say there are K of them, are inserted at the positions (k,k+1,...,k+K-1),
+		     and so get_nodes_attr(dend,"label") == get_nodes_attr(unbranch(dend,k),"label").
+		
+
+dendextend 1.10.0 (2019-03-15)
+----------------------------------------
+
+###NEW FUNCTIONS
+* pvclust_edges - extracting edge information from pvclust object based on hclust labels (Issues #83)
+
+###UPDATED FUNCTIONS:
+* cutree.default now works with any object that has an as.dendrogram method by default. (including agnes and diana)
+
+###OTHER NOTES
+* Added RNGversion("3.5.0") to tests so as to comply with the new R RNG change that is coming up in R 3.6.0.
+
+
 dendextend 1.9.0 (2018-10-19)
 ----------------------------------------
 

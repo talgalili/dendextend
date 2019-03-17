@@ -5,6 +5,9 @@
 \alias{cutree.default}
 \alias{cutree.hclust}
 \alias{cutree.phylo}
+\alias{cutree.phylo}
+\alias{cutree.agnes}
+\alias{cutree.diana}
 \alias{cutree.dendrogram}
 \title{Cut a Tree (Dendrogram/hclust/phylo) into Groups of Data}
 \usage{
@@ -17,6 +20,12 @@ cutree(tree, k = NULL, h = NULL, ...)
   warn = dendextend_options("warn"), NA_to_0L = TRUE, ...)
 
 \method{cutree}{phylo}(tree, k = NULL, h = NULL, ...)
+
+\method{cutree}{phylo}(tree, k = NULL, h = NULL, ...)
+
+\method{cutree}{agnes}(tree, k = NULL, h = NULL, ...)
+
+\method{cutree}{diana}(tree, k = NULL, h = NULL, ...)
 
 \method{cutree}{dendrogram}(tree, k = NULL, h = NULL,
   dend_heights_per_k = NULL, use_labels_not_values = TRUE,

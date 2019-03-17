@@ -1,5 +1,5 @@
 # library(testthat)
-
+RNGversion("3.5.0")
 
 context("Untangle two dendrograms for plotting a tanglegram")
 
