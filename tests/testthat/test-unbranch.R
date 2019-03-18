@@ -39,8 +39,7 @@ test_that("unbranching a dendrogram",{
    
    expect_equal(length(unbranched_dend), 3L) # our new tree has 3 branches
    expect_equal(length(unbranched_dend_2), 4L) # our new tree has 3 branches
-   expect_equal(get_leaves_attr(dend,"label"),
-                get_leaves_attr(unbranched_dend_2,"label")) # order of leaves is preserved
+   expect_equal(labels(dend), labels(unbranched_dend_2)) # order of leaves is preserved
    expect_warning(unbranch(dend[[1]])) # since the new root can not be a leaf.
    expect_error(unbranch(hc)) # While there is an hclust method, 
                               # this object can not handle non-binary trees.
