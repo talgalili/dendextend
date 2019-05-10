@@ -6,9 +6,6 @@
 \alias{cor_bakers_gamma.hclust}
 \alias{cor_bakers_gamma.dendlist}
 \alias{cor_bakers_gamma.default}
-\alias{cor_bakers_gamma.dendrogram}
-\alias{cor_bakers_gamma.hclust}
-\alias{cor_bakers_gamma.dendlist}
 \title{Baker's Gamma correlation coefficient}
 \usage{
 cor_bakers_gamma(dend1, ...)
@@ -19,8 +16,9 @@ cor_bakers_gamma(dend1, ...)
   use_labels_not_values = TRUE, to_plot = FALSE,
   warn = dendextend_options("warn"), ...)
 
-\method{cor_bakers_gamma}{hclust}(dend1, dend2, use_labels_not_values = TRUE,
-  to_plot = FALSE, warn = dendextend_options("warn"), ...)
+\method{cor_bakers_gamma}{hclust}(dend1, dend2,
+  use_labels_not_values = TRUE, to_plot = FALSE,
+  warn = dendextend_options("warn"), ...)
 
 \method{cor_bakers_gamma}{dendlist}(dend1, which = c(1L, 2L), ...)
 }

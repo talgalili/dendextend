@@ -4,10 +4,11 @@
 \alias{Bk_plot}
 \title{Bk plot - ploting the Fowlkes-Mallows Index of two dendrogram for various k's}
 \usage{
-Bk_plot(tree1, tree2, k, add_E = TRUE, rejection_line_asymptotic = TRUE,
-  rejection_line_permutation = FALSE, R = 1000, k_permutation,
-  conf.level = 0.95, p.adjust.methods = c("none", "bonferroni"),
-  col_line_Bk = 1, col_line_asymptotic = 2, col_line_permutation = 4,
+Bk_plot(tree1, tree2, k, add_E = TRUE,
+  rejection_line_asymptotic = TRUE, rejection_line_permutation = FALSE,
+  R = 1000, k_permutation, conf.level = 0.95,
+  p.adjust.methods = c("none", "bonferroni"), col_line_Bk = 1,
+  col_line_asymptotic = 2, col_line_permutation = 4,
   warn = dendextend_options("warn"), main = "Bk plot",
   xlab = "k (number of clusters)", ylab = "Bk (Fowlkes-Mallows Index)",
   xlim, ylim = c(0, 1), try_cutree_hclust = TRUE, ...)

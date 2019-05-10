@@ -4,8 +4,8 @@
 \alias{Bk}
 \title{Bk - Calculating Fowlkes-Mallows Index for two dendrogram}
 \usage{
-Bk(tree1, tree2, k, include_EV = TRUE, warn = dendextend_options("warn"),
-  ...)
+Bk(tree1, tree2, k, include_EV = TRUE,
+  warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{tree1}{a dendrogram/hclust/phylo object.}

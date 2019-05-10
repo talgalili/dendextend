@@ -27,39 +27,44 @@ tanglegram(dend1, ...)
 
 \method{tanglegram}{phylo}(dend1, ...)
 
-\method{tanglegram}{dendlist}(dend1, which = c(1L, 2L), main_left, main_right,
-  just_one = TRUE, ...)
+\method{tanglegram}{dendlist}(dend1, which = c(1L, 2L), main_left,
+  main_right, just_one = TRUE, ...)
 
 \method{tanglegram}{dendrogram}(dend1, dend2, sort = FALSE, color_lines,
   lwd = 3.5, edge.lwd = NULL, columns_width = c(5, 3, 5),
   margin_top = 3, margin_bottom = 2.5, margin_inner = 3,
   margin_outer = 0.5, left_dendo_mar = c(margin_bottom, margin_outer,
-  margin_top, margin_inner), right_dendo_mar = c(margin_bottom, margin_inner,
-  margin_top, margin_outer), intersecting = TRUE, dLeaf = NULL,
-  dLeaf_left = dLeaf, dLeaf_right = dLeaf, axes = TRUE, type = "r",
-  lab.cex = NULL, remove_nodePar = FALSE, main = "", main_left = "",
-  main_right = "", sub = "", k_labels = NULL, k_branches = NULL,
-  rank_branches = FALSE, hang = FALSE, match_order_by_labels = TRUE,
-  cex_main = 2, cex_main_left = cex_main, cex_main_right = cex_main,
+  margin_top, margin_inner), right_dendo_mar = c(margin_bottom,
+  margin_inner, margin_top, margin_outer), intersecting = TRUE,
+  dLeaf = NULL, dLeaf_left = dLeaf, dLeaf_right = dLeaf,
+  axes = TRUE, type = "r", lab.cex = NULL, remove_nodePar = FALSE,
+  main = "", main_left = "", main_right = "", sub = "",
+  k_labels = NULL, k_branches = NULL, rank_branches = FALSE,
+  hang = FALSE, match_order_by_labels = TRUE, cex_main = 2,
+  cex_main_left = cex_main, cex_main_right = cex_main,
   cex_sub = cex_main, highlight_distinct_edges = TRUE,
   common_subtrees_color_lines = TRUE,
-  common_subtrees_color_branches = FALSE, highlight_branches_col = FALSE,
-  highlight_branches_lwd = TRUE, faster = FALSE, just_one = TRUE, ...)
+  common_subtrees_color_branches = FALSE,
+  highlight_branches_col = FALSE, highlight_branches_lwd = TRUE,
+  faster = FALSE, just_one = TRUE, ...)
 
 dendbackback(dend1, dend2, sort = FALSE, color_lines, lwd = 3.5,
   edge.lwd = NULL, columns_width = c(5, 3, 5), margin_top = 3,
   margin_bottom = 2.5, margin_inner = 3, margin_outer = 0.5,
-  left_dendo_mar = c(margin_bottom, margin_outer, margin_top, margin_inner),
-  right_dendo_mar = c(margin_bottom, margin_inner, margin_top, margin_outer),
-  intersecting = TRUE, dLeaf = NULL, dLeaf_left = dLeaf,
-  dLeaf_right = dLeaf, axes = TRUE, type = "r", lab.cex = NULL,
-  remove_nodePar = FALSE, main = "", main_left = "", main_right = "",
-  sub = "", k_labels = NULL, k_branches = NULL, rank_branches = FALSE,
-  hang = FALSE, match_order_by_labels = TRUE, cex_main = 2,
-  cex_main_left = cex_main, cex_main_right = cex_main, cex_sub = cex_main,
-  highlight_distinct_edges = TRUE, common_subtrees_color_lines = TRUE,
-  common_subtrees_color_branches = FALSE, highlight_branches_col = FALSE,
-  highlight_branches_lwd = TRUE, faster = FALSE, just_one = TRUE, ...)
+  left_dendo_mar = c(margin_bottom, margin_outer, margin_top,
+  margin_inner), right_dendo_mar = c(margin_bottom, margin_inner,
+  margin_top, margin_outer), intersecting = TRUE, dLeaf = NULL,
+  dLeaf_left = dLeaf, dLeaf_right = dLeaf, axes = TRUE, type = "r",
+  lab.cex = NULL, remove_nodePar = FALSE, main = "",
+  main_left = "", main_right = "", sub = "", k_labels = NULL,
+  k_branches = NULL, rank_branches = FALSE, hang = FALSE,
+  match_order_by_labels = TRUE, cex_main = 2,
+  cex_main_left = cex_main, cex_main_right = cex_main,
+  cex_sub = cex_main, highlight_distinct_edges = TRUE,
+  common_subtrees_color_lines = TRUE,
+  common_subtrees_color_branches = FALSE,
+  highlight_branches_col = FALSE, highlight_branches_lwd = TRUE,
+  faster = FALSE, just_one = TRUE, ...)
 }
 \arguments{
 \item{dend1}{tree object (dendrogram/dendlist/hclust/phylo), plotted on the left}

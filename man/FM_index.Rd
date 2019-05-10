@@ -5,7 +5,8 @@
 \title{Calculating Fowlkes-Mallows Index}
 \usage{
 FM_index(A1_clusters, A2_clusters, include_EV = TRUE,
-  assume_sorted_vectors = FALSE, warn = dendextend_options("warn"), ...)
+  assume_sorted_vectors = FALSE, warn = dendextend_options("warn"),
+  ...)
 }
 \arguments{
 \item{A1_clusters}{a numeric vector of cluster grouping (numeric) of items,

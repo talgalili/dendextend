@@ -8,8 +8,9 @@ This code is based on the work of Zuguang Gu. If you use the function, please ci
 dendextend (see: \code{citation("dendextend")}), as well as the circlize package (see: \code{citation("circlize")}).
 }
 \usage{
-circlize_dendrogram(dend, facing = c("outside", "inside"), labels = TRUE,
-  labels_track_height = 0.1, dend_track_height = 0.5, ...)
+circlize_dendrogram(dend, facing = c("outside", "inside"),
+  labels = TRUE, labels_track_height = 0.1, dend_track_height = 0.5,
+  ...)
 }
 \arguments{
 \item{dend}{a \link{dendrogram} object}

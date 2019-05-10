@@ -4,8 +4,9 @@
 \alias{pvclust_show_signif_gradient}
 \title{Significance gradient of branches in a dendrogram (via pvclust)}
 \usage{
-pvclust_show_signif_gradient(dend, pvclust_obj, signif_type = c("bp", "au"),
-  signif_col_fun = colorRampPalette(c("black", "darkred", "red")), ...)
+pvclust_show_signif_gradient(dend, pvclust_obj, signif_type = c("bp",
+  "au"), signif_col_fun = colorRampPalette(c("black", "darkred", "red")),
+  ...)
 }
 \arguments{
 \item{dend}{a dendrogram object}

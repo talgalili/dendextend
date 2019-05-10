@@ -4,7 +4,8 @@
 \alias{get_root_branches_attr}
 \title{get attributes from the dendrogram's root(!) branches}
 \usage{
-get_root_branches_attr(dend, the_attr, warn = dendextend_options("warn"), ...)
+get_root_branches_attr(dend, the_attr, warn = dendextend_options("warn"),
+  ...)
 }
 \arguments{
 \item{dend}{dendrogram object}

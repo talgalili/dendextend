@@ -4,8 +4,8 @@
 \alias{assign_values_to_nodes_nodePar}
 \title{Assign values to nodePar of dendrogram's nodes}
 \usage{
-assign_values_to_nodes_nodePar(dend, value, nodePar = c("pch", "cex", "col",
-  "xpd", "bg"), warn = dendextend_options("warn"), ...)
+assign_values_to_nodes_nodePar(dend, value, nodePar = c("pch", "cex",
+  "col", "xpd", "bg"), warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{dend}{a dendrogram object}

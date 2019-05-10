@@ -9,11 +9,12 @@ In fact, I'd be happy if in the future, some tweaks could be make to
 \link{plot.dendrogram}, so that it would replace the need for this function.
 }
 \usage{
-plot_horiz.dendrogram(x, type = c("rectangle", "triangle"), center = FALSE,
-  edge.root = is.leaf(x) || !is.null(attr(x, "edgetext")), dLeaf = NULL,
-  horiz = TRUE, xaxt = "n", yaxt = "s", xlim = NULL, ylim = NULL,
-  nodePar = NULL, edgePar = list(), leaflab = c("perpendicular",
-  "textlike", "none"), side = TRUE, text_pos = 2, ...)
+plot_horiz.dendrogram(x, type = c("rectangle", "triangle"),
+  center = FALSE, edge.root = is.leaf(x) || !is.null(attr(x,
+  "edgetext")), dLeaf = NULL, horiz = TRUE, xaxt = "n", yaxt = "s",
+  xlim = NULL, ylim = NULL, nodePar = NULL, edgePar = list(),
+  leaflab = c("perpendicular", "textlike", "none"), side = TRUE,
+  text_pos = 2, ...)
 }
 \arguments{
 \item{x}{tree object (dendrogram)}

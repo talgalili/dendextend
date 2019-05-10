@@ -15,9 +15,9 @@ skullkey from here:
 \usage{
 rect.dendrogram(tree, k = NULL, which = NULL, x = NULL, h = NULL,
   border = 2, cluster = NULL, horiz = FALSE, density = NULL,
-  angle = 45, text = NULL, text_cex = 1, text_col = 1, xpd = TRUE,
-  lower_rect, upper_rect = 0, prop_k_height = 0.5, stop_if_out = FALSE,
-  ...)
+  angle = 45, text = NULL, text_cex = 1, text_col = 1,
+  xpd = TRUE, lower_rect, upper_rect = 0, prop_k_height = 0.5,
+  stop_if_out = FALSE, ...)
 }
 \arguments{
 \item{tree}{a \link{dendrogram} object.}

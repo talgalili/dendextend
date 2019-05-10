@@ -6,9 +6,9 @@
 \title{Finds a "good" dendrogram for a dist}
 \usage{
 dend_expend(x, dist_methods = c("euclidean", "maximum", "manhattan",
-  "canberra", "binary", "minkowski"), hclust_methods = c("ward.D", "ward.D2",
-  "single", "complete", "average", "mcquitty", "median", "centroid"),
-  hclust_fun = hclust, optim_fun = cor_cophenetic, ...)
+  "canberra", "binary", "minkowski"), hclust_methods = c("ward.D",
+  "ward.D2", "single", "complete", "average", "mcquitty", "median",
+  "centroid"), hclust_fun = hclust, optim_fun = cor_cophenetic, ...)
 
 find_dend(x, ...)
 }

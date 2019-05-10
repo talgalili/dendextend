@@ -5,8 +5,8 @@
 \title{Stepwise untangle one tree compared to another}
 \usage{
 untangle_step_rotate_1side(dend1, dend2_fixed, L = 1.5,
-  direction = c("forward", "backward"), k_seq = NULL, dend_heights_per_k,
-  leaves_matching_method = c("labels", "order"), ...)
+  direction = c("forward", "backward"), k_seq = NULL,
+  dend_heights_per_k, leaves_matching_method = c("labels", "order"), ...)
 }
 \arguments{
 \item{dend1}{a dendrogram object. The one we will rotate to best fit

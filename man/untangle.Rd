@@ -14,11 +14,11 @@ untangle(dend1, ...)
 
 untangle_labels(dend1, dend2, ...)
 
-\method{untangle}{dendrogram}(dend1, dend2, method = c("labels", "ladderize",
-  "random", "step1side", "step2side", "DendSer"), ...)
+\method{untangle}{dendrogram}(dend1, dend2, method = c("labels",
+  "ladderize", "random", "step1side", "step2side", "DendSer"), ...)
 
-\method{untangle}{dendlist}(dend1, method = c("labels", "ladderize", "random",
-  "step1side", "step2side", "DendSer"), which = c(1L, 2L), ...)
+\method{untangle}{dendlist}(dend1, method = c("labels", "ladderize",
+  "random", "step1side", "step2side", "DendSer"), which = c(1L, 2L), ...)
 }
 \arguments{
 \item{dend1}{a dednrogram or a dendlist object}

@@ -5,7 +5,8 @@
 \title{The significant branches in a dendrogram, based on a pvclust object}
 \usage{
 pvclust_show_signif(dend, pvclust_obj, signif_type = c("bp", "au"),
-  alpha = 0.05, signif_value = c(5, 1), show_type = c("lwd", "col"), ...)
+  alpha = 0.05, signif_value = c(5, 1), show_type = c("lwd", "col"),
+  ...)
 }
 \arguments{
 \item{dend}{a dendrogram object}

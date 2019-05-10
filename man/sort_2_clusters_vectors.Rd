@@ -5,7 +5,8 @@
 \title{Sorts two clusters vector by their names}
 \usage{
 sort_2_clusters_vectors(A1_clusters, A2_clusters,
-  assume_sorted_vectors = FALSE, warn = dendextend_options("warn"), ...)
+  assume_sorted_vectors = FALSE, warn = dendextend_options("warn"),
+  ...)
 }
 \arguments{
 \item{A1_clusters}{a numeric vector of cluster grouping (numeric) of items,

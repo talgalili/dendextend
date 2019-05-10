@@ -4,8 +4,8 @@
 \alias{assign_values_to_branches_edgePar}
 \title{Assign values to edgePar of dendrogram's branches}
 \usage{
-assign_values_to_branches_edgePar(dend, value, edgePar, skip_leaves = FALSE,
-  warn = dendextend_options("warn"), ...)
+assign_values_to_branches_edgePar(dend, value, edgePar,
+  skip_leaves = FALSE, warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{dend}{a dendrogram object}

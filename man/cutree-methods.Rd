@@ -5,7 +5,6 @@
 \alias{cutree.default}
 \alias{cutree.hclust}
 \alias{cutree.phylo}
-\alias{cutree.phylo}
 \alias{cutree.agnes}
 \alias{cutree.diana}
 \alias{cutree.dendrogram}

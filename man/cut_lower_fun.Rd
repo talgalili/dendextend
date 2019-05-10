@@ -5,7 +5,8 @@
 \alias{dendextend_cut_lower_fun}
 \title{Cut a dendrogram - and run a function on the output}
 \usage{
-cut_lower_fun(dend, h, FUN = labels, warn = dendextend_options("warn"), ...)
+cut_lower_fun(dend, h, FUN = labels, warn = dendextend_options("warn"),
+  ...)
 }
 \arguments{
 \item{dend}{a dendrogram object.}

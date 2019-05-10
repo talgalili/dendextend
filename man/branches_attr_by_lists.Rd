@@ -4,8 +4,8 @@
 \alias{branches_attr_by_lists}
 \title{Change col/lwd/lty of branches from the root down to clusters defined by list of labels of respective members}
 \usage{
-branches_attr_by_lists(dend, lists, TF_values = c(2, 1), attr = c("col",
-  "lwd", "lty"), ...)
+branches_attr_by_lists(dend, lists, TF_values = c(2, 1),
+  attr = c("col", "lwd", "lty"), ...)
 }
 \arguments{
 \item{dend}{a dendrogram dend}

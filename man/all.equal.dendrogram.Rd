@@ -6,8 +6,9 @@
 \title{Global Comparison of two (or more) dendrograms}
 \usage{
 \method{all}{equal.dendrogram}(target, current, use.edge.length = TRUE,
-  use.tip.label.order = FALSE, use.tip.label = TRUE, use.topology = TRUE,
-  tolerance = .Machine$double.eps^0.5, scale = NULL, ...)
+  use.tip.label.order = FALSE, use.tip.label = TRUE,
+  use.topology = TRUE, tolerance = .Machine$double.eps^0.5,
+  scale = NULL, ...)
 }
 \arguments{
 \item{target}{an object of type \link{dendrogram} or \link{dendlist}}

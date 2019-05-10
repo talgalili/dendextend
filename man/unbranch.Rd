@@ -12,11 +12,11 @@ unbranch(dend, ...)
 
 \method{unbranch}{default}(dend, ...)
 
-\method{unbranch}{dendrogram}(dend, branch_becoming_root = 1, new_root_height,
-  ...)
+\method{unbranch}{dendrogram}(dend, branch_becoming_root = 1,
+  new_root_height, ...)
 
-\method{unbranch}{hclust}(dend, branch_becoming_root = 1, new_root_height,
-  ...)
+\method{unbranch}{hclust}(dend, branch_becoming_root = 1,
+  new_root_height, ...)
 
 \method{unbranch}{phylo}(dend, ...)
 }

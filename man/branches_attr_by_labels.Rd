@@ -4,8 +4,8 @@
 \alias{branches_attr_by_labels}
 \title{Change col/lwd/lty of branches matching labels condition}
 \usage{
-branches_attr_by_labels(dend, labels, TF_values = c(2, Inf), attr = c("col",
-  "lwd", "lty"), type = c("all", "any"), ...)
+branches_attr_by_labels(dend, labels, TF_values = c(2, Inf),
+  attr = c("col", "lwd", "lty"), type = c("all", "any"), ...)
 }
 \arguments{
 \item{dend}{a dendrogram dend}
