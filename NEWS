@@ -1,13 +1,11 @@
-dendextend 1.10.2 (2019-05-10)
+dendextend 1.11.0 (2019-05-10)
 ----------------------------------------
+
 ###UPDATED FUNCTIONS:
 * find_k - now imports pamk into dendextend so to remove the depndancy on fpc (credit to the author is provided in the DESCRIPTION, and mention to the source function in the docs of find_k).
 
-dendextend 1.10.1 (2019-03-17)
-----------------------------------------
-
 ###BUG FIXES
-   * unbranch - before: unbranch(dend,k), for k > 1, moved the new roots (the roots of dend[[k]]) at the beginning of the new_dend. Hence, whenever k>1, the order of the leaves was changed;			that is, labels(dend) != labels(unbranch(dend,k)). now: the new roots, say there are K of them, are inserted at the positions (k,k+1,...,k+K-1), and so labels(dend) == labels(unbranch(dend,k)).
+* unbranch - before: unbranch(dend,k), for k > 1, moved the new roots (the roots of dend[[k]]) at the beginning of the new_dend. Hence, whenever k>1, the order of the leaves was changed;			that is, labels(dend) != labels(unbranch(dend,k)). now: the new roots, say there are K of them, are inserted at the positions (k,k+1,...,k+K-1), and so labels(dend) == labels(unbranch(dend,k)).
 		
 
 dendextend 1.10.0 (2019-03-15)
