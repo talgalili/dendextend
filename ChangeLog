@@ -1,18 +1,231 @@
+* 2019-05-10(Tal Galili) find_k - now imports pamk into dendextend so to remove the depndancy on fpc |07581dd| 
+|  DESCRIPTION |  9 +++++----
+|  NAMESPACE   |  1 -
+|  NEWS        |  5 +++++
+|  R/find_k.R  | 49 ++++++++++++++++++++++++++++++++++++++++++++-----
+|  4 files changed, 54 insertions(+), 10 deletions(-)
+
+* 2019-03-18(Tal Galili) use labels, and fix sementic versioning to reflect recent fix. |68e008f| 
+|  DESCRIPTION                    | 2 +-
+|  NEWS                           | 9 ++-------
+|  tests/testthat/test-unbranch.R | 3 +--
+|  3 files changed, 4 insertions(+), 10 deletions(-)
+
+*   2019-03-18(Tal Galili) Merge pull request #87 from samperochkin/unbranch-keep-original-ordering |f52ef1d
+|\  
+| * 2019-03-17(Samuel Perreault) Typo** |0ff2c5c| | 
+| |  NEWS | 4 ++--
+| |  1 file changed, 2 insertions(+), 2 deletions(-)
+
+| *   2019-03-17(Samuel Perreault) Merge pull request #1 from samperochkin/patch-1 |70a87c6
+| |\  
+| | * 2019-03-17(Samuel Perreault) Add Samuel Perreault (myself) contributor. |b1384d7
+| |/  
+|/|   | |   
+| |    DESCRIPTION | 7 ++++---
+| |    1 file changed, 4 insertions(+), 3 deletions(-)
+
+| *   2019-03-17(Samuel Perreault) Merge pull request #2 from samperochkin/patch-2 |ab09572
+| |\  
+| | * 2019-03-17(Samuel Perreault) bug fix unbranch -- order of leaves now unchanged |3b012f8
+| |/  
+|/|   | |   
+| |    NEWS | 12 ++++++++++++
+| |    1 file changed, 12 insertions(+)
+
+* | 2019-03-15(Tal Galili) Added RNGversion("3.5.0") to tests so as to comply with the new R RNG change that is coming up in R 3.6.0. |f331c51| | 
+| |  DESCRIPTION                            |  4 ++--
+| |  NEWS                                   | 10 ++++------
+| |  tests/testthat/test-bk_method.R        |  1 +
+| |  tests/testthat/test-cor_bakers_gamma.R |  1 +
+| |  tests/testthat/test-cor_cophenetic.R   |  1 +
+| |  tests/testthat/test-pvclust_extract.R  |  1 +
+| |  tests/testthat/test-set.dendrogram.R   |  1 +
+| |  tests/testthat/test-untangle.R         |  2 +-
+| |  8 files changed, 12 insertions(+), 9 deletions(-)
+
+* | 2019-03-15(Tal Galili) reogranize roxygen2 code order |d853fa9| | 
+| |  R/pvclust.R          | 12 ++++++------
+| |  man/pvclust_edges.Rd |  3 ++-
+| |  2 files changed, 8 insertions(+), 7 deletions(-)
+
+* |   2019-03-15(Tal Galili) Merge pull request #91 from SplitInf/master |b72d5b0
+|\ \  
+| * | 2019-03-14(C2H4) updated test-pvclust_extract.R (refer to Issues #83) |805af67| | | 
+| | |  tests/testthat/test-pvclust_extract.R | 2 +-
+| | |  1 file changed, 1 insertion(+), 1 deletion(-)
+
+| * | 2019-03-14(C2H4) updated test-pvclust_extract.R (refer to Issues #83) |668c862| | | 
+| | |  tests/testthat/test-pvclust_extract.R | 1 +
+| | |  1 file changed, 1 insertion(+)
+
+| * | 2019-03-13(C2H4) updated pvclust_edges.Rd (refer to Issues #83) |4778a43| | | 
+| | |  man/pvclust_edges.Rd | 9 ++++++++-
+| | |  1 file changed, 8 insertions(+), 1 deletion(-)
+
+| * | 2019-03-13(C2H4) updated pvclust.R (refer to Issues #83) |d6af29e| | | 
+| | |  R/pvclust.R | 10 +++++++++-
+| | |  1 file changed, 9 insertions(+), 1 deletion(-)
+
+| * | 2019-03-13(C2H4) updated pvclust.R (refer to Issues #83) |5f366fb| | | 
+| | |  R/pvclust.R | 2 +-
+| | |  1 file changed, 1 insertion(+), 1 deletion(-)
+
+| * | 2019-03-13(C2H4) updated test case (refer to Issues #83) |ef372af| | | 
+| | |  tests/testthat/test-pvclust_extract.R | 8 ++++----
+| | |  1 file changed, 4 insertions(+), 4 deletions(-)
+
+| * | 2019-03-13(C2H4) updated DESCRIPTION (refer to Issues #83) |9ce51dc| | | 
+| | |  DESCRIPTION | 4 ++--
+| | |  1 file changed, 2 insertions(+), 2 deletions(-)
+
+| * | 2019-03-13(C2H4) updated DESCRIPTION, NEWS and test case (refer to Issues #83) |71f766f| | | 
+| | |  DESCRIPTION                           |   3 +-
+| | |  NAMESPACE                             |   1 +
+| | |  NEWS                                  |  10 +-
+| | |  R/pvclust.R                           |   4 +-
+| | |  man/pvclust_edges.Rd                  |  24 ++
+| | |  man/tanglegram.Rd                     | 570 ++++++++++++++--------------
+| | |  tests/testthat/test-pvclust_extract.R |   2 +-
+| | |  7 files changed, 324 insertions(+), 290 deletions(-)
+
+| * | 2019-03-12(C2H4) added testcases and refactored codebase |c90b1f2| | | 
+| | |  R/pvclust.R                           | 19 +++++++++++++++++++
+| | |  R/pvclust_extract.R                   | 11 -----------
+| | |  tests/testthat/test-pvclust_extract.R | 12 ++++++++++++
+| | |  3 files changed, 31 insertions(+), 11 deletions(-)
+
+| * | 2019-03-12(C2H4) added function that extract au/bp info (refer to Issues #83) |9672790
+|/ /  | |   
+| |    R/pvclust_extract.R | 11 +++++++++++
+| |    1 file changed, 11 insertions(+)
+
+* | 2019-02-08(Tal Galili) cutree.default now works with any object that has an as.dendrogram method by default. (including agnes and diana). Fix #90 |f28e912| | 
+| |  DESCRIPTION           |  4 ++--
+| |  NAMESPACE             |  2 ++
+| |  NEWS                  |  7 +++++++
+| |  R/cutree.dendrogram.R | 19 ++++++++++++++++++-
+| |  man/cutree-methods.Rd |  9 +++++++++
+| |  5 files changed, 38 insertions(+), 3 deletions(-)
+
+| * 2019-03-16(samperochkin) remove unlist from unbranch -- will file a seperate issue |9bbfcf3| | 
+| |  R/unbranch.R | 2 +-
+| |  1 file changed, 1 insertion(+), 1 deletion(-)
+
+| * 2019-03-16(samperochkin) added a test checking whether the order of leaves is preserved (for function unbranch) |825e735| | 
+| |  tests/testthat/test-unbranch.R | 3 +++
+| |  1 file changed, 3 insertions(+)
+
+| * 2019-03-16(samperochkin) solved midpoint problem with unlist. When all root nodes are leafs, get_root_branches_attr(new_dend, 'midpoint') returns a list... |fe39676| | 
+| |  R/unbranch.R | 9 ++-------
+| |  1 file changed, 2 insertions(+), 7 deletions(-)
+
+| * 2018-10-27(samperochkin) problems plotting the dend after an application of unbranch -- midpoint sometimes is NA |51beb55| | 
+| |  R/unbranch.R | 8 +++++++-
+| |  1 file changed, 7 insertions(+), 1 deletion(-)
+
+| * 2018-10-27(samperochkin) silly mistake... |90cf152| | 
+| |  R/unbranch.R | 4 ++--
+| |  1 file changed, 2 insertions(+), 2 deletions(-)
+
+| * 2018-10-26(samperochkin) correct mistake |0988f42| | 
+| |  R/unbranch.R | 2 +-
+| |  1 file changed, 1 insertion(+), 1 deletion(-)
+
+| * 2018-10-26(samperochkin) removed (now) useless stuff |7068a5c| | 
+| |  R/unbranch.R | 3 +--
+| |  1 file changed, 1 insertion(+), 2 deletions(-)
+
+| * 2018-10-26(samperochkin) if branch_becoming_root is K, then the new roots are positionned at K, K+1, ... K+length(dend[[branch_becoming_root]])-1 |f750beb
+|/  |   
+|    R/unbranch.R | 13 +++++++------
+|    1 file changed, 7 insertions(+), 6 deletions(-)
+
+* 2018-10-19(Tal Galili) Objects equal but not identical |f60bb18| 
+|  tests/testthat/test-highlight_branches.R | 3 ++-
+|  1 file changed, 2 insertions(+), 1 deletion(-)
+
+* 2018-10-19(Tal Galili) Add minimal test for highlight_branches |17ad842| 
+|  tests/testthat/test-highlight_branches.R | 29 +++++++++++++++++++++++++++++
+|  1 file changed, 29 insertions(+)
+
+* 2018-10-19(Tal Galili) fix highlight_branches_lwd and highlight_branches_col |e593ef1| 
+|  R/highlight_branches.R | 4 ++--
+|  1 file changed, 2 insertions(+), 2 deletions(-)
+
+* 2018-10-19(Tal Galili) Removed some old deprecated code relating to dendextendRcpp. |e3856fd| 
+|  DESCRIPTION                             |  2 +-
+|  NAMESPACE                               |  4 ----
+|  NEWS                                    |  3 ++-
+|  R/ape.R                                 | 18 +++++++-------
+|  R/attr_access.R                         | 23 +-----------------
+|  R/cut_lower_fun.R                       | 12 ----------
+|  R/cutree.dendrogram.R                   |  9 -------
+|  R/dendextend_options.R                  |  8 +++----
+|  R/stats_imports.R                       | 29 ----------------------
+|  man/as.phylo.dendrogram.Rd              |  5 ++++
+|  man/dendextend_labels.dendrogram.Rd     | 29 ----------------------
+|  man/get_branches_heights.Rd             | 12 ----------
+|  tests/testthat/test-attr_access.R       |  4 ++--
+|  tests/testthat/test-cut_lower_fun.R     | 40 +------------------------------
+|  tests/testthat/test-cutree.dendrogram.R |  6 ++---
+|  15 files changed, 29 insertions(+), 175 deletions(-)
+
+* 2018-10-19(Tal Galili) Fix the new test result: "S3 method lookup found 'as.phylo.dendrogram' on search path" |c7d28c7| 
+|  DESCRIPTION |  2 +-
+|  NAMESPACE   |  6 +++++-
+|  NEWS        |  4 +++-
+|  R/ape.R     | 13 ++++++++++---
+|  4 files changed, 19 insertions(+), 6 deletions(-)
+
+* 2018-10-06(Tal Galili) update NEWS and DESCRIPTION due to the recent code merges. |9299df3| 
+|  DESCRIPTION | 7 ++++++-
+|  NEWS        | 9 ++++++++-
+|  2 files changed, 14 insertions(+), 2 deletions(-)
+
+*   2018-10-06(Tal Galili) Merge pull request #80 from jdetribol/patch-1 |43ded96
+|\  
+| * 2018-08-08(jdetribol) Update distinct_edges.R |ad3bb48| | 
+| |  R/distinct_edges.R | 4 ++--
+| |  1 file changed, 2 insertions(+), 2 deletions(-)
+
+* | 2018-10-05(Lucas Gray) Modification of non-binary pruning and adding many tests for non-binary dendrograms |555bbe6| | 
+| |  R/prune.R                  |  64 ++++++++++---------
+| |  tests/testthat/test-trim.R | 136 ++++++++++++++++++++++++++++++++++++++++-
+| |  2 files changed, 168 insertions(+), 32 deletions(-)
+
+* | 2018-04-23(Lucas Graybuck) Changed prune_leaf() to prune non-binary trees |61f4e68
+|/  |   
+|    R/prune.R | 29 ++++++++++++++++++++---------
+|    1 file changed, 20 insertions(+), 9 deletions(-)
+
+* 2018-07-21(Tal Galili) Improve the doc |46ca013| 
+|  DESCRIPTION        | 4 ++--
+|  NEWS               | 7 +++++++
+|  R/set.dendrogram.R | 6 +++---
+|  man/set.Rd         | 6 +++---
+|  4 files changed, 15 insertions(+), 8 deletions(-)
+
+* 2018-05-02(Tal Galili) release candidate 0.18.0 |c0885f6| 
+|  ChangeLog   | 81 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  DESCRIPTION |  2 +-
+|  NEWS        | 12 ++-------
+|  NEWS.md     | 12 ++++++++-
+|  4 files changed, 95 insertions(+), 12 deletions(-)
+
 * 2018-04-28(Tal Galili) update docs |4cb6652| 
 |  NAMESPACE           |   1 +
 |  man/colored_dots.Rd | 192 ++++++++++++++++++++++++++++++++++++++++++++++++++
 |  2 files changed, 193 insertions(+)
 
 * 2018-04-28(Tal Galili) temp rename 2 |2be950c| 
-|  R/colored_dots.R    | 441 ++++++++++++++++++++++++++++++++++++++++++++++++++
-|  R/colored_dots111.R | 441 --------------------------------------------------
-|  2 files changed, 441 insertions(+), 441 deletions(-)
+|  R/{colored_dots111.R => colored_dots.R} | 0
+|  1 file changed, 0 insertions(+), 0 deletions(-)
 
 * 2018-04-28(Tal Galili) temp rename |d8b1ce7| 
-|  R/colored_Dots.R    | 441 --------------------------------------------------
-|  R/colored_dots.R    | 441 --------------------------------------------------
-|  R/colored_dots111.R | 441 ++++++++++++++++++++++++++++++++++++++++++++++++++
-|  3 files changed, 441 insertions(+), 882 deletions(-)
+|  R/colored_dots.R                        | 441 ------------------------------
+|  R/{colored_Dots.R => colored_dots111.R} |   0
+|  2 files changed, 441 deletions(-)
 
 * 2018-04-28(Tal Galili) stlyr the colored_dots file/functions |3f9da97| 
 |  NEWS             |   9 +
@@ -202,13 +415,12 @@
 |  3 files changed, 36 insertions(+), 13 deletions(-)
 
 * 2017-05-19(Tal Galili) * refactor reindex_dend to use order.dendrogram * Simpler consolidation of the prune documentation. * added reindex_dend parameter to allow the leaves of a pruned dendrogram to be of the vector of 1:nleaves |f5f09f7| 
-|  NAMESPACE             |  2 +-
-|  NEWS                  |  2 +-
-|  R/prune.R             | 72 ++++++++++++++++++++-----------------------------
-|  man/prune.Rd          | 10 +++++--
-|  man/reindex_dend.Rd   | 45 +++++++++++++++++++++++++++++++
-|  man/reindex_dendro.Rd | 43 -----------------------------
-|  6 files changed, 84 insertions(+), 90 deletions(-)
+|  NAMESPACE                                  |  2 +-
+|  NEWS                                       |  2 +-
+|  R/prune.R                                  | 72 +++++++++++-----------------
+|  man/prune.Rd                               | 10 +++-
+|  man/{reindex_dendro.Rd => reindex_dend.Rd} | 16 ++++---
+|  5 files changed, 48 insertions(+), 54 deletions(-)
 
 * 2017-05-19(Tal Galili) Added John Ma as contributor |10d732d| 
 |  DESCRIPTION | 7 ++++---
@@ -1000,53 +1212,31 @@
 |  4 files changed, 12 insertions(+), 4 deletions(-)
 
 * 2016-02-10(Tal Galili) Moved `inst/tests/` to `tests/testthat/` |b4c7fbc| 
-|  NEWS                                    |   7 +
-|  inst/tests/test-attr_access.R           | 232 -------------
-|  inst/tests/test-bk_method.R             | 286 ----------------
-|  inst/tests/test-branches_attr_by.R      |  97 ------
-|  inst/tests/test-common_subtrees.R       |  49 ---
-|  inst/tests/test-cor_bakers_gamma.R      |  48 ---
-|  inst/tests/test-cor_cophenetic.R        |  44 ---
-|  inst/tests/test-cut_lower_fun.R         | 110 -------
-|  inst/tests/test-cutree.dendrogram.R     | 520 ------------------------------
-|  inst/tests/test-dendlist.R              |  97 ------
-|  inst/tests/test-distinct_edges.R        |  45 ---
-|  inst/tests/test-entanglement.R          | 142 --------
-|  inst/tests/test-general.R               |  15 -
-|  inst/tests/test-ggdend.R                |  79 -----
-|  inst/tests/test-labels-assign.R         | 202 ------------
-|  inst/tests/test-labels_colors.R         | 118 -------
-|  inst/tests/test-nleaves.R               |  68 ----
-|  inst/tests/test-rect.dendrogram.R       |  26 --
-|  inst/tests/test-rotate.R                |  91 ------
-|  inst/tests/test-set.dendrogram.R        | 160 ---------
-|  inst/tests/test-trim.R                  |  81 -----
-|  inst/tests/test-unbranch.R              |  48 ---
-|  inst/tests/test-untangle.R              | 162 ----------
-|  tests/test-all.R                        |   2 +-
-|  tests/testthat/test-attr_access.R       | 232 +++++++++++++
-|  tests/testthat/test-bk_method.R         | 286 ++++++++++++++++
-|  tests/testthat/test-branches_attr_by.R  |  97 ++++++
-|  tests/testthat/test-common_subtrees.R   |  49 +++
-|  tests/testthat/test-cor_bakers_gamma.R  |  48 +++
-|  tests/testthat/test-cor_cophenetic.R    |  44 +++
-|  tests/testthat/test-cut_lower_fun.R     | 110 +++++++
-|  tests/testthat/test-cutree.dendrogram.R | 520 ++++++++++++++++++++++++++++++
-|  tests/testthat/test-dendlist.R          |  97 ++++++
-|  tests/testthat/test-distinct_edges.R    |  45 +++
-|  tests/testthat/test-entanglement.R      | 142 ++++++++
-|  tests/testthat/test-general.R           |  15 +
-|  tests/testthat/test-ggdend.R            |  79 +++++
-|  tests/testthat/test-labels-assign.R     | 202 ++++++++++++
-|  tests/testthat/test-labels_colors.R     | 118 +++++++
-|  tests/testthat/test-nleaves.R           |  68 ++++
-|  tests/testthat/test-rect.dendrogram.R   |  26 ++
-|  tests/testthat/test-rotate.R            |  91 ++++++
-|  tests/testthat/test-set.dendrogram.R    | 160 +++++++++
-|  tests/testthat/test-trim.R              |  81 +++++
-|  tests/testthat/test-unbranch.R          |  48 +++
-|  tests/testthat/test-untangle.R          | 162 ++++++++++
-|  46 files changed, 2728 insertions(+), 2721 deletions(-)
+|  NEWS                                                    | 7 +++++++
+|  tests/test-all.R                                        | 2 +-
+|  {inst/tests => tests/testthat}/test-attr_access.R       | 0
+|  {inst/tests => tests/testthat}/test-bk_method.R         | 0
+|  {inst/tests => tests/testthat}/test-branches_attr_by.R  | 0
+|  {inst/tests => tests/testthat}/test-common_subtrees.R   | 0
+|  {inst/tests => tests/testthat}/test-cor_bakers_gamma.R  | 0
+|  {inst/tests => tests/testthat}/test-cor_cophenetic.R    | 0
+|  {inst/tests => tests/testthat}/test-cut_lower_fun.R     | 0
+|  {inst/tests => tests/testthat}/test-cutree.dendrogram.R | 0
+|  {inst/tests => tests/testthat}/test-dendlist.R          | 0
+|  {inst/tests => tests/testthat}/test-distinct_edges.R    | 0
+|  {inst/tests => tests/testthat}/test-entanglement.R      | 0
+|  {inst/tests => tests/testthat}/test-general.R           | 0
+|  {inst/tests => tests/testthat}/test-ggdend.R            | 0
+|  {inst/tests => tests/testthat}/test-labels-assign.R     | 0
+|  {inst/tests => tests/testthat}/test-labels_colors.R     | 0
+|  {inst/tests => tests/testthat}/test-nleaves.R           | 0
+|  {inst/tests => tests/testthat}/test-rect.dendrogram.R   | 0
+|  {inst/tests => tests/testthat}/test-rotate.R            | 0
+|  {inst/tests => tests/testthat}/test-set.dendrogram.R    | 0
+|  {inst/tests => tests/testthat}/test-trim.R              | 0
+|  {inst/tests => tests/testthat}/test-unbranch.R          | 0
+|  {inst/tests => tests/testthat}/test-untangle.R          | 0
+|  24 files changed, 8 insertions(+), 1 deletion(-)
 
 * 2016-01-06(Tal Galili) Adding Gregory Jefferis as an author (thanks to his work on dendroextras, which was later reused in the dendextend package) |818aa14| 
 |  DESCRIPTION | 4 ++--
@@ -1454,12 +1644,10 @@
 |  1 file changed, 123 insertions(+), 20 deletions(-)
 
 * 2015-07-17(Tal Galili) Rename vignette files |2dd4fcd| 
-|  README.md                                         |   4 +-
-|  inst/ignored/Frequantly asked questions.html      | 325 ----------
-|  inst/ignored/Frequently asked questions.html      | 325 ++++++++++
-|  ...ts - enhanced with the dendextend package.html | 668 ++++++++++++++++++++
-|  ...ts - enhanced with the dendextend package.html | 668 --------------------
-|  5 files changed, 995 insertions(+), 995 deletions(-)
+|  README.md                                                           | 4 ++--
+|  ...quantly asked questions.html => Frequently asked questions.html} | 0
+|  ...on famous data sets - enhanced with the dendextend package.html} | 0
+|  3 files changed, 2 insertions(+), 2 deletions(-)
 
 * 2015-07-17(Tal Galili) added a circular example of Iris |4848a5d| 
 |  vignettes/Cluster_Analysis.Rmd | 18 ++++++++++++++++--
@@ -1927,11 +2115,10 @@
 |  1 file changed, 1 insertion(+), 1 deletion(-)
 
 * 2015-06-06(Tal Galili) Better format. |89a8aee| 
-|  README.md                                    |    2 +-
-|  inst/ignored/Introduction to dendextend.html | 1218 ++++++++++++++++++++++++
-|  inst/ignored/introduction.html               | 1218 ------------------------
-|  vignettes/introduction.Rmd                   |    4 +-
-|  4 files changed, 1221 insertions(+), 1221 deletions(-)
+|  README.md                                         |  2 +-
+|  ...ction.html => Introduction to dendextend.html} | 34 ++++++++++-----------
+|  vignettes/introduction.Rmd                        |  4 +--
+|  3 files changed, 20 insertions(+), 20 deletions(-)
 
 * 2015-06-06(Tal Galili) misc |b8c68cd| 
 |  ChangeLog | 892 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -2325,9 +2512,8 @@
 |  3 files changed, 16 insertions(+), 13 deletions(-)
 
 * 2015-05-23(Tal Galili) Rename file to be "cluster analysis" |aa156c6| 
-|  vignettes/Cluster_Analysis.Rmd | 103 +++++++++++++++++++++++++++++++++++++++
-|  vignettes/Iris_Analysis.Rmd    |  88 ---------------------------------
-|  2 files changed, 103 insertions(+), 88 deletions(-)
+|  vignettes/{Iris_Analysis.Rmd => Cluster_Analysis.Rmd} | 15 +++++++++++++++
+|  1 file changed, 15 insertions(+)
 
 * 2015-05-23(Tal Galili) Moved the "Iris analysis" from the introduction vignette to a seperate Rmd file. |25ed06f| 
 |  vignettes/Iris_Analysis.Rmd | 88 +++++++++++++++++++++++++++++++++++++++++++
@@ -2991,11 +3177,10 @@
 |  1 file changed, 4 insertions(+), 3 deletions(-)
 
 * 2015-01-29(Tal Galili) Rename dist_fun.R to dist_long.R |6ed91cc| 
-|  NEWS          |  1 +
-|  R/dist_fun.R  | 62 ---------------------------------------------------------
-|  R/dist_long.R | 62 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-|  R/unbranch.R  |  1 +
-|  4 files changed, 64 insertions(+), 62 deletions(-)
+|  NEWS                          | 1 +
+|  R/{dist_fun.R => dist_long.R} | 0
+|  R/unbranch.R                  | 1 +
+|  3 files changed, 2 insertions(+)
 
 * 2015-01-29(Tal Galili) `collapse_branch` - simplifies a tree with branches lower than some tollerance level |691c490| 
 |  NAMESPACE              |  1 +
@@ -3088,10 +3273,9 @@
 |  2 files changed, 168 insertions(+)
 
 * 2015-01-26(Tal Galili) renamed imports_stats.R to stats_imports.R |27068c4| 
-|  NEWS              |   1 +
-|  R/imports_stats.R | 285 ----------------------------------------------------
-|  R/stats_imports.R | 285 ++++++++++++++++++++++++++++++++++++++++++++++++++++
-|  3 files changed, 286 insertions(+), 285 deletions(-)
+|  NEWS                                   | 1 +
+|  R/{imports_stats.R => stats_imports.R} | 0
+|  2 files changed, 1 insertion(+)
 
 * 2015-01-26(Tal Galili) cor.dendlist and dist.dendlist - their matrix now includes dend names in col/row names. |951968a| 
 |  R/cor.dendlist.R     | 4 +++-
@@ -3151,16 +3335,15 @@
 |  4 files changed, 36 insertions(+), 4 deletions(-)
 
 * 2015-01-26(Tal Galili) Rename `get_branches_attr` to be `get_root_branches_attr` |3e38822| 
-|  NAMESPACE                                |  2 +-
-|  NEWS                                     |  2 +-
-|  R/attr_access.R                          |  4 ++--
-|  R/unbranch.R                             | 12 +++++-----
-|  inst/tests/test-unbranch.R               |  6 ++---
-|  man/assign_values_to_branches_edgePar.Rd |  2 +-
-|  man/get_branches_attr.Rd                 | 38 ------------------------------
-|  man/get_root_branches_attr.Rd            | 38 ++++++++++++++++++++++++++++++
-|  man/remove_branches_edgePar.Rd           |  2 +-
-|  9 files changed, 53 insertions(+), 53 deletions(-)
+|  NAMESPACE                                               |  2 +-
+|  NEWS                                                    |  2 +-
+|  R/attr_access.R                                         |  4 ++--
+|  R/unbranch.R                                            | 12 ++++++------
+|  inst/tests/test-unbranch.R                              |  6 +++---
+|  man/assign_values_to_branches_edgePar.Rd                |  2 +-
+|  man/{get_branches_attr.Rd => get_root_branches_attr.Rd} | 12 ++++++------
+|  man/remove_branches_edgePar.Rd                          |  2 +-
+|  8 files changed, 21 insertions(+), 21 deletions(-)
 
 * 2015-01-26(Tal Galili) minor docs update and version bump |5ac4ac6| 
 |  DESCRIPTION                     | 4 ++--
@@ -3553,13 +3736,12 @@
 |  3 files changed, 1549 insertions(+), 3 deletions(-)
 
 * 2014-08-19(Tal Galili) Moved dendextend-tutorial.rnw to vignettes\disabled - so it is still there, but not compiled. Also moved dendextend-tutorial.pdf to inst\doc - so there is a copy of this older vignette, but without needed to run it with all the benchmarks... (it is also compressed) |5558f2c| 
-|  NEWS                                       |    3 +
-|  R/zzz.R                                    |    7 +-
-|  inst/doc/dendextend-tutorial.pdf           |  Bin 0 -> 754947 bytes
-|  vignettes/dendextend-tutorial.pdf          | 9793 --------------------------
-|  vignettes/dendextend-tutorial.rnw          | 2024 ------
-|  vignettes/disabled/dendextend-tutorial.rnw | 2024 ++++++
-|  6 files changed, 2031 insertions(+), 11820 deletions(-)
+|  NEWS                                             |    3 +
+|  R/zzz.R                                          |    7 +-
+|  inst/doc/dendextend-tutorial.pdf                 |  Bin 0 -> 754947 bytes
+|  vignettes/dendextend-tutorial.pdf                | 9793 --------------------
+|  vignettes/{ => disabled}/dendextend-tutorial.rnw |    2 +-
+|  5 files changed, 8 insertions(+), 9797 deletions(-)
 
 * 2014-08-19(Tal Galili) erased file |a97af45| 
 |  R/dendlist - Copy.R | 275 --------------------------------------------------
@@ -3684,13 +3866,12 @@
 |  1 file changed, 2 insertions(+)
 
 * 2014-08-18(Tal Galili) Rename all.unique to all_unique |3411cc2| 
-|  NAMESPACE                 |  3 ++-
-|  NEWS                      |  4 ++--
-|  R/color_branches.R        | 27 ++++++++++++++++++++-------
-|  inst/tests/test-general.R |  9 +++++----
-|  man/all.unique.Rd         | 32 --------------------------------
-|  man/all_unique.Rd         | 32 ++++++++++++++++++++++++++++++++
-|  6 files changed, 61 insertions(+), 46 deletions(-)
+|  NAMESPACE                            |  3 ++-
+|  NEWS                                 |  4 ++--
+|  R/color_branches.R                   | 27 ++++++++++++++++++++-------
+|  inst/tests/test-general.R            |  9 +++++----
+|  man/{all.unique.Rd => all_unique.Rd} |  6 +++---
+|  5 files changed, 32 insertions(+), 17 deletions(-)
 
 * 2014-08-18(Tal Galili) `cutree.dendrogram` - replaces NA values with 0L - adjust the tests. |49a4bd8| 
 |  NEWS                                | 2 +-
@@ -3802,10 +3983,9 @@
 |  3 files changed, 4 insertions(+), 3 deletions(-)
 
 * 2014-08-16(Tal Galili) Rename files: trim.R -> prune.R |83f6388| 
-|  NEWS      |   1 +
-|  R/prune.R | 253 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-|  R/trim.R  | 253 ------------------------------------------------------------
-|  3 files changed, 254 insertions(+), 253 deletions(-)
+|  NEWS                  | 1 +
+|  R/{trim.R => prune.R} | 0
+|  2 files changed, 1 insertion(+)
 
 * 2014-08-15(Tal Galili) Use "set" in order to not confuse the reader... |6e048d2| 
 |  vignettes/introduction.Rmd | 30 ++++++++++++++++++++++--------
@@ -4384,13 +4564,11 @@
 |  5 files changed, 65 insertions(+), 1 deletion(-)
 
 * 2014-07-15(Tal Galili) Rename 2 file names from add->set (set.dendrogram.R and tests-set.dendrogram.R) |6b14d4b| 
-|  DESCRIPTION                      |   4 +-
-|  NEWS                             |  10 ++
-|  R/add.dendrogram.R               | 212 -------------------------------------
-|  R/set.dendrogram.R               | 212 +++++++++++++++++++++++++++++++++++++
-|  inst/tests/test-add.dendrogram.R | 143 -------------------------
-|  inst/tests/test-set.dendrogram.R | 143 +++++++++++++++++++++++++
-|  6 files changed, 367 insertions(+), 357 deletions(-)
+|  DESCRIPTION                                                 |  4 ++--
+|  NEWS                                                        | 10 ++++++++++
+|  R/{add.dendrogram.R => set.dendrogram.R}                    |  0
+|  inst/tests/{test-add.dendrogram.R => test-set.dendrogram.R} |  0
+|  4 files changed, 12 insertions(+), 2 deletions(-)
 
 * 2014-07-15(Tal Galili) Rename from "add" to "set"! |fb77b15| 
 |  NAMESPACE                        |   6 +-
@@ -4401,12 +4579,10 @@
 |  5 files changed, 216 insertions(+), 219 deletions(-)
 
 * 2014-07-15(Tal Galili) Rename files - from update to add |e08cccb| 
-|  NEWS                                |   7 +-
-|  R/add.dendrogram.R                  | 215 ++++++++++++++++++++++++++++++++++
-|  R/update.dendrogram.R               | 215 ----------------------------------
-|  inst/tests/test-add.dendrogram.R    | 143 ++++++++++++++++++++++
-|  inst/tests/test-update.dendrogram.R | 143 ----------------------
-|  5 files changed, 362 insertions(+), 361 deletions(-)
+|  NEWS                                                           | 7 ++++---
+|  R/{update.dendrogram.R => add.dendrogram.R}                    | 0
+|  inst/tests/{test-update.dendrogram.R => test-add.dendrogram.R} | 0
+|  3 files changed, 4 insertions(+), 3 deletions(-)
 
 * 2014-07-15(Tal Galili) Changed "update" to be "add". To make it easier to read and write... |cd72d1e| 
 |  NAMESPACE                           |   5 +-
@@ -4881,182 +5057,96 @@
 |  2 files changed, 11 insertions(+), 11 deletions(-)
 
 * 2014-07-10(Tal Galili) Rename back from .b to .R |c0fd282| 
-|  R/as.dendrogram.randomForest.R                    |   54 +
-|  R/as.dendrogram.randomForest.b                    |   54 -
-|  R/attr_access.R                                   |  814 ++++++++++++
-|  R/attr_access.b                                   |  814 ------------
-|  R/bk_method.R                                     | 1098 ++++++++++++++++
-|  R/bk_method.b                                     | 1098 ----------------
-|  R/color_branches.R                                |  482 +++++++
-|  R/color_branches.b                                |  482 -------
-|  R/cor_bakers_gamma.R                              |  240 ++++
-|  R/cor_bakers_gamma.b                              |  240 ----
-|  R/cor_cophenetic.R                                |  187 +++
-|  R/cor_cophenetic.b                                |  187 ---
-|  R/cut_lower_fun.R                                 |  104 ++
-|  R/cut_lower_fun.b                                 |  104 --
-|  R/cutree.dendrogram.R                             |  952 ++++++++++++++
-|  R/cutree.dendrogram.b                             |  952 --------------
-|  R/dendextend-package.R                            |   30 +
-|  R/dendextend-package.b                            |   30 -
-|  R/dendextend.R                                    |   70 +
-|  R/dendextend.b                                    |   70 -
-|  R/dendlist.R                                      |  222 ++++
-|  R/dendlist.b                                      |  222 ----
-|  R/entanglement.R                                  |  458 +++++++
-|  R/entanglement.b                                  |  458 -------
-|  R/imports_stats.R                                 |  285 +++++
-|  R/imports_stats.b                                 |  285 -----
-|  R/labels.R                                        |  369 ++++++
-|  R/labels.b                                        |  369 ------
-|  R/labels_colors.R                                 |  144 +++
-|  R/labels_colors.b                                 |  144 ---
-|  R/nleaves.R                                       |  316 +++++
-|  R/nleaves.b                                       |  316 -----
-|  R/rotate.R                                        |  337 +++++
-|  R/rotate.b                                        |  337 -----
-|  R/sample.dendrogram.R                             |  267 ++++
-|  R/sample.dendrogram.b                             |  267 ----
-|  R/tanglegram.R                                    |  815 ++++++++++++
-|  R/tanglegram.b                                    |  815 ------------
-|  R/trim.R                                          |  248 ++++
-|  R/trim.b                                          |  248 ----
-|  R/unbranch.R                                      |  246 ++++
-|  R/unbranch.b                                      |  246 ----
-|  R/untangle.R                                      | 1262 +++++++++++++++++++
-|  R/untangle.b                                      | 1262 -------------------
-|  R/zzz.R                                           |  360 ++++++
-|  R/zzz.b                                           |  360 ------
-|  demo/dendextend.R                                 |   23 +
-|  demo/dendextend.b                                 |   23 -
-|  .../2013-09-05_Boston-useR_01_intro.R             |  198 +++
-|  .../2013-09-05_Boston-useR_01_intro.b             |  198 ---
-|  .../2013-09-05_Boston-useR_02_dendextend.R        |  432 +++++++
-|  .../2013-09-05_Boston-useR_02_dendextend.b        |  432 -------
-|  .../2013-09-05_Boston-useR_03_untangle_iris.R     |  179 +++
-|  .../2013-09-05_Boston-useR_03_untangle_iris.b     |  179 ---
-|  .../2013-09-05_Boston-useR_04_tree_inference.R    |  125 ++
-|  .../2013-09-05_Boston-useR_04_tree_inference.b    |  125 --
-|  inst/tests/test-attr_access.R                     |  181 +++
-|  inst/tests/test-attr_access.b                     |  181 ---
-|  inst/tests/test-bk_method.R                       |  286 +++++
-|  inst/tests/test-bk_method.b                       |  286 -----
-|  inst/tests/test-cor_bakers_gamma.R                |   48 +
-|  inst/tests/test-cor_bakers_gamma.b                |   48 -
-|  inst/tests/test-cut_lower_fun.R                   |   95 ++
-|  inst/tests/test-cut_lower_fun.b                   |   95 --
-|  inst/tests/test-cutree.dendrogram.R               |  450 +++++++
-|  inst/tests/test-cutree.dendrogram.b               |  450 -------
-|  inst/tests/test-dendlist.R                        |   61 +
-|  inst/tests/test-dendlist.b                        |   61 -
-|  inst/tests/test-entanglement.R                    |  139 ++
-|  inst/tests/test-entanglement.b                    |  139 --
-|  inst/tests/test-labels-assign.R                   |  193 +++
-|  inst/tests/test-labels-assign.b                   |  193 ---
-|  inst/tests/test-labels_colors.R                   |   81 ++
-|  inst/tests/test-labels_colors.b                   |   81 --
-|  inst/tests/test-nleaves.R                         |   68 +
-|  inst/tests/test-nleaves.b                         |   68 -
-|  inst/tests/test-rotate.R                          |   91 ++
-|  inst/tests/test-rotate.b                          |   91 --
-|  inst/tests/test-trim.R                            |   81 ++
-|  inst/tests/test-trim.b                            |   81 --
-|  inst/tests/test-unbranch.R                        |   45 +
-|  inst/tests/test-unbranch.b                        |   45 -
-|  inst/tests/test-untangle.R                        |  162 +++
-|  inst/tests/test-untangle.b                        |  162 ---
-|  tests/test-all.R                                  |   13 +
-|  tests/test-all.b                                  |   13 -
-|  86 files changed, 12311 insertions(+), 12311 deletions(-)
+|  R/{as.dendrogram.randomForest.b => as.dendrogram.randomForest.R}        | 0
+|  R/{attr_access.b => attr_access.R}                                      | 0
+|  R/{bk_method.b => bk_method.R}                                          | 0
+|  R/{color_branches.b => color_branches.R}                                | 0
+|  R/{cor_bakers_gamma.b => cor_bakers_gamma.R}                            | 0
+|  R/{cor_cophenetic.b => cor_cophenetic.R}                                | 0
+|  R/{cut_lower_fun.b => cut_lower_fun.R}                                  | 0
+|  R/{cutree.dendrogram.b => cutree.dendrogram.R}                          | 0
+|  R/{dendextend-package.b => dendextend-package.R}                        | 0
+|  R/{dendextend.b => dendextend.R}                                        | 0
+|  R/{dendlist.b => dendlist.R}                                            | 0
+|  R/{entanglement.b => entanglement.R}                                    | 0
+|  R/{imports_stats.b => imports_stats.R}                                  | 0
+|  R/{labels.b => labels.R}                                                | 0
+|  R/{labels_colors.b => labels_colors.R}                                  | 0
+|  R/{nleaves.b => nleaves.R}                                              | 0
+|  R/{rotate.b => rotate.R}                                                | 0
+|  R/{sample.dendrogram.b => sample.dendrogram.R}                          | 0
+|  R/{tanglegram.b => tanglegram.R}                                        | 0
+|  R/{trim.b => trim.R}                                                    | 0
+|  R/{unbranch.b => unbranch.R}                                            | 0
+|  R/{untangle.b => untangle.R}                                            | 0
+|  R/{zzz.b => zzz.R}                                                      | 0
+|  demo/{dendextend.b => dendextend.R}                                     | 0
+|  ...3-09-05_Boston-useR_01_intro.b => 2013-09-05_Boston-useR_01_intro.R} | 0
+|  ...ston-useR_02_dendextend.b => 2013-09-05_Boston-useR_02_dendextend.R} | 0
+|  ...seR_03_untangle_iris.b => 2013-09-05_Boston-useR_03_untangle_iris.R} | 0
+|  ...R_04_tree_inference.b => 2013-09-05_Boston-useR_04_tree_inference.R} | 0
+|  inst/tests/{test-attr_access.b => test-attr_access.R}                   | 0
+|  inst/tests/{test-bk_method.b => test-bk_method.R}                       | 0
+|  inst/tests/{test-cor_bakers_gamma.b => test-cor_bakers_gamma.R}         | 0
+|  inst/tests/{test-cut_lower_fun.b => test-cut_lower_fun.R}               | 0
+|  inst/tests/{test-cutree.dendrogram.b => test-cutree.dendrogram.R}       | 0
+|  inst/tests/{test-dendlist.b => test-dendlist.R}                         | 0
+|  inst/tests/{test-entanglement.b => test-entanglement.R}                 | 0
+|  inst/tests/{test-labels-assign.b => test-labels-assign.R}               | 0
+|  inst/tests/{test-labels_colors.b => test-labels_colors.R}               | 0
+|  inst/tests/{test-nleaves.b => test-nleaves.R}                           | 0
+|  inst/tests/{test-rotate.b => test-rotate.R}                             | 0
+|  inst/tests/{test-trim.b => test-trim.R}                                 | 0
+|  inst/tests/{test-unbranch.b => test-unbranch.R}                         | 0
+|  inst/tests/{test-untangle.b => test-untangle.R}                         | 0
+|  tests/{test-all.b => test-all.R}                                        | 0
+|  43 files changed, 0 insertions(+), 0 deletions(-)
 
 * 2014-07-10(Tal Galili) rename all .r files to .b (so to allow the renaming from .r to .R on git on windows) |6145838| 
-|  R/as.dendrogram.randomForest.b                    |   54 +
-|  R/as.dendrogram.randomForest.r                    |   54 -
-|  R/attr_access.b                                   |  814 ++++++++++++
-|  R/attr_access.r                                   |  814 ------------
-|  R/bk_method.b                                     | 1098 ++++++++++++++++
-|  R/bk_method.r                                     | 1098 ----------------
-|  R/color_branches.b                                |  482 +++++++
-|  R/color_branches.r                                |  482 -------
-|  R/cor_bakers_gamma.b                              |  240 ++++
-|  R/cor_bakers_gamma.r                              |  240 ----
-|  R/cor_cophenetic.b                                |  187 +++
-|  R/cor_cophenetic.r                                |  187 ---
-|  R/cut_lower_fun.b                                 |  104 ++
-|  R/cut_lower_fun.r                                 |  104 --
-|  R/cutree.dendrogram.b                             |  952 ++++++++++++++
-|  R/cutree.dendrogram.r                             |  952 --------------
-|  R/dendextend-package.b                            |   30 +
-|  R/dendextend-package.r                            |   30 -
-|  R/dendextend.b                                    |   70 +
-|  R/dendextend.r                                    |   70 -
-|  R/dendlist.R                                      |  222 ----
-|  R/dendlist.b                                      |  222 ++++
-|  R/entanglement.b                                  |  458 +++++++
-|  R/entanglement.r                                  |  458 -------
-|  R/imports_stats.b                                 |  285 +++++
-|  R/imports_stats.r                                 |  285 -----
-|  R/labels.b                                        |  369 ++++++
-|  R/labels.r                                        |  369 ------
-|  R/labels_colors.b                                 |  144 +++
-|  R/labels_colors.r                                 |  144 ---
-|  R/nleaves.b                                       |  316 +++++
-|  R/nleaves.r                                       |  316 -----
-|  R/rotate.b                                        |  337 +++++
-|  R/rotate.r                                        |  337 -----
-|  R/sample.dendrogram.b                             |  267 ++++
-|  R/sample.dendrogram.r                             |  267 ----
-|  R/tanglegram.b                                    |  815 ++++++++++++
-|  R/tanglegram.r                                    |  815 ------------
-|  R/trim.b                                          |  248 ++++
-|  R/trim.r                                          |  248 ----
-|  R/unbranch.b                                      |  246 ++++
-|  R/unbranch.r                                      |  246 ----
-|  R/untangle.b                                      | 1262 +++++++++++++++++++
-|  R/untangle.r                                      | 1262 -------------------
-|  R/zzz.b                                           |  360 ++++++
-|  R/zzz.r                                           |  360 ------
-|  demo/dendextend.b                                 |   23 +
-|  demo/dendextend.r                                 |   23 -
-|  .../2013-09-05_Boston-useR_01_intro.R             |  198 ---
-|  .../2013-09-05_Boston-useR_01_intro.b             |  198 +++
-|  .../2013-09-05_Boston-useR_02_dendextend.R        |  432 -------
-|  .../2013-09-05_Boston-useR_02_dendextend.b        |  432 +++++++
-|  .../2013-09-05_Boston-useR_03_untangle_iris.R     |  179 ---
-|  .../2013-09-05_Boston-useR_03_untangle_iris.b     |  179 +++
-|  .../2013-09-05_Boston-useR_04_tree_inference.R    |  125 --
-|  .../2013-09-05_Boston-useR_04_tree_inference.b    |  125 ++
-|  inst/tests/test-attr_access.b                     |  181 +++
-|  inst/tests/test-attr_access.r                     |  181 ---
-|  inst/tests/test-bk_method.b                       |  286 +++++
-|  inst/tests/test-bk_method.r                       |  286 -----
-|  inst/tests/test-cor_bakers_gamma.b                |   48 +
-|  inst/tests/test-cor_bakers_gamma.r                |   48 -
-|  inst/tests/test-cut_lower_fun.b                   |   95 ++
-|  inst/tests/test-cut_lower_fun.r                   |   95 --
-|  inst/tests/test-cutree.dendrogram.b               |  450 +++++++
-|  inst/tests/test-cutree.dendrogram.r               |  450 -------
-|  inst/tests/test-dendlist.R                        |   61 -
-|  inst/tests/test-dendlist.b                        |   61 +
-|  inst/tests/test-entanglement.b                    |  139 ++
-|  inst/tests/test-entanglement.r                    |  139 --
-|  inst/tests/test-labels-assign.b                   |  193 +++
-|  inst/tests/test-labels-assign.r                   |  193 ---
-|  inst/tests/test-labels_colors.b                   |   81 ++
-|  inst/tests/test-labels_colors.r                   |   81 --
-|  inst/tests/test-nleaves.b                         |   68 +
-|  inst/tests/test-nleaves.r                         |   68 -
-|  inst/tests/test-rotate.b                          |   91 ++
-|  inst/tests/test-rotate.r                          |   91 --
-|  inst/tests/test-trim.b                            |   81 ++
-|  inst/tests/test-trim.r                            |   81 --
-|  inst/tests/test-unbranch.b                        |   45 +
-|  inst/tests/test-unbranch.r                        |   45 -
-|  inst/tests/test-untangle.b                        |  162 +++
-|  inst/tests/test-untangle.r                        |  162 ---
-|  tests/test-all.b                                  |   13 +
-|  tests/test-all.r                                  |   13 -
-|  86 files changed, 12311 insertions(+), 12311 deletions(-)
+|  R/{as.dendrogram.randomForest.r => as.dendrogram.randomForest.b}        | 0
+|  R/{attr_access.r => attr_access.b}                                      | 0
+|  R/{bk_method.r => bk_method.b}                                          | 0
+|  R/{color_branches.r => color_branches.b}                                | 0
+|  R/{cor_bakers_gamma.r => cor_bakers_gamma.b}                            | 0
+|  R/{cor_cophenetic.r => cor_cophenetic.b}                                | 0
+|  R/{cut_lower_fun.r => cut_lower_fun.b}                                  | 0
+|  R/{cutree.dendrogram.r => cutree.dendrogram.b}                          | 0
+|  R/{dendextend-package.r => dendextend-package.b}                        | 0
+|  R/{dendextend.r => dendextend.b}                                        | 0
+|  R/{dendlist.R => dendlist.b}                                            | 0
+|  R/{entanglement.r => entanglement.b}                                    | 0
+|  R/{imports_stats.r => imports_stats.b}                                  | 0
+|  R/{labels.r => labels.b}                                                | 0
+|  R/{labels_colors.r => labels_colors.b}                                  | 0
+|  R/{nleaves.r => nleaves.b}                                              | 0
+|  R/{rotate.r => rotate.b}                                                | 0
+|  R/{sample.dendrogram.r => sample.dendrogram.b}                          | 0
+|  R/{tanglegram.r => tanglegram.b}                                        | 0
+|  R/{trim.r => trim.b}                                                    | 0
+|  R/{unbranch.r => unbranch.b}                                            | 0
+|  R/{untangle.r => untangle.b}                                            | 0
+|  R/{zzz.r => zzz.b}                                                      | 0
+|  demo/{dendextend.r => dendextend.b}                                     | 0
+|  ...3-09-05_Boston-useR_01_intro.R => 2013-09-05_Boston-useR_01_intro.b} | 0
+|  ...ston-useR_02_dendextend.R => 2013-09-05_Boston-useR_02_dendextend.b} | 0
+|  ...seR_03_untangle_iris.R => 2013-09-05_Boston-useR_03_untangle_iris.b} | 0
+|  ...R_04_tree_inference.R => 2013-09-05_Boston-useR_04_tree_inference.b} | 0
+|  inst/tests/{test-attr_access.r => test-attr_access.b}                   | 0
+|  inst/tests/{test-bk_method.r => test-bk_method.b}                       | 0
+|  inst/tests/{test-cor_bakers_gamma.r => test-cor_bakers_gamma.b}         | 0
+|  inst/tests/{test-cut_lower_fun.r => test-cut_lower_fun.b}               | 0
+|  inst/tests/{test-cutree.dendrogram.r => test-cutree.dendrogram.b}       | 0
+|  inst/tests/{test-dendlist.R => test-dendlist.b}                         | 0
+|  inst/tests/{test-entanglement.r => test-entanglement.b}                 | 0
+|  inst/tests/{test-labels-assign.r => test-labels-assign.b}               | 0
+|  inst/tests/{test-labels_colors.r => test-labels_colors.b}               | 0
+|  inst/tests/{test-nleaves.r => test-nleaves.b}                           | 0
+|  inst/tests/{test-rotate.r => test-rotate.b}                             | 0
+|  inst/tests/{test-trim.r => test-trim.b}                                 | 0
+|  inst/tests/{test-unbranch.r => test-unbranch.b}                         | 0
+|  inst/tests/{test-untangle.r => test-untangle.b}                         | 0
+|  tests/{test-all.r => test-all.b}                                        | 0
+|  43 files changed, 0 insertions(+), 0 deletions(-)
 
 * 2014-07-08(Tal Galili) .Rd files commit |1fdac74| 
 |  man/Bk.Rd                                  |  65 ++++++------
@@ -6115,99 +6205,69 @@
 |  NEWS                                              |    2 +
 |  R/tanglegram.r                                    |    2 +-
 |  inst/doc/2013-09-05_Boston-useR/.gitignore        |    3 +-
-|  .../first_tanglegram.png                          |  Bin 39575 -> 0 bytes
-|  .../iris_colored_branches.png                     |  Bin 16950 -> 0 bytes
-|  .../precip_dend_plot_1.png                        |  Bin 3665 -> 0 bytes
-|  .../precip_dend_plot_2.png                        |  Bin 3715 -> 0 bytes
-|  .../precip_subset__hclust_single_plot.png         |  Bin 3900 -> 0 bytes
-|  .../precip_subset__hclust_single_plot_rect.png    |  Bin 3833 -> 0 bytes
 |  .../unnamed-chunk-10.png                          |  Bin 3862 -> 0 bytes
 |  .../unnamed-chunk-16.png                          |  Bin 5737 -> 0 bytes
-|  .../unnamed-chunk-17.png                          |  Bin 5737 -> 0 bytes
 |  .../unnamed-chunk-18.png                          |  Bin 5737 -> 0 bytes
-|  .../unnamed-chunk-19.png                          |  Bin 7510 -> 0 bytes
 |  .../unnamed-chunk-20.png                          |  Bin 7510 -> 0 bytes
-|  .../unnamed-chunk-21.png                          |  Bin 3900 -> 0 bytes
 |  .../unnamed-chunk-22.png                          |  Bin 3900 -> 0 bytes
 |  .../unnamed-chunk-23.png                          |  Bin 18165 -> 0 bytes
 |  .../unnamed-chunk-24.png                          |  Bin 18165 -> 0 bytes
-|  .../unnamed-chunk-25.png                          |  Bin 6132 -> 0 bytes
-|  .../unnamed-chunk-26.png                          |  Bin 6132 -> 0 bytes
-|  .../unnamed-chunk-27.png                          |  Bin 6132 -> 0 bytes
 |  .../unnamed-chunk-28.png                          |  Bin 6132 -> 0 bytes
-|  .../unnamed-chunk-29.png                          |  Bin 5869 -> 0 bytes
 |  .../unnamed-chunk-30.png                          |  Bin 6132 -> 0 bytes
 |  .../unnamed-chunk-31.png                          |  Bin 4719 -> 0 bytes
-|  .../unnamed-chunk-32.png                          |  Bin 5869 -> 0 bytes
-|  .../unnamed-chunk-33.png                          |  Bin 4755 -> 0 bytes
-|  .../unnamed-chunk-34.png                          |  Bin 4139 -> 0 bytes
-|  .../unnamed-chunk-35.png                          |  Bin 4755 -> 0 bytes
-|  .../unnamed-chunk-36.png                          |  Bin 4731 -> 0 bytes
-|  .../unnamed-chunk-37.png                          |  Bin 4755 -> 0 bytes
-|  .../unnamed-chunk-38.png                          |  Bin 4731 -> 0 bytes
-|  .../unnamed-chunk-39.png                          |  Bin 4759 -> 0 bytes
 |  .../unnamed-chunk-4.png                           |  Bin 11298 -> 0 bytes
-|  .../unnamed-chunk-40.png                          |  Bin 4748 -> 0 bytes
 |  .../unnamed-chunk-41.png                          |  Bin 6132 -> 0 bytes
-|  .../unnamed-chunk-42.png                          |  Bin 4759 -> 0 bytes
-|  .../unnamed-chunk-43.png                          |  Bin 4748 -> 0 bytes
-|  .../unnamed-chunk-44.png                          |  Bin 4139 -> 0 bytes
 |  .../unnamed-chunk-45.png                          |  Bin 6153 -> 0 bytes
 |  .../unnamed-chunk-46.png                          |  Bin 4139 -> 0 bytes
-|  .../unnamed-chunk-47.png                          |  Bin 22344 -> 0 bytes
 |  .../unnamed-chunk-49.png                          |  Bin 22344 -> 0 bytes
-|  .../unnamed-chunk-5.png                           |  Bin 11621 -> 0 bytes
 |  .../unnamed-chunk-8.png                           |  Bin 3862 -> 0 bytes
 |  .../unnamed-chunk-9.png                           |  Bin 3862 -> 0 bytes
-|  .../2013-09-05_Boston-useR.R                      |  459 -----
-|  .../2013-09-05_Boston-useR.Rpres                  |  864 ---------
-|  .../2013-09-05_Boston-useR.html                   | 1803 -------------------
-|  .../2013-09-05_Boston-useR.md                     | 1161 ------------
-|  .../precip_dend_plot_1.png                        |  Bin 0 -> 3665 bytes
-|  .../precip_dend_plot_2.png                        |  Bin 0 -> 3715 bytes
-|  .../precip_subset__hclust_single_plot.png         |  Bin 0 -> 3900 bytes
-|  .../precip_subset__hclust_single_plot_rect.png    |  Bin 0 -> 3833 bytes
-|  .../unnamed-chunk-17.png                          |  Bin 0 -> 5737 bytes
-|  .../unnamed-chunk-19.png                          |  Bin 0 -> 7510 bytes
-|  .../unnamed-chunk-21.png                          |  Bin 0 -> 3900 bytes
-|  .../unnamed-chunk-5.png                           |  Bin 0 -> 11621 bytes
-|  .../2013-09-05_Boston-useR_01_intro.R             |  192 ++
-|  .../2013-09-05_Boston-useR_01_intro.Rpres         |  448 +++++
-|  .../2013-09-05_Boston-useR_01_intro.html          | 1471 +++++++++++++++
-|  .../2013-09-05_Boston-useR_01_intro.md            |  659 +++++++
-|  .../first_tanglegram.png                          |  Bin 0 -> 39575 bytes
-|  .../iris_colored_branches.png                     |  Bin 0 -> 16950 bytes
+|  .../2013-09-05_Boston-useR.md                     | 1161 -------------------
+|  .../precip_dend_plot_1.png                        |  Bin
+|  .../precip_dend_plot_2.png                        |  Bin
+|  .../precip_subset__hclust_single_plot.png         |  Bin
+|  .../precip_subset__hclust_single_plot_rect.png    |  Bin
+|  .../unnamed-chunk-17.png                          |  Bin
+|  .../unnamed-chunk-19.png                          |  Bin
+|  .../unnamed-chunk-21.png                          |  Bin
+|  .../unnamed-chunk-5.png                           |  Bin
+|  .../2013-09-05_Boston-useR_01_intro.R             |  192 +++
+|  .../2013-09-05_Boston-useR_01_intro.Rpres         |  448 +++++++
+|  ....html => 2013-09-05_Boston-useR_01_intro.html} |  340 +-----
+|  .../2013-09-05_Boston-useR_01_intro.md            |  659 +++++++++++
+|  .../first_tanglegram.png                          |  Bin
+|  .../iris_colored_branches.png                     |  Bin
 |  .../simple_tanglegram_1.png                       |  Bin 0 -> 2846 bytes
 |  .../simple_tanglegram_1_worst_case.png            |  Bin 0 -> 4124 bytes
 |  .../simple_tanglegram_one_shuffle_1.png           |  Bin 0 -> 2932 bytes
 |  .../simple_tanglegram_random_search_1.png         |  Bin 0 -> 2296 bytes
-|  .../unnamed-chunk-11.png                          |  Bin 0 -> 5869 bytes
-|  .../unnamed-chunk-12.png                          |  Bin 0 -> 4755 bytes
-|  .../unnamed-chunk-14.png                          |  Bin 0 -> 4755 bytes
-|  .../unnamed-chunk-15.png                          |  Bin 0 -> 4731 bytes
-|  .../unnamed-chunk-16.png                          |  Bin 0 -> 4755 bytes
-|  .../unnamed-chunk-17.png                          |  Bin 0 -> 4731 bytes
-|  .../unnamed-chunk-18.png                          |  Bin 0 -> 4759 bytes
-|  .../unnamed-chunk-19.png                          |  Bin 0 -> 4748 bytes
+|  .../unnamed-chunk-11.png}                         |  Bin
+|  .../unnamed-chunk-12.png}                         |  Bin
+|  .../unnamed-chunk-14.png}                         |  Bin
+|  .../unnamed-chunk-15.png}                         |  Bin
+|  .../unnamed-chunk-16.png}                         |  Bin
+|  .../unnamed-chunk-17.png}                         |  Bin
+|  .../unnamed-chunk-18.png}                         |  Bin
+|  .../unnamed-chunk-19.png}                         |  Bin
 |  .../unnamed-chunk-2.png                           |  Bin 0 -> 18023 bytes
-|  .../unnamed-chunk-21.png                          |  Bin 0 -> 4759 bytes
-|  .../unnamed-chunk-22.png                          |  Bin 0 -> 4748 bytes
-|  .../unnamed-chunk-23.png                          |  Bin 0 -> 4139 bytes
-|  .../unnamed-chunk-25.png                          |  Bin 0 -> 4139 bytes
-|  .../unnamed-chunk-26.png                          |  Bin 0 -> 22344 bytes
+|  .../unnamed-chunk-21.png}                         |  Bin
+|  .../unnamed-chunk-22.png}                         |  Bin
+|  .../unnamed-chunk-23.png}                         |  Bin
+|  .../unnamed-chunk-25.png}                         |  Bin
+|  .../unnamed-chunk-26.png}                         |  Bin
 |  .../unnamed-chunk-33.png                          |  Bin 0 -> 3740 bytes
-|  .../unnamed-chunk-4.png                           |  Bin 0 -> 6132 bytes
-|  .../unnamed-chunk-6.png                           |  Bin 0 -> 6132 bytes
-|  .../unnamed-chunk-8.png                           |  Bin 0 -> 5869 bytes
-|  .../unnamed-chunk-9.png                           |  Bin 0 -> 6132 bytes
-|  .../2013-09-05_Boston-useR_02_dendextend.R        |  378 ++++
-|  .../2013-09-05_Boston-useR_02_dendextend.Rpres    |  671 +++++++
-|  .../2013-09-05_Boston-useR_02_dendextend.md       |  853 +++++++++
+|  .../unnamed-chunk-4.png}                          |  Bin
+|  .../unnamed-chunk-6.png}                          |  Bin
+|  .../unnamed-chunk-8.png}                          |  Bin
+|  .../unnamed-chunk-9.png}                          |  Bin
+|  ...R.R => 2013-09-05_Boston-useR_02_dendextend.R} |  289 ++---
+|  ...=> 2013-09-05_Boston-useR_02_dendextend.Rpres} |  589 ++++------
+|  .../2013-09-05_Boston-useR_02_dendextend.md       |  853 ++++++++++++++
 |  man/leaf_Colors.Rd                                |    2 +-
 |  vignettes/dendextend-tutorial.log                 |    2 +-
 |  vignettes/dendextend-tutorial.pdf                 |   13 +-
 |  vignettes/dendextend-tutorial.tex                 |    4 +-
-|  96 files changed, 4733 insertions(+), 4344 deletions(-)
+|  66 files changed, 2519 insertions(+), 2130 deletions(-)
 
 * 2013-08-29(Tal Galili) untangle_random_search - made sure the function will return the original trees if no better tree was found. |1d6d9fb| 
 |  NEWS         | 2 ++
@@ -6626,22 +6686,19 @@
 |  NEWS                                              |    1 +
 |  R/sample.dendrogram.r                             |    2 +-
 |  ...ation_1_80285bbfbf4a8a4612444b6a03b5bfa2.RData |  Bin 3496 -> 0 bytes
-|  ...ulation_1_80285bbfbf4a8a4612444b6a03b5bfa2.rdb |  Bin 7993 -> 0 bytes
 |  ...ulation_1_80285bbfbf4a8a4612444b6a03b5bfa2.rdx |  Bin 257 -> 0 bytes
 |  ...ation_1_dd930ca5c4802d808d8e1ff37bc0edef.RData |  Bin 0 -> 3502 bytes
-|  ...ulation_1_dd930ca5c4802d808d8e1ff37bc0edef.rdb |  Bin 0 -> 7988 bytes
+|  ...lation_1_dd930ca5c4802d808d8e1ff37bc0edef.rdb} |  Bin 7993 -> 7988 bytes
 |  ...ulation_1_dd930ca5c4802d808d8e1ff37bc0edef.rdx |  Bin 0 -> 257 bytes
 |  ...ation_2_a386542ebf46e61430ae6d546755ef8a.RData |  Bin 0 -> 3513 bytes
-|  ...ulation_2_a386542ebf46e61430ae6d546755ef8a.rdb |  Bin 0 -> 8768 bytes
+|  ...lation_2_a386542ebf46e61430ae6d546755ef8a.rdb} |  Bin 8761 -> 8768 bytes
 |  ...ulation_2_a386542ebf46e61430ae6d546755ef8a.rdx |  Bin 0 -> 259 bytes
 |  ...ation_2_faf7c50fae3d6d1cf2dedf6718056d8a.RData |  Bin 3503 -> 0 bytes
-|  ...ulation_2_faf7c50fae3d6d1cf2dedf6718056d8a.rdb |  Bin 8761 -> 0 bytes
 |  ...ulation_2_faf7c50fae3d6d1cf2dedf6718056d8a.rdx |  Bin 259 -> 0 bytes
 |  ...ation_3_1728f5856aa0b70528c40164da84c605.RData |  Bin 3522 -> 0 bytes
-|  ...ulation_3_1728f5856aa0b70528c40164da84c605.rdb |  Bin 9119 -> 0 bytes
 |  ...ulation_3_1728f5856aa0b70528c40164da84c605.rdx |  Bin 268 -> 0 bytes
 |  ...ation_3_a2067a06e2dadc01a424503feeb67ad9.RData |  Bin 0 -> 3527 bytes
-|  ...ulation_3_a2067a06e2dadc01a424503feeb67ad9.rdb |  Bin 0 -> 9118 bytes
+|  ...lation_3_a2067a06e2dadc01a424503feeb67ad9.rdb} |  Bin 9119 -> 9118 bytes
 |  ...ulation_3_a2067a06e2dadc01a424503feeb67ad9.rdx |  Bin 0 -> 269 bytes
 |  ...on_CI_4_a4452373b91f83c32fa8ad187e0fa475.RData |  Bin 0 -> 3914 bytes
 |  ...tion_CI_4_a4452373b91f83c32fa8ad187e0fa475.rdb |  Bin 0 -> 8375 bytes
@@ -6658,7 +6715,7 @@
 |  .../figure/cor_bakers_gamma_simulation_CI_41.pdf  |  Bin 0 -> 5047 bytes
 |  .../figure/cor_bakers_gamma_simulation_CI_42.pdf  |  Bin 0 -> 4848 bytes
 |  .../figure/cor_bakers_gamma_simulation_CI_43.pdf  |  Bin 0 -> 7496 bytes
-|  35 files changed, 1307 insertions(+), 655 deletions(-)
+|  32 files changed, 1307 insertions(+), 655 deletions(-)
 
 * 2013-08-14(Tal Galili) Added a "warn" parameter to cor_bakers_gamma |f6f62b2| 
 |  R/cor_bakers_gamma.r    | 8 +++++---
@@ -6783,11 +6840,9 @@
 |  R/tanglegram.r                                    |   11 +-
 |  man/tanglegram.Rd                                 |    6 +-
 |  ...example_802a64d3a4c0dd3e9bb0e2a4dee353da.RData |  Bin 0 -> 3699 bytes
-|  ...e_example_802a64d3a4c0dd3e9bb0e2a4dee353da.rdb |  Bin 0 -> 6426 bytes
-|  ...e_example_802a64d3a4c0dd3e9bb0e2a4dee353da.rdx |  Bin 0 -> 205 bytes
+|  ..._example_802a64d3a4c0dd3e9bb0e2a4dee353da.rdb} |  Bin
+|  ..._example_802a64d3a4c0dd3e9bb0e2a4dee353da.rdx} |  Bin
 |  ...example_bb4ceb1d930b3bb07d6747839ba48794.RData |  Bin 3657 -> 0 bytes
-|  ...e_example_bb4ceb1d930b3bb07d6747839ba48794.rdb |  Bin 6426 -> 0 bytes
-|  ...e_example_bb4ceb1d930b3bb07d6747839ba48794.rdx |  Bin 205 -> 0 bytes
 |  vignettes/dendextend-tutorial-concordance.tex     |    2 +-
 |  vignettes/dendextend-tutorial.log                 |   59 +-
 |  vignettes/dendextend-tutorial.pdf                 | 1103 +++++++++++--------
@@ -6800,17 +6855,15 @@
 |  .../untangle_step_rotate_2side_example4.pdf       |  Bin 6141 -> 6141 bytes
 |  .../untangle_step_rotate_2side_example5.pdf       |  Bin 5714 -> 5714 bytes
 |  .../untangle_step_rotate_2side_example6.pdf       |  Bin 0 -> 6163 bytes
-|  21 files changed, 694 insertions(+), 513 deletions(-)
+|  19 files changed, 694 insertions(+), 513 deletions(-)
 
 * 2013-08-14(Tal Galili) Version bump 0.7.3 |2bb5655| 
 |  DESCRIPTION                                       |    4 +-
 |  NEWS                                              |   41 +-
 |  ...hunk-40_9f83c05b11ed630ecb319c8a28110b35.RData |  Bin 3466 -> 0 bytes
-|  ...-chunk-40_9f83c05b11ed630ecb319c8a28110b35.rdb |  Bin 6426 -> 0 bytes
-|  ...-chunk-40_9f83c05b11ed630ecb319c8a28110b35.rdx |  Bin 205 -> 0 bytes
 |  ...hunk-40_b48b442cc366777991b02835121a00b7.RData |  Bin 0 -> 3657 bytes
-|  ...-chunk-40_b48b442cc366777991b02835121a00b7.rdb |  Bin 0 -> 6426 bytes
-|  ...-chunk-40_b48b442cc366777991b02835121a00b7.rdx |  Bin 0 -> 205 bytes
+|  ...chunk-40_b48b442cc366777991b02835121a00b7.rdb} |  Bin
+|  ...chunk-40_b48b442cc366777991b02835121a00b7.rdx} |  Bin
 |  ...example_bb4ceb1d930b3bb07d6747839ba48794.RData |  Bin 0 -> 3657 bytes
 |  ...e_example_bb4ceb1d930b3bb07d6747839ba48794.rdb |  Bin 0 -> 6426 bytes
 |  ...e_example_bb4ceb1d930b3bb07d6747839ba48794.rdx |  Bin 0 -> 205 bytes
@@ -6826,16 +6879,12 @@
 |  vignettes/figure/unnamed-chunk-37.pdf             |  Bin 6739 -> 0 bytes
 |  vignettes/figure/unnamed-chunk-38.pdf             |  Bin 6722 -> 0 bytes
 |  vignettes/figure/unnamed-chunk-39.pdf             |  Bin 6857 -> 0 bytes
-|  vignettes/figure/unnamed-chunk-401.pdf            |  Bin 6078 -> 0 bytes
-|  vignettes/figure/unnamed-chunk-402.pdf            |  Bin 6027 -> 0 bytes
-|  vignettes/figure/unnamed-chunk-403.pdf            |  Bin 6036 -> 0 bytes
-|  vignettes/figure/unnamed-chunk-404.pdf            |  Bin 6016 -> 0 bytes
 |  .../untangle_step_rotate_2side_example1.pdf       |  Bin 0 -> 6158 bytes
-|  .../untangle_step_rotate_2side_example2.pdf       |  Bin 0 -> 6137 bytes
-|  .../untangle_step_rotate_2side_example3.pdf       |  Bin 0 -> 6154 bytes
-|  .../untangle_step_rotate_2side_example4.pdf       |  Bin 0 -> 6141 bytes
-|  .../untangle_step_rotate_2side_example5.pdf       |  Bin 0 -> 5714 bytes
-|  32 files changed, 946 insertions(+), 1446 deletions(-)
+|  ...df => untangle_step_rotate_2side_example2.pdf} |  Bin 6027 -> 6137 bytes
+|  ...df => untangle_step_rotate_2side_example3.pdf} |  Bin 6036 -> 6154 bytes
+|  ...df => untangle_step_rotate_2side_example4.pdf} |  Bin 6078 -> 6141 bytes
+|  ...df => untangle_step_rotate_2side_example5.pdf} |  Bin 6016 -> 5714 bytes
+|  26 files changed, 946 insertions(+), 1446 deletions(-)
 
 * 2013-08-14(Tal Galili) tanglegram - fixed the right tree's labels position relative to the leaves tips. (they were too far away because of a combination of text_adj with dLeaf) |5c0f75e| 
 |  R/tanglegram.r               | 15 +++++++++++----
@@ -6905,8 +6954,6 @@
 |  ...-chunk-34_4cad004366f0784e24de81f2f1e1a5b1.rdb |  Bin 0 -> 3305 bytes
 |  ...-chunk-34_4cad004366f0784e24de81f2f1e1a5b1.rdx |  Bin 0 -> 211 bytes
 |  ...hunk-34_8ffad53bb8af151a2dcefeff754912dc.RData |  Bin 3083 -> 0 bytes
-|  ...-chunk-34_8ffad53bb8af151a2dcefeff754912dc.rdb |    0
-|  ...-chunk-34_8ffad53bb8af151a2dcefeff754912dc.rdx |  Bin 113 -> 0 bytes
 |  ...hunk-35_c84407e79fe989eb7f3fdc6fddcdb3b9.RData |  Bin 0 -> 3107 bytes
 |  ...-chunk-35_c84407e79fe989eb7f3fdc6fddcdb3b9.rdb |  Bin 0 -> 1824 bytes
 |  ...-chunk-35_c84407e79fe989eb7f3fdc6fddcdb3b9.rdx |  Bin 0 -> 136 bytes
@@ -6920,8 +6967,8 @@
 |  ...-chunk-38_536de094e0e3e4ccc261c1918659f094.rdb |  Bin 0 -> 1035 bytes
 |  ...-chunk-38_536de094e0e3e4ccc261c1918659f094.rdx |  Bin 0 -> 136 bytes
 |  ...hunk-39_6081bd526faf34d32cd6a13be83e6937.RData |  Bin 0 -> 3071 bytes
-|  ...-chunk-39_6081bd526faf34d32cd6a13be83e6937.rdb |    0
-|  ...-chunk-39_6081bd526faf34d32cd6a13be83e6937.rdx |  Bin 0 -> 113 bytes
+|  ...chunk-39_6081bd526faf34d32cd6a13be83e6937.rdb} |    0
+|  ...chunk-39_6081bd526faf34d32cd6a13be83e6937.rdx} |  Bin
 |  ...hunk-40_9f83c05b11ed630ecb319c8a28110b35.RData |  Bin 0 -> 3466 bytes
 |  ...-chunk-40_9f83c05b11ed630ecb319c8a28110b35.rdb |  Bin 0 -> 6426 bytes
 |  ...-chunk-40_9f83c05b11ed630ecb319c8a28110b35.rdx |  Bin 0 -> 205 bytes
@@ -6941,7 +6988,7 @@
 |  vignettes/figure/unnamed-chunk-402.pdf            |  Bin 0 -> 6027 bytes
 |  vignettes/figure/unnamed-chunk-403.pdf            |  Bin 0 -> 6036 bytes
 |  vignettes/figure/unnamed-chunk-404.pdf            |  Bin 0 -> 6016 bytes
-|  41 files changed, 4214 insertions(+), 2163 deletions(-)
+|  39 files changed, 4214 insertions(+), 2163 deletions(-)
 
 * 2013-08-12(Tal Galili) untangle_step_rotate_2side - added tests |af6c7bf| 
 |  inst/tests/test-untangle.r | 35 ++++++++++++++++++++++++++++++++++-
@@ -6974,12 +7021,11 @@
 |  2 files changed, 29 insertions(+), 10 deletions(-)
 
 * 2013-08-12(Tal Galili) Rename: untangle_forward_rotate_1side -> untangle_step_rotate_1side |43178f5| 
-|  NAMESPACE                            |  2 +-
-|  R/untangle.r                         | 68 ++++++++++++++++------------------
-|  inst/tests/test-untangle.r           |  7 +++-
-|  man/untangle_forward_rotate_1side.Rd | 59 -----------------------------
-|  man/untangle_step_rotate_1side.Rd    | 65 ++++++++++++++++++++++++++++++++
-|  5 files changed, 103 insertions(+), 98 deletions(-)
+|  NAMESPACE                                         |  2 +-
+|  R/untangle.r                                      | 68 ++++++++++-----------
+|  inst/tests/test-untangle.r                        |  7 ++-
+|  ...ate_1side.Rd => untangle_step_rotate_1side.Rd} | 16 +++--
+|  4 files changed, 49 insertions(+), 44 deletions(-)
 
 * 2013-08-11(Tal Galili) untangle_forward_rotate_1side function added! |f721906| 
 |  NAMESPACE                            |  1 +
@@ -7068,113 +7114,77 @@
 |  ...anglegram_4820b99e23c40b3df4be2cd55320490f.rdb |  Bin 0 -> 8590 bytes
 |  ...anglegram_4820b99e23c40b3df4be2cd55320490f.rdx |  Bin 0 -> 170 bytes
 |  ...ranches_aff39ef9c0e2ae1c023d06d324642a04.RData |  Bin 3692 -> 0 bytes
-|  ..._branches_aff39ef9c0e2ae1c023d06d324642a04.rdb |  Bin 51879 -> 0 bytes
-|  ..._branches_aff39ef9c0e2ae1c023d06d324642a04.rdx |  Bin 189 -> 0 bytes
 |  ...ranches_df7b6dfc097a9c6cde2152189b405e32.RData |  Bin 0 -> 3828 bytes
-|  ..._branches_df7b6dfc097a9c6cde2152189b405e32.rdb |  Bin 0 -> 51879 bytes
-|  ..._branches_df7b6dfc097a9c6cde2152189b405e32.rdx |  Bin 0 -> 189 bytes
+|  ...branches_df7b6dfc097a9c6cde2152189b405e32.rdb} |  Bin
+|  ...branches_df7b6dfc097a9c6cde2152189b405e32.rdx} |  Bin
 |  ...rs_plot_8dfe5036560ecb02840d07882d498136.RData |  Bin 3124 -> 0 bytes
-|  ...airs_plot_8dfe5036560ecb02840d07882d498136.rdb |  Bin 127 -> 0 bytes
-|  ...airs_plot_8dfe5036560ecb02840d07882d498136.rdx |  Bin 148 -> 0 bytes
 |  ...rs_plot_daac58f156bd023132ab44332d441f28.RData |  Bin 0 -> 3161 bytes
-|  ...airs_plot_daac58f156bd023132ab44332d441f28.rdb |  Bin 0 -> 127 bytes
-|  ...airs_plot_daac58f156bd023132ab44332d441f28.rdx |  Bin 0 -> 148 bytes
+|  ...irs_plot_daac58f156bd023132ab44332d441f28.rdb} |  Bin
+|  ...irs_plot_daac58f156bd023132ab44332d441f28.rdx} |  Bin
 |  ...hunk-10_0854e43359590ce23429966d09b02815.RData |  Bin 0 -> 307 bytes
-|  ...-chunk-10_0854e43359590ce23429966d09b02815.rdb |    0
-|  ...-chunk-10_0854e43359590ce23429966d09b02815.rdx |  Bin 0 -> 113 bytes
+|  ...chunk-10_0854e43359590ce23429966d09b02815.rdb} |    0
+|  ...chunk-10_0854e43359590ce23429966d09b02815.rdx} |  Bin
 |  ...hunk-10_9e4d22ca7258b454f2701d1413ab82d0.RData |  Bin 297 -> 0 bytes
-|  ...-chunk-10_9e4d22ca7258b454f2701d1413ab82d0.rdb |    0
-|  ...-chunk-10_9e4d22ca7258b454f2701d1413ab82d0.rdx |  Bin 113 -> 0 bytes
 |  ...hunk-11_a45b2e60d746184500f34c0344888b6d.RData |  Bin 315 -> 0 bytes
-|  ...-chunk-11_a45b2e60d746184500f34c0344888b6d.rdb |  Bin 36 -> 0 bytes
-|  ...-chunk-11_a45b2e60d746184500f34c0344888b6d.rdx |  Bin 130 -> 0 bytes
 |  ...hunk-11_d0998d8fbc02d1b6575b886950562355.RData |  Bin 0 -> 327 bytes
-|  ...-chunk-11_d0998d8fbc02d1b6575b886950562355.rdb |  Bin 0 -> 36 bytes
-|  ...-chunk-11_d0998d8fbc02d1b6575b886950562355.rdx |  Bin 0 -> 130 bytes
+|  ...chunk-11_d0998d8fbc02d1b6575b886950562355.rdb} |  Bin
+|  ...chunk-11_d0998d8fbc02d1b6575b886950562355.rdx} |  Bin
 |  ...hunk-12_ad4eab6c111317bd487ccce36f736a90.RData |  Bin 0 -> 368 bytes
-|  ...-chunk-12_ad4eab6c111317bd487ccce36f736a90.rdb |  Bin 0 -> 67 bytes
-|  ...-chunk-12_ad4eab6c111317bd487ccce36f736a90.rdx |  Bin 0 -> 130 bytes
+|  ...chunk-12_ad4eab6c111317bd487ccce36f736a90.rdb} |  Bin
+|  ...chunk-12_ad4eab6c111317bd487ccce36f736a90.rdx} |  Bin
 |  ...hunk-12_bfd3fdad8685afee49dc53382ab9b940.RData |  Bin 348 -> 0 bytes
-|  ...-chunk-12_bfd3fdad8685afee49dc53382ab9b940.rdb |  Bin 67 -> 0 bytes
-|  ...-chunk-12_bfd3fdad8685afee49dc53382ab9b940.rdx |  Bin 130 -> 0 bytes
 |  ...hunk-13_8532ab73d0f73d385c6b97323ab25374.RData |  Bin 288 -> 0 bytes
-|  ...-chunk-13_8532ab73d0f73d385c6b97323ab25374.rdb |  Bin 67 -> 0 bytes
-|  ...-chunk-13_8532ab73d0f73d385c6b97323ab25374.rdx |  Bin 130 -> 0 bytes
 |  ...hunk-13_a9b7eef6382ba74e22dd9268dc381f13.RData |  Bin 0 -> 311 bytes
-|  ...-chunk-13_a9b7eef6382ba74e22dd9268dc381f13.rdb |  Bin 0 -> 67 bytes
-|  ...-chunk-13_a9b7eef6382ba74e22dd9268dc381f13.rdx |  Bin 0 -> 130 bytes
+|  ...chunk-13_a9b7eef6382ba74e22dd9268dc381f13.rdb} |  Bin
+|  ...chunk-13_a9b7eef6382ba74e22dd9268dc381f13.rdx} |  Bin
 |  ...hunk-14_864583e5f4bccdbe4e9384020d05f60b.RData |  Bin 2996 -> 0 bytes
-|  ...-chunk-14_864583e5f4bccdbe4e9384020d05f60b.rdb |  Bin 265 -> 0 bytes
-|  ...-chunk-14_864583e5f4bccdbe4e9384020d05f60b.rdx |  Bin 128 -> 0 bytes
 |  ...hunk-14_8bdeda75791482f7fe0c15ca4add7f4d.RData |  Bin 0 -> 3006 bytes
-|  ...-chunk-14_8bdeda75791482f7fe0c15ca4add7f4d.rdb |  Bin 0 -> 265 bytes
-|  ...-chunk-14_8bdeda75791482f7fe0c15ca4add7f4d.rdx |  Bin 0 -> 128 bytes
+|  ...chunk-14_8bdeda75791482f7fe0c15ca4add7f4d.rdb} |  Bin
+|  ...chunk-14_8bdeda75791482f7fe0c15ca4add7f4d.rdx} |  Bin
 |  ...hunk-15_bc3ceeeb91232d23574416482184aa73.RData |  Bin 0 -> 3092 bytes
-|  ...-chunk-15_bc3ceeeb91232d23574416482184aa73.rdb |  Bin 0 -> 296 bytes
-|  ...-chunk-15_bc3ceeeb91232d23574416482184aa73.rdx |  Bin 0 -> 131 bytes
+|  ...chunk-15_bc3ceeeb91232d23574416482184aa73.rdb} |  Bin
+|  ...chunk-15_bc3ceeeb91232d23574416482184aa73.rdx} |  Bin
 |  ...hunk-15_dd0f20489ecc43d1b15fa7e75d86d497.RData |  Bin 3074 -> 0 bytes
-|  ...-chunk-15_dd0f20489ecc43d1b15fa7e75d86d497.rdb |  Bin 296 -> 0 bytes
-|  ...-chunk-15_dd0f20489ecc43d1b15fa7e75d86d497.rdx |  Bin 131 -> 0 bytes
 |  ...hunk-16_4566da6efa80cf3df53d8a91be5f5cc3.RData |  Bin 0 -> 3194 bytes
-|  ...-chunk-16_4566da6efa80cf3df53d8a91be5f5cc3.rdb |  Bin 0 -> 666 bytes
-|  ...-chunk-16_4566da6efa80cf3df53d8a91be5f5cc3.rdx |  Bin 0 -> 163 bytes
+|  ...chunk-16_4566da6efa80cf3df53d8a91be5f5cc3.rdb} |  Bin
+|  ...chunk-16_4566da6efa80cf3df53d8a91be5f5cc3.rdx} |  Bin
 |  ...hunk-16_771a6ce242d89b845f40ea3896192cee.RData |  Bin 3169 -> 0 bytes
-|  ...-chunk-16_771a6ce242d89b845f40ea3896192cee.rdb |  Bin 666 -> 0 bytes
-|  ...-chunk-16_771a6ce242d89b845f40ea3896192cee.rdx |  Bin 163 -> 0 bytes
 |  ...hunk-17_180ef22b097680ce8849623318fc5899.RData |  Bin 0 -> 2860 bytes
-|  ...-chunk-17_180ef22b097680ce8849623318fc5899.rdb |    0
-|  ...-chunk-17_180ef22b097680ce8849623318fc5899.rdx |  Bin 0 -> 113 bytes
+|  ...chunk-17_180ef22b097680ce8849623318fc5899.rdb} |    0
+|  ...chunk-17_180ef22b097680ce8849623318fc5899.rdx} |  Bin
 |  ...hunk-17_72778f36fe1ace467acaa29a9b2284d6.RData |  Bin 2862 -> 0 bytes
-|  ...-chunk-17_72778f36fe1ace467acaa29a9b2284d6.rdb |    0
-|  ...-chunk-17_72778f36fe1ace467acaa29a9b2284d6.rdx |  Bin 113 -> 0 bytes
 |  ...hunk-18_23e2cce2d0b15bd185767d94b20a1183.RData |  Bin 3127 -> 0 bytes
-|  ...-chunk-18_23e2cce2d0b15bd185767d94b20a1183.rdb |    0
-|  ...-chunk-18_23e2cce2d0b15bd185767d94b20a1183.rdx |  Bin 113 -> 0 bytes
 |  ...hunk-18_718657d68309d4e0c45b4501ea8a9e83.RData |  Bin 0 -> 3131 bytes
-|  ...-chunk-18_718657d68309d4e0c45b4501ea8a9e83.rdb |    0
-|  ...-chunk-18_718657d68309d4e0c45b4501ea8a9e83.rdx |  Bin 0 -> 113 bytes
+|  ...chunk-18_718657d68309d4e0c45b4501ea8a9e83.rdb} |    0
+|  ...chunk-18_718657d68309d4e0c45b4501ea8a9e83.rdx} |  Bin
 |  ...hunk-19_0fdbdabbe9e648a253d59bdafafcdc8a.RData |  Bin 3431 -> 0 bytes
-|  ...-chunk-19_0fdbdabbe9e648a253d59bdafafcdc8a.rdb |  Bin 512 -> 0 bytes
-|  ...-chunk-19_0fdbdabbe9e648a253d59bdafafcdc8a.rdx |  Bin 143 -> 0 bytes
 |  ...hunk-19_d1af6f9960f0c005eccb931d7793bf6b.RData |  Bin 0 -> 3474 bytes
-|  ...-chunk-19_d1af6f9960f0c005eccb931d7793bf6b.rdb |  Bin 0 -> 512 bytes
-|  ...-chunk-19_d1af6f9960f0c005eccb931d7793bf6b.rdx |  Bin 0 -> 143 bytes
+|  ...chunk-19_d1af6f9960f0c005eccb931d7793bf6b.rdb} |  Bin
+|  ...chunk-19_d1af6f9960f0c005eccb931d7793bf6b.rdx} |  Bin
 |  ...hunk-20_455b1a3886dfbac3f95e22d03843c020.RData |  Bin 2943 -> 0 bytes
-|  ...-chunk-20_455b1a3886dfbac3f95e22d03843c020.rdb |  Bin 519 -> 0 bytes
-|  ...-chunk-20_455b1a3886dfbac3f95e22d03843c020.rdx |  Bin 143 -> 0 bytes
 |  ...hunk-20_9f866b5b953b10f3b8d5b092eed33057.RData |  Bin 0 -> 2964 bytes
-|  ...-chunk-20_9f866b5b953b10f3b8d5b092eed33057.rdb |  Bin 0 -> 519 bytes
-|  ...-chunk-20_9f866b5b953b10f3b8d5b092eed33057.rdx |  Bin 0 -> 143 bytes
+|  ...chunk-20_9f866b5b953b10f3b8d5b092eed33057.rdb} |  Bin
+|  ...chunk-20_9f866b5b953b10f3b8d5b092eed33057.rdx} |  Bin
 |  ...hunk-21_8a160c3dee2afef22ce093e3668819de.RData |  Bin 0 -> 3472 bytes
-|  ...-chunk-21_8a160c3dee2afef22ce093e3668819de.rdb |  Bin 0 -> 761 bytes
-|  ...-chunk-21_8a160c3dee2afef22ce093e3668819de.rdx |  Bin 0 -> 155 bytes
+|  ...chunk-21_8a160c3dee2afef22ce093e3668819de.rdb} |  Bin
+|  ...chunk-21_8a160c3dee2afef22ce093e3668819de.rdx} |  Bin
 |  ...hunk-21_eaa8e7d7a586b81daf2136174b1ac324.RData |  Bin 3447 -> 0 bytes
-|  ...-chunk-21_eaa8e7d7a586b81daf2136174b1ac324.rdb |  Bin 761 -> 0 bytes
-|  ...-chunk-21_eaa8e7d7a586b81daf2136174b1ac324.rdx |  Bin 155 -> 0 bytes
 |  ...hunk-22_705cf338f5523ee13659e8bec07a7cd3.RData |  Bin 3149 -> 0 bytes
-|  ...-chunk-22_705cf338f5523ee13659e8bec07a7cd3.rdb |    0
-|  ...-chunk-22_705cf338f5523ee13659e8bec07a7cd3.rdx |  Bin 113 -> 0 bytes
 |  ...hunk-22_a00ca74792504d853d3e8938a2d4dc0f.RData |  Bin 0 -> 3164 bytes
-|  ...-chunk-22_a00ca74792504d853d3e8938a2d4dc0f.rdb |    0
-|  ...-chunk-22_a00ca74792504d853d3e8938a2d4dc0f.rdx |  Bin 0 -> 113 bytes
+|  ...chunk-22_a00ca74792504d853d3e8938a2d4dc0f.rdb} |    0
+|  ...chunk-22_a00ca74792504d853d3e8938a2d4dc0f.rdx} |  Bin
 |  ...hunk-23_32ab7758407c06a18f8c0738d91da189.RData |  Bin 0 -> 3266 bytes
-|  ...-chunk-23_32ab7758407c06a18f8c0738d91da189.rdb |  Bin 0 -> 985 bytes
-|  ...-chunk-23_32ab7758407c06a18f8c0738d91da189.rdx |  Bin 0 -> 169 bytes
+|  ...chunk-23_32ab7758407c06a18f8c0738d91da189.rdb} |  Bin
+|  ...chunk-23_32ab7758407c06a18f8c0738d91da189.rdx} |  Bin
 |  ...hunk-23_60c53081752d1b02584bb6e1587ddc3b.RData |  Bin 3205 -> 0 bytes
-|  ...-chunk-23_60c53081752d1b02584bb6e1587ddc3b.rdb |  Bin 985 -> 0 bytes
-|  ...-chunk-23_60c53081752d1b02584bb6e1587ddc3b.rdx |  Bin 169 -> 0 bytes
 |  ...hunk-24_2d5911b3224001929238ff0fe466dc63.RData |  Bin 3052 -> 0 bytes
-|  ...-chunk-24_2d5911b3224001929238ff0fe466dc63.rdb |  Bin 1028 -> 0 bytes
-|  ...-chunk-24_2d5911b3224001929238ff0fe466dc63.rdx |  Bin 176 -> 0 bytes
 |  ...hunk-24_e2fb976bd1c4ddd539d48664c820d3e8.RData |  Bin 0 -> 3092 bytes
-|  ...-chunk-24_e2fb976bd1c4ddd539d48664c820d3e8.rdb |  Bin 0 -> 1028 bytes
-|  ...-chunk-24_e2fb976bd1c4ddd539d48664c820d3e8.rdx |  Bin 0 -> 176 bytes
+|  ...chunk-24_e2fb976bd1c4ddd539d48664c820d3e8.rdb} |  Bin
+|  ...chunk-24_e2fb976bd1c4ddd539d48664c820d3e8.rdx} |  Bin
 |  ...hunk-25_2cc05c3512d29f056fb93aff83fa874a.RData |  Bin 3144 -> 0 bytes
-|  ...-chunk-25_2cc05c3512d29f056fb93aff83fa874a.rdb |  Bin 1071 -> 0 bytes
-|  ...-chunk-25_2cc05c3512d29f056fb93aff83fa874a.rdx |  Bin 172 -> 0 bytes
 |  ...hunk-25_cebb76da215882e646d5949e7741bb6f.RData |  Bin 0 -> 3201 bytes
-|  ...-chunk-25_cebb76da215882e646d5949e7741bb6f.rdb |  Bin 0 -> 1071 bytes
-|  ...-chunk-25_cebb76da215882e646d5949e7741bb6f.rdx |  Bin 0 -> 172 bytes
+|  ...chunk-25_cebb76da215882e646d5949e7741bb6f.rdb} |  Bin
+|  ...chunk-25_cebb76da215882e646d5949e7741bb6f.rdx} |  Bin
 |  ...hunk-26_0e0107d0f8512329816b878a6f5a1aa5.RData |  Bin 3477 -> 0 bytes
 |  ...-chunk-26_0e0107d0f8512329816b878a6f5a1aa5.rdb |  Bin 570 -> 0 bytes
 |  ...-chunk-26_0e0107d0f8512329816b878a6f5a1aa5.rdx |  Bin 141 -> 0 bytes
@@ -7182,29 +7192,23 @@
 |  ...-chunk-26_565dc1be57a60e1f915586415a455837.rdb |  Bin 0 -> 562 bytes
 |  ...-chunk-26_565dc1be57a60e1f915586415a455837.rdx |  Bin 0 -> 141 bytes
 |  ...hunk-27_2b1e0e0b0ed387ea5b59f6dde28cb372.RData |  Bin 0 -> 3288 bytes
-|  ...-chunk-27_2b1e0e0b0ed387ea5b59f6dde28cb372.rdb |  Bin 0 -> 1952 bytes
+|  ...chunk-27_2b1e0e0b0ed387ea5b59f6dde28cb372.rdb} |  Bin 1962 -> 1952 bytes
 |  ...-chunk-27_2b1e0e0b0ed387ea5b59f6dde28cb372.rdx |  Bin 0 -> 172 bytes
 |  ...hunk-27_ad7c7972c155de2058ccf7cf0120ac61.RData |  Bin 3241 -> 0 bytes
-|  ...-chunk-27_ad7c7972c155de2058ccf7cf0120ac61.rdb |  Bin 1962 -> 0 bytes
 |  ...-chunk-27_ad7c7972c155de2058ccf7cf0120ac61.rdx |  Bin 174 -> 0 bytes
 |  ...hunk-28_957f0b22af25177623f2dad88f375c7e.RData |  Bin 3444 -> 0 bytes
-|  ...-chunk-28_957f0b22af25177623f2dad88f375c7e.rdb |  Bin 1067 -> 0 bytes
-|  ...-chunk-28_957f0b22af25177623f2dad88f375c7e.rdx |  Bin 156 -> 0 bytes
 |  ...hunk-28_a920283370fb5e377c9ab52b0e8e6f00.RData |  Bin 0 -> 3490 bytes
-|  ...-chunk-28_a920283370fb5e377c9ab52b0e8e6f00.rdb |  Bin 0 -> 1057 bytes
-|  ...-chunk-28_a920283370fb5e377c9ab52b0e8e6f00.rdx |  Bin 0 -> 156 bytes
+|  ...chunk-28_a920283370fb5e377c9ab52b0e8e6f00.rdb} |  Bin 1067 -> 1057 bytes
+|  ...chunk-28_a920283370fb5e377c9ab52b0e8e6f00.rdx} |  Bin 156 -> 156 bytes
 |  ...hunk-29_12f892b1ead1d73ff2f1d0c38721055f.RData |  Bin 0 -> 3333 bytes
-|  ...-chunk-29_12f892b1ead1d73ff2f1d0c38721055f.rdb |  Bin 0 -> 2564 bytes
+|  ...chunk-29_12f892b1ead1d73ff2f1d0c38721055f.rdb} |  Bin 2586 -> 2564 bytes
 |  ...-chunk-29_12f892b1ead1d73ff2f1d0c38721055f.rdx |  Bin 0 -> 206 bytes
 |  ...hunk-29_2cd9396a66e20aa45d42fde8ce02f59b.RData |  Bin 3272 -> 0 bytes
-|  ...-chunk-29_2cd9396a66e20aa45d42fde8ce02f59b.rdb |  Bin 2586 -> 0 bytes
 |  ...-chunk-29_2cd9396a66e20aa45d42fde8ce02f59b.rdx |  Bin 208 -> 0 bytes
 |  ...chunk-2_b1697d1b75fe3245bc27d5ec4a380a72.RData |  Bin 459 -> 0 bytes
-|  ...d-chunk-2_b1697d1b75fe3245bc27d5ec4a380a72.rdb |    0
-|  ...d-chunk-2_b1697d1b75fe3245bc27d5ec4a380a72.rdx |  Bin 113 -> 0 bytes
 |  ...chunk-2_b4628ab5709db378bcab1727e34e1a30.RData |  Bin 0 -> 488 bytes
-|  ...d-chunk-2_b4628ab5709db378bcab1727e34e1a30.rdb |    0
-|  ...d-chunk-2_b4628ab5709db378bcab1727e34e1a30.rdx |  Bin 0 -> 113 bytes
+|  ...-chunk-2_b4628ab5709db378bcab1727e34e1a30.rdb} |    0
+|  ...-chunk-2_b4628ab5709db378bcab1727e34e1a30.rdx} |  Bin
 |  ...hunk-30_637cf7993ed915d704a1112cb31c306e.RData |  Bin 3313 -> 0 bytes
 |  ...-chunk-30_637cf7993ed915d704a1112cb31c306e.rdb |  Bin 766 -> 0 bytes
 |  ...-chunk-30_637cf7993ed915d704a1112cb31c306e.rdx |  Bin 141 -> 0 bytes
@@ -7212,11 +7216,9 @@
 |  ...-chunk-30_81ab30eb315472d1e8c00b2edf11b5d8.rdb |  Bin 0 -> 760 bytes
 |  ...-chunk-30_81ab30eb315472d1e8c00b2edf11b5d8.rdx |  Bin 0 -> 141 bytes
 |  ...hunk-31_c0f390969f965340b112bb54614c5ea0.RData |  Bin 0 -> 4255 bytes
-|  ...-chunk-31_c0f390969f965340b112bb54614c5ea0.rdb |  Bin 0 -> 954 bytes
-|  ...-chunk-31_c0f390969f965340b112bb54614c5ea0.rdx |  Bin 0 -> 158 bytes
+|  ...chunk-31_c0f390969f965340b112bb54614c5ea0.rdb} |  Bin
+|  ...chunk-31_c0f390969f965340b112bb54614c5ea0.rdx} |  Bin
 |  ...hunk-31_f2b7319faf2b67ca3ccdf80cf827c120.RData |  Bin 4205 -> 0 bytes
-|  ...-chunk-31_f2b7319faf2b67ca3ccdf80cf827c120.rdb |  Bin 954 -> 0 bytes
-|  ...-chunk-31_f2b7319faf2b67ca3ccdf80cf827c120.rdx |  Bin 158 -> 0 bytes
 |  ...hunk-32_035887295a5884b323b1e65c8c65dd5a.RData |  Bin 0 -> 3314 bytes
 |  ...-chunk-32_035887295a5884b323b1e65c8c65dd5a.rdb |  Bin 0 -> 9082 bytes
 |  ...-chunk-32_035887295a5884b323b1e65c8c65dd5a.rdx |  Bin 0 -> 202 bytes
@@ -7224,38 +7226,28 @@
 |  ...-chunk-33_c9bfcda22efd46a0858e444c19ad4d39.rdb |  Bin 0 -> 8534 bytes
 |  ...-chunk-33_c9bfcda22efd46a0858e444c19ad4d39.rdx |  Bin 0 -> 182 bytes
 |  ...hunk-34_8ffad53bb8af151a2dcefeff754912dc.RData |  Bin 0 -> 3083 bytes
-|  ...-chunk-34_8ffad53bb8af151a2dcefeff754912dc.rdb |    0
-|  ...-chunk-34_8ffad53bb8af151a2dcefeff754912dc.rdx |  Bin 0 -> 113 bytes
+|  ...chunk-34_8ffad53bb8af151a2dcefeff754912dc.rdb} |    0
+|  ...chunk-34_8ffad53bb8af151a2dcefeff754912dc.rdx} |  Bin
 |  ...chunk-3_2b65de8658503fe47d1d10c4cb83073c.RData |  Bin 0 -> 514 bytes
-|  ...d-chunk-3_2b65de8658503fe47d1d10c4cb83073c.rdb |  Bin 0 -> 1847 bytes
-|  ...d-chunk-3_2b65de8658503fe47d1d10c4cb83073c.rdx |  Bin 0 -> 175 bytes
+|  ...-chunk-3_2b65de8658503fe47d1d10c4cb83073c.rdb} |  Bin
+|  ...-chunk-3_2b65de8658503fe47d1d10c4cb83073c.rdx} |  Bin
 |  ...chunk-3_4ef8fe5aacf608de0ba1979299093591.RData |  Bin 495 -> 0 bytes
-|  ...d-chunk-3_4ef8fe5aacf608de0ba1979299093591.rdb |  Bin 1847 -> 0 bytes
-|  ...d-chunk-3_4ef8fe5aacf608de0ba1979299093591.rdx |  Bin 175 -> 0 bytes
 |  ...chunk-4_8d9acbb5d1f738b78a4e4d01a7c12331.RData |  Bin 0 -> 518 bytes
-|  ...d-chunk-4_8d9acbb5d1f738b78a4e4d01a7c12331.rdb |    0
-|  ...d-chunk-4_8d9acbb5d1f738b78a4e4d01a7c12331.rdx |  Bin 0 -> 113 bytes
+|  ...-chunk-4_8d9acbb5d1f738b78a4e4d01a7c12331.rdb} |    0
+|  ...-chunk-4_8d9acbb5d1f738b78a4e4d01a7c12331.rdx} |  Bin
 |  ...chunk-4_bba12a841818c3c67f69ec6e4524dcbd.RData |  Bin 513 -> 0 bytes
-|  ...d-chunk-4_bba12a841818c3c67f69ec6e4524dcbd.rdb |    0
-|  ...d-chunk-4_bba12a841818c3c67f69ec6e4524dcbd.rdx |  Bin 113 -> 0 bytes
 |  ...chunk-5_47af34f72262629ec1361d6f77945080.RData |  Bin 0 -> 463 bytes
-|  ...d-chunk-5_47af34f72262629ec1361d6f77945080.rdb |  Bin 0 -> 38 bytes
-|  ...d-chunk-5_47af34f72262629ec1361d6f77945080.rdx |  Bin 0 -> 135 bytes
+|  ...-chunk-5_47af34f72262629ec1361d6f77945080.rdb} |  Bin
+|  ...-chunk-5_47af34f72262629ec1361d6f77945080.rdx} |  Bin
 |  ...chunk-5_af11743ad81164feb1b10cd39101f245.RData |  Bin 464 -> 0 bytes
-|  ...d-chunk-5_af11743ad81164feb1b10cd39101f245.rdb |  Bin 38 -> 0 bytes
-|  ...d-chunk-5_af11743ad81164feb1b10cd39101f245.rdx |  Bin 135 -> 0 bytes
 |  ...chunk-6_5ea308b9fdde39d7ccaac454435731f3.RData |  Bin 473 -> 0 bytes
-|  ...d-chunk-6_5ea308b9fdde39d7ccaac454435731f3.rdb |    0
-|  ...d-chunk-6_5ea308b9fdde39d7ccaac454435731f3.rdx |  Bin 113 -> 0 bytes
 |  ...chunk-6_9fd4890494b261cc7b5cb2c7169b4458.RData |  Bin 0 -> 473 bytes
-|  ...d-chunk-6_9fd4890494b261cc7b5cb2c7169b4458.rdb |    0
-|  ...d-chunk-6_9fd4890494b261cc7b5cb2c7169b4458.rdx |  Bin 0 -> 113 bytes
+|  ...-chunk-6_9fd4890494b261cc7b5cb2c7169b4458.rdb} |    0
+|  ...-chunk-6_9fd4890494b261cc7b5cb2c7169b4458.rdx} |  Bin
 |  ...chunk-7_1027ff91092bfb1b34b33071e7672401.RData |  Bin 0 -> 287 bytes
-|  ...d-chunk-7_1027ff91092bfb1b34b33071e7672401.rdb |    0
-|  ...d-chunk-7_1027ff91092bfb1b34b33071e7672401.rdx |  Bin 0 -> 113 bytes
+|  ...-chunk-7_1027ff91092bfb1b34b33071e7672401.rdb} |    0
+|  ...-chunk-7_1027ff91092bfb1b34b33071e7672401.rdx} |  Bin
 |  ...chunk-7_7f6291cd0484ecb01f8cff789ae06888.RData |  Bin 276 -> 0 bytes
-|  ...d-chunk-7_7f6291cd0484ecb01f8cff789ae06888.rdb |    0
-|  ...d-chunk-7_7f6291cd0484ecb01f8cff789ae06888.rdx |  Bin 113 -> 0 bytes
 |  ...chunk-8_215ee19122915a3934fdfa0be0fc6b44.RData |  Bin 434 -> 0 bytes
 |  ...d-chunk-8_215ee19122915a3934fdfa0be0fc6b44.rdb |  Bin 1862 -> 0 bytes
 |  ...d-chunk-8_215ee19122915a3934fdfa0be0fc6b44.rdx |  Bin 176 -> 0 bytes
@@ -7263,10 +7255,8 @@
 |  ...d-chunk-8_8fb95628a4ed34b21ac6737e13bd30fd.rdb |  Bin 0 -> 1866 bytes
 |  ...d-chunk-8_8fb95628a4ed34b21ac6737e13bd30fd.rdx |  Bin 0 -> 176 bytes
 |  ...chunk-9_936345d3e011ace1a79be34607704491.RData |  Bin 269 -> 0 bytes
-|  ...d-chunk-9_936345d3e011ace1a79be34607704491.rdb |    0
-|  ...d-chunk-9_936345d3e011ace1a79be34607704491.rdx |  Bin 113 -> 0 bytes
 |  ...chunk-9_fa9394504afd6a07fa83f4d539ad4911.RData |  Bin 0 -> 270 bytes
-|  ...d-chunk-9_fa9394504afd6a07fa83f4d539ad4911.rdb |    0
+|  ...-chunk-9_fa9394504afd6a07fa83f4d539ad4911.rdb} |    0
 |  ...d-chunk-9_fa9394504afd6a07fa83f4d539ad4911.rdx |  Bin 0 -> 113 bytes
 |  vignettes/dendextend-tutorial-concordance.tex     |   11 +-
 |  vignettes/dendextend-tutorial.log                 |  639 +--
@@ -7274,7 +7264,6 @@
 |  vignettes/dendextend-tutorial.rnw                 |   53 +-
 |  vignettes/dendextend-tutorial.synctex.gz          |  Bin 122873 -> 133707 bytes
 |  vignettes/dendextend-tutorial.tex                 |  819 ++--
-|  vignettes/dendextend-tutorial.toc                 |    0
 |  vignettes/figure/first_tanglegram.pdf             |  Bin 0 -> 15798 bytes
 |  vignettes/figure/first_tanglegram1.pdf            |  Bin 0 -> 3450 bytes
 |  vignettes/figure/first_tanglegram2.pdf            |  Bin 0 -> 15825 bytes
@@ -7297,7 +7286,7 @@
 |  vignettes/figure/unnamed-chunk-332.pdf            |  Bin 0 -> 15665 bytes
 |  vignettes/figure/unnamed-chunk-333.pdf            |  Bin 0 -> 15739 bytes
 |  vignettes/figure/unnamed-chunk-4.pdf              |  Bin 4198 -> 4198 bytes
-|  233 files changed, 3207 insertions(+), 2367 deletions(-)
+|  176 files changed, 3207 insertions(+), 2367 deletions(-)
 
 * 2013-08-11(Tal Galili) entanglement - added .Rd example |1cf03a8| 
 |  R/entanglement.r    |  3 ++-
@@ -7327,12 +7316,10 @@
 |  3 files changed, 773 insertions(+), 760 deletions(-)
 
 * 2013-08-10(Tal Galili) Rename: 'untangle.r' -> 'entanglement.r' |83e7293| 
-|  DESCRIPTION                    |    3 +-
-|  R/entanglement.r               | 1080 +++++++++++++++++++++++++++++++++++++
-|  R/untangle.r                   | 1082 --------------------------------------
-|  inst/tests/test-entanglement.r |   64 +++
-|  inst/tests/test-untangle.r     |   64 ---
-|  5 files changed, 1146 insertions(+), 1147 deletions(-)
+|  DESCRIPTION                                         | 3 ++-
+|  R/{untangle.r => entanglement.r}                    | 2 --
+|  inst/tests/{test-untangle.r => test-entanglement.r} | 0
+|  3 files changed, 2 insertions(+), 3 deletions(-)
 
 * 2013-08-10(Tal Galili) match_order_dendrogram_by_old_order function added. |3a1c4e2| 
 |  NAMESPACE                                  |   1 +
@@ -7509,8 +7496,8 @@
 |  ...airs_plot_8dfe5036560ecb02840d07882d498136.rdb |  Bin 0 -> 127 bytes
 |  ...airs_plot_8dfe5036560ecb02840d07882d498136.rdx |  Bin 0 -> 148 bytes
 |  ...hunk-10_9e4d22ca7258b454f2701d1413ab82d0.RData |  Bin 0 -> 297 bytes
-|  ...-chunk-10_9e4d22ca7258b454f2701d1413ab82d0.rdb |    0
-|  ...-chunk-10_9e4d22ca7258b454f2701d1413ab82d0.rdx |  Bin 0 -> 113 bytes
+|  ...chunk-10_9e4d22ca7258b454f2701d1413ab82d0.rdb} |    0
+|  ...chunk-10_9e4d22ca7258b454f2701d1413ab82d0.rdx} |  Bin
 |  ...hunk-11_a45b2e60d746184500f34c0344888b6d.RData |  Bin 0 -> 315 bytes
 |  ...-chunk-11_a45b2e60d746184500f34c0344888b6d.rdb |  Bin 0 -> 36 bytes
 |  ...-chunk-11_a45b2e60d746184500f34c0344888b6d.rdx |  Bin 0 -> 130 bytes
@@ -7536,8 +7523,6 @@
 |  ...-chunk-18_23e2cce2d0b15bd185767d94b20a1183.rdb |    0
 |  ...-chunk-18_23e2cce2d0b15bd185767d94b20a1183.rdx |  Bin 0 -> 113 bytes
 |  ...hunk-18_d9d3a2e4138d97442a69288b169de349.RData |  Bin 3121 -> 0 bytes
-|  ...-chunk-18_d9d3a2e4138d97442a69288b169de349.rdb |    0
-|  ...-chunk-18_d9d3a2e4138d97442a69288b169de349.rdx |  Bin 113 -> 0 bytes
 |  ...hunk-19_0fdbdabbe9e648a253d59bdafafcdc8a.RData |  Bin 0 -> 3431 bytes
 |  ...-chunk-19_0fdbdabbe9e648a253d59bdafafcdc8a.rdb |  Bin 0 -> 512 bytes
 |  ...-chunk-19_0fdbdabbe9e648a253d59bdafafcdc8a.rdx |  Bin 0 -> 143 bytes
@@ -7578,13 +7563,12 @@
 |  ...-chunk-30_637cf7993ed915d704a1112cb31c306e.rdb |  Bin 0 -> 766 bytes
 |  ...-chunk-30_637cf7993ed915d704a1112cb31c306e.rdx |  Bin 0 -> 141 bytes
 |  ...hunk-30_cc171774502992645f046bd982a86244.RData |  Bin 4206 -> 0 bytes
-|  ...-chunk-30_cc171774502992645f046bd982a86244.rdb |  Bin 954 -> 0 bytes
 |  ...-chunk-30_cc171774502992645f046bd982a86244.rdx |  Bin 156 -> 0 bytes
 |  ...hunk-31_79bbada7960ab7612f76987dabda2a1b.RData |  Bin 4203 -> 0 bytes
 |  ...-chunk-31_79bbada7960ab7612f76987dabda2a1b.rdb |  Bin 954 -> 0 bytes
 |  ...-chunk-31_79bbada7960ab7612f76987dabda2a1b.rdx |  Bin 156 -> 0 bytes
 |  ...hunk-31_f2b7319faf2b67ca3ccdf80cf827c120.RData |  Bin 0 -> 4205 bytes
-|  ...-chunk-31_f2b7319faf2b67ca3ccdf80cf827c120.rdb |  Bin 0 -> 954 bytes
+|  ...chunk-31_f2b7319faf2b67ca3ccdf80cf827c120.rdb} |  Bin
 |  ...-chunk-31_f2b7319faf2b67ca3ccdf80cf827c120.rdx |  Bin 0 -> 158 bytes
 |  ...chunk-3_4ef8fe5aacf608de0ba1979299093591.RData |  Bin 0 -> 495 bytes
 |  ...d-chunk-3_4ef8fe5aacf608de0ba1979299093591.rdb |  Bin 0 -> 1847 bytes
@@ -7628,7 +7612,7 @@
 |  vignettes/figure/unnamed-chunk-29.pdf             |  Bin 6930 -> 5655 bytes
 |  vignettes/figure/unnamed-chunk-30.pdf             |  Bin 6361 -> 5369 bytes
 |  vignettes/figure/unnamed-chunk-4.pdf              |  Bin 4198 -> 4198 bytes
-|  129 files changed, 2543 insertions(+), 1715 deletions(-)
+|  126 files changed, 2543 insertions(+), 1715 deletions(-)
 
 * 2013-08-02(Tal Galili) Added an example to color_branches |b34b15b| 
 |  R/color_branches.r            | 39 ++++++++++++++++++++++++++++++++++++---
@@ -7653,9 +7637,8 @@
 |  1 file changed, 10 insertions(+)
 
 * 2013-08-02(Tal Galili) test-unroot.r -> test-unbranch.r |cefa337| 
-|  inst/tests/test-unbranch.r | 45 ++++++++++++++++++++++++++++++++++++++++++++
-|  inst/tests/test-unroot.r   | 45 --------------------------------------------
-|  2 files changed, 45 insertions(+), 45 deletions(-)
+|  inst/tests/{test-unroot.r => test-unbranch.r} | 0
+|  1 file changed, 0 insertions(+), 0 deletions(-)
 
 * 2013-08-02(Tal Galili) as.phylo.dendrogram function added |ff0b4bc| 
 |  NAMESPACE   | 1 +
@@ -7664,10 +7647,9 @@
 |  3 files changed, 6 insertions(+), 2 deletions(-)
 
 * 2013-08-02(Tal Galili) Renaming the file: unroot.r -> unbranch.r |d467113| 
-|  DESCRIPTION  |   2 +-
-|  R/unbranch.r | 245 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-|  R/unroot.r   | 237 -------------------------------------------------------
-|  3 files changed, 246 insertions(+), 238 deletions(-)
+|  DESCRIPTION                |  2 +-
+|  R/{unroot.r => unbranch.r} | 10 +++++++++-
+|  2 files changed, 10 insertions(+), 2 deletions(-)
 
 * 2013-08-02(Tal Galili) unroot -> unbranch: modify .Rd files |a05d617| 
 |  NAMESPACE                       | 10 ++++----
@@ -8244,14 +8226,12 @@
 |  1 file changed, 55 insertions(+)
 
 * 2013-07-24(Tal Galili) Fixes for CMD CHECK |5ee9655| 
-|  R/labels.r                     |   7 +--
-|  demo/00Index                   |   2 +-
-|  man/labels-assign.Rd           | 108 +++++++++++++++++++++++++++++++++++++++
-|  man/labels-set.Rd              | 108 ---------------------------------------
-|  man/order.dendrogram-assign.Rd |  39 ++++++++++++++
-|  man/order.dendrogram-set.Rd    |  39 --------------
-|  tests/test-all.r               |   2 +-
-|  7 files changed, 153 insertions(+), 152 deletions(-)
+|  R/labels.r                                                  | 7 ++++---
+|  demo/00Index                                                | 2 +-
+|  man/{labels-set.Rd => labels-assign.Rd}                     | 2 +-
+|  man/{order.dendrogram-set.Rd => order.dendrogram-assign.Rd} | 0
+|  tests/test-all.r                                            | 2 +-
+|  5 files changed, 7 insertions(+), 6 deletions(-)
 
 * 2013-07-24(Tal Galili) New: demo, vignettes (knitr), tests (testthat) - |857e081| 
 |  .Rbuildignore                        |   3 +
@@ -8384,13 +8364,12 @@
 |  5 files changed, 70 insertions(+), 2 deletions(-)
 
 * 2013-04-06(Tal Galili) labels_colors function added |718899f| 
-|  NAMESPACE                   |   4 +-
-|  NEWS                        |   5 ++-
-|  R/dendextend.r              | 102 +++++++++++++++++++++++++++++++++++++++---
-|  man/count.terminal.nodes.Rd |  48 --------------------
-|  man/count_terminal_nodes.Rd |  48 ++++++++++++++++++++
-|  man/labels_colors.Rd        |  49 ++++++++++++++++++++
-|  6 files changed, 200 insertions(+), 56 deletions(-)
+|  NAMESPACE                                         |   4 +-
+|  NEWS                                              |   5 +-
+|  R/dendextend.r                                    | 102 ++++++++++++++++++--
+|  ....terminal.nodes.Rd => count_terminal_nodes.Rd} |  12 +--
+|  man/labels_colors.Rd                              |  49 ++++++++++
+|  5 files changed, 158 insertions(+), 14 deletions(-)
 
 * 2013-04-06(Tal Galili) "labels<-.dendrogram" updated - to allow duplicate labels, and shorter labels than the size of the tree. |f82ed9b| 
 |  NEWS              |  2 ++
