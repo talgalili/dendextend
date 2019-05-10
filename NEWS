@@ -1,3 +1,8 @@
+dendextend 1.10.2 (2019-05-10)
+----------------------------------------
+###UPDATED FUNCTIONS:
+* find_k - now imports pamk into dendextend so to remove the depndancy on fpc (credit to the author is provided in the DESCRIPTION, and mention to the source function in the docs of find_k).
+
 dendextend 1.10.1 (2019-03-17)
 ----------------------------------------
 

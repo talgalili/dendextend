@@ -17,11 +17,50 @@
 #
 
 
-
-#' @importFrom fpc pamk
-NULL
-
-
+### Remove dependancy on fpc by importing pamk to this file.
+### #' @importFrom fpc pamk
+### NULL
+# fpc::pamk
+# Author: Christian Hennig c.hennig@ucl.ac.uk http://www.homepages.ucl.ac.uk/~ucakche/
+pamk <- function (data, krange = 2:10, criterion = "asw", usepam = TRUE, 
+          scaling = FALSE, alpha = 0.001, diss = inherits(data, "dist"), 
+          critout = FALSE, ns = 10, seed = NULL, ...) 
+{
+   ddata <- as.matrix(data)
+   if (!identical(scaling, FALSE)) 
+      sdata <- scale(ddata, scale = scaling)
+   else sdata <- ddata
+   cluster1 <- 1 %in% krange
+   critval <- numeric(max(krange))
+   pams <- list()
+   for (k in krange) {
+      if (usepam) 
+         pams[[k]] <- cluster::pam(sdata, k, diss = diss, ...)
+      else pams[[k]] <- cluster::clara(sdata, k, ...)
+      if (k != 1) 
+         critval[k] <- switch(criterion, asw = pams[[k]]$silinfo$avg.width, 
+                              multiasw = distcritmulti(sdata, pams[[k]]$clustering, 
+                                                       seed = seed, ns = ns)$crit.overall, ch = ifelse(diss, 
+                                                                                                       cluster.stats(sdata, pams[[k]]$clustering)$ch, 
+                                                                                                       calinhara(sdata, pams[[k]]$clustering)))
+      if (critout) 
+         cat(k, " clusters ", critval[k], "\\n")
+   }
+   k.best <- (1:max(krange))[which.max(critval)]
+   if (cluster1) {
+      if (diss) 
+         cluster1 <- FALSE
+      else {
+         cxx <- dudahart2(sdata, pams[[2]]$clustering, alpha = alpha)
+         critval[1] <- cxx$p.value
+         cluster1 <- cxx$cluster1
+      }
+   }
+   if (cluster1) 
+      k.best <- 1
+   out <- list(pamobject = pams[[k.best]], nc = k.best, crit = critval)
+   out
+}
 
 #' @title Find the (estimated) number of clusters for a dendrogram using average silhouette width
 #' @rdname find_k
