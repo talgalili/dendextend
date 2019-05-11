@@ -1,7 +1,10 @@
-dendextend 1.11.1 (2019-05-10)
+dendextend 1.11.1 (2019-05-11)
 ----------------------------------------
 ###OTHER NOTES
 * Move to RoxygenNote: 6.1.1
+
+###BUG FIXES
+* find_k - add missing functions from fpc (So that pamk will work with no NOTEs)
 
 dendextend 1.11.0 (2019-05-10)
 ----------------------------------------
