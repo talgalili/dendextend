@@ -34,7 +34,6 @@ To install the stable version on CRAN:
 
 ```r
 install.packages('dendextend')
-# install.packages('dendextendRcpp')
 ```
 
 To install the GitHub version:
@@ -46,7 +45,6 @@ install.packages.2('devtools')
 # make sure you have Rtools installed first! if not, then run:
 #install.packages('installr'); install.Rtools()
 devtools::install_github('talgalili/dendextend')
-# devtools::install_github('talgalili/dendextendRcpp')
 
 # Having colorspace is also useful, since it is used
 # In various examples in the vignettes
@@ -57,7 +55,6 @@ And then you may load the package using:
 
 ```R
 library("dendextend")
-# library("dendextendRcpp") # dendextendRcpp is no longer supported (or available on CRAN). Still, dendextend is faster these days, in recent versions of R, thanks to some updates to labels.dendrogram and other modifications to R.
 ```
 
 ## Usage
@@ -67,7 +64,6 @@ Vignettes:
 * [Introduction to dendextend](https://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Introduction%20to%20dendextend.html)
 * [Frequently asked questions](https://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Frequently%20asked%20questions.html)
 * [Hierarchical cluster analysis on famous data sets - enhanced with the dendextend package](https://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Hierarchical%20cluster%20analysis%20on%20famous%20data%20sets%20-%20enhanced%20with%20the%20dendextend%20package.html)
-* [Introduction vignette (older)](https://github.com/talgalili/dendextend/blob/master/inst/doc/dendextend-tutorial.pdf)  (older)
 
 ## Share your dendrograms!
 
