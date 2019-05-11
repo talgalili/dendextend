@@ -65,7 +65,6 @@ Suggests:
     testthat,
     seriation,
     colorspace,
-    plyr,
     ape,
     profdpm,
     microbenchmark,

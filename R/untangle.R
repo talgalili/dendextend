@@ -599,7 +599,6 @@ all_couple_rotations_at_k <- function(dend, k, dend_heights_per_k,...) {
 untangle_step_rotate_1side <- function(dend1, dend2_fixed, L = 1.5, direction = c("forward", "backward"), 
                                        k_seq = NULL, dend_heights_per_k, leaves_matching_method = c("labels", "order"), ...) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
-   # library(plyr)
    n_leaves <- nleaves(dend1)
    best_dend <- dend1
    if(missing(dend_heights_per_k)) dend_heights_per_k <- heights_per_k.dendrogram(best_dend) # since this function takes a looong time, I'm running it here so it will need to run only once!	
@@ -790,7 +789,6 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
 # 
 # untangle.forward.step.rotate.1side <- function(dend1, dend2_fixed) {
 #    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
-# 	library(plyr)
 # 	leaves_order <- order.dendrogram(dend1)
 # 	best_dend <- dend1
 # 	
@@ -882,7 +880,6 @@ untangle_evolution <- function(brother_1_dend1, brother_1_dend2,
 
 untangle_best_k_to_rotate_by_1side <- function(dend1, dend2_fixed, L = 1) {
    # this function gets two dendgrams, and goes over each k splits of the first dend1, and checks if the flip at level k of splitting imporves the entanglement between dend1 and dend2 (Which is fixed)
-   # library(plyr)
    leaves_order <- order.dendrogram(dend1)
    best_dend <- dend1
    dend1_k_rotated <- NULL
