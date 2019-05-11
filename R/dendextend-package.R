@@ -32,7 +32,6 @@
 #' @import graphics
 #' @import grDevices
 #' @import magrittr
-#' @import whisker
 NULL
 
 # ' @import ape

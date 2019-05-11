@@ -1,13 +1,22 @@
-dendextend 1.10.2 (2019-05-10)
+dendextend 1.12.0 (2019-05-11)
 ----------------------------------------
-###UPDATED FUNCTIONS:
-* find_k - now imports pamk into dendextend so to remove the depndancy on fpc (credit to the author is provided in the DESCRIPTION, and mention to the source function in the docs of find_k).
-
-dendextend 1.10.1 (2019-03-17)
-----------------------------------------
+###OTHER NOTES
+* Move to RoxygenNote: 6.1.1
+* Remove dendextendRcpp from introduction.Rmd
+* Remove OLD (5 years old...) inst/doc/dendextend-tutorial.pdf
+* Remove d3dendrogram (this code was experimental and given the advances in ggdend and plotly, it is no longer useful. If anyone is curious about this code, you're welcome to find it in previous versions of dendextend under R/d3dendrogram.R). This also let's us remove the dependency on whisker.
 
 ###BUG FIXES
-   * unbranch - before: unbranch(dend,k), for k > 1, moved the new roots (the roots of dend[[k]]) at the beginning of the new_dend. Hence, whenever k>1, the order of the leaves was changed;			that is, labels(dend) != labels(unbranch(dend,k)). now: the new roots, say there are K of them, are inserted at the positions (k,k+1,...,k+K-1), and so labels(dend) == labels(unbranch(dend,k)).
+* find_k - add missing functions from fpc (So that pamk will work with no NOTEs)
+
+dendextend 1.11.0 (2019-05-10)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+* find_k - now imports pamk into dendextend so to remove the dependency on fpc (credit to the author is provided in the DESCRIPTION, and mention to the source function in the docs of find_k).
+
+###BUG FIXES
+* unbranch - before: unbranch(dend,k), for k > 1, moved the new roots (the roots of dend[[k]]) at the beginning of the new_dend. Hence, whenever k>1, the order of the leaves was changed;			that is, labels(dend) != labels(unbranch(dend,k)). now: the new roots, say there are K of them, are inserted at the positions (k,k+1,...,k+K-1), and so labels(dend) == labels(unbranch(dend,k)).
 		
 
 dendextend 1.10.0 (2019-03-15)

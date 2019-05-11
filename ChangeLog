@@ -1,3 +1,65 @@
+* 2019-05-11(Tal Galili) Remove d3dendrogram |eb432c8| 
+|  DESCRIPTION             |   3 +-
+|  NEWS                    |   6 +-
+|  R/d3dendrogram.R        | 290 ----------------------------------------------
+|  R/zzz.R                 |   2 -
+|  man/d3dendro_options.Rd |  41 -------
+|  man/d3dendrogram.Rd     |  48 --------
+|  6 files changed, 5 insertions(+), 385 deletions(-)
+
+* 2019-05-11(Tal Galili) Remove dendextendRcpp from introduction.Rmd |deb7181| 
+|  NEWS                             |   1 +
+|  inst/doc/dendextend-tutorial.pdf | Bin 564592 -> 0 bytes
+|  vignettes/introduction.Rmd       |  20 --------------------
+|  3 files changed, 1 insertion(+), 20 deletions(-)
+
+* 2019-05-11(Tal Galili) Add missing function from fpc |dec5e9e| 
+|  DESCRIPTION |   2 +-
+|  NEWS        |   5 +-
+|  R/find_k.R  | 298 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  3 files changed, 303 insertions(+), 2 deletions(-)
+
+* 2019-05-10(Tal Galili) RoxygenNote: 6.1.1 |309397f| 
+|  DESCRIPTION                              |  4 +--
+|  NEWS                                     |  5 +++
+|  man/Bk.Rd                                |  4 +--
+|  man/Bk_plot.Rd                           |  9 +++---
+|  man/FM_index.Rd                          |  3 +-
+|  man/all.equal.dendrogram.Rd              |  5 +--
+|  man/assign_values_to_branches_edgePar.Rd |  4 +--
+|  man/assign_values_to_nodes_nodePar.Rd    |  4 +--
+|  man/bakers_gamma_for_2_k_matrix.Rd       |  3 +-
+|  man/branches_attr_by_labels.Rd           |  4 +--
+|  man/branches_attr_by_lists.Rd            |  4 +--
+|  man/circlize_dendrogram.Rd               |  5 +--
+|  man/cor_bakers_gamma.Rd                  |  8 ++---
+|  man/cut_lower_fun.Rd                     |  3 +-
+|  man/cutree-methods.Rd                    |  1 -
+|  man/find_dend.Rd                         |  6 ++--
+|  man/get_root_branches_attr.Rd            |  3 +-
+|  man/plot_horiz.dendrogram.Rd             | 11 ++++---
+|  man/pvclust_show_signif.Rd               |  3 +-
+|  man/pvclust_show_signif_gradient.Rd      |  5 +--
+|  man/rect.dendrogram.Rd                   |  6 ++--
+|  man/set.Rd                               | 16 +++++-----
+|  man/sort_2_clusters_vectors.Rd           |  3 +-
+|  man/tanglegram.Rd                        | 49 ++++++++++++++++--------------
+|  man/unbranch.Rd                          |  8 ++---
+|  man/untangle.Rd                          |  8 ++---
+|  man/untangle_step_rotate_1side.Rd        |  4 +--
+|  man/untangle_step_rotate_2side.Rd        |  4 +--
+|  28 files changed, 106 insertions(+), 86 deletions(-)
+
+* 2019-05-10(Tal Galili) Bumped to 1.11.0 |9a156c8| 
+|  DESCRIPTION | 2 +-
+|  NEWS        | 8 +++-----
+|  2 files changed, 4 insertions(+), 6 deletions(-)
+
+* 2019-05-10(Tal Galili) Update NEWS files. |70486f3| 
+|  ChangeLog | 1081 +++++++++++++++++++++++++++++------------------------------
+|  NEWS.md   |   44 ++-
+|  2 files changed, 573 insertions(+), 552 deletions(-)
+
 * 2019-05-10(Tal Galili) find_k - now imports pamk into dendextend so to remove the depndancy on fpc |07581dd| 
 |  DESCRIPTION |  9 +++++----
 |  NAMESPACE   |  1 -
