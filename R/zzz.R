@@ -147,8 +147,6 @@
    
    # dendextend::dendextend_options()
    
-   # set default options for d3 dendrogram.
-   d3dendro_defaults(D3DENDRODEFAULTS)
 }
 
 # menus are added and removed as needed: !!

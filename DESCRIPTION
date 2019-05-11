@@ -1,7 +1,7 @@
 Package: dendextend
 Type: Package
 Title: Extending 'dendrogram' Functionality in R
-Version: 1.11.1
+Version: 1.12.0
 Date: 2019-05-11
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "https://www.r-statistics.com"),
@@ -58,7 +58,6 @@ Imports:
     datasets,
     magrittr (>= 1.0.1),
     ggplot2,
-    whisker,
     viridis
 Suggests:
     knitr,
