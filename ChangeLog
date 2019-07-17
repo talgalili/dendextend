@@ -1,3 +1,23 @@
+* 2019-05-11(Tal Galili) Remove plyr from suggests |92c5e64| 
+|  DESCRIPTION  | 1 -
+|  R/untangle.R | 3 ---
+|  2 files changed, 4 deletions(-)
+
+* 2019-05-11(Tal Galili) Remove old URL and some dendextendRcpp ref |812c671| 
+|  README.md | 4 ----
+|  1 file changed, 4 deletions(-)
+
+* 2019-05-11(Tal Galili) Use newer devtools functions for testing. |1db72ed| 
+|  R/zzz.R | 4 ++--
+|  1 file changed, 2 insertions(+), 2 deletions(-)
+
+* 2019-05-11(Tal Galili) update docs |55d47a4| 
+|  ChangeLog              | 62 ++++++++++++++++++++++++++++++++++++++++++++++++
+|  NAMESPACE              |  1 -
+|  NEWS.md                | 19 +++++++++++----
+|  R/dendextend-package.R |  1 -
+|  4 files changed, 76 insertions(+), 7 deletions(-)
+
 * 2019-05-11(Tal Galili) Remove d3dendrogram |eb432c8| 
 |  DESCRIPTION             |   3 +-
 |  NEWS                    |   6 +-
