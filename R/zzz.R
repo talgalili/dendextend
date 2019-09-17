@@ -405,6 +405,7 @@ dendextendWelcomeMessage <- function(){
 
 # shell('git log --graph --stat --date=short --pretty=format:"%ad(%an) %s |%h" > ChangeLog', intern = TRUE)
 # file.copy("NEWS", "NEWS.md",overwrite = TRUE)
+# pkgdown::build_site(run_dont_run = FALSE)
 # devtools::check_win()
 # devtools::check_win_devel()
 # release()
