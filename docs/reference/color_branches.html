@@ -169,7 +169,7 @@ using the k or h parameters.</p>
     <tr>
       <th>col</th>
       <td><p>Function or vector of Colors. By default it tries to use 
-<a href='https://www.rdocumentation.org/packages/colorspace/topics/rainbow_hcl'>rainbow_hcl</a> from the <code>colorspace</code> package.
+<a href='http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html'>rainbow_hcl</a> from the <code>colorspace</code> package.
 (with parameters c=90 and l=50). If <code>colorspace</code> is not available,
 It will fall back on the <a href='https://www.rdocumentation.org/packages/grDevices/topics/palettes'>rainbow</a> function.</p></td>
     </tr>
@@ -278,7 +278,7 @@ of an object without <a href='https://www.rdocumentation.org/packages/base/topic
 
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>colorspace</span>)
 <span class='fu'><a href='labels_colors.html'>labels_colors</a></span>(<span class='no'>dend_iris</span>) <span class='kw'>&lt;-</span>
- <span class='fu'><a href='https://www.rdocumentation.org/packages/colorspace/topics/rainbow_hcl'>rainbow_hcl</a></span>(<span class='fl'>3</span>)[<span class='fu'><a href='sort_levels_values.html'>sort_levels_values</a></span>(
+ <span class='fu'><a href='http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html'>rainbow_hcl</a></span>(<span class='fl'>3</span>)[<span class='fu'><a href='sort_levels_values.html'>sort_levels_values</a></span>(
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>as.numeric</a></span>(<span class='no'>iris</span>[,<span class='fl'>5</span>])[<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/order.dendrogram'>order.dendrogram</a></span>(<span class='no'>dend_iris</span>)]
  )]
 
@@ -307,7 +307,7 @@ of an object without <a href='https://www.rdocumentation.org/packages/base/topic
 
 <span class='co'># have the labels match the real classification of the flowers:</span>
 <span class='fu'><a href='labels_colors.html'>labels_colors</a></span>(<span class='no'>dend_iris</span>) <span class='kw'>&lt;-</span>
-   <span class='fu'><a href='https://www.rdocumentation.org/packages/colorspace/topics/rainbow_hcl'>rainbow_hcl</a></span>(<span class='fl'>3</span>)[<span class='fu'><a href='sort_levels_values.html'>sort_levels_values</a></span>(
+   <span class='fu'><a href='http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html'>rainbow_hcl</a></span>(<span class='fl'>3</span>)[<span class='fu'><a href='sort_levels_values.html'>sort_levels_values</a></span>(
       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>as.numeric</a></span>(<span class='no'>iris</span>[,<span class='fl'>5</span>])[<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/order.dendrogram'>order.dendrogram</a></span>(<span class='no'>dend_iris</span>)]
    )]
 
@@ -326,7 +326,7 @@ of an object without <a href='https://www.rdocumentation.org/packages/base/topic
      <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Clustered Iris dataset
      (the labels give the true flower species)"</span>,
      <span class='kw'>horiz</span> <span class='kw'>=</span>  <span class='fl'>TRUE</span>,  <span class='kw'>nodePar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.007</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/legend'>legend</a></span>(<span class='st'>"topleft"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='no'>iris_species</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/colorspace/topics/rainbow_hcl'>rainbow_hcl</a></span>(<span class='fl'>3</span>))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/legend'>legend</a></span>(<span class='st'>"topleft"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='no'>iris_species</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fu'><a href='http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html'>rainbow_hcl</a></span>(<span class='fl'>3</span>))
 <span class='no'>a</span><span class='kw'>=</span> <span class='no'>dend_iris</span><span class='kw'>[[</span><span class='fl'>1</span>]]
 <span class='no'>dend_iris1</span> <span class='kw'>&lt;-</span> <span class='fu'>color_branches</span>(<span class='no'>a</span>,<span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>dend_iris1</span>)

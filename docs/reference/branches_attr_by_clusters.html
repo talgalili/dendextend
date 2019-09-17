@@ -244,12 +244,12 @@ function.</p>
 
 <span class='no'>clusters_numbers</span> <span class='kw'>&lt;-</span> <span class='fu'>no0_unique</span>(<span class='no'>clusters</span>)
 <span class='no'>n_clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>clusters_numbers</span>)
-<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/colorspace/topics/rainbow_hcl'>rainbow_hcl</a></span>(<span class='no'>n_clusters</span>)
+<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html'>rainbow_hcl</a></span>(<span class='no'>n_clusters</span>)
 <span class='no'>dend2</span> <span class='kw'>&lt;-</span> <span class='fu'>branches_attr_by_clusters</span>(<span class='no'>dend</span>, <span class='no'>clusters</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>cols</span>)
 <span class='co'># dend2 &lt;- branches_attr_by_clusters(dend, clusters)</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>dend2</span>)
 <span class='co'># add colored bars:</span>
-<span class='no'>ord_cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/colorspace/topics/rainbow_hcl'>rainbow_hcl</a></span>(<span class='no'>n_clusters</span>)[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/order'>order</a></span>(<span class='no'>clusters_numbers</span>)]
+<span class='no'>ord_cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html'>rainbow_hcl</a></span>(<span class='no'>n_clusters</span>)[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/order'>order</a></span>(<span class='no'>clusters_numbers</span>)]
 <span class='no'>tmp_cols</span>  <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>clusters</span>))
 <span class='no'>tmp_cols</span>[<span class='no'>clusters</span> <span class='kw'>!=</span> <span class='fl'>0</span>] <span class='kw'>&lt;-</span> <span class='no'>ord_cols</span>[<span class='no'>clusters</span> <span class='kw'>!=</span> <span class='fl'>0</span>][<span class='no'>clusters</span>]
 <span class='fu'><a href='colored_bars.html'>colored_bars</a></span>(<span class='no'>tmp_cols</span>, <span class='kw'>y_shift</span> <span class='kw'>=</span> -<span class='fl'>1.1</span>, <span class='kw'>rowLabels</span> <span class='kw'>=</span> <span class='st'>""</span>)

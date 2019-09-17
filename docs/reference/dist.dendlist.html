@@ -32,10 +32,7 @@
 
 <meta property="og:title" content="Topological Distances Between Two dendrograms — dist.dendlist" />
 
-<meta property="og:description" content="This function computes the Robinson-Foulds distance (also known as symmetric difference) 
-between two dendrograms. This is the sum of edges in both trees with labels that exist in 
-only one of the two trees (i.e.: the length of distinct_edges).
-This function might implement other topological distances in the future." />
+<meta property="og:description" content="Topological Distances Between Two dendrograms" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -133,10 +130,7 @@ This function might implement other topological distances in the future." />
 
     <div class="ref-description">
     
-    <p>This function computes the Robinson-Foulds distance (also known as symmetric difference) 
-between two dendrograms. This is the sum of edges in both trees with labels that exist in 
-only one of the two trees (i.e.: the length of <a href='distinct_edges.html'>distinct_edges</a>).</p>
-<p>This function might implement other topological distances in the future.</p>
+    <p>Topological Distances Between Two dendrograms</p>
     
     </div>
 
@@ -179,6 +173,12 @@ only one of the two trees (i.e.: the length of <a href='distinct_edges.html'>dis
 <span class='fu'>dist.dendlist</span>(<span class='fu'><a href='dendlist.html'>dendlist</a></span>(<span class='kw'>x1</span> <span class='kw'>=</span> <span class='no'>x</span>,<span class='kw'>x2</span> <span class='kw'>=</span> <span class='no'>x</span>,<span class='kw'>y1</span> <span class='kw'>=</span> <span class='no'>y</span>))</div><div class='output co'>#&gt;    x1 x2
 #&gt; x2  0   
 #&gt; y1  4  4</div><div class='input'><span class='fu'><a href='dend_diff.html'>dend_diff</a></span>(<span class='no'>x</span>,<span class='no'>y</span>)</div><div class='img'><img src='dist.dendlist-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Larger trees</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>6</span> <span class='kw'>%&gt;%</span> <span class='no'>dist</span> <span class='kw'>%&gt;%</span> <span class='no'>hclust</span> <span class='kw'>%&gt;%</span> <span class='no'>as.dendrogram</span>
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='set.html'>set</a></span>(<span class='no'>x</span>, <span class='st'>"labels"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>,<span class='fl'>6</span>,<span class='fl'>4</span>,<span class='fl'>5</span>))
+
+<span class='fu'><a href='dend_diff.html'>dend_diff</a></span>(<span class='no'>x</span>,<span class='no'>y</span>)</div><div class='img'><img src='dist.dendlist-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>dist.dendlist</span>(<span class='fu'><a href='dendlist.html'>dendlist</a></span>(<span class='no'>x</span>,<span class='no'>y</span>))</div><div class='output co'>#&gt;   1
+#&gt; 2 6</div><div class='input'><span class='fu'><a href='distinct_edges.html'>distinct_edges</a></span>(<span class='no'>x</span>,<span class='no'>y</span>)</div><div class='output co'>#&gt; [1] 2 5 9</div><div class='input'><span class='fu'><a href='distinct_edges.html'>distinct_edges</a></span>(<span class='no'>y</span>,<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] 5 6 9</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='fu'><a href='distinct_edges.html'>distinct_edges</a></span>(<span class='no'>x</span>,<span class='no'>y</span>))+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='fu'><a href='distinct_edges.html'>distinct_edges</a></span>(<span class='no'>y</span>,<span class='no'>x</span>)) <span class='co'># dist.dendlist</span></div><div class='output co'>#&gt; [1] 6</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

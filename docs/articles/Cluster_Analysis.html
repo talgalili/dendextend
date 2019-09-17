@@ -92,7 +92,7 @@
       <h1>Hierarchical cluster analysis on famous data sets - enhanced with the <em>dendextend</em> package</h1>
                         <h4 class="author">Tal Galili</h4>
             
-            <h4 class="date">2019-07-17</h4>
+            <h4 class="date">2019-09-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/master/vignettes/Cluster_Analysis.Rmd"><code>vignettes/Cluster_Analysis.Rmd</code></a></small>
       <div class="hidden name"><code>Cluster_Analysis.Rmd</code></div>
@@ -208,7 +208,7 @@ dend &lt;-<span class="st"> </span><span class="kw"><a href="../reference/set.ht
 <p>The hanging of the tree also helps to locate extreme observations. For example, we can see that observation “virginica (107)” is not very similar to the Versicolor species, but still, it is among them. Also, “Versicolor (71)” is located too much “within” the group of Virginica flowers.</p>
 <p>We can also explore the data using a heatmap. The rows are ordered based on the order of the hierarchical clustering (using the “complete” method). The colored bar indicates the species category each row belongs to. The color in the heatmap indicates the length of each measurement (from light yellow to dark red).</p>
 <p>In the heatmap we also see how the Setosa species has low petal values (in light yellow), but it is very difficult to see any clear distinction between the other two species.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">some_col_func &lt;-<span class="st"> </span><span class="cf">function</span>(n) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rev">rev</a></span>(colorspace<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/colorspace/topics/rainbow_hcl">heat_hcl</a></span>(n, <span class="dt">c =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">80</span>, <span class="dv">30</span>), <span class="dt">l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">30</span>, <span class="dv">90</span>), <span class="dt">power =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span><span class="op">/</span><span class="dv">5</span>, <span class="fl">1.5</span>)))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">some_col_func &lt;-<span class="st"> </span><span class="cf">function</span>(n) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rev">rev</a></span>(colorspace<span class="op">::</span><span class="kw"><a href="http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html">heat_hcl</a></span>(n, <span class="dt">c =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">80</span>, <span class="dv">30</span>), <span class="dt">l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">30</span>, <span class="dv">90</span>), <span class="dt">power =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span><span class="op">/</span><span class="dv">5</span>, <span class="fl">1.5</span>)))
 
 <span class="co"># scaled_iris2 &lt;- iris2 %&gt;% as.matrix %&gt;% scale</span>
 <span class="co"># library(gplots)</span>
@@ -609,7 +609,7 @@ dend_c &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocu
 <span class="co"># some_col_func &lt;- function(n) rev(colorspace::heat_hcl(n, c = c(80, 30), l = c(30, 90), power = c(1/5, 1.5)))</span>
 <span class="co"># some_col_func &lt;- colorspace::diverge_hcl</span>
 <span class="co"># some_col_func &lt;- colorspace::sequential_hcl</span>
-some_col_func &lt;-<span class="st"> </span><span class="cf">function</span>(n) (colorspace<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/colorspace/topics/hcl_palettes">diverge_hcl</a></span>(n, <span class="dt">h =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">246</span>, <span class="dv">40</span>), <span class="dt">c =</span> <span class="dv">96</span>, <span class="dt">l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">65</span>, <span class="dv">90</span>)))
+some_col_func &lt;-<span class="st"> </span><span class="cf">function</span>(n) (colorspace<span class="op">::</span><span class="kw"><a href="http://colorspace.R-Forge.R-project.org//reference/hcl_palettes.html">diverge_hcl</a></span>(n, <span class="dt">h =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">246</span>, <span class="dv">40</span>), <span class="dt">c =</span> <span class="dv">96</span>, <span class="dt">l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">65</span>, <span class="dv">90</span>)))
 
 
 
