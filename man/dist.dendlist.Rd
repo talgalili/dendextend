@@ -17,11 +17,7 @@ dist.dendlist(dend, method = c("edgeset"), ...)
 A \link{dist} object with topological distances between all trees
 }
 \description{
-This function computes the Robinson-Foulds distance (also known as symmetric difference) 
-between two dendrograms. This is the sum of edges in both trees with labels that exist in 
-only one of the two trees (i.e.: the length of \link{distinct_edges}).
-
-This function might implement other topological distances in the future.
+Topological Distances Between Two dendrograms
 }
 \examples{
 
@@ -30,6 +26,16 @@ y <- set(x, "labels", 5:1)
 
 dist.dendlist(dendlist(x1 = x,x2 = x,y1 = y))
 dend_diff(x,y)
+
+# Larger trees
+x <- 1:6 \%>\% dist \%>\% hclust \%>\% as.dendrogram
+y <- set(x, "labels", c(1:3,6,4,5))
+
+dend_diff(x,y)
+dist.dendlist(dendlist(x,y))
+distinct_edges(x,y)
+distinct_edges(y,x)
+length(distinct_edges(x,y))+length(distinct_edges(y,x)) # dist.dendlist
 
 }
 \seealso{

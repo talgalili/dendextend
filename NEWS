@@ -1,6 +1,9 @@
-dendextend 1.13.0 (2019-07-17)
+dendextend 1.13.0 (2019-09-17)
 ----------------------------------------
+
 ###OTHER NOTES
+- improved docs:
+   - dist.dendlist
 - Started using pkgdown :)
 
 dendextend 1.12.0 (2019-05-11)
