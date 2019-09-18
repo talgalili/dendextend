@@ -56,6 +56,8 @@
 #' @param horiz a logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.
 #' @param theme the ggplot2 theme to use (default is \link{theme_dendro}, can also be NULL
 #' for the default ggplot2 theme)
+#' @param na.rm A logical (TRUE) to control removal of missing values. Passed to 
+#' \link[ggplot2]{geom_line} and \link[ggplot2]{geom_point} 
 #' 
 #' @details
 #' 
@@ -463,7 +465,7 @@ prepare.ggdend <- function(data, ...){
 #' @rdname ggdend
 ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
                           horiz = FALSE, theme = theme_dendro(), 
-                          offset_labels = 0,
+                          offset_labels = 0, na.rm = TRUE,
                           ...) {
    #    library(dendextend)
    #    library(ggdendro)
@@ -513,7 +515,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
    
    
    if (segments) {
-   p <- p +  geom_segment(data = data$segments, 
+   p <- p +  geom_segment(data = data$segments, na.rm = na.rm,
                           aes_string(x = "x", y = "y", xend = "xend", yend = "yend", 
                                      colour = "col", linetype = "lty", size = "lwd"),
                           lineend = "square") +
@@ -522,7 +524,7 @@ ggplot.ggdend <- function(data,  segments = TRUE, labels = TRUE, nodes = TRUE,
    }
    
    if (nodes) {
-      p <- p +  geom_point(data = data$nodes, 
+      p <- p +  geom_point(data = data$nodes, na.rm = na.rm,
                              aes_string(x = "x", y = "y", colour = "col", shape = "pch", size = "cex")) +
          guides(shape = FALSE, col = FALSE, size = FALSE) + 
          # scale_colour_identity() + scale_size_identity()  + 

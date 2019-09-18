@@ -314,11 +314,17 @@ edgeset_dist <- function(dend, dend2, ...)  {
 
 #' @title Topological Distances Between Two dendrograms
 #' @export
+#'
 #' @description
-#' This function computes the \href{https://en.wikipedia.org/wiki/Robinson%E2%80%93Foulds_metric}{Robinson-Foulds distance} (also known as symmetric difference) 
-#' between two dendrograms. This is the number of edges (branches) in tree_1 with a combination of labels that exist in 
-#' it but not in any subtree of tree2, plus the same calculation of tree2 when compared to tree1.
-#' This is the sum of length of \link{distinct_edges}(x,y) with \link{distinct_edges}(y,x).
+#' This function computes the 
+#' \href{https://en.wikipedia.org/wiki/Robinson%E2%80%93Foulds_metric}{Robinson-Foulds distance} 
+#' (also known as symmetric difference)
+#' between two dendrograms. This is the number of edges (branches) in tree_1 
+#' with a combination of labels that exist in 
+#' it but not in any subtree of tree2, 
+#' plus the same calculation of tree2 when compared to tree1.
+#' This is the sum of length of \link{distinct_edges}(x,y) with 
+#' \link{distinct_edges}(y,x).
 #' 
 #' This function might implement other topological distances in the future.
 #' 
