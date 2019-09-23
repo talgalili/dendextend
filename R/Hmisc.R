@@ -20,5 +20,5 @@
 
 #' @export
 as.dendrogram.varclus <- function(object, ...) {
-   as.dendrogram(object$hclust, ...)
+  as.dendrogram(object$hclust, ...)
 }

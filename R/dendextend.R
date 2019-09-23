@@ -23,47 +23,46 @@
 
 
 
-#' @title Convert dendrogram Objects to Class hclust 
-#' @description Convert dendrogram Objects to Class hclust while preserving 
+#' @title Convert dendrogram Objects to Class hclust
+#' @description Convert dendrogram Objects to Class hclust while preserving
 #' the call/method/dist.method values of the original hclust object (hc)
 #' @export
-#' @param x any object which has an as.hclust method. 
+#' @param x any object which has an as.hclust method.
 #' (mostly used for dendrogram)
-#' @param hc an old hclust object from which to re-use 
+#' @param hc an old hclust object from which to re-use
 #' the call/method/dist.method values
 #' @param ... passed to as.hclust
-#' @return An hclust object (from a dendrogram) with the original hclust 
+#' @return An hclust object (from a dendrogram) with the original hclust
 #' call/method/dist.method values
 #' @seealso \link{as.hclust}
 #' @examples
-#' hc <- hclust(dist(USArrests[1:3,]), "ave")
+#' hc <- hclust(dist(USArrests[1:3, ]), "ave")
 #' dend <- as.dendrogram(hc)
-#' 
+#'
 #' as.hclust(dend)
 #' as_hclust_fixed(dend, hc)
 as_hclust_fixed <- function(x, hc, ...) {
-   x <- as.hclust(x,...) 
-   
-   # these elements are removed after using as.hclust - so they have to be manually re-introduced into the object.
-   if(!missing(hc)){
-      x$call <- hc$call
-      x$method <- hc$method
-      x$dist.method <- hc$dist.method   
-   }
-   
-   return(x)
+  x <- as.hclust(x, ...)
+
+  # these elements are removed after using as.hclust - so they have to be manually re-introduced into the object.
+  if (!missing(hc)) {
+    x$call <- hc$call
+    x$method <- hc$method
+    x$dist.method <- hc$dist.method
+  }
+
+  return(x)
 }
 
 
 
 
 # ' @export
-# as.phylo <- function (x, ...) 
+# as.phylo <- function (x, ...)
 # {
-    # if (length(class(x)) == 1 && class(x) == "phylo") 
-        # return(x)
-    # UseMethod("as.phylo")
+# if (length(class(x)) == 1 && class(x) == "phylo")
+# return(x)
+# UseMethod("as.phylo")
 # }
 #### This function is added in order to fix the Error of having this function missing in the namespace
 #### There might be a better way to resolve it...
-
