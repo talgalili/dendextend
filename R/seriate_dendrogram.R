@@ -54,28 +54,23 @@
 #'
 #' dend2 <- seriate_dendrogram(dend, d)
 #' heatmap(as.matrix(USArrests), Rowv = dend)
-#'
-#'
 #' }
 seriate_dendrogram <- function(dend, x, method = c("OLO", "GW"), ...) {
+  if (!requireNamespace("seriation")) stop("Please first install seriation:\n install.packages('seriaten') ")
 
-   if(!requireNamespace("seriation")) stop("Please first install seriation:\n install.packages('seriaten') ")
+  if (!is.dendrogram(dend) & !is.hclust(dend)) stop("dend must be either a dendrogram or an hclust object")
+  if (!is.dist(x)) stop("x must be a dist object")
+  if (!identical(sort(labels(x)), sort(labels(dend)))) stop("The labels of dend and x must be identical.")
+  method <- match.arg(method)
 
-   if(!is.dendrogram(dend) & !is.hclust(dend)) stop("dend must be either a dendrogram or an hclust object")
-   if(!is.dist(x)) stop("x must be a dist object")
-   if(!identical(sort(labels(x)), sort(labels(dend)))) stop("The labels of dend and x must be identical.")
-   method <- match.arg(method)
-
-   # o <- seriate(d, method = "GW", control = list(hclust = as.hclust(dend)) )
-   # get_order(o)
-   # library(seriation)
-   # hmap(sqrt(d2), Colv = "none", trace = "none", col = viridis(200))
-   # Error in (function (x, Rowv = TRUE, Colv = if (symm) "Rowv" else TRUE,  :
-   #                       formal argument "Colv" matched by multiple actual arguments
-   o <- seriation::seriate(x, method = method, control = list(hclust = as.hclust(dend)), ... )
-   # library(dendextend)
-   dend <- rotate(dend, order = rev(labels(x)[seriation::get_order(o)]))
-   dend
+  # o <- seriate(d, method = "GW", control = list(hclust = as.hclust(dend)) )
+  # get_order(o)
+  # library(seriation)
+  # hmap(sqrt(d2), Colv = "none", trace = "none", col = viridis(200))
+  # Error in (function (x, Rowv = TRUE, Colv = if (symm) "Rowv" else TRUE,  :
+  #                       formal argument "Colv" matched by multiple actual arguments
+  o <- seriation::seriate(x, method = method, control = list(hclust = as.hclust(dend)), ...)
+  # library(dendextend)
+  dend <- rotate(dend, order = rev(labels(x)[seriation::get_order(o)]))
+  dend
 }
-
-

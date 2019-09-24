@@ -22,16 +22,16 @@
 # Update the labels of a dist:
 
 #' @export
-`labels<-.dist` <- function(object,..., value) {
-   attr(object, "Labels") <- value
-   object
+`labels<-.dist` <- function(object, ..., value) {
+  attr(object, "Labels") <- value
+  object
 }
 
 
 
 
 Size.dist <- function(d) {
-   attr(d, "Size")
+  attr(d, "Size")
 }
 
 
@@ -41,23 +41,26 @@ Size.dist <- function(d) {
 #' @export
 #' @param d a distance object
 #' @param ... not used
-#' @return 
+#' @return
 #' A data.frame with two columns of rows and column names of the dist object
 #' and a third column (distance) with the distance between the two.
 #' @examples
 #' data(iris)
-#' iris[2:6,-5] %>% dist %>% data.matrix
-#' iris[2:6,-5] %>% dist %>% as.vector
-#' iris[2:6,-5] %>% dist %>% dist_long
+#' iris[2:6, -5] %>%
+#'   dist() %>%
+#'   data.matrix()
+#' iris[2:6, -5] %>%
+#'   dist() %>%
+#'   as.vector()
+#' iris[2:6, -5] %>%
+#'   dist() %>%
+#'   dist_long()
 #' # This can later be used to making a network plot based on the distances.
-#' 
 dist_long <- function(d, ...) {
-   n_seq <- seq_len(Size.dist(d))
-   rows_cols_grid <- expand.grid(rows = n_seq, cols = n_seq)
-   labels_grid <- expand.grid(rows = labels(d), cols = labels(d))
-   ss_keep <- rows_cols_grid[, 1] > rows_cols_grid[, 2]
-   # rows_cols[ss_keep,]
-   data.frame(labels_grid[ss_keep,], distance = as.vector(d))
+  n_seq <- seq_len(Size.dist(d))
+  rows_cols_grid <- expand.grid(rows = n_seq, cols = n_seq)
+  labels_grid <- expand.grid(rows = labels(d), cols = labels(d))
+  ss_keep <- rows_cols_grid[, 1] > rows_cols_grid[, 2]
+  # rows_cols[ss_keep,]
+  data.frame(labels_grid[ss_keep, ], distance = as.vector(d))
 }
-
-

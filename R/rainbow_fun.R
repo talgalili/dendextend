@@ -18,16 +18,14 @@
 
 # An internal function to create rainbows:
 
-rainbow_fun <- function(n, c=90, l=50, ...) {
-	if(requireNamespace("colorspace")) {
-		colorspace::rainbow_hcl(n, c = c, l = l, ...)		
-	} else {
-		rainbow(n, ...)
-	}
+rainbow_fun <- function(n, c = 90, l = 50, ...) {
+  if (requireNamespace("colorspace")) {
+    colorspace::rainbow_hcl(n, c = c, l = l, ...)
+  } else {
+    rainbow(n, ...)
+  }
 }
 
 # n = 10
 # barplot(rep(10, n), col = rainbow_hcl(n) )
 # barplot(rep(10, n), col = rainbow_hcl(n, c=90, l=50) )
-
-

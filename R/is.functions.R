@@ -20,10 +20,10 @@
 
 #' @title Is the object of some class
 #' @name is_some_class
-#' @description 
+#' @description
 #' Returns TRUE if some class (based on the name of the function).
 #' @param x an object.
-#' @return 
+#' @return
 #' Returns TRUE if some class (based on the name of the function).
 #' @examples
 #' # TRUE:
@@ -38,15 +38,21 @@ NULL
 
 #' @export
 #' @rdname is_some_class
-is.hclust <- function(x) { inherits(x,"hclust") }
+is.hclust <- function(x) {
+  inherits(x, "hclust")
+}
 
 #' @export
 #' @rdname is_some_class
-is.dendrogram <- function(x) { inherits(x,"dendrogram") }
+is.dendrogram <- function(x) {
+  inherits(x, "dendrogram")
+}
 
 #' @export
 #' @rdname is_some_class
-is.phylo <- function(x) { inherits(x,"phylo") }
+is.phylo <- function(x) {
+  inherits(x, "phylo")
+}
 
 
 
@@ -54,7 +60,7 @@ is.phylo <- function(x) { inherits(x,"phylo") }
 #' @export
 #' @rdname is_some_class
 is.dendlist <- function(x) {
-   inherits(x, "dendlist")
+  inherits(x, "dendlist")
 }
 
 
@@ -64,7 +70,7 @@ is.dendlist <- function(x) {
 #' @export
 #' @rdname is_some_class
 is.dist <- function(x) {
-   inherits(x, "dist")
+  inherits(x, "dist")
 }
 
 
@@ -79,21 +85,18 @@ is.dist <- function(x) {
 #' @param x an object.
 #' @param force_integer logical (FALSE). Should the values returned be integers?
 #' @param keep_names logical (TRUE). Should the values returned keep the \link{names}
-#' of the original vector? 
+#' of the original vector?
 #' @param ... ignored.
 #' @return if x is an object - it returns logical - is the object of class dendrogram.
 #' @examples
-#' 
+#'
 #' x <- factor(3:5)
 #' as.numeric(x) # 1 2 3
 #' fac2num(x) # 3 4 5
-#' 
 fac2num <- function(x, force_integer = FALSE, keep_names = TRUE, ...) {
-   if(!is.factor(x)) stop("x must be a factor (in order to turn it into a number)")
-   new_x <- as.numeric(as.character(x))
-   if(force_integer) new_x <- as.integer(new_x)
-   if(keep_names) names(new_x) <- names(x)
-   return( new_x )
+  if (!is.factor(x)) stop("x must be a factor (in order to turn it into a number)")
+  new_x <- as.numeric(as.character(x))
+  if (force_integer) new_x <- as.integer(new_x)
+  if (keep_names) names(new_x) <- names(x)
+  return(new_x)
 }
-
-

@@ -53,20 +53,20 @@
 
 
 
-# 
-# 
-# 
+#
+#
+#
 # assign_dendextendRcpp_to_dendextend <- function() {
 #    # assigns the FASTER dendextendRcpp functions to override
 #    # the dendextend functions....
-#    
+#
 #    if(suppressWarnings(require(dendextendRcpp))) {
 #       # This wouldn't work since it will only assign
-#       # the faster function in the current env      
+#       # the faster function in the current env
 # #       get_branches_heights <- dendextendRcpp::get_branches_heights
 # #       heights_per_k.dendrogram <- dendextendRcpp::heights_per_k.dendrogram
 #       # for getting the functions "into" dendextend, we need to run this:
-#       
+#
 #       # create a backup of these functions in order to later
 #       # compare them using benchmark (their kept invisible - but can be accessed)
 #       assign("old_get_branches_heights", dendextend:::get_branches_heights,
@@ -75,19 +75,19 @@
 #              envir=as.environment("package:dendextend"))
 #       assign("old_cut_lower_fun", dendextend:::cut_lower_fun,
 #              envir=as.environment("package:dendextend"))
-#       
-# 
+#
+#
 # 	  # library(utils) # doesn't help really...
 # 	  # but this does: (!)
 # 		# http://stackoverflow.com/questions/13595145/overriding-a-package-function-inherited-by-another-package
 # # 	  get("assignInNamespace", envir=asNamespace("utils"))
 # 	  # Using only "::" instead of ":::" will crash many tests...
-# 	  
+#
 #       assignInNamespace(
 #          x= "get_branches_heights",
 #          value = dendextendRcpp:::get_branches_heights,
 #          ns = "dendextend"
-#       )   
+#       )
 #       assignInNamespace(
 #          x= "heights_per_k.dendrogram",
 #          value = dendextendRcpp:::heights_per_k.dendrogram,
@@ -98,7 +98,7 @@
 #          value = dendextendRcpp:::cut_lower_fun,
 #          ns = "dendextend"
 #       )
-#       
+#
 #       ## p.s:
 #       # doing the following is a BAD IDEA!
 #       # This will not allow us to use labels.dendrogram when our Rcpp version fails...
@@ -107,21 +107,21 @@
 #       #    value = dendextendRcpp:::labels.dendrogram,
 #       #    ns = "stats"
 #       #    )
-#       
-#       
-#       
+#
+#
+#
 #    } else {
 #       warning("
-#          The 'dendextend' package runs 
+#          The 'dendextend' package runs
 #          MUCH faster when you also have the dendextendRcpp package installed.
 #          Please consider running:
 #          install.packages('dendextendRcpp')
 #          and then re-load dendextend.
 #            ")
 #    }
-#    
+#
 # }
-# 
+#
 
 
 
@@ -129,109 +129,117 @@
 
 
 
-.onLoad <- function(libname, pkgname){
-   # Thanks for Romain: http://stackoverflow.com/questions/4369334/first-lib-idiom-in-r-packages
-   
-   # adding and removing menus from the Rgui when loading and detaching the library
-   # setHook(packageEvent("installr", "attach"), {function(pkgname, libpath) {add.installr.GUI()}  } )
-   # setHook(packageEvent("dendextend", "detach"), {function(pkgname, libpath) {remove_dendextend_options()}  } )
+.onLoad <- function(libname, pkgname) {
+  # Thanks for Romain: http://stackoverflow.com/questions/4369334/first-lib-idiom-in-r-packages
 
-   # set default options for dendextend
-   setHook(packageEvent("dendextend", "onLoad"), {function(pkgname, libpath) {assign_dendextend_options()}  } )
-   
-   # Does NOT work!
-   # remove_dendextend_options is currently an empty function. In the future, it should
-   # remove default options for dendextend when unloading
-   setHook(packageEvent("dendextend", "onUnload"), {function(pkgname, libpath) {remove_dendextend_options()}  } )
-   setHook(packageEvent("dendextend", "detach"), {function(pkgname, libpath) {remove_dendextend_options()}  } )
-   
-   # dendextend::dendextend_options()
-   
+  # adding and removing menus from the Rgui when loading and detaching the library
+  # setHook(packageEvent("installr", "attach"), {function(pkgname, libpath) {add.installr.GUI()}  } )
+  # setHook(packageEvent("dendextend", "detach"), {function(pkgname, libpath) {remove_dendextend_options()}  } )
+
+  # set default options for dendextend
+  setHook(packageEvent("dendextend", "onLoad"), {
+    function(pkgname, libpath) {
+      assign_dendextend_options()
+    }
+  })
+
+  # Does NOT work!
+  # remove_dendextend_options is currently an empty function. In the future, it should
+  # remove default options for dendextend when unloading
+  setHook(packageEvent("dendextend", "onUnload"), {
+    function(pkgname, libpath) {
+      remove_dendextend_options()
+    }
+  })
+  setHook(packageEvent("dendextend", "detach"), {
+    function(pkgname, libpath) {
+      remove_dendextend_options()
+    }
+  })
+
+  # dendextend::dendextend_options()
 }
 
 # menus are added and removed as needed: !!
 
 
-.onAttach <- function(lib, pkg,...){
-   ####
-   ### I decided to not use the following code since it will 
-   ###   always give a "masked" warning when loading 
-   ###   dendextend. But it IS an issue...
-   ####
-   # if ape is installed on this computer, it will be loaded FIRST!   
-   # This way I make sure to not have "rotate" masked by {ape}
-   #     (they would still work though)
+.onAttach <- function(lib, pkg, ...) {
+  ####
+  ### I decided to not use the following code since it will
+  ###   always give a "masked" warning when loading
+  ###   dendextend. But it IS an issue...
+  ####
+  # if ape is installed on this computer, it will be loaded FIRST!
+  # This way I make sure to not have "rotate" masked by {ape}
+  #     (they would still work though)
 
-   # this would solve it, but it is not a "nice" way to do it...
-#    if("ape" %in% .packages(all.available = TRUE)) {       
-#       library("ape", pos = which(search() %in% "package:dendextend")+1, 
-#               warn.conflicts = FALSE,
-#               quietly = TRUE)
-#    }      
-   
-   # The above line causes problems such as: 'library' or 'require' call not declared from: 'ape'
-   
-      #       search()
-      #       unloadNamespace(ape")
-      #       unloadNamespace("dendextend")
-      #       require("dendextend", warn.conflicts = TRUE)                 
-      #       require("dendextend", warn.conflicts = FALSE)                 
-   # but it makes sure that "dendextend" does not "Depends" on ape"...
-   
-   # move some functions to the "options" so that they would later be overridden.
-#    create_dendextend_options()
-   
-   # details in dendextend_options.R
-   # assign_dendextend_options()
-   
-   packageStartupMessage(dendextendWelcomeMessage())  
-   
-#    assign_dendextendRcpp_to_dendextend()
-   
-   
+  # this would solve it, but it is not a "nice" way to do it...
+  #    if("ape" %in% .packages(all.available = TRUE)) {
+  #       library("ape", pos = which(search() %in% "package:dendextend")+1,
+  #               warn.conflicts = FALSE,
+  #               quietly = TRUE)
+  #    }
+
+  # The above line causes problems such as: 'library' or 'require' call not declared from: 'ape'
+
+  #       search()
+  #       unloadNamespace(ape")
+  #       unloadNamespace("dendextend")
+  #       require("dendextend", warn.conflicts = TRUE)
+  #       require("dendextend", warn.conflicts = FALSE)
+  # but it makes sure that "dendextend" does not "Depends" on ape"...
+
+  # move some functions to the "options" so that they would later be overridden.
+  #    create_dendextend_options()
+
+  # details in dendextend_options.R
+  # assign_dendextend_options()
+
+  packageStartupMessage(dendextendWelcomeMessage())
+
+  #    assign_dendextendRcpp_to_dendextend()
 }
 
 
 
 
-dendextendWelcomeMessage <- function(){
-   # library(utils)   
-   
-   # paste("\n",     
-   #       "Welcome to dendextend version ", utils::packageDescription("dendextend")$Version, "\n",
-   #       "\n",
-   #       "Type ?dendextend to access the overall documentation and\n",
-   #       "browseVignettes(package = 'dendextend') for the package vignette.\n",
-   #       "You can execute a demo of the package via: demo(dendextend)\n",
-   #       "\n",  
-   #       "More information is available on the dendextend project web-site:\n",
-   #       "https://github.com/talgalili/dendextend/\n",
-   #       "\n",               
-   #       "Contact: <tal.galili@gmail.com>\n",
-   #       "Suggestions and bug-reports can be submitted at: https://github.com/talgalili/dendextend/issues\n",
-   #       "\n",
-   #       "\t\t\tTo suppress this message use:\n",
-   #       "\t\t\tsuppressPackageStartupMessages(library(dendextend))\n",  
-   #       sep="")
-   # 
-   paste0("\n",
-          "---------------------\n",
-          "Welcome to dendextend version ", utils::packageDescription("dendextend")$Version, "\n",
-          # "\n",
-          "Type citation('dendextend') for how to cite the package.\n",
-          "\n",
-          "Type browseVignettes(package = 'dendextend') for the package vignette.\n",
-          "The github page is: ",
-          "https://github.com/talgalili/dendextend/\n",
-          "\n",
-          "Suggestions and bug-reports can be submitted at: https://github.com/talgalili/dendextend/issues\n",
-          "Or contact: <tal.galili@gmail.com>\n",
-          "\n",
-          "\tTo suppress this message use:  ", "suppressPackageStartupMessages(library(dendextend))\n",
-          "---------------------\n"
-   )
-   
-   
+dendextendWelcomeMessage <- function() {
+  # library(utils)
+
+  # paste("\n",
+  #       "Welcome to dendextend version ", utils::packageDescription("dendextend")$Version, "\n",
+  #       "\n",
+  #       "Type ?dendextend to access the overall documentation and\n",
+  #       "browseVignettes(package = 'dendextend') for the package vignette.\n",
+  #       "You can execute a demo of the package via: demo(dendextend)\n",
+  #       "\n",
+  #       "More information is available on the dendextend project web-site:\n",
+  #       "https://github.com/talgalili/dendextend/\n",
+  #       "\n",
+  #       "Contact: <tal.galili@gmail.com>\n",
+  #       "Suggestions and bug-reports can be submitted at: https://github.com/talgalili/dendextend/issues\n",
+  #       "\n",
+  #       "\t\t\tTo suppress this message use:\n",
+  #       "\t\t\tsuppressPackageStartupMessages(library(dendextend))\n",
+  #       sep="")
+  #
+  paste0(
+    "\n",
+    "---------------------\n",
+    "Welcome to dendextend version ", utils::packageDescription("dendextend")$Version, "\n",
+    # "\n",
+    "Type citation('dendextend') for how to cite the package.\n",
+    "\n",
+    "Type browseVignettes(package = 'dendextend') for the package vignette.\n",
+    "The github page is: ",
+    "https://github.com/talgalili/dendextend/\n",
+    "\n",
+    "Suggestions and bug-reports can be submitted at: https://github.com/talgalili/dendextend/issues\n",
+    "Or contact: <tal.galili@gmail.com>\n",
+    "\n",
+    "\tTo suppress this message use:  ", "suppressPackageStartupMessages(library(dendextend))\n",
+    "---------------------\n"
+  )
 }
 
 
@@ -273,18 +281,18 @@ dendextendWelcomeMessage <- function(){
 # Sys.setenv(R_GSCMD="C:\\Program Files\\gs\\gs9.14\\bin\\gswin64c.exe")
 # Sys.setenv(R_GSCMD="D:\\temp\\qpdf-5.1.2\\bin\\qpdf.exe")
 # Sys.getenv("R_GSCMD")
-# 3) Check that it works: 
-# system2(Sys.getenv("R_GSCMD"), args="--version") 
+# 3) Check that it works:
+# system2(Sys.getenv("R_GSCMD"), args="--version")
 # 4) use:
 # library(tools)
-# tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="printer") 
-# tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", 
-# qpdf = "D:\\temp\\qpdf-5.1.2\\bin\\qpdf.exe", gs_cmd = "C:\\Program Files\\gs\\gs9.14\\bin\\gswin64c.exe") 
-#### tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="ebook") 
-#### tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="screen") 
-#### tools::compactPDF("vignettes\\dendextend-tutorial.pdf") 
+# tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="printer")
+# tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf",
+# qpdf = "D:\\temp\\qpdf-5.1.2\\bin\\qpdf.exe", gs_cmd = "C:\\Program Files\\gs\\gs9.14\\bin\\gswin64c.exe")
+#### tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="ebook")
+#### tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", gs_quality="screen")
+#### tools::compactPDF("vignettes\\dendextend-tutorial.pdf")
 ###   compacted 'dendextend-tutorial.pdf' from 964Kb to 737Kb
-#### tools::compactPDF("vignettes\\dendextend-tutorial.pdf", gs_quality="ebook") 
+#### tools::compactPDF("vignettes\\dendextend-tutorial.pdf", gs_quality="ebook")
 
 # For checking:
 # 1) get qpdf
@@ -316,10 +324,10 @@ dendextendWelcomeMessage <- function(){
 # 2) Install gs - http://www.ghostscript.com/download/gsdnld.html
 # 3) Run the following:
 
-# tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf", 
-#                   qpdf = "C:\\Program Files (x86)\\qpdf-5.1.2\\bin\\qpdf.exe", 
+# tools::compactPDF("inst\\doc\\dendextend-tutorial.pdf",
+#                   qpdf = "C:\\Program Files (x86)\\qpdf-5.1.2\\bin\\qpdf.exe",
 #                   gs_cmd = "C:\\Program Files\\gs\\gs9.14\\bin\\gswin64c.exe",
-#                   gs_quality="ebook") 
+#                   gs_quality="ebook")
 
 ##########
 ##########
@@ -346,20 +354,20 @@ dendextendWelcomeMessage <- function(){
 
 # install.packages("C:\\Dropbox\\aaaa good R code\\AA - My packages\\dendextend_1.0.0.tar.gz", repos = NULL, type="source")
 
-# 
+#
 # # Run once:
 # shell('set PATH=%PATH%;"C:\\Program%20Files%20(x86)\\Git\\bin"', intern = TRUE)
 # shell("echo %PATH% ", intern= TRUE)
-# 
+#
 # system('set PATH=%PATH%;C:\\xampp\\php')
-# 
-# 
-# 
+#
+#
+#
 # # Creating a changelog using git
-# First make sure git is in the path. Run the 
+# First make sure git is in the path. Run the
 # following using cmd.exe, as admin:
 # setx PATH "C:\\Program Files (x86)\\Git\\bin"
-# 
+#
 # Then - run the script to create the ChangeLog before shipping the package.
 # # http://stackoverflow.com/questions/10330425/how-do-i-export-a-git-log-to-a-text-file
 # # http://stackoverflow.com/questions/3523534/good-ways-to-manage-a-changelog-using-git
@@ -371,7 +379,7 @@ dendextendWelcomeMessage <- function(){
 # shell('git log --graph --stat --date=iso > ChangeLog', intern = TRUE)
 # use this:
 # shell('git log --graph --stat --date=short --pretty=format:"%ad(%an) %s |%h" > ChangeLog', intern = TRUE)
-# 
+#
 # system.PATH()
 # shell("path")
 
@@ -393,7 +401,7 @@ dendextendWelcomeMessage <- function(){
 # check()
 # browseURL(tempdir())
 ### http://www.rstudio.com/ide/docs/packages/build_options
-# 
+#
 # check(build_args="--no-build-vignettes --no-manual", args = "--no-examples --no-build-vignettes --no-manual",  cran = FALSE, cleanup = FALSE)
 # devtools::check(build_args="--no-build-vignettes --no-manual", args = " --no-build-vignettes --no-manual",  cran = FALSE, cleanup = FALSE)
 # check(build_args="--no-build-vignettes --no-manual", args = "--no-build-vignettes --no-manual",  cran = FALSE, cleanup = FALSE)
@@ -409,5 +417,3 @@ dendextendWelcomeMessage <- function(){
 # devtools::check_win()
 # devtools::check_win_devel()
 # release()
-
-

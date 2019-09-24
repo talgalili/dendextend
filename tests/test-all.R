@@ -8,29 +8,29 @@ test_check("dendextend")
 
 
 
-# 
+#
 # library(dendextend)
 # test_package("dendextend")
-# 
+#
 # library(dendextendRcpp)
 # test_package("dendextend")
-# 
-# 
+#
+#
 # library(dendextend)
-# tryCatch(test_package("dendextend"), 
-#          error = function(e) 
+# tryCatch(test_package("dendextend"),
+#          error = function(e)
 #             cat('Please run: testthat::test_dir("tests\\testthat")')
 #          )
-# 
+#
 # #
-# 
+#
 # library(dendextendRcpp)
-# tryCatch(test_package("dendextend"), 
-#          error = function(e) 
+# tryCatch(test_package("dendextend"),
+#          error = function(e)
 #             cat('Please run: testthat::test_dir("tests\\testthat")')
 # )
-# 
-# 
+#
+#
 # testthat::test_dir("tests\\testthat")
 
 # library(dendextend)

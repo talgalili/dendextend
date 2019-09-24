@@ -27,7 +27,7 @@ prepare.ggdend(data, ...)
 
 \method{ggplot}{ggdend}(data, segments = TRUE, labels = TRUE,
   nodes = TRUE, horiz = FALSE, theme = theme_dendro(),
-  offset_labels = 0, ...)
+  offset_labels = 0, na.rm = TRUE, ...)
 
 \method{ggplot}{dendrogram}(data, ...)
 
@@ -57,6 +57,9 @@ rectangular lines, while "triangle" will draw triangular lines.}
 for the default ggplot2 theme)}
 
 \item{offset_labels}{a numeric value to offset the labels from the leaves}
+
+\item{na.rm}{A logical (TRUE) to control removal of missing values. Passed to 
+\link[ggplot2]{geom_line} and \link[ggplot2]{geom_point}}
 }
 \value{
 \itemize{

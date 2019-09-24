@@ -21,7 +21,7 @@
 
 
 #' Functions for extending dendrogram objects
-#' 
+#'
 #' @name dendextend-package
 #' @aliases dendextend
 #' @seealso \code{\link{dendrogram}, \link{hclust}} in \code{\link{stats}} package.
@@ -35,6 +35,3 @@
 NULL
 
 # ' @import ape
-
-
-
