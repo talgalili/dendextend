@@ -12,7 +12,6 @@
 **Table of contents:**
 
 * [Introduction](#introduction)
-* [Motivation](#motivation)
 * [Installation](#installation)
 * [Usage](#usage)
 * [Getting help](#getting-help)
@@ -26,10 +25,7 @@ Class "dendrogram" provides general functions for handling tree-like structures 
 
 However, many basic features are still missing from the dendrogram class.  This package aims at filling in some gaps.
 
-
-## Motivation
-
-Extending R core dendrogram functions.
+**The dendextend package extending R core dendrogram functions.**
 
 ## Installation
 
