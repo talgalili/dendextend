@@ -44,7 +44,8 @@ Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "https://github.com/jdetribol", role = "ctb"), 
     person("Ben", "Ho", role = "ctb", email = "ben.ho@sickkids.ca", comment = "https://github.com/SplitInf"),
     person("Samuel", "Perreault", role = "ctb", email = "samuel.perreault.3@ulaval.ca", comment = "https://github.com/samperochkin"),
-    person("Christian", "Hennig", role = "ctb", email = "c.hennig@ucl.ac.uk", comment = "http://www.homepages.ucl.ac.uk/~ucakche/"))
+    person("Christian", "Hennig", role = "ctb", email = "c.hennig@ucl.ac.uk", comment = "http://www.homepages.ucl.ac.uk/~ucakche/"),
+    person("David", "Bradley", role = "ctb", comment = "https://github.com/DBradley27"))
 Description: Offers a set of functions for extending
     'dendrogram' objects in R, letting you visualize and compare trees of
     'hierarchical clusterings'. You can (1) Adjust a tree's graphical parameters
@@ -92,5 +93,5 @@ URL: http://talgalili.github.io/dendextend/,
     https://www.r-statistics.com/tag/dendextend/,
     https://academic.oup.com/bioinformatics/article/31/22/3718/240978/dendextend-an-R-package-for-visualizing-adjusting
 BugReports: https://github.com/talgalili/dendextend/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1
 Encoding: UTF-8

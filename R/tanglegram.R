@@ -624,6 +624,7 @@ plot_horiz.dendrogram <- function(x,
 #' (notice that this can be slow on large trees)
 #' @param common_subtrees_color_lines_default_single_leaf_color. When representing edges between common subtrees 
 #' (i.e. common_subtrees_color_branches = TRUE), this parameter sets the color of edges for subtrees that are NOT common.
+#' Default is "grey"
 #' @param common_subtrees_color_branches logical (default is FALSE).
 #' Color the branches of both dends based on the common subtrees.
 #' (notice that this can be slow on large trees)
@@ -829,7 +830,7 @@ tanglegram.dendrogram <- function(dend1, dend2, sort = FALSE,
                                   cex_sub = cex_main,
                                   highlight_distinct_edges = TRUE,
                                   common_subtrees_color_lines = TRUE,
-                                  common_subtrees_color_lines_default_single_leaf_color = "white",
+                                  common_subtrees_color_lines_default_single_leaf_color = "grey",
                                   common_subtrees_color_branches = FALSE,
                                   highlight_branches_col = FALSE,
                                   highlight_branches_lwd = TRUE,

@@ -27,44 +27,106 @@ tanglegram(dend1, ...)
 
 \method{tanglegram}{phylo}(dend1, ...)
 
-\method{tanglegram}{dendlist}(dend1, which = c(1L, 2L), main_left,
-  main_right, just_one = TRUE, ...)
+\method{tanglegram}{dendlist}(
+  dend1,
+  which = c(1L, 2L),
+  main_left,
+  main_right,
+  just_one = TRUE,
+  ...
+)
 
-\method{tanglegram}{dendrogram}(dend1, dend2, sort = FALSE, color_lines,
-  lwd = 3.5, edge.lwd = NULL, columns_width = c(5, 3, 5),
-  margin_top = 3, margin_bottom = 2.5, margin_inner = 3,
-  margin_outer = 0.5, left_dendo_mar = c(margin_bottom, margin_outer,
-  margin_top, margin_inner), right_dendo_mar = c(margin_bottom,
-  margin_inner, margin_top, margin_outer), intersecting = TRUE,
-  dLeaf = NULL, dLeaf_left = dLeaf, dLeaf_right = dLeaf,
-  axes = TRUE, type = "r", lab.cex = NULL, remove_nodePar = FALSE,
-  main = "", main_left = "", main_right = "", sub = "",
-  k_labels = NULL, k_branches = NULL, rank_branches = FALSE,
-  hang = FALSE, match_order_by_labels = TRUE, cex_main = 2,
-  cex_main_left = cex_main, cex_main_right = cex_main,
-  cex_sub = cex_main, highlight_distinct_edges = TRUE,
+\method{tanglegram}{dendrogram}(
+  dend1,
+  dend2,
+  sort = FALSE,
+  color_lines,
+  lwd = 3.5,
+  edge.lwd = NULL,
+  columns_width = c(5, 3, 5),
+  margin_top = 3,
+  margin_bottom = 2.5,
+  margin_inner = 3,
+  margin_outer = 0.5,
+  left_dendo_mar = c(margin_bottom, margin_outer, margin_top, margin_inner),
+  right_dendo_mar = c(margin_bottom, margin_inner, margin_top, margin_outer),
+  intersecting = TRUE,
+  dLeaf = NULL,
+  dLeaf_left = dLeaf,
+  dLeaf_right = dLeaf,
+  axes = TRUE,
+  type = "r",
+  lab.cex = NULL,
+  remove_nodePar = FALSE,
+  main = "",
+  main_left = "",
+  main_right = "",
+  sub = "",
+  k_labels = NULL,
+  k_branches = NULL,
+  rank_branches = FALSE,
+  hang = FALSE,
+  match_order_by_labels = TRUE,
+  cex_main = 2,
+  cex_main_left = cex_main,
+  cex_main_right = cex_main,
+  cex_sub = cex_main,
+  highlight_distinct_edges = TRUE,
   common_subtrees_color_lines = TRUE,
+  common_subtrees_color_lines_default_single_leaf_color = "grey",
   common_subtrees_color_branches = FALSE,
-  highlight_branches_col = FALSE, highlight_branches_lwd = TRUE,
-  faster = FALSE, just_one = TRUE, ...)
+  highlight_branches_col = FALSE,
+  highlight_branches_lwd = TRUE,
+  faster = FALSE,
+  just_one = TRUE,
+  ...
+)
 
-dendbackback(dend1, dend2, sort = FALSE, color_lines, lwd = 3.5,
-  edge.lwd = NULL, columns_width = c(5, 3, 5), margin_top = 3,
-  margin_bottom = 2.5, margin_inner = 3, margin_outer = 0.5,
-  left_dendo_mar = c(margin_bottom, margin_outer, margin_top,
-  margin_inner), right_dendo_mar = c(margin_bottom, margin_inner,
-  margin_top, margin_outer), intersecting = TRUE, dLeaf = NULL,
-  dLeaf_left = dLeaf, dLeaf_right = dLeaf, axes = TRUE, type = "r",
-  lab.cex = NULL, remove_nodePar = FALSE, main = "",
-  main_left = "", main_right = "", sub = "", k_labels = NULL,
-  k_branches = NULL, rank_branches = FALSE, hang = FALSE,
-  match_order_by_labels = TRUE, cex_main = 2,
-  cex_main_left = cex_main, cex_main_right = cex_main,
-  cex_sub = cex_main, highlight_distinct_edges = TRUE,
+dendbackback(
+  dend1,
+  dend2,
+  sort = FALSE,
+  color_lines,
+  lwd = 3.5,
+  edge.lwd = NULL,
+  columns_width = c(5, 3, 5),
+  margin_top = 3,
+  margin_bottom = 2.5,
+  margin_inner = 3,
+  margin_outer = 0.5,
+  left_dendo_mar = c(margin_bottom, margin_outer, margin_top, margin_inner),
+  right_dendo_mar = c(margin_bottom, margin_inner, margin_top, margin_outer),
+  intersecting = TRUE,
+  dLeaf = NULL,
+  dLeaf_left = dLeaf,
+  dLeaf_right = dLeaf,
+  axes = TRUE,
+  type = "r",
+  lab.cex = NULL,
+  remove_nodePar = FALSE,
+  main = "",
+  main_left = "",
+  main_right = "",
+  sub = "",
+  k_labels = NULL,
+  k_branches = NULL,
+  rank_branches = FALSE,
+  hang = FALSE,
+  match_order_by_labels = TRUE,
+  cex_main = 2,
+  cex_main_left = cex_main,
+  cex_main_right = cex_main,
+  cex_sub = cex_main,
+  highlight_distinct_edges = TRUE,
   common_subtrees_color_lines = TRUE,
+  common_subtrees_color_lines_default_single_leaf_color = "grey",
   common_subtrees_color_branches = FALSE,
-  highlight_branches_col = FALSE, highlight_branches_lwd = TRUE,
-  faster = FALSE, just_one = TRUE, ...)
+  highlight_branches_col = FALSE,
+  highlight_branches_lwd = TRUE,
+  faster = FALSE,
+  just_one = TRUE,
+  ...
+)
 }
 \arguments{
 \item{dend1}{tree object (dendrogram/dendlist/hclust/phylo), plotted on the left}
@@ -88,7 +150,7 @@ See: \url{http://stackoverflow.com/q/39784746/4137985}}
 (might give a better tree in some cases).}
 
 \item{color_lines}{a vector of colors for the lines connected the labels.
-If the colors are shorter than the number of labels, they are recycled 
+If the colors are shorter than the number of labels, they are recycled
 (and a warning is issued).
 The colors in the vector are applied on the lines from the bottom up.}
 
@@ -96,25 +158,25 @@ The colors in the vector are applied on the lines from the bottom up.}
 
 \item{edge.lwd}{width of the dendrograms lines. Default is NULL.
 If set, then it switches `highlight_branches_lwd` to FALSE. If you want thicker
-lines which reflect the height, please use \link{highlight_branches_lwd} on the 
+lines which reflect the height, please use \link{highlight_branches_lwd} on the
 dendrograms/dendlist.}
 
 \item{columns_width}{a vector with three elements, giving the relative
-sizes of the the three plots (left dendrogram, connecting lines, 
-right dendrogram). This is passed to \link{layout} if parameter just_one is TRUE. 
+sizes of the the three plots (left dendrogram, connecting lines,
+right dendrogram). This is passed to \link{layout} if parameter just_one is TRUE.
 The default is: c(5,3,5)}
 
 \item{margin_top}{the number of lines of margin to be specified on the top
 of the plots.}
 
-\item{margin_bottom}{the number of lines of margin to be specified on the 
+\item{margin_bottom}{the number of lines of margin to be specified on the
 bottom of the plots.}
 
-\item{margin_inner}{margin_bottom the number of lines of margin 
+\item{margin_inner}{margin_bottom the number of lines of margin
 to be specified on the inner distence between the dendrograms
 and the connecting lines.}
 
-\item{margin_outer}{margin_bottom the number of lines of margin 
+\item{margin_outer}{margin_bottom the number of lines of margin
 to be specified on the outer distence between the dendrograms
 and the connecting lines.}
 
@@ -125,18 +187,18 @@ and the connecting lines.}
 \item{intersecting}{logical (TRUE). Should the leaves of the two dendrograms
 be pruned so that the two trees will have the same labels?}
 
-\item{dLeaf}{a number specifying the distance in user coordinates between 
-the tip of a leaf and its label. If NULL, as per default, 
+\item{dLeaf}{a number specifying the distance in user coordinates between
+the tip of a leaf and its label. If NULL, as per default,
 3/4 of a letter width or height is used.
 
 Notice that if we are comparing two dendrograms with different
 heights, manually changing dLeaf will affect both trees differently.
 In such a case, it is recommanded to manually change dLeaf_left
 and dLeaf_right.
-This can be especially important when changing the lab.cex of the 
+This can be especially important when changing the lab.cex of the
 dendrogram's labels.
 Alternatively, one could manually set the xlim parameter for both
-trees, which will force the proportion of distances of the 
+trees, which will force the proportion of distances of the
 labels from the trees to remain the same.}
 
 \item{dLeaf_left}{dLeaf of the left dendrogram, by default it is equal to dLeaf (often negative).}
@@ -149,7 +211,7 @@ labels from the trees to remain the same.}
 
 \item{lab.cex}{numeric scalar, influanicing the cex size of the labels.}
 
-\item{remove_nodePar}{logical (FALSE). Should the nodePar of the leaves be 
+\item{remove_nodePar}{logical (FALSE). Should the nodePar of the leaves be
 removed? (useful when the trees' leaves has too many parameters on them)}
 
 \item{main}{Character. Title above the connecting lines.}
@@ -161,18 +223,18 @@ removed? (useful when the trees' leaves has too many parameters on them)}
 \item{k_branches}{integer. Number of groups by which to color the branches.}
 
 \item{rank_branches}{logical (FALSE). Should the branches heights be adjusted?
-(setting this to TRUE - can make it easier for 
+(setting this to TRUE - can make it easier for
 comparing topological differences)}
 
 \item{hang}{logical (FALSE). Should we hang the leaves of the trees?}
 
 \item{match_order_by_labels}{logical (TRUE). Should the leaves value order
 be matched between the two trees based on labels? This is a MUST in order
-to have the lines connect the correct labels. Set this to FALSE if you 
+to have the lines connect the correct labels. Set this to FALSE if you
 want to make the plotting a bit faster, and only after you are sure
 the labels and orders are correctly aligned.}
 
-\item{cex_main}{A numerical value giving the amount by which plotting title 
+\item{cex_main}{A numerical value giving the amount by which plotting title
 should be magnified relative to the default.}
 
 \item{cex_main_left}{see cex_main.}
@@ -184,33 +246,37 @@ should be magnified relative to the default.}
 \item{highlight_distinct_edges}{logical (default is TRUE). If to highlight distinct edges in each tree (by changing their line types to 2).
 (notice that this can be slow on large trees)
 
-This parameter will automatically be turned off if the tree already comes with a "lty" edgePar 
+This parameter will automatically be turned off if the tree already comes with a "lty" edgePar
 (this is checked using \link{has_edgePar}). A "lty" can be removed by using set("clear_branches"), by
 removing all of the edgePar parameters of the dendrogram.}
 
 \item{common_subtrees_color_lines}{logical (default is TRUE). color the connecting line based on the common subtrees of both dends.
-This only works if 
+This only works if
 (notice that this can be slow on large trees)}
 
-\item{common_subtrees_color_branches}{logical (default is FALSE). 
+\item{common_subtrees_color_branches}{logical (default is FALSE).
 Color the branches of both dends based on the common subtrees.
 (notice that this can be slow on large trees)
 This is FALSE by default since it will override the colors of the existing tree.}
 
 \item{highlight_branches_col}{logical (default is FALSE). Should \link{highlight_branches_col} be used on the dendrograms.
 
-This parameter will automatically be turned off if the tree already comes with a "col" edgePar 
+This parameter will automatically be turned off if the tree already comes with a "col" edgePar
 (this is checked using \link{has_edgePar}). A "lty" can be removed by using set("clear_branches"), by
 removing all of the edgePar parameters of the dendrogram.}
 
 \item{highlight_branches_lwd}{logical (default is TRUE). Should \link{highlight_branches_lwd} be used on the dendrograms.
 
-This parameter will automatically be turned off if the tree already comes with a "lwd" edgePar 
+This parameter will automatically be turned off if the tree already comes with a "lwd" edgePar
 (this is checked using \link{has_edgePar}). A "lty" can be removed by using set("clear_branches"), by
 removing all of the edgePar parameters of the dendrogram.}
 
-\item{faster}{logical (FALSE). If TRUE, it overrides some other parameters to 
+\item{faster}{logical (FALSE). If TRUE, it overrides some other parameters to
 have them turned off so that the plotting will go a tiny bit faster.}
+
+\item{common_subtrees_color_lines_default_single_leaf_color.}{When representing edges between common subtrees 
+(i.e. common_subtrees_color_branches = TRUE), this parameter sets the color of edges for subtrees that are NOT common.
+Default is "grey"}
 }
 \value{
 An invisible \link{dendlist}, with two trees after being
@@ -226,34 +292,46 @@ window you would need to re-run the function.
 \examples{
 \dontrun{
 set.seed(23235)
-ss <- sample(1:150, 10 )
-dend1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
-dend2 <- iris[ss,-5] \%>\% dist \%>\% hclust("sin") \%>\% as.dendrogram
+ss <- sample(1:150, 10)
+dend1 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("com") \%>\%
+  as.dendrogram()
+dend2 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("sin") \%>\%
+  as.dendrogram()
 dend12 <- dendlist(dend1, dend2)
 
-dend12 \%>\% tanglegram
+dend12 \%>\% tanglegram()
 
-tanglegram(dend1 , dend2)
-tanglegram(dend1 , dend2, sort = TRUE)
-tanglegram(dend1 , dend2, remove_nodePar = TRUE)
-tanglegram(dend1 , dend2, k_labels = 6, k_branches = 4)
+tanglegram(dend1, dend2)
+tanglegram(dend1, dend2, sort = TRUE)
+tanglegram(dend1, dend2, remove_nodePar = TRUE)
+tanglegram(dend1, dend2, k_labels = 6, k_branches = 4)
 
-tanglegram(dend1 , dend2, lab.cex = 2, edge.lwd = 3,
-margin_inner= 5, type = "t", center = TRUE)
+tanglegram(dend1, dend2,
+  lab.cex = 2, edge.lwd = 3,
+  margin_inner = 5, type = "t", center = TRUE
+)
 
 
 ## works nicely:
-tanglegram(dend1 , dend2, lab.cex = 2, edge.lwd = 3,  
-margin_inner= 3.5, type = "t", center = TRUE,
-dLeaf = -0.1, xlim = c(7,0),
-k_branches=3)
+tanglegram(dend1, dend2,
+  lab.cex = 2, edge.lwd = 3,
+  margin_inner = 3.5, type = "t", center = TRUE,
+  dLeaf = -0.1, xlim = c(7, 0),
+  k_branches = 3
+)
 
 
 # using rank_branches can make the comparison even easier
-tanglegram(rank_branches(dend1) , rank_branches(dend2), lab.cex = 2, edge.lwd = 3,  
- margin_inner= 3.5, type = "t", center = TRUE,
-  dLeaf = -0.1, xlim = c(5.1,0), columns_width= c(5,1,5),
-   k_branches=3)
+tanglegram(rank_branches(dend1), rank_branches(dend2),
+  lab.cex = 2, edge.lwd = 3,
+  margin_inner = 3.5, type = "t", center = TRUE,
+  dLeaf = -0.1, xlim = c(5.1, 0), columns_width = c(5, 1, 5),
+  k_branches = 3
+)
 
 
 
@@ -262,23 +340,34 @@ tanglegram(rank_branches(dend1) , rank_branches(dend2), lab.cex = 2, edge.lwd = 
 
 # see the coloring of common sub trees:
 set.seed(23235)
-ss <- sample(1:150, 10 )
-dend1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
-dend2 <- iris[ss,-5] \%>\% dist \%>\% hclust("sin") \%>\% as.dendrogram
+ss <- sample(1:150, 10)
+dend1 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("com") \%>\%
+  as.dendrogram()
+dend2 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("sin") \%>\%
+  as.dendrogram()
 dend12 <- dendlist(dend1, dend2)
 # dend12 \%>\% untangle \%>\% tanglegram
 dend12 \%>\% tanglegram(common_subtrees_color_branches = TRUE)
 
 
 set.seed(22133513)
-ss <- sample(1:150, 10 )
-dend1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
-dend2 <- iris[ss,-5] \%>\% dist \%>\% hclust("sin") \%>\% as.dendrogram
+ss <- sample(1:150, 10)
+dend1 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("com") \%>\%
+  as.dendrogram()
+dend2 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("sin") \%>\%
+  as.dendrogram()
 dend12 <- dendlist(dend1, dend2)
 # dend12 \%>\% untangle \%>\% tanglegram
 dend12 \%>\% tanglegram(common_subtrees_color_branches = TRUE)
-dend12 \%>\% tanglegram
-
+dend12 \%>\% tanglegram()
 }
 }
 \seealso{
