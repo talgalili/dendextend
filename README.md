@@ -15,9 +15,9 @@
 * [Motivation](#motivation)
 * [Installation](#installation)
 * [Usage](#usage)
-* [Share your dendrograms!](#share-your-dendrograms)
+* [Getting help](#getting-help)
 * [How to cite the dendextend package](#how-to-cite-the-dendextend-package)
-* [Contact](#contact)
+* [Submitting bug reports and patches](#submitting-bug-reports-and-patches)
 
 
 ## Introduction
@@ -33,28 +33,11 @@ Extending R core dendrogram functions.
 
 ## Installation
 
-To install the stable version on CRAN:
+To install and load dendextend, simply use:
 
 ```r
-install.packages('dendextend')
-```
-
-To install the GitHub version:
-
-```R
-install.packages.2 <- function (pkg) if (!require(pkg)) install.packages(pkg);
-install.packages.2('remotes')
-remotes::install_github('talgalili/dendextend')
-
-# Having colorspace is also useful, since it is used
-# In various examples in the vignettes
-install.packages.2('colorspace')
-```
-
-Simply run the following to load the package:
-
-```R
-library("dendextend")
+install.packages('dendextend') # stable CRAN version
+library("dendextend") # load the package
 ```
 
 ## Usage
@@ -67,15 +50,11 @@ Vignettes:
 
 Also ceck out the [dendextend tag in stackoverflow](https://stackoverflow.com/questions/tagged/dendextend) for more examples.
 
-## Share your dendrograms!
+A notable sister package for dendextend is [heatmaply](https://cran.r-project.org/web/packages/heatmaply/vignettes/heatmaply.html) for creating interactive cluster heatmaps using R (combining dendextend and plotly).
 
-If you have made interesting work using the dendextend package, I would LOVE to know about it. It can be a blog post, an academic paper, or just some plots you made for your work in the industry. Please contact me (see below) with what you have done, and I would also be happy to promote it in this page.
+## Getting help
 
-### Usages of dendextend
-
-Packages:
-* [heatmaply](https://cran.r-project.org/web/packages/heatmaply/vignettes/heatmaply.html)
-* [ComplexHeatmap](https://www.bioconductor.org/packages/3.3/bioc/html/ComplexHeatmap.html)
+Please post your question to stackoverflow using the tags: [dendextend](https://stackoverflow.com/questions/tagged/dendextend) and [r](https://stackoverflow.com/questions/tagged/dendextend).
 
 
 ## How to cite the dendextend package
@@ -102,7 +81,7 @@ it, please support the project by citing the appropriate journal articles.
 
 
 
-## Contact
+## Submitting bug reports and patches
 
 You are welcome to:
 
@@ -110,6 +89,17 @@ You are welcome to:
 * send a pull request on: <https://github.com/talgalili/dendextend/>
 * compose a friendly e-mail to: <tal.galili@gmail.com>
 
+Before reporting bugs, please make sure you're using the latest version from github:
+
+```R
+install.packages.2 <- function (pkg) if (!require(pkg)) install.packages(pkg);
+install.packages.2('remotes')
+remotes::install_github('talgalili/dendextend')
+
+# Having colorspace is also useful, since it is used
+# In various examples in the vignettes
+install.packages.2('colorspace')
+```
 
 ## Latest news
 
