@@ -1,9 +1,9 @@
 pandoc: 1.19.2.1
-pkgdown: 1.3.0
+pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
   Cluster_Analysis: Cluster_Analysis.html
-  dendextend: dendextend.html
   FAQ: FAQ.html
   Quick_Introduction: Quick_Introduction.html
+  dendextend: dendextend.html
 

@@ -1,6 +1,9 @@
 dendextend 1.13.0 (2019-11-23)
 ----------------------------------------
 
+###UPDATED FUNCTIONS:
+* tanglegram - new argument "common_subtrees_color_lines_default_single_leaf_color", to control the default color of connecting the two dendrograms (from black to grey, and can now be controled). Props to DBradley27 (https://github.com/DBradley27)
+
 ###OTHER NOTES
 - improved docs:
    - dist.dendlist

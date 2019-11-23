@@ -16,13 +16,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -32,7 +34,7 @@
 
 <meta property="og:title" content="Untangle - random search — untangle_random_search" />
 
-<meta property="og:description" content="Searches for two untangled dendrogram by randomlly shuflling them and each 
+<meta property="og:description" content="Searches for two untangled dendrogram by randomlly shuflling them and each
 time checking if their entanglement was improved." />
 <meta name="twitter:card" content="summary" />
 
@@ -46,6 +48,7 @@ time checking if their entanglement was improved." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -72,7 +75,7 @@ time checking if their entanglement was improved." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -108,7 +111,7 @@ time checking if their entanglement was improved." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -119,6 +122,7 @@ time checking if their entanglement was improved." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -131,13 +135,19 @@ time checking if their entanglement was improved." />
 
     <div class="ref-description">
     
-    <p>Searches for two untangled dendrogram by randomlly shuflling them and each 
+    <p>Searches for two untangled dendrogram by randomlly shuflling them and each
 time checking if their entanglement was improved.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>untangle_random_search</span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100L</span>, <span class='kw'>L</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>leaves_matching_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"labels"</span>, <span class='st'>"order"</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>untangle_random_search</span>(
+  <span class='no'>dend1</span>,
+  <span class='no'>dend2</span>,
+  <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100L</span>,
+  <span class='kw'>L</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>leaves_matching_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"labels"</span>, <span class='st'>"order"</span>),
+  <span class='no'>...</span>
+)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,23 +168,23 @@ time checking if their entanglement was improved.</p>
       <th>L</th>
       <td><p>the distance norm to use for measuring the distance between the
 two trees. It can be any positive number, often one will want to
- use 0, 1, 1.5, 2 (see 'details' for more). 
+ use 0, 1, 1.5, 2 (see 'details' for more).
  It is passed to <a href='entanglement.html'>entanglement</a>.</p></td>
     </tr>
     <tr>
       <th>leaves_matching_method</th>
       <td><p>a character scalar passed to <a href='entanglement.html'>entanglement</a>.
-It can be either "order" or "labels" (default). If using "labels", 
+It can be either "order" or "labels" (default). If using "labels",
 then we use the labels for matching the leaves order value.
-And if "order" then we use the old leaves order value for matching the 
+And if "order" then we use the old leaves order value for matching the
 leaves order value.</p>
-<p>Using "order" is faster, but "labels" is safer. "order" will assume that 
+<p>Using "order" is faster, but "labels" is safer. "order" will assume that
 the original two trees had their labels and order values MATCHED.</p>
-<p>Hence, it is best to make sure that the trees used here have the same labels 
+<p>Hence, it is best to make sure that the trees used here have the same labels
 and the SAME values matched to these values - and then use "order" (for
 fastest results).</p>
 <p>If "order" is used, the function first calls <a href='match_order_by_labels.html'>match_order_by_labels</a>
-in order to make sure that the two trees have their labels synced with 
+in order to make sure that the two trees have their labels synced with
 their leaves order values.</p></td>
     </tr>
     <tr>
@@ -202,22 +212,25 @@ offers.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-</div><span class='co'># NOT RUN {</span>
-<span class='no'>dend1</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[,-<span class='fl'>5</span>] <span class='kw'>%&gt;%</span> <span class='no'>dist</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/hclust'>hclust</a></span>(<span class='st'>"com"</span>) <span class='kw'>%&gt;%</span> <span class='no'>as.dendrogram</span>
-<span class='no'>dend2</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[,-<span class='fl'>5</span>] <span class='kw'>%&gt;%</span> <span class='no'>dist</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/hclust'>hclust</a></span>(<span class='st'>"sin"</span>) <span class='kw'>%&gt;%</span> <span class='no'>as.dendrogram</span>
-<span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dend1</span>,<span class='no'>dend2</span>)
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>dend1</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[, -<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='st'>"com"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
+<span class='no'>dend2</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[, -<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='st'>"sin"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
+<span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>)
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>65168</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>65168</span>)
 <span class='no'>dend12</span> <span class='kw'>&lt;-</span> <span class='fu'>untangle_random_search</span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dend12</span><span class='kw'>[[</span><span class='fl'>1</span>]],<span class='no'>dend12</span><span class='kw'>[[</span><span class='fl'>2</span>]])
+<span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dend12</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='no'>dend12</span><span class='kw'>[[</span><span class='fl'>2</span>]])
 <span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dend12</span>)
 
-<span class='fu'><a href='entanglement.html'>entanglement</a></span>(<span class='no'>dend1</span>,<span class='no'>dend2</span>, <span class='kw'>L</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='co'># 0.8894</span>
-<span class='fu'><a href='entanglement.html'>entanglement</a></span>(<span class='no'>dend12</span><span class='kw'>[[</span><span class='fl'>1</span>]],<span class='no'>dend12</span><span class='kw'>[[</span><span class='fl'>2</span>]], <span class='kw'>L</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='co'># 0.0998</span>
-
-
-
-<span class='co'># }</span></pre>
+<span class='fu'><a href='entanglement.html'>entanglement</a></span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>, <span class='kw'>L</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='co'># 0.8894</span>
+<span class='fu'><a href='entanglement.html'>entanglement</a></span>(<span class='no'>dend12</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='no'>dend12</span><span class='kw'>[[</span><span class='fl'>2</span>]], <span class='kw'>L</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='co'># 0.0998</span>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -236,19 +249,23 @@ offers.</p>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by Tal Galili, Gregory Jefferis.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

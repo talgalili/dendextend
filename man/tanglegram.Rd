@@ -254,6 +254,10 @@ removing all of the edgePar parameters of the dendrogram.}
 This only works if
 (notice that this can be slow on large trees)}
 
+\item{common_subtrees_color_lines_default_single_leaf_color}{When representing edges between common subtrees 
+(i.e. common_subtrees_color_branches = TRUE), this parameter sets the color of edges for subtrees that are NOT common.
+Default is "grey"}
+
 \item{common_subtrees_color_branches}{logical (default is FALSE).
 Color the branches of both dends based on the common subtrees.
 (notice that this can be slow on large trees)
@@ -273,10 +277,6 @@ removing all of the edgePar parameters of the dendrogram.}
 
 \item{faster}{logical (FALSE). If TRUE, it overrides some other parameters to
 have them turned off so that the plotting will go a tiny bit faster.}
-
-\item{common_subtrees_color_lines_default_single_leaf_color.}{When representing edges between common subtrees 
-(i.e. common_subtrees_color_branches = TRUE), this parameter sets the color of edges for subtrees that are NOT common.
-Default is "grey"}
 }
 \value{
 An invisible \link{dendlist}, with two trees after being

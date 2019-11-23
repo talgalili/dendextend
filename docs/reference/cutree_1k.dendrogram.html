@@ -16,13 +16,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -32,9 +34,9 @@
 
 <meta property="og:title" content="cutree for dendrogram (by 1 k value only!) — cutree_1k.dendrogram" />
 
-<meta property="og:description" content="Cuts a dendrogram tree into several groups 
+<meta property="og:description" content="Cuts a dendrogram tree into several groups
 by specifying the desired number of clusters k (only a single k value!).
-In case there exists no such k for which exists a relevant split of the 
+In case there exists no such k for which exists a relevant split of the
 dendrogram, a warning is issued to the user, and NA is returned." />
 <meta name="twitter:card" content="summary" />
 
@@ -48,6 +50,7 @@ dendrogram, a warning is issued to the user, and NA is returned." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -74,7 +77,7 @@ dendrogram, a warning is issued to the user, and NA is returned." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -110,7 +113,7 @@ dendrogram, a warning is issued to the user, and NA is returned." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -121,6 +124,7 @@ dendrogram, a warning is issued to the user, and NA is returned." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -133,16 +137,22 @@ dendrogram, a warning is issued to the user, and NA is returned." />
 
     <div class="ref-description">
     
-    <p>Cuts a dendrogram tree into several groups 
+    <p>Cuts a dendrogram tree into several groups
 by specifying the desired number of clusters k (only a single k value!).</p>
-<p>In case there exists no such k for which exists a relevant split of the 
+<p>In case there exists no such k for which exists a relevant split of the
 dendrogram, a warning is issued to the user, and NA is returned.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>, <span class='no'>k</span>, <span class='kw'>dend_heights_per_k</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>use_labels_not_values</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>order_clusters_as_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>cutree_1k.dendrogram</span>(
+  <span class='no'>dend</span>,
+  <span class='no'>k</span>,
+  <span class='kw'>dend_heights_per_k</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>use_labels_not_values</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>order_clusters_as_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>),
+  <span class='no'>...</span>
+)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,16 +174,16 @@ supplying this object will help improve the running time.</p></td>
     </tr>
     <tr>
       <th>use_labels_not_values</th>
-      <td><p>logical, defaults to TRUE. If the actual labels of the 
-clusters do not matter - and we want to gain speed (say, 10 times faster) - 
+      <td><p>logical, defaults to TRUE. If the actual labels of the
+clusters do not matter - and we want to gain speed (say, 10 times faster) -
 then use FALSE (gives the "leaves order" instead of their labels.).
 This is passed to <code>cutree_1h.dendrogram</code>.</p></td>
     </tr>
     <tr>
       <th>order_clusters_as_data</th>
-      <td><p>logical, defaults to TRUE. There are two ways by which 
-to order the clusters: 1) By the order of the original data. 2) by the order of the 
-labels in the dendrogram. In order to be consistent with <a href='https://www.rdocumentation.org/packages/stats/topics/cutree'>cutree</a>, this is set
+      <td><p>logical, defaults to TRUE. There are two ways by which
+to order the clusters: 1) By the order of the original data. 2) by the order of the
+labels in the dendrogram. In order to be consistent with <a href='https://rdrr.io/r/stats/cutree.html'>cutree</a>, this is set
 to TRUE.
 This is passed to <code>cutree_1h.dendrogram</code>.</p></td>
     </tr>
@@ -192,47 +202,47 @@ Should the function send a warning in case the desried k is not available?</p></
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cutree_1k.dendrogram</code> returns an integer vector with group 
+    <p><code>cutree_1k.dendrogram</code> returns an integer vector with group
 memberships.</p>
-<p>In case there exists no such k for which exists a relevant split of the 
+<p>In case there exists no such k for which exists a relevant split of the
 dendrogram, a warning is issued to the user, and NA is returned.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/stats/topics/hclust'>hclust</a></code>, <code><a href='cutree-methods.html'>cutree</a></code>, 
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code><a href='cutree-methods.html'>cutree</a></code>,
 <code><a href='cutree_1h.dendrogram.html'>cutree_1h.dendrogram</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>hc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/hclust'>hclust</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dist'>dist</a></span>(<span class='no'>USArrests</span>[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>6</span>,<span class='fl'>13</span>,<span class='fl'>20</span>, <span class='fl'>23</span>),]), <span class='st'>"ave"</span>)
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dendrogram'>as.dendrogram</a></span>(<span class='no'>hc</span>)
-<span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>3</span>) <span class='co'># on hclust</span></div><div class='output co'>#&gt;   Alabama  Colorado  Illinois  Maryland Minnesota 
-#&gt;         1         1         1         2         3 </div><div class='input'><span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>3</span>) <span class='co'># on a dendrogram</span></div><div class='output co'>#&gt;   Alabama  Colorado  Illinois  Maryland Minnesota 
+    <pre class="examples"><div class='input'><span class='no'>hc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>USArrests</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>6</span>, <span class='fl'>13</span>, <span class='fl'>20</span>, <span class='fl'>23</span>), ]), <span class='st'>"ave"</span>)
+<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>(<span class='no'>hc</span>)
+<span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='co'># on hclust</span></div><div class='output co'>#&gt;   Alabama  Colorado  Illinois  Maryland Minnesota 
+#&gt;         1         1         1         2         3 </div><div class='input'><span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='co'># on a dendrogram</span></div><div class='output co'>#&gt;   Alabama  Colorado  Illinois  Maryland Minnesota 
 #&gt;         1         1         1         2         3 </div><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/labels'>labels</a></span>(<span class='no'>dend</span>)</div><div class='output co'>#&gt; [1] "Minnesota" "Maryland"  "Colorado"  "Alabama"   "Illinois" </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>dend</span>)</div><div class='output co'>#&gt; [1] "Minnesota" "Maryland"  "Colorado"  "Alabama"   "Illinois" </div><div class='input'>
 <span class='co'># the default (ordered by original data's order)</span>
-<span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>order_clusters_as_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;   Alabama  Colorado  Illinois  Maryland Minnesota 
+<span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>order_clusters_as_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;   Alabama  Colorado  Illinois  Maryland Minnesota 
 #&gt;         1         1         1         2         3 </div><div class='input'>
 <span class='co'># A different order of labels - order by their order in the tree</span>
-<span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>order_clusters_as_data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; Minnesota  Maryland  Colorado   Alabama  Illinois 
+<span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>order_clusters_as_data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; Minnesota  Maryland  Colorado   Alabama  Illinois 
 #&gt;         3         2         1         1         1 </div><div class='input'>
 
-# make it faster
-</div><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>microbenchmark</span>)
+<span class='co'># make it faster</span>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>microbenchmark</span>)
 <span class='no'>dend_ks</span> <span class='kw'>&lt;-</span> <span class='no'>heights_per_k.dendrogram</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/microbenchmark/topics/microbenchmark'>microbenchmark</a></span>(
-         <span class='kw'>cutree_1k.dendrogram</span> <span class='kw'>=</span> <span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>4</span>),
-         <span class='kw'>cutree_1k.dendrogram_no_labels</span> <span class='kw'>=</span> <span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>,
-                                       <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>4</span>,<span class='kw'>use_labels_not_values</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-         <span class='kw'>cutree_1k.dendrogram_no_labels_per_k</span> <span class='kw'>=</span> <span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>,
-                                       <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>4</span>, <span class='kw'>use_labels_not_values</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-                                             <span class='kw'>dend_heights_per_k</span> <span class='kw'>=</span> <span class='no'>dend_ks</span>)
-         )
-         <span class='co'># the last one is the fastest...</span>
-<span class='co'># }</span><div class='input'>
-
-</div></pre>
+<span class='fu'><a href='https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html'>microbenchmark</a></span>(
+  <span class='kw'>cutree_1k.dendrogram</span> <span class='kw'>=</span> <span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>4</span>),
+  <span class='kw'>cutree_1k.dendrogram_no_labels</span> <span class='kw'>=</span> <span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>,
+    <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>use_labels_not_values</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  ),
+  <span class='kw'>cutree_1k.dendrogram_no_labels_per_k</span> <span class='kw'>=</span> <span class='fu'>cutree_1k.dendrogram</span>(<span class='no'>dend</span>,
+    <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>use_labels_not_values</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <span class='kw'>dend_heights_per_k</span> <span class='kw'>=</span> <span class='no'>dend_ks</span>
+  )
+)
+<span class='co'># the last one is the fastest...</span>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -251,19 +261,23 @@ dendrogram, a warning is issued to the user, and NA is returned.</p>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by Tal Galili, Gregory Jefferis.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

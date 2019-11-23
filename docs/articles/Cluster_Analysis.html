@@ -5,11 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hierarchical cluster analysis on famous data sets - enhanced with the <em>dendextend</em> package • dendextend</title>
+<title>Hierarchical cluster analysis on famous data sets - enhanced with the _dendextend_ package • dendextend</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Hierarchical cluster analysis on famous data sets - enhanced with the &lt;em&gt;dendextend&lt;/em&gt; package">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Hierarchical cluster analysis on famous data sets - enhanced with the _dendextend_ package">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -73,7 +74,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/talgalili/dendextend">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -86,13 +87,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Hierarchical cluster analysis on famous data sets - enhanced with the <em>dendextend</em> package</h1>
                         <h4 class="author">Tal Galili</h4>
             
-            <h4 class="date">2019-09-17</h4>
+            <h4 class="date">2019-11-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/master/vignettes/Cluster_Analysis.Rmd"><code>vignettes/Cluster_Analysis.Rmd</code></a></small>
       <div class="hidden name"><code>Cluster_Analysis.Rmd</code></div>
@@ -117,54 +119,54 @@
 <h3 class="hasAnchor">
 <a href="#background" class="anchor"></a>Background</h3>
 <blockquote>
-<p>The famous (Fisher’s or Anderson’s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica. (from <code><a href="https://www.rdocumentation.org/packages/datasets/topics/iris">?iris</a></code>)</p>
+<p>The famous (Fisher’s or Anderson’s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica. (from <code><a href="https://rdrr.io/r/datasets/iris.html">?iris</a></code>)</p>
 </blockquote>
 <p>The <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">Iris flower data set</a> is fun for learning supervised classification algorithms, and is known as a difficult case for unsupervised learning. This is easily seen through the following Scatter Plot Matrix (SPLOM):</p>
 <p>Define variables:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris &lt;-<span class="st"> </span>datasets<span class="op">::</span>iris
 iris2 &lt;-<span class="st"> </span>iris[,<span class="op">-</span><span class="dv">5</span>]
 species_labels &lt;-<span class="st"> </span>iris[,<span class="dv">5</span>]
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(colorspace) <span class="co"># get nice colors</span>
-species_col &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rev">rev</a></span>(<span class="kw">rainbow_hcl</span>(<span class="dv">3</span>))[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">as.numeric</a></span>(species_labels)]</code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(colorspace) <span class="co"># get nice colors</span>
+species_col &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/rev.html">rev</a></span>(<span class="kw"><a href="http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html">rainbow_hcl</a></span>(<span class="dv">3</span>))[<span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(species_labels)]</code></pre></div>
 <p>SPLOM:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot a SPLOM:</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/pairs">pairs</a></span>(iris2, <span class="dt">col =</span> species_col,
+<span class="kw"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span>(iris2, <span class="dt">col =</span> species_col,
       <span class="dt">lower.panel =</span> <span class="ot">NULL</span>,
        <span class="dt">cex.labels=</span><span class="dv">2</span>, <span class="dt">pch=</span><span class="dv">19</span>, <span class="dt">cex =</span> <span class="fl">1.2</span>)
 
 <span class="co"># Add a legend</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">xpd =</span> <span class="ot">TRUE</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/legend">legend</a></span>(<span class="dt">x =</span> <span class="fl">0.05</span>, <span class="dt">y =</span> <span class="fl">0.4</span>, <span class="dt">cex =</span> <span class="dv">2</span>,
-   <span class="dt">legend =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/levels">levels</a></span>(species_labels)),
-    <span class="dt">fill =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(species_col))
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">xpd =</span> <span class="ot">NA</span>)</code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">xpd =</span> <span class="ot">TRUE</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span>(<span class="dt">x =</span> <span class="fl">0.05</span>, <span class="dt">y =</span> <span class="fl">0.4</span>, <span class="dt">cex =</span> <span class="dv">2</span>,
+   <span class="dt">legend =</span> <span class="kw"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(species_labels)),
+    <span class="dt">fill =</span> <span class="kw"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(species_col))
+<span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">xpd =</span> <span class="ot">NA</span>)</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-3-1.png" width="675"></p>
 <p>We can see that the <em>Setosa</em> species are distinctly different from <em>Versicolor</em> and <em>Virginica</em> (they have lower petal length and width). But <em>Versicolor</em> and <em>Virginica</em> cannot easily be separated based on measurements of their sepal and petal width/length.</p>
 <p>The same conclusion can be made by looking at the parallel coordinates plot of the data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># http://blog.safaribooksonline.com/2014/03/31/mastering-parallel-coordinate-charts-r/</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">mar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">4.5</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>, <span class="dt">cex =</span> .<span class="dv">8</span>)
-MASS<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/MASS/topics/parcoord">parcoord</a></span>(iris2, <span class="dt">col =</span> species_col, <span class="dt">var.label =</span> <span class="ot">TRUE</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">mar =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4.5</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>, <span class="dt">cex =</span> .<span class="dv">8</span>)
+MASS<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/MASS/man/parcoord.html">parcoord</a></span>(iris2, <span class="dt">col =</span> species_col, <span class="dt">var.label =</span> <span class="ot">TRUE</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
 
 <span class="co"># Add Title</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/title">title</a></span>(<span class="st">"Parallel coordinates plot of the Iris data"</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/title.html">title</a></span>(<span class="st">"Parallel coordinates plot of the Iris data"</span>)
 <span class="co"># Add a legend</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">xpd =</span> <span class="ot">TRUE</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/legend">legend</a></span>(<span class="dt">x =</span> <span class="fl">1.75</span>, <span class="dt">y =</span> <span class="op">-</span>.<span class="dv">25</span>, <span class="dt">cex =</span> <span class="dv">1</span>,
-   <span class="dt">legend =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/levels">levels</a></span>(species_labels)),
-    <span class="dt">fill =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(species_col), <span class="dt">horiz =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">xpd =</span> <span class="ot">TRUE</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span>(<span class="dt">x =</span> <span class="fl">1.75</span>, <span class="dt">y =</span> <span class="op">-</span>.<span class="dv">25</span>, <span class="dt">cex =</span> <span class="dv">1</span>,
+   <span class="dt">legend =</span> <span class="kw"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(species_labels)),
+    <span class="dt">fill =</span> <span class="kw"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(species_col), <span class="dt">horiz =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-4-1.png" width="450"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">xpd =</span> <span class="ot">NA</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">xpd =</span> <span class="ot">NA</span>)</code></pre></div>
 </div>
 <div id="the-3-clusters-from-the-complete-method-vs-the-real-species-category" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-3-clusters-from-the-complete-method-vs-the-real-species-category" class="anchor"></a>The 3 clusters from the “complete” method vs the real species category</h3>
 <p>The default hierarchical clustering method in <code>hclust</code> is “complete”. We can visualize the result of running it by turning the object to a dendrogram and making several adjustments to the object, such as: changing the labels, coloring the labels based on the real species category, and coloring the branches based on cutting the tree into three clusters.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d_iris &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(iris2) <span class="co"># method="man" # is a bit better</span>
-hc_iris &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>(d_iris, <span class="dt">method =</span> <span class="st">"complete"</span>)
-iris_species &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rev">rev</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/levels">levels</a></span>(iris[,<span class="dv">5</span>]))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d_iris &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(iris2) <span class="co"># method="man" # is a bit better</span>
+hc_iris &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(d_iris, <span class="dt">method =</span> <span class="st">"complete"</span>)
+iris_species &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/rev.html">rev</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(iris[,<span class="dv">5</span>]))
 
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dendextend)
-dend &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dendrogram">as.dendrogram</a></span>(hc_iris)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dendextend)
+dend &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(hc_iris)
 <span class="co"># order it the closest we can to the order of the observations:</span>
 dend &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rotate.html">rotate</a></span>(dend, <span class="dv">1</span><span class="op">:</span><span class="dv">150</span>)
 
@@ -173,13 +175,13 @@ dend &lt;-<span class="st"> </span><span class="kw"><a href="../reference/color_
 
 <span class="co"># Manually match the labels, as much as possible, to the real classification of the flowers:</span>
 <span class="kw"><a href="../reference/labels_colors.html">labels_colors</a></span>(dend) &lt;-
-<span class="st">   </span><span class="kw">rainbow_hcl</span>(<span class="dv">3</span>)[<span class="kw"><a href="../reference/sort_levels_values.html">sort_levels_values</a></span>(
-      <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">as.numeric</a></span>(iris[,<span class="dv">5</span>])[<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/order.dendrogram">order.dendrogram</a></span>(dend)]
+<span class="st">   </span><span class="kw"><a href="http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html">rainbow_hcl</a></span>(<span class="dv">3</span>)[<span class="kw"><a href="../reference/sort_levels_values.html">sort_levels_values</a></span>(
+      <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(iris[,<span class="dv">5</span>])[<span class="kw"><a href="https://rdrr.io/r/stats/order.dendrogram.html">order.dendrogram</a></span>(dend)]
    )]
 
 <span class="co"># We shall add the flower type to the labels:</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/labels">labels</a></span>(dend) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(iris[,<span class="dv">5</span>])[<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/order.dendrogram">order.dendrogram</a></span>(dend)],
-                           <span class="st">"("</span>,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/labels">labels</a></span>(dend),<span class="st">")"</span>, 
+<span class="kw"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(dend) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(iris[,<span class="dv">5</span>])[<span class="kw"><a href="https://rdrr.io/r/stats/order.dendrogram.html">order.dendrogram</a></span>(dend)],
+                           <span class="st">"("</span>,<span class="kw"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(dend),<span class="st">")"</span>, 
                            <span class="dt">sep =</span> <span class="st">""</span>)
 <span class="co"># We hang the dendrogram a bit:</span>
 dend &lt;-<span class="st"> </span><span class="kw"><a href="../reference/hang.dendrogram.html">hang.dendrogram</a></span>(dend,<span class="dt">hang_height=</span><span class="fl">0.1</span>)
@@ -187,12 +189,12 @@ dend &lt;-<span class="st"> </span><span class="kw"><a href="../reference/hang.d
 <span class="co"># dend &lt;- assign_values_to_leaves_nodePar(dend, 0.5, "lab.cex")</span>
 dend &lt;-<span class="st"> </span><span class="kw"><a href="../reference/set.html">set</a></span>(dend, <span class="st">"labels_cex"</span>, <span class="fl">0.5</span>)
 <span class="co"># And plot:</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">7</span>))
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(dend, 
+<span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">mar =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">7</span>))
+<span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(dend, 
      <span class="dt">main =</span> <span class="st">"Clustered Iris data set</span>
 <span class="st">     (the labels give the true flower species)"</span>, 
-     <span class="dt">horiz =</span>  <span class="ot">TRUE</span>,  <span class="dt">nodePar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">cex =</span> .<span class="dv">007</span>))
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/legend">legend</a></span>(<span class="st">"topleft"</span>, <span class="dt">legend =</span> iris_species, <span class="dt">fill =</span> <span class="kw">rainbow_hcl</span>(<span class="dv">3</span>))</code></pre></div>
+     <span class="dt">horiz =</span>  <span class="ot">TRUE</span>,  <span class="dt">nodePar =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">cex =</span> .<span class="dv">007</span>))
+<span class="kw"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span>(<span class="st">"topleft"</span>, <span class="dt">legend =</span> iris_species, <span class="dt">fill =</span> <span class="kw"><a href="http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html">rainbow_hcl</a></span>(<span class="dv">3</span>))</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-5-1.png" width="525"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">#### BTW, notice that:
 <span class="co"># labels(hc_iris) # no labels, because "iris" has no row names</span>
@@ -200,7 +202,7 @@ dend &lt;-<span class="st"> </span><span class="kw"><a href="../reference/set.ht
 <span class="co"># is.character(labels(dend)) # labels are no longer "integer"</span></code></pre></div>
 <p>The same can be presented in a circular layout:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Requires that the circlize package will be installed</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">0</span>,<span class="dv">4</span>))
+<span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">mar =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">0</span>,<span class="dv">4</span>))
 <span class="kw"><a href="../reference/circlize_dendrogram.html">circlize_dendrogram</a></span>(dend)</code></pre></div>
 <pre><code>## Loading required namespace: circlize</code></pre>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-6-1.png" width="525"></p>
@@ -208,27 +210,27 @@ dend &lt;-<span class="st"> </span><span class="kw"><a href="../reference/set.ht
 <p>The hanging of the tree also helps to locate extreme observations. For example, we can see that observation “virginica (107)” is not very similar to the Versicolor species, but still, it is among them. Also, “Versicolor (71)” is located too much “within” the group of Virginica flowers.</p>
 <p>We can also explore the data using a heatmap. The rows are ordered based on the order of the hierarchical clustering (using the “complete” method). The colored bar indicates the species category each row belongs to. The color in the heatmap indicates the length of each measurement (from light yellow to dark red).</p>
 <p>In the heatmap we also see how the Setosa species has low petal values (in light yellow), but it is very difficult to see any clear distinction between the other two species.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">some_col_func &lt;-<span class="st"> </span><span class="cf">function</span>(n) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rev">rev</a></span>(colorspace<span class="op">::</span><span class="kw"><a href="http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html">heat_hcl</a></span>(n, <span class="dt">c =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">80</span>, <span class="dv">30</span>), <span class="dt">l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">30</span>, <span class="dv">90</span>), <span class="dt">power =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span><span class="op">/</span><span class="dv">5</span>, <span class="fl">1.5</span>)))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">some_col_func &lt;-<span class="st"> </span><span class="cf">function</span>(n) <span class="kw"><a href="https://rdrr.io/r/base/rev.html">rev</a></span>(colorspace<span class="op">::</span><span class="kw"><a href="http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html">heat_hcl</a></span>(n, <span class="dt">c =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">80</span>, <span class="dv">30</span>), <span class="dt">l =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">30</span>, <span class="dv">90</span>), <span class="dt">power =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">/</span><span class="dv">5</span>, <span class="fl">1.5</span>)))
 
 <span class="co"># scaled_iris2 &lt;- iris2 %&gt;% as.matrix %&gt;% scale</span>
 <span class="co"># library(gplots)</span>
-gplots<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/gplots/topics/heatmap.2">heatmap.2</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(iris2), 
+gplots<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/gplots/man/heatmap.2.html">heatmap.2</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(iris2), 
           <span class="dt">main =</span> <span class="st">"Heatmap for the Iris data set"</span>,
           <span class="dt">srtCol =</span> <span class="dv">20</span>,
           <span class="dt">dendrogram =</span> <span class="st">"row"</span>,
           <span class="dt">Rowv =</span> dend,
           <span class="dt">Colv =</span> <span class="st">"NA"</span>, <span class="co"># this to make sure the columns are not ordered</span>
           <span class="dt">trace=</span><span class="st">"none"</span>,          
-          <span class="dt">margins =</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">5</span>,<span class="fl">0.1</span>),      
+          <span class="dt">margins =</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">5</span>,<span class="fl">0.1</span>),      
           <span class="dt">key.xlab =</span> <span class="st">"Cm"</span>,
           <span class="dt">denscol =</span> <span class="st">"grey"</span>,
           <span class="dt">density.info =</span> <span class="st">"density"</span>,
-          <span class="dt">RowSideColors =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rev">rev</a></span>(<span class="kw"><a href="../reference/labels_colors.html">labels_colors</a></span>(dend)), <span class="co"># to add nice colored strips        </span>
+          <span class="dt">RowSideColors =</span> <span class="kw"><a href="https://rdrr.io/r/base/rev.html">rev</a></span>(<span class="kw"><a href="../reference/labels_colors.html">labels_colors</a></span>(dend)), <span class="co"># to add nice colored strips        </span>
           <span class="dt">col =</span> some_col_func
          )</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-8-1.png" width="675"></p>
 <p>We can get an interactive heatmap by using the <code>d3heatmap</code> package/function: (code is not evaluated in order to keep the HTML size)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d3heatmap<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/d3heatmap/topics/d3heatmap">d3heatmap</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(iris2),
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d3heatmap<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/d3heatmap/man/d3heatmap.html">d3heatmap</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(iris2),
           <span class="dt">dendrogram =</span> <span class="st">"row"</span>,
           <span class="dt">Rowv =</span> dend,
           <span class="dt">colors =</span> <span class="st">"Greens"</span>,
@@ -240,14 +242,14 @@ gplots<span class="op">::</span><span class="kw"><a href="https://www.rdocumenta
 <h3 class="hasAnchor">
 <a href="#similaritydifference-between-various-clustering-algorithms" class="anchor"></a>Similarity/difference between various clustering algorithms</h3>
 <p>We may ask ourselves how many different results we could get if we would use different clustering algorithms (<code>hclust</code> has 8 different algorithms implemented). For the purpose of this analysis, we will create all 8 hclust objects, and chain them together into a single <code>dendlist</code> object (which, as the name implies, can hold a bunch of dendrograms together for the purpose of further analysis).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hclust_methods &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"ward.D"</span>, <span class="st">"single"</span>, <span class="st">"complete"</span>, <span class="st">"average"</span>, <span class="st">"mcquitty"</span>, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hclust_methods &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ward.D"</span>, <span class="st">"single"</span>, <span class="st">"complete"</span>, <span class="st">"average"</span>, <span class="st">"mcquitty"</span>, 
         <span class="st">"median"</span>, <span class="st">"centroid"</span>, <span class="st">"ward.D2"</span>)
 iris_dendlist &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>()
-<span class="cf">for</span>(i <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq_along</a></span>(hclust_methods)) {
-   hc_iris &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>(d_iris, <span class="dt">method =</span> hclust_methods[i])   
-   iris_dendlist &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(iris_dendlist, <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dendrogram">as.dendrogram</a></span>(hc_iris))
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span>(hclust_methods)) {
+   hc_iris &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(d_iris, <span class="dt">method =</span> hclust_methods[i])   
+   iris_dendlist &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(iris_dendlist, <span class="kw"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(hc_iris))
 }
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(iris_dendlist) &lt;-<span class="st"> </span>hclust_methods
+<span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(iris_dendlist) &lt;-<span class="st"> </span>hclust_methods
 iris_dendlist</code></pre></div>
 <pre><code>## $ward.D
 ## 'dendrogram' with 2 branches and 150 members total, at height 199.6205 
@@ -296,18 +298,18 @@ iris_dendlist_cor</code></pre></div>
 ## median   0.9403569 0.9445832
 ## centroid 1.0000000 0.9737886
 ## ward.D2  0.9737886 1.0000000</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corrplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/corrplot/topics/corrplot">corrplot</a></span>(iris_dendlist_cor, <span class="st">"pie"</span>, <span class="st">"lower"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corrplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html">corrplot</a></span>(iris_dendlist_cor, <span class="st">"pie"</span>, <span class="st">"lower"</span>)</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-11-1.png" width="600"></p>
 <p>From the above figure, we can easily see that most clustering methods yield very similar results, except for the complete method (the default method in <code>hclust</code>), which yields a correlation measure of around 0.6.</p>
 <p>The default cophenetic correlation uses pearson’s measure, but what if we use the spearman’s correlation coefficient?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris_dendlist_cor_spearman &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span>(iris_dendlist, <span class="dt">method_coef =</span> <span class="st">"spearman"</span>)
-corrplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/corrplot/topics/corrplot">corrplot</a></span>(iris_dendlist_cor_spearman, <span class="st">"pie"</span>, <span class="st">"lower"</span>)</code></pre></div>
+corrplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html">corrplot</a></span>(iris_dendlist_cor_spearman, <span class="st">"pie"</span>, <span class="st">"lower"</span>)</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-12-1.png" width="600"></p>
 <p>We can see that the correlations are not so strong, indicating a behavior that is dependent on some items which are very distant from one another having an influence on the pearson’s correlation more than that of the spearman’s correlation.</p>
 <p>To further explore the similarity and difference between the alternative clustering algorithms, we can turn to using the <code>tanglegram</code> function (which works for either two <code>dendrogram</code>s, or a <code>dendlist</code>).</p>
 <p>First, let us see two methods which are very similar: ward.D vs ward.D2. From a first glance, we can see how they both give the same result for the top 3 clusters. However, since they are both ladderizes (i.e.: having their smaller branch rotated to be higher for each node), we can see that their clustering is not identical (due to the crossings).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The `which` parameter allows us to pick the elements in the list to compare</span>
-iris_dendlist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(<span class="dt">which =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">8</span>)) <span class="op">%&gt;%</span><span class="st"> </span>ladderize <span class="op">%&gt;%</span><span class="st"> </span>
+iris_dendlist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(<span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>,<span class="dv">8</span>)) <span class="op">%&gt;%</span><span class="st"> </span>ladderize <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">   </span><span class="kw"><a href="../reference/set.html">set</a></span>(<span class="st">"branches_k_color"</span>, <span class="dt">k=</span><span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">   </span><span class="co"># untangle(method = "step1side", k_seq = 3:20) %&gt;%</span>
 <span class="st">   </span><span class="co"># set("clear_branches") %&gt;% #otherwise the single lines are not black, since they retain the previous color from the branches_k_color.</span>
@@ -315,7 +317,7 @@ iris_dendlist <span class="op">%&gt;%</span><span class="st"> </span><span class
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-13-1.png" width="450"></p>
 <p>Next, let us look at two methods which also have a high cophenetic correlation: ward.D vs the average:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The `which` parameter allows us to pick the elements in the list to compare</span>
-iris_dendlist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(<span class="dt">which =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">4</span>)) <span class="op">%&gt;%</span><span class="st"> </span>ladderize <span class="op">%&gt;%</span><span class="st"> </span>
+iris_dendlist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(<span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>,<span class="dv">4</span>)) <span class="op">%&gt;%</span><span class="st"> </span>ladderize <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">   </span><span class="kw"><a href="../reference/set.html">set</a></span>(<span class="st">"branches_k_color"</span>, <span class="dt">k=</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">   </span><span class="co"># untangle(method = "step1side", k_seq = 3:20) %&gt;%</span>
 <span class="st">   </span><span class="kw"><a href="../reference/tanglegram.html">tanglegram</a></span>(<span class="dt">faster =</span> <span class="ot">TRUE</span>) <span class="co"># (common_subtrees_color_branches = TRUE)</span></code></pre></div>
@@ -323,27 +325,27 @@ iris_dendlist <span class="op">%&gt;%</span><span class="st"> </span><span class
 <p>We see that when it comes to the major clusters, the two algorithms perform quite similarly.</p>
 <p>However, how are they doing inside each of the clusters? It is quite difficult to compare the two because of the high value in ward.D. For comparison purposes, we can “rank” the heights of the branches in the two dendrograms (while still preserving their internal order). Next, we can highlight the shared common sub-trees (with different colors), and the distinct edges (with a dashed line):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The `which` parameter allows us to pick the elements in the list to compare</span>
-iris_dendlist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(<span class="dt">which =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">4</span>)) <span class="op">%&gt;%</span><span class="st"> </span>ladderize <span class="op">%&gt;%</span><span class="st"> </span>
+iris_dendlist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(<span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>,<span class="dv">4</span>)) <span class="op">%&gt;%</span><span class="st"> </span>ladderize <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">   </span><span class="co"># untangle(method = "step1side", k_seq = 3:20) %&gt;%</span>
 <span class="st">   </span><span class="kw"><a href="../reference/set.html">set</a></span>(<span class="st">"rank_branches"</span>) <span class="op">%&gt;%</span>
 <span class="st">   </span><span class="kw"><a href="../reference/tanglegram.html">tanglegram</a></span>(<span class="dt">common_subtrees_color_branches =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-15-1.png" width="450"></p>
 <p>We have 39 sub-trees that are identical between the two dendrograms:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(<span class="kw"><a href="../reference/common_subtrees_clusters.html">common_subtrees_clusters</a></span>(iris_dendlist[[<span class="dv">1</span>]], iris_dendlist[[<span class="dv">4</span>]]))[<span class="op">-</span><span class="dv">1</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="kw"><a href="../reference/common_subtrees_clusters.html">common_subtrees_clusters</a></span>(iris_dendlist[[<span class="dv">1</span>]], iris_dendlist[[<span class="dv">4</span>]]))[<span class="op">-</span><span class="dv">1</span>])</code></pre></div>
 <pre><code>## [1] 39</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># -1 at the end is because we are ignoring the "0" subtree, which indicates leaves that are singletons.</span></code></pre></div>
 <p>What we can learn from this is that actually the two algorithms seem to give quite different results in the high resolution (higher cuts). However, since both capture the two major clusters (Setosa vs the others), they are considered quite similar by the cophenetic correlation.</p>
 <p>But what about the “complete” method (that got a lower cophenetic correlation than the other methods)? When we compare “complete” vs “average”, we can quickly see that in the “complete” method, the splitting of the clusters is much more balanced, and mixes the “Setosa” species with another one. This is probably the cause for the big difference found in the cophenetic correlation between the “complete method” and the other clustering methods:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris_dendlist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(<span class="dt">which =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>,<span class="dv">4</span>)) <span class="op">%&gt;%</span><span class="st"> </span>ladderize <span class="op">%&gt;%</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris_dendlist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(<span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>,<span class="dv">4</span>)) <span class="op">%&gt;%</span><span class="st"> </span>ladderize <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">   </span><span class="kw"><a href="../reference/untangle.html">untangle</a></span>(<span class="dt">method =</span> <span class="st">"step1side"</span>, <span class="dt">k_seq =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">6</span>) <span class="op">%&gt;%</span>
 <span class="st">   </span><span class="kw"><a href="../reference/set.html">set</a></span>(<span class="st">"branches_k_color"</span>, <span class="dt">k=</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">   </span><span class="kw"><a href="../reference/tanglegram.html">tanglegram</a></span>(<span class="dt">faster =</span> <span class="ot">TRUE</span>) <span class="co"># (common_subtrees_color_branches = TRUE)</span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-17-1.png" width="450"></p>
 <p>We can quickly plot all 8 methods to see this phenomenon (i.e.: that “complete” has its smaller cluster larger than it is in all the other clustering methods):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mfrow =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">4</span>,<span class="dv">2</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">4</span>,<span class="dv">2</span>))
 <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>) {
-   iris_dendlist[[i]] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/set.html">set</a></span>(<span class="st">"branches_k_color"</span>, <span class="dt">k=</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">horiz =</span> <span class="ot">TRUE</span>)
-   <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/title">title</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(iris_dendlist)[i])
+   iris_dendlist[[i]] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/set.html">set</a></span>(<span class="st">"branches_k_color"</span>, <span class="dt">k=</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">horiz =</span> <span class="ot">TRUE</span>)
+   <span class="kw"><a href="https://rdrr.io/r/graphics/title.html">title</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(iris_dendlist)[i])
 }</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-18-1.png" width="450"></p>
 <p>It seems that the cophenetic correlation is very biased towards the influence of the main clusters. Another correlation measure to use is the <code>cor_common_nodes</code> correlation (giving the proportion of nodes which share the exact same list of labels in both dendrograms). We can also check it out:</p>
@@ -377,15 +379,15 @@ iris_dendlist_cor2</code></pre></div>
 <p>Lastly, we would like to see which of the different clustering algorithms came the closest to detecting the 3 flower species (when using a cut of k=3).</p>
 <p>For this purpose, we compare the clustering solution of each algorithm with the real clusters, using the Fowlkes-Mallows Index (also using in the package for the <code>Bk_plot</code>). This measure is similar to rand (or rand adjusted) index, and gives a value of 1 when the two clusters confirm, and 0 when they do not.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">get_ordered_3_clusters &lt;-<span class="st"> </span><span class="cf">function</span>(dend) {
-   <span class="kw"><a href="../reference/cutree-methods.html">cutree</a></span>(dend, <span class="dt">k =</span> <span class="dv">3</span>)[<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/order.dendrogram">order.dendrogram</a></span>(dend)]
+   <span class="kw"><a href="../reference/cutree-methods.html">cutree</a></span>(dend, <span class="dt">k =</span> <span class="dv">3</span>)[<span class="kw"><a href="https://rdrr.io/r/stats/order.dendrogram.html">order.dendrogram</a></span>(dend)]
 }
 
-dend_3_clusters &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span>(iris_dendlist, get_ordered_3_clusters)
+dend_3_clusters &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(iris_dendlist, get_ordered_3_clusters)
 
-compare_clusters_to_iris &lt;-<span class="st"> </span><span class="cf">function</span>(clus) {<span class="kw"><a href="../reference/FM_index.html">FM_index</a></span>(clus, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="dv">50</span>), <span class="dt">assume_sorted_vectors =</span> <span class="ot">TRUE</span>)}
+compare_clusters_to_iris &lt;-<span class="st"> </span><span class="cf">function</span>(clus) {<span class="kw"><a href="../reference/FM_index.html">FM_index</a></span>(clus, <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="dv">50</span>), <span class="dt">assume_sorted_vectors =</span> <span class="ot">TRUE</span>)}
 
-clusters_performance &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">sapply</a></span>(dend_3_clusters, compare_clusters_to_iris)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/dotchart">dotchart</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sort">sort</a></span>(clusters_performance), <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.7</span>,<span class="dv">1</span>),
+clusters_performance &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span>(dend_3_clusters, compare_clusters_to_iris)
+<span class="kw"><a href="https://rdrr.io/r/graphics/dotchart.html">dotchart</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(clusters_performance), <span class="dt">xlim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.7</span>,<span class="dv">1</span>),
          <span class="dt">xlab =</span> <span class="st">"Fowlkes-Mallows Index (from 0 to 1)"</span>,
          <span class="dt">main =</span> <span class="st">"Perormance of clustering algorithms </span><span class="ch">\n</span><span class="st"> in detecting the 3 species"</span>,
          <span class="dt">pch =</span> <span class="dv">19</span>)</code></pre></div>
@@ -439,7 +441,7 @@ d_train_test &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 ## train 1.0000000 0.4971936
 ## test  0.4971936 1.0000000</code></pre>
 <p>We may ask at which level of cutting the dendrogram we get the “best” level of similarity. For this we may turn to the Bk plot. The plots shows us that at around 7 clusters the groups in the two are starting to look significantly similar. (Note that significantly does not mean substantially)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Bk_plot.html">Bk_plot</a></span>(d_train, d_test, <span class="dt">k =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2</span>,<span class="dv">30</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/Bk_plot.html">Bk_plot</a></span>(d_train, d_test, <span class="dt">k =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">xlim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">30</span>))</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-26-1.png" width="450"></p>
 <p>Next, we compare the results with a tanglegram. We make sure to color the connecting line with the colors of the branches of the train (left) dendrogram. This can help us see which patterns are somewhat preserved between the two trees.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pre_tang_d_train_test &lt;-<span class="st"> </span>d_train_test <span class="op">%&gt;%</span><span class="st"> </span>ladderize <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># untangle %&gt;%</span>
@@ -483,16 +485,16 @@ d_train_test_common <span class="op">%&gt;%</span><span class="st"> </span>untan
 <p>Define variables:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">votes.repub &lt;-<span class="st"> </span>cluster<span class="op">::</span>votes.repub</code></pre></div>
 <p>These data can be visualized using a (costumed made) parallel coordinates plot:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">years &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">as.numeric</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">gsub</a></span>(<span class="st">"X"</span>, <span class="st">""</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(votes.repub)))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">years &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span>(<span class="st">"X"</span>, <span class="st">""</span>, <span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(votes.repub)))
 
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">mar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">4.5</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>, <span class="dt">cex =</span> .<span class="dv">8</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">mar =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4.5</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>, <span class="dt">cex =</span> .<span class="dv">8</span>)
 <span class="co"># MASS::parcoord(votes.repub, var.label = FALSE, lwd = 1)</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/matplot">matplot</a></span>(1L<span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(votes.repub), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(votes.repub), <span class="dt">type =</span> <span class="st">"l"</span>, <span class="dt">col =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">1</span>,
+<span class="kw"><a href="https://rdrr.io/r/graphics/matplot.html">matplot</a></span>(1L<span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(votes.repub), <span class="kw"><a href="https://rdrr.io/r/base/t.html">t</a></span>(votes.repub), <span class="dt">type =</span> <span class="st">"l"</span>, <span class="dt">col =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">1</span>,
         <span class="dt">axes =</span> F, <span class="dt">xlab =</span> <span class="st">""</span>, <span class="dt">ylab =</span> <span class="st">""</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/axis">axis</a></span>(<span class="dv">1</span>, <span class="dt">at =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq_along</a></span>(years), <span class="dt">labels =</span> years)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/axis">axis</a></span>(<span class="dv">2</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span>(<span class="dv">1</span>, <span class="dt">at =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span>(years), <span class="dt">labels =</span> years)
+<span class="kw"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span>(<span class="dv">2</span>)
 <span class="co"># Add Title</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/title">title</a></span>(<span class="st">"Votes for Republican Candidate</span><span class="ch">\n</span><span class="st"> in Presidential Elections </span><span class="ch">\n</span><span class="st"> (each line is a country - over the years)"</span>)</code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/graphics/title.html">title</a></span>(<span class="st">"Votes for Republican Candidate</span><span class="ch">\n</span><span class="st"> in Presidential Elections </span><span class="ch">\n</span><span class="st"> (each line is a country - over the years)"</span>)</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-32-1.png" width="450"></p>
 </div>
 <div id="heatmap" class="section level3">
@@ -500,14 +502,14 @@ d_train_test_common <span class="op">%&gt;%</span><span class="st"> </span>untan
 <a href="#heatmap" class="anchor"></a>Heatmap</h3>
 <p>This is a nice example when the parallel coordinates plot has some serious limitations: it does not help us detect the states, we fail to see the missing value patterns, and it is tricky to see clusters in general (due to the large number of threads).</p>
 <p>For these data, it can be quite helpful to see a heatmap of the votes across the years. The ordering of the rows is tricky. First, the distance of the vectors (later used for the clustering) should be done after transformation (since we are dealing with proportion of votes). In this case, I used the arcsin transformation (a logit transformation could also work, but the arcsin is safer for dealing with 0/1 observations). But given the clusters, we wish to order the leaves (as much as possible), in order to take into account the missing value clusterings. So we, in fact, have two clusters, one for the raw values, and another for the “shadow matrix” (i.e.: the matrix with 0/1, indicating if a value was missing or not).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arcsin_transformation &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Trig">asin</a></span>(x<span class="op">/</span><span class="dv">100</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arcsin_transformation &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw"><a href="https://rdrr.io/r/base/Trig.html">asin</a></span>(x<span class="op">/</span><span class="dv">100</span>)
 
 dend_NA &lt;-<span class="st"> </span>votes.repub <span class="op">%&gt;%</span><span class="st"> </span>is.na <span class="op">%&gt;%</span>
 <span class="st">   </span>dist <span class="op">%&gt;%</span><span class="st"> </span>hclust <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram <span class="op">%&gt;%</span><span class="st"> </span>ladderize
 
 dend &lt;-<span class="st"> </span>votes.repub <span class="op">%&gt;%</span><span class="st"> </span>arcsin_transformation <span class="op">%&gt;%</span>
-<span class="st">   </span>dist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>(<span class="dt">method =</span> <span class="st">"com"</span>) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram <span class="op">%&gt;%</span>
-<span class="st">   </span><span class="kw"><a href="../reference/rotate.html">rotate</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/labels">labels</a></span>(dend_NA)) <span class="op">%&gt;%</span>
+<span class="st">   </span>dist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="dt">method =</span> <span class="st">"com"</span>) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram <span class="op">%&gt;%</span>
+<span class="st">   </span><span class="kw"><a href="../reference/rotate.html">rotate</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(dend_NA)) <span class="op">%&gt;%</span>
 <span class="st">   </span><span class="kw"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="dt">k=</span><span class="dv">3</span>)
 
 <span class="co"># some_col_func &lt;- function(n) rev(colorspace::heat_hcl(n, c = c(80, 30), l = c(30, 90), power = c(1/5, 1.5)))</span>
@@ -516,14 +518,14 @@ some_col_func &lt;-<span class="st"> </span>colorspace<span class="op">::</span>
 
 <span class="co"># par(mar = c(3,3,3,3))</span>
 <span class="co"># library(gplots)</span>
-gplots<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/gplots/topics/heatmap.2">heatmap.2</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(votes.repub), 
+gplots<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/gplots/man/heatmap.2.html">heatmap.2</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(votes.repub), 
           <span class="dt">main =</span> <span class="st">"Votes for</span><span class="ch">\n</span><span class="st"> Republican Presidential Candidate</span><span class="ch">\n</span><span class="st"> (clustered using complete)"</span>,
           <span class="dt">srtCol =</span> <span class="dv">60</span>,
           <span class="dt">dendrogram =</span> <span class="st">"row"</span>,
           <span class="dt">Rowv =</span> dend,
           <span class="dt">Colv =</span> <span class="st">"NA"</span>, <span class="co"># this to make sure the columns are not ordered</span>
           <span class="dt">trace=</span><span class="st">"none"</span>,          
-          <span class="dt">margins =</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>,<span class="dv">6</span>),      
+          <span class="dt">margins =</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>,<span class="dv">6</span>),      
           <span class="dt">key.xlab =</span> <span class="st">"% Votes for Republican</span><span class="ch">\n</span><span class="st"> Presidential Candidate"</span>,
           <span class="dt">labCol =</span> years,
           <span class="dt">denscol =</span> <span class="st">"grey"</span>,
@@ -534,30 +536,30 @@ gplots<span class="op">::</span><span class="kw"><a href="https://www.rdocumenta
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">          <span class="co"># RowSideColors = rev(labels_colors(dend)), # to add nice colored strips      </span></code></pre></div>
 <p>How much of a difference would we get if we used another clustering algorithm?</p>
 <p>We first calculate the clustering using 8 different methods:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hclust_methods &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"ward.D"</span>, <span class="st">"single"</span>, <span class="st">"complete"</span>, <span class="st">"average"</span>, <span class="st">"mcquitty"</span>, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hclust_methods &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ward.D"</span>, <span class="st">"single"</span>, <span class="st">"complete"</span>, <span class="st">"average"</span>, <span class="st">"mcquitty"</span>, 
         <span class="st">"median"</span>, <span class="st">"centroid"</span>, <span class="st">"ward.D2"</span>)
 votes.repub_dendlist &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>()
 
-<span class="cf">for</span>(i <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq_along</a></span>(hclust_methods)) {
-   tmp_dend &lt;-<span class="st"> </span>votes.repub <span class="op">%&gt;%</span><span class="st"> </span>arcsin_transformation <span class="op">%&gt;%</span><span class="st"> </span>dist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>(<span class="dt">method =</span> hclust_methods[i]) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram 
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span>(hclust_methods)) {
+   tmp_dend &lt;-<span class="st"> </span>votes.repub <span class="op">%&gt;%</span><span class="st"> </span>arcsin_transformation <span class="op">%&gt;%</span><span class="st"> </span>dist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="dt">method =</span> hclust_methods[i]) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram 
    votes.repub_dendlist &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(votes.repub_dendlist, tmp_dend)
 }
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(votes.repub_dendlist) &lt;-<span class="st"> </span>hclust_methods
+<span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(votes.repub_dendlist) &lt;-<span class="st"> </span>hclust_methods
 <span class="co"># votes.repub_dendlist</span></code></pre></div>
 <p>Next, we can look at the cophenetic correlation between each clustering result using <code>cor.dendlist</code>. (This can be nicely plotted using the <code>corrplot</code> function from the <em>corrplot</em> package):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corrplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/corrplot/topics/corrplot">corrplot</a></span>(<span class="kw"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span>(votes.repub_dendlist), <span class="st">"pie"</span>, <span class="st">"lower"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corrplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html">corrplot</a></span>(<span class="kw"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span>(votes.repub_dendlist), <span class="st">"pie"</span>, <span class="st">"lower"</span>)</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-35-1.png" width="600"></p>
 <p>We see that the “complete” method is somewhat similar to the ward.D/ward.D2 methods, but there is less similarity with the other methods. We can see that the methods “average”, “mcquitty” and “median”, all give somewhat similar results. So by using “average”, we will see an alternative presentation that represents (in a sense) three other clustering solutions.</p>
 <p>We can look at the heatmap of the “average” method. However, as you can see, it is not very helpful in seeing the difference between the two clustering solutions.</p>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-36-1.png" width="675"></p>
 <p>Let’s look at the tanglegram of the two methods to get a better insight into the differences between the two:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dend_com &lt;-<span class="st"> </span>votes.repub <span class="op">%&gt;%</span><span class="st"> </span>arcsin_transformation <span class="op">%&gt;%</span>
-<span class="st">   </span>dist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>(<span class="dt">method =</span> <span class="st">"com"</span>) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram <span class="op">%&gt;%</span>
-<span class="st">   </span><span class="kw"><a href="../reference/rotate.html">rotate</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/labels">labels</a></span>(dend_NA)) <span class="op">%&gt;%</span>
+<span class="st">   </span>dist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="dt">method =</span> <span class="st">"com"</span>) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram <span class="op">%&gt;%</span>
+<span class="st">   </span><span class="kw"><a href="../reference/rotate.html">rotate</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(dend_NA)) <span class="op">%&gt;%</span>
 <span class="st">   </span><span class="kw"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="dt">k=</span><span class="dv">3</span>) <span class="co"># %&gt;% ladderize</span>
 dend_ave &lt;-<span class="st"> </span>votes.repub <span class="op">%&gt;%</span><span class="st"> </span>arcsin_transformation <span class="op">%&gt;%</span>
-<span class="st">   </span>dist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>(<span class="dt">method =</span> <span class="st">"ave"</span>) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram <span class="op">%&gt;%</span>
-<span class="st">   </span><span class="kw"><a href="../reference/rotate.html">rotate</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/labels">labels</a></span>(dend_NA)) <span class="op">%&gt;%</span>
+<span class="st">   </span>dist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="dt">method =</span> <span class="st">"ave"</span>) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram <span class="op">%&gt;%</span>
+<span class="st">   </span><span class="kw"><a href="../reference/rotate.html">rotate</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(dend_NA)) <span class="op">%&gt;%</span>
 <span class="st">   </span><span class="kw"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="dt">k=</span><span class="dv">3</span>) <span class="co"># %&gt;% ladderize</span>
 
 <span class="co"># The orders were predefined after using untangle("step2side")</span>
@@ -588,7 +590,7 @@ dends  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><
 <p>Define variables:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals &lt;-<span class="st"> </span>cluster<span class="op">::</span>animals
 
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(animals) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"warm-blooded"</span>, 
+<span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(animals) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"warm-blooded"</span>, 
                        <span class="st">"can fly"</span>,
                        <span class="st">"vertebrate"</span>,
                        <span class="st">"endangered"</span>,
@@ -599,29 +601,29 @@ dends  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><
 <h3 class="hasAnchor">
 <a href="#heatmap-1" class="anchor"></a>Heatmap</h3>
 <p>This is a good example for using a heatmap + colored branches.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dend_r &lt;-<span class="st"> </span>animals <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(<span class="dt">method =</span> <span class="st">"man"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>(<span class="dt">method =</span> <span class="st">"ward.D"</span>) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram <span class="op">%&gt;%</span><span class="st"> </span>ladderize <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dend_r &lt;-<span class="st"> </span>animals <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="dt">method =</span> <span class="st">"man"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="dt">method =</span> <span class="st">"ward.D"</span>) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram <span class="op">%&gt;%</span><span class="st"> </span>ladderize <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="dt">k=</span><span class="dv">4</span>)
 
-dend_c &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(animals) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(<span class="dt">method =</span> <span class="st">"man"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>(<span class="dt">method =</span> <span class="st">"com"</span>) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram <span class="op">%&gt;%</span><span class="st"> </span>ladderize<span class="op">%&gt;%</span>
+dend_c &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/t.html">t</a></span>(animals) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="dt">method =</span> <span class="st">"man"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="dt">method =</span> <span class="st">"com"</span>) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram <span class="op">%&gt;%</span><span class="st"> </span>ladderize<span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="dt">k=</span><span class="dv">3</span>)
 
 
 <span class="co"># some_col_func &lt;- function(n) rev(colorspace::heat_hcl(n, c = c(80, 30), l = c(30, 90), power = c(1/5, 1.5)))</span>
 <span class="co"># some_col_func &lt;- colorspace::diverge_hcl</span>
 <span class="co"># some_col_func &lt;- colorspace::sequential_hcl</span>
-some_col_func &lt;-<span class="st"> </span><span class="cf">function</span>(n) (colorspace<span class="op">::</span><span class="kw"><a href="http://colorspace.R-Forge.R-project.org//reference/hcl_palettes.html">diverge_hcl</a></span>(n, <span class="dt">h =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">246</span>, <span class="dv">40</span>), <span class="dt">c =</span> <span class="dv">96</span>, <span class="dt">l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">65</span>, <span class="dv">90</span>)))
+some_col_func &lt;-<span class="st"> </span><span class="cf">function</span>(n) (colorspace<span class="op">::</span><span class="kw"><a href="http://colorspace.R-Forge.R-project.org//reference/hcl_palettes.html">diverge_hcl</a></span>(n, <span class="dt">h =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">246</span>, <span class="dv">40</span>), <span class="dt">c =</span> <span class="dv">96</span>, <span class="dt">l =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">65</span>, <span class="dv">90</span>)))
 
 
 
 <span class="co"># par(mar = c(3,3,3,3))</span>
 <span class="co"># library(gplots)</span>
-gplots<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/gplots/topics/heatmap.2">heatmap.2</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(animals<span class="op">-</span><span class="dv">1</span>), 
+gplots<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/gplots/man/heatmap.2.html">heatmap.2</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(animals<span class="op">-</span><span class="dv">1</span>), 
           <span class="dt">main =</span> <span class="st">"Attributes of Animals"</span>,
           <span class="dt">srtCol =</span> <span class="dv">35</span>,
           <span class="dt">Rowv =</span> dend_r,
           <span class="dt">Colv =</span> dend_c,
           <span class="dt">trace=</span><span class="st">"row"</span>, <span class="dt">hline =</span> <span class="ot">NA</span>, <span class="dt">tracecol =</span> <span class="st">"darkgrey"</span>,         
-          <span class="dt">margins =</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">6</span>,<span class="dv">3</span>),      
+          <span class="dt">margins =</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">6</span>,<span class="dv">3</span>),      
           <span class="dt">key.xlab =</span> <span class="st">"no / yes"</span>,
           <span class="dt">denscol =</span> <span class="st">"grey"</span>,
           <span class="dt">density.info =</span> <span class="st">"density"</span>,
@@ -638,26 +640,26 @@ gplots<span class="op">::</span><span class="kw"><a href="https://www.rdocumenta
 </ol>
 <p>How much of a difference would we get if we used another clustering algorithm?</p>
 <p>We first calculate the clustering using 8 different methods:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hclust_methods &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"ward.D"</span>, <span class="st">"single"</span>, <span class="st">"complete"</span>, <span class="st">"average"</span>, <span class="st">"mcquitty"</span>, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hclust_methods &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ward.D"</span>, <span class="st">"single"</span>, <span class="st">"complete"</span>, <span class="st">"average"</span>, <span class="st">"mcquitty"</span>, 
         <span class="st">"median"</span>, <span class="st">"centroid"</span>, <span class="st">"ward.D2"</span>)
 animals_dendlist &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>()
 
-<span class="cf">for</span>(i <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq_along</a></span>(hclust_methods)) {
-   tmp_dend &lt;-<span class="st">  </span>animals <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(<span class="dt">method =</span> <span class="st">"man"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">      </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/hclust">hclust</a></span>(<span class="dt">method =</span> hclust_methods[i]) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram 
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span>(hclust_methods)) {
+   tmp_dend &lt;-<span class="st">  </span>animals <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="dt">method =</span> <span class="st">"man"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">      </span><span class="kw"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="dt">method =</span> hclust_methods[i]) <span class="op">%&gt;%</span><span class="st"> </span>as.dendrogram 
    animals_dendlist &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(animals_dendlist, tmp_dend)
 }
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(animals_dendlist) &lt;-<span class="st"> </span>hclust_methods
+<span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(animals_dendlist) &lt;-<span class="st"> </span>hclust_methods
 <span class="co"># votes.repub_dendlist</span></code></pre></div>
 <p>Next, we can look at the cophenetic correlation between each clustering result using <code>cor.dendlist</code> (This can be nicely plotted using the <code>corrplot</code> function from the <em>corrplot</em> package):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cophenetic_cors &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span>(animals_dendlist)
-corrplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/corrplot/topics/corrplot">corrplot</a></span>(cophenetic_cors, <span class="st">"pie"</span>, <span class="st">"lower"</span>)</code></pre></div>
+corrplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html">corrplot</a></span>(cophenetic_cors, <span class="st">"pie"</span>, <span class="st">"lower"</span>)</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-42-1.png" width="600"></p>
 <p>We see that the different methods (other than ward.D and ward.D2), all give quite different results. So would the above analysis be different if we had used another clustering algorithm?</p>
 <p>For this purpose, we compare the clustering solution of each algorithm with one another, when cut to k=4 clusters, using the Fowlkes-Mallows Index. This measure is similar to rand (or rand adjusted) index, and gives a value of 1 when the two clusters conform, and 0 when they do not:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">remove_median &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(animals_dendlist, <span class="dt">which =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>)[<span class="op">-</span><span class="dv">6</span>] )
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">remove_median &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dendlist.html">dendlist</a></span>(animals_dendlist, <span class="dt">which =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>)[<span class="op">-</span><span class="dv">6</span>] )
 FM_cors &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span>(remove_median, <span class="dt">method =</span> <span class="st">"FM_index"</span>, <span class="dt">k =</span> <span class="dv">4</span>)
-corrplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/corrplot/topics/corrplot">corrplot</a></span>(FM_cors, <span class="st">"pie"</span>, <span class="st">"lower"</span>)</code></pre></div>
+corrplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html">corrplot</a></span>(FM_cors, <span class="st">"pie"</span>, <span class="st">"lower"</span>)</code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-43-1.png" width="450"></p>
 <p>We removed the “median” method since it did not have k=4 possible. In general, the results seems sensitive to the algorithm used, and the different algorithm methods do not seem to agree with one another (with regards to k=4), so further analyses may be in place in order to decide on which algorithm and interpretation are most appropriate for these data.</p>
 <p>(Other possible data sets for the future: chorSub, flower, plantTraits, pluton, ruspini, agriculture)</p>
@@ -682,17 +684,20 @@ corrplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Tal Galili, Gregory Jefferis.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

@@ -1,10 +1,175 @@
-* 2019-11-23(Tal Galili) Fixed testthat failure due to RNG changes in R (test for pvclust) |ada6b04| 
-|  DESCRIPTION                           | 2 +-
-|  NEWS                                  | 3 ++-
-|  NEWS.md                               | 6 +++++-
-|  R/zzz.R                               | 2 +-
-|  tests/testthat/test-pvclust_extract.R | 4 ++--
-|  5 files changed, 11 insertions(+), 6 deletions(-)
+* 2019-11-23(Tal Galili) Update docs to the recent roxygen2 (7.0.1) output |0ee3c7d| 
+|  R/distinct_edges.R                         |   7 +-
+|  man/Bk.Rd                                  |  35 ++--
+|  man/Bk_permutations.Rd                     |  39 ++--
+|  man/Bk_plot.Rd                             |  82 +++++---
+|  man/DendSer.dendrogram.Rd                  |   4 +-
+|  man/FM_index.Rd                            |  70 ++++---
+|  man/FM_index_R.Rd                          |  36 ++--
+|  man/FM_index_permutation.Rd                |  40 ++--
+|  man/FM_index_profdpm.Rd                    |  44 ++--
+|  man/all.equal.dendrogram.Rd                |  44 ++--
+|  man/all_couple_rotations_at_k.Rd           |  25 ++-
+|  man/all_unique.Rd                          |   9 +-
+|  man/as.dendlist.Rd                         |  13 +-
+|  man/as.phylo.dendrogram.Rd                 |  24 ++-
+|  man/as_hclust_fixed.Rd                     |  10 +-
+|  man/assign_values_to_branches_edgePar.Rd   |  46 +++--
+|  man/assign_values_to_leaves_edgePar.Rd     |  25 ++-
+|  man/assign_values_to_leaves_nodePar.Rd     |  25 ++-
+|  man/assign_values_to_nodes_nodePar.Rd      |  37 ++--
+|  man/bakers_gamma_for_2_k_matrix.Rd         |   3 +-
+|  man/branches_attr_by_clusters.Rd           |  42 ++--
+|  man/branches_attr_by_labels.Rd             |  63 +++---
+|  man/branches_attr_by_lists.Rd              |  40 ++--
+|  man/circlize_dendrogram.Rd                 |  48 +++--
+|  man/click_rotate.Rd                        |  20 +-
+|  man/collapse_branch.Rd                     |  35 +++-
+|  man/color_branches.Rd                      | 177 +++++++++-------
+|  man/color_labels.Rd                        |  32 +--
+|  man/color_unique_labels.Rd                 |   4 +-
+|  man/colored_bars.Rd                        |  91 ++++----
+|  man/colored_dots.Rd                        |  89 +++++---
+|  man/common_subtrees_clusters.Rd            |   8 +-
+|  man/cor.dendlist.Rd                        |  36 +++-
+|  man/cor_FM_index.Rd                        |  11 +-
+|  man/cor_bakers_gamma.Rd                    |  66 +++---
+|  man/cor_common_nodes.Rd                    |  15 +-
+|  man/cor_cophenetic.Rd                      |  69 ++++---
+|  man/count_terminal_nodes.Rd                |  16 +-
+|  man/cut_lower_fun.Rd                       |  20 +-
+|  man/cutree-methods.Rd                      | 138 +++++++------
+|  man/cutree_1h.dendrogram.Rd                |  39 ++--
+|  man/cutree_1k.dendrogram.Rd                |  59 +++---
+|  man/dend_diff.Rd                           |  17 +-
+|  man/dendextend_options.Rd                  |   1 -
+|  man/dendlist.Rd                            |  33 ++-
+|  man/depth.Rd                               |   1 -
+|  man/dist.dendlist.Rd                       |  47 +++--
+|  man/dist_long.Rd                           |  13 +-
+|  man/distinct_edges.Rd                      |   6 +-
+|  man/duplicate_leaf.Rd                      |  18 +-
+|  man/entanglement.Rd                        |  66 +++---
+|  man/fac2num.Rd                             |   1 -
+|  man/find_dend.Rd                           |  16 +-
+|  man/find_dendrogram.Rd                     |  10 +-
+|  man/find_k.Rd                              |  32 +--
+|  man/fix_members_attr.dendrogram.Rd         |  12 +-
+|  man/flatten.dendrogram.Rd                  |   6 +-
+|  man/flip_leaves.Rd                         |  12 +-
+|  man/get_branches_heights.Rd                |  13 +-
+|  man/get_childrens_heights.Rd               |   6 +-
+|  man/get_leaves_attr.Rd                     |  20 +-
+|  man/get_leaves_branches_attr.Rd            |  16 +-
+|  man/get_leaves_branches_col.Rd             |  22 +-
+|  man/get_leaves_edgePar.Rd                  |   7 +-
+|  man/get_leaves_nodePar.Rd                  |   5 +-
+|  man/get_nodes_attr.Rd                      |  50 +++--
+|  man/get_nodes_xy.Rd                        |  42 ++--
+|  man/get_root_branches_attr.Rd              |   7 +-
+|  man/get_subdendrograms.Rd                  |  16 +-
+|  man/ggdend.Rd                              |  57 ++---
+|  man/hang.dendrogram.Rd                     |  18 +-
+|  man/has_component_in_attribute.Rd          |  30 ++-
+|  man/heights_per_k.dendrogram.Rd            |  30 +--
+|  man/highlight_branches.Rd                  |  88 +++++---
+|  man/highlight_distinct_edges.Rd            |  49 +++--
+|  man/identify.dendrogram.Rd                 |  41 ++--
+|  man/intersect_trees.Rd                     |  23 ++-
+|  man/is.natural.number.Rd                   |   7 +-
+|  man/is_null_list.Rd                        |   2 +-
+|  man/khan.Rd                                |  39 ++--
+|  man/labels-assign.Rd                       |  24 +--
+|  man/labels_cex.Rd                          |   5 +-
+|  man/labels_colors.Rd                       |  12 +-
+|  man/ladderize.Rd                           |  19 +-
+|  man/leaf_Colors.Rd                         |   7 +-
+|  man/lowest_common_branch.Rd                |   1 -
+|  man/match_order_by_labels.Rd               |  17 +-
+|  man/match_order_dendrogram_by_old_order.Rd |  31 +--
+|  man/na_locf.Rd                             |  15 +-
+|  man/nleaves.Rd                             |  16 +-
+|  man/nnodes.Rd                              |   4 +-
+|  man/noded_with_condition.Rd                |  37 ++--
+|  man/order.dendrogram-assign.Rd             |   9 +-
+|  man/order.hclust.Rd                        |  15 +-
+|  man/partition_leaves.Rd                    |  18 +-
+|  man/plot_horiz.dendrogram.Rd               |  66 +++---
+|  man/prune.Rd                               |  14 +-
+|  man/prune_common_subtrees.dendlist.Rd      |   3 +-
+|  man/prune_leaf.Rd                          |   8 +-
+|  man/pvclust_edges.Rd                       |   5 +-
+|  man/pvclust_show_signif.Rd                 |  53 +++--
+|  man/pvclust_show_signif_gradient.Rd        |  59 +++---
+|  man/pvrect2.Rd                             |  32 +--
+|  man/raise.dendrogram.Rd                    |   6 +-
+|  man/rank_branches.Rd                       |  17 +-
+|  man/rank_order.dendrogram.Rd               |   8 +-
+|  man/rank_values_with_clusters.Rd           |  20 +-
+|  man/rect.dendrogram.Rd                     |  99 +++++----
+|  man/reindex_dend.Rd                        |  16 +-
+|  man/remove_branches_edgePar.Rd             |   8 +-
+|  man/remove_leaves_nodePar.Rd               |   9 +-
+|  man/remove_nodes_nodePar.Rd                |   8 +-
+|  man/rllply.Rd                              |  30 ++-
+|  man/rotate.Rd                              |  80 ++++----
+|  man/rotate_DendSer.Rd                      |   7 +-
+|  man/sample.dendrogram.Rd                   |  31 ++-
+|  man/seriate_dendrogram.Rd                  |   2 -
+|  man/set.Rd                                 | 297 ++++++++++++++++-----------
+|  man/set_labels.Rd                          |  61 +++---
+|  man/shuffle.Rd                             |  15 +-
+|  man/sort_2_clusters_vectors.Rd             |  30 +--
+|  man/sort_levels_values.Rd                  |  29 +--
+|  man/theme_dendro.Rd                        |   2 +-
+|  man/unbranch.Rd                            |  14 +-
+|  man/unclass_dend.Rd                        |  20 +-
+|  man/untangle.Rd                            |  62 ++++--
+|  man/untangle_DendSer.Rd                    |  25 ++-
+|  man/untangle_random_search.Rd              |  45 ++--
+|  man/untangle_step_rotate_1side.Rd          |  47 +++--
+|  man/untangle_step_rotate_2side.Rd          |  58 +++---
+|  man/which_leaf.Rd                          |  14 +-
+|  man/which_node.Rd                          |  30 +--
+|  132 files changed, 2459 insertions(+), 1716 deletions(-)
+
+* 2019-11-23(Tal Galili) Update tangelgram docs due to a recent code change |b3e49ee| 
+|  DESCRIPTION       |   5 +-
+|  NEWS              |   3 +
+|  R/tanglegram.R    |   3 +-
+|  man/tanglegram.Rd | 251 +++++++++++++++++++++++++++++++++++-----------------
+|  4 files changed, 178 insertions(+), 84 deletions(-)
+
+*   2019-11-23(Tal Galili) Merge pull request #96 from DBradley27/patch-1 |344d6d3
+|\  
+| * 2019-11-07(David Bradley) Update tanglegram.R |38915c4| | 
+| |  R/tanglegram.R | 2 +-
+| |  1 file changed, 1 insertion(+), 1 deletion(-)
+
+| * 2019-11-06(David Bradley) Update tanglegram.R |e1a29e8| | 
+| |  R/tanglegram.R | 7 +++++--
+| |  1 file changed, 5 insertions(+), 2 deletions(-)
+
+* | 2019-11-23(Tal Galili) Send output to console |ba7ffa6| | 
+| |  vignettes/Quick_Introduction.Rmd | 4 +++-
+| |  vignettes/dendextend.Rmd         | 2 ++
+| |  2 files changed, 5 insertions(+), 1 deletion(-)
+
+* | 2019-11-23(Tal Galili) Move from d3heatmap to heatmaply |f321dc1| | 
+| |  NEWS                     |  1 +
+| |  NEWS.md                  |  1 +
+| |  vignettes/dendextend.Rmd | 16 ++++++++++------
+| |  3 files changed, 12 insertions(+), 6 deletions(-)
+
+* | 2019-11-23(Tal Galili) Fixed testthat failure due to RNG changes in R (test for pvclust) |6156fea
+|/  |   
+|    ChangeLog                             | 743 +++++++++++++++++++++++++++++-
+|    DESCRIPTION                           |   2 +-
+|    NEWS                                  |   3 +-
+|    NEWS.md                               |   6 +-
+|    R/zzz.R                               |   2 +-
+|    tests/testthat/test-pvclust_extract.R |   4 +-
+|    6 files changed, 752 insertions(+), 8 deletions(-)
 
 * 2019-09-27(Tal Galili) Update issue templates 2 |06753dc| 
 |  .github/ISSUE_TEMPLATE/bug_report.md      |  7 +++++--

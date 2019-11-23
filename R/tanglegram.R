@@ -622,7 +622,7 @@ plot_horiz.dendrogram <- function(x,
 #' @param common_subtrees_color_lines logical (default is TRUE). color the connecting line based on the common subtrees of both dends.
 #' This only works if
 #' (notice that this can be slow on large trees)
-#' @param common_subtrees_color_lines_default_single_leaf_color. When representing edges between common subtrees 
+#' @param common_subtrees_color_lines_default_single_leaf_color When representing edges between common subtrees 
 #' (i.e. common_subtrees_color_branches = TRUE), this parameter sets the color of edges for subtrees that are NOT common.
 #' Default is "grey"
 #' @param common_subtrees_color_branches logical (default is FALSE).

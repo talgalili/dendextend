@@ -16,13 +16,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -33,7 +35,7 @@
 <meta property="og:title" content="Plotting a left-tip-adjusted horizontal dendrogram — plot_horiz.dendrogram" />
 
 <meta property="og:description" content="The default plot(dend, horiz = TRUE), gives us a dendrogram tree plot
-with the tips turned right. The current function enables the creation of 
+with the tips turned right. The current function enables the creation of
 the same tree, but with the tips turned left. The main challange in doing this
 is finding the distance of the labels from the leaves tips - which is solved
 with this function." />
@@ -49,6 +51,7 @@ with this function." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -75,7 +78,7 @@ with this function." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -111,7 +114,7 @@ with this function." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -122,6 +125,7 @@ with this function." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -134,20 +138,32 @@ with this function." />
 
     <div class="ref-description">
     
-    <p>The default <code><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot(dend, horiz = TRUE)</a></code>, gives us a dendrogram tree plot
-with the tips turned right. The current function enables the creation of 
+    <p>The default <code><a href='https://rdrr.io/r/graphics/plot.html'>plot(dend, horiz = TRUE)</a></code>, gives us a dendrogram tree plot
+with the tips turned right. The current function enables the creation of
 the same tree, but with the tips turned left. The main challange in doing this
 is finding the distance of the labels from the leaves tips - which is solved
 with this function.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>x</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"rectangle"</span>, <span class='st'>"triangle"</span>),
-  <span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>edge.root</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dendrogram'>is.leaf</a></span>(<span class='no'>x</span>) <span class='kw'>||</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/NULL'>is.null</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attr'>attr</a></span>(<span class='no'>x</span>,
-  <span class='st'>"edgetext"</span>)), <span class='kw'>dLeaf</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>xaxt</span> <span class='kw'>=</span> <span class='st'>"n"</span>, <span class='kw'>yaxt</span> <span class='kw'>=</span> <span class='st'>"s"</span>,
-  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nodePar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>edgePar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
-  <span class='kw'>leaflab</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"perpendicular"</span>, <span class='st'>"textlike"</span>, <span class='st'>"none"</span>), <span class='kw'>side</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>text_pos</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_horiz.dendrogram</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"rectangle"</span>, <span class='st'>"triangle"</span>),
+  <span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>edge.root</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>is.leaf</a></span>(<span class='no'>x</span>) <span class='kw'>||</span> !<span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>x</span>, <span class='st'>"edgetext"</span>)),
+  <span class='kw'>dLeaf</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>xaxt</span> <span class='kw'>=</span> <span class='st'>"n"</span>,
+  <span class='kw'>yaxt</span> <span class='kw'>=</span> <span class='st'>"s"</span>,
+  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>nodePar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>edgePar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>leaflab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"perpendicular"</span>, <span class='st'>"textlike"</span>, <span class='st'>"none"</span>),
+  <span class='kw'>side</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>text_pos</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='no'>...</span>
+)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,7 +174,7 @@ with this function.</p>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>a character vector with either "rectangle" or "triangle" (passed to <a href='https://www.rdocumentation.org/packages/stats/topics/dendrogram'>plot.dendrogram</a>)</p></td>
+      <td><p>a character vector with either "rectangle" or "triangle" (passed to <a href='https://rdrr.io/r/stats/dendrogram.html'>plot.dendrogram</a>)</p></td>
     </tr>
     <tr>
       <th>center</th>
@@ -172,13 +188,13 @@ the leaves in the branch. Otherwise (default), plot them in the
     </tr>
     <tr>
       <th>dLeaf</th>
-      <td><p>a number specifying the distance in user coordinates between 
+      <td><p>a number specifying the distance in user coordinates between
 the tip of a leaf and its label. If NULL as per default, 3/4 of a letter
 width is used.</p></td>
     </tr>
     <tr>
       <th>horiz</th>
-      <td><p>logical indicating if the dendrogram should be 
+      <td><p>logical indicating if the dendrogram should be
 drawn horizontally or not. In this function it MUST be TRUE!</p></td>
     </tr>
     <tr>
@@ -191,12 +207,12 @@ drawn horizontally or not. In this function it MUST be TRUE!</p></td>
     </tr>
     <tr>
       <th>xlim</th>
-      <td><p>(NULL) optional x- and y-limits of the plot, passed to plot.default. 
+      <td><p>(NULL) optional x- and y-limits of the plot, passed to plot.default.
 The defaults for these show the full dendrogram.</p></td>
     </tr>
     <tr>
       <th>ylim</th>
-      <td><p>(NULL) optional x- and y-limits of the plot, passed to plot.default. 
+      <td><p>(NULL) optional x- and y-limits of the plot, passed to plot.default.
 The defaults for these show the full dendrogram.</p></td>
     </tr>
     <tr>
@@ -218,23 +234,23 @@ the left side. This is the important feature of this function.</p></td>
     </tr>
     <tr>
       <th>text_pos</th>
-      <td><p>integer from either 1 to 4 (2). Two relevant values 
-are 2 and 4. 2 (default) means that the labels are alligned to the 
+      <td><p>integer from either 1 to 4 (2). Two relevant values
+are 2 and 4. 2 (default) means that the labels are alligned to the
 tips of the tree leaves. 4 will have the labels allign to the left,
 making them look like they were when the tree was on the left side
 (with leaves tips facing to the right).</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>passed to <a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a>.</p></td>
+      <td><p>passed to <a href='https://rdrr.io/r/graphics/plot.html'>plot</a>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>This function is based on replicating <a href='https://www.rdocumentation.org/packages/stats/topics/dendrogram'>plot.dendrogram</a>.
+    <p>This function is based on replicating <a href='https://rdrr.io/r/stats/dendrogram.html'>plot.dendrogram</a>.
 In fact, I'd be happy if in the future, some tweaks could be make to
-<a href='https://www.rdocumentation.org/packages/stats/topics/dendrogram'>plot.dendrogram</a>, so that it would replace the need for this function.</p>
+<a href='https://rdrr.io/r/stats/dendrogram.html'>plot.dendrogram</a>, so that it would replace the need for this function.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
@@ -242,28 +258,30 @@ In fact, I'd be happy if in the future, some tweaks could be make to
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='https://www.rdocumentation.org/packages/stats/topics/dendrogram'>plot.dendrogram</a>, <a href='tanglegram.html'>tanglegram</a></p></div>
+    <div class='dont-index'><p><a href='https://rdrr.io/r/stats/dendrogram.html'>plot.dendrogram</a>, <a href='tanglegram.html'>tanglegram</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='no'>USArrests</span>[<span class='fl'>1</span>:<span class='fl'>10</span>,] <span class='kw'>%&gt;%</span> <span class='no'>dist</span> <span class='kw'>%&gt;%</span> <span class='no'>hclust</span> <span class='kw'>%&gt;%</span> <span class='no'>as.dendrogram</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='no'>USArrests</span>[<span class='fl'>1</span>:<span class='fl'>10</span>, ] <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a></span>(<span class='kw'>mfrow</span> <span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>), <span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>6</span>,<span class='fl'>4</span>))
-<span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>side</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>side</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='co'># plot_horiz.dendrogram(dend, side=TRUE, dLeaf= 0) </span>
-<span class='co'># plot_horiz.dendrogram(dend, side=TRUE, nodePar = list(pos = 1)) </span>
-<span class='co'># sadly, lab.pos is not implemented yet, </span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>), <span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>6</span>, <span class='fl'>4</span>))
+<span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># plot_horiz.dendrogram(dend, side=TRUE, dLeaf= 0)</span>
+<span class='co'># plot_horiz.dendrogram(dend, side=TRUE, nodePar = list(pos = 1))</span>
+<span class='co'># sadly, lab.pos is not implemented yet,</span>
 <span class='co'>## so the labels can not be right aligned...</span>
 
 
-<span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>side</span><span class='kw'>=</span><span class='no'>F</span>)
-<span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>side</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>dLeaf</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>100</span>,-<span class='fl'>10</span>)) <span class='co'># bad</span>
-<span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>side</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>text_offset</span> <span class='kw'>=</span> <span class='fl'>0</span>)
-<span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>side</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>text_offset</span> <span class='kw'>=</span> <span class='fl'>0</span>,<span class='kw'>text_pos</span><span class='kw'>=</span><span class='fl'>4</span>)
-
-<span class='co'># }</span></pre>
+<span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='no'>F</span>)
+<span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dLeaf</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>100</span>, -<span class='fl'>10</span>)) <span class='co'># bad</span>
+<span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>text_offset</span> <span class='kw'>=</span> <span class='fl'>0</span>)
+<span class='fu'>plot_horiz.dendrogram</span>(<span class='no'>dend</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>text_offset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>text_pos</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -282,19 +300,23 @@ In fact, I'd be happy if in the future, some tweaks could be make to
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by Tal Galili, Gregory Jefferis.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

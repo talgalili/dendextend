@@ -16,13 +16,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -46,6 +48,7 @@ between the clusterings (random order of the items labels)." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -72,7 +75,7 @@ between the clusterings (random order of the items labels)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -108,7 +111,7 @@ between the clusterings (random order of the items labels)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -119,6 +122,7 @@ between the clusterings (random order of the items labels)." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -136,8 +140,12 @@ between the clusterings (random order of the items labels).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>FM_index_permutation</span>(<span class='no'>A1_clusters</span>, <span class='no'>A2_clusters</span>,
-  <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>FM_index_permutation</span>(
+  <span class='no'>A1_clusters</span>,
+  <span class='no'>A2_clusters</span>,
+  <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>),
+  <span class='no'>...</span>
+)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,54 +188,59 @@ Journal of the American Statistical Association 78 (383): 553.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='cor_bakers_gamma.html'>cor_bakers_gamma</a>, <code><a href='FM_index_profdpm.html'>FM_index_profdpm</a></code>, 
+    <div class='dont-index'><p><a href='cor_bakers_gamma.html'>cor_bakers_gamma</a>, <code><a href='FM_index_profdpm.html'>FM_index_profdpm</a></code>,
 <code><a href='FM_index_R.html'>FM_index_R</a></code>, <code><a href='FM_index.html'>FM_index</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-</div><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>23235</span>)
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>23235</span>)
 <span class='no'>ss</span> <span class='kw'>&lt;-</span> <span class='fl'>TRUE</span> <span class='co'># sample(1:150, 10 )</span>
-<span class='no'>hc1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/hclust'>hclust</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dist'>dist</a></span>(<span class='no'>iris</span>[<span class='no'>ss</span>,-<span class='fl'>5</span>]), <span class='st'>"com"</span>)
-<span class='no'>hc2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/hclust'>hclust</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/dist'>dist</a></span>(<span class='no'>iris</span>[<span class='no'>ss</span>,-<span class='fl'>5</span>]), <span class='st'>"single"</span>)
+<span class='no'>hc1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>iris</span>[<span class='no'>ss</span>, -<span class='fl'>5</span>]), <span class='st'>"com"</span>)
+<span class='no'>hc2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>iris</span>[<span class='no'>ss</span>, -<span class='fl'>5</span>]), <span class='st'>"single"</span>)
 <span class='co'># dend1 &lt;- as.dendrogram(hc1)</span>
 <span class='co'># dend2 &lt;- as.dendrogram(hc2)</span>
-<span class='co'>#    cutree(dend1)   </span>
+<span class='co'>#    cutree(dend1)</span>
 
 <span class='co'># small k</span>
-<span class='no'>A1_clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>3</span>) <span class='co'># will give a right tailed distribution</span>
+<span class='no'>A1_clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='co'># will give a right tailed distribution</span>
 <span class='co'># large k</span>
-<span class='no'>A1_clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>50</span>) <span class='co'># will give a discrete distribution</span>
+<span class='no'>A1_clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>50</span>) <span class='co'># will give a discrete distribution</span>
 <span class='co'># "medium" k</span>
-<span class='no'>A1_clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>25</span>) <span class='co'># gives almost the normal distribution!</span>
+<span class='no'>A1_clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>25</span>) <span class='co'># gives almost the normal distribution!</span>
 <span class='no'>A2_clusters</span> <span class='kw'>&lt;-</span> <span class='no'>A1_clusters</span>
 
 <span class='no'>R</span> <span class='kw'>&lt;-</span> <span class='fl'>10000</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>414130</span>)
-<span class='no'>FM_index_H0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>replicate</a></span>(<span class='no'>R</span>, <span class='fu'>FM_index_permutation</span>(<span class='no'>A1_clusters</span>, <span class='no'>A2_clusters</span>)) <span class='co'># can take 10 sec</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/density'>density</a></span>(<span class='no'>FM_index_H0</span>), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"FM Index distribution under H0\n (10000 permutation)"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/abline'>abline</a></span>(<span class='kw'>v</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean</a></span>(<span class='no'>FM_index_H0</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>414130</span>)
+<span class='no'>FM_index_H0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span>(<span class='no'>R</span>, <span class='fu'>FM_index_permutation</span>(<span class='no'>A1_clusters</span>, <span class='no'>A2_clusters</span>)) <span class='co'># can take 10 sec</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span>(<span class='no'>FM_index_H0</span>), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"FM Index distribution under H0\n (10000 permutation)"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>v</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>FM_index_H0</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 <span class='co'># The permutation distribution is with a heavy right tail:</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>psych</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/psych/topics/skew'>skew</a></span>(<span class='no'>FM_index_H0</span>) <span class='co'># 1.254</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/psych/topics/skew'>kurtosi</a></span>(<span class='no'>FM_index_H0</span>) <span class='co'># 2.5427</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>psych</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/psych/man/skew.html'>skew</a></span>(<span class='no'>FM_index_H0</span>) <span class='co'># 1.254</span>
+<span class='fu'><a href='https://rdrr.io/pkg/psych/man/skew.html'>kurtosi</a></span>(<span class='no'>FM_index_H0</span>) <span class='co'># 2.5427</span>
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean</a></span>(<span class='no'>FM_index_H0</span>); <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>var</a></span>(<span class='no'>FM_index_H0</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>FM_index_H0</span>)
+<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span>(<span class='no'>FM_index_H0</span>)
 <span class='no'>the_FM_index</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='FM_index.html'>FM_index</a></span>(<span class='no'>A1_clusters</span>, <span class='no'>A2_clusters</span>)
 <span class='no'>the_FM_index</span>
 <span class='no'>our_dnorm</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-   <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>dnorm</a></span>(<span class='no'>x</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attr'>attr</a></span>(<span class='no'>the_FM_index</span>, <span class='st'>"E_FM"</span>),
-         <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>sqrt</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attr'>attr</a></span>(<span class='no'>the_FM_index</span>, <span class='st'>"V_FM"</span>)))
+  <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span>(<span class='no'>x</span>,
+    <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>the_FM_index</span>, <span class='st'>"E_FM"</span>),
+    <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>the_FM_index</span>, <span class='st'>"V_FM"</span>))
+  )
 }
 <span class='co'># our_dnorm(0.35)</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/curve'>curve</a></span>(<span class='no'>our_dnorm</span>,
-      <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-      <span class='kw'>from</span> <span class='kw'>=</span> -<span class='fl'>1</span>,<span class='kw'>to</span><span class='kw'>=</span><span class='fl'>1</span>,<span class='kw'>n</span><span class='kw'>=</span><span class='no'>R</span>,<span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/abline'>abline</a></span>(<span class='kw'>v</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attr'>attr</a></span>(<span class='no'>the_FM_index</span>, <span class='st'>"E_FM"</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span>(<span class='no'>our_dnorm</span>,
+  <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>from</span> <span class='kw'>=</span> -<span class='fl'>1</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>R</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>v</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>the_FM_index</span>, <span class='st'>"E_FM"</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/legend'>legend</a></span>(<span class='st'>"topright"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"asymptotic"</span>, <span class='st'>"permutation"</span>), <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>4</span>,<span class='fl'>1</span>))
-<span class='co'># }</span></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span>(<span class='st'>"topright"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"asymptotic"</span>, <span class='st'>"permutation"</span>), <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>1</span>))
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -246,19 +259,23 @@ Journal of the American Statistical Association 78 (383): 553.</p>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by Tal Galili, Gregory Jefferis.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
