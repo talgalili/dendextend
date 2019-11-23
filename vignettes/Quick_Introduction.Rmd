@@ -5,6 +5,8 @@ author: "Tal Galili"
 output: 
   html_vignette: 
     toc: yes
+editor_options: 
+  chunk_output_type: console
 ---
 <!--
 %\VignetteEngine{knitr::rmarkdown}
@@ -35,7 +37,7 @@ Start
 Load:
 
 ```{r}
-library(dendextend)
+library(dendextend) #
 ```
 
 

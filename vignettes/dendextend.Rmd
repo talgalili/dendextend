@@ -6,6 +6,8 @@ output:
   html_vignette:
     self_contained: yes
     toc: true    
+editor_options: 
+  chunk_output_type: console
 ---
 <!--
 %\VignetteEngine{knitr::rmarkdown}
