@@ -4,9 +4,13 @@
 \alias{pvclust_show_signif_gradient}
 \title{Significance gradient of branches in a dendrogram (via pvclust)}
 \usage{
-pvclust_show_signif_gradient(dend, pvclust_obj, signif_type = c("bp",
-  "au"), signif_col_fun = colorRampPalette(c("black", "darkred", "red")),
-  ...)
+pvclust_show_signif_gradient(
+  dend,
+  pvclust_obj,
+  signif_type = c("bp", "au"),
+  signif_col_fun = colorRampPalette(c("black", "darkred", "red")),
+  ...
+)
 }
 \arguments{
 \item{dend}{a dendrogram object}
@@ -16,7 +20,7 @@ pvclust_show_signif_gradient(dend, pvclust_obj, signif_type = c("bp",
 \item{signif_type}{a character scalar (either "bp" or "au"), indicating
 which of the two should be used to update the dendrogram.}
 
-\item{signif_col_fun}{a function to create colors for the significant 
+\item{signif_col_fun}{a function to create colors for the significant
 gradient. Default is: colorRampPalette(c("black", "darkred", "red"))}
 
 \item{...}{not used}
@@ -32,28 +36,35 @@ Shows the gradient of significance of branches in a dendrogram, based on a pvclu
 library(pvclust)
 data(lung) # 916 genes for 73 subjects
 set.seed(13134)
-result <- pvclust(lung[, 1:20], method.dist="cor", method.hclust="average", nboot=100)
+result <- pvclust(lung[, 1:20], method.dist = "cor", method.hclust = "average", nboot = 100)
 
 dend <- as.dendrogram(result)
-result \%>\% as.dendrogram \%>\% 
-   hang.dendrogram \%>\% 
-   plot(main = "Cluster dendrogram with AU/BP values (\%)")
-result \%>\% text
-result \%>\% pvrect(alpha=0.95)
+result \%>\%
+  as.dendrogram() \%>\%
+  hang.dendrogram() \%>\%
+  plot(main = "Cluster dendrogram with AU/BP values (\%)")
+result \%>\% text()
+result \%>\% pvrect(alpha = 0.95)
 
-dend \%>\% pvclust_show_signif(result) \%>\% plot
-dend \%>\% pvclust_show_signif(result, show_type = "lwd") \%>\% plot
-result \%>\% text
-result \%>\% pvrect(alpha=0.95)
+dend \%>\%
+  pvclust_show_signif(result) \%>\%
+  plot()
+dend \%>\%
+  pvclust_show_signif(result, show_type = "lwd") \%>\%
+  plot()
+result \%>\% text()
+result \%>\% pvrect(alpha = 0.95)
 
-dend \%>\% pvclust_show_signif_gradient(result) \%>\% plot
+dend \%>\%
+  pvclust_show_signif_gradient(result) \%>\%
+  plot()
 
-dend \%>\% 
-   pvclust_show_signif_gradient(result) \%>\% 
-   pvclust_show_signif(result) \%>\%
-   plot(main = "Cluster dendrogram with AU/BP values (\%)\\n bp values are highlighted by signif")
-result \%>\% text
-result \%>\% pvrect(alpha=0.95)
+dend \%>\%
+  pvclust_show_signif_gradient(result) \%>\%
+  pvclust_show_signif(result) \%>\%
+  plot(main = "Cluster dendrogram with AU/BP values (\%)\n bp values are highlighted by signif")
+result \%>\% text()
+result \%>\% pvrect(alpha = 0.95)
 }
 }
 \seealso{

@@ -24,8 +24,8 @@ dend_diff(dend, ...)
 
 \item{horiz}{logical (TRUE) indicating if the dendrogram should be drawn horizontally or not.}
 
-\item{which}{an integer vector indicating, in the case "dend" is a dendlist, 
-on which of the trees should the modification be performed. 
+\item{which}{an integer vector indicating, in the case "dend" is a dendlist,
+on which of the trees should the modification be performed.
 If missing - the change will be performed on all of objects in the dendlist.}
 }
 \value{
@@ -36,17 +36,22 @@ Plots two trees side by side, highlighting edges unique to each tree in red.
 }
 \examples{
 
-x <- 1:5 \%>\% dist \%>\% hclust \%>\% as.dendrogram
+x <- 1:5 \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
 y <- set(x, "labels", 5:1)
 
 dend_diff(x, y)
 dend_diff(dendlist(x, y))
 dend_diff(dendlist(y, x))
 
-dend1 <- 1:10 \%>\% dist \%>\% hclust \%>\% as.dendrogram
-dend2 <- dend1 \%>\% set("labels", c(1,3,2,4, 5:10) )
+dend1 <- 1:10 \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
+dend2 <- dend1 \%>\% set("labels", c(1, 3, 2, 4, 5:10))
 dend_diff(dend1, dend2)
-
 }
 \seealso{
 \link{distinct_edges}, \link{highlight_distinct_edges},

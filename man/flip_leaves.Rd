@@ -29,11 +29,13 @@ may be a smarter/better way for doing it...
 \examples{
 
 \dontrun{
-dend1 <- USArrests[1:5,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
-dend2 <- flip_leaves(dend1, c(3,5), c(1,2))
-tanglegram(dend1,dend2)
-entanglement(dend1,dend2, L = 2) # 0.4
-
+dend1 <- USArrests[1:5, ] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
+dend2 <- flip_leaves(dend1, c(3, 5), c(1, 2))
+tanglegram(dend1, dend2)
+entanglement(dend1, dend2, L = 2) # 0.4
 }
 }
 \seealso{

@@ -23,15 +23,23 @@ for each of the nodes in the dendrogram.
 }
 \examples{
 
-x <- 1:3 \%>\% dist \%>\% hclust \%>\% as.dendrogram
+x <- 1:3 \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
 plot(x)
 partition_leaves(x)
-
 \dontrun{
 set.seed(23235)
-ss <- sample(1:150, 10 )
-dend1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
-dend2 <- iris[ss,-5] \%>\% dist \%>\% hclust("single") \%>\% as.dendrogram
+ss <- sample(1:150, 10)
+dend1 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("com") \%>\%
+  as.dendrogram()
+dend2 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("single") \%>\%
+  as.dendrogram()
 
 partition_leaves(dend1)
 partition_leaves(dend2)

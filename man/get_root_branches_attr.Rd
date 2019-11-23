@@ -4,8 +4,7 @@
 \alias{get_root_branches_attr}
 \title{get attributes from the dendrogram's root(!) branches}
 \usage{
-get_root_branches_attr(dend, the_attr, warn = dendextend_options("warn"),
-  ...)
+get_root_branches_attr(dend, the_attr, warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{dend}{dendrogram object}
@@ -15,7 +14,7 @@ get_root_branches_attr(dend, the_attr, warn = dendextend_options("warn"),
 \item{warn}{logical (default from dendextend_options("warn") is FALSE).
 Set if warning are to be issued, it is safer to keep this at TRUE,
 but for keeping the noise down, the default is FALSE.
-Should a warning be printed when 
+Should a warning be printed when
 the function is used on an object which is NOT a dendrogram.}
 
 \item{...}{passed on to attr}
@@ -27,7 +26,7 @@ The attributes of the branches (often two) of the dendrogram's root
 get attributes from the dendrogram's root(!) branches
 }
 \examples{
-hc <- hclust(dist(USArrests[2:9,]), "com")
+hc <- hclust(dist(USArrests[2:9, ]), "com")
 dend <- as.dendrogram(hc)
 
 get_root_branches_attr(dend, "height") # 0.00000 71.96247

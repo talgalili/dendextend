@@ -10,7 +10,7 @@
 \alias{labels<-.phylo}
 \title{"label" assignment operator}
 \source{
-The functions here are based on code by Gavin and kohske from 
+The functions here are based on code by Gavin and kohske from
 (adopted to dendrogram by Tal Galili):
 \url{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}
 Also with some ideas from Gregory Jefferis's dendroextras package.
@@ -40,7 +40,7 @@ labels(object, ...) <- value
 \item{order}{default is FALSE. Only relevant for extracting labels from an
 \link{hclust} object (with labels.hclust). Setting order=TRUE will return
 labels in their order in the dendrogram, instead of the riginal labels order
-retained from object$labels - which ususally corresponding to 
+retained from object$labels - which ususally corresponding to
 the row or column names of the \link{dist} object provided to
 the \link{hclust} function.}
 }
@@ -54,31 +54,31 @@ The updated object
 ###################
 }
 \examples{
-x <- 1:3 
+x <- 1:3
 labels(x)
 labels(x) <- letters[1:3]
 labels(x) # [1] "a" "b" "c"
 x
-# a b c 
-# 1 2 3 
+# a b c
+# 1 2 3
 
 
 # get("labels<-")
 
 ################
 # Example for using the assignment with dendrogram and hclust objects:
-hc <- hclust(dist(USArrests[1:3,]), "ave")
+hc <- hclust(dist(USArrests[1:3, ]), "ave")
 dend <- as.dendrogram(hc)
 
-labels(hc) # "Arizona" "Alabama" "Alaska" 
-labels(hc)  <- letters[1:3]
-labels(hc)# "a" "b" "c"
-labels(dend) # "Arizona" "Alabama" "Alaska" 
+labels(hc) # "Arizona" "Alabama" "Alaska"
+labels(hc) <- letters[1:3]
+labels(hc) # "a" "b" "c"
+labels(dend) # "Arizona" "Alabama" "Alaska"
 labels(dend) <- letters[1:3]
 labels(dend) # "a" "b" "c"
 labels(dend) <- LETTERS[1:2] # will produce a warning
 labels(dend) # "A" "B" "A"
-labels(dend) <- LETTERS[4:6] # will replace the labels correctly 
+labels(dend) <- LETTERS[4:6] # will replace the labels correctly
 # (the fact the tree had duplicate labels will not cause a problem)
 labels(dend) # "D" "E" "F"
 }
@@ -86,6 +86,6 @@ labels(dend) # "D" "E" "F"
 \code{\link{labels}}
 }
 \author{
-Gavin Simpson, Tal Galili 
+Gavin Simpson, Tal Galili
 (with some ideas from Gregory Jefferis's dendroextras package)
 }

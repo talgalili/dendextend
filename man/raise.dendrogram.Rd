@@ -20,10 +20,10 @@ A raised dendrogram
 Raise the height of nodes in a dendrogram tree.
 }
 \examples{
-hc <- hclust(dist(USArrests[2:9,]), "com")
+hc <- hclust(dist(USArrests[2:9, ]), "com")
 dend <- as.dendrogram(hc)
 
-par(mfrow = c(1,2))
+par(mfrow = c(1, 2))
 plot(dend, main = "original tree")
-plot(raise.dendrogram(dend , 100), main = "Raised tree")
+plot(raise.dendrogram(dend, 100), main = "Raised tree")
 }

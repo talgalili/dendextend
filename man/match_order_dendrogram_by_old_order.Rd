@@ -4,9 +4,13 @@
 \alias{match_order_dendrogram_by_old_order}
 \title{Adjust the order of one dendrogram based on another (using order)}
 \usage{
-match_order_dendrogram_by_old_order(dend_change, dend_template,
-  dend_change_old_order, check_that_labels_match = FALSE,
-  check_that_leaves_order_match = FALSE)
+match_order_dendrogram_by_old_order(
+  dend_change,
+  dend_template,
+  dend_change_old_order,
+  check_that_labels_match = FALSE,
+  check_that_leaves_order_match = FALSE
+)
 }
 \arguments{
 \item{dend_change}{tree object (dendrogram)}
@@ -20,7 +24,7 @@ This is the vector based on which we adjust the new values of dend_change.}
 \item{check_that_labels_match}{logical (FALSE). If to check that the labels
 in the two dendrogram match. (if they do not, the function aborts)}
 
-\item{check_that_leaves_order_match}{logical (FALSE). If to check that 
+\item{check_that_leaves_order_match}{logical (FALSE). If to check that
 the order in the two dendrogram match. (if they do not, the function aborts)}
 }
 \value{
@@ -32,10 +36,10 @@ Takes one dendrogram and adjusts its order leaves valeus based on the order
 of another dendrogram. The values are matached based on the order of the
 two dendrograms.
 
-This allows for faster \link{entanglement} running time, since we can be 
+This allows for faster \link{entanglement} running time, since we can be
 sure that the leaves order is just as using their labels.
 
-This is a function is FASTER than \link{match_order_by_labels}, but it 
+This is a function is FASTER than \link{match_order_by_labels}, but it
 assumes that the order and the labels of the two trees are matching!!
 
 This will allow for a faster calculation of \link{entanglement}.
@@ -43,7 +47,10 @@ This will allow for a faster calculation of \link{entanglement}.
 \examples{
 \dontrun{
 
-dend <- USArrests[1:4,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
+dend <- USArrests[1:4, ] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
 order.dendrogram(dend) #  c(4L, 3L, 1L, 2L)
 
 
@@ -53,15 +60,15 @@ dend_changed <- rev(dend_changed)
 expect_false(identical(order.dendrogram(dend_changed), order.dendrogram(dend)))
 # we keep the order of dend_change, so that the leaves order are synced
 # with their labels JUST LIKE dend:
-old_dend_changed_order <- order.dendrogram(dend_changed)   
+old_dend_changed_order <- order.dendrogram(dend_changed)
 # now we change dend_changed leaves order values:
 order.dendrogram(dend_changed) <- 1:4
 # and we can fix them again, based on their old kept leaves order:
-dend_changed <- match_order_dendrogram_by_old_order(dend_changed, dend, 
-                                                     old_dend_changed_order)
+dend_changed <- match_order_dendrogram_by_old_order(
+  dend_changed, dend,
+  old_dend_changed_order
+)
 expect_identical(order.dendrogram(dend_changed), order.dendrogram(dend))
-
-
 }
 }
 \seealso{

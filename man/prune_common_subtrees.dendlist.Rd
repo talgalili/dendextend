@@ -12,7 +12,7 @@ prune_common_subtrees.dendlist(dend, ...)
 \item{...}{ignored}
 }
 \value{
-A dendlist after prunning the labels to only include 
+A dendlist after prunning the labels to only include
 those that are part of common subtrees in both dendrograms.
 }
 \description{
@@ -21,7 +21,6 @@ Prune trees to their common subtrees
 \examples{
 
 # NULL
-
 }
 \seealso{
 \link{common_subtrees_clusters}

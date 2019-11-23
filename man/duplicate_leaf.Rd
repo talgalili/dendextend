@@ -4,8 +4,15 @@
 \alias{duplicate_leaf}
 \title{Duplicate a leaf X times}
 \usage{
-duplicate_leaf(dend, leaf_label, times, fix_members = TRUE,
-  fix_order = TRUE, fix_midpoint = TRUE, ...)
+duplicate_leaf(
+  dend,
+  leaf_label,
+  times,
+  fix_members = TRUE,
+  fix_order = TRUE,
+  fix_midpoint = TRUE,
+  ...
+)
 }
 \arguments{
 \item{dend}{a dendrogram object}
@@ -38,10 +45,13 @@ on a row-sample with replacments from the original data matrix.
 
 \dontrun{
 # define dendrogram object to play with:
-dend <- USArrests[1:3,] \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
+dend <- USArrests[1:3, ] \%>\%
+  dist() \%>\%
+  hclust(method = "ave") \%>\%
+  as.dendrogram()
 plot(dend)
 duplicate_leaf(dend, "Alaska", 3)
-duplicate_leaf(dend, "Arizona", 2, fix_members =FALSE, fix_order = FALSE)
+duplicate_leaf(dend, "Arizona", 2, fix_members = FALSE, fix_order = FALSE)
 plot(duplicate_leaf(dend, "Alaska", 2))
 plot(duplicate_leaf(dend, "Alaska", 4))
 plot(duplicate_leaf(dend, "Arizona", 2))

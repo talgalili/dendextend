@@ -4,9 +4,16 @@
 \alias{untangle_step_rotate_1side}
 \title{Stepwise untangle one tree compared to another}
 \usage{
-untangle_step_rotate_1side(dend1, dend2_fixed, L = 1.5,
-  direction = c("forward", "backward"), k_seq = NULL,
-  dend_heights_per_k, leaves_matching_method = c("labels", "order"), ...)
+untangle_step_rotate_1side(
+  dend1,
+  dend2_fixed,
+  L = 1.5,
+  direction = c("forward", "backward"),
+  k_seq = NULL,
+  dend_heights_per_k,
+  leaves_matching_method = c("labels", "order"),
+  ...
+)
 }
 \arguments{
 \item{dend1}{a dendrogram object. The one we will rotate to best fit
@@ -14,8 +21,8 @@ dend2_fixed.}
 
 \item{dend2_fixed}{a dendrogram object. This one is kept fixed.}
 
-\item{L}{the distance norm to use for measuring the distance between the 
-two trees. It can be any positive number, 
+\item{L}{the distance norm to use for measuring the distance between the
+two trees. It can be any positive number,
 often one will want to use 0, 1, 1.5, 2 (see 'details' in \link{entanglement}).}
 
 \item{direction}{a character scalar, either "forward" (default) or "backward".
@@ -24,38 +31,38 @@ Impacts the direction of clustering that are tried. Either from 2 and up
 
 If k_seq is not NULL, then it overrides "direction".}
 
-\item{k_seq}{a sequence of k clusters to go through for improving 
+\item{k_seq}{a sequence of k clusters to go through for improving
 dend1. If NULL (default), then we use the "direction" parameter.}
 
 \item{dend_heights_per_k}{a numeric vector of values which indicate which height will produce which number of clusters (k)}
 
 \item{leaves_matching_method}{a character scalar passed to \link{entanglement}.
-It can be either "order" or "labels" (default). If using "labels", 
+It can be either "order" or "labels" (default). If using "labels",
 then we use the labels for matching the leaves order value.
-And if "order" then we use the old leaves order value for matching the 
+And if "order" then we use the old leaves order value for matching the
 leaves order value.
 
-Using "order" is faster, but "labels" is safer. "order" will assume that 
+Using "order" is faster, but "labels" is safer. "order" will assume that
 the original two trees had their labels and order values MATCHED.
 
-Hence, it is best to make sure that the trees used here have the same labels 
+Hence, it is best to make sure that the trees used here have the same labels
 and the SAME values matched to these values - and then use "order" (for
 fastest results).
 
 If "order" is used, the function first calls \link{match_order_by_labels}
-in order to make sure that the two trees have their labels synced with 
+in order to make sure that the two trees have their labels synced with
 their leaves order values.}
 
 \item{...}{not used}
 }
 \value{
-A dendlist with 
+A dendlist with
 1) dend1 after it was rotated to best fit dend2_fixed.
 2) dend2_fixed.
 }
 \description{
 Given a fixed tree and a tree we wish to rotate, this function goes
-through all of the k number of clusters (from 2 onward), and each time 
+through all of the k number of clusters (from 2 onward), and each time
 rotates the branch which was introduced in the new k'th cluster.
 This rotated tree is compared with the fixed tree, and if it has a better
 entanglement, it will be used for the following iterations.
@@ -68,16 +75,18 @@ This is useful for finding good trees for a \link{tanglegram}.
 \examples{
 
 \dontrun{
-dend1 <- USArrests[1:10,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
+dend1 <- USArrests[1:10, ] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
 set.seed(3525)
 dend2 <- shuffle(dend1)
-tanglegram(dend1,dend2)
-entanglement(dend1,dend2, L = 2) # 0.4727
+tanglegram(dend1, dend2)
+entanglement(dend1, dend2, L = 2) # 0.4727
 
 dend2_corrected <- untangle_step_rotate_1side(dend2, dend1)[[1]]
-tanglegram(dend1,dend2_corrected) # FIXED.
-entanglement(dend1,dend2_corrected, L = 2) # 0
-
+tanglegram(dend1, dend2_corrected) # FIXED.
+entanglement(dend1, dend2_corrected, L = 2) # 0
 }
 }
 \seealso{

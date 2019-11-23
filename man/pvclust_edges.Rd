@@ -13,7 +13,7 @@ pvclust_edges(pvclust_obj)
 data.frame with leaves on column 1 and 2, followed by the rest of the information from edge
 }
 \description{
-Get pvclust edges information such as au and bp and return dataframe with proper sample labels. 
+Get pvclust edges information such as au and bp and return dataframe with proper sample labels.
 This function is useful when there are a lot of samples involved.
 }
 \examples{
@@ -22,9 +22,8 @@ This function is useful when there are a lot of samples involved.
 library(pvclust)
 data(lung) # 916 genes for 73 subjects
 set.seed(13134)
-result <- pvclust(lung[, 1:20], method.dist="cor", method.hclust="average", nboot=100)
+result <- pvclust(lung[, 1:20], method.dist = "cor", method.hclust = "average", nboot = 100)
 pvclust_edges(result)
-
 }
 }
 \references{

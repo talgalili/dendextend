@@ -4,8 +4,14 @@
 \alias{untangle_random_search}
 \title{Untangle - random search}
 \usage{
-untangle_random_search(dend1, dend2, R = 100L, L = 1,
-  leaves_matching_method = c("labels", "order"), ...)
+untangle_random_search(
+  dend1,
+  dend2,
+  R = 100L,
+  L = 1,
+  leaves_matching_method = c("labels", "order"),
+  ...
+)
 }
 \arguments{
 \item{dend1}{a tree object (of class dendrogram/hclust/phylo).}
@@ -16,24 +22,24 @@ untangle_random_search(dend1, dend2, R = 100L, L = 1,
 
 \item{L}{the distance norm to use for measuring the distance between the
 two trees. It can be any positive number, often one will want to
- use 0, 1, 1.5, 2 (see 'details' for more). 
+ use 0, 1, 1.5, 2 (see 'details' for more).
  It is passed to \link{entanglement}.}
 
 \item{leaves_matching_method}{a character scalar passed to \link{entanglement}.
-It can be either "order" or "labels" (default). If using "labels", 
+It can be either "order" or "labels" (default). If using "labels",
 then we use the labels for matching the leaves order value.
-And if "order" then we use the old leaves order value for matching the 
+And if "order" then we use the old leaves order value for matching the
 leaves order value.
 
-Using "order" is faster, but "labels" is safer. "order" will assume that 
+Using "order" is faster, but "labels" is safer. "order" will assume that
 the original two trees had their labels and order values MATCHED.
 
-Hence, it is best to make sure that the trees used here have the same labels 
+Hence, it is best to make sure that the trees used here have the same labels
 and the SAME values matched to these values - and then use "order" (for
 fastest results).
 
 If "order" is used, the function first calls \link{match_order_by_labels}
-in order to make sure that the two trees have their labels synced with 
+in order to make sure that the two trees have their labels synced with
 their leaves order values.}
 
 \item{...}{not used}
@@ -42,7 +48,7 @@ their leaves order values.}
 A dendlist with two trees with the best entanglement that was found.
 }
 \description{
-Searches for two untangled dendrogram by randomlly shuflling them and each 
+Searches for two untangled dendrogram by randomlly shuflling them and each
 time checking if their entanglement was improved.
 }
 \details{
@@ -54,20 +60,23 @@ offers.
 \examples{
 
 \dontrun{
-dend1 <- iris[,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
-dend2 <- iris[,-5] \%>\% dist \%>\% hclust("sin") \%>\% as.dendrogram
-tanglegram(dend1,dend2)
+dend1 <- iris[, -5] \%>\%
+  dist() \%>\%
+  hclust("com") \%>\%
+  as.dendrogram()
+dend2 <- iris[, -5] \%>\%
+  dist() \%>\%
+  hclust("sin") \%>\%
+  as.dendrogram()
+tanglegram(dend1, dend2)
 
 set.seed(65168)
 dend12 <- untangle_random_search(dend1, dend2, R = 10)
-tanglegram(dend12[[1]],dend12[[2]])
+tanglegram(dend12[[1]], dend12[[2]])
 tanglegram(dend12)
 
-entanglement(dend1,dend2, L = 2) # 0.8894
-entanglement(dend12[[1]],dend12[[2]], L = 2) # 0.0998
-
-
-
+entanglement(dend1, dend2, L = 2) # 0.8894
+entanglement(dend12[[1]], dend12[[2]], L = 2) # 0.0998
 }
 }
 \seealso{

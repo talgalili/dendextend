@@ -5,8 +5,7 @@
 \alias{dendextend_cut_lower_fun}
 \title{Cut a dendrogram - and run a function on the output}
 \usage{
-cut_lower_fun(dend, h, FUN = labels, warn = dendextend_options("warn"),
-  ...)
+cut_lower_fun(dend, h, FUN = labels, warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{dend}{a dendrogram object.}
@@ -23,7 +22,7 @@ Should the user be warned if reverting to default?}
 \item{...}{passed to FUN.}
 }
 \value{
-A list with the output of running FUN on each of the 
+A list with the output of running FUN on each of the
 sub dends derived from cutting "dend"
 }
 \description{
@@ -37,21 +36,20 @@ in speed (depending on the tree size it is used on).
 }
 \examples{
 
-dend = as.dendrogram(hclust(dist(iris[1:4,-5])))
+dend <- as.dendrogram(hclust(dist(iris[1:4, -5])))
 # this is really cool!
 cut_lower_fun(dend, .4, labels)
-lapply(cut(dend, h = .4)$lower, labels)   
+lapply(cut(dend, h = .4)$lower, labels)
 cut_lower_fun(dend, .4, order.dendrogram)
-
-
 \dontrun{
 # library(dendextend)
 library(dendextendRcpp)
-dend_big = as.dendrogram(hclust(dist(iris[1:150,-5])))
+dend_big <- as.dendrogram(hclust(dist(iris[1:150, -5])))
 library(microbenchmark)
-microbenchmark(old_cut_lower_fun(dend_big,.1),
-               dendextendRcpp::dendextendRcpp_cut_lower_fun(dend_big,.1),
-               times = 100)
+microbenchmark(old_cut_lower_fun(dend_big, .1),
+  dendextendRcpp::dendextendRcpp_cut_lower_fun(dend_big, .1),
+  times = 100
+)
 # about 7-15 times faster. It is faster the larger the tree is, and the lower h is.
 }
 

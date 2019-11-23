@@ -4,13 +4,21 @@
 \alias{get_nodes_attr}
 \title{Get attributes of dendrogram's nodes}
 \source{
-Heavily inspired by the code in the 
-function \code{labels.dendrogram}, 
+Heavily inspired by the code in the
+function \code{labels.dendrogram},
 so credit should go to Martin Maechler.
 }
 \usage{
-get_nodes_attr(dend, attribute, id, include_leaves = TRUE,
-  include_branches = TRUE, simplify = TRUE, na.rm = FALSE, ...)
+get_nodes_attr(
+  dend,
+  attribute,
+  id,
+  include_leaves = TRUE,
+  include_branches = TRUE,
+  simplify = TRUE,
+  na.rm = FALSE,
+  ...
+)
 }
 \arguments{
 \item{dend}{a dendrogram object}
@@ -22,10 +30,10 @@ we wish to get from the nodes}
 
 \item{include_leaves}{logical. Should leaves attributes be included as well?}
 
-\item{include_branches}{logical. Should non-leaf (branch node) 
+\item{include_branches}{logical. Should non-leaf (branch node)
 attributes be included as well?}
 
-\item{simplify}{logical (default is TRUE). should the result be simplified 
+\item{simplify}{logical (default is TRUE). should the result be simplified
 to a vector (using \link{simplify2array} ) if possible? If it is not possible
 it will return a matrix. When FALSE, a list is returned.}
 
@@ -43,14 +51,14 @@ of returning a vector with/withough NA's (for marking the missing attr value)
 }
 \examples{
 # define dendrogram object to play with:
-hc <- hclust(dist(USArrests[1:3,]), "ave")
+hc <- hclust(dist(USArrests[1:3, ]), "ave")
 dend <- as.dendrogram(hc)
 
 # get_leaves_attr(dend) # error :)
 get_leaves_attr(dend, "label")
 labels(dend, "label")
 get_leaves_attr(dend, "height") # should be 0's
-get_nodes_attr(dend, "height") 
+get_nodes_attr(dend, "height")
 
 
 get_leaves_attr(dend, "leaf") # should be TRUE's
@@ -58,13 +66,13 @@ get_nodes_attr(dend, "leaf") # conatins NA's
 
 
 get_leaves_attr(dend, "members") # should be 1's
-get_nodes_attr(dend, "members", include_branches = FALSE, na.rm = TRUE) # 
-get_nodes_attr(dend, "members") # 
-get_nodes_attr(dend, "members",  simplify = FALSE)  
-get_nodes_attr(dend, "members", include_leaves = FALSE, na.rm = TRUE) # 
+get_nodes_attr(dend, "members", include_branches = FALSE, na.rm = TRUE) #
+get_nodes_attr(dend, "members") #
+get_nodes_attr(dend, "members", simplify = FALSE)
+get_nodes_attr(dend, "members", include_leaves = FALSE, na.rm = TRUE) #
 
-get_nodes_attr(dend, "members",  id = c(1,3), simplify = FALSE)  
-get_nodes_attr(dend, "members", id = c(1,3)) # 
+get_nodes_attr(dend, "members", id = c(1, 3), simplify = FALSE)
+get_nodes_attr(dend, "members", id = c(1, 3)) #
 
 
 hang_dend <- hang.dendrogram(dend)
@@ -72,18 +80,16 @@ get_leaves_attr(hang_dend, "height") # no longer 0!
 get_nodes_attr(hang_dend, "height") # does not include any 0s!
 
 # does not include leaves values:
-get_nodes_attr(hang_dend, "height", include_leaves = FALSE) 
+get_nodes_attr(hang_dend, "height", include_leaves = FALSE)
 # remove leaves values all together:
-get_nodes_attr(hang_dend, "height", include_leaves = FALSE, na.rm = TRUE) 
-
-
-
+get_nodes_attr(hang_dend, "height", include_leaves = FALSE, na.rm = TRUE)
 \dontrun{
 library(microbenchmark)
 # get_leaves_attr is twice faster than get_nodes_attr
-microbenchmark(   get_leaves_attr(dend, "members"), # should be 1's
-                    get_nodes_attr(dend, "members", include_branches = FALSE, na.rm = TRUE)
-               )
+microbenchmark(
+  get_leaves_attr(dend, "members"), # should be 1's
+  get_nodes_attr(dend, "members", include_branches = FALSE, na.rm = TRUE)
+)
 }
 
 }

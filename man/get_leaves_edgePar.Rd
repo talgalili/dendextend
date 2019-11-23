@@ -9,7 +9,7 @@ get_leaves_edgePar(dend, simplify = FALSE, ...)
 \arguments{
 \item{dend}{a dendrogram object}
 
-\item{simplify}{logical (default is FALSE). If TRUE, then the return vector is 
+\item{simplify}{logical (default is FALSE). If TRUE, then the return vector is
 after using \code{unlist} on it.}
 
 \item{...}{not used}
@@ -25,7 +25,7 @@ those of the labels can be tricky).
 }
 \examples{
 # define dendrogram object to play with:
-hc <- hclust(dist(USArrests[1:5,]), "ave")
+hc <- hclust(dist(USArrests[1:5, ]), "ave")
 dend <- as.dendrogram(hc)
 
 # get_leaves_edgePar(dend) # error :)
@@ -34,11 +34,10 @@ dend <- color_branches(dend, k = 3)
 get_leaves_edgePar(dend)
 get_leaves_edgePar(dend, TRUE)
 
-dend <- dend \%>\% set("branches_lwd", c(2,1,2))
+dend <- dend \%>\% set("branches_lwd", c(2, 1, 2))
 get_leaves_edgePar(dend)
 
 plot(dend)
-
 }
 \seealso{
 \link{get_nodes_attr}, \link{assign_values_to_leaves_nodePar}, \link{labels_colors}

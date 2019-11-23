@@ -4,8 +4,16 @@
 \alias{sample.dendrogram}
 \title{Sample a tree}
 \usage{
-sample.dendrogram(dend, replace = FALSE, dend_labels, sampled_labels,
-  fix_members = TRUE, fix_order = TRUE, fix_midpoint = TRUE, ...)
+sample.dendrogram(
+  dend,
+  replace = FALSE,
+  dend_labels,
+  sampled_labels,
+  fix_members = TRUE,
+  fix_order = TRUE,
+  fix_midpoint = TRUE,
+  ...
+)
 }
 \arguments{
 \item{dend}{a dendrogram object}
@@ -42,9 +50,9 @@ values using \link{rank_order.dendrogram}}
 A dendrogram, after "sampling" its leaves.
 }
 \description{
-Samples a tree, either by permuting the labels (which is usefull for 
+Samples a tree, either by permuting the labels (which is usefull for
 a permutation test), or by repeated sampling of the same labels (essential
-for bootstraping when we don't have access to the original data which 
+for bootstraping when we don't have access to the original data which
 produced the tree).
 
 Duplicates a leaf in a tree. Useful for non-parametric bootstraping trees
@@ -55,15 +63,18 @@ on a row-sample with replacments from the original data matrix.
 
 \dontrun{
 # define dendrogram object to play with:
-dend <- USArrests[1:5,] \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
+dend <- USArrests[1:5, ] \%>\%
+  dist() \%>\%
+  hclust(method = "ave") \%>\%
+  as.dendrogram()
 plot(dend)
 
-# # same tree, with different order of labels 
-plot(sample.dendrogram(dend, replace = FALSE)) 
+# # same tree, with different order of labels
+plot(sample.dendrogram(dend, replace = FALSE))
 
-# # A different tree (!), with some labels duplicated, 
-  # while others are pruned
-plot(sample.dendrogram(dend, replace = TRUE)) 
+# # A different tree (!), with some labels duplicated,
+# while others are pruned
+plot(sample.dendrogram(dend, replace = TRUE))
 }
 
 }

@@ -23,12 +23,10 @@ Trims (prunes) one leaf from a dendrogram.
 Used through \link{prune}
 }
 \examples{
-hc <- hclust(dist(USArrests[1:5,]), "ave")
+hc <- hclust(dist(USArrests[1:5, ]), "ave")
 dend <- as.dendrogram(hc)
 
-par(mfrow = c(1,2))
+par(mfrow = c(1, 2))
 plot(dend, main = "original tree")
-plot(prune_leaf(dend , "Alaska"), main = "tree without Alaska")
-
-
+plot(prune_leaf(dend, "Alaska"), main = "tree without Alaska")
 }

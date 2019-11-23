@@ -11,14 +11,22 @@ function, with some ideas from the \code{\link[dendroextras]{slice}} function -
 both are from the {\pkg{dendroextras}} package by jefferis.
 
 It extends it by using \link[dendextend]{cutree.dendrogram} - allowing
-the function to work for trees that hclust can not handle 
+the function to work for trees that hclust can not handle
 (unbranched and non-ultrametric trees).
-Also, it allows REPEATED cluster color assignments to branches on to 
+Also, it allows REPEATED cluster color assignments to branches on to
 the same tree. Something which the original function was not able to handle.
 }
 \usage{
-color_branches(dend, k = NULL, h = NULL, col, groupLabels = NULL,
-  clusters, warn = dendextend_options("warn"), ...)
+color_branches(
+  dend,
+  k = NULL,
+  h = NULL,
+  col,
+  groupLabels = NULL,
+  clusters,
+  warn = dendextend_options("warn"),
+  ...
+)
 }
 \arguments{
 \item{dend}{A \code{dendrogram} or \code{hclust} tree object}
@@ -27,7 +35,7 @@ color_branches(dend, k = NULL, h = NULL, col, groupLabels = NULL,
 
 \item{h}{height at which to cut tree (passed to \code{\link[dendextend]{cutree}})}
 
-\item{col}{Function or vector of Colors. By default it tries to use 
+\item{col}{Function or vector of Colors. By default it tries to use
 \link[colorspace]{rainbow_hcl} from the \code{colorspace} package.
 (with parameters c=90 and l=50). If \code{colorspace} is not available,
 It will fall back on the \link{rainbow} function.}
@@ -52,140 +60,155 @@ a tree object of class \link{dendrogram}.
 }
 \description{
 This function is for dendrogram and hclust objects.
-This function colors both the terminal leaves of a dend's cluster and the edges 
-leading to those leaves. The edgePar attribute of nodes will be augmented by 
+This function colors both the terminal leaves of a dend's cluster and the edges
+leading to those leaves. The edgePar attribute of nodes will be augmented by
 a new list item col.
-The groups will be defined by a call to \code{\link[dendextend]{cutree}} 
+The groups will be defined by a call to \code{\link[dendextend]{cutree}}
 using the k or h parameters.
 
 If col is a color vector with a different length than the number of clusters
 (k) - then a recycled color vector will be used.
 }
 \details{
-If \code{groupLabels=TRUE} then numeric group labels will be added 
-  to each cluster. If a vector is supplied then these entries will be used as 
-  the group labels. If a function is supplied then it will be passed a 
+If \code{groupLabels=TRUE} then numeric group labels will be added
+  to each cluster. If a vector is supplied then these entries will be used as
+  the group labels. If a function is supplied then it will be passed a
   numeric vector of groups (e.g. 1:5) and must return the formatted group
   labels.
-  
+
 If the \link{labels} of the dendrogram are NOT character (but, for example
 integers) - they are coerced into character. This step is essential for the
-proper operation of the function. A dendrogram labels might happen to be 
+proper operation of the function. A dendrogram labels might happen to be
 integers if they are based on an \link{hclust} performed on a \link{dist}
 of an object without \link{rownames}.
 }
 \examples{
 
 \dontrun{
-par(mfrow = c(1,2))
-dend <- USArrests \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
-d1=color_branches(dend, k = 5, col = c(3,1,1,4,1))
+par(mfrow = c(1, 2))
+dend <- USArrests \%>\%
+  dist() \%>\%
+  hclust(method = "ave") \%>\%
+  as.dendrogram()
+d1 <- color_branches(dend, k = 5, col = c(3, 1, 1, 4, 1))
 plot(d1) # selective coloring of branches :)
-d2=color_branches(d1,5)
-plot(d2) 
+d2 <- color_branches(d1, 5)
+plot(d2)
 
-par(mfrow = c(1,2))
-d1=color_branches(dend,5, col = c(3,1,1,4,1),groupLabels=TRUE)
+par(mfrow = c(1, 2))
+d1 <- color_branches(dend, 5, col = c(3, 1, 1, 4, 1), groupLabels = TRUE)
 plot(d1) # selective coloring of branches :)
-d2=color_branches(d1,5,groupLabels=TRUE)
-plot(d2) 
+d2 <- color_branches(d1, 5, groupLabels = TRUE)
+plot(d2)
 
-par(mfrow = c(1,3))
-d5=color_branches(dend,5)
+par(mfrow = c(1, 3))
+d5 <- color_branches(dend, 5)
 plot(d5)
-d5g=color_branches(dend,5,groupLabels=TRUE)
+d5g <- color_branches(dend, 5, groupLabels = TRUE)
 plot(d5g)
-d5gr=color_branches(dend,5,groupLabels=as.roman)
+d5gr <- color_branches(dend, 5, groupLabels = as.roman)
 plot(d5gr)
 
-par(mfrow = c(1,1))
+par(mfrow = c(1, 1))
 
 # messy - but interesting:
-dend_override=color_branches(dend,2,groupLabels=as.roman)
-dend_override=color_branches(dend_override,4,groupLabels=as.roman)
-dend_override=color_branches(dend_override,7,groupLabels=as.roman)
+dend_override <- color_branches(dend, 2, groupLabels = as.roman)
+dend_override <- color_branches(dend_override, 4, groupLabels = as.roman)
+dend_override <- color_branches(dend_override, 7, groupLabels = as.roman)
 plot(dend_override)
- 
-d5=color_branches(dend=dend[[1]],k=5)
- 
 
-library(dendextend) 
-data(iris, envir = environment()) 
-d_iris <- dist(iris[,-5])
+d5 <- color_branches(dend = dend[[1]], k = 5)
+
+
+library(dendextend)
+data(iris, envir = environment())
+d_iris <- dist(iris[, -5])
 hc_iris <- hclust(d_iris)
 dend_iris <- as.dendrogram(hc_iris)
-dend_iris=color_branches(dend_iris,k=3)
+dend_iris <- color_branches(dend_iris, k = 3)
 
 library(colorspace)
 labels_colors(dend_iris) <-
- rainbow_hcl(3)[sort_levels_values(
- as.numeric(iris[,5])[order.dendrogram(dend_iris)]
- )]
+  rainbow_hcl(3)[sort_levels_values(
+    as.numeric(iris[, 5])[order.dendrogram(dend_iris)]
+  )]
 
-plot(dend_iris, 
-main = "Clustered Iris dataset",
- sub = "labels are colored based on the true cluster")
- 
+plot(dend_iris,
+  main = "Clustered Iris dataset",
+  sub = "labels are colored based on the true cluster"
+)
+
 
 
 # cutree(dend_iris,k=3, order_clusters_as_data=FALSE,
-   #  try_cutree_hclust=FALSE)
+#  try_cutree_hclust=FALSE)
 # cutree(dend_iris,k=3, order_clusters_as_data=FALSE)
 
 library(colorspace)
 
-data(iris, envir = environment()) 
-d_iris <- dist(iris[,-5])
+data(iris, envir = environment())
+d_iris <- dist(iris[, -5])
 hc_iris <- hclust(d_iris)
 labels(hc_iris) # no labels, because "iris" has no row names
 dend_iris <- as.dendrogram(hc_iris)
 is.integer(labels(dend_iris)) # this could cause problems...
 
-iris_species <- rev(levels(iris[,5]))
-dend_iris <- color_branches(dend_iris,k=3, groupLabels=iris_species)
+iris_species <- rev(levels(iris[, 5]))
+dend_iris <- color_branches(dend_iris, k = 3, groupLabels = iris_species)
 is.character(labels(dend_iris)) # labels are no longer "integer"
 
 # have the labels match the real classification of the flowers:
 labels_colors(dend_iris) <-
-   rainbow_hcl(3)[sort_levels_values(
-      as.numeric(iris[,5])[order.dendrogram(dend_iris)]
-   )]
+  rainbow_hcl(3)[sort_levels_values(
+    as.numeric(iris[, 5])[order.dendrogram(dend_iris)]
+  )]
 
 # We'll add the flower type
-labels(dend_iris) <- paste(as.character(iris[,5])[order.dendrogram(dend_iris)],
-                           "(",labels(dend_iris),")", 
-                           sep = "")
+labels(dend_iris) <- paste(as.character(iris[, 5])[order.dendrogram(dend_iris)],
+  "(", labels(dend_iris), ")",
+  sep = ""
+)
 
-dend_iris <- hang.dendrogram(dend_iris,hang_height=0.1)
+dend_iris <- hang.dendrogram(dend_iris, hang_height = 0.1)
 
 # reduce the size of the labels:
 dend_iris <- assign_values_to_leaves_nodePar(dend_iris, 0.5, "lab.cex")
 
-par(mar = c(3,3,3,7))
-plot(dend_iris, 
-     main = "Clustered Iris dataset
-     (the labels give the true flower species)", 
-     horiz =  TRUE,  nodePar = list(cex = .007))
+par(mar = c(3, 3, 3, 7))
+plot(dend_iris,
+  main = "Clustered Iris dataset
+     (the labels give the true flower species)",
+  horiz = TRUE, nodePar = list(cex = .007)
+)
 legend("topleft", legend = iris_species, fill = rainbow_hcl(3))
-a= dend_iris[[1]]
-dend_iris1 <- color_branches(a,k = 3)
+a <- dend_iris[[1]]
+dend_iris1 <- color_branches(a, k = 3)
 plot(dend_iris1)
 
 # str(dendrapply(d2, unclass))
 # unclass(d1)
 
 c(1:5) \%>\% # take some data
-   dist \%>\% # calculate a distance matrix, 
-  # on it compute hierarchical clustering using the "average" method, 
-   hclust(method = "single") \%>\% 
-   as.dendrogram \%>\% color_branches(k=3) \%>\% plot # nice, returns the tree as is...
+  dist() \%>\% # calculate a distance matrix,
+  # on it compute hierarchical clustering using the "average" method,
+  hclust(method = "single") \%>\%
+  as.dendrogram() \%>\%
+  color_branches(k = 3) \%>\%
+  plot() # nice, returns the tree as is...
 
 
 # Example of the "clusters" parameter
-par(mfrow =c(1,2))
-dend <- c(1:5) \%>\% dist \%>\% hclust \%>\% as.dendrogram 
-dend \%>\% color_branches(k=3) \%>\% plot
-dend \%>\% color_branches(clusters=c(1,1,2,2,3)) \%>\% plot
+par(mfrow = c(1, 2))
+dend <- c(1:5) \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
+dend \%>\%
+  color_branches(k = 3) \%>\%
+  plot()
+dend \%>\%
+  color_branches(clusters = c(1, 1, 2, 2, 3)) \%>\%
+  plot()
 
 
 # another example, based on the question here:
@@ -194,7 +217,7 @@ dend \%>\% color_branches(clusters=c(1,1,2,2,3)) \%>\% plot
 
 library(cluster)
 set.seed(999)
-iris2 <- iris[sample(x = 1:150,size = 50,replace = F),]
+iris2 <- iris[sample(x = 1:150, size = 50, replace = F), ]
 clust <- diana(iris2)
 dend <- as.dendrogram(clust)
 
@@ -203,12 +226,10 @@ temp_col <- temp_col[order.dendrogram(dend)]
 temp_col <- factor(temp_col, unique(temp_col))
 
 library(dendextend)
-dend \%>\% color_branches(clusters = as.numeric(temp_col), col = levels(temp_col)) \%>\% 
-   set("labels_colors", as.character(temp_col)) \%>\% 
-   plot
-
-
-
+dend \%>\%
+  color_branches(clusters = as.numeric(temp_col), col = levels(temp_col)) \%>\%
+  set("labels_colors", as.character(temp_col)) \%>\%
+  plot()
 }
 
 }

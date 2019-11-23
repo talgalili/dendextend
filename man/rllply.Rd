@@ -11,7 +11,7 @@ rllply(x, FUN, add_notation = FALSE, ...)
 
 \item{FUN}{a function to apply on each element of the list}
 
-\item{add_notation}{logical. Should each node be 
+\item{add_notation}{logical. Should each node be
 added a "position_type" attribute, stating if it is a "Branch" or a "Leaf".}
 
 \item{...}{not used.}
@@ -21,29 +21,37 @@ a list with ALL of the nodes (from the original "x" list),
 that FUN was applied on.
 }
 \description{
-recursivly apply a function on a list - and returns the output as a list, 
+recursivly apply a function on a list - and returns the output as a list,
 following the naming convention in the {plyr} package
-the big difference between this and rapply is that this will also apply 
+the big difference between this and rapply is that this will also apply
 the function on EACH element of the list, even if it's not a "terminal node"
 inside the list tree.
-An attribute is added to indicate if the value returned is 
+An attribute is added to indicate if the value returned is
 from a branch or a leaf.
 }
 \examples{
 \dontrun{
 x <- list(1)
 x
-rllply(x, function(x){x}, add_notation  = TRUE)
+rllply(x, function(x) {
+  x
+}, add_notation = TRUE)
 
 x <- list(1, 2, list(31))
 x
-rllply(x, function(x){x}, add_notation  = TRUE)
-                     # the first element is the entire tree
-                           # after FUN was applied to its root element.
+rllply(x, function(x) {
+  x
+}, add_notation = TRUE)
+# the first element is the entire tree
+# after FUN was applied to its root element.
 
-hc <- hclust(dist(USArrests[1:4,]), "ave")
+hc <- hclust(dist(USArrests[1:4, ]), "ave")
 dend <- as.dendrogram(hc)
-rllply(dend, function(x){attr(x, "height")})
-rllply(dend, function(x){attr(x, "members")})
+rllply(dend, function(x) {
+  attr(x, "height")
+})
+rllply(dend, function(x) {
+  attr(x, "members")
+})
 }
 }

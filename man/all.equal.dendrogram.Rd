@@ -5,10 +5,17 @@
 \alias{all.equal.dendlist}
 \title{Global Comparison of two (or more) dendrograms}
 \usage{
-\method{all}{equal.dendrogram}(target, current, use.edge.length = TRUE,
-  use.tip.label.order = FALSE, use.tip.label = TRUE,
-  use.topology = TRUE, tolerance = .Machine$double.eps^0.5,
-  scale = NULL, ...)
+\method{all}{equal.dendrogram}(
+  target,
+  current,
+  use.edge.length = TRUE,
+  use.tip.label.order = FALSE,
+  use.tip.label = TRUE,
+  use.topology = TRUE,
+  tolerance = .Machine$double.eps^0.5,
+  scale = NULL,
+  ...
+)
 }
 \arguments{
 \item{target}{an object of type \link{dendrogram} or \link{dendlist}}
@@ -30,14 +37,14 @@
 \item{...}{Ignored.}
 }
 \value{
-Either TRUE (NULL for attr.all.equal) or a vector of mode "character" describing the differences 
+Either TRUE (NULL for attr.all.equal) or a vector of mode "character" describing the differences
 between target and current.
 }
 \description{
 This function makes a global comparison of two or more dendrograms trees.
 
 The function can get two \link{dendlist} objects and compare
-them using \link{all.equal.list}. If a dendlist is in only "target" 
+them using \link{all.equal.list}. If a dendlist is in only "target"
 (and not "current"), it will go through the dendlist and
 compare all of the dendrograms within it to one another.
 }
@@ -46,12 +53,24 @@ compare all of the dendrograms within it to one another.
 \dontrun{
 
 set.seed(23235)
-ss <- sample(1:150, 10 )
-dend1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
-dend2 <- iris[ss,-5] \%>\% dist \%>\% hclust("single") \%>\% as.dendrogram
-dend3 <- iris[ss,-5] \%>\% dist \%>\% hclust("ave") \%>\% as.dendrogram
-dend4 <- iris[ss,-5] \%>\% dist \%>\% hclust("centroid") \%>\% as.dendrogram
-#    cutree(dend1)   
+ss <- sample(1:150, 10)
+dend1 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("com") \%>\%
+  as.dendrogram()
+dend2 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("single") \%>\%
+  as.dendrogram()
+dend3 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("ave") \%>\%
+  as.dendrogram()
+dend4 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("centroid") \%>\%
+  as.dendrogram()
+#    cutree(dend1)
 
 all.equal(dend1, dend1)
 all.equal(dend1, dend2)
@@ -64,7 +83,6 @@ all.equal(dend2, dend4, use.edge.length = FALSE)
 all.equal(dendlist(dend1, dend2, dend3, dend4))
 all.equal(dendlist(dend1, dend2, dend3, dend4), use.edge.length = FALSE)
 all.equal(dendlist(dend1, dend1, dend1))
-
 }
 }
 \seealso{

@@ -4,17 +4,22 @@
 \alias{assign_values_to_nodes_nodePar}
 \title{Assign values to nodePar of dendrogram's nodes}
 \usage{
-assign_values_to_nodes_nodePar(dend, value, nodePar = c("pch", "cex",
-  "col", "xpd", "bg"), warn = dendextend_options("warn"), ...)
+assign_values_to_nodes_nodePar(
+  dend,
+  value,
+  nodePar = c("pch", "cex", "col", "xpd", "bg"),
+  warn = dendextend_options("warn"),
+  ...
+)
 }
 \arguments{
 \item{dend}{a dendrogram object}
 
-\item{value}{a new value vector for the nodePar attribute. It should be 
+\item{value}{a new value vector for the nodePar attribute. It should be
 the same length as the number of nodes in the tree. If not, it will recycle
 the value and issue a warning.}
 
-\item{nodePar}{the value inside nodePar to adjust. 
+\item{nodePar}{the value inside nodePar to adjust.
 This may contain components named pch, cex, col, xpd, and/or bg.}
 
 \item{warn}{logical (default from dendextend_options("warn") is FALSE).
@@ -35,25 +40,27 @@ If the value has Inf then the value in edgePar will not be changed.
 
 \dontrun{
 
-dend <- USArrests[1:5,] \%>\% dist \%>\% hclust("ave") \%>\% as.dendrogram
+dend <- USArrests[1:5, ] \%>\%
+  dist() \%>\%
+  hclust("ave") \%>\%
+  as.dendrogram()
 
-# reproduces "labels_colors<-" 
-# although it does force us to run through the tree twice, 
+# reproduces "labels_colors<-"
+# although it does force us to run through the tree twice,
 # hence "labels_colors<-" is better...
 plot(dend)
-dend2 <- dend \%>\% 
-   assign_values_to_nodes_nodePar(value = 19, nodePar = "pch") \%>\% 
-   assign_values_to_nodes_nodePar(value = c(1,2), nodePar = "cex")  \%>\% 
-   assign_values_to_nodes_nodePar(value = c(2,1), nodePar = "col")
+dend2 <- dend \%>\%
+  assign_values_to_nodes_nodePar(value = 19, nodePar = "pch") \%>\%
+  assign_values_to_nodes_nodePar(value = c(1, 2), nodePar = "cex") \%>\%
+  assign_values_to_nodes_nodePar(value = c(2, 1), nodePar = "col")
 plot(dend2)
 
 
 ### Making sure this works for NA with character.
-dend \%>\% 
-assign_values_to_nodes_nodePar(value = 19, nodePar = "pch") \%>\% 
-assign_values_to_nodes_nodePar(value = c("red", NA), nodePar = "col") -> dend2
+dend \%>\%
+  assign_values_to_nodes_nodePar(value = 19, nodePar = "pch") \%>\%
+  assign_values_to_nodes_nodePar(value = c("red", NA), nodePar = "col") -> dend2
 plot(dend2)
-
 }
 
 }

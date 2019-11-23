@@ -9,16 +9,19 @@
 \usage{
 set(dend, ...)
 
-\method{set}{dendrogram}(dend, what = c("labels", "labels_colors",
-  "labels_cex", "labels_to_character", "leaves_pch", "leaves_cex",
-  "leaves_col", "nodes_pch", "nodes_cex", "nodes_col", "hang_leaves",
-  "rank_branches", "branches_k_color", "branches_k_lty", "branches_col",
-  "branches_lwd", "branches_lty", "by_labels_branches_col",
-  "by_labels_branches_lwd", "by_labels_branches_lty",
-  "by_lists_branches_col", "by_lists_branches_lwd",
-  "by_lists_branches_lty", "highlight_branches_col",
-  "highlight_branches_lwd", "clear_branches", "clear_leaves"), value,
-  order_value = FALSE, ...)
+\method{set}{dendrogram}(
+  dend,
+  what = c("labels", "labels_colors", "labels_cex", "labels_to_character", "leaves_pch",
+    "leaves_cex", "leaves_col", "nodes_pch", "nodes_cex", "nodes_col", "hang_leaves",
+    "rank_branches", "branches_k_color", "branches_k_lty", "branches_col", "branches_lwd",
+    "branches_lty", "by_labels_branches_col", "by_labels_branches_lwd",
+    "by_labels_branches_lty", "by_lists_branches_col", "by_lists_branches_lwd",
+    "by_lists_branches_lty", "highlight_branches_col", "highlight_branches_lwd",
+    "clear_branches", "clear_leaves"),
+  value,
+  order_value = FALSE,
+  ...
+)
 
 \method{set}{dendlist}(dend, ..., which)
 
@@ -36,8 +39,8 @@ for the different options)}
 \item{value}{an object with the value to set in the dendrogram tree.
 (the type of the value depends on the "what")}
 
-\item{order_value}{logical. Default is FALSE. If TRUE, it means the order of 
-the value is in the order of the data which produced the \link{hclust} 
+\item{order_value}{logical. Default is FALSE. If TRUE, it means the order of
+the value is in the order of the data which produced the \link{hclust}
 or \link{dendrogram} - and will reorder the value to conform with the order
 of the labels in the dendrogram.}
 
@@ -50,11 +53,11 @@ An updated dendrogram (or dendlist), with some change to
 the parameters of it
 }
 \description{
-a master function for updating various attributes and 
+a master function for updating various attributes and
 features of dendrogram objects.
 }
 \details{
-This is a wrapper function for many of the main tasks we 
+This is a wrapper function for many of the main tasks we
 might wish to perform on a dendrogram before plotting.
 
 The options of by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
@@ -98,120 +101,179 @@ The "what" parameter" can accept the following options:
 \dontrun{
 
 set.seed(23235)
-ss <- sample(1:150, 10 )
+ss <- sample(1:150, 10)
 
 # Getting the dend object
-dend <- iris[ss,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram
-dend \%>\% plot
+dend <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
+dend \%>\% plot()
 
-dend \%>\% labels
-dend \%>\% set("labels", 1:10) \%>\% labels
-dend \%>\% set("labels", 1:10) \%>\% plot 
-dend \%>\% set("labels_color") \%>\% plot 
-dend \%>\% set("labels_col", c(1,2)) \%>\% plot # Works also with partial matching :)
-dend \%>\% set("labels_cex", c(1, 1.2)) \%>\% plot 
-dend \%>\% set("leaves_pch", NA) \%>\% plot 
-dend \%>\% set("leaves_pch", c(1:5)) \%>\% plot    
-dend \%>\% set("leaves_pch", c(19,19, NA)) \%>\% 
-   set("leaves_cex", c(1,2)) \%>\% plot 
-dend \%>\% set("leaves_pch", c(19,19, NA)) \%>\% 
-   set("leaves_cex", c(1,2)) \%>\%
-   set("leaves_col", c(1,1,2,2)) \%>\% 
-   plot 
-dend \%>\% set("hang") \%>\% plot 
+dend \%>\% labels()
+dend \%>\%
+  set("labels", 1:10) \%>\%
+  labels()
+dend \%>\%
+  set("labels", 1:10) \%>\%
+  plot()
+dend \%>\%
+  set("labels_color") \%>\%
+  plot()
+dend \%>\%
+  set("labels_col", c(1, 2)) \%>\%
+  plot() # Works also with partial matching :)
+dend \%>\%
+  set("labels_cex", c(1, 1.2)) \%>\%
+  plot()
+dend \%>\%
+  set("leaves_pch", NA) \%>\%
+  plot()
+dend \%>\%
+  set("leaves_pch", c(1:5)) \%>\%
+  plot()
+dend \%>\%
+  set("leaves_pch", c(19, 19, NA)) \%>\%
+  set("leaves_cex", c(1, 2)) \%>\%
+  plot()
+dend \%>\%
+  set("leaves_pch", c(19, 19, NA)) \%>\%
+  set("leaves_cex", c(1, 2)) \%>\%
+  set("leaves_col", c(1, 1, 2, 2)) \%>\%
+  plot()
+dend \%>\%
+  set("hang") \%>\%
+  plot()
 
-dend \%>\% set("branches_k_col") \%>\% plot 
-dend \%>\% set("branches_k_col", c(1,2)) \%>\% plot 
-dend \%>\% set("branches_k_col", c(1,2,3), k=3) \%>\% plot
-dend \%>\% set("branches_k_col", k=3) \%>\% plot 
+dend \%>\%
+  set("branches_k_col") \%>\%
+  plot()
+dend \%>\%
+  set("branches_k_col", c(1, 2)) \%>\%
+  plot()
+dend \%>\%
+  set("branches_k_col", c(1, 2, 3), k = 3) \%>\%
+  plot()
+dend \%>\%
+  set("branches_k_col", k = 3) \%>\%
+  plot()
 
-dend \%>\% set("branches_k_lty", k=3) \%>\% plot 
-dend \%>\% set("branches_k_col", k=3) \%>\% set("branches_k_lty", k=3) \%>\% plot 
+dend \%>\%
+  set("branches_k_lty", k = 3) \%>\%
+  plot()
+dend \%>\%
+  set("branches_k_col", k = 3) \%>\%
+  set("branches_k_lty", k = 3) \%>\%
+  plot()
 
-dend \%>\% set("branches_col", c(1,2, 1, 2, NA)) \%>\% plot
-dend \%>\% set("branches_lwd", c(2,1,2)) \%>\% plot
-dend \%>\% set("branches_lty", c(1,2,1)) \%>\% plot
+dend \%>\%
+  set("branches_col", c(1, 2, 1, 2, NA)) \%>\%
+  plot()
+dend \%>\%
+  set("branches_lwd", c(2, 1, 2)) \%>\%
+  plot()
+dend \%>\%
+  set("branches_lty", c(1, 2, 1)) \%>\%
+  plot()
 
 #    clears all of the things added to the leaves
-dend \%>\% 
-   set("labels_color", c(19,19, NA)) \%>\% 
-   set("leaves_pch", c(19,19, NA))  \%>\%  # plot  
-   set("clear_leaves") \%>\% # remove all of what was done until this point
-   plot
+dend \%>\%
+  set("labels_color", c(19, 19, NA)) \%>\%
+  set("leaves_pch", c(19, 19, NA)) \%>\% # plot
+  set("clear_leaves") \%>\% # remove all of what was done until this point
+  plot()
 # Different order
-dend \%>\% 
-   set("leaves_pch", c(19,19, NA)) \%>\% 
-   set("labels_color", c(19,19, NA)) \%>\% 
-   set("clear_leaves") \%>\% plot
+dend \%>\%
+  set("leaves_pch", c(19, 19, NA)) \%>\%
+  set("labels_color", c(19, 19, NA)) \%>\%
+  set("clear_leaves") \%>\%
+  plot()
 
 
 # doing this without chaining (\%>\%) will NOT be fun:
-dend \%>\% 
-   set("labels", 1:10) \%>\%
-   set("labels_color") \%>\%
-   set("branches_col", c(1,2, 1, 2, NA)) \%>\%
-   set("branches_lwd", c(2,1,2)) \%>\%
-   set("branches_lty", c(1,2,1)) \%>\%
-   set("hang") \%>\%
-   plot 
+dend \%>\%
+  set("labels", 1:10) \%>\%
+  set("labels_color") \%>\%
+  set("branches_col", c(1, 2, 1, 2, NA)) \%>\%
+  set("branches_lwd", c(2, 1, 2)) \%>\%
+  set("branches_lty", c(1, 2, 1)) \%>\%
+  set("hang") \%>\%
+  plot()
 
-par(mfrow = c(1,3))
-dend \%>\% set("highlight_branches_col") \%>\% plot 
-dend \%>\% set("highlight_branches_lwd") \%>\% plot 
-dend \%>\% set("highlight_branches_col") \%>\% set("highlight_branches_lwd") \%>\% plot 
-par(mfrow = c(1,1))
+par(mfrow = c(1, 3))
+dend \%>\%
+  set("highlight_branches_col") \%>\%
+  plot()
+dend \%>\%
+  set("highlight_branches_lwd") \%>\%
+  plot()
+dend \%>\%
+  set("highlight_branches_col") \%>\%
+  set("highlight_branches_lwd") \%>\%
+  plot()
+par(mfrow = c(1, 1))
 
 #----------------------------
 # Examples for: by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
 
 old_labels <- labels(dend)
-dend \%>\% 
-   set("labels", seq_len(nleaves(dend))) \%>\% 
-   set("by_labels_branches_col", c(1:4, 7)) \%>\% 
-   set("by_labels_branches_lwd", c(1:4, 7)) \%>\% 
-   set("by_labels_branches_lty", c(1:4, 7)) \%>\% 
-   set("labels", old_labels) \%>\% 
-   plot
+dend \%>\%
+  set("labels", seq_len(nleaves(dend))) \%>\%
+  set("by_labels_branches_col", c(1:4, 7)) \%>\%
+  set("by_labels_branches_lwd", c(1:4, 7)) \%>\%
+  set("by_labels_branches_lty", c(1:4, 7)) \%>\%
+  set("labels", old_labels) \%>\%
+  plot()
 
-dend \%>\% 
-   set("labels", seq_len(nleaves(dend))) \%>\% 
-   set("by_labels_branches_col", c(1:4, 7), type = "any", TF_values = c(4,2)) \%>\% 
-   set("by_labels_branches_lwd", c(1:4, 7), type = "all", TF_values = c(4,1)) \%>\% 
-   set("by_labels_branches_lty", c(1:4, 7), TF_values = c(4,1)) \%>\% 
-   plot
+dend \%>\%
+  set("labels", seq_len(nleaves(dend))) \%>\%
+  set("by_labels_branches_col", c(1:4, 7), type = "any", TF_values = c(4, 2)) \%>\%
+  set("by_labels_branches_lwd", c(1:4, 7), type = "all", TF_values = c(4, 1)) \%>\%
+  set("by_labels_branches_lty", c(1:4, 7), TF_values = c(4, 1)) \%>\%
+  plot()
 
 #---- using order_value
-# This is probably not what you want, since cutree 
+# This is probably not what you want, since cutree
 # returns clusters in the order of the original data:
-dend \%>\% set("labels_colors", cutree(dend, k = 3)) \%>\% plot
+dend \%>\%
+  set("labels_colors", cutree(dend, k = 3)) \%>\%
+  plot()
 # The way to fix it, is to use order_value = TRUE
 # so that value is assumed to be in the order of the data:
-dend \%>\% set("labels_colors", cutree(dend, k = 3), order_value = TRUE) \%>\% plot
+dend \%>\%
+  set("labels_colors", cutree(dend, k = 3), order_value = TRUE) \%>\%
+  plot()
 
 
 #----------------------------
 # Example for: by_lists_branches_col, by_lists_branches_lwd, by_lists_branches_lty
 
 L <- list(c("109", "123", "126", "145"), "29", c("59", "67", "97"))
-dend \%>\% 
-   set("by_lists_branches_col", L, TF_value = "blue") \%>\%
-   set("by_lists_branches_lwd", L, TF_value = 4) \%>\%
-   set("by_lists_branches_lty", L, TF_value = 3) \%>\%
-   plot
+dend \%>\%
+  set("by_lists_branches_col", L, TF_value = "blue") \%>\%
+  set("by_lists_branches_lwd", L, TF_value = 4) \%>\%
+  set("by_lists_branches_lty", L, TF_value = 3) \%>\%
+  plot()
 
 
 #----------------------------
 # A few dendlist examples:
-dendlist(dend,dend) \%>\% set("hang") \%>\% plot
-dendlist(dend,dend) \%>\% set("branches_k_col", k=3) \%>\% plot
-dendlist(dend,dend) \%>\% set("labels_col", c(1,2)) \%>\% plot
+dendlist(dend, dend) \%>\%
+  set("hang") \%>\%
+  plot()
+dendlist(dend, dend) \%>\%
+  set("branches_k_col", k = 3) \%>\%
+  plot()
+dendlist(dend, dend) \%>\%
+  set("labels_col", c(1, 2)) \%>\%
+  plot()
 
-dendlist(dend,dend) \%>\% 
-   set("hang") \%>\%
-   set("labels_col", c(1,2), which = 1) \%>\% 
-   set("branches_k_col", k=3, which = 2) \%>\%
-   set("labels_cex", 1.2) \%>\%
-   plot
+dendlist(dend, dend) \%>\%
+  set("hang") \%>\%
+  set("labels_col", c(1, 2), which = 1) \%>\%
+  set("branches_k_col", k = 3, which = 2) \%>\%
+  set("labels_cex", 1.2) \%>\%
+  plot()
 
 
 #----------------------------
@@ -219,27 +281,28 @@ dendlist(dend,dend) \%>\%
 
 library(gplots)
 data(mtcars)
-x  <- as.matrix(mtcars)
-rc <- rainbow(nrow(x), start=0, end=.3)
-cc <- rainbow(ncol(x), start=0, end=.3)
+x <- as.matrix(mtcars)
+rc <- rainbow(nrow(x), start = 0, end = .3)
+cc <- rainbow(ncol(x), start = 0, end = .3)
 
 ##
 ##' demonstrate the effect of row and column dendrogram options
 ##
-Rowv_dend <- x \%>\% dist \%>\% hclust \%>\% 
-   as.dendrogram \%>\% 
-   set("branches_k", k = 3) \%>\% 
-   set("branches_lwd", 2) \%>\%  ladderize # rotate_DendSer
-Colv_dend <- t(x) \%>\% dist \%>\% hclust \%>\% 
-   as.dendrogram \%>\% 
-   set("branches_k", k = 3) \%>\% 
-   set("branches_lwd", 2) \%>\%  ladderize # rotate_DendSer
-heatmap.2(x, Rowv = Rowv_dend, Colv = Colv_dend)  
-
-
-
-
-
+Rowv_dend <- x \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram() \%>\%
+  set("branches_k", k = 3) \%>\%
+  set("branches_lwd", 2) \%>\%
+  ladderize() # rotate_DendSer
+Colv_dend <- t(x) \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram() \%>\%
+  set("branches_k", k = 3) \%>\%
+  set("branches_lwd", 2) \%>\%
+  ladderize() # rotate_DendSer
+heatmap.2(x, Rowv = Rowv_dend, Colv = Colv_dend)
 }
 }
 \seealso{

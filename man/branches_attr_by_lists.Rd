@@ -4,13 +4,18 @@
 \alias{branches_attr_by_lists}
 \title{Change col/lwd/lty of branches from the root down to clusters defined by list of labels of respective members}
 \usage{
-branches_attr_by_lists(dend, lists, TF_values = c(2, 1),
-  attr = c("col", "lwd", "lty"), ...)
+branches_attr_by_lists(
+  dend,
+  lists,
+  TF_values = c(2, 1),
+  attr = c("col", "lwd", "lty"),
+  ...
+)
 }
 \arguments{
 \item{dend}{a dendrogram dend}
 
-\item{lists}{a list where each element contains the labels of members in selected nodes 
+\item{lists}{a list where each element contains the labels of members in selected nodes
 down to which the branches shall be adapted}
 
 \item{TF_values}{a two dimensional vector with the TF_values to use in case a branch fulfills the condition (TRUE)
@@ -34,24 +39,27 @@ And the function returns a dendrogram with branches col/lwd/lty accordingly
 library(dendextend)
 
 set.seed(23235)
-ss <- sample(1:150, 10 )
+ss <- sample(1:150, 10)
 
 # Getting the dend dend
-dend <- iris[ss,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram
-dend \%>\% plot
+dend <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
+dend \%>\% plot()
 
 # define a list of nodes
 L <- list(c("109", "123", "126", "145"), "29", c("59", "67", "97"))
-dend \%>\% 
-   branches_attr_by_lists(L) \%>\%
-   plot
+dend \%>\%
+  branches_attr_by_lists(L) \%>\%
+  plot()
 
-# choose different color, and also change lwd and lty 
-dend \%>\% 
-   branches_attr_by_lists(L, TF_value = "blue") \%>\%
-   branches_attr_by_lists(L, attr = "lwd", TF_value = 4) \%>\%
-   branches_attr_by_lists(L, attr = "lty", TF_value = 3) \%>\%
-   plot
+# choose different color, and also change lwd and lty
+dend \%>\%
+  branches_attr_by_lists(L, TF_value = "blue") \%>\%
+  branches_attr_by_lists(L, attr = "lwd", TF_value = 4) \%>\%
+  branches_attr_by_lists(L, attr = "lty", TF_value = 3) \%>\%
+  plot()
 }
 }
 \seealso{

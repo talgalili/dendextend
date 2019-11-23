@@ -4,13 +4,18 @@
 \alias{assign_values_to_leaves_nodePar}
 \title{Assign values to nodePar of dendrogram's leaves}
 \usage{
-assign_values_to_leaves_nodePar(dend, value, nodePar,
-  warn = dendextend_options("warn"), ...)
+assign_values_to_leaves_nodePar(
+  dend,
+  value,
+  nodePar,
+  warn = dendextend_options("warn"),
+  ...
+)
 }
 \arguments{
 \item{dend}{a dendrogram object}
 
-\item{value}{a new value vector for the nodePar attribute. It should be 
+\item{value}{a new value vector for the nodePar attribute. It should be
 the same length as the number of leaves in the tree. If not, it will recycle
 the value and issue a warning.}
 
@@ -34,13 +39,16 @@ If the value has Inf then the value in edgePar will not be changed.
 
 \dontrun{
 
-dend <- USArrests[1:5,] \%>\% dist \%>\% hclust("ave") \%>\% as.dendrogram
+dend <- USArrests[1:5, ] \%>\%
+  dist() \%>\%
+  hclust("ave") \%>\%
+  as.dendrogram()
 
-# reproduces "labels_colors<-" 
-# although it does force us to run through the tree twice, 
+# reproduces "labels_colors<-"
+# although it does force us to run through the tree twice,
 # hence "labels_colors<-" is better...
 plot(dend)
-dend <- assign_values_to_leaves_nodePar(dend=dend, value = c(3,2), nodePar = "lab.col")
+dend <- assign_values_to_leaves_nodePar(dend = dend, value = c(3, 2), nodePar = "lab.col")
 plot(dend)
 
 dend <- assign_values_to_leaves_nodePar(dend, 1, "pch")
@@ -55,8 +63,7 @@ plot(dend)
 
 str(unclass(dend))
 
-get_leaves_attr(dend, "nodePar", simplify=FALSE)
-
+get_leaves_attr(dend, "nodePar", simplify = FALSE)
 }
 
 }

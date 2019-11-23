@@ -5,10 +5,16 @@
 \alias{find_dend}
 \title{Finds a "good" dendrogram for a dist}
 \usage{
-dend_expend(x, dist_methods = c("euclidean", "maximum", "manhattan",
-  "canberra", "binary", "minkowski"), hclust_methods = c("ward.D",
-  "ward.D2", "single", "complete", "average", "mcquitty", "median",
-  "centroid"), hclust_fun = hclust, optim_fun = cor_cophenetic, ...)
+dend_expend(
+  x,
+  dist_methods = c("euclidean", "maximum", "manhattan", "canberra", "binary",
+    "minkowski"),
+  hclust_methods = c("ward.D", "ward.D2", "single", "complete", "average", "mcquitty",
+    "median", "centroid"),
+  hclust_fun = hclust,
+  optim_fun = cor_cophenetic,
+  ...
+)
 
 find_dend(x, ...)
 }
@@ -52,6 +58,4 @@ dend_expend(dist(x))$performance
 
 best_dend <- find_dend(x, dist_methods = c("euclidean", "manhattan"))
 plot(best_dend)
-
-
 }

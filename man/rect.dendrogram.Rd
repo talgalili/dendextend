@@ -13,22 +13,38 @@ skullkey from here:
 \url{http://stackoverflow.com/questions/4720307/change-dendrogram-leaves}
 }
 \usage{
-rect.dendrogram(tree, k = NULL, which = NULL, x = NULL, h = NULL,
-  border = 2, cluster = NULL, horiz = FALSE, density = NULL,
-  angle = 45, text = NULL, text_cex = 1, text_col = 1,
-  xpd = TRUE, lower_rect, upper_rect = 0, prop_k_height = 0.5,
-  stop_if_out = FALSE, ...)
+rect.dendrogram(
+  tree,
+  k = NULL,
+  which = NULL,
+  x = NULL,
+  h = NULL,
+  border = 2,
+  cluster = NULL,
+  horiz = FALSE,
+  density = NULL,
+  angle = 45,
+  text = NULL,
+  text_cex = 1,
+  text_col = 1,
+  xpd = TRUE,
+  lower_rect,
+  upper_rect = 0,
+  prop_k_height = 0.5,
+  stop_if_out = FALSE,
+  ...
+)
 }
 \arguments{
 \item{tree}{a \link{dendrogram} object.}
 
 \item{k}{Scalar. Cut the dendrogram such that exactly k clusters (if possible) are produced.}
 
-\item{which}{A vector selecting the clusters around 
+\item{which}{A vector selecting the clusters around
 which a rectangle should be drawn. which selects clusters by number
  (from left to right in the tree), Default is which = 1:k.}
 
-\item{x}{A vector selecting the clusters around 
+\item{x}{A vector selecting the clusters around
 which a rectangle should be drawn. x selects clusters
  containing the respective horizontal coordinates.}
 
@@ -36,17 +52,17 @@ which a rectangle should be drawn. x selects clusters
 
 \item{border}{Vector with border colors for the rectangles.}
 
-\item{cluster}{Optional vector with cluster memberships as returned by 
+\item{cluster}{Optional vector with cluster memberships as returned by
 cutree(dend_obj, k = k), can be specified for efficiency if already computed.}
 
-\item{horiz}{logical (FALSE), indicating if the rectangles 
-should be drawn horizontally or not (for when using 
+\item{horiz}{logical (FALSE), indicating if the rectangles
+should be drawn horizontally or not (for when using
 plot(dend, horiz = TRUE) ) .}
 
-\item{density}{Passed to \link{rect}: the density of shading lines, 
-in lines per inch. The default value of NULL means that 
-no shading lines are drawn. A zero value of density means 
-no shading lines whereas negative values (and NA) 
+\item{density}{Passed to \link{rect}: the density of shading lines,
+in lines per inch. The default value of NULL means that
+no shading lines are drawn. A zero value of density means
+no shading lines whereas negative values (and NA)
 suppress shading (and so allow color filling).
 If border is a vector of colors, the color of density will default to 1.}
 
@@ -63,7 +79,7 @@ When NULL (default), no text is displayed.}
 \item{xpd}{A logical value (or NA.), passed to \link{par}.
 Default is TRUE, in order to allow the rect to be below the labels.
 If FALSE, all plotting is clipped to the plot region, if TRUE,
-all plotting is clipped to the figure region, and if NA, all plotting 
+all plotting is clipped to the figure region, and if NA, all plotting
 is clipped to the device region. See also \link{clip}.}
 
 \item{lower_rect}{a (scalar) value of how low should the lower part of the rect be.
@@ -72,7 +88,7 @@ if horiz = TRUE or not), with also the width of the labels. (notice that we
 would like to keep xpd = TRUE if we want the rect to be after the labels!)
 You can use a value such as 0, to get the rect above the labels.
 
-Notice that for a plot with small margins, it would be better to set this 
+Notice that for a plot with small margins, it would be better to set this
 parameter manually.}
 
 \item{upper_rect}{a (scalar) value to add (default is 0) to how high should the upper part of the rect be.}
@@ -93,41 +109,52 @@ of the rect.hclust function).}
 \description{
 Draws rectangles around the branches of a dendrogram
  highlighting the corresponding clusters.
- First the dendrogram is cut at a certain level, 
+ First the dendrogram is cut at a certain level,
  then a rectangle is drawn around selected branches.
 }
 \examples{
 
 set.seed(23235)
-ss <- sample(1:150, 10 )
-hc <- iris[ss,-5] \%>\% dist \%>\% hclust
-dend <- hc \%>\% as.dendrogram
+ss <- sample(1:150, 10)
+hc <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust()
+dend <- hc \%>\% as.dendrogram()
 
 plot(dend)
-rect.dendrogram(dend,2, border = 2)
-rect.dendrogram(dend,3, border = 4)
-Vectorize(rect.dendrogram, "k")(dend,4:5, border = 6)
+rect.dendrogram(dend, 2, border = 2)
+rect.dendrogram(dend, 3, border = 4)
+Vectorize(rect.dendrogram, "k")(dend, 4:5, border = 6)
 
 plot(dend)
-rect.dendrogram(dend, 3 , border = 1:3, 
-         density = 2, text = c("1", "b", "miao"), text_cex = 3)
-         
+rect.dendrogram(dend, 3,
+  border = 1:3,
+  density = 2, text = c("1", "b", "miao"), text_cex = 3
+)
+
 plot(dend)
-rect.dendrogram(dend,4, which = c(1,3), border = c(2,3))
-rect.dendrogram(dend,4, x = 5, border = c(4))
-rect.dendrogram(dend,3, border = 3, lwd = 2, lty = 2)
+rect.dendrogram(dend, 4, which = c(1, 3), border = c(2, 3))
+rect.dendrogram(dend, 4, x = 5, border = c(4))
+rect.dendrogram(dend, 3, border = 3, lwd = 2, lty = 2)
 # now THIS, you can not do with the old rect.hclust
 plot(dend, horiz = TRUE)
-rect.dendrogram(dend,2, border = 2, horiz = TRUE)
-rect.dendrogram(dend,4, border = 4, lty = 2, lwd = 3, horiz = TRUE)
+rect.dendrogram(dend, 2, border = 2, horiz = TRUE)
+rect.dendrogram(dend, 4, border = 4, lty = 2, lwd = 3, horiz = TRUE)
 
 # This had previously failed since it worked with a wrong k.
 
-   dend15 <- c(1:5) \%>\% dist \%>\% hclust(method = "average") \%>\% as.dendrogram
-   # dend15 <- c(1:25) \%>\% dist \%>\% hclust(method = "average") \%>\% as.dendrogram
-   dend15 \%>\% set("branches_k_color") \%>\% plot
-   dend15 \%>\% rect.dendrogram(k=3, 
-                              border = 8, lty = 5, lwd = 2)
+dend15 <- c(1:5) \%>\%
+  dist() \%>\%
+  hclust(method = "average") \%>\%
+  as.dendrogram()
+# dend15 <- c(1:25) \%>\% dist \%>\% hclust(method = "average") \%>\% as.dendrogram
+dend15 \%>\%
+  set("branches_k_color") \%>\%
+  plot()
+dend15 \%>\% rect.dendrogram(
+  k = 3,
+  border = 8, lty = 5, lwd = 2
+)
 }
 \seealso{
 \link{rect.hclust}, \link{order.dendrogram}, \link{cutree.dendrogram}

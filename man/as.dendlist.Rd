@@ -24,12 +24,17 @@ and turns what is left into a dendlist
 
 \dontrun{
 
-dend <- iris[,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram
-dend2 <- iris[,-5] \%>\% dist \%>\% hclust(method = "single") \%>\% as.dendrogram
+dend <- iris[, -5] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
+dend2 <- iris[, -5] \%>\%
+  dist() \%>\%
+  hclust(method = "single") \%>\%
+  as.dendrogram()
 
-x = list(dend, 1, dend2)
+x <- list(dend, 1, dend2)
 as.dendlist(x)
-
 }
 
 }

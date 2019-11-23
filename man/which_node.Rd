@@ -24,24 +24,26 @@ By default it only returns the edge (node) with the heighest id.
 }
 \examples{
 
-dend <- iris[1:10,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram \%>\% set("labels", 1:10)
-dend \%>\% plot
+dend <- iris[1:10, -5] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram() \%>\%
+  set("labels", 1:10)
+dend \%>\% plot()
 
-which_node(dend, c(1,2), max_id = FALSE)
-which_node(dend, c(2,3), max_id = FALSE)
-which_node(dend, c(2,3))
+which_node(dend, c(1, 2), max_id = FALSE)
+which_node(dend, c(2, 3), max_id = FALSE)
+which_node(dend, c(2, 3))
 
-dend \%>\% plot
-the_h <- get_nodes_attr(dend, "height", which_node(dend, c(4,6)))
+dend \%>\% plot()
+the_h <- get_nodes_attr(dend, "height", which_node(dend, c(4, 6)))
 the_h
 abline(h = the_h, lty = 2, col = 2)
-get_nodes_attr(dend, "height", which_node(dend, c(4,6)))
-get_nodes_attr(dend, "members", which_node(dend, c(4,6)))
-
-
+get_nodes_attr(dend, "height", which_node(dend, c(4, 6)))
+get_nodes_attr(dend, "members", which_node(dend, c(4, 6)))
 }
 \seealso{
-\link{noded_with_condition}, \link{branches_attr_by_clusters}, 
+\link{noded_with_condition}, \link{branches_attr_by_clusters},
 \link{nnodes}, \link{branches_attr_by_labels}, \link{get_nodes_attr}
 \link[ape]{which.edge}
 }

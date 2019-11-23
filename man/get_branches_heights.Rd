@@ -4,8 +4,13 @@
 \alias{get_branches_heights}
 \title{Get height attributes from a dendrogram}
 \usage{
-get_branches_heights(dend, sort = TRUE, decreasing = FALSE,
-  include_leaves = FALSE, ...)
+get_branches_heights(
+  dend,
+  sort = TRUE,
+  decreasing = FALSE,
+  include_leaves = FALSE,
+  ...
+)
 }
 \arguments{
 \item{dend}{a dendrogram.}
@@ -26,9 +31,7 @@ Get height attributes of a dendrogram's branches
 }
 \examples{
 
-hc <- hclust(dist(USArrests[1:4,]), "ave")
+hc <- hclust(dist(USArrests[1:4, ]), "ave")
 dend <- as.dendrogram(hc)
 get_branches_heights(dend)
-
-
 }

@@ -4,9 +4,14 @@
 \alias{FM_index}
 \title{Calculating Fowlkes-Mallows Index}
 \usage{
-FM_index(A1_clusters, A2_clusters, include_EV = TRUE,
-  assume_sorted_vectors = FALSE, warn = dendextend_options("warn"),
-  ...)
+FM_index(
+  A1_clusters,
+  A2_clusters,
+  include_EV = TRUE,
+  assume_sorted_vectors = FALSE,
+  warn = dendextend_options("warn"),
+  ...
+)
 }
 \arguments{
 \item{A1_clusters}{a numeric vector of cluster grouping (numeric) of items,
@@ -22,7 +27,7 @@ of the FM Index under null hypothesis of no relation between the clusterings?
 If TRUE (Default) - then the \link{FM_index_R} function, else (FALSE)
 we use the (faster) \link{FM_index_profdpm} function.}
 
-\item{assume_sorted_vectors}{logical (FALSE). Can we assume to two group 
+\item{assume_sorted_vectors}{logical (FALSE). Can we assume to two group
 vectors are sorter so that they have the same order of items?
 IF FALSE (default), then the vectors will be sorted based on their
 name attribute.}
@@ -49,12 +54,12 @@ under the null hypothesis of no relation.
 \details{
 From Wikipedia:
 
-Fowlkes-Mallows index (see references) is an external evaluation method 
+Fowlkes-Mallows index (see references) is an external evaluation method
 that is used to determine the similarity between two clusterings
 (clusters obtained after a clustering algorithm). This measure of similarity
 could be either between two hierarchical clusterings or a clustering and
 a benchmark classification. A higher the value for the Fowlkes-Mallows index
-indicates a greater similarity between the clusters and the benchmark 
+indicates a greater similarity between the clusters and the benchmark
 classifications.
 }
 \examples{
@@ -63,40 +68,45 @@ classifications.
 
 set.seed(23235)
 ss <- TRUE # sample(1:150, 10 )
-hc1 <- hclust(dist(iris[ss,-5]), "com")
-hc2 <- hclust(dist(iris[ss,-5]), "single")
+hc1 <- hclust(dist(iris[ss, -5]), "com")
+hc2 <- hclust(dist(iris[ss, -5]), "single")
 # dend1 <- as.dendrogram(hc1)
 # dend2 <- as.dendrogram(hc2)
-#    cutree(dend1)   
+#    cutree(dend1)
 
-FM_index(cutree(hc1, k=3), cutree(hc1, k=3)) # 1 with EV
-FM_index(cutree(hc1, k=3), cutree(hc1, k=3), include_EV= FALSE) # 1
+FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3)) # 1 with EV
+FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3), include_EV = FALSE) # 1
 
 # checking speed gains
 library(microbenchmark)
- microbenchmark(FM_index(cutree(hc1, k=3), cutree(hc1, k=3)),
-                 FM_index(cutree(hc1, k=3), cutree(hc1, k=3),
-                     include_EV= FALSE),
-                  FM_index(cutree(hc1, k=3), cutree(hc1, k=3),
-                     include_EV= TRUE, assume_sorted_vectors=TRUE),
-                  FM_index(cutree(hc1, k=3), cutree(hc1, k=3),
-                     include_EV= FALSE, assume_sorted_vectors=TRUE)
-                                                  )
-# C code is 1.2-1.3 times faster.                                                   
-                                                  
-set.seed(1341)
-FM_index(cutree(hc1, k=3), sample(cutree(hc1, k=3)),
-   assume_sorted_vectors =TRUE) # 0.38037
-FM_index(cutree(hc1, k=3), sample(cutree(hc1, k=3)),
-   assume_sorted_vectors =FALSE) # 1 again :)
-FM_index(cutree(hc1, k=3), cutree(hc2, k=3)) # 0.8059
-FM_index(cutree(hc1, k=30), cutree(hc2, k=30)) # 0.4529
+microbenchmark(
+  FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3)),
+  FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3),
+    include_EV = FALSE
+  ),
+  FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3),
+    include_EV = TRUE, assume_sorted_vectors = TRUE
+  ),
+  FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3),
+    include_EV = FALSE, assume_sorted_vectors = TRUE
+  )
+)
+# C code is 1.2-1.3 times faster.
 
-fo <- function(k) FM_index(cutree(hc1, k), cutree(hc2, k)) 
+set.seed(1341)
+FM_index(cutree(hc1, k = 3), sample(cutree(hc1, k = 3)),
+  assume_sorted_vectors = TRUE
+) # 0.38037
+FM_index(cutree(hc1, k = 3), sample(cutree(hc1, k = 3)),
+  assume_sorted_vectors = FALSE
+) # 1 again :)
+FM_index(cutree(hc1, k = 3), cutree(hc2, k = 3)) # 0.8059
+FM_index(cutree(hc1, k = 30), cutree(hc2, k = 30)) # 0.4529
+
+fo <- function(k) FM_index(cutree(hc1, k), cutree(hc2, k))
 lapply(1:4, fo)
 ks <- 1:150
-plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the iris dataset")
-
+plot(sapply(ks, fo) ~ ks, type = "b", main = "Bk plot for the iris dataset")
 }
 }
 \references{

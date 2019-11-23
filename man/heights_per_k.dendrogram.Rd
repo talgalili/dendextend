@@ -22,30 +22,30 @@ This helps with speeding up the \link{cutree.dendrogram} function.
 }
 \examples{
 \dontrun{
-hc <- hclust(dist(USArrests[1:4,]), "ave")
+hc <- hclust(dist(USArrests[1:4, ]), "ave")
 dend <- as.dendrogram(hc)
 heights_per_k.dendrogram(dend)
-##       1        2        3        4 
-##86.47086 68.84745 45.98871 28.36531 
+##       1        2        3        4
+## 86.47086 68.84745 45.98871 28.36531
 
 cutree(hc, h = 68.8) # and indeed we get 2 clusters
 
-unbranch_dend <- unbranch(dend,2)
+unbranch_dend <- unbranch(dend, 2)
 plot(unbranch_dend)
 heights_per_k.dendrogram(unbranch_dend)
-       #1        3        4 
-       #97.90023 57.41808 16.93594 
-       # we do NOT have a height for k=2 because of the tree's structure.
-       
-   
+# 1        3        4
+# 97.90023 57.41808 16.93594
+# we do NOT have a height for k=2 because of the tree's structure.
+
+
 library(microbenchmark)
-dend = as.dendrogram(hclust(dist(iris[1:150,-5])))
-dend = as.dendrogram(hclust(dist(iris[1:30,-5])))
-dend = as.dendrogram(hclust(dist(iris[1:3,-5])))
+dend <- as.dendrogram(hclust(dist(iris[1:150, -5])))
+dend <- as.dendrogram(hclust(dist(iris[1:30, -5])))
+dend <- as.dendrogram(hclust(dist(iris[1:3, -5])))
 microbenchmark(
-   #    dendextendRcpp::heights_per_k.dendrogram(dend),
-   dendextendRcpp::dendextendRcpp_heights_per_k.dendrogram(dend),
-   dendextendRcpp::old_heights_per_k.dendrogram(dend)
+  #    dendextendRcpp::heights_per_k.dendrogram(dend),
+  dendextendRcpp::dendextendRcpp_heights_per_k.dendrogram(dend),
+  dendextendRcpp::old_heights_per_k.dendrogram(dend)
 )
 # improvment is 10 times faster (in Rcpp) for a tree of size 3
 # 76 times faster for a tree of size 30

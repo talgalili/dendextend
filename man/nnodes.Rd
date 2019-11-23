@@ -32,11 +32,11 @@ Counts the number of nodes in a tree (dendrogram, hclust, phylo).
 \details{
 The idea for the name is from functions like ncol, and nrow.
 
-The phylo method is based on turning the phylo to hclust and than to 
+The phylo method is based on turning the phylo to hclust and than to
 dendrogram. It may not work for complex phylo trees.
 }
 \examples{
-hc <- hclust(dist(USArrests[1:5,]), "ave")
+hc <- hclust(dist(USArrests[1:5, ]), "ave")
 dend <- as.dendrogram(hc)
 
 nnodes(dend) # 9

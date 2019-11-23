@@ -14,11 +14,19 @@ untangle(dend1, ...)
 
 untangle_labels(dend1, dend2, ...)
 
-\method{untangle}{dendrogram}(dend1, dend2, method = c("labels",
-  "ladderize", "random", "step1side", "step2side", "DendSer"), ...)
+\method{untangle}{dendrogram}(
+  dend1,
+  dend2,
+  method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"),
+  ...
+)
 
-\method{untangle}{dendlist}(dend1, method = c("labels", "ladderize",
-  "random", "step1side", "step2side", "DendSer"), which = c(1L, 2L), ...)
+\method{untangle}{dendlist}(
+  dend1,
+  method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"),
+  which = c(1L, 2L),
+  ...
+)
 }
 \arguments{
 \item{dend1}{a dednrogram or a dendlist object}
@@ -34,7 +42,7 @@ heuristic to use.}
 which of the trees in the dendlist object should be plotted}
 }
 \value{
-A \link{dendlist}, with two trees after 
+A \link{dendlist}, with two trees after
 they have been untangled.
 
 If the dendlist was originally larger than 2, it will return the original dendlist
@@ -53,37 +61,51 @@ in order to make it easier to find our about (and use) them.
 \examples{
 \dontrun{
 set.seed(23235)
-ss <- sample(1:150, 10 )
-dend1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
-dend2 <- iris[ss,-5] \%>\% dist \%>\% hclust("sin") \%>\% as.dendrogram
+ss <- sample(1:150, 10)
+dend1 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("com") \%>\%
+  as.dendrogram()
+dend2 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("sin") \%>\%
+  as.dendrogram()
 dend12 <- dendlist(dend1, dend2)
 
-dend12 \%>\% tanglegram
+dend12 \%>\% tanglegram()
 
-untangle(dend1, dend2, method="random", R = 5) \%>\% tanglegram
+untangle(dend1, dend2, method = "random", R = 5) \%>\% tanglegram()
 
 # it works, and we get something different:
 set.seed(1234)
-dend12 \%>\% untangle(method="random", R = 5) \%>\% tanglegram
+dend12 \%>\%
+  untangle(method = "random", R = 5) \%>\%
+  tanglegram()
 
 set.seed(1234)
 # fixes it completely:
-dend12 \%>\% untangle(method="random", R = 5) \%>\% untangle(method="step1") \%>\% tanglegram
+dend12 \%>\%
+  untangle(method = "random", R = 5) \%>\%
+  untangle(method = "step1") \%>\%
+  tanglegram()
 # not good enough
-dend12 \%>\% untangle(method="step1") \%>\% tanglegram
+dend12 \%>\%
+  untangle(method = "step1") \%>\%
+  tanglegram()
 # not good enough
-dend12 \%>\% untangle(method="step2") \%>\% tanglegram
+dend12 \%>\%
+  untangle(method = "step2") \%>\%
+  tanglegram()
 # How we might wish to use it:
 set.seed(12777)
-dend12 \%>\% 
-   untangle(method="random", R = 1) \%>\%
-   untangle(method="step2") \%>\% 
-   tanglegram
-
+dend12 \%>\%
+  untangle(method = "random", R = 1) \%>\%
+  untangle(method = "step2") \%>\%
+  tanglegram()
 }
 }
 \seealso{
-\link{tanglegram}, \link{untangle_random_search}, 
+\link{tanglegram}, \link{untangle_random_search},
 \link{untangle_step_rotate_1side}, \link{untangle_step_rotate_2side},
 \link{untangle_DendSer},
 \link{entanglement}

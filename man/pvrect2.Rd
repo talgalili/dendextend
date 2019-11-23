@@ -4,8 +4,17 @@
 \alias{pvrect2}
 \title{Draw Rectangles Around a Dendrogram's Clusters with High/Low P-values}
 \usage{
-pvrect2(x, alpha = 0.95, pv = "au", type = "geq", max.only = TRUE,
-  border = 2, xpd = TRUE, lower_rect, ...)
+pvrect2(
+  x,
+  alpha = 0.95,
+  pv = "au",
+  type = "geq",
+  max.only = TRUE,
+  border = 2,
+  xpd = TRUE,
+  lower_rect,
+  ...
+)
 }
 \arguments{
 \item{x}{object of class pvclust.}
@@ -38,21 +47,20 @@ library(dendextend)
 library(pvclust)
 data(lung) # 916 genes for 73 subjects
 set.seed(13134)
-result <- pvclust(lung[, 1:20], method.dist="cor", method.hclust="average", nboot=10)
+result <- pvclust(lung[, 1:20], method.dist = "cor", method.hclust = "average", nboot = 10)
 
-par(mar = c(9,2.5,2,0))
+par(mar = c(9, 2.5, 2, 0))
 dend <- as.dendrogram(result)
-dend \%>\%    
-   pvclust_show_signif(result, signif_value = c(3,.5)) \%>\%
-   pvclust_show_signif(result, signif_value = c("black", "grey"), show_type = "col") \%>\% 
-   plot(main = "Cluster dendrogram with AU/BP values (\%)")
-pvrect2(result, alpha=0.95)
+dend \%>\%
+  pvclust_show_signif(result, signif_value = c(3, .5)) \%>\%
+  pvclust_show_signif(result, signif_value = c("black", "grey"), show_type = "col") \%>\%
+  plot(main = "Cluster dendrogram with AU/BP values (\%)")
+pvrect2(result, alpha = 0.95)
 # getting the rects to the tips / above the labels
-pvrect2(result, lower_rect = .15, border = 4, alpha=0.95, lty = 2)
+pvrect2(result, lower_rect = .15, border = 4, alpha = 0.95, lty = 2)
 # Original function
 # pvrect(result, alpha=0.95)
-text(result, alpha=0.95)
-
+text(result, alpha = 0.95)
 }
 
 }

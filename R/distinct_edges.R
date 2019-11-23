@@ -344,8 +344,11 @@ edgeset_dist <- function(dend, dend2, ...) {
 #' @export
 #'
 #' @description
-#' This function computes the
-#' \href{https://en.wikipedia.org/wiki/Robinson%E2%80%93Foulds_metric}{Robinson-Foulds distance}
+#' 
+#' This function seems to bring different results than ape - 
+#' checking this out is still an open issue: \href{https://github.com/talgalili/dendextend/issues/97}{github issue}
+#' 
+#' This function computes the \href{https://en.wikipedia.org/wiki/Robinson–Foulds_metric}{Robinson-Foulds distance} 
 #' (also known as symmetric difference)
 #' between two dendrograms. This is the number of edges (branches) in tree_1
 #' with a combination of labels that exist in

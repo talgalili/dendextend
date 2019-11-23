@@ -30,5 +30,4 @@ fac2num simply turns a factor into a number, as we often need.
 x <- factor(3:5)
 as.numeric(x) # 1 2 3
 fac2num(x) # 3 4 5
-
 }

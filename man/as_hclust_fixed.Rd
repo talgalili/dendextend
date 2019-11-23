@@ -7,24 +7,24 @@
 as_hclust_fixed(x, hc, ...)
 }
 \arguments{
-\item{x}{any object which has an as.hclust method. 
+\item{x}{any object which has an as.hclust method.
 (mostly used for dendrogram)}
 
-\item{hc}{an old hclust object from which to re-use 
+\item{hc}{an old hclust object from which to re-use
 the call/method/dist.method values}
 
 \item{...}{passed to as.hclust}
 }
 \value{
-An hclust object (from a dendrogram) with the original hclust 
+An hclust object (from a dendrogram) with the original hclust
 call/method/dist.method values
 }
 \description{
-Convert dendrogram Objects to Class hclust while preserving 
+Convert dendrogram Objects to Class hclust while preserving
 the call/method/dist.method values of the original hclust object (hc)
 }
 \examples{
-hc <- hclust(dist(USArrests[1:3,]), "ave")
+hc <- hclust(dist(USArrests[1:3, ]), "ave")
 dend <- as.dendrogram(hc)
 
 as.hclust(dend)

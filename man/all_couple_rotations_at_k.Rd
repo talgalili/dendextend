@@ -12,7 +12,7 @@ all_couple_rotations_at_k(dend, k, dend_heights_per_k, ...)
 \item{k}{integer scalar with the number of clusters the tree should be cut into.}
 
 \item{dend_heights_per_k}{a named vector that resulted from running
-\link{heights_per_k.dendrogram}. When running the function many times, 
+\link{heights_per_k.dendrogram}. When running the function many times,
 supplying this object will help improve the running time if using the
 \link{cutree.dendrogram} method..}
 
@@ -31,18 +31,21 @@ This is useful for finding good trees for a \link{tanglegram}.
 \examples{
 
 \dontrun{
-dend1 <- USArrests[1:5,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
-dend2 <- all_couple_rotations_at_k(dend1, k=2)[[2]]
-tanglegram(dend1,dend2)
-entanglement(dend1,dend2, L = 2) # 0.5
+dend1 <- USArrests[1:5, ] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
+dend2 <- all_couple_rotations_at_k(dend1, k = 2)[[2]]
+tanglegram(dend1, dend2)
+entanglement(dend1, dend2, L = 2) # 0.5
 
-dend2 <- all_couple_rotations_at_k(dend1, k=3)[[2]]
-tanglegram(dend1,dend2)
-entanglement(dend1,dend2, L = 2) # 0.4
+dend2 <- all_couple_rotations_at_k(dend1, k = 3)[[2]]
+tanglegram(dend1, dend2)
+entanglement(dend1, dend2, L = 2) # 0.4
 
-dend2 <- all_couple_rotations_at_k(dend1, k=4)[[2]]
-tanglegram(dend1,dend2)
-entanglement(dend1,dend2, L = 2) # 0.05
+dend2 <- all_couple_rotations_at_k(dend1, k = 4)[[2]]
+tanglegram(dend1, dend2)
+entanglement(dend1, dend2, L = 2) # 0.05
 }
 }
 \seealso{

@@ -30,5 +30,4 @@ dend1[[1]][[1]][[1]]
 plot(dend1)
 min_depth(dend1)
 max_depth(dend1)
-
 }

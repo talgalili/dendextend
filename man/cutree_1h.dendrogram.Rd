@@ -4,21 +4,27 @@
 \alias{cutree_1h.dendrogram}
 \title{cutree for dendrogram (by 1 height only!)}
 \usage{
-cutree_1h.dendrogram(dend, h, order_clusters_as_data = TRUE,
-  use_labels_not_values = TRUE, warn = dendextend_options("warn"), ...)
+cutree_1h.dendrogram(
+  dend,
+  h,
+  order_clusters_as_data = TRUE,
+  use_labels_not_values = TRUE,
+  warn = dendextend_options("warn"),
+  ...
+)
 }
 \arguments{
 \item{dend}{a dendrogram object}
 
 \item{h}{numeric scalar (NOT a vector) with a height where the dend should be cut.}
 
-\item{order_clusters_as_data}{logical, defaults to TRUE. There are two ways by which 
-to order the clusters: 1) By the order of the original data. 2) by the order of the 
+\item{order_clusters_as_data}{logical, defaults to TRUE. There are two ways by which
+to order the clusters: 1) By the order of the original data. 2) by the order of the
 labels in the dendrogram. In order to be consistent with \link[stats]{cutree}, this is set
 to TRUE.}
 
-\item{use_labels_not_values}{logical, defaults to TRUE. If the actual labels of the 
-clusters do not matter - and we want to gain speed (say, 10 times faster) - 
+\item{use_labels_not_values}{logical, defaults to TRUE. If the actual labels of the
+clusters do not matter - and we want to gain speed (say, 10 times faster) -
 then use FALSE (gives the "leaves order" instead of their labels.).}
 
 \item{warn}{logical (default from dendextend_options("warn") is FALSE).
@@ -31,34 +37,33 @@ but for keeping the noise down, the default is FALSE.}
 \code{cutree_1h.dendrogram} returns an integer vector with group memberships
 }
 \description{
-Cuts a dendrogram tree into several groups 
+Cuts a dendrogram tree into several groups
 by specifying the desired cut height (only a single height!).
 }
 \examples{
-hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
+hc <- hclust(dist(USArrests[c(1, 6, 13, 20, 23), ]), "ave")
 dend <- as.dendrogram(hc)
-cutree(hc, h=50) # on hclust
-cutree_1h.dendrogram(dend, h=50) # on a dendrogram
+cutree(hc, h = 50) # on hclust
+cutree_1h.dendrogram(dend, h = 50) # on a dendrogram
 
 labels(dend)
 
 # the default (ordered by original data's order)
-cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = TRUE) 
+cutree_1h.dendrogram(dend, h = 50, order_clusters_as_data = TRUE)
 
 # A different order of labels - order by their order in the tree
-cutree_1h.dendrogram(dend, h=50, order_clusters_as_data = FALSE) 
+cutree_1h.dendrogram(dend, h = 50, order_clusters_as_data = FALSE)
 
 
 # make it faster
 \dontrun{
 library(microbenchmark)
 microbenchmark(
-         cutree_1h.dendrogram(dend, h=50),
-         cutree_1h.dendrogram(dend, h=50,use_labels_not_values = FALSE)
-         )
-         # 0.8 vs 0.6 sec - for 100 runs
+  cutree_1h.dendrogram(dend, h = 50),
+  cutree_1h.dendrogram(dend, h = 50, use_labels_not_values = FALSE)
+)
+# 0.8 vs 0.6 sec - for 100 runs
 }
-
 
 }
 \seealso{

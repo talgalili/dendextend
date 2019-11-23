@@ -21,12 +21,14 @@ Go through the dendrogram nodes and remove its nodePar
 
 \dontrun{
 
-dend <- USArrests[1:5,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
+dend <- USArrests[1:5, ] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
 dend <- color_branches(dend, 3)
-par(mfrow = c(1,2))
+par(mfrow = c(1, 2))
 plot(dend)
 plot(remove_branches_edgePar(dend))
-
 }
 
 }

@@ -29,7 +29,7 @@ prune(dend, ...)
 \item{leaves}{a character vector of the label(S) of the tip(s) (leaves) we wish to prune off the tree.}
 
 \item{reindex_dend}{logical (default is TRUE). If TRUE, the leaves of the new dendrograms
-include the rank of the old order.dendrogram. 
+include the rank of the old order.dendrogram.
 This insures that their values are just like the number of leaves.
 When FALSE, the values in the leaves is that of the original dendrogram. Thie is useful
 if prunning a dendrogram but then wanting to use \link{order.dendrogram} with the original values.
@@ -46,19 +46,17 @@ Trimms a tree (dendrogram, hclust) from a set of leaves based on their labels.
 I was not sure if to call this function drop.tip (from ape), snip/prune (from rpart) or just remove.leaves.  I ended up deciding on prune.
 }
 \examples{
-hc <- hclust(dist(USArrests[1:5,]), "ave")
+hc <- hclust(dist(USArrests[1:5, ]), "ave")
 dend <- as.dendrogram(hc)
 
-par(mfrow = c(1,2))
+par(mfrow = c(1, 2))
 plot(dend, main = "original tree")
-plot(prune(dend , c("Alaska", "California")), main = "tree without Alaska and California")
+plot(prune(dend, c("Alaska", "California")), main = "tree without Alaska and California")
 
 
 # this works because prune uses reindex_dend = TRUE by default
-as.hclust(prune(dend , c("Alaska", "California")))
-prune(hc , c("Alaska", "California"))
-
-
+as.hclust(prune(dend, c("Alaska", "California")))
+prune(hc, c("Alaska", "California"))
 }
 \seealso{
 \link{prune_leaf}, \link[ape]{drop.tip} {ape}

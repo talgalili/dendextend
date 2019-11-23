@@ -21,25 +21,26 @@ A dendrogram, after adjusting the height attr in all of its branches.
 Adjust the height attr in all of the dendrogram nodes so that
  the tree will have a distance of 1 unit between each parent/child nodes.
  It can be thought of as ranking the branches between themselves.
- 
+
  This is intended for easier comparison of the topology of two trees.
- 
- Notice that this function changes the height of all the leaves into 0, 
- thus erasing the effect of \link{hang.dendrogram} (which should be run 
+
+ Notice that this function changes the height of all the leaves into 0,
+ thus erasing the effect of \link{hang.dendrogram} (which should be run
  again, if that is the visualization you are intereted in).
 }
 \examples{
 
 # define dendrogram object to play with:
-dend <- USArrests[1:5,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
+dend <- USArrests[1:5, ] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
 
-par(mfrow = c(1,3))
+par(mfrow = c(1, 3))
 
 plot(dend)
 plot(rank_branches(dend))
 plot(hang.dendrogram(rank_branches(dend)))
-
- 
 }
 \seealso{
 \link{get_branches_heights}, \link{get_childrens_heights},

@@ -4,14 +4,17 @@
 \alias{cor.dendlist}
 \title{Correlation matrix between a list of trees.}
 \usage{
-cor.dendlist(dend, method = c("cophenetic", "baker", "common_nodes",
-  "FM_index"), ...)
+cor.dendlist(
+  dend,
+  method = c("cophenetic", "baker", "common_nodes", "FM_index"),
+  ...
+)
 }
 \arguments{
 \item{dend}{a \link{dendlist} of trees}
 
-\item{method}{a character string indicating which correlation coefficient 
-is to be computed. One of "cophenetic" (default),  "baker", 
+\item{method}{a character string indicating which correlation coefficient
+is to be computed. One of "cophenetic" (default),  "baker",
 "common_nodes", or "FM_index".
 It can be abbreviated.}
 
@@ -31,12 +34,24 @@ please first use \link{intersect_trees} to have them matched.
 \dontrun{
 
 set.seed(23235)
-ss <- sample(1:150, 10 )
-dend1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
-dend2 <- iris[ss,-5] \%>\% dist \%>\% hclust("single") \%>\% as.dendrogram
-dend3 <- iris[ss,-5] \%>\% dist \%>\% hclust("ave") \%>\% as.dendrogram
-dend4 <- iris[ss,-5] \%>\% dist \%>\% hclust("centroid") \%>\% as.dendrogram
-#    cutree(dend1)   
+ss <- sample(1:150, 10)
+dend1 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("com") \%>\%
+  as.dendrogram()
+dend2 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("single") \%>\%
+  as.dendrogram()
+dend3 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("ave") \%>\%
+  as.dendrogram()
+dend4 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("centroid") \%>\%
+  as.dendrogram()
+#    cutree(dend1)
 cors <- cor.dendlist(dendlist(d1 = dend1, d2 = dend2, d3 = dend3, d4 = dend4))
 
 cors
@@ -44,7 +59,6 @@ cors
 # a nice plot for them:
 library(corrplot)
 corrplot(cor.dendlist(dend1234), "pie", "lower")
-
 }
 }
 \seealso{

@@ -9,7 +9,7 @@ get_leaves_nodePar(dend, simplify = FALSE, ...)
 \arguments{
 \item{dend}{a dendrogram object}
 
-\item{simplify}{logical (default is FALSE). If TRUE, then the return vector is 
+\item{simplify}{logical (default is FALSE). If TRUE, then the return vector is
 after using \code{unlist} on it.}
 
 \item{...}{not used}
@@ -22,7 +22,7 @@ Get the nodePar attributes of dendrogram's leaves (includes pch, color, and cex)
 }
 \examples{
 # define dendrogram object to play with:
-hc <- hclust(dist(USArrests[1:3,]), "ave")
+hc <- hclust(dist(USArrests[1:3, ]), "ave")
 dend <- as.dendrogram(hc)
 
 # get_leaves_attr(dend) # error :)
@@ -34,7 +34,6 @@ dend <- assign_values_to_leaves_nodePar(dend, 2, "lab.cex")
 get_leaves_nodePar(dend)
 
 plot(dend)
-
 }
 \seealso{
 \link{get_nodes_attr}, \link{assign_values_to_leaves_nodePar}, \link{labels_colors}

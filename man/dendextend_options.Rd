@@ -35,7 +35,6 @@ dendextend_options("a")
 dendextend_options("a", NULL)
 dendextend_options("a")
 dendextend_options()
-
 }
 \author{
 Kurt Hornik

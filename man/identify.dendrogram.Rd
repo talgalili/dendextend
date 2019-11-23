@@ -8,25 +8,33 @@ This function is based on \link{identify.hclust}, with slight modifications
 to have it work with a dendrogram, as well as adding "horiz"
 }
 \usage{
-\method{identify}{dendrogram}(x, FUN = NULL, N = 20, MAXCLUSTER,
-  DEV.FUN = NULL, horiz = FALSE, stop_if_out = FALSE, ...)
+\method{identify}{dendrogram}(
+  x,
+  FUN = NULL,
+  N = 20,
+  MAXCLUSTER,
+  DEV.FUN = NULL,
+  horiz = FALSE,
+  stop_if_out = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{a \link{dendrogram} object.}
 
-\item{FUN}{(optional) function to be applied to the index numbers of the 
+\item{FUN}{(optional) function to be applied to the index numbers of the
 data points in a cluster (see 'Details' below).}
 
 \item{N}{the maximum number of clusters to be identified.}
 
-\item{MAXCLUSTER}{the maximum number of clusters that can be produced by 
+\item{MAXCLUSTER}{the maximum number of clusters that can be produced by
 a cut (limits the effective vertical range of the pointer).}
 
-\item{DEV.FUN}{(optional) integer scalar. If specified, the corresponding 
+\item{DEV.FUN}{(optional) integer scalar. If specified, the corresponding
 graphics device is made active before FUN is applied.}
 
-\item{horiz}{logical (FALSE), indicating if the rectangles 
-should be drawn horizontally or not (for when using 
+\item{horiz}{logical (FALSE), indicating if the rectangles
+should be drawn horizontally or not (for when using
 plot(dend, horiz = TRUE) ) .}
 
 \item{stop_if_out}{logical (default is FALSE). This default makes the function
@@ -41,35 +49,36 @@ of the identify.hclust function - but it is nicer for the user.).}
 }
 \description{
 Just like \link{identify.hclust}:
-reads the position of the graphics pointer when the (first) 
+reads the position of the graphics pointer when the (first)
 mouse button is pressed. It then cuts the tree at the vertical
- position of the pointer and highlights the cluster containing 
+ position of the pointer and highlights the cluster containing
  the horizontal position of the pointer. Optionally a function is applied
  to the index of data points contained in the cluster.
 }
 \details{
-By default clusters can be identified using the mouse and an invisible 
+By default clusters can be identified using the mouse and an invisible
 list of indices of the respective data points is returned.
 If FUN is not NULL, then the index vector of data points is passed to this
- function as first argument, see the examples below. The active 
+ function as first argument, see the examples below. The active
  graphics device for FUN can be specified using DEV.FUN.
- The identification process is terminated by pressing any mouse button other 
+ The identification process is terminated by pressing any mouse button other
  than the first, see also identify.
 }
 \examples{
 
 \dontrun{
 set.seed(23235)
-ss <- sample(1:150, 10 )
-hc <- iris[ss,-5] \%>\% dist \%>\% hclust
-dend <- hc \%>\% as.dendrogram
+ss <- sample(1:150, 10)
+hc <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust()
+dend <- hc \%>\% as.dendrogram()
 
 plot(dend)
 identify(dend)
 
 plot(dend, horiz = TRUE)
 identify(dend, horiz = TRUE)
-
 }
 }
 \seealso{

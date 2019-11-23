@@ -25,16 +25,29 @@ This is a good (and fast) starting point for link{untangle_step_rotate_2side}
 \dontrun{
 set.seed(232)
 ss <- sample(1:150, 20)
-dend1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
-dend2 <- iris[ss,-5] \%>\% dist \%>\% hclust("sin") \%>\% as.dendrogram
+dend1 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("com") \%>\%
+  as.dendrogram()
+dend2 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("sin") \%>\%
+  as.dendrogram()
 dend12 <- dendlist(dend1, dend2)
 
 # bad solutions
-dend12 \%>\% tanglegram
-dend12 \%>\% untangle("step2") \%>\% tanglegram
-dend12 \%>\% untangle_DendSer \%>\% tanglegram
+dend12 \%>\% tanglegram()
+dend12 \%>\%
+  untangle("step2") \%>\%
+  tanglegram()
+dend12 \%>\%
+  untangle_DendSer() \%>\%
+  tanglegram()
 # but the combination is quite awsome:
-dend12 \%>\% untangle_DendSer \%>\% untangle("step2") \%>\% tanglegram
+dend12 \%>\%
+  untangle_DendSer() \%>\%
+  untangle("step2") \%>\%
+  tanglegram()
 }
 }
 \seealso{

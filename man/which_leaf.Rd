@@ -12,11 +12,11 @@ which_leaf(dend, ...)
 \item{...}{ignored.}
 }
 \value{
-A logical vector with the length of \link{nnodes}, 
+A logical vector with the length of \link{nnodes},
 which gives a TRUE when a node is a leaf.
 }
 \description{
-Gives a vector as the number of nodes (\link{nnodes}), 
+Gives a vector as the number of nodes (\link{nnodes}),
 which gives a TRUE when a node is a leaf.
 }
 \examples{
@@ -26,12 +26,14 @@ library(dendextend)
 
 # Getting the dend dend
 set.seed(23235)
-ss <- sample(1:150, 10 )
-dend <- iris[ss,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram
-dend \%>\% plot
+ss <- sample(1:150, 10)
+dend <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
+dend \%>\% plot()
 
 which_leaf(dend)
-
 }
 }
 \seealso{

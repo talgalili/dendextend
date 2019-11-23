@@ -4,22 +4,27 @@
 \alias{get_nodes_xy}
 \title{Get the x-y coordinates of a dendrogram's nodes}
 \source{
-This is a striped down version of the 
+This is a striped down version of the
 function \code{\link{plot.dendrogram}}.
 It performs (almost) the same task, only it does not do any plotting
 but it does save the x-y coordiantes of the nodes.
 }
 \usage{
-get_nodes_xy(dend, type = c("rectangle", "triangle"), center = FALSE,
-  horiz = FALSE, ...)
+get_nodes_xy(
+  dend,
+  type = c("rectangle", "triangle"),
+  center = FALSE,
+  horiz = FALSE,
+  ...
+)
 }
 \arguments{
 \item{dend}{a dendrogram object}
 
 \item{type}{type of plot.}
 
-\item{center}{logical; if TRUE, nodes are plotted centered with respect to the 
-leaves in the branch. Otherwise (default), 
+\item{center}{logical; if TRUE, nodes are plotted centered with respect to the
+leaves in the branch. Otherwise (default),
 plot them in the middle of all direct child nodes.}
 
 \item{horiz}{logical indicating if the dendrogram should be drawn horizontally or not.}
@@ -46,23 +51,28 @@ Get the x-y coordinates of a dendrogram's nodes. Can be used to add text or imag
 # Draw a depth first search illustration
 # -----
 
-dend <- 1:5 \%>\% dist \%>\% hclust \%>\% as.dendrogram
+dend <- 1:5 \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
 get_nodes_xy(dend)
 
 # polygon(get_nodes_xy(dend), col = 2)
-plot(dend, 
-     leaflab = "none",
-     main = "Depth-first search in a dendrogram")
+plot(dend,
+  leaflab = "none",
+  main = "Depth-first search in a dendrogram"
+)
 xy <- get_nodes_xy(dend)
-for(i in 1:(nrow(xy)-1)) {
-   arrows(xy[i,1], xy[i,2], angle = 17,
-          length = .5,
-          xy[i+1,1], xy[i+1,2], 
-          lty = 1, col = 3, lwd = 1.5)   
+for (i in 1:(nrow(xy) - 1)) {
+  arrows(xy[i, 1], xy[i, 2],
+    angle = 17,
+    length = .5,
+    xy[i + 1, 1], xy[i + 1, 2],
+    lty = 1, col = 3, lwd = 1.5
+  )
 }
 points(xy, pch = 19, cex = 4)
-text(xy, labels = 1:nnodes(dend),cex = 1.2, col = "white", adj = c(0.4,0.4))
-
+text(xy, labels = 1:nnodes(dend), cex = 1.2, col = "white", adj = c(0.4, 0.4))
 }
 }
 \seealso{

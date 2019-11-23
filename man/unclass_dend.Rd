@@ -19,21 +19,21 @@ unclass all the nodes in a dendrogram tree. (Helps in cases when a dendrapply fu
 }
 \examples{
 # define dendrogram object to play with:
-hc <- hclust(dist(USArrests[1:3,]), "ave")
+hc <- hclust(dist(USArrests[1:3, ]), "ave")
 dend <- as.dendrogram(hc)
 
 itself <- function(x) x
 dend <- dendrapply(dend, itself)
-unclass(dend) # this only returns a list with 
-            # two dendrogram objects inside it.
-str(dend) # this is a great way to show a dendrogram, 
-            # but it doesn't help us understand how the R object is built.
-str(unclass(dend)) # this is a great way to show a dendrogram, 
-            # but it doesn't help us understand how the R object is built.
+unclass(dend) # this only returns a list with
+# two dendrogram objects inside it.
+str(dend) # this is a great way to show a dendrogram,
+# but it doesn't help us understand how the R object is built.
+str(unclass(dend)) # this is a great way to show a dendrogram,
+# but it doesn't help us understand how the R object is built.
 unclass_dend(dend) # this only returns a list
-                     #  with two dendrogram objects inside it.
-str(unclass_dend(dend)) # NOW we can more easily understand 
-                        # how the dendrogram object is structured...
+#  with two dendrogram objects inside it.
+str(unclass_dend(dend)) # NOW we can more easily understand
+# how the dendrogram object is structured...
 }
 \seealso{
 \link{nleaves}

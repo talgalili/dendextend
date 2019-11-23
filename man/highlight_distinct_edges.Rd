@@ -8,8 +8,13 @@
 \usage{
 highlight_distinct_edges(dend, ...)
 
-\method{highlight_distinct_edges}{dendrogram}(dend, dend2, value = 2,
-  edgePar = c("col", "lty", "lwd"), ...)
+\method{highlight_distinct_edges}{dendrogram}(
+  dend,
+  dend2,
+  value = 2,
+  edgePar = c("col", "lty", "lwd"),
+  ...
+)
 
 \method{highlight_distinct_edges}{dendlist}(dend, ..., which = c(1L, 2L))
 }
@@ -25,8 +30,8 @@ highlight_distinct_edges(dend, ...)
 \item{edgePar}{a character indicating the value inside edgePar to adjust.
 Can be either "col", "lty", or "lwd".}
 
-\item{which}{an integer vector indicating, in the case "dend" is a dendlist, 
-on which of the trees should the modification be performed. 
+\item{which}{an integer vector indicating, in the case "dend" is a dendlist,
+on which of the trees should the modification be performed.
 If missing - the change will be performed on all of objects in the dendlist.}
 }
 \value{
@@ -40,30 +45,44 @@ This function enables this feature in \link{dend_diff} and \link{tanglegram}
 }
 \examples{
 
-x <- 1:5 \%>\% dist \%>\% hclust \%>\% as.dendrogram
+x <- 1:5 \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
 y <- set(x, "labels", 5:1)
 distinct_edges(x, y)
 distinct_edges(y, x)
 
-par(mfrow = c(1,2))
+par(mfrow = c(1, 2))
 plot(highlight_distinct_edges(x, y))
 plot(y)
 
 # tanglegram(highlight_distinct_edges(x, y),y)
 # dend_diff(x, y)
-
 \dontrun{
 
 # using  highlight_distinct_edges combined with dendlist and set
 # to clearly highlight "stable" branches.
-data(iris); ss <- c(1:5, 51:55, 101:105)
-iris1 <-iris[ss,-5] \%>\% dist \%>\% hclust(method = "single") \%>\% as.dendrogram 
-iris2 <- iris[ss,-5] \%>\% dist \%>\% hclust(method = "complete") \%>\% as.dendrogram
-iris12 <- dendlist(iris1, iris2) \%>\% set("branches_k_color",k=3) \%>\% 
-   set("branches_lwd", 3) \%>\%  highlight_distinct_edges(value = 1, edgePar = "lwd")
-iris12 \%>\% untangle(method = "step2side")  \%>\% 
-tanglegram(sub="Iris dataset", main_left = "'single' clustering", 
-				main_right = "'complete' clustering")
+data(iris)
+ss <- c(1:5, 51:55, 101:105)
+iris1 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust(method = "single") \%>\%
+  as.dendrogram()
+iris2 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust(method = "complete") \%>\%
+  as.dendrogram()
+iris12 <- dendlist(iris1, iris2) \%>\%
+  set("branches_k_color", k = 3) \%>\%
+  set("branches_lwd", 3) \%>\%
+  highlight_distinct_edges(value = 1, edgePar = "lwd")
+iris12 \%>\%
+  untangle(method = "step2side") \%>\%
+  tanglegram(
+    sub = "Iris dataset", main_left = "'single' clustering",
+    main_right = "'complete' clustering"
+  )
 }
 
 }

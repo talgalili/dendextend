@@ -16,20 +16,22 @@ A dendrogram, after fixing its leaves order values.
 }
 \description{
 Generally, leaves order value should be a sequence of integer values.
-From 1 to nleaves(dend). 
+From 1 to nleaves(dend).
 This function fixes trees by using \link{rank} on existing leaves order
 values.
 }
 \examples{
 
 # define dendrogram object to play with:
-dend <- USArrests[1:4,] \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
+dend <- USArrests[1:4, ] \%>\%
+  dist() \%>\%
+  hclust(method = "ave") \%>\%
+  as.dendrogram()
 # plot(dend)
 order.dendrogram(dend)
 dend2 <- prune(dend, "Alaska")
 order.dendrogram(dend2)
 order.dendrogram(rank_order.dendrogram(dend2))
-
 }
 \seealso{
 \link{prune}

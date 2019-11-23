@@ -34,11 +34,14 @@ to use the \link{cophenetic} distance.
 \examples{
 \dontrun{
 library(DendSer) # already used from within the function
-dend <- USArrests[1:4,] \%>\% dist \%>\% hclust("ave") \%>\% as.dendrogram
+
+dend <- USArrests[1:4, ] \%>\%
+  dist() \%>\%
+  hclust("ave") \%>\%
+  as.dendrogram()
 DendSer.dendrogram(dend)
 
 tanglegram(dend, rotate_DendSer(dend))
-
 }
 }
 \seealso{

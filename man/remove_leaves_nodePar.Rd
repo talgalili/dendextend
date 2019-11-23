@@ -21,18 +21,19 @@ Go through the dendrogram leaves and remove its nodePar.
 
 \dontrun{
 
-dend <- USArrests[1:5,] \%>\% dist \%>\% hclust \%>\% as.dendrogram
+dend <- USArrests[1:5, ] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
 
 dend <- color_labels(dend, 3)
-par(mfrow = c(1,2))
+par(mfrow = c(1, 2))
 plot(dend)
 plot(remove_leaves_nodePar(dend))
 
 
 get_leaves_attr(dend, "nodePar")
 get_leaves_attr(remove_leaves_nodePar(dend), "nodePar")
-
-
 }
 
 }

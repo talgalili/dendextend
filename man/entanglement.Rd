@@ -16,8 +16,13 @@ entanglement(dend1, ...)
 
 \method{entanglement}{dendlist}(dend1, which = c(1L, 2L), ...)
 
-\method{entanglement}{dendrogram}(dend1, dend2, L = 1.5,
-  leaves_matching_method = c("labels", "order"), ...)
+\method{entanglement}{dendrogram}(
+  dend1,
+  dend2,
+  L = 1.5,
+  leaves_matching_method = c("labels", "order"),
+  ...
+)
 }
 \arguments{
 \item{dend1}{a tree object (of class dendrogram/hclust/phylo).}
@@ -27,24 +32,24 @@ entanglement(dend1, ...)
 \item{dend2}{a tree object (of class dendrogram/hclust/phylo).}
 
 \item{which}{an integer vector of length 2, indicating
-which of the trees in a dendlist object should have 
+which of the trees in a dendlist object should have
 their entanglement calculated}
 
 \item{L}{the distance norm to use for measuring the distance between the
 two trees. It can be any positive number, often one will want to
  use 0, 1, 1.5, 2 (see 'details' for more).}
 
-\item{leaves_matching_method}{a character scalar, either "order" 
-or "labels" (default) . If using "labels", then we use the labels for 
+\item{leaves_matching_method}{a character scalar, either "order"
+or "labels" (default) . If using "labels", then we use the labels for
 matching the leaves order value (safer).
 
-And if "order" then we use the old leaves order value for matching the 
+And if "order" then we use the old leaves order value for matching the
 leaves order value.
 
-Using "order" is faster, but "labels" is safer. "order" will assume that 
+Using "order" is faster, but "labels" is safer. "order" will assume that
 the original two trees had their labels and order values MATCHED.
 
-Hence, it is best to make sure that the trees used here have the same labels 
+Hence, it is best to make sure that the trees used here have the same labels
 and the SAME values matched to these values - and then use "order" (for
 fastest results).}
 }
@@ -52,8 +57,8 @@ fastest results).}
 The number of leaves in the tree
 }
 \description{
-Measures the entanglement between two trees. 
-Entanglement is a measure between 1 (full entanglement) and 0 
+Measures the entanglement between two trees.
+Entanglement is a measure between 1 (full entanglement) and 0
 (no entanglement). The exact behavior of the number depends on the L norm
 which is chosen.
 }
@@ -66,34 +71,40 @@ of L). e.g: \code{sum(abs(x-y)^L)}.
 And this is devided by the "worst case" entanglement level (e.g:
 when the right tree is the complete reverse of the left tree).
 
-L tells us which panelty level we are at (L0, L1, L2, partial L's etc).  
-L>1 means that we give a big panelty for sharp angles.  
-While L->0 means that any time something is not a streight horizontal line, 
+L tells us which panelty level we are at (L0, L1, L2, partial L's etc).
+L>1 means that we give a big panelty for sharp angles.
+While L->0 means that any time something is not a streight horizontal line,
 it gets a large penalty
 If L=0.1 it means that we much prefer streight lines over non streight lines
 }
 \examples{
 
 \dontrun{
-dend1 <- iris[,-5] \%>\% dist \%>\% hclust("com") \%>\% as.dendrogram
-dend2 <- iris[,-5] \%>\% dist \%>\% hclust("sin") \%>\% as.dendrogram
+dend1 <- iris[, -5] \%>\%
+  dist() \%>\%
+  hclust("com") \%>\%
+  as.dendrogram()
+dend2 <- iris[, -5] \%>\%
+  dist() \%>\%
+  hclust("sin") \%>\%
+  as.dendrogram()
 dend12 <- dendlist(dend1, dend2)
 tanglegram(dend12)
 
 entanglement(dend12)
 entanglement(dend12, L = 0)
 entanglement(dend12, L = 0.25)
-entanglement(dend1,dend2, L = 0) # 1
-entanglement(dend1,dend2, L = 0.25) # 0.97
-entanglement(dend1,dend2, L = 1) # 0.93
-entanglement(dend1,dend2, L = 2) # 0.88
+entanglement(dend1, dend2, L = 0) # 1
+entanglement(dend1, dend2, L = 0.25) # 0.97
+entanglement(dend1, dend2, L = 1) # 0.93
+entanglement(dend1, dend2, L = 2) # 0.88
 
 # a somewhat better tanglegram
-tanglegram(sort(dend1),sort(dend2))
+tanglegram(sort(dend1), sort(dend2))
 # and alos a MUCH better entanglement
-entanglement(sort(dend1),sort(dend2), L=1.5) # 0.0811
+entanglement(sort(dend1), sort(dend2), L = 1.5) # 0.0811
 # but not that much, for L=0.25
-entanglement(sort(dend1),sort(dend2), L=.25) # 0.579
+entanglement(sort(dend1), sort(dend2), L = .25) # 0.579
 
 
 
@@ -101,20 +112,17 @@ entanglement(sort(dend1),sort(dend2), L=.25) # 0.579
 ##################
 ##################
 # massing up the order of leaves is dangerous:
-entanglement(dend1 , dend2, 1.5, "order") # 0.91
+entanglement(dend1, dend2, 1.5, "order") # 0.91
 order.dendrogram(dend2) <- seq_len(nleaves(dend2))
 # this 0.95 number is NO LONGER correct!!
-entanglement(dend1 , dend2, 1.5, "order") # 0.95
+entanglement(dend1, dend2, 1.5, "order") # 0.95
 # but if we use the "labels" method - we still get the correct number:
-entanglement(dend1 , dend2, 1.5, "labels") # 0.91
+entanglement(dend1, dend2, 1.5, "labels") # 0.91
 
 # however, we can fix our dend2, as follows:
 dend2 <- match_order_by_labels(dend2, dend1)
 # Now that labels and order are matched - entanglement is back at working fine:
-entanglement(dend1 , dend2, 1.5, "order") # 0.91
-
-
-
+entanglement(dend1, dend2, 1.5, "order") # 0.91
 }
 }
 \seealso{

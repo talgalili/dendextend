@@ -12,10 +12,10 @@ order.hclust(x, ...)
 \item{...}{Ignored.}
 }
 \value{
-A vector with length equal to the number of 
-leaves in the hclust dendrogram is returned. 
-From r <- order.hclust(), each element is 
-the index into the original data 
+A vector with length equal to the number of
+leaves in the hclust dendrogram is returned.
+From r <- order.hclust(), each element is
+the index into the original data
 (from which the hclust was computed).
 }
 \description{
@@ -24,11 +24,12 @@ Ordering of the Leaves in a hclust Dendrogram. Like \link{order.dendrogram}.
 \examples{
 
 set.seed(23235)
-ss <- sample(1:150, 10 )
-hc <- iris[ss,-5] \%>\% dist \%>\% hclust
+ss <- sample(1:150, 10)
+hc <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust()
 # dend <- hc \%>\% as.dendrogram
 order.hclust(hc)
-
 }
 \seealso{
 \link{order.dendrogram}

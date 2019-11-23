@@ -4,7 +4,7 @@
 \alias{theme_dendro}
 \title{Creates completely blank theme in ggplot}
 \source{
-This function is from Andrie de Vries's ggdendro package. 
+This function is from Andrie de Vries's ggdendro package.
 
 The motivation for this fork is the need to add more graphical parameters to the plotted tree.
 This required a strong mixter of functions from ggdendro and dendextend (to the point that

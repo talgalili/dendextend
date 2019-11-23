@@ -11,11 +11,11 @@ has_component_in_attribute(dend, component, the_attrib = "edgePar", ...)
 \arguments{
 \item{dend}{a \link{dendrogram} object.}
 
-\item{component}{a character value to be checked if exists in the tree. For edgePar the list: "col", "lty" and "lwd" (for the segments), 
+\item{component}{a character value to be checked if exists in the tree. For edgePar the list: "col", "lty" and "lwd" (for the segments),
 "p.col", "p.lwd", and "p.lty" (for the polygon around the text) and "t.col" for the text color.
 For edgePar "pch", "cex", "col", "xpd", and/or "bg".}
 
-\item{the_attrib}{A character of the attribute for which to check the existence of the component. 
+\item{the_attrib}{A character of the attribute for which to check the existence of the component.
 Often either "edgePar" or "nodePar".}
 
 \item{...}{ignored}
@@ -29,19 +29,31 @@ Does a dendrogram has an edgePar/nodePar component?
 }
 \examples{
 
-dat <- iris[1:20,-5]
+dat <- iris[1:20, -5]
 hca <- hclust(dist(dat))
 hca2 <- hclust(dist(dat), method = "single")
 dend <- as.dendrogram(hca)
 dend2 <- as.dendrogram(hca2)
 
-dend \%>\% set("branches_lwd", 2) \%>\% set("branches_lty", 2) \%>\% plot
-dend \%>\% set("branches_lwd", 2) \%>\% set("branches_lty", 2) \%>\% has_edgePar("lty")
-dend \%>\% set("branches_lwd", 2) \%>\% has_edgePar("lty")
-dend \%>\% set("branches_lwd", 2) \%>\% has_edgePar("lwd")
+dend \%>\%
+  set("branches_lwd", 2) \%>\%
+  set("branches_lty", 2) \%>\%
+  plot()
+dend \%>\%
+  set("branches_lwd", 2) \%>\%
+  set("branches_lty", 2) \%>\%
+  has_edgePar("lty")
+dend \%>\%
+  set("branches_lwd", 2) \%>\%
+  has_edgePar("lty")
+dend \%>\%
+  set("branches_lwd", 2) \%>\%
+  has_edgePar("lwd")
 
-dend \%>\% set("branches_lwd", 2) \%>\% set("clear_branches") \%>\% has_edgePar("lwd")
-
+dend \%>\%
+  set("branches_lwd", 2) \%>\%
+  set("clear_branches") \%>\%
+  has_edgePar("lwd")
 }
 \seealso{
 \link{get_nodes_attr}, \link{set}

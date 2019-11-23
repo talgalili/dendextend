@@ -14,9 +14,16 @@ cutree(tree, k = NULL, h = NULL, ...)
 
 \method{cutree}{default}(tree, k = NULL, h = NULL, ...)
 
-\method{cutree}{hclust}(tree, k = NULL, h = NULL,
-  use_labels_not_values = TRUE, order_clusters_as_data = TRUE,
-  warn = dendextend_options("warn"), NA_to_0L = TRUE, ...)
+\method{cutree}{hclust}(
+  tree,
+  k = NULL,
+  h = NULL,
+  use_labels_not_values = TRUE,
+  order_clusters_as_data = TRUE,
+  warn = dendextend_options("warn"),
+  NA_to_0L = TRUE,
+  ...
+)
 
 \method{cutree}{phylo}(tree, k = NULL, h = NULL, ...)
 
@@ -26,10 +33,18 @@ cutree(tree, k = NULL, h = NULL, ...)
 
 \method{cutree}{diana}(tree, k = NULL, h = NULL, ...)
 
-\method{cutree}{dendrogram}(tree, k = NULL, h = NULL,
-  dend_heights_per_k = NULL, use_labels_not_values = TRUE,
-  order_clusters_as_data = TRUE, warn = dendextend_options("warn"),
-  try_cutree_hclust = TRUE, NA_to_0L = TRUE, ...)
+\method{cutree}{dendrogram}(
+  tree,
+  k = NULL,
+  h = NULL,
+  dend_heights_per_k = NULL,
+  use_labels_not_values = TRUE,
+  order_clusters_as_data = TRUE,
+  warn = dendextend_options("warn"),
+  try_cutree_hclust = TRUE,
+  NA_to_0L = TRUE,
+  ...
+)
 }
 \arguments{
 \item{tree}{a dendrogram object}
@@ -37,18 +52,18 @@ cutree(tree, k = NULL, h = NULL, ...)
 \item{k}{numeric scalar (OR a vector) with the number of clusters
 the tree should be cut into.}
 
-\item{h}{numeric scalar (OR a vector) with a height where the tree 
+\item{h}{numeric scalar (OR a vector) with a height where the tree
 should be cut.}
 
 \item{...}{(not currently in use)}
 
-\item{use_labels_not_values}{logical, defaults to TRUE. If the actual labels of the 
-clusters do not matter - and we want to gain speed (say, 10 times faster) - 
+\item{use_labels_not_values}{logical, defaults to TRUE. If the actual labels of the
+clusters do not matter - and we want to gain speed (say, 10 times faster) -
 then use FALSE (gives the "leaves order" instead of their labels.).
 This is passed to \code{cutree_1h.dendrogram}.}
 
-\item{order_clusters_as_data}{logical, defaults to TRUE. There are two ways by which 
-to order the clusters: 1) By the order of the original data. 2) by the order of the 
+\item{order_clusters_as_data}{logical, defaults to TRUE. There are two ways by which
+to order the clusters: 1) By the order of the original data. 2) by the order of the
 labels in the dendrogram. In order to be consistent with \link[stats]{cutree}, this is set
 to TRUE.
 This is passed to \code{cutree_1h.dendrogram}.}
@@ -65,112 +80,111 @@ Should the function return 0 (TRUE, default), or NA (when set to FALSE).}
 \code{heights_per_k.dendrogram}. When running the function many times,
 supplying this object will help improve the running time if using k!=NULL .}
 
-\item{try_cutree_hclust}{logical. default is TRUE. Since cutree for hclust is 
-MUCH faster than for dendrogram - cutree.dendrogram will first try to change the 
+\item{try_cutree_hclust}{logical. default is TRUE. Since cutree for hclust is
+MUCH faster than for dendrogram - cutree.dendrogram will first try to change the
 dendrogram into an hclust object. If it will fail (for example, with unbranched trees),
 it will continue using the cutree.dendrogram function.
 If try_cutree_hclust=FALSE, it will force to use cutree.dendrogram and not
 cutree.hclust.}
 }
 \value{
-If k or h are scalar - \code{cutree.dendrogram} returns an integer vector with group 
+If k or h are scalar - \code{cutree.dendrogram} returns an integer vector with group
 memberships.
-Otherwise a matrix with group memberships is returned where each column 
-corresponds to the elements of k or h, respectively 
+Otherwise a matrix with group memberships is returned where each column
+corresponds to the elements of k or h, respectively
 (which are also used as column names).
 
-In case there exists no such k for which exists a relevant split of the 
+In case there exists no such k for which exists a relevant split of the
 dendrogram, a warning is issued to the user, and NA is returned.
 }
 \description{
-Cuts a dendrogram tree into several groups 
+Cuts a dendrogram tree into several groups
 by specifying the desired number of clusters k(s), or cut height(s).
 
-For \code{hclust.dendrogram} - 
-In case there exists no such k for which exists a relevant split of the 
+For \code{hclust.dendrogram} -
+In case there exists no such k for which exists a relevant split of the
 dendrogram, a warning is issued to the user, and NA is returned.
 }
 \details{
 At least one of k or h must be specified, k overrides h if both are given.
 
 as opposed to \link[stats]{cutree} for hclust, \code{cutree.dendrogram} allows the
-cutting of trees at a given height also for non-ultrametric trees 
+cutting of trees at a given height also for non-ultrametric trees
 (ultrametric tree == a tree with monotone clustering heights).
 }
 \examples{
 
 \dontrun{
-hc <- hclust(dist(USArrests[c(1,6,13,20, 23),]), "ave")
+hc <- hclust(dist(USArrests[c(1, 6, 13, 20, 23), ]), "ave")
 dend <- as.dendrogram(hc)
-unbranch_dend <- unbranch(dend,2)
+unbranch_dend <- unbranch(dend, 2)
 
-cutree(hc, k=2:4) # on hclust
-cutree(dend, k=2:4) # on dendrogram
+cutree(hc, k = 2:4) # on hclust
+cutree(dend, k = 2:4) # on dendrogram
 
-cutree(hc, k=2) # on hclust
-cutree(dend, k=2) # on dendrogram
+cutree(hc, k = 2) # on hclust
+cutree(dend, k = 2) # on dendrogram
 
-cutree(dend, h = c(20, 25.5, 50,170))
-cutree(hc, h = c(20, 25.5, 50,170))
+cutree(dend, h = c(20, 25.5, 50, 170))
+cutree(hc, h = c(20, 25.5, 50, 170))
 
 # the default (ordered by original data's order)
-cutree(dend, k=2:3, order_clusters_as_data = FALSE) 
+cutree(dend, k = 2:3, order_clusters_as_data = FALSE)
 labels(dend)
 
 # as.hclust(unbranch_dend) # ERROR - can not do this...
 cutree(unbranch_dend, k = 2) # all NA's
 cutree(unbranch_dend, k = 1:4)
-cutree(unbranch_dend, h = c(20, 25.5, 50,170))
-cutree(dend, h = c(20, 25.5, 50,170))
+cutree(unbranch_dend, h = c(20, 25.5, 50, 170))
+cutree(dend, h = c(20, 25.5, 50, 170))
 
 
 library(microbenchmark)
 ## this shows how as.hclust is expensive - but still worth it if possible
 microbenchmark(
-      cutree(hc, k=2:4),
-      cutree(as.hclust(dend), k=2:4),
-      cutree(dend, k=2:4),
-      cutree(dend, k=2:4, try_cutree_hclust=FALSE)
-   )          
-         # the dendrogram is MUCH slower...
-         
+  cutree(hc, k = 2:4),
+  cutree(as.hclust(dend), k = 2:4),
+  cutree(dend, k = 2:4),
+  cutree(dend, k = 2:4, try_cutree_hclust = FALSE)
+)
+# the dendrogram is MUCH slower...
+
 # Unit: microseconds
 ##                       expr      min       lq    median        uq       max neval
 ##        cutree(hc, k = 2:4)   91.270   96.589   99.3885  107.5075   338.758   100
-##    tree(as.hclust(dend), 
-##			  k = 2:4)           1701.629 1767.700 1854.4895 2029.1875  8736.591   100
+##    tree(as.hclust(dend),
+## 			  k = 2:4)           1701.629 1767.700 1854.4895 2029.1875  8736.591   100
 ##      cutree(dend, k = 2:4) 1807.456 1869.887 1963.3960 2125.2155  5579.705   100
-##  cutree(dend, k = 2:4, 
-##	try_cutree_hclust = FALSE) 8393.914 8570.852 8755.3490 9686.7930 14194.790   100
-         
-# and trying to "hclust" is not expensive (which is nice...)         
+##  cutree(dend, k = 2:4,
+## 	try_cutree_hclust = FALSE) 8393.914 8570.852 8755.3490 9686.7930 14194.790   100
+
+# and trying to "hclust" is not expensive (which is nice...)
 microbenchmark(
-  cutree_unbranch_dend = cutree(unbranch_dend, k=2:4),
-  cutree_unbranch_dend_not_trying_to_hclust = 
-  cutree(unbranch_dend, k=2:4, try_cutree_hclust=FALSE)
+  cutree_unbranch_dend = cutree(unbranch_dend, k = 2:4),
+  cutree_unbranch_dend_not_trying_to_hclust =
+    cutree(unbranch_dend, k = 2:4, try_cutree_hclust = FALSE)
 )
-         
- 
+
+
 ## Unit: milliseconds
 ##                   expr      min       lq   median       uq      max neval
-##cutree_unbranch_dend       7.309329 7.428314 7.494107 7.752234 17.59581   100
-##cutree_unbranch_dend_not
-##_trying_to_hclust        6.945375 7.079198 7.148629 7.577536 16.99780   100
-##There were 50 or more warnings (use warnings() to see the first 50)        
-                 
+## cutree_unbranch_dend       7.309329 7.428314 7.494107 7.752234 17.59581   100
+## cutree_unbranch_dend_not
+## _trying_to_hclust        6.945375 7.079198 7.148629 7.577536 16.99780   100
+## There were 50 or more warnings (use warnings() to see the first 50)
+
 # notice that if cutree can't find clusters for the desired k/h, it will produce 0's instead!
 # (It will produce a warning though...)
-# This is a different behaviout than stats::cutree                        
+# This is a different behaviout than stats::cutree
 # For example:
-cutree(as.dendrogram(hclust(dist(c(1,1,1,2,2)))),
-      k=5)
-                                         
+cutree(as.dendrogram(hclust(dist(c(1, 1, 1, 2, 2)))),
+  k = 5
+)
 }
-
 
 }
 \seealso{
-\code{\link{hclust}}, \code{\link[stats]{cutree}}, 
+\code{\link{hclust}}, \code{\link[stats]{cutree}},
 \code{\link{cutree_1h.dendrogram}}, \code{\link{cutree_1k.dendrogram}},
 }
 \author{

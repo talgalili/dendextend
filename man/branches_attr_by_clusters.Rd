@@ -4,8 +4,14 @@
 \alias{branches_attr_by_clusters}
 \title{Change col/lwd/lty of branches based on clusters}
 \usage{
-branches_attr_by_clusters(dend, clusters, values, attr = c("col", "lwd",
-  "lty"), branches_changed_have_which_labels = c("any", "all"), ...)
+branches_attr_by_clusters(
+  dend,
+  clusters,
+  values,
+  attr = c("col", "lwd", "lty"),
+  branches_changed_have_which_labels = c("any", "all"),
+  ...
+)
 }
 \arguments{
 \item{dend}{a dendrogram dend}
@@ -47,7 +53,7 @@ And the function returns a dendrogram with branches col/lwd/lty accordingly.
 \details{
 This is probably NOT a very fast implementation of the function, but it works.
 
-This function was designed to enable the manipulation (mainly coloring) of 
+This function was designed to enable the manipulation (mainly coloring) of
 branches, based on the results from the \link[dynamicTreeCut]{cutreeDynamic}
 function.
 }
@@ -56,18 +62,22 @@ function.
 \dontrun{
 
 ### Getting the hc object
-iris_dist <- iris[,-5] \%>\% dist
-hc <-  iris_dist \%>\% hclust 
+iris_dist <- iris[, -5] \%>\% dist()
+hc <- iris_dist \%>\% hclust()
 # This is how it looks without any colors:
 dend <- as.dendrogram(hc)
 plot(dend)
 
 # Both functions give the same outcome
 # options 1:
-dend \%>\% set("branches_k_color", k = 4) \%>\% plot
+dend \%>\%
+  set("branches_k_color", k = 4) \%>\%
+  plot()
 # options 2:
 clusters <- cutree(dend, 4)[order.dendrogram(dend)]
-dend \%>\% branches_attr_by_clusters(clusters) \%>\% plot
+dend \%>\%
+  branches_attr_by_clusters(clusters) \%>\%
+  plot()
 
 # and the second option is much slower:
 system.time(set(dend, "branches_k_color", k = 4)) # 0.26 sec
@@ -88,8 +98,8 @@ clusters <- clusters[order.dendrogram(dend)]
 library(dendextendRcpp)
 library(colorspace)
 no0_unique <- function(x) {
-   u_x <- unique(x)   
-   u_x[u_x != 0]
+  u_x <- unique(x)
+  u_x[u_x != 0]
 }
 
 clusters_numbers <- no0_unique(clusters)
@@ -100,23 +110,23 @@ dend2 <- branches_attr_by_clusters(dend, clusters, values = cols)
 plot(dend2)
 # add colored bars:
 ord_cols <- rainbow_hcl(n_clusters)[order(clusters_numbers)]
-tmp_cols  <- rep(1, length(clusters))
+tmp_cols <- rep(1, length(clusters))
 tmp_cols[clusters != 0] <- ord_cols[clusters != 0][clusters]
 colored_bars(tmp_cols, y_shift = -1.1, rowLabels = "")
 # all of the ordering is to handle the fact that the cluster numbers are not ascending...
 
 # How is this compared with the usual cutree?
 dend3 <- color_branches(dend, k = n_clusters)
-labels(dend2) <- as.character(labels(dend2)) 
+labels(dend2) <- as.character(labels(dend2))
 # this needs fixing, since the labels are not character!
 # Well, both cluster solutions are not perfect, but at least they are interesting...
- tanglegram(dend2, dend3, 
-            main_left = "cutreeDynamic", main_right = "cutree",
-            columns_width = c(5,.5,5), 
-            color_lines = cols[iris[order.dendrogram(dend2),5]])
+tanglegram(dend2, dend3,
+  main_left = "cutreeDynamic", main_right = "cutree",
+  columns_width = c(5, .5, 5),
+  color_lines = cols[iris[order.dendrogram(dend2), 5]]
+)
 # (Notice how the color_lines is of the true Species of each Iris)
 # The main difference is at the bottom,
-
 }
 }
 \seealso{

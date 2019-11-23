@@ -17,30 +17,47 @@ dist.dendlist(dend, method = c("edgeset"), ...)
 A \link{dist} object with topological distances between all trees
 }
 \description{
-Topological Distances Between Two dendrograms
+This function seems to bring different results than ape - 
+checking this out is still an open issue: \href{https://github.com/talgalili/dendextend/issues/97}{github issue}
+
+This function computes the \href{https://en.wikipedia.org/wiki/Robinson–Foulds_metric}{Robinson-Foulds distance} 
+(also known as symmetric difference)
+between two dendrograms. This is the number of edges (branches) in tree_1
+with a combination of labels that exist in
+it but not in any subtree of tree2,
+plus the same calculation of tree2 when compared to tree1.
+This is the sum of length of \link{distinct_edges}(x,y) with
+\link{distinct_edges}(y,x).
+
+This function might implement other topological distances in the future.
 }
 \examples{
 
-x <- 1:5 \%>\% dist \%>\% hclust \%>\% as.dendrogram
+x <- 1:5 \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
 y <- set(x, "labels", 5:1)
 
-dist.dendlist(dendlist(x1 = x,x2 = x,y1 = y))
-dend_diff(x,y)
+dist.dendlist(dendlist(x1 = x, x2 = x, y1 = y))
+dend_diff(x, y)
 
 # Larger trees
-x <- 1:6 \%>\% dist \%>\% hclust \%>\% as.dendrogram
-y <- set(x, "labels", c(1:3,6,4,5))
+x <- 1:6 \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
+y <- set(x, "labels", c(1:3, 6, 4, 5))
 
-dend_diff(x,y)
-dist.dendlist(dendlist(x,y))
-distinct_edges(x,y)
-distinct_edges(y,x)
-length(distinct_edges(x,y))+length(distinct_edges(y,x)) # dist.dendlist
-
+dend_diff(x, y)
+dist.dendlist(dendlist(x, y))
+distinct_edges(x, y)
+distinct_edges(y, x)
+length(distinct_edges(x, y)) + length(distinct_edges(y, x)) # dist.dendlist
 }
 \seealso{
-\link{distinct_edges}, 
-\link[ape]{dist.topo}, 
-\link[distory]{dist.multiPhylo}, 
+\link{distinct_edges},
+\link[ape]{dist.topo},
+\link[distory]{dist.multiPhylo},
 \link[phangorn]{treedist},
 }

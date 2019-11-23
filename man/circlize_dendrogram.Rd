@@ -8,9 +8,14 @@ This code is based on the work of Zuguang Gu. If you use the function, please ci
 dendextend (see: \code{citation("dendextend")}), as well as the circlize package (see: \code{citation("circlize")}).
 }
 \usage{
-circlize_dendrogram(dend, facing = c("outside", "inside"),
-  labels = TRUE, labels_track_height = 0.1, dend_track_height = 0.5,
-  ...)
+circlize_dendrogram(
+  dend,
+  facing = c("outside", "inside"),
+  labels = TRUE,
+  labels_track_height = 0.1,
+  dend_track_height = 0.5,
+  ...
+)
 }
 \arguments{
 \item{dend}{a \link{dendrogram} object}
@@ -20,9 +25,9 @@ circlize_dendrogram(dend, facing = c("outside", "inside"),
 \item{labels}{logical (TRUE) - should the labels be plotted as well.}
 
 \item{labels_track_height}{a value for adjusting the room for the labels.
-It is 0.2 by default, but if NULL or NA, it will adjust automatically based on 
+It is 0.2 by default, but if NULL or NA, it will adjust automatically based on
 the max width of the labels. However, if this is too long, the plot will give an error:
-      Error in check.track.position(track.index, track.start, track.height) : 
+      Error in check.track.position(track.index, track.start, track.height) :
       not enough space for cells at track index '2'.}
 
 \item{dend_track_height}{a value for adjusting the room for the dendrogram.}
@@ -46,12 +51,18 @@ in the tree just by adding more tracks using \link[circlize]{circos.track}.
 
 \dontrun{
 
-dend <- iris[1:40,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram \%>\%
-   set("branches_k_color", k=3) \%>\% set("branches_lwd", c(5,2,1.5)) \%>\%
-   set("branches_lty", c(1,1,3,1,1,2)) \%>\%
-   set("labels_colors") \%>\% set("labels_cex", c(.9,1.2)) \%>\%
-   set("nodes_pch", 19) \%>\% set("nodes_col", c("orange", "black", "plum", NA))
-   
+dend <- iris[1:40, -5] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram() \%>\%
+  set("branches_k_color", k = 3) \%>\%
+  set("branches_lwd", c(5, 2, 1.5)) \%>\%
+  set("branches_lty", c(1, 1, 3, 1, 1, 2)) \%>\%
+  set("labels_colors") \%>\%
+  set("labels_cex", c(.9, 1.2)) \%>\%
+  set("nodes_pch", 19) \%>\%
+  set("nodes_col", c("orange", "black", "plum", NA))
+
 circlize_dendrogram(dend)
 circlize_dendrogram(dend, labels = FALSE)
 circlize_dendrogram(dend, facing = "inside", labels = FALSE)
@@ -60,20 +71,19 @@ circlize_dendrogram(dend, facing = "inside", labels = FALSE)
 # In the following we get the dendrogram but can also get extra information on top of it
 circos.initialize("foo", xlim = c(0, 40))
 circos.track(ylim = c(0, 1), panel.fun = function(x, y) {
-   circos.rect(1:40-0.8, rep(0, 40), 1:40-0.2, runif(40), col = rand_color(40), border = NA)
+  circos.rect(1:40 - 0.8, rep(0, 40), 1:40 - 0.2, runif(40), col = rand_color(40), border = NA)
 }, bg.border = NA)
 circos.track(ylim = c(0, 1), panel.fun = function(x, y) {
-   circos.text(1:40-0.5, rep(0, 40), labels(dend), col = labels_colors(dend),
-               facing = "clockwise", niceFacing = TRUE, adj = c(0, 0.5))
+  circos.text(1:40 - 0.5, rep(0, 40), labels(dend),
+    col = labels_colors(dend),
+    facing = "clockwise", niceFacing = TRUE, adj = c(0, 0.5)
+  )
 }, bg.border = NA, track.height = 0.1)
-max_height = attr(dend, "height")
+max_height <- attr(dend, "height")
 circos.track(ylim = c(0, max_height), panel.fun = function(x, y) {
-   circos.dendrogram(dend, max_height = max_height)
+  circos.dendrogram(dend, max_height = max_height)
 }, track.height = 0.5, bg.border = NA)
 circos.clear()
-
-
-
 }
 }
 \seealso{

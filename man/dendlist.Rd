@@ -29,7 +29,7 @@ is a dendrogram
 \description{
 It accepts several dendrograms and or dendlist objects
 and chain them all together.
-This function aim to help with the usability of 
+This function aim to help with the usability of
 comparing two or more dendrograms.
 }
 \details{
@@ -40,26 +40,39 @@ If ... is missing, it returns an empty dendlist.
 
 \dontrun{
 
-dend <- iris[,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram
-dend2 <- iris[,-5] \%>\% dist \%>\% hclust(method = "single") \%>\% as.dendrogram
-dendlist(1:4, 5, a=dend) # Error
+dend <- iris[, -5] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
+dend2 <- iris[, -5] \%>\%
+  dist() \%>\%
+  hclust(method = "single") \%>\%
+  as.dendrogram()
+dendlist(1:4, 5, a = dend) # Error
 # dendlist <- function (...) list(...)
 dendlist(dend)
 dendlist(dend, dend)
 dendlist(dend, dend, dendlist(dend))
-#  notice how the order of 
+#  notice how the order of
 dendlist(dend, dend2)
 dendlist(dend) \%>\% dendlist(dend2)
-dendlist(dend) \%>\% dendlist(dend2) \%>\% dendlist(dend)
-dendlist(dend, dend2) \%>\% tanglegram
+dendlist(dend) \%>\%
+  dendlist(dend2) \%>\%
+  dendlist(dend)
+dendlist(dend, dend2) \%>\% tanglegram()
 tanglegram(tree1 = dendlist(dend, dend2))
 
-dend <- iris[1:20, -5] \%>\% dist \%>\% hclust \%>\% as.dendrogram
-dend2 <- iris[1:20, -5] \%>\% dist \%>\% hclust(method = "single") \%>\% as.dendrogram
+dend <- iris[1:20, -5] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
+dend2 <- iris[1:20, -5] \%>\%
+  dist() \%>\%
+  hclust(method = "single") \%>\%
+  as.dendrogram()
 
 x <- dendlist(dend, dend2)
 plot(x)
-
 }
 
 }

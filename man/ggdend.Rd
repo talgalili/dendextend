@@ -10,7 +10,7 @@
 \alias{print.ggdend}
 \title{Creates dendrogram plot using ggplot.}
 \source{
-These are extended versions of the functions \link[ggdendro]{ggdendrogram}, \link[ggdendro]{dendro_data} (and the hidden dendrogram_data) 
+These are extended versions of the functions \link[ggdendro]{ggdendrogram}, \link[ggdendro]{dendro_data} (and the hidden dendrogram_data)
 from Andrie de Vries's ggdendro package. The motivation for this fork is the need to add more graphical parameters
 to the plotted tree. This required a strong mixter of functions from ggdendro and dendextend (to the point that
 it seemed better to just fork the code into its current form)
@@ -20,14 +20,21 @@ ggdend(...)
 
 as.ggdend(dend, ...)
 
-\method{as.ggdend}{dendrogram}(dend, type = c("rectangle", "triangle"),
-  edge.root = FALSE, ...)
+\method{as.ggdend}{dendrogram}(dend, type = c("rectangle", "triangle"), edge.root = FALSE, ...)
 
 prepare.ggdend(data, ...)
 
-\method{ggplot}{ggdend}(data, segments = TRUE, labels = TRUE,
-  nodes = TRUE, horiz = FALSE, theme = theme_dendro(),
-  offset_labels = 0, na.rm = TRUE, ...)
+\method{ggplot}{ggdend}(
+  data,
+  segments = TRUE,
+  labels = TRUE,
+  nodes = TRUE,
+  horiz = FALSE,
+  theme = theme_dendro(),
+  offset_labels = 0,
+  na.rm = TRUE,
+  ...
+)
 
 \method{ggplot}{dendrogram}(data, ...)
 
@@ -58,7 +65,7 @@ for the default ggplot2 theme)}
 
 \item{offset_labels}{a numeric value to offset the labels from the leaves}
 
-\item{na.rm}{A logical (TRUE) to control removal of missing values. Passed to 
+\item{na.rm}{A logical (TRUE) to control removal of missing values. Passed to
 \link[ggplot2]{geom_line} and \link[ggplot2]{geom_point}}
 }
 \value{
@@ -74,19 +81,19 @@ can be used by ggplot2+geom_segment+geom_text to create a dendrogram plot.}
 Several functions for creating a dendrogram plot using ggplot2.
 The core process is to transform a dendrogram into a ggdend object using as.ggdend,
 and then plot it using ggplot. These two steps can be done in one command with either the function
-ggplot or ggdend. 
+ggplot or ggdend.
 
-The reason we want to have as.ggdend (and not only ggplot.dendrogram), is (1) so that you could 
-create your own mapping of ggdend and, (2) since as.ggdend might be slow for large trees, 
+The reason we want to have as.ggdend (and not only ggplot.dendrogram), is (1) so that you could
+create your own mapping of ggdend and, (2) since as.ggdend might be slow for large trees,
 it is probably better to be able to run it only once for such cases.
 
-A ggdend class object is a list with 3 componants: segments, labels, nodes. 
+A ggdend class object is a list with 3 componants: segments, labels, nodes.
 Each one contains the graphical parameters from the original dendrogram, but in a tabular form that
 can be used by ggplot2+geom_segment+geom_text to create a dendrogram plot.
 }
 \details{
 \code{prepare.ggdend} is used by \code{plot.ggdend} to take the \code{ggdend} object
-and prepare it for plotting. This is because the defaults of various parameters in \link{dendrogram}'s 
+and prepare it for plotting. This is because the defaults of various parameters in \link{dendrogram}'s
 are not always stored in the object itself, but are built-in into the \link{plot.dendrogram} function.
 For example, the color of the labels is not (by default) specified in the dendrogram (only if we change it
 from black to something else). Hence, when taking the object into a different plotting engine (say ggplot2), we
@@ -101,11 +108,16 @@ it only if you'd wish to build your own ggplot2 mapping.
 library(dendextend)
 # library(ggdendro)
 # Create a complex dend:
-dend <- iris[1:30,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram \%>\% 
-   set("branches_k_color", k=3) \%>\% set("branches_lwd", c(1.5,1,1.5)) \%>\% 
-   set("branches_lty", c(1,1,3,1,1,2)) \%>\%  
-   set("labels_colors") \%>\% set("labels_cex", c(.9,1.2)) 
-# plot the dend in usual "base" plotting engine:   
+dend <- iris[1:30, -5] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram() \%>\%
+  set("branches_k_color", k = 3) \%>\%
+  set("branches_lwd", c(1.5, 1, 1.5)) \%>\%
+  set("branches_lty", c(1, 1, 3, 1, 1, 2)) \%>\%
+  set("labels_colors") \%>\%
+  set("labels_cex", c(.9, 1.2))
+# plot the dend in usual "base" plotting engine:
 plot(dend)
 # Now let's do it in ggplot2 :)
 ggd1 <- as.ggdend(dend)
@@ -116,15 +128,15 @@ ggplot(ggd1) # reproducing the above plot in ggplot2 :)
 labels(dend) <- paste0(labels(dend), "00000")
 ggd1 <- as.ggdend(dend)
 # Use ylim to deal with long labels in ggplot2
-ggplot(ggd1) + ylim(-.4, max(get_branches_heights(dend)) )
+ggplot(ggd1) + ylim(-.4, max(get_branches_heights(dend)))
 
 
 ggplot(ggd1, horiz = TRUE) # horiz plot in ggplot2
 # Adding some extra spice to it...
 # creating a radial plot:
-ggplot(ggd1) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x") 
+ggplot(ggd1) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta = "x")
 # The text doesn't look so great, so let's remove it:
-ggplot(ggd1, labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta="x") 
+ggplot(ggd1, labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta = "x")
 
 # This can now be sent to plot.ly - which adds zoom-in abilities, and more.
 # Here is how it might look like: https://plot.ly/~talgalili/6/y-vs-x/
@@ -134,7 +146,7 @@ ggplot(ggd1, labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar
 # library("devtools")
 # devtools::install_github("ropensci/plotly")
 # library(plotly)
-# set_credentials_file(...) 
+# set_credentials_file(...)
 # you'll need to get it from here: https://plot.ly/ggplot2/getting-started/
 
 # ggplot(ggd1)
@@ -144,11 +156,10 @@ ggplot(ggd1, labels = FALSE) + scale_y_reverse(expand = c(0.2, 0)) + coord_polar
 # And you'll get something like this: https://plot.ly/~talgalili/6/y-vs-x/
 
 # Another example: https://plot.ly/ggplot2/
-
 }
 }
 \seealso{
-\link{dendrogram}, \link{get_nodes_attr}, \link{get_leaves_nodePar}, 
+\link{dendrogram}, \link{get_nodes_attr}, \link{get_leaves_nodePar},
 \link[ggplot2]{ggplot},
 \link[ggdendro]{ggdendrogram}, \link[ggdendro]{dendro_data},
 }

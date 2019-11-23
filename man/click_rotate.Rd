@@ -10,8 +10,14 @@ click_rotate(x, ...)
 
 \method{click_rotate}{default}(x, ...)
 
-\method{click_rotate}{dendrogram}(x, plot = TRUE, plot_after = plot,
-  horiz = FALSE, continue = FALSE, ...)
+\method{click_rotate}{dendrogram}(
+  x,
+  plot = TRUE,
+  plot_after = plot,
+  horiz = FALSE,
+  continue = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{a tree object (either a \code{dendrogram} or \code{hclust})}
@@ -39,15 +45,17 @@ Code for mouse selection of (sub-)cluster to be rotated
 }
 \examples{
 # create the dend:
-dend <- USArrests \%>\% dist \%>\% hclust("ave") \%>\%  
-as.dendrogram \%>\% color_labels
-
+dend <- USArrests \%>\%
+  dist() \%>\%
+  hclust("ave") \%>\%
+  as.dendrogram() \%>\%
+  color_labels()
 \dontrun{
 # play with the rotation once
 dend <- click_rotate(dend)
 dend <- click_rotate(dend, horiz = TRUE)
 # keep playing with the rotation:
-while(TRUE) dend <- click_rotate(dend)
+while (TRUE) dend <- click_rotate(dend)
 # the same as
 dend <- click_rotate(dend, continue = TRUE)
 }

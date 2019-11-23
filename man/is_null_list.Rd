@@ -37,6 +37,6 @@ x
 
 \dontrun{
 # error
-is_null_list() 
+is_null_list()
 }
 }

@@ -27,12 +27,16 @@ vector of length \code{nleaves(dend)}
 
 \dontrun{
 # define dendrogram object to play with:
-dend <- iris[,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram \%>\%  
-      set("labels_to_character") \%>\% color_branches(k=5)
+dend <- iris[, -5] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram() \%>\%
+  set("labels_to_character") \%>\%
+  color_branches(k = 5)
 first.subdend.only <- cutree(dend, 4) == 1
 sub.dend <- find_dendrogram(dend, first.subdend.only)
 # Plotting the result
-par(mfrow=c(1,2))
+par(mfrow = c(1, 2))
 plot(dend, main = "Original dendrogram")
 plot(sub.dend, main = "First subdendrogram")
 }

@@ -18,7 +18,7 @@ A correlation value between 0 to 1 (almost identical trees)
 }
 \description{
 Calculates the number of nodes, in each tree, that are common (i.e.: that have the same exact list of labels).
-The correlation is between 0 (actually, 2*(nnodes-1)/(2*nnodes), for two trees with 
+The correlation is between 0 (actually, 2*(nnodes-1)/(2*nnodes), for two trees with
 the same list of labels - since the top node will always be identical for them).
 Where 1 means that every node in the one tree, has a node in the other tree with the exact
 same list of labels.
@@ -27,17 +27,20 @@ Notice this measure is non-parameteric (it ignores the heights and relative posi
 \examples{
 
 set.seed(23235)
-ss <- sample(1:150, 10 )
-hc1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com")
-hc2 <- iris[ss,-5] \%>\% dist \%>\% hclust("single")
+ss <- sample(1:150, 10)
+hc1 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("com")
+hc2 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("single")
 dend1 <- as.dendrogram(hc1)
 dend2 <- as.dendrogram(hc2)
 
 cor_cophenetic(dend1, dend2)
 cor_common_nodes(dend1, dend2)
-tanglegram(dend1, dend2) 
+tanglegram(dend1, dend2)
 # we can see we have only two nodes which are different...
-
 }
 \seealso{
 \link{distinct_edges}, \link{cor.dendlist}

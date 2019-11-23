@@ -12,11 +12,9 @@ unbranch(dend, ...)
 
 \method{unbranch}{default}(dend, ...)
 
-\method{unbranch}{dendrogram}(dend, branch_becoming_root = 1,
-  new_root_height, ...)
+\method{unbranch}{dendrogram}(dend, branch_becoming_root = 1, new_root_height, ...)
 
-\method{unbranch}{hclust}(dend, branch_becoming_root = 1,
-  new_root_height, ...)
+\method{unbranch}{hclust}(dend, branch_becoming_root = 1, new_root_height, ...)
 
 \method{unbranch}{phylo}(dend, ...)
 }
@@ -37,13 +35,13 @@ An unbranched dendrogram
 unbranch trees and merges the subtree to the parent node.
 }
 \examples{
-hc <- hclust(dist(USArrests[2:9,]), "com")
+hc <- hclust(dist(USArrests[2:9, ]), "com")
 dend <- as.dendrogram(hc)
 
-par(mfrow = c(1,3))
+par(mfrow = c(1, 3))
 plot(dend, main = "original tree")
-plot(unbranch(dend , 1), main = "unbranched tree (left branch)")
-plot(unbranch(dend , 2), main = "tree without  (right branch)")
+plot(unbranch(dend, 1), main = "unbranched tree (left branch)")
+plot(unbranch(dend, 2), main = "tree without  (right branch)")
 }
 \seealso{
 \link[ape]{unroot} {ape}

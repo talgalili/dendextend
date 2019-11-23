@@ -4,8 +4,12 @@
 \alias{FM_index_permutation}
 \title{Calculating Fowlkes-Mallows Index under H0}
 \usage{
-FM_index_permutation(A1_clusters, A2_clusters,
-  warn = dendextend_options("warn"), ...)
+FM_index_permutation(
+  A1_clusters,
+  A2_clusters,
+  warn = dendextend_options("warn"),
+  ...
+)
 }
 \arguments{
 \item{A1_clusters}{a numeric vector of cluster grouping (numeric) of items,
@@ -36,44 +40,48 @@ between the clusterings (random order of the items labels).
 
 set.seed(23235)
 ss <- TRUE # sample(1:150, 10 )
-hc1 <- hclust(dist(iris[ss,-5]), "com")
-hc2 <- hclust(dist(iris[ss,-5]), "single")
+hc1 <- hclust(dist(iris[ss, -5]), "com")
+hc2 <- hclust(dist(iris[ss, -5]), "single")
 # dend1 <- as.dendrogram(hc1)
 # dend2 <- as.dendrogram(hc2)
-#    cutree(dend1)   
+#    cutree(dend1)
 
 # small k
-A1_clusters <- cutree(hc1, k=3) # will give a right tailed distribution
+A1_clusters <- cutree(hc1, k = 3) # will give a right tailed distribution
 # large k
-A1_clusters <- cutree(hc1, k=50) # will give a discrete distribution
+A1_clusters <- cutree(hc1, k = 50) # will give a discrete distribution
 # "medium" k
-A1_clusters <- cutree(hc1, k=25) # gives almost the normal distribution!
+A1_clusters <- cutree(hc1, k = 25) # gives almost the normal distribution!
 A2_clusters <- A1_clusters
 
 R <- 10000
 set.seed(414130)
 FM_index_H0 <- replicate(R, FM_index_permutation(A1_clusters, A2_clusters)) # can take 10 sec
-plot(density(FM_index_H0), main = "FM Index distribution under H0\\n (10000 permutation)")
+plot(density(FM_index_H0), main = "FM Index distribution under H0\n (10000 permutation)")
 abline(v = mean(FM_index_H0), col = 1, lty = 2)
 # The permutation distribution is with a heavy right tail:
 library(psych)
 skew(FM_index_H0) # 1.254
 kurtosi(FM_index_H0) # 2.5427
 
-mean(FM_index_H0); var(FM_index_H0)
+mean(FM_index_H0)
+var(FM_index_H0)
 the_FM_index <- FM_index(A1_clusters, A2_clusters)
 the_FM_index
 our_dnorm <- function(x) {
-   dnorm(x, mean = attr(the_FM_index, "E_FM"), 
-         sd = sqrt(attr(the_FM_index, "V_FM")))
+  dnorm(x,
+    mean = attr(the_FM_index, "E_FM"),
+    sd = sqrt(attr(the_FM_index, "V_FM"))
+  )
 }
 # our_dnorm(0.35)
 curve(our_dnorm,
-      col = 4,
-      from = -1,to=1,n=R,add = TRUE)
+  col = 4,
+  from = -1, to = 1, n = R, add = TRUE
+)
 abline(v = attr(the_FM_index, "E_FM"), col = 4, lty = 2)
 
-legend("topright", legend = c("asymptotic", "permutation"), fill = c(4,1))
+legend("topright", legend = c("asymptotic", "permutation"), fill = c(4, 1))
 }
 }
 \references{
@@ -84,6 +92,6 @@ Journal of the American Statistical Association 78 (383): 553.
 \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 }
 \seealso{
-\link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}}, 
+\link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}},
 \code{\link{FM_index_R}}, \code{\link{FM_index}}
 }

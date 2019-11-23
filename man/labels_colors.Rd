@@ -6,7 +6,7 @@
 \alias{labels_colors<-}
 \title{Retrieve/assign colors to the labels of a dendrogram}
 \source{
-Heavily inspired by the code in the example of \link{dendrapply}, 
+Heavily inspired by the code in the example of \link{dendrapply},
 so credit should go to Martin Maechler.
 I also implemented some ideas from Gregory Jefferis's dendroextras package
 (having the "names" of the returned vector be the labels).
@@ -37,7 +37,7 @@ Retrieve/assign colors to the labels of a dendrogram. Note that usually dend obj
 }
 \examples{
 # define dendrogram object to play with:
-hc <- hclust(dist(USArrests[1:3,]), "ave")
+hc <- hclust(dist(USArrests[1:3, ]), "ave")
 dend <- as.dendrogram(hc)
 
 # Defaults:
@@ -48,10 +48,10 @@ plot(dend)
 labels_colors(dend) <- 2:4
 labels_colors(dend)
 plot(dend)
-   
-   
-   # doesn't work...
- #  get_nodes_attr(dend, "nodePar", include_branches = FALSE)
+
+
+# doesn't work...
+#  get_nodes_attr(dend, "nodePar", include_branches = FALSE)
 
 # changing color to black
 labels_colors(dend) <- 1

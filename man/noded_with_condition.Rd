@@ -4,8 +4,14 @@
 \alias{noded_with_condition}
 \title{Find which nodes satisfies a condition}
 \usage{
-noded_with_condition(dend, condition, include_leaves = TRUE,
-  include_branches = TRUE, na.rm = FALSE, ...)
+noded_with_condition(
+  dend,
+  condition,
+  include_leaves = TRUE,
+  include_branches = TRUE,
+  na.rm = FALSE,
+  ...
+)
 }
 \arguments{
 \item{dend}{a dendrogram dend}
@@ -15,7 +21,7 @@ noded_with_condition(dend, condition, include_leaves = TRUE,
 
 \item{include_leaves}{logical. Should leaves attributes be included as well?}
 
-\item{include_branches}{logical. Should non-leaf (branch node) 
+\item{include_branches}{logical. Should non-leaf (branch node)
 attributes be included as well?}
 
 \item{na.rm}{logical. Should NA attributes be REMOVED from the resulting vector?}
@@ -26,7 +32,7 @@ attributes be included as well?}
 A logical vector with TRUE/FALSE, specifying for each of the dendrogram's nodes if it fulfills the condition or not.
 }
 \description{
-Goes through a tree's nodes in order to return a vector 
+Goes through a tree's nodes in order to return a vector
 with whether (TRUE/FALSE) each node satisies some condition (function)
 }
 \examples{
@@ -35,26 +41,29 @@ with whether (TRUE/FALSE) each node satisies some condition (function)
 library(dendextend)
 
 set.seed(23235)
-ss <- sample(1:150, 10 )
+ss <- sample(1:150, 10)
 
 # Getting the dend dend
-dend <- iris[ss,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram
-dend \%>\% plot
+dend <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
+dend \%>\% plot()
 
 
 
-this is the basis for branches_attr_by_labels
+# this is the basis for branches_attr_by_labels
 has_any_labels <- function(sub_dend, the_labels) any(labels(sub_dend) \%in\% the_labels)
 cols <- noded_with_condition(dend, has_any_labels,
-            the_labels = c("126","109", "59")) \%>\% 
-            ifelse(2,1)
-set(dend, "branches_col", cols) \%>\% plot
+  the_labels = c("126", "109", "59")
+) \%>\%
+  ifelse(2, 1)
+set(dend, "branches_col", cols) \%>\% plot()
 
 # Similar to branches_attr_by_labels - but for heights!
 high_enough <- function(sub_dend, height) attr(sub_dend, "height") > height
-cols <- noded_with_condition(dend, high_enough, height = 1) \%>\% ifelse(2,1)
-set(dend, "branches_col", cols) \%>\% plot
-
+cols <- noded_with_condition(dend, high_enough, height = 1) \%>\% ifelse(2, 1)
+set(dend, "branches_col", cols) \%>\% plot()
 }
 
 }

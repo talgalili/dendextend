@@ -26,7 +26,6 @@ items are in the same cluster for the two trees.
 item1 <- structure(c(1L, 1L, 1L, 1L), .Names = c("1", "2", "3", "4"))
 item2 <- structure(c(1L, 1L, 2L, 2L), .Names = c("1", "2", "3", "4"))
 lowest_common_branch(item1, item2)
-
 }
 \seealso{
 \link{cor_bakers_gamma}

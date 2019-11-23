@@ -24,13 +24,15 @@ Finds the edges present in the first tree but not in the second
 }
 \examples{
 
-x <- 1:5 \%>\% dist \%>\% hclust \%>\% as.dendrogram
+x <- 1:5 \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
 y <- set(x, "labels", 5:1)
 distinct_edges(x, y)
 distinct_edges(y, x)
 dend_diff(x, y)
 # tanglegram(x, y)
-
 }
 \seealso{
 \link{distinct_edges}, \link{highlight_distinct_edges},

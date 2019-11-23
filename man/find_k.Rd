@@ -7,18 +7,21 @@
 \usage{
 find_k(dend, krange = 2:min(10, (nleaves(dend) - 1)), ...)
 
-\method{plot}{find_k}(x, xlab = "Number of clusters (k)",
+\method{plot}{find_k}(
+  x,
+  xlab = "Number of clusters (k)",
   ylab = "Average silhouette width",
   main = "Estimating the number of clusters using\\n average silhouette width",
-  ...)
+  ...
+)
 }
 \arguments{
 \item{dend}{A dendrogram (or hclust) tree object}
 
-\item{krange}{integer vector. Numbers of clusters which are to be compared 
-by the average silhouette width criterion. 
-Note: average silhouette width and Calinski-Harabasz can't estimate number 
-of clusters nc=1. If 1 is included, a Duda-Hart test is applied and 1 is 
+\item{krange}{integer vector. Numbers of clusters which are to be compared
+by the average silhouette width criterion.
+Note: average silhouette width and Calinski-Harabasz can't estimate number
+of clusters nc=1. If 1 is included, a Duda-Hart test is applied and 1 is
 estimated if this is not significant.}
 
 \item{...}{passed to \link[fpc]{pamk} (the current defaults criterion="asw" and usepam=TRUE can not be changes).}
@@ -28,20 +31,23 @@ estimated if this is not significant.}
 \item{xlab, ylab, main}{parameters passed to plot.}
 }
 \value{
-A \link[fpc]{pamk} output. This is a list with the following components: 
+A \link[fpc]{pamk} output. This is a list with the following components:
 1) pamobject - The output of the optimal run of the pam-function.
 2) nc	- the optimal number of clusters.
 3) crit - vector of criterion values for numbers of clusters. crit[1] is the p-value of the Duda-Hart test if 1 is in krange and diss=FALSE.
 4) k - a copy of nc (just to make it easier to extract - since k is often used in other functions)
 }
 \description{
-This function estimates the number of clusters based on the maximal average \link[cluster]{silhouette} width 
-derived from running \link[cluster]{pam} on the \link[stats]{cophenetic} distance matrix of 
+This function estimates the number of clusters based on the maximal average \link[cluster]{silhouette} width
+derived from running \link[cluster]{pam} on the \link[stats]{cophenetic} distance matrix of
 the \link[stats]{dendrogram}. The output is based on the \link[fpc]{pamk} output.
 }
 \examples{
 
-dend <- iris[,-5] \%>\% dist \%>\% hclust \%>\% as.dendrogram
+dend <- iris[, -5] \%>\%
+  dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram()
 dend_k <- find_k(dend)
 plot(dend_k)
 plot(color_branches(dend, k = dend_k$nc))
@@ -50,11 +56,13 @@ library(cluster)
 sil <- silhouette(dend_k$pamobject)
 plot(sil)
 
-dend <- USArrests \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
+dend <- USArrests \%>\%
+  dist() \%>\%
+  hclust(method = "ave") \%>\%
+  as.dendrogram()
 dend_k <- find_k(dend)
 plot(dend_k)
 plot(color_branches(dend, k = dend_k$nc))
-
 }
 \seealso{
 \link[fpc]{pamk}, \link[cluster]{pam}, \link[cluster]{silhouette}.

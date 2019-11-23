@@ -19,8 +19,11 @@ named character vector of Colors, NA_character_ where missing
 The returned Colors will be in dendrogram order.
 }
 \examples{
-dend <- USArrests \%>\% dist \%>\% hclust(method = "ave") \%>\% as.dendrogram
-d5=color_branches(dend,5)
+dend <- USArrests \%>\%
+  dist() \%>\%
+  hclust(method = "ave") \%>\%
+  as.dendrogram()
+d5 <- color_branches(dend, 5)
 leaf_Colors(d5)
 }
 \seealso{

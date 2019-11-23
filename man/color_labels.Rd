@@ -5,12 +5,19 @@
 \alias{colour_labels}
 \title{Color dend's labels according to sub-clusters}
 \source{
-This function is in the style of \code{\link{color_branches}}, and 
+This function is in the style of \code{\link{color_branches}}, and
 based on \code{\link{labels_colors}}.
 }
 \usage{
-color_labels(dend, k = NULL, h = NULL, labels, col,
-  warn = dendextend_options("warn"), ...)
+color_labels(
+  dend,
+  k = NULL,
+  h = NULL,
+  labels,
+  col,
+  warn = dendextend_options("warn"),
+  ...
+)
 }
 \arguments{
 \item{dend}{A \code{dendrogram} or \code{hclust} tree object}
@@ -22,7 +29,7 @@ color_labels(dend, k = NULL, h = NULL, labels, col,
 \item{labels}{character vecotor. If not missing, it overrides k and h,
 and simply colors these labels in the tree based on "col" parameter.}
 
-\item{col}{Function or vector of Colors. By default it tries to use 
+\item{col}{Function or vector of Colors. By default it tries to use
 \link[colorspace]{rainbow_hcl} from the \code{colorspace} package.
 (with parameters c=90 and l=50). If \code{colorspace} is not available,
 It will fall back on the \link{rainbow} function.}
@@ -41,7 +48,7 @@ a tree object of class dendrogram.
 This function is for dendrogram and hclust objects.
 This function colors tree's labels.
 
-The groups will be defined by a call to \code{\link[dendextend]{cutree}} 
+The groups will be defined by a call to \code{\link[dendextend]{cutree}}
 using the k or h parameters.
 
 If col is a color vector with a different length than the number of clusters
@@ -52,22 +59,21 @@ If col is a color vector with a different length than the number of clusters
 \dontrun{
 hc <- hclust(dist(USArrests), "ave")
 dend <- as.dendrogram(hc)
-dend=color_labels(dend,5, col = c(3,1,1,4,1))
-dend=color_branches(dend,5, col = c(3,1,1,4,1))
+dend <- color_labels(dend, 5, col = c(3, 1, 1, 4, 1))
+dend <- color_branches(dend, 5, col = c(3, 1, 1, 4, 1))
 plot(dend) # selective coloring of branches AND labels :)
 
 # coloring some labels, based on label names:
-dend=color_labels(dend,col = "red", labels = labels(dend)[c(4,16)]) 
+dend <- color_labels(dend, col = "red", labels = labels(dend)[c(4, 16)])
 plot(dend) # selective coloring of branches AND labels :)
 
-d5=color_branches(dend,5)
+d5 <- color_branches(dend, 5)
 plot(d5)
-d5g=color_branches(dend,5,groupLabels=TRUE)
+d5g <- color_branches(dend, 5, groupLabels = TRUE)
 plot(d5g)
-d5gr=color_branches(dend,5,groupLabels=as.roman)
+d5gr <- color_branches(dend, 5, groupLabels = as.roman)
 plot(d5gr)
-
-} 
+}
 
 }
 \seealso{

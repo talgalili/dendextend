@@ -4,15 +4,14 @@
 \alias{Bk}
 \title{Bk - Calculating Fowlkes-Mallows Index for two dendrogram}
 \usage{
-Bk(tree1, tree2, k, include_EV = TRUE,
-  warn = dendextend_options("warn"), ...)
+Bk(tree1, tree2, k, include_EV = TRUE, warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{tree1}{a dendrogram/hclust/phylo object.}
 
 \item{tree2}{a dendrogram/hclust/phylo object.}
 
-\item{k}{an integer scalar or vector with the desired number 
+\item{k}{an integer scalar or vector with the desired number
 of cluster groups.
 If missing - the Bk will be calculated for a default k range of
 2:(nleaves-1).
@@ -30,23 +29,23 @@ but for keeping the noise down, the default is FALSE.}
 \item{...}{Ignored (passed to FM_index_R/FM_index_profdpm).}
 }
 \value{
-A list (of k's length) of Fowlkes-Mallows index between two dendrogram for 
+A list (of k's length) of Fowlkes-Mallows index between two dendrogram for
 a scalar/vector of k values.
 The names of the lists' items is the k for which it was calculated.
 }
 \description{
-Bk is the calculation of Fowlkes-Mallows index for a series of k cuts 
+Bk is the calculation of Fowlkes-Mallows index for a series of k cuts
 for two dendrograms.
 }
 \details{
 From Wikipedia:
 
-Fowlkes-Mallows index (see references) is an external evaluation method 
+Fowlkes-Mallows index (see references) is an external evaluation method
 that is used to determine the similarity between two clusterings
 (clusters obtained after a clustering algorithm). This measure of similarity
 could be either between two hierarchical clusterings or a clustering and
 a benchmark classification. A higher the value for the Fowlkes-Mallows index
-indicates a greater similarity between the clusters and the benchmark 
+indicates a greater similarity between the clusters and the benchmark
 classifications.
 }
 \examples{
@@ -55,11 +54,11 @@ classifications.
 
 set.seed(23235)
 ss <- TRUE # sample(1:150, 10 )
-hc1 <- hclust(dist(iris[ss,-5]), "com")
-hc2 <- hclust(dist(iris[ss,-5]), "single")
+hc1 <- hclust(dist(iris[ss, -5]), "com")
+hc2 <- hclust(dist(iris[ss, -5]), "single")
 tree1 <- as.dendrogram(hc1)
 tree2 <- as.dendrogram(hc2)
-#    cutree(tree1)   
+#    cutree(tree1)
 
 Bk(hc1, hc2, k = 3)
 Bk(hc1, hc2, k = 2:10)
@@ -72,21 +71,21 @@ system.time(Bk(hc1, hc2, k = 2:5)) # 0.01
 system.time(Bk(hc1, hc2)) # 1.28
 system.time(Bk(tree1, tree2, k = 2:5)) # 0.24 # after fixes.
 system.time(Bk(tree1, tree2, k = 2:10)) # 0.31 # after fixes.
-system.time(Bk(tree1, tree2)) # 7.85 
-Bk(tree1, tree2, k= 99:101)
+system.time(Bk(tree1, tree2)) # 7.85
+Bk(tree1, tree2, k = 99:101)
 
 y <- Bk(hc1, hc2, k = 2:10)
-plot(unlist(y)~c(2:10), type = "b", ylim = c(0,1))
+plot(unlist(y) ~ c(2:10), type = "b", ylim = c(0, 1))
 
 # can take a few seconds
 y <- Bk(hc1, hc2)
-plot(unlist(y)~as.numeric(names(y)), 
-     main = "Bk plot", pch = 20,
-     xlab = "k", ylab = "FM Index",
-     type = "b", ylim = c(0,1))
+plot(unlist(y) ~ as.numeric(names(y)),
+  main = "Bk plot", pch = 20,
+  xlab = "k", ylab = "FM Index",
+  type = "b", ylim = c(0, 1)
+)
 # we are still missing some hypothesis testing here.
 # for this we'll have the Bk_plot function.
-
 }
 }
 \references{

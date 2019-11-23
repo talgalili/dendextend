@@ -25,24 +25,22 @@ This is based on \link{get_leaves_edgePar}.
 }
 \examples{
 # define dendrogram object to play with:
-hc <- hclust(dist(USArrests[1:5,]), "ave")
+hc <- hclust(dist(USArrests[1:5, ]), "ave")
 dend <- as.dendrogram(hc)
 
-dend <- dend \%>\% 
-         color_branches(k = 3) \%>\%
-         set("branches_lwd", c(2,1,2)) \%>\%
-         set("branches_lty", c(1,2,1))
-         
+dend <- dend \%>\%
+  color_branches(k = 3) \%>\%
+  set("branches_lwd", c(2, 1, 2)) \%>\%
+  set("branches_lty", c(1, 2, 1))
+
 plot(dend)
 
 get_leaves_branches_attr(dend, "col")
 get_leaves_branches_attr(dend, "lwd")
 get_leaves_branches_attr(dend, "lty")
 
-labels_colors(dend)  <- get_leaves_branches_attr(dend, "col")
+labels_colors(dend) <- get_leaves_branches_attr(dend, "col")
 plot(dend)
-
-
 }
 \seealso{
 \link{get_nodes_attr}, \link{assign_values_to_leaves_nodePar}, \link{labels_colors}

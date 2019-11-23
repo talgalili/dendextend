@@ -22,7 +22,7 @@ na_locf(x, first_na_value = 0, recursive = TRUE, ...)
 \item{...}{ignored.}
 }
 \value{
-The original vector, but with all the missing values filled by the value 
+The original vector, but with all the missing values filled by the value
 before them.
 }
 \description{
@@ -34,24 +34,21 @@ na_locf(c(1, NA))
 na_locf(c(1, NA, NA, NA))
 na_locf(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4))
 na_locf(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4), recursive = FALSE)
-
 \dontrun{
 
 library(microbenchmark)
 library(zoo)
 
 microbenchmark(
-   na_locf = na_locf(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4)),
-   na.locf = na.locf(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4))
+  na_locf = na_locf(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4)),
+  na.locf = na.locf(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4))
 ) # my implementation is 6 times faster :)
 
 microbenchmark(
-   na_locf = na_locf(rep(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4), 1000)),
-   na.locf = na.locf(rep(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4), 1000))
-) # my implementation is 3 times faster 
-
+  na_locf = na_locf(rep(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4), 1000)),
+  na.locf = na.locf(rep(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4), 1000))
+) # my implementation is 3 times faster
 }
-
 
 }
 \seealso{

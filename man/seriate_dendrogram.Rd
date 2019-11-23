@@ -38,8 +38,6 @@ heatmap(as.matrix(USArrests))
 
 dend2 <- seriate_dendrogram(dend, d)
 heatmap(as.matrix(USArrests), Rowv = dend)
-
-
 }
 }
 \seealso{

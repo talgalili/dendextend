@@ -22,7 +22,7 @@ Numeric vector giving an optimal dendrogram order
 }
 \description{
 Implements dendrogram seriation.
-The function tries to turn the dend into hclust, on 
+The function tries to turn the dend into hclust, on
 which it runs \link[DendSer]{DendSer}.
 
 Also, if a distance matrix is missing, it will try
@@ -31,7 +31,7 @@ to use the \link{cophenetic} distance.
 \examples{
 \dontrun{
 library(DendSer) # already used from within the function
-hc <- hclust(dist(USArrests[1:4,]), "ave")
+hc <- hclust(dist(USArrests[1:4, ]), "ave")
 dend <- as.dendrogram(hc)
 DendSer.dendrogram(dend)
 }

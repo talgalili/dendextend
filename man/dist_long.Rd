@@ -20,9 +20,14 @@ Turns a dist object from a "wide" to a "long" table
 }
 \examples{
 data(iris)
-iris[2:6,-5] \%>\% dist \%>\% data.matrix
-iris[2:6,-5] \%>\% dist \%>\% as.vector
-iris[2:6,-5] \%>\% dist \%>\% dist_long
+iris[2:6, -5] \%>\%
+  dist() \%>\%
+  data.matrix()
+iris[2:6, -5] \%>\%
+  dist() \%>\%
+  as.vector()
+iris[2:6, -5] \%>\%
+  dist() \%>\%
+  dist_long()
 # This can later be used to making a network plot based on the distances.
-
 }

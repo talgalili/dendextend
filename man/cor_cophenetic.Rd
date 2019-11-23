@@ -8,11 +8,19 @@
 \usage{
 cor_cophenetic(dend1, ...)
 
-\method{cor_cophenetic}{default}(dend1, dend2, method_coef = c("pearson",
-  "kendall", "spearman"), ...)
+\method{cor_cophenetic}{default}(
+  dend1,
+  dend2,
+  method_coef = c("pearson", "kendall", "spearman"),
+  ...
+)
 
-\method{cor_cophenetic}{dendlist}(dend1, which = c(1L, 2L),
-  method_coef = c("pearson", "kendall", "spearman"), ...)
+\method{cor_cophenetic}{dendlist}(
+  dend1,
+  which = c(1L, 2L),
+  method_coef = c("pearson", "kendall", "spearman"),
+  ...
+)
 }
 \arguments{
 \item{dend1}{a tree (dendrogram/hclust/phylo, or dendlist)}
@@ -21,12 +29,12 @@ cor_cophenetic(dend1, ...)
 
 \item{dend2}{Either a tree (dendrogram/hclust/phylo), or a \link{dist} object (for example, from the original data matrix).}
 
-\item{method_coef}{a character string indicating which correlation coefficient 
-is to be computed. One of "pearson" (default), "kendall", or "spearman", 
+\item{method_coef}{a character string indicating which correlation coefficient
+is to be computed. One of "pearson" (default), "kendall", or "spearman",
 can be abbreviated. Passed to \link{cor}.}
 
 \item{which}{an integer vector of length 2, indicating
-which of the trees in a dendlist object should have 
+which of the trees in a dendlist object should have
 their cor_cophenetic calculated.}
 }
 \value{
@@ -39,10 +47,10 @@ Assumes the labels in the two trees fully match. If they do not
 please first use \link{intersect_trees} to have them matched.
 }
 \details{
-From \link{cophenetic}: 
-The cophenetic distance between two observations that have been clustered 
-is defined to be the intergroup dissimilarity at which the two observations 
-are first combined into a single cluster. Note that this distance has many 
+From \link{cophenetic}:
+The cophenetic distance between two observations that have been clustered
+is defined to be the intergroup dissimilarity at which the two observations
+are first combined into a single cluster. Note that this distance has many
 ties and restrictions.
 
 cor_cophenetic calculates the correlation between two cophenetic distance
@@ -51,7 +59,7 @@ matrices of the two trees.
 The value can range between -1 to 1. With near 0 values meaning that
 the two trees are not statistically similar.
 For exact p-value one should result to a permutation test. One such option
-will be to permute over the labels of one tree many times, and calculating 
+will be to permute over the labels of one tree many times, and calculating
 the distriubtion under the null hypothesis (keeping the trees topologies
 constant).
 
@@ -62,12 +70,16 @@ Notice that this measure IS affected by the height of a branch.
 \dontrun{
 
 set.seed(23235)
-ss <- sample(1:150, 10 )
-hc1 <- iris[ss,-5] \%>\% dist \%>\% hclust("com")
-hc2 <- iris[ss,-5] \%>\% dist \%>\% hclust("single")
+ss <- sample(1:150, 10)
+hc1 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("com")
+hc2 <- iris[ss, -5] \%>\%
+  dist() \%>\%
+  hclust("single")
 dend1 <- as.dendrogram(hc1)
 dend2 <- as.dendrogram(hc2)
-#    cutree(dend1)   
+#    cutree(dend1)
 
 cophenetic(hc1)
 cophenetic(hc2)
@@ -76,45 +88,44 @@ cophenetic(dend1)
 cophenetic(dend2)
 
 cor(cophenetic(hc1), cophenetic(hc2)) # 0.874
-cor(cophenetic(dend1), cophenetic(dend2))  # 0.16
+cor(cophenetic(dend1), cophenetic(dend2)) # 0.16
 # the difference is becasue the order of the distance table in the case of
 # stats:::cophenetic.dendrogram will change between dendrograms!
 
-# however, this is consistant (since I force-sort the rows/columns): 
+# however, this is consistant (since I force-sort the rows/columns):
 cor_cophenetic(hc1, hc2)
 cor_cophenetic(dend1, dend2)
 
 cor_cophenetic(dendlist(dend1, dend2))
 
-# we can also use different cor methods (almost the same result though): 
+# we can also use different cor methods (almost the same result though):
 cor_cophenetic(hc1, hc2, method = "spearman") # 0.8456014
-cor_cophenetic(dend1, dend2, method = "spearman") # 
+cor_cophenetic(dend1, dend2, method = "spearman") #
 
 
 # cophenetic correlation is about 10 times (!) faster than bakers_gamma cor:
 library(microbenchmark)
 microbenchmark(
-   cor_bakers_gamma = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=FALSE),
-   cor_cophenetic = cor_cophenetic(dend1, dend2)   ,
-   times=10
+  cor_bakers_gamma = cor_bakers_gamma(dend1, dend2, try_cutree_hclust = FALSE),
+  cor_cophenetic = cor_cophenetic(dend1, dend2),
+  times = 10
 )
 
 # but only because of the cutree for dendrogram. When allowing hclust cutree
 # it is only about twice as fast:
 microbenchmark(
-   cor_bakers_gamma = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=TRUE),
-   cor_cophenetic = cor_cophenetic(dend1, dend2)   ,
-   times=10
+  cor_bakers_gamma = cor_bakers_gamma(dend1, dend2, try_cutree_hclust = TRUE),
+  cor_cophenetic = cor_cophenetic(dend1, dend2),
+  times = 10
 )
-
 }
 
 }
 \references{
-Sokal, R. R. and F. J. Rohlf. 1962. The comparison of dendrograms by 
+Sokal, R. R. and F. J. Rohlf. 1962. The comparison of dendrograms by
 objective methods. Taxon, 11:33-40
 
-Sneath, P.H.A. and Sokal, R.R. (1973) Numerical Taxonomy: The Principles 
+Sneath, P.H.A. and Sokal, R.R. (1973) Numerical Taxonomy: The Principles
 and Practice of Numerical Classification, p. 278 ff; Freeman, San Francisco.
 
 \url{http://en.wikipedia.org/wiki/Cophenetic_correlation}

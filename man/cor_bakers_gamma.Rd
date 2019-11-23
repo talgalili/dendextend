@@ -12,13 +12,23 @@ cor_bakers_gamma(dend1, ...)
 
 \method{cor_bakers_gamma}{default}(dend1, dend2, ...)
 
-\method{cor_bakers_gamma}{dendrogram}(dend1, dend2,
-  use_labels_not_values = TRUE, to_plot = FALSE,
-  warn = dendextend_options("warn"), ...)
+\method{cor_bakers_gamma}{dendrogram}(
+  dend1,
+  dend2,
+  use_labels_not_values = TRUE,
+  to_plot = FALSE,
+  warn = dendextend_options("warn"),
+  ...
+)
 
-\method{cor_bakers_gamma}{hclust}(dend1, dend2,
-  use_labels_not_values = TRUE, to_plot = FALSE,
-  warn = dendextend_options("warn"), ...)
+\method{cor_bakers_gamma}{hclust}(
+  dend1,
+  dend2,
+  use_labels_not_values = TRUE,
+  to_plot = FALSE,
+  warn = dendextend_options("warn"),
+  ...
+)
 
 \method{cor_bakers_gamma}{dendlist}(dend1, which = c(1L, 2L), ...)
 }
@@ -29,9 +39,9 @@ cor_bakers_gamma(dend1, ...)
 
 \item{dend2}{a tree (dendrogram/hclust/phylo)}
 
-\item{use_labels_not_values}{logical (TRUE). Should labels be used in the 
+\item{use_labels_not_values}{logical (TRUE). Should labels be used in the
 k matrix when using cutree? Set to FALSE will make the function a bit faster
-BUT, it assumes the two trees have the exact same leaves order values for 
+BUT, it assumes the two trees have the exact same leaves order values for
 each labels. This can be assured by using \link{match_order_by_labels}.}
 
 \item{to_plot}{logical (FALSE). Passed to \link{bakers_gamma_for_2_k_matrix}}
@@ -48,7 +58,7 @@ which of the trees in the dendlist object should be plotted (relevant for dendli
 Baker's Gamma association Index between two trees (a number between -1 to 1)
 }
 \description{
-Calculate Baker's Gamma correlation coefficient for two trees 
+Calculate Baker's Gamma correlation coefficient for two trees
 (also known as Goodman-Kruskal-gamma index).
 
 Assumes the labels in the two trees fully match. If they do not
@@ -57,23 +67,23 @@ please first use \link{intersect_trees} to have them matched.
 WARNING: this can be quite slow for medium/large trees.
 }
 \details{
-Baker's Gamma (see reference) is a measure of accosiation (similarity) 
+Baker's Gamma (see reference) is a measure of accosiation (similarity)
 between two trees of heirarchical clustering (dendrograms).
 
 It is calculated by taking two items, and see what is the heighst
 possible level of k (number of cluster groups created when cutting the tree)
-for which the two item still belongs to the same tree. That k is returned, 
+for which the two item still belongs to the same tree. That k is returned,
 and the same is done for these two items for the second tree.
-There are n over 2 combinations of such pairs of items from the items in 
-the tree, and all of these numbers are calculated for each of the two trees. 
+There are n over 2 combinations of such pairs of items from the items in
+the tree, and all of these numbers are calculated for each of the two trees.
 Then, these two sets of numbers (a set for the items in each tree)
-are paired according to the pairs of items compared, and a spearman 
+are paired according to the pairs of items compared, and a spearman
 correlation is calculated.
 
 The value can range between -1 to 1. With near 0 values meaning that
 the two trees are not statistically similar.
 For exact p-value one should result to a permutation test. One such option
-will be to permute over the labels of one tree many times, and calculating 
+will be to permute over the labels of one tree many times, and calculating
 the distriubtion under the null hypothesis (keeping the trees topologies
 constant).
 
@@ -85,37 +95,37 @@ of its relative position compared with other branches.
 \dontrun{
 
 set.seed(23235)
-ss <- sample(1:150, 10 )
-hc1 <- hclust(dist(iris[ss,-5]), "com")
-hc2 <- hclust(dist(iris[ss,-5]), "single")
+ss <- sample(1:150, 10)
+hc1 <- hclust(dist(iris[ss, -5]), "com")
+hc2 <- hclust(dist(iris[ss, -5]), "single")
 dend1 <- as.dendrogram(hc1)
 dend2 <- as.dendrogram(hc2)
-#    cutree(dend1)   
+#    cutree(dend1)
 
 cor_bakers_gamma(hc1, hc2)
 cor_bakers_gamma(dend1, dend2)
 
 dend1 <- match_order_by_labels(dend1, dend2) # if you are not sure
-cor_bakers_gamma(dend1, dend2, use_labels_not_values = FALSE)   
+cor_bakers_gamma(dend1, dend2, use_labels_not_values = FALSE)
 
 library(microbenchmark)
 microbenchmark(
-   with_labels = cor_bakers_gamma(dend1, dend2, try_cutree_hclust=FALSE)   ,
-   with_values = cor_bakers_gamma(dend1, dend2, 
-               use_labels_not_values = FALSE, try_cutree_hclust=FALSE)   ,
-   times=10
+  with_labels = cor_bakers_gamma(dend1, dend2, try_cutree_hclust = FALSE),
+  with_values = cor_bakers_gamma(dend1, dend2,
+    use_labels_not_values = FALSE, try_cutree_hclust = FALSE
+  ),
+  times = 10
 )
 
 
-cor_bakers_gamma(dend1, dend1, use_labels_not_values = FALSE)   
-cor_bakers_gamma(dend1, dend1, use_labels_not_values = TRUE)   
-
+cor_bakers_gamma(dend1, dend1, use_labels_not_values = FALSE)
+cor_bakers_gamma(dend1, dend1, use_labels_not_values = TRUE)
 }
 
 }
 \references{
 Baker, F. B., Stability of Two Hierarchical Grouping Techniques Case
- 1: Sensitivity to Data Errors. Journal of the American Statistical 
+ 1: Sensitivity to Data Errors. Journal of the American Statistical
  Association, 69(346), 440 (1974).
 }
 \seealso{
