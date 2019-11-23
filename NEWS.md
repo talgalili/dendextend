@@ -4,6 +4,7 @@ dendextend 1.13.0 (2019-11-23)
 ###OTHER NOTES
 - improved docs:
    - dist.dendlist
+   - moved from d3heatmap to heatmaply in the vignette
 - Started using pkgdown :)
 - Fixed testthat failure due to RNG changes in R (test for pvclust)
 

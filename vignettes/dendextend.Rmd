@@ -900,11 +900,11 @@ Since NMF was removed from CRAN (it could still be installed from source), the e
 
 
 
-### d3heatmap
+### heatmaply
 
-The d3heatmap package create interactive heat-maps that are usable from the R console, in the 'RStudio' viewer pane, in 'R Markdown' documents, and in 'Shiny' apps. By hovering the mouse pointer over a cell to show details, drag a rectangle to zoom, and click row/column labels to highlight.
+The heatmaply package create interactive heat-maps that are usable from the R console, in the 'RStudio' viewer pane, in 'R Markdown' documents, and in 'Shiny' apps. By hovering the mouse pointer over a cell or a dendrogram to show details, drag a rectangle to zoom.
 
-The use is very similar to what we've seen before, we just use `d3heatmap` instead of `heatmap.2`:
+The use is very similar to what we've seen before, we just use `heatmaply` instead of `heatmap.2`:
 
 
 ```{r}
@@ -923,10 +923,14 @@ Colv  <- x %>% t %>% dist %>% hclust %>% as.dendrogram %>%
 
 Here we need to use `cache=FALSe` in the markdown:
 
-```{r, message=FALSE, cache = FALSE}
-library(d3heatmap)
-d3heatmap(x, Rowv = Rowv, Colv = Colv)
+```{r, message=FALSE, cache = FALSE, eval = FALSE}
+library(heatmaply)
+heatmaply(x, Rowv = Rowv, Colv = Colv)
 ```
+
+I avoided running the code from above due to space issues on CRAN. For live examples, please go to:
+
+- https://cran.r-project.org/web/packages/heatmaply/vignettes/heatmaply.html
 
 
 
