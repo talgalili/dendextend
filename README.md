@@ -6,6 +6,9 @@
 
 # dendextend
 
+**[dendextend website](http://talgalili.github.io/dendextend/) (built using [pkgdown](https://pkgdown.r-lib.org/))**
+
+
 **Table of contents:**
 
 * [Introduction](#introduction)
@@ -40,18 +43,15 @@ To install the GitHub version:
 
 ```R
 install.packages.2 <- function (pkg) if (!require(pkg)) install.packages(pkg);
-install.packages.2('devtools')
-# install.packages.2('Rcpp')
-# make sure you have Rtools installed first! if not, then run:
-#install.packages('installr'); install.Rtools()
-devtools::install_github('talgalili/dendextend')
+install.packages.2('remotes')
+remotes::install_github('talgalili/dendextend')
 
 # Having colorspace is also useful, since it is used
 # In various examples in the vignettes
 install.packages.2('colorspace')
 ```
 
-And then you may load the package using:
+Simply run the following to load the package:
 
 ```R
 library("dendextend")
@@ -61,9 +61,11 @@ library("dendextend")
 
 Vignettes: 
 
-* [Introduction to dendextend](https://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Introduction%20to%20dendextend.html)
-* [Frequently asked questions](https://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Frequently%20asked%20questions.html)
-* [Hierarchical cluster analysis on famous data sets - enhanced with the dendextend package](https://htmlpreview.github.io/?https://github.com/talgalili/dendextend/blob/master/inst/ignored/Hierarchical%20cluster%20analysis%20on%20famous%20data%20sets%20-%20enhanced%20with%20the%20dendextend%20package.html)
+* [Introduction to dendextend](http://talgalili.github.io/dendextend/articles/dendextend.html)
+* [Frequently asked questions](http://talgalili.github.io/dendextend/articles/FAQ.html)
+* [Hierarchical cluster analysis on famous data sets - enhanced with the dendextend package](http://talgalili.github.io/dendextend/articles/Cluster_Analysis.html)
+
+Also ceck out the [dendextend tag in stackoverflow](https://stackoverflow.com/questions/tagged/dendextend) for more examples.
 
 ## Share your dendrograms!
 
@@ -72,9 +74,8 @@ If you have made interesting work using the dendextend package, I would LOVE to 
 ### Usages of dendextend
 
 Packages:
-* [heatmaply](https://github.com/talgalili/heatmaply)
+* [heatmaply](https://cran.r-project.org/web/packages/heatmaply/vignettes/heatmaply.html)
 * [ComplexHeatmap](https://www.bioconductor.org/packages/3.3/bioc/html/ComplexHeatmap.html)
-* [d3heatmap](https://CRAN.R-project.org/package=d3heatmap/vignettes/Introduction.html)
 
 
 ## How to cite the dendextend package
@@ -105,14 +106,14 @@ it, please support the project by citing the appropriate journal articles.
 
 You are welcome to:
 
-* submit suggestions and bug-reports at: <https://github.com/talgalili/dendextend/issues>
+* submit bug-reports and features' suggestions at: <https://github.com/talgalili/dendextend/issues>
 * send a pull request on: <https://github.com/talgalili/dendextend/>
 * compose a friendly e-mail to: <tal.galili@gmail.com>
 
 
 ## Latest news
 
-You can see the most recent changes to the package in the [NEWS.md file](https://github.com/talgalili/dendextend/blob/master/NEWS.md)
+You can see the most recent changes to the package in the [NEWS.md file](http://talgalili.github.io/dendextend/news/index.html)
 
 
 
