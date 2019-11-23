@@ -622,6 +622,8 @@ plot_horiz.dendrogram <- function(x,
 #' @param common_subtrees_color_lines logical (default is TRUE). color the connecting line based on the common subtrees of both dends.
 #' This only works if
 #' (notice that this can be slow on large trees)
+#' @param common_subtrees_color_lines_default_single_leaf_color. When representing edges between common subtrees 
+#' (i.e. common_subtrees_color_branches = TRUE), this parameter sets the color of edges for subtrees that are NOT common.
 #' @param common_subtrees_color_branches logical (default is FALSE).
 #' Color the branches of both dends based on the common subtrees.
 #' (notice that this can be slow on large trees)
@@ -827,6 +829,7 @@ tanglegram.dendrogram <- function(dend1, dend2, sort = FALSE,
                                   cex_sub = cex_main,
                                   highlight_distinct_edges = TRUE,
                                   common_subtrees_color_lines = TRUE,
+                                  common_subtrees_color_lines_default_single_leaf_color = "white",
                                   common_subtrees_color_branches = FALSE,
                                   highlight_branches_col = FALSE,
                                   highlight_branches_lwd = TRUE,
@@ -947,7 +950,7 @@ tanglegram.dendrogram <- function(dend1, dend2, sort = FALSE,
     # I might as well match them to the lines:
     if (common_subtrees_color_lines) {
       color_lines <- dend1_leaves_colors
-      color_lines[is.na(color_lines)] <- "black"
+      color_lines[is.na(color_lines)] <- common_subtrees_color_lines_default_single_leaf_color
     }
   }
 
@@ -968,7 +971,7 @@ tanglegram.dendrogram <- function(dend1, dend2, sort = FALSE,
       color_lines <- colors_for_lines_color[lines_color_clusters]
 
       ss_0s <- replace_unique_items_with_0_and_rank(lines_color_clusters) == 0
-      color_lines[ss_0s] <- "black"
+      color_lines[ss_0s] <- common_subtrees_color_lines_default_single_leaf_color
     } else {
       color_lines <- "darkgrey"
     }
