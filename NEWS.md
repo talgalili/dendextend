@@ -1,7 +1,11 @@
-dendextend 1.13.0 (2019-07-17)
+dendextend 1.13.0 (2019-11-23)
 ----------------------------------------
+
 ###OTHER NOTES
+- improved docs:
+   - dist.dendlist
 - Started using pkgdown :)
+- Fixed testthat failure due to RNG changes in R (test for pvclust)
 
 dendextend 1.12.0 (2019-05-11)
 ----------------------------------------
