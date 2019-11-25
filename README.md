@@ -46,7 +46,7 @@ Vignettes:
 
 Also ceck out the [dendextend tag in stackoverflow](https://stackoverflow.com/questions/tagged/dendextend) for more examples.
 
-A notable sister package for dendextend is [heatmaply](https://cran.r-project.org/web/packages/heatmaply/vignettes/heatmaply.html) for creating interactive cluster heatmaps using R (combining dendextend and plotly).
+A notable sister package for dendextend is [heatmaply](https://talgalili.github.io/heatmaply/articles/heatmaply.html) for creating interactive cluster heatmaps using R (combining dendextend and plotly).
 
 ## Getting help
 
@@ -105,5 +105,5 @@ You can see the most recent changes to the package in the [NEWS.md file](http://
 
 ## Code of conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/talgalili/dendextend/blob/master/CONDUCT.md). By participating in this project you agree to abide by its terms.
 

@@ -11,5 +11,7 @@ Functions for extending dendrogram objects
 \seealso{
 \code{\link{dendrogram}, \link{hclust}} in \code{\link{stats}} package.
 }
+\keyword{clustering}
 \keyword{dendrogram}
-\keyword{package,}
+\keyword{package}
+\keyword{visualization}

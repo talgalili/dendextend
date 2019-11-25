@@ -26,7 +26,7 @@
 #' @aliases dendextend
 #' @seealso \code{\link{dendrogram}, \link{hclust}} in \code{\link{stats}} package.
 #' @docType package
-#' @keywords package, dendrogram
+#' @keywords package dendrogram clustering visualization
 #' @import stats
 #' @import utils
 #' @import graphics
