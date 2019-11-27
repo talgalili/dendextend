@@ -932,7 +932,7 @@ heatmaply(x, Rowv = Rowv, Colv = Colv)
 
 I avoided running the code from above due to space issues on CRAN. For live examples, please go to:
 
-- https://cran.r-project.org/web/packages/heatmaply/vignettes/heatmaply.html
+- https://talgalili.github.io/heatmaply/articles/heatmaply.html
 
 
 
