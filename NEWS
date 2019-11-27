@@ -1,10 +1,4 @@
-dendextend 1.13.1 (2019-11-25)
-----------------------------------------
-###OTHER NOTES
-- minor doc fixes to comply with CRAN.
-
-
-dendextend 1.13.0 (2019-11-23)
+dendextend 1.14.0 (2019-11-27)
 ----------------------------------------
 
 ###UPDATED FUNCTIONS:
@@ -16,6 +10,7 @@ dendextend 1.13.0 (2019-11-23)
    - moved from d3heatmap to heatmaply in the vignette
 - Started using pkgdown :)
 - Fixed testthat failure due to RNG changes in R (test for pvclust)
+- minor doc fixes to comply with CRAN. (jumped from 1.12.0 to 1.14.0, skipping 1.13.0)
 
 dendextend 1.12.0 (2019-05-11)
 ----------------------------------------
