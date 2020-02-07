@@ -59,7 +59,7 @@ lowest_common_branch <- function(item1, item2, ...) {
 #' \link{cor_bakers_gamma}
 #' @return
 #' Baker's Gamma coefficient.
-bakers_gamma_for_2_k_matrix <- function(k_matrix_dend1, k_matrix_dend2, to_plot = FALSE) {
+bakers_gamma_for_2_k_matrix <- function(k_matrix_dend1, k_matrix_dend2, to_plot = FALSE, ...) {
   if (dim(k_matrix_dend1)[1] != dim(k_matrix_dend2)[1]) stop("The k_matrixes seems to show a different number of items - we can not compare trees in this case!")
   if (!all(sort(rownames(k_matrix_dend1)) == sort(rownames(k_matrix_dend2)))) { # we are using "sort" since the rownames may be of different order - depending on the way the two trees were constructed.
     print(paste("Item names (rownames) of k_matrix_dend1:", rownames(k_matrix_dend1)))

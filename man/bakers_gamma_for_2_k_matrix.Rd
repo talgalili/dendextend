@@ -4,7 +4,12 @@
 \alias{bakers_gamma_for_2_k_matrix}
 \title{Bakers Gamma for two k matrices}
 \usage{
-bakers_gamma_for_2_k_matrix(k_matrix_dend1, k_matrix_dend2, to_plot = FALSE)
+bakers_gamma_for_2_k_matrix(
+  k_matrix_dend1,
+  k_matrix_dend2,
+  to_plot = FALSE,
+  ...
+)
 }
 \arguments{
 \item{k_matrix_dend1}{a matrix of k cluster groupings from a dendrogram}
