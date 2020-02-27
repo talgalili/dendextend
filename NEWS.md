@@ -1,3 +1,18 @@
+dendextend 1.13.4 (2020-02-27)
+----------------------------------------
+
+###OTHER NOTES
+- Fix "Failed with error: 'there is no package called 'profdpm''"
+- Add stringsAsFactors = TRUE to all data.frame calls (in preperation for R 4.0.0)
+
+
+dendextend 1.13.3 (2020-02-07)
+----------------------------------------
+
+###OTHER NOTES
+- Fixed doc warning for bakers_gamma_for_2_k_matrix
+
+
 dendextend 1.13.2 (2019-11-27)
 ----------------------------------------
 

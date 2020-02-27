@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
       </span>
     </div>
 
@@ -94,7 +94,7 @@
       <h1>Introduction to dendextend</h1>
                         <h4 class="author">Tal Galili</h4>
             
-            <h4 class="date">2019-11-27</h4>
+            <h4 class="date">2020-02-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/master/vignettes/dendextend.Rmd"><code>vignettes/dendextend.Rmd</code></a></small>
       <div class="hidden name"><code>dendextend.Rmd</code></div>
@@ -1282,9 +1282,11 @@ hc2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/st
 #&gt; [1] 0.4462325
 #&gt; attr(,"V_FM")
 #&gt; [1] 6.464092e-05</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Or wrapping the code from profdpm: (notice the NA's)</span>
-<span class="kw"><a href="../reference/FM_index_profdpm.html">FM_index_profdpm</a></span>(<span class="kw"><a href="../reference/cutree-methods.html">cutree</a></span>(hc1, <span class="dt">k=</span><span class="dv">3</span>), <span class="kw"><a href="../reference/cutree-methods.html">cutree</a></span>(hc2, <span class="dt">k=</span><span class="dv">3</span>))</code></pre></div>
-<pre><code>#&gt; Loading required namespace: profdpm</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span>(profdpm)) {
+   <span class="co"># Or wrapping the code from profdpm: (notice the NA's)</span>
+   <span class="kw"><a href="../reference/FM_index_profdpm.html">FM_index_profdpm</a></span>(<span class="kw"><a href="../reference/cutree-methods.html">cutree</a></span>(hc1, <span class="dt">k=</span><span class="dv">3</span>), <span class="kw"><a href="../reference/cutree-methods.html">cutree</a></span>(hc2, <span class="dt">k=</span><span class="dv">3</span>))
+}</code></pre></div>
+<pre><code>#&gt; Loading required package: profdpm</code></pre>
 <pre><code>#&gt; [1] 0.8059522
 #&gt; attr(,"E_FM")
 #&gt; [1] NA
@@ -1360,11 +1362,12 @@ dend2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt;  [1] corrplot_0.84         circlize_0.4.8        pvclust_2.2-0        
-#&gt;  [4] dynamicTreeCut_1.63-1 gplots_3.0.1.1        DendSer_1.0.1        
-#&gt;  [7] seriation_1.2-8       gclus_1.3.2           cluster_2.1.0        
-#&gt; [10] ggplot2_3.2.0         viridis_0.5.1         viridisLite_0.3.0    
-#&gt; [13] colorspace_1.4-1      knitr_1.23            dendextend_1.13.2    
+#&gt;  [1] profdpm_3.3           corrplot_0.84         circlize_0.4.8       
+#&gt;  [4] pvclust_2.2-0         dynamicTreeCut_1.63-1 gplots_3.0.2         
+#&gt;  [7] DendSer_1.0.1         seriation_1.2-8       gclus_1.3.2          
+#&gt; [10] cluster_2.1.0         ggplot2_3.2.0         viridis_0.5.1        
+#&gt; [13] viridisLite_0.3.0     colorspace_1.4-1      knitr_1.23           
+#&gt; [16] dendextend_1.13.4    
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
 #&gt;  [1] shape_1.4.4         gtools_3.8.1        tidyselect_0.2.5   
@@ -1374,17 +1377,16 @@ dend2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/
 #&gt; [13] registry_0.5-1      foreach_1.4.7       stringr_1.4.0      
 #&gt; [16] munsell_0.5.0       gtable_0.3.0        GlobalOptions_0.1.1
 #&gt; [19] caTools_1.17.1.2    codetools_0.2-16    memoise_1.1.0      
-#&gt; [22] evaluate_0.14       labeling_0.3        profdpm_3.3        
-#&gt; [25] Rcpp_1.0.2          KernSmooth_2.23-15  scales_1.0.0       
-#&gt; [28] backports_1.1.4     gdata_2.18.0        desc_1.2.0         
-#&gt; [31] fs_1.3.1            gridExtra_2.3       digest_0.6.20      
-#&gt; [34] stringi_1.4.3       dplyr_0.8.3         grid_3.6.1         
-#&gt; [37] rprojroot_1.3-2     tools_3.6.1         bitops_1.0-6       
-#&gt; [40] magrittr_1.5        lazyeval_0.2.2      tibble_2.1.3       
-#&gt; [43] crayon_1.3.4        pkgconfig_2.0.2     MASS_7.3-51.4      
-#&gt; [46] assertthat_0.2.1    rmarkdown_1.14      rstudioapi_0.10    
-#&gt; [49] iterators_1.0.12    R6_2.4.0            TSP_1.1-7          
-#&gt; [52] compiler_3.6.1</code></pre>
+#&gt; [22] evaluate_0.14       Rcpp_1.0.2          KernSmooth_2.23-15 
+#&gt; [25] scales_1.0.0        backports_1.1.4     gdata_2.18.0       
+#&gt; [28] desc_1.2.0          fs_1.3.1            gridExtra_2.3      
+#&gt; [31] digest_0.6.20       stringi_1.4.3       dplyr_0.8.3        
+#&gt; [34] grid_3.6.1          rprojroot_1.3-2     tools_3.6.1        
+#&gt; [37] bitops_1.0-6        magrittr_1.5        lazyeval_0.2.2     
+#&gt; [40] tibble_2.1.3        crayon_1.3.4        pkgconfig_2.0.2    
+#&gt; [43] MASS_7.3-51.4       assertthat_0.2.1    rmarkdown_1.14     
+#&gt; [46] rstudioapi_0.10     iterators_1.0.12    R6_2.4.0           
+#&gt; [49] TSP_1.1-7           compiler_3.6.1</code></pre>
 </div>
   </div>
 
