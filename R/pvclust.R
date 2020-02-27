@@ -135,7 +135,7 @@ hc2axes <- function(x) {
     }
     x.axis[i] <- mean(x.tmp)
   }
-  return(data.frame(x.axis = x.axis, y.axis = y.axis))
+  return(data.frame(x.axis = x.axis, y.axis = y.axis, stringsAsFactors = TRUE))
 }
 
 

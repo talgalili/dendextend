@@ -198,7 +198,8 @@ as.ggdend.dendrogram <- function(dend, type = c("rectangle", "triangle"), edge.r
     data.frame(
       x = c(x[1], xend[id_even]), y = c(y[1], yend[id_even]),
       pch = NA, cex = NA, col = NA,
-      members = NA, midpoint = NA, height = NA, leaf = NA
+      members = NA, midpoint = NA, height = NA, leaf = NA,
+      stringsAsFactors = TRUE
     )
   })
   # nnodes(dend) == nrow(nodes_xy) # sanity check

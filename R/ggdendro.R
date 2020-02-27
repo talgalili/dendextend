@@ -131,13 +131,13 @@ dendrogram_data <- function(x, type = c("rectangle", "triangle"), ...) {
         nodeText <- asTxt(attr(subtree, "label"))
         ddlabels <- rbind(ddlabels, data.frame(
           x = X,
-          y = 0, text = nodeText
+          y = 0, text = nodeText, stringsAsFactors = TRUE
         ))
       }
     }
     else if (inner) {
       segmentsHV <- function(x0, y0, x1, y1) {
-        data.frame(x0, y0, x1, y1)
+        data.frame(x0, y0, x1, y1, stringsAsFactors = TRUE)
       }
       for (k in seq_along(subtree)) {
         child <- subtree[[k]]

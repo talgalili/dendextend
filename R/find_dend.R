@@ -56,7 +56,7 @@ dend_expend <- function(x,
 
 
   out_dendlist <- dendlist()
-  dist_hclust_combo <- expand.grid(dist_methods, hclust_methods) %>% data.frame()
+  dist_hclust_combo <- expand.grid(dist_methods, hclust_methods) %>% data.frame(stringsAsFactors = TRUE)
   colnames(dist_hclust_combo) <- c("dist_methods", "hclust_methods")
 
   for (i in 1:nrow(dist_hclust_combo)) {

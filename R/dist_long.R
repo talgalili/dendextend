@@ -62,5 +62,5 @@ dist_long <- function(d, ...) {
   labels_grid <- expand.grid(rows = labels(d), cols = labels(d))
   ss_keep <- rows_cols_grid[, 1] > rows_cols_grid[, 2]
   # rows_cols[ss_keep,]
-  data.frame(labels_grid[ss_keep, ], distance = as.vector(d))
+  data.frame(labels_grid[ss_keep, ], distance = as.vector(d), stringsAsFactors = TRUE)
 }
