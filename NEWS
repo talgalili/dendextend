@@ -1,3 +1,10 @@
+dendextend 1.13.4 (2020-02-27)
+----------------------------------------
+
+###OTHER NOTES
+- Fix "Failed with error: 'there is no package called 'profdpm''"
+
+
 dendextend 1.13.3 (2020-02-07)
 ----------------------------------------
 
