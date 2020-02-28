@@ -1,17 +1,29 @@
-* 2020-02-28(Tal Galili) Update the website |bbbaafb| 
-|  docs/articles/Cluster_Analysis.html         |  2 +-
-|  docs/articles/FAQ.html                      |  2 +-
-|  docs/articles/Quick_Introduction.html       |  2 +-
-|  docs/articles/dendextend.html               | 12 +-----------
-|  docs/news/index.html                        |  2 +-
-|  docs/reference/Bk.html                      | 11 ++---------
-|  docs/reference/Bk_permutations.html         |  2 +-
-|  docs/reference/FM_index.html                | 26 ++++++--------------------
-|  docs/reference/FM_index_R.html              |  6 +++---
-|  docs/reference/FM_index_permutation.html    |  4 ++--
-|  docs/reference/index.html                   |  6 ------
-|  docs/reference/sort_2_clusters_vectors.html |  6 ------
-|  12 files changed, 19 insertions(+), 62 deletions(-)
+* 2020-02-28(Tal Galili) Update dates |a3932d5| 
+|  NEWS.md              | 2 +-
+|  docs/news/index.html | 6 +++---
+|  2 files changed, 4 insertions(+), 4 deletions(-)
+
+* 2020-02-28(Tal Galili) Fix some tests using include_EV (since this arugment was removed - I removed these tests) |0534e90| 
+|  DESCRIPTION                     |  2 +-
+|  NEWS                            |  2 +-
+|  tests/testthat/test-bk_method.R | 13 ++++---------
+|  3 files changed, 6 insertions(+), 11 deletions(-)
+
+* 2020-02-28(Tal Galili) Update the website |6258cb1| 
+|  ChangeLog                                   | 185 ++++++++++++++++++++++++++
+|  docs/articles/Cluster_Analysis.html         |   2 +-
+|  docs/articles/FAQ.html                      |   2 +-
+|  docs/articles/Quick_Introduction.html       |   2 +-
+|  docs/articles/dendextend.html               |  12 +-
+|  docs/news/index.html                        |   2 +-
+|  docs/reference/Bk.html                      |  11 +-
+|  docs/reference/Bk_permutations.html         |   2 +-
+|  docs/reference/FM_index.html                |  26 +---
+|  docs/reference/FM_index_R.html              |   6 +-
+|  docs/reference/FM_index_permutation.html    |   4 +-
+|  docs/reference/index.html                   |   6 -
+|  docs/reference/sort_2_clusters_vectors.html |   6 -
+|  13 files changed, 204 insertions(+), 62 deletions(-)
 
 * 2020-02-28(Tal Galili) Remove profdpm dependacy |a0b8160| 
 |  DESCRIPTION                     |   1 -
