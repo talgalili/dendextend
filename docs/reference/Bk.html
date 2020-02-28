@@ -140,7 +140,7 @@ for two dendrograms.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>Bk</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='no'>k</span>, <span class='kw'>include_EV</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>Bk</span>(<span class='no'>tree1</span>, <span class='no'>tree2</span>, <span class='no'>k</span>, <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,13 +162,6 @@ If missing - the Bk will be calculated for a default k range of
 No point in checking k=1/k=n, since both will give Bk=1.</p></td>
     </tr>
     <tr>
-      <th>include_EV</th>
-      <td><p>logical (TRUE). Should we calculate expectancy and variance
-of the FM Index under null hypothesis of no relation between the clusterings?
-If TRUE (Default) - then the <a href='FM_index_R.html'>FM_index_R</a> function, else (FALSE)
-we use the (faster) <a href='FM_index_profdpm.html'>FM_index_profdpm</a> function.</p></td>
-    </tr>
-    <tr>
       <th>warn</th>
       <td><p>logical (default from dendextend_options("warn") is FALSE).
 Set if warning are to be issued, it is safer to keep this at TRUE,
@@ -176,7 +169,7 @@ but for keeping the noise down, the default is FALSE.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Ignored (passed to FM_index_R/FM_index_profdpm).</p></td>
+      <td><p>Ignored (passed to FM_index_R).</p></td>
     </tr>
     </table>
     
