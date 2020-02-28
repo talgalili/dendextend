@@ -1,4 +1,5 @@
 # library(testthat)
+# library(dendextend)
 RNGversion("3.5.0")
 
 context("Bk method (FM Index) between two trees")
@@ -143,13 +144,7 @@ test_that("FM_index works", {
   )
   #    ks <- 1:150
   #    plot(sapply(ks, fo)~ ks, type = "b", main = "Bk plot for the datasets::iris dataset")
-  #
-
-
-  expect_identical(
-    as.vector(FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3), include_EV = TRUE)),
-    as.vector(FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3), include_EV = FALSE))
-  )
+  
 })
 
 
@@ -206,8 +201,8 @@ test_that("Bk works", {
   )
 
   expect_identical(
-    Bk(hc1, hc2, k = 3, include_EV = FALSE),
-    Bk(dend1, dend2, k = 3, include_EV = FALSE)
+    Bk(hc1, hc2, k = 3),
+    Bk(dend1, dend2, k = 3)
   )
 
   expect_identical(
