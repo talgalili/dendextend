@@ -67,7 +67,6 @@ Suggests:
     seriation,
     colorspace,
     ape,
-    profdpm,
     microbenchmark,
     gplots,
     heatmaply,

@@ -32,7 +32,7 @@ but for keeping the noise down, the default is FALSE.
 If set to TRUE, extra checks are made to varify that the two clusters have
 the same size and the same labels.}
 
-\item{...}{Ignored (passed to FM_index_R/FM_index_profdpm).}
+\item{...}{Ignored (passed to FM_index_R).}
 }
 \value{
 A list (of the length of k's), where each element of the list has

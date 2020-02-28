@@ -1467,10 +1467,6 @@ FM_index(cutree(hc1, k=3), cutree(hc2, k=3))
          
 # Using the R code:
 FM_index_R(cutree(hc1, k=3), cutree(hc2, k=3))
-if(require(profdpm)) {
-   # Or wrapping the code from profdpm: (notice the NA's)
-   FM_index_profdpm(cutree(hc1, k=3), cutree(hc2, k=3))
-}
 ```
 
 The E_FM and V_FM are the values expected under the null hypothesis that the two trees have the same topology but one is a random shuffle of the labels of the other (i.e.: "no connection" between the trees).

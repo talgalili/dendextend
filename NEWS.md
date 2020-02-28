@@ -2,7 +2,7 @@ dendextend 1.13.4 (2020-02-27)
 ----------------------------------------
 
 ###OTHER NOTES
-- Fix "Failed with error: 'there is no package called 'profdpm''"
+- Remove profdpm dependacy - Fix "Failed with error: 'there is no package called 'profdpm''"
 - Add stringsAsFactors = TRUE to all data.frame calls (in preperation for R 4.0.0)
 
 

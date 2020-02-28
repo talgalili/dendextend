@@ -38,8 +38,6 @@
 #' but for keeping the noise down, the default is FALSE.
 #' @param ... Ignored.
 #'
-#' @seealso
-#' \link{FM_index_profdpm}
 #' @return
 #' A list with two elements, corresponding to the two clustering vectors.
 #'
@@ -92,136 +90,13 @@ sort_2_clusters_vectors <- function(A1_clusters, A2_clusters, assume_sorted_vect
 
 
 
-
-#' @title Calculating Fowlkes-Mallows index using the profdpm R package
-#' @export
-#' @description
-#'
-#' Calculating Fowlkes-Mallows index using the \code{pci} function from
-#' the profdpm R package. This function uses C code (thanks to
-#' Matthew Shotwell's work) and is a bit faster than the R code
-#' (from my simple tests - it is about 1.2-1.3 times faster - which is not much
-#' but it might be useful).
-#'
-#' As opposed to the \code{\link{FM_index_R}} function, the \code{FM_index_profdpm}
-#' function does NOT calculate the expectancy or the variance of the FM Index
-#' under the null hypothesis of no relation.
-#'
-#' This function also allows us to compare our calculations with an independent
-#' writing of a function calculating the same statistic.
-#'
-#' @param A1_clusters a numeric vector of cluster grouping (numeric) of items,
-#' with a name attribute of item name for each element from group A1.
-#' These are often obtained by using some k cut on a dendrogram.
-#' @param A2_clusters a numeric vector of cluster grouping (numeric) of items,
-#' with a name attribute of item name for each element from group A2.
-#' These are often obtained by using some k cut on a dendrogram.
-#' @param assume_sorted_vectors logical (FALSE). Can we assume to two group
-#' vectors are sorter so that they have the same order of items?
-#' IF FALSE (default), then the vectors will be sorted based on their
-#' name attribute.
-#' @param warn logical (default from dendextend_options("warn") is FALSE).
-#' Set if warning are to be issued, it is safer to keep this at TRUE,
-#' but for keeping the noise down, the default is FALSE.
-#' @param ... Ignored.
-#'
-#' @details
-#' From Wikipedia:
-#'
-#' Fowlkes-Mallows index (see references) is an external evaluation method
-#' that is used to determine the similarity between two clusterings
-#' (clusters obtained after a clustering algorithm). This measure of similarity
-#' could be either between two hierarchical clusterings or a clustering and
-#' a benchmark classification. A higher the value for the Fowlkes-Mallows index
-#' indicates a greater similarity between the clusters and the benchmark
-#' classifications.
-#'
-#' @seealso
-#' \link{cor_bakers_gamma}
-#' @return
-#' The Fowlkes-Mallows index between two vectors of clustering groups.
-#'
-#' @references
-#'
-#' Fowlkes, E. B.; Mallows, C. L. (1 September 1983).
-#' "A Method for Comparing Two Hierarchical Clusterings".
-#' Journal of the American Statistical Association 78 (383): 553.
-#'
-#' Shotwell, Matthew S. "profdpm: An R Package for MAP Estimation in a Class
-#' of Conjugate Product Partition Models."
-#' Journal of Statistical Software 53: 1-18.
-#'
-#' \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
-#'
-#' @examples
-#'
-#' \dontrun{
-#'
-#' set.seed(23235)
-#' ss <- TRUE # sample(1:150, 10 )
-#' hc1 <- hclust(dist(iris[ss, -5]), "com")
-#' hc2 <- hclust(dist(iris[ss, -5]), "single")
-#' # dend1 <- as.dendrogram(hc1)
-#' # dend2 <- as.dendrogram(hc2)
-#' #    cutree(dend1)
-#'
-#' FM_index_profdpm(cutree(hc1, k = 3), cutree(hc1, k = 3)) # 1
-#' set.seed(1341)
-#' FM_index_profdpm(cutree(hc1, k = 3), sample(cutree(hc1, k = 3)),
-#'   assume_sorted_vectors = TRUE
-#' ) # 0.38037
-#' FM_index_profdpm(cutree(hc1, k = 3), sample(cutree(hc1, k = 3)),
-#'   assume_sorted_vectors = FALSE
-#' ) # 1 again :)
-#' FM_index_profdpm(cutree(hc1, k = 3), cutree(hc2, k = 3)) # 0.8059
-#' FM_index_profdpm(cutree(hc1, k = 30), cutree(hc2, k = 30)) # 0.4529
-#'
-#' fo <- function(k) FM_index_profdpm(cutree(hc1, k), cutree(hc2, k))
-#' lapply(1:4, fo)
-#' ks <- 1:150
-#' plot(sapply(ks, fo) ~ ks, type = "b", main = "Bk plot for the iris dataset")
-#' }
-FM_index_profdpm <- function(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE, warn = dendextend_options("warn"), ...) {
-  if (!requireNamespace("profdpm")) {
-    if (warn) warning("The 'profdpm' package is not installed. Reverting to using the 'FM_index_R' function.")
-    return(FM_index_R(A1_clusters, A2_clusters, assume_sorted_vectors = assume_sorted_vectors, warn = warn, ...))
-  }
-  # see page 9 and 10, here:
-  # http://ftp.daum.net/CRAN/web/packages/profdpm/vignettes/profdpm.pdf
-
-  if (!assume_sorted_vectors) {
-    sorted_As <- sort_2_clusters_vectors(A1_clusters, A2_clusters,
-      assume_sorted_vectors = assume_sorted_vectors,
-      warn = warn
-    )
-    A1_clusters <- sorted_As[[1]]
-    A2_clusters <- sorted_As[[2]]
-  }
-
-  FM_index <- unname(profdpm::pci(A1_clusters, A2_clusters)[2])
-  attr(FM_index, "E_FM") <- NA
-  attr(FM_index, "V_FM") <- NA
-
-  return(FM_index)
-}
-
-
-
-
-
-
-
-
-
-
-
 #' @title Calculating Fowlkes-Mallows index in R
 #' @export
 #' @description
 #'
 #' Calculating Fowlkes-Mallows index.
 #'
-#' As opposed to the \code{\link{FM_index_profdpm}} function, the \code{FM_index_R}
+#' The \code{FM_index_R}
 #' function also calculates the expectancy and variance of the FM Index
 #' under the null hypothesis of no relation.
 #'
@@ -253,7 +128,7 @@ FM_index_profdpm <- function(A1_clusters, A2_clusters, assume_sorted_vectors = F
 #' classifications.
 #'
 #' @seealso
-#' \link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}}
+#' \link{cor_bakers_gamma}
 #' @return
 #' The Fowlkes-Mallows index between two vectors of clustering groups.
 #'
@@ -385,8 +260,7 @@ FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE, 
 #'
 #' Calculating Fowlkes-Mallows index.
 #'
-#' As opposed to the \code{\link{FM_index_profdpm}} function, the \code{FM_index_R}
-#' function also calculates the expectancy and variance of the FM Index
+#' The \code{FM_index_R} function calculates the expectancy and variance of the FM Index
 #' under the null hypothesis of no relation.
 #'
 #'
@@ -396,10 +270,6 @@ FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE, 
 #' @param A2_clusters a numeric vector of cluster grouping (numeric) of items,
 #' with a name attribute of item name for each element from group A2.
 #' These are often obtained by using some k cut on a dendrogram.
-#' @param include_EV logical (TRUE). Should we calculate expectancy and variance
-#' of the FM Index under null hypothesis of no relation between the clusterings?
-#' If TRUE (Default) - then the \link{FM_index_R} function, else (FALSE)
-#' we use the (faster) \link{FM_index_profdpm} function.
 #' @param assume_sorted_vectors logical (FALSE). Can we assume to two group
 #' vectors are sorter so that they have the same order of items?
 #' IF FALSE (default), then the vectors will be sorted based on their
@@ -407,7 +277,7 @@ FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE, 
 #' @param warn logical (default from dendextend_options("warn") is FALSE).
 #' Set if warning are to be issued, it is safer to keep this at TRUE,
 #' but for keeping the noise down, the default is FALSE.
-#' @param ... Ignored (passed to FM_index_R/FM_index_profdpm).
+#' @param ... Ignored
 #'
 #' @details
 #' From Wikipedia:
@@ -421,7 +291,7 @@ FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE, 
 #' classifications.
 #'
 #' @seealso
-#' \link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}}
+#' \link{cor_bakers_gamma}
 #' @return
 #' The Fowlkes-Mallows index between two vectors of clustering groups.
 #'
@@ -449,20 +319,16 @@ FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE, 
 #' #    cutree(dend1)
 #'
 #' FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3)) # 1 with EV
-#' FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3), include_EV = FALSE) # 1
 #'
 #' # checking speed gains
 #' library(microbenchmark)
 #' microbenchmark(
 #'   FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3)),
 #'   FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3),
-#'     include_EV = FALSE
+#'     assume_sorted_vectors = TRUE
 #'   ),
 #'   FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3),
-#'     include_EV = TRUE, assume_sorted_vectors = TRUE
-#'   ),
-#'   FM_index(cutree(hc1, k = 3), cutree(hc1, k = 3),
-#'     include_EV = FALSE, assume_sorted_vectors = TRUE
+#'     assume_sorted_vectors = TRUE
 #'   )
 #' )
 #' # C code is 1.2-1.3 times faster.
@@ -482,17 +348,11 @@ FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE, 
 #' ks <- 1:150
 #' plot(sapply(ks, fo) ~ ks, type = "b", main = "Bk plot for the iris dataset")
 #' }
-FM_index <- function(A1_clusters, A2_clusters, include_EV = TRUE, assume_sorted_vectors = FALSE, warn = dendextend_options("warn"), ...) {
-  if (include_EV) {
-    FM <- FM_index_R(A1_clusters, A2_clusters,
-      assume_sorted_vectors = assume_sorted_vectors, warn = warn, ...
-    )
-  } else {
-    FM <- FM_index_profdpm(A1_clusters, A2_clusters,
-      assume_sorted_vectors = assume_sorted_vectors, warn = warn, ...
-    )
-  }
-
+FM_index <- function(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE, warn = dendextend_options("warn"), ...) {
+   FM <- FM_index_R(A1_clusters, A2_clusters,
+                    assume_sorted_vectors = assume_sorted_vectors, warn = warn, ...
+   )
+   
   return(FM)
 }
 
@@ -518,11 +378,11 @@ FM_index <- function(A1_clusters, A2_clusters, include_EV = TRUE, assume_sorted_
 #' @param warn logical (default from dendextend_options("warn") is FALSE).
 #' Set if warning are to be issued, it is safer to keep this at TRUE,
 #' but for keeping the noise down, the default is FALSE.
-#' @param ... Ignored (passed to FM_index_R/FM_index_profdpm).
+#' @param ... Ignored
 #'
 #'
 #' @seealso
-#' \link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}},
+#' \link{cor_bakers_gamma},
 #' \code{\link{FM_index_R}}, \code{\link{FM_index}}
 #'
 #' @return
@@ -590,7 +450,7 @@ FM_index_permutation <- function(A1_clusters, A2_clusters, warn = dendextend_opt
   return(
     as.vector(FM_index(sample(A1_clusters),
       sample(A2_clusters),
-      include_EV = FALSE, assume_sorted_vectors = TRUE, warn = warn, ...
+      assume_sorted_vectors = TRUE, warn = warn, ...
     ))
   )
 }
@@ -627,14 +487,10 @@ FM_index_permutation <- function(A1_clusters, A2_clusters, warn = dendextend_opt
 #' If missing - the Bk will be calculated for a default k range of
 #' 2:(nleaves-1).
 #' No point in checking k=1/k=n, since both will give Bk=1.
-#' @param include_EV logical (TRUE). Should we calculate expectancy and variance
-#' of the FM Index under null hypothesis of no relation between the clusterings?
-#' If TRUE (Default) - then the \link{FM_index_R} function, else (FALSE)
-#' we use the (faster) \link{FM_index_profdpm} function.
 #' @param warn logical (default from dendextend_options("warn") is FALSE).
 #' Set if warning are to be issued, it is safer to keep this at TRUE,
 #' but for keeping the noise down, the default is FALSE.
-#' @param ... Ignored (passed to FM_index_R/FM_index_profdpm).
+#' @param ... Ignored (passed to FM_index_R).
 #'
 #' @details
 #' From Wikipedia:
@@ -701,7 +557,7 @@ FM_index_permutation <- function(A1_clusters, A2_clusters, warn = dendextend_opt
 #' # we are still missing some hypothesis testing here.
 #' # for this we'll have the Bk_plot function.
 #' }
-Bk <- function(tree1, tree2, k, include_EV = TRUE, warn = dendextend_options("warn"), ...) {
+Bk <- function(tree1, tree2, k, warn = dendextend_options("warn"), ...) {
 
   # some sanity checks!
   if (warn) { # the sanity checks are turned off by default since the "labels" function for dendrogram is one which takes some time to run...
@@ -747,7 +603,6 @@ Bk <- function(tree1, tree2, k, include_EV = TRUE, warn = dendextend_options("wa
       # but for small length of k's, this per-process (/checks)
       # will likely be more expensive than simply running it with
       # assume_sorted_vectors = FALSE,
-      include_EV = include_EV,
       warn = warn
     )
   }
@@ -786,7 +641,7 @@ Bk <- function(tree1, tree2, k, include_EV = TRUE, warn = dendextend_options("wa
 #' but for keeping the noise down, the default is FALSE.
 #' If set to TRUE, extra checks are made to varify that the two clusters have
 #' the same size and the same labels.
-#' @param ... Ignored (passed to FM_index_R/FM_index_profdpm).
+#' @param ... Ignored (passed to FM_index_R).
 #'
 #' @details
 #' From Wikipedia:
@@ -1062,7 +917,6 @@ Bk_plot <- function(tree1, tree2, k,
   if (missing(k)) k <- 2:(nleaves(tree1) - 1)
   the_Bks <- Bk(tree1, tree2,
     k = k,
-    include_EV = add_E | rejection_line_asymptotic,
     warn = warn
   )
   output[length(output) + 1] <- list(Bk = the_Bks)
@@ -1142,6 +996,7 @@ Bk_plot <- function(tree1, tree2, k,
 # The Bk function was previously also implemented by Matt in:
 #   	 https://cran.r-project.org/package=profdpm
 # See pages 9 and 10 here: https://CRAN.R-project.org/package=profdpm/vignettes/profdpm.pdf
+# As of February 2020 the package went off CRAN, so I removed it also from dendextend.
 # I came by this package thanks to chl: http://stats.stackexchange.com/questions/3672/a-measure-to-describe-the-distribution-of-a-dendrogram
 # Also, there is a great overview of similarity measures on this here:
 # http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.164.6189&rep=rep1&type=pdf

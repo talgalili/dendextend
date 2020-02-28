@@ -4,7 +4,7 @@
 \alias{Bk}
 \title{Bk - Calculating Fowlkes-Mallows Index for two dendrogram}
 \usage{
-Bk(tree1, tree2, k, include_EV = TRUE, warn = dendextend_options("warn"), ...)
+Bk(tree1, tree2, k, warn = dendextend_options("warn"), ...)
 }
 \arguments{
 \item{tree1}{a dendrogram/hclust/phylo object.}
@@ -17,16 +17,11 @@ If missing - the Bk will be calculated for a default k range of
 2:(nleaves-1).
 No point in checking k=1/k=n, since both will give Bk=1.}
 
-\item{include_EV}{logical (TRUE). Should we calculate expectancy and variance
-of the FM Index under null hypothesis of no relation between the clusterings?
-If TRUE (Default) - then the \link{FM_index_R} function, else (FALSE)
-we use the (faster) \link{FM_index_profdpm} function.}
-
 \item{warn}{logical (default from dendextend_options("warn") is FALSE).
 Set if warning are to be issued, it is safer to keep this at TRUE,
 but for keeping the noise down, the default is FALSE.}
 
-\item{...}{Ignored (passed to FM_index_R/FM_index_profdpm).}
+\item{...}{Ignored (passed to FM_index_R).}
 }
 \value{
 A list (of k's length) of Fowlkes-Mallows index between two dendrogram for

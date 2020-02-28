@@ -41,7 +41,7 @@ variance under the null hypothesis of no-relation.
 \description{
 Calculating Fowlkes-Mallows index.
 
-As opposed to the \code{\link{FM_index_profdpm}} function, the \code{FM_index_R}
+The \code{FM_index_R}
 function also calculates the expectancy and variance of the FM Index
 under the null hypothesis of no relation.
 }
@@ -100,5 +100,5 @@ Journal of the American Statistical Association 78 (383): 553.
 \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 }
 \seealso{
-\link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}}
+\link{cor_bakers_gamma}
 }

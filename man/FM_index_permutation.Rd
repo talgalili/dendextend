@@ -24,7 +24,7 @@ These are often obtained by using some k cut on a dendrogram.}
 Set if warning are to be issued, it is safer to keep this at TRUE,
 but for keeping the noise down, the default is FALSE.}
 
-\item{...}{Ignored (passed to FM_index_R/FM_index_profdpm).}
+\item{...}{Ignored}
 }
 \value{
 The Fowlkes-Mallows index between two vectors of clustering groups.
@@ -92,6 +92,6 @@ Journal of the American Statistical Association 78 (383): 553.
 \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 }
 \seealso{
-\link{cor_bakers_gamma}, \code{\link{FM_index_profdpm}},
+\link{cor_bakers_gamma},
 \code{\link{FM_index_R}}, \code{\link{FM_index}}
 }
