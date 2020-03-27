@@ -9,22 +9,26 @@
 <title>Changelog • dendextend</title>
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -49,7 +53,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -106,7 +110,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/talgalili/dendextend">
+  <a href="https://github.com/talgalili/dendextend/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -124,7 +128,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       <small>Source: <a href='https://github.com/talgalili/dendextend/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
@@ -1139,7 +1143,7 @@
 <ul>
 <li>
 <p>compacted ‘dendextend-tutorial.pdf’ from 725Kb to 551Kb (doc fixes to pass CRAN checks) (Thanks to using the following:</p>
-<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">       tools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/tools/compactPDF.html">compactPDF</a></span>(<span class="st">"inst</span><span class="ch">\\</span><span class="st">doc</span><span class="ch">\\</span><span class="st">dendextend-tutorial.pdf"</span>, 
+<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">       tools<span class="op">::</span><span class="kw">compactPDF</span>(<span class="st">"inst</span><span class="ch">\\</span><span class="st">doc</span><span class="ch">\\</span><span class="st">dendextend-tutorial.pdf"</span>, 
                          <span class="dt">qpdf =</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files (x86)</span><span class="ch">\\</span><span class="st">qpdf-5.1.2</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">qpdf.exe"</span>, 
                          <span class="dt">gs_cmd =</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">gs</span><span class="ch">\\</span><span class="st">gs9.14</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">gswin64c.exe"</span>,
                          <span class="dt">gs_quality=</span><span class="st">"ebook"</span>) </code></pre></div>
@@ -2476,91 +2480,10 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#dendextend-1-13-4-2020-02-28">1.13.4</a></li>
-        <li><a href="#dendextend-1-13-3-2020-02-07">1.13.3</a></li>
-        <li><a href="#dendextend-1-13-2-2019-11-27">1.13.2</a></li>
-        <li><a href="#dendextend-1-12-0-2019-05-11">1.12.0</a></li>
-        <li><a href="#dendextend-1-11-0-2019-05-10">1.11.0</a></li>
-        <li><a href="#dendextend-1-10-0-2019-03-15">1.10.0</a></li>
-        <li><a href="#dendextend-1-9-0-2018-10-19">1.9.0</a></li>
-        <li><a href="#dendextend-1-8-0-2018-04-28">1.8.0</a></li>
-        <li><a href="#dendextend-1-7-0-2018-02-10">1.7.0</a></li>
-        <li><a href="#dendextend-1-6-0-2017-11-13">1.6.0</a></li>
-        <li><a href="#dendextend-1-5-2-2017-05-19">1.5.2</a></li>
-        <li><a href="#dendextend-1-5-0-2017-03-24">1.5.0</a></li>
-        <li><a href="#dendextend-1-4-0-2017-01-21">1.4.0</a></li>
-        <li><a href="#dendextend-1-3-0-2016-07-15">1.3.0</a></li>
-        <li><a href="#dendextend-1-2-0-2016-06-21">1.2.0</a></li>
-        <li><a href="#dendextend-1-1-9-2016-03-17">1.1.9</a></li>
-        <li><a href="#dendextend-1-1-8-2016-02-10">1.1.8</a></li>
-        <li><a href="#dendextend-1-1-7-2016-02-10">1.1.7</a></li>
-        <li><a href="#dendextend-1-1-6-2016-02-10">1.1.6</a></li>
-        <li><a href="#dendextend-1-1-5-2016-01-06">1.1.5</a></li>
-        <li><a href="#dendextend-1-1-4-2016-01-01">1.1.4</a></li>
-        <li><a href="#dendextend-1-1-3-2015-11-07">1.1.3</a></li>
-        <li><a href="#dendextend-1-1-2-2015-10-30">1.1.2</a></li>
-        <li><a href="#dendextend-1-1-0-2015-07-30">1.1.0</a></li>
-        <li><a href="#dendextend-1-0-3-2015-07-05">1.0.3</a></li>
-        <li><a href="#dendextend-1-0-2-2015-06-28">1.0.2</a></li>
-        <li><a href="#dendextend-1-0-1-2015-06-28">1.0.1</a></li>
-        <li><a href="#dendextend-1-0-0-2015-06-27">1.0.0</a></li>
-        <li><a href="#dendextend-0-18-8-2015-05-17">0.18.8</a></li>
-        <li><a href="#dendextend-0-18-7-2015-05-05">0.18.7</a></li>
-        <li><a href="#dendextend-0-18-6-2015-04-25">0.18.6</a></li>
-        <li><a href="#dendextend-0-18-5-2015-04-22">0.18.5</a></li>
-        <li><a href="#dendextend-0-18-4-2015-02-07">0.18.4</a></li>
-        <li><a href="#dendextend-0-18-3-2015-01-31">0.18.3</a></li>
-        <li><a href="#dendextend-0-18-2-2015-01-31">0.18.2</a></li>
-        <li><a href="#dendextend-0-18-1-2015-01-31">0.18.1</a></li>
-        <li><a href="#dendextend-0-18-0-2015-01-29">0.18.0</a></li>
-        <li><a href="#dendextend-0-17-6-2014-12-08">0.17.6</a></li>
-        <li><a href="#dendextend-0-17-5-2014-09-22">0.17.5</a></li>
-        <li><a href="#dendextend-0-17-4-2014-09-20">0.17.4</a></li>
-        <li><a href="#dendextend-0-17-3-2014-08-26">0.17.3</a></li>
-        <li><a href="#dendextend-0-17-2-2014-08-25">0.17.2</a></li>
-        <li><a href="#dendextend-0-17-1-2014-08-19">0.17.1</a></li>
-        <li><a href="#dendextend-0-17-0-2014-08-19">0.17.0</a></li>
-        <li><a href="#dendextend-0-16-4-2014-08-06">0.16.4</a></li>
-        <li><a href="#dendextend-0-16-3-2014-08-06">0.16.3</a></li>
-        <li><a href="#dendextend-0-16-2-2014-07-29">0.16.2</a></li>
-        <li><a href="#dendextend-0-16-1-2014-07-26">0.16.1</a></li>
-        <li><a href="#dendextend-0-16-0-2014-07-26">0.16.0</a></li>
-        <li><a href="#dendextend-0-15-2-2014-07-24">0.15.2</a></li>
-        <li><a href="#dendextend-0-15-1-2014-07-16">0.15.1</a></li>
-        <li><a href="#dendextend-0-15-0-2014-07-14">0.15.0</a></li>
-        <li><a href="#dendextend-0-14-4-2014-07-04">0.14.4</a></li>
-        <li><a href="#dendextend-0-14-3-2014-04-26">0.14.3</a></li>
-        <li><a href="#dendextend-0-14-2-2014-03-15">0.14.2</a></li>
-        <li><a href="#dendextend-0-14-1-2014-03-15">0.14.1</a></li>
-        <li><a href="#dendextend-0-14-0-2014-03-15">0.14.0</a></li>
-        <li><a href="#dendextend-0-13-0-2014-03-01">0.13.0</a></li>
-        <li><a href="#dendextend-0-12-2-2014-02-03">0.12.2</a></li>
-        <li><a href="#dendextend-0-12-1-2014-02-02">0.12.1</a></li>
-        <li><a href="#dendextend-0-12-0-2014-02-01">0.12.0</a></li>
-        <li><a href="#dendextend-0-11-2-2013-08-31">0.11.2</a></li>
-        <li><a href="#dendextend-0-11-1-2013-08-29">0.11.1</a></li>
-        <li><a href="#dendextend-0-11-0-2013-08-24">0.11.0</a></li>
-        <li><a href="#dendextend-0-10-0-2013-08-20">0.10.0</a></li>
-        <li><a href="#dendextend-0-9-2-2013-08-20">0.9.2</a></li>
-        <li><a href="#dendextend-0-9-1-2013-08-19">0.9.1</a></li>
-        <li><a href="#dendextend-0-9-0-2013-08-18">0.9.0</a></li>
-        <li><a href="#dendextend-0-8-0-2013-08-14">0.8.0</a></li>
-        <li><a href="#dendextend-0-7-3-2013-08-14">0.7.3</a></li>
-        <li><a href="#dendextend-0-7-2-2013-08-13">0.7.2</a></li>
-        <li><a href="#dendextend-0-7-1-2013-08-12">0.7.1</a></li>
-        <li><a href="#dendextend-0-7-2013-08-11">0.7</a></li>
-        <li><a href="#dendextend-0-6-2013-08-10">0.6</a></li>
-        <li><a href="#dendextend-0-5-2013-08-05">0.5</a></li>
-        <li><a href="#dendextend-0-4-2013-08-02">0.4</a></li>
-        <li><a href="#dendextend-0-3-2013-07-27">0.3</a></li>
-        <li><a href="#dendextend-0-2-2013-04-10">0.2</a></li>
-        <li><a href="#dendextend-0-1-2013-04-05---first-version">0.1</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
@@ -2572,7 +2495,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>
