@@ -193,10 +193,13 @@ as.ggdend.dendrogram <- function(dend, type = c("rectangle", "triangle"), edge.r
     #       2    3.250000 2.0420578  3.25000 0.9219544
     #       3    3.250000 0.9219544  1.50000 0.9219544
     # x=ggdata$segments$x
-    id <- seq_along(x)
-    id_even <- (id %% 2) == 0
+    id <- if(type == "rectangle") {
+      (seq_along(x) %% 2) == 0
+    } else {
+      TRUE
+    }
     data.frame(
-      x = c(x[1], xend[id_even]), y = c(y[1], yend[id_even]),
+      x = c(x[1], xend[id]), y = c(y[1], yend[id]),
       pch = NA, cex = NA, col = NA,
       members = NA, midpoint = NA, height = NA, leaf = NA,
       stringsAsFactors = TRUE
@@ -272,7 +275,7 @@ as.ggdend.dendrogram <- function(dend, type = c("rectangle", "triangle"), edge.r
     #       null2NA <- function(x) ifelse(is.na(x) || is.null(x), NA, x)
     null2NA <- function(x) ifelse(is.null(x), NA, x)
     values <- sapply(values, null2NA) # in case the attr is missing, it fills the NULL with NA
-    rep(unlist(values), each = 2) # like doing edgePar_attr[[1]] ["col"]
+    rep(unlist(values), each = if(type == "rectangle") 2 else 1) # like doing edgePar_attr[[1]] ["col"]
   }
 
   # The rep is because a segment has two lines. So we use each: rep(1:4, each = 2)
