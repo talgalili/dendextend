@@ -178,7 +178,7 @@ as.ggdend.dendrogram <- function(dend, type = c("rectangle", "triangle"), edge.r
   if (!is.dendrogram(dend)) stop("dend is not a dendrogram (and it needs to be...)")
   if (nleaves(dend) == 0) stop("dend must have at least one node")
   if (edge.root) stop("edge.root is not supported at this point (this parameter is a place-holder for when it will)")
-
+  type <- match.arg(type, c("rectangle", "triangle"))
   # source('R/stats_imports.R', echo=FALSE)
   # ggdata <- dendextend:::dendrogram_data(dend, type = "rectangle")
   ggdata <- dendrogram_data(dend, type = type) # ggdendro:::dendrogram_data(dend)
