@@ -1,5 +1,8 @@
-dendextend 1.13.5 (2020-03-27)
+dendextend 1.14.0 (2020-05-31)
 ----------------------------------------
+
+###UPDATED FUNCTIONS:
+* ggdend - now supports type='triangle' (prop @houyunhuang)
 
 ###OTHER NOTES
 - update pkgdown website

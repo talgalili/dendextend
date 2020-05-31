@@ -124,7 +124,13 @@ ggd1 <- as.ggdend(dend)
 library(ggplot2)
 ggplot(ggd1) # reproducing the above plot in ggplot2 :)
 
+# Triangle version:
+plot(dend, type = "triangle")
+ggd2 <- as.ggdend(dend, type = "triangle")
+ggplot(ggd2) 
 
+
+# More modifications:
 labels(dend) <- paste0(labels(dend), "00000")
 ggd1 <- as.ggdend(dend)
 # Use ylim to deal with long labels in ggplot2
