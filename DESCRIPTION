@@ -72,7 +72,6 @@ Suggests:
     microbenchmark,
     gplots,
     heatmaply,
-    d3heatmap,
     dynamicTreeCut,
     pvclust,
     corrplot,

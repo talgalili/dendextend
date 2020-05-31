@@ -201,16 +201,12 @@ gplots::heatmap.2(as.matrix(iris2),
 
 ```
 
-We can get an interactive heatmap by using the `d3heatmap` package/function: (code is not evaluated in order to keep the HTML size)
+We can get an interactive heatmap by using the `heatmaply` package/function: (code is not evaluated in order to keep the HTML size)
 
 ```{r, cache = FALSE, eval = FALSE}
-d3heatmap::d3heatmap(as.matrix(iris2),
+heatmaply::heatmaply(as.matrix(iris2),
           dendrogram = "row",
-          Rowv = dend,
-          colors = "Greens",
-          # scale = "row",
-          width = 600,
-          show_grid = FALSE)
+          Rowv = dend)
 ```
 
 
