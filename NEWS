@@ -1,8 +1,9 @@
-dendextend 1.14.0 (2020-05-31)
+dendextend 1.14.0 (2020-08-14)
 ----------------------------------------
 
 ###UPDATED FUNCTIONS:
 * ggdend - now supports type='triangle' (prop @houyunhuang)
+* find_dendrogram - make the function deal with more edge cases, added tests, and fix the documentation to match what the function does.
 
 ###OTHER NOTES
 - update pkgdown website
