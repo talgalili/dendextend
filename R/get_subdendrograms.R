@@ -83,6 +83,20 @@ get_subdendrograms <- function(dend, k, ...) {
 #' par(mfrow = c(1, 2))
 #' plot(dend, main = "Original dendrogram")
 #' plot(sub.dend, main = "First subdendrogram")
+#' 
+#'   dend <- 1:10 %>%
+#' dist() %>%
+#'   hclust() %>%
+#'   as.dendrogram() %>%
+#'   set("labels_to_character") %>%
+#'   color_branches(k = 5)
+#' 
+#' selected_labels <- as.character(1:4)
+#' sub_dend <- find_dendrogram(dend, selected_labels)
+#' plot(dend, main = "Original dendrogram")
+#' plot(sub_dend, main = "First subdendrogram")
+#' 
+#' 
 #' }
 #'
 find_dendrogram <- function(dend, selected_labels) {

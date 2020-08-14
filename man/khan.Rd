@@ -4,7 +4,8 @@
 \name{khan}
 \alias{khan}
 \title{Microarray gene expression dataset from Khan et al., 2001. Subset of 306 genes.}
-\format{Khan is dataset containing the following:
+\format{
+Khan is dataset containing the following:
    \itemize{
       \item{\$train:}{\code{\link{data.frame}} of 306 rows and 64 columns.
          The training dataset of 64 arrays and 306 gene expression values}
@@ -32,7 +33,8 @@
             \item{\$Cytoband}{cytoband location}
          }
       }
-   }}
+   }
+}
 \source{
 \code{khan} contains a filtered data of 2308 gene expression profiles
 as published and provided by Khan et al. (2001) on the supplementary

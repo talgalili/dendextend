@@ -2,26 +2,23 @@
 % Please edit documentation in R/get_subdendrograms.R
 \name{find_dendrogram}
 \alias{find_dendrogram}
-\title{Search for the subdendrogram structure composed of indicated labels}
+\title{Search for the sub-dendrogram structure composed of selected labels}
 \usage{
 find_dendrogram(dend, selected_labels)
 }
 \arguments{
 \item{dend}{a dendrogram object}
 
-\item{selected_labels}{logical vector with TRUE values at positions of
-members which should be included in the resulting subdendrogram}
+\item{selected_labels}{A character vector with the labels we expect to have 
+in the sub-dendrogram. This doesn't have to be in the same order as in the dendrogram.}
 }
 \value{
-A subdendrogram composed of only members indicated in the given logical
-vector
-clusters.
+Either a sub-dendrogram composed of only members of selected_labels.
+If such a sub-dendrogram doesn't exist, the function returns NULL.
 }
 \description{
 Given a dendrogram object, the function performs a recursive DFS algorithm to determine
-the subdendrogram which is composed of all indicated labels. The labels
-which should compose the subdendrogram are marked as TRUE in the logical
-vector of length \code{nleaves(dend)}
+the sub-dendrogram which is composed of (exactly) all 'selected_labels'.
 }
 \examples{
 
@@ -33,12 +30,26 @@ dend <- iris[, -5] \%>\%
   as.dendrogram() \%>\%
   set("labels_to_character") \%>\%
   color_branches(k = 5)
-first.subdend.only <- cutree(dend, 4) == 1
+first.subdend.only <- names(cutree(dend, 4)[cutree(dend, 4) == 1])
 sub.dend <- find_dendrogram(dend, first.subdend.only)
 # Plotting the result
 par(mfrow = c(1, 2))
 plot(dend, main = "Original dendrogram")
 plot(sub.dend, main = "First subdendrogram")
+
+  dend <- 1:10 \%>\%
+dist() \%>\%
+  hclust() \%>\%
+  as.dendrogram() \%>\%
+  set("labels_to_character") \%>\%
+  color_branches(k = 5)
+
+selected_labels <- as.character(1:4)
+sub_dend <- find_dendrogram(dend, selected_labels)
+plot(dend, main = "Original dendrogram")
+plot(sub_dend, main = "First subdendrogram")
+
+
 }
 
 }
