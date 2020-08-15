@@ -57,6 +57,6 @@ length(order.dendrogram(sub_dend))
 # get the subset of the data
 subset_iris <- as.matrix(iris[order.dendrogram(sub_dend), -5])
 # update the dendrogram's internal order so to not cause an error in heatmap.2
-order.dendrogram(sub_dend) <- rank(order.dendrogram(sub_dend))
+order.dendrogram(sub_dend) <- as.integer(rank(order.dendrogram(sub_dend)))
 heatmap.2(subset_iris, Rowv = sub_dend, trace = "none", col = viridis::viridis(100))
 }

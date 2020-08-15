@@ -59,7 +59,7 @@ labels_colors(dend)
 plot(dend)
 
 # removing color (and the nodePar completely - if it has no other attributed but lab.col)
-labels_colors(dend) <- NULL
+suppressWarnings(labels_colors(dend) <- NULL)
 labels_colors(dend)
 plot(dend)
 }
