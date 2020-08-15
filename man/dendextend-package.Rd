@@ -5,6 +5,13 @@
 \alias{dendextend-package}
 \alias{dendextend}
 \title{Functions for extending dendrogram objects}
+\description{
+Offers a set of functions for extending 'dendrogram' objects in R, 
+letting you visualize and compare trees of 'hierarchical clusterings'.
+You can (1) Adjust a tree's graphical parameters - 
+the color, size, type, etc of its branches, nodes and labels.
+(2) Visually and statistically compare different 'dendrograms' to one another.
+}
 \seealso{
 \code{\link{dendrogram}, \link{hclust}} in \code{\link{stats}} package.
 }

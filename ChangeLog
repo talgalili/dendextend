@@ -1,7 +1,243 @@
-* 2020-02-28(Tal Galili) Update dates |a3932d5| 
-|  NEWS.md              | 2 +-
-|  docs/news/index.html | 6 +++---
-|  2 files changed, 4 insertions(+), 4 deletions(-)
+* 2020-08-15(Tal Galili) Update tests to suppress warnings around RNGversion("3.5.0") |1c869df| 
+|  tests/test-all.R                       | 2 +-
+|  tests/testthat/test-bk_method.R        | 5 +++--
+|  tests/testthat/test-cor_bakers_gamma.R | 3 +--
+|  tests/testthat/test-cor_cophenetic.R   | 3 ++-
+|  tests/testthat/test-dendlist.R         | 3 +--
+|  tests/testthat/test-pvclust_extract.R  | 2 +-
+|  tests/testthat/test-set.dendrogram.R   | 9 ++++-----
+|  tests/testthat/test-untangle.R         | 7 +++++--
+|  8 files changed, 18 insertions(+), 16 deletions(-)
+
+* 2020-08-15(Tal Galili) Fix some tests to not flag errors/warnings |68916c7| 
+|  tests/test-all.R                      | 24 ++----------------------
+|  tests/testthat/test-ggdend.R          |  2 ++
+|  tests/testthat/test-pvclust_extract.R |  2 +-
+|  3 files changed, 5 insertions(+), 23 deletions(-)
+
+* 2020-08-15(Tal Galili) Remove warnings from .Rd files. |f4e243c| 
+|  R/get_subdendrograms.R    | 2 +-
+|  R/labels.R                | 2 +-
+|  R/labels_colors.R         | 2 +-
+|  man/get_subdendrograms.Rd | 2 +-
+|  man/labels-assign.Rd      | 2 +-
+|  man/labels_colors.Rd      | 2 +-
+|  6 files changed, 6 insertions(+), 6 deletions(-)
+
+* 2020-08-14(Tal Galili) Update .Rd for find_dendrogram (and some other functions) |5745a79| 
+|  DESCRIPTION               |  2 +-
+|  R/get_subdendrograms.R    | 14 ++++++++++++++
+|  man/dendextend-package.Rd |  3 ---
+|  man/find_dendrogram.Rd    | 31 +++++++++++++++++++++----------
+|  man/khan.Rd               |  6 ++++--
+|  man/reexports.Rd          |  2 +-
+|  man/set.Rd                |  8 ++++----
+|  7 files changed, 45 insertions(+), 21 deletions(-)
+
+* 2020-08-14(Tal Galili) Fix #102 - find_dendrogram deals with more edge cases, the documentation does what it says it does, and there are now tests. |3f3d5ab| 
+|  DESCRIPTION                           |  2 +-
+|  NEWS                                  |  3 ++-
+|  R/get_subdendrograms.R                | 33 ++++++++++++++++++---------------
+|  tests/testthat/test-find_dendrogram.R | 32 ++++++++++++++++++++++++++++++++
+|  4 files changed, 53 insertions(+), 17 deletions(-)
+
+* 2020-06-01(Tal Galili) remove d3heatmap from DESCRIPTION (since the package became orphaned) |99dbf6d| 
+|  DESCRIPTION                    |  1 -
+|  vignettes/Cluster_Analysis.Rmd | 10 +++-------
+|  vignettes/dendextend.Rmd       |  2 +-
+|  3 files changed, 4 insertions(+), 9 deletions(-)
+
+* 2020-06-01(Tal Galili) ggdend - add type='triang': - bump package version - update NEWS - added Hauyn as a contributor - updated function doc (added an example) |3f938f8| 
+|  DESCRIPTION   | 8 +++++---
+|  NEWS          | 5 ++++-
+|  R/ggdend.R    | 6 ++++++
+|  man/ggdend.Rd | 6 ++++++
+|  4 files changed, 21 insertions(+), 4 deletions(-)
+
+*   2020-05-31(Tal Galili) Merge branch 'master' of github.com:talgalili/dendextend |cd77a0e
+|\  
+| *   2020-05-31(Tal Galili) Merge pull request #99 from houyunhuang/master |7043bde
+| |\  
+| | * 2020-04-15(houyun) check the type param |2e5ebc1| | | 
+| | |  R/ggdend.R | 2 +-
+| | |  1 file changed, 1 insertion(+), 1 deletion(-)
+
+| | * 2020-04-07(houyun) fixed 'type = "triangle"' error |6cb664f
+| |/  | |   
+| |    R/ggdend.R | 11 +++++++----
+| |    1 file changed, 7 insertions(+), 4 deletions(-)
+
+* | 2020-05-15(Tal Galili) For future spell checking |65b9b67
+|/  |   
+|    R/zzz.R       |   1 +
+|    inst/WORDLIST | 235 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|    2 files changed, 236 insertions(+)
+
+* 2020-03-27(Tal Galili) update version |49ad39c| 
+|  DESCRIPTION | 4 ++--
+|  NEWS        | 7 +++++++
+|  2 files changed, 9 insertions(+), 2 deletions(-)
+
+* 2020-03-27(Tal Galili) update pkgdown website |23255e8| 
+|  docs/404.html                                     |   32 +-
+|  docs/CONDUCT.html                                 |   32 +-
+|  docs/articles/Cluster_Analysis.html               |  483 ++++----
+|  docs/articles/FAQ.html                            |  367 +++---
+|  docs/articles/Quick_Introduction.html             |   82 +-
+|  docs/articles/dendextend.html                     | 1117 +++++++++----------
+|  docs/articles/index.html                          |   42 +-
+|  docs/authors.html                                 |   32 +-
+|  docs/bootstrap-toc.css                            |   60 +
+|  docs/bootstrap-toc.js                             |  159 +++
+|  docs/index.html                                   |   44 +-
+|  docs/news/index.html                              |  119 +-
+|  docs/pkgdown.css                                  |  121 +-
+|  docs/pkgdown.js                                   |    5 -
+|  docs/pkgdown.yml                                  |    3 +-
+|  docs/reference/Bk.html                            |   49 +-
+|  docs/reference/Bk_permutations.html               |   49 +-
+|  docs/reference/Bk_plot.html                       |   49 +-
+|  docs/reference/DendSer.dendrogram.html            |   45 +-
+|  docs/reference/FM_index.html                      |   49 +-
+|  docs/reference/FM_index_R.html                    |   49 +-
+|  docs/reference/FM_index_permutation.html          |   47 +-
+|  docs/reference/all.equal.dendrogram.html          |   45 +-
+|  docs/reference/all_couple_rotations_at_k.html     |   45 +-
+|  docs/reference/all_unique.html                    |   47 +-
+|  docs/reference/as.dendlist.html                   |   43 +-
+|  docs/reference/as.phylo.dendrogram.html           |   45 +-
+|  docs/reference/as_hclust_fixed.html               |   45 +-
+|  docs/reference/assign_dendextend_options.html     |   38 +-
+|  .../assign_values_to_branches_edgePar.html        |   45 +-
+|  .../assign_values_to_leaves_edgePar.html          |   45 +-
+|  .../assign_values_to_leaves_nodePar.html          |   45 +-
+|  .../reference/assign_values_to_nodes_nodePar.html |   45 +-
+|  docs/reference/bakers_gamma_for_2_k_matrix.html   |   43 +-
+|  docs/reference/branches_attr_by_clusters.html     |   47 +-
+|  docs/reference/branches_attr_by_labels.html       |   45 +-
+|  docs/reference/branches_attr_by_lists.html        |   45 +-
+|  docs/reference/circlize_dendrogram.html           |   49 +-
+|  docs/reference/click_rotate.html                  |   47 +-
+|  docs/reference/collapse_branch.html               |   45 +-
+|  docs/reference/color_branches.html                |   51 +-
+|  docs/reference/color_labels.html                  |   47 +-
+|  docs/reference/color_unique_labels.html           |   43 +-
+|  docs/reference/colored_bars.html                  |   53 +-
+|  docs/reference/colored_dots.html                  |   54 +-
+|  docs/reference/common_subtrees_clusters.html      |   45 +-
+|  docs/reference/cor.dendlist.html                  |   45 +-
+|  docs/reference/cor_FM_index.html                  |   45 +-
+|  docs/reference/cor_bakers_gamma.html              |   49 +-
+|  docs/reference/cor_common_nodes.html              |   45 +-
+|  docs/reference/cor_cophenetic.html                |   49 +-
+|  docs/reference/count_terminal_nodes.html          |   43 +-
+|  docs/reference/cut_lower_fun.html                 |   47 +-
+|  docs/reference/cutree-methods.html                |   51 +-
+|  docs/reference/cutree_1h.dendrogram.html          |   47 +-
+|  docs/reference/cutree_1k.dendrogram.html          |   47 +-
+|  docs/reference/dend_diff.html                     |   47 +-
+|  docs/reference/dendextend-package.html            |   40 +-
+|  docs/reference/dendextend_options.html            |   45 +-
+|  docs/reference/dendlist.html                      |   45 +-
+|  docs/reference/depth.html                         |   43 +-
+|  docs/reference/dist.dendlist.html                 |   45 +-
+|  docs/reference/dist_long.html                     |   43 +-
+|  docs/reference/distinct_edges.html                |   47 +-
+|  docs/reference/duplicate_leaf.html                |   43 +-
+|  docs/reference/entanglement.html                  |   47 +-
+|  docs/reference/fac2num.html                       |   43 +-
+|  docs/reference/find_dend.html                     |   43 +-
+|  docs/reference/find_dendrogram.html               |   43 +-
+|  docs/reference/find_k.html                        |   45 +-
+|  docs/reference/fix_members_attr.dendrogram.html   |   43 +-
+|  docs/reference/flatten.dendrogram.html            |   43 +-
+|  docs/reference/flip_leaves.html                   |   47 +-
+|  docs/reference/get_branches_heights.html          |   43 +-
+|  docs/reference/get_childrens_heights.html         |   45 +-
+|  docs/reference/get_leaves_attr.html               |   47 +-
+|  docs/reference/get_leaves_branches_attr.html      |   45 +-
+|  docs/reference/get_leaves_branches_col.html       |   45 +-
+|  docs/reference/get_leaves_edgePar.html            |   45 +-
+|  docs/reference/get_leaves_nodePar.html            |   45 +-
+|  docs/reference/get_nodes_attr.html                |   47 +-
+|  docs/reference/get_nodes_xy.html                  |   47 +-
+|  docs/reference/get_root_branches_attr.html        |   45 +-
+|  docs/reference/get_subdendrograms.html            |   43 +-
+|  docs/reference/ggdend.html                        |   51 +-
+|  docs/reference/hang.dendrogram.html               |   45 +-
+|  docs/reference/has_component_in_attribute.html    |   45 +-
+|  docs/reference/heights_per_k.dendrogram.html      |   43 +-
+|  docs/reference/highlight_branches.html            |   45 +-
+|  docs/reference/highlight_distinct_edges.html      |   45 +-
+|  docs/reference/identify.dendrogram.html           |   49 +-
+|  docs/reference/index.html                         |   48 +-
+|  docs/reference/intersect_trees.html               |   45 +-
+|  docs/reference/is.natural.number.html             |   49 +-
+|  docs/reference/is_null_list.html                  |   43 +-
+|  docs/reference/is_some_class.html                 |   43 +-
+|  docs/reference/khan.html                          |   48 +-
+|  docs/reference/labels-assign.html                 |   52 +-
+|  docs/reference/labels_cex.html                    |   43 +-
+|  docs/reference/labels_colors.html                 |   47 +-
+|  docs/reference/ladderize.html                     |   45 +-
+|  docs/reference/leaf_Colors.html                   |   47 +-
+|  docs/reference/lowest_common_branch.html          |   45 +-
+|  docs/reference/match_order_by_labels.html         |   45 +-
+|  .../match_order_dendrogram_by_old_order.html      |   45 +-
+|  docs/reference/na_locf.html                       |   47 +-
+|  docs/reference/nleaves.html                       |   47 +-
+|  docs/reference/nnodes.html                        |   47 +-
+|  docs/reference/noded_with_condition.html          |   45 +-
+|  docs/reference/order.dendrogram-assign.html       |   45 +-
+|  docs/reference/order.hclust.html                  |   45 +-
+|  docs/reference/partition_leaves.html              |   47 +-
+|  docs/reference/plot_horiz.dendrogram.html         |   47 +-
+|  docs/reference/prune.html                         |   47 +-
+|  .../reference/prune_common_subtrees.dendlist.html |   45 +-
+|  docs/reference/prune_leaf.html                    |   45 +-
+|  docs/reference/pvclust_edges.html                 |   45 +-
+|  docs/reference/pvclust_show_signif.html           |   45 +-
+|  docs/reference/pvclust_show_signif_gradient.html  |   45 +-
+|  docs/reference/pvrect2.html                       |   43 +-
+|  docs/reference/raise.dendrogram.html              |   43 +-
+|  docs/reference/rank_branches.html                 |   45 +-
+|  docs/reference/rank_order.dendrogram.html         |   45 +-
+|  docs/reference/rank_values_with_clusters.html     |   43 +-
+|  docs/reference/rect.dendrogram.html               |   47 +-
+|  docs/reference/reexports.html                     |   40 +-
+|  docs/reference/reindex_dend.html                  |   43 +-
+|  docs/reference/remove_branches_edgePar.html       |   45 +-
+|  docs/reference/remove_leaves_nodePar.html         |   45 +-
+|  docs/reference/remove_nodes_nodePar.html          |   45 +-
+|  docs/reference/rllply.html                        |   43 +-
+|  docs/reference/rotate.html                        |   47 +-
+|  docs/reference/rotate_DendSer.html                |   45 +-
+|  docs/reference/sample.dendrogram.html             |   45 +-
+|  docs/reference/seriate_dendrogram.html            |   45 +-
+|  docs/reference/set.html                           |   47 +-
+|  docs/reference/set_labels.html                    |   47 +-
+|  docs/reference/shuffle.html                       |   47 +-
+|  docs/reference/sort_2_clusters_vectors.html       |   43 +-
+|  docs/reference/sort_dist_mat.html                 |   43 +-
+|  docs/reference/sort_levels_values.html            |   45 +-
+|  docs/reference/tanglegram.html                    |   51 +-
+|  docs/reference/theme_dendro.html                  |   44 +-
+|  docs/reference/unbranch.html                      |   45 +-
+|  docs/reference/unclass_dend.html                  |   45 +-
+|  docs/reference/untangle.html                      |   49 +-
+|  docs/reference/untangle_DendSer.html              |   45 +-
+|  docs/reference/untangle_random_search.html        |   47 +-
+|  docs/reference/untangle_step_rotate_1side.html    |   45 +-
+|  docs/reference/untangle_step_rotate_2side.html    |   45 +-
+|  docs/reference/which_leaf.html                    |   45 +-
+|  docs/reference/which_node.html                    |   45 +-
+|  152 files changed, 4350 insertions(+), 4601 deletions(-)
+
+* 2020-02-28(Tal Galili) Update dates |df4d11c| 
+|  ChangeLog            | 40 ++++++++++++++++++++++++++--------------
+|  NEWS.md              |  2 +-
+|  docs/news/index.html |  6 +++---
+|  3 files changed, 30 insertions(+), 18 deletions(-)
 
 * 2020-02-28(Tal Galili) Fix some tests using include_EV (since this arugment was removed - I removed these tests) |0534e90| 
 |  DESCRIPTION                     |  2 +-
@@ -8638,8 +8874,8 @@
 |  vignettes/figure/unnamed-chunk-39.pdf             |  Bin 6857 -> 0 bytes
 |  .../untangle_step_rotate_2side_example1.pdf       |  Bin 0 -> 6158 bytes
 |  ...df => untangle_step_rotate_2side_example2.pdf} |  Bin 6027 -> 6137 bytes
-|  ...df => untangle_step_rotate_2side_example3.pdf} |  Bin 6078 -> 6154 bytes
-|  ...df => untangle_step_rotate_2side_example4.pdf} |  Bin 6036 -> 6141 bytes
+|  ...df => untangle_step_rotate_2side_example3.pdf} |  Bin 6036 -> 6154 bytes
+|  ...df => untangle_step_rotate_2side_example4.pdf} |  Bin 6078 -> 6141 bytes
 |  ...df => untangle_step_rotate_2side_example5.pdf} |  Bin 6016 -> 5714 bytes
 |  26 files changed, 946 insertions(+), 1446 deletions(-)
 
