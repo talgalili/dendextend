@@ -1,6 +1,4 @@
 # library(testthat)
-RNGversion("3.5.0")
-
 context("Baker's gamma correlation between two trees")
 
 
@@ -12,6 +10,7 @@ test_that("lowest_common_branch works", {
 
 
 test_that("cor_bakers_gamma works", {
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(23235)
   ss <- sample(1:150, 10) # we want to compare small trees
   hc1 <- hclust(dist(datasets::iris[ss, -5]), "com")

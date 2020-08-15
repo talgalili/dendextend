@@ -1,11 +1,11 @@
 # library(testthat)
 # library(dendextend)
-RNGversion("3.5.0")
 
 context("Bk method (FM Index) between two trees")
 
 
 test_that("sort_2_clusters_vectors works", {
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(23235)
   ss <- sample(1:150, 4)
   hc1 <- hclust(dist(datasets::iris[ss, -5]), "com")
@@ -28,6 +28,7 @@ test_that("sort_2_clusters_vectors works", {
 
 
 test_that("FM_index_R works", {
+  suppressWarnings(RNGversion("3.5.0"))
 
   #    set.seed(23235)
   ss <- TRUE # sample(1:150, 10 )
@@ -92,7 +93,7 @@ test_that("FM_index_R works", {
 
 
 test_that("FM_index works", {
-
+  suppressWarnings(RNGversion("3.5.0"))
   #    set.seed(23235)
   ss <- TRUE # sample(1:150, 10 )
   hc1 <- hclust(dist(datasets::iris[ss, -5]), "com")

@@ -1,10 +1,9 @@
 # library(testthat)
-RNGversion("3.5.0")
-
 context("Untangle two dendrograms for plotting a tanglegram")
 
 
 test_that("shuffle works", {
+  suppressWarnings(RNGversion("3.5.0"))
   #    library(magrittr)
   dend <- USArrests %>%
     dist() %>%
@@ -57,6 +56,7 @@ test_that("all_couple_rotations_at_k work", {
 
 
 test_that("untangle_step_rotate_1side work", {
+  suppressWarnings(RNGversion("3.5.0"))
   dend1 <- USArrests[1:10, ] %>%
     dist() %>%
     hclust() %>%
@@ -81,6 +81,7 @@ test_that("untangle_step_rotate_1side work", {
 
 
 test_that("untangle_step_rotate_2side work", {
+  suppressWarnings(RNGversion("3.5.0"))
   dend1 <- USArrests[1:10, ] %>%
     dist() %>%
     hclust() %>%
@@ -150,6 +151,7 @@ test_that("untangle_step_rotate_2side work", {
 
 
 test_that("untangle (main function) works for random search", {
+  suppressWarnings(RNGversion("3.5.0"))
   dend1 <- USArrests[1:5, ] %>%
     dist() %>%
     hclust() %>%
@@ -170,6 +172,7 @@ test_that("untangle (main function) works for random search", {
 
 
 test_that("untangle (main function) works for 2 step", {
+  suppressWarnings(RNGversion("3.5.0"))
   dend1 <- USArrests[1:5, ] %>%
     dist() %>%
     hclust() %>%

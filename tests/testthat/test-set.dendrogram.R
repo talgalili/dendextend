@@ -1,7 +1,5 @@
 # library(testthat)
 
-RNGversion("3.5.0")
-
 # we don't need the warning now... http://stackoverflow.com/questions/16194212/how-to-supress-warnings-globally-in-an-r-script
 old_warn_opt <- options()$warn
 options(warn = -1)
@@ -11,6 +9,7 @@ context("Checknig set.dendrogram")
 
 
 test_that("labels options works", {
+  suppressWarnings(RNGversion("3.5.0"))
   #    library(magrittr)
   set.seed(23235)
   ss <- sample(1:150, 10)
@@ -84,7 +83,7 @@ test_that("labels options works", {
 
 test_that("leaves options works", {
   #    library(magrittr)
-
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(23235)
   ss <- sample(1:150, 10)
   dend <- iris[ss, -5] %>%
@@ -123,7 +122,7 @@ test_that("leaves options works", {
 
 test_that("branches options works", {
   #    library(magrittr)
-
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(23235)
   ss <- sample(1:150, 10)
   dend <- iris[ss, -5] %>%
@@ -162,7 +161,7 @@ test_that("branches options works", {
 
 test_that("clearing options works", {
   #    library(magrittr)
-
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(23235)
   ss <- sample(1:150, 10)
   # Getting the dend object onces

@@ -1,7 +1,7 @@
 context("Test extract au")
-# RNGversion("3.5.0")
 
 test_that("extract au", {
+  suppressWarnings(RNGversion("3.5.0"))
   library(pvclust)
   set.seed(123)
   suppressWarnings(dend <- USArrests[1:5, ] %>% pvclust())

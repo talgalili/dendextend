@@ -1,10 +1,11 @@
 # library(testthat)
-RNGversion("3.5.0")
+
 
 context("Cophenetic correlation between two trees")
 
 
 test_that("cor_cophenetic works", {
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(23235)
   ss <- sample(1:150, 10)
   hc1 <- iris[ss, -5] %>%
