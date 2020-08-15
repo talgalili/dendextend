@@ -146,6 +146,8 @@ test_that("as.ggdend.dendrogram works", {
 })
 
 test_that("ggplot doesn't have warnings for dendrograms", {
+  library(ggplot2)
+  library(dendextend)
   g <- ggplot(as.dendrogram(hclust(dist(mtcars))))
   expect_warning(ggplot_build(g), NA)
 })

@@ -4,7 +4,7 @@ context("Test extract au")
 test_that("extract au", {
   library(pvclust)
   set.seed(123)
-  dend <- USArrests[1:5, ] %>% pvclust()
+  suppressWarnings(dend <- USArrests[1:5, ] %>% pvclust())
   # plot(dend)
   # pvclust_edges(dend)
   expect_identical(as.character(pvclust_edges(dend)[, 1]), c("Assault", "UrbanPop", "Murder"))
