@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
   # comment = "#>",
   tidy = FALSE)
 
-# http://stackoverflow.com/questions/24091735/why-pandoc-does-not-retrieve-the-image-file
+# https://stackoverflow.com/questions/24091735/why-pandoc-does-not-retrieve-the-image-file
 # < ! -- rmarkdown v1 -->
 
 ```

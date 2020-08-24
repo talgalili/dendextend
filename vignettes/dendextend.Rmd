@@ -25,13 +25,13 @@ knitr::opts_chunk$set(
   comment = "#>",
   tidy = FALSE)
 
-# http://stackoverflow.com/questions/24091735/why-pandoc-does-not-retrieve-the-image-file
+# https://stackoverflow.com/questions/24091735/why-pandoc-does-not-retrieve-the-image-file
 # < ! -- rmarkdown v1 -->
 
 ```
 
 
-**Author**: [Tal Galili](http://www.r-statistics.com/) ( Tal.Galili@gmail.com )
+**Author**: [Tal Galili](https://www.r-statistics.com/) ( Tal.Galili@gmail.com )
 
 **tl;dr**: the [_dendextend package_](https://cran.r-project.org/package=dendextend) let's you create figures like this:
 
@@ -103,7 +103,7 @@ This package was made possible by the the support of my thesis adviser [Yoav Ben
 ```{r, echo=FALSE}
 
 c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
-    "tal.galili@gmail.com", comment = "http://www.r-statistics.com"),
+    "tal.galili@gmail.com", comment = "https://www.r-statistics.com"),
     person("Gavin", "Simpson", role = "ctb"), person("Gregory","Jefferis", role
     = "ctb", email = "jefferis@gmail.com",
     comment ="imported code from his dendroextras package"),
@@ -123,7 +123,7 @@ c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
 ```
 
 
-The **design** of the dendextend package (and this manual!) is heavily inspired by [Hadley Wickham's](http://had.co.nz/) work. Especially his text on [writing an R package](http://r-pkgs.had.co.nz/), the [devtools package](https://cran.r-project.org/package=devtools), and the dplyr package (specifically the use of chaining, and the [Introduction text to dplyr](https://CRAN.R-project.org/package=dplyr/vignettes/dplyr.html)).
+The **design** of the dendextend package (and this manual!) is heavily inspired by [Hadley Wickham's](http://hadley.nz) work. Especially his text on [writing an R package](http://r-pkgs.had.co.nz/), the [devtools package](https://cran.r-project.org/package=devtools), and the dplyr package (specifically the use of chaining, and the [Introduction text to dplyr](https://CRAN.R-project.org/package=dplyr/vignettes/dplyr.html)).
 
 
 
@@ -164,7 +164,7 @@ For more details, you may look at:
 
 * [magrittr on CRAN](https://cran.r-project.org/package=magrittr)
 * [Introduction to the magrittr package](https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html)
-* [Simpler R coding with pipes > the present and future of the magrittr package](http://www.r-statistics.com/2014/08/simpler-r-coding-with-pipes-the-present-and-future-of-the-magrittr-package/)
+* [Simpler R coding with pipes > the present and future of the magrittr package](https://www.r-statistics.com/2014/08/simpler-r-coding-with-pipes-the-present-and-future-of-the-magrittr-package/)
 
 ### A dendrogram is a nested list of lists with attributes
 
@@ -251,7 +251,7 @@ Next let us look at more sophisticated outputs.
 
 ### Getting nodes attributes in a depth-first search
 
-When extracting (or inserting) attributes from a dendrogram's nodes, it is often in a "depth-first search". [Depth-first search](http://en.wikipedia.org/wiki/Depth-first_search) is when an algorithm for traversing or searching tree or graph data structures. One starts at the root and explores as far as possible along each branch before backtracking. 
+When extracting (or inserting) attributes from a dendrogram's nodes, it is often in a "depth-first search". [Depth-first search](https://en.wikipedia.org/wiki/Depth-first_search) is when an algorithm for traversing or searching tree or graph data structures. One starts at the root and explores as far as possible along each branch before backtracking. 
 
 Here is a plot of a tree, illustrating the order in which you should read the "nodes attributes":
 

@@ -99,7 +99,7 @@ as.phylo.dendrogram <- function(x, ...) {
   # library(ape)
   ape::as.phylo.hclust(as.hclust(x))
 }
-## http://stackoverflow.com/questions/13085481/namespace-dependencies-not-required
+## https://stackoverflow.com/questions/13085481/namespace-dependencies-not-required
 ## I also added ape to "Imports" in DESCRIPTION in order to avoid the error:
 ##    Namespace dependency not required: 'ape'
 ## Update: I removed ape from the imports and NAMESPACE.

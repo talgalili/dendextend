@@ -8,11 +8,13 @@
 
 <title>Tanglegram plot — tanglegram • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,10 +38,9 @@
 
 
 
+
 <meta property="og:title" content="Tanglegram plot — tanglegram" />
-
 <meta property="og:description" content="Plots a tanglegram plot of a side by side trees." />
-
 
 
 
@@ -71,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -111,7 +112,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -138,9 +138,7 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Plots a tanglegram plot of a side by side trees.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>tanglegram</span>(<span class='no'>dend1</span>, <span class='no'>...</span>)
@@ -256,7 +254,7 @@
   <span class='kw'>just_one</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -285,7 +283,7 @@ which of the trees in the dendlist object should be plotted</p></td>
       <th>just_one</th>
       <td><p>logical (TRUE). If FALSE, it means at least two tanglegrams
 will be plotted on the same page and so <a href='https://rdrr.io/r/graphics/layout.html'>layout</a> is not passed.
-See: <a href='http://stackoverflow.com/q/39784746/4137985'>http://stackoverflow.com/q/39784746/4137985</a></p></td>
+See: <a href='https://stackoverflow.com/q/39784746/4137985'>https://stackoverflow.com/q/39784746/4137985</a></p></td>
     </tr>
     <tr>
       <th>dend2</th>
@@ -494,31 +492,27 @@ removing all of the edgePar parameters of the dendrogram.</p></td>
 have them turned off so that the plotting will go a tiny bit faster.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>The function is based on code from Johan Renaudie (plannapus), after major revisions. See:
-<a href='http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r'>http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r</a></p>
+<a href='https://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r'>https://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r</a></p>
 <p>As far as I could tell, this code was originally inspired by Dylan Beaudette
 function <code>dueling.dendrograms</code> from the sharpshootR package:
-<a href='http://cran.at.r-project.org/web/packages/sharpshootR/'>http://cran.at.r-project.org/web/packages/sharpshootR/</a>
+<a href='https://cran.r-project.org/web/packages/sharpshootR/'>https://cran.r-project.org/web/packages/sharpshootR/</a>
 tanglegram</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An invisible <a href='dendlist.html'>dendlist</a>, with two trees after being
 modified during the creation of the tanglegram.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Notice that tanglegram does not "resize" well. In case you are resizing your
 window you would need to re-run the function.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='remove_leaves_nodePar.html'>remove_leaves_nodePar</a>, <a href='plot_horiz.dendrogram.html'>plot_horiz.dendrogram</a>, <a href='rank_branches.html'>rank_branches</a>,
 <a href='hang.dendrogram.html'>hang.dendrogram</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
@@ -615,7 +609,7 @@ window you would need to re-run the function.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

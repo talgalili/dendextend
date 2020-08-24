@@ -8,11 +8,13 @@
 
 <title>Counts the number of terminal nodes (merging 0 nodes!) — count_terminal_nodes • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,15 +38,14 @@
 
 
 
-<meta property="og:title" content="Counts the number of terminal nodes (merging 0 nodes!) — count_terminal_nodes" />
 
+<meta property="og:title" content="Counts the number of terminal nodes (merging 0 nodes!) — count_terminal_nodes" />
 <meta property="og:description" content="This function counts the number of &quot;practical&quot; terminal nodes (nodes which are not leaves, but has 0 height to them are considered &quot;terminal&quot; nodes).
 If the tree is standard, that would simply be the number of leaves (only the leaves will have height 0).
 However, in cases where the tree has several nodes (before the leaves) with 0 height,
 the count_terminal_nodes counts such nodes as terminal nodes
 The function is recursive in that it either returns 1 if it reached a terminal node (either a leaf or a 0 height node),
 else: it will count the number of terminal nodes in each of its sub-nodes, sum them up, and return them." />
-
 
 
 
@@ -76,7 +77,7 @@ else: it will count the number of terminal nodes in each of its sub-nodes, sum t
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -116,7 +117,6 @@ else: it will count the number of terminal nodes in each of its sub-nodes, sum t
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -143,18 +143,16 @@ else: it will count the number of terminal nodes in each of its sub-nodes, sum t
     </div>
 
     <div class="ref-description">
-    
     <p>This function counts the number of "practical" terminal nodes (nodes which are not leaves, but has 0 height to them are considered "terminal" nodes).
 If the tree is standard, that would simply be the number of leaves (only the leaves will have height 0).
 However, in cases where the tree has several nodes (before the leaves) with 0 height,
 the count_terminal_nodes counts such nodes as terminal nodes</p>
 <p>The function is recursive in that it either returns 1 if it reached a terminal node (either a leaf or a 0 height node),
 else: it will count the number of terminal nodes in each of its sub-nodes, sum them up, and return them.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>count_terminal_nodes</span>(<span class='no'>dend_node</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -167,11 +165,10 @@ else: it will count the number of terminal nodes in each of its sub-nodes, sum t
       <td><p>not used</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The number of terminal nodes (excluding the leaves of nodes of height 0)</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># define dendrogram object to play with:</span>
@@ -210,7 +207,7 @@ else: it will count the number of terminal nodes in each of its sub-nodes, sum t
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

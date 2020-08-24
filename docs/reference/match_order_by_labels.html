@@ -8,11 +8,13 @@
 
 <title>Adjust the order of one dendrogram based on another (using labels) — match_order_by_labels • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,14 +38,13 @@
 
 
 
-<meta property="og:title" content="Adjust the order of one dendrogram based on another (using labels) — match_order_by_labels" />
 
+<meta property="og:title" content="Adjust the order of one dendrogram based on another (using labels) — match_order_by_labels" />
 <meta property="og:description" content="Takes one dendrogram and adjusts its order leaves valeus based on the order
 of another dendrogram. The values are matached based on the labels of the
 two dendrograms.
 This allows for faster entanglement running time, since we can be
 sure that the leaves order is just as using their labels." />
-
 
 
 
@@ -75,7 +76,7 @@ sure that the leaves order is just as using their labels." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -115,7 +116,6 @@ sure that the leaves order is just as using their labels." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -142,13 +142,11 @@ sure that the leaves order is just as using their labels." />
     </div>
 
     <div class="ref-description">
-    
     <p>Takes one dendrogram and adjusts its order leaves valeus based on the order
 of another dendrogram. The values are matached based on the labels of the
 two dendrograms.</p>
 <p>This allows for faster <a href='entanglement.html'>entanglement</a> running time, since we can be
 sure that the leaves order is just as using their labels.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>match_order_by_labels</span>(
@@ -156,7 +154,7 @@ sure that the leaves order is just as using their labels.</p>
   <span class='no'>dend_template</span>,
   <span class='kw'>check_that_labels_match</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -174,16 +172,14 @@ sure that the leaves order is just as using their labels.</p>
 in the two dendrogram match. (if they do not, the function aborts)</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Returns dend_change after adjusting its order values to
  be like dend_template.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='entanglement.html'>entanglement</a> , <a href='tanglegram.html'>tanglegram</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
@@ -219,7 +215,7 @@ in the two dendrogram match. (if they do not, the function aborts)</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

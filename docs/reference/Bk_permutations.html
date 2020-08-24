@@ -8,11 +8,13 @@
 
 <title>Bk permutation - Calculating Fowlkes-Mallows Index for two dendrogram — Bk_permutations • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,14 +38,13 @@
 
 
 
-<meta property="og:title" content="Bk permutation - Calculating Fowlkes-Mallows Index for two dendrogram — Bk_permutations" />
 
+<meta property="og:title" content="Bk permutation - Calculating Fowlkes-Mallows Index for two dendrogram — Bk_permutations" />
 <meta property="og:description" content="Bk is the calculation of Fowlkes-Mallows index for a series of k cuts
 for two dendrograms.
 Bk permutation calculates the Bk under the null hypothesis of no similarirty
 between the two trees by randomally shuffling the labels of the two trees
 and calculating their Bk." />
-
 
 
 
@@ -75,7 +76,7 @@ and calculating their Bk." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -115,7 +116,6 @@ and calculating their Bk." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -142,13 +142,11 @@ and calculating their Bk." />
     </div>
 
     <div class="ref-description">
-    
     <p>Bk is the calculation of Fowlkes-Mallows index for a series of k cuts
 for two dendrograms.</p>
 <p>Bk permutation calculates the Bk under the null hypothesis of no similarirty
 between the two trees by randomally shuffling the labels of the two trees
 and calculating their Bk.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>Bk_permutations</span>(
@@ -159,7 +157,7 @@ and calculating their Bk.</p>
   <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>),
   <span class='no'>...</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -196,14 +194,13 @@ the same size and the same labels.</p></td>
       <td><p>Ignored (passed to FM_index_R).</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list (of the length of k's), where each element of the list has
 R (number of permutations) calculations of Fowlkes-Mallows index
 between two dendrogram after having their labels shuffled.</p>
 <p>The names of the lists' items is the k for which it was calculated.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>From Wikipedia:</p>
@@ -214,18 +211,15 @@ could be either between two hierarchical clusterings or a clustering and
 a benchmark classification. A higher the value for the Fowlkes-Mallows index
 indicates a greater similarity between the clusters and the benchmark
 classifications.</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Fowlkes, E. B.; Mallows, C. L. (1 September 1983).
 "A Method for Comparing Two Hierarchical Clusterings".
 Journal of the American Statistical Association 78 (383): 553.</p>
-<p><a href='http://en.wikipedia.org/wiki/Fowlkes-Mallows_index'>http://en.wikipedia.org/wiki/Fowlkes-Mallows_index</a></p>
-    
+<p><a href='https://en.wikipedia.org/wiki/Fowlkes-Mallows_index'>https://en.wikipedia.org/wiki/Fowlkes-Mallows_index</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='FM_index.html'>FM_index</a></code>, <a href='Bk.html'>Bk</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -265,7 +259,7 @@ Journal of the American Statistical Association 78 (383): 553.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

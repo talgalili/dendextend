@@ -97,7 +97,7 @@ sort_dist_mat <- function(dist_mat, by_rows = TRUE, by_cols = TRUE, ...) {
 #' Sneath, P.H.A. and Sokal, R.R. (1973) Numerical Taxonomy: The Principles
 #' and Practice of Numerical Classification, p. 278 ff; Freeman, San Francisco.
 #'
-#' \url{http://en.wikipedia.org/wiki/Cophenetic_correlation}
+#' \url{https://en.wikipedia.org/wiki/Cophenetic_correlation}
 #'
 #' @examples
 #'

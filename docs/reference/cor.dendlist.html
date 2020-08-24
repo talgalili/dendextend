@@ -8,11 +8,13 @@
 
 <title>Correlation matrix between a list of trees. — cor.dendlist • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,12 +38,11 @@
 
 
 
-<meta property="og:title" content="Correlation matrix between a list of trees. — cor.dendlist" />
 
+<meta property="og:title" content="Correlation matrix between a list of trees. — cor.dendlist" />
 <meta property="og:description" content="A correlation matrix between a list of trees.
 Assumes the labels in the two trees fully match. If they do not
 please first use intersect_trees to have them matched." />
-
 
 
 
@@ -73,7 +74,7 @@ please first use intersect_trees to have them matched." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -113,7 +114,6 @@ please first use intersect_trees to have them matched." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -140,11 +140,9 @@ please first use intersect_trees to have them matched." />
     </div>
 
     <div class="ref-description">
-    
     <p>A correlation matrix between a list of trees.</p>
 <p>Assumes the labels in the two trees fully match. If they do not
 please first use <a href='intersect_trees.html'>intersect_trees</a> to have them matched.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>cor.dendlist</span>(
@@ -152,7 +150,7 @@ please first use <a href='intersect_trees.html'>intersect_trees</a> to have them
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cophenetic"</span>, <span class='st'>"baker"</span>, <span class='st'>"common_nodes"</span>, <span class='st'>"FM_index"</span>),
   <span class='no'>...</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -172,16 +170,14 @@ It can be abbreviated.</p></td>
       <td><p>passed to cor functions.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A correlation matrix between the different trees</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://rdrr.io/r/stats/cophenetic.html'>cophenetic</a>, <a href='cor_cophenetic.html'>cor_cophenetic</a>, <a href='cor_bakers_gamma.html'>cor_bakers_gamma</a>,
 <a href='cor_common_nodes.html'>cor_common_nodes</a>, <a href='cor_FM_index.html'>cor_FM_index</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -229,7 +225,7 @@ It can be abbreviated.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

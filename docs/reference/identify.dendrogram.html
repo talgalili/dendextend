@@ -8,11 +8,13 @@
 
 <title>Identify Clusters in a Dendrogram (not hclust) — identify.dendrogram • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,15 +38,14 @@
 
 
 
-<meta property="og:title" content="Identify Clusters in a Dendrogram (not hclust) — identify.dendrogram" />
 
+<meta property="og:title" content="Identify Clusters in a Dendrogram (not hclust) — identify.dendrogram" />
 <meta property="og:description" content="Just like identify.hclust:
 reads the position of the graphics pointer when the (first)
 mouse button is pressed. It then cuts the tree at the vertical
  position of the pointer and highlights the cluster containing
  the horizontal position of the pointer. Optionally a function is applied
  to the index of data points contained in the cluster." />
-
 
 
 
@@ -76,7 +77,7 @@ mouse button is pressed. It then cuts the tree at the vertical
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -116,7 +117,6 @@ mouse button is pressed. It then cuts the tree at the vertical
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -143,14 +143,12 @@ mouse button is pressed. It then cuts the tree at the vertical
     </div>
 
     <div class="ref-description">
-    
     <p>Just like <a href='https://rdrr.io/r/stats/identify.hclust.html'>identify.hclust</a>:
 reads the position of the graphics pointer when the (first)
 mouse button is pressed. It then cuts the tree at the vertical
  position of the pointer and highlights the cluster containing
  the horizontal position of the pointer. Optionally a function is applied
  to the index of data points contained in the cluster.</p>
-    
     </div>
 
     <pre class="usage"><span class='co'># S3 method for dendrogram</span>
@@ -164,7 +162,7 @@ mouse button is pressed. It then cuts the tree at the vertical
   <span class='kw'>stop_if_out</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='no'>...</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -208,17 +206,15 @@ of the identify.hclust function - but it is nicer for the user.).</p></td>
       <td><p>further arguments to FUN.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>This function is based on <a href='https://rdrr.io/r/stats/identify.hclust.html'>identify.hclust</a>, with slight modifications
 to have it work with a dendrogram, as well as adding "horiz"</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>(Invisibly) returns a list where each element contains a vector
  of data points contained in the respective cluster.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>By default clusters can be identified using the mouse and an invisible
@@ -228,12 +224,10 @@ If FUN is not NULL, then the index vector of data points is passed to this
  graphics device for FUN can be specified using DEV.FUN.
  The identification process is terminated by pressing any mouse button other
  than the first, see also identify.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://rdrr.io/r/stats/identify.hclust.html'>identify.hclust</a>,
 <a href='https://rdrr.io/r/stats/rect.hclust.html'>rect.hclust</a>, <a href='https://rdrr.io/r/stats/order.dendrogram.html'>order.dendrogram</a>, <a href='cutree-methods.html'>cutree.dendrogram</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -266,7 +260,7 @@ If FUN is not NULL, then the index vector of data points is passed to this
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

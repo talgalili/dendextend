@@ -8,11 +8,13 @@
 
 <title>Adjust the order of one dendrogram based on another (using order) — match_order_dendrogram_by_old_order • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,8 +38,8 @@
 
 
 
-<meta property="og:title" content="Adjust the order of one dendrogram based on another (using order) — match_order_dendrogram_by_old_order" />
 
+<meta property="og:title" content="Adjust the order of one dendrogram based on another (using order) — match_order_dendrogram_by_old_order" />
 <meta property="og:description" content="Takes one dendrogram and adjusts its order leaves valeus based on the order
 of another dendrogram. The values are matached based on the order of the
 two dendrograms.
@@ -46,7 +48,6 @@ sure that the leaves order is just as using their labels.
 This is a function is FASTER than match_order_by_labels, but it
 assumes that the order and the labels of the two trees are matching!!
 This will allow for a faster calculation of entanglement." />
-
 
 
 
@@ -78,7 +79,7 @@ This will allow for a faster calculation of entanglement." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -118,7 +119,6 @@ This will allow for a faster calculation of entanglement." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -145,7 +145,6 @@ This will allow for a faster calculation of entanglement." />
     </div>
 
     <div class="ref-description">
-    
     <p>Takes one dendrogram and adjusts its order leaves valeus based on the order
 of another dendrogram. The values are matached based on the order of the
 two dendrograms.</p>
@@ -154,7 +153,6 @@ sure that the leaves order is just as using their labels.</p>
 <p>This is a function is FASTER than <a href='match_order_by_labels.html'>match_order_by_labels</a>, but it
 assumes that the order and the labels of the two trees are matching!!</p>
 <p>This will allow for a faster calculation of <a href='entanglement.html'>entanglement</a>.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>match_order_dendrogram_by_old_order</span>(
@@ -164,7 +162,7 @@ assumes that the order and the labels of the two trees are matching!!</p>
   <span class='kw'>check_that_labels_match</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>check_that_leaves_order_match</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -193,17 +191,15 @@ in the two dendrogram match. (if they do not, the function aborts)</p></td>
 the order in the two dendrogram match. (if they do not, the function aborts)</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Returns dend_change after adjusting its order values to
  be like dend_template.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='entanglement.html'>entanglement</a> , <a href='tanglegram.html'>tanglegram</a>,
 <a href='match_order_by_labels.html'>match_order_by_labels</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
@@ -246,7 +242,7 @@ the order in the two dendrogram match. (if they do not, the function aborts)</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

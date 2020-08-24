@@ -8,11 +8,13 @@
 
 <title>Turns a factor into a number — fac2num • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,13 +38,12 @@
 
 
 
-<meta property="og:title" content="Turns a factor into a number — fac2num" />
 
+<meta property="og:title" content="Turns a factor into a number — fac2num" />
 <meta property="og:description" content="Turning a factor into a number is not trivial.
 Using as.numeric would only return to us the indicator numbers
 and NOT the factor levels turned into a number.
 fac2num simply turns a factor into a number, as we often need." />
-
 
 
 
@@ -74,7 +75,7 @@ fac2num simply turns a factor into a number, as we often need." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -114,7 +115,6 @@ fac2num simply turns a factor into a number, as we often need." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -141,16 +141,14 @@ fac2num simply turns a factor into a number, as we often need." />
     </div>
 
     <div class="ref-description">
-    
     <p>Turning a factor into a number is not trivial.
 Using <code>as.numeric</code> would only return to us the indicator numbers
 and NOT the factor levels turned into a number.
 fac2num simply turns a factor into a number, as we often need.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>fac2num</span>(<span class='no'>x</span>, <span class='kw'>force_integer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>keep_names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -172,11 +170,10 @@ of the original vector?</p></td>
       <td><p>ignored.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>if x is an object - it returns logical - is the object of class dendrogram.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -197,7 +194,7 @@ of the original vector?</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -11,11 +11,11 @@
 \title{Tanglegram plot}
 \source{
 The function is based on code from Johan Renaudie (plannapus), after major revisions. See:
-\url{http://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r}
+\url{https://stackoverflow.com/questions/12456768/duelling-dendrograms-in-r-placing-dendrograms-back-to-back-in-r}
 
 As far as I could tell, this code was originally inspired by Dylan Beaudette
 function \code{dueling.dendrograms} from the sharpshootR package:
-\url{http://cran.at.r-project.org/web/packages/sharpshootR/}
+\url{https://cran.r-project.org/web/packages/sharpshootR/}
 tanglegram
 }
 \usage{
@@ -142,7 +142,7 @@ which of the trees in the dendlist object should be plotted}
 
 \item{just_one}{logical (TRUE). If FALSE, it means at least two tanglegrams
 will be plotted on the same page and so \link{layout} is not passed.
-See: \url{http://stackoverflow.com/q/39784746/4137985}}
+See: \url{https://stackoverflow.com/q/39784746/4137985}}
 
 \item{dend2}{tree object (dendrogram/hclust/phylo), plotted on the right}
 

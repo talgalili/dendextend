@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
   # comment = "#>",
   tidy = FALSE)
 
-# http://stackoverflow.com/questions/24091735/why-pandoc-does-not-retrieve-the-image-file
+# https://stackoverflow.com/questions/24091735/why-pandoc-does-not-retrieve-the-image-file
 # < ! -- rmarkdown v1 -->
 
 ```
@@ -32,12 +32,12 @@ knitr::opts_chunk$set(
 Introduction
 ------------------------------
 
-Questions are often taken from here the [stackoverflow `dendrogram` tag](http://stackoverflow.com/questions/tagged/dendrogram+r).
+Questions are often taken from here the [stackoverflow `dendrogram` tag](https://stackoverflow.com/questions/tagged/dendrogram+r).
 
 
 ### How to colour the labels of a dendrogram by an additional factor variable
 
-Asked (http://stackoverflow.com/questions/27485549/how-to-colour-the-labels-of-a-dendrogram-by-an-additional-factor-variable-in-r)[here].
+Asked (https://stackoverflow.com/questions/27485549/how-to-colour-the-labels-of-a-dendrogram-by-an-additional-factor-variable-in-r)[here].
 
 Solution: use the `labels_colors` function.
 
@@ -94,7 +94,7 @@ plot(dend, main = "A color for every Species")
 
 ### How to color a dendrogram's labels according to defined groups? (in R)
 
-Asked (http://stackoverflow.com/questions/31117849/how-to-color-a-dendrograms-labels-according-to-defined-groups-in-r)[here].
+Asked (https://stackoverflow.com/questions/31117849/how-to-color-a-dendrograms-labels-according-to-defined-groups-in-r)[here].
 
 Solution: use the `color_labels` function.
 
@@ -169,7 +169,7 @@ labels(dend)
 
 ### Larger font for leaves in a dendrogram
 
-Asked (http://stackoverflow.com/questions/26965390/larger-font-and-spacing-between-leaves-in-r-dendrogram)[here].
+Asked (https://stackoverflow.com/questions/26965390/larger-font-and-spacing-between-leaves-in-r-dendrogram)[here].
 
 Solution: use the `set` function, with the "labels_cex" parameter.
 
@@ -201,7 +201,7 @@ plot(dend, main = "A larger font for labels")
 
 ### How to view attributes of a dendrogram
 
-Asked (http://stackoverflow.com/questions/26240200/how-to-access-attributes-of-a-dendrogram-in-r)[here], and (http://stackoverflow.com/questions/25664911/r-hclust-height-of-final-merge)[here].
+Asked (https://stackoverflow.com/questions/26240200/how-to-access-attributes-of-a-dendrogram-in-r)[here], and (https://stackoverflow.com/questions/25664911/r-hclust-height-of-final-merge)[here].
 
 It generally depends on which attribute we want to view. For "midpoint" (or height) use the `get_nodes_attr` function, with the "midpoint" parameter.
 
@@ -225,11 +225,11 @@ To also change an attribute, you can use the various assign functions from the p
 
 ### How to color the branches in heatmap.2?
 
-Asked (http://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2?)[here].
+Asked (https://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2?)[here].
 
 Solution: use the `color_branches` function (or the `set` function, with the "branches_k_color", "k", and "value" parameters).
 
-(Getting the data for this example is from the (http://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2)[original SO question])
+(Getting the data for this example is from the (https://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2)[original SO question])
 
 ```{r, echo = FALSE}
 test0 <- structure(c(0.641122711554543, 1.23425751165366, -0.325822271157288, 
@@ -889,7 +889,7 @@ Before using any of its function (for example: `dendextend::color_branches` ). A
 
 ### How to plot a fan (Polar) Dendrogram in R?
 
-Asked (http://stats.stackexchange.com/questions/4062/how-to-plot-a-fan-polar-dendrogram-in-r)[here].
+Asked (https://stats.stackexchange.com/questions/4062/how-to-plot-a-fan-polar-dendrogram-in-r)[here].
 
 Solution: use the `circlize_dendrogram` function.
 
@@ -921,7 +921,7 @@ circlize_dendrogram(dend, labels_track_height = NA, dend_track_height = .3)
 
 ### A way to calculate lowest value of h in cut that produces groupings of a given minimum size?
 
-Asked (http://stackoverflow.com/questions/31124810/r-cut-dendrogram-into-groups-with-minimum-size/)[here].
+Asked (https://stackoverflow.com/questions/31124810/r-cut-dendrogram-into-groups-with-minimum-size/)[here].
 
 Solution: use the `heights_per_k.dendrogram` function.
 
@@ -939,7 +939,7 @@ As a sidenote, the dendextend package has a `cutree.dendrogram` S3 method for de
 
 ### Coloring dendrogram's end branches (or leaves) based on column number of data frame in R
 
-Asked (http://stackoverflow.com/questions/30062187/coloring-dendrogram-s-end-branches-or-leaves-based-on-column-number-of-data-fr)[here].
+Asked (https://stackoverflow.com/questions/30062187/coloring-dendrogram-s-end-branches-or-leaves-based-on-column-number-of-data-fr)[here].
 
 Solution: use the `assign_values_to_leaves_edgePar` function.
 
@@ -967,7 +967,7 @@ plot(dend2)
 
 ### Color side bar dendrogram plot
 
-Asked (http://stackoverflow.com/questions/34539746/color-side-bar-dendrogram-plot/)[here].
+Asked (https://stackoverflow.com/questions/34539746/color-side-bar-dendrogram-plot/)[here].
 
 Solution: use the `color_branches` function.
 

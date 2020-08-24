@@ -554,7 +554,7 @@ get_branches_heights <- function(dend, sort = TRUE, decreasing = FALSE, include_
 #' so that the tree will hang.
 #' @source
 #' Noticing that as.dendrogram has a "hang" parameter was thanks to Enrique Ramos's answer here::
-#' \url{http://stackoverflow.com/questions/17088136/plot-horizontal-dendrogram-with-hanging-leaves-r}
+#' \url{https://stackoverflow.com/questions/17088136/plot-horizontal-dendrogram-with-hanging-leaves-r}
 #' @examples
 #'
 #' # define dendrogram object to play with:

@@ -8,11 +8,13 @@
 
 <title>Cut a Tree (Dendrogram/hclust/phylo) into Groups of Data — cutree • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,14 +38,13 @@
 
 
 
-<meta property="og:title" content="Cut a Tree (Dendrogram/hclust/phylo) into Groups of Data — cutree" />
 
+<meta property="og:title" content="Cut a Tree (Dendrogram/hclust/phylo) into Groups of Data — cutree" />
 <meta property="og:description" content="Cuts a dendrogram tree into several groups
 by specifying the desired number of clusters k(s), or cut height(s).
 For hclust.dendrogram -
 In case there exists no such k for which exists a relevant split of the
 dendrogram, a warning is issued to the user, and NA is returned." />
-
 
 
 
@@ -75,7 +76,7 @@ dendrogram, a warning is issued to the user, and NA is returned." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -115,7 +116,6 @@ dendrogram, a warning is issued to the user, and NA is returned." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -142,13 +142,11 @@ dendrogram, a warning is issued to the user, and NA is returned." />
     </div>
 
     <div class="ref-description">
-    
     <p>Cuts a dendrogram tree into several groups
 by specifying the desired number of clusters k(s), or cut height(s).</p>
 <p>For <code>hclust.dendrogram</code> -
 In case there exists no such k for which exists a relevant split of the
 dendrogram, a warning is issued to the user, and NA is returned.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>cutree</span>(<span class='no'>tree</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
@@ -193,7 +191,7 @@ dendrogram, a warning is issued to the user, and NA is returned.</p>
   <span class='kw'>NA_to_0L</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -258,7 +256,7 @@ If try_cutree_hclust=FALSE, it will force to use cutree.dendrogram and not
 cutree.hclust.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>If k or h are scalar - <code>cutree.dendrogram</code> returns an integer vector with group
@@ -268,19 +266,16 @@ corresponds to the elements of k or h, respectively
 (which are also used as column names).</p>
 <p>In case there exists no such k for which exists a relevant split of the
 dendrogram, a warning is issued to the user, and NA is returned.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>At least one of k or h must be specified, k overrides h if both are given.</p>
 <p>as opposed to <a href='https://rdrr.io/r/stats/cutree.html'>cutree</a> for hclust, <code>cutree.dendrogram</code> allows the
 cutting of trees at a given height also for non-ultrametric trees
 (ultrametric tree == a tree with monotone clustering heights).</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code><a href='https://rdrr.io/r/stats/cutree.html'>cutree</a></code>,
 <code><a href='cutree_1h.dendrogram.html'>cutree_1h.dendrogram</a></code>, <code><a href='cutree_1k.dendrogram.html'>cutree_1k.dendrogram</a></code>,</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -366,7 +361,7 @@ cutting of trees at a given height also for non-ultrametric trees
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -442,7 +442,7 @@ flip_leaves <- function(dend, leaves1, leaves2, ...) {
 
 # I didn't use this evantually:
 # library(combinat)
-# source for this package: http://stackoverflow.com/questions/7906332/how-to-calculate-combination-and-permutation-in-r
+# source for this package: https://stackoverflow.com/questions/7906332/how-to-calculate-combination-and-permutation-in-r
 
 
 

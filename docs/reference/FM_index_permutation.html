@@ -8,11 +8,13 @@
 
 <title>Calculating Fowlkes-Mallows Index under H0 — FM_index_permutation • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,11 +38,10 @@
 
 
 
-<meta property="og:title" content="Calculating Fowlkes-Mallows Index under H0 — FM_index_permutation" />
 
+<meta property="og:title" content="Calculating Fowlkes-Mallows Index under H0 — FM_index_permutation" />
 <meta property="og:description" content="Calculating Fowlkes-Mallows index under the null hypothesis of no relation
 between the clusterings (random order of the items labels)." />
-
 
 
 
@@ -72,7 +73,7 @@ between the clusterings (random order of the items labels)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -112,7 +113,6 @@ between the clusterings (random order of the items labels)." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -139,10 +139,8 @@ between the clusterings (random order of the items labels)." />
     </div>
 
     <div class="ref-description">
-    
     <p>Calculating Fowlkes-Mallows index under the null hypothesis of no relation
 between the clusterings (random order of the items labels).</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>FM_index_permutation</span>(
@@ -151,7 +149,7 @@ between the clusterings (random order of the items labels).</p>
   <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>),
   <span class='no'>...</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -178,24 +176,21 @@ but for keeping the noise down, the default is FALSE.</p></td>
       <td><p>Ignored</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The Fowlkes-Mallows index between two vectors of clustering groups.
 Under H0. (a double without attr)</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Fowlkes, E. B.; Mallows, C. L. (1 September 1983).
 "A Method for Comparing Two Hierarchical Clusterings".
 Journal of the American Statistical Association 78 (383): 553.</p>
-<p><a href='http://en.wikipedia.org/wiki/Fowlkes-Mallows_index'>http://en.wikipedia.org/wiki/Fowlkes-Mallows_index</a></p>
-    
+<p><a href='https://en.wikipedia.org/wiki/Fowlkes-Mallows_index'>https://en.wikipedia.org/wiki/Fowlkes-Mallows_index</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='cor_bakers_gamma.html'>cor_bakers_gamma</a>,
 <code><a href='FM_index_R.html'>FM_index_R</a></code>, <code><a href='FM_index.html'>FM_index</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -224,8 +219,8 @@ Journal of the American Statistical Association 78 (383): 553.</p>
 <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>v</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>FM_index_H0</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 <span class='co'># The permutation distribution is with a heavy right tail:</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>psych</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/psych/man/skew.html'>skew</a></span>(<span class='no'>FM_index_H0</span>) <span class='co'># 1.254</span>
-<span class='fu'><a href='https://rdrr.io/pkg/psych/man/skew.html'>kurtosi</a></span>(<span class='no'>FM_index_H0</span>) <span class='co'># 2.5427</span>
+<span class='fu'>skew</span>(<span class='no'>FM_index_H0</span>) <span class='co'># 1.254</span>
+<span class='fu'>kurtosi</span>(<span class='no'>FM_index_H0</span>) <span class='co'># 2.5427</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>FM_index_H0</span>)
 <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span>(<span class='no'>FM_index_H0</span>)
@@ -261,7 +256,7 @@ Journal of the American Statistical Association 78 (383): 553.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

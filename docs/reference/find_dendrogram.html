@@ -6,13 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Search for the subdendrogram structure composed of indicated labels — find_dendrogram • dendextend</title>
+<title>Search for the sub-dendrogram structure composed of selected labels — find_dendrogram • dendextend</title>
+
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,13 +38,10 @@
 
 
 
-<meta property="og:title" content="Search for the subdendrogram structure composed of indicated labels — find_dendrogram" />
 
+<meta property="og:title" content="Search for the sub-dendrogram structure composed of selected labels — find_dendrogram" />
 <meta property="og:description" content="Given a dendrogram object, the function performs a recursive DFS algorithm to determine
-the subdendrogram which is composed of all indicated labels. The labels
-which should compose the subdendrogram are marked as TRUE in the logical
-vector of length nleaves(dend)" />
-
+the sub-dendrogram which is composed of (exactly) all 'selected_labels'." />
 
 
 
@@ -74,7 +73,7 @@ vector of length nleaves(dend)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -114,7 +113,6 @@ vector of length nleaves(dend)" />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -135,22 +133,18 @@ vector of length nleaves(dend)" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Search for the subdendrogram structure composed of indicated labels</h1>
+    <h1>Search for the sub-dendrogram structure composed of selected labels</h1>
     <small class="dont-index">Source: <a href='https://github.com/talgalili/dendextend/blob/master/R/get_subdendrograms.R'><code>R/get_subdendrograms.R</code></a></small>
     <div class="hidden name"><code>find_dendrogram.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p>Given a dendrogram object, the function performs a recursive DFS algorithm to determine
-the subdendrogram which is composed of all indicated labels. The labels
-which should compose the subdendrogram are marked as TRUE in the logical
-vector of length <code><a href='nleaves.html'>nleaves(dend)</a></code></p>
-    
+the sub-dendrogram which is composed of (exactly) all 'selected_labels'.</p>
     </div>
 
     <pre class="usage"><span class='fu'>find_dendrogram</span>(<span class='no'>dend</span>, <span class='no'>selected_labels</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -160,17 +154,15 @@ vector of length <code><a href='nleaves.html'>nleaves(dend)</a></code></p>
     </tr>
     <tr>
       <th>selected_labels</th>
-      <td><p>logical vector with TRUE values at positions of
-members which should be included in the resulting subdendrogram</p></td>
+      <td><p>A character vector with the labels we expect to have 
+in the sub-dendrogram. This doesn't have to be in the same order as in the dendrogram.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A subdendrogram composed of only members indicated in the given logical
-vector
-clusters.</p>
-    
+    <p>Either a sub-dendrogram composed of only members of selected_labels.
+If such a sub-dendrogram doesn't exist, the function returns NULL.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -182,12 +174,26 @@ clusters.</p>
   <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"labels_to_character"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='color_branches.html'>color_branches</a></span>(<span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-<span class='no'>first.subdend.only</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>dend</span>, <span class='fl'>4</span>) <span class='kw'>==</span> <span class='fl'>1</span>
+<span class='no'>first.subdend.only</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>dend</span>, <span class='fl'>4</span>)[<span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>dend</span>, <span class='fl'>4</span>) <span class='kw'>==</span> <span class='fl'>1</span>])
 <span class='no'>sub.dend</span> <span class='kw'>&lt;-</span> <span class='fu'>find_dendrogram</span>(<span class='no'>dend</span>, <span class='no'>first.subdend.only</span>)
 <span class='co'># Plotting the result</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>))
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Original dendrogram"</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>sub.dend</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"First subdendrogram"</span>)
+
+  <span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>10</span> <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"labels_to_character"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='color_branches.html'>color_branches</a></span>(<span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>5</span>)
+
+<span class='no'>selected_labels</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>)
+<span class='no'>sub_dend</span> <span class='kw'>&lt;-</span> <span class='fu'>find_dendrogram</span>(<span class='no'>dend</span>, <span class='no'>selected_labels</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Original dendrogram"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>sub_dend</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"First subdendrogram"</span>)
+
+
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -204,7 +210,7 @@ clusters.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

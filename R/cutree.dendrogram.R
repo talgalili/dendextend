@@ -108,7 +108,7 @@ sort_levels_values <- function(x, MARGIN = 2, decreasing = FALSE, force_integer 
 #' @author Marco Gallotta (a.k.a: marcog), Tal Galili
 #' @source
 #' This function was written by marcog, as an answer to my question here:
-#' \url{http://stackoverflow.com/questions/4562257/what-is-the-fastest-way-to-check-if-a-number-is-a-positive-natural-number-in-r}
+#' \url{https://stackoverflow.com/questions/4562257/what-is-the-fastest-way-to-check-if-a-number-is-a-positive-natural-number-in-r}
 #' @seealso \code{\link{is.numeric}}, \code{\link{is.double}}, \code{\link{is.integer}}
 #' @examples
 #' is.natural.number(1) # is TRUE

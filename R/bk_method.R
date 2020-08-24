@@ -141,7 +141,7 @@ sort_2_clusters_vectors <- function(A1_clusters, A2_clusters, assume_sorted_vect
 #' "A Method for Comparing Two Hierarchical Clusterings".
 #' Journal of the American Statistical Association 78 (383): 553.
 #'
-#' \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+#' \url{https://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 #'
 #' @examples
 #'
@@ -304,7 +304,7 @@ FM_index_R <- function(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE, 
 #' "A Method for Comparing Two Hierarchical Clusterings".
 #' Journal of the American Statistical Association 78 (383): 553.
 #'
-#' \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+#' \url{https://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 #'
 #' @examples
 #'
@@ -395,7 +395,7 @@ FM_index <- function(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE, wa
 #' "A Method for Comparing Two Hierarchical Clusterings".
 #' Journal of the American Statistical Association 78 (383): 553.
 #'
-#' \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+#' \url{https://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 #'
 #' @examples
 #'
@@ -516,7 +516,7 @@ FM_index_permutation <- function(A1_clusters, A2_clusters, warn = dendextend_opt
 #' "A Method for Comparing Two Hierarchical Clusterings".
 #' Journal of the American Statistical Association 78 (383): 553.
 #'
-#' \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+#' \url{https://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 #'
 #' @examples
 #'
@@ -669,7 +669,7 @@ Bk <- function(tree1, tree2, k, warn = dendextend_options("warn"), ...) {
 #' "A Method for Comparing Two Hierarchical Clusterings".
 #' Journal of the American Statistical Association 78 (383): 553.
 #'
-#' \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+#' \url{https://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 #'
 #' @examples
 #'
@@ -823,7 +823,7 @@ Bk_permutations <- function(tree1, tree2, k, R = 1000, warn = dendextend_options
 #' "A Method for Comparing Two Hierarchical Clusterings".
 #' Journal of the American Statistical Association 78 (383): 553.
 #'
-#' \url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+#' \url{https://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 #'
 #' @examples
 #'
@@ -997,6 +997,6 @@ Bk_plot <- function(tree1, tree2, k,
 #   	 https://cran.r-project.org/package=profdpm
 # See pages 9 and 10 here: https://CRAN.R-project.org/package=profdpm/vignettes/profdpm.pdf
 # As of February 2020 the package went off CRAN, so I removed it also from dendextend.
-# I came by this package thanks to chl: http://stats.stackexchange.com/questions/3672/a-measure-to-describe-the-distribution-of-a-dendrogram
+# I came by this package thanks to chl: https://stats.stackexchange.com/questions/3672/a-measure-to-describe-the-distribution-of-a-dendrogram
 # Also, there is a great overview of similarity measures on this here:
 # http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.164.6189&rep=rep1&type=pdf

@@ -29,4 +29,4 @@ magrittr::`%>%`
 # https://cran.r-project.org/package=magrittr
 # https://CRAN.R-project.org/package=roxygen2/vignettes/rd.html
 # https://CRAN.R-project.org/package=roxygen2/vignettes/namespace.html
-# http://stackoverflow.com/questions/8637993/better-explanation-of-when-to-use-imports-depends
+# https://stackoverflow.com/questions/8637993/better-explanation-of-when-to-use-imports-depends

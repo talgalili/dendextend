@@ -8,11 +8,13 @@
 
 <title>Color tree's branches according to sub-clusters — color_branches • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,8 +38,8 @@
 
 
 
-<meta property="og:title" content="Color tree's branches according to sub-clusters — color_branches" />
 
+<meta property="og:title" content="Color tree's branches according to sub-clusters — color_branches" />
 <meta property="og:description" content="This function is for dendrogram and hclust objects.
 This function colors both the terminal leaves of a dend's cluster and the edges
 leading to those leaves. The edgePar attribute of nodes will be augmented by
@@ -46,7 +48,6 @@ The groups will be defined by a call to cutree
 using the k or h parameters.
 If col is a color vector with a different length than the number of clusters
 (k) - then a recycled color vector will be used." />
-
 
 
 
@@ -78,7 +79,7 @@ If col is a color vector with a different length than the number of clusters
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -118,7 +119,6 @@ If col is a color vector with a different length than the number of clusters
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -145,7 +145,6 @@ If col is a color vector with a different length than the number of clusters
     </div>
 
     <div class="ref-description">
-    
     <p>This function is for dendrogram and hclust objects.
 This function colors both the terminal leaves of a dend's cluster and the edges
 leading to those leaves. The edgePar attribute of nodes will be augmented by
@@ -154,7 +153,6 @@ The groups will be defined by a call to <code><a href='cutree-methods.html'>cutr
 using the k or h parameters.</p>
 <p>If col is a color vector with a different length than the number of clusters
 (k) - then a recycled color vector will be used.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>color_branches</span>(
@@ -167,7 +165,7 @@ using the k or h parameters.</p>
   <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>),
   <span class='no'>...</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -214,7 +212,7 @@ but for keeping the noise down, the default is FALSE.</p></td>
       <td><p>ignored.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>This function is a derived work from the <code>color_clusters</code>
@@ -225,11 +223,9 @@ the function to work for trees that hclust can not handle
 (unbranched and non-ultrametric trees).
 Also, it allows REPEATED cluster color assignments to branches on to
 the same tree. Something which the original function was not able to handle.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a tree object of class <a href='https://rdrr.io/r/stats/dendrogram.html'>dendrogram</a>.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>If <code>groupLabels=TRUE</code> then numeric group labels will be added
@@ -242,14 +238,12 @@ integers) - they are coerced into character. This step is essential for the
 proper operation of the function. A dendrogram labels might happen to be
 integers if they are based on an <a href='https://rdrr.io/r/stats/hclust.html'>hclust</a> performed on a <a href='https://rdrr.io/r/stats/dist.html'>dist</a>
 of an object without <a href='https://rdrr.io/r/base/colnames.html'>rownames</a>.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='cutree-methods.html'>cutree</a></code>,<code><a href='https://rdrr.io/r/stats/dendrogram.html'>dendrogram</a></code>,
 <code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code>, <code><a href='labels_colors.html'>labels_colors</a></code>,
 <code><a href='branches_attr_by_clusters.html'>branches_attr_by_clusters</a></code>, <a href='get_leaves_branches_col.html'>get_leaves_branches_col</a>,
 <a href='color_labels.html'>color_labels</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -415,7 +409,7 @@ of an object without <a href='https://rdrr.io/r/base/colnames.html'>rownames</a>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

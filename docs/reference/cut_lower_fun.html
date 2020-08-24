@@ -8,11 +8,13 @@
 
 <title>Cut a dendrogram - and run a function on the output — cut_lower_fun • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,15 +38,14 @@
 
 
 
-<meta property="og:title" content="Cut a dendrogram - and run a function on the output — cut_lower_fun" />
 
+<meta property="og:title" content="Cut a dendrogram - and run a function on the output — cut_lower_fun" />
 <meta property="og:description" content="Cuts the dend at height h and returns a list with the FUN function
 implemented on all the sub trees created by cut at height h.
 This is used for creating a cutree.dendrogram function,
 by using the labels function as FUN.
 This is the Rcpp version of the function, offering a 10-60 times improvement
 in speed (depending on the tree size it is used on)." />
-
 
 
 
@@ -76,7 +77,7 @@ in speed (depending on the tree size it is used on)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -116,7 +117,6 @@ in speed (depending on the tree size it is used on)." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -143,18 +143,16 @@ in speed (depending on the tree size it is used on)." />
     </div>
 
     <div class="ref-description">
-    
     <p>Cuts the dend at height h and returns a list with the FUN function
 implemented on all the sub trees created by cut at height h.
 This is used for creating a <a href='cutree-methods.html'>cutree.dendrogram</a> function,
 by using the <code>labels</code> function as FUN.</p>
 <p>This is the Rcpp version of the function, offering a 10-60 times improvement
 in speed (depending on the tree size it is used on).</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>cut_lower_fun</span>(<span class='no'>dend</span>, <span class='no'>h</span>, <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='no'>labels</span>, <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>), <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -182,17 +180,15 @@ Should the user be warned if reverting to default?</p></td>
       <td><p>passed to FUN.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list with the output of running FUN on each of the
 sub dends derived from cutting "dend"</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/labels.html'>labels</a></code>, <code><a href='https://rdrr.io/r/stats/dendrogram.html'>dendrogram</a></code>,
 <a href='cutree-methods.html'>cutree.dendrogram</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -239,7 +235,7 @@ sub dends derived from cutting "dend"</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -1,3 +1,19 @@
+* 2020-08-15(Tal Galili) update pkgdown |a3431fc| 
+|  docs/CONDUCT.html    |    9 +-
+|  docs/authors.html    |   14 +-
+|  docs/index.html      |   34 +-
+|  docs/news/index.html | 1077 +++++++++++-------------------------------------
+|  4 files changed, 273 insertions(+), 861 deletions(-)
+
+* 2020-08-15(Tal Galili) Fix warning "checkRd: (5) dendextend-package.Rd:0-15: Must have a \description" |cabc151| 
+|  ChangeLog                 | 248 ++++++++++++++++++++++++++++++++++++++++++--
+|  DESCRIPTION               |   2 +-
+|  NEWS                      |   6 +-
+|  NEWS.md                   |  15 +++
+|  R/dendextend-package.R    |   9 +-
+|  man/dendextend-package.Rd |   7 ++
+|  6 files changed, 278 insertions(+), 9 deletions(-)
+
 * 2020-08-15(Tal Galili) Update tests to suppress warnings around RNGversion("3.5.0") |1c869df| 
 |  tests/test-all.R                       | 2 +-
 |  tests/testthat/test-bk_method.R        | 5 +++--

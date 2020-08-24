@@ -1,4 +1,4 @@
-dendextend 1.14.0 (2020-08-15)
+dendextend 1.14.0 (2020-08-24)
 ----------------------------------------
 
 ###UPDATED FUNCTIONS:
@@ -7,7 +7,7 @@ dendextend 1.14.0 (2020-08-15)
 ###BUG FIXES
 * find_dendrogram - make the function deal with more edge cases, added tests, and fix the documentation to match what the function does.
 * Fix warning "checkRd: (5) dendextend-package.Rd:0-15: Must have a \description"
-
+* Fix: "Found the following (possibly) invalid URLs:"
 ###OTHER NOTES
 - update pkgdown website
 

@@ -8,11 +8,13 @@
 
 <title>Random rotation of trees — shuffle • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,14 +38,13 @@
 
 
 
-<meta property="og:title" content="Random rotation of trees — shuffle" />
 
+<meta property="og:title" content="Random rotation of trees — shuffle" />
 <meta property="og:description" content="'shuffle' randomilly rotates (&quot;shuffles&quot;) a tree, changing its presentation
 while preserving its topolgoy.
 'shuffle' is based on rotate and through its methods can
 work for any of the major tree objects in R (dendrogram/hclust/phylo).
 This function is useful in combination with tanglegram and entanglement." />
-
 
 
 
@@ -75,7 +76,7 @@ This function is useful in combination with tanglegram and entanglement." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -115,7 +116,6 @@ This function is useful in combination with tanglegram and entanglement." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -142,13 +142,11 @@ This function is useful in combination with tanglegram and entanglement." />
     </div>
 
     <div class="ref-description">
-    
     <p>'shuffle' randomilly rotates ("shuffles") a tree, changing its presentation
 while preserving its topolgoy.
 'shuffle' is based on <a href='rotate.html'>rotate</a> and through its methods can
 work for any of the major tree objects in R (<a href='https://rdrr.io/r/stats/dendrogram.html'>dendrogram</a>/<a href='https://rdrr.io/r/stats/hclust.html'>hclust</a>/<a href='https://rdrr.io/pkg/ape/man/read.tree.html'>phylo</a>).</p>
 <p>This function is useful in combination with <a href='tanglegram.html'>tanglegram</a> and <a href='entanglement.html'>entanglement</a>.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>shuffle</span>(<span class='no'>dend</span>, <span class='no'>...</span>)
@@ -167,7 +165,7 @@ work for any of the major tree objects in R (<a href='https://rdrr.io/r/stats/de
 
 <span class='co'># S3 method for phylo</span>
 <span class='fu'>shuffle</span>(<span class='no'>dend</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -187,21 +185,18 @@ default is missing, in which case all the dends in dendlist
 will be shuffled</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A randomlly rotated tree object</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>'shuffle' is a function that randomilly rotates ("shuffles") a tree.
 a dendrogram leaves order (by means of rotation)</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='tanglegram.html'>tanglegram</a></code>,  <code><a href='entanglement.html'>entanglement</a></code>,
 <code><a href='rotate.html'>rotate</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
@@ -229,7 +224,7 @@ a dendrogram leaves order (by means of rotation)</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

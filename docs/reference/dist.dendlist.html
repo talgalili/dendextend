@@ -8,11 +8,13 @@
 
 <title>Topological Distances Between Two dendrograms — dist.dendlist • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,8 +38,8 @@
 
 
 
-<meta property="og:title" content="Topological Distances Between Two dendrograms — dist.dendlist" />
 
+<meta property="og:title" content="Topological Distances Between Two dendrograms — dist.dendlist" />
 <meta property="og:description" content="This function seems to bring different results than ape - 
 checking this out is still an open issue: github issue
 This function computes the Robinson-Foulds distance 
@@ -49,7 +51,6 @@ plus the same calculation of tree2 when compared to tree1.
 This is the sum of length of distinct_edges(x,y) with
 distinct_edges(y,x).
 This function might implement other topological distances in the future." />
-
 
 
 
@@ -81,7 +82,7 @@ This function might implement other topological distances in the future." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -121,7 +122,6 @@ This function might implement other topological distances in the future." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -148,7 +148,6 @@ This function might implement other topological distances in the future." />
     </div>
 
     <div class="ref-description">
-    
     <p>This function seems to bring different results than ape - 
 checking this out is still an open issue: <a href='https://github.com/talgalili/dendextend/issues/97'>github issue</a></p>
 <p>This function computes the <a href='https://en.wikipedia.org/wiki/Robinson–Foulds_metric'>Robinson-Foulds distance</a> 
@@ -160,11 +159,10 @@ plus the same calculation of tree2 when compared to tree1.
 This is the sum of length of <a href='distinct_edges.html'>distinct_edges</a>(x,y) with
 <a href='distinct_edges.html'>distinct_edges</a>(y,x).</p>
 <p>This function might implement other topological distances in the future.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>dist.dendlist</span>(<span class='no'>dend</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"edgeset"</span>), <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -181,18 +179,16 @@ This is the sum of length of <a href='distinct_edges.html'>distinct_edges</a>(x,
       <td><p>Ignored.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <a href='https://rdrr.io/r/stats/dist.html'>dist</a> object with topological distances between all trees</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='distinct_edges.html'>distinct_edges</a>,
 <a href='https://rdrr.io/pkg/ape/man/dist.topo.html'>dist.topo</a>,
 dist.multiPhylo,
 treedist,</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -229,7 +225,7 @@ treedist,</p></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

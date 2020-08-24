@@ -1,5 +1,5 @@
 # plotting a randomForest tree!
-# http://stats.stackexchange.com/questions/2344/best-way-to-present-a-random-forest-in-a-publication
+# https://stats.stackexchange.com/questions/2344/best-way-to-present-a-random-forest-in-a-publication
 # I will still need to clean this into this:
 # as.dendrogram.randomForest
 

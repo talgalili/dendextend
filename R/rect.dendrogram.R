@@ -83,7 +83,7 @@
 #'
 #' The idea of adding text and shading lines under the clusters comes from
 #' skullkey from here:
-#' \url{http://stackoverflow.com/questions/4720307/change-dendrogram-leaves}
+#' \url{https://stackoverflow.com/questions/4720307/change-dendrogram-leaves}
 #'
 #' @examples
 #'

@@ -1,6 +1,6 @@
 # library(testthat)
 
-# we don't need the warning now... http://stackoverflow.com/questions/16194212/how-to-supress-warnings-globally-in-an-r-script
+# we don't need the warning now... https://stackoverflow.com/questions/16194212/how-to-supress-warnings-globally-in-an-r-script
 old_warn_opt <- options()$warn
 options(warn = -1)
 

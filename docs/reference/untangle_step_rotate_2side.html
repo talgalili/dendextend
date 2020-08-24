@@ -8,11 +8,13 @@
 
 <title>Stepwise untangle two trees one at a time — untangle_step_rotate_2side • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,8 +38,8 @@
 
 
 
-<meta property="og:title" content="Stepwise untangle two trees one at a time — untangle_step_rotate_2side" />
 
+<meta property="og:title" content="Stepwise untangle two trees one at a time — untangle_step_rotate_2side" />
 <meta property="og:description" content="This is a greedy forward selection algorithm for rotating the tree and
 looking for a better match.
 This is useful for finding good trees for a tanglegram.
@@ -49,7 +51,6 @@ This rotated tree is compared with the fixed tree, and if it has a better
 entanglement, it will be used for the following iterations.
 Once finished the rotated tree is held fixed, and the fixed tree
 is now rotated. This continues until a local optimal solution is reached." />
-
 
 
 
@@ -81,7 +82,7 @@ is now rotated. This continues until a local optimal solution is reached." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -121,7 +122,6 @@ is now rotated. This continues until a local optimal solution is reached." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -148,7 +148,6 @@ is now rotated. This continues until a local optimal solution is reached." />
     </div>
 
     <div class="ref-description">
-    
     <p>This is a greedy forward selection algorithm for rotating the tree and
 looking for a better match.</p>
 <p>This is useful for finding good trees for a <a href='tanglegram.html'>tanglegram</a>.</p>
@@ -160,7 +159,6 @@ This rotated tree is compared with the fixed tree, and if it has a better
 entanglement, it will be used for the following iterations.
 Once finished the rotated tree is held fixed, and the fixed tree
 is now rotated. This continues until a local optimal solution is reached.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>untangle_step_rotate_2side</span>(
@@ -173,7 +171,7 @@ is now rotated. This continues until a local optimal solution is reached.</p>
   <span class='kw'>k_seq</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>...</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -218,18 +216,16 @@ dend1. If NULL (default), then we use the "direction" parameter.</p></td>
       <td><p>not used</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list with two dendrograms (dend1/dend2),
 after they are rotated to best fit one another.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='tanglegram.html'>tanglegram</a>, <a href='match_order_by_labels.html'>match_order_by_labels</a>,
 <a href='entanglement.html'>entanglement</a>, <a href='flip_leaves.html'>flip_leaves</a>, <a href='all_couple_rotations_at_k.html'>all_couple_rotations_at_k</a>.
 <a href='untangle_step_rotate_1side.html'>untangle_step_rotate_1side</a>.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -278,7 +274,7 @@ after they are rotated to best fit one another.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

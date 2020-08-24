@@ -8,11 +8,13 @@
 
 <title>Baker's Gamma correlation coefficient — cor_bakers_gamma • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,14 +38,13 @@
 
 
 
-<meta property="og:title" content="Baker's Gamma correlation coefficient — cor_bakers_gamma" />
 
+<meta property="og:title" content="Baker's Gamma correlation coefficient — cor_bakers_gamma" />
 <meta property="og:description" content="Calculate Baker's Gamma correlation coefficient for two trees
 (also known as Goodman-Kruskal-gamma index).
 Assumes the labels in the two trees fully match. If they do not
 please first use intersect_trees to have them matched.
 WARNING: this can be quite slow for medium/large trees." />
-
 
 
 
@@ -75,7 +76,7 @@ WARNING: this can be quite slow for medium/large trees." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -115,7 +116,6 @@ WARNING: this can be quite slow for medium/large trees." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -142,13 +142,11 @@ WARNING: this can be quite slow for medium/large trees." />
     </div>
 
     <div class="ref-description">
-    
     <p>Calculate Baker's Gamma correlation coefficient for two trees
 (also known as Goodman-Kruskal-gamma index).</p>
 <p>Assumes the labels in the two trees fully match. If they do not
 please first use <a href='intersect_trees.html'>intersect_trees</a> to have them matched.</p>
 <p>WARNING: this can be quite slow for medium/large trees.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>cor_bakers_gamma</span>(<span class='no'>dend1</span>, <span class='no'>...</span>)
@@ -178,7 +176,7 @@ please first use <a href='intersect_trees.html'>intersect_trees</a> to have them
 
 <span class='co'># S3 method for dendlist</span>
 <span class='fu'>cor_bakers_gamma</span>(<span class='no'>dend1</span>, <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>), <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -218,11 +216,10 @@ should a warning be issued when using <a href='cutree-methods.html'>cutree</a>?<
 which of the trees in the dendlist object should be plotted (relevant for dendlist)</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Baker's Gamma association Index between two trees (a number between -1 to 1)</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Baker's Gamma (see reference) is a measure of accosiation (similarity)
@@ -244,17 +241,14 @@ the distriubtion under the null hypothesis (keeping the trees topologies
 constant).</p>
 <p>Notice that this measure is not affected by the height of a branch but only
 of its relative position compared with other branches.</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baker, F. B., Stability of Two Hierarchical Grouping Techniques Case
  1: Sensitivity to Data Errors. Journal of the American Statistical
  Association, 69(346), 440 (1974).</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='cor_cophenetic.html'>cor_cophenetic</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -302,7 +296,7 @@ of its relative position compared with other branches.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

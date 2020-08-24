@@ -8,11 +8,13 @@
 
 <title>Proportion of commong nodes between two trees — cor_common_nodes • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,15 +38,14 @@
 
 
 
-<meta property="og:title" content="Proportion of commong nodes between two trees — cor_common_nodes" />
 
+<meta property="og:title" content="Proportion of commong nodes between two trees — cor_common_nodes" />
 <meta property="og:description" content="Calculates the number of nodes, in each tree, that are common (i.e.: that have the same exact list of labels).
 The correlation is between 0 (actually, 2*(nnodes-1)/(2*nnodes), for two trees with
 the same list of labels - since the top node will always be identical for them).
 Where 1 means that every node in the one tree, has a node in the other tree with the exact
 same list of labels.
 Notice this measure is non-parameteric (it ignores the heights and relative position of the nodes)." />
-
 
 
 
@@ -76,7 +77,7 @@ Notice this measure is non-parameteric (it ignores the heights and relative posi
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -116,7 +117,6 @@ Notice this measure is non-parameteric (it ignores the heights and relative posi
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -143,18 +143,16 @@ Notice this measure is non-parameteric (it ignores the heights and relative posi
     </div>
 
     <div class="ref-description">
-    
     <p>Calculates the number of nodes, in each tree, that are common (i.e.: that have the same exact list of labels).
 The correlation is between 0 (actually, 2*(nnodes-1)/(2*nnodes), for two trees with
 the same list of labels - since the top node will always be identical for them).
 Where 1 means that every node in the one tree, has a node in the other tree with the exact
 same list of labels.
 Notice this measure is non-parameteric (it ignores the heights and relative position of the nodes).</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>cor_common_nodes</span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -171,15 +169,13 @@ Notice this measure is non-parameteric (it ignores the heights and relative posi
       <td><p>not used.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A correlation value between 0 to 1 (almost identical trees)</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='distinct_edges.html'>distinct_edges</a>, <a href='cor.dendlist.html'>cor.dendlist</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -211,7 +207,7 @@ Notice this measure is non-parameteric (it ignores the heights and relative posi
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

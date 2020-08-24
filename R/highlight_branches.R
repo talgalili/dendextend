@@ -19,7 +19,7 @@
 
 normalize <- function(x) {
   # https://stat.ethz.ch/pipermail/r-help//2012-October/336676.html
-  # http://stats.stackexchange.com/questions/70801/how-to-normalize-data-to-0-1-range
+  # https://stats.stackexchange.com/questions/70801/how-to-normalize-data-to-0-1-range
   # https://en.wikipedia.org/wiki/Feature_scaling
   # https://en.wikipedia.org/wiki/Normalization_(statistics)
   (x - min(x, na.rm = TRUE)) /

@@ -8,11 +8,13 @@
 
 <title>Set (/update) features to a dendrogram — set • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,11 +38,10 @@
 
 
 
-<meta property="og:title" content="Set (/update) features to a dendrogram — set" />
 
+<meta property="og:title" content="Set (/update) features to a dendrogram — set" />
 <meta property="og:description" content="a master function for updating various attributes and
 features of dendrogram objects." />
-
 
 
 
@@ -72,7 +73,7 @@ features of dendrogram objects." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -112,7 +113,6 @@ features of dendrogram objects." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -139,10 +139,8 @@ features of dendrogram objects." />
     </div>
 
     <div class="ref-description">
-    
     <p>a master function for updating various attributes and
 features of dendrogram objects.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>set</span>(<span class='no'>dend</span>, <span class='no'>...</span>)
@@ -150,10 +148,10 @@ features of dendrogram objects.</p>
 <span class='co'># S3 method for dendrogram</span>
 <span class='fu'>set</span>(
   <span class='no'>dend</span>,
-  <span class='kw'>what</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"labels"</span>, <span class='st'>"labels_colors"</span>, <span class='st'>"labels_cex"</span>, <span class='st'>"labels_to_character"</span>, <span class='st'>"leaves_pch"</span>,
-    <span class='st'>"leaves_cex"</span>, <span class='st'>"leaves_col"</span>, <span class='st'>"nodes_pch"</span>, <span class='st'>"nodes_cex"</span>, <span class='st'>"nodes_col"</span>, <span class='st'>"hang_leaves"</span>,
-    <span class='st'>"rank_branches"</span>, <span class='st'>"branches_k_color"</span>, <span class='st'>"branches_k_lty"</span>, <span class='st'>"branches_col"</span>, <span class='st'>"branches_lwd"</span>,
-    <span class='st'>"branches_lty"</span>, <span class='st'>"by_labels_branches_col"</span>, <span class='st'>"by_labels_branches_lwd"</span>,
+  <span class='kw'>what</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"labels"</span>, <span class='st'>"labels_colors"</span>, <span class='st'>"labels_cex"</span>, <span class='st'>"labels_to_character"</span>,
+    <span class='st'>"leaves_pch"</span>, <span class='st'>"leaves_cex"</span>, <span class='st'>"leaves_col"</span>, <span class='st'>"nodes_pch"</span>, <span class='st'>"nodes_cex"</span>, <span class='st'>"nodes_col"</span>,
+    <span class='st'>"hang_leaves"</span>, <span class='st'>"rank_branches"</span>, <span class='st'>"branches_k_color"</span>, <span class='st'>"branches_k_lty"</span>, <span class='st'>"branches_col"</span>,
+    <span class='st'>"branches_lwd"</span>, <span class='st'>"branches_lty"</span>, <span class='st'>"by_labels_branches_col"</span>, <span class='st'>"by_labels_branches_lwd"</span>,
     <span class='st'>"by_labels_branches_lty"</span>, <span class='st'>"by_lists_branches_col"</span>, <span class='st'>"by_lists_branches_lwd"</span>,
     <span class='st'>"by_lists_branches_lty"</span>, <span class='st'>"highlight_branches_col"</span>, <span class='st'>"highlight_branches_lwd"</span>,
     <span class='st'>"clear_branches"</span>, <span class='st'>"clear_leaves"</span>),
@@ -167,7 +165,7 @@ features of dendrogram objects.</p>
 
 <span class='co'># S3 method for data.table</span>
 <span class='fu'>set</span>(<span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -204,12 +202,11 @@ a dendlist, on which of the trees should the modification be performed.
 If missing - the change will be performed on all of dends in the dendlist.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An updated dendrogram (or dendlist), with some change to
 the parameters of it</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This is a wrapper function for many of the main tasks we
@@ -248,7 +245,6 @@ by_lists_branches_lty have extra parameters: attr, TF_value. You can read more a
 <li><p>clear_leaves - clear leaves' attributes (<a href='remove_branches_edgePar.html'>remove_branches_edgePar</a>)</p></li>
 </ul>
 
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>labels&lt;-.dendrogram, labels_colors&lt;-,
@@ -258,7 +254,6 @@ by_lists_branches_lty have extra parameters: attr, TF_value. You can read more a
 <a href='remove_branches_edgePar.html'>remove_branches_edgePar</a>, <a href='remove_leaves_nodePar.html'>remove_leaves_nodePar</a>,
 <a href='noded_with_condition.html'>noded_with_condition</a>, <a href='branches_attr_by_labels.html'>branches_attr_by_labels</a>, <a href='branches_attr_by_lists.html'>branches_attr_by_lists</a>,
 <a href='https://rdrr.io/r/stats/dendrogram.html'>dendrogram</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -483,7 +478,7 @@ by_lists_branches_lty have extra parameters: attr, TF_value. You can read more a
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

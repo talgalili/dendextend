@@ -12,7 +12,7 @@
 \source{
 The functions here are based on code by Gavin and kohske from
 (adopted to dendrogram by Tal Galili):
-\url{http://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}
+\url{https://stackoverflow.com/questions/4614223/how-to-have-the-following-work-labelsx-some-value-r-question}
 Also with some ideas from Gregory Jefferis's dendroextras package.
 }
 \usage{

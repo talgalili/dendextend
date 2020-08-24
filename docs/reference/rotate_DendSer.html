@@ -8,11 +8,13 @@
 
 <title>Rotates dend based on DendSer — rotate_DendSer • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,14 +38,13 @@
 
 
 
-<meta property="og:title" content="Rotates dend based on DendSer — rotate_DendSer" />
 
+<meta property="og:title" content="Rotates dend based on DendSer — rotate_DendSer" />
 <meta property="og:description" content="Rotates a dendrogram based on its seriation
 The function tries to turn the dend into hclust using
 DendSer.dendrogram (based on DendSer)
 Also, if a distance matrix is missing, it will try
 to use the cophenetic distance." />
-
 
 
 
@@ -75,7 +76,7 @@ to use the cophenetic distance." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -115,7 +116,6 @@ to use the cophenetic distance." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -142,17 +142,15 @@ to use the cophenetic distance." />
     </div>
 
     <div class="ref-description">
-    
     <p>Rotates a dendrogram based on its seriation</p>
 <p>The function tries to turn the dend into hclust using
 <a href='DendSer.dendrogram.html'>DendSer.dendrogram</a> (based on <a href='https://rdrr.io/pkg/DendSer/man/DendSer.html'>DendSer</a>)</p>
 <p>Also, if a distance matrix is missing, it will try
 to use the <a href='https://rdrr.io/r/stats/cophenetic.html'>cophenetic</a> distance.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>rotate_DendSer</span>(<span class='no'>dend</span>, <span class='no'>ser_weight</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -174,16 +172,14 @@ there to <a href='https://rdrr.io/pkg/DendSer/man/DendSer.html'>DendSer</a>.</p>
       <td><p>parameters passed to <a href='https://rdrr.io/pkg/DendSer/man/DendSer.html'>DendSer</a></p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Numeric vector giving an optimal dendrogram order</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/DendSer/man/DendSer.html'>DendSer</a></code>, <a href='DendSer.dendrogram.html'>DendSer.dendrogram</a> ,
 <a href='untangle_DendSer.html'>untangle_DendSer</a>, rotate_DendSer</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
@@ -212,7 +208,7 @@ there to <a href='https://rdrr.io/pkg/DendSer/man/DendSer.html'>DendSer</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -8,11 +8,13 @@
 
 <title>Plotting a left-tip-adjusted horizontal dendrogram — plot_horiz.dendrogram • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,14 +38,13 @@
 
 
 
-<meta property="og:title" content="Plotting a left-tip-adjusted horizontal dendrogram — plot_horiz.dendrogram" />
 
+<meta property="og:title" content="Plotting a left-tip-adjusted horizontal dendrogram — plot_horiz.dendrogram" />
 <meta property="og:description" content="The default plot(dend, horiz = TRUE), gives us a dendrogram tree plot
 with the tips turned right. The current function enables the creation of
 the same tree, but with the tips turned left. The main challange in doing this
 is finding the distance of the labels from the leaves tips - which is solved
 with this function." />
-
 
 
 
@@ -75,7 +76,7 @@ with this function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -115,7 +116,6 @@ with this function." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -142,13 +142,11 @@ with this function." />
     </div>
 
     <div class="ref-description">
-    
     <p>The default <code><a href='https://rdrr.io/r/graphics/plot.html'>plot(dend, horiz = TRUE)</a></code>, gives us a dendrogram tree plot
 with the tips turned right. The current function enables the creation of
 the same tree, but with the tips turned left. The main challange in doing this
 is finding the distance of the labels from the leaves tips - which is solved
 with this function.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>plot_horiz.dendrogram</span>(
@@ -169,7 +167,7 @@ with this function.</p>
   <span class='kw'>text_pos</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='no'>...</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -250,21 +248,18 @@ making them look like they were when the tree was on the left side
       <td><p>passed to <a href='https://rdrr.io/r/graphics/plot.html'>plot</a>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>This function is based on replicating <a href='https://rdrr.io/r/stats/dendrogram.html'>plot.dendrogram</a>.
 In fact, I'd be happy if in the future, some tweaks could be make to
 <a href='https://rdrr.io/r/stats/dendrogram.html'>plot.dendrogram</a>, so that it would replace the need for this function.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The invisiable dLeaf value.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://rdrr.io/r/stats/dendrogram.html'>plot.dendrogram</a>, <a href='tanglegram.html'>tanglegram</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
@@ -302,7 +297,7 @@ In fact, I'd be happy if in the future, some tweaks could be make to
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

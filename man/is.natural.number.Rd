@@ -5,7 +5,7 @@
 \title{Check if numbers are natural}
 \source{
 This function was written by marcog, as an answer to my question here:
-\url{http://stackoverflow.com/questions/4562257/what-is-the-fastest-way-to-check-if-a-number-is-a-positive-natural-number-in-r}
+\url{https://stackoverflow.com/questions/4562257/what-is-the-fastest-way-to-check-if-a-number-is-a-positive-natural-number-in-r}
 }
 \usage{
 is.natural.number(x, tol = .Machine$double.eps^0.5, ...)

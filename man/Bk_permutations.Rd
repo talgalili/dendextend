@@ -89,7 +89,7 @@ Fowlkes, E. B.; Mallows, C. L. (1 September 1983).
 "A Method for Comparing Two Hierarchical Clusterings".
 Journal of the American Statistical Association 78 (383): 553.
 
-\url{http://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
+\url{https://en.wikipedia.org/wiki/Fowlkes-Mallows_index}
 }
 \seealso{
 \code{\link{FM_index}}, \link{Bk}

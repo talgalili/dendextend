@@ -475,7 +475,7 @@ prepare.ggdend <- function(data, ...) {
 
 # ggplot2:::ggplot.data.frame
 # based on ggdendrogram! from the ggdendro package
-# polar cor is a problem with text: http://stackoverflow.com/questions/8468472/adjusting-position-of-text-labels-in-coord-polar-histogram-in-ggplot2
+# polar cor is a problem with text: https://stackoverflow.com/questions/8468472/adjusting-position-of-text-labels-in-coord-polar-histogram-in-ggplot2
 
 #' @export
 #' @rdname ggdend
@@ -511,7 +511,7 @@ ggplot.ggdend <- function(data, segments = TRUE, labels = TRUE, nodes = TRUE,
 
 
   # turning off legends.
-  # http://stackoverflow.com/questions/14604435/turning-off-some-legends-in-a-ggplot
+  # https://stackoverflow.com/questions/14604435/turning-off-some-legends-in-a-ggplot
 
   angle <- ifelse(horiz, 0, 90)
   hjust <- ifelse(horiz, 0, 1)

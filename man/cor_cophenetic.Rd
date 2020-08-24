@@ -128,7 +128,7 @@ objective methods. Taxon, 11:33-40
 Sneath, P.H.A. and Sokal, R.R. (1973) Numerical Taxonomy: The Principles
 and Practice of Numerical Classification, p. 278 ff; Freeman, San Francisco.
 
-\url{http://en.wikipedia.org/wiki/Cophenetic_correlation}
+\url{https://en.wikipedia.org/wiki/Cophenetic_correlation}
 }
 \seealso{
 \link{cophenetic}, \link{cor_bakers_gamma}

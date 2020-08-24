@@ -8,11 +8,13 @@
 
 <title>Reindexing a pruned dendrogram — reindex_dend • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,15 +38,14 @@
 
 
 
-<meta property="og:title" content="Reindexing a pruned dendrogram — reindex_dend" />
 
+<meta property="og:title" content="Reindexing a pruned dendrogram — reindex_dend" />
 <meta property="og:description" content="prune_leaf does not update leaf indices as it prune
 leaves. As a result, some leaves of the pruned dendrogram may have leaf
 indeices larger than the number of leaves in the pruned dendrogram, which may
 cause errors in downstream functions such as as.hclust.
 This function re-indexes the leaves such that the leaf indices are no larger
 than the total number of leaves." />
-
 
 
 
@@ -76,7 +77,7 @@ than the total number of leaves." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -116,7 +117,6 @@ than the total number of leaves." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -143,18 +143,16 @@ than the total number of leaves." />
     </div>
 
     <div class="ref-description">
-    
     <p><code>prune_leaf</code> does not update leaf indices as it prune
 leaves. As a result, some leaves of the pruned dendrogram may have leaf
 indeices larger than the number of leaves in the pruned dendrogram, which may
 cause errors in downstream functions such as <code>as.hclust</code>.</p>
 <p>This function re-indexes the leaves such that the leaf indices are no larger
 than the total number of leaves.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>reindex_dend</span>(<span class='no'>dend</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -163,11 +161,10 @@ than the total number of leaves.</p>
       <td><p>dendrogram object</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>dendrogram</code> object with the leaf reindexed</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>hc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>USArrests</span>[<span class='fl'>1</span>:<span class='fl'>5</span>, ]), <span class='st'>"ave"</span>)
@@ -201,7 +198,7 @@ than the total number of leaves.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

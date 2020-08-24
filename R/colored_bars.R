@@ -17,7 +17,7 @@
 #
 
 
-# source: http://stackoverflow.com/questions/5468280/scale-a-series-between-two-points-in-r
+# source: https://stackoverflow.com/questions/5468280/scale-a-series-between-two-points-in-r
 # from the {scales} package
 # library("scales"); rescale
 

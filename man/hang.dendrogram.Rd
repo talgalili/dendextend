@@ -5,7 +5,7 @@
 \title{Hang dendrogram leaves}
 \source{
 Noticing that as.dendrogram has a "hang" parameter was thanks to Enrique Ramos's answer here::
-\url{http://stackoverflow.com/questions/17088136/plot-horizontal-dendrogram-with-hanging-leaves-r}
+\url{https://stackoverflow.com/questions/17088136/plot-horizontal-dendrogram-with-hanging-leaves-r}
 }
 \usage{
 hang.dendrogram(dend, hang = 0.1, hang_height, ...)

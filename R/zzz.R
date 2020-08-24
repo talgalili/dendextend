@@ -17,7 +17,7 @@
 
 
 
-# http://stackoverflow.com/questions/10325231/when-writing-my-own-r-package-i-cant-seem-to-get-other-packages-to-import-corr
+# https://stackoverflow.com/questions/10325231/when-writing-my-own-r-package-i-cant-seem-to-get-other-packages-to-import-corr
 #' @importFrom viridis viridis
 
 #' @import datasets
@@ -79,7 +79,7 @@
 #
 # 	  # library(utils) # doesn't help really...
 # 	  # but this does: (!)
-# 		# http://stackoverflow.com/questions/13595145/overriding-a-package-function-inherited-by-another-package
+# 		# https://stackoverflow.com/questions/13595145/overriding-a-package-function-inherited-by-another-package
 # # 	  get("assignInNamespace", envir=asNamespace("utils"))
 # 	  # Using only "::" instead of ":::" will crash many tests...
 #
@@ -130,7 +130,7 @@
 
 
 .onLoad <- function(libname, pkgname) {
-  # Thanks for Romain: http://stackoverflow.com/questions/4369334/first-lib-idiom-in-r-packages
+  # Thanks for Romain: https://stackoverflow.com/questions/4369334/first-lib-idiom-in-r-packages
 
   # adding and removing menus from the Rgui when loading and detaching the library
   # setHook(packageEvent("installr", "attach"), {function(pkgname, libpath) {add.installr.GUI()}  } )
@@ -369,13 +369,13 @@ dendextendWelcomeMessage <- function() {
 # setx PATH "C:\\Program Files (x86)\\Git\\bin"
 #
 # Then - run the script to create the ChangeLog before shipping the package.
-# # http://stackoverflow.com/questions/10330425/how-do-i-export-a-git-log-to-a-text-file
-# # http://stackoverflow.com/questions/3523534/good-ways-to-manage-a-changelog-using-git
+# # https://stackoverflow.com/questions/10330425/how-do-i-export-a-git-log-to-a-text-file
+# # https://stackoverflow.com/questions/3523534/good-ways-to-manage-a-changelog-using-git
 # # http://www.commandlinefu.com/commands/view/12420/generate-a-change-log-with-git
 # shell("git log --decorate > ChangeLog", intern = T)
 
 # Modify it using: http://git-scm.com/book/en/Git-Basics-Viewing-the-Commit-History
-#         http://stackoverflow.com/questions/9007181/custom-log-format-omits-newline-at-end-of-output
+#         https://stackoverflow.com/questions/9007181/custom-log-format-omits-newline-at-end-of-output
 # shell('git log --graph --stat --date=iso > ChangeLog', intern = TRUE)
 # use this:
 # shell('git log --graph --stat --date=short --pretty=format:"%ad(%an) %s |%h" > ChangeLog', intern = TRUE)
@@ -408,7 +408,7 @@ dendextendWelcomeMessage <- function() {
 # check(build_args="--no-build-vignettes ", args = "--no-build-vignettes",  cran = FALSE, cleanup = FALSE)
 # devtools::check(args="--as-cran")
 # devtools::check("C:/Dropbox/aaaa good R code/AA - My packages/dendextend", args="--as-cran")
-#                 Thanks to: http://stackoverflow.com/questions/10017702/r-cmd-check-options-for-more-rigorous-testing-2-15-0
+#                 Thanks to: https://stackoverflow.com/questions/10017702/r-cmd-check-options-for-more-rigorous-testing-2-15-0
 
 # spelling::spell_check_package()
 # shell('git log --graph --stat --date=short --pretty=format:"%ad(%an) %s |%h" > ChangeLog', intern = TRUE)

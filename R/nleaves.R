@@ -292,7 +292,7 @@ head.dendrogram <- function(x, n = 3L, ...) {
 # str(dend)
 # head(dend)
 # Some thoughts on imports: http://obeautifulcode.com/R/How-R-Searches-And-Finds-Stuff/
-# and: http://stackoverflow.com/questions/8637993/better-explanation-of-when-to-use-imports-depends
+# and: https://stackoverflow.com/questions/8637993/better-explanation-of-when-to-use-imports-depends
 
 # methods(nleaves)
 

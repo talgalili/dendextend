@@ -8,11 +8,13 @@
 
 <title>Rank branches' heights — rank_branches • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,8 +38,8 @@
 
 
 
-<meta property="og:title" content="Rank branches' heights — rank_branches" />
 
+<meta property="og:title" content="Rank branches' heights — rank_branches" />
 <meta property="og:description" content="Adjust the height attr in all of the dendrogram nodes so that
  the tree will have a distance of 1 unit between each parent/child nodes.
  It can be thought of as ranking the branches between themselves.
@@ -45,7 +47,6 @@ This is intended for easier comparison of the topology of two trees.
 Notice that this function changes the height of all the leaves into 0,
  thus erasing the effect of hang.dendrogram (which should be run
  again, if that is the visualization you are intereted in)." />
-
 
 
 
@@ -77,7 +78,7 @@ Notice that this function changes the height of all the leaves into 0,
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -117,7 +118,6 @@ Notice that this function changes the height of all the leaves into 0,
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -144,7 +144,6 @@ Notice that this function changes the height of all the leaves into 0,
     </div>
 
     <div class="ref-description">
-    
     <p>Adjust the height attr in all of the dendrogram nodes so that
  the tree will have a distance of 1 unit between each parent/child nodes.
  It can be thought of as ranking the branches between themselves.</p>
@@ -152,11 +151,10 @@ Notice that this function changes the height of all the leaves into 0,
 <p>Notice that this function changes the height of all the leaves into 0,
  thus erasing the effect of <a href='hang.dendrogram.html'>hang.dendrogram</a> (which should be run
  again, if that is the visualization you are intereted in).</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>rank_branches</span>(<span class='no'>dend</span>, <span class='kw'>diff_height</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -174,16 +172,14 @@ between two branches.</p></td>
       <td><p>not used</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A dendrogram, after adjusting the height attr in all of its branches.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='get_branches_heights.html'>get_branches_heights</a>, <a href='get_childrens_heights.html'>get_childrens_heights</a>,
 <a href='hang.dendrogram.html'>hang.dendrogram</a>, <a href='tanglegram.html'>tanglegram</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -213,7 +209,7 @@ between two branches.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

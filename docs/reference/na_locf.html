@@ -8,11 +8,13 @@
 
 <title>Last Observation Carried Forward — na_locf • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,10 +38,9 @@
 
 
 
+
 <meta property="og:title" content="Last Observation Carried Forward — na_locf" />
-
 <meta property="og:description" content="A function for replacing each NA with the most recent non-NA prior to it." />
-
 
 
 
@@ -71,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -111,7 +112,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -138,13 +138,11 @@
     </div>
 
     <div class="ref-description">
-    
     <p>A function for replacing each NA with the most recent non-NA prior to it.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>na_locf</span>(<span class='no'>x</span>, <span class='kw'>first_na_value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -165,22 +163,19 @@
       <td><p>ignored.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p><a href='https://stat.ethz.ch/pipermail/r-help/2003-November/042126.html'>https://stat.ethz.ch/pipermail/r-help/2003-November/042126.html</a>
-<a href='http://stackoverflow.com/questions/5302049/last-observation-carried-forward-na-locf-on-panel-cross-section-time-series'>http://stackoverflow.com/questions/5302049/last-observation-carried-forward-na-locf-on-panel-cross-section-time-series</a></p>
+<a href='https://stackoverflow.com/questions/5302049/last-observation-carried-forward-na-locf-on-panel-cross-section-time-series'>https://stackoverflow.com/questions/5302049/last-observation-carried-forward-na-locf-on-panel-cross-section-time-series</a></p>
 <p>This could probably be solved MUCH faster using Rcpp.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The original vector, but with all the missing values filled by the value
 before them.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='https://rdrr.io/pkg/zoo/man/na.locf.html'>na.locf</a></p></div>
-    
+    <div class='dont-index'><p>na.locf</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>na_locf</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>))</div><div class='output co'>#&gt; [1] 0 0</div><div class='input'><span class='fu'>na_locf</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>NA</span>))</div><div class='output co'>#&gt; [1] 1 1</div><div class='input'><span class='fu'>na_locf</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>))</div><div class='output co'>#&gt; [1] 1 1 1 1</div><div class='input'><span class='fu'>na_locf</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>, <span class='fl'>3</span>, <span class='fl'>NA</span>, <span class='fl'>4</span>))</div><div class='output co'>#&gt;  [1] 1 1 1 1 2 2 2 3 3 4</div><div class='input'><span class='fu'>na_locf</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>, <span class='fl'>3</span>, <span class='fl'>NA</span>, <span class='fl'>4</span>), <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;  [1]  1  1 NA NA  2  2  2  3  3  4</div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
@@ -190,12 +185,12 @@ before them.</p>
 
 <span class='fu'><a href='https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html'>microbenchmark</a></span>(
   <span class='kw'>na_locf</span> <span class='kw'>=</span> <span class='fu'>na_locf</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>, <span class='fl'>3</span>, <span class='fl'>NA</span>, <span class='fl'>4</span>)),
-  <span class='kw'>na.locf</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/zoo/man/na.locf.html'>na.locf</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>, <span class='fl'>3</span>, <span class='fl'>NA</span>, <span class='fl'>4</span>))
+  <span class='kw'>na.locf</span> <span class='kw'>=</span> <span class='fu'>na.locf</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>, <span class='fl'>3</span>, <span class='fl'>NA</span>, <span class='fl'>4</span>))
 ) <span class='co'># my implementation is 6 times faster :)</span>
 
 <span class='fu'><a href='https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html'>microbenchmark</a></span>(
   <span class='kw'>na_locf</span> <span class='kw'>=</span> <span class='fu'>na_locf</span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>, <span class='fl'>3</span>, <span class='fl'>NA</span>, <span class='fl'>4</span>), <span class='fl'>1000</span>)),
-  <span class='kw'>na.locf</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/zoo/man/na.locf.html'>na.locf</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>, <span class='fl'>3</span>, <span class='fl'>NA</span>, <span class='fl'>4</span>), <span class='fl'>1000</span>))
+  <span class='kw'>na.locf</span> <span class='kw'>=</span> <span class='fu'>na.locf</span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>, <span class='fl'>3</span>, <span class='fl'>NA</span>, <span class='fl'>4</span>), <span class='fl'>1000</span>))
 ) <span class='co'># my implementation is 3 times faster</span>
 }</div></pre>
   </div>
@@ -213,7 +208,7 @@ before them.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -8,11 +8,13 @@
 
 <title>Draw Rectangles Around a Dendrogram's Clusters — rect.dendrogram • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,13 +38,12 @@
 
 
 
-<meta property="og:title" content="Draw Rectangles Around a Dendrogram's Clusters — rect.dendrogram" />
 
+<meta property="og:title" content="Draw Rectangles Around a Dendrogram's Clusters — rect.dendrogram" />
 <meta property="og:description" content="Draws rectangles around the branches of a dendrogram
  highlighting the corresponding clusters.
  First the dendrogram is cut at a certain level,
  then a rectangle is drawn around selected branches." />
-
 
 
 
@@ -74,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -114,7 +115,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -141,12 +141,10 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Draws rectangles around the branches of a dendrogram
  highlighting the corresponding clusters.
  First the dendrogram is cut at a certain level,
  then a rectangle is drawn around selected branches.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>rect.dendrogram</span>(
@@ -170,7 +168,7 @@
   <span class='kw'>stop_if_out</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='no'>...</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -278,7 +276,7 @@ of the rect.hclust function).</p></td>
       <td><p>parameters passed to rect (such as lwd, lty, etc.)</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>This function is based on <a href='https://rdrr.io/r/stats/rect.hclust.html'>rect.hclust</a>, with slight modifications
@@ -286,17 +284,14 @@ to have it work with a dendrogram, as well as a few added features
 (e.g: ... to rect, and horiz)</p>
 <p>The idea of adding text and shading lines under the clusters comes from
 skullkey from here:
-<a href='http://stackoverflow.com/questions/4720307/change-dendrogram-leaves'>http://stackoverflow.com/questions/4720307/change-dendrogram-leaves</a></p>
-    
+<a href='https://stackoverflow.com/questions/4720307/change-dendrogram-leaves'>https://stackoverflow.com/questions/4720307/change-dendrogram-leaves</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>(Invisibly) returns a list where each element contains a vector
  of data points contained in the respective cluster.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://rdrr.io/r/stats/rect.hclust.html'>rect.hclust</a>, <a href='https://rdrr.io/r/stats/order.dendrogram.html'>order.dendrogram</a>, <a href='cutree-methods.html'>cutree.dendrogram</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -381,7 +376,7 @@ skullkey from here:
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

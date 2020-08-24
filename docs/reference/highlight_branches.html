@@ -8,11 +8,13 @@
 
 <title>Highlight a dendrogram's branches heights via color and line-width — highlight_branches_col • dendextend</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,8 +38,8 @@
 
 
 
-<meta property="og:title" content="Highlight a dendrogram's branches heights via color and line-width — highlight_branches_col" />
 
+<meta property="og:title" content="Highlight a dendrogram's branches heights via color and line-width — highlight_branches_col" />
 <meta property="og:description" content="Highlights (update) the color (col) and/or line width (lwd) of each branch in
 a dendrogram based on it's node's height.
 This is a powerful pre-processing for a tanglegram plot of two dendrograms, as
@@ -45,7 +47,6 @@ it emphasizes the toplogical structure of each tree (and hence, their similarity
 The colors are based on the viridis pallette, and the line width is on the range of 1 to 10.
 These can be manually changed when using highlight_branches_col and highlight_branches_lwd
 respectively." />
-
 
 
 
@@ -77,7 +78,7 @@ respectively." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -117,7 +118,6 @@ respectively." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
@@ -144,7 +144,6 @@ respectively." />
     </div>
 
     <div class="ref-description">
-    
     <p>Highlights (update) the color (col) and/or line width (lwd) of each branch in
 a dendrogram based on it's node's height.
 This is a powerful pre-processing for a <a href='tanglegram.html'>tanglegram</a> plot of two dendrograms, as
@@ -152,7 +151,6 @@ it emphasizes the toplogical structure of each tree (and hence, their similarity
 <p>The colors are based on the viridis pallette, and the line width is on the range of 1 to 10.
 These can be manually changed when using highlight_branches_col and highlight_branches_lwd
 respectively.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>highlight_branches_col</span>(<span class='no'>dend</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span>(<span class='fu'>viridis</span>(<span class='fl'>1000</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='fl'>0.9</span>)), <span class='no'>...</span>)
@@ -160,7 +158,7 @@ respectively.</p>
 <span class='fu'>highlight_branches_lwd</span>(<span class='no'>dend</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>10</span>, <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fl'>1000</span>), <span class='no'>...</span>)
 
 <span class='fu'>highlight_branches</span>(<span class='no'>dend</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"col"</span>, <span class='st'>"lwd"</span>), <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -185,17 +183,15 @@ respectively.</p></td>
 whichever is chosen the dendrogram's branches will be updated.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A modified <a href='https://rdrr.io/r/stats/dendrogram.html'>dendrogram</a>, with colors/line-width in the branches
 that are proportional to each branche's height (measured by its lower tip).</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='set.html'>set</a>, <a href='color_branches.html'>color_branches</a>, <a href='get_branches_heights.html'>get_branches_heights</a>,
 <a href='https://rdrr.io/pkg/viridis/man/reexports.html'>viridis</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -279,7 +275,7 @@ that are proportional to each branche's height (measured by its lower tip).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

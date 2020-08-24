@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.13.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
       </span>
     </div>
 
@@ -94,7 +94,7 @@
       <h1 data-toc-skip>Quick Introduction</h1>
                         <h4 class="author">Tal Galili</h4>
             
-            <h4 class="date">2020-03-27</h4>
+            <h4 class="date">2020-08-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/master/vignettes/Quick_Introduction.Rmd"><code>vignettes/Quick_Introduction.Rmd</code></a></small>
       <div class="hidden name"><code>Quick_Introduction.Rmd</code></div>
@@ -111,59 +111,61 @@
 <h2 class="hasAnchor">
 <a href="#start" class="anchor"></a>Start</h2>
 <p>Load:</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dendextend</span>) <span class="co">#</span></pre></body></html></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dendextend</span>) <span class="co">#</span></pre></body></html></div>
 <p>Create a dendrogram (if you don’t know what <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code> is, read about it <a href="https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html">here</a> ) :</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>:<span class="fl">5</span>) <span class="kw">%&gt;%</span> <span class="no">dist</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="st">"ave"</span>) <span class="kw">%&gt;%</span> <span class="no">as.dendrogram</span></pre></body></html></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>:<span class="fl">5</span>) <span class="kw">%&gt;%</span> <span class="no">dist</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="st">"ave"</span>) <span class="kw">%&gt;%</span> <span class="no">as.dendrogram</span></pre></body></html></div>
 <p>Plot:</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>)</pre></body></html></div>
 <p><img src="Quick_Introduction_files/figure-html/unnamed-chunk-4-1.png" width="450"></p>
 <p>Get/set labels</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">dend</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">dend</span>)</pre></body></html></div>
 <pre><code>## [1] 1 2 5 3 4</code></pre>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">dend</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"extend"</span>, <span class="st">"dend"</span>, <span class="st">"C"</span>)
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">dend</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"extend"</span>, <span class="st">"dend"</span>, <span class="st">"C"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">dend</span>)</pre></body></html></div>
 <pre><code>## [1] "A"      "B"      "extend" "dend"   "C"</code></pre>
 <p>Get/set labels’ colors</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span>(<span class="no">dend</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span>(<span class="no">dend</span>)</pre></body></html></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span>(<span class="no">dend</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span>(<span class="fl">5</span>)
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span>(<span class="no">dend</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span>(<span class="fl">5</span>)
 <span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span>(<span class="no">dend</span>)</pre></body></html></div>
 <pre><code>##           A           B      extend        dend           C 
 ## "#FF0000FF" "#CCFF00FF" "#00FF66FF" "#0066FFFF" "#CC00FFFF"</code></pre>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>)</pre></body></html></div>
 <p><img src="Quick_Introduction_files/figure-html/unnamed-chunk-6-1.png" width="450"></p>
 <p>Cut-tree, and color branches</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/cutree-methods.html">cutree</a></span>(<span class="no">dend</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="../reference/cutree-methods.html">cutree</a></span>(<span class="no">dend</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
 <pre><code>##      A      B   dend      C extend 
 ##      1      1      2      2      2</code></pre>
-<div class="sourceCode"><html><body><pre class="r"><span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="no">dend</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">2</span>)
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="no">dend</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">2</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>)</pre></body></html></div>
 <p><img src="Quick_Introduction_files/figure-html/unnamed-chunk-7-1.png" width="450"></p>
 <p>Sort</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="no">dend2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="no">dend</span>)
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">dend2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="no">dend</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend2</span>)</pre></body></html></div>
 <p><img src="Quick_Introduction_files/figure-html/unnamed-chunk-8-1.png" width="450"></p>
 <p>Compare</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/tanglegram.html">tanglegram</a></span>( <span class="no">dend</span>,  <span class="no">dend2</span>  )</pre></body></html></div>
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="../reference/tanglegram.html">tanglegram</a></span>( <span class="no">dend</span>,  <span class="no">dend2</span>  )</pre></body></html></div>
 <p><img src="Quick_Introduction_files/figure-html/unnamed-chunk-9-1.png" width="450"></p>
 <p>Cor</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/cor_cophenetic.html">cor_cophenetic</a></span>( <span class="no">dend</span>,  <span class="no">dend2</span>  )</pre></body></html></div>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="../reference/cor_cophenetic.html">cor_cophenetic</a></span>( <span class="no">dend</span>,  <span class="no">dend2</span>  )</pre></body></html></div>
 <pre><code>## [1] 1</code></pre>
 <p>ggplot2</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">dend</span>)</pre></body></html></div>
 <p><img src="Quick_Introduction_files/figure-html/unnamed-chunk-11-1.png" width="450"></p>
 <p>Send to plot.ly</p>
-<div class="sourceCode"><html><body><pre class="r"># library(plotly)
+<div class="sourceCode" id="cb21"><html><body><pre class="r"># library(plotly)
 # set_credentials_file(...) 
 # you'll need to get it from here: https://plot.ly/ggplot2/getting-started/
 
 # ggplot(dend)
-# py </pre></body></html></div>
+# py &lt;- plotly()
+# py$ggplotly()</pre></body></html></div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
         <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
     </nav>
 </div>
@@ -177,7 +179,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
