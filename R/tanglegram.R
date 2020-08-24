@@ -659,7 +659,7 @@ plot_horiz.dendrogram <- function(x,
 #'
 #' As far as I could tell, this code was originally inspired by Dylan Beaudette
 #' function \code{dueling.dendrograms} from the sharpshootR package:
-#' \url{https://cran.r-project.org/web/packages/sharpshootR/}
+#' \url{https://CRAN.R-project.org/package=sharpshootR}
 #' tanglegram
 #' @seealso \link{remove_leaves_nodePar}, \link{plot_horiz.dendrogram}, \link{rank_branches},
 #' \link{hang.dendrogram}

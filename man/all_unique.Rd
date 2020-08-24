@@ -4,7 +4,7 @@
 \alias{all_unique}
 \title{Check if all the elements in a vector are unique}
 \source{
-\url{http://r.789695.n4.nabble.com/Is-there-a-function-to-test-if-all-the-elements-in-a-vector-are-unique-td931833.html}
+\url{https://r.789695.n4.nabble.com/Is-there-a-function-to-test-if-all-the-elements-in-a-vector-are-unique-td931833.html}
 }
 \usage{
 all_unique(x, ...)

@@ -15,7 +15,7 @@ The function is based on code from Johan Renaudie (plannapus), after major revis
 
 As far as I could tell, this code was originally inspired by Dylan Beaudette
 function \code{dueling.dendrograms} from the sharpshootR package:
-\url{https://cran.r-project.org/web/packages/sharpshootR/}
+\url{https://CRAN.R-project.org/package=sharpshootR}
 tanglegram
 }
 \usage{
