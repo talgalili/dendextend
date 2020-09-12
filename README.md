@@ -1,12 +1,12 @@
 [![Build Status](https://travis-ci.org/talgalili/dendextend.png?branch=master)](https://travis-ci.org/talgalili/dendextend)
 [![codecov.io](https://codecov.io/github/talgalili/dendextend/coverage.svg?branch=master)](https://codecov.io/github/talgalili/dendextend?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/dendextend)](https://cran.r-project.org/package=dendextend)
-![](http://cranlogs.r-pkg.org/badges/dendextend?color=yellow)
-![](http://cranlogs.r-pkg.org/badges/grand-total/dendextend?color=yellowgreen)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/dendextend)](https://cran.r-project.org/package=dendextend)
+![](https://cranlogs.r-pkg.org/badges/dendextend?color=yellow)
+![](https://cranlogs.r-pkg.org/badges/grand-total/dendextend?color=yellowgreen)
 
 # dendextend
 
-**[dendextend website](http://talgalili.github.io/dendextend/) (built using [pkgdown](https://pkgdown.r-lib.org/))**
+**[dendextend website](https://talgalili.github.io/dendextend/) (built using [pkgdown](https://pkgdown.r-lib.org/))**
 
 
 **Table of contents:**
@@ -40,9 +40,9 @@ library("dendextend") # load the package
 
 Vignettes: 
 
-* [Introduction to dendextend](http://talgalili.github.io/dendextend/articles/dendextend.html)
-* [Frequently asked questions](http://talgalili.github.io/dendextend/articles/FAQ.html)
-* [Hierarchical cluster analysis on famous data sets - enhanced with the dendextend package](http://talgalili.github.io/dendextend/articles/Cluster_Analysis.html)
+* [Introduction to dendextend](https://talgalili.github.io/dendextend/articles/dendextend.html)
+* [Frequently asked questions](https://talgalili.github.io/dendextend/articles/FAQ.html)
+* [Hierarchical cluster analysis on famous data sets - enhanced with the dendextend package](https://talgalili.github.io/dendextend/articles/Cluster_Analysis.html)
 
 Also ceck out the [dendextend tag in stackoverflow](https://stackoverflow.com/questions/tagged/dendextend) for more examples.
 
@@ -99,7 +99,7 @@ install.packages.2('colorspace')
 
 ## Latest news
 
-You can see the most recent changes to the package in the [NEWS.md file](http://talgalili.github.io/dendextend/news/index.html)
+You can see the most recent changes to the package in the [NEWS.md file](https://talgalili.github.io/dendextend/news/index.html)
 
 
 
