@@ -50,7 +50,7 @@
 get_subdendrograms <- function(dend, k, ...) {
   clusters <- cutree(dend, k, ...)
   dend_list <- lapply(unique(clusters), function(cluster.id) {
-    find_dendrogram(dend, which(clusters == cluster.id))
+    find_dendrogram(dend, names(which(clusters == cluster.id)))
   })
   class(dend_list) <- "dendlist"
   dend_list
