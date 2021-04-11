@@ -2,11 +2,15 @@
 #' object
 #' @export
 #' @description
-#' Extracts a list of subdendrogram structures based on the cutree \code{\link{cutree.dendrogram}} function
-#' from a given dendrogram object. It can be useful in case of more exact visual
-#' investigation of clustering results.
+#' Extracts a list (\link{dendlist}) of subdendrogram structures based on the cutree \code{\link{cutree.dendrogram}} function
+#' from a given dendrogram object. It can be useful in case we're interested in a visual investigation of 
+#' specific clustering results.
 #' @param dend a dendrogram object
 #' @param k the number of subdendrograms that should be extracted
+#' @param order_clusters_as_data passed to \link[dendextend]{cutree}, default is FALSE 
+#' (while the cutree default is TRUE). The reason is since it's easier to look at the dendrogram plot
+#' and then get subtrees that are in the same order is in the plot/dendrogram object.
+#' This is in contrast to more traditional use of cutree, where it is used with the original order or rows from the data.
 #' @param ... parameters that should be passed to the cutree
 #' \code{\link{cutree.dendrogram}}
 #' @return
@@ -20,7 +24,33 @@
 #' # install.packages(viridis)
 #' # install.packages(devtools)
 #' # devtools::install_github('talgalili/dendextend') #' dendextend from github
-#'
+#' 
+#' # define dendrogram object to play with:
+#' dend <- iris[1:20, -5] %>%
+#'   dist() %>%
+#'   hclust() %>%
+#'   as.dendrogram() %>%
+#'   # set("labels_to_character") %>%
+#'   color_branches(k = 5)
+#' labels(dend) <- letters[1:20]
+#' plot(dend)
+#' dend_list <- get_subdendrograms(dend, 5)
+#' lapply(dend_list, labels)
+#' # [[1]]
+#' # [1] "a" "b"
+#' # 
+#' # [[2]]
+#' # [1] "c" "d" "e" "f" "g"
+#' # 
+#' # [[3]]
+#' # [1] "h" "i"
+#' # 
+#' # [[4]]
+#' # [1] "j" "k" "l" "m"
+#' # 
+#' # [[5]]
+#' # [1] "n" "o" "p" "q" "r" "s" "t"
+#' 
 #' # define dendrogram object to play with:
 #' dend <- iris[, -5] %>%
 #'   dist() %>%
@@ -47,8 +77,8 @@
 #' # update the dendrogram's internal order so to not cause an error in heatmap.2
 #' order.dendrogram(sub_dend) <- as.integer(rank(order.dendrogram(sub_dend)))
 #' heatmap.2(subset_iris, Rowv = sub_dend, trace = "none", col = viridis::viridis(100))
-get_subdendrograms <- function(dend, k, ...) {
-  clusters <- cutree(dend, k, ...)
+get_subdendrograms <- function(dend, k, order_clusters_as_data = FALSE, ...) {
+  clusters <- cutree(dend, k, order_clusters_as_data = order_clusters_as_data, ...)
   dend_list <- lapply(unique(clusters), function(cluster.id) {
     find_dendrogram(dend, names(which(clusters == cluster.id)))
   })

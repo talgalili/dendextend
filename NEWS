@@ -1,3 +1,10 @@
+dendextend 1.14.1 (2021-04-11)
+----------------------------------------
+
+###BUG FIXES
+* get_subdendrograms - fix it to work with character labels, and also sort the output sub-dendrograms to be in the original order of the clusters in the dengrogram (instead of the order of the original data, which is less useful for exploration). Props @chasemc. 
+
+
 dendextend 1.14.0 (2020-08-25)
 ----------------------------------------
 
