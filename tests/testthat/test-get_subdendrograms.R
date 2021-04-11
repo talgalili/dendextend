@@ -1,0 +1,80 @@
+
+context("get_subdendrograms when labels are integers")
+
+test_that("get_subdendrograms works", {
+  dend <- iris[1:10, -5] %>%
+    dist() %>%
+    hclust() %>%
+    as.dendrogram() %>%
+    set("labels_to_character") %>%
+    color_branches(k = 5)
+
+  dend_list <- get_subdendrograms(dend, 5)
+  
+  expect_length(dend_list, 5L)
+  expect_s3_class(dend_list, "dendlist")
+  
+  cluster_labels <- lapply(dend_list, 
+                           function(x){
+                             labels(x)
+                           })
+  
+  expected_cluster_labels <- list(c("8", "1", "5"),
+                                  c("2","10"),
+                                  c("7", "3","4"),
+                                  c("6"),
+                                  c("9"))
+  
+  expect_equal(cluster_labels, expected_cluster_labels)
+  
+  # Do less-rigorous hash-based test for other k        
+  expect_known_hash(get_subdendrograms(dend, 1), "61885f34b7")
+  expect_known_hash(get_subdendrograms(dend, 2), "8cdbb002df")
+  expect_known_hash(get_subdendrograms(dend, 10), "9340d1e1dc")
+  expect_error(get_subdendrograms(dend, 0),
+               "elements of 'k' must be between")
+  expect_error(get_subdendrograms(dend, 11),
+               "elements of 'k' must be between")
+})
+
+
+
+
+context("get_subdendrograms when labels aren't integers")
+
+test_that("get_subdendrograms works", {
+  dend <- iris[1:10, -5] %>%
+    dist() %>%
+    hclust() %>%
+    as.dendrogram() %>%
+    set("labels_to_character") %>%
+    color_branches(k = 5) %>% 
+    dendextend::set_labels(paste0("a",labels(.) ))
+  
+  dend_list <- get_subdendrograms(dend, 5)
+  
+  expect_length(dend_list, 5L)
+  expect_s3_class(dend_list, "dendlist")
+  
+  cluster_labels <- lapply(dend_list, 
+                           function(x){
+                             labels(x)
+                           })
+  
+  expected_cluster_labels <- list(c("a8", "a1", "a5"),
+                                  c("a2","a10"),
+                                  c("a7", "a3","a4"),
+                                  c("a6"),
+                                  c("a9"))
+  
+  expect_equal(cluster_labels, expected_cluster_labels)
+  
+  # Do less-rigorous hash-based test for other k        
+  expect_known_hash(get_subdendrograms(dend, 1), "b45bf4d9f9")
+  expect_known_hash(get_subdendrograms(dend, 2), "362f3a1588")
+  expect_known_hash(get_subdendrograms(dend, 10), "2187dd5232")
+  expect_error(get_subdendrograms(dend, 0),
+               "elements of 'k' must be between")
+  expect_error(get_subdendrograms(dend, 11),
+               "elements of 'k' must be between")
+})
