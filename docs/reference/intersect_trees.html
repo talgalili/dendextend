@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,7 +115,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -141,7 +141,7 @@
     <p>Return two trees after pruning them so that the only leaves left are the intersection of their labels.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>intersect_trees</span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>, <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>intersect_trees</span><span class='op'>(</span><span class='va'>dend1</span>, <span class='va'>dend2</span>, warn <span class='op'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span><span class='op'>(</span><span class='st'>"warn"</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -175,25 +175,26 @@ Should a warning be issued if there was a need to perform intersaction.</p></td>
     <div class='dont-index'><p><a href='prune.html'>prune</a>, <a href='https://rdrr.io/r/base/sets.html'>intersect</a>, <a href='https://rdrr.io/r/base/labels.html'>labels</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>hc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>USArrests</span>[<span class='fl'>1</span>:<span class='fl'>5</span>, ]), <span class='st'>"ave"</span>)
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>(<span class='no'>hc</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>dend</span>) <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>5</span>
-<span class='no'>dend1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='prune.html'>prune</a></span>(<span class='no'>dend</span>, <span class='fl'>1</span>)
-<span class='no'>dend2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='prune.html'>prune</a></span>(<span class='no'>dend</span>, <span class='fl'>5</span>)
-<span class='no'>intersect_dend</span> <span class='kw'>&lt;-</span> <span class='fu'>intersect_trees</span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>)
+    <pre class="examples"><div class='input'><span class='va'>hc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>USArrests</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='op'>]</span><span class='op'>)</span>, <span class='st'>"ave"</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='va'>hc</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>
+<span class='va'>dend1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='prune.html'>prune</a></span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>dend2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='prune.html'>prune</a></span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>5</span><span class='op'>)</span>
+<span class='va'>intersect_dend</span> <span class='op'>&lt;-</span> <span class='fu'>intersect_trees</span><span class='op'>(</span><span class='va'>dend1</span>, <span class='va'>dend2</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/layout.html'>layout</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>5</span>), <span class='fl'>3</span>, <span class='fl'>2</span>, <span class='kw'>byrow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Original tree"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend1</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Tree 1:\n original with label 1 pruned"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend2</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Tree 2:\n original with label 2 pruned"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>intersect_dend</span><span class='kw'>[[</span><span class='fl'>1</span>]],
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Tree 1 pruned
+<span class='fu'><a href='https://rdrr.io/r/graphics/layout.html'>layout</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>5</span><span class='op'>)</span>, <span class='fl'>3</span>, <span class='fl'>2</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span>, main <span class='op'>=</span> <span class='st'>"Original tree"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend1</span>, main <span class='op'>=</span> <span class='st'>"Tree 1:\n original with label 1 pruned"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend2</span>, main <span class='op'>=</span> <span class='st'>"Tree 2:\n original with label 2 pruned"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>intersect_dend</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>,
+  main <span class='op'>=</span> <span class='st'>"Tree 1 pruned
       with the labels that intersected with those of Tree 2"</span>
-)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>intersect_dend</span><span class='kw'>[[</span><span class='fl'>2</span>]],
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Tree 2 pruned
+<span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>intersect_dend</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>,
+  main <span class='op'>=</span> <span class='st'>"Tree 2 pruned
       with the labels that intersected with those of Tree 1"</span>
-)</div><div class='img'><img src='intersect_trees-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='op'>)</span>
+</div><div class='img'><img src='intersect_trees-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -209,7 +210,7 @@ Should a warning be issued if there was a need to perform intersaction.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

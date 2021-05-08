@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,7 +115,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -141,7 +141,7 @@
     <p>Turns a dist object from a "wide" to a "long" table</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dist_long</span>(<span class='no'>d</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>dist_long</span><span class='op'>(</span><span class='va'>d</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,20 +162,23 @@
 and a third column (distance) with the distance between the two.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>iris</span>)
-<span class='no'>iris</span>[<span class='fl'>2</span>:<span class='fl'>6</span>, -<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/data.matrix.html'>data.matrix</a></span>()</div><div class='output co'>#&gt;           2        3         4         5         6
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span>
+<span class='va'>iris</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>6</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/data.matrix.html'>data.matrix</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           2        3         4         5         6
 #&gt; 2 0.0000000 0.300000 0.3316625 0.6082763 1.0908712
 #&gt; 3 0.3000000 0.000000 0.2449490 0.5099020 1.0862780
 #&gt; 4 0.3316625 0.244949 0.0000000 0.6480741 1.1661904
 #&gt; 5 0.6082763 0.509902 0.6480741 0.0000000 0.6164414
-#&gt; 6 1.0908712 1.086278 1.1661904 0.6164414 0.0000000</div><div class='input'><span class='no'>iris</span>[<span class='fl'>2</span>:<span class='fl'>6</span>, -<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/vector.html'>as.vector</a></span>()</div><div class='output co'>#&gt;  [1] 0.3000000 0.3316625 0.6082763 1.0908712 0.2449490 0.5099020 1.0862780
-#&gt;  [8] 0.6480741 1.1661904 0.6164414</div><div class='input'><span class='no'>iris</span>[<span class='fl'>2</span>:<span class='fl'>6</span>, -<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>dist_long</span>()</div><div class='output co'>#&gt;    rows cols  distance
+#&gt; 6 1.0908712 1.086278 1.1661904 0.6164414 0.0000000</div><div class='input'><span class='va'>iris</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>6</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/vector.html'>as.vector</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] 0.3000000 0.3316625 0.6082763 1.0908712 0.2449490 0.5099020 1.0862780
+#&gt;  [8] 0.6480741 1.1661904 0.6164414</div><div class='input'><span class='va'>iris</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>6</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dist_long</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    rows cols  distance
 #&gt; 2     3    2 0.3000000
 #&gt; 3     4    2 0.3316625
 #&gt; 4     5    2 0.6082763
@@ -185,7 +188,7 @@ and a third column (distance) with the distance between the two.</p>
 #&gt; 10    6    3 1.0862780
 #&gt; 14    5    4 0.6480741
 #&gt; 15    6    4 1.1661904
-#&gt; 20    6    5 0.6164414</div><div class='input'># This can later be used to making a network plot based on the distances.
+#&gt; 20    6    5 0.6164414</div><div class='input'><span class='co'># This can later be used to making a network plot based on the distances.</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -202,7 +205,7 @@ and a third column (distance) with the distance between the two.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,7 +115,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -141,25 +141,25 @@
     <p>"label" assignment operator for vectors, dendrogram, and hclust classes.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>object</span>, <span class='no'>...</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S3 method for default</span>
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>object</span>, <span class='no'>...</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S3 method for dendrogram</span>
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>object</span>, <span class='no'>...</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S3 method for hclust</span>
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>object</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>object</span>, order <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for hclust</span>
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>object</span>, <span class='no'>...</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S3 method for phylo</span>
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for phylo</span>
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>object</span>, <span class='no'>...</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -202,11 +202,18 @@ Also with some ideas from Gregory Jefferis's dendroextras package.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/labels.html'>labels</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Gavin Simpson, Tal Galili
+(with some ideas from Gregory Jefferis's dendroextras package)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>3</span>
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "1" "2" "3"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>3</span>]
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>x</span>) <span class='co'># [1] "a" "b" "c"</span></div><div class='output co'>#&gt; [1] "a" "b" "c"</div><div class='input'><span class='no'>x</span></div><div class='output co'>#&gt; a b c 
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "1" "2" "3"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='co'># [1] "a" "b" "c"</span>
+</div><div class='output co'>#&gt; [1] "a" "b" "c"</div><div class='input'><span class='va'>x</span>
+</div><div class='output co'>#&gt; a b c 
 #&gt; 1 2 3 </div><div class='input'><span class='co'># a b c</span>
 <span class='co'># 1 2 3</span>
 
@@ -215,15 +222,21 @@ Also with some ideas from Gregory Jefferis's dendroextras package.</p>
 
 <span class='co'>################</span>
 <span class='co'># Example for using the assignment with dendrogram and hclust objects:</span>
-<span class='no'>hc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>USArrests</span>[<span class='fl'>1</span>:<span class='fl'>3</span>, ]), <span class='st'>"ave"</span>)
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>(<span class='no'>hc</span>)
+<span class='va'>hc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>USArrests</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='op'>]</span><span class='op'>)</span>, <span class='st'>"ave"</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='va'>hc</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>hc</span>) <span class='co'># "Arizona" "Alabama" "Alaska"</span></div><div class='output co'>#&gt; [1] "Arizona" "Alabama" "Alaska" </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>hc</span>) <span class='kw'>&lt;-</span> <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>3</span>]
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>hc</span>) <span class='co'># "a" "b" "c"</span></div><div class='output co'>#&gt; [1] "a" "b" "c"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>dend</span>) <span class='co'># "Arizona" "Alabama" "Alaska"</span></div><div class='output co'>#&gt; [1] "Arizona" "Alabama" "Alaska" </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>dend</span>) <span class='kw'>&lt;-</span> <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>3</span>]
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>dend</span>) <span class='co'># "a" "b" "c"</span></div><div class='output co'>#&gt; [1] "a" "b" "c"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>dend</span>) <span class='kw'>&lt;-</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>2</span>]) <span class='co'># will produce a warning</span>
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>dend</span>) <span class='co'># "A" "B" "A"</span></div><div class='output co'>#&gt; [1] "A" "B" "A"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>dend</span>) <span class='kw'>&lt;-</span> <span class='no'>LETTERS</span>[<span class='fl'>4</span>:<span class='fl'>6</span>] <span class='co'># will replace the labels correctly</span>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>hc</span><span class='op'>)</span> <span class='co'># "Arizona" "Alabama" "Alaska"</span>
+</div><div class='output co'>#&gt; [1] "Arizona" "Alabama" "Alaska" </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>hc</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>hc</span><span class='op'>)</span> <span class='co'># "a" "b" "c"</span>
+</div><div class='output co'>#&gt; [1] "a" "b" "c"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span> <span class='co'># "Arizona" "Alabama" "Alaska"</span>
+</div><div class='output co'>#&gt; [1] "Arizona" "Alabama" "Alaska" </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span> <span class='co'># "a" "b" "c"</span>
+</div><div class='output co'>#&gt; [1] "a" "b" "c"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span> <span class='co'># will produce a warning</span>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span> <span class='co'># "A" "B" "A"</span>
+</div><div class='output co'>#&gt; [1] "A" "B" "A"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>4</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span> <span class='co'># will replace the labels correctly</span>
 <span class='co'># (the fact the tree had duplicate labels will not cause a problem)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>dend</span>) <span class='co'># "D" "E" "F"</span></div><div class='output co'>#&gt; [1] "D" "E" "F"</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span> <span class='co'># "D" "E" "F"</span>
+</div><div class='output co'>#&gt; [1] "D" "E" "F"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -239,7 +252,7 @@ Also with some ideas from Gregory Jefferis's dendroextras package.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

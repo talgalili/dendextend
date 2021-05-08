@@ -74,7 +74,7 @@ This function enables this feature in dend_diff and tanglegram" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ This function enables this feature in dend_diff and tanglegram" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@ This function enables this feature in dend_diff and tanglegram" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,19 +145,19 @@ the branches' color, line width, or line type.</p>
 <p>This function enables this feature in <a href='dend_diff.html'>dend_diff</a> and <a href='tanglegram.html'>tanglegram</a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>highlight_distinct_edges</span>(<span class='no'>dend</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>highlight_distinct_edges</span><span class='op'>(</span><span class='va'>dend</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for dendrogram</span>
-<span class='fu'>highlight_distinct_edges</span>(
-  <span class='no'>dend</span>,
-  <span class='no'>dend2</span>,
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>edgePar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"col"</span>, <span class='st'>"lty"</span>, <span class='st'>"lwd"</span>),
-  <span class='no'>...</span>
-)
+<span class='fu'>highlight_distinct_edges</span><span class='op'>(</span>
+  <span class='va'>dend</span>,
+  <span class='va'>dend2</span>,
+  value <span class='op'>=</span> <span class='fl'>2</span>,
+  edgePar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"col"</span>, <span class='st'>"lty"</span>, <span class='st'>"lwd"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
 <span class='co'># S3 method for dendlist</span>
-<span class='fu'>highlight_distinct_edges</span>(<span class='no'>dend</span>, <span class='no'>...</span>, <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>))</pre>
+<span class='fu'>highlight_distinct_edges</span><span class='op'>(</span><span class='va'>dend</span>, <span class='va'>...</span>, which <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1L</span>, <span class='fl'>2L</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -203,42 +203,47 @@ distinct.edges,</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>5</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='set.html'>set</a></span>(<span class='no'>x</span>, <span class='st'>"labels"</span>, <span class='fl'>5</span>:<span class='fl'>1</span>)
-<span class='fu'><a href='distinct_edges.html'>distinct_edges</a></span>(<span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt; [1] 5 7</div><div class='input'><span class='fu'><a href='distinct_edges.html'>distinct_edges</a></span>(<span class='no'>y</span>, <span class='no'>x</span>)</div><div class='output co'>#&gt; [1] 2 5</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'>highlight_distinct_edges</span>(<span class='no'>x</span>, <span class='no'>y</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>y</span>)</div><div class='img'><img src='highlight_distinct_edges-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"labels"</span>, <span class='fl'>5</span><span class='op'>:</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='distinct_edges.html'>distinct_edges</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 5 7</div><div class='input'><span class='fu'><a href='distinct_edges.html'>distinct_edges</a></span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 2 5</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mfrow <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'>highlight_distinct_edges</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</div><div class='img'><img src='highlight_distinct_edges-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># tanglegram(highlight_distinct_edges(x, y),y)</span>
 <span class='co'># dend_diff(x, y)</span>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
 <span class='co'># using  highlight_distinct_edges combined with dendlist and set</span>
 <span class='co'># to clearly highlight "stable" branches.</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>iris</span>)
-<span class='no'>ss</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>5</span>, <span class='fl'>51</span>:<span class='fl'>55</span>, <span class='fl'>101</span>:<span class='fl'>105</span>)
-<span class='no'>iris1</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[<span class='no'>ss</span>, -<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"single"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
-<span class='no'>iris2</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[<span class='no'>ss</span>, -<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
-<span class='no'>iris12</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dendlist.html'>dendlist</a></span>(<span class='no'>iris1</span>, <span class='no'>iris2</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"branches_k_color"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"branches_lwd"</span>, <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>highlight_distinct_edges</span>(<span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>edgePar</span> <span class='kw'>=</span> <span class='st'>"lwd"</span>)
-<span class='no'>iris12</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='untangle.html'>untangle</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"step2side"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(
-    <span class='kw'>sub</span> <span class='kw'>=</span> <span class='st'>"Iris dataset"</span>, <span class='kw'>main_left</span> <span class='kw'>=</span> <span class='st'>"'single' clustering"</span>,
-    <span class='kw'>main_right</span> <span class='kw'>=</span> <span class='st'>"'complete' clustering"</span>
-  )
-}</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span>
+<span class='va'>ss</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='fl'>51</span><span class='op'>:</span><span class='fl'>55</span>, <span class='fl'>101</span><span class='op'>:</span><span class='fl'>105</span><span class='op'>)</span>
+<span class='va'>iris1</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='va'>ss</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"single"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>iris2</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='va'>ss</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"complete"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>iris12</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dendlist.html'>dendlist</a></span><span class='op'>(</span><span class='va'>iris1</span>, <span class='va'>iris2</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='st'>"branches_k_color"</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='st'>"branches_lwd"</span>, <span class='fl'>3</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>highlight_distinct_edges</span><span class='op'>(</span>value <span class='op'>=</span> <span class='fl'>1</span>, edgePar <span class='op'>=</span> <span class='st'>"lwd"</span><span class='op'>)</span>
+<span class='va'>iris12</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='untangle.html'>untangle</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"step2side"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='tanglegram.html'>tanglegram</a></span><span class='op'>(</span>
+    sub <span class='op'>=</span> <span class='st'>"Iris dataset"</span>, main_left <span class='op'>=</span> <span class='st'>"'single' clustering"</span>,
+    main_right <span class='op'>=</span> <span class='st'>"'complete' clustering"</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -254,7 +259,7 @@ distinct.edges,</p></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

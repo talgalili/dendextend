@@ -73,7 +73,7 @@ In the future I hope a more direct link will be made." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ In the future I hope a more direct link will be made." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -116,7 +116,7 @@ In the future I hope a more direct link will be made." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,7 +143,7 @@ In the future I hope a more direct link will be made." />
 <p>In the future I hope a more direct link will be made.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as.phylo.dendrogram</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>as.phylo.dendrogram</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,39 +166,40 @@ In the future I hope a more direct link will be made." />
     <div class='dont-index'><p><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a>, <a href='https://rdrr.io/r/stats/as.hclust.html'>as.hclust</a>, <a href='https://rdrr.io/pkg/ape/man/as.phylo.html'>as.phylo</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dendextend</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ape</span>)
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[<span class='fl'>1</span>:<span class='fl'>30</span>, -<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
-<span class='no'>dend2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/ape/man/as.phylo.html'>as.phylo</a></span>(<span class='no'>dend</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend2</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"fan"</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://talgalili.github.io/dendextend/'>dendextend</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://ape-package.ird.fr/'>ape</a></span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>30</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>dend2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/ape/man/as.phylo.html'>as.phylo</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend2</span>, type <span class='op'>=</span> <span class='st'>"fan"</span><span class='op'>)</span>
 
 
 <span class='co'># Also possible to with ggplot2 :)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dendextend</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggdendro</span>)
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[<span class='fl'>1</span>:<span class='fl'>30</span>, -<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://talgalili.github.io/dendextend/'>dendextend</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>ggdendro</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>30</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='co'># Rectangular lines</span>
-<span class='no'>ddata</span> <span class='kw'>&lt;-</span> <span class='no'>dend</span> <span class='kw'>%&gt;%</span> <span class='fu'>dendro_data</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"rectangle"</span>)
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'>segment</span>(<span class='no'>ddata</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_segment.html'>geom_segment</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>, <span class='kw'>xend</span> <span class='kw'>=</span> <span class='no'>xend</span>, <span class='kw'>yend</span> <span class='kw'>=</span> <span class='no'>yend</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_flip.html'>coord_flip</a></span>() +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_reverse</a></span>(<span class='kw'>expand</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>0</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_polar.html'>coord_polar</a></span>(<span class='kw'>theta</span> <span class='kw'>=</span> <span class='st'>"x"</span>)
-<span class='no'>p</span>
-}
+<span class='va'>ddata</span> <span class='op'>&lt;-</span> <span class='va'>dend</span> <span class='op'>%&gt;%</span> <span class='fu'>dendro_data</span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"rectangle"</span><span class='op'>)</span>
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'>segment</span><span class='op'>(</span><span class='va'>ddata</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_segment.html'>geom_segment</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span>, xend <span class='op'>=</span> <span class='va'>xend</span>, yend <span class='op'>=</span> <span class='va'>yend</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_flip.html'>coord_flip</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_reverse</a></span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.2</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_polar.html'>coord_polar</a></span><span class='op'>(</span>theta <span class='op'>=</span> <span class='st'>"x"</span><span class='op'>)</span>
+<span class='va'>p</span>
+<span class='op'>}</span>
 
 
 <span class='co'># see: https://github.com/klutometis/roxygen/issues/796</span>
-<span class='co'>#</span></div></pre>
+<span class='co'>#</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -214,7 +215,7 @@ In the future I hope a more direct link will be made." />
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

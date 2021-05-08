@@ -74,7 +74,7 @@ categorization." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ categorization." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@ categorization." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,19 +145,20 @@ corresponding to either clusters or some outside
 categorization.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>colored_dots</span>(
-  <span class='no'>colors</span>,
-  <span class='no'>dend</span>,
-  <span class='kw'>rowLabels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cex.rowLabels</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
-  <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>y_scale</span>,
-  <span class='no'>y_shift</span>,
-  <span class='kw'>text_shift</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>sort_by_labels_order</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>colored_dots</span><span class='op'>(</span>
+  <span class='va'>colors</span>,
+  <span class='va'>dend</span>,
+  rowLabels <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cex.rowLabels <span class='op'>=</span> <span class='fl'>0.9</span>,
+  add <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>y_scale</span>,
+  <span class='va'>y_shift</span>,
+  text_shift <span class='op'>=</span> <span class='fl'>1</span>,
+  sort_by_labels_order <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  horiz <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  dot_size <span class='op'>=</span> <span class='fl'>1</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -226,6 +227,10 @@ of the colors vector.</p></td>
       <td><p>logical (FALSE by default). Set to TRUE when using plot(dend, horiz = TRUE)</p></td>
     </tr>
     <tr>
+      <th>dot_size</th>
+      <td><p>numeric (1 by default). Passed to cex argument in points</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>ignored at this point.</p></td>
     </tr>
@@ -258,101 +263,125 @@ patches for smarter defaults will be appreciated)</p>
 
     <div class='dont-index'><p><a href='branches_attr_by_clusters.html'>branches_attr_by_clusters</a>,
 plotDendroAndColors</p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Steve Horvath <a href='mailto:SHorvath@mednet.ucla.edu'>SHorvath@mednet.ucla.edu</a>,
+Tal Galili <a href='mailto:Tal.Galili@gmail.com'>Tal.Galili@gmail.com</a>,
+Peter Langfelder <a href='mailto:Peter.Langfelder@gmail.com'>Peter.Langfelder@gmail.com</a>,
+Chase Clark <a href='mailto:chasec288@gmail.com'>chasec288@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>rows_picking</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>5</span>, <span class='fl'>25</span>:<span class='fl'>30</span>)
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> (<span class='no'>iris</span>[<span class='no'>rows_picking</span>, -<span class='fl'>5</span>] * <span class='fl'>10</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
-<span class='no'>odd_numbers</span> <span class='kw'>&lt;-</span> <span class='no'>rows_picking</span> <span class='kw'>%%</span> <span class='fl'>2</span>
-<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"red"</span>, <span class='st'>"white"</span>)[<span class='no'>odd_numbers</span> + <span class='fl'>1</span>]
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>)</div><div class='input'><span class='fu'>colored_dots</span>(<span class='no'>cols</span>, <span class='no'>dend</span>)</div><div class='img'><img src='colored_dots-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Example of adjusting postion of dots</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>)</div><div class='input'><span class='fu'>colored_dots</span>(<span class='no'>cols</span>, <span class='no'>dend</span>,
-  <span class='kw'>y_shift</span> <span class='kw'>=</span> -<span class='fl'>1</span>,
-  <span class='kw'>rowLabels</span> <span class='kw'>=</span> <span class='st'>"Odd\n numbers"</span>
-)</div><div class='img'><img src='colored_dots-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>rows_picking</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='fl'>25</span><span class='op'>:</span><span class='fl'>30</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span><span class='va'>rows_picking</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>*</span> <span class='fl'>10</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>odd_numbers</span> <span class='op'>&lt;-</span> <span class='va'>rows_picking</span> <span class='op'>%%</span> <span class='fl'>2</span>
+<span class='va'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"red"</span>, <span class='st'>"white"</span><span class='op'>)</span><span class='op'>[</span><span class='va'>odd_numbers</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>colored_dots</span><span class='op'>(</span><span class='va'>cols</span>, <span class='va'>dend</span><span class='op'>)</span>
+</div><div class='img'><img src='colored_dots-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Example of adjusting postion of dots</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>colored_dots</span><span class='op'>(</span><span class='va'>cols</span>, <span class='va'>dend</span>,
+  y_shift <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>,
+  rowLabels <span class='op'>=</span> <span class='st'>"Odd\n numbers"</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='colored_dots-2.png' alt='' width='700' height='433' /></div><div class='input'>
 
 
-<span class='no'>rows_picking</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>5</span>, <span class='fl'>25</span>:<span class='fl'>30</span>)
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> (<span class='no'>iris</span>[<span class='no'>rows_picking</span>, -<span class='fl'>5</span>] * <span class='fl'>10</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
-<span class='no'>odd_numbers</span> <span class='kw'>&lt;-</span> <span class='no'>rows_picking</span> <span class='kw'>%%</span> <span class='fl'>2</span>
+<span class='va'>rows_picking</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='fl'>25</span><span class='op'>:</span><span class='fl'>30</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span><span class='va'>rows_picking</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>*</span> <span class='fl'>10</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>odd_numbers</span> <span class='op'>&lt;-</span> <span class='va'>rows_picking</span> <span class='op'>%%</span> <span class='fl'>2</span>
 <span class='co'># For leaves that shouldn't have dots, make them the same color as the background,</span>
 <span class='co'># or set the alpha value to fully transparant</span>
-<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"black"</span>, <span class='st'>"white"</span>)[<span class='no'>odd_numbers</span> + <span class='fl'>1</span>]
+<span class='va'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"black"</span>, <span class='st'>"white"</span><span class='op'>)</span><span class='op'>[</span><span class='va'>odd_numbers</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>]</span>
 <span class='co'># scale is off</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>)</div><div class='input'><span class='fu'>colored_dots</span>(<span class='no'>cols</span>, <span class='no'>dend</span>)</div><div class='img'><img src='colored_dots-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># move and scale a bit</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>)</div><div class='input'><span class='fu'>colored_dots</span>(<span class='no'>cols</span>, <span class='no'>dend</span>,
-  <span class='kw'>y_shift</span> <span class='kw'>=</span> -<span class='fl'>1</span>,
-  <span class='kw'>rowLabels</span> <span class='kw'>=</span> <span class='st'>"Odd\n numbers"</span>
-)</div><div class='img'><img src='colored_dots-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Now let's cut the tree and add that info to the plot:</span>
-<span class='no'>k2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>dend</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='no'>cols2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#1b9e77"</span>, <span class='st'>"#d95f02"</span>)[<span class='no'>k2</span>]
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>colored_dots</span><span class='op'>(</span><span class='va'>cols</span>, <span class='va'>dend</span><span class='op'>)</span>
+</div><div class='img'><img src='colored_dots-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># move and scale a bit</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>colored_dots</span><span class='op'>(</span><span class='va'>cols</span>, <span class='va'>dend</span>,
+  y_shift <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>,
+  rowLabels <span class='op'>=</span> <span class='st'>"Odd\n numbers"</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='colored_dots-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Now let's cut the tree and add that info to the plot:</span>
+<span class='va'>k2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>dend</span>, k <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>cols2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#1b9e77"</span>, <span class='st'>"#d95f02"</span><span class='op'>)</span><span class='op'>[</span><span class='va'>k2</span><span class='op'>]</span>
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>6</span>, <span class='fl'>1</span>, <span class='fl'>1</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>)</div><div class='input'><span class='fu'>colored_dots</span>(<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='no'>cols2</span>, <span class='no'>cols</span>), <span class='no'>dend</span>,
-  <span class='kw'>rowLabels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2 clusters"</span>, <span class='st'>"Even numbers"</span>)
-)</div><div class='img'><img src='colored_dots-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>6</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>colored_dots</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>cols2</span>, <span class='va'>cols</span><span class='op'>)</span>, <span class='va'>dend</span>,
+  rowLabels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"2 clusters"</span>, <span class='st'>"Even numbers"</span><span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='colored_dots-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># The same, but with an horizontal plot!</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>6</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>4</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>, <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='input'><span class='fu'>colored_dots</span>(<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='no'>cols2</span>, <span class='no'>cols</span>), <span class='no'>dend</span>,
-  <span class='kw'>rowLabels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2 clusters"</span>, <span class='st'>"Even numbers"</span>),
-  <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='img'><img src='colored_dots-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>6</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span>, horiz <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>colored_dots</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>cols2</span>, <span class='va'>cols</span><span class='op'>)</span>, <span class='va'>dend</span>,
+  rowLabels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"2 clusters"</span>, <span class='st'>"Even numbers"</span><span class='op'>)</span>,
+  horiz <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='colored_dots-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># ==============================</span>
 <span class='co'># ==============================</span>
 
 <span class='co'>## mtcars example</span>
 
 <span class='co'># Create the dend:</span>
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>mtcars</span>)))
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># Get all company names</span>
-<span class='no'>comp_names</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>), <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/strsplit.html'>strsplit</a></span>(<span class='no'>x</span>, <span class='st'>" "</span>)<span class='kw'>[[</span><span class='fl'>1</span>]]<span class='kw'>[[</span><span class='fl'>1</span>]]))
+<span class='va'>comp_names</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/strsplit.html'>strsplit</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>" "</span><span class='op'>)</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Get the top three occurring companies</span>
-<span class='no'>top_three</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>comp_names</span>), <span class='kw'>decreasing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)[<span class='fl'>1</span>:<span class='fl'>3</span>]
+<span class='va'>top_three</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>comp_names</span><span class='op'>)</span>, decreasing <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
 <span class='co'># Match the top three companies to where they are found in the dendrogram labels</span>
-<span class='no'>top_three</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>top_three</span>), <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span>(<span class='no'>x</span>, <span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>dend</span>)))
-<span class='no'>top_three</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>top_three</span>)
+<span class='va'>top_three</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>top_three</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>top_three</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>top_three</span><span class='op'>)</span>
 <span class='co'># "top_three" is now a data frame of the top three companies as columns.</span>
 <span class='co'># Each column represents a vector (rows) which is the length of labels(dend).</span>
 <span class='co'># The vector has values TRUE and FALSE, for whether the company name matched</span>
 <span class='co'># labels(dend)[i]</span>
 
 <span class='co'># Colorblind friendly vector of HEX colors</span>
-<span class='no'>colorblind_friendly</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#1b9e77"</span>, <span class='st'>"#d95f02"</span>, <span class='st'>"#7570b3"</span>)
+<span class='va'>colorblind_friendly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#1b9e77"</span>, <span class='st'>"#d95f02"</span>, <span class='st'>"#7570b3"</span><span class='op'>)</span>
 
 <span class='co'># If we run the for-loop on "top_three" we will turn the vectors into a character-type too early,</span>
 <span class='co'># so make a copy to "colored_dataframe" which we will work on</span>
-<span class='no'>colored_dataframe</span> <span class='kw'>&lt;-</span> <span class='no'>top_three</span>
+<span class='va'>colored_dataframe</span> <span class='op'>&lt;-</span> <span class='va'>top_three</span>
 
-<span class='kw'>for</span> (<span class='no'>i</span> <span class='kw'>in</span> <span class='fl'>1</span>:<span class='fl'>3</span>) {
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='co'># This replaces TRUE values with a color from our vector of colors</span>
-  <span class='no'>colored_dataframe</span>[<span class='no'>top_three</span>[, <span class='no'>i</span>], <span class='no'>i</span>] <span class='kw'>&lt;-</span> <span class='no'>colorblind_friendly</span><span class='kw'>[[</span><span class='no'>i</span>]]
+  <span class='va'>colored_dataframe</span><span class='op'>[</span><span class='va'>top_three</span><span class='op'>[</span>, <span class='va'>i</span><span class='op'>]</span>, <span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>colorblind_friendly</span><span class='op'>[[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>]</span>
   <span class='co'># This replaces FALSE values with black HEX, but fully transparent (invisible on plot)</span>
-  <span class='no'>colored_dataframe</span>[!<span class='no'>top_three</span>[, <span class='no'>i</span>], <span class='no'>i</span>] <span class='kw'>&lt;-</span> <span class='st'>"#00000000"</span>
-}
+  <span class='va'>colored_dataframe</span><span class='op'>[</span><span class='op'>!</span><span class='va'>top_three</span><span class='op'>[</span>, <span class='va'>i</span><span class='op'>]</span>, <span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"#00000000"</span>
+<span class='op'>}</span>
 
 <span class='co'># Color branches and labels by "cutting" the dendrogram at an arbitrary height</span>
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='color_branches.html'>color_branches</a></span>(<span class='no'>dend</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>170</span>)
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='color_labels.html'>color_labels</a></span>(<span class='no'>dend</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>170</span>)
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='color_branches.html'>color_branches</a></span><span class='op'>(</span><span class='va'>dend</span>, h <span class='op'>=</span> <span class='fl'>170</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='color_labels.html'>color_labels</a></span><span class='op'>(</span><span class='va'>dend</span>, h <span class='op'>=</span> <span class='fl'>170</span><span class='op'>)</span>
 
 <span class='co'>### plots</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>12</span>, <span class='fl'>4</span>, <span class='fl'>1</span>, <span class='fl'>1</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>)</div><div class='input'><span class='fu'>colored_dots</span>(<span class='no'>colored_dataframe</span>, <span class='no'>dend</span>,
-  <span class='kw'>rowLabels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>colored_dataframe</span>), <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sort_by_labels_order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='input'><span class='co'># Show a dotted line where tree was "cut"</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>170</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='img'><img src='colored_dots-7.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>12</span>, <span class='fl'>4</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>colored_dots</span><span class='op'>(</span><span class='va'>colored_dataframe</span>, <span class='va'>dend</span>,
+  rowLabels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>colored_dataframe</span><span class='op'>)</span>, horiz <span class='op'>=</span> <span class='cn'>FALSE</span>, sort_by_labels_order <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
+</div><div class='input'><span class='co'># Show a dotted line where tree was "cut"</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>h <span class='op'>=</span> <span class='fl'>170</span>, lty <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+</div><div class='img'><img src='colored_dots-7.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># horiz version:</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>12</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>, <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='input'><span class='fu'>colored_dots</span>(<span class='no'>colored_dataframe</span>, <span class='no'>dend</span>,
-  <span class='kw'>rowLabels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>colored_dataframe</span>), <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sort_by_labels_order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='input'><span class='co'># Show a dotted line where the tree was "cut"</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>v</span> <span class='kw'>=</span> <span class='fl'>170</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='img'><img src='colored_dots-8.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>12</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span>, horiz <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>colored_dots</span><span class='op'>(</span><span class='va'>colored_dataframe</span>, <span class='va'>dend</span>,
+  rowLabels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>colored_dataframe</span><span class='op'>)</span>, horiz <span class='op'>=</span> <span class='cn'>TRUE</span>, sort_by_labels_order <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
+</div><div class='input'><span class='co'># Show a dotted line where the tree was "cut"</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v <span class='op'>=</span> <span class='fl'>170</span>, lty <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+</div><div class='img'><img src='colored_dots-8.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -368,7 +397,7 @@ plotDendroAndColors</p></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

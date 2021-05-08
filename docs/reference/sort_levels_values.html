@@ -80,7 +80,7 @@ after it will be &quot;2&quot; etc...)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@ after it will be &quot;2&quot; etc...)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -123,7 +123,7 @@ after it will be &quot;2&quot; etc...)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -150,21 +150,21 @@ after it will be &quot;2&quot; etc...)." />
 would be increasing from left to right.
 It is different from <code><a href='https://rdrr.io/r/base/sort.html'>sort</a></code> in that the function
 will only "sort" the values levels, and not the vector itself.</p>
-<p>This function is useful for <a href='cutree-methods.html'>cutree</a> - making the
+<p>This function is useful for <a href='cutree.html'>cutree</a> - making the
 sort_cluster_numbers parameter possible. Using that parameter with TRUE
 makes the clusters id's from cutree to be ordered from left to right.
 e.g: the left most cluster in the tree will be numbered "1", the one
 after it will be "2" etc...).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sort_levels_values</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>MARGIN</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>decreasing</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>force_integer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>),
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>sort_levels_values</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  MARGIN <span class='op'>=</span> <span class='fl'>2</span>,
+  decreasing <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  force_integer <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  warn <span class='op'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span><span class='op'>(</span><span class='st'>"warn"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -207,30 +207,36 @@ but for keeping the noise down, the default is FALSE.
     <p>if x is an object - it returns logical - is the object of class dendrogram.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/sort.html'>sort</a></code>, <code><a href='fac2num.html'>fac2num</a></code>, <code><a href='cutree-methods.html'>cutree</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/sort.html'>sort</a></code>, <code><a href='fac2num.html'>fac2num</a></code>, <code><a href='cutree.html'>cutree</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>4</span>
-<span class='fu'>sort_levels_values</span>(<span class='no'>x</span>) <span class='co'># 1 2 3 4</span></div><div class='output co'>#&gt; [1] 1 2 3 4</div><div class='input'>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>:<span class='fl'>1</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>letters</span>[<span class='no'>x</span>]
-<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>x</span>, <span class='st'>"keep_me"</span>) <span class='kw'>&lt;-</span> <span class='st'>"a cat"</span>
-<span class='fu'>sort_levels_values</span>(<span class='no'>x</span>) <span class='co'># 1 2 3 4</span></div><div class='output co'>#&gt; d c b a 
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>
+<span class='fu'>sort_levels_values</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='co'># 1 2 3 4</span>
+</div><div class='output co'>#&gt; [1] 1 2 3 4</div><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>:</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>letters</span><span class='op'>[</span><span class='va'>x</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"keep_me"</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"a cat"</span>
+<span class='fu'>sort_levels_values</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='co'># 1 2 3 4</span>
+</div><div class='output co'>#&gt; d c b a 
 #&gt; 1 2 3 4 
 #&gt; attr(,"keep_me")
 #&gt; [1] "a cat"</div><div class='input'>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>:<span class='fl'>1</span>, <span class='fl'>4</span>, <span class='fl'>2</span>)
-<span class='fu'>sort_levels_values</span>(<span class='no'>x</span>) <span class='co'># 1 2 3 4 1 3</span></div><div class='output co'>#&gt; [1] 1 2 3 4 1 3</div><div class='input'>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>2</span>, <span class='fl'>1</span>)
-<span class='fu'>sort_levels_values</span>(<span class='no'>x</span>) <span class='co'># 1 1 2 1 3</span></div><div class='output co'>#&gt; [1] 1 1 2 1 3</div><div class='input'>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fl'>16</span>:<span class='fl'>1</span>, <span class='fl'>4</span>, <span class='fl'>4</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>4</span>]
-<span class='no'>x</span></div><div class='output co'>#&gt;   [,1] [,2] [,3] [,4]
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>:</span><span class='fl'>1</span>, <span class='fl'>4</span>, <span class='fl'>2</span><span class='op'>)</span>
+<span class='fu'>sort_levels_values</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='co'># 1 2 3 4 1 3</span>
+</div><div class='output co'>#&gt; [1] 1 2 3 4 1 3</div><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>2</span>, <span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>sort_levels_values</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='co'># 1 1 2 1 3</span>
+</div><div class='output co'>#&gt; [1] 1 1 2 1 3</div><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fl'>16</span><span class='op'>:</span><span class='fl'>1</span>, <span class='fl'>4</span>, <span class='fl'>4</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
+<span class='va'>x</span>
+</div><div class='output co'>#&gt;   [,1] [,2] [,3] [,4]
 #&gt; a   16   12    8    4
 #&gt; b   15   11    7    3
 #&gt; c   14   10    6    2
-#&gt; d   13    9    5    1</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='no'>x</span>, <span class='fl'>2</span>, <span class='no'>sort_levels_values</span>)</div><div class='output co'>#&gt;   [,1] [,2] [,3] [,4]
+#&gt; d   13    9    5    1</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>2</span>, <span class='va'>sort_levels_values</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   [,1] [,2] [,3] [,4]
 #&gt; a   13    9    5    1
 #&gt; b   14   10    6    2
 #&gt; c   15   11    7    3
@@ -250,7 +256,7 @@ but for keeping the noise down, the default is FALSE.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -74,7 +74,7 @@ that is most &quot;similar&quot; to the original distance matrix." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ that is most &quot;similar&quot; to the original distance matrix." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@ that is most &quot;similar&quot; to the original distance matrix." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,18 +145,18 @@ This function goes through various combinations of the two and helps find the on
 that is most "similar" to the original distance matrix.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dend_expend</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>dist_methods</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"euclidean"</span>, <span class='st'>"maximum"</span>, <span class='st'>"manhattan"</span>, <span class='st'>"canberra"</span>, <span class='st'>"binary"</span>,
-    <span class='st'>"minkowski"</span>),
-  <span class='kw'>hclust_methods</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ward.D"</span>, <span class='st'>"ward.D2"</span>, <span class='st'>"single"</span>, <span class='st'>"complete"</span>, <span class='st'>"average"</span>, <span class='st'>"mcquitty"</span>,
-    <span class='st'>"median"</span>, <span class='st'>"centroid"</span>),
-  <span class='kw'>hclust_fun</span> <span class='kw'>=</span> <span class='no'>hclust</span>,
-  <span class='kw'>optim_fun</span> <span class='kw'>=</span> <span class='no'>cor_cophenetic</span>,
-  <span class='no'>...</span>
-)
+    <pre class="usage"><span class='fu'>dend_expend</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  dist_methods <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"euclidean"</span>, <span class='st'>"maximum"</span>, <span class='st'>"manhattan"</span>, <span class='st'>"canberra"</span>, <span class='st'>"binary"</span>,
+    <span class='st'>"minkowski"</span><span class='op'>)</span>,
+  hclust_methods <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ward.D"</span>, <span class='st'>"ward.D2"</span>, <span class='st'>"single"</span>, <span class='st'>"complete"</span>, <span class='st'>"average"</span>, <span class='st'>"mcquitty"</span>,
+    <span class='st'>"median"</span>, <span class='st'>"centroid"</span><span class='op'>)</span>,
+  hclust_fun <span class='op'>=</span> <span class='va'>hclust</span>,
+  optim_fun <span class='op'>=</span> <span class='va'>cor_cophenetic</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
-<span class='fu'>find_dend</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>find_dend</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -201,9 +201,10 @@ the <a href='https://rdrr.io/r/stats/cophenetic.html'>cophenetic</a> distance of
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/r/datasets/mtcars.html'>mtcars</a></span>
-<span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'>dend_expend</span>(<span class='no'>x</span>, <span class='kw'>dist_methods</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"euclidean"</span>, <span class='st'>"manhattan"</span>))
-<span class='no'>out</span>$<span class='no'>performance</span></div><div class='output co'>#&gt;    dist_methods hclust_methods     optim
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>datasets</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/r/datasets/mtcars.html'>mtcars</a></span>
+<span class='va'>out</span> <span class='op'>&lt;-</span> <span class='fu'>dend_expend</span><span class='op'>(</span><span class='va'>x</span>, dist_methods <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"euclidean"</span>, <span class='st'>"manhattan"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>out</span><span class='op'>$</span><span class='va'>performance</span>
+</div><div class='output co'>#&gt;    dist_methods hclust_methods     optim
 #&gt; 1     euclidean         ward.D 0.7627152
 #&gt; 2     manhattan         ward.D 0.7943439
 #&gt; 3     euclidean        ward.D2 0.7778775
@@ -220,7 +221,8 @@ the <a href='https://rdrr.io/r/stats/cophenetic.html'>cophenetic</a> distance of
 #&gt; 14    manhattan         median 0.8056585
 #&gt; 15    euclidean       centroid 0.7917852
 #&gt; 16    manhattan       centroid 0.8177614</div><div class='input'>
-<span class='fu'>dend_expend</span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>x</span>))$<span class='no'>performance</span></div><div class='output co'>#&gt;   dist_methods hclust_methods     optim
+<span class='fu'>dend_expend</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>$</span><span class='va'>performance</span>
+</div><div class='output co'>#&gt;   dist_methods hclust_methods     optim
 #&gt; 1      unknown         ward.D 0.7627152
 #&gt; 2      unknown        ward.D2 0.7778775
 #&gt; 3      unknown         single 0.6834445
@@ -229,8 +231,9 @@ the <a href='https://rdrr.io/r/stats/cophenetic.html'>cophenetic</a> distance of
 #&gt; 6      unknown       mcquitty 0.8114282
 #&gt; 7      unknown         median 0.7888620
 #&gt; 8      unknown       centroid 0.7917852</div><div class='input'>
-<span class='no'>best_dend</span> <span class='kw'>&lt;-</span> <span class='fu'>find_dend</span>(<span class='no'>x</span>, <span class='kw'>dist_methods</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"euclidean"</span>, <span class='st'>"manhattan"</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>best_dend</span>)</div><div class='img'><img src='find_dend-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>best_dend</span> <span class='op'>&lt;-</span> <span class='fu'>find_dend</span><span class='op'>(</span><span class='va'>x</span>, dist_methods <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"euclidean"</span>, <span class='st'>"manhattan"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>best_dend</span><span class='op'>)</span>
+</div><div class='img'><img src='find_dend-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -246,7 +249,7 @@ the <a href='https://rdrr.io/r/stats/cophenetic.html'>cophenetic</a> distance of
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

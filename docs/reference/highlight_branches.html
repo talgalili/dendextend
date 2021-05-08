@@ -78,7 +78,7 @@ respectively." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@ respectively." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -121,7 +121,7 @@ respectively." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -153,11 +153,11 @@ These can be manually changed when using highlight_branches_col and highlight_br
 respectively.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>highlight_branches_col</span>(<span class='no'>dend</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span>(<span class='fu'>viridis</span>(<span class='fl'>1000</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='fl'>0.9</span>)), <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>highlight_branches_col</span><span class='op'>(</span><span class='va'>dend</span>, values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span><span class='op'>(</span><span class='fu'>viridis</span><span class='op'>(</span><span class='fl'>1000</span>, end <span class='op'>=</span> <span class='fl'>0.9</span><span class='op'>)</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>highlight_branches_lwd</span>(<span class='no'>dend</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>10</span>, <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fl'>1000</span>), <span class='no'>...</span>)
+<span class='fu'>highlight_branches_lwd</span><span class='op'>(</span><span class='va'>dend</span>, values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>10</span>, length.out <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>highlight_branches</span>(<span class='no'>dend</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"col"</span>, <span class='st'>"lwd"</span>), <span class='no'>...</span>)</pre>
+<span class='fu'>highlight_branches</span><span class='op'>(</span><span class='va'>dend</span>, type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"col"</span>, <span class='st'>"lwd"</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,75 +191,86 @@ that are proportional to each branche's height (measured by its lower tip).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='set.html'>set</a>, <a href='color_branches.html'>color_branches</a>, <a href='get_branches_heights.html'>get_branches_heights</a>,
-<a href='https://rdrr.io/pkg/viridis/man/reexports.html'>viridis</a></p></div>
+<a href='https://rdrr.io/pkg/viridisLite/man/viridis.html'>viridis</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[<span class='fl'>1</span>:<span class='fl'>20</span>, -<span class='fl'>5</span>]
-<span class='no'>hca</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>dat</span>))
-<span class='no'>hca2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>dat</span>), <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"single"</span>)
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>(<span class='no'>hca</span>)
-<span class='no'>dend2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>(<span class='no'>hca2</span>)
+<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span>
+<span class='va'>hca</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>hca2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>, method <span class='op'>=</span> <span class='st'>"single"</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='va'>hca</span><span class='op'>)</span>
+<span class='va'>dend2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='va'>hca2</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>))
-<span class='no'>dend</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>highlight_branches_col</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Coloring branches"</span>)
-<span class='no'>dend</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>highlight_branches_lwd</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Emphasizing line-width"</span>)
-<span class='no'>dend</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>highlight_branches</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Emphasizing color\n and line-width"</span>)</div><div class='img'><img src='highlight_branches-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>viridis</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: viridisLite</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>))
-<span class='no'>dend</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>highlight_branches_col</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Coloring branches \n(default is reversed viridis)"</span>)
-<span class='no'>dend</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>highlight_branches_col</span>(<span class='fu'><a href='https://rdrr.io/pkg/viridis/man/reexports.html'>viridis</a></span>(<span class='fl'>100</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"It is better to use\nlighter colors in the leaves"</span>)
-<span class='no'>dend</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>highlight_branches_col</span>(<span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/viridis/man/reexports.html'>magma</a></span>(<span class='fl'>1000</span>))) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"The magma color pallatte\n is also good"</span>)</div><div class='img'><img src='highlight_branches-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>dl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dendlist.html'>dendlist</a></span>(<span class='no'>dend</span>, <span class='no'>dend2</span>)
-<span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dl</span>,
-  <span class='kw'>sort</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>common_subtrees_color_lines</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>highlight_distinct_edges</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>highlight_branches_lwd</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='img'><img src='highlight_branches-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dl</span>)</div><div class='img'><img src='highlight_branches-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dl</span>, <span class='kw'>fast</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='highlight_branches-5.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>dl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dendlist.html'>dendlist</a></span>(<span class='fu'>highlight_branches</span>(<span class='no'>dend</span>), <span class='fu'>highlight_branches</span>(<span class='no'>dend2</span>))
-<span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dl</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>common_subtrees_color_lines</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>highlight_distinct_edges</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='highlight_branches-6.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>dend</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"highlight_branches_col"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>()
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mfrow <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>highlight_branches_col</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span>main <span class='op'>=</span> <span class='st'>"Coloring branches"</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>highlight_branches_lwd</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span>main <span class='op'>=</span> <span class='st'>"Emphasizing line-width"</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>highlight_branches</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span>main <span class='op'>=</span> <span class='st'>"Emphasizing color\n and line-width"</span><span class='op'>)</span>
+</div><div class='img'><img src='highlight_branches-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/sjmgarnier/viridis'>viridis</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: viridisLite</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mfrow <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>highlight_branches_col</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span>main <span class='op'>=</span> <span class='st'>"Coloring branches \n(default is reversed viridis)"</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>highlight_branches_col</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/viridisLite/man/viridis.html'>viridis</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span>main <span class='op'>=</span> <span class='st'>"It is better to use\nlighter colors in the leaves"</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>highlight_branches_col</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/viridisLite/man/viridis.html'>magma</a></span><span class='op'>(</span><span class='fl'>1000</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span>main <span class='op'>=</span> <span class='st'>"The magma color pallatte\n is also good"</span><span class='op'>)</span>
+</div><div class='img'><img src='highlight_branches-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>dl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dendlist.html'>dendlist</a></span><span class='op'>(</span><span class='va'>dend</span>, <span class='va'>dend2</span><span class='op'>)</span>
+<span class='fu'><a href='tanglegram.html'>tanglegram</a></span><span class='op'>(</span><span class='va'>dl</span>,
+  sort <span class='op'>=</span> <span class='cn'>TRUE</span>, common_subtrees_color_lines <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  highlight_distinct_edges <span class='op'>=</span> <span class='cn'>FALSE</span>, highlight_branches_lwd <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='highlight_branches-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='tanglegram.html'>tanglegram</a></span><span class='op'>(</span><span class='va'>dl</span><span class='op'>)</span>
+</div><div class='img'><img src='highlight_branches-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='tanglegram.html'>tanglegram</a></span><span class='op'>(</span><span class='va'>dl</span>, fast <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='highlight_branches-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>dl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dendlist.html'>dendlist</a></span><span class='op'>(</span><span class='fu'>highlight_branches</span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>, <span class='fu'>highlight_branches</span><span class='op'>(</span><span class='va'>dend2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='tanglegram.html'>tanglegram</a></span><span class='op'>(</span><span class='va'>dl</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span>, common_subtrees_color_lines <span class='op'>=</span> <span class='cn'>FALSE</span>, highlight_distinct_edges <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='img'><img src='highlight_branches-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>dend</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='st'>"highlight_branches_col"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='no'>dl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dendlist.html'>dendlist</a></span>(<span class='no'>dend</span>, <span class='no'>dend2</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"highlight_branches_col"</span>)
-<span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dl</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>common_subtrees_color_lines</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>highlight_distinct_edges</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='highlight_branches-7.png' alt='' width='700' height='433' /></div><div class='img'><img src='highlight_branches-8.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>dl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dendlist.html'>dendlist</a></span><span class='op'>(</span><span class='va'>dend</span>, <span class='va'>dend2</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='st'>"highlight_branches_col"</span><span class='op'>)</span>
+<span class='fu'><a href='tanglegram.html'>tanglegram</a></span><span class='op'>(</span><span class='va'>dl</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span>, common_subtrees_color_lines <span class='op'>=</span> <span class='cn'>FALSE</span>, highlight_distinct_edges <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='img'><img src='highlight_branches-7.png' alt='' width='700' height='433' /></div><div class='img'><img src='highlight_branches-8.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'># This is also useful for heatmaps</span>
 <span class='co'># --------------------------</span>
 <span class='co'># library(dendextend)</span>
 
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/r/datasets/mtcars.html'>mtcars</a></span>)
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='fu'>datasets</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/r/datasets/mtcars.html'>mtcars</a></span><span class='op'>)</span>
 
-<span class='no'>Rowv</span> <span class='kw'>&lt;-</span> <span class='no'>x</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"branches_k_color"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"highlight_branches_lwd"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='ladderize.html'>ladderize</a></span>()</div><div class='output co'>#&gt; <span class='error'>Error in oV(x, wts): argument "wts" is missing, with no default</span></div><div class='input'><span class='co'>#    rotate_DendSer(ser_weight = dist(x))</span>
-<span class='no'>Colv</span> <span class='kw'>&lt;-</span> <span class='no'>x</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"branches_k_color"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"highlight_branches_lwd"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='ladderize.html'>ladderize</a></span>()</div><div class='output co'>#&gt; <span class='error'>Error in oV(x, wts): argument "wts" is missing, with no default</span></div><div class='input'><span class='co'>#    rotate_DendSer(ser_weight = dist(t(x)))</span>
+<span class='va'>Rowv</span> <span class='op'>&lt;-</span> <span class='va'>x</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='st'>"branches_k_color"</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='st'>"highlight_branches_lwd"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='ladderize.html'>ladderize</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in oV(x, wts): argument "wts" is missing, with no default</span></div><div class='input'><span class='co'>#    rotate_DendSer(ser_weight = dist(x))</span>
+<span class='va'>Colv</span> <span class='op'>&lt;-</span> <span class='va'>x</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='st'>"branches_k_color"</span>, k <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='st'>"highlight_branches_lwd"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='ladderize.html'>ladderize</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in oV(x, wts): argument "wts" is missing, with no default</span></div><div class='input'><span class='co'>#    rotate_DendSer(ser_weight = dist(t(x)))</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>gplots</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/gplots/man/heatmap.2.html'>heatmap.2</a></span>(<span class='no'>x</span>, <span class='kw'>Rowv</span> <span class='kw'>=</span> <span class='no'>Rowv</span>, <span class='kw'>Colv</span> <span class='kw'>=</span> <span class='no'>Colv</span>)</div><div class='output co'>#&gt; <span class='error'>Error in heatmap.2(x, Rowv = Rowv, Colv = Colv): object 'Rowv' not found</span></div></pre>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/talgalili/gplots'>gplots</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/gplots/man/heatmap.2.html'>heatmap.2</a></span><span class='op'>(</span><span class='va'>x</span>, Rowv <span class='op'>=</span> <span class='va'>Rowv</span>, Colv <span class='op'>=</span> <span class='va'>Colv</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in heatmap.2(x, Rowv = Rowv, Colv = Colv): object 'Rowv' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -275,7 +286,7 @@ that are proportional to each branche's height (measured by its lower tip).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -74,7 +74,7 @@ Code for mouse selection of (sub-)cluster to be rotated" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ Code for mouse selection of (sub-)cluster to be rotated" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@ Code for mouse selection of (sub-)cluster to be rotated" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,20 +145,20 @@ and rotates the tree based on the location of the click.</p>
 <p>Code for mouse selection of (sub-)cluster to be rotated</p>
     </div>
 
-    <pre class="usage"><span class='fu'>click_rotate</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>click_rotate</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for default</span>
-<span class='fu'>click_rotate</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>click_rotate</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for dendrogram</span>
-<span class='fu'>click_rotate</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>plot_after</span> <span class='kw'>=</span> <span class='no'>plot</span>,
-  <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>continue</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)</pre>
+<span class='fu'>click_rotate</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  plot <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  plot_after <span class='op'>=</span> <span class='va'>plot</span>,
+  horiz <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  continue <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -197,23 +197,28 @@ clicking the plot until a click is made on the labels.</p></td>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='rotate.html'>rotate.dendrogram</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Andrej-Nikolai Spiess, Tal Galili</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create the dend:</span>
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='st'>"ave"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='color_labels.html'>color_labels</a></span>()
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='va'>USArrests</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='st'>"ave"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='color_labels.html'>color_labels</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># play with the rotation once</span>
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'>click_rotate</span>(<span class='no'>dend</span>)
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'>click_rotate</span>(<span class='no'>dend</span>, <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='fu'>click_rotate</span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='fu'>click_rotate</span><span class='op'>(</span><span class='va'>dend</span>, horiz <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='co'># keep playing with the rotation:</span>
-<span class='kw'>while</span> (<span class='fl'>TRUE</span>) <span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'>click_rotate</span>(<span class='no'>dend</span>)
+<span class='kw'>while</span> <span class='op'>(</span><span class='cn'>TRUE</span><span class='op'>)</span> <span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='fu'>click_rotate</span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
 <span class='co'># the same as</span>
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'>click_rotate</span>(<span class='no'>dend</span>, <span class='kw'>continue</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-}</div></pre>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='fu'>click_rotate</span><span class='op'>(</span><span class='va'>dend</span>, continue <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -229,7 +234,7 @@ clicking the plot until a click is made on the labels.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

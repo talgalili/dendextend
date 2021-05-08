@@ -75,7 +75,7 @@ under the null hypothesis of no relation." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@ under the null hypothesis of no relation." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -118,7 +118,7 @@ under the null hypothesis of no relation." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -147,13 +147,13 @@ function also calculates the expectancy and variance of the FM Index
 under the null hypothesis of no relation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>FM_index_R</span>(
-  <span class='no'>A1_clusters</span>,
-  <span class='no'>A2_clusters</span>,
-  <span class='kw'>assume_sorted_vectors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>),
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>FM_index_R</span><span class='op'>(</span>
+  <span class='va'>A1_clusters</span>,
+  <span class='va'>A2_clusters</span>,
+  assume_sorted_vectors <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  warn <span class='op'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span><span class='op'>(</span><span class='st'>"warn"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -216,39 +216,40 @@ Journal of the American Statistical Association 78 (383): 553.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>23235</span>)
-<span class='no'>ss</span> <span class='kw'>&lt;-</span> <span class='fl'>TRUE</span> <span class='co'># sample(1:150, 10 )</span>
-<span class='no'>hc1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>iris</span>[<span class='no'>ss</span>, -<span class='fl'>5</span>]), <span class='st'>"com"</span>)
-<span class='no'>hc2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>iris</span>[<span class='no'>ss</span>, -<span class='fl'>5</span>]), <span class='st'>"single"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>23235</span><span class='op'>)</span>
+<span class='va'>ss</span> <span class='op'>&lt;-</span> <span class='cn'>TRUE</span> <span class='co'># sample(1:150, 10 )</span>
+<span class='va'>hc1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span><span class='va'>ss</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>, <span class='st'>"com"</span><span class='op'>)</span>
+<span class='va'>hc2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span><span class='va'>ss</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>, <span class='st'>"single"</span><span class='op'>)</span>
 <span class='co'># dend1 &lt;- as.dendrogram(hc1)</span>
 <span class='co'># dend2 &lt;- as.dendrogram(hc2)</span>
 <span class='co'>#    cutree(dend1)</span>
 
-<span class='fu'>FM_index_R</span>(<span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>), <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)) <span class='co'># 1</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1341</span>)
-<span class='fu'>FM_index_R</span>(<span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-           <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)),
-           <span class='kw'>assume_sorted_vectors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># 0.38037</span>
-<span class='fu'>FM_index_R</span>(<span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-           <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)),
-           <span class='kw'>assume_sorted_vectors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='co'># 1 again :)</span>
-<span class='fu'>FM_index_R</span>(<span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-           <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc2</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)) <span class='co'># 0.8059</span>
-<span class='fu'>FM_index_R</span>(<span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>30</span>),
-           <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc2</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>30</span>)) <span class='co'># 0.4529</span>
+<span class='fu'>FM_index_R</span><span class='op'>(</span><span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc1</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>, <span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc1</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># 1</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1341</span><span class='op'>)</span>
+<span class='fu'>FM_index_R</span><span class='op'>(</span><span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc1</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+           <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc1</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>, 
+           assume_sorted_vectors <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='co'># 0.38037</span>
+<span class='fu'>FM_index_R</span><span class='op'>(</span><span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc1</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>, 
+           <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc1</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>, 
+           assume_sorted_vectors <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='co'># 1 again :)</span>
+<span class='fu'>FM_index_R</span><span class='op'>(</span><span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc1</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>, 
+           <span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc2</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># 0.8059</span>
+<span class='fu'>FM_index_R</span><span class='op'>(</span><span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc1</span>, k <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>, 
+           <span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc2</span>, k <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># 0.4529</span>
 
-<span class='no'>fo</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>k</span>) <span class='fu'>FM_index_R</span>(<span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='no'>k</span>), <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc2</span>, <span class='no'>k</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='no'>fo</span>)
-<span class='no'>ks</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>150</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span>(<span class='no'>ks</span>, <span class='no'>fo</span>) ~ <span class='no'>ks</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"b"</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Bk plot for the iris dataset"</span>)
+<span class='va'>fo</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>k</span><span class='op'>)</span> <span class='fu'>FM_index_R</span><span class='op'>(</span><span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc1</span>, <span class='va'>k</span><span class='op'>)</span>, <span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc2</span>, <span class='va'>k</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='va'>fo</span><span class='op'>)</span>
+<span class='va'>ks</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>150</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>ks</span>, <span class='va'>fo</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>ks</span>, type <span class='op'>=</span> <span class='st'>"b"</span>, main <span class='op'>=</span> <span class='st'>"Bk plot for the iris dataset"</span><span class='op'>)</span>
 
-<span class='no'>clu_1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc2</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>100</span>) <span class='co'># this is a lie - since this one is NOT well defined!</span>
-<span class='no'>clu_2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>(<span class='no'>hc2</span>), <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>100</span>) <span class='co'># We see that we get a vector of NAs for this...</span>
+<span class='va'>clu_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc2</span>, k <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span> <span class='co'># this is a lie - since this one is NOT well defined!</span>
+<span class='va'>clu_2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='va'>hc2</span><span class='op'>)</span>, k <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span> <span class='co'># We see that we get a vector of NAs for this...</span>
 
-<span class='fu'>FM_index_R</span>(<span class='no'>clu_1</span>, <span class='no'>clu_2</span>) <span class='co'># NA</span>
-}</div></pre>
+<span class='fu'>FM_index_R</span><span class='op'>(</span><span class='va'>clu_1</span>, <span class='va'>clu_2</span><span class='op'>)</span> <span class='co'># NA</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -264,7 +265,7 @@ Journal of the American Statistical Association 78 (383): 553.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

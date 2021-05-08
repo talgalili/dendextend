@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,7 +115,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -141,7 +141,7 @@
     <p>The returned Colors will be in dendrogram order.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>leaf_Colors</span>(<span class='no'>d</span>, <span class='kw'>col_to_return</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"edge"</span>, <span class='st'>"node"</span>, <span class='st'>"label"</span>))</pre>
+    <pre class="usage"><span class='fu'>leaf_Colors</span><span class='op'>(</span><span class='va'>d</span>, col_to_return <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"edge"</span>, <span class='st'>"node"</span>, <span class='st'>"label"</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,14 +162,18 @@
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>slice,<a href='color_branches.html'>color_branches</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>jefferis</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"ave"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
-<span class='no'>d5</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='color_branches.html'>color_branches</a></span>(<span class='no'>dend</span>, <span class='fl'>5</span>)
-<span class='fu'>leaf_Colors</span>(<span class='no'>d5</span>)</div><div class='output co'>#&gt;        Florida North Carolina     California       Maryland        Arizona 
+    <pre class="examples"><div class='input'><span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='va'>USArrests</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"ave"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>d5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='color_branches.html'>color_branches</a></span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>5</span><span class='op'>)</span>
+<span class='fu'>leaf_Colors</span><span class='op'>(</span><span class='va'>d5</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        Florida North Carolina     California       Maryland        Arizona 
 #&gt;      "#CC476B"      "#CC476B"      "#917600"      "#917600"      "#917600" 
 #&gt;     New Mexico       Delaware        Alabama      Louisiana       Illinois 
 #&gt;      "#917600"      "#917600"      "#917600"      "#917600"      "#917600" 
@@ -204,7 +208,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

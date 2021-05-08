@@ -79,7 +79,7 @@ This is useful for finding good trees for a tanglegram." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@ This is useful for finding good trees for a tanglegram." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -122,7 +122,7 @@ This is useful for finding good trees for a tanglegram." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -155,16 +155,16 @@ looking for a better match.</p>
 <p>This is useful for finding good trees for a <a href='tanglegram.html'>tanglegram</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>untangle_step_rotate_1side</span>(
-  <span class='no'>dend1</span>,
-  <span class='no'>dend2_fixed</span>,
-  <span class='kw'>L</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"forward"</span>, <span class='st'>"backward"</span>),
-  <span class='kw'>k_seq</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>dend_heights_per_k</span>,
-  <span class='kw'>leaves_matching_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"labels"</span>, <span class='st'>"order"</span>),
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>untangle_step_rotate_1side</span><span class='op'>(</span>
+  <span class='va'>dend1</span>,
+  <span class='va'>dend2_fixed</span>,
+  L <span class='op'>=</span> <span class='fl'>1.5</span>,
+  direction <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"forward"</span>, <span class='st'>"backward"</span><span class='op'>)</span>,
+  k_seq <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>dend_heights_per_k</span>,
+  leaves_matching_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"labels"</span>, <span class='st'>"order"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -235,20 +235,21 @@ their leaves order values.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>dend1</span> <span class='kw'>&lt;-</span> <span class='no'>USArrests</span>[<span class='fl'>1</span>:<span class='fl'>10</span>, ] <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>3525</span>)
-<span class='no'>dend2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='shuffle.html'>shuffle</a></span>(<span class='no'>dend1</span>)
-<span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>)
-<span class='fu'><a href='entanglement.html'>entanglement</a></span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>, <span class='kw'>L</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='co'># 0.4727</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>dend1</span> <span class='op'>&lt;-</span> <span class='va'>USArrests</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>3525</span><span class='op'>)</span>
+<span class='va'>dend2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='shuffle.html'>shuffle</a></span><span class='op'>(</span><span class='va'>dend1</span><span class='op'>)</span>
+<span class='fu'><a href='tanglegram.html'>tanglegram</a></span><span class='op'>(</span><span class='va'>dend1</span>, <span class='va'>dend2</span><span class='op'>)</span>
+<span class='fu'><a href='entanglement.html'>entanglement</a></span><span class='op'>(</span><span class='va'>dend1</span>, <span class='va'>dend2</span>, L <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='co'># 0.4727</span>
 
-<span class='no'>dend2_corrected</span> <span class='kw'>&lt;-</span> <span class='fu'>untangle_step_rotate_1side</span>(<span class='no'>dend2</span>, <span class='no'>dend1</span>)<span class='kw'>[[</span><span class='fl'>1</span>]]
-<span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dend1</span>, <span class='no'>dend2_corrected</span>) <span class='co'># FIXED.</span>
-<span class='fu'><a href='entanglement.html'>entanglement</a></span>(<span class='no'>dend1</span>, <span class='no'>dend2_corrected</span>, <span class='kw'>L</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='co'># 0</span>
-}</div></pre>
+<span class='va'>dend2_corrected</span> <span class='op'>&lt;-</span> <span class='fu'>untangle_step_rotate_1side</span><span class='op'>(</span><span class='va'>dend2</span>, <span class='va'>dend1</span><span class='op'>)</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
+<span class='fu'><a href='tanglegram.html'>tanglegram</a></span><span class='op'>(</span><span class='va'>dend1</span>, <span class='va'>dend2_corrected</span><span class='op'>)</span> <span class='co'># FIXED.</span>
+<span class='fu'><a href='entanglement.html'>entanglement</a></span><span class='op'>(</span><span class='va'>dend1</span>, <span class='va'>dend2_corrected</span>, L <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='co'># 0</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -264,7 +265,7 @@ their leaves order values.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

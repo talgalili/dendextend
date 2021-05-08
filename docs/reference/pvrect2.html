@@ -73,7 +73,7 @@ This is based on pvrect, allowing to draw the rects till the bottom of the label
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ This is based on pvrect, allowing to draw the rects till the bottom of the label
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -116,7 +116,7 @@ This is based on pvrect, allowing to draw the rects till the bottom of the label
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,17 +143,17 @@ This is based on pvrect, allowing to draw the rects till the bottom of the label
 This is based on <a href='https://rdrr.io/pkg/pvclust/man/pvpick.html'>pvrect</a>, allowing to draw the rects till the bottom of the labels.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pvrect2</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>pv</span> <span class='kw'>=</span> <span class='st'>"au"</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"geq"</span>,
-  <span class='kw'>max.only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>xpd</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>lower_rect</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>pvrect2</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.95</span>,
+  pv <span class='op'>=</span> <span class='st'>"au"</span>,
+  type <span class='op'>=</span> <span class='st'>"geq"</span>,
+  max.only <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  border <span class='op'>=</span> <span class='fl'>2</span>,
+  xpd <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>lower_rect</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -201,28 +201,30 @@ This is based on <a href='https://rdrr.io/pkg/pvclust/man/pvpick.html'>pvrect</a
     <div class='dont-index'><p><a href='https://rdrr.io/pkg/pvclust/man/pvpick.html'>pvrect</a>, <a href='pvclust_show_signif.html'>pvclust_show_signif</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dendextend</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>pvclust</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>lung</span>) <span class='co'># 916 genes for 73 subjects</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>13134</span>)
-<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/pvclust/man/pvclust.html'>pvclust</a></span>(<span class='no'>lung</span>[, <span class='fl'>1</span>:<span class='fl'>20</span>], <span class='kw'>method.dist</span> <span class='kw'>=</span> <span class='st'>"cor"</span>, <span class='kw'>method.hclust</span> <span class='kw'>=</span> <span class='st'>"average"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://talgalili.github.io/dendextend/'>dendextend</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://stat.sys.i.kyoto-u.ac.jp/prog/pvclust/'>pvclust</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>lung</span><span class='op'>)</span> <span class='co'># 916 genes for 73 subjects</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>13134</span><span class='op'>)</span>
+<span class='va'>result</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/pvclust/man/pvclust.html'>pvclust</a></span><span class='op'>(</span><span class='va'>lung</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>]</span>, method.dist <span class='op'>=</span> <span class='st'>"cor"</span>, method.hclust <span class='op'>=</span> <span class='st'>"average"</span>, nboot <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>9</span>, <span class='fl'>2.5</span>, <span class='fl'>2</span>, <span class='fl'>0</span>))
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>(<span class='no'>result</span>)
-<span class='no'>dend</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='pvclust_show_signif.html'>pvclust_show_signif</a></span>(<span class='no'>result</span>, <span class='kw'>signif_value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>.5</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='pvclust_show_signif.html'>pvclust_show_signif</a></span>(<span class='no'>result</span>, <span class='kw'>signif_value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"black"</span>, <span class='st'>"grey"</span>), <span class='kw'>show_type</span> <span class='kw'>=</span> <span class='st'>"col"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Cluster dendrogram with AU/BP values (%)"</span>)
-<span class='fu'>pvrect2</span>(<span class='no'>result</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>9</span>, <span class='fl'>2.5</span>, <span class='fl'>2</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='va'>result</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='pvclust_show_signif.html'>pvclust_show_signif</a></span><span class='op'>(</span><span class='va'>result</span>, signif_value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>.5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='pvclust_show_signif.html'>pvclust_show_signif</a></span><span class='op'>(</span><span class='va'>result</span>, signif_value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"black"</span>, <span class='st'>"grey"</span><span class='op'>)</span>, show_type <span class='op'>=</span> <span class='st'>"col"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span>main <span class='op'>=</span> <span class='st'>"Cluster dendrogram with AU/BP values (%)"</span><span class='op'>)</span>
+<span class='fu'>pvrect2</span><span class='op'>(</span><span class='va'>result</span>, alpha <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span>
 <span class='co'># getting the rects to the tips / above the labels</span>
-<span class='fu'>pvrect2</span>(<span class='no'>result</span>, <span class='kw'>lower_rect</span> <span class='kw'>=</span> <span class='fl'>.15</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='fu'>pvrect2</span><span class='op'>(</span><span class='va'>result</span>, lower_rect <span class='op'>=</span> <span class='fl'>.15</span>, border <span class='op'>=</span> <span class='fl'>4</span>, alpha <span class='op'>=</span> <span class='fl'>0.95</span>, lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 <span class='co'># Original function</span>
 <span class='co'># pvrect(result, alpha=0.95)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/text.html'>text</a></span>(<span class='no'>result</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)
-}</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/text.html'>text</a></span><span class='op'>(</span><span class='va'>result</span>, alpha <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -238,7 +240,7 @@ This is based on <a href='https://rdrr.io/pkg/pvclust/man/pvpick.html'>pvrect</a
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

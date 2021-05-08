@@ -76,7 +76,7 @@ different levels of k (number of clusters)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@ different levels of k (number of clusters)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -119,7 +119,7 @@ different levels of k (number of clusters)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -149,29 +149,29 @@ This plot helps in identifiying the similarity between two dendrograms in
 different levels of k (number of clusters).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>Bk_plot</span>(
-  <span class='no'>tree1</span>,
-  <span class='no'>tree2</span>,
-  <span class='no'>k</span>,
-  <span class='kw'>add_E</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rejection_line_asymptotic</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rejection_line_permutation</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='no'>k_permutation</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>p.adjust.methods</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"none"</span>, <span class='st'>"bonferroni"</span>),
-  <span class='kw'>col_line_Bk</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>col_line_asymptotic</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>col_line_permutation</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>),
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Bk plot"</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"k (number of clusters)"</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Bk (Fowlkes-Mallows Index)"</span>,
-  <span class='no'>xlim</span>,
-  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
-  <span class='kw'>try_cutree_hclust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>Bk_plot</span><span class='op'>(</span>
+  <span class='va'>tree1</span>,
+  <span class='va'>tree2</span>,
+  <span class='va'>k</span>,
+  add_E <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  rejection_line_asymptotic <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  rejection_line_permutation <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  R <span class='op'>=</span> <span class='fl'>1000</span>,
+  <span class='va'>k_permutation</span>,
+  conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  p.adjust.methods <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"none"</span>, <span class='st'>"bonferroni"</span><span class='op'>)</span>,
+  col_line_Bk <span class='op'>=</span> <span class='fl'>1</span>,
+  col_line_asymptotic <span class='op'>=</span> <span class='fl'>2</span>,
+  col_line_permutation <span class='op'>=</span> <span class='fl'>4</span>,
+  warn <span class='op'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span><span class='op'>(</span><span class='st'>"warn"</span><span class='op'>)</span>,
+  main <span class='op'>=</span> <span class='st'>"Bk plot"</span>,
+  xlab <span class='op'>=</span> <span class='st'>"k (number of clusters)"</span>,
+  ylab <span class='op'>=</span> <span class='st'>"Bk (Fowlkes-Mallows Index)"</span>,
+  <span class='va'>xlim</span>,
+  ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>,
+  try_cutree_hclust <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -320,50 +320,51 @@ Journal of the American Statistical Association 78 (383): 553.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>23235</span>)
-<span class='no'>ss</span> <span class='kw'>&lt;-</span> <span class='fl'>TRUE</span> <span class='co'># sample(1:150, 10 )</span>
-<span class='no'>hc1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>iris</span>[<span class='no'>ss</span>, -<span class='fl'>5</span>]), <span class='st'>"com"</span>)
-<span class='no'>hc2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>iris</span>[<span class='no'>ss</span>, -<span class='fl'>5</span>]), <span class='st'>"single"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>23235</span><span class='op'>)</span>
+<span class='va'>ss</span> <span class='op'>&lt;-</span> <span class='cn'>TRUE</span> <span class='co'># sample(1:150, 10 )</span>
+<span class='va'>hc1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span><span class='va'>ss</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>, <span class='st'>"com"</span><span class='op'>)</span>
+<span class='va'>hc2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span><span class='va'>ss</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>, <span class='st'>"single"</span><span class='op'>)</span>
 <span class='co'># tree1 &lt;- as.treerogram(hc1)</span>
 <span class='co'># tree2 &lt;- as.treerogram(hc2)</span>
 <span class='co'>#    cutree(tree1)</span>
 
-<span class='fu'>Bk_plot</span>(<span class='no'>hc1</span>, <span class='no'>hc2</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>20</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>149</span>))
-<span class='fu'>Bk_plot</span>(<span class='no'>hc1</span>, <span class='no'>hc2</span>)
+<span class='fu'>Bk_plot</span><span class='op'>(</span><span class='va'>hc1</span>, <span class='va'>hc2</span>, k <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>20</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>149</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>Bk_plot</span><span class='op'>(</span><span class='va'>hc1</span>, <span class='va'>hc2</span><span class='op'>)</span>
 
-<span class='fu'>Bk_plot</span>(<span class='no'>hc1</span>, <span class='no'>hc2</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)
-<span class='fu'>Bk_plot</span>(<span class='no'>hc1</span>, <span class='no'>hc2</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>:<span class='fl'>10</span>)
-<span class='fu'>Bk_plot</span>(<span class='no'>hc1</span>, <span class='no'>hc2</span>)
-<span class='fu'>Bk_plot</span>(<span class='no'>hc1</span>, <span class='no'>hc2</span>, <span class='kw'>p.adjust.methods</span> <span class='kw'>=</span> <span class='st'>"bonferroni"</span>) <span class='co'># higher rejection lines</span>
+<span class='fu'>Bk_plot</span><span class='op'>(</span><span class='va'>hc1</span>, <span class='va'>hc2</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+<span class='fu'>Bk_plot</span><span class='op'>(</span><span class='va'>hc1</span>, <span class='va'>hc2</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='fu'>Bk_plot</span><span class='op'>(</span><span class='va'>hc1</span>, <span class='va'>hc2</span><span class='op'>)</span>
+<span class='fu'>Bk_plot</span><span class='op'>(</span><span class='va'>hc1</span>, <span class='va'>hc2</span>, p.adjust.methods <span class='op'>=</span> <span class='st'>"bonferroni"</span><span class='op'>)</span> <span class='co'># higher rejection lines</span>
 
 <span class='co'># this one can take a bit of time:</span>
-<span class='fu'>Bk_plot</span>(<span class='no'>hc1</span>, <span class='no'>hc2</span>,
-  <span class='kw'>rejection_line_permutation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>k_permutation</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>8</span>, <span class='fl'>10</span>, <span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>50</span>), <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>
-)
+<span class='fu'>Bk_plot</span><span class='op'>(</span><span class='va'>hc1</span>, <span class='va'>hc2</span>,
+  rejection_line_permutation <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  k_permutation <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>8</span>, <span class='fl'>10</span>, <span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>50</span><span class='op'>)</span>, R <span class='op'>=</span> <span class='fl'>100</span>
+<span class='op'>)</span>
 <span class='co'># we can see that the permutation line is VERY close to the asymptotic line.</span>
 <span class='co'># This is great since it means one can often use the asymptotic results</span>
 <span class='co'># Without having to do many simulations.</span>
 
 <span class='co'># works just as well for dendrograms:</span>
-<span class='no'>dend1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>(<span class='no'>hc1</span>)
-<span class='no'>dend2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>(<span class='no'>hc2</span>)
-<span class='fu'>Bk_plot</span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>3</span>, <span class='kw'>try_cutree_hclust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='co'># slower than hclust, but works...</span>
-<span class='fu'>Bk_plot</span>(<span class='no'>hc1</span>, <span class='no'>dend2</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>3</span>, <span class='kw'>try_cutree_hclust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='co'># slower than hclust, but works...</span>
-<span class='fu'>Bk_plot</span>(<span class='no'>dend1</span>, <span class='no'>dend1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>3</span>, <span class='kw'>try_cutree_hclust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># slower than hclust, but works...</span>
-<span class='fu'>Bk_plot</span>(<span class='no'>hc1</span>, <span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>3</span>) <span class='co'># slower than hclust, but works...</span>
+<span class='va'>dend1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='va'>hc1</span><span class='op'>)</span>
+<span class='va'>dend2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='va'>hc2</span><span class='op'>)</span>
+<span class='fu'>Bk_plot</span><span class='op'>(</span><span class='va'>dend1</span>, <span class='va'>dend2</span>, k <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>, try_cutree_hclust <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='co'># slower than hclust, but works...</span>
+<span class='fu'>Bk_plot</span><span class='op'>(</span><span class='va'>hc1</span>, <span class='va'>dend2</span>, k <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>, try_cutree_hclust <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='co'># slower than hclust, but works...</span>
+<span class='fu'>Bk_plot</span><span class='op'>(</span><span class='va'>dend1</span>, <span class='va'>dend1</span>, k <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>, try_cutree_hclust <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='co'># slower than hclust, but works...</span>
+<span class='fu'>Bk_plot</span><span class='op'>(</span><span class='va'>hc1</span>, <span class='va'>hc1</span>, k <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span> <span class='co'># slower than hclust, but works...</span>
 <span class='co'># for some reason it can't turn dend2 back to hclust :(</span>
-<span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'>Bk_plot</span>(<span class='no'>hc1</span>, <span class='no'>hc2</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>3</span>, <span class='kw'>try_cutree_hclust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># slower than hclust, but works...</span>
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'>Bk_plot</span><span class='op'>(</span><span class='va'>hc1</span>, <span class='va'>hc2</span>, k <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>, try_cutree_hclust <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='co'># slower than hclust, but works...</span>
 
-<span class='no'>hc1_mixed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/as.hclust.html'>as.hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>(<span class='no'>hc1</span>)))
-<span class='fu'>Bk_plot</span>(
-  <span class='kw'>tree1</span> <span class='kw'>=</span> <span class='no'>hc1</span>, <span class='kw'>tree2</span> <span class='kw'>=</span> <span class='no'>hc1_mixed</span>,
-  <span class='kw'>add_E</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>rejection_line_permutation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k_permutation</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>8</span>, <span class='fl'>10</span>, <span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>50</span>), <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>
-)
-}</div></pre>
+<span class='va'>hc1_mixed</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/as.hclust.html'>as.hclust</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='va'>hc1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>Bk_plot</span><span class='op'>(</span>
+  tree1 <span class='op'>=</span> <span class='va'>hc1</span>, tree2 <span class='op'>=</span> <span class='va'>hc1_mixed</span>,
+  add_E <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  rejection_line_permutation <span class='op'>=</span> <span class='cn'>TRUE</span>, k_permutation <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>8</span>, <span class='fl'>10</span>, <span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>50</span><span class='op'>)</span>, R <span class='op'>=</span> <span class='fl'>100</span>
+<span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -379,7 +380,7 @@ Journal of the American Statistical Association 78 (383): 553.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -74,7 +74,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -88,13 +88,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="FAQ_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Frequently asked questions</h1>
                         <h4 class="author">Tal Galili</h4>
             
-            <h4 class="date">2020-08-25</h4>
+            <h4 class="date">2021-05-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/master/vignettes/FAQ.Rmd"><code>vignettes/FAQ.Rmd</code></a></small>
       <div class="hidden name"><code>FAQ.Rmd</code></div>
@@ -116,57 +116,65 @@
 <a href="#how-to-colour-the-labels-of-a-dendrogram-by-an-additional-factor-variable" class="anchor"></a>How to colour the labels of a dendrogram by an additional factor variable</h3>
 <p>Asked (<a href="https://stackoverflow.com/questions/27485549/how-to-colour-the-labels-of-a-dendrogram-by-an-additional-factor-variable-in-r" class="uri">https://stackoverflow.com/questions/27485549/how-to-colour-the-labels-of-a-dendrogram-by-an-additional-factor-variable-in-r</a>)[here].</p>
 <p>Solution: use the <code>labels_colors</code> function.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># install.packages("dendextend")</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dendextend</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("dendextend")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/">dendextend</a></span><span class="op">)</span>
 
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">USArrests</span>[<span class="fl">1</span>:<span class="fl">5</span>,])))
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># Like: </span>
 <span class="co"># dend &lt;- USArrests[1:5,] %&gt;% dist %&gt;% hclust %&gt;% as.dendrogram</span>
 
 <span class="co"># By default, the dend has no colors to the labels</span>
-<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span>(<span class="no">dend</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mfrow</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>))
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">"Original dend"</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend</span>, main <span class="op">=</span> <span class="st">"Original dend"</span><span class="op">)</span>
 
 <span class="co"># let's add some color:</span>
-<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span>(<span class="no">dend</span>) <span class="kw">&lt;-</span> <span class="fl">1</span>:<span class="fl">5</span>
+<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>
 <span class="co"># Now each state has a color</span>
-<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span>(<span class="no">dend</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span> </code></pre></div>
 <pre><code>##   Arkansas    Arizona California    Alabama     Alaska 
 ##          1          2          3          4          5</code></pre>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">"A color for every state"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend</span>, main <span class="op">=</span> <span class="st">"A color for every state"</span><span class="op">)</span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-2-1.png" width="600"></p>
 <p>Instead of using <code>1:5</code>, we can obviously use colors that are based on another factor (organized): the labels themselves. But in such a case, we want to map between the order of the labels and the order of the items in the original dataset. Here is another example based on the iris dataset:</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># install.packages("dendextend")</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dendextend</span>)
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("dendextend")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/">dendextend</a></span><span class="op">)</span>
 
-<span class="no">small_iris</span> <span class="kw">&lt;-</span> <span class="no">iris</span>[<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">51</span>, <span class="fl">101</span>, <span class="fl">2</span>, <span class="fl">52</span>, <span class="fl">102</span>), ]
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">small_iris</span>[,-<span class="fl">5</span>])))
+<span class="va">small_iris</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">51</span>, <span class="fl">101</span>, <span class="fl">2</span>, <span class="fl">52</span>, <span class="fl">102</span><span class="op">)</span>, <span class="op">]</span>
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">small_iris</span><span class="op">[</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># Like: </span>
 <span class="co"># dend &lt;- small_iris[,-5] %&gt;% dist %&gt;% hclust %&gt;% as.dendrogram</span>
 
 <span class="co"># By default, the dend has no colors to the labels</span>
-<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span>(<span class="no">dend</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mfrow</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>))
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">"Original dend"</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend</span>, main <span class="op">=</span> <span class="st">"Original dend"</span><span class="op">)</span>
 
 <span class="co"># Let's add some color:</span>
-<span class="no">colors_to_use</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="no">small_iris</span>[,<span class="fl">5</span>])
-<span class="no">colors_to_use</span></pre></body></html></div>
+<span class="va">colors_to_use</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">small_iris</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span><span class="op">)</span>
+<span class="va">colors_to_use</span></code></pre></div>
 <pre><code>## [1] 1 2 3 1 2 3</code></pre>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># But sort them based on their order in dend:</span>
-<span class="no">colors_to_use</span> <span class="kw">&lt;-</span> <span class="no">colors_to_use</span>[<span class="fu"><a href="https://rdrr.io/r/stats/order.dendrogram.html">order.dendrogram</a></span>(<span class="no">dend</span>)]
-<span class="no">colors_to_use</span></pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># But sort them based on their order in dend:</span>
+<span class="va">colors_to_use</span> <span class="op">&lt;-</span> <span class="va">colors_to_use</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/order.dendrogram.html">order.dendrogram</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span><span class="op">]</span>
+<span class="va">colors_to_use</span></code></pre></div>
 <pre><code>## [1] 1 1 2 2 3 3</code></pre>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># Now we can use them</span>
-<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span>(<span class="no">dend</span>) <span class="kw">&lt;-</span> <span class="no">colors_to_use</span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Now we can use them</span>
+<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">colors_to_use</span>
 <span class="co"># Now each state has a color</span>
-<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span>(<span class="no">dend</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span> </code></pre></div>
 <pre><code>##   1   2  51  52 101 102 
 ##   1   1   2   2   3   3</code></pre>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">"A color for every Species"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend</span>, main <span class="op">=</span> <span class="st">"A color for every Species"</span><span class="op">)</span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-3-1.png" width="600"></p>
 </div>
 <div id="how-to-color-a-dendrograms-labels-according-to-defined-groups-in-r" class="section level3">
@@ -175,23 +183,24 @@
 <p>Asked (<a href="https://stackoverflow.com/questions/31117849/how-to-color-a-dendrograms-labels-according-to-defined-groups-in-r" class="uri">https://stackoverflow.com/questions/31117849/how-to-color-a-dendrograms-labels-according-to-defined-groups-in-r</a>)[here].</p>
 <p>Solution: use the <code>color_labels</code> function.</p>
 <p>I suspect the function you are looking for is either <code>color_labels</code> or <code>get_leaves_branches_col</code>. The first color your labels based on <code>cutree</code> (like <code>color_branches</code> do) and the second allows you to get the colors of the branch of each leaf, and then use it to color the labels of the tree (if you use unusual methods for coloring the branches (as happens when using <code>branches_attr_by_labels</code>). For example:</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"> <span class="co"># define dendrogram object to play with:</span>
- <span class="no">hc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">USArrests</span>[<span class="fl">1</span>:<span class="fl">5</span>,]), <span class="st">"ave"</span>)
- <span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="no">hc</span>)
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"> <span class="co"># define dendrogram object to play with:</span>
+ <span class="va">hc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span><span class="op">)</span>, <span class="st">"ave"</span><span class="op">)</span>
+ <span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="va">hc</span><span class="op">)</span>
 
- <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dendextend</span>)
- <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mfrow</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>), <span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">5</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">0</span>))
- <span class="no">dend</span> <span class="kw">&lt;-</span> <span class="no">dend</span> <span class="kw">%&gt;%</span>
-          <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>) <span class="kw">%&gt;%</span>
-          <span class="fu"><a href="../reference/set.html">set</a></span>(<span class="st">"branches_lwd"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span>)) <span class="kw">%&gt;%</span>
-          <span class="fu"><a href="../reference/set.html">set</a></span>(<span class="st">"branches_lty"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span>))
+ <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/">dendextend</a></span><span class="op">)</span>
+ <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span>
+ <span class="va">dend</span> <span class="op">&lt;-</span> <span class="va">dend</span> <span class="op">%&gt;%</span>
+          <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">%&gt;%</span>
+          <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"branches_lwd"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+          <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"branches_lty"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+ 
+ <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span>
 
- <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>)
-
- <span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/color_labels.html">color_labels</a></span>(<span class="no">dend</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>)
+ <span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/color_labels.html">color_labels</a></span><span class="op">(</span><span class="va">dend</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
  <span class="co"># The same as:</span>
  <span class="co"># labels_colors(dend)  &lt;- get_leaves_branches_col(dend)</span>
- <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>)</pre></body></html></div>
+ <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-4-1.png" width="450"></p>
 <p>Either way, you should always have a look at the <code>set</code> function, for ideas on what can be done to your dendrogram (this saves the hassle of remembering all the different functions names).</p>
 </div>
@@ -199,36 +208,39 @@
 <h3 class="hasAnchor">
 <a href="#how-to-color-a-dendrograms-brancheslabels-based-on-cluster-i-e--cutree-result" class="anchor"></a>How to color a dendrogram’s branches/labels based on cluster (i.e.: cutree result)</h3>
 <p>Use the <code>color_branches</code> and <code>color_labels</code> functions, with the <code>k</code> (or<code>h</code>) parameter:</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co"># install.packages("dendextend")</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dendextend</span>)
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("dendextend")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/">dendextend</a></span><span class="op">)</span>
 
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">USArrests</span>[<span class="fl">1</span>:<span class="fl">5</span>,])))
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># Like: </span>
 <span class="co"># dend &lt;- USArrests[1:5,] %&gt;% dist %&gt;% hclust %&gt;% as.dendrogram</span>
 
-<span class="no">dend1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="no">dend</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>)
-<span class="no">dend2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/color_labels.html">color_labels</a></span>(<span class="no">dend</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>)
+<span class="va">dend1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span><span class="op">(</span><span class="va">dend</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="va">dend2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/color_labels.html">color_labels</a></span><span class="op">(</span><span class="va">dend</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mfrow</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>))
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend1</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">"Colored branches"</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend2</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">"Colored labels"</span>)</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend1</span>, main <span class="op">=</span> <span class="st">"Colored branches"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend2</span>, main <span class="op">=</span> <span class="st">"Colored labels"</span><span class="op">)</span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-5-1.png" width="600"></p>
 </div>
 <div id="change-dendrograms-labels" class="section level3">
 <h3 class="hasAnchor">
 <a href="#change-dendrograms-labels" class="anchor"></a>Change dendrogram’s labels</h3>
 <p>Use the left assign <code>labels&lt;-</code> function:</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co"># install.packages("dendextend")</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dendextend</span>)
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("dendextend")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/">dendextend</a></span><span class="op">)</span>
 
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">USArrests</span>[<span class="fl">1</span>:<span class="fl">5</span>,])))
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># Like: </span>
 <span class="co"># dend &lt;- USArrests[1:5,] %&gt;% dist %&gt;% hclust %&gt;% as.dendrogram</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">dend</span>)</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Arkansas"   "Arizona"    "California" "Alabama"    "Alaska"</code></pre>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">dend</span>) <span class="kw">&lt;-</span> <span class="fl">1</span>:<span class="fl">5</span>
-<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">dend</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>
+<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
 </div>
 <div id="larger-font-for-leaves-in-a-dendrogram" class="section level3">
@@ -236,29 +248,32 @@
 <a href="#larger-font-for-leaves-in-a-dendrogram" class="anchor"></a>Larger font for leaves in a dendrogram</h3>
 <p>Asked (<a href="https://stackoverflow.com/questions/26965390/larger-font-and-spacing-between-leaves-in-r-dendrogram" class="uri">https://stackoverflow.com/questions/26965390/larger-font-and-spacing-between-leaves-in-r-dendrogram</a>)[here].</p>
 <p>Solution: use the <code>set</code> function, with the “labels_cex” parameter.</p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="co"># install.packages("dendextend")</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dendextend</span>)
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("dendextend")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/">dendextend</a></span><span class="op">)</span>
 
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">USArrests</span>[<span class="fl">1</span>:<span class="fl">5</span>,])))
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># Like: </span>
 <span class="co"># dend &lt;- USArrests[1:5,] %&gt;% dist %&gt;% hclust %&gt;% as.dendrogram</span>
 
 <span class="co"># By default, the dend has no text size to it (showing only the first leaf)</span>
-<span class="fu"><a href="../reference/get_leaves_nodePar.html">get_leaves_nodePar</a></span>(<span class="no">dend</span>)<span class="kw">[[</span><span class="fl">1</span>]]</pre></body></html></div>
+<span class="fu"><a href="../reference/get_leaves_nodePar.html">get_leaves_nodePar</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mfrow</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>), <span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>,<span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">2</span>))
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">"Original dend"</span>)
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend</span>, main <span class="op">=</span> <span class="st">"Original dend"</span><span class="op">)</span>
 
 <span class="co"># let's increase the size of the labels:</span>
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/set.html">set</a></span>(<span class="no">dend</span>, <span class="st">"labels_cex"</span>, <span class="fl">2</span>)
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="va">dend</span>, <span class="st">"labels_cex"</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="co"># Now each state has a larger label</span>
-<span class="fu"><a href="../reference/get_leaves_nodePar.html">get_leaves_nodePar</a></span>(<span class="no">dend</span>)<span class="kw">[[</span><span class="fl">1</span>]]</pre></body></html></div>
+<span class="fu"><a href="../reference/get_leaves_nodePar.html">get_leaves_nodePar</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## $lab.cex
 ## [1] 2
 ## 
 ## $pch
 ## [1] NA</code></pre>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">"A larger font for labels"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend</span>, main <span class="op">=</span> <span class="st">"A larger font for labels"</span><span class="op">)</span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-7-1.png" width="600"></p>
 <p>(Note that changing the spacing between the labels is currently not implemented)</p>
 </div>
@@ -267,18 +282,20 @@
 <a href="#how-to-view-attributes-of-a-dendrogram" class="anchor"></a>How to view attributes of a dendrogram</h3>
 <p>Asked (<a href="https://stackoverflow.com/questions/26240200/how-to-access-attributes-of-a-dendrogram-in-r" class="uri">https://stackoverflow.com/questions/26240200/how-to-access-attributes-of-a-dendrogram-in-r</a>)[here], and (<a href="https://stackoverflow.com/questions/25664911/r-hclust-height-of-final-merge" class="uri">https://stackoverflow.com/questions/25664911/r-hclust-height-of-final-merge</a>)[here].</p>
 <p>It generally depends on which attribute we want to view. For “midpoint” (or height) use the <code>get_nodes_attr</code> function, with the “midpoint” parameter.</p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="co"># install.packages("dendextend")</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dendextend</span>)
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("dendextend")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/">dendextend</a></span><span class="op">)</span>
 
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">USArrests</span>[<span class="fl">1</span>:<span class="fl">5</span>,])))
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># Like: </span>
 <span class="co"># dend &lt;- USArrests[1:5,] %&gt;% dist %&gt;% hclust %&gt;% as.dendrogram</span>
 
 <span class="co"># midpoint for all nodes</span>
-<span class="fu"><a href="../reference/get_nodes_attr.html">get_nodes_attr</a></span>(<span class="no">dend</span>, <span class="st">"midpoint"</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/get_nodes_attr.html">get_nodes_attr</a></span><span class="op">(</span><span class="va">dend</span>, <span class="st">"midpoint"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.25   NA 1.50 0.50   NA   NA 0.50   NA   NA</code></pre>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="co"># Perhaps also for the height:</span>
-<span class="fu"><a href="../reference/get_nodes_attr.html">get_nodes_attr</a></span>(<span class="no">dend</span>, <span class="st">"height"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Perhaps also for the height:</span>
+<span class="fu"><a href="../reference/get_nodes_attr.html">get_nodes_attr</a></span><span class="op">(</span><span class="va">dend</span>, <span class="st">"height"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 108.85192   0.00000  63.00833  23.19418   0.00000   0.00000  37.17701
 ## [8]   0.00000   0.00000</code></pre>
 <p>To also change an attribute, you can use the various assign functions from the package: <code>assign_values_to_leaves_nodePar</code>, <code>assign_values_to_leaves_edgePar</code>, <code>assign_values_to_nodes_nodePar</code>, <code>assign_values_to_branches_edgePar</code>, <code>remove_branches_edgePar</code>, <code>remove_nodes_nodePar</code></p>
@@ -289,48 +306,49 @@
 <p>Asked (<a href="https://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2" class="uri">https://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2</a>?)[here].</p>
 <p>Solution: use the <code>color_branches</code> function (or the <code>set</code> function, with the “branches_k_color”, “k”, and “value” parameters).</p>
 <p>(Getting the data for this example is from the (<a href="https://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2" class="uri">https://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2</a>)[original SO question])</p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">test</span> <span class="kw">&lt;-</span> <span class="no">test0</span>
-<span class="no">rnames</span> <span class="kw">&lt;-</span> <span class="no">test</span>[,<span class="fl">1</span>]
-<span class="no">test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.matrix.html">data.matrix</a></span>(<span class="no">test</span>[,<span class="fl">2</span>:<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(<span class="no">test</span>)]) <span class="co"># to matrix</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">test</span>) <span class="kw">&lt;-</span> <span class="no">rnames</span>
-<span class="no">test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(<span class="no">test</span>, <span class="kw">center</span><span class="kw">=</span><span class="no">T</span>, <span class="kw">scale</span><span class="kw">=</span><span class="no">T</span>) <span class="co"># data standarization</span>
-<span class="no">test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="no">test</span>) <span class="co"># transpose</span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">test</span> <span class="op">&lt;-</span> <span class="va">test0</span>
+<span class="va">rnames</span> <span class="op">&lt;-</span> <span class="va">test</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> 
+<span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.matrix.html">data.matrix</a></span><span class="op">(</span><span class="va">test</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span><span class="op">]</span><span class="op">)</span> <span class="co"># to matrix</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">rnames</span>                 
+<span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">test</span>, center<span class="op">=</span><span class="cn">T</span>, scale<span class="op">=</span><span class="cn">T</span><span class="op">)</span> <span class="co"># data standarization</span>
+<span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span> <span class="co"># transpose</span>
 
 
 <span class="co">## Creating a color palette &amp; color breaks</span>
 
-<span class="no">my_palette</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"forestgreen"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>))(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">299</span>)
+<span class="va">my_palette</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"forestgreen"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">299</span><span class="op">)</span>
 
-<span class="no">col_breaks</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(-<span class="fl">1</span>,-<span class="fl">0.5</span>,<span class="kw">length</span><span class="kw">=</span><span class="fl">100</span>),  <span class="co"># forestgreen</span>
-               <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(-<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="kw">length</span><span class="kw">=</span><span class="fl">100</span>), <span class="co"># yellow</span>
-               <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0.5</span>,<span class="fl">1</span>,<span class="kw">length</span><span class="kw">=</span><span class="fl">100</span>))    <span class="co"># red</span>
+<span class="va">col_breaks</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">0.5</span>,length<span class="op">=</span><span class="fl">100</span><span class="op">)</span>,  <span class="co"># forestgreen</span>
+               <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>,<span class="fl">0.5</span>,length<span class="op">=</span><span class="fl">100</span><span class="op">)</span>, <span class="co"># yellow</span>
+               <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">1</span>,length<span class="op">=</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>    <span class="co"># red</span>
 
 <span class="co"># distance &amp; hierarchical clustering</span>
-<span class="no">distance</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">test</span>, <span class="kw">method</span> <span class="kw">=</span><span class="st">"euclidean"</span>)
-<span class="no">hcluster</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="no">distance</span>, <span class="kw">method</span> <span class="kw">=</span><span class="st">"ward.D"</span>)
+<span class="va">distance</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">test</span>, method <span class="op">=</span><span class="st">"euclidean"</span><span class="op">)</span>    
+<span class="va">hcluster</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">distance</span>, method <span class="op">=</span><span class="st">"ward.D"</span><span class="op">)</span>
 
 
-<span class="no">dend1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="no">hcluster</span>)
+<span class="va">dend1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="va">hcluster</span><span class="op">)</span>
 
 <span class="co"># Get the dendextend package</span>
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">dendextend</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"dendextend"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dendextend</span>)
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/">dendextend</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"dendextend"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/">dendextend</a></span><span class="op">)</span>
 <span class="co"># get some colors</span>
-<span class="no">cols_branches</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"darkred"</span>, <span class="st">"forestgreen"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span>)
+<span class="va">cols_branches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkred"</span>, <span class="st">"forestgreen"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span><span class="op">)</span>
 <span class="co"># Set the colors of 4 branches</span>
-<span class="no">dend1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="no">dend1</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">cols_branches</span>)
+<span class="va">dend1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span><span class="op">(</span><span class="va">dend1</span>, k <span class="op">=</span> <span class="fl">4</span>, col <span class="op">=</span> <span class="va">cols_branches</span><span class="op">)</span>
 <span class="co"># or with:</span>
 <span class="co"># dend1 &lt;- set(dend1, "branches_k_color", k = 4, value = cols_branches)</span>
 
 <span class="co"># Get the colors of the tips of the dendrogram:</span>
 <span class="co"># col_labels &lt;- cols_branches[cutree(dend1, k = 4)] # this may need tweaking in various cases - the following is a more general solution.</span>
 
-<span class="no">col_labels</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_leaves_branches_col.html">get_leaves_branches_col</a></span>(<span class="no">dend1</span>)
+<span class="va">col_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_leaves_branches_col.html">get_leaves_branches_col</a></span><span class="op">(</span><span class="va">dend1</span><span class="op">)</span>
 <span class="co"># But due to the way heatmap.2 works - we need to fix it to be in the </span>
 <span class="co"># order of the data!   </span>
-<span class="no">col_labels</span> <span class="kw">&lt;-</span> <span class="no">col_labels</span>[<span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/order.dendrogram.html">order.dendrogram</a></span>(<span class="no">dend1</span>))]
+<span class="va">col_labels</span> <span class="op">&lt;-</span> <span class="va">col_labels</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/order.dendrogram.html">order.dendrogram</a></span><span class="op">(</span><span class="va">dend1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
 
-<span class="no">dend1</span>
+<span class="va">dend1</span>
 <span class="co"># plot(dend1)</span>
 <span class="co"># a &lt;- heights_per_k.dendrogram(dend1)</span>
 <span class="co"># library(dendextendRcpp)</span>
@@ -340,30 +358,31 @@
 
 <span class="co"># Creating Heat Map</span>
 <span class="co"># if(!require(gplots)) install.packages("gplots")</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gplots</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/gplots/man/heatmap.2.html">heatmap.2</a></span>(<span class="no">test</span>,
-    <span class="kw">main</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>( <span class="st">"test"</span>),
-        <span class="kw">trace</span><span class="kw">=</span><span class="st">"none"</span>,
-        <span class="kw">margins</span> <span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">5</span>,<span class="fl">7</span>),
-        <span class="kw">col</span><span class="kw">=</span><span class="no">my_palette</span>,
-        <span class="kw">breaks</span><span class="kw">=</span><span class="no">col_breaks</span>,
-        <span class="kw">dendrogram</span><span class="kw">=</span><span class="st">"row"</span>,
-        <span class="kw">Rowv</span> <span class="kw">=</span> <span class="no">dend1</span>,
-        <span class="kw">Colv</span> <span class="kw">=</span> <span class="st">"NA"</span>,
-        <span class="kw">key.xlab</span> <span class="kw">=</span> <span class="st">"Concentration (index)"</span>,
-        <span class="kw">cexRow</span> <span class="kw">=</span><span class="fl">0.6</span>,
-        <span class="kw">cexCol</span> <span class="kw">=</span> <span class="fl">0.8</span>,
-        <span class="kw">na.rm</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-        <span class="kw">RowSideColors</span> <span class="kw">=</span> <span class="no">col_labels</span> <span class="co"># to add nice colored strips     </span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/talgalili/gplots">gplots</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/gplots/man/heatmap.2.html">heatmap.2</a></span><span class="op">(</span><span class="va">test</span>,  
+    main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span> <span class="st">"test"</span><span class="op">)</span>,  
+        trace<span class="op">=</span><span class="st">"none"</span>,          
+        margins <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">7</span><span class="op">)</span>,      
+        col<span class="op">=</span><span class="va">my_palette</span>,        
+        breaks<span class="op">=</span><span class="va">col_breaks</span>,     
+        dendrogram<span class="op">=</span><span class="st">"row"</span>,      
+        Rowv <span class="op">=</span> <span class="va">dend1</span>,  
+        Colv <span class="op">=</span> <span class="st">"NA"</span>, 
+        key.xlab <span class="op">=</span> <span class="st">"Concentration (index)"</span>,
+        cexRow <span class="op">=</span><span class="fl">0.6</span>,
+        cexCol <span class="op">=</span> <span class="fl">0.8</span>,
+        na.rm <span class="op">=</span> <span class="cn">TRUE</span>,
+        RowSideColors <span class="op">=</span> <span class="va">col_labels</span> <span class="co"># to add nice colored strips     </span>
       <span class="co"># colRow = col_labels # to add nice colored labels - only for qplots 2.17.0 and higher</span>
-        )</pre></body></html></div>
+        <span class="op">)</span> </code></pre></div>
 </div>
 <div id="for-package-developers---how-to-call-imported-calls-from-dendextend-0-18-3" class="section level3">
 <h3 class="hasAnchor">
 <a href="#for-package-developers---how-to-call-imported-calls-from-dendextend-0-18-3" class="anchor"></a>For package developers - how to call imported calls from dendextend 0.18.3?</h3>
 <p>If you are developing a package and you wish to use dendextend as an imported package, that is - without loading it to the search path, you should run:</p>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="kw pkg">dendextend</span><span class="kw ns">::</span><span class="fu"><a href="../reference/assign_dendextend_options.html">assign_dendextend_options</a></span>()
-<span class="co"># This populates the dendextend::dendextend_options() space</span></pre></body></html></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">dendextend</span><span class="fu">::</span><span class="fu"><a href="../reference/assign_dendextend_options.html">assign_dendextend_options</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># This populates the dendextend::dendextend_options() space</span></code></pre></div>
 <p>Before using any of its function (for example: <code><a href="../reference/color_branches.html">dendextend::color_branches</a></code> ). As of dendextend version 1.0.0, this is no longer required.</p>
 </div>
 <div id="how-to-plot-a-fan-polar-dendrogram-in-r" class="section level3">
@@ -371,24 +390,25 @@
 <a href="#how-to-plot-a-fan-polar-dendrogram-in-r" class="anchor"></a>How to plot a fan (Polar) Dendrogram in R?</h3>
 <p>Asked (<a href="https://stats.stackexchange.com/questions/4062/how-to-plot-a-fan-polar-dendrogram-in-r" class="uri">https://stats.stackexchange.com/questions/4062/how-to-plot-a-fan-polar-dendrogram-in-r</a>)[here].</p>
 <p>Solution: use the <code>circlize_dendrogram</code> function.</p>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="co"># install.packages("dendextend")</span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("dendextend")</span>
 <span class="co"># install.packages("circlize")</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dendextend</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">circlize</span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/">dendextend</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/circlize">circlize</a></span><span class="op">)</span>
 
 <span class="co"># create a dendrogram</span>
-<span class="no">hc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="kw pkg">datasets</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/r/datasets/mtcars.html">mtcars</a></span>))
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="no">hc</span>)
+<span class="va">hc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/mtcars.html">mtcars</a></span><span class="op">)</span><span class="op">)</span>
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="va">hc</span><span class="op">)</span>
 
 <span class="co"># modify the dendrogram to have some colors in the branches and labels</span>
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="no">dend</span> <span class="kw">%&gt;%</span>
-   <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="kw">k</span><span class="kw">=</span><span class="fl">4</span>) <span class="kw">%&gt;%</span>
-   <span class="no">color_labels</span>
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="va">dend</span> <span class="op">%&gt;%</span> 
+   <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span><span class="op">(</span>k<span class="op">=</span><span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+   <span class="va">color_labels</span>
 
 <span class="co"># plot the radial plot</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">0</span>,<span class="fl">4</span>))
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># circlize_dendrogram(dend, dend_track_height = 0.8) </span>
-<span class="fu"><a href="../reference/circlize_dendrogram.html">circlize_dendrogram</a></span>(<span class="no">dend</span>, <span class="kw">labels_track_height</span> <span class="kw">=</span> <span class="fl">NA</span>, <span class="kw">dend_track_height</span> <span class="kw">=</span> <span class="fl">.3</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/circlize_dendrogram.html">circlize_dendrogram</a></span><span class="op">(</span><span class="va">dend</span>, labels_track_height <span class="op">=</span> <span class="cn">NA</span>, dend_track_height <span class="op">=</span> <span class="fl">.3</span><span class="op">)</span> </code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-12-1.png" width="750"></p>
 </div>
 <div id="a-way-to-calculate-lowest-value-of-h-in-cut-that-produces-groupings-of-a-given-minimum-size" class="section level3">
@@ -397,9 +417,10 @@
 <p>Asked (<a href="https://stackoverflow.com/questions/31124810/r-cut-dendrogram-into-groups-with-minimum-size/" class="uri">https://stackoverflow.com/questions/31124810/r-cut-dendrogram-into-groups-with-minimum-size/</a>)[here].</p>
 <p>Solution: use the <code>heights_per_k.dendrogram</code> function.</p>
 <p>This feature is available in the dendextend package with the <code>heights_per_k.dendrogram</code> function (which also has a faster C++ implementation when loading the dendextendRcpp function).</p>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="no">hc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">USArrests</span>[<span class="fl">1</span>:<span class="fl">4</span>,]), <span class="st">"ave"</span>)
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="no">hc</span>)
-<span class="fu"><a href="../reference/heights_per_k.dendrogram.html">heights_per_k.dendrogram</a></span>(<span class="no">dend</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,<span class="op">]</span><span class="op">)</span>, <span class="st">"ave"</span><span class="op">)</span>
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="va">hc</span><span class="op">)</span>
+<span class="fu"><a href="../reference/heights_per_k.dendrogram.html">heights_per_k.dendrogram</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span></code></pre></div>
 <pre><code>##        1        2        3        4 
 ## 86.47086 68.84745 45.98871 28.36531</code></pre>
 <p>As a sidenote, the dendextend package has a <code>cutree.dendrogram</code> S3 method for dendrograms (which works very similarly to <code>cutree</code> for <code>hclust</code> objects).</p>
@@ -409,19 +430,20 @@
 <a href="#coloring-dendrograms-end-branches-or-leaves-based-on-column-number-of-data-frame-in-r" class="anchor"></a>Coloring dendrogram’s end branches (or leaves) based on column number of data frame in R</h3>
 <p>Asked (<a href="https://stackoverflow.com/questions/30062187/coloring-dendrogram-s-end-branches-or-leaves-based-on-column-number-of-data-fr" class="uri">https://stackoverflow.com/questions/30062187/coloring-dendrogram-s-end-branches-or-leaves-based-on-column-number-of-data-fr</a>)[here].</p>
 <p>Solution: use the <code>assign_values_to_leaves_edgePar</code> function.</p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">aa1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">8</span>)
-<span class="no">bb1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">7</span>,<span class="fl">11</span>)
-<span class="no">aa2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>,<span class="fl">6</span>,<span class="fl">9</span>,<span class="fl">12</span>)
-<span class="no">bb2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">9</span>)
-<span class="no">data.main</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="no">aa1</span>,<span class="no">bb1</span>,<span class="no">aa2</span>,<span class="no">bb2</span>)
-<span class="no">d1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="no">data.main</span>))
-<span class="no">hcl1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="no">d1</span>)
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">aa1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">8</span><span class="op">)</span>
+<span class="va">bb1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">7</span>,<span class="fl">11</span><span class="op">)</span>
+<span class="va">aa2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">6</span>,<span class="fl">9</span>,<span class="fl">12</span><span class="op">)</span>
+<span class="va">bb2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">9</span><span class="op">)</span>
+<span class="va">data.main</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">aa1</span>,<span class="va">bb1</span>,<span class="va">aa2</span>,<span class="va">bb2</span><span class="op">)</span>
+<span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">data.main</span><span class="op">)</span><span class="op">)</span>
+<span class="va">hcl1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">d1</span><span class="op">)</span>
 <span class="co"># plot(hcl1)</span>
 
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="no">hcl1</span>)
-<span class="no">col_aa_red</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"aa"</span>, <span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">dend</span>)), <span class="st">"red"</span>, <span class="st">"blue"</span>)
-<span class="no">dend2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/assign_values_to_leaves_edgePar.html">assign_values_to_leaves_edgePar</a></span>(<span class="kw">dend</span><span class="kw">=</span><span class="no">dend</span>, <span class="kw">value</span> <span class="kw">=</span> <span class="no">col_aa_red</span>, <span class="kw">edgePar</span> <span class="kw">=</span> <span class="st">"col"</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend2</span>)</pre></body></html></div>
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="va">hcl1</span><span class="op">)</span>
+<span class="va">col_aa_red</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"aa"</span>, <span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span><span class="op">)</span>, <span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>
+<span class="va">dend2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/assign_values_to_leaves_edgePar.html">assign_values_to_leaves_edgePar</a></span><span class="op">(</span>dend<span class="op">=</span><span class="va">dend</span>, value <span class="op">=</span> <span class="va">col_aa_red</span>, edgePar <span class="op">=</span> <span class="st">"col"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend2</span><span class="op">)</span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-14-1.png" width="450"></p>
 </div>
 <div id="color-side-bar-dendrogram-plot" class="section level3">
@@ -430,43 +452,45 @@
 <p>Asked (<a href="https://stackoverflow.com/questions/34539746/color-side-bar-dendrogram-plot/" class="uri">https://stackoverflow.com/questions/34539746/color-side-bar-dendrogram-plot/</a>)[here].</p>
 <p>Solution: use the <code>color_branches</code> function.</p>
 <p>Example using <code>mtcars</code>:</p>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="co">## mtcars example</span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## mtcars example</span>
 
 <span class="co"># Create the dend:</span>
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">mtcars</span>)))
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Create a vector giving a color for each car to which company it belongs to</span>
-<span class="no">car_type</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Other"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">mtcars</span>)))
-<span class="no">is_x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"Merc"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">mtcars</span>))
-<span class="no">car_type</span>[<span class="no">is_x</span>] <span class="kw">&lt;-</span> <span class="st">"Mercedes"</span>
-<span class="no">is_x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"Mazda"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">mtcars</span>))
-<span class="no">car_type</span>[<span class="no">is_x</span>] <span class="kw">&lt;-</span> <span class="st">"Mazda"</span>
-<span class="no">is_x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"Toyota"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">mtcars</span>))
-<span class="no">car_type</span>[<span class="no">is_x</span>] <span class="kw">&lt;-</span> <span class="st">"Toyota"</span>
-<span class="no">car_type</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">car_type</span>)
-<span class="no">n_car_types</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">car_type</span>))
-<span class="no">cols_4</span> <span class="kw">&lt;-</span> <span class="kw pkg">colorspace</span><span class="kw ns">::</span><span class="fu"><a href="http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html">rainbow_hcl</a></span>(<span class="no">n_car_types</span>, <span class="kw">c</span> <span class="kw">=</span> <span class="fl">70</span>, <span class="kw">l</span>  <span class="kw">=</span> <span class="fl">50</span>)
-<span class="no">col_car_type</span> <span class="kw">&lt;-</span> <span class="no">cols_4</span>[<span class="no">car_type</span>]
+<span class="va">car_type</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Other"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">is_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"Merc"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span>
+<span class="va">car_type</span><span class="op">[</span><span class="va">is_x</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Mercedes"</span>
+<span class="va">is_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"Mazda"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span>
+<span class="va">car_type</span><span class="op">[</span><span class="va">is_x</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Mazda"</span>
+<span class="va">is_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"Toyota"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span>
+<span class="va">car_type</span><span class="op">[</span><span class="va">is_x</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Toyota"</span>
+<span class="va">car_type</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">car_type</span><span class="op">)</span>
+<span class="va">n_car_types</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">car_type</span><span class="op">)</span><span class="op">)</span>
+<span class="va">cols_4</span> <span class="op">&lt;-</span> <span class="fu">colorspace</span><span class="fu">::</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html">rainbow_hcl</a></span><span class="op">(</span><span class="va">n_car_types</span>, c <span class="op">=</span> <span class="fl">70</span>, l  <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
+<span class="va">col_car_type</span> <span class="op">&lt;-</span> <span class="va">cols_4</span><span class="op">[</span><span class="va">car_type</span><span class="op">]</span>
 
 <span class="co"># extra: showing the various clusters cuts </span>
-<span class="no">k234</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cutree-methods.html">cutree</a></span>(<span class="no">dend</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">2</span>:<span class="fl">4</span>)
+<span class="va">k234</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cutree.html">cutree</a></span><span class="op">(</span><span class="va">dend</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>
 
 <span class="co"># color labels by car company:</span>
-<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span>(<span class="no">dend</span>) <span class="kw">&lt;-</span> <span class="no">col_car_type</span>[<span class="fu"><a href="https://rdrr.io/r/stats/order.dendrogram.html">order.dendrogram</a></span>(<span class="no">dend</span>)]
+<span class="fu"><a href="../reference/labels_colors.html">labels_colors</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">col_car_type</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/order.dendrogram.html">order.dendrogram</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span><span class="op">]</span>
 <span class="co"># color branches based on cutting the tree into 4 clusters:</span>
-<span class="no">dend</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="no">dend</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">4</span>)
+<span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span><span class="op">(</span><span class="va">dend</span>, k <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 
 <span class="co">### plots</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">12</span>,<span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">1</span>))
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>)
-<span class="fu"><a href="../reference/colored_bars.html">colored_bars</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">k234</span>[,<span class="fl">3</span>:<span class="fl">1</span>], <span class="no">col_car_type</span>), <span class="no">dend</span>, <span class="kw">rowLabels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"k = "</span>, <span class="fl">4</span>:<span class="fl">2</span>), <span class="st">"Car Type"</span>))</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">12</span>,<span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span>
+<span class="fu"><a href="../reference/colored_bars.html">colored_bars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">k234</span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span>, <span class="va">col_car_type</span><span class="op">)</span>, <span class="va">dend</span>, rowLabels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"k = "</span>, <span class="fl">4</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>, <span class="st">"Car Type"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-15-1.png" width="450"></p>
-<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="co"># horiz version:</span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># horiz version:</span>
 <span class="co"># dend &lt;- sort(dend)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">12</span>))
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">dend</span>, <span class="kw">horiz</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="fu"><a href="../reference/colored_bars.html">colored_bars</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">k234</span>[,<span class="fl">3</span>:<span class="fl">1</span>], <span class="no">col_car_type</span>), <span class="no">dend</span>, <span class="kw">rowLabels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"k = "</span>, <span class="fl">4</span>:<span class="fl">2</span>), <span class="st">"Car Type"</span>), <span class="kw">horiz</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span>(<span class="st">"topleft"</span>, <span class="kw">legend</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="no">car_type</span>), <span class="kw">fill</span> <span class="kw">=</span> <span class="no">cols_4</span>)</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">12</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">dend</span>, horiz <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="../reference/colored_bars.html">colored_bars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">k234</span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span>, <span class="va">col_car_type</span><span class="op">)</span>, <span class="va">dend</span>, rowLabels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"k = "</span>, <span class="fl">4</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>, <span class="st">"Car Type"</span><span class="op">)</span>, horiz <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">car_type</span><span class="op">)</span>, fill <span class="op">=</span> <span class="va">cols_4</span><span class="op">)</span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-15-2.png" width="450"></p>
 </div>
 <div id="plot-a-mirror-labels-on-the-left-horizontal-dendrogram" class="section level3">
@@ -475,19 +499,21 @@
 <p>Asked (<a href="https://github.com/talgalili/dendextend/issues/29" class="uri">https://github.com/talgalili/dendextend/issues/29</a>)[here].</p>
 <p>Solution: use the <code>plot_horiz.dendrogram</code> function.</p>
 <p>Example using <code>USArrests</code>:</p>
-<div class="sourceCode" id="cb38"><html><body><pre class="r"><span class="co"># Create the dend:</span>
-<span class="no">hc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">USArrests</span>), <span class="st">"ave"</span>)
-<span class="no">d</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span>(<span class="no">hc</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dendextend</span>)
-<span class="no">d</span> <span class="kw">&lt;-</span> <span class="no">d</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span>(<span class="kw">k</span><span class="kw">=</span><span class="fl">3</span>) <span class="kw">%&gt;%</span> <span class="no">color_labels</span>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Create the dend:</span>
+<span class="va">hc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span>, <span class="st">"ave"</span><span class="op">)</span>
+<span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="va">hc</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/">dendextend</a></span><span class="op">)</span>
+<span class="va">d</span> <span class="op">&lt;-</span> <span class="va">d</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/color_branches.html">color_branches</a></span><span class="op">(</span>k<span class="op">=</span><span class="fl">3</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="va">color_labels</span>
 
 <span class="co"># horiz normal version</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">7</span>))
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">d</span>, <span class="kw">horiz</span>  <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">7</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">d</span>, horiz  <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-16-1.png" width="450"></p>
-<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="co"># horiz mirror version</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>,<span class="fl">7</span>,<span class="fl">1</span>,<span class="fl">1</span>))
-<span class="fu"><a href="../reference/plot_horiz.dendrogram.html">plot_horiz.dendrogram</a></span>(<span class="no">d</span>, <span class="kw">side</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># horiz mirror version</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">7</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plot_horiz.dendrogram.html">plot_horiz.dendrogram</a></span><span class="op">(</span><span class="va">d</span>, side <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-16-2.png" width="450"></p>
 </div>
 </div>
@@ -508,7 +534,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

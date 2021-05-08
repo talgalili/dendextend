@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -114,7 +114,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -135,9 +135,21 @@
       <small>Source: <a href='https://github.com/talgalili/dendextend/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="dendextend-1-14-0-2020-08-25" class="section level2">
+    <div id="dendextend-1150-2021-05-08" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-14-0-2020-08-25" class="anchor"></a>dendextend 1.14.0 (2020-08-25)</h2>
+<a href="#dendextend-1150-2021-05-08" class="anchor"></a>dendextend 1.15.0 (2021-05-08)</h2>
+<p>###UPDATED FUNCTIONS:</p>
+<ul>
+<li>colored_dots - new dot_size argument</li>
+</ul>
+<p>###BUG FIXES</p>
+<ul>
+<li>get_subdendrograms - fix it to work with character labels, and also sort the output sub-dendrograms to be in the original order of the clusters in the dengrogram (instead of the order of the original data, which is less useful for exploration). Props <a href='https://github.com/chasemc'>@chasemc</a>.</li>
+</ul>
+</div>
+    <div id="dendextend-1140-2020-08-25" class="section level2">
+<h2 class="hasAnchor">
+<a href="#dendextend-1140-2020-08-25" class="anchor"></a>dendextend 1.14.0 (2020-08-25)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>ggdend - now supports type=‘triangle’ (prop <a href='https://github.com/houyunhuang'>@houyunhuang</a>)</li>
@@ -151,26 +163,26 @@
 <li>update pkgdown website</li>
 </ul>
 </div>
-    <div id="dendextend-1-13-4-2020-02-28" class="section level2">
+    <div id="dendextend-1134-2020-02-28" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-13-4-2020-02-28" class="anchor"></a>dendextend 1.13.4 (2020-02-28)</h2>
+<a href="#dendextend-1134-2020-02-28" class="anchor"></a>dendextend 1.13.4 (2020-02-28)</h2>
 <p>###OTHER NOTES</p>
 <ul>
 <li>Remove profdpm dependacy - Fix “Failed with error: ‘there is no package called ’profdpm’’”</li>
 <li>Add stringsAsFactors = TRUE to all data.frame calls (in preperation for R 4.0.0)</li>
 </ul>
 </div>
-    <div id="dendextend-1-13-3-2020-02-07" class="section level2">
+    <div id="dendextend-1133-2020-02-07" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-13-3-2020-02-07" class="anchor"></a>dendextend 1.13.3 (2020-02-07)</h2>
+<a href="#dendextend-1133-2020-02-07" class="anchor"></a>dendextend 1.13.3 (2020-02-07)</h2>
 <p>###OTHER NOTES</p>
 <ul>
 <li>Fixed doc warning for bakers_gamma_for_2_k_matrix</li>
 </ul>
 </div>
-    <div id="dendextend-1-13-2-2019-11-27" class="section level2">
+    <div id="dendextend-1132-2019-11-27" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-13-2-2019-11-27" class="anchor"></a>dendextend 1.13.2 (2019-11-27)</h2>
+<a href="#dendextend-1132-2019-11-27" class="anchor"></a>dendextend 1.13.2 (2019-11-27)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>tanglegram - new argument “common_subtrees_color_lines_default_single_leaf_color”, to control the default color of connecting the two dendrograms (from black to grey, and can now be controled). Props to DBradley27 (<a href="https://github.com/DBradley27" class="uri">https://github.com/DBradley27</a>)</li>
@@ -188,9 +200,9 @@
 <li>minor doc fixes to comply with CRAN. (jumped from 1.12.0 to 1.13.2)</li>
 </ul>
 </div>
-    <div id="dendextend-1-12-0-2019-05-11" class="section level2">
+    <div id="dendextend-1120-2019-05-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-12-0-2019-05-11" class="anchor"></a>dendextend 1.12.0 (2019-05-11)</h2>
+<a href="#dendextend-1120-2019-05-11" class="anchor"></a>dendextend 1.12.0 (2019-05-11)</h2>
 <p>###OTHER NOTES</p>
 <ul>
 <li>Move to RoxygenNote: 6.1.1</li>
@@ -203,9 +215,9 @@
 <li>find_k - add missing functions from fpc (So that pamk will work with no NOTEs)</li>
 </ul>
 </div>
-    <div id="dendextend-1-11-0-2019-05-10" class="section level2">
+    <div id="dendextend-1110-2019-05-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-11-0-2019-05-10" class="anchor"></a>dendextend 1.11.0 (2019-05-10)</h2>
+<a href="#dendextend-1110-2019-05-10" class="anchor"></a>dendextend 1.11.0 (2019-05-10)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>find_k - now imports pamk into dendextend so to remove the dependency on fpc (credit to the author is provided in the DESCRIPTION, and mention to the source function in the docs of find_k).</li>
@@ -215,9 +227,9 @@
 <li>unbranch - before: unbranch(dend,k), for k &gt; 1, moved the new roots (the roots of dend[[k]]) at the beginning of the new_dend. Hence, whenever k&gt;1, the order of the leaves was changed; that is, labels(dend) != labels(unbranch(dend,k)). now: the new roots, say there are K of them, are inserted at the positions (k,k+1,…,k+K-1), and so labels(dend) == labels(unbranch(dend,k)).</li>
 </ul>
 </div>
-    <div id="dendextend-1-10-0-2019-03-15" class="section level2">
+    <div id="dendextend-1100-2019-03-15" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-10-0-2019-03-15" class="anchor"></a>dendextend 1.10.0 (2019-03-15)</h2>
+<a href="#dendextend-1100-2019-03-15" class="anchor"></a>dendextend 1.10.0 (2019-03-15)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>pvclust_edges - extracting edge information from pvclust object based on hclust labels (Issues <a href='https://github.com/talgalili/dendextend/issues/83'>#83</a>)</li>
@@ -231,9 +243,9 @@
 <li>Added RNGversion(“3.5.0”) to tests so as to comply with the new R RNG change that is coming up in R 3.6.0.</li>
 </ul>
 </div>
-    <div id="dendextend-1-9-0-2018-10-19" class="section level2">
+    <div id="dendextend-190-2018-10-19" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-9-0-2018-10-19" class="anchor"></a>dendextend 1.9.0 (2018-10-19)</h2>
+<a href="#dendextend-190-2018-10-19" class="anchor"></a>dendextend 1.9.0 (2018-10-19)</h2>
 <p>###OTHER NOTES</p>
 <ul>
 <li>Removed some old deprecated code relating to dendextendRcpp.</li>
@@ -249,18 +261,18 @@
 <li>Fix “S3 method lookup found ‘as.phylo.dendrogram’ on search path” by using <a href='https://github.com/rawNamespace'>@rawNamespace</a> in roxygen.</li>
 </ul>
 </div>
-    <div id="dendextend-1-8-0-2018-04-28" class="section level2">
+    <div id="dendextend-180-2018-04-28" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-8-0-2018-04-28" class="anchor"></a>dendextend 1.8.0 (2018-04-28)</h2>
+<a href="#dendextend-180-2018-04-28" class="anchor"></a>dendextend 1.8.0 (2018-04-28)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>branches_attr_by_lists - Change col/lwd/lty of branches from the root down to clusters defined by list of labels of respective members</li>
 <li>colored_dots - Add colored dots beside a dendrogram</li>
 </ul>
 </div>
-    <div id="dendextend-1-7-0-2018-02-10" class="section level2">
+    <div id="dendextend-170-2018-02-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-7-0-2018-02-10" class="anchor"></a>dendextend 1.7.0 (2018-02-10)</h2>
+<a href="#dendextend-170-2018-02-10" class="anchor"></a>dendextend 1.7.0 (2018-02-10)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>get_subdendrograms (and find_dendrogram) - getting subtrees from dendrogram based on cutree labels (fixes <a href='https://github.com/talgalili/dendextend/issues/61'>#61</a> and <a href="https://stackoverflow.com/questions/48167369/r-getting-subtrees-from-dendrogram-based-on-cutree-labels/" class="uri">https://stackoverflow.com/questions/48167369/r-getting-subtrees-from-dendrogram-based-on-cutree-labels/</a>)</li>
@@ -274,9 +286,9 @@
 <li>Remove NMF from suggested (as it is about to be removed from CRAN). And also labeltodendro.</li>
 </ul>
 </div>
-    <div id="dendextend-1-6-0-2017-11-13" class="section level2">
+    <div id="dendextend-160-2017-11-13" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-6-0-2017-11-13" class="anchor"></a>dendextend 1.6.0 (2017-11-13)</h2>
+<a href="#dendextend-160-2017-11-13" class="anchor"></a>dendextend 1.6.0 (2017-11-13)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>pvrect2 - Draw Rectangles Around a Dendrogram’s Clusters with High/Low P-values</li>
@@ -289,9 +301,9 @@
 </li>
 </ul>
 </div>
-    <div id="dendextend-1-5-2-2017-05-19" class="section level2">
+    <div id="dendextend-152-2017-05-19" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-5-2-2017-05-19" class="anchor"></a>dendextend 1.5.2 (2017-05-19)</h2>
+<a href="#dendextend-152-2017-05-19" class="anchor"></a>dendextend 1.5.2 (2017-05-19)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>print.ggdend - a wrapper for ggplot2::ggplot of a ggdend object.</li>
@@ -305,9 +317,9 @@
 <li>Remove dendextendRcpp :( (from tests and suggests)</li>
 </ul>
 </div>
-    <div id="dendextend-1-5-0-2017-03-24" class="section level2">
+    <div id="dendextend-150-2017-03-24" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-5-0-2017-03-24" class="anchor"></a>dendextend 1.5.0 (2017-03-24)</h2>
+<a href="#dendextend-150-2017-03-24" class="anchor"></a>dendextend 1.5.0 (2017-03-24)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>dend_expend and find_dend - functions for finding a “good” dendrogram for a dist</li>
@@ -326,9 +338,9 @@
 <li>remove a test in untangle due to different outputs in R 3.3.3 and R 3.4.0. More tests are probably needed for the bytecompiler for extreme cases (i.e.: dendrograms with odd branch heights)</li>
 </ul>
 </div>
-    <div id="dendextend-1-4-0-2017-01-21" class="section level2">
+    <div id="dendextend-140-2017-01-21" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-4-0-2017-01-21" class="anchor"></a>dendextend 1.4.0 (2017-01-21)</h2>
+<a href="#dendextend-140-2017-01-21" class="anchor"></a>dendextend 1.4.0 (2017-01-21)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>as.dendrogram.varclus (enhances in Hmisc)</li>
@@ -347,9 +359,9 @@
 </li>
 </ul>
 </div>
-    <div id="dendextend-1-3-0-2016-07-15" class="section level2">
+    <div id="dendextend-130-2016-07-15" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-3-0-2016-07-15" class="anchor"></a>dendextend 1.3.0 (2016-07-15)</h2>
+<a href="#dendextend-130-2016-07-15" class="anchor"></a>dendextend 1.3.0 (2016-07-15)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>Added set_labels and place_labels. These are convenience functions for updating the labels of a dendrogram. They differ in their assumption about the order of the labels. Props to Garrett Grolemund for the idea.
@@ -364,9 +376,9 @@
 <li>“labels_colors&lt;-” - make it more robust for combinations of using it with assign_values_to_leaves_nodePar (as used in set(“labels_colors”, …) for example)</li>
 </ul>
 </div>
-    <div id="dendextend-1-2-0-2016-06-21" class="section level2">
+    <div id="dendextend-120-2016-06-21" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-2-0-2016-06-21" class="anchor"></a>dendextend 1.2.0 (2016-06-21)</h2>
+<a href="#dendextend-120-2016-06-21" class="anchor"></a>dendextend 1.2.0 (2016-06-21)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>find_k - Find the (estimated) number of clusters for a dendrogram using average silhouette width</li>
@@ -385,25 +397,25 @@
 <li>Improve vignette size for CRAN (moving to html_vignette)</li>
 </ul>
 </div>
-    <div id="dendextend-1-1-9-2016-03-17" class="section level2">
+    <div id="dendextend-119-2016-03-17" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-1-9-2016-03-17" class="anchor"></a>dendextend 1.1.9 (2016-03-17)</h2>
+<a href="#dendextend-119-2016-03-17" class="anchor"></a>dendextend 1.1.9 (2016-03-17)</h2>
 <p>###OTHER NOTES</p>
 <ul>
 <li>Move is.X style functions to a new file: is.functions.R</li>
 </ul>
 </div>
-    <div id="dendextend-1-1-8-2016-02-10" class="section level2">
+    <div id="dendextend-118-2016-02-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-1-8-2016-02-10" class="anchor"></a>dendextend 1.1.8 (2016-02-10)</h2>
+<a href="#dendextend-118-2016-02-10" class="anchor"></a>dendextend 1.1.8 (2016-02-10)</h2>
 <p>###BUG FIXES</p>
 <ul>
 <li>added tryCatch to tests so it would pass github.</li>
 </ul>
 </div>
-    <div id="dendextend-1-1-7-2016-02-10" class="section level2">
+    <div id="dendextend-117-2016-02-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-1-7-2016-02-10" class="anchor"></a>dendextend 1.1.7 (2016-02-10)</h2>
+<a href="#dendextend-117-2016-02-10" class="anchor"></a>dendextend 1.1.7 (2016-02-10)</h2>
 <p>###BUG FIXES</p>
 <ul>
 <li>Added rmarkdown in Suggests of DESCRIPTION. This fixes the travis-ci error: " The vignette engine knitr::rmarkdown is not available, because the rmarkdown package is not installed. Please install it." as was suggested in: <a href="https://github.com/rstudio/rmarkdown/issues/609" class="uri">https://github.com/rstudio/rmarkdown/issues/609</a>
@@ -411,9 +423,9 @@
 <li>Another minor error in tests due to cutree in R-devel.</li>
 </ul>
 </div>
-    <div id="dendextend-1-1-6-2016-02-10" class="section level2">
+    <div id="dendextend-116-2016-02-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-1-6-2016-02-10" class="anchor"></a>dendextend 1.1.6 (2016-02-10)</h2>
+<a href="#dendextend-116-2016-02-10" class="anchor"></a>dendextend 1.1.6 (2016-02-10)</h2>
 <p>###BUG FIXES</p>
 <ul>
 <li>Moved <code>inst/tests/</code> to <code>tests/testthat/</code>
@@ -421,9 +433,9 @@
 <li>Tests fixed to deal with the new R’s ability to run as.hclust on dendrogram with ties.</li>
 </ul>
 </div>
-    <div id="dendextend-1-1-5-2016-01-06" class="section level2">
+    <div id="dendextend-115-2016-01-06" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-1-5-2016-01-06" class="anchor"></a>dendextend 1.1.5 (2016-01-06)</h2>
+<a href="#dendextend-115-2016-01-06" class="anchor"></a>dendextend 1.1.5 (2016-01-06)</h2>
 <p>###BUG FIXES</p>
 <ul>
 <li>cutree - Fix <a href='https://github.com/talgalili/dendextend/issues/18'>#18</a> by updating the sort_cluster_numbers parameter.</li>
@@ -433,9 +445,9 @@
 <li>Adding Gregory Jefferis as an author (thanks to his work on dendroextras, which was later reused in the dendextend package)</li>
 </ul>
 </div>
-    <div id="dendextend-1-1-4-2016-01-01" class="section level2">
+    <div id="dendextend-114-2016-01-01" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-1-4-2016-01-01" class="anchor"></a>dendextend 1.1.4 (2016-01-01)</h2>
+<a href="#dendextend-114-2016-01-01" class="anchor"></a>dendextend 1.1.4 (2016-01-01)</h2>
 <p>###BUG FIXES</p>
 <ul>
 <li>colored_bars
@@ -451,17 +463,17 @@
 <li>Added many description elements in .Rd files.</li>
 </ul>
 </div>
-    <div id="dendextend-1-1-3-2015-11-07" class="section level2">
+    <div id="dendextend-113-2015-11-07" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-1-3-2015-11-07" class="anchor"></a>dendextend 1.1.3 (2015-11-07)</h2>
+<a href="#dendextend-113-2015-11-07" class="anchor"></a>dendextend 1.1.3 (2015-11-07)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>color_unique_labels</li>
 </ul>
 </div>
-    <div id="dendextend-1-1-2-2015-10-30" class="section level2">
+    <div id="dendextend-112-2015-10-30" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-1-2-2015-10-30" class="anchor"></a>dendextend 1.1.2 (2015-10-30)</h2>
+<a href="#dendextend-112-2015-10-30" class="anchor"></a>dendextend 1.1.2 (2015-10-30)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>intersect_trees - return dendlist() and a warning if there are no shared labels between the two trees.</li>
@@ -479,9 +491,9 @@
 <li>Updated CITATION file.</li>
 </ul>
 </div>
-    <div id="dendextend-1-1-0-2015-07-30" class="section level2">
+    <div id="dendextend-110-2015-07-30" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-1-0-2015-07-30" class="anchor"></a>dendextend 1.1.0 (2015-07-30)</h2>
+<a href="#dendextend-110-2015-07-30" class="anchor"></a>dendextend 1.1.0 (2015-07-30)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>circlize_dendrogram - a function for creating radial dendrogram plots</li>
@@ -502,17 +514,17 @@
 <li>Added a CITATION file!</li>
 </ul>
 </div>
-    <div id="dendextend-1-0-3-2015-07-05" class="section level2">
+    <div id="dendextend-103-2015-07-05" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-0-3-2015-07-05" class="anchor"></a>dendextend 1.0.3 (2015-07-05)</h2>
+<a href="#dendextend-103-2015-07-05" class="anchor"></a>dendextend 1.0.3 (2015-07-05)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>assign_values_to_nodes_nodePar - can now handle NA with a character string vector in value. Fixes <a href='https://github.com/talgalili/dendextend/issues/10'>#10</a></li>
 </ul>
 </div>
-    <div id="dendextend-1-0-2-2015-06-28" class="section level2">
+    <div id="dendextend-102-2015-06-28" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-0-2-2015-06-28" class="anchor"></a>dendextend 1.0.2 (2015-06-28)</h2>
+<a href="#dendextend-102-2015-06-28" class="anchor"></a>dendextend 1.0.2 (2015-06-28)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>ggplot.ggdend - added offset_labels (TODO: still needs to fix the figure margins)</li>
@@ -522,18 +534,18 @@
 <li>minor typo fixes</li>
 </ul>
 </div>
-    <div id="dendextend-1-0-1-2015-06-28" class="section level2">
+    <div id="dendextend-101-2015-06-28" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-0-1-2015-06-28" class="anchor"></a>dendextend 1.0.1 (2015-06-28)</h2>
+<a href="#dendextend-101-2015-06-28" class="anchor"></a>dendextend 1.0.1 (2015-06-28)</h2>
 <p>###OTHER NOTES</p>
 <ul>
 <li>Added import to NAMESPACE: graphics, grDevices</li>
 <li>dendextend 1.0.1 is intended to be shipped to CRAN.</li>
 </ul>
 </div>
-    <div id="dendextend-1-0-0-2015-06-27" class="section level2">
+    <div id="dendextend-100-2015-06-27" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-1-0-0-2015-06-27" class="anchor"></a>dendextend 1.0.0 (2015-06-27)</h2>
+<a href="#dendextend-100-2015-06-27" class="anchor"></a>dendextend 1.0.0 (2015-06-27)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>common_subtrees_clusters - a (currently hidden) function to get clusters for labels of common subtrees between two trees.</li>
@@ -546,40 +558,45 @@
 </ul>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
-<li>color_branches - gained a new “cluster” parameter to allow for easy uneven coloring of branches (using branches_attr_by_clusters). This is not a new feature, as it is an attempt to have the user access more options from one place (i.e.: color_branches).</li>
-<li>tanglegram - turned “highlight_distinct_edges = FALSE”. This is due to a bug in R that causes plot.dendrogram to crash when trying to plot a tree with both lty and some character color for the branch.</li>
-<li>tanglegram -
+<li><p>color_branches - gained a new “cluster” parameter to allow for easy uneven coloring of branches (using branches_attr_by_clusters). This is not a new feature, as it is an attempt to have the user access more options from one place (i.e.: color_branches).</p></li>
+<li><p>tanglegram - turned “highlight_distinct_edges = FALSE”. This is due to a bug in R that causes plot.dendrogram to crash when trying to plot a tree with both lty and some character color for the branch.</p></li>
+<li>
+<p>tanglegram -</p>
 <ul>
 <li>Added new parameters: common_subtrees_color_lines and common_subtrees_color_branches to color connecting-lines and/or the dendrograms themsleves, to help detect commonly shared subtrees.</li>
 <li>new parameter: faster.</li>
 </ul>
 </li>
-<li>plot.ggdend - added support to plot nodes</li>
-<li>branches_attr_by_clusters -
+<li><p>plot.ggdend - added support to plot nodes</p></li>
+<li>
+<p>branches_attr_by_clusters -</p>
 <ul>
 <li>can now accept a vector of values with the length of the labels.</li>
 <li>new parameter “branches_changed_have_which_labels” - allows the user the decide if the change in parameters will be for branches with all/any of the labels (useful for tanglegram - since we would like to color common subtrees with all of the labels, not just any.)</li>
 </ul>
 </li>
-<li>dendlist - removed warning when creating an empty dendlist (since we also don’t get a warning when creating a list() )</li>
-<li>ladderize - added the <code>which</code> parameter (for indicating which elements in the dendlist to ladderize)</li>
-<li>untangle.dendlist -
+<li><p>dendlist - removed warning when creating an empty dendlist (since we also don’t get a warning when creating a list() )</p></li>
+<li><p>ladderize - added the <code>which</code> parameter (for indicating which elements in the dendlist to ladderize)</p></li>
+<li>
+<p>untangle.dendlist -</p>
 <ul>
 <li>can now return a dendlist with more than two elements.</li>
 <li>now preserve the names in the dendlist</li>
 <li>now has a new “labels” method, and it is now the default.</li>
 </ul>
 </li>
-<li>dendlist - added the <code>which</code> parameter (for indicating which elements in the dendlist to pick out)</li>
-<li>set
+<li><p>dendlist - added the <code>which</code> parameter (for indicating which elements in the dendlist to pick out)</p></li>
+<li>
+<p>set</p>
 <ul>
 <li>added “rank_branches”</li>
 </ul>
 </li>
-<li>untangle_random_search/untangle_step_rotate_2side/untangle_best_k_to_rotate_by_2side_backNforth - no longer returns a dendlist with names (it shouldn’t, they didn’t have a name to begin with.)</li>
-<li>cor.dendlist - added methods “common_nodes”, “FM_index”.</li>
+<li><p>untangle_random_search/untangle_step_rotate_2side/untangle_best_k_to_rotate_by_2side_backNforth - no longer returns a dendlist with names (it shouldn’t, they didn’t have a name to begin with.)</p></li>
+<li><p>cor.dendlist - added methods “common_nodes”, “FM_index”.</p></li>
 <li><p>cor_cophenetic - changed method to method_coef (so it could be updated when using cor.dendlist)</p></li>
-<li>use “dend” as a standard name for all the parameters that accept dendrograms (whenever possible, in some cases I preferred to keep another name due to other conventions.)
+<li>
+<p>use “dend” as a standard name for all the parameters that accept dendrograms (whenever possible, in some cases I preferred to keep another name due to other conventions.)</p>
 <ul>
 <li>object -&gt; dend for: set, set.dendrogram, set.dendlist, get_leaves_attr, get_leaves_nodePar, get_leaves_edgePar, get_leaves_branches_attr, get_leaves_branches_col, get_nodes_attr, assign_values_to_leaves_nodePar, assign_values_to_leaves_edgePar, assign_values_to_nodes_nodePar, assign_values_to_branches_edgePar, remove_branches_edgePar, remove_nodes_nodePar, remove_leaves_nodePar, labels_colors, shuffle</li>
 <li>tree -&gt; dend for: color_branches, color_labels_by_labels, color_labels, get_branches_heights, dendextend_get_branches_heights, dendextend_cut_lower_fun, cutree_1h.dendrogram, cutree_1k.dendrogram, heights_per_k.dendrogram</li>
@@ -609,9 +626,9 @@
 <li>moved assign_dendextend_options to “.onLoad” - this now allows the use of dendextend::some_func</li>
 </ul>
 </div>
-    <div id="dendextend-0-18-8-2015-05-17" class="section level2">
+    <div id="dendextend-0188-2015-05-17" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-18-8-2015-05-17" class="anchor"></a>dendextend 0.18.8 (2015-05-17)</h2>
+<a href="#dendextend-0188-2015-05-17" class="anchor"></a>dendextend 0.18.8 (2015-05-17)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>all.equal.dendlist - can now compare two dendlist objects to one another, and not only the dendrograms inside one dendlist. (also added new tests that all.equal.dendlist works)</li>
@@ -623,9 +640,9 @@
 <li>identify.dendrogram - parameter horiz now works (fixes <a href='https://github.com/talgalili/dendextend/issues/4'>#4</a>)</li>
 </ul>
 </div>
-    <div id="dendextend-0-18-7-2015-05-05" class="section level2">
+    <div id="dendextend-0187-2015-05-05" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-18-7-2015-05-05" class="anchor"></a>dendextend 0.18.7 (2015-05-05)</h2>
+<a href="#dendextend-0187-2015-05-05" class="anchor"></a>dendextend 0.18.7 (2015-05-05)</h2>
 <p>###VIGNETTE</p>
 <ul>
 <li>remove dependancy on DendSer (using require instead of library)</li>
@@ -636,9 +653,9 @@
 <li>tanglegram.dendlist - fix it when names is null to have the default be ""</li>
 </ul>
 </div>
-    <div id="dendextend-0-18-6-2015-04-25" class="section level2">
+    <div id="dendextend-0186-2015-04-25" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-18-6-2015-04-25" class="anchor"></a>dendextend 0.18.6 (2015-04-25)</h2>
+<a href="#dendextend-0186-2015-04-25" class="anchor"></a>dendextend 0.18.6 (2015-04-25)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>get_leaves_edgePar - Get edgePar of dendrogram’s leaves</li>
@@ -658,17 +675,17 @@
 <li>library corrplot added to plot cor.dendlist results. Examples added to vignette and function’s example.</li>
 </ul>
 </div>
-    <div id="dendextend-0-18-5-2015-04-22" class="section level2">
+    <div id="dendextend-0185-2015-04-22" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-18-5-2015-04-22" class="anchor"></a>dendextend 0.18.5 (2015-04-22)</h2>
+<a href="#dendextend-0185-2015-04-22" class="anchor"></a>dendextend 0.18.5 (2015-04-22)</h2>
 <p>###VIGNETTE</p>
 <ul>
 <li>added: “How to color the branches in heatmap.2?”</li>
 </ul>
 </div>
-    <div id="dendextend-0-18-4-2015-02-07" class="section level2">
+    <div id="dendextend-0184-2015-02-07" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-18-4-2015-02-07" class="anchor"></a>dendextend 0.18.4 (2015-02-07)</h2>
+<a href="#dendextend-0184-2015-02-07" class="anchor"></a>dendextend 0.18.4 (2015-02-07)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>prune.rpart added</li>
@@ -676,9 +693,9 @@
 <li>as.hclust.pvclust</li>
 </ul>
 </div>
-    <div id="dendextend-0-18-3-2015-01-31" class="section level2">
+    <div id="dendextend-0183-2015-01-31" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-18-3-2015-01-31" class="anchor"></a>dendextend 0.18.3 (2015-01-31)</h2>
+<a href="#dendextend-0183-2015-01-31" class="anchor"></a>dendextend 0.18.3 (2015-01-31)</h2>
 <p>###OTHER NOTES (Thanks to Prof Brian Ripley for help.)</p>
 <ul>
 <li>Fix “title case” for the package’s Title in the DESCRIPTION</li>
@@ -687,9 +704,9 @@
 <li>dendextend 0.18.3 is intended to be shipped to CRAN.</li>
 </ul>
 </div>
-    <div id="dendextend-0-18-2-2015-01-31" class="section level2">
+    <div id="dendextend-0182-2015-01-31" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-18-2-2015-01-31" class="anchor"></a>dendextend 0.18.2 (2015-01-31)</h2>
+<a href="#dendextend-0182-2015-01-31" class="anchor"></a>dendextend 0.18.2 (2015-01-31)</h2>
 <p>###OTHER NOTES</p>
 <ul>
 <li>Minor doc fix for <code>collapse_branch</code>
@@ -697,9 +714,9 @@
 <li>dendextend 0.18.2 is intended to be shipped to CRAN.</li>
 </ul>
 </div>
-    <div id="dendextend-0-18-1-2015-01-31" class="section level2">
+    <div id="dendextend-0181-2015-01-31" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-18-1-2015-01-31" class="anchor"></a>dendextend 0.18.1 (2015-01-31)</h2>
+<a href="#dendextend-0181-2015-01-31" class="anchor"></a>dendextend 0.18.1 (2015-01-31)</h2>
 <p>###VIGNETTE - new sections!</p>
 <ul>
 <li>Quick functions for FAQ
@@ -739,9 +756,9 @@
 <li>dendextend 0.18.1 is intended to be shipped to CRAN.</li>
 </ul>
 </div>
-    <div id="dendextend-0-18-0-2015-01-29" class="section level2">
+    <div id="dendextend-0180-2015-01-29" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-18-0-2015-01-29" class="anchor"></a>dendextend 0.18.0 (2015-01-29)</h2>
+<a href="#dendextend-0180-2015-01-29" class="anchor"></a>dendextend 0.18.0 (2015-01-29)</h2>
 <p>###NEW FILES:</p>
 <ul>
 <li>ape.R - moved <code>as.dendrogram.phylo</code> and <code>as.phylo.dendrogram</code> functions to it.</li>
@@ -825,17 +842,17 @@
 <code>as.dendrogram.phylo</code> is properly exported now.</li>
 </ul>
 </div>
-    <div id="dendextend-0-17-6-2014-12-08" class="section level2">
+    <div id="dendextend-0176-2014-12-08" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-17-6-2014-12-08" class="anchor"></a>dendextend 0.17.6 (2014-12-08)</h2>
+<a href="#dendextend-0176-2014-12-08" class="anchor"></a>dendextend 0.17.6 (2014-12-08)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>dist_long - Turns a dist object to a “long” table.</li>
 </ul>
 </div>
-    <div id="dendextend-0-17-5-2014-09-22" class="section level2">
+    <div id="dendextend-0175-2014-09-22" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-17-5-2014-09-22" class="anchor"></a>dendextend 0.17.5 (2014-09-22)</h2>
+<a href="#dendextend-0175-2014-09-22" class="anchor"></a>dendextend 0.17.5 (2014-09-22)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>
@@ -857,9 +874,9 @@
 <li>dendextend 0.17.5 is intended to be shipped to CRAN (to stay compatible with R 3.1.1-patched).</li>
 </ul>
 </div>
-    <div id="dendextend-0-17-4-2014-09-20" class="section level2">
+    <div id="dendextend-0174-2014-09-20" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-17-4-2014-09-20" class="anchor"></a>dendextend 0.17.4 (2014-09-20)</h2>
+<a href="#dendextend-0174-2014-09-20" class="anchor"></a>dendextend 0.17.4 (2014-09-20)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>set.data.table - informs the user of the conflict in “set” between dendextend and data.table.</li>
@@ -869,17 +886,17 @@
 <li>added sessionInfo</li>
 </ul>
 </div>
-    <div id="dendextend-0-17-3-2014-08-26" class="section level2">
+    <div id="dendextend-0173-2014-08-26" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-17-3-2014-08-26" class="anchor"></a>dendextend 0.17.3 (2014-08-26)</h2>
+<a href="#dendextend-0173-2014-08-26" class="anchor"></a>dendextend 0.17.3 (2014-08-26)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>color_labels - now can handle the coloring of labels when the function is without k and h, but that it is not possible to cut the tree to nleaves items (due to several leaves with 0 height). This is done by not doing any cutting in such cases, and just directly using labels_colors. Tests are added. Bug report by Marina Varfolomeeva, a.k.a varmara - thanks! (<a href="https://github.com/talgalili/dendextend/issues/3" class="uri">https://github.com/talgalili/dendextend/issues/3</a> )</li>
 </ul>
 </div>
-    <div id="dendextend-0-17-2-2014-08-25" class="section level2">
+    <div id="dendextend-0172-2014-08-25" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-17-2-2014-08-25" class="anchor"></a>dendextend 0.17.2 (2014-08-25)</h2>
+<a href="#dendextend-0172-2014-08-25" class="anchor"></a>dendextend 0.17.2 (2014-08-25)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>cor_bakers_gamma.dendlist</li>
@@ -895,24 +912,24 @@
 <li>Add to introduction.Rmd how to install the package from github.</li>
 </ul>
 </div>
-    <div id="dendextend-0-17-1-2014-08-19" class="section level2">
+    <div id="dendextend-0171-2014-08-19" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-17-1-2014-08-19" class="anchor"></a>dendextend 0.17.1 (2014-08-19)</h2>
+<a href="#dendextend-0171-2014-08-19" class="anchor"></a>dendextend 0.17.1 (2014-08-19)</h2>
 <p>###OTHER NOTES</p>
 <ul>
 <li>
 <p>compacted ‘dendextend-tutorial.pdf’ from 725Kb to 551Kb (doc fixes to pass CRAN checks) (Thanks to using the following:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">     tools<span class="op">::</span><span class="kw">compactPDF</span>(<span class="st">"inst</span><span class="ch">\\</span><span class="st">doc</span><span class="ch">\\</span><span class="st">dendextend-tutorial.pdf"</span>, </a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">                       <span class="dt">qpdf =</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files (x86)</span><span class="ch">\\</span><span class="st">qpdf-5.1.2</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">qpdf.exe"</span>, </a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">                       <span class="dt">gs_cmd =</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">gs</span><span class="ch">\\</span><span class="st">gs9.14</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">gswin64c.exe"</span>,</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">                       <span class="dt">gs_quality=</span><span class="st">"ebook"</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>     tools<span class="op">::</span><span class="kw">compactPDF</span>(<span class="st">"inst</span><span class="ch">\\</span><span class="st">doc</span><span class="ch">\\</span><span class="st">dendextend-tutorial.pdf"</span>, </span>
+<span id="cb1-2"><a href="#cb1-2"></a>                       <span class="dt">qpdf =</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files (x86)</span><span class="ch">\\</span><span class="st">qpdf-5.1.2</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">qpdf.exe"</span>, </span>
+<span id="cb1-3"><a href="#cb1-3"></a>                       <span class="dt">gs_cmd =</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">gs</span><span class="ch">\\</span><span class="st">gs9.14</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">gswin64c.exe"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4"></a>                       <span class="dt">gs_quality=</span><span class="st">"ebook"</span>) </span></code></pre></div>
 <p>And to the help of Prof Brian Ripley and Kurt Hornik )</p>
 </li>
 </ul>
 </div>
-    <div id="dendextend-0-17-0-2014-08-19" class="section level2">
+    <div id="dendextend-0170-2014-08-19" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-17-0-2014-08-19" class="anchor"></a>dendextend 0.17.0 (2014-08-19)</h2>
+<a href="#dendextend-0170-2014-08-19" class="anchor"></a>dendextend 0.17.0 (2014-08-19)</h2>
 <p>###VIGNETTE:</p>
 <ul>
 <li>Wrote a new vignette “introduction.Rmd”, to showcase the new functions since the last vignette, and give a quick-as-possible introduction to the package functions.</li>
@@ -1009,9 +1026,9 @@
 <li>Have the package build the vignette.</li>
 </ul>
 </div>
-    <div id="dendextend-0-16-4-2014-08-06" class="section level2">
+    <div id="dendextend-0164-2014-08-06" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-16-4-2014-08-06" class="anchor"></a>dendextend 0.16.4 (2014-08-06)</h2>
+<a href="#dendextend-0164-2014-08-06" class="anchor"></a>dendextend 0.16.4 (2014-08-06)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>
@@ -1031,9 +1048,9 @@
 <code>assign_values_to_leaves_nodePar</code>, <code>assign_values_to_nodes_nodePar</code>, <code>assign_values_to_branches_edgePar</code> - If the value has <code>Inf</code> (instead of NA!) then the value will not be changed.</li>
 </ul>
 </div>
-    <div id="dendextend-0-16-3-2014-08-06" class="section level2">
+    <div id="dendextend-0163-2014-08-06" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-16-3-2014-08-06" class="anchor"></a>dendextend 0.16.3 (2014-08-06)</h2>
+<a href="#dendextend-0163-2014-08-06" class="anchor"></a>dendextend 0.16.3 (2014-08-06)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>
@@ -1049,25 +1066,25 @@
 <li>NEWS - updated to use header 2 and 3 instead of 1 and 2 for the markdown version.</li>
 </ul>
 </div>
-    <div id="dendextend-0-16-2-2014-07-29" class="section level2">
+    <div id="dendextend-0162-2014-07-29" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-16-2-2014-07-29" class="anchor"></a>dendextend 0.16.2 (2014-07-29)</h2>
+<a href="#dendextend-0162-2014-07-29" class="anchor"></a>dendextend 0.16.2 (2014-07-29)</h2>
 <p>###OTHER NOTES</p>
 <ul>
 <li>require -&gt; library (Thanks Yihui: <a href="http://yihui.name/en/2014/07/library-vs-require/" class="uri">http://yihui.name/en/2014/07/library-vs-require/</a>)</li>
 </ul>
 </div>
-    <div id="dendextend-0-16-1-2014-07-26" class="section level2">
+    <div id="dendextend-0161-2014-07-26" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-16-1-2014-07-26" class="anchor"></a>dendextend 0.16.1 (2014-07-26)</h2>
+<a href="#dendextend-0161-2014-07-26" class="anchor"></a>dendextend 0.16.1 (2014-07-26)</h2>
 <p>###OTHER NOTES</p>
 <ul>
 <li>Minor doc fixes to pass CRAN checks.</li>
 </ul>
 </div>
-    <div id="dendextend-0-16-0-2014-07-26" class="section level2">
+    <div id="dendextend-0160-2014-07-26" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-16-0-2014-07-26" class="anchor"></a>dendextend 0.16.0 (2014-07-26)</h2>
+<a href="#dendextend-0160-2014-07-26" class="anchor"></a>dendextend 0.16.0 (2014-07-26)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>
@@ -1096,9 +1113,9 @@
 <li>added a pvclust example (using a condition on p-value, and heighlighting branches based on that with lwd/col.)</li>
 </ul>
 </div>
-    <div id="dendextend-0-15-2-2014-07-24" class="section level2">
+    <div id="dendextend-0152-2014-07-24" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-15-2-2014-07-24" class="anchor"></a>dendextend 0.15.2 (2014-07-24)</h2>
+<a href="#dendextend-0152-2014-07-24" class="anchor"></a>dendextend 0.15.2 (2014-07-24)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>
@@ -1118,9 +1135,9 @@
 <li>noded_with_condition.R</li>
 </ul>
 </div>
-    <div id="dendextend-0-15-1-2014-07-16" class="section level2">
+    <div id="dendextend-0151-2014-07-16" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-15-1-2014-07-16" class="anchor"></a>dendextend 0.15.1 (2014-07-16)</h2>
+<a href="#dendextend-0151-2014-07-16" class="anchor"></a>dendextend 0.15.1 (2014-07-16)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>
@@ -1137,9 +1154,9 @@
 <li>Rename 2 file names from add-&gt;set (set.dendrogram.R and tests-set.dendrogram.R)</li>
 </ul>
 </div>
-    <div id="dendextend-0-15-0-2014-07-14" class="section level2">
+    <div id="dendextend-0150-2014-07-14" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-15-0-2014-07-14" class="anchor"></a>dendextend 0.15.0 (2014-07-14)</h2>
+<a href="#dendextend-0150-2014-07-14" class="anchor"></a>dendextend 0.15.0 (2014-07-14)</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>
@@ -1216,17 +1233,17 @@
 <li>Imported the %&gt;% function from magrittr (using a trick from the dplyr package)</li>
 </ul>
 </div>
-    <div id="dendextend-0-14-4-2014-07-04" class="section level2">
+    <div id="dendextend-0144-2014-07-04" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-14-4-2014-07-04" class="anchor"></a>dendextend 0.14.4 (2014-07-04)</h2>
+<a href="#dendextend-0144-2014-07-04" class="anchor"></a>dendextend 0.14.4 (2014-07-04)</h2>
 <p>###OTHER NOTES</p>
 <ul>
 <li>Changed all R script files from .r to .R!</li>
 </ul>
 </div>
-    <div id="dendextend-0-14-3-2014-04-26" class="section level2">
+    <div id="dendextend-0143-2014-04-26" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-14-3-2014-04-26" class="anchor"></a>dendextend 0.14.3 (2014-04-26)</h2>
+<a href="#dendextend-0143-2014-04-26" class="anchor"></a>dendextend 0.14.3 (2014-04-26)</h2>
 <p>###UPDATED DESCRIPTION:</p>
 <ul>
 <li>Fix an author name.</li>
@@ -1237,9 +1254,9 @@
 <li>Minor changes to docs.</li>
 </ul>
 </div>
-    <div id="dendextend-0-14-2-2014-03-15" class="section level2">
+    <div id="dendextend-0142-2014-03-15" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-14-2-2014-03-15" class="anchor"></a>dendextend 0.14.2 (2014-03-15)</h2>
+<a href="#dendextend-0142-2014-03-15" class="anchor"></a>dendextend 0.14.2 (2014-03-15)</h2>
 <p>###UPDATED DESCRIPTION:</p>
 <ul>
 <li>Added dependency for R (&gt;= 3.0.0)</li>
@@ -1249,9 +1266,9 @@
 <li>dendextend 0.14.2 is intended to be shipped to CRAN.</li>
 </ul>
 </div>
-    <div id="dendextend-0-14-1-2014-03-15" class="section level2">
+    <div id="dendextend-0141-2014-03-15" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-14-1-2014-03-15" class="anchor"></a>dendextend 0.14.1 (2014-03-15)</h2>
+<a href="#dendextend-0141-2014-03-15" class="anchor"></a>dendextend 0.14.1 (2014-03-15)</h2>
 <p>###UPDATED DESCRIPTION:</p>
 <ul>
 <li>Added Uwe and Kurt as contributors.</li>
@@ -1272,9 +1289,9 @@
 <li>dendextend 0.14.1 is intended to be shipped to CRAN.</li>
 </ul>
 </div>
-    <div id="dendextend-0-14-0-2014-03-15" class="section level2">
+    <div id="dendextend-0140-2014-03-15" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-14-0-2014-03-15" class="anchor"></a>dendextend 0.14.0 (2014-03-15)</h2>
+<a href="#dendextend-0140-2014-03-15" class="anchor"></a>dendextend 0.14.0 (2014-03-15)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>assign_dendextend_options - Moved to passing the functions through “dendextend_options” instead of through “options” (Thanks to suggestions by Kurt Hornik and Uwe Ligges).</li>
@@ -1287,9 +1304,9 @@
 <li>update tests to the new names in dendextendRcpp (dendextendRcpp_cut_lower_fun, dendextend_options)</li>
 </ul>
 </div>
-    <div id="dendextend-0-13-0-2014-03-01" class="section level2">
+    <div id="dendextend-0130-2014-03-01" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-13-0-2014-03-01" class="anchor"></a>dendextend 0.13.0 (2014-03-01)</h2>
+<a href="#dendextend-0130-2014-03-01" class="anchor"></a>dendextend 0.13.0 (2014-03-01)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>assign_dendextend_options - Moved to passing the functions through “options” instead of through assignInNamespace (which was not intended for production use).</li>
@@ -1315,9 +1332,9 @@
 <li>dendextend 0.13.0 is intended to be shipped to CRAN.</li>
 </ul>
 </div>
-    <div id="dendextend-0-12-2-2014-02-03" class="section level2">
+    <div id="dendextend-0122-2014-02-03" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-12-2-2014-02-03" class="anchor"></a>dendextend 0.12.2 (2014-02-03)</h2>
+<a href="#dendextend-0122-2014-02-03" class="anchor"></a>dendextend 0.12.2 (2014-02-03)</h2>
 <p>###UPDATED DESCRIPTION:</p>
 <ul>
 <li>Removed VignetteBuilder: knitr (until later)</li>
@@ -1339,9 +1356,9 @@
 <li>dendextend 0.12.2 is intended to be shipped to CRAN.</li>
 </ul>
 </div>
-    <div id="dendextend-0-12-1-2014-02-02" class="section level2">
+    <div id="dendextend-0121-2014-02-02" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-12-1-2014-02-02" class="anchor"></a>dendextend 0.12.1 (2014-02-02)</h2>
+<a href="#dendextend-0121-2014-02-02" class="anchor"></a>dendextend 0.12.1 (2014-02-02)</h2>
 <p>###UPDATED TESTS:</p>
 <ul>
 <li>Made sure to check dendextendRcpp is available before calling it.</li>
@@ -1357,9 +1374,9 @@
 <li>dendextend 0.12.1 is intended to be shipped to CRAN. (but failed)</li>
 </ul>
 </div>
-    <div id="dendextend-0-12-0-2014-02-01" class="section level2">
+    <div id="dendextend-0120-2014-02-01" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-12-0-2014-02-01" class="anchor"></a>dendextend 0.12.0 (2014-02-01)</h2>
+<a href="#dendextend-0120-2014-02-01" class="anchor"></a>dendextend 0.12.0 (2014-02-01)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>exported prune_leaf</li>
@@ -1444,9 +1461,9 @@
 <li>README.md - Using ‘talgalili/dendextend’, in install_github</li>
 </ul>
 </div>
-    <div id="dendextend-0-11-2-2013-08-31" class="section level2">
+    <div id="dendextend-0112-2013-08-31" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-11-2-2013-08-31" class="anchor"></a>dendextend 0.11.2 (2013-08-31)</h2>
+<a href="#dendextend-0112-2013-08-31" class="anchor"></a>dendextend 0.11.2 (2013-08-31)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>tanglegram now has “sub” and “cex_sub” parameters.</li>
@@ -1459,9 +1476,9 @@
 <li>Finished statistical measures of similarity between trees.</li>
 </ul>
 </div>
-    <div id="dendextend-0-11-1-2013-08-29" class="section level2">
+    <div id="dendextend-0111-2013-08-29" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-11-1-2013-08-29" class="anchor"></a>dendextend 0.11.1 (2013-08-29)</h2>
+<a href="#dendextend-0111-2013-08-29" class="anchor"></a>dendextend 0.11.1 (2013-08-29)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>color_labels - added a “warn” parameter. And also set the default (in case no k/h is supplied) - to just color all of the labels.</li>
@@ -1477,9 +1494,9 @@
 <li>Seperated 2013-09-05_Boston-useR.Rpres into two files (since RStudio is not able to handle them)</li>
 </ul>
 </div>
-    <div id="dendextend-0-11-0-2013-08-24" class="section level2">
+    <div id="dendextend-0110-2013-08-24" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-11-0-2013-08-24" class="anchor"></a>dendextend 0.11.0 (2013-08-24)</h2>
+<a href="#dendextend-0110-2013-08-24" class="anchor"></a>dendextend 0.11.0 (2013-08-24)</h2>
 <p>###VIGNETTES:</p>
 <ul>
 <li>Added a knitr presentation for “Boston-useR” 2013-09-05. Includes an introduction to hclust and dendrogram objects, tree manipulation, and dendextend modules (still needs the dendextend section on tanglegram…)</li>
@@ -1493,9 +1510,9 @@
 <li>Gave proper credit to contributers in the DESCRIPTION file (and not just the .Rd files)</li>
 </ul>
 </div>
-    <div id="dendextend-0-10-0-2013-08-20" class="section level2">
+    <div id="dendextend-0100-2013-08-20" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-10-0-2013-08-20" class="anchor"></a>dendextend 0.10.0 (2013-08-20)</h2>
+<a href="#dendextend-0100-2013-08-20" class="anchor"></a>dendextend 0.10.0 (2013-08-20)</h2>
 <p>###NEW FUNCTIONS ADDED:</p>
 <ul>
 <li>cut_lower_fun - it wraps the “cut” function, and is built to be masked by the function in dendextendRcpp in order to gain 4-14 speed gain.</li>
@@ -1514,9 +1531,9 @@
 <li>Added FM-index and Bk plot sections.</li>
 </ul>
 </div>
-    <div id="dendextend-0-9-2-2013-08-20" class="section level2">
+    <div id="dendextend-092-2013-08-20" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-9-2-2013-08-20" class="anchor"></a>dendextend 0.9.2 (2013-08-20)</h2>
+<a href="#dendextend-092-2013-08-20" class="anchor"></a>dendextend 0.9.2 (2013-08-20)</h2>
 <p>###NEW FUNCTIONS ADDED:</p>
 <ul>
 <li>cor_bakers_gamma.hclust</li>
@@ -1526,9 +1543,9 @@
 <li>cutree.hclust - added the “use_labels_not_values” paremter (ignored)</li>
 </ul>
 </div>
-    <div id="dendextend-0-9-1-2013-08-19" class="section level2">
+    <div id="dendextend-091-2013-08-19" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-9-1-2013-08-19" class="anchor"></a>dendextend 0.9.1 (2013-08-19)</h2>
+<a href="#dendextend-091-2013-08-19" class="anchor"></a>dendextend 0.9.1 (2013-08-19)</h2>
 <p>###UPDATED FUNCTIONS:</p>
 <ul>
 <li>color_labels - added “labels” parameter for selective coloring of labels by name.</li>
@@ -1551,9 +1568,9 @@
 <li>Started the Bk section (some theory, but no code yet - although it is all written by now…).</li>
 </ul>
 </div>
-    <div id="dendextend-0-9-0-2013-08-18" class="section level2">
+    <div id="dendextend-090-2013-08-18" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-9-0-2013-08-18" class="anchor"></a>dendextend 0.9.0 (2013-08-18)</h2>
+<a href="#dendextend-090-2013-08-18" class="anchor"></a>dendextend 0.9.0 (2013-08-18)</h2>
 <p>###NEW FUNCTIONS ADDED:</p>
 <ul>
 <li>sort_2_clusters_vectors</li>
@@ -1583,17 +1600,17 @@
 <li>Added a commented-out section which could (in the future) be the basis of an Rcpp cutree (actually cutree_1h.dendrogram) function!</li>
 </ul>
 </div>
-    <div id="dendextend-0-8-0-2013-08-14" class="section level2">
+    <div id="dendextend-080-2013-08-14" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-8-0-2013-08-14" class="anchor"></a>dendextend 0.8.0 (2013-08-14)</h2>
+<a href="#dendextend-080-2013-08-14" class="anchor"></a>dendextend 0.8.0 (2013-08-14)</h2>
 <p>###NEW FUNCTIONS ADDED:</p>
 <ul>
-<li>cor_bakers_gamma</li>
-<li>sample.dendrogram</li>
-<li>rank_order.dendrogram - for fixing leaves value order.</li>
-<li>duplicate_leaf - for sample.dendrogram</li>
+<li><p>cor_bakers_gamma</p></li>
+<li><p>sample.dendrogram</p></li>
+<li><p>rank_order.dendrogram - for fixing leaves value order.</p></li>
+<li><p>duplicate_leaf - for sample.dendrogram</p></li>
 <li><p>sample.dendrogram - for bootstraping trees when the original data table is missing.</p></li>
-<li>sort_dist_mat</li>
+<li><p>sort_dist_mat</p></li>
 <li><p>cor_cophenetic</p></li>
 </ul>
 <p>###UPDATED FUNCTIONS:</p>
@@ -1615,9 +1632,9 @@
 <li>fix_members_attr.dendrogram - fixed a bug introduced by the new “members” method in nleaves. (test added)</li>
 </ul>
 </div>
-    <div id="dendextend-0-7-3-2013-08-14" class="section level2">
+    <div id="dendextend-073-2013-08-14" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-7-3-2013-08-14" class="anchor"></a>dendextend 0.7.3 (2013-08-14)</h2>
+<a href="#dendextend-073-2013-08-14" class="anchor"></a>dendextend 0.7.3 (2013-08-14)</h2>
 <p>###NEW FUNCTIONS ADDED:</p>
 <ul>
 <li>get_childrens_heights - Get height attributes from a dendrogram’s children</li>
@@ -1639,9 +1656,9 @@
 <li>Fixed the dLeaf in tanglegram plots, and gave an example of using rank_branches.</li>
 </ul>
 </div>
-    <div id="dendextend-0-7-2-2013-08-13" class="section level2">
+    <div id="dendextend-072-2013-08-13" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-7-2-2013-08-13" class="anchor"></a>dendextend 0.7.2 (2013-08-13)</h2>
+<a href="#dendextend-072-2013-08-13" class="anchor"></a>dendextend 0.7.2 (2013-08-13)</h2>
 <p>###NEW FUNCTIONS ADDED:</p>
 <ul>
 <li>plotNode_horiz - allows the labels, in plot_horiz.dendrogram, to be aligned to the leaves tips when the tree is plotted horizontally, its leaves facing left.</li>
@@ -1663,9 +1680,9 @@
 <li>Variations of the changes to plot_horiz.dendrogram and plotNode_horiz should be added to R core in order to allow forward compatability.</li>
 </ul>
 </div>
-    <div id="dendextend-0-7-1-2013-08-12" class="section level2">
+    <div id="dendextend-071-2013-08-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-7-1-2013-08-12" class="anchor"></a>dendextend 0.7.1 (2013-08-12)</h2>
+<a href="#dendextend-071-2013-08-12" class="anchor"></a>dendextend 0.7.1 (2013-08-12)</h2>
 <p>###NEW FUNCTIONS ADDED:</p>
 <ul>
 <li>untangle_step_rotate_2side</li>
@@ -1675,9 +1692,9 @@
 <li>untangle_forward_rotate_2side</li>
 </ul>
 </div>
-    <div id="dendextend-0-7-2013-08-11" class="section level2">
+    <div id="dendextend-07-2013-08-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-7-2013-08-11" class="anchor"></a>dendextend 0.7 (2013-08-11)</h2>
+<a href="#dendextend-07-2013-08-11" class="anchor"></a>dendextend 0.7 (2013-08-11)</h2>
 <p>###NEW FUNCTIONS ADDED:</p>
 <ul>
 <li>shuffle - Random rotation of trees</li>
@@ -1696,18 +1713,18 @@
 <li>untangle_forward_rotate_1side</li>
 </ul>
 </div>
-    <div id="dendextend-0-6-2013-08-10" class="section level2">
+    <div id="dendextend-06-2013-08-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-6-2013-08-10" class="anchor"></a>dendextend 0.6 (2013-08-10)</h2>
+<a href="#dendextend-06-2013-08-10" class="anchor"></a>dendextend 0.6 (2013-08-10)</h2>
 <p>###NEW FUNCTIONS ADDED:</p>
 <ul>
-<li>tanglegram - major addition!</li>
-<li>plot_horiz.dendrogram - Plotting a left-tip-adjusted horizontal dendrogram</li>
-<li>remove_leaves_nodePar</li>
-<li>assign_values_to_branches_edgePar</li>
+<li><p>tanglegram - major addition!</p></li>
+<li><p>plot_horiz.dendrogram - Plotting a left-tip-adjusted horizontal dendrogram</p></li>
+<li><p>remove_leaves_nodePar</p></li>
+<li><p>assign_values_to_branches_edgePar</p></li>
 <li><p>remove_branches_edgePar</p></li>
-<li>match_order_by_labels</li>
-<li>match_order_dendrogram_by_old_order - like match_order_by_labels, but faster</li>
+<li><p>match_order_by_labels</p></li>
+<li><p>match_order_dendrogram_by_old_order - like match_order_by_labels, but faster</p></li>
 <li><p>entanglement</p></li>
 </ul>
 <p>###UPDATED FUNCTIONS:</p>
@@ -1726,9 +1743,9 @@
 <li>Entanglement</li>
 </ul>
 </div>
-    <div id="dendextend-0-5-2013-08-05" class="section level2">
+    <div id="dendextend-05-2013-08-05" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-5-2013-08-05" class="anchor"></a>dendextend 0.5 (2013-08-05)</h2>
+<a href="#dendextend-05-2013-08-05" class="anchor"></a>dendextend 0.5 (2013-08-05)</h2>
 <p>###NEW FUNCTIONS ADDED:</p>
 <ul>
 <li>tanglegram</li>
@@ -1745,33 +1762,33 @@
 <li>fac2num works</li>
 </ul>
 </div>
-    <div id="dendextend-0-4-2013-08-02" class="section level2">
+    <div id="dendextend-04-2013-08-02" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-4-2013-08-02" class="anchor"></a>dendextend 0.4 (2013-08-02)</h2>
+<a href="#dendextend-04-2013-08-02" class="anchor"></a>dendextend 0.4 (2013-08-02)</h2>
 <p>###NEW FUNCTIONS ADDED: (including tests and documentation)</p>
 <ul>
-<li>is.natural.number</li>
-<li>cutree_1h.dendrogram - like cutree, but only for 1 height value.</li>
-<li>fix_members_attr.dendrogram - just to validate that prune works o.k.</li>
-<li>hang.dendrogram - hangs a dendrogram leaves (also allows for a rotated hanged dendrogram), works also for non-binary trees.</li>
-<li>nnodes - count the number of nodes in a tree</li>
-<li>as.dendrogram.phylo - based on as.hclust.</li>
-<li>get_nodes_attr - allows easy access to attributes of branches and leaves</li>
-<li>get_branches_heights</li>
-<li>fix_members_attr.dendrogram</li>
-<li>heights_per_k.dendrogram - get the heights for a tree that will yield each k cluster.</li>
-<li>is.hclust</li>
-<li>is.dendrogram</li>
-<li>is.phylo</li>
-<li>fac2num</li>
+<li><p>is.natural.number</p></li>
+<li><p>cutree_1h.dendrogram - like cutree, but only for 1 height value.</p></li>
+<li><p>fix_members_attr.dendrogram - just to validate that prune works o.k.</p></li>
+<li><p>hang.dendrogram - hangs a dendrogram leaves (also allows for a rotated hanged dendrogram), works also for non-binary trees.</p></li>
+<li><p>nnodes - count the number of nodes in a tree</p></li>
+<li><p>as.dendrogram.phylo - based on as.hclust.</p></li>
+<li><p>get_nodes_attr - allows easy access to attributes of branches and leaves</p></li>
+<li><p>get_branches_heights</p></li>
+<li><p>fix_members_attr.dendrogram</p></li>
+<li><p>heights_per_k.dendrogram - get the heights for a tree that will yield each k cluster.</p></li>
+<li><p>is.hclust</p></li>
+<li><p>is.dendrogram</p></li>
+<li><p>is.phylo</p></li>
+<li><p>fac2num</p></li>
 <li><p>as.phylo.dendrogram - based on as.hclust.</p></li>
-<li>cutree_1k.dendrogram - like cutree, but only for 1 k (number of clusters) value.</li>
-<li>cutree.dendrogram - like cutree but for dendrograms (and it is also vectorized)</li>
-<li>cutree.hclust - like cutree but for hclust</li>
-<li>cutree.phylo - like cutree but for phylo</li>
-<li>sort_levels_values - make the resulting clusters from cutree to be ordered from left to right</li>
+<li><p>cutree_1k.dendrogram - like cutree, but only for 1 k (number of clusters) value.</p></li>
+<li><p>cutree.dendrogram - like cutree but for dendrograms (and it is also vectorized)</p></li>
+<li><p>cutree.hclust - like cutree but for hclust</p></li>
+<li><p>cutree.phylo - like cutree but for phylo</p></li>
+<li><p>sort_levels_values - make the resulting clusters from cutree to be ordered from left to right</p></li>
 <li><p>cutree - with S3 methods for dendrogram/hclust/phylo</p></li>
-<li>color_branches - color a tree branches based on its clusters. This is a modified version of the color_clusters function from jefferis’s dendroextra package. It extends it by using my own version of cutree.dendrogram - allowing the function to work for trees that hclust can not handle (unrooted and non-ultrametric trees). Also, it allows REPEATED cluster color assignments to branches on to the same tree. Something which the original function was not able to handle. It also handles extreme cases, such as when the labels of a tree are integers.</li>
+<li><p>color_branches - color a tree branches based on its clusters. This is a modified version of the color_clusters function from jefferis’s dendroextra package. It extends it by using my own version of cutree.dendrogram - allowing the function to work for trees that hclust can not handle (unrooted and non-ultrametric trees). Also, it allows REPEATED cluster color assignments to branches on to the same tree. Something which the original function was not able to handle. It also handles extreme cases, such as when the labels of a tree are integers.</p></li>
 <li><p>color_labels - just like color_branches, but for labels.</p></li>
 <li><p>assign_values_to_leaves_nodePar - allows for complex manipulation of dendrogram’s leaves parameters.</p></li>
 </ul>
@@ -1794,9 +1811,9 @@
 <li>Coloring branches.</li>
 </ul>
 </div>
-    <div id="dendextend-0-3-2013-07-27" class="section level2">
+    <div id="dendextend-03-2013-07-27" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-3-2013-07-27" class="anchor"></a>dendextend 0.3 (2013-07-27)</h2>
+<a href="#dendextend-03-2013-07-27" class="anchor"></a>dendextend 0.3 (2013-07-27)</h2>
 <p>###NEW FUNCTIONS ADDED:</p>
 <ul>
 <li>removed “flip”, added rev.hclust instead (since rev.dendrogram already exists)</li>
@@ -1837,9 +1854,9 @@
 <li>Added a clear GPL-2+ copyright notice on each r file. * Forcing {ape} to load before {dendextend}, thus allowing for both rotate and unroot to work for BOTH packages. It does add extra noise when loading the package, but it is the best solution I can think of at this point.</li>
 </ul>
 </div>
-    <div id="dendextend-0-2-2013-04-10" class="section level2">
+    <div id="dendextend-02-2013-04-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-2-2013-04-10" class="anchor"></a>dendextend 0.2 (2013-04-10)</h2>
+<a href="#dendextend-02-2013-04-10" class="anchor"></a>dendextend 0.2 (2013-04-10)</h2>
 <p>###NEW FUNCTIONS ADDED:</p>
 <ul>
 <li>count_terminal_nodes</li>
@@ -1869,9 +1886,9 @@
 <li>Added more .r files, and changed the locations of some functions.</li>
 </ul>
 </div>
-    <div id="dendextend-0-1-2013-04-05---first-version" class="section level2">
+    <div id="dendextend-01-2013-04-05---first-version" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dendextend-0-1-2013-04-05---first-version" class="anchor"></a>dendextend 0.1 (2013-04-05) - FIRST version!</h2>
+<a href="#dendextend-01-2013-04-05---first-version" class="anchor"></a>dendextend 0.1 (2013-04-05) - FIRST version!</h2>
 <p>###NEW FUNCTIONS</p>
 <ul>
 <li>S3 methods for label assignment operator for vector, dendrogram, hclust, matrix.</li>
@@ -1895,7 +1912,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

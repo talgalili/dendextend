@@ -74,7 +74,7 @@ on a row-sample with replacments from the original data matrix." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ on a row-sample with replacments from the original data matrix." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@ on a row-sample with replacments from the original data matrix." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,15 +145,15 @@ since it emulates what would have happened if the tree was constructed based
 on a row-sample with replacments from the original data matrix.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>duplicate_leaf</span>(
-  <span class='no'>dend</span>,
-  <span class='no'>leaf_label</span>,
-  <span class='no'>times</span>,
-  <span class='kw'>fix_members</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>fix_order</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>fix_midpoint</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>duplicate_leaf</span><span class='op'>(</span>
+  <span class='va'>dend</span>,
+  <span class='va'>leaf_label</span>,
+  <span class='va'>times</span>,
+  fix_members <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  fix_order <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  fix_midpoint <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -198,20 +198,22 @@ values using <a href='rank_order.dendrogram.html'>rank_order.dendrogram</a></p><
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># define dendrogram object to play with:</span>
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='no'>USArrests</span>[<span class='fl'>1</span>:<span class='fl'>3</span>, ] <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"ave"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>)
-<span class='fu'>duplicate_leaf</span>(<span class='no'>dend</span>, <span class='st'>"Alaska"</span>, <span class='fl'>3</span>)
-<span class='fu'>duplicate_leaf</span>(<span class='no'>dend</span>, <span class='st'>"Arizona"</span>, <span class='fl'>2</span>, <span class='kw'>fix_members</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fix_order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'>duplicate_leaf</span>(<span class='no'>dend</span>, <span class='st'>"Alaska"</span>, <span class='fl'>2</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'>duplicate_leaf</span>(<span class='no'>dend</span>, <span class='st'>"Alaska"</span>, <span class='fl'>4</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'>duplicate_leaf</span>(<span class='no'>dend</span>, <span class='st'>"Arizona"</span>, <span class='fl'>2</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'>duplicate_leaf</span>(<span class='no'>dend</span>, <span class='st'>"Arizona"</span>, <span class='fl'>4</span>))
-}</div></pre>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='va'>USArrests</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"ave"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
+<span class='fu'>duplicate_leaf</span><span class='op'>(</span><span class='va'>dend</span>, <span class='st'>"Alaska"</span>, <span class='fl'>3</span><span class='op'>)</span>
+<span class='fu'>duplicate_leaf</span><span class='op'>(</span><span class='va'>dend</span>, <span class='st'>"Arizona"</span>, <span class='fl'>2</span>, fix_members <span class='op'>=</span> <span class='cn'>FALSE</span>, fix_order <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'>duplicate_leaf</span><span class='op'>(</span><span class='va'>dend</span>, <span class='st'>"Alaska"</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'>duplicate_leaf</span><span class='op'>(</span><span class='va'>dend</span>, <span class='st'>"Alaska"</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'>duplicate_leaf</span><span class='op'>(</span><span class='va'>dend</span>, <span class='st'>"Arizona"</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'>duplicate_leaf</span><span class='op'>(</span><span class='va'>dend</span>, <span class='st'>"Arizona"</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -227,7 +229,7 @@ values using <a href='rank_order.dendrogram.html'>rank_order.dendrogram</a></p><
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -118,7 +118,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -147,27 +147,27 @@
  then a rectangle is drawn around selected branches.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rect.dendrogram</span>(
-  <span class='no'>tree</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>which</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>h</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>density</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>45</span>,
-  <span class='kw'>text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>text_cex</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>text_col</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>xpd</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>lower_rect</span>,
-  <span class='kw'>upper_rect</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>prop_k_height</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>stop_if_out</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>rect.dendrogram</span><span class='op'>(</span>
+  <span class='va'>tree</span>,
+  k <span class='op'>=</span> <span class='cn'>NULL</span>,
+  which <span class='op'>=</span> <span class='cn'>NULL</span>,
+  x <span class='op'>=</span> <span class='cn'>NULL</span>,
+  h <span class='op'>=</span> <span class='cn'>NULL</span>,
+  border <span class='op'>=</span> <span class='fl'>2</span>,
+  cluster <span class='op'>=</span> <span class='cn'>NULL</span>,
+  horiz <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  density <span class='op'>=</span> <span class='cn'>NULL</span>,
+  angle <span class='op'>=</span> <span class='fl'>45</span>,
+  text <span class='op'>=</span> <span class='cn'>NULL</span>,
+  text_cex <span class='op'>=</span> <span class='fl'>1</span>,
+  text_col <span class='op'>=</span> <span class='fl'>1</span>,
+  xpd <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>lower_rect</span>,
+  upper_rect <span class='op'>=</span> <span class='fl'>0</span>,
+  prop_k_height <span class='op'>=</span> <span class='fl'>0.5</span>,
+  stop_if_out <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -291,18 +291,22 @@ skullkey from here:
  of data points contained in the respective cluster.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='https://rdrr.io/r/stats/rect.hclust.html'>rect.hclust</a>, <a href='https://rdrr.io/r/stats/order.dendrogram.html'>order.dendrogram</a>, <a href='cutree-methods.html'>cutree.dendrogram</a></p></div>
+    <div class='dont-index'><p><a href='https://rdrr.io/r/stats/rect.hclust.html'>rect.hclust</a>, <a href='https://rdrr.io/r/stats/order.dendrogram.html'>order.dendrogram</a>, <a href='cutree.html'>cutree.dendrogram</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>23235</span>)
-<span class='no'>ss</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>150</span>, <span class='fl'>10</span>)
-<span class='no'>hc</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[<span class='no'>ss</span>, -<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>()
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='no'>hc</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>23235</span><span class='op'>)</span>
+<span class='va'>ss</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>150</span>, <span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>hc</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='va'>ss</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='va'>hc</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>)</div><div class='input'><span class='fu'>rect.dendrogram</span>(<span class='no'>dend</span>, <span class='fl'>2</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='input'><span class='fu'>rect.dendrogram</span>(<span class='no'>dend</span>, <span class='fl'>3</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Vectorize.html'>Vectorize</a></span>(<span class='no'>rect.dendrogram</span>, <span class='st'>"k"</span>)(<span class='no'>dend</span>, <span class='fl'>4</span>:<span class='fl'>5</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>6</span>)</div><div class='img'><img src='rect.dendrogram-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; [[1]]
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>rect.dendrogram</span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>2</span>, border <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>rect.dendrogram</span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>3</span>, border <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Vectorize.html'>Vectorize</a></span><span class='op'>(</span><span class='va'>rect.dendrogram</span>, <span class='st'>"k"</span><span class='op'>)</span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>4</span><span class='op'>:</span><span class='fl'>5</span>, border <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
+</div><div class='img'><img src='rect.dendrogram-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; [[1]]
 #&gt; [[1]][[1]]
 #&gt; 123 
 #&gt;   7 
@@ -342,25 +346,36 @@ skullkey from here:
 #&gt;  2  6 10 
 #&gt; 
 #&gt; </div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>)</div><div class='input'><span class='fu'>rect.dendrogram</span>(<span class='no'>dend</span>, <span class='fl'>3</span>,
-  <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>,
-  <span class='kw'>density</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"1"</span>, <span class='st'>"b"</span>, <span class='st'>"miao"</span>), <span class='kw'>text_cex</span> <span class='kw'>=</span> <span class='fl'>3</span>
-)</div><div class='img'><img src='rect.dendrogram-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>)</div><div class='input'><span class='fu'>rect.dendrogram</span>(<span class='no'>dend</span>, <span class='fl'>4</span>, <span class='kw'>which</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>), <span class='kw'>border</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>3</span>))</div><div class='input'><span class='fu'>rect.dendrogram</span>(<span class='no'>dend</span>, <span class='fl'>4</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>))</div><div class='input'><span class='fu'>rect.dendrogram</span>(<span class='no'>dend</span>, <span class='fl'>3</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='img'><img src='rect.dendrogram-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># now THIS, you can not do with the old rect.hclust</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>, <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='input'><span class='fu'>rect.dendrogram</span>(<span class='no'>dend</span>, <span class='fl'>2</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='input'><span class='fu'>rect.dendrogram</span>(<span class='no'>dend</span>, <span class='fl'>4</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='rect.dendrogram-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>rect.dendrogram</span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>3</span>,
+  border <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,
+  density <span class='op'>=</span> <span class='fl'>2</span>, text <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"b"</span>, <span class='st'>"miao"</span><span class='op'>)</span>, text_cex <span class='op'>=</span> <span class='fl'>3</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='rect.dendrogram-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>rect.dendrogram</span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>4</span>, which <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span>, border <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>rect.dendrogram</span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>4</span>, x <span class='op'>=</span> <span class='fl'>5</span>, border <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>rect.dendrogram</span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>3</span>, border <span class='op'>=</span> <span class='fl'>3</span>, lwd <span class='op'>=</span> <span class='fl'>2</span>, lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='img'><img src='rect.dendrogram-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># now THIS, you can not do with the old rect.hclust</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span>, horiz <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>rect.dendrogram</span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>2</span>, border <span class='op'>=</span> <span class='fl'>2</span>, horiz <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>rect.dendrogram</span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>4</span>, border <span class='op'>=</span> <span class='fl'>4</span>, lty <span class='op'>=</span> <span class='fl'>2</span>, lwd <span class='op'>=</span> <span class='fl'>3</span>, horiz <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='rect.dendrogram-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># This had previously failed since it worked with a wrong k.</span>
 
-<span class='no'>dend15</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"average"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
+<span class='va'>dend15</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='co'># dend15 &lt;- c(1:25) %&gt;% dist %&gt;% hclust(method = "average") %&gt;% as.dendrogram</span>
-<span class='no'>dend15</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"branches_k_color"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>()</div><div class='input'><span class='no'>dend15</span> <span class='kw'>%&gt;%</span> <span class='fu'>rect.dendrogram</span>(
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>
-)</div><div class='img'><img src='rect.dendrogram-5.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>dend15</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='st'>"branches_k_color"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='input'><span class='va'>dend15</span> <span class='op'>%&gt;%</span> <span class='fu'>rect.dendrogram</span><span class='op'>(</span>
+  k <span class='op'>=</span> <span class='fl'>3</span>,
+  border <span class='op'>=</span> <span class='fl'>8</span>, lty <span class='op'>=</span> <span class='fl'>5</span>, lwd <span class='op'>=</span> <span class='fl'>2</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='rect.dendrogram-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -376,7 +391,7 @@ skullkey from here:
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -1,567 +1,992 @@
-* 2020-08-24(Tal Galili) Fix: "Found the following (possibly) invalid URLs:" (2) |6ba5e50| 
-|  R/color_branches.R | 2 +-
-|  R/colored_bars.R   | 2 +-
-|  R/colored_dots.R   | 2 +-
-|  R/tanglegram.R     | 2 +-
-|  man/all_unique.Rd  | 2 +-
-|  man/tanglegram.Rd  | 2 +-
-|  6 files changed, 6 insertions(+), 6 deletions(-)
-
-* 2020-08-24(Tal Galili) Fix: "Found the following (possibly) invalid URLs:" |92689e6| 
-|  ChangeLog                                         |   16 +
-|  DESCRIPTION                                       |    2 +-
-|  NEWS                                              |    4 +-
-|  NEWS.md                                           |    4 +-
-|  R/ape.R                                           |    2 +-
-|  R/as.dendrogram.randomForest.R                    |    2 +-
-|  R/attr_access.R                                   |    2 +-
-|  R/bk_method.R                                     |   14 +-
-|  R/colored_bars.R                                  |    2 +-
-|  R/colored_dots.R                                  |    2 +-
-|  R/cor_cophenetic.R                                |    2 +-
-|  R/cutree.dendrogram.R                             |    2 +-
-|  R/ggdend.R                                        |    4 +-
-|  R/highlight_branches.R                            |    2 +-
-|  R/labels.R                                        |    4 +-
-|  R/labels_colors.R                                 |    2 +-
-|  R/magrittr.R                                      |    2 +-
-|  R/nleaves.R                                       |    2 +-
-|  R/pvclust.R                                       |    2 +-
-|  R/rect.dendrogram.R                               |    2 +-
-|  R/tanglegram.R                                    |    6 +-
-|  R/untangle.R                                      |    2 +-
-|  R/zzz.R                                           |   14 +-
-|  docs/404.html                                     |    9 +-
-|  docs/articles/Cluster_Analysis.html               |  177 +-
-|  .../figure-html/unnamed-chunk-11-1.png            |  Bin 237223 -> 182547 bytes
-|  .../figure-html/unnamed-chunk-12-1.png            |  Bin 239150 -> 184484 bytes
-|  .../figure-html/unnamed-chunk-13-1.png            |  Bin 116304 -> 101625 bytes
-|  .../figure-html/unnamed-chunk-14-1.png            |  Bin 127251 -> 111838 bytes
-|  .../figure-html/unnamed-chunk-15-1.png            |  Bin 199168 -> 179961 bytes
-|  .../figure-html/unnamed-chunk-17-1.png            |  Bin 146326 -> 131116 bytes
-|  .../figure-html/unnamed-chunk-18-1.png            |  Bin 315475 -> 273265 bytes
-|  .../figure-html/unnamed-chunk-21-1.png            |  Bin 66096 -> 19526 bytes
-|  .../figure-html/unnamed-chunk-26-1.png            |  Bin 67171 -> 46507 bytes
-|  .../figure-html/unnamed-chunk-27-1.png            |  Bin 273583 -> 252615 bytes
-|  .../figure-html/unnamed-chunk-29-1.png            |  Bin 113554 -> 72998 bytes
-|  .../figure-html/unnamed-chunk-3-1.png             |  Bin 215537 -> 155245 bytes
-|  .../figure-html/unnamed-chunk-32-1.png            |  Bin 252664 -> 133956 bytes
-|  .../figure-html/unnamed-chunk-33-1.png            |  Bin 188877 -> 132803 bytes
-|  .../figure-html/unnamed-chunk-35-1.png            |  Bin 240176 -> 185647 bytes
-|  .../figure-html/unnamed-chunk-36-1.png            |  Bin 188224 -> 131855 bytes
-|  .../figure-html/unnamed-chunk-38-1.png            |  Bin 230911 -> 179095 bytes
-|  .../figure-html/unnamed-chunk-4-1.png             |  Bin 159787 -> 118901 bytes
-|  .../figure-html/unnamed-chunk-40-1.png            |  Bin 113846 -> 72114 bytes
-|  .../figure-html/unnamed-chunk-42-1.png            |  Bin 243424 -> 187788 bytes
-|  .../figure-html/unnamed-chunk-43-1.png            |  Bin 161093 -> 125415 bytes
-|  .../figure-html/unnamed-chunk-5-1.png             |  Bin 298674 -> 145398 bytes
-|  .../figure-html/unnamed-chunk-6-1.png             |  Bin 410630 -> 377801 bytes
-|  .../figure-html/unnamed-chunk-8-1.png             |  Bin 110290 -> 67663 bytes
-|  docs/articles/FAQ.html                            |   81 +-
-|  .../FAQ_files/figure-html/unnamed-chunk-12-1.png  |  Bin 315434 -> 244299 bytes
-|  .../FAQ_files/figure-html/unnamed-chunk-14-1.png  |  Bin 27074 -> 10697 bytes
-|  .../FAQ_files/figure-html/unnamed-chunk-15-1.png  |  Bin 128487 -> 87394 bytes
-|  .../FAQ_files/figure-html/unnamed-chunk-15-2.png  |  Bin 150853 -> 113695 bytes
-|  .../FAQ_files/figure-html/unnamed-chunk-16-1.png  |  Bin 153878 -> 111618 bytes
-|  .../FAQ_files/figure-html/unnamed-chunk-16-2.png  |  Bin 152710 -> 113042 bytes
-|  .../FAQ_files/figure-html/unnamed-chunk-2-1.png   |  Bin 45942 -> 28740 bytes
-|  .../FAQ_files/figure-html/unnamed-chunk-3-1.png   |  Bin 29881 -> 16555 bytes
-|  .../FAQ_files/figure-html/unnamed-chunk-4-1.png   |  Bin 55459 -> 37105 bytes
-|  .../FAQ_files/figure-html/unnamed-chunk-5-1.png   |  Bin 48733 -> 31515 bytes
-|  .../FAQ_files/figure-html/unnamed-chunk-7-1.png   |  Bin 60337 -> 18238 bytes
-|  docs/articles/Quick_Introduction.html             |   40 +-
-|  .../figure-html/unnamed-chunk-11-1.png            |  Bin 23807 -> 8352 bytes
-|  .../figure-html/unnamed-chunk-4-1.png             |  Bin 27834 -> 9107 bytes
-|  .../figure-html/unnamed-chunk-6-1.png             |  Bin 31306 -> 15302 bytes
-|  .../figure-html/unnamed-chunk-7-1.png             |  Bin 31362 -> 15328 bytes
-|  .../figure-html/unnamed-chunk-8-1.png             |  Bin 31315 -> 15333 bytes
-|  .../figure-html/unnamed-chunk-9-1.png             |  Bin 41782 -> 23658 bytes
-|  docs/articles/dendextend.html                     |  364 +-
-|  .../dendextend_files/d3-3.5.3/CONTRIBUTING.md     |   25 -
-|  docs/articles/dendextend_files/d3-3.5.3/LICENSE   |   26 -
-|  docs/articles/dendextend_files/d3-3.5.3/README.md |    9 -
-|  docs/articles/dendextend_files/d3-3.5.3/d3.js     | 9466 -------------------
-|  docs/articles/dendextend_files/d3-3.5.3/d3.min.js |    5 -
-|  .../dendextend_files/d3-tip-0.6.6/LICENSE         |    8 -
-|  .../dendextend_files/d3-tip-0.6.6/README.md       |   43 -
-|  .../dendextend_files/d3-tip-0.6.6/index.js        |  299 -
-|  .../dendextend_files/d3-tip-0.6.6/package.json    |   28 -
-|  .../d3heatmap-binding-0.6.1.2/d3heatmap.js        |  115 -
-|  .../d3heatmapcore-0.0.0/heatmapcore.css           |  100 -
-|  .../d3heatmapcore-0.0.0/heatmapcore.js            |  645 --
-|  .../figure-html/unnamed-chunk-11-1.png            |  Bin 68516 -> 47681 bytes
-|  .../figure-html/unnamed-chunk-13-1.png            |  Bin 23712 -> 7356 bytes
-|  .../figure-html/unnamed-chunk-17-1.png            |  Bin 31205 -> 17100 bytes
-|  .../figure-html/unnamed-chunk-18-1.png            |  Bin 28731 -> 16161 bytes
-|  .../figure-html/unnamed-chunk-2-1.png             |  Bin 80240 -> 53183 bytes
-|  .../figure-html/unnamed-chunk-20-1.png            |  Bin 36267 -> 21433 bytes
-|  .../figure-html/unnamed-chunk-21-1.png            |  Bin 72537 -> 37984 bytes
-|  .../figure-html/unnamed-chunk-22-1.png            |  Bin 47354 -> 29388 bytes
-|  .../figure-html/unnamed-chunk-24-1.png            |  Bin 32583 -> 16183 bytes
-|  .../figure-html/unnamed-chunk-26-1.png            |  Bin 28943 -> 8836 bytes
-|  .../figure-html/unnamed-chunk-27-1.png            |  Bin 30926 -> 17713 bytes
-|  .../figure-html/unnamed-chunk-28-1.png            |  Bin 21403 -> 13930 bytes
-|  .../figure-html/unnamed-chunk-29-1.png            |  Bin 35132 -> 21445 bytes
-|  .../figure-html/unnamed-chunk-30-1.png            |  Bin 36734 -> 20844 bytes
-|  .../figure-html/unnamed-chunk-31-1.png            |  Bin 32956 -> 17454 bytes
-|  .../figure-html/unnamed-chunk-32-1.png            |  Bin 43486 -> 27586 bytes
-|  .../figure-html/unnamed-chunk-33-1.png            |  Bin 48839 -> 27401 bytes
-|  .../figure-html/unnamed-chunk-33-2.png            |  Bin 87982 -> 27370 bytes
-|  .../figure-html/unnamed-chunk-33-3.png            |  Bin 72366 -> 51324 bytes
-|  .../figure-html/unnamed-chunk-33-4.png            |  Bin 58799 -> 17620 bytes
-|  .../figure-html/unnamed-chunk-33-5.png            |  Bin 94390 -> 70597 bytes
-|  .../figure-html/unnamed-chunk-34-1.png            |  Bin 32971 -> 16662 bytes
-|  .../figure-html/unnamed-chunk-35-1.png            |  Bin 50593 -> 18657 bytes
-|  .../figure-html/unnamed-chunk-36-1.png            |  Bin 29970 -> 9443 bytes
-|  .../figure-html/unnamed-chunk-37-1.png            |  Bin 23483 -> 12208 bytes
-|  .../figure-html/unnamed-chunk-38-1.png            |  Bin 17876 -> 5309 bytes
-|  .../figure-html/unnamed-chunk-39-1.png            |  Bin 27578 -> 8978 bytes
-|  .../figure-html/unnamed-chunk-40-1.png            |  Bin 27939 -> 18044 bytes
-|  .../figure-html/unnamed-chunk-41-1.png            |  Bin 23931 -> 14806 bytes
-|  .../figure-html/unnamed-chunk-42-1.png            |  Bin 95109 -> 70858 bytes
-|  .../figure-html/unnamed-chunk-43-1.png            |  Bin 76052 -> 52654 bytes
-|  .../figure-html/unnamed-chunk-43-2.png            |  Bin 78605 -> 48494 bytes
-|  .../figure-html/unnamed-chunk-43-3.png            |  Bin 92545 -> 58332 bytes
-|  .../figure-html/unnamed-chunk-43-4.png            |  Bin 101166 -> 73874 bytes
-|  .../figure-html/unnamed-chunk-44-1.png            |  Bin 18919 -> 9164 bytes
-|  .../figure-html/unnamed-chunk-45-1.png            |  Bin 146675 -> 121141 bytes
-|  .../figure-html/unnamed-chunk-45-2.png            |  Bin 153759 -> 126404 bytes
-|  .../figure-html/unnamed-chunk-49-1.png            |  Bin 74129 -> 54593 bytes
-|  .../figure-html/unnamed-chunk-50-1.png            |  Bin 183118 -> 132562 bytes
-|  .../figure-html/unnamed-chunk-51-1.png            |  Bin 172961 -> 109079 bytes
-|  .../figure-html/unnamed-chunk-52-1.png            |  Bin 158354 -> 129108 bytes
-|  .../figure-html/unnamed-chunk-53-1.png            |  Bin 166351 -> 109569 bytes
-|  .../figure-html/unnamed-chunk-55-1.png            |  Bin 34220 -> 18281 bytes
-|  .../figure-html/unnamed-chunk-56-1.png            |  Bin 37445 -> 26723 bytes
-|  .../figure-html/unnamed-chunk-57-1.png            |  Bin 38436 -> 28022 bytes
-|  .../figure-html/unnamed-chunk-59-1.png            |  Bin 20546 -> 11192 bytes
-|  .../figure-html/unnamed-chunk-60-1.png            |  Bin 44577 -> 33235 bytes
-|  .../figure-html/unnamed-chunk-61-1.png            |  Bin 44647 -> 32995 bytes
-|  .../figure-html/unnamed-chunk-62-1.png            |  Bin 30712 -> 20082 bytes
-|  .../figure-html/unnamed-chunk-63-1.png            |  Bin 26061 -> 16179 bytes
-|  .../figure-html/unnamed-chunk-64-1.png            |  Bin 58438 -> 18284 bytes
-|  .../figure-html/unnamed-chunk-66-1.png            |  Bin 26774 -> 8077 bytes
-|  .../figure-html/unnamed-chunk-68-1.png            |  Bin 104106 -> 74411 bytes
-|  .../figure-html/unnamed-chunk-69-1.png            |  Bin 42773 -> 29061 bytes
-|  .../figure-html/unnamed-chunk-69-2.png            |  Bin 67377 -> 52326 bytes
-|  .../figure-html/unnamed-chunk-7-1.png             |  Bin 12123 -> 3545 bytes
-|  .../figure-html/unnamed-chunk-72-1.png            |  Bin 78638 -> 58285 bytes
-|  .../figure-html/unnamed-chunk-73-1.png            |  Bin 63535 -> 42736 bytes
-|  .../figure-html/unnamed-chunk-73-2.png            |  Bin 59460 -> 40023 bytes
-|  .../figure-html/unnamed-chunk-73-3.png            |  Bin 64187 -> 43758 bytes
-|  .../figure-html/unnamed-chunk-79-1.png            |  Bin 90156 -> 68569 bytes
-|  .../figure-html/unnamed-chunk-79-2.png            |  Bin 88017 -> 66622 bytes
-|  .../figure-html/unnamed-chunk-9-1.png             |  Bin 12642 -> 4106 bytes
-|  .../htmlwidgets-1.3/htmlwidgets.js                |  839 --
-|  docs/articles/index.html                          |    9 +-
-|  docs/articles/introduction.html                   | 1448 ---
-|  .../introduction_files/d3-3.5.3/CONTRIBUTING.md   |   25 -
-|  docs/articles/introduction_files/d3-3.5.3/LICENSE |   26 -
-|  .../introduction_files/d3-3.5.3/README.md         |    9 -
-|  docs/articles/introduction_files/d3-3.5.3/d3.js   | 9466 -------------------
-|  .../introduction_files/d3-3.5.3/d3.min.js         |    5 -
-|  .../introduction_files/d3-tip-0.6.6/LICENSE       |    8 -
-|  .../introduction_files/d3-tip-0.6.6/README.md     |   43 -
-|  .../introduction_files/d3-tip-0.6.6/index.js      |  299 -
-|  .../introduction_files/d3-tip-0.6.6/package.json  |   28 -
-|  .../d3heatmap-binding-0.6.1.2/d3heatmap.js        |  115 -
-|  .../d3heatmapcore-0.0.0/heatmapcore.css           |  100 -
-|  .../d3heatmapcore-0.0.0/heatmapcore.js            |  645 --
-|  .../figure-html/unnamed-chunk-11-1.png            |  Bin 12194 -> 0 bytes
-|  .../figure-html/unnamed-chunk-13-1.png            |  Bin 5057 -> 0 bytes
-|  .../figure-html/unnamed-chunk-17-1.png            |  Bin 6661 -> 0 bytes
-|  .../figure-html/unnamed-chunk-18-1.png            |  Bin 6627 -> 0 bytes
-|  .../figure-html/unnamed-chunk-2-1.png             |  Bin 13796 -> 0 bytes
-|  .../figure-html/unnamed-chunk-20-1.png            |  Bin 8151 -> 0 bytes
-|  .../figure-html/unnamed-chunk-21-1.png            |  Bin 15972 -> 0 bytes
-|  .../figure-html/unnamed-chunk-22-1.png            |  Bin 11453 -> 0 bytes
-|  .../figure-html/unnamed-chunk-24-1.png            |  Bin 6688 -> 0 bytes
-|  .../figure-html/unnamed-chunk-26-1.png            |  Bin 7594 -> 0 bytes
-|  .../figure-html/unnamed-chunk-27-1.png            |  Bin 6239 -> 0 bytes
-|  .../figure-html/unnamed-chunk-28-1.png            |  Bin 3938 -> 0 bytes
-|  .../figure-html/unnamed-chunk-29-1.png            |  Bin 7016 -> 0 bytes
-|  .../figure-html/unnamed-chunk-30-1.png            |  Bin 8691 -> 0 bytes
-|  .../figure-html/unnamed-chunk-31-1.png            |  Bin 7600 -> 0 bytes
-|  .../figure-html/unnamed-chunk-32-1.png            |  Bin 7673 -> 0 bytes
-|  .../figure-html/unnamed-chunk-33-1.png            |  Bin 10411 -> 0 bytes
-|  .../figure-html/unnamed-chunk-33-2.png            |  Bin 13391 -> 0 bytes
-|  .../figure-html/unnamed-chunk-33-3.png            |  Bin 10813 -> 0 bytes
-|  .../figure-html/unnamed-chunk-33-4.png            |  Bin 10151 -> 0 bytes
-|  .../figure-html/unnamed-chunk-33-5.png            |  Bin 13818 -> 0 bytes
-|  .../figure-html/unnamed-chunk-34-1.png            |  Bin 8691 -> 0 bytes
-|  .../figure-html/unnamed-chunk-35-1.png            |  Bin 18198 -> 0 bytes
-|  .../figure-html/unnamed-chunk-36-1.png            |  Bin 7036 -> 0 bytes
-|  .../figure-html/unnamed-chunk-37-1.png            |  Bin 5345 -> 0 bytes
-|  .../figure-html/unnamed-chunk-38-1.png            |  Bin 3858 -> 0 bytes
-|  .../figure-html/unnamed-chunk-39-1.png            |  Bin 7449 -> 0 bytes
-|  .../figure-html/unnamed-chunk-40-1.png            |  Bin 5410 -> 0 bytes
-|  .../figure-html/unnamed-chunk-41-1.png            |  Bin 5878 -> 0 bytes
-|  .../figure-html/unnamed-chunk-42-1.png            |  Bin 19489 -> 0 bytes
-|  .../figure-html/unnamed-chunk-43-1.png            |  Bin 24076 -> 0 bytes
-|  .../figure-html/unnamed-chunk-43-2.png            |  Bin 24901 -> 0 bytes
-|  .../figure-html/unnamed-chunk-43-3.png            |  Bin 31188 -> 0 bytes
-|  .../figure-html/unnamed-chunk-43-4.png            |  Bin 11454 -> 0 bytes
-|  .../figure-html/unnamed-chunk-44-1.png            |  Bin 4115 -> 0 bytes
-|  .../figure-html/unnamed-chunk-45-1.png            |  Bin 25274 -> 0 bytes
-|  .../figure-html/unnamed-chunk-45-2.png            |  Bin 25775 -> 0 bytes
-|  .../figure-html/unnamed-chunk-49-1.png            |  Bin 28338 -> 0 bytes
-|  .../figure-html/unnamed-chunk-50-1.png            |  Bin 34559 -> 0 bytes
-|  .../figure-html/unnamed-chunk-51-1.png            |  Bin 36293 -> 0 bytes
-|  .../figure-html/unnamed-chunk-52-1.png            |  Bin 40838 -> 0 bytes
-|  .../figure-html/unnamed-chunk-53-1.png            |  Bin 43412 -> 0 bytes
-|  .../figure-html/unnamed-chunk-55-1.png            |  Bin 8794 -> 0 bytes
-|  .../figure-html/unnamed-chunk-56-1.png            |  Bin 5334 -> 0 bytes
-|  .../figure-html/unnamed-chunk-57-1.png            |  Bin 5443 -> 0 bytes
-|  .../figure-html/unnamed-chunk-59-1.png            |  Bin 3551 -> 0 bytes
-|  .../figure-html/unnamed-chunk-60-1.png            |  Bin 6976 -> 0 bytes
-|  .../figure-html/unnamed-chunk-61-1.png            |  Bin 6952 -> 0 bytes
-|  .../figure-html/unnamed-chunk-62-1.png            |  Bin 5511 -> 0 bytes
-|  .../figure-html/unnamed-chunk-63-1.png            |  Bin 4869 -> 0 bytes
-|  .../figure-html/unnamed-chunk-64-1.png            |  Bin 12001 -> 0 bytes
-|  .../figure-html/unnamed-chunk-66-1.png            |  Bin 6803 -> 0 bytes
-|  .../figure-html/unnamed-chunk-68-1.png            |  Bin 16637 -> 0 bytes
-|  .../figure-html/unnamed-chunk-69-1.png            |  Bin 6861 -> 0 bytes
-|  .../figure-html/unnamed-chunk-69-2.png            |  Bin 8928 -> 0 bytes
-|  .../figure-html/unnamed-chunk-7-1.png             |  Bin 2344 -> 0 bytes
-|  .../figure-html/unnamed-chunk-72-1.png            |  Bin 14005 -> 0 bytes
-|  .../figure-html/unnamed-chunk-73-1.png            |  Bin 9896 -> 0 bytes
-|  .../figure-html/unnamed-chunk-73-2.png            |  Bin 9449 -> 0 bytes
-|  .../figure-html/unnamed-chunk-73-3.png            |  Bin 11954 -> 0 bytes
-|  .../figure-html/unnamed-chunk-79-1.png            |  Bin 13979 -> 0 bytes
-|  .../figure-html/unnamed-chunk-79-2.png            |  Bin 13210 -> 0 bytes
-|  .../figure-html/unnamed-chunk-9-1.png             |  Bin 2888 -> 0 bytes
-|  .../htmlwidgets-1.3/htmlwidgets.js                |  839 --
-|  docs/news/index.html                              |    9 +-
+* 2021-05-08(Tal Galili) update pkgdown website |af5f87c| 
+|  docs/404.html                                     |    8 +-
+|  docs/CONDUCT.html                                 |    8 +-
+|  docs/articles/Cluster_Analysis.html               |  512 ++++----
+|  .../accessible-code-block-0.0.1/empty-anchor.js   |   15 +
+|  .../figure-html/unnamed-chunk-11-1.png            |  Bin 182547 -> 194462 bytes
+|  .../figure-html/unnamed-chunk-12-1.png            |  Bin 184484 -> 197378 bytes
+|  .../figure-html/unnamed-chunk-13-1.png            |  Bin 101625 -> 85435 bytes
+|  .../figure-html/unnamed-chunk-14-1.png            |  Bin 111838 -> 101084 bytes
+|  .../figure-html/unnamed-chunk-15-1.png            |  Bin 179961 -> 151578 bytes
+|  .../figure-html/unnamed-chunk-17-1.png            |  Bin 131116 -> 120234 bytes
+|  .../figure-html/unnamed-chunk-18-1.png            |  Bin 273265 -> 219924 bytes
+|  .../figure-html/unnamed-chunk-21-1.png            |  Bin 19526 -> 31259 bytes
+|  .../figure-html/unnamed-chunk-26-1.png            |  Bin 46507 -> 33365 bytes
+|  .../figure-html/unnamed-chunk-27-1.png            |  Bin 252615 -> 223928 bytes
+|  .../figure-html/unnamed-chunk-29-1.png            |  Bin 72998 -> 69789 bytes
+|  .../figure-html/unnamed-chunk-3-1.png             |  Bin 155245 -> 165161 bytes
+|  .../figure-html/unnamed-chunk-32-1.png            |  Bin 133956 -> 202018 bytes
+|  .../figure-html/unnamed-chunk-33-1.png            |  Bin 132803 -> 114867 bytes
+|  .../figure-html/unnamed-chunk-35-1.png            |  Bin 185647 -> 198486 bytes
+|  .../figure-html/unnamed-chunk-36-1.png            |  Bin 131855 -> 114080 bytes
+|  .../figure-html/unnamed-chunk-38-1.png            |  Bin 179095 -> 165969 bytes
+|  .../figure-html/unnamed-chunk-4-1.png             |  Bin 118901 -> 146361 bytes
+|  .../figure-html/unnamed-chunk-40-1.png            |  Bin 72114 -> 59822 bytes
+|  .../figure-html/unnamed-chunk-42-1.png            |  Bin 187788 -> 199586 bytes
+|  .../figure-html/unnamed-chunk-43-1.png            |  Bin 125415 -> 132953 bytes
+|  .../figure-html/unnamed-chunk-5-1.png             |  Bin 145398 -> 250444 bytes
+|  .../figure-html/unnamed-chunk-6-1.png             |  Bin 377801 -> 431084 bytes
+|  .../figure-html/unnamed-chunk-8-1.png             |  Bin 67663 -> 67934 bytes
+|  docs/articles/FAQ.html                            |  368 +++---
+|  .../accessible-code-block-0.0.1/empty-anchor.js   |   15 +
+|  .../FAQ_files/figure-html/unnamed-chunk-12-1.png  |  Bin 244299 -> 247169 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-14-1.png  |  Bin 10697 -> 8645 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-15-1.png  |  Bin 87394 -> 87297 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-15-2.png  |  Bin 113695 -> 103678 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-16-1.png  |  Bin 111618 -> 110579 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-16-2.png  |  Bin 113042 -> 112041 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-2-1.png   |  Bin 28740 -> 21848 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-3-1.png   |  Bin 16555 -> 12541 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-4-1.png   |  Bin 37105 -> 33683 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-5-1.png   |  Bin 31515 -> 25717 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-7-1.png   |  Bin 18238 -> 28857 bytes
+|  docs/articles/Quick_Introduction.html             |   81 +-
+|  .../accessible-code-block-0.0.1/empty-anchor.js   |   15 +
+|  .../figure-html/unnamed-chunk-11-1.png            |  Bin 8352 -> 8924 bytes
+|  .../figure-html/unnamed-chunk-4-1.png             |  Bin 9107 -> 10041 bytes
+|  .../figure-html/unnamed-chunk-6-1.png             |  Bin 15302 -> 13085 bytes
+|  .../figure-html/unnamed-chunk-7-1.png             |  Bin 15328 -> 13258 bytes
+|  .../figure-html/unnamed-chunk-8-1.png             |  Bin 15333 -> 13271 bytes
+|  .../figure-html/unnamed-chunk-9-1.png             |  Bin 23658 -> 24733 bytes
+|  docs/articles/dendextend.html                     | 1247 +++++++++++--------
+|  .../accessible-code-block-0.0.1/empty-anchor.js   |   15 +
+|  .../figure-html/unnamed-chunk-11-1.png            |  Bin 47681 -> 39782 bytes
+|  .../figure-html/unnamed-chunk-13-1.png            |  Bin 7356 -> 8950 bytes
+|  .../figure-html/unnamed-chunk-17-1.png            |  Bin 17100 -> 12455 bytes
+|  .../figure-html/unnamed-chunk-18-1.png            |  Bin 16161 -> 11788 bytes
+|  .../figure-html/unnamed-chunk-2-1.png             |  Bin 53183 -> 46350 bytes
+|  .../figure-html/unnamed-chunk-20-1.png            |  Bin 21433 -> 16441 bytes
+|  .../figure-html/unnamed-chunk-21-1.png            |  Bin 37984 -> 28235 bytes
+|  .../figure-html/unnamed-chunk-22-1.png            |  Bin 29388 -> 20423 bytes
+|  .../figure-html/unnamed-chunk-24-1.png            |  Bin 16183 -> 12809 bytes
+|  .../figure-html/unnamed-chunk-26-1.png            |  Bin 8836 -> 9388 bytes
+|  .../figure-html/unnamed-chunk-27-1.png            |  Bin 17713 -> 13255 bytes
+|  .../figure-html/unnamed-chunk-28-1.png            |  Bin 13930 -> 9573 bytes
+|  .../figure-html/unnamed-chunk-29-1.png            |  Bin 21445 -> 15800 bytes
+|  .../figure-html/unnamed-chunk-30-1.png            |  Bin 20844 -> 16157 bytes
+|  .../figure-html/unnamed-chunk-31-1.png            |  Bin 17454 -> 12989 bytes
+|  .../figure-html/unnamed-chunk-32-1.png            |  Bin 27586 -> 21684 bytes
+|  .../figure-html/unnamed-chunk-33-1.png            |  Bin 27401 -> 23976 bytes
+|  .../figure-html/unnamed-chunk-33-2.png            |  Bin 27370 -> 74644 bytes
+|  .../figure-html/unnamed-chunk-33-3.png            |  Bin 51324 -> 49529 bytes
+|  .../figure-html/unnamed-chunk-33-4.png            |  Bin 17620 -> 39722 bytes
+|  .../figure-html/unnamed-chunk-33-5.png            |  Bin 70597 -> 84536 bytes
+|  .../figure-html/unnamed-chunk-34-1.png            |  Bin 16662 -> 12922 bytes
+|  .../figure-html/unnamed-chunk-35-1.png            |  Bin 18657 -> 17333 bytes
+|  .../figure-html/unnamed-chunk-36-1.png            |  Bin 9443 -> 9938 bytes
+|  .../figure-html/unnamed-chunk-37-1.png            |  Bin 12208 -> 9603 bytes
+|  .../figure-html/unnamed-chunk-38-1.png            |  Bin 5309 -> 6413 bytes
+|  .../figure-html/unnamed-chunk-39-1.png            |  Bin 8978 -> 10162 bytes
+|  .../figure-html/unnamed-chunk-40-1.png            |  Bin 18044 -> 17625 bytes
+|  .../figure-html/unnamed-chunk-41-1.png            |  Bin 14806 -> 9322 bytes
+|  .../figure-html/unnamed-chunk-42-1.png            |  Bin 70858 -> 55791 bytes
+|  .../figure-html/unnamed-chunk-43-1.png            |  Bin 52654 -> 50827 bytes
+|  .../figure-html/unnamed-chunk-43-2.png            |  Bin 48494 -> 57826 bytes
+|  .../figure-html/unnamed-chunk-43-3.png            |  Bin 58332 -> 70427 bytes
+|  .../figure-html/unnamed-chunk-43-4.png            |  Bin 73874 -> 84316 bytes
+|  .../figure-html/unnamed-chunk-44-1.png            |  Bin 9164 -> 7154 bytes
+|  .../figure-html/unnamed-chunk-45-1.png            |  Bin 121141 -> 93768 bytes
+|  .../figure-html/unnamed-chunk-45-2.png            |  Bin 126404 -> 101401 bytes
+|  .../figure-html/unnamed-chunk-49-1.png            |  Bin 54593 -> 54678 bytes
+|  .../figure-html/unnamed-chunk-50-1.png            |  Bin 132562 -> 101318 bytes
+|  .../figure-html/unnamed-chunk-51-1.png            |  Bin 109079 -> 88646 bytes
+|  .../figure-html/unnamed-chunk-52-1.png            |  Bin 129108 -> 131443 bytes
+|  .../figure-html/unnamed-chunk-53-1.png            |  Bin 109569 -> 141006 bytes
+|  .../figure-html/unnamed-chunk-55-1.png            |  Bin 18281 -> 13279 bytes
+|  .../figure-html/unnamed-chunk-56-1.png            |  Bin 26723 -> 26261 bytes
+|  .../figure-html/unnamed-chunk-57-1.png            |  Bin 28022 -> 23455 bytes
+|  .../figure-html/unnamed-chunk-59-1.png            |  Bin 11192 -> 8732 bytes
+|  .../figure-html/unnamed-chunk-60-1.png            |  Bin 33235 -> 30954 bytes
+|  .../figure-html/unnamed-chunk-61-1.png            |  Bin 32995 -> 30777 bytes
+|  .../figure-html/unnamed-chunk-62-1.png            |  Bin 20082 -> 17194 bytes
+|  .../figure-html/unnamed-chunk-63-1.png            |  Bin 16179 -> 11964 bytes
+|  .../figure-html/unnamed-chunk-64-1.png            |  Bin 18284 -> 24438 bytes
+|  .../figure-html/unnamed-chunk-66-1.png            |  Bin 8077 -> 8999 bytes
+|  .../figure-html/unnamed-chunk-68-1.png            |  Bin 74411 -> 81054 bytes
+|  .../figure-html/unnamed-chunk-69-1.png            |  Bin 29061 -> 25581 bytes
+|  .../figure-html/unnamed-chunk-69-2.png            |  Bin 52326 -> 45198 bytes
+|  .../figure-html/unnamed-chunk-7-1.png             |  Bin 3545 -> 4460 bytes
+|  .../figure-html/unnamed-chunk-72-1.png            |  Bin 58285 -> 41643 bytes
+|  .../figure-html/unnamed-chunk-73-1.png            |  Bin 42736 -> 44120 bytes
+|  .../figure-html/unnamed-chunk-73-2.png            |  Bin 40023 -> 41142 bytes
+|  .../figure-html/unnamed-chunk-73-3.png            |  Bin 43758 -> 34009 bytes
+|  .../figure-html/unnamed-chunk-79-1.png            |  Bin 68569 -> 49625 bytes
+|  .../figure-html/unnamed-chunk-79-2.png            |  Bin 66622 -> 47702 bytes
+|  .../figure-html/unnamed-chunk-9-1.png             |  Bin 4106 -> 4615 bytes
+|  docs/articles/index.html                          |    8 +-
+|  docs/authors.html                                 |    8 +-
+|  docs/index.html                                   |   44 +-
+|  docs/news/index.html                              |  429 +++----
+|  docs/pkgdown.css                                  |    4 +-
 |  docs/pkgdown.yml                                  |    6 +-
-|  docs/reference/Bk.html                            |   22 +-
-|  docs/reference/Bk_permutations.html               |   22 +-
-|  docs/reference/Bk_plot.html                       |   22 +-
-|  docs/reference/DendSer.dendrogram.html            |   18 +-
-|  docs/reference/FM_index.html                      |   22 +-
-|  docs/reference/FM_index_R.html                    |   22 +-
-|  docs/reference/FM_index_permutation.html          |   25 +-
-|  docs/reference/all.equal.dendrogram.html          |   18 +-
-|  docs/reference/all_couple_rotations_at_k.html     |   18 +-
-|  docs/reference/all_unique.html                    |   19 +-
-|  docs/reference/as.dendlist.html                   |   17 +-
-|  docs/reference/as.phylo.dendrogram.html           |   18 +-
-|  docs/reference/as_hclust_fixed.html               |   18 +-
-|  docs/reference/assign_dendextend_options.html     |   15 +-
-|  .../assign_values_to_branches_edgePar-1.png       |  Bin 32816 -> 13774 bytes
-|  .../assign_values_to_branches_edgePar.html        |   18 +-
-|  .../assign_values_to_leaves_edgePar.html          |   18 +-
-|  .../assign_values_to_leaves_nodePar.html          |   18 +-
-|  .../reference/assign_values_to_nodes_nodePar.html |   18 +-
-|  docs/reference/bakers_gamma_for_2_k_matrix.html   |   18 +-
-|  docs/reference/branches_attr_by_clusters.html     |   19 +-
-|  docs/reference/branches_attr_by_labels.html       |   18 +-
-|  docs/reference/branches_attr_by_lists.html        |   18 +-
-|  docs/reference/circlize_dendrogram.html           |   19 +-
-|  docs/reference/click_rotate.html                  |   18 +-
-|  docs/reference/collapse_branch-1.png              |  Bin 35972 -> 13691 bytes
-|  docs/reference/collapse_branch-2.png              |  Bin 37650 -> 11565 bytes
-|  docs/reference/collapse_branch.html               |   18 +-
-|  docs/reference/color_branches.html                |   20 +-
-|  docs/reference/color_labels.html                  |   19 +-
-|  docs/reference/color_unique_labels-1.png          |  Bin 43603 -> 18206 bytes
-|  docs/reference/color_unique_labels.html           |   17 +-
-|  docs/reference/colored_bars-1.png                 |  Bin 34734 -> 14505 bytes
-|  docs/reference/colored_bars-2.png                 |  Bin 37037 -> 16292 bytes
-|  docs/reference/colored_bars-3.png                 |  Bin 38930 -> 17878 bytes
-|  docs/reference/colored_bars-4.png                 |  Bin 43156 -> 21747 bytes
-|  docs/reference/colored_bars-5.png                 |  Bin 34965 -> 14386 bytes
-|  docs/reference/colored_bars-6.png                 |  Bin 42040 -> 19919 bytes
-|  docs/reference/colored_bars-7.png                 |  Bin 170915 -> 100674 bytes
-|  docs/reference/colored_bars-8.png                 |  Bin 193937 -> 124727 bytes
-|  docs/reference/colored_bars.html                  |   20 +-
-|  docs/reference/colored_dots-1.png                 |  Bin 37739 -> 16667 bytes
-|  docs/reference/colored_dots-2.png                 |  Bin 40044 -> 18303 bytes
-|  docs/reference/colored_dots-3.png                 |  Bin 36990 -> 16459 bytes
-|  docs/reference/colored_dots-4.png                 |  Bin 39475 -> 18192 bytes
-|  docs/reference/colored_dots-5.png                 |  Bin 45404 -> 23105 bytes
-|  docs/reference/colored_dots-6.png                 |  Bin 51789 -> 28881 bytes
-|  docs/reference/colored_dots-7.png                 |  Bin 200885 -> 132107 bytes
-|  docs/reference/colored_dots-8.png                 |  Bin 198285 -> 134734 bytes
-|  docs/reference/colored_dots.html                  |   20 +-
-|  docs/reference/common_subtrees_clusters-1.png     |  Bin 86348 -> 57220 bytes
-|  docs/reference/common_subtrees_clusters-2.png     |  Bin 30858 -> 11627 bytes
-|  docs/reference/common_subtrees_clusters-3.png     |  Bin 30804 -> 11514 bytes
-|  docs/reference/common_subtrees_clusters-4.png     |  Bin 84614 -> 55794 bytes
-|  docs/reference/common_subtrees_clusters-5.png     |  Bin 86869 -> 57670 bytes
-|  docs/reference/common_subtrees_clusters.html      |   18 +-
-|  docs/reference/cor.dendlist.html                  |   18 +-
-|  docs/reference/cor_FM_index.html                  |   18 +-
-|  docs/reference/cor_bakers_gamma.html              |   20 +-
-|  docs/reference/cor_common_nodes-1.png             |  Bin 118611 -> 72260 bytes
-|  docs/reference/cor_common_nodes.html              |   18 +-
-|  docs/reference/cor_cophenetic.html                |   22 +-
-|  docs/reference/count_terminal_nodes-1.png         |  Bin 48441 -> 17430 bytes
-|  docs/reference/count_terminal_nodes-2.png         |  Bin 48142 -> 16632 bytes
-|  docs/reference/count_terminal_nodes.html          |   17 +-
-|  docs/reference/cut_lower_fun.html                 |   18 +-
-|  docs/reference/cutree-methods.html                |   19 +-
-|  docs/reference/cutree_1h.dendrogram.html          |   18 +-
-|  docs/reference/cutree_1k.dendrogram.html          |   18 +-
-|  docs/reference/dend_diff-1.png                    |  Bin 32209 -> 12394 bytes
-|  docs/reference/dend_diff-2.png                    |  Bin 32221 -> 12385 bytes
-|  docs/reference/dend_diff-3.png                    |  Bin 38889 -> 18093 bytes
-|  docs/reference/dend_diff.html                     |   19 +-
-|  docs/reference/dendextend-package.html            |   28 +-
-|  docs/reference/dendextend_options.html            |   17 +-
-|  docs/reference/dendlist.html                      |   18 +-
-|  docs/reference/depth-1.png                        |  Bin 119772 -> 36816 bytes
-|  docs/reference/depth.html                         |   17 +-
-|  docs/reference/dist.dendlist-1.png                |  Bin 32209 -> 12394 bytes
-|  docs/reference/dist.dendlist-2.png                |  Bin 34396 -> 14215 bytes
-|  docs/reference/dist.dendlist.html                 |   18 +-
-|  docs/reference/dist_long.html                     |   17 +-
-|  docs/reference/distinct_edges-1.png               |  Bin 32209 -> 12394 bytes
-|  docs/reference/distinct_edges.html                |   19 +-
-|  docs/reference/duplicate_leaf.html                |   17 +-
-|  docs/reference/entanglement.html                  |   19 +-
-|  docs/reference/fac2num.html                       |   17 +-
-|  docs/reference/find_dend-1.png                    |  Bin 118181 -> 35963 bytes
-|  docs/reference/find_dend.html                     |   17 +-
-|  docs/reference/find_dendrogram.html               |   54 +-
-|  docs/reference/find_k-1.png                       |  Bin 73543 -> 45365 bytes
-|  docs/reference/find_k-2.png                       |  Bin 82629 -> 53299 bytes
-|  docs/reference/find_k-3.png                       |  Bin 68635 -> 38851 bytes
-|  docs/reference/find_k-4.png                       |  Bin 72539 -> 44546 bytes
-|  docs/reference/find_k-5.png                       |  Bin 123393 -> 75842 bytes
-|  docs/reference/find_k.html                        |   18 +-
-|  docs/reference/fix_members_attr.dendrogram.html   |   17 +-
-|  docs/reference/flatten.dendrogram-1.png           |  Bin 57734 -> 19867 bytes
-|  docs/reference/flatten.dendrogram.html            |   17 +-
-|  docs/reference/flip_leaves.html                   |   19 +-
-|  docs/reference/get_branches_heights.html          |   17 +-
-|  docs/reference/get_childrens_heights.html         |   18 +-
-|  docs/reference/get_leaves_attr.html               |   19 +-
-|  docs/reference/get_leaves_branches_attr-1.png     |  Bin 45517 -> 23863 bytes
-|  docs/reference/get_leaves_branches_attr-2.png     |  Bin 55705 -> 29962 bytes
-|  docs/reference/get_leaves_branches_attr.html      |   18 +-
-|  docs/reference/get_leaves_branches_col-1.png      |  Bin 69262 -> 39303 bytes
-|  docs/reference/get_leaves_branches_col.html       |   18 +-
-|  docs/reference/get_leaves_edgePar-1.png           |  Bin 41213 -> 19682 bytes
-|  docs/reference/get_leaves_edgePar.html            |   18 +-
-|  docs/reference/get_leaves_nodePar-1.png           |  Bin 47786 -> 22908 bytes
-|  docs/reference/get_leaves_nodePar.html            |   18 +-
-|  docs/reference/get_nodes_attr.html                |   19 +-
-|  docs/reference/get_nodes_xy.html                  |   19 +-
-|  docs/reference/get_root_branches_attr.html        |   18 +-
-|  docs/reference/get_subdendrograms-1.png           |  Bin 116227 -> 75816 bytes
-|  docs/reference/get_subdendrograms-2.png           |  Bin 59276 -> 34609 bytes
-|  docs/reference/get_subdendrograms.html            |   20 +-
-|  docs/reference/ggdend.html                        |   26 +-
-|  docs/reference/hang.dendrogram-1.png              |  Bin 75108 -> 27093 bytes
-|  docs/reference/hang.dendrogram-2.png              |  Bin 54209 -> 18337 bytes
-|  docs/reference/hang.dendrogram-3.png              |  Bin 39750 -> 10655 bytes
-|  docs/reference/hang.dendrogram.html               |   20 +-
-|  docs/reference/has_component_in_attribute-1.png   |  Bin 47918 -> 15978 bytes
-|  docs/reference/has_component_in_attribute.html    |   18 +-
-|  docs/reference/heights_per_k.dendrogram.html      |   17 +-
-|  docs/reference/highlight_branches-1.png           |  Bin 65200 -> 34259 bytes
-|  docs/reference/highlight_branches-2.png           |  Bin 66304 -> 33150 bytes
-|  docs/reference/highlight_branches-3.png           |  Bin 138247 -> 97778 bytes
-|  docs/reference/highlight_branches-4.png           |  Bin 99230 -> 60865 bytes
-|  docs/reference/highlight_branches-5.png           |  Bin 83317 -> 48233 bytes
-|  docs/reference/highlight_branches-6.png           |  Bin 146102 -> 105663 bytes
-|  docs/reference/highlight_branches-7.png           |  Bin 35701 -> 15313 bytes
-|  docs/reference/highlight_branches-8.png           |  Bin 146102 -> 105663 bytes
-|  docs/reference/highlight_branches.html            |   18 +-
-|  docs/reference/highlight_distinct_edges-1.png     |  Bin 31306 -> 11049 bytes
-|  docs/reference/highlight_distinct_edges.html      |   18 +-
-|  docs/reference/identify.dendrogram.html           |   20 +-
-|  docs/reference/index.html                         |   11 +-
-|  docs/reference/intersect_trees-1.png              |  Bin 52153 -> 16281 bytes
-|  docs/reference/intersect_trees.html               |   18 +-
+|  docs/reference/Bk.html                            |   67 +-
+|  docs/reference/Bk_permutations.html               |   53 +-
+|  docs/reference/Bk_plot.html                       |  115 +-
+|  docs/reference/DendSer.dendrogram.html            |   23 +-
+|  docs/reference/FM_index.html                      |   85 +-
+|  docs/reference/FM_index_R.html                    |   79 +-
+|  docs/reference/FM_index_permutation.html          |   95 +-
+|  docs/reference/Rplot001.png                       |  Bin 0 -> 4480 bytes
+|  docs/reference/Rplot002.png                       |  Bin 0 -> 4588 bytes
+|  docs/reference/Rplot003.png                       |  Bin 0 -> 9529 bytes
+|  docs/reference/Rplot004.png                       |  Bin 0 -> 10574 bytes
+|  docs/reference/Rplot005.png                       |  Bin 0 -> 7394 bytes
+|  docs/reference/Rplot006.png                       |  Bin 0 -> 49630 bytes
+|  docs/reference/Rplot007.png                       |  Bin 0 -> 5468 bytes
+|  docs/reference/Rplot008.png                       |  Bin 0 -> 49630 bytes
+|  docs/reference/all.equal.dendrogram.html          |   91 +-
+|  docs/reference/all_couple_rotations_at_k.html     |   47 +-
+|  docs/reference/all_unique.html                    |   17 +-
+|  docs/reference/as.dendlist.html                   |   40 +-
+|  docs/reference/as.phylo.dendrogram.html           |   59 +-
+|  docs/reference/as_hclust_fixed.html               |   20 +-
+|  docs/reference/assign_dendextend_options.html     |   10 +-
+|  .../assign_values_to_branches_edgePar-1.png       |  Bin 13774 -> 13685 bytes
+|  .../assign_values_to_branches_edgePar.html        |   81 +-
+|  .../assign_values_to_leaves_edgePar.html          |   58 +-
+|  .../assign_values_to_leaves_nodePar.html          |   60 +-
+|  .../reference/assign_values_to_nodes_nodePar.html |   56 +-
+|  docs/reference/bakers_gamma_for_2_k_matrix.html   |   20 +-
+|  docs/reference/branches_attr_by_clusters.html     |  109 +-
+|  docs/reference/branches_attr_by_labels.html       |  103 +-
+|  docs/reference/branches_attr_by_lists.html        |   61 +-
+|  docs/reference/circlize_dendrogram.html           |   90 +-
+|  docs/reference/click_rotate.html                  |   55 +-
+|  docs/reference/collapse_branch-1.png              |  Bin 13691 -> 13449 bytes
+|  docs/reference/collapse_branch-2.png              |  Bin 11565 -> 15436 bytes
+|  docs/reference/collapse_branch.html               |   67 +-
+|  docs/reference/color_branches.html                |  259 ++--
+|  docs/reference/color_labels.html                  |   70 +-
+|  docs/reference/color_unique_labels-1.png          |  Bin 18206 -> 16525 bytes
+|  docs/reference/color_unique_labels.html           |   27 +-
+|  docs/reference/colored_bars-1.png                 |  Bin 14505 -> 14111 bytes
+|  docs/reference/colored_bars-2.png                 |  Bin 16292 -> 15954 bytes
+|  docs/reference/colored_bars-3.png                 |  Bin 17878 -> 17431 bytes
+|  docs/reference/colored_bars-4.png                 |  Bin 21747 -> 20978 bytes
+|  docs/reference/colored_bars-5.png                 |  Bin 14386 -> 13939 bytes
+|  docs/reference/colored_bars-6.png                 |  Bin 19919 -> 19456 bytes
+|  docs/reference/colored_bars-7.png                 |  Bin 100674 -> 106950 bytes
+|  docs/reference/colored_bars-8.png                 |  Bin 124727 -> 124716 bytes
+|  docs/reference/colored_bars.html                  |  172 +--
+|  docs/reference/colored_dots-1.png                 |  Bin 16667 -> 15944 bytes
+|  docs/reference/colored_dots-2.png                 |  Bin 18303 -> 17800 bytes
+|  docs/reference/colored_dots-3.png                 |  Bin 16459 -> 15761 bytes
+|  docs/reference/colored_dots-4.png                 |  Bin 18192 -> 17639 bytes
+|  docs/reference/colored_dots-5.png                 |  Bin 23105 -> 22582 bytes
+|  docs/reference/colored_dots-6.png                 |  Bin 28881 -> 27759 bytes
+|  docs/reference/colored_dots-7.png                 |  Bin 132107 -> 134960 bytes
+|  docs/reference/colored_dots-8.png                 |  Bin 134734 -> 133617 bytes
+|  docs/reference/colored_dots.html                  |  185 +--
+|  docs/reference/common_subtrees_clusters-1.png     |  Bin 57220 -> 57502 bytes
+|  docs/reference/common_subtrees_clusters-2.png     |  Bin 11627 -> 11230 bytes
+|  docs/reference/common_subtrees_clusters-3.png     |  Bin 11514 -> 11119 bytes
+|  docs/reference/common_subtrees_clusters-4.png     |  Bin 55794 -> 56073 bytes
+|  docs/reference/common_subtrees_clusters-5.png     |  Bin 57670 -> 57981 bytes
+|  docs/reference/common_subtrees_clusters.html      |   35 +-
+|  docs/reference/cor.dendlist.html                  |   69 +-
+|  docs/reference/cor_FM_index.html                  |   41 +-
+|  docs/reference/cor_bakers_gamma.html              |   98 +-
+|  docs/reference/cor_common_nodes-1.png             |  Bin 72260 -> 79226 bytes
+|  docs/reference/cor_common_nodes.html              |   37 +-
+|  docs/reference/cor_cophenetic.html                |  106 +-
+|  docs/reference/count_terminal_nodes-1.png         |  Bin 17430 -> 24491 bytes
+|  docs/reference/count_terminal_nodes-2.png         |  Bin 16632 -> 24568 bytes
+|  docs/reference/count_terminal_nodes.html          |   38 +-
+|  docs/reference/cut_lower_fun.html                 |   48 +-
+|  docs/reference/cutree-methods.html                |  139 ++-
+|  docs/reference/cutree_1h.dendrogram.html          |   64 +-
+|  docs/reference/cutree_1k.dendrogram.html          |   80 +-
+|  docs/reference/dend_diff-1.png                    |  Bin 12394 -> 11895 bytes
+|  docs/reference/dend_diff-2.png                    |  Bin 12385 -> 11892 bytes
+|  docs/reference/dend_diff-3.png                    |  Bin 18093 -> 17345 bytes
+|  docs/reference/dend_diff.html                     |   44 +-
+|  docs/reference/dendextend-package.html            |    8 +-
+|  docs/reference/dendextend_options.html            |   23 +-
+|  docs/reference/dendlist.html                      |   82 +-
+|  docs/reference/depth-1.png                        |  Bin 36816 -> 69302 bytes
+|  docs/reference/depth.html                         |   23 +-
+|  docs/reference/dist.dendlist-1.png                |  Bin 12394 -> 11895 bytes
+|  docs/reference/dist.dendlist-2.png                |  Bin 14215 -> 13489 bytes
+|  docs/reference/dist.dendlist.html                 |   49 +-
+|  docs/reference/dist_long.html                     |   35 +-
+|  docs/reference/distinct_edges-1.png               |  Bin 12394 -> 11895 bytes
+|  docs/reference/distinct_edges.html                |   25 +-
+|  docs/reference/duplicate_leaf.html                |   54 +-
+|  docs/reference/entanglement.html                  |   89 +-
+|  docs/reference/fac2num.html                       |   16 +-
+|  docs/reference/find_dend-1.png                    |  Bin 35963 -> 65348 bytes
+|  docs/reference/find_dend.html                     |   45 +-
+|  docs/reference/find_dendrogram.html               |   58 +-
+|  docs/reference/find_k-1.png                       |  Bin 45365 -> 45347 bytes
+|  docs/reference/find_k-2.png                       |  Bin 53299 -> 48962 bytes
+|  docs/reference/find_k-3.png                       |  Bin 38851 -> 37264 bytes
+|  docs/reference/find_k-4.png                       |  Bin 44546 -> 44651 bytes
+|  docs/reference/find_k-5.png                       |  Bin 75842 -> 72119 bytes
+|  docs/reference/find_k.html                        |   59 +-
+|  docs/reference/fix_members_attr.dendrogram.html   |   33 +-
+|  docs/reference/flatten.dendrogram-1.png           |  Bin 19867 -> 32726 bytes
+|  docs/reference/flatten.dendrogram.html            |   25 +-
+|  docs/reference/flip_leaves.html                   |   29 +-
+|  docs/reference/get_branches_heights.html          |   29 +-
+|  docs/reference/get_childrens_heights.html         |   17 +-
+|  docs/reference/get_leaves_attr.html               |   40 +-
+|  docs/reference/get_leaves_branches_attr-1.png     |  Bin 23863 -> 23437 bytes
+|  docs/reference/get_leaves_branches_attr-2.png     |  Bin 29962 -> 30129 bytes
+|  docs/reference/get_leaves_branches_attr.html      |   39 +-
+|  docs/reference/get_leaves_branches_col-1.png      |  Bin 39303 -> 39284 bytes
+|  docs/reference/get_leaves_branches_col.html       |   31 +-
+|  docs/reference/get_leaves_edgePar-1.png           |  Bin 19682 -> 19337 bytes
+|  docs/reference/get_leaves_edgePar.html            |   33 +-
+|  docs/reference/get_leaves_nodePar-1.png           |  Bin 22908 -> 20937 bytes
+|  docs/reference/get_leaves_nodePar.html            |   30 +-
+|  docs/reference/get_nodes_attr.html                |   87 +-
+|  docs/reference/get_nodes_xy.html                  |   67 +-
+|  docs/reference/get_root_branches_attr.html        |   20 +-
+|  docs/reference/get_subdendrograms-1.png           |  Bin 75816 -> 17637 bytes
+|  docs/reference/get_subdendrograms-2.png           |  Bin 34609 -> 71992 bytes
+|  docs/reference/get_subdendrograms-3.png           |  Bin 0 -> 32695 bytes
+|  docs/reference/get_subdendrograms.html            |  116 +-
+|  docs/reference/ggdend.html                        |   96 +-
+|  docs/reference/hang.dendrogram-1.png              |  Bin 27093 -> 44956 bytes
+|  docs/reference/hang.dendrogram-2.png              |  Bin 18337 -> 28986 bytes
+|  docs/reference/hang.dendrogram-3.png              |  Bin 10655 -> 16444 bytes
+|  docs/reference/hang.dendrogram.html               |   37 +-
+|  docs/reference/has_component_in_attribute-1.png   |  Bin 15978 -> 24044 bytes
+|  docs/reference/has_component_in_attribute.html    |   57 +-
+|  docs/reference/heights_per_k.dendrogram.html      |   47 +-
+|  docs/reference/highlight_branches-1.png           |  Bin 34259 -> 33622 bytes
+|  docs/reference/highlight_branches-2.png           |  Bin 33150 -> 33023 bytes
+|  docs/reference/highlight_branches-3.png           |  Bin 97778 -> 104164 bytes
+|  docs/reference/highlight_branches-4.png           |  Bin 60865 -> 66188 bytes
+|  docs/reference/highlight_branches-5.png           |  Bin 48233 -> 52808 bytes
+|  docs/reference/highlight_branches-6.png           |  Bin 105663 -> 113490 bytes
+|  docs/reference/highlight_branches-7.png           |  Bin 15313 -> 15309 bytes
+|  docs/reference/highlight_branches-8.png           |  Bin 105663 -> 113490 bytes
+|  docs/reference/highlight_branches.html            |  145 ++-
+|  docs/reference/highlight_distinct_edges-1.png     |  Bin 11049 -> 10826 bytes
+|  docs/reference/highlight_distinct_edges.html      |   93 +-
+|  docs/reference/identify.dendrogram.html           |   59 +-
+|  docs/reference/index.html                         |    8 +-
+|  docs/reference/intersect_trees-1.png              |  Bin 16281 -> 24690 bytes
+|  docs/reference/intersect_trees.html               |   45 +-
 |  docs/reference/is.natural.number.html             |   21 +-
-|  docs/reference/is_null_list.html                  |   17 +-
-|  docs/reference/is_some_class.html                 |   17 +-
-|  docs/reference/khan.html                          |   20 +-
-|  docs/reference/labels-assign.html                 |   25 +-
-|  docs/reference/labels_cex-1.png                   |  Bin 36324 -> 10924 bytes
-|  docs/reference/labels_cex-2.png                   |  Bin 41192 -> 15051 bytes
-|  docs/reference/labels_cex-3.png                   |  Bin 36324 -> 10924 bytes
-|  docs/reference/labels_cex.html                    |   17 +-
-|  docs/reference/labels_colors-1.png                |  Bin 36324 -> 10924 bytes
-|  docs/reference/labels_colors-2.png                |  Bin 40146 -> 17444 bytes
-|  docs/reference/labels_colors-3.png                |  Bin 36324 -> 10924 bytes
-|  docs/reference/labels_colors-4.png                |  Bin 36324 -> 10924 bytes
-|  docs/reference/labels_colors.html                 |   22 +-
-|  docs/reference/ladderize-1.png                    |  Bin 53603 -> 27892 bytes
-|  docs/reference/ladderize.html                     |   18 +-
-|  docs/reference/leaf_Colors.html                   |   18 +-
-|  docs/reference/lowest_common_branch.html          |   18 +-
-|  docs/reference/match_order_by_labels.html         |   18 +-
-|  .../match_order_dendrogram_by_old_order.html      |   18 +-
-|  docs/reference/na_locf.html                       |   27 +-
-|  docs/reference/nleaves.html                       |   19 +-
-|  docs/reference/nnodes.html                        |   19 +-
-|  docs/reference/noded_with_condition.html          |   18 +-
-|  docs/reference/order.dendrogram-assign.html       |   18 +-
-|  docs/reference/order.hclust.html                  |   18 +-
-|  docs/reference/partition_leaves-1.png             |  Bin 30419 -> 8188 bytes
-|  docs/reference/partition_leaves.html              |   19 +-
-|  docs/reference/plot_horiz.dendrogram.html         |   19 +-
-|  docs/reference/prune-1.png                        |  Bin 55605 -> 19825 bytes
-|  docs/reference/prune.html                         |   19 +-
-|  .../reference/prune_common_subtrees.dendlist.html |   18 +-
-|  docs/reference/prune_leaf-1.png                   |  Bin 54367 -> 19185 bytes
-|  docs/reference/prune_leaf.html                    |   18 +-
-|  docs/reference/pvclust_edges.html                 |   18 +-
-|  docs/reference/pvclust_show_signif.html           |   18 +-
-|  docs/reference/pvclust_show_signif_gradient.html  |   18 +-
-|  docs/reference/pvrect2.html                       |   17 +-
-|  docs/reference/raise.dendrogram-1.png             |  Bin 62737 -> 21662 bytes
-|  docs/reference/raise.dendrogram.html              |   17 +-
-|  docs/reference/rank_branches-1.png                |  Bin 57435 -> 17829 bytes
-|  docs/reference/rank_branches.html                 |   18 +-
-|  docs/reference/rank_order.dendrogram.html         |   18 +-
-|  docs/reference/rank_values_with_clusters.html     |   17 +-
-|  docs/reference/rect.dendrogram-1.png              |  Bin 40429 -> 18293 bytes
-|  docs/reference/rect.dendrogram-2.png              |  Bin 77148 -> 45100 bytes
-|  docs/reference/rect.dendrogram-3.png              |  Bin 46759 -> 22650 bytes
-|  docs/reference/rect.dendrogram-4.png              |  Bin 44833 -> 22193 bytes
-|  docs/reference/rect.dendrogram-5.png              |  Bin 40417 -> 20714 bytes
-|  docs/reference/rect.dendrogram.html               |   21 +-
-|  docs/reference/reexports.html                     |   15 +-
-|  docs/reference/reindex_dend.html                  |   17 +-
-|  docs/reference/remove_branches_edgePar.html       |   18 +-
-|  docs/reference/remove_leaves_nodePar.html         |   18 +-
-|  docs/reference/remove_nodes_nodePar.html          |   18 +-
-|  docs/reference/rllply.html                        |   17 +-
-|  docs/reference/rotate-1.png                       |  Bin 51153 -> 25843 bytes
-|  docs/reference/rotate-2.png                       |  Bin 72500 -> 39233 bytes
-|  docs/reference/rotate-3.png                       |  Bin 63729 -> 32494 bytes
-|  docs/reference/rotate-4.png                       |  Bin 59646 -> 21157 bytes
-|  docs/reference/rotate-5.png                       |  Bin 61278 -> 26139 bytes
-|  docs/reference/rotate.html                        |   19 +-
-|  docs/reference/rotate_DendSer.html                |   18 +-
-|  docs/reference/sample.dendrogram.html             |   18 +-
-|  docs/reference/seriate_dendrogram.html            |   18 +-
-|  docs/reference/set.html                           |   27 +-
-|  docs/reference/set_labels-1.png                   |  Bin 58601 -> 29949 bytes
-|  docs/reference/set_labels-2.png                   |  Bin 95820 -> 48984 bytes
-|  docs/reference/set_labels-3.png                   |  Bin 50751 -> 25864 bytes
-|  docs/reference/set_labels.html                    |   18 +-
-|  docs/reference/shuffle-1.png                      |  Bin 327193 -> 230896 bytes
-|  docs/reference/shuffle-2.png                      |  Bin 172385 -> 102068 bytes
-|  docs/reference/shuffle.html                       |   19 +-
-|  docs/reference/sort_2_clusters_vectors.html       |   17 +-
-|  docs/reference/sort_dist_mat.html                 |   18 +-
-|  docs/reference/sort_levels_values.html            |   18 +-
-|  docs/reference/tanglegram.html                    |   26 +-
-|  docs/reference/theme_dendro.html                  |   17 +-
-|  docs/reference/unbranch-1.png                     |  Bin 65817 -> 19048 bytes
-|  docs/reference/unbranch.html                      |   18 +-
-|  docs/reference/unclass_dend.html                  |   18 +-
-|  docs/reference/untangle.html                      |   19 +-
-|  docs/reference/untangle_DendSer.html              |   18 +-
-|  docs/reference/untangle_random_search.html        |   19 +-
-|  docs/reference/untangle_step_rotate_1side.html    |   18 +-
-|  docs/reference/untangle_step_rotate_2side.html    |   18 +-
-|  docs/reference/which_leaf.html                    |   18 +-
-|  docs/reference/which_node-1.png                   |  Bin 34456 -> 14163 bytes
-|  docs/reference/which_node.html                    |   18 +-
-|  inst/ignored/Frequently asked questions.html      |  428 -
-|  ...ts - enhanced with the dendextend package.html |  651 --
-|  inst/ignored/Introduction to dendextend.html      | 1314 ---
-|  man/Bk.Rd                                         |    2 +-
-|  man/Bk_permutations.Rd                            |    2 +-
-|  man/Bk_plot.Rd                                    |    2 +-
-|  man/FM_index.Rd                                   |    2 +-
-|  man/FM_index_R.Rd                                 |    2 +-
-|  man/FM_index_permutation.Rd                       |    2 +-
-|  man/cor_cophenetic.Rd                             |    2 +-
-|  man/hang.dendrogram.Rd                            |    2 +-
-|  man/is.natural.number.Rd                          |    2 +-
-|  man/labels-assign.Rd                              |    2 +-
-|  man/na_locf.Rd                                    |    2 +-
-|  man/rect.dendrogram.Rd                            |    2 +-
-|  man/tanglegram.Rd                                 |    6 +-
-|  tests/testthat/test-set.dendrogram.R              |    2 +-
-|  vignettes/Cluster_Analysis.Rmd                    |    4 +-
-|  vignettes/FAQ.Rmd                                 |   24 +-
-|  vignettes/Quick_Introduction.Rmd                  |    2 +-
-|  vignettes/dendextend.Rmd                          |   12 +-
-|  476 files changed, 1486 insertions(+), 29031 deletions(-)
+|  docs/reference/is_null_list.html                  |   43 +-
+|  docs/reference/is_some_class.html                 |   30 +-
+|  docs/reference/khan.html                          |   19 +-
+|  docs/reference/labels-assign.html                 |   57 +-
+|  docs/reference/labels_cex-1.png                   |  Bin 10924 -> 15573 bytes
+|  docs/reference/labels_cex-2.png                   |  Bin 15051 -> 18864 bytes
+|  docs/reference/labels_cex-3.png                   |  Bin 10924 -> 15573 bytes
+|  docs/reference/labels_cex.html                    |   30 +-
+|  docs/reference/labels_colors-1.png                |  Bin 10924 -> 15573 bytes
+|  docs/reference/labels_colors-2.png                |  Bin 17444 -> 17570 bytes
+|  docs/reference/labels_colors-3.png                |  Bin 10924 -> 15573 bytes
+|  docs/reference/labels_colors-4.png                |  Bin 10924 -> 15573 bytes
+|  docs/reference/labels_colors.html                 |   46 +-
+|  docs/reference/ladderize-1.png                    |  Bin 27892 -> 27973 bytes
+|  docs/reference/ladderize.html                     |   50 +-
+|  docs/reference/leaf_Colors.html                   |   26 +-
+|  docs/reference/lowest_common_branch.html          |   17 +-
+|  docs/reference/match_order_by_labels.html         |   45 +-
+|  .../match_order_dendrogram_by_old_order.html      |   57 +-
+|  docs/reference/na_locf.html                       |   47 +-
+|  docs/reference/nleaves.html                       |   28 +-
+|  docs/reference/nnodes.html                        |   26 +-
+|  docs/reference/noded_with_condition.html          |   64 +-
+|  docs/reference/order.dendrogram-assign.html       |   38 +-
+|  docs/reference/order.hclust.html                  |   23 +-
+|  docs/reference/partition_leaves-1.png             |  Bin 8188 -> 11301 bytes
+|  docs/reference/partition_leaves.html              |   54 +-
+|  docs/reference/plot_horiz.dendrogram.html         |   73 +-
+|  docs/reference/prune-1.png                        |  Bin 19825 -> 27016 bytes
+|  docs/reference/prune.html                         |   37 +-
+|  .../reference/prune_common_subtrees.dendlist.html |   12 +-
+|  docs/reference/prune_leaf-1.png                   |  Bin 19185 -> 26250 bytes
+|  docs/reference/prune_leaf.html                    |   21 +-
+|  docs/reference/pvclust_edges.html                 |   27 +-
+|  docs/reference/pvclust_show_signif.html           |   95 +-
+|  docs/reference/pvclust_show_signif_gradient.html  |   91 +-
+|  docs/reference/pvrect2.html                       |   70 +-
+|  docs/reference/raise.dendrogram-1.png             |  Bin 21662 -> 35684 bytes
+|  docs/reference/raise.dendrogram.html              |   21 +-
+|  docs/reference/rank_branches-1.png                |  Bin 17829 -> 28420 bytes
+|  docs/reference/rank_branches.html                 |   27 +-
+|  docs/reference/rank_order.dendrogram.html         |   25 +-
+|  docs/reference/rank_values_with_clusters.html     |   23 +-
+|  docs/reference/rect.dendrogram-1.png              |  Bin 18293 -> 17732 bytes
+|  docs/reference/rect.dendrogram-2.png              |  Bin 45100 -> 47531 bytes
+|  docs/reference/rect.dendrogram-3.png              |  Bin 22650 -> 22507 bytes
+|  docs/reference/rect.dendrogram-4.png              |  Bin 22193 -> 21187 bytes
+|  docs/reference/rect.dendrogram-5.png              |  Bin 20714 -> 19688 bytes
+|  docs/reference/rect.dendrogram.html               |  115 +-
+|  docs/reference/reexports.html                     |   10 +-
+|  docs/reference/reindex_dend.html                  |   27 +-
+|  docs/reference/remove_branches_edgePar.html       |   34 +-
+|  docs/reference/remove_leaves_nodePar.html         |   36 +-
+|  docs/reference/remove_nodes_nodePar.html          |   34 +-
+|  docs/reference/rllply.html                        |   53 +-
+|  docs/reference/rotate-1.png                       |  Bin 25843 -> 26012 bytes
+|  docs/reference/rotate-2.png                       |  Bin 39233 -> 37568 bytes
+|  docs/reference/rotate-3.png                       |  Bin 32494 -> 32003 bytes
+|  docs/reference/rotate-4.png                       |  Bin 21157 -> 33951 bytes
+|  docs/reference/rotate-5.png                       |  Bin 26139 -> 25971 bytes
+|  docs/reference/rotate.html                        |   77 +-
+|  docs/reference/rotate_DendSer.html                |   33 +-
+|  docs/reference/sample.dendrogram.html             |   48 +-
+|  docs/reference/seriate_dendrogram.html            |   27 +-
+|  docs/reference/set.html                           |  373 +++---
+|  docs/reference/set_labels-1.png                   |  Bin 29949 -> 29370 bytes
+|  docs/reference/set_labels-2.png                   |  Bin 48984 -> 48924 bytes
+|  docs/reference/set_labels-3.png                   |  Bin 25864 -> 25357 bytes
+|  docs/reference/set_labels.html                    |   72 +-
+|  docs/reference/shuffle-1.png                      |  Bin 230896 -> 241178 bytes
+|  docs/reference/shuffle-2.png                      |  Bin 102068 -> 107161 bytes
+|  docs/reference/shuffle.html                       |   41 +-
+|  docs/reference/sort_2_clusters_vectors.html       |   43 +-
+|  docs/reference/sort_dist_mat.html                 |   10 +-
+|  docs/reference/sort_levels_values.html            |   62 +-
+|  docs/reference/tanglegram.html                    |  352 +++---
+|  docs/reference/theme_dendro.html                  |   13 +-
+|  docs/reference/unbranch-1.png                     |  Bin 19048 -> 28570 bytes
+|  docs/reference/unbranch.html                      |   33 +-
+|  docs/reference/unclass_dend.html                  |   35 +-
+|  docs/reference/untangle.html                      |  116 +-
+|  docs/reference/untangle_DendSer.html              |   59 +-
+|  docs/reference/untangle_random_search.html        |   63 +-
+|  docs/reference/untangle_step_rotate_1side.html    |   57 +-
+|  docs/reference/untangle_step_rotate_2side.html    |   79 +-
+|  docs/reference/which_leaf.html                    |   35 +-
+|  docs/reference/which_node-1.png                   |  Bin 14163 -> 13637 bytes
+|  docs/reference/which_node.html                    |   37 +-
+|  359 files changed, 5824 insertions(+), 4998 deletions(-)
 
-* 2020-08-15(Tal Galili) update pkgdown |a3431fc| 
-|  docs/CONDUCT.html    |    9 +-
-|  docs/authors.html    |   14 +-
-|  docs/index.html      |   34 +-
-|  docs/news/index.html | 1077 +++++++++++-------------------------------------
-|  4 files changed, 273 insertions(+), 861 deletions(-)
+* 2021-05-08(Tal Galili) fix broken url |dfea91c| 
+|  R/data.R    | 4 ++--
+|  man/khan.Rd | 4 ++--
+|  2 files changed, 4 insertions(+), 4 deletions(-)
 
-* 2020-08-15(Tal Galili) Fix warning "checkRd: (5) dendextend-package.Rd:0-15: Must have a \description" |cabc151| 
-|  ChangeLog                 | 248 ++++++++++++++++++++++++++++++++++++++++++--
-|  DESCRIPTION               |   2 +-
-|  NEWS                      |   6 +-
-|  NEWS.md                   |  15 +++
-|  R/dendextend-package.R    |   9 +-
-|  man/dendextend-package.Rd |   7 ++
-|  6 files changed, 278 insertions(+), 9 deletions(-)
+* 2021-05-08(Tal Galili) colored_dots - add missing roxygen2 documentation for the new dot_size argument |3eb1614| 
+|  DESCRIPTION         | 4 ++--
+|  NEWS                | 5 ++++-
+|  R/colored_dots.R    | 1 +
+|  man/colored_dots.Rd | 2 ++
+|  4 files changed, 9 insertions(+), 3 deletions(-)
 
-* 2020-08-15(Tal Galili) Update tests to suppress warnings around RNGversion("3.5.0") |1c869df| 
-|  tests/test-all.R                       | 2 +-
-|  tests/testthat/test-bk_method.R        | 5 +++--
-|  tests/testthat/test-cor_bakers_gamma.R | 3 +--
-|  tests/testthat/test-cor_cophenetic.R   | 3 ++-
-|  tests/testthat/test-dendlist.R         | 3 +--
-|  tests/testthat/test-pvclust_extract.R  | 2 +-
-|  tests/testthat/test-set.dendrogram.R   | 9 ++++-----
-|  tests/testthat/test-untangle.R         | 7 +++++--
-|  8 files changed, 18 insertions(+), 16 deletions(-)
-
-* 2020-08-15(Tal Galili) Fix some tests to not flag errors/warnings |68916c7| 
-|  tests/test-all.R                      | 24 ++----------------------
-|  tests/testthat/test-ggdend.R          |  2 ++
-|  tests/testthat/test-pvclust_extract.R |  2 +-
-|  3 files changed, 5 insertions(+), 23 deletions(-)
-
-* 2020-08-15(Tal Galili) Remove warnings from .Rd files. |f4e243c| 
-|  R/get_subdendrograms.R    | 2 +-
-|  R/labels.R                | 2 +-
-|  R/labels_colors.R         | 2 +-
-|  man/get_subdendrograms.Rd | 2 +-
-|  man/labels-assign.Rd      | 2 +-
-|  man/labels_colors.Rd      | 2 +-
-|  6 files changed, 6 insertions(+), 6 deletions(-)
-
-* 2020-08-14(Tal Galili) Update .Rd for find_dendrogram (and some other functions) |5745a79| 
-|  DESCRIPTION               |  2 +-
-|  R/get_subdendrograms.R    | 14 ++++++++++++++
-|  man/dendextend-package.Rd |  3 ---
-|  man/find_dendrogram.Rd    | 31 +++++++++++++++++++++----------
-|  man/khan.Rd               |  6 ++++--
-|  man/reexports.Rd          |  2 +-
-|  man/set.Rd                |  8 ++++----
-|  7 files changed, 45 insertions(+), 21 deletions(-)
-
-* 2020-08-14(Tal Galili) Fix #102 - find_dendrogram deals with more edge cases, the documentation does what it says it does, and there are now tests. |3f3d5ab| 
-|  DESCRIPTION                           |  2 +-
-|  NEWS                                  |  3 ++-
-|  R/get_subdendrograms.R                | 33 ++++++++++++++++++---------------
-|  tests/testthat/test-find_dendrogram.R | 32 ++++++++++++++++++++++++++++++++
-|  4 files changed, 53 insertions(+), 17 deletions(-)
-
-* 2020-06-01(Tal Galili) remove d3heatmap from DESCRIPTION (since the package became orphaned) |99dbf6d| 
-|  DESCRIPTION                    |  1 -
-|  vignettes/Cluster_Analysis.Rmd | 10 +++-------
-|  vignettes/dendextend.Rmd       |  2 +-
-|  3 files changed, 4 insertions(+), 9 deletions(-)
-
-* 2020-06-01(Tal Galili) ggdend - add type='triang': - bump package version - update NEWS - added Hauyn as a contributor - updated function doc (added an example) |3f938f8| 
-|  DESCRIPTION   | 8 +++++---
-|  NEWS          | 5 ++++-
-|  R/ggdend.R    | 6 ++++++
-|  man/ggdend.Rd | 6 ++++++
-|  4 files changed, 21 insertions(+), 4 deletions(-)
-
-*   2020-05-31(Tal Galili) Merge branch 'master' of github.com:talgalili/dendextend |cd77a0e
+*   2021-05-08(Tal Galili) Merge pull request #100 from chasemc/master |f625516
 |\  
-| *   2020-05-31(Tal Galili) Merge pull request #99 from houyunhuang/master |7043bde
-| |\  
+| * 2020-04-07(Chase Clark) Add argument colored_dots(dot_size) |3dc3ba9| | 
+| |  man/colored_dots.Rd | 1 +
+| |  1 file changed, 1 insertion(+)
+
+| * 2020-04-07(Chase Clark) Add argument colored_dots(dot_size) |b52e9ee| | 
+| |  R/colored_dots.R | 5 +++--
+| |  1 file changed, 3 insertions(+), 2 deletions(-)
+
+* | 2021-04-11(Tal Galili) get_subdendrograms - fix it to sort the output sub-dendrograms to be in the original order of the clusters in the dengrogram (instead of the order of the original data, which is less useful for exploration) |e4e3032| | 
+| |  DESCRIPTION                              |  4 +--
+| |  NEWS                                     |  7 ++++
+| |  R/get_subdendrograms.R                   | 42 ++++++++++++++++++++----
+| |  man/get_subdendrograms.Rd                | 39 +++++++++++++++++++---
+| |  tests/testthat/test-get_subdendrograms.R | 48 +++++++++++++---------------
+| |  5 files changed, 102 insertions(+), 38 deletions(-)
+
+* |   2021-04-11(Tal Galili) Merge pull request #105 from chasemc/master |a89f28e
+|\ \  
+| * | 2021-04-11(Chase Clark) Create test-get_subdendrograms.R |7f17c10| | | 
+| | |  tests/testthat/test-get_subdendrograms.R | 80 ++++++++++++++++++++++++++
+| | |  1 file changed, 80 insertions(+)
+
+| * | 2021-04-11(Chase Clark) Update get_subdendrograms.R |f937009
+|/ /  | |   
+| |    R/get_subdendrograms.R | 2 +-
+| |    1 file changed, 1 insertion(+), 1 deletion(-)
+
+* | 2020-09-12(Tal Galili) Fix http to be https - so to keep the homepage secure. |0a08071| | 
+| |  README.md       | 16 ++++++++--------
+| |  docs/index.html | 12 ++++++------
+| |  2 files changed, 14 insertions(+), 14 deletions(-)
+
+* | 2020-08-25(Tal Galili) Date bump |7df8887| | 
+| |  ChangeLog                             | 488 ++++++++++++++++++++++++++++++
+| |  DESCRIPTION                           |   2 +-
+| |  NEWS                                  |   2 +-
+| |  NEWS.md                               |   2 +-
+| |  docs/articles/Cluster_Analysis.html   |   2 +-
+| |  docs/articles/FAQ.html                |   2 +-
+| |  docs/articles/Quick_Introduction.html |   2 +-
+| |  docs/articles/dendextend.html         |  38 +--
+| |  docs/news/index.html                  |   4 +-
+| |  docs/pkgdown.yml                      |   2 +-
+| |  docs/reference/all_unique.html        |   2 +-
+| |  docs/reference/tanglegram.html        |   2 +-
+| |  12 files changed, 512 insertions(+), 36 deletions(-)
+
+* | 2020-08-24(Tal Galili) Fix: "Found the following (possibly) invalid URLs:" (2) |6ba5e50| | 
+| |  R/color_branches.R | 2 +-
+| |  R/colored_bars.R   | 2 +-
+| |  R/colored_dots.R   | 2 +-
+| |  R/tanglegram.R     | 2 +-
+| |  man/all_unique.Rd  | 2 +-
+| |  man/tanglegram.Rd  | 2 +-
+| |  6 files changed, 6 insertions(+), 6 deletions(-)
+
+* | 2020-08-24(Tal Galili) Fix: "Found the following (possibly) invalid URLs:" |92689e6| | 
+| |  ChangeLog                                        |   16 +
+| |  DESCRIPTION                                      |    2 +-
+| |  NEWS                                             |    4 +-
+| |  NEWS.md                                          |    4 +-
+| |  R/ape.R                                          |    2 +-
+| |  R/as.dendrogram.randomForest.R                   |    2 +-
+| |  R/attr_access.R                                  |    2 +-
+| |  R/bk_method.R                                    |   14 +-
+| |  R/colored_bars.R                                 |    2 +-
+| |  R/colored_dots.R                                 |    2 +-
+| |  R/cor_cophenetic.R                               |    2 +-
+| |  R/cutree.dendrogram.R                            |    2 +-
+| |  R/ggdend.R                                       |    4 +-
+| |  R/highlight_branches.R                           |    2 +-
+| |  R/labels.R                                       |    4 +-
+| |  R/labels_colors.R                                |    2 +-
+| |  R/magrittr.R                                     |    2 +-
+| |  R/nleaves.R                                      |    2 +-
+| |  R/pvclust.R                                      |    2 +-
+| |  R/rect.dendrogram.R                              |    2 +-
+| |  R/tanglegram.R                                   |    6 +-
+| |  R/untangle.R                                     |    2 +-
+| |  R/zzz.R                                          |   14 +-
+| |  docs/404.html                                    |    9 +-
+| |  docs/articles/Cluster_Analysis.html              |  177 +-
+| |  .../figure-html/unnamed-chunk-11-1.png           |  Bin 237223 -> 182547 bytes
+| |  .../figure-html/unnamed-chunk-12-1.png           |  Bin 239150 -> 184484 bytes
+| |  .../figure-html/unnamed-chunk-13-1.png           |  Bin 116304 -> 101625 bytes
+| |  .../figure-html/unnamed-chunk-14-1.png           |  Bin 127251 -> 111838 bytes
+| |  .../figure-html/unnamed-chunk-15-1.png           |  Bin 199168 -> 179961 bytes
+| |  .../figure-html/unnamed-chunk-17-1.png           |  Bin 146326 -> 131116 bytes
+| |  .../figure-html/unnamed-chunk-18-1.png           |  Bin 315475 -> 273265 bytes
+| |  .../figure-html/unnamed-chunk-21-1.png           |  Bin 66096 -> 19526 bytes
+| |  .../figure-html/unnamed-chunk-26-1.png           |  Bin 67171 -> 46507 bytes
+| |  .../figure-html/unnamed-chunk-27-1.png           |  Bin 273583 -> 252615 bytes
+| |  .../figure-html/unnamed-chunk-29-1.png           |  Bin 113554 -> 72998 bytes
+| |  .../figure-html/unnamed-chunk-3-1.png            |  Bin 215537 -> 155245 bytes
+| |  .../figure-html/unnamed-chunk-32-1.png           |  Bin 252664 -> 133956 bytes
+| |  .../figure-html/unnamed-chunk-33-1.png           |  Bin 188877 -> 132803 bytes
+| |  .../figure-html/unnamed-chunk-35-1.png           |  Bin 240176 -> 185647 bytes
+| |  .../figure-html/unnamed-chunk-36-1.png           |  Bin 188224 -> 131855 bytes
+| |  .../figure-html/unnamed-chunk-38-1.png           |  Bin 230911 -> 179095 bytes
+| |  .../figure-html/unnamed-chunk-4-1.png            |  Bin 159787 -> 118901 bytes
+| |  .../figure-html/unnamed-chunk-40-1.png           |  Bin 113846 -> 72114 bytes
+| |  .../figure-html/unnamed-chunk-42-1.png           |  Bin 243424 -> 187788 bytes
+| |  .../figure-html/unnamed-chunk-43-1.png           |  Bin 161093 -> 125415 bytes
+| |  .../figure-html/unnamed-chunk-5-1.png            |  Bin 298674 -> 145398 bytes
+| |  .../figure-html/unnamed-chunk-6-1.png            |  Bin 410630 -> 377801 bytes
+| |  .../figure-html/unnamed-chunk-8-1.png            |  Bin 110290 -> 67663 bytes
+| |  docs/articles/FAQ.html                           |   81 +-
+| |  .../FAQ_files/figure-html/unnamed-chunk-12-1.png |  Bin 315434 -> 244299 bytes
+| |  .../FAQ_files/figure-html/unnamed-chunk-14-1.png |  Bin 27074 -> 10697 bytes
+| |  .../FAQ_files/figure-html/unnamed-chunk-15-1.png |  Bin 128487 -> 87394 bytes
+| |  .../FAQ_files/figure-html/unnamed-chunk-15-2.png |  Bin 150853 -> 113695 bytes
+| |  .../FAQ_files/figure-html/unnamed-chunk-16-1.png |  Bin 153878 -> 111618 bytes
+| |  .../FAQ_files/figure-html/unnamed-chunk-16-2.png |  Bin 152710 -> 113042 bytes
+| |  .../FAQ_files/figure-html/unnamed-chunk-2-1.png  |  Bin 45942 -> 28740 bytes
+| |  .../FAQ_files/figure-html/unnamed-chunk-3-1.png  |  Bin 29881 -> 16555 bytes
+| |  .../FAQ_files/figure-html/unnamed-chunk-4-1.png  |  Bin 55459 -> 37105 bytes
+| |  .../FAQ_files/figure-html/unnamed-chunk-5-1.png  |  Bin 48733 -> 31515 bytes
+| |  .../FAQ_files/figure-html/unnamed-chunk-7-1.png  |  Bin 60337 -> 18238 bytes
+| |  docs/articles/Quick_Introduction.html            |   40 +-
+| |  .../figure-html/unnamed-chunk-11-1.png           |  Bin 23807 -> 8352 bytes
+| |  .../figure-html/unnamed-chunk-4-1.png            |  Bin 27834 -> 9107 bytes
+| |  .../figure-html/unnamed-chunk-6-1.png            |  Bin 31306 -> 15302 bytes
+| |  .../figure-html/unnamed-chunk-7-1.png            |  Bin 31362 -> 15328 bytes
+| |  .../figure-html/unnamed-chunk-8-1.png            |  Bin 31315 -> 15333 bytes
+| |  .../figure-html/unnamed-chunk-9-1.png            |  Bin 41782 -> 23658 bytes
+| |  docs/articles/dendextend.html                    |  364 +-
+| |  .../dendextend_files/d3-3.5.3/CONTRIBUTING.md    |   25 -
+| |  docs/articles/dendextend_files/d3-3.5.3/LICENSE  |   26 -
+| |  .../articles/dendextend_files/d3-3.5.3/README.md |    9 -
+| |  docs/articles/dendextend_files/d3-3.5.3/d3.js    | 9466 ------------------
+| |  .../articles/dendextend_files/d3-3.5.3/d3.min.js |    5 -
+| |  .../dendextend_files/d3-tip-0.6.6/LICENSE        |    8 -
+| |  .../dendextend_files/d3-tip-0.6.6/README.md      |   43 -
+| |  .../dendextend_files/d3-tip-0.6.6/index.js       |  299 -
+| |  .../dendextend_files/d3-tip-0.6.6/package.json   |   28 -
+| |  .../d3heatmap-binding-0.6.1.2/d3heatmap.js       |  115 -
+| |  .../d3heatmapcore-0.0.0/heatmapcore.css          |  100 -
+| |  .../d3heatmapcore-0.0.0/heatmapcore.js           |  645 --
+| |  .../figure-html/unnamed-chunk-11-1.png           |  Bin 68516 -> 47681 bytes
+| |  .../figure-html/unnamed-chunk-13-1.png           |  Bin 23712 -> 7356 bytes
+| |  .../figure-html/unnamed-chunk-17-1.png           |  Bin 31205 -> 17100 bytes
+| |  .../figure-html/unnamed-chunk-18-1.png           |  Bin 28731 -> 16161 bytes
+| |  .../figure-html/unnamed-chunk-2-1.png            |  Bin 80240 -> 53183 bytes
+| |  .../figure-html/unnamed-chunk-20-1.png           |  Bin 36267 -> 21433 bytes
+| |  .../figure-html/unnamed-chunk-21-1.png           |  Bin 72537 -> 37984 bytes
+| |  .../figure-html/unnamed-chunk-22-1.png           |  Bin 47354 -> 29388 bytes
+| |  .../figure-html/unnamed-chunk-24-1.png           |  Bin 32583 -> 16183 bytes
+| |  .../figure-html/unnamed-chunk-26-1.png           |  Bin 28943 -> 8836 bytes
+| |  .../figure-html/unnamed-chunk-27-1.png           |  Bin 30926 -> 17713 bytes
+| |  .../figure-html/unnamed-chunk-28-1.png           |  Bin 21403 -> 13930 bytes
+| |  .../figure-html/unnamed-chunk-29-1.png           |  Bin 35132 -> 21445 bytes
+| |  .../figure-html/unnamed-chunk-30-1.png           |  Bin 36734 -> 20844 bytes
+| |  .../figure-html/unnamed-chunk-31-1.png           |  Bin 32956 -> 17454 bytes
+| |  .../figure-html/unnamed-chunk-32-1.png           |  Bin 43486 -> 27586 bytes
+| |  .../figure-html/unnamed-chunk-33-1.png           |  Bin 48839 -> 27401 bytes
+| |  .../figure-html/unnamed-chunk-33-2.png           |  Bin 87982 -> 27370 bytes
+| |  .../figure-html/unnamed-chunk-33-3.png           |  Bin 72366 -> 51324 bytes
+| |  .../figure-html/unnamed-chunk-33-4.png           |  Bin 58799 -> 17620 bytes
+| |  .../figure-html/unnamed-chunk-33-5.png           |  Bin 94390 -> 70597 bytes
+| |  .../figure-html/unnamed-chunk-34-1.png           |  Bin 32971 -> 16662 bytes
+| |  .../figure-html/unnamed-chunk-35-1.png           |  Bin 50593 -> 18657 bytes
+| |  .../figure-html/unnamed-chunk-36-1.png           |  Bin 29970 -> 9443 bytes
+| |  .../figure-html/unnamed-chunk-37-1.png           |  Bin 23483 -> 12208 bytes
+| |  .../figure-html/unnamed-chunk-38-1.png           |  Bin 17876 -> 5309 bytes
+| |  .../figure-html/unnamed-chunk-39-1.png           |  Bin 27578 -> 8978 bytes
+| |  .../figure-html/unnamed-chunk-40-1.png           |  Bin 27939 -> 18044 bytes
+| |  .../figure-html/unnamed-chunk-41-1.png           |  Bin 23931 -> 14806 bytes
+| |  .../figure-html/unnamed-chunk-42-1.png           |  Bin 95109 -> 70858 bytes
+| |  .../figure-html/unnamed-chunk-43-1.png           |  Bin 76052 -> 52654 bytes
+| |  .../figure-html/unnamed-chunk-43-2.png           |  Bin 78605 -> 48494 bytes
+| |  .../figure-html/unnamed-chunk-43-3.png           |  Bin 92545 -> 58332 bytes
+| |  .../figure-html/unnamed-chunk-43-4.png           |  Bin 101166 -> 73874 bytes
+| |  .../figure-html/unnamed-chunk-44-1.png           |  Bin 18919 -> 9164 bytes
+| |  .../figure-html/unnamed-chunk-45-1.png           |  Bin 146675 -> 121141 bytes
+| |  .../figure-html/unnamed-chunk-45-2.png           |  Bin 153759 -> 126404 bytes
+| |  .../figure-html/unnamed-chunk-49-1.png           |  Bin 74129 -> 54593 bytes
+| |  .../figure-html/unnamed-chunk-50-1.png           |  Bin 183118 -> 132562 bytes
+| |  .../figure-html/unnamed-chunk-51-1.png           |  Bin 172961 -> 109079 bytes
+| |  .../figure-html/unnamed-chunk-52-1.png           |  Bin 158354 -> 129108 bytes
+| |  .../figure-html/unnamed-chunk-53-1.png           |  Bin 166351 -> 109569 bytes
+| |  .../figure-html/unnamed-chunk-55-1.png           |  Bin 34220 -> 18281 bytes
+| |  .../figure-html/unnamed-chunk-56-1.png           |  Bin 37445 -> 26723 bytes
+| |  .../figure-html/unnamed-chunk-57-1.png           |  Bin 38436 -> 28022 bytes
+| |  .../figure-html/unnamed-chunk-59-1.png           |  Bin 20546 -> 11192 bytes
+| |  .../figure-html/unnamed-chunk-60-1.png           |  Bin 44577 -> 33235 bytes
+| |  .../figure-html/unnamed-chunk-61-1.png           |  Bin 44647 -> 32995 bytes
+| |  .../figure-html/unnamed-chunk-62-1.png           |  Bin 30712 -> 20082 bytes
+| |  .../figure-html/unnamed-chunk-63-1.png           |  Bin 26061 -> 16179 bytes
+| |  .../figure-html/unnamed-chunk-64-1.png           |  Bin 58438 -> 18284 bytes
+| |  .../figure-html/unnamed-chunk-66-1.png           |  Bin 26774 -> 8077 bytes
+| |  .../figure-html/unnamed-chunk-68-1.png           |  Bin 104106 -> 74411 bytes
+| |  .../figure-html/unnamed-chunk-69-1.png           |  Bin 42773 -> 29061 bytes
+| |  .../figure-html/unnamed-chunk-69-2.png           |  Bin 67377 -> 52326 bytes
+| |  .../figure-html/unnamed-chunk-7-1.png            |  Bin 12123 -> 3545 bytes
+| |  .../figure-html/unnamed-chunk-72-1.png           |  Bin 78638 -> 58285 bytes
+| |  .../figure-html/unnamed-chunk-73-1.png           |  Bin 63535 -> 42736 bytes
+| |  .../figure-html/unnamed-chunk-73-2.png           |  Bin 59460 -> 40023 bytes
+| |  .../figure-html/unnamed-chunk-73-3.png           |  Bin 64187 -> 43758 bytes
+| |  .../figure-html/unnamed-chunk-79-1.png           |  Bin 90156 -> 68569 bytes
+| |  .../figure-html/unnamed-chunk-79-2.png           |  Bin 88017 -> 66622 bytes
+| |  .../figure-html/unnamed-chunk-9-1.png            |  Bin 12642 -> 4106 bytes
+| |  .../htmlwidgets-1.3/htmlwidgets.js               |  839 --
+| |  docs/articles/index.html                         |    9 +-
+| |  docs/articles/introduction.html                  | 1448 ---
+| |  .../introduction_files/d3-3.5.3/CONTRIBUTING.md  |   25 -
+| |  .../articles/introduction_files/d3-3.5.3/LICENSE |   26 -
+| |  .../introduction_files/d3-3.5.3/README.md        |    9 -
+| |  docs/articles/introduction_files/d3-3.5.3/d3.js  | 9466 ------------------
+| |  .../introduction_files/d3-3.5.3/d3.min.js        |    5 -
+| |  .../introduction_files/d3-tip-0.6.6/LICENSE      |    8 -
+| |  .../introduction_files/d3-tip-0.6.6/README.md    |   43 -
+| |  .../introduction_files/d3-tip-0.6.6/index.js     |  299 -
+| |  .../introduction_files/d3-tip-0.6.6/package.json |   28 -
+| |  .../d3heatmap-binding-0.6.1.2/d3heatmap.js       |  115 -
+| |  .../d3heatmapcore-0.0.0/heatmapcore.css          |  100 -
+| |  .../d3heatmapcore-0.0.0/heatmapcore.js           |  645 --
+| |  .../figure-html/unnamed-chunk-11-1.png           |  Bin 12194 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-13-1.png           |  Bin 5057 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-17-1.png           |  Bin 6661 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-18-1.png           |  Bin 6627 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-2-1.png            |  Bin 13796 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-20-1.png           |  Bin 8151 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-21-1.png           |  Bin 15972 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-22-1.png           |  Bin 11453 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-24-1.png           |  Bin 6688 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-26-1.png           |  Bin 7594 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-27-1.png           |  Bin 6239 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-28-1.png           |  Bin 3938 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-29-1.png           |  Bin 7016 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-30-1.png           |  Bin 8691 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-31-1.png           |  Bin 7600 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-32-1.png           |  Bin 7673 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-33-1.png           |  Bin 10411 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-33-2.png           |  Bin 13391 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-33-3.png           |  Bin 10813 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-33-4.png           |  Bin 10151 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-33-5.png           |  Bin 13818 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-34-1.png           |  Bin 8691 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-35-1.png           |  Bin 18198 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-36-1.png           |  Bin 7036 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-37-1.png           |  Bin 5345 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-38-1.png           |  Bin 3858 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-39-1.png           |  Bin 7449 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-40-1.png           |  Bin 5410 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-41-1.png           |  Bin 5878 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-42-1.png           |  Bin 19489 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-43-1.png           |  Bin 24076 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-43-2.png           |  Bin 24901 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-43-3.png           |  Bin 31188 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-43-4.png           |  Bin 11454 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-44-1.png           |  Bin 4115 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-45-1.png           |  Bin 25274 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-45-2.png           |  Bin 25775 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-49-1.png           |  Bin 28338 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-50-1.png           |  Bin 34559 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-51-1.png           |  Bin 36293 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-52-1.png           |  Bin 40838 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-53-1.png           |  Bin 43412 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-55-1.png           |  Bin 8794 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-56-1.png           |  Bin 5334 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-57-1.png           |  Bin 5443 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-59-1.png           |  Bin 3551 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-60-1.png           |  Bin 6976 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-61-1.png           |  Bin 6952 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-62-1.png           |  Bin 5511 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-63-1.png           |  Bin 4869 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-64-1.png           |  Bin 12001 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-66-1.png           |  Bin 6803 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-68-1.png           |  Bin 16637 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-69-1.png           |  Bin 6861 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-69-2.png           |  Bin 8928 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-7-1.png            |  Bin 2344 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-72-1.png           |  Bin 14005 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-73-1.png           |  Bin 9896 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-73-2.png           |  Bin 9449 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-73-3.png           |  Bin 11954 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-79-1.png           |  Bin 13979 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-79-2.png           |  Bin 13210 -> 0 bytes
+| |  .../figure-html/unnamed-chunk-9-1.png            |  Bin 2888 -> 0 bytes
+| |  .../htmlwidgets-1.3/htmlwidgets.js               |  839 --
+| |  docs/news/index.html                             |    9 +-
+| |  docs/pkgdown.yml                                 |    6 +-
+| |  docs/reference/Bk.html                           |   22 +-
+| |  docs/reference/Bk_permutations.html              |   22 +-
+| |  docs/reference/Bk_plot.html                      |   22 +-
+| |  docs/reference/DendSer.dendrogram.html           |   18 +-
+| |  docs/reference/FM_index.html                     |   22 +-
+| |  docs/reference/FM_index_R.html                   |   22 +-
+| |  docs/reference/FM_index_permutation.html         |   25 +-
+| |  docs/reference/all.equal.dendrogram.html         |   18 +-
+| |  docs/reference/all_couple_rotations_at_k.html    |   18 +-
+| |  docs/reference/all_unique.html                   |   19 +-
+| |  docs/reference/as.dendlist.html                  |   17 +-
+| |  docs/reference/as.phylo.dendrogram.html          |   18 +-
+| |  docs/reference/as_hclust_fixed.html              |   18 +-
+| |  docs/reference/assign_dendextend_options.html    |   15 +-
+| |  .../assign_values_to_branches_edgePar-1.png      |  Bin 32816 -> 13774 bytes
+| |  .../assign_values_to_branches_edgePar.html       |   18 +-
+| |  .../assign_values_to_leaves_edgePar.html         |   18 +-
+| |  .../assign_values_to_leaves_nodePar.html         |   18 +-
+| |  .../assign_values_to_nodes_nodePar.html          |   18 +-
+| |  docs/reference/bakers_gamma_for_2_k_matrix.html  |   18 +-
+| |  docs/reference/branches_attr_by_clusters.html    |   19 +-
+| |  docs/reference/branches_attr_by_labels.html      |   18 +-
+| |  docs/reference/branches_attr_by_lists.html       |   18 +-
+| |  docs/reference/circlize_dendrogram.html          |   19 +-
+| |  docs/reference/click_rotate.html                 |   18 +-
+| |  docs/reference/collapse_branch-1.png             |  Bin 35972 -> 13691 bytes
+| |  docs/reference/collapse_branch-2.png             |  Bin 37650 -> 11565 bytes
+| |  docs/reference/collapse_branch.html              |   18 +-
+| |  docs/reference/color_branches.html               |   20 +-
+| |  docs/reference/color_labels.html                 |   19 +-
+| |  docs/reference/color_unique_labels-1.png         |  Bin 43603 -> 18206 bytes
+| |  docs/reference/color_unique_labels.html          |   17 +-
+| |  docs/reference/colored_bars-1.png                |  Bin 34734 -> 14505 bytes
+| |  docs/reference/colored_bars-2.png                |  Bin 37037 -> 16292 bytes
+| |  docs/reference/colored_bars-3.png                |  Bin 38930 -> 17878 bytes
+| |  docs/reference/colored_bars-4.png                |  Bin 43156 -> 21747 bytes
+| |  docs/reference/colored_bars-5.png                |  Bin 34965 -> 14386 bytes
+| |  docs/reference/colored_bars-6.png                |  Bin 42040 -> 19919 bytes
+| |  docs/reference/colored_bars-7.png                |  Bin 170915 -> 100674 bytes
+| |  docs/reference/colored_bars-8.png                |  Bin 193937 -> 124727 bytes
+| |  docs/reference/colored_bars.html                 |   20 +-
+| |  docs/reference/colored_dots-1.png                |  Bin 37739 -> 16667 bytes
+| |  docs/reference/colored_dots-2.png                |  Bin 40044 -> 18303 bytes
+| |  docs/reference/colored_dots-3.png                |  Bin 36990 -> 16459 bytes
+| |  docs/reference/colored_dots-4.png                |  Bin 39475 -> 18192 bytes
+| |  docs/reference/colored_dots-5.png                |  Bin 45404 -> 23105 bytes
+| |  docs/reference/colored_dots-6.png                |  Bin 51789 -> 28881 bytes
+| |  docs/reference/colored_dots-7.png                |  Bin 200885 -> 132107 bytes
+| |  docs/reference/colored_dots-8.png                |  Bin 198285 -> 134734 bytes
+| |  docs/reference/colored_dots.html                 |   20 +-
+| |  docs/reference/common_subtrees_clusters-1.png    |  Bin 86348 -> 57220 bytes
+| |  docs/reference/common_subtrees_clusters-2.png    |  Bin 30858 -> 11627 bytes
+| |  docs/reference/common_subtrees_clusters-3.png    |  Bin 30804 -> 11514 bytes
+| |  docs/reference/common_subtrees_clusters-4.png    |  Bin 84614 -> 55794 bytes
+| |  docs/reference/common_subtrees_clusters-5.png    |  Bin 86869 -> 57670 bytes
+| |  docs/reference/common_subtrees_clusters.html     |   18 +-
+| |  docs/reference/cor.dendlist.html                 |   18 +-
+| |  docs/reference/cor_FM_index.html                 |   18 +-
+| |  docs/reference/cor_bakers_gamma.html             |   20 +-
+| |  docs/reference/cor_common_nodes-1.png            |  Bin 118611 -> 72260 bytes
+| |  docs/reference/cor_common_nodes.html             |   18 +-
+| |  docs/reference/cor_cophenetic.html               |   22 +-
+| |  docs/reference/count_terminal_nodes-1.png        |  Bin 48441 -> 17430 bytes
+| |  docs/reference/count_terminal_nodes-2.png        |  Bin 48142 -> 16632 bytes
+| |  docs/reference/count_terminal_nodes.html         |   17 +-
+| |  docs/reference/cut_lower_fun.html                |   18 +-
+| |  docs/reference/cutree-methods.html               |   19 +-
+| |  docs/reference/cutree_1h.dendrogram.html         |   18 +-
+| |  docs/reference/cutree_1k.dendrogram.html         |   18 +-
+| |  docs/reference/dend_diff-1.png                   |  Bin 32209 -> 12394 bytes
+| |  docs/reference/dend_diff-2.png                   |  Bin 32221 -> 12385 bytes
+| |  docs/reference/dend_diff-3.png                   |  Bin 38889 -> 18093 bytes
+| |  docs/reference/dend_diff.html                    |   19 +-
+| |  docs/reference/dendextend-package.html           |   28 +-
+| |  docs/reference/dendextend_options.html           |   17 +-
+| |  docs/reference/dendlist.html                     |   18 +-
+| |  docs/reference/depth-1.png                       |  Bin 119772 -> 36816 bytes
+| |  docs/reference/depth.html                        |   17 +-
+| |  docs/reference/dist.dendlist-1.png               |  Bin 32209 -> 12394 bytes
+| |  docs/reference/dist.dendlist-2.png               |  Bin 34396 -> 14215 bytes
+| |  docs/reference/dist.dendlist.html                |   18 +-
+| |  docs/reference/dist_long.html                    |   17 +-
+| |  docs/reference/distinct_edges-1.png              |  Bin 32209 -> 12394 bytes
+| |  docs/reference/distinct_edges.html               |   19 +-
+| |  docs/reference/duplicate_leaf.html               |   17 +-
+| |  docs/reference/entanglement.html                 |   19 +-
+| |  docs/reference/fac2num.html                      |   17 +-
+| |  docs/reference/find_dend-1.png                   |  Bin 118181 -> 35963 bytes
+| |  docs/reference/find_dend.html                    |   17 +-
+| |  docs/reference/find_dendrogram.html              |   54 +-
+| |  docs/reference/find_k-1.png                      |  Bin 73543 -> 45365 bytes
+| |  docs/reference/find_k-2.png                      |  Bin 82629 -> 53299 bytes
+| |  docs/reference/find_k-3.png                      |  Bin 68635 -> 38851 bytes
+| |  docs/reference/find_k-4.png                      |  Bin 72539 -> 44546 bytes
+| |  docs/reference/find_k-5.png                      |  Bin 123393 -> 75842 bytes
+| |  docs/reference/find_k.html                       |   18 +-
+| |  docs/reference/fix_members_attr.dendrogram.html  |   17 +-
+| |  docs/reference/flatten.dendrogram-1.png          |  Bin 57734 -> 19867 bytes
+| |  docs/reference/flatten.dendrogram.html           |   17 +-
+| |  docs/reference/flip_leaves.html                  |   19 +-
+| |  docs/reference/get_branches_heights.html         |   17 +-
+| |  docs/reference/get_childrens_heights.html        |   18 +-
+| |  docs/reference/get_leaves_attr.html              |   19 +-
+| |  docs/reference/get_leaves_branches_attr-1.png    |  Bin 45517 -> 23863 bytes
+| |  docs/reference/get_leaves_branches_attr-2.png    |  Bin 55705 -> 29962 bytes
+| |  docs/reference/get_leaves_branches_attr.html     |   18 +-
+| |  docs/reference/get_leaves_branches_col-1.png     |  Bin 69262 -> 39303 bytes
+| |  docs/reference/get_leaves_branches_col.html      |   18 +-
+| |  docs/reference/get_leaves_edgePar-1.png          |  Bin 41213 -> 19682 bytes
+| |  docs/reference/get_leaves_edgePar.html           |   18 +-
+| |  docs/reference/get_leaves_nodePar-1.png          |  Bin 47786 -> 22908 bytes
+| |  docs/reference/get_leaves_nodePar.html           |   18 +-
+| |  docs/reference/get_nodes_attr.html               |   19 +-
+| |  docs/reference/get_nodes_xy.html                 |   19 +-
+| |  docs/reference/get_root_branches_attr.html       |   18 +-
+| |  docs/reference/get_subdendrograms-1.png          |  Bin 116227 -> 75816 bytes
+| |  docs/reference/get_subdendrograms-2.png          |  Bin 59276 -> 34609 bytes
+| |  docs/reference/get_subdendrograms.html           |   20 +-
+| |  docs/reference/ggdend.html                       |   26 +-
+| |  docs/reference/hang.dendrogram-1.png             |  Bin 75108 -> 27093 bytes
+| |  docs/reference/hang.dendrogram-2.png             |  Bin 54209 -> 18337 bytes
+| |  docs/reference/hang.dendrogram-3.png             |  Bin 39750 -> 10655 bytes
+| |  docs/reference/hang.dendrogram.html              |   20 +-
+| |  docs/reference/has_component_in_attribute-1.png  |  Bin 47918 -> 15978 bytes
+| |  docs/reference/has_component_in_attribute.html   |   18 +-
+| |  docs/reference/heights_per_k.dendrogram.html     |   17 +-
+| |  docs/reference/highlight_branches-1.png          |  Bin 65200 -> 34259 bytes
+| |  docs/reference/highlight_branches-2.png          |  Bin 66304 -> 33150 bytes
+| |  docs/reference/highlight_branches-3.png          |  Bin 138247 -> 97778 bytes
+| |  docs/reference/highlight_branches-4.png          |  Bin 99230 -> 60865 bytes
+| |  docs/reference/highlight_branches-5.png          |  Bin 83317 -> 48233 bytes
+| |  docs/reference/highlight_branches-6.png          |  Bin 146102 -> 105663 bytes
+| |  docs/reference/highlight_branches-7.png          |  Bin 35701 -> 15313 bytes
+| |  docs/reference/highlight_branches-8.png          |  Bin 146102 -> 105663 bytes
+| |  docs/reference/highlight_branches.html           |   18 +-
+| |  docs/reference/highlight_distinct_edges-1.png    |  Bin 31306 -> 11049 bytes
+| |  docs/reference/highlight_distinct_edges.html     |   18 +-
+| |  docs/reference/identify.dendrogram.html          |   20 +-
+| |  docs/reference/index.html                        |   11 +-
+| |  docs/reference/intersect_trees-1.png             |  Bin 52153 -> 16281 bytes
+| |  docs/reference/intersect_trees.html              |   18 +-
+| |  docs/reference/is.natural.number.html            |   21 +-
+| |  docs/reference/is_null_list.html                 |   17 +-
+| |  docs/reference/is_some_class.html                |   17 +-
+| |  docs/reference/khan.html                         |   20 +-
+| |  docs/reference/labels-assign.html                |   25 +-
+| |  docs/reference/labels_cex-1.png                  |  Bin 36324 -> 10924 bytes
+| |  docs/reference/labels_cex-2.png                  |  Bin 41192 -> 15051 bytes
+| |  docs/reference/labels_cex-3.png                  |  Bin 36324 -> 10924 bytes
+| |  docs/reference/labels_cex.html                   |   17 +-
+| |  docs/reference/labels_colors-1.png               |  Bin 36324 -> 10924 bytes
+| |  docs/reference/labels_colors-2.png               |  Bin 40146 -> 17444 bytes
+| |  docs/reference/labels_colors-3.png               |  Bin 36324 -> 10924 bytes
+| |  docs/reference/labels_colors-4.png               |  Bin 36324 -> 10924 bytes
+| |  docs/reference/labels_colors.html                |   22 +-
+| |  docs/reference/ladderize-1.png                   |  Bin 53603 -> 27892 bytes
+| |  docs/reference/ladderize.html                    |   18 +-
+| |  docs/reference/leaf_Colors.html                  |   18 +-
+| |  docs/reference/lowest_common_branch.html         |   18 +-
+| |  docs/reference/match_order_by_labels.html        |   18 +-
+| |  .../match_order_dendrogram_by_old_order.html     |   18 +-
+| |  docs/reference/na_locf.html                      |   27 +-
+| |  docs/reference/nleaves.html                      |   19 +-
+| |  docs/reference/nnodes.html                       |   19 +-
+| |  docs/reference/noded_with_condition.html         |   18 +-
+| |  docs/reference/order.dendrogram-assign.html      |   18 +-
+| |  docs/reference/order.hclust.html                 |   18 +-
+| |  docs/reference/partition_leaves-1.png            |  Bin 30419 -> 8188 bytes
+| |  docs/reference/partition_leaves.html             |   19 +-
+| |  docs/reference/plot_horiz.dendrogram.html        |   19 +-
+| |  docs/reference/prune-1.png                       |  Bin 55605 -> 19825 bytes
+| |  docs/reference/prune.html                        |   19 +-
+| |  .../prune_common_subtrees.dendlist.html          |   18 +-
+| |  docs/reference/prune_leaf-1.png                  |  Bin 54367 -> 19185 bytes
+| |  docs/reference/prune_leaf.html                   |   18 +-
+| |  docs/reference/pvclust_edges.html                |   18 +-
+| |  docs/reference/pvclust_show_signif.html          |   18 +-
+| |  docs/reference/pvclust_show_signif_gradient.html |   18 +-
+| |  docs/reference/pvrect2.html                      |   17 +-
+| |  docs/reference/raise.dendrogram-1.png            |  Bin 62737 -> 21662 bytes
+| |  docs/reference/raise.dendrogram.html             |   17 +-
+| |  docs/reference/rank_branches-1.png               |  Bin 57435 -> 17829 bytes
+| |  docs/reference/rank_branches.html                |   18 +-
+| |  docs/reference/rank_order.dendrogram.html        |   18 +-
+| |  docs/reference/rank_values_with_clusters.html    |   17 +-
+| |  docs/reference/rect.dendrogram-1.png             |  Bin 40429 -> 18293 bytes
+| |  docs/reference/rect.dendrogram-2.png             |  Bin 77148 -> 45100 bytes
+| |  docs/reference/rect.dendrogram-3.png             |  Bin 46759 -> 22650 bytes
+| |  docs/reference/rect.dendrogram-4.png             |  Bin 44833 -> 22193 bytes
+| |  docs/reference/rect.dendrogram-5.png             |  Bin 40417 -> 20714 bytes
+| |  docs/reference/rect.dendrogram.html              |   21 +-
+| |  docs/reference/reexports.html                    |   15 +-
+| |  docs/reference/reindex_dend.html                 |   17 +-
+| |  docs/reference/remove_branches_edgePar.html      |   18 +-
+| |  docs/reference/remove_leaves_nodePar.html        |   18 +-
+| |  docs/reference/remove_nodes_nodePar.html         |   18 +-
+| |  docs/reference/rllply.html                       |   17 +-
+| |  docs/reference/rotate-1.png                      |  Bin 51153 -> 25843 bytes
+| |  docs/reference/rotate-2.png                      |  Bin 72500 -> 39233 bytes
+| |  docs/reference/rotate-3.png                      |  Bin 63729 -> 32494 bytes
+| |  docs/reference/rotate-4.png                      |  Bin 59646 -> 21157 bytes
+| |  docs/reference/rotate-5.png                      |  Bin 61278 -> 26139 bytes
+| |  docs/reference/rotate.html                       |   19 +-
+| |  docs/reference/rotate_DendSer.html               |   18 +-
+| |  docs/reference/sample.dendrogram.html            |   18 +-
+| |  docs/reference/seriate_dendrogram.html           |   18 +-
+| |  docs/reference/set.html                          |   27 +-
+| |  docs/reference/set_labels-1.png                  |  Bin 58601 -> 29949 bytes
+| |  docs/reference/set_labels-2.png                  |  Bin 95820 -> 48984 bytes
+| |  docs/reference/set_labels-3.png                  |  Bin 50751 -> 25864 bytes
+| |  docs/reference/set_labels.html                   |   18 +-
+| |  docs/reference/shuffle-1.png                     |  Bin 327193 -> 230896 bytes
+| |  docs/reference/shuffle-2.png                     |  Bin 172385 -> 102068 bytes
+| |  docs/reference/shuffle.html                      |   19 +-
+| |  docs/reference/sort_2_clusters_vectors.html      |   17 +-
+| |  docs/reference/sort_dist_mat.html                |   18 +-
+| |  docs/reference/sort_levels_values.html           |   18 +-
+| |  docs/reference/tanglegram.html                   |   26 +-
+| |  docs/reference/theme_dendro.html                 |   17 +-
+| |  docs/reference/unbranch-1.png                    |  Bin 65817 -> 19048 bytes
+| |  docs/reference/unbranch.html                     |   18 +-
+| |  docs/reference/unclass_dend.html                 |   18 +-
+| |  docs/reference/untangle.html                     |   19 +-
+| |  docs/reference/untangle_DendSer.html             |   18 +-
+| |  docs/reference/untangle_random_search.html       |   19 +-
+| |  docs/reference/untangle_step_rotate_1side.html   |   18 +-
+| |  docs/reference/untangle_step_rotate_2side.html   |   18 +-
+| |  docs/reference/which_leaf.html                   |   18 +-
+| |  docs/reference/which_node-1.png                  |  Bin 34456 -> 14163 bytes
+| |  docs/reference/which_node.html                   |   18 +-
+| |  inst/ignored/Frequently asked questions.html     |  428 -
+| |  ...s - enhanced with the dendextend package.html |  651 --
+| |  inst/ignored/Introduction to dendextend.html     | 1314 ---
+| |  man/Bk.Rd                                        |    2 +-
+| |  man/Bk_permutations.Rd                           |    2 +-
+| |  man/Bk_plot.Rd                                   |    2 +-
+| |  man/FM_index.Rd                                  |    2 +-
+| |  man/FM_index_R.Rd                                |    2 +-
+| |  man/FM_index_permutation.Rd                      |    2 +-
+| |  man/cor_cophenetic.Rd                            |    2 +-
+| |  man/hang.dendrogram.Rd                           |    2 +-
+| |  man/is.natural.number.Rd                         |    2 +-
+| |  man/labels-assign.Rd                             |    2 +-
+| |  man/na_locf.Rd                                   |    2 +-
+| |  man/rect.dendrogram.Rd                           |    2 +-
+| |  man/tanglegram.Rd                                |    6 +-
+| |  tests/testthat/test-set.dendrogram.R             |    2 +-
+| |  vignettes/Cluster_Analysis.Rmd                   |    4 +-
+| |  vignettes/FAQ.Rmd                                |   24 +-
+| |  vignettes/Quick_Introduction.Rmd                 |    2 +-
+| |  vignettes/dendextend.Rmd                         |   12 +-
+| |  476 files changed, 1486 insertions(+), 29031 deletions(-)
+
+* | 2020-08-15(Tal Galili) update pkgdown |a3431fc| | 
+| |  docs/CONDUCT.html    |    9 +-
+| |  docs/authors.html    |   14 +-
+| |  docs/index.html      |   34 +-
+| |  docs/news/index.html | 1077 ++++++++++------------------------------------
+| |  4 files changed, 273 insertions(+), 861 deletions(-)
+
+* | 2020-08-15(Tal Galili) Fix warning "checkRd: (5) dendextend-package.Rd:0-15: Must have a \description" |cabc151| | 
+| |  ChangeLog                 | 248 +++++++++++++++++++++++++++++++++++++++++-
+| |  DESCRIPTION               |   2 +-
+| |  NEWS                      |   6 +-
+| |  NEWS.md                   |  15 +++
+| |  R/dendextend-package.R    |   9 +-
+| |  man/dendextend-package.Rd |   7 ++
+| |  6 files changed, 278 insertions(+), 9 deletions(-)
+
+* | 2020-08-15(Tal Galili) Update tests to suppress warnings around RNGversion("3.5.0") |1c869df| | 
+| |  tests/test-all.R                       | 2 +-
+| |  tests/testthat/test-bk_method.R        | 5 +++--
+| |  tests/testthat/test-cor_bakers_gamma.R | 3 +--
+| |  tests/testthat/test-cor_cophenetic.R   | 3 ++-
+| |  tests/testthat/test-dendlist.R         | 3 +--
+| |  tests/testthat/test-pvclust_extract.R  | 2 +-
+| |  tests/testthat/test-set.dendrogram.R   | 9 ++++-----
+| |  tests/testthat/test-untangle.R         | 7 +++++--
+| |  8 files changed, 18 insertions(+), 16 deletions(-)
+
+* | 2020-08-15(Tal Galili) Fix some tests to not flag errors/warnings |68916c7| | 
+| |  tests/test-all.R                      | 24 ++----------------------
+| |  tests/testthat/test-ggdend.R          |  2 ++
+| |  tests/testthat/test-pvclust_extract.R |  2 +-
+| |  3 files changed, 5 insertions(+), 23 deletions(-)
+
+* | 2020-08-15(Tal Galili) Remove warnings from .Rd files. |f4e243c| | 
+| |  R/get_subdendrograms.R    | 2 +-
+| |  R/labels.R                | 2 +-
+| |  R/labels_colors.R         | 2 +-
+| |  man/get_subdendrograms.Rd | 2 +-
+| |  man/labels-assign.Rd      | 2 +-
+| |  man/labels_colors.Rd      | 2 +-
+| |  6 files changed, 6 insertions(+), 6 deletions(-)
+
+* | 2020-08-14(Tal Galili) Update .Rd for find_dendrogram (and some other functions) |5745a79| | 
+| |  DESCRIPTION               |  2 +-
+| |  R/get_subdendrograms.R    | 14 ++++++++++++++
+| |  man/dendextend-package.Rd |  3 ---
+| |  man/find_dendrogram.Rd    | 31 +++++++++++++++++++++----------
+| |  man/khan.Rd               |  6 ++++--
+| |  man/reexports.Rd          |  2 +-
+| |  man/set.Rd                |  8 ++++----
+| |  7 files changed, 45 insertions(+), 21 deletions(-)
+
+* | 2020-08-14(Tal Galili) Fix #102 - find_dendrogram deals with more edge cases, the documentation does what it says it does, and there are now tests. |3f3d5ab| | 
+| |  DESCRIPTION                           |  2 +-
+| |  NEWS                                  |  3 ++-
+| |  R/get_subdendrograms.R                | 33 +++++++++++++++++--------------
+| |  tests/testthat/test-find_dendrogram.R | 32 ++++++++++++++++++++++++++++++
+| |  4 files changed, 53 insertions(+), 17 deletions(-)
+
+* | 2020-06-01(Tal Galili) remove d3heatmap from DESCRIPTION (since the package became orphaned) |99dbf6d| | 
+| |  DESCRIPTION                    |  1 -
+| |  vignettes/Cluster_Analysis.Rmd | 10 +++-------
+| |  vignettes/dendextend.Rmd       |  2 +-
+| |  3 files changed, 4 insertions(+), 9 deletions(-)
+
+* | 2020-06-01(Tal Galili) ggdend - add type='triang': - bump package version - update NEWS - added Hauyn as a contributor - updated function doc (added an example) |3f938f8| | 
+| |  DESCRIPTION   | 8 +++++---
+| |  NEWS          | 5 ++++-
+| |  R/ggdend.R    | 6 ++++++
+| |  man/ggdend.Rd | 6 ++++++
+| |  4 files changed, 21 insertions(+), 4 deletions(-)
+
+* |   2020-05-31(Tal Galili) Merge branch 'master' of github.com:talgalili/dendextend |cd77a0e
+|\ \  
+| * \   2020-05-31(Tal Galili) Merge pull request #99 from houyunhuang/master |7043bde
+| |\ \  
+| | |/  
+| |/|   
 | | * 2020-04-15(houyun) check the type param |2e5ebc1| | | 
 | | |  R/ggdend.R | 2 +-
 | | |  1 file changed, 1 insertion(+), 1 deletion(-)

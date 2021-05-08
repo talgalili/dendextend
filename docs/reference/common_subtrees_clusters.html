@@ -74,7 +74,7 @@ forming shared subtrees" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ forming shared subtrees" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@ forming shared subtrees" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,7 +145,7 @@ and returns a vector (length of labels), indicating the clusters
 forming shared subtrees</p>
     </div>
 
-    <pre class="usage"><span class='fu'>common_subtrees_clusters</span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>, <span class='kw'>leaves_get_0_cluster</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>common_subtrees_clusters</span><span class='op'>(</span><span class='va'>dend1</span>, <span class='va'>dend2</span>, leaves_get_0_cluster <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,16 +180,21 @@ a common subtree cluster, with ones available in dend2</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dendextend</span>)
-<span class='no'>dend1</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>6</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
-<span class='no'>dend2</span> <span class='kw'>&lt;-</span> <span class='no'>dend1</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"labels"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='fl'>6</span>:<span class='fl'>5</span>))
-<span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>)</div><div class='img'><img src='common_subtrees_clusters-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>clusters1</span> <span class='kw'>&lt;-</span> <span class='fu'>common_subtrees_clusters</span>(<span class='no'>dend1</span>, <span class='no'>dend2</span>)
-<span class='no'>dend1_2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='color_branches.html'>color_branches</a></span>(<span class='no'>dend1</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='no'>clusters1</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend1_2</span>)</div><div class='img'><img src='common_subtrees_clusters-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend1_2</span>, <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='common_subtrees_clusters-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dend1_2</span>, <span class='no'>dend2</span>, <span class='kw'>highlight_distinct_edges</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='common_subtrees_clusters-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dend1_2</span>, <span class='no'>dend2</span>)</div><div class='img'><img src='common_subtrees_clusters-5.png' alt='' width='700' height='433' /></div></pre>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://talgalili.github.io/dendextend/'>dendextend</a></span><span class='op'>)</span>
+<span class='va'>dend1</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>dend2</span> <span class='op'>&lt;-</span> <span class='va'>dend1</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='st'>"labels"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>6</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='tanglegram.html'>tanglegram</a></span><span class='op'>(</span><span class='va'>dend1</span>, <span class='va'>dend2</span><span class='op'>)</span>
+</div><div class='img'><img src='common_subtrees_clusters-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>clusters1</span> <span class='op'>&lt;-</span> <span class='fu'>common_subtrees_clusters</span><span class='op'>(</span><span class='va'>dend1</span>, <span class='va'>dend2</span><span class='op'>)</span>
+<span class='va'>dend1_2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='color_branches.html'>color_branches</a></span><span class='op'>(</span><span class='va'>dend1</span>, clusters <span class='op'>=</span> <span class='va'>clusters1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend1_2</span><span class='op'>)</span>
+</div><div class='img'><img src='common_subtrees_clusters-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend1_2</span>, horiz <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='common_subtrees_clusters-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='tanglegram.html'>tanglegram</a></span><span class='op'>(</span><span class='va'>dend1_2</span>, <span class='va'>dend2</span>, highlight_distinct_edges <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='img'><img src='common_subtrees_clusters-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='tanglegram.html'>tanglegram</a></span><span class='op'>(</span><span class='va'>dend1_2</span>, <span class='va'>dend2</span><span class='op'>)</span>
+</div><div class='img'><img src='common_subtrees_clusters-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -205,7 +210,7 @@ a common subtree cluster, with ones available in dend2</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

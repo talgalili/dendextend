@@ -73,7 +73,7 @@ between the clusterings (random order of the items labels)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ between the clusterings (random order of the items labels)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -116,7 +116,7 @@ between the clusterings (random order of the items labels)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,12 +143,12 @@ between the clusterings (random order of the items labels)." />
 between the clusterings (random order of the items labels).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>FM_index_permutation</span>(
-  <span class='no'>A1_clusters</span>,
-  <span class='no'>A2_clusters</span>,
-  <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span>(<span class='st'>"warn"</span>),
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>FM_index_permutation</span><span class='op'>(</span>
+  <span class='va'>A1_clusters</span>,
+  <span class='va'>A2_clusters</span>,
+  warn <span class='op'>=</span> <span class='fu'><a href='dendextend_options.html'>dendextend_options</a></span><span class='op'>(</span><span class='st'>"warn"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -194,53 +194,54 @@ Journal of the American Statistical Association 78 (383): 553.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>23235</span>)
-<span class='no'>ss</span> <span class='kw'>&lt;-</span> <span class='fl'>TRUE</span> <span class='co'># sample(1:150, 10 )</span>
-<span class='no'>hc1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>iris</span>[<span class='no'>ss</span>, -<span class='fl'>5</span>]), <span class='st'>"com"</span>)
-<span class='no'>hc2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='no'>iris</span>[<span class='no'>ss</span>, -<span class='fl'>5</span>]), <span class='st'>"single"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>23235</span><span class='op'>)</span>
+<span class='va'>ss</span> <span class='op'>&lt;-</span> <span class='cn'>TRUE</span> <span class='co'># sample(1:150, 10 )</span>
+<span class='va'>hc1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span><span class='va'>ss</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>, <span class='st'>"com"</span><span class='op'>)</span>
+<span class='va'>hc2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span><span class='va'>ss</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>, <span class='st'>"single"</span><span class='op'>)</span>
 <span class='co'># dend1 &lt;- as.dendrogram(hc1)</span>
 <span class='co'># dend2 &lt;- as.dendrogram(hc2)</span>
 <span class='co'>#    cutree(dend1)</span>
 
 <span class='co'># small k</span>
-<span class='no'>A1_clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='co'># will give a right tailed distribution</span>
+<span class='va'>A1_clusters</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc1</span>, k <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='co'># will give a right tailed distribution</span>
 <span class='co'># large k</span>
-<span class='no'>A1_clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>50</span>) <span class='co'># will give a discrete distribution</span>
+<span class='va'>A1_clusters</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc1</span>, k <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span> <span class='co'># will give a discrete distribution</span>
 <span class='co'># "medium" k</span>
-<span class='no'>A1_clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>hc1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>25</span>) <span class='co'># gives almost the normal distribution!</span>
-<span class='no'>A2_clusters</span> <span class='kw'>&lt;-</span> <span class='no'>A1_clusters</span>
+<span class='va'>A1_clusters</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>hc1</span>, k <span class='op'>=</span> <span class='fl'>25</span><span class='op'>)</span> <span class='co'># gives almost the normal distribution!</span>
+<span class='va'>A2_clusters</span> <span class='op'>&lt;-</span> <span class='va'>A1_clusters</span>
 
-<span class='no'>R</span> <span class='kw'>&lt;-</span> <span class='fl'>10000</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>414130</span>)
-<span class='no'>FM_index_H0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span>(<span class='no'>R</span>, <span class='fu'>FM_index_permutation</span>(<span class='no'>A1_clusters</span>, <span class='no'>A2_clusters</span>)) <span class='co'># can take 10 sec</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span>(<span class='no'>FM_index_H0</span>), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"FM Index distribution under H0\n (10000 permutation)"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>v</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>FM_index_H0</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='va'>R</span> <span class='op'>&lt;-</span> <span class='fl'>10000</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>414130</span><span class='op'>)</span>
+<span class='va'>FM_index_H0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='va'>R</span>, <span class='fu'>FM_index_permutation</span><span class='op'>(</span><span class='va'>A1_clusters</span>, <span class='va'>A2_clusters</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># can take 10 sec</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>FM_index_H0</span><span class='op'>)</span>, main <span class='op'>=</span> <span class='st'>"FM Index distribution under H0\n (10000 permutation)"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>FM_index_H0</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='fl'>1</span>, lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 <span class='co'># The permutation distribution is with a heavy right tail:</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>psych</span>)
-<span class='fu'>skew</span>(<span class='no'>FM_index_H0</span>) <span class='co'># 1.254</span>
-<span class='fu'>kurtosi</span>(<span class='no'>FM_index_H0</span>) <span class='co'># 2.5427</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>psych</span><span class='op'>)</span>
+<span class='fu'>skew</span><span class='op'>(</span><span class='va'>FM_index_H0</span><span class='op'>)</span> <span class='co'># 1.254</span>
+<span class='fu'>kurtosi</span><span class='op'>(</span><span class='va'>FM_index_H0</span><span class='op'>)</span> <span class='co'># 2.5427</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>FM_index_H0</span>)
-<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span>(<span class='no'>FM_index_H0</span>)
-<span class='no'>the_FM_index</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='FM_index.html'>FM_index</a></span>(<span class='no'>A1_clusters</span>, <span class='no'>A2_clusters</span>)
-<span class='no'>the_FM_index</span>
-<span class='no'>our_dnorm</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-  <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span>(<span class='no'>x</span>,
-    <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>the_FM_index</span>, <span class='st'>"E_FM"</span>),
-    <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>the_FM_index</span>, <span class='st'>"V_FM"</span>))
-  )
-}
+<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>FM_index_H0</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>FM_index_H0</span><span class='op'>)</span>
+<span class='va'>the_FM_index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='FM_index.html'>FM_index</a></span><span class='op'>(</span><span class='va'>A1_clusters</span>, <span class='va'>A2_clusters</span><span class='op'>)</span>
+<span class='va'>the_FM_index</span>
+<span class='va'>our_dnorm</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>,
+    mean <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>the_FM_index</span>, <span class='st'>"E_FM"</span><span class='op'>)</span>,
+    sd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>the_FM_index</span>, <span class='st'>"V_FM"</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
 <span class='co'># our_dnorm(0.35)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span>(<span class='no'>our_dnorm</span>,
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>from</span> <span class='kw'>=</span> -<span class='fl'>1</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>R</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)
-<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>v</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>the_FM_index</span>, <span class='st'>"E_FM"</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='va'>our_dnorm</span>,
+  col <span class='op'>=</span> <span class='fl'>4</span>,
+  from <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>, to <span class='op'>=</span> <span class='fl'>1</span>, n <span class='op'>=</span> <span class='va'>R</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>the_FM_index</span>, <span class='st'>"E_FM"</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='fl'>4</span>, lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span>(<span class='st'>"topright"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"asymptotic"</span>, <span class='st'>"permutation"</span>), <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>1</span>))
-}</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span><span class='op'>(</span><span class='st'>"topright"</span>, legend <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"asymptotic"</span>, <span class='st'>"permutation"</span><span class='op'>)</span>, fill <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -256,7 +257,7 @@ Journal of the American Statistical Association 78 (383): 553.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -1,3 +1,13 @@
+dendextend 1.15.0 (2021-05-08)
+----------------------------------------
+
+###UPDATED FUNCTIONS:
+* colored_dots - new dot_size argument
+
+###BUG FIXES
+* get_subdendrograms - fix it to work with character labels, and also sort the output sub-dendrograms to be in the original order of the clusters in the dengrogram (instead of the order of the original data, which is less useful for exploration). Props @chasemc. 
+
+
 dendextend 1.14.0 (2020-08-25)
 ----------------------------------------
 

@@ -74,7 +74,7 @@ And the function returns a dendrogram with branches col/lwd/lty accordingly.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ And the function returns a dendrogram with branches col/lwd/lty accordingly.
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@ And the function returns a dendrogram with branches col/lwd/lty accordingly.
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,14 +145,14 @@ And the function returns a dendrogram with branches col/lwd/lty accordingly.
 (the function assumes unique labels)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>branches_attr_by_clusters</span>(
-  <span class='no'>dend</span>,
-  <span class='no'>clusters</span>,
-  <span class='no'>values</span>,
-  <span class='kw'>attr</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"col"</span>, <span class='st'>"lwd"</span>, <span class='st'>"lty"</span>),
-  <span class='kw'>branches_changed_have_which_labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"any"</span>, <span class='st'>"all"</span>),
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>branches_attr_by_clusters</span><span class='op'>(</span>
+  <span class='va'>dend</span>,
+  <span class='va'>clusters</span>,
+  <span class='va'>values</span>,
+  attr <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"col"</span>, <span class='st'>"lwd"</span>, <span class='st'>"lty"</span><span class='op'>)</span>,
+  branches_changed_have_which_labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"any"</span>, <span class='st'>"all"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -167,7 +167,7 @@ And the function returns a dendrogram with branches col/lwd/lty accordingly.
 This HAS to be of the same length as the number of leaves.
 Items that belong to no cluster should get the value 0.
 The vector should be of the same order as that of the labels in the dendrogram.
-If you create the clusters from something like <a href='cutree-methods.html'>cutree</a> you would first
+If you create the clusters from something like <a href='cutree.html'>cutree</a> you would first
 need to use <a href='https://rdrr.io/r/stats/order.dendrogram.html'>order.dendrogram</a> on it, before using it in the function.</p></td>
     </tr>
     <tr>
@@ -214,29 +214,29 @@ plotDendroAndColors</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
 <span class='co'>### Getting the hc object</span>
-<span class='no'>iris_dist</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[, -<span class='fl'>5</span>] <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>()
-<span class='no'>hc</span> <span class='kw'>&lt;-</span> <span class='no'>iris_dist</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>()
+<span class='va'>iris_dist</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>hc</span> <span class='op'>&lt;-</span> <span class='va'>iris_dist</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='co'># This is how it looks without any colors:</span>
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>(<span class='no'>hc</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend</span>)
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='va'>hc</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span>
 
 <span class='co'># Both functions give the same outcome</span>
 <span class='co'># options 1:</span>
-<span class='no'>dend</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='set.html'>set</a></span>(<span class='st'>"branches_k_color"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>4</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>()
+<span class='va'>dend</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='st'>"branches_k_color"</span>, k <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='co'># options 2:</span>
-<span class='no'>clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cutree-methods.html'>cutree</a></span>(<span class='no'>dend</span>, <span class='fl'>4</span>)[<span class='fu'><a href='https://rdrr.io/r/stats/order.dendrogram.html'>order.dendrogram</a></span>(<span class='no'>dend</span>)]
-<span class='no'>dend</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>branches_attr_by_clusters</span>(<span class='no'>clusters</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>()
+<span class='va'>clusters</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cutree.html'>cutree</a></span><span class='op'>(</span><span class='va'>dend</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/stats/order.dendrogram.html'>order.dendrogram</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>dend</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>branches_attr_by_clusters</span><span class='op'>(</span><span class='va'>clusters</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># and the second option is much slower:</span>
-<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='fu'><a href='set.html'>set</a></span>(<span class='no'>dend</span>, <span class='st'>"branches_k_color"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>4</span>)) <span class='co'># 0.26 sec</span>
-<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>(<span class='fu'>branches_attr_by_clusters</span>(<span class='no'>dend</span>, <span class='no'>clusters</span>)) <span class='co'># 1.61 sec</span>
+<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='va'>dend</span>, <span class='st'>"branches_k_color"</span>, k <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># 0.26 sec</span>
+<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='fu'>branches_attr_by_clusters</span><span class='op'>(</span><span class='va'>dend</span>, <span class='va'>clusters</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># 1.61 sec</span>
 <span class='co'># BUT, it also allows us to do more flaxible things!</span>
 
 <span class='co'>#--------------------------</span>
@@ -244,45 +244,46 @@ plotDendroAndColors</p></div>
 <span class='co'>#--------------------------</span>
 
 <span class='co'># let's get the clusters</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dynamicTreeCut</span>)
-<span class='no'>clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/dynamicTreeCut/man/cutreeDynamic.html'>cutreeDynamic</a></span>(<span class='no'>hc</span>, <span class='kw'>distM</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='no'>iris_dist</span>))
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://www.genetics.ucla.edu/labs/horvath/CoexpressionNetwork/BranchCutting/'>dynamicTreeCut</a></span><span class='op'>)</span>
+<span class='va'>clusters</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/dynamicTreeCut/man/cutreeDynamic.html'>cutreeDynamic</a></span><span class='op'>(</span><span class='va'>hc</span>, distM <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>iris_dist</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># we need to sort them to the order of the dendrogram:</span>
-<span class='no'>clusters</span> <span class='kw'>&lt;-</span> <span class='no'>clusters</span>[<span class='fu'><a href='https://rdrr.io/r/stats/order.dendrogram.html'>order.dendrogram</a></span>(<span class='no'>dend</span>)]
+<span class='va'>clusters</span> <span class='op'>&lt;-</span> <span class='va'>clusters</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/stats/order.dendrogram.html'>order.dendrogram</a></span><span class='op'>(</span><span class='va'>dend</span><span class='op'>)</span><span class='op'>]</span>
 
 <span class='co'># get some functions:</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dendextendRcpp</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>colorspace</span>)
-<span class='no'>no0_unique</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-  <span class='no'>u_x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>x</span>)
-  <span class='no'>u_x</span>[<span class='no'>u_x</span> <span class='kw'>!=</span> <span class='fl'>0</span>]
-}
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>dendextendRcpp</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://colorspace.R-Forge.R-project.org'>colorspace</a></span><span class='op'>)</span>
+<span class='va'>no0_unique</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>u_x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+  <span class='va'>u_x</span><span class='op'>[</span><span class='va'>u_x</span> <span class='op'>!=</span> <span class='fl'>0</span><span class='op'>]</span>
+<span class='op'>}</span>
 
-<span class='no'>clusters_numbers</span> <span class='kw'>&lt;-</span> <span class='fu'>no0_unique</span>(<span class='no'>clusters</span>)
-<span class='no'>n_clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>clusters_numbers</span>)
-<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html'>rainbow_hcl</a></span>(<span class='no'>n_clusters</span>)
-<span class='no'>dend2</span> <span class='kw'>&lt;-</span> <span class='fu'>branches_attr_by_clusters</span>(<span class='no'>dend</span>, <span class='no'>clusters</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>cols</span>)
+<span class='va'>clusters_numbers</span> <span class='op'>&lt;-</span> <span class='fu'>no0_unique</span><span class='op'>(</span><span class='va'>clusters</span><span class='op'>)</span>
+<span class='va'>n_clusters</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>clusters_numbers</span><span class='op'>)</span>
+<span class='va'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html'>rainbow_hcl</a></span><span class='op'>(</span><span class='va'>n_clusters</span><span class='op'>)</span>
+<span class='va'>dend2</span> <span class='op'>&lt;-</span> <span class='fu'>branches_attr_by_clusters</span><span class='op'>(</span><span class='va'>dend</span>, <span class='va'>clusters</span>, values <span class='op'>=</span> <span class='va'>cols</span><span class='op'>)</span>
 <span class='co'># dend2 &lt;- branches_attr_by_clusters(dend, clusters)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dend2</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dend2</span><span class='op'>)</span>
 <span class='co'># add colored bars:</span>
-<span class='no'>ord_cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html'>rainbow_hcl</a></span>(<span class='no'>n_clusters</span>)[<span class='fu'><a href='https://rdrr.io/r/base/order.html'>order</a></span>(<span class='no'>clusters_numbers</span>)]
-<span class='no'>tmp_cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>clusters</span>))
-<span class='no'>tmp_cols</span>[<span class='no'>clusters</span> <span class='kw'>!=</span> <span class='fl'>0</span>] <span class='kw'>&lt;-</span> <span class='no'>ord_cols</span>[<span class='no'>clusters</span> <span class='kw'>!=</span> <span class='fl'>0</span>][<span class='no'>clusters</span>]
-<span class='fu'><a href='colored_bars.html'>colored_bars</a></span>(<span class='no'>tmp_cols</span>, <span class='kw'>y_shift</span> <span class='kw'>=</span> -<span class='fl'>1.1</span>, <span class='kw'>rowLabels</span> <span class='kw'>=</span> <span class='st'>""</span>)
+<span class='va'>ord_cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://colorspace.R-Forge.R-project.org//reference/rainbow_hcl.html'>rainbow_hcl</a></span><span class='op'>(</span><span class='va'>n_clusters</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/order.html'>order</a></span><span class='op'>(</span><span class='va'>clusters_numbers</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>tmp_cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>clusters</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>tmp_cols</span><span class='op'>[</span><span class='va'>clusters</span> <span class='op'>!=</span> <span class='fl'>0</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>ord_cols</span><span class='op'>[</span><span class='va'>clusters</span> <span class='op'>!=</span> <span class='fl'>0</span><span class='op'>]</span><span class='op'>[</span><span class='va'>clusters</span><span class='op'>]</span>
+<span class='fu'><a href='colored_bars.html'>colored_bars</a></span><span class='op'>(</span><span class='va'>tmp_cols</span>, y_shift <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1.1</span>, rowLabels <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
 <span class='co'># all of the ordering is to handle the fact that the cluster numbers are not ascending...</span>
 
 <span class='co'># How is this compared with the usual cutree?</span>
-<span class='no'>dend3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='color_branches.html'>color_branches</a></span>(<span class='no'>dend</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='no'>n_clusters</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>dend2</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>dend2</span>))
+<span class='va'>dend3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='color_branches.html'>color_branches</a></span><span class='op'>(</span><span class='va'>dend</span>, k <span class='op'>=</span> <span class='va'>n_clusters</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>dend2</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>dend2</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># this needs fixing, since the labels are not character!</span>
 <span class='co'># Well, both cluster solutions are not perfect, but at least they are interesting...</span>
-<span class='fu'><a href='tanglegram.html'>tanglegram</a></span>(<span class='no'>dend2</span>, <span class='no'>dend3</span>,
-  <span class='kw'>main_left</span> <span class='kw'>=</span> <span class='st'>"cutreeDynamic"</span>, <span class='kw'>main_right</span> <span class='kw'>=</span> <span class='st'>"cutree"</span>,
-  <span class='kw'>columns_width</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>.5</span>, <span class='fl'>5</span>),
-  <span class='kw'>color_lines</span> <span class='kw'>=</span> <span class='no'>cols</span>[<span class='no'>iris</span>[<span class='fu'><a href='https://rdrr.io/r/stats/order.dendrogram.html'>order.dendrogram</a></span>(<span class='no'>dend2</span>), <span class='fl'>5</span>]]
-)
+<span class='fu'><a href='tanglegram.html'>tanglegram</a></span><span class='op'>(</span><span class='va'>dend2</span>, <span class='va'>dend3</span>,
+  main_left <span class='op'>=</span> <span class='st'>"cutreeDynamic"</span>, main_right <span class='op'>=</span> <span class='st'>"cutree"</span>,
+  columns_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>.5</span>, <span class='fl'>5</span><span class='op'>)</span>,
+  color_lines <span class='op'>=</span> <span class='va'>cols</span><span class='op'>[</span><span class='va'>iris</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/stats/order.dendrogram.html'>order.dendrogram</a></span><span class='op'>(</span><span class='va'>dend2</span><span class='op'>)</span>, <span class='fl'>5</span><span class='op'>]</span><span class='op'>]</span>
+<span class='op'>)</span>
 <span class='co'># (Notice how the color_lines is of the true Species of each Iris)</span>
 <span class='co'># The main difference is at the bottom,</span>
-}</div></pre>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -298,7 +299,7 @@ plotDendroAndColors</p></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -73,7 +73,7 @@ with whether (TRUE/FALSE) each node satisies some condition (function)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.14.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.15.0</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ with whether (TRUE/FALSE) each node satisies some condition (function)" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -116,7 +116,7 @@ with whether (TRUE/FALSE) each node satisies some condition (function)" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/talgalili/dendextend/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,14 +143,14 @@ with whether (TRUE/FALSE) each node satisies some condition (function)" />
 with whether (TRUE/FALSE) each node satisies some condition (function)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>noded_with_condition</span>(
-  <span class='no'>dend</span>,
-  <span class='no'>condition</span>,
-  <span class='kw'>include_leaves</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>include_branches</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>noded_with_condition</span><span class='op'>(</span>
+  <span class='va'>dend</span>,
+  <span class='va'>condition</span>,
+  include_leaves <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  include_branches <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  na.rm <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,35 +191,37 @@ attributes be included as well?</p></td>
     <div class='dont-index'><p><a href='branches_attr_by_labels.html'>branches_attr_by_labels</a>, <a href='get_leaves_attr.html'>get_leaves_attr</a>, <a href='nnodes.html'>nnodes</a>, <a href='nleaves.html'>nleaves</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dendextend</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://talgalili.github.io/dendextend/'>dendextend</a></span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>23235</span>)
-<span class='no'>ss</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>150</span>, <span class='fl'>10</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>23235</span><span class='op'>)</span>
+<span class='va'>ss</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>150</span>, <span class='fl'>10</span><span class='op'>)</span>
 
 <span class='co'># Getting the dend dend</span>
-<span class='no'>dend</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[<span class='no'>ss</span>, -<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span>()
-<span class='no'>dend</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>()
+<span class='va'>dend</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='va'>ss</span>, <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/dendrogram.html'>as.dendrogram</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>dend</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span>
 
 
 
 <span class='co'># this is the basis for branches_attr_by_labels</span>
-<span class='no'>has_any_labels</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>sub_dend</span>, <span class='no'>the_labels</span>) <span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='no'>sub_dend</span>) <span class='kw'>%in%</span> <span class='no'>the_labels</span>)
-<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'>noded_with_condition</span>(<span class='no'>dend</span>, <span class='no'>has_any_labels</span>,
-  <span class='kw'>the_labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"126"</span>, <span class='st'>"109"</span>, <span class='st'>"59"</span>)
-) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span>(<span class='fl'>2</span>, <span class='fl'>1</span>)
-<span class='fu'><a href='set.html'>set</a></span>(<span class='no'>dend</span>, <span class='st'>"branches_col"</span>, <span class='no'>cols</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>()
+<span class='va'>has_any_labels</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>sub_dend</span>, <span class='va'>the_labels</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>sub_dend</span><span class='op'>)</span> <span class='op'>%in%</span> <span class='va'>the_labels</span><span class='op'>)</span>
+<span class='va'>cols</span> <span class='op'>&lt;-</span> <span class='fu'>noded_with_condition</span><span class='op'>(</span><span class='va'>dend</span>, <span class='va'>has_any_labels</span>,
+  the_labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"126"</span>, <span class='st'>"109"</span>, <span class='st'>"59"</span><span class='op'>)</span>
+<span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='va'>dend</span>, <span class='st'>"branches_col"</span>, <span class='va'>cols</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># Similar to branches_attr_by_labels - but for heights!</span>
-<span class='no'>high_enough</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>sub_dend</span>, <span class='no'>height</span>) <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>sub_dend</span>, <span class='st'>"height"</span>) <span class='kw'>&gt;</span> <span class='no'>height</span>
-<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'>noded_with_condition</span>(<span class='no'>dend</span>, <span class='no'>high_enough</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span>(<span class='fl'>2</span>, <span class='fl'>1</span>)
-<span class='fu'><a href='set.html'>set</a></span>(<span class='no'>dend</span>, <span class='st'>"branches_col"</span>, <span class='no'>cols</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>()
-}</div></pre>
+<span class='va'>high_enough</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>sub_dend</span>, <span class='va'>height</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>sub_dend</span>, <span class='st'>"height"</span><span class='op'>)</span> <span class='op'>&gt;</span> <span class='va'>height</span>
+<span class='va'>cols</span> <span class='op'>&lt;-</span> <span class='fu'>noded_with_condition</span><span class='op'>(</span><span class='va'>dend</span>, <span class='va'>high_enough</span>, height <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='set.html'>set</a></span><span class='op'>(</span><span class='va'>dend</span>, <span class='st'>"branches_col"</span>, <span class='va'>cols</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -235,7 +237,7 @@ attributes be included as well?</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
