@@ -88,7 +88,7 @@ khan <- NULL
 
 
 
-# on how to do it: http://r-pkgs.had.co.nz/data.html
+# on how to do it: https://r-pkgs.had.co.nz/data.html
 # library(made4)
 # data(khan)
 # khan2 <- khan
