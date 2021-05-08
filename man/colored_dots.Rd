@@ -72,6 +72,8 @@ of the colors vector.}
 
 \item{horiz}{logical (FALSE by default). Set to TRUE when using plot(dend, horiz = TRUE)}
 
+\item{dot_size}{numeric (1 by default). Passed to cex argument in points}
+
 \item{...}{ignored at this point.}
 }
 \value{

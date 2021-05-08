@@ -125,6 +125,7 @@ max_labels_height <- function(s) {
 #' If FALSE the colored dots are plotted as-is, based on the order
 #' of the colors vector.
 #' @param horiz logical (FALSE by default). Set to TRUE when using plot(dend, horiz = TRUE)
+#' @param dot_size numeric (1 by default). Passed to cex argument in points
 #' @param ... ignored at this point.
 #' @author Steve Horvath \email{SHorvath@@mednet.ucla.edu},
 #' Tal Galili \email{Tal.Galili@@gmail.com},
