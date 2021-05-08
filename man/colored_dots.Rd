@@ -24,6 +24,7 @@ colored_dots(
   text_shift = 1,
   sort_by_labels_order = TRUE,
   horiz = FALSE,
+  dot_size = 1,
   ...
 )
 }
