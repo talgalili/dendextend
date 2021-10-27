@@ -1,3 +1,17 @@
+dendextend 1.15.2 (2021-10-27)
+----------------------------------------
+###BUG FIXES
+- ggplot.ggdend - Replace FALSE with "none" in ggplot2::guides()
+
+###OTHER NOTES
+- update startup message to include stackoverflow.
+
+
+dendextend 1.15.1 (2021-05-08)
+----------------------------------------
+###BUG FIXES
+* dendextend.Rmd - fixed misc url redirect
+
 dendextend 1.15.0 (2021-05-08)
 ----------------------------------------
 

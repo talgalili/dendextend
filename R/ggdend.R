@@ -524,7 +524,7 @@ ggplot.ggdend <- function(data, segments = TRUE, labels = TRUE, nodes = TRUE,
   # ggplot() +
   #    geom_segment(data = data$segments,
   #                 aes(x = x, y = y, xend = xend, yend = yend, colour = col, linetype = lty, size = lwd)) +
-  #    guides(linetype = FALSE, col = FALSE) +
+  #    guides(linetype = "none", col = "none") +
   #    scale_colour_identity() + scale_size_identity()  + scale_linetype_identity() +
   #    geom_text(data = data$labels,
   #              aes(x = x, y = y, label = label), angle = angle, hjust = 1) #  ,angle = 90
@@ -539,7 +539,7 @@ ggplot.ggdend <- function(data, segments = TRUE, labels = TRUE, nodes = TRUE,
       ),
       lineend = "square"
     ) +
-      guides(linetype = FALSE, col = FALSE) +
+      guides(linetype = "none", col = "none") +
       scale_colour_identity() + scale_size_identity() + scale_linetype_identity()
   }
 
@@ -548,7 +548,7 @@ ggplot.ggdend <- function(data, segments = TRUE, labels = TRUE, nodes = TRUE,
       data = data$nodes, na.rm = na.rm,
       aes_string(x = "x", y = "y", colour = "col", shape = "pch", size = "cex")
     ) +
-      guides(shape = FALSE, col = FALSE, size = FALSE) +
+      guides(shape = "none", col = "none", size = "none") +
       # scale_colour_identity() + scale_size_identity()  +
       scale_shape_identity()
   }
@@ -556,7 +556,7 @@ ggplot.ggdend <- function(data, segments = TRUE, labels = TRUE, nodes = TRUE,
 
   #    p +  geom_point(data = data$nodes,
   #                    aes_string(x = "x", y = "y", colour = "col", shape = "pch", size = 3.5)) +
-  #       guides(shape = FALSE, col = FALSE, size = FALSE) +
+  #       guides(shape = "none", col = "none", size = "none") +
   #       scale_shape_identity()
 
 
