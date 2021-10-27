@@ -65,7 +65,7 @@ khan <- NULL
 #' \code{khan} contains a filtered data of 2308 gene expression profiles
 #' as published and provided by Khan et al. (2001) on the supplementary
 #' web site to their publication
-#' \url{https://research.nhgri.nih.gov/microarray/}.
+#' OLD (site no longer found): https://research.nhgri.nih.gov/microarray/
 #'
 #' The data was copied from the made4 package (\url{https://www.bioconductor.org/packages/release/bioc/html/made4.html})
 #'
