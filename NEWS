@@ -1,5 +1,8 @@
-dendextend 1.15.2 (2021-05-23)
+dendextend 1.15.2 (2021-10-27)
 ----------------------------------------
+###BUG FIXES
+- ggplot.ggdend - Replace FALSE with "none" in ggplot2::guides()
+
 ###OTHER NOTES
 - update startup message to include stackoverflow.
 
