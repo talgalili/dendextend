@@ -92,13 +92,13 @@ dend <- USArrests \%>\%
   as.dendrogram()
 d1 <- color_branches(dend, k = 5, col = c(3, 1, 1, 4, 1))
 plot(d1) # selective coloring of branches :)
-d2 <- color_branches(d1, 5)
+d2 <- color_branches(dend, 5)
 plot(d2)
 
 par(mfrow = c(1, 2))
 d1 <- color_branches(dend, 5, col = c(3, 1, 1, 4, 1), groupLabels = TRUE)
 plot(d1) # selective coloring of branches :)
-d2 <- color_branches(d1, 5, groupLabels = TRUE)
+d2 <- color_branches(dend, 5, groupLabels = TRUE)
 plot(d2)
 
 par(mfrow = c(1, 3))
