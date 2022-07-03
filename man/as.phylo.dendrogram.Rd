@@ -31,23 +31,19 @@ dend <- iris[1:30, -5] \%>\%
 dend2 <- as.phylo(dend)
 plot(dend2, type = "fan")
 
-
-# Also possible to with ggplot2 :)
-
 library(dendextend)
 library(ggplot2)
-library(ggdendro)
+# no longer needed: library(ggdendro)
 dend <- iris[1:30, -5] \%>\%
-  dist() \%>\%
-  hclust() \%>\%
-  as.dendrogram()
-# Rectangular lines
-ddata <- dend \%>\% dendro_data(type = "rectangle")
-p <- ggplot(segment(ddata)) +
-  geom_segment(aes(x = x, y = y, xend = xend, yend = yend)) +
-  coord_flip() +
-  scale_y_reverse(expand = c(0.2, 0)) + coord_polar(theta = "x")
-p
+   dist() \%>\%
+   hclust() \%>\%
+   as.dendrogram()
+# there is a bug in the location of the labels 
+# If you want to solve it - please send a Pull Request to:
+# https://github.com/talgalili/dendextend/
+ggplot(dend) +
+   scale_y_reverse(expand = c(0.2, 0)) + coord_polar(start = 1, theta="x") 
+   
 }
 
 
