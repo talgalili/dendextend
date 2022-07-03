@@ -1,7 +1,100 @@
-* 2021-05-08(Tal Galili) update pkgdown website |af5f87c| 
+* 2022-07-03(Tal Galili) comment out library(zoo) - to let pkgdown run properly. |6b87e9e| 
+|  R/pvclust.R    | 21 +++++++++++----------
+|  man/na_locf.Rd | 25 +++++++++++++------------
+|  2 files changed, 24 insertions(+), 22 deletions(-)
+
+* 2022-07-03(Tal Galili) Remove dependancy on `dendextendRcpp` in some tests and documentation files (.Rd). |19228aa| 
+|  NEWS                             |  3 ++
+|  R/branches_attr_by.R             |  1 -
+|  R/color_branches.R               | 11 -----
+|  R/cut_lower_fun.R                | 13 +-----
+|  R/cutree.dendrogram.R            | 16 +------
+|  R/zzz.R                          | 85 +-------------------------------------
+|  man/branches_attr_by_clusters.Rd |  1 -
+|  man/cut_lower_fun.Rd             | 11 -----
+|  man/heights_per_k.dendrogram.Rd  | 14 -------
+|  tests/testthat/test-rotate.R     | 15 -------
+|  vignettes/FAQ.Rmd                |  1 -
+|  11 files changed, 7 insertions(+), 164 deletions(-)
+
+* 2022-07-03(Tal Galili) as.phylo - Remove example dependancy on ggdendro |e28fb02| 
+|  NEWS                       |  2 +-
+|  R/ape.R                    | 24 ++++++++++--------------
+|  man/as.phylo.dendrogram.Rd | 24 ++++++++++--------------
+|  3 files changed, 21 insertions(+), 29 deletions(-)
+
+* 2022-07-03(Tal Galili) Fix an issue with running `pkgdown::build_site()` (see: https://github.com/r-lib/pkgdown/issues/2155). Props to @dmurdoch. |f4cacbd| 
+|  NEWS      | 2 +-
+|  README.md | 2 +-
+|  2 files changed, 2 insertions(+), 2 deletions(-)
+
+* 2022-07-03(Tal Galili) Remove (undocumented!) dependancy on the psych library. |4397909| 
+|  NEWS                        |  2 +-
+|  R/bk_method.R               | 15 ++++++++++++---
+|  man/FM_index_permutation.Rd | 13 +++++++++++--
+|  3 files changed, 24 insertions(+), 6 deletions(-)
+
+* 2022-07-03(Tal Galili) Fix doc for the new node and leaves bg parameter. |03a9ffc| 
+|  DESCRIPTION              | 10 ++++++----
+|  NEWS                     |  8 ++++++--
+|  R/set.dendrogram.R       | 24 ++++++++++++++++++++++++
+|  man/set.Rd               | 37 +++++++++++++++++++++++++++++++------
+|  vignettes/dendextend.Rmd | 21 +++++++++++++--------
+|  5 files changed, 80 insertions(+), 20 deletions(-)
+
+* 2022-07-03(pschupp) added support for "bg" attribute for nodes and leaves (#109) |38a3eac| 
+|  R/set.dendrogram.R       | 4 ++++
+|  vignettes/dendextend.Rmd | 4 +++-
+|  2 files changed, 7 insertions(+), 1 deletion(-)
+
+* 2022-02-19(Tal Galili) Fix minor error in the docs of color_branches |fcdb0d5| 
+|  DESCRIPTION           |  4 ++--
+|  NEWS                  | 11 +++++++++++
+|  R/color_branches.R    |  4 ++--
+|  man/color_branches.Rd |  4 ++--
+|  4 files changed, 17 insertions(+), 6 deletions(-)
+
+* 2021-10-27(Tal Galili) Update broken url in the docs. |9d6ae05| 
+|  R/color_branches.R | 5 +++--
+|  R/data.R           | 2 +-
+|  man/all_unique.Rd  | 3 ++-
+|  man/khan.Rd        | 2 +-
+|  4 files changed, 7 insertions(+), 5 deletions(-)
+
+*   2021-10-27(Tal Galili) Merge branch 'master' of github.com:talgalili/dendextend |402090d
+|\  
+| *   2021-06-20(Tal Galili) Merge pull request #107 from juba/master |ce0bf8c
+| |\  
+| | * 2021-06-18(Julien) Replace FALSE with "none" in ggplot2::guides() |9f28a77
+| |/  | |   
+| |    R/ggdend.R | 8 ++++----
+| |    1 file changed, 4 insertions(+), 4 deletions(-)
+
+* | 2021-10-27(Tal Galili) update NEWS |3daf4af
+|/  |   
+|    DESCRIPTION | 2 +-
+|    NEWS        | 5 ++++-
+|    2 files changed, 5 insertions(+), 2 deletions(-)
+
+* 2021-05-23(Tal Galili) update startup message to include stackoverflow. |4b8711c| 
+|  DESCRIPTION | 4 ++--
+|  NEWS        | 6 ++++++
+|  R/zzz.R     | 2 +-
+|  3 files changed, 9 insertions(+), 3 deletions(-)
+
+* 2021-05-08(Tal Galili) dendextend.Rmd - fixed misc url redirect |f6a949a| 
+|  DESCRIPTION              | 2 +-
+|  NEWS                     | 5 +++++
+|  R/data.R                 | 2 +-
+|  vignettes/dendextend.Rmd | 2 +-
+|  4 files changed, 8 insertions(+), 3 deletions(-)
+
+* 2021-05-08(Tal Galili) update pkgdown website |f6174ce| 
+|  ChangeLog                                         | 1545 ++++++++++++-------
+|  NEWS.md                                           |   10 +
 |  docs/404.html                                     |    8 +-
 |  docs/CONDUCT.html                                 |    8 +-
-|  docs/articles/Cluster_Analysis.html               |  512 ++++----
+|  docs/articles/Cluster_Analysis.html               |  512 +++---
 |  .../accessible-code-block-0.0.1/empty-anchor.js   |   15 +
 |  .../figure-html/unnamed-chunk-11-1.png            |  Bin 182547 -> 194462 bytes
 |  .../figure-html/unnamed-chunk-12-1.png            |  Bin 184484 -> 197378 bytes
@@ -27,7 +120,7 @@
 |  .../figure-html/unnamed-chunk-5-1.png             |  Bin 145398 -> 250444 bytes
 |  .../figure-html/unnamed-chunk-6-1.png             |  Bin 377801 -> 431084 bytes
 |  .../figure-html/unnamed-chunk-8-1.png             |  Bin 67663 -> 67934 bytes
-|  docs/articles/FAQ.html                            |  368 +++---
+|  docs/articles/FAQ.html                            |  368 +++--
 |  .../accessible-code-block-0.0.1/empty-anchor.js   |   15 +
 |  .../FAQ_files/figure-html/unnamed-chunk-12-1.png  |  Bin 244299 -> 247169 bytes
 |  .../FAQ_files/figure-html/unnamed-chunk-14-1.png  |  Bin 10697 -> 8645 bytes
@@ -48,7 +141,7 @@
 |  .../figure-html/unnamed-chunk-7-1.png             |  Bin 15328 -> 13258 bytes
 |  .../figure-html/unnamed-chunk-8-1.png             |  Bin 15333 -> 13271 bytes
 |  .../figure-html/unnamed-chunk-9-1.png             |  Bin 23658 -> 24733 bytes
-|  docs/articles/dendextend.html                     | 1247 +++++++++++--------
+|  docs/articles/dendextend.html                     | 1247 ++++++++-------
 |  .../accessible-code-block-0.0.1/empty-anchor.js   |   15 +
 |  .../figure-html/unnamed-chunk-11-1.png            |  Bin 47681 -> 39782 bytes
 |  .../figure-html/unnamed-chunk-13-1.png            |  Bin 7356 -> 8950 bytes
@@ -116,7 +209,7 @@
 |  docs/articles/index.html                          |    8 +-
 |  docs/authors.html                                 |    8 +-
 |  docs/index.html                                   |   44 +-
-|  docs/news/index.html                              |  429 +++----
+|  docs/news/index.html                              |  441 +++---
 |  docs/pkgdown.css                                  |    4 +-
 |  docs/pkgdown.yml                                  |    6 +-
 |  docs/reference/Bk.html                            |   67 +-
@@ -167,7 +260,7 @@
 |  docs/reference/colored_bars-6.png                 |  Bin 19919 -> 19456 bytes
 |  docs/reference/colored_bars-7.png                 |  Bin 100674 -> 106950 bytes
 |  docs/reference/colored_bars-8.png                 |  Bin 124727 -> 124716 bytes
-|  docs/reference/colored_bars.html                  |  172 +--
+|  docs/reference/colored_bars.html                  |  172 ++-
 |  docs/reference/colored_dots-1.png                 |  Bin 16667 -> 15944 bytes
 |  docs/reference/colored_dots-2.png                 |  Bin 18303 -> 17800 bytes
 |  docs/reference/colored_dots-3.png                 |  Bin 16459 -> 15761 bytes
@@ -176,7 +269,7 @@
 |  docs/reference/colored_dots-6.png                 |  Bin 28881 -> 27759 bytes
 |  docs/reference/colored_dots-7.png                 |  Bin 132107 -> 134960 bytes
 |  docs/reference/colored_dots-8.png                 |  Bin 134734 -> 133617 bytes
-|  docs/reference/colored_dots.html                  |  185 +--
+|  docs/reference/colored_dots.html                  |  185 ++-
 |  docs/reference/common_subtrees_clusters-1.png     |  Bin 57220 -> 57502 bytes
 |  docs/reference/common_subtrees_clusters-2.png     |  Bin 11627 -> 11230 bytes
 |  docs/reference/common_subtrees_clusters-3.png     |  Bin 11514 -> 11119 bytes
@@ -193,7 +286,7 @@
 |  docs/reference/count_terminal_nodes-2.png         |  Bin 16632 -> 24568 bytes
 |  docs/reference/count_terminal_nodes.html          |   38 +-
 |  docs/reference/cut_lower_fun.html                 |   48 +-
-|  docs/reference/cutree-methods.html                |  139 ++-
+|  docs/reference/cutree-methods.html                |  139 +-
 |  docs/reference/cutree_1h.dendrogram.html          |   64 +-
 |  docs/reference/cutree_1k.dendrogram.html          |   80 +-
 |  docs/reference/dend_diff-1.png                    |  Bin 12394 -> 11895 bytes
@@ -262,7 +355,7 @@
 |  docs/reference/highlight_branches-6.png           |  Bin 105663 -> 113490 bytes
 |  docs/reference/highlight_branches-7.png           |  Bin 15313 -> 15309 bytes
 |  docs/reference/highlight_branches-8.png           |  Bin 105663 -> 113490 bytes
-|  docs/reference/highlight_branches.html            |  145 ++-
+|  docs/reference/highlight_branches.html            |  145 +-
 |  docs/reference/highlight_distinct_edges-1.png     |  Bin 11049 -> 10826 bytes
 |  docs/reference/highlight_distinct_edges.html      |   93 +-
 |  docs/reference/identify.dendrogram.html           |   59 +-
@@ -334,7 +427,7 @@
 |  docs/reference/rotate_DendSer.html                |   33 +-
 |  docs/reference/sample.dendrogram.html             |   48 +-
 |  docs/reference/seriate_dendrogram.html            |   27 +-
-|  docs/reference/set.html                           |  373 +++---
+|  docs/reference/set.html                           |  373 ++---
 |  docs/reference/set_labels-1.png                   |  Bin 29949 -> 29370 bytes
 |  docs/reference/set_labels-2.png                   |  Bin 48984 -> 48924 bytes
 |  docs/reference/set_labels-3.png                   |  Bin 25864 -> 25357 bytes
@@ -345,7 +438,7 @@
 |  docs/reference/sort_2_clusters_vectors.html       |   43 +-
 |  docs/reference/sort_dist_mat.html                 |   10 +-
 |  docs/reference/sort_levels_values.html            |   62 +-
-|  docs/reference/tanglegram.html                    |  352 +++---
+|  docs/reference/tanglegram.html                    |  352 ++---
 |  docs/reference/theme_dendro.html                  |   13 +-
 |  docs/reference/unbranch-1.png                     |  Bin 19048 -> 28570 bytes
 |  docs/reference/unbranch.html                      |   33 +-
@@ -358,7 +451,7 @@
 |  docs/reference/which_leaf.html                    |   35 +-
 |  docs/reference/which_node-1.png                   |  Bin 14163 -> 13637 bytes
 |  docs/reference/which_node.html                    |   37 +-
-|  359 files changed, 5824 insertions(+), 4998 deletions(-)
+|  361 files changed, 6831 insertions(+), 5558 deletions(-)
 
 * 2021-05-08(Tal Galili) fix broken url |dfea91c| 
 |  R/data.R    | 4 ++--

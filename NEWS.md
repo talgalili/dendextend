@@ -1,3 +1,21 @@
+dendextend 1.16.0 (2022-07-03)
+----------------------------------------
+###UPDATED FUNCTIONS:
+* set - added two new arguments: leaves_bg and nodes_bg (which provide a fill color when pch is between 21-25). Props to Patrick Schupp <pschupp@sonic.net> (https://github.com/pschupp)
+
+###BUG FIXES
+- Fix minor error in the docs of color_branches
+- Fix
+  checking Rd cross-references ... NOTE
+  Undeclared packages ‘WGCNA’, ‘moduleColor’, ‘distory’, ‘phangorn’, ‘zoo’ in Rd xrefs
+- Remove (undocumented!) dependancy on the psych library.
+- Fix an issue with running `pkgdown::build_site()` (see: https://github.com/r-lib/pkgdown/issues/2155). Props to @dmurdoch.
+
+###OTHER NOTES
+- as.phylo - Remove example dependancy on ggdendro
+- Remove dependancy on `dendextendRcpp` in some tests and documentation files (.Rd).
+
+
 dendextend 1.15.2 (2021-10-27)
 ----------------------------------------
 ###BUG FIXES
