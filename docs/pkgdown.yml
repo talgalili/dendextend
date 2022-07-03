@@ -1,10 +1,10 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1
+pandoc: 2.17.1.1
+pkgdown: 2.0.5
 pkgdown_sha: ~
 articles:
   Cluster_Analysis: Cluster_Analysis.html
   FAQ: FAQ.html
   Quick_Introduction: Quick_Introduction.html
   dendextend: dendextend.html
-last_built: 2021-05-08T18:47Z
+last_built: 2022-07-03T19:10Z
 

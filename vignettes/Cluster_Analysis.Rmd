@@ -8,7 +8,7 @@ output:
 ---
 <!--
 %\VignetteEngine{knitr::rmarkdown}
-%\VignetteIndexEntry{Hierarchical cluster analysis on famous data sets}
+%\VignetteIndexEntry{Hierarchical cluster analysis on famous data sets - enhanced with the _dendextend_ package}
 -->
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
