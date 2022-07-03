@@ -1,20 +1,5 @@
 # library(testthat)
 
-
-if ("package:dendextendRcpp" %in% search()) {
-  detach("package:dendextendRcpp")
-  return_dendextendRcpp <- TRUE
-} else {
-  return_dendextendRcpp <- FALSE
-}
-
-detach("package:dendextend")
-suppressWarnings(require(ape, quietly = TRUE)) # if ape is available, let's make sure it is attached BEFORE dendextend!
-suppressPackageStartupMessages(library(dendextend))
-if (return_dendextendRcpp) suppressPackageStartupMessages(library(dendextendRcpp))
-rm(return_dendextendRcpp)
-# search()
-
 context("Rotate a tree around its hinges")
 
 

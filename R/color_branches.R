@@ -605,17 +605,6 @@ lty_branches <- function(dend, k = NULL, h = NULL,
 # dend <- USArrests %>% dist %>% hclust(method = "ave") %>% as.dendrogram
 # dend %>% lty_branches(k = 3) %>% plot
 
-#
-# library(microbenchmark)
-# microbenchmark(
-#    stats:::labels.dendrogram(dend),
-#    labels(dend)
-#    )
-# library(dendextendRcpp)
-#
-
-
-
 
 
 

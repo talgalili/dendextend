@@ -46,89 +46,6 @@
 #     merge = refs/heads/master
 
 
-
-
-
-
-
-
-
-#
-#
-#
-# assign_dendextendRcpp_to_dendextend <- function() {
-#    # assigns the FASTER dendextendRcpp functions to override
-#    # the dendextend functions....
-#
-#    if(suppressWarnings(require(dendextendRcpp))) {
-#       # This wouldn't work since it will only assign
-#       # the faster function in the current env
-# #       get_branches_heights <- dendextendRcpp::get_branches_heights
-# #       heights_per_k.dendrogram <- dendextendRcpp::heights_per_k.dendrogram
-#       # for getting the functions "into" dendextend, we need to run this:
-#
-#       # create a backup of these functions in order to later
-#       # compare them using benchmark (their kept invisible - but can be accessed)
-#       assign("old_get_branches_heights", dendextend:::get_branches_heights,
-#              envir=as.environment("package:dendextend"))
-#       assign("old_heights_per_k.dendrogram", dendextend:::heights_per_k.dendrogram,
-#              envir=as.environment("package:dendextend"))
-#       assign("old_cut_lower_fun", dendextend:::cut_lower_fun,
-#              envir=as.environment("package:dendextend"))
-#
-#
-# 	  # library(utils) # doesn't help really...
-# 	  # but this does: (!)
-# 		# https://stackoverflow.com/questions/13595145/overriding-a-package-function-inherited-by-another-package
-# # 	  get("assignInNamespace", envir=asNamespace("utils"))
-# 	  # Using only "::" instead of ":::" will crash many tests...
-#
-#       assignInNamespace(
-#          x= "get_branches_heights",
-#          value = dendextendRcpp:::get_branches_heights,
-#          ns = "dendextend"
-#       )
-#       assignInNamespace(
-#          x= "heights_per_k.dendrogram",
-#          value = dendextendRcpp:::heights_per_k.dendrogram,
-#          ns = "dendextend"
-#       )
-#       assignInNamespace(
-#          x= "cut_lower_fun",
-#          value = dendextendRcpp:::cut_lower_fun,
-#          ns = "dendextend"
-#       )
-#
-#       ## p.s:
-#       # doing the following is a BAD IDEA!
-#       # This will not allow us to use labels.dendrogram when our Rcpp version fails...
-#       # assignInNamespace(
-#       #    x= "labels.dendrogram",
-#       #    value = dendextendRcpp:::labels.dendrogram,
-#       #    ns = "stats"
-#       #    )
-#
-#
-#
-#    } else {
-#       warning("
-#          The 'dendextend' package runs
-#          MUCH faster when you also have the dendextendRcpp package installed.
-#          Please consider running:
-#          install.packages('dendextendRcpp')
-#          and then re-load dendextend.
-#            ")
-#    }
-#
-# }
-#
-
-
-
-
-
-
-
 .onLoad <- function(libname, pkgname) {
   # Thanks for Romain: https://stackoverflow.com/questions/4369334/first-lib-idiom-in-r-packages
 
@@ -412,11 +329,13 @@ dendextendWelcomeMessage <- function() {
 
 # spelling::spell_check_package()
 # shell('git log --graph --stat --date=short --pretty=format:"%ad(%an) %s |%h" > ChangeLog', intern = TRUE)
+# For linux:
 # system('git log --graph --stat --date=short --pretty=format:"%ad(%an) %s |%h" > ChangeLog', intern = TRUE)
 # file.copy("NEWS", "NEWS.md",overwrite = TRUE)
 # pkgdown::build_site(run_dont_run = FALSE)
 #  pkgdown::build_home()
 #  pkgdown::build_news()
+#  pkgdown::build_site()
 # devtools::check_win()
 # devtools::check_win_devel()
 # release()

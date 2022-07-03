@@ -106,7 +106,6 @@
 #' clusters <- clusters[order.dendrogram(dend)]
 #'
 #' # get some functions:
-#' library(dendextendRcpp)
 #' library(colorspace)
 #' no0_unique <- function(x) {
 #'   u_x <- unique(x)

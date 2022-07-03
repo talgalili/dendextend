@@ -1,6 +1,6 @@
 # Copyright (C) Tal Galili
 #
-# This file is part of dendextendRcpp.
+# This file is part of dendextend.
 #
 # dendextend is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by
@@ -55,17 +55,6 @@
 #' cut_lower_fun(dend, .4, labels)
 #' lapply(cut(dend, h = .4)$lower, labels)
 #' cut_lower_fun(dend, .4, order.dendrogram)
-#' \dontrun{
-#' # library(dendextend)
-#' library(dendextendRcpp)
-#' dend_big <- as.dendrogram(hclust(dist(iris[1:150, -5])))
-#' library(microbenchmark)
-#' microbenchmark(old_cut_lower_fun(dend_big, .1),
-#'   dendextendRcpp::dendextendRcpp_cut_lower_fun(dend_big, .1),
-#'   times = 100
-#' )
-#' # about 7-15 times faster. It is faster the larger the tree is, and the lower h is.
-#' }
 #'
 cut_lower_fun <- function(dend, h, FUN = labels, warn = dendextend_options("warn"), ...) {
   if (!is.dendrogram(dend)) stop("'dend' needs to be a dendrogram. Aborting the function 'cut_lower_labels'.")

@@ -842,7 +842,6 @@ col_labels <- col_labels[order(order.dendrogram(dend1))]
 dend1
 # plot(dend1)
 # a <- heights_per_k.dendrogram(dend1)
-# library(dendextendRcpp)
 # a2 <- heights_per_k.dendrogram(dend1)
 # nleaves(dend1)
 
