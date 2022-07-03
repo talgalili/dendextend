@@ -317,9 +317,11 @@ The **what** parameter accepts many options, each uses some general function in 
 * leaves_pch - set the leaves' point type (using `assign_values_to_leaves_nodePar`)
 * leaves_cex - set the leaves' point size (using `assign_values_to_leaves_nodePar`)
 * leaves_col - set the leaves' point color (using `assign_values_to_leaves_nodePar`)
+* leaves_bg - set the leaves’ point background color (available only for pch 19-21, using `assign_values_to_nodes_nodePar`)
 * nodes_pch - set the nodes' point type (using `assign_values_to_nodes_nodePar`)
 * nodes_cex - set the nodes' point size (using `assign_values_to_nodes_nodePar`)
 * nodes_col - set the nodes' point color (using `assign_values_to_nodes_nodePar`)
+* nodes_bg - set the nodes’ point background color (available only for pch 19-21, using `assign_values_to_nodes_nodePar`)
 * hang_leaves - hang the leaves (using `hang.dendrogram`)
 * branches_k_color - color the branches (using `color_branches`)
 * branches_col - set the color of branches (using `assign_values_to_branches_edgePar`)
@@ -423,7 +425,7 @@ abline(h = 2, lty = 2)
 
 ### Setting a dendrogram's nodes/leaves (points)
 
-Each node in a tree can be represented and controlled using the `assign_values_to_nodes_nodePar`, and for the special case of the nodes of leaves, the `assign_values_to_leaves_nodePar` function is more appropriate (and faster) to use. We can control the following properties: pch (point type), cex (point size), and col (point color). For example:
+Each node in a tree can be represented and controlled using the `assign_values_to_nodes_nodePar`, and for the special case of the nodes of leaves, the `assign_values_to_leaves_nodePar` function is more appropriate (and faster) to use. We can control the following properties: pch (point type), cex (point size), and col (point color). For pch we can additionally set bg (background). When bg is set, the outline of the point is defined by col and the internal fill is determined by bg. For example:
 
 ```{r, fig.width=10, fig.height=6}
 par(mfrow = c(2,3))
