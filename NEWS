@@ -8,7 +8,7 @@ dendextend 1.16.0 (2022-07-03)
 - Fix
   checking Rd cross-references ... NOTE
   Undeclared packages ‘WGCNA’, ‘moduleColor’, ‘distory’, ‘phangorn’, ‘zoo’ in Rd xrefs
-
+- Remove (undocumented!) dependancy on the psych library.
 
 
 

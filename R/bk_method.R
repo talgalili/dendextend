@@ -422,11 +422,20 @@ FM_index <- function(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE, wa
 #' FM_index_H0 <- replicate(R, FM_index_permutation(A1_clusters, A2_clusters)) # can take 10 sec
 #' plot(density(FM_index_H0), main = "FM Index distribution under H0\n (10000 permutation)")
 #' abline(v = mean(FM_index_H0), col = 1, lty = 2)
+#' 
+#' 
 #' # The permutation distribution is with a heavy right tail:
-#' library(psych)
+#' # Source of the skew functions: library(psych)
+#' 
+#' skew <- function (x, na.rm = TRUE) {
+#'    if(length(dim(x))==0) {
+#'       if (na.rm)   { x <- x[!is.na(x)] }        #remove missing values  
+#'       sum((x - mean(x))^3)/(length(x) * sd(x)^3)  #calculate skew  for a vector
+#'    } else { apply(x,2,function(x) sum((x - mean(x,na.rm=na.rm))^3,na.rm=na.rm)/( (length(x)-sum(is.na(x)) )* sd(x,na.rm=na.rm)^3)) }  } 
+#' 
 #' skew(FM_index_H0) # 1.254
-#' kurtosi(FM_index_H0) # 2.5427
-#'
+#' 
+#' 
 #' mean(FM_index_H0)
 #' var(FM_index_H0)
 #' the_FM_index <- FM_index(A1_clusters, A2_clusters)
