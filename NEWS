@@ -1,9 +1,13 @@
-dendextend 1.15.3 (2022-02-19)
+dendextend 1.16.0 (2022-07-03)
 ----------------------------------------
+###UPDATED FUNCTIONS:
+* set - added two new arguments: leaves_bg and nodes_bg (which provide a fill color when pch is between 21-25). Props to Patrick Schupp <pschupp@sonic.net> (https://github.com/pschupp)
 
 ###BUG FIXES
 - Fix minor error in the docs of color_branches
-
+- Fix
+  checking Rd cross-references ... NOTE
+  Undeclared packages ‘WGCNA’, ‘moduleColor’, ‘distory’, ‘phangorn’, ‘zoo’ in Rd xrefs
 
 
 

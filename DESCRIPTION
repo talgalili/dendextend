@@ -1,8 +1,8 @@
 Package: dendextend
 Type: Package
 Title: Extending 'dendrogram' Functionality in R
-Version: 1.15.3
-Date: 2022-02-19
+Version: 1.16.0
+Date: 2022-07-03
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "https://www.r-statistics.com"),
     person("Yoav", "Benjamini", email = "ybenja@tau.ac.il",role = "ths"),
@@ -46,7 +46,8 @@ Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     person("Samuel", "Perreault", role = "ctb", email = "samuel.perreault.3@ulaval.ca", comment = "https://github.com/samperochkin"),
     person("Christian", "Hennig", role = "ctb", email = "c.hennig@ucl.ac.uk", comment = "http://www.homepages.ucl.ac.uk/~ucakche/"),
     person("David", "Bradley", role = "ctb", comment = "https://github.com/DBradley27"),
-    person("Houyun", "Huang", role = "ctb", email = 'houyunhuang@163.com', comment = "https://github.com/houyunhuang")
+    person("Houyun", "Huang", role = "ctb", email = 'houyunhuang@163.com', comment = "https://github.com/houyunhuang"),
+    person("Patrick", "Schupp", role = "ctb", email = 'pschupp@sonic.net', comment = "https://github.com/pschupp")
     )
 Description: Offers a set of functions for extending
     'dendrogram' objects in R, letting you visualize and compare trees of
@@ -83,7 +84,8 @@ Suggests:
     covr
 Enhances: ggdendro,
     dendroextras, Hmisc,
-    data.table, rpart
+    data.table, rpart,
+    WGCNA, moduleColor, distory, phangorn, zoo
 VignetteBuilder: knitr
 LazyData: true
 License: GPL-2 | GPL-3
