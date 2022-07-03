@@ -62,14 +62,12 @@ abline(v = mean(FM_index_H0), col = 1, lty = 2)
 
 
 # The permutation distribution is with a heavy right tail:
-# Source of the skew functions: library(psych)
+# Source of the skew functions is based on: library(psych)
 
 skew <- function (x, na.rm = TRUE) {
-   if(length(dim(x))==0) {
-      if (na.rm)   { x <- x[!is.na(x)] }        #remove missing values  
-      sum((x - mean(x))^3)/(length(x) * sd(x)^3)  #calculate skew  for a vector
-   } else { apply(x,2,function(x) sum((x - mean(x,na.rm=na.rm))^3,na.rm=na.rm)/( (length(x)-sum(is.na(x)) )* sd(x,na.rm=na.rm)^3)) }  } 
-
+  x <- na.omit(x)
+  sum((x - mean(x))^3)/(length(x) * sd(x)^3)
+}
 skew(FM_index_H0) # 1.254
 
 
