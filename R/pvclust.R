@@ -47,18 +47,19 @@
 #' na_locf(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4), recursive = FALSE)
 #' \dontrun{
 #'
-#' library(microbenchmark)
-#' library(zoo)
+#' # library(microbenchmark)
+#' # library(zoo)
 #'
-#' microbenchmark(
-#'   na_locf = na_locf(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4)),
-#'   na.locf = na.locf(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4))
-#' ) # my implementation is 6 times faster :)
+#' # microbenchmark(
+#' #  na_locf = na_locf(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4)),
+#' #  na.locf = na.locf(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4))
+#' #) # my implementation is 6 times faster :)
 #'
-#' microbenchmark(
-#'   na_locf = na_locf(rep(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4), 1000)),
-#'   na.locf = na.locf(rep(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4), 1000))
-#' ) # my implementation is 3 times faster
+#' #microbenchmark(
+#' #  na_locf = na_locf(rep(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4), 1000)),
+#' #  na.locf = na.locf(rep(c(1, NA, NA, NA, 2, 2, NA, 3, NA, 4), 1000))
+#' # ) # my implementation is 3 times faster
+#' 
 #' }
 #'
 na_locf <- function(x, first_na_value = 0, recursive = TRUE, ...) {
