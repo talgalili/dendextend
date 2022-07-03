@@ -9,7 +9,7 @@ dendextend 1.16.0 (2022-07-03)
   checking Rd cross-references ... NOTE
   Undeclared packages ‘WGCNA’, ‘moduleColor’, ‘distory’, ‘phangorn’, ‘zoo’ in Rd xrefs
 - Remove (undocumented!) dependancy on the psych library.
-
+- Fix an issue with running `pkgdown::build_site()` (see: https://github.com/r-lib/pkgdown/issues/2155). Props to @dmurdoch.
 
 
 

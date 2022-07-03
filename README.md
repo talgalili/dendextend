@@ -88,7 +88,7 @@ You are welcome to:
 Before reporting bugs, please make sure you're using the latest version from github:
 
 ```R
-install.packages.2 <- function (pkg) if (!require(pkg)) install.packages(pkg);
+install.packages.2 <- function (pkg) if (!require(pkg, character.only = TRUE)) install.packages(pkg);
 install.packages.2('remotes')
 remotes::install_github('talgalili/dendextend')
 
