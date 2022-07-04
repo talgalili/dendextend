@@ -1,4 +1,4 @@
-dendextend 1.16.0 (2022-07-03)
+dendextend 1.16.0 (2022-07-04)
 ----------------------------------------
 ###UPDATED FUNCTIONS:
 * set - added two new arguments: leaves_bg and nodes_bg (which provide a fill color when pch is between 21-25). Props to Patrick Schupp <pschupp@sonic.net> (https://github.com/pschupp)
@@ -14,7 +14,7 @@ dendextend 1.16.0 (2022-07-03)
 ###OTHER NOTES
 - as.phylo - Remove example dependancy on ggdendro
 - Remove dependancy on `dendextendRcpp` in some tests and documentation files (.Rd).
-
+- Misc fixes to release to CRAN
 
 dendextend 1.15.2 (2021-10-27)
 ----------------------------------------

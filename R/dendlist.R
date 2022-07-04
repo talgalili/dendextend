@@ -183,7 +183,7 @@ dendlist <- function(..., which) {
     for (i in seq_len(n)) {
       xi <- x[[i]]
 
-      if (class(xi) == "dendrogram") {
+      if (is.dendrogram(xi)) {
         x_final[[i_counter]] <- xi
         i_counter <- i_counter + 1
       } else {

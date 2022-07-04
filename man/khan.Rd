@@ -7,30 +7,30 @@
 \format{
 Khan is dataset containing the following:
    \itemize{
-      \item{\$train:}{\code{\link{data.frame}} of 306 rows and 64 columns.
+      \item{train:}{\code{\link{data.frame}} of 306 rows and 64 columns.
          The training dataset of 64 arrays and 306 gene expression values}
-      \item{\$test:}{\code{\link{data.frame}}, of 306 rows and 25 columns.
+      \item{test:}{\code{\link{data.frame}}, of 306 rows and 25 columns.
          The test dataset of 25 arrays and 306 genes expression values}
-      \item{\$gene.labels.imagesID:}{\code{vector} of 306 Image clone identifiers
-         corresponding to the rownames of \$train and \$test.}
-      \item{\$train.classes:}{\code{\link{factor}} with 4 levels "EWS",
+      \item{gene.labels.imagesID:}{\code{vector} of 306 Image clone identifiers
+         corresponding to the rownames of train and test.}
+      \item{train.classes:}{\code{\link{factor}} with 4 levels "EWS",
          "BL-NHL", "NB" and "RMS", which correspond to the four groups in
-         the \$train dataset}
-      \item{\$test.classes:}{\code{\link{factor}} with 5 levels "EWS",
+         the train dataset}
+      \item{test.classes:}{\code{\link{factor}} with 5 levels "EWS",
          "BL-NHL", "NB", "RMS" and "Norm" which correspond to the five
-         groups in the \$test dataset}
-      \item{\$annotation:}{\code{\link{data.frame}} of 306 rows and 8 columns.
+         groups in the test dataset}
+      \item{annotation:}{\code{\link{data.frame}} of 306 rows and 8 columns.
          This table contains further gene annotation retrieved from SOURCE
          \url{http://SOURCE.stanford.edu} in May 2004.  For each of the 306 genes,
          it contains: \itemize{
-            \item{\$CloneID}{Image Clone ID}
-            \item{\$UGCluster}{The Unigene cluster to which the gene is assigned}
-            \item{\$Symbol}{The HUGO gene symbol}
-            \item{\$LLID}{The locus ID}
-            \item{\$UGRepAcc}{Nucleotide sequence accession number}
-            \item{\$LLRepProtAcc}{Protein sequence accession number}
-            \item{\$Chromosome}{chromosome location}
-            \item{\$Cytoband}{cytoband location}
+            \item{CloneID}{Image Clone ID}
+            \item{UGCluster}{The Unigene cluster to which the gene is assigned}
+            \item{Symbol}{The HUGO gene symbol}
+            \item{LLID}{The locus ID}
+            \item{UGRepAcc}{Nucleotide sequence accession number}
+            \item{LLRepProtAcc}{Protein sequence accession number}
+            \item{Chromosome}{chromosome location}
+            \item{Cytoband}{cytoband location}
          }
       }
    }
