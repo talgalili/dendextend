@@ -17,7 +17,7 @@ test_that("get_subdendrograms works", {
   expect_s3_class(dend_list, "dendlist")
   
   cluster_labels <- lapply(dend_list, labels)
-  dput(cluster_labels)
+  # dput(cluster_labels)
   
   expected_cluster_labels <- list("9", c("2", "10"), 
                                   c("7", "3", "4"), 
@@ -73,4 +73,29 @@ test_that("get_subdendrograms works", {
                "elements of 'k' must be between")
   expect_error(get_subdendrograms(dend, 11),
                "elements of 'k' must be between")
+})
+
+
+
+context("collapse_labels")
+
+test_that("collapse_labels works", {
+   set.seed(23235)
+   ss <- sample(1:150, 5)
+   
+   # Getting the dend object
+   dend25 <- iris[ss, -5] %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram() %>%
+      set("labels", letters[1:5])
+   
+   dend2 <- collapse_labels(dend25, c("d", "e"))
+   dend3 <- collapse_labels(dend25, c("c", "d", "e"))
+
+   # dput(labels(dend2))
+   # dput(labels(dend3))
+   expect_equal(labels(dend2), c("a", "b", "c", "d_e"))
+   expect_equal(labels(dend3), c("a", "b", "c_d_e"))
+  
 })
