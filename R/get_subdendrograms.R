@@ -196,6 +196,7 @@ collapse_labels_0 <- function(dend, selected_labels,...) {
 #' @param dend a dendrogram object
 #' @param selected_labels A character vector with the labels we expect to have 
 #' in the sub-dendrogram. This doesn't have to be in the same order as in the dendrogram.
+#' @param ... elipsis (passed to squash_dendrogram)
 #' @return
 #' Either the original dend.
 #' Or, if the labels properly are in the dend by each other, a dend with

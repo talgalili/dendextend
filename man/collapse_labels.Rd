@@ -11,6 +11,8 @@ collapse_labels(dend, selected_labels, ...)
 
 \item{selected_labels}{A character vector with the labels we expect to have 
 in the sub-dendrogram. This doesn't have to be in the same order as in the dendrogram.}
+
+\item{...}{elipsis (passed to squash_dendrogram)}
 }
 \value{
 Either the original dend.
