@@ -1,3 +1,11 @@
+dendextend 1.17.0 (2022-11-01)
+----------------------------------------
+
+###NEW FUNCTIONS
+* collapse_labels - Collapse a sub dendrogram of adjacent labels within a dend.
+
+
+
 dendextend 1.16.0 (2022-07-04)
 ----------------------------------------
 ###UPDATED FUNCTIONS:

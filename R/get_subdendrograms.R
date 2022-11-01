@@ -146,3 +146,82 @@ find_dendrogram <- function(dend, selected_labels) {
   # then we return NULL
   return(NULL)
 }
+
+
+
+
+
+squash_dendrogram <- function(dend, squashed_original_height = FALSE, ...) {
+   squashed_labels <- paste(labels(dend), collapse = "_")
+   squashed_height <- ifelse(squashed_original_height, attr(dend, "height"), 0)
+   dend <- min(unlist(dend))
+   attr(dend, "midpoint") <- NULL
+   attr(dend, "members") <- 1L
+   attr(dend, "leaf") <- TRUE
+   attr(dend, "height") <- squashed_height
+   attr(dend, "label") <- squashed_labels
+   class(dend) <- "dendrogram"
+   dend
+}
+
+
+collapse_labels_0 <- function(dend, selected_labels,...) {
+   # if the dendrogram is exactly the labels in selected_labels - then we found our dend 
+   # let's squash it
+   if (all(labels(dend) %in% selected_labels) && 
+       (length(labels(dend)) == length(selected_labels))) {
+      return(squash_dendrogram(dend,...))
+   }
+   
+   # if not, either we can find such a sub dendrogram, or it doesn't exist (return original dend)
+   for(i in 1:length(dend)) {
+      if(all(selected_labels %in% labels(dend[[i]]))) {
+         dend[[i]] <- Recall(dend[[i]], selected_labels,...)
+      }
+   }
+   
+   # return the dend (with/without squashing)
+   return(dend)
+}
+
+
+#' @title Collapse a sub dendrogram of adjacent labels within a dend
+#' @export
+#' @description
+#' Given a dendrogram object, and a set of labels that are in the same sub-dendrogram,
+#' the function performs a recursive DFS algorithm to determine
+#' the sub-dendrogram which is composed of (exactly) all 'selected_labels'.
+#' It then squashes this sub-dendrogram, and returns the original dendrogram with the squashed 
+#' dendrogram with it.
+#' @param dend a dendrogram object
+#' @param selected_labels A character vector with the labels we expect to have 
+#' in the sub-dendrogram. This doesn't have to be in the same order as in the dendrogram.
+#' @return
+#' Either the original dend.
+#' Or, if the labels properly are in the dend by each other, a dend with
+#' a squashed sub-dendrogram inside it.
+#' 
+#' @examples
+#' library("dendextend")
+#' 
+#' set.seed(23235)
+#' ss <- sample(1:150, 5)
+#' 
+#' # Getting the dend object
+#' dend25 <- iris[ss, -5] %>%
+#'    dist() %>%
+#'    hclust() %>%
+#'    as.dendrogram() %>% 
+#'    set("labels", letters[1:5])
+#' 
+#' par(mfrow = c(1,4))
+#' plot(dend25)
+#' plot(collapse_labels(dend25, c("d", "e")))
+#' plot(collapse_labels(dend25, c("c", "d", "e")))
+#' plot(collapse_labels(dend25, c("c", "d", "e"), squashed_original_height=TRUE))
+collapse_labels <- function(dend, selected_labels,...) {
+   dend <- collapse_labels_0(dend, selected_labels,...)
+   dend <- midcache.dendrogram(dend)
+   return(dend)
+}
+
