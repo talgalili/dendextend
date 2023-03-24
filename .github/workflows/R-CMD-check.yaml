@@ -1,5 +1,9 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+#
+# NOTE: This workflow is overkill for most R packages and
+# check-standard.yaml is likely a better choice.
+# usethis::use_github_action("check-standard") will install it.
 on:
   push:
     branches: [main, master]
@@ -18,18 +22,33 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: macOS-latest,   r: 'release'}
+          - {os: macos-latest,   r: 'release'}
+
           - {os: windows-latest, r: 'release'}
+          # Use 3.6 to trigger usage of RTools35
+          - {os: windows-latest, r: '3.6'}
+          # use 4.1 to check with rtools40's older compiler
+          - {os: windows-latest, r: '4.1'}
+
           - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
           - {os: ubuntu-latest,   r: 'release'}
           - {os: ubuntu-latest,   r: 'oldrel-1'}
+          - {os: ubuntu-latest,   r: 'oldrel-2'}
+          - {os: ubuntu-latest,   r: 'oldrel-3'}
+          - {os: ubuntu-latest,   r: 'oldrel-4'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      _R_CHECK_FORCE_SUGGESTS_: false
+      # Some packages might unavailable on the older versions, so let's ignore xref warnings
+      _R_CHECK_RD_XREFS_: false
+      # Runs vdiffr test only on the latest version of R
+      VDIFFR_RUN_TESTS: ${{ matrix.config.r == 'release' }}
+      VDIFFR_LOG_PATH: "../vdiffr.Rout.fail"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -41,7 +60,11 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          cache-version: 3
+          extra-packages: >
+            any::rcmdcheck,
+            Hmisc=?ignore-before-r=4.1.0,
+            quantreg=?ignore-before-r=3.6.0,
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
