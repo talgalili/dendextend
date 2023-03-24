@@ -1,10 +1,22 @@
+dendextend 1.17.1 (2023-03-24)
+----------------------------------------
+###BUG FIXES
+- Fix:
+```
+checking S3 generic/method consistency ... WARNING
+ggplot:
+  function(data, mapping, ..., environment)
+ggplot.ggdend:
+  function(data, segments, labels, nodes, horiz, theme, offset_labels,
+           na.rm, ...)
+See section 'Generic functions and methods' in the 'Writing R
+Extensions' manual.
+```
+
 dendextend 1.17.0 (2022-11-01)
 ----------------------------------------
-
 ###NEW FUNCTIONS
 * collapse_labels - Collapse a sub dendrogram of adjacent labels within a dend.
-
-
 
 dendextend 1.16.0 (2022-07-04)
 ----------------------------------------

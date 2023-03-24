@@ -58,6 +58,9 @@
 #' for the default ggplot2 theme)
 #' @param na.rm A logical (TRUE) to control removal of missing values. Passed to
 #' \link[ggplot2]{geom_line} and \link[ggplot2]{geom_point}
+#' 
+#' @param mapping (passed in ggplot.ggdend) Default list of aesthetic mappings to use for plot. If not specified, must be supplied in each layer added to the plot.
+#' @param environment (passed in ggplot.ggdend) deprecated / ignored.
 #'
 #' @details
 #'
@@ -479,10 +482,10 @@ prepare.ggdend <- function(data, ...) {
 
 #' @export
 #' @rdname ggdend
-ggplot.ggdend <- function(data, segments = TRUE, labels = TRUE, nodes = TRUE,
+ggplot.ggdend <- function(data = NULL, mapping = aes(), ..., segments = TRUE, labels = TRUE, nodes = TRUE,
                           horiz = FALSE, theme = theme_dendro(),
                           offset_labels = 0, na.rm = TRUE,
-                          ...) {
+                          environment = parent.frame())  {
   #    library(dendextend)
   #    library(ggdendro)
   # Get all the ggplot2 functions ready: (this could have been evoided if ggplot2 was imported...)
@@ -518,7 +521,7 @@ ggplot.ggdend <- function(data, segments = TRUE, labels = TRUE, nodes = TRUE,
 
 
 
-  p <- ggplot()
+  p <- ggplot(mapping = mapping, ...)
 
 
   # ggplot() +
