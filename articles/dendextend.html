@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
       </span>
     </div>
 
@@ -84,13 +84,13 @@
 
       
 
-      </header><script src="dendextend_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to dendextend</h1>
                         <h4 data-toc-skip class="author">Tal Galili</h4>
             
-            <h4 data-toc-skip class="date">2022-11-01</h4>
+            <h4 data-toc-skip class="date">2023-03-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/HEAD/vignettes/dendextend.Rmd" class="external-link"><code>vignettes/dendextend.Rmd</code></a></small>
       <div class="hidden name"><code>dendextend.Rmd</code></div>
@@ -103,19 +103,28 @@
 %\VignetteEngine{knitr::rmarkdown}
 %\VignetteIndexEntry{Introduction to dendextend}
 -->
-<p><strong>Author</strong>: <a href="https://www.r-statistics.com/" class="external-link">Tal Galili</a> ( <a href="mailto:Tal.Galili@gmail.com" class="email">Tal.Galili@gmail.com</a> )</p>
-<p><strong>tl;dr</strong>: the <a href="https://cran.r-project.org/package=dendextend" class="external-link"><em>dendextend package</em></a> let’s you create figures like this:</p>
+<p><strong>Author</strong>: <a href="https://www.r-statistics.com/" class="external-link">Tal
+Galili</a> ( <a href="mailto:Tal.Galili@gmail.com" class="email">Tal.Galili@gmail.com</a> )</p>
+<p><strong>tl;dr</strong>: the <a href="https://cran.r-project.org/package=dendextend" class="external-link"><em>dendextend
+package</em></a> let’s you create figures like this:</p>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-2-1.png" width="525" style="display: block; margin: auto;"></p>
 <div class="section level3">
 <h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h3>
-<p>The <a href="https://cran.r-project.org/package=dendextend" class="external-link"><strong><em>dendextend package</em></strong></a> offers a set of functions for extending dendrogram objects in R, letting you <strong>visualize</strong> and <strong>compare</strong> trees of hierarchical clusterings, you can:</p>
+<p>The <a href="https://cran.r-project.org/package=dendextend" class="external-link"><strong><em>dendextend
+package</em></strong></a> offers a set of functions for extending
+dendrogram objects in R, letting you <strong>visualize</strong> and
+<strong>compare</strong> trees of hierarchical clusterings, you can:</p>
 <ul>
 <li>
-<strong>Adjust a tree’s graphical parameters</strong> - the color, size, type, etc of its branches, nodes and labels.</li>
-<li>Visually and statistically <strong>compare different dendrograms</strong> to one another.</li>
+<strong>Adjust a tree’s graphical parameters</strong> - the color,
+size, type, etc of its branches, nodes and labels.</li>
+<li>Visually and statistically <strong>compare different
+dendrograms</strong> to one another.</li>
 </ul>
-<p>The goal of this document is to introduce you to the basic functions that dendextend provides, and show how they may be applied. We will make extensive use of “chaining” (explained next).</p>
+<p>The goal of this document is to introduce you to the basic functions
+that dendextend provides, and show how they may be applied. We will make
+extensive use of “chaining” (explained next).</p>
 </div>
 <div class="section level3">
 <h3 id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
@@ -123,7 +132,9 @@
 <div class="section level4">
 <h4 id="acknowledgement">Acknowledgement<a class="anchor" aria-label="anchor" href="#acknowledgement"></a>
 </h4>
-<p>This package was made possible by the the support of my thesis adviser <a href="http://www.math.tau.ac.il/~ybenja/" class="external-link">Yoav Benjamini</a>, as well as code contributions from many R users. They are:</p>
+<p>This package was made possible by the the support of my thesis
+adviser <a href="http://www.math.tau.ac.il/~ybenja/" class="external-link">Yoav Benjamini</a>,
+as well as code contributions from many R users. They are:</p>
 <pre><code><span><span class="co">#&gt;  [1] "Tal Galili &lt;tal.galili@gmail.com&gt; [aut, cre, cph] (https://www.r-statistics.com)"                 </span></span>
 <span><span class="co">#&gt;  [2] "Gavin Simpson [ctb]"                                                                              </span></span>
 <span><span class="co">#&gt;  [3] "Gregory Jefferis &lt;jefferis@gmail.com&gt; [ctb] (imported code from his dendroextras package)"        </span></span>
@@ -138,13 +149,22 @@
 <span><span class="co">#&gt; [12] "skullkey [ctb]"                                                                                   </span></span>
 <span><span class="co">#&gt; [13] "Mark Van Der Loo &lt;mark.vanderloo@gmail.com&gt; [ctb] (https://github.com/markvanderloo d3dendrogram)"</span></span>
 <span><span class="co">#&gt; [14] "Yoav Benjamini [ths]"</span></span></code></pre>
-<p>The <strong>design</strong> of the dendextend package (and this manual!) is heavily inspired by <a href="https://hadley.nz/" class="external-link">Hadley Wickham’s</a> work. Especially his text on <a href="https://r-pkgs.org/" class="external-link">writing an R package</a>, the <a href="https://cran.r-project.org/package=devtools" class="external-link">devtools package</a>, and the dplyr package (specifically the use of chaining, and the <a href="https://CRAN.R-project.org/package=dplyr/vignettes/dplyr.html" class="external-link">Introduction text to dplyr</a>).</p>
+<p>The <strong>design</strong> of the dendextend package (and this
+manual!) is heavily inspired by <a href="https://hadley.nz/" class="external-link">Hadley
+Wickham’s</a> work. Especially his text on <a href="https://r-pkgs.org/" class="external-link">writing an R package</a>, the <a href="https://cran.r-project.org/package=devtools" class="external-link">devtools package</a>,
+and the dplyr package (specifically the use of chaining, and the <a href="https://CRAN.R-project.org/package=dplyr/vignettes/dplyr.html" class="external-link">Introduction
+text to dplyr</a>).</p>
 </div>
 <div class="section level4">
 <h4 id="chaining">Chaining<a class="anchor" aria-label="anchor" href="#chaining"></a>
 </h4>
-<p>Function calls in dendextend often get a dendrogram and returns a (modified) dendrogram. This doesn’t lead to particularly elegant code if you want to do many operations at once. The same is true even in the first stage of creating a dendrogram.</p>
-<p>In order to construct a dendrogram, you will (often) need to go through several steps. You can either do so while keeping the intermediate results:</p>
+<p>Function calls in dendextend often get a dendrogram and returns a
+(modified) dendrogram. This doesn’t lead to particularly elegant code if
+you want to do many operations at once. The same is true even in the
+first stage of creating a dendrogram.</p>
+<p>In order to construct a dendrogram, you will (often) need to go
+through several steps. You can either do so while keeping the
+intermediate results:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="co"># some data</span></span>
 <span><span class="va">d2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">d1</span><span class="op">)</span></span>
@@ -153,9 +173,18 @@
 <p>Or, you can also wrap the function calls inside each other:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html" class="external-link">as.dendrogram</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>However, both solutions are not ideal: the first solution includes redundant intermediate objects, while the second is difficult to read (since the order of the operations is from inside to out, while the arguments are a long way away from the function).</p>
-<p>To get around this problem, dendextend encourages the use of the <code>%&gt;%</code> (“pipe” or “chaining”) operator (imported from the magrittr package). This turns <code>x %&gt;% f(y)</code> into <code>f(x, y)</code> so you can use it to rewrite (“chain”) multiple operations such that they can be read from left-to-right, top-to-bottom.</p>
-<p>For example, the following will be written as it would be explained:</p>
+<p>However, both solutions are not ideal: the first solution includes
+redundant intermediate objects, while the second is difficult to read
+(since the order of the operations is from inside to out, while the
+arguments are a long way away from the function).</p>
+<p>To get around this problem, dendextend encourages the use of the
+<code>%&gt;%</code> (“pipe” or “chaining”) operator (imported from the
+magrittr package). This turns <code>x %&gt;% f(y)</code> into
+<code>f(x, y)</code> so you can use it to rewrite (“chain”) multiple
+operations such that they can be read from left-to-right,
+top-to-bottom.</p>
+<p>For example, the following will be written as it would be
+explained:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># take the a vector from 1 to 5</span></span>
 <span>         <span class="va">dist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># calculate a distance matrix, </span></span>
@@ -163,22 +192,29 @@
 <span>         <span class="va">as.dendrogram</span> <span class="co"># and lastly, turn that object into a dendrogram.</span></span></code></pre></div>
 <p>For more details, you may look at:</p>
 <ul>
-<li><a href="https://cran.r-project.org/package=magrittr" class="external-link">magrittr on CRAN</a></li>
-<li><a href="https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html" class="external-link">Introduction to the magrittr package</a></li>
-<li><a href="https://www.r-statistics.com/2014/08/simpler-r-coding-with-pipes-the-present-and-future-of-the-magrittr-package/" class="external-link">Simpler R coding with pipes &gt; the present and future of the magrittr package</a></li>
+<li><a href="https://cran.r-project.org/package=magrittr" class="external-link">magrittr on
+CRAN</a></li>
+<li><a href="https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html" class="external-link">Introduction
+to the magrittr package</a></li>
+<li><a href="https://www.r-statistics.com/2014/08/simpler-r-coding-with-pipes-the-present-and-future-of-the-magrittr-package/" class="external-link">Simpler
+R coding with pipes &gt; the present and future of the magrittr
+package</a></li>
 </ul>
 </div>
 <div class="section level4">
 <h4 id="a-dendrogram-is-a-nested-list-of-lists-with-attributes">A dendrogram is a nested list of lists with attributes<a class="anchor" aria-label="anchor" href="#a-dendrogram-is-a-nested-list-of-lists-with-attributes"></a>
 </h4>
-<p>The first step is working with dendrograms, is to understand that they are just a <strong>nested list of lists with attributes</strong>. Let us explore this for the following (tiny) tree:</p>
+<p>The first step is working with dendrograms, is to understand that
+they are just a <strong>nested list of lists with attributes</strong>.
+Let us explore this for the following (tiny) tree:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create a dend:</span></span>
 <span><span class="va">dend</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">dist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">hclust</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">as.dendrogram</span></span>
 <span><span class="co"># and plot it:</span></span>
 <span><span class="va">dend</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">plot</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-7-1.png" width="300"></p>
-<p>And here is its structure (a nested list of lists with attributes):</p>
+<p>And here is its structure (a nested list of lists with
+attributes):</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">unclass</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">str</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; List of 2</span></span>
@@ -206,21 +242,21 @@
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'dendextend'</span><span class="op">)</span></span></code></pre></div>
 <p>To install the GitHub version:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>require2 &lt;-<span class="st"> </span><span class="cf">function</span> (package, ...) {</span>
-<span id="cb11-2"><a href="#cb11-2"></a>   <span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(package)) <span class="kw">install.packages</span>(package); <span class="kw">library</span>(package)</span>
-<span id="cb11-3"><a href="#cb11-3"></a>}</span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="co">## require2('installr')</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="co">## install.Rtools() # run this if you are using Windows and don't have Rtools installed</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="co"># Load devtools:</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="kw">require2</span>(<span class="st">"devtools"</span>)</span>
-<span id="cb11-10"><a href="#cb11-10"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">'talgalili/dendextend'</span>)</span>
-<span id="cb11-11"><a href="#cb11-11"></a><span class="op">&lt;!--</span><span class="st"> </span><span class="kw">require2</span>(<span class="st">"Rcpp"</span>) <span class="op">-</span>-&gt;</span>
-<span id="cb11-12"><a href="#cb11-12"></a></span>
-<span id="cb11-13"><a href="#cb11-13"></a><span class="co"># Having colorspace is also useful, since it is used</span></span>
-<span id="cb11-14"><a href="#cb11-14"></a><span class="co"># In various examples in the vignettes</span></span>
-<span id="cb11-15"><a href="#cb11-15"></a><span class="kw">require2</span>(<span class="st">"colorspace"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>require2 <span class="ot">&lt;-</span> <span class="cf">function</span> (package, ...) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(package)) <span class="fu">install.packages</span>(package); <span class="fu">library</span>(package)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">## require2('installr')</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="do">## install.Rtools() # run this if you are using Windows and don't have Rtools installed</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load devtools:</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">require2</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">'talgalili/dendextend'</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;!--</span> <span class="fu">require2</span>(<span class="st">"Rcpp"</span>) <span class="sc">-</span><span class="ot">-&gt;</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Having colorspace is also useful, since it is used</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># In various examples in the vignettes</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="fu">require2</span>(<span class="st">"colorspace"</span>)</span></code></pre></div>
 <p>And then you may load the package using:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/" class="external-link">dendextend</a></span><span class="op">)</span></span></code></pre></div>
@@ -266,10 +302,17 @@
 <div class="section level4">
 <h4 id="getting-nodes-attributes-in-a-depth-first-search">Getting nodes attributes in a depth-first search<a class="anchor" aria-label="anchor" href="#getting-nodes-attributes-in-a-depth-first-search"></a>
 </h4>
-<p>When extracting (or inserting) attributes from a dendrogram’s nodes, it is often in a “depth-first search”. <a href="https://en.wikipedia.org/wiki/Depth-first_search" class="external-link">Depth-first search</a> is when an algorithm for traversing or searching tree or graph data structures. One starts at the root and explores as far as possible along each branch before backtracking.</p>
-<p>Here is a plot of a tree, illustrating the order in which you should read the “nodes attributes”:</p>
+<p>When extracting (or inserting) attributes from a dendrogram’s nodes,
+it is often in a “depth-first search”. <a href="https://en.wikipedia.org/wiki/Depth-first_search" class="external-link">Depth-first
+search</a> is when an algorithm for traversing or searching tree or
+graph data structures. One starts at the root and explores as far as
+possible along each branch before backtracking.</p>
+<p>Here is a plot of a tree, illustrating the order in which you should
+read the “nodes attributes”:</p>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-11-1.png" width="450"></p>
-<p>We can get several nodes attributes using <code>get_nodes_attr</code> (notice the order corresponds with what is shown in the above figure):</p>
+<p>We can get several nodes attributes using <code>get_nodes_attr</code>
+(notice the order corresponds with what is shown in the above
+figure):</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create a dend:</span></span>
 <span><span class="va">dend</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">dist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">hclust</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">as.dendrogram</span></span>
@@ -300,7 +343,8 @@
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/get_nodes_attr.html">get_nodes_attr</a></span><span class="op">(</span><span class="st">"edgePar"</span><span class="op">)</span> <span class="co"># empty (for now...)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] NA NA NA NA NA NA NA NA NA</span></span></code></pre>
-<p>A similar function for leaves only is <code>get_leaves_attr</code></p>
+<p>A similar function for leaves only is
+<code>get_leaves_attr</code></p>
 </div>
 </div>
 <div class="section level3">
@@ -309,45 +353,75 @@
 <div class="section level4">
 <h4 id="the-set-function">The “set” function<a class="anchor" aria-label="anchor" href="#the-set-function"></a>
 </h4>
-<p>The fastest way to start changing parameters with dendextend is by using the <code>set</code> function. It is written as: <code>set(object, what, value)</code>, and accepts the following parameters:</p>
+<p>The fastest way to start changing parameters with dendextend is by
+using the <code>set</code> function. It is written as:
+<code>set(object, what, value)</code>, and accepts the following
+parameters:</p>
 <ol style="list-style-type: decimal">
 <li>
 <strong>object</strong>: a dendrogram object,</li>
 <li>
-<strong>what</strong>: a character indicating what is the property of the tree that should be set/updated</li>
+<strong>what</strong>: a character indicating what is the property
+of the tree that should be set/updated</li>
 <li>
-<strong>value</strong>: a vector with the value to set in the tree (the type of the value depends on the “what”). Many times, vectors which are too short are recycled.</li>
+<strong>value</strong>: a vector with the value to set in the tree
+(the type of the value depends on the “what”). Many times, vectors which
+are too short are recycled.</li>
 </ol>
-<p>The <strong>what</strong> parameter accepts many options, each uses some general function in the background. These options deal with labels, nodes and branches. They are:</p>
+<p>The <strong>what</strong> parameter accepts many options, each uses
+some general function in the background. These options deal with labels,
+nodes and branches. They are:</p>
 <ul>
-<li>labels - set the labels (using <code>labels&lt;-.dendrogram</code>)</li>
-<li>labels_colors - set the labels’ colors (using <code>color_labels</code>)</li>
-<li>labels_cex - set the labels’ size (using <code>assign_values_to_leaves_nodePar</code>)</li>
+<li>labels - set the labels (using
+<code>labels&lt;-.dendrogram</code>)</li>
+<li>labels_colors - set the labels’ colors (using
+<code>color_labels</code>)</li>
+<li>labels_cex - set the labels’ size (using
+<code>assign_values_to_leaves_nodePar</code>)</li>
 <li>labels_to_character - set the labels’ to be characters</li>
-<li>leaves_pch - set the leaves’ point type (using <code>assign_values_to_leaves_nodePar</code>)</li>
-<li>leaves_cex - set the leaves’ point size (using <code>assign_values_to_leaves_nodePar</code>)</li>
-<li>leaves_col - set the leaves’ point color (using <code>assign_values_to_leaves_nodePar</code>)</li>
-<li>leaves_bg - set the leaves’ point background color (available only for pch 21-25, using <code>assign_values_to_nodes_nodePar</code>)</li>
-<li>nodes_pch - set the nodes’ point type (using <code>assign_values_to_nodes_nodePar</code>)</li>
-<li>nodes_cex - set the nodes’ point size (using <code>assign_values_to_nodes_nodePar</code>)</li>
-<li>nodes_col - set the nodes’ point color (using <code>assign_values_to_nodes_nodePar</code>)</li>
-<li>nodes_bg - set the nodes’ point background color (available only for pch 21-25, using <code>assign_values_to_nodes_nodePar</code>)</li>
-<li>hang_leaves - hang the leaves (using <code>hang.dendrogram</code>)</li>
-<li>branches_k_color - color the branches (using <code>color_branches</code>)</li>
-<li>branches_col - set the color of branches (using <code>assign_values_to_branches_edgePar</code>)</li>
-<li>branches_lwd - set the line width of branches (using <code>assign_values_to_branches_edgePar</code>)</li>
-<li>branches_lty - set the line type of branches (using <code>assign_values_to_branches_edgePar</code>)</li>
-<li>by_labels_branches_col - set the color of branches with specific labels (using <code>branches_attr_by_labels</code>)</li>
-<li>by_labels_branches_lwd - set the line width of branches with specific labels (using <code>branches_attr_by_labels</code>)</li>
-<li>by_labels_branches_lty - set the line type of branches with specific labels (using <code>branches_attr_by_labels</code>)</li>
-<li>clear_branches - clear branches’ attributes (using <code>remove_branches_edgePar</code>)</li>
-<li>clear_leaves - clear leaves’ attributes (using <code>remove_branches_edgePar</code>)</li>
+<li>leaves_pch - set the leaves’ point type (using
+<code>assign_values_to_leaves_nodePar</code>)</li>
+<li>leaves_cex - set the leaves’ point size (using
+<code>assign_values_to_leaves_nodePar</code>)</li>
+<li>leaves_col - set the leaves’ point color (using
+<code>assign_values_to_leaves_nodePar</code>)</li>
+<li>leaves_bg - set the leaves’ point background color (available only
+for pch 21-25, using <code>assign_values_to_nodes_nodePar</code>)</li>
+<li>nodes_pch - set the nodes’ point type (using
+<code>assign_values_to_nodes_nodePar</code>)</li>
+<li>nodes_cex - set the nodes’ point size (using
+<code>assign_values_to_nodes_nodePar</code>)</li>
+<li>nodes_col - set the nodes’ point color (using
+<code>assign_values_to_nodes_nodePar</code>)</li>
+<li>nodes_bg - set the nodes’ point background color (available only for
+pch 21-25, using <code>assign_values_to_nodes_nodePar</code>)</li>
+<li>hang_leaves - hang the leaves (using
+<code>hang.dendrogram</code>)</li>
+<li>branches_k_color - color the branches (using
+<code>color_branches</code>)</li>
+<li>branches_col - set the color of branches (using
+<code>assign_values_to_branches_edgePar</code>)</li>
+<li>branches_lwd - set the line width of branches (using
+<code>assign_values_to_branches_edgePar</code>)</li>
+<li>branches_lty - set the line type of branches (using
+<code>assign_values_to_branches_edgePar</code>)</li>
+<li>by_labels_branches_col - set the color of branches with specific
+labels (using <code>branches_attr_by_labels</code>)</li>
+<li>by_labels_branches_lwd - set the line width of branches with
+specific labels (using <code>branches_attr_by_labels</code>)</li>
+<li>by_labels_branches_lty - set the line type of branches with specific
+labels (using <code>branches_attr_by_labels</code>)</li>
+<li>clear_branches - clear branches’ attributes (using
+<code>remove_branches_edgePar</code>)</li>
+<li>clear_leaves - clear leaves’ attributes (using
+<code>remove_branches_edgePar</code>)</li>
 </ul>
 </div>
 <div class="section level4">
 <h4 id="two-simple-trees-to-play-with">Two simple trees to play with<a class="anchor" aria-label="anchor" href="#two-simple-trees-to-play-with"></a>
 </h4>
-<p>For illustration purposes, we will create several small tree, and demonstrate these functions on them.</p>
+<p>For illustration purposes, we will create several small tree, and
+demonstrate these functions on them.</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend13</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># take some data</span></span>
 <span>         <span class="va">dist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># calculate a distance matrix, </span></span>
@@ -372,7 +446,9 @@
 <pre><code><span><span class="co">#&gt; [1] 1 2 5 3 4</span></span></code></pre>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># this is just like labels(dend)</span></span></code></pre></div>
-<p>Notice how the tree’s labels are not 1 to 5 by order, since the tree happened to place them in a different order. We can change the names of the labels:</p>
+<p>Notice how the tree’s labels are not 1 to 5 by order, since the tree
+happened to place them in a different order. We can change the names of
+the labels:</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># change the labels, and then print them:</span></span>
 <span><span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"labels"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">111</span><span class="op">:</span><span class="fl">115</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">labels</span></span></code></pre></div>
@@ -380,7 +456,8 @@
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># could also be done using:</span></span>
 <span><span class="co"># labels(dend) &lt;- c(111:115)</span></span></code></pre></div>
-<p>We can change the type of labels to be characters. Not doing so may be a source of various bugs and problems in many functions.</p>
+<p>We can change the type of labels to be characters. Not doing so may
+be a source of various bugs and problems in many functions.</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">labels</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] 1 2 5 3 4</span></span></code></pre>
@@ -393,7 +470,8 @@
 <span><span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"labels_col"</span>, <span class="st">"blue"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Change label's color"</span><span class="op">)</span> <span class="co"># change color </span></span>
 <span><span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"labels_cex"</span>, <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Change label's size"</span><span class="op">)</span> <span class="co"># change color </span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-17-1.png" width="600"></p>
-<p>The function recycles, from left to right, the vector of values we give it. We can use this to create more complex patterns:</p>
+<p>The function recycles, from left to right, the vector of values we
+give it. We can use this to create more complex patterns:</p>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Produce a more complex dendrogram:</span></span>
 <span><span class="va">dend15_2</span> <span class="op">&lt;-</span> <span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -405,7 +483,8 @@
 <span><span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Before"</span><span class="op">)</span></span>
 <span><span class="va">dend15_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"After"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-18-1.png" width="600"></p>
-<p>Notice how these “labels parameters” are nested within the nodePar attribute:</p>
+<p>Notice how these “labels parameters” are nested within the nodePar
+attribute:</p>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># looking at only the left-most node of the "after tree":</span></span>
 <span><span class="va">dend15_2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">unclass</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">str</span> </span></code></pre></div>
@@ -425,7 +504,9 @@
 <span><span class="co">#&gt; lab.col 1   </span></span>
 <span><span class="co">#&gt; pch     NA  </span></span>
 <span><span class="co">#&gt; lab.cex 2</span></span></code></pre>
-<p>When it comes to color, we can also set the parameter “k”, which will cut the tree into k clusters, and assign a different color to each label (based on its cluster):</p>
+<p>When it comes to color, we can also set the parameter “k”, which will
+cut the tree into k clusters, and assign a different color to each label
+(based on its cluster):</p>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"labels_cex"</span>, <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"labels_col"</span>, value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -438,7 +519,15 @@
 <div class="section level4">
 <h4 id="setting-a-dendrograms-nodesleaves-points">Setting a dendrogram’s nodes/leaves (points)<a class="anchor" aria-label="anchor" href="#setting-a-dendrograms-nodesleaves-points"></a>
 </h4>
-<p>Each node in a tree can be represented and controlled using the <code>assign_values_to_nodes_nodePar</code>, and for the special case of the nodes of leaves, the <code>assign_values_to_leaves_nodePar</code> function is more appropriate (and faster) to use. We can control the following properties: pch (point type), cex (point size), and col (point color). For pch we can additionally set bg (“background”, although it’s really a fill for the shape). When bg is set, the outline of the point is defined by col and the internal fill is determined by bg. For example:</p>
+<p>Each node in a tree can be represented and controlled using the
+<code>assign_values_to_nodes_nodePar</code>, and for the special case of
+the nodes of leaves, the <code>assign_values_to_leaves_nodePar</code>
+function is more appropriate (and faster) to use. We can control the
+following properties: pch (point type), cex (point size), and col (point
+color). For pch we can additionally set bg (“background”, although it’s
+really a fill for the shape). When bg is set, the outline of the point
+is defined by col and the internal fill is determined by bg. For
+example:</p>
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dend13</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"nodes_pch"</span>, <span class="fl">19</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"(1) Show the\n nodes (as a dot)"</span><span class="op">)</span> <span class="co">#1</span></span>
@@ -465,7 +554,9 @@
 <span><span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"leaves_pch"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">19</span>,<span class="fl">1</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"leaves_cex"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"leaves_col"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>   <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Adjust nodes\n(but only for leaves)"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-22-1.png" width="600"></p>
-<p>Notice how recycling works in a depth-first order (which is just left to right, when we only adjust the leaves). Here are the node’s parameters after adjustment:</p>
+<p>Notice how recycling works in a depth-first order (which is just left
+to right, when we only adjust the leaves). Here are the node’s
+parameters after adjustment:</p>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"nodes_pch"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">19</span>,<span class="fl">1</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>   <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"nodes_cex"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"nodes_col"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/get_nodes_attr.html">get_nodes_attr</a></span><span class="op">(</span><span class="st">"nodePar"</span><span class="op">)</span></span></code></pre></div>
@@ -473,7 +564,8 @@
 <span><span class="co">#&gt; pch 19   1    4    19   1    4    19   1    4   </span></span>
 <span><span class="co">#&gt; cex 2    1    2    2    1    2    2    1    2   </span></span>
 <span><span class="co">#&gt; col 3    4    3    4    3    4    3    4    3</span></span></code></pre>
-<p>We can also change the height of of the leaves by using the <code>hang.dendrogram</code> function:</p>
+<p>We can also change the height of of the leaves by using the
+<code>hang.dendrogram</code> function:</p>
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dend13</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"leaves_pch"</span>, <span class="fl">19</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"leaves_cex"</span>, <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"leaves_col"</span>, <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># adjust the leaves</span></span>
@@ -494,7 +586,8 @@
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend13</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">hang.dendrogram</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/get_leaves_attr.html">get_leaves_attr</a></span><span class="op">(</span><span class="st">"height"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] 1.35 0.85 0.85</span></span></code></pre>
-<p>We can also control the general heights of nodes using <code>raise.dendrogram</code>:</p>
+<p>We can also control the general heights of nodes using
+<code>raise.dendrogram</code>:</p>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dend13</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"First tree"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
@@ -505,7 +598,8 @@
 <span>   <span class="fu"><a href="../reference/raise.dendrogram.html">raise.dendrogram</a></span> <span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>   <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"One point higher"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-26-1.png" width="750"></p>
-<p>If you wish to make the branches under the root have the same height, you can use the <code>flatten.dendrogram</code> function.</p>
+<p>If you wish to make the branches under the root have the same height,
+you can use the <code>flatten.dendrogram</code> function.</p>
 </div>
 <div class="section level4">
 <h4 id="setting-a-dendrograms-branches">Setting a dendrogram’s branches<a class="anchor" aria-label="anchor" href="#setting-a-dendrograms-branches"></a>
@@ -513,7 +607,8 @@
 <div class="section level5">
 <h5 id="adjusting-all-branches">Adjusting all branches<a class="anchor" aria-label="anchor" href="#adjusting-all-branches"></a>
 </h5>
-<p>Similar to adjusting nodes, we can also control line width (lwd), line type (lty), and color (col) for branches:</p>
+<p>Similar to adjusting nodes, we can also control line width (lwd),
+line type (lty), and color (col) for branches:</p>
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dend13</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"branches_lwd"</span>, <span class="fl">4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Thick branches"</span><span class="op">)</span></span>
@@ -529,12 +624,16 @@
 <span>   <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"branches_col"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>   <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Complex branches"</span>, edge.root <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-28-1.png" width="300"></p>
-<p>Notice how the first branch (the root) is considered when going through and creating the tree, but it is <strong>ignored</strong> in the actual plotting (this is actually a “missing feature” in <code>plot.dendrogram</code>).</p>
+<p>Notice how the first branch (the root) is considered when going
+through and creating the tree, but it is <strong>ignored</strong> in the
+actual plotting (this is actually a “missing feature” in
+<code>plot.dendrogram</code>).</p>
 </div>
 <div class="section level5">
 <h5 id="coloring-branches-based-on-clustering">Coloring branches based on clustering<a class="anchor" aria-label="anchor" href="#coloring-branches-based-on-clustering"></a>
 </h5>
-<p>We may also control the colors of the branches based on using clustering:</p>
+<p>We may also control the colors of the branches based on using
+clustering:</p>
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"branches_k_color"</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Nice defaults"</span><span class="op">)</span></span>
@@ -547,7 +646,11 @@
 <div class="section level5">
 <h5 id="adjusting-branches-based-on-labels">Adjusting branches based on labels<a class="anchor" aria-label="anchor" href="#adjusting-branches-based-on-labels"></a>
 </h5>
-<p>The most powerful way to control branches is through the <code>branches_attr_by_labels</code> function (with variations through the <code>set</code> function). The function allows you to change col/lwd/lty of branches if they match some “labels condition”. Follow carefully:</p>
+<p>The most powerful way to control branches is through the
+<code>branches_attr_by_labels</code> function (with variations through
+the <code>set</code> function). The function allows you to change
+col/lwd/lty of branches if they match some “labels condition”. Follow
+carefully:</p>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"by_labels_branches_col"</span>, value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -568,9 +671,13 @@
 <p><img src="dendextend_files/figure-html/unnamed-chunk-31-1.png" width="750"></p>
 </div>
 <div class="section level5">
-<h5 id="highlighting-branches-different-heights-using-line-width-and-color">Highlighting branches’ different heights using line width and color<a class="anchor" aria-label="anchor" href="#highlighting-branches-different-heights-using-line-width-and-color"></a>
+<h5 id="highlighting-branches-different-heights-using-line-width-and-color">Highlighting branches’ different heights using line width and
+color<a class="anchor" aria-label="anchor" href="#highlighting-branches-different-heights-using-line-width-and-color"></a>
 </h5>
-<p>The <code>highlight_branches</code> function helps to more easily see the topological structure of a tree, by adjusting branches appearence (color and line width) based on their height in the tree. For example:</p>
+<p>The <code>highlight_branches</code> function helps to more easily see
+the topological structure of a tree, by adjusting branches appearence
+(color and line width) based on their height in the tree. For
+example:</p>
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span></span>
 <span><span class="va">hca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">)</span></span>
@@ -620,7 +727,19 @@
 <div class="section level5">
 <h5 id="rotation">Rotation<a class="anchor" aria-label="anchor" href="#rotation"></a>
 </h5>
-<p>A dendrogram is an object which can be rotated on its hinges without changing its topology. Rotating a dendrogram in base R can be done using the <code>reorder</code> function. The problem with this function is that it is not very intuitive. For this reason the <code>rotate</code> function was written. It has two main arguments: the “object” (a dendrogram), and the “order” we wish to rotate it by. The “order” parameter can be either a numeric vector, used in a similar way we would order a simple character vector. Or, the order parameter can also be a character vector of the labels of the tree, given in the new desired order of the tree. It is also worth noting that some order are impossible to achieve for a given tree’s topology. In such cases, the function will do its “best” to get as close as possible to the requested rotation.</p>
+<p>A dendrogram is an object which can be rotated on its hinges without
+changing its topology. Rotating a dendrogram in base R can be done using
+the <code>reorder</code> function. The problem with this function is
+that it is not very intuitive. For this reason the <code>rotate</code>
+function was written. It has two main arguments: the “object” (a
+dendrogram), and the “order” we wish to rotate it by. The “order”
+parameter can be either a numeric vector, used in a similar way we would
+order a simple character vector. Or, the order parameter can also be a
+character vector of the labels of the tree, given in the new desired
+order of the tree. It is also worth noting that some order are
+impossible to achieve for a given tree’s topology. In such cases, the
+function will do its “best” to get as close as possible to the requested
+rotation.</p>
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -638,7 +757,8 @@
 <span>   <span class="fu"><a href="../reference/rotate.html">rotate</a></span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># the fifth label to go first is "4"</span></span>
 <span>   <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Rotated tree\n based on order"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-34-1.png" width="750"></p>
-<p>A new convenience S3 function for <code>sort</code> (<code>sort.dendrogram</code>) was added:</p>
+<p>A new convenience S3 function for <code>sort</code>
+(<code>sort.dendrogram</code>) was added:</p>
 <div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend110</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">7</span>,<span class="fl">9</span>,<span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">dist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>   <span class="va">as.dendrogram</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">color_labels</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">color_branches</span></span>
@@ -676,7 +796,8 @@
 <span>   <span class="fu"><a href="../reference/prune.html">prune</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1"</span>,<span class="st">"5"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>   <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Prunned tree"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-37-1.png" width="525"></p>
-<p>For pruning two trees to have matching labels, we can use the <code>intersect_trees</code> function:</p>
+<p>For pruning two trees to have matching labels, we can use the
+<code>intersect_trees</code> function:</p>
 <div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dend_intersected</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/intersect_trees.html">intersect_trees</a></span><span class="op">(</span><span class="va">dend13</span>, <span class="va">dend15</span><span class="op">)</span></span>
@@ -687,7 +808,8 @@
 <div class="section level5">
 <h5 id="collapse-branches">Collapse branches<a class="anchor" aria-label="anchor" href="#collapse-branches"></a>
 </h5>
-<p>We can collapse branches under a tolerance level using the <code>collapse_branch</code> function:</p>
+<p>We can collapse branches under a tolerance level using the
+<code>collapse_branch</code> function:</p>
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># ladderize is like sort(..., type = "node")</span></span>
 <span><span class="va">dend</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">dist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">hclust</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">as.dendrogram</span></span>
@@ -704,7 +826,14 @@
 <div class="section level5">
 <h5 id="adding-colored-rectangles">Adding colored rectangles<a class="anchor" aria-label="anchor" href="#adding-colored-rectangles"></a>
 </h5>
-<p>Earlier we have seen how to highlight clusters in a dendrogram by coloring branches. We can also draw rectangles around the branches of a dendrogram in order to highlight the corresponding clusters. First the dendrogram is cut at a certain level, then a rectangle is drawn around selected branches. This is done using the <code>rect.dendrogram</code>, which is modeled based on the <code>rect.hclust</code> function. One advantage of <code>rect.dendrogram</code> over <code>rect.hclust</code>, is that it also works on horizontally plotted trees:</p>
+<p>Earlier we have seen how to highlight clusters in a dendrogram by
+coloring branches. We can also draw rectangles around the branches of a
+dendrogram in order to highlight the corresponding clusters. First the
+dendrogram is cut at a certain level, then a rectangle is drawn around
+selected branches. This is done using the <code>rect.dendrogram</code>,
+which is modeled based on the <code>rect.hclust</code> function. One
+advantage of <code>rect.dendrogram</code> over <code>rect.hclust</code>,
+is that it also works on horizontally plotted trees:</p>
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/layout.html" class="external-link">layout</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -720,7 +849,8 @@
 <div class="section level5">
 <h5 id="adding-colored-bars">Adding colored bars<a class="anchor" aria-label="anchor" href="#adding-colored-bars"></a>
 </h5>
-<p>Adding colored bars to a dendrogram may be useful to show clusters or some outside categorization of the items. For example:</p>
+<p>Adding colored bars to a dendrogram may be useful to show clusters or
+some outside categorization of the items. For example:</p>
 <div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">is_odd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/labels.html" class="external-link">labels</a></span><span class="op">(</span><span class="va">dend15</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html" class="external-link">%%</a></span> <span class="fl">2</span>, <span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">is_345</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/labels.html" class="external-link">labels</a></span><span class="op">(</span><span class="va">dend15</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">2</span>, <span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span></span>
@@ -740,7 +870,8 @@
 <span><span class="co"># labels order. The more common use case is when the bars are based on a second variable</span></span>
 <span><span class="co"># from the same data.frame as dend was created from. Thus, the default </span></span>
 <span><span class="co"># sort_by_labels_order = TRUE would make more sense.</span></span></code></pre></div>
-<p>Another example, based on mtcars (in which the default of <code>sort_by_labels_order = TRUE</code> makes sense):</p>
+<p>Another example, based on mtcars (in which the default of
+<code>sort_by_labels_order = TRUE</code> makes sense):</p>
 <div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend_mtcars</span> <span class="op">&lt;-</span> <span class="va">mtcars</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"disp"</span><span class="op">)</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">dist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">as.dendrogram</span></span>
 <span></span>
@@ -755,10 +886,33 @@
 <div class="section level3">
 <h3 id="ggplot2-integration">ggplot2 integration<a class="anchor" aria-label="anchor" href="#ggplot2-integration"></a>
 </h3>
-<p>The core process is to transform a dendrogram into a <code>ggdend</code> object using <code>as.ggdend</code>, and then plot it using <code>ggplot</code> (a new S3 <code>ggplot.ggdend</code> function is available). These two steps can be done in one command with either the function <code>ggplot</code> or <code>ggdend</code>.</p>
-<p>The reason we want to have <code>as.ggdend</code> (and not only <code>ggplot.dendrogram</code>), is (1) so that you could create your own mapping of <code>ggdend</code> and, (2) since <code>as.ggdend</code> might be slow for large trees, it is probably better to be able to run it only once for such cases.</p>
-<p>A <code>ggdend</code> class object is a list with 3 components: segments, labels, nodes. Each one contains the graphical parameters from the original dendrogram, but in a tabular form that can be used by <code>ggplot2+geom_segment+geom_text</code> to create a dendrogram plot.</p>
-<p>The function <code>prepare.ggdend</code> is used by <code>plot.ggdend</code> to take the ggdend object and prepare it for plotting. This is because the defaults of various parameters in dendrogram’s are not always stored in the object itself, but are built-in into the <code>plot.dendrogram</code> function. For example, the color of the labels is not (by default) specified in the dendrogram (only if we change it from black to something else). Hence, when taking the object into a different plotting engine (say ggplot2), we want to prepare the object by filling-in various defaults. This function is automatically invoked within the <code>plot.ggdend</code> function. You would probably use it only if you’d wish to build your own ggplot2 mapping.</p>
+<p>The core process is to transform a dendrogram into a
+<code>ggdend</code> object using <code>as.ggdend</code>, and then plot
+it using <code>ggplot</code> (a new S3 <code>ggplot.ggdend</code>
+function is available). These two steps can be done in one command with
+either the function <code>ggplot</code> or <code>ggdend</code>.</p>
+<p>The reason we want to have <code>as.ggdend</code> (and not only
+<code>ggplot.dendrogram</code>), is (1) so that you could create your
+own mapping of <code>ggdend</code> and, (2) since <code>as.ggdend</code>
+might be slow for large trees, it is probably better to be able to run
+it only once for such cases.</p>
+<p>A <code>ggdend</code> class object is a list with 3 components:
+segments, labels, nodes. Each one contains the graphical parameters from
+the original dendrogram, but in a tabular form that can be used by
+<code>ggplot2+geom_segment+geom_text</code> to create a dendrogram
+plot.</p>
+<p>The function <code>prepare.ggdend</code> is used by
+<code>plot.ggdend</code> to take the ggdend object and prepare it for
+plotting. This is because the defaults of various parameters in
+dendrogram’s are not always stored in the object itself, but are
+built-in into the <code>plot.dendrogram</code> function. For example,
+the color of the labels is not (by default) specified in the dendrogram
+(only if we change it from black to something else). Hence, when taking
+the object into a different plotting engine (say ggplot2), we want to
+prepare the object by filling-in various defaults. This function is
+automatically invoked within the <code>plot.ggdend</code> function. You
+would probably use it only if you’d wish to build your own ggplot2
+mapping.</p>
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create a complex dend:</span></span>
 <span><span class="va">dend</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">dist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">hclust</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">as.dendrogram</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -786,16 +940,29 @@
 <span><span class="co"># The text doesn't look so great, so let's remove it:</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">ggd1</span>, labels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_reverse</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_polar.html" class="external-link">coord_polar</a></span><span class="op">(</span>theta<span class="op">=</span><span class="st">"x"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-43-4.png" width="450"></p>
-<p><strong>Credit:</strong> These functions are <em>extended</em> versions of the functions <code>ggdendrogram</code>, <code>dendro_data</code> (and the hidden <code>dendrogram_data</code>) from Andrie de Vries’s <a href="https://cran.r-project.org/package=ggdendro" class="external-link">ggdendro</a> package. The motivation for this fork is the need to add more graphical parameters to the plotted tree. This required a strong mixture of functions from ggdendro and dendextend (to the point that it seemed better to just fork the code into its current form).</p>
+<p><strong>Credit:</strong> These functions are <em>extended</em>
+versions of the functions <code>ggdendrogram</code>,
+<code>dendro_data</code> (and the hidden <code>dendrogram_data</code>)
+from Andrie de Vries’s <a href="https://cran.r-project.org/package=ggdendro" class="external-link">ggdendro</a> package.
+The motivation for this fork is the need to add more graphical
+parameters to the plotted tree. This required a strong mixture of
+functions from ggdendro and dendextend (to the point that it seemed
+better to just fork the code into its current form).</p>
 </div>
 <div class="section level3">
 <h3 id="enhancing-other-packages">Enhancing other packages<a class="anchor" aria-label="anchor" href="#enhancing-other-packages"></a>
 </h3>
-<p>The dendextend package aims to extend and enhance features from the R ecosystem. Let us take a look at several examples.</p>
+<p>The dendextend package aims to extend and enhance features from the R
+ecosystem. Let us take a look at several examples.</p>
 <div class="section level4">
 <h4 id="dendser">DendSer<a class="anchor" aria-label="anchor" href="#dendser"></a>
 </h4>
-<p>The DendSer package helps in re-arranging a dendrogram to optimize visualization-based cost functions. Until now it was only used for <code>hclust</code> objects, but it can easily be connected to <code>dendrogram</code> objects by trying to turn the dendrogram into hclust, on which it runs DendSer. This can be used to rotate the dendrogram easily by using the <code>rotate_DendSer</code> function:</p>
+<p>The DendSer package helps in re-arranging a dendrogram to optimize
+visualization-based cost functions. Until now it was only used for
+<code>hclust</code> objects, but it can easily be connected to
+<code>dendrogram</code> objects by trying to turn the dendrogram into
+hclust, on which it runs DendSer. This can be used to rotate the
+dendrogram easily by using the <code>rotate_DendSer</code> function:</p>
 <div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va">DendSer</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>   <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -821,7 +988,9 @@
 <div class="section level4">
 <h4 id="gplots">gplots<a class="anchor" aria-label="anchor" href="#gplots"></a>
 </h4>
-<p>The gplots package brings us the <code>heatmap.2</code> function. In it, we can use our modified dendrograms to get more informative heat-maps:</p>
+<p>The gplots package brings us the <code>heatmap.2</code> function. In
+it, we can use our modified dendrograms to get more informative
+heat-maps:</p>
 <div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/talgalili/gplots" class="external-link">gplots</a></span><span class="op">)</span></span>
 <span></span>
@@ -846,8 +1015,12 @@
 <div class="section level4">
 <h4 id="nmf">NMF<a class="anchor" aria-label="anchor" href="#nmf"></a>
 </h4>
-<p>The same as gplots, NMF offers a heatmap function called <code>aheatmap</code>. We can update it just as we would <code>heatmap.2</code>.</p>
-<p>Since NMF was removed from CRAN (it could still be installed from source), the example code is still available but not ran in this vignette.</p>
+<p>The same as gplots, NMF offers a heatmap function called
+<code>aheatmap</code>. We can update it just as we would
+<code>heatmap.2</code>.</p>
+<p>Since NMF was removed from CRAN (it could still be installed from
+source), the example code is still available but not ran in this
+vignette.</p>
 <div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># library(NMF)</span></span>
 <span><span class="co"># </span></span>
@@ -868,8 +1041,12 @@
 <div class="section level4">
 <h4 id="heatmaply">heatmaply<a class="anchor" aria-label="anchor" href="#heatmaply"></a>
 </h4>
-<p>The heatmaply package create interactive heat-maps that are usable from the R console, in the ‘RStudio’ viewer pane, in ‘R Markdown’ documents, and in ‘Shiny’ apps. By hovering the mouse pointer over a cell or a dendrogram to show details, drag a rectangle to zoom.</p>
-<p>The use is very similar to what we’ve seen before, we just use <code>heatmaply</code> instead of <code>heatmap.2</code>:</p>
+<p>The heatmaply package create interactive heat-maps that are usable
+from the R console, in the ‘RStudio’ viewer pane, in ‘R Markdown’
+documents, and in ‘Shiny’ apps. By hovering the mouse pointer over a
+cell or a dendrogram to show details, drag a rectangle to zoom.</p>
+<p>The use is very similar to what we’ve seen before, we just use
+<code>heatmaply</code> instead of <code>heatmap.2</code>:</p>
 <div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/mtcars.html" class="external-link">mtcars</a></span><span class="op">)</span></span>
 <span><span class="co"># heatmaply(x)</span></span>
@@ -886,7 +1063,8 @@
 <div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://talgalili.github.io/heatmaply/" class="external-link">heatmaply</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://talgalili.github.io/heatmaply/reference/heatmaply.html" class="external-link">heatmaply</a></span><span class="op">(</span><span class="va">x</span>, Rowv <span class="op">=</span> <span class="va">Rowv</span>, Colv <span class="op">=</span> <span class="va">Colv</span><span class="op">)</span></span></code></pre></div>
-<p>I avoided running the code from above due to space issues on CRAN. For live examples, please go to:</p>
+<p>I avoided running the code from above due to space issues on CRAN.
+For live examples, please go to:</p>
 <ul>
 <li><a href="https://talgalili.github.io/heatmaply/articles/heatmaply.html" class="external-link uri">https://talgalili.github.io/heatmaply/articles/heatmaply.html</a></li>
 </ul>
@@ -894,7 +1072,11 @@
 <div class="section level4">
 <h4 id="dynamictreecut">dynamicTreeCut<a class="anchor" aria-label="anchor" href="#dynamictreecut"></a>
 </h4>
-<p>The <code>cutreeDynamic</code> function offers a wrapper for two methods of adaptive branch pruning of hierarchical clustering dendrograms. The results of which can now be visualized by both updating the branches, as well as using the <code>colored_bars</code> function (which was adjusted for use with plots of dendrograms):</p>
+<p>The <code>cutreeDynamic</code> function offers a wrapper for two
+methods of adaptive branch pruning of hierarchical clustering
+dendrograms. The results of which can now be visualized by both updating
+the branches, as well as using the <code>colored_bars</code> function
+(which was adjusted for use with plots of dendrograms):</p>
 <div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># let's get the clusters</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.genetics.ucla.edu/labs/horvath/CoexpressionNetwork/BranchCutting/" class="external-link">dynamicTreeCut</a></span><span class="op">)</span></span>
@@ -929,7 +1111,12 @@
 <div class="section level4">
 <h4 id="pvclust">pvclust<a class="anchor" aria-label="anchor" href="#pvclust"></a>
 </h4>
-<p>The pvclust library calculates “p-values”" for hierarchical clustering via multiscale bootstrap re-sampling. Hierarchical clustering is done for given data and p-values are computed for each of the clusters. The dendextend package let’s us reproduce the plot from pvclust, but with a dendrogram (instead of an hclust object), which also lets us extend the visualization.</p>
+<p>The pvclust library calculates “p-values”” for hierarchical
+clustering via multiscale bootstrap re-sampling. Hierarchical clustering
+is done for given data and p-values are computed for each of the
+clusters. The dendextend package let’s us reproduce the plot from
+pvclust, but with a dendrogram (instead of an hclust object), which also
+lets us extend the visualization.</p>
 <div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -978,7 +1165,10 @@
 <div class="section level4">
 <h4 id="circlize">circlize<a class="anchor" aria-label="anchor" href="#circlize"></a>
 </h4>
-<p>Circular layout is an efficient way for the visualization of huge amounts of information. The circlize package provides an implementation of circular layout generation in R, including a solution for dendrogram objects produced using dendextend:</p>
+<p>Circular layout is an efficient way for the visualization of huge
+amounts of information. The circlize package provides an implementation
+of circular layout generation in R, including a solution for dendrogram
+objects produced using dendextend:</p>
 <div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/circlize" class="external-link">circlize</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; ========================================</span></span>
@@ -1007,7 +1197,10 @@
 <div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># circlize_dendrogram(dend, labels = FALSE)</span></span>
 <span><span class="co"># circlize_dendrogram(dend, facing = "inside", labels = FALSE)</span></span></code></pre></div>
-<p>The above is a wrapper for functions in circlize. An advantage for using the circlize package directly is for plotting a circular dendrogram so that you can add more graphics for the elements in the tree just by adding more tracks using . For example:</p>
+<p>The above is a wrapper for functions in circlize. An advantage for
+using the circlize package directly is for plotting a circular
+dendrogram so that you can add more graphics for the elements in the
+tree just by adding more tracks using . For example:</p>
 <div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># dend &lt;- iris[1:40,-5] %&gt;% dist %&gt;% hclust %&gt;% as.dendrogram %&gt;%</span></span>
 <span><span class="co">#    set("branches_k_color", k=3) %&gt;% set("branches_lwd", c(5,2,1.5)) %&gt;%</span></span>
@@ -1040,7 +1233,10 @@
 <div class="section level4">
 <h4 id="dendlist">dendlist<a class="anchor" aria-label="anchor" href="#dendlist"></a>
 </h4>
-<p>A <code>dendlist</code> is a function which produces the dendlist class. It accepts several dendrograms and/or dendlist objects and chain them all together. This function aim to help with the usability of comparing two or more dendrograms.</p>
+<p>A <code>dendlist</code> is a function which produces the dendlist
+class. It accepts several dendrograms and/or dendlist objects and chain
+them all together. This function aim to help with the usability of
+comparing two or more dendrograms.</p>
 <div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend15</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">dist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">as.dendrogram</span></span>
 <span><span class="va">dend15</span> <span class="op">&lt;-</span> <span class="va">dend15</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"labels_to_char"</span><span class="op">)</span></span>
@@ -1083,12 +1279,15 @@
 <span><span class="co">#&gt;         |--leaf "2" </span></span>
 <span><span class="co">#&gt;         `--leaf "1" </span></span>
 <span><span class="co">#&gt; etc...</span></span></code></pre>
-<p>The function <code>match_order_by_labels</code> makes sure that the order in the leaves corresponds to the same labels in both trees.</p>
+<p>The function <code>match_order_by_labels</code> makes sure that the
+order in the leaves corresponds to the same labels in both trees.</p>
 </div>
 <div class="section level4">
 <h4 id="dend_diff">dend_diff<a class="anchor" aria-label="anchor" href="#dend_diff"></a>
 </h4>
-<p>The <code>dend_diff</code> function plots two trees side by side, highlighting edges unique to each tree in red, it relies on the <code>distinct_edges</code> function.</p>
+<p>The <code>dend_diff</code> function plots two trees side by side,
+highlighting edges unique to each tree in red, it relies on the
+<code>distinct_edges</code> function.</p>
 <p>For example:</p>
 <div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># example 1</span></span>
@@ -1100,12 +1299,18 @@
 <span><span class="va">dend2</span> <span class="op">&lt;-</span> <span class="va">dend1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"labels"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/dend_diff.html">dend_diff</a></span><span class="op">(</span><span class="va">dend1</span>, <span class="va">dend2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-55-1.png" width="450"></p>
-<p>See the <code>highlight_distinct_edges</code> function for more control over how to create the distinction (color, line width, line type).</p>
+<p>See the <code>highlight_distinct_edges</code> function for more
+control over how to create the distinction (color, line width, line
+type).</p>
 </div>
 <div class="section level4">
 <h4 id="tanglegram">tanglegram<a class="anchor" aria-label="anchor" href="#tanglegram"></a>
 </h4>
-<p>A tanglegram plot gives two dendrogram (with the same set of labels), one facing the other, and having their labels connected by lines. Tanglegram can be used for visually comparing two methods of Hierarchical clustering, and are sometimes used in biology when comparing two phylogenetic trees.</p>
+<p>A tanglegram plot gives two dendrogram (with the same set of labels),
+one facing the other, and having their labels connected by lines.
+Tanglegram can be used for visually comparing two methods of
+Hierarchical clustering, and are sometimes used in biology when
+comparing two phylogenetic trees.</p>
 <p>Here is an example of creating a tanglegram using dendextend:</p>
 <div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tanglegram.html">tanglegram</a></span><span class="op">(</span><span class="va">dends_15_51</span><span class="op">)</span></span></code></pre></div>
@@ -1115,11 +1320,22 @@
 <span><span class="co"># plot(dends_15_51) # since there is a plot method for dendlist</span></span>
 <span><span class="co"># and also: </span></span>
 <span><span class="co"># tanglegram(dend15, dend51)</span></span></code></pre></div>
-<p>Notice how “unique” nodes are highlighted with dashed lines (i.e.: nodes which contains a combination of labels/items, which are not present in the other tree). This can be turned off using <code>highlight_distinct_edges = FALSE</code>. Also notice how the connecting lines are colored to highlight two sub-trees which are present in both dendrograms. This can be turned off by setting <code>common_subtrees_color_lines = FALSE</code>. We can also color the branches of the trees to show the two common sub-trees using <code>common_subtrees_color_branches = TRUE</code>:</p>
+<p>Notice how “unique” nodes are highlighted with dashed lines (i.e.:
+nodes which contains a combination of labels/items, which are not
+present in the other tree). This can be turned off using
+<code>highlight_distinct_edges = FALSE</code>. Also notice how the
+connecting lines are colored to highlight two sub-trees which are
+present in both dendrograms. This can be turned off by setting
+<code>common_subtrees_color_lines = FALSE</code>. We can also color the
+branches of the trees to show the two common sub-trees using
+<code>common_subtrees_color_branches = TRUE</code>:</p>
 <div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tanglegram.html">tanglegram</a></span><span class="op">(</span><span class="va">dends_15_51</span>, common_subtrees_color_branches <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-57-1.png" width="375"></p>
-<p>We may wish to improve the layout of the trees. For this we have the <code>entanglement</code>, to measure the quality of the alignment of the two trees in the tanglegram layout, and the <code>untangle</code> function, for improving it.</p>
+<p>We may wish to improve the layout of the trees. For this we have the
+<code>entanglement</code>, to measure the quality of the alignment of
+the two trees in the tanglegram layout, and the <code>untangle</code>
+function, for improving it.</p>
 <div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dends_15_51</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">entanglement</span> <span class="co"># lower is better</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] 0.9167078</span></span></code></pre>
@@ -1127,14 +1343,27 @@
 <code class="sourceCode R"><span><span class="co"># dends_15_51 %&gt;% untangle(method = "DendSer") %&gt;% entanglement # lower is better</span></span>
 <span><span class="va">dends_15_51</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/untangle.html">untangle</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"step1side"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">entanglement</span> <span class="co"># lower is better</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] 0</span></span></code></pre>
-<p>Notice that just because we can get two trees to have horizontal connecting lines, it doesn’t mean these trees are identical (or even very similar topologically):</p>
+<p>Notice that just because we can get two trees to have horizontal
+connecting lines, it doesn’t mean these trees are identical (or even
+very similar topologically):</p>
 <div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dends_15_51</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/untangle.html">untangle</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"step1side"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>   <span class="fu"><a href="../reference/tanglegram.html">tanglegram</a></span><span class="op">(</span>common_subtrees_color_branches <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-59-1.png" width="375"></p>
-<p>Entanglement is measured by giving the left tree’s labels the values of 1 till tree size, and than match these numbers with the right tree. Now, entanglement is the L norm distance between these two vectors. That is, we take the sum of the absolute difference (each one in the power of L). e.g: <code>sum(abs(x-y)**L)</code>. And this is divided by the “worst case” entanglement level (e.g: when the right tree is the complete reverse of the left tree).</p>
-<p>L tells us which penalty level we are at (L0, L1, L2, partial L’s etc). L&gt;1 means that we give a big penalty for sharp angles. While L-&gt;0 means that any time something is not a straight horizontal line, it gets a large penalty If L=0.1 it means that we much prefer straight lines over non straight lines</p>
-<p>Finding an optimal rotation for the tanglegram of two dendrogram is a hard problem. This problem is also harder for larger trees.</p>
+<p>Entanglement is measured by giving the left tree’s labels the values
+of 1 till tree size, and than match these numbers with the right tree.
+Now, entanglement is the L norm distance between these two vectors. That
+is, we take the sum of the absolute difference (each one in the power of
+L). e.g: <code>sum(abs(x-y)**L)</code>. And this is divided by the
+“worst case” entanglement level (e.g: when the right tree is the
+complete reverse of the left tree).</p>
+<p>L tells us which penalty level we are at (L0, L1, L2, partial L’s
+etc). L&gt;1 means that we give a big penalty for sharp angles. While
+L-&gt;0 means that any time something is not a straight horizontal line,
+it gets a large penalty If L=0.1 it means that we much prefer straight
+lines over non straight lines</p>
+<p>Finding an optimal rotation for the tanglegram of two dendrogram is a
+hard problem. This problem is also harder for larger trees.</p>
 <p>Let’s see how well some untangle methods can do.</p>
 <p>Without doing anything:</p>
 <div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
@@ -1147,14 +1376,23 @@
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">dends_15_51</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/untangle.html">untangle</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"ladderize"</span><span class="op">)</span> </span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"entanglement ="</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="../reference/entanglement.html">entanglement</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-61-1.png" width="375"></p>
-<p>One solution for improving the tanglegram would be to randomly search the rotated tree space for a better solution. Here is how to use a random search:</p>
+<p>One solution for improving the tanglegram would be to randomly search
+the rotated tree space for a better solution. Here is how to use a
+random search:</p>
 <div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">3958</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">dends_15_51</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/untangle.html">untangle</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"random"</span>, R <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> </span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"entanglement ="</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="../reference/entanglement.html">entanglement</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-62-1.png" width="375"></p>
-<p>We can see we already got something better. An advantage of the random search is the ability to create many many trees and compare them to find the best pair.</p>
-<p>Let’s use a greedy forward step wise rotation of the two trees (first the left, then the right, and so on), to see if we can find a better solution for comparing the two trees. Notice that this may take some time to run (the larger the tree, the longer it would take), but we can limit the search for smaller k’s, and see what improvement that can bring us using step2side (slowest):</p>
+<p>We can see we already got something better. An advantage of the
+random search is the ability to create many many trees and compare them
+to find the best pair.</p>
+<p>Let’s use a greedy forward step wise rotation of the two trees (first
+the left, then the right, and so on), to see if we can find a better
+solution for comparing the two trees. Notice that this may take some
+time to run (the larger the tree, the longer it would take), but we can
+limit the search for smaller k’s, and see what improvement that can
+bring us using step2side (slowest):</p>
 <div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">dends_15_51</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/untangle.html">untangle</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"step2side"</span><span class="op">)</span> </span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"entanglement ="</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="../reference/entanglement.html">entanglement</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1184,7 +1422,8 @@
 <div class="section level5">
 <h5 id="global-comparison-of-two-or-more-dendrograms">Global Comparison of two (or more) dendrograms<a class="anchor" aria-label="anchor" href="#global-comparison-of-two-or-more-dendrograms"></a>
 </h5>
-<p>The <code>all.equal.dendrogram</code> function makes a global comparison of two or more dendrograms trees.</p>
+<p>The <code>all.equal.dendrogram</code> function makes a global
+comparison of two or more dendrograms trees.</p>
 <div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">dend1</span>, <span class="va">dend1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] TRUE</span></span></code></pre>
@@ -1238,7 +1477,11 @@
 <div class="section level5">
 <h5 id="distance-matrix-using-dist-dendlist">Distance matrix using dist.dendlist<a class="anchor" aria-label="anchor" href="#distance-matrix-using-dist-dendlist"></a>
 </h5>
-<p>The <code>dist.dendlist</code> function computes the Robinson-Foulds distance (also known as symmetric difference) between two dendrograms. This is the sum of edges in both trees with labels that exist in only one of the two trees (i.e.: the length of <code>distinct_edges</code>).</p>
+<p>The <code>dist.dendlist</code> function computes the Robinson-Foulds
+distance (also known as symmetric difference) between two dendrograms.
+This is the sum of edges in both trees with labels that exist in only
+one of the two trees (i.e.: the length of
+<code>distinct_edges</code>).</p>
 <div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">dist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">hclust</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">as.dendrogram</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"labels"</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span></span>
@@ -1256,12 +1499,16 @@
 <span><span class="co">#&gt; Single          6               </span></span>
 <span><span class="co">#&gt; Average         2      4        </span></span>
 <span><span class="co">#&gt; Centroid        4      2       2</span></span></code></pre>
-<p>This function might implement other topological distances in the future.</p>
+<p>This function might implement other topological distances in the
+future.</p>
 </div>
 <div class="section level5">
 <h5 id="correlation-matrix-using-cor-dendlist">Correlation matrix using cor.dendlist<a class="anchor" aria-label="anchor" href="#correlation-matrix-using-cor-dendlist"></a>
 </h5>
-<p>Both Baker’s Gamma and cophenetic correlation (Which will be introduced shortly), can be calculated to create a correlation matrix using the <code>cor.dendlist</code> function (the default method is cophenetic correlation):</p>
+<p>Both Baker’s Gamma and cophenetic correlation (Which will be
+introduced shortly), can be calculated to create a correlation matrix
+using the <code>cor.dendlist</code> function (the default method is
+cophenetic correlation):</p>
 <div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span><span class="op">(</span><span class="va">dend1234</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt;           Complete    Single   Average  Centroid</span></span>
@@ -1276,7 +1523,8 @@
 <div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html" class="external-link">corrplot</a></span><span class="op">(</span><span class="fu"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span><span class="op">(</span><span class="va">dend1234</span><span class="op">)</span>, <span class="st">"pie"</span>, <span class="st">"lower"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-68-1.png" width="450"></p>
-<p>Which easily tells us that single, average and centroid give similar results, while complete is somewhat different.</p>
+<p>Which easily tells us that single, average and centroid give similar
+results, while complete is somewhat different.</p>
 <div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># same subtrees, so there is no need to color the branches</span></span>
 <span><span class="va">dend1234</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/tanglegram.html">tanglegram</a></span><span class="op">(</span>which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
@@ -1290,18 +1538,43 @@
 <div class="section level5">
 <h5 id="bakers-gamma-index">Baker’s Gamma Index<a class="anchor" aria-label="anchor" href="#bakers-gamma-index"></a>
 </h5>
-<p>Baker’s Gamma Index (see baker’s paper from 1974) is a measure of association (similarity) between two trees of Hierarchical clustering (dendrograms). It is defined as the rank correlation between the stages at which pairs of objects combine in each of the two trees.</p>
-<p>Or more detailed: It is calculated by taking two items, and see what is the highest possible level of k (number of cluster groups created when cutting the tree) for which the two item still belongs to the same tree. That k is returned, and the same is done for these two items for the second tree. There are n over 2 combinations of such pairs of items from the items in the tree, and all of these numbers are calculated for each of the two trees. Then, these two sets of numbers (a set for the items in each tree) are paired according to the pairs of items compared, and a Spearman correlation is calculated.</p>
-<p>The value can range between -1 to 1. With near 0 values meaning that the two trees are not statistically similar. For exact p-value one should use a permutation test. One such option will be to permute over the labels of one tree many times, calculating the distribution under the null hypothesis (keeping the trees topologies constant).</p>
-<p>Notice that this measure is not affected by the height of a branch but only of its relative position compared with other branches.</p>
+<p>Baker’s Gamma Index (see baker’s paper from 1974) is a measure of
+association (similarity) between two trees of Hierarchical clustering
+(dendrograms). It is defined as the rank correlation between the stages
+at which pairs of objects combine in each of the two trees.</p>
+<p>Or more detailed: It is calculated by taking two items, and see what
+is the highest possible level of k (number of cluster groups created
+when cutting the tree) for which the two item still belongs to the same
+tree. That k is returned, and the same is done for these two items for
+the second tree. There are n over 2 combinations of such pairs of items
+from the items in the tree, and all of these numbers are calculated for
+each of the two trees. Then, these two sets of numbers (a set for the
+items in each tree) are paired according to the pairs of items compared,
+and a Spearman correlation is calculated.</p>
+<p>The value can range between -1 to 1. With near 0 values meaning that
+the two trees are not statistically similar. For exact p-value one
+should use a permutation test. One such option will be to permute over
+the labels of one tree many times, calculating the distribution under
+the null hypothesis (keeping the trees topologies constant).</p>
+<p>Notice that this measure is not affected by the height of a branch
+but only of its relative position compared with other branches.</p>
 <div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cor_bakers_gamma.html">cor_bakers_gamma</a></span><span class="op">(</span><span class="va">dend15</span>, <span class="va">dend51</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] 0.2751938</span></span></code></pre>
-<p>Even that we can reach perfect entanglement, Baker’s gamma shows us that the tree’s topology is not identical. As opposed with the correlation of a tree with itself:</p>
+<p>Even that we can reach perfect entanglement, Baker’s gamma shows us
+that the tree’s topology is not identical. As opposed with the
+correlation of a tree with itself:</p>
 <div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cor_bakers_gamma.html">cor_bakers_gamma</a></span><span class="op">(</span><span class="va">dend15</span>, <span class="va">dend15</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] 1</span></span></code></pre>
-<p>Since the observations creating the Baker’s Gamma Index of such a measure are correlated, we need to perform a permutation test for the calculation of the statistical significance of the index. Let’s look at the distribution of Baker’s Gamma Index under the null hypothesis (assuming fixed tree topologies). This will be different for different tree structures and sizes. Here are the results when the compared tree is itself (after shuffling its own labels), and when comparing tree 1 to the shuffled tree 2:</p>
+<p>Since the observations creating the Baker’s Gamma Index of such a
+measure are correlated, we need to perform a permutation test for the
+calculation of the statistical significance of the index. Let’s look at
+the distribution of Baker’s Gamma Index under the null hypothesis
+(assuming fixed tree topologies). This will be different for different
+tree structures and sizes. Here are the results when the compared tree
+is itself (after shuffling its own labels), and when comparing tree 1 to
+the shuffled tree 2:</p>
 <div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23235</span><span class="op">)</span></span>
 <span><span class="va">the_cor</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cor_bakers_gamma.html">cor_bakers_gamma</a></span><span class="op">(</span><span class="va">dend15</span>, <span class="va">dend15</span><span class="op">)</span></span>
@@ -1334,8 +1607,12 @@
 <span>                  <span class="st">" ; cor2 ="</span>,  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">the_cor2</span> <span class="op">&lt;</span> <span class="va">cor_bakers_gamma_results</span><span class="op">)</span><span class="op">/</span> <span class="va">R</span>, <span class="fl">4</span><span class="op">)</span></span>
 <span>                  <span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-72-1.png" width="450"></p>
-<p>We can see that we do not have enough evidence that dend15 and dend51 are significantly “similar” (i.e.: with a correlation larger than 0).</p>
-<p>We can also build a bootstrap confidence interval, using <code>sample.dendrogram</code>, for the correlation. This function can be very slow for larger trees, so make sure you use if carefully:</p>
+<p>We can see that we do not have enough evidence that dend15 and dend51
+are significantly “similar” (i.e.: with a correlation larger than
+0).</p>
+<p>We can also build a bootstrap confidence interval, using
+<code>sample.dendrogram</code>, for the correlation. This function can
+be very slow for larger trees, so make sure you use if carefully:</p>
 <div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend1</span> <span class="op">&lt;-</span> <span class="va">dend15</span></span>
 <span><span class="va">dend2</span> <span class="op">&lt;-</span> <span class="va">dend51</span></span>
@@ -1390,17 +1667,30 @@
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="../reference/cor_bakers_gamma.html">cor_bakers_gamma</a></span><span class="op">(</span><span class="va">dend1</span>, <span class="va">dend2</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, legend <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"95% CI"</span>, <span class="st">"Baker's Gamma Index"</span><span class="op">)</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-73-3.png" width="450"></p>
-<p>The bootstrap sampling can do weird things with small trees. In this case we had many times that the two trees got perfect correlation. The usage and interpretation should be done carefully!</p>
+<p>The bootstrap sampling can do weird things with small trees. In this
+case we had many times that the two trees got perfect correlation. The
+usage and interpretation should be done carefully!</p>
 </div>
 <div class="section level5">
 <h5 id="cophenetic-correlation">Cophenetic correlation<a class="anchor" aria-label="anchor" href="#cophenetic-correlation"></a>
 </h5>
-<p>The cophenetic distance between two observations that have been clustered is defined to be the inter-group dissimilarity at which the two observations are first combined into a single cluster. This distance has many ties and restrictions. The cophenetic correlation (see sokal 1962) is the correlation between two cophenetic distance matrices of two trees.</p>
-<p>The value can range between -1 to 1. With near 0 values meaning that the two trees are not statistically similar. For exact p-value one should result to a permutation test. One such option will be to permute over the labels of one tree many times, and calculating the distribution under the null hypothesis (keeping the trees topologies constant).</p>
+<p>The cophenetic distance between two observations that have been
+clustered is defined to be the inter-group dissimilarity at which the
+two observations are first combined into a single cluster. This distance
+has many ties and restrictions. The cophenetic correlation (see sokal
+1962) is the correlation between two cophenetic distance matrices of two
+trees.</p>
+<p>The value can range between -1 to 1. With near 0 values meaning that
+the two trees are not statistically similar. For exact p-value one
+should result to a permutation test. One such option will be to permute
+over the labels of one tree many times, and calculating the distribution
+under the null hypothesis (keeping the trees topologies constant).</p>
 <div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cor_cophenetic.html">cor_cophenetic</a></span><span class="op">(</span><span class="va">dend15</span>, <span class="va">dend51</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] 0.3125</span></span></code></pre>
-<p>The function <code>cor_cophenetic</code> is faster than <code>cor_bakers_gamma</code>, and might be preferred for that reason.</p>
+<p>The function <code>cor_cophenetic</code> is faster than
+<code>cor_bakers_gamma</code>, and might be preferred for that
+reason.</p>
 </div>
 </div>
 <div class="section level4">
@@ -1409,8 +1699,15 @@
 <div class="section level5">
 <h5 id="the-fowlkes-mallows-index">The Fowlkes-Mallows Index<a class="anchor" aria-label="anchor" href="#the-fowlkes-mallows-index"></a>
 </h5>
-<p>The Fowlkes-Mallows Index (see fowlkes 1983) (FM Index, or Bk) is a measure of similarity between two clusterings. The FM index ranges from 0 to 1, a higher value indicates a greater similarity between the two clusters.</p>
-<p>The dendextend package allows the calculation of FM-Index, its expectancy and variance under the null hypothesis, and a creation of permutations of the FM-Index under H0. Thanks to the profdpm package, we have another example of calculating the FM (though it does not offer the expectancy and variance under H0):</p>
+<p>The Fowlkes-Mallows Index (see fowlkes 1983) (FM Index, or Bk) is a
+measure of similarity between two clusterings. The FM index ranges from
+0 to 1, a higher value indicates a greater similarity between the two
+clusters.</p>
+<p>The dendextend package allows the calculation of FM-Index, its
+expectancy and variance under the null hypothesis, and a creation of
+permutations of the FM-Index under H0. Thanks to the profdpm package, we
+have another example of calculating the FM (though it does not offer the
+expectancy and variance under H0):</p>
 <div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hc1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>, <span class="st">"com"</span><span class="op">)</span></span>
 <span><span class="va">hc2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>, <span class="st">"single"</span><span class="op">)</span></span>
@@ -1440,7 +1737,9 @@
 <span><span class="co">#&gt; [1] 0.4462325</span></span>
 <span><span class="co">#&gt; attr(,"V_FM")</span></span>
 <span><span class="co">#&gt; [1] 6.464092e-05</span></span></code></pre>
-<p>The E_FM and V_FM are the values expected under the null hypothesis that the two trees have the same topology but one is a random shuffle of the labels of the other (i.e.: “no connection” between the trees).</p>
+<p>The E_FM and V_FM are the values expected under the null hypothesis
+that the two trees have the same topology but one is a random shuffle of
+the labels of the other (i.e.: “no connection” between the trees).</p>
 <p>So for the values:</p>
 <div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/FM_index.html">FM_index</a></span><span class="op">(</span><span class="fu"><a href="../reference/cutree-methods.html">cutree</a></span><span class="op">(</span><span class="va">hc1</span>, k<span class="op">=</span><span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="../reference/cutree-methods.html">cutree</a></span><span class="op">(</span><span class="va">hc2</span>, k<span class="op">=</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
@@ -1453,15 +1752,44 @@
 <div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">0.4462</span> <span class="op">+</span> <span class="fl">1.645</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">6.464092e-05</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] 0.4594257</span></span></code></pre>
-<p>And since 0.8059 (our value) &gt; 0.4594 (the critical value under H0, with alpha=5% for a one sided test) - then we can say that we significantly reject the hypothesis that the two trees are “not-similar”.</p>
+<p>And since 0.8059 (our value) &gt; 0.4594 (the critical value under
+H0, with alpha=5% for a one sided test) - then we can say that we
+significantly reject the hypothesis that the two trees are
+“not-similar”.</p>
 </div>
 <div class="section level5">
 <h5 id="the-bk-plot">The Bk plot<a class="anchor" aria-label="anchor" href="#the-bk-plot"></a>
 </h5>
-<p>In the Bk method we calculate the FM Index (Bk) for each k (k=2,3,…,n-1) number of clusters, giving the association between the two trees when each is cut to have k groups. The similarity between two hierarchical clustering dendrograms, can be investigated, using the (k,Bk) plot: For every level of splitting of the two dendrograms which produces k clusters in each tree, the plot shows the number Bk, and therefore enables the investigation of potential nuances in the structure of similarity. The Bk measures the number of pairs of items which are in the same cluster in both dendrograms, one of the clusters in one of the trees and one of the clusters in the other tree, divided by the geometric mean of the number of pairs of items which are in the same cluster in each tree. Namely, <span class="math inline">\({a_{uv}} = 1\left( {or{\rm{ }}{{\rm{b}}_{uv}} = 1} \right)\)</span> if the items u and v are in the same cluster in the first tree (second tree), when it is cut so to give k clusters, and otherwise 0:</p>
-<p><span class="math display">\[{FM_k} = {B_k} = \frac{{\sum\limits_{}^{} {{a_{uv}}{b_{uv}}} }}{{\sqrt {\sum\limits_{}^{} {{a_{uv}}} \sum\limits_{}^{} {{b_{uv}}} } }}\]</span></p>
-<p>The Bk measure can be plotted for every value of k (except k=n) in order to create the “(k,Bk) plot”. The plot compares the similarity of the two trees for different cuts. The mean and variance of Bk, under the null hypothesis (that the two trees are not “similar”), and under the assumption that the margins of the matching matrix are fixed, are given in Fowlkes and Mallows (see fowlkes 1983). They allow making inference on whether the results obtained are different from what would have been expected under the null hypothesis (of now particular order of the trees’ labels).</p>
-<p>The <code>Bk</code> and the <code>Bk_plot</code> functions allow the calculation of the FM-Index for a range of k values on two trees. Here are examples:</p>
+<p>In the Bk method we calculate the FM Index (Bk) for each k
+(k=2,3,…,n-1) number of clusters, giving the association between the two
+trees when each is cut to have k groups. The similarity between two
+hierarchical clustering dendrograms, can be investigated, using the
+(k,Bk) plot: For every level of splitting of the two dendrograms which
+produces k clusters in each tree, the plot shows the number Bk, and
+therefore enables the investigation of potential nuances in the
+structure of similarity. The Bk measures the number of pairs of items
+which are in the same cluster in both dendrograms, one of the clusters
+in one of the trees and one of the clusters in the other tree, divided
+by the geometric mean of the number of pairs of items which are in the
+same cluster in each tree. Namely, <span class="math inline">\({a_{uv}}
+= 1\left( {or{\rm{ }}{{\rm{b}}_{uv}} = 1} \right)\)</span> if the items
+u and v are in the same cluster in the first tree (second tree), when it
+is cut so to give k clusters, and otherwise 0:</p>
+<p><span class="math display">\[{FM_k} = {B_k} =
+\frac{{\sum\limits_{}^{} {{a_{uv}}{b_{uv}}} }}{{\sqrt {\sum\limits_{}^{}
+{{a_{uv}}} \sum\limits_{}^{} {{b_{uv}}} } }}\]</span></p>
+<p>The Bk measure can be plotted for every value of k (except k=n) in
+order to create the “(k,Bk) plot”. The plot compares the similarity of
+the two trees for different cuts. The mean and variance of Bk, under the
+null hypothesis (that the two trees are not “similar”), and under the
+assumption that the margins of the matching matrix are fixed, are given
+in Fowlkes and Mallows (see fowlkes 1983). They allow making inference
+on whether the results obtained are different from what would have been
+expected under the null hypothesis (of now particular order of the
+trees’ labels).</p>
+<p>The <code>Bk</code> and the <code>Bk_plot</code> functions allow the
+calculation of the FM-Index for a range of k values on two trees. Here
+are examples:</p>
 <div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23235</span><span class="op">)</span></span>
 <span><span class="va">ss</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span> <span class="co"># sample(1:150, 30 ) # TRUE #</span></span>
@@ -1502,13 +1830,13 @@
 </h2>
 <div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; R version 4.2.2 (2022-10-31)</span></span>
+<pre><code><span><span class="co">#&gt; R version 4.2.3 (2023-03-15)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span><span class="co">#&gt; Running under: Ubuntu 20.04.5 LTS</span></span>
+<span><span class="co">#&gt; Running under: Ubuntu 22.04.2 LTS</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
-<span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0</span></span>
-<span><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0</span></span>
+<span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span></span>
+<span><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; locale:</span></span>
 <span><span class="co">#&gt;  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span></span>
@@ -1522,32 +1850,32 @@
 <span><span class="co">#&gt; other attached packages:</span></span>
 <span><span class="co">#&gt;  [1] corrplot_0.92         circlize_0.4.15       pvclust_2.2-0        </span></span>
 <span><span class="co">#&gt;  [4] dynamicTreeCut_1.63-1 gplots_3.1.3          DendSer_1.0.2        </span></span>
-<span><span class="co">#&gt;  [7] seriation_1.4.0       gclus_1.3.2           cluster_2.1.4        </span></span>
-<span><span class="co">#&gt; [10] ggplot2_3.3.6         viridis_0.6.2         viridisLite_0.4.1    </span></span>
-<span><span class="co">#&gt; [13] colorspace_2.0-3      knitr_1.40            dendextend_1.17.0    </span></span>
+<span><span class="co">#&gt;  [7] seriation_1.4.2       gclus_1.3.2           cluster_2.1.4        </span></span>
+<span><span class="co">#&gt; [10] ggplot2_3.4.1         viridis_0.6.2         viridisLite_0.4.1    </span></span>
+<span><span class="co">#&gt; [13] colorspace_2.1-0      knitr_1.42            dendextend_1.17.1    </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;  [1] gtools_3.9.3        rprojroot_2.0.3     digest_0.6.30      </span></span>
-<span><span class="co">#&gt;  [4] foreach_1.5.2       utf8_1.2.2          R6_2.5.1           </span></span>
-<span><span class="co">#&gt;  [7] evaluate_0.17       highr_0.9           pillar_1.8.1       </span></span>
-<span><span class="co">#&gt; [10] GlobalOptions_0.1.2 rlang_1.0.6         jquerylib_0.1.4    </span></span>
-<span><span class="co">#&gt; [13] rmarkdown_2.17      pkgdown_2.0.6       textshaping_0.3.6  </span></span>
-<span><span class="co">#&gt; [16] desc_1.4.2          labeling_0.4.2      stringr_1.4.1      </span></span>
-<span><span class="co">#&gt; [19] munsell_0.5.0       compiler_4.2.2      xfun_0.34          </span></span>
+<span><span class="co">#&gt;  [1] gtools_3.9.4        rprojroot_2.0.3     digest_0.6.31      </span></span>
+<span><span class="co">#&gt;  [4] foreach_1.5.2       utf8_1.2.3          R6_2.5.1           </span></span>
+<span><span class="co">#&gt;  [7] evaluate_0.20       highr_0.10          pillar_1.9.0       </span></span>
+<span><span class="co">#&gt; [10] GlobalOptions_0.1.2 rlang_1.1.0         jquerylib_0.1.4    </span></span>
+<span><span class="co">#&gt; [13] rmarkdown_2.20      pkgdown_2.0.7       textshaping_0.3.6  </span></span>
+<span><span class="co">#&gt; [16] desc_1.4.2          labeling_0.4.2      stringr_1.5.0      </span></span>
+<span><span class="co">#&gt; [19] munsell_0.5.0       compiler_4.2.3      xfun_0.37          </span></span>
 <span><span class="co">#&gt; [22] pkgconfig_2.0.3     systemfonts_1.0.4   shape_1.4.6        </span></span>
-<span><span class="co">#&gt; [25] htmltools_0.5.3     tidyselect_1.2.0    tibble_3.1.8       </span></span>
-<span><span class="co">#&gt; [28] gridExtra_2.3       codetools_0.2-18    fansi_1.0.3        </span></span>
-<span><span class="co">#&gt; [31] dplyr_1.0.10        withr_2.5.0         bitops_1.0-7       </span></span>
-<span><span class="co">#&gt; [34] grid_4.2.2          jsonlite_1.8.3      gtable_0.3.1       </span></span>
+<span><span class="co">#&gt; [25] htmltools_0.5.4     tidyselect_1.2.0    tibble_3.2.1       </span></span>
+<span><span class="co">#&gt; [28] gridExtra_2.3       codetools_0.2-19    fansi_1.0.4        </span></span>
+<span><span class="co">#&gt; [31] dplyr_1.1.1         withr_2.5.0         bitops_1.0-7       </span></span>
+<span><span class="co">#&gt; [34] grid_4.2.3          jsonlite_1.8.4      gtable_0.3.3       </span></span>
 <span><span class="co">#&gt; [37] lifecycle_1.0.3     registry_0.5-1      magrittr_2.0.3     </span></span>
-<span><span class="co">#&gt; [40] scales_1.2.1        KernSmooth_2.23-20  cli_3.4.1          </span></span>
-<span><span class="co">#&gt; [43] stringi_1.7.8       cachem_1.0.6        farver_2.1.1       </span></span>
-<span><span class="co">#&gt; [46] fs_1.5.2            ca_0.71.1           bslib_0.4.0        </span></span>
-<span><span class="co">#&gt; [49] ragg_1.2.4          generics_0.1.3      vctrs_0.5.0        </span></span>
-<span><span class="co">#&gt; [52] iterators_1.0.14    tools_4.2.2         glue_1.6.2         </span></span>
-<span><span class="co">#&gt; [55] purrr_0.3.5         fastmap_1.1.0       yaml_2.3.6         </span></span>
-<span><span class="co">#&gt; [58] caTools_1.18.2      TSP_1.2-1           memoise_2.0.1      </span></span>
-<span><span class="co">#&gt; [61] sass_0.4.2</span></span></code></pre>
+<span><span class="co">#&gt; [40] scales_1.2.1        KernSmooth_2.23-20  cli_3.6.0          </span></span>
+<span><span class="co">#&gt; [43] stringi_1.7.12      cachem_1.0.7        farver_2.1.1       </span></span>
+<span><span class="co">#&gt; [46] fs_1.6.1            ca_0.71.1           bslib_0.4.2        </span></span>
+<span><span class="co">#&gt; [49] ragg_1.2.5          generics_0.1.3      vctrs_0.6.1        </span></span>
+<span><span class="co">#&gt; [52] iterators_1.0.14    tools_4.2.3         glue_1.6.2         </span></span>
+<span><span class="co">#&gt; [55] purrr_1.0.1         fastmap_1.1.1       yaml_2.3.7         </span></span>
+<span><span class="co">#&gt; [58] caTools_1.18.2      TSP_1.2-3           memoise_2.0.1      </span></span>
+<span><span class="co">#&gt; [61] sass_0.4.5</span></span></code></pre>
 </div>
   </div>
 
@@ -1568,7 +1896,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

@@ -26,7 +26,7 @@ can be used by ggplot2+geom_segment+geom_text to create a dendrogram plot."><!--
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
       </span>
     </div>
 
@@ -101,7 +101,9 @@ can be used by ggplot2+geom_segment+geom_text to create a dendrogram plot.</p>
 <span></span>
 <span><span class="co"># S3 method for ggdend</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
-<span>  <span class="va">data</span>,</span>
+<span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span>,</span>
 <span>  segments <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  nodes <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -109,7 +111,7 @@ can be used by ggplot2+geom_segment+geom_text to create a dendrogram plot.</p>
 <span>  theme <span class="op">=</span> <span class="fu"><a href="theme_dendro.html">theme_dendro</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  offset_labels <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  <span class="va">...</span></span>
+<span>  environment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for dendrogram</span></span>
@@ -149,6 +151,10 @@ rectangular lines, while "triangle" will draw triangular lines.</p></dd>
 <dd><p>a ggdend class object (passed to ggplot.dendrogram or print.ggdend).</p></dd>
 
 
+<dt>mapping</dt>
+<dd><p>(passed in ggplot.ggdend) Default list of aesthetic mappings to use for plot. If not specified, must be supplied in each layer added to the plot.</p></dd>
+
+
 <dt>segments</dt>
 <dd><p>a logical (TRUE) if to plot the segments (branches).</p></dd>
 
@@ -177,6 +183,10 @@ for the default ggplot2 theme)</p></dd>
 <dt>na.rm</dt>
 <dd><p>A logical (TRUE) to control removal of missing values. Passed to
 <a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a> and <a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></p></dd>
+
+
+<dt>environment</dt>
+<dd><p>(passed in ggplot.ggdend) deprecated / ignored.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -288,7 +298,7 @@ it only if you'd wish to build your own ggplot2 mapping.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

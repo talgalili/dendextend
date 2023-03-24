@@ -23,7 +23,7 @@ respectively."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/li
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
       </span>
     </div>
 
@@ -200,7 +200,8 @@ that are proportional to each branche's height (measured by its lower tip).</p>
 <span class="r-in"><span>  <span class="fu"><a href="set.html">set</a></span><span class="op">(</span><span class="st">"branches_k_color"</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set.html">set</a></span><span class="op">(</span><span class="st">"highlight_branches_lwd"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="ladderize.html">ladderize</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in oV(x, wts):</span> argument "wts" is missing, with no default</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in vapply(x, attr, numeric(1L), which = "value"):</span> values must be type 'double',</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>  but FUN(X[[1]]) result is type 'character'</span>
 <span class="r-in"><span><span class="co">#    rotate_DendSer(ser_weight = dist(x))</span></span></span>
 <span class="r-in"><span><span class="va">Colv</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
@@ -210,7 +211,8 @@ that are proportional to each branche's height (measured by its lower tip).</p>
 <span class="r-in"><span>  <span class="fu"><a href="set.html">set</a></span><span class="op">(</span><span class="st">"branches_k_color"</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set.html">set</a></span><span class="op">(</span><span class="st">"highlight_branches_lwd"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="ladderize.html">ladderize</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in oV(x, wts):</span> argument "wts" is missing, with no default</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in vapply(x, attr, numeric(1L), which = "value"):</span> values must be type 'double',</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>  but FUN(X[[1]]) result is type 'character'</span>
 <span class="r-in"><span><span class="co">#    rotate_DendSer(ser_weight = dist(t(x)))</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/talgalili/gplots" class="external-link">gplots</a></span><span class="op">)</span></span></span>
@@ -230,7 +232,7 @@ that are proportional to each branche's height (measured by its lower tip).</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

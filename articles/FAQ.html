@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
       </span>
     </div>
 
@@ -84,13 +84,13 @@
 
       
 
-      </header><script src="FAQ_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Frequently asked questions</h1>
                         <h4 data-toc-skip class="author">Tal Galili</h4>
             
-            <h4 data-toc-skip class="date">2022-11-01</h4>
+            <h4 data-toc-skip class="date">2023-03-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/HEAD/vignettes/FAQ.Rmd" class="external-link"><code>vignettes/FAQ.Rmd</code></a></small>
       <div class="hidden name"><code>FAQ.Rmd</code></div>
@@ -106,9 +106,11 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>Questions are often taken from here the <a href="https://stackoverflow.com/questions/tagged/dendrogram+r" class="external-link">stackoverflow <code>dendrogram</code> tag</a>.</p>
+<p>Questions are often taken from here the <a href="https://stackoverflow.com/questions/tagged/dendrogram+r" class="external-link">stackoverflow
+<code>dendrogram</code> tag</a>.</p>
 <div class="section level3">
-<h3 id="how-to-colour-the-labels-of-a-dendrogram-by-an-additional-factor-variable">How to colour the labels of a dendrogram by an additional factor variable<a class="anchor" aria-label="anchor" href="#how-to-colour-the-labels-of-a-dendrogram-by-an-additional-factor-variable"></a>
+<h3 id="how-to-colour-the-labels-of-a-dendrogram-by-an-additional-factor-variable">How to colour the labels of a dendrogram by an additional factor
+variable<a class="anchor" aria-label="anchor" href="#how-to-colour-the-labels-of-a-dendrogram-by-an-additional-factor-variable"></a>
 </h3>
 <p>Asked (<a href="https://stackoverflow.com/questions/27485549/how-to-colour-the-labels-of-a-dendrogram-by-an-additional-factor-variable-in-r" class="external-link uri">https://stackoverflow.com/questions/27485549/how-to-colour-the-labels-of-a-dendrogram-by-an-additional-factor-variable-in-r</a>)[here].</p>
 <p>Solution: use the <code>labels_colors</code> function.</p>
@@ -136,7 +138,11 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">dend</span>, main <span class="op">=</span> <span class="st">"A color for every state"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-2-1.png" width="600"></p>
-<p>Instead of using <code>1:5</code>, we can obviously use colors that are based on another factor (organized): the labels themselves. But in such a case, we want to map between the order of the labels and the order of the items in the original dataset. Here is another example based on the iris dataset:</p>
+<p>Instead of using <code>1:5</code>, we can obviously use colors that
+are based on another factor (organized): the labels themselves. But in
+such a case, we want to map between the order of the labels and the
+order of the items in the original dataset. Here is another example
+based on the iris dataset:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("dendextend")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/" class="external-link">dendextend</a></span><span class="op">)</span></span>
@@ -174,11 +180,19 @@
 <p><img src="FAQ_files/figure-html/unnamed-chunk-3-1.png" width="600"></p>
 </div>
 <div class="section level3">
-<h3 id="how-to-color-a-dendrograms-labels-according-to-defined-groups-in-r">How to color a dendrogram’s labels according to defined groups? (in R)<a class="anchor" aria-label="anchor" href="#how-to-color-a-dendrograms-labels-according-to-defined-groups-in-r"></a>
+<h3 id="how-to-color-a-dendrograms-labels-according-to-defined-groups-in-r">How to color a dendrogram’s labels according to defined groups? (in
+R)<a class="anchor" aria-label="anchor" href="#how-to-color-a-dendrograms-labels-according-to-defined-groups-in-r"></a>
 </h3>
 <p>Asked (<a href="https://stackoverflow.com/questions/31117849/how-to-color-a-dendrograms-labels-according-to-defined-groups-in-r" class="external-link uri">https://stackoverflow.com/questions/31117849/how-to-color-a-dendrograms-labels-according-to-defined-groups-in-r</a>)[here].</p>
 <p>Solution: use the <code>color_labels</code> function.</p>
-<p>I suspect the function you are looking for is either <code>color_labels</code> or <code>get_leaves_branches_col</code>. The first color your labels based on <code>cutree</code> (like <code>color_branches</code> do) and the second allows you to get the colors of the branch of each leaf, and then use it to color the labels of the tree (if you use unusual methods for coloring the branches (as happens when using <code>branches_attr_by_labels</code>). For example:</p>
+<p>I suspect the function you are looking for is either
+<code>color_labels</code> or <code>get_leaves_branches_col</code>. The
+first color your labels based on <code>cutree</code> (like
+<code>color_branches</code> do) and the second allows you to get the
+colors of the branch of each leaf, and then use it to color the labels
+of the tree (if you use unusual methods for coloring the branches (as
+happens when using <code>branches_attr_by_labels</code>). For
+example:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="co"># define dendrogram object to play with:</span></span>
 <span> <span class="va">hc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span><span class="op">)</span>, <span class="st">"ave"</span><span class="op">)</span></span>
@@ -198,12 +212,16 @@
 <span> <span class="co"># labels_colors(dend)  &lt;- get_leaves_branches_col(dend)</span></span>
 <span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span></span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-4-1.png" width="450"></p>
-<p>Either way, you should always have a look at the <code>set</code> function, for ideas on what can be done to your dendrogram (this saves the hassle of remembering all the different functions names).</p>
+<p>Either way, you should always have a look at the <code>set</code>
+function, for ideas on what can be done to your dendrogram (this saves
+the hassle of remembering all the different functions names).</p>
 </div>
 <div class="section level3">
-<h3 id="how-to-color-a-dendrograms-brancheslabels-based-on-cluster-i-e--cutree-result">How to color a dendrogram’s branches/labels based on cluster (i.e.: cutree result)<a class="anchor" aria-label="anchor" href="#how-to-color-a-dendrograms-brancheslabels-based-on-cluster-i-e--cutree-result"></a>
+<h3 id="how-to-color-a-dendrograms-brancheslabels-based-on-cluster-i-e--cutree-result">How to color a dendrogram’s branches/labels based on cluster (i.e.:
+cutree result)<a class="anchor" aria-label="anchor" href="#how-to-color-a-dendrograms-brancheslabels-based-on-cluster-i-e--cutree-result"></a>
 </h3>
-<p>Use the <code>color_branches</code> and <code>color_labels</code> functions, with the <code>k</code> (or<code>h</code>) parameter:</p>
+<p>Use the <code>color_branches</code> and <code>color_labels</code>
+functions, with the <code>k</code> (or<code>h</code>) parameter:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("dendextend")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/" class="external-link">dendextend</a></span><span class="op">)</span></span>
@@ -243,7 +261,8 @@
 <h3 id="larger-font-for-leaves-in-a-dendrogram">Larger font for leaves in a dendrogram<a class="anchor" aria-label="anchor" href="#larger-font-for-leaves-in-a-dendrogram"></a>
 </h3>
 <p>Asked (<a href="https://stackoverflow.com/questions/26965390/larger-font-and-spacing-between-leaves-in-r-dendrogram" class="external-link uri">https://stackoverflow.com/questions/26965390/larger-font-and-spacing-between-leaves-in-r-dendrogram</a>)[here].</p>
-<p>Solution: use the <code>set</code> function, with the “labels_cex” parameter.</p>
+<p>Solution: use the <code>set</code> function, with the “labels_cex”
+parameter.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("dendextend")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/" class="external-link">dendextend</a></span><span class="op">)</span></span>
@@ -271,13 +290,17 @@
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">dend</span>, main <span class="op">=</span> <span class="st">"A larger font for labels"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="FAQ_files/figure-html/unnamed-chunk-7-1.png" width="600"></p>
-<p>(Note that changing the spacing between the labels is currently not implemented)</p>
+<p>(Note that changing the spacing between the labels is currently not
+implemented)</p>
 </div>
 <div class="section level3">
 <h3 id="how-to-view-attributes-of-a-dendrogram">How to view attributes of a dendrogram<a class="anchor" aria-label="anchor" href="#how-to-view-attributes-of-a-dendrogram"></a>
 </h3>
-<p>Asked (<a href="https://stackoverflow.com/questions/26240200/how-to-access-attributes-of-a-dendrogram-in-r" class="external-link uri">https://stackoverflow.com/questions/26240200/how-to-access-attributes-of-a-dendrogram-in-r</a>)[here], and (<a href="https://stackoverflow.com/questions/25664911/r-hclust-height-of-final-merge" class="external-link uri">https://stackoverflow.com/questions/25664911/r-hclust-height-of-final-merge</a>)[here].</p>
-<p>It generally depends on which attribute we want to view. For “midpoint” (or height) use the <code>get_nodes_attr</code> function, with the “midpoint” parameter.</p>
+<p>Asked (<a href="https://stackoverflow.com/questions/26240200/how-to-access-attributes-of-a-dendrogram-in-r" class="external-link uri">https://stackoverflow.com/questions/26240200/how-to-access-attributes-of-a-dendrogram-in-r</a>)[here],
+and (<a href="https://stackoverflow.com/questions/25664911/r-hclust-height-of-final-merge" class="external-link uri">https://stackoverflow.com/questions/25664911/r-hclust-height-of-final-merge</a>)[here].</p>
+<p>It generally depends on which attribute we want to view. For
+“midpoint” (or height) use the <code>get_nodes_attr</code> function,
+with the “midpoint” parameter.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("dendextend")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/" class="external-link">dendextend</a></span><span class="op">)</span></span>
@@ -294,14 +317,23 @@
 <span><span class="fu"><a href="../reference/get_nodes_attr.html">get_nodes_attr</a></span><span class="op">(</span><span class="va">dend</span>, <span class="st">"height"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 108.85192   0.00000  63.00833  23.19418   0.00000   0.00000  37.17701</span></span>
 <span><span class="co">## [8]   0.00000   0.00000</span></span></code></pre>
-<p>To also change an attribute, you can use the various assign functions from the package: <code>assign_values_to_leaves_nodePar</code>, <code>assign_values_to_leaves_edgePar</code>, <code>assign_values_to_nodes_nodePar</code>, <code>assign_values_to_branches_edgePar</code>, <code>remove_branches_edgePar</code>, <code>remove_nodes_nodePar</code></p>
+<p>To also change an attribute, you can use the various assign functions
+from the package: <code>assign_values_to_leaves_nodePar</code>,
+<code>assign_values_to_leaves_edgePar</code>,
+<code>assign_values_to_nodes_nodePar</code>,
+<code>assign_values_to_branches_edgePar</code>,
+<code>remove_branches_edgePar</code>,
+<code>remove_nodes_nodePar</code></p>
 </div>
 <div class="section level3">
 <h3 id="how-to-color-the-branches-in-heatmap-2">How to color the branches in heatmap.2?<a class="anchor" aria-label="anchor" href="#how-to-color-the-branches-in-heatmap-2"></a>
 </h3>
 <p>Asked (<a href="https://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2" class="external-link uri">https://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2</a>?)[here].</p>
-<p>Solution: use the <code>color_branches</code> function (or the <code>set</code> function, with the “branches_k_color”, “k”, and “value” parameters).</p>
-<p>(Getting the data for this example is from the (<a href="https://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2" class="external-link uri">https://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2</a>)[original SO question])</p>
+<p>Solution: use the <code>color_branches</code> function (or the
+<code>set</code> function, with the “branches_k_color”, “k”, and “value”
+parameters).</p>
+<p>(Getting the data for this example is from the (<a href="https://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2" class="external-link uri">https://stackoverflow.com/questions/29265536/how-to-color-the-branches-and-tick-labels-in-the-heatmap-2</a>)[original
+SO question])</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test</span> <span class="op">&lt;-</span> <span class="va">test0</span></span>
 <span><span class="va">rnames</span> <span class="op">&lt;-</span> <span class="va">test</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> </span>
@@ -372,13 +404,18 @@
 <span>        <span class="op">)</span> </span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="for-package-developers---how-to-call-imported-calls-from-dendextend-0-18-3">For package developers - how to call imported calls from dendextend 0.18.3?<a class="anchor" aria-label="anchor" href="#for-package-developers---how-to-call-imported-calls-from-dendextend-0-18-3"></a>
+<h3 id="for-package-developers---how-to-call-imported-calls-from-dendextend-0-18-3">For package developers - how to call imported calls from dendextend
+0.18.3?<a class="anchor" aria-label="anchor" href="#for-package-developers---how-to-call-imported-calls-from-dendextend-0-18-3"></a>
 </h3>
-<p>If you are developing a package and you wish to use dendextend as an imported package, that is - without loading it to the search path, you should run:</p>
+<p>If you are developing a package and you wish to use dendextend as an
+imported package, that is - without loading it to the search path, you
+should run:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dendextend</span><span class="fu">::</span><span class="fu"><a href="../reference/assign_dendextend_options.html">assign_dendextend_options</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co"># This populates the dendextend::dendextend_options() space</span></span></code></pre></div>
-<p>Before using any of its function (for example: <code><a href="../reference/color_branches.html">dendextend::color_branches</a></code> ). As of dendextend version 1.0.0, this is no longer required.</p>
+<p>Before using any of its function (for example:
+<code><a href="../reference/color_branches.html">dendextend::color_branches</a></code> ). As of dendextend version
+1.0.0, this is no longer required.</p>
 </div>
 <div class="section level3">
 <h3 id="how-to-plot-a-fan-polar-dendrogram-in-r">How to plot a fan (Polar) Dendrogram in R?<a class="anchor" aria-label="anchor" href="#how-to-plot-a-fan-polar-dendrogram-in-r"></a>
@@ -420,24 +457,32 @@
 <p><img src="FAQ_files/figure-html/unnamed-chunk-12-1.png" width="750"></p>
 </div>
 <div class="section level3">
-<h3 id="a-way-to-calculate-lowest-value-of-h-in-cut-that-produces-groupings-of-a-given-minimum-size">A way to calculate lowest value of h in cut that produces groupings of a given minimum size?<a class="anchor" aria-label="anchor" href="#a-way-to-calculate-lowest-value-of-h-in-cut-that-produces-groupings-of-a-given-minimum-size"></a>
+<h3 id="a-way-to-calculate-lowest-value-of-h-in-cut-that-produces-groupings-of-a-given-minimum-size">A way to calculate lowest value of h in cut that produces groupings
+of a given minimum size?<a class="anchor" aria-label="anchor" href="#a-way-to-calculate-lowest-value-of-h-in-cut-that-produces-groupings-of-a-given-minimum-size"></a>
 </h3>
 <p>Asked (<a href="https://stackoverflow.com/questions/31124810/r-cut-dendrogram-into-groups-with-minimum-size/" class="external-link uri">https://stackoverflow.com/questions/31124810/r-cut-dendrogram-into-groups-with-minimum-size/</a>)[here].</p>
 <p>Solution: use the <code>heights_per_k.dendrogram</code> function.</p>
-<p>This feature is available in the dendextend package with the <code>heights_per_k.dendrogram</code> function (which also has a faster C++ implementation when loading the dendextendRcpp function).</p>
+<p>This feature is available in the dendextend package with the
+<code>heights_per_k.dendrogram</code> function (which also has a faster
+C++ implementation when loading the dendextendRcpp function).</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,<span class="op">]</span><span class="op">)</span>, <span class="st">"ave"</span><span class="op">)</span></span>
 <span><span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html" class="external-link">as.dendrogram</a></span><span class="op">(</span><span class="va">hc</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/heights_per_k.dendrogram.html">heights_per_k.dendrogram</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##        1        2        3        4 </span></span>
 <span><span class="co">## 86.47086 68.84745 45.98871 28.36531</span></span></code></pre>
-<p>As a sidenote, the dendextend package has a <code>cutree.dendrogram</code> S3 method for dendrograms (which works very similarly to <code>cutree</code> for <code>hclust</code> objects).</p>
+<p>As a sidenote, the dendextend package has a
+<code>cutree.dendrogram</code> S3 method for dendrograms (which works
+very similarly to <code>cutree</code> for <code>hclust</code>
+objects).</p>
 </div>
 <div class="section level3">
-<h3 id="coloring-dendrograms-end-branches-or-leaves-based-on-column-number-of-data-frame-in-r">Coloring dendrogram’s end branches (or leaves) based on column number of data frame in R<a class="anchor" aria-label="anchor" href="#coloring-dendrograms-end-branches-or-leaves-based-on-column-number-of-data-frame-in-r"></a>
+<h3 id="coloring-dendrograms-end-branches-or-leaves-based-on-column-number-of-data-frame-in-r">Coloring dendrogram’s end branches (or leaves) based on column
+number of data frame in R<a class="anchor" aria-label="anchor" href="#coloring-dendrograms-end-branches-or-leaves-based-on-column-number-of-data-frame-in-r"></a>
 </h3>
 <p>Asked (<a href="https://stackoverflow.com/questions/30062187/coloring-dendrogram-s-end-branches-or-leaves-based-on-column-number-of-data-fr" class="external-link uri">https://stackoverflow.com/questions/30062187/coloring-dendrogram-s-end-branches-or-leaves-based-on-column-number-of-data-fr</a>)[here].</p>
-<p>Solution: use the <code>assign_values_to_leaves_edgePar</code> function.</p>
+<p>Solution: use the <code>assign_values_to_leaves_edgePar</code>
+function.</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">aa1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">8</span><span class="op">)</span></span>
 <span><span class="va">bb1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">7</span>,<span class="fl">11</span><span class="op">)</span></span>
@@ -544,7 +589,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

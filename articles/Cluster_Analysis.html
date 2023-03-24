@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
       </span>
     </div>
 
@@ -84,13 +84,14 @@
 
       
 
-      </header><script src="Cluster_Analysis_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Hierarchical cluster analysis on famous data sets - enhanced with the <em>dendextend</em> package</h1>
+      <h1 data-toc-skip>Hierarchical cluster analysis on famous data
+sets - enhanced with the <em>dendextend</em> package</h1>
                         <h4 data-toc-skip class="author">Tal Galili</h4>
             
-            <h4 data-toc-skip class="date">2022-11-01</h4>
+            <h4 data-toc-skip class="date">2023-03-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/HEAD/vignettes/Cluster_Analysis.Rmd" class="external-link"><code>vignettes/Cluster_Analysis.Rmd</code></a></small>
       <div class="hidden name"><code>Cluster_Analysis.Rmd</code></div>
@@ -106,7 +107,10 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>This document demonstrates, on several famous data sets, how the <em>dendextend</em> R package can be used to enhance Hierarchical Cluster Analysis (through better visualization and sensitivity analysis).</p>
+<p>This document demonstrates, on several famous data sets, how the
+<em>dendextend</em> R package can be used to enhance Hierarchical
+Cluster Analysis (through better visualization and sensitivity
+analysis).</p>
 </div>
 <div class="section level2">
 <h2 id="iris---edgar-andersons-iris-data">iris - Edgar Anderson’s Iris Data<a class="anchor" aria-label="anchor" href="#iris---edgar-andersons-iris-data"></a>
@@ -115,9 +119,17 @@
 <h3 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
 </h3>
 <blockquote>
-<p>The famous (Fisher’s or Anderson’s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica. (from <code><a href="https://rdrr.io/r/datasets/iris.html" class="external-link">?iris</a></code>)</p>
+<p>The famous (Fisher’s or Anderson’s) iris data set gives the
+measurements in centimeters of the variables sepal length and width and
+petal length and width, respectively, for 50 flowers from each of 3
+species of iris. The species are Iris setosa, versicolor, and virginica.
+(from <code><a href="https://rdrr.io/r/datasets/iris.html" class="external-link">?iris</a></code>)</p>
 </blockquote>
-<p>The <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set" class="external-link">Iris flower data set</a> is fun for learning supervised classification algorithms, and is known as a difficult case for unsupervised learning. This is easily seen through the following Scatter Plot Matrix (SPLOM):</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set" class="external-link">Iris
+flower data set</a> is fun for learning supervised classification
+algorithms, and is known as a difficult case for unsupervised learning.
+This is easily seen through the following Scatter Plot Matrix
+(SPLOM):</p>
 <p>Define variables:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iris</span> <span class="op">&lt;-</span> <span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/iris.html" class="external-link">iris</a></span></span>
@@ -139,8 +151,13 @@
 <span>    fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">species_col</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>xpd <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-3-1.png" width="675"></p>
-<p>We can see that the <em>Setosa</em> species are distinctly different from <em>Versicolor</em> and <em>Virginica</em> (they have lower petal length and width). But <em>Versicolor</em> and <em>Virginica</em> cannot easily be separated based on measurements of their sepal and petal width/length.</p>
-<p>The same conclusion can be made by looking at the parallel coordinates plot of the data:</p>
+<p>We can see that the <em>Setosa</em> species are distinctly different
+from <em>Versicolor</em> and <em>Virginica</em> (they have lower petal
+length and width). But <em>Versicolor</em> and <em>Virginica</em> cannot
+easily be separated based on measurements of their sepal and petal
+width/length.</p>
+<p>The same conclusion can be made by looking at the parallel
+coordinates plot of the data:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># http://blog.safaribooksonline.com/2014/03/31/mastering-parallel-coordinate-charts-r/</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>las <span class="op">=</span> <span class="fl">1</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4.5</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span>, cex <span class="op">=</span> <span class="fl">.8</span><span class="op">)</span></span>
@@ -158,9 +175,15 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>xpd <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="the-3-clusters-from-the-complete-method-vs-the-real-species-category">The 3 clusters from the “complete” method vs the real species category<a class="anchor" aria-label="anchor" href="#the-3-clusters-from-the-complete-method-vs-the-real-species-category"></a>
+<h3 id="the-3-clusters-from-the-complete-method-vs-the-real-species-category">The 3 clusters from the “complete” method vs the real species
+category<a class="anchor" aria-label="anchor" href="#the-3-clusters-from-the-complete-method-vs-the-real-species-category"></a>
 </h3>
-<p>The default hierarchical clustering method in <code>hclust</code> is “complete”. We can visualize the result of running it by turning the object to a dendrogram and making several adjustments to the object, such as: changing the labels, coloring the labels based on the real species category, and coloring the branches based on cutting the tree into three clusters.</p>
+<p>The default hierarchical clustering method in <code>hclust</code> is
+“complete”. We can visualize the result of running it by turning the
+object to a dendrogram and making several adjustments to the object,
+such as: changing the labels, coloring the labels based on the real
+species category, and coloring the branches based on cutting the tree
+into three clusters.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d_iris</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">iris2</span><span class="op">)</span> <span class="co"># method="man" # is a bit better</span></span>
 <span><span class="va">hc_iris</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span><span class="va">d_iris</span>, method <span class="op">=</span> <span class="st">"complete"</span><span class="op">)</span></span>
@@ -209,10 +232,22 @@
 <span><span class="fu"><a href="../reference/circlize_dendrogram.html">circlize_dendrogram</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Loading required namespace: circlize</span></span></code></pre>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-6-1.png" width="525"></p>
-<p>These visualizations easily demonstrates how the separation of the hierarchical clustering is very good with the “Setosa” species, but misses in labeling many “Versicolor” species as “Virginica”.</p>
-<p>The hanging of the tree also helps to locate extreme observations. For example, we can see that observation “virginica (107)” is not very similar to the Versicolor species, but still, it is among them. Also, “Versicolor (71)” is located too much “within” the group of Virginica flowers.</p>
-<p>We can also explore the data using a heatmap. The rows are ordered based on the order of the hierarchical clustering (using the “complete” method). The colored bar indicates the species category each row belongs to. The color in the heatmap indicates the length of each measurement (from light yellow to dark red).</p>
-<p>In the heatmap we also see how the Setosa species has low petal values (in light yellow), but it is very difficult to see any clear distinction between the other two species.</p>
+<p>These visualizations easily demonstrates how the separation of the
+hierarchical clustering is very good with the “Setosa” species, but
+misses in labeling many “Versicolor” species as “Virginica”.</p>
+<p>The hanging of the tree also helps to locate extreme observations.
+For example, we can see that observation “virginica (107)” is not very
+similar to the Versicolor species, but still, it is among them. Also,
+“Versicolor (71)” is located too much “within” the group of Virginica
+flowers.</p>
+<p>We can also explore the data using a heatmap. The rows are ordered
+based on the order of the hierarchical clustering (using the “complete”
+method). The colored bar indicates the species category each row belongs
+to. The color in the heatmap indicates the length of each measurement
+(from light yellow to dark red).</p>
+<p>In the heatmap we also see how the Setosa species has low petal
+values (in light yellow), but it is very difficult to see any clear
+distinction between the other two species.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">some_col_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu">colorspace</span><span class="fu">::</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/rainbow_hcl.html" class="external-link">heat_hcl</a></span><span class="op">(</span><span class="va">n</span>, c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">30</span><span class="op">)</span>, l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">90</span><span class="op">)</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">5</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -233,7 +268,9 @@
 <span>          col <span class="op">=</span> <span class="va">some_col_func</span></span>
 <span>         <span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-8-1.png" width="675"></p>
-<p>We can get an interactive heatmap by using the <code>heatmaply</code> package/function: (code is not evaluated in order to keep the HTML size)</p>
+<p>We can get an interactive heatmap by using the <code>heatmaply</code>
+package/function: (code is not evaluated in order to keep the HTML
+size)</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">heatmaply</span><span class="fu">::</span><span class="fu"><a href="https://talgalili.github.io/heatmaply/reference/heatmaply.html" class="external-link">heatmaply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">iris2</span><span class="op">)</span>,</span>
 <span>          dendrogram <span class="op">=</span> <span class="st">"row"</span>,</span>
@@ -242,7 +279,12 @@
 <div class="section level3">
 <h3 id="similaritydifference-between-various-clustering-algorithms">Similarity/difference between various clustering algorithms<a class="anchor" aria-label="anchor" href="#similaritydifference-between-various-clustering-algorithms"></a>
 </h3>
-<p>We may ask ourselves how many different results we could get if we would use different clustering algorithms (<code>hclust</code> has 8 different algorithms implemented). For the purpose of this analysis, we will create all 8 hclust objects, and chain them together into a single <code>dendlist</code> object (which, as the name implies, can hold a bunch of dendrograms together for the purpose of further analysis).</p>
+<p>We may ask ourselves how many different results we could get if we
+would use different clustering algorithms (<code>hclust</code> has 8
+different algorithms implemented). For the purpose of this analysis, we
+will create all 8 hclust objects, and chain them together into a single
+<code>dendlist</code> object (which, as the name implies, can hold a
+bunch of dendrograms together for the purpose of further analysis).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hclust_methods</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ward.D"</span>, <span class="st">"single"</span>, <span class="st">"complete"</span>, <span class="st">"average"</span>, <span class="st">"mcquitty"</span>, </span>
 <span>        <span class="st">"median"</span>, <span class="st">"centroid"</span>, <span class="st">"ward.D2"</span><span class="op">)</span></span>
@@ -279,7 +321,10 @@
 <span><span class="co">## </span></span>
 <span><span class="co">## attr(,"class")</span></span>
 <span><span class="co">## [1] "dendlist"</span></span></code></pre>
-<p>Next, we can look at the cophenetic correlation between each clustering result using <code>cor.dendlist</code>. (This can be nicely plotted using the <code>corrplot</code> function from the <em>corrplot</em> package):</p>
+<p>Next, we can look at the cophenetic correlation between each
+clustering result using <code>cor.dendlist</code>. (This can be nicely
+plotted using the <code>corrplot</code> function from the
+<em>corrplot</em> package):</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iris_dendlist_cor</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span><span class="op">(</span><span class="va">iris_dendlist</span><span class="op">)</span></span>
 <span><span class="va">iris_dendlist_cor</span></span></code></pre></div>
@@ -304,15 +349,30 @@
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html" class="external-link">corrplot</a></span><span class="op">(</span><span class="va">iris_dendlist_cor</span>, <span class="st">"pie"</span>, <span class="st">"lower"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-11-1.png" width="600"></p>
-<p>From the above figure, we can easily see that most clustering methods yield very similar results, except for the complete method (the default method in <code>hclust</code>), which yields a correlation measure of around 0.6.</p>
-<p>The default cophenetic correlation uses pearson’s measure, but what if we use the spearman’s correlation coefficient?</p>
+<p>From the above figure, we can easily see that most clustering methods
+yield very similar results, except for the complete method (the default
+method in <code>hclust</code>), which yields a correlation measure of
+around 0.6.</p>
+<p>The default cophenetic correlation uses pearson’s measure, but what
+if we use the spearman’s correlation coefficient?</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iris_dendlist_cor_spearman</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span><span class="op">(</span><span class="va">iris_dendlist</span>, method_coef <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span>
 <span><span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html" class="external-link">corrplot</a></span><span class="op">(</span><span class="va">iris_dendlist_cor_spearman</span>, <span class="st">"pie"</span>, <span class="st">"lower"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-12-1.png" width="600"></p>
-<p>We can see that the correlations are not so strong, indicating a behavior that is dependent on some items which are very distant from one another having an influence on the pearson’s correlation more than that of the spearman’s correlation.</p>
-<p>To further explore the similarity and difference between the alternative clustering algorithms, we can turn to using the <code>tanglegram</code> function (which works for either two <code>dendrogram</code>s, or a <code>dendlist</code>).</p>
-<p>First, let us see two methods which are very similar: ward.D vs ward.D2. From a first glance, we can see how they both give the same result for the top 3 clusters. However, since they are both ladderizes (i.e.: having their smaller branch rotated to be higher for each node), we can see that their clustering is not identical (due to the crossings).</p>
+<p>We can see that the correlations are not so strong, indicating a
+behavior that is dependent on some items which are very distant from one
+another having an influence on the pearson’s correlation more than that
+of the spearman’s correlation.</p>
+<p>To further explore the similarity and difference between the
+alternative clustering algorithms, we can turn to using the
+<code>tanglegram</code> function (which works for either two
+<code>dendrogram</code>s, or a <code>dendlist</code>).</p>
+<p>First, let us see two methods which are very similar: ward.D vs
+ward.D2. From a first glance, we can see how they both give the same
+result for the top 3 clusters. However, since they are both ladderizes
+(i.e.: having their smaller branch rotated to be higher for each node),
+we can see that their clustering is not identical (due to the
+crossings).</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># The `which` parameter allows us to pick the elements in the list to compare</span></span>
 <span><span class="va">iris_dendlist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/dendlist.html">dendlist</a></span><span class="op">(</span>which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">8</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">ladderize</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -321,7 +381,8 @@
 <span>   <span class="co"># set("clear_branches") %&gt;% #otherwise the single lines are not black, since they retain the previous color from the branches_k_color.</span></span>
 <span>   <span class="fu"><a href="../reference/tanglegram.html">tanglegram</a></span><span class="op">(</span>faster <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># (common_subtrees_color_branches = TRUE)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-13-1.png" width="450"></p>
-<p>Next, let us look at two methods which also have a high cophenetic correlation: ward.D vs the average:</p>
+<p>Next, let us look at two methods which also have a high cophenetic
+correlation: ward.D vs the average:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># The `which` parameter allows us to pick the elements in the list to compare</span></span>
 <span><span class="va">iris_dendlist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/dendlist.html">dendlist</a></span><span class="op">(</span>which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">ladderize</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -329,8 +390,14 @@
 <span>   <span class="co"># untangle(method = "step1side", k_seq = 3:20) %&gt;%</span></span>
 <span>   <span class="fu"><a href="../reference/tanglegram.html">tanglegram</a></span><span class="op">(</span>faster <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># (common_subtrees_color_branches = TRUE)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-14-1.png" width="450"></p>
-<p>We see that when it comes to the major clusters, the two algorithms perform quite similarly.</p>
-<p>However, how are they doing inside each of the clusters? It is quite difficult to compare the two because of the high value in ward.D. For comparison purposes, we can “rank” the heights of the branches in the two dendrograms (while still preserving their internal order). Next, we can highlight the shared common sub-trees (with different colors), and the distinct edges (with a dashed line):</p>
+<p>We see that when it comes to the major clusters, the two algorithms
+perform quite similarly.</p>
+<p>However, how are they doing inside each of the clusters? It is quite
+difficult to compare the two because of the high value in ward.D. For
+comparison purposes, we can “rank” the heights of the branches in the
+two dendrograms (while still preserving their internal order). Next, we
+can highlight the shared common sub-trees (with different colors), and
+the distinct edges (with a dashed line):</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># The `which` parameter allows us to pick the elements in the list to compare</span></span>
 <span><span class="va">iris_dendlist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/dendlist.html">dendlist</a></span><span class="op">(</span>which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">ladderize</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -338,21 +405,34 @@
 <span>   <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"rank_branches"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>   <span class="fu"><a href="../reference/tanglegram.html">tanglegram</a></span><span class="op">(</span>common_subtrees_color_branches <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-15-1.png" width="450"></p>
-<p>We have 39 sub-trees that are identical between the two dendrograms:</p>
+<p>We have 39 sub-trees that are identical between the two
+dendrograms:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="../reference/common_subtrees_clusters.html">common_subtrees_clusters</a></span><span class="op">(</span><span class="va">iris_dendlist</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">iris_dendlist</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 39</span></span></code></pre>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># -1 at the end is because we are ignoring the "0" subtree, which indicates leaves that are singletons.</span></span></code></pre></div>
-<p>What we can learn from this is that actually the two algorithms seem to give quite different results in the high resolution (higher cuts). However, since both capture the two major clusters (Setosa vs the others), they are considered quite similar by the cophenetic correlation.</p>
-<p>But what about the “complete” method (that got a lower cophenetic correlation than the other methods)? When we compare “complete” vs “average”, we can quickly see that in the “complete” method, the splitting of the clusters is much more balanced, and mixes the “Setosa” species with another one. This is probably the cause for the big difference found in the cophenetic correlation between the “complete method” and the other clustering methods:</p>
+<p>What we can learn from this is that actually the two algorithms seem
+to give quite different results in the high resolution (higher cuts).
+However, since both capture the two major clusters (Setosa vs the
+others), they are considered quite similar by the cophenetic
+correlation.</p>
+<p>But what about the “complete” method (that got a lower cophenetic
+correlation than the other methods)? When we compare “complete” vs
+“average”, we can quickly see that in the “complete” method, the
+splitting of the clusters is much more balanced, and mixes the “Setosa”
+species with another one. This is probably the cause for the big
+difference found in the cophenetic correlation between the “complete
+method” and the other clustering methods:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iris_dendlist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/dendlist.html">dendlist</a></span><span class="op">(</span>which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">ladderize</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>   <span class="fu"><a href="../reference/untangle.html">untangle</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"step1side"</span>, k_seq <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>   <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"branches_k_color"</span>, k<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>   <span class="fu"><a href="../reference/tanglegram.html">tanglegram</a></span><span class="op">(</span>faster <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># (common_subtrees_color_branches = TRUE)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-17-1.png" width="450"></p>
-<p>We can quickly plot all 8 methods to see this phenomenon (i.e.: that “complete” has its smaller cluster larger than it is in all the other clustering methods):</p>
+<p>We can quickly plot all 8 methods to see this phenomenon (i.e.: that
+“complete” has its smaller cluster larger than it is in all the other
+clustering methods):</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span> <span class="op">{</span></span>
@@ -360,7 +440,11 @@
 <span>   <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris_dendlist</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-18-1.png" width="450"></p>
-<p>It seems that the cophenetic correlation is very biased towards the influence of the main clusters. Another correlation measure to use is the <code>cor_common_nodes</code> correlation (giving the proportion of nodes which share the exact same list of labels in both dendrograms). We can also check it out:</p>
+<p>It seems that the cophenetic correlation is very biased towards the
+influence of the main clusters. Another correlation measure to use is
+the <code>cor_common_nodes</code> correlation (giving the proportion of
+nodes which share the exact same list of labels in both dendrograms). We
+can also check it out:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iris_dendlist_cor2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span><span class="op">(</span><span class="va">iris_dendlist</span>, method <span class="op">=</span> <span class="st">"common"</span><span class="op">)</span></span>
 <span><span class="va">iris_dendlist_cor2</span></span></code></pre></div>
@@ -385,13 +469,23 @@
 <p>And plot it:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># corrplot::corrplot(iris_dendlist_cor2, "pie", "lower")</span></span></code></pre></div>
-<p>This gives us another perspective on our clustering algorithms. We can see that most methods have around 75% common nodes with one another. Centroid and median seem relatively close to one another, as well as ward.D2 and ward.D to one another and to complete, average, and mcquitty (as compared to the other methods).</p>
+<p>This gives us another perspective on our clustering algorithms. We
+can see that most methods have around 75% common nodes with one another.
+Centroid and median seem relatively close to one another, as well as
+ward.D2 and ward.D to one another and to complete, average, and mcquitty
+(as compared to the other methods).</p>
 </div>
 <div class="section level3">
 <h3 id="clustering-prediction-of-the-3-species-classes">Clustering prediction of the 3 species classes<a class="anchor" aria-label="anchor" href="#clustering-prediction-of-the-3-species-classes"></a>
 </h3>
-<p>Lastly, we would like to see which of the different clustering algorithms came the closest to detecting the 3 flower species (when using a cut of k=3).</p>
-<p>For this purpose, we compare the clustering solution of each algorithm with the real clusters, using the Fowlkes-Mallows Index (also using in the package for the <code>Bk_plot</code>). This measure is similar to rand (or rand adjusted) index, and gives a value of 1 when the two clusters confirm, and 0 when they do not.</p>
+<p>Lastly, we would like to see which of the different clustering
+algorithms came the closest to detecting the 3 flower species (when
+using a cut of k=3).</p>
+<p>For this purpose, we compare the clustering solution of each
+algorithm with the real clusters, using the Fowlkes-Mallows Index (also
+using in the package for the <code>Bk_plot</code>). This measure is
+similar to rand (or rand adjusted) index, and gives a value of 1 when
+the two clusters confirm, and 0 when they do not.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_ordered_3_clusters</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dend</span><span class="op">)</span> <span class="op">{</span></span>
 <span>   <span class="fu"><a href="../reference/cutree-methods.html">cutree</a></span><span class="op">(</span><span class="va">dend</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/order.dendrogram.html" class="external-link">order.dendrogram</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span><span class="op">]</span></span>
@@ -407,33 +501,56 @@
 <span>         main <span class="op">=</span> <span class="st">"Perormance of clustering algorithms \n in detecting the 3 species"</span>,</span>
 <span>         pch <span class="op">=</span> <span class="fl">19</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-21-1.png" width="450"></p>
-<p>We can see that the “median” method did the best, although similar results were achieved by ward.D2, average, ward.D, and mcquitty. However, the complete, centroid, and single method did worse in our case.</p>
+<p>We can see that the “median” method did the best, although similar
+results were achieved by ward.D2, average, ward.D, and mcquitty.
+However, the complete, centroid, and single method did worse in our
+case.</p>
 </div>
 <div class="section level3">
 <h3 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
 </h3>
-<p>The Iris data set is only 4-dimensional, making it possible to explore using pairs plot (SPLOM) or parallel coordinates plot. It is clear from these that two main clusters are visible, while the separation of the third cluster is difficult.</p>
-<p>In the above analysis, we learned that the complete method fails to do the proper separation of the two main clusters when cut in k=2 (but succeeds in doing it, if moving to k=3 clusters). This is different from all the other 7 methods available in <code>hclust</code>, which do succeed in separating the 2 main clusters from the beginning (i.e.: for k=2).</p>
-<p>We also noticed that all clustering algorithms share a relatively high proportion of common nodes (between 75% to 90%).</p>
-<p>Lastly, when it came to trying to separating the flowers into 3 species, the median clustering method did the best, while the single method did the worst in this regard.</p>
-<p>While the Iris data set is well known, I hope the above analysis was able to offer some new perspectives on the performance of the different hierarchical clustering methods.</p>
+<p>The Iris data set is only 4-dimensional, making it possible to
+explore using pairs plot (SPLOM) or parallel coordinates plot. It is
+clear from these that two main clusters are visible, while the
+separation of the third cluster is difficult.</p>
+<p>In the above analysis, we learned that the complete method fails to
+do the proper separation of the two main clusters when cut in k=2 (but
+succeeds in doing it, if moving to k=3 clusters). This is different from
+all the other 7 methods available in <code>hclust</code>, which do
+succeed in separating the 2 main clusters from the beginning (i.e.: for
+k=2).</p>
+<p>We also noticed that all clustering algorithms share a relatively
+high proportion of common nodes (between 75% to 90%).</p>
+<p>Lastly, when it came to trying to separating the flowers into 3
+species, the median clustering method did the best, while the single
+method did the worst in this regard.</p>
+<p>While the Iris data set is well known, I hope the above analysis was
+able to offer some new perspectives on the performance of the different
+hierarchical clustering methods.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="khan---microarray-gene-expression-data-set-from-khan-et-al--2001--subset-of-306-genes-">khan - Microarray gene expression data set from Khan et al., 2001. Subset of 306 genes.<a class="anchor" aria-label="anchor" href="#khan---microarray-gene-expression-data-set-from-khan-et-al--2001--subset-of-306-genes-"></a>
+<h2 id="khan---microarray-gene-expression-data-set-from-khan-et-al--2001--subset-of-306-genes-">khan - Microarray gene expression data set from Khan et al., 2001.
+Subset of 306 genes.<a class="anchor" aria-label="anchor" href="#khan---microarray-gene-expression-data-set-from-khan-et-al--2001--subset-of-306-genes-"></a>
 </h2>
 <div class="section level3">
 <h3 id="background-1">Background<a class="anchor" aria-label="anchor" href="#background-1"></a>
 </h3>
 <blockquote>
-<p>Khan contains gene expression profiles of four types of small, round, blue cell tumors of childhood (SRBCT) published by Khan et al. (2001). It also contains further gene annotation retrieved from SOURCE at <a href="http://source.stanford.edu/" class="external-link uri">http://source.stanford.edu/</a>.</p>
+<p>Khan contains gene expression profiles of four types of small, round,
+blue cell tumors of childhood (SRBCT) published by Khan et al. (2001).
+It also contains further gene annotation retrieved from SOURCE at <a href="http://source.stanford.edu/" class="external-link uri">http://source.stanford.edu/</a>.</p>
 </blockquote>
 <p>This interesting data set offers two interesting items:</p>
 <ul>
-<li>train: data.frame of 306 rows and 64 columns. The training data set of 64 arrays and 306 gene expression values</li>
-<li>test: data.frame, of 306 rows and 25 columns. The test data set of 25 arrays and 306 genes expression values</li>
+<li>train: data.frame of 306 rows and 64 columns. The training data set
+of 64 arrays and 306 gene expression values</li>
+<li>test: data.frame, of 306 rows and 25 columns. The test data set of
+25 arrays and 306 genes expression values</li>
 </ul>
-<p>This way we can create a hierarchical clustering on the 306 genes expression values on the train and the test data and compare the two to see the stability of the results.</p>
+<p>This way we can create a hierarchical clustering on the 306 genes
+expression values on the train and the test data and compare the two to
+see the stability of the results.</p>
 <p>We define the variables:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">train</span> <span class="op">&lt;-</span> <span class="fu">dendextend</span><span class="fu">::</span><span class="va"><a href="../reference/khan.html">khan</a></span><span class="op">$</span><span class="va">train</span></span>
@@ -447,31 +564,48 @@
 <div class="section level3">
 <h3 id="comparing-the-train-vs-test-dendrograms">Comparing the train vs test dendrograms<a class="anchor" aria-label="anchor" href="#comparing-the-train-vs-test-dendrograms"></a>
 </h3>
-<p>Using a cophenetic correlation, we can see the two trees have some similarity (0.57):</p>
+<p>Using a cophenetic correlation, we can see the two trees have some
+similarity (0.57):</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d_train_test</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">cor.dendlist</span></span></code></pre></div>
 <pre><code><span><span class="co">##           train      test</span></span>
 <span><span class="co">## train 1.0000000 0.5708019</span></span>
 <span><span class="co">## test  0.5708019 1.0000000</span></span></code></pre>
-<p>However, when looking at the cophenetic correlation with the spearman correlation coefficiant, the value is lower (0.49) indicating that some of the similarity is due to a small number of items, distant from the others, which are correlated similarly in the two trees:</p>
+<p>However, when looking at the cophenetic correlation with the spearman
+correlation coefficiant, the value is lower (0.49) indicating that some
+of the similarity is due to a small number of items, distant from the
+others, which are correlated similarly in the two trees:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d_train_test</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span><span class="op">(</span>method_coef <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##           train      test</span></span>
 <span><span class="co">## train 1.0000000 0.4971936</span></span>
 <span><span class="co">## test  0.4971936 1.0000000</span></span></code></pre>
-<p>We may ask at which level of cutting the dendrogram we get the “best” level of similarity. For this we may turn to the Bk plot. The plots shows us that at around 7 clusters the groups in the two are starting to look significantly similar. (Note that significantly does not mean substantially)</p>
+<p>We may ask at which level of cutting the dendrogram we get the “best”
+level of similarity. For this we may turn to the Bk plot. The plots
+shows us that at around 7 clusters the groups in the two are starting to
+look significantly similar. (Note that significantly does not mean
+substantially)</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Bk_plot.html">Bk_plot</a></span><span class="op">(</span><span class="va">d_train</span>, <span class="va">d_test</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">30</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">30</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-26-1.png" width="450"></p>
-<p>Next, we compare the results with a tanglegram. We make sure to color the connecting line with the colors of the branches of the train (left) dendrogram. This can help us see which patterns are somewhat preserved between the two trees.</p>
+<p>Next, we compare the results with a tanglegram. We make sure to color
+the connecting line with the colors of the branches of the train (left)
+dendrogram. This can help us see which patterns are somewhat preserved
+between the two trees.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pre_tang_d_train_test</span> <span class="op">&lt;-</span> <span class="va">d_train_test</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">ladderize</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># untangle %&gt;%</span></span>
 <span>   <span class="fu"><a href="../reference/set.html">set</a></span><span class="op">(</span><span class="st">"branches_k_color"</span>, k <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span>
 <span><span class="va">train_branches_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_leaves_branches_col.html">get_leaves_branches_col</a></span><span class="op">(</span><span class="va">pre_tang_d_train_test</span><span class="op">$</span><span class="va">train</span><span class="op">)</span></span>
 <span><span class="va">pre_tang_d_train_test</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/tanglegram.html">tanglegram</a></span><span class="op">(</span>fast <span class="op">=</span> <span class="cn">TRUE</span>, color_lines <span class="op">=</span> <span class="va">train_branches_colors</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-27-1.png" width="600"></p>
-<p>We can see that the top most (small) cluster is somewhat preserved between the two trees. However, a large spaghetti-like tangle of lines is indicating that the two trees are far from being identical.</p>
-<p>If we look only at subtrees of the two dendrograms so that they include only genes that are clustered with genes in both trees, we get only 14 genes (while the original trees had 306 genes). We can see how we have several groups of pairs of genes, and one group with four genes clustered together in both trees:</p>
+<p>We can see that the top most (small) cluster is somewhat preserved
+between the two trees. However, a large spaghetti-like tangle of lines
+is indicating that the two trees are far from being identical.</p>
+<p>If we look only at subtrees of the two dendrograms so that they
+include only genes that are clustered with genes in both trees, we get
+only 14 genes (while the original trees had 306 genes). We can see how
+we have several groups of pairs of genes, and one group with four genes
+clustered together in both trees:</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># This was calculated before</span></span>
 <span><span class="co"># d_train_test_common &lt;- d_train_test %&gt;% prune_common_subtrees.dendlist</span></span>
@@ -491,25 +625,35 @@
 <div class="section level3">
 <h3 id="conclusion-1">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion-1"></a>
 </h3>
-<p>To conclude: we see that the clustering algorithm resulted in trees which are significantly similar in both the training and the test data sets beyond chance, but that this similarity is restricted to only a very small proportion of genes.</p>
+<p>To conclude: we see that the clustering algorithm resulted in trees
+which are significantly similar in both the training and the test data
+sets beyond chance, but that this similarity is restricted to only a
+very small proportion of genes.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="votes-repub---votes-for-republican-candidate-in-presidential-elections">votes.repub - Votes for Republican Candidate in Presidential Elections<a class="anchor" aria-label="anchor" href="#votes-repub---votes-for-republican-candidate-in-presidential-elections"></a>
+<h2 id="votes-repub---votes-for-republican-candidate-in-presidential-elections">votes.repub - Votes for Republican Candidate in Presidential
+Elections<a class="anchor" aria-label="anchor" href="#votes-repub---votes-for-republican-candidate-in-presidential-elections"></a>
 </h2>
 <div class="section level3">
 <h3 id="background-2">Background<a class="anchor" aria-label="anchor" href="#background-2"></a>
 </h3>
 <blockquote>
-<p>This is a data frame with the percentage of votes given to the republican candidate in presidential elections from 1856 to 1976. Rows represent the 50 states, and columns the 31 elections.</p>
+<p>This is a data frame with the percentage of votes given to the
+republican candidate in presidential elections from 1856 to 1976. Rows
+represent the 50 states, and columns the 31 elections.</p>
 </blockquote>
 <blockquote>
-<p>Source: S. Peterson (1973): A Statistical History of the American Presidential Elections. New York: Frederick Ungar Publishing Co. Data from 1964 to 1976 is from R. M. Scammon, American Votes 12, Congressional Quarterly.</p>
+<p>Source: S. Peterson (1973): A Statistical History of the American
+Presidential Elections. New York: Frederick Ungar Publishing Co. Data
+from 1964 to 1976 is from R. M. Scammon, American Votes 12,
+Congressional Quarterly.</p>
 </blockquote>
 <p>Define variables:</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">votes.repub</span> <span class="op">&lt;-</span> <span class="fu">cluster</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/cluster/man/votes.repub.html" class="external-link">votes.repub</a></span></span></code></pre></div>
-<p>These data can be visualized using a (costumed made) parallel coordinates plot:</p>
+<p>These data can be visualized using a (costumed made) parallel
+coordinates plot:</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">years</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">votes.repub</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -526,8 +670,21 @@
 <div class="section level3">
 <h3 id="heatmap">Heatmap<a class="anchor" aria-label="anchor" href="#heatmap"></a>
 </h3>
-<p>This is a nice example when the parallel coordinates plot has some serious limitations: it does not help us detect the states, we fail to see the missing value patterns, and it is tricky to see clusters in general (due to the large number of threads).</p>
-<p>For these data, it can be quite helpful to see a heatmap of the votes across the years. The ordering of the rows is tricky. First, the distance of the vectors (later used for the clustering) should be done after transformation (since we are dealing with proportion of votes). In this case, I used the arcsin transformation (a logit transformation could also work, but the arcsin is safer for dealing with 0/1 observations). But given the clusters, we wish to order the leaves (as much as possible), in order to take into account the missing value clusterings. So we, in fact, have two clusters, one for the raw values, and another for the “shadow matrix” (i.e.: the matrix with 0/1, indicating if a value was missing or not).</p>
+<p>This is a nice example when the parallel coordinates plot has some
+serious limitations: it does not help us detect the states, we fail to
+see the missing value patterns, and it is tricky to see clusters in
+general (due to the large number of threads).</p>
+<p>For these data, it can be quite helpful to see a heatmap of the votes
+across the years. The ordering of the rows is tricky. First, the
+distance of the vectors (later used for the clustering) should be done
+after transformation (since we are dealing with proportion of votes). In
+this case, I used the arcsin transformation (a logit transformation
+could also work, but the arcsin is safer for dealing with 0/1
+observations). But given the clusters, we wish to order the leaves (as
+much as possible), in order to take into account the missing value
+clusterings. So we, in fact, have two clusters, one for the raw values,
+and another for the “shadow matrix” (i.e.: the matrix with 0/1,
+indicating if a value was missing or not).</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">arcsin_transformation</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">asin</a></span><span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span></span>
 <span></span>
@@ -562,7 +719,8 @@
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-33-1.png" width="675"></p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>          <span class="co"># RowSideColors = rev(labels_colors(dend)), # to add nice colored strips      </span></span></code></pre></div>
-<p>How much of a difference would we get if we used another clustering algorithm?</p>
+<p>How much of a difference would we get if we used another clustering
+algorithm?</p>
 <p>We first calculate the clustering using 8 different methods:</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hclust_methods</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ward.D"</span>, <span class="st">"single"</span>, <span class="st">"complete"</span>, <span class="st">"average"</span>, <span class="st">"mcquitty"</span>, </span>
@@ -575,14 +733,25 @@
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">votes.repub_dendlist</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">hclust_methods</span></span>
 <span><span class="co"># votes.repub_dendlist</span></span></code></pre></div>
-<p>Next, we can look at the cophenetic correlation between each clustering result using <code>cor.dendlist</code>. (This can be nicely plotted using the <code>corrplot</code> function from the <em>corrplot</em> package):</p>
+<p>Next, we can look at the cophenetic correlation between each
+clustering result using <code>cor.dendlist</code>. (This can be nicely
+plotted using the <code>corrplot</code> function from the
+<em>corrplot</em> package):</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html" class="external-link">corrplot</a></span><span class="op">(</span><span class="fu"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span><span class="op">(</span><span class="va">votes.repub_dendlist</span><span class="op">)</span>, <span class="st">"pie"</span>, <span class="st">"lower"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-35-1.png" width="600"></p>
-<p>We see that the “complete” method is somewhat similar to the ward.D/ward.D2 methods, but there is less similarity with the other methods. We can see that the methods “average”, “mcquitty” and “median”, all give somewhat similar results. So by using “average”, we will see an alternative presentation that represents (in a sense) three other clustering solutions.</p>
-<p>We can look at the heatmap of the “average” method. However, as you can see, it is not very helpful in seeing the difference between the two clustering solutions.</p>
+<p>We see that the “complete” method is somewhat similar to the
+ward.D/ward.D2 methods, but there is less similarity with the other
+methods. We can see that the methods “average”, “mcquitty” and “median”,
+all give somewhat similar results. So by using “average”, we will see an
+alternative presentation that represents (in a sense) three other
+clustering solutions.</p>
+<p>We can look at the heatmap of the “average” method. However, as you
+can see, it is not very helpful in seeing the difference between the two
+clustering solutions.</p>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-36-1.png" width="675"></p>
-<p>Let’s look at the tanglegram of the two methods to get a better insight into the differences between the two:</p>
+<p>Let’s look at the tanglegram of the two methods to get a better
+insight into the differences between the two:</p>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dend_com</span> <span class="op">&lt;-</span> <span class="va">votes.repub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">arcsin_transformation</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>   <span class="va">dist</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"com"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">as.dendrogram</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -601,9 +770,17 @@
 <span><span class="va">dends</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dendlist.html">dendlist</a></span><span class="op">(</span>complete <span class="op">=</span> <span class="va">dend_com</span>, average <span class="op">=</span> <span class="va">dend_ave</span><span class="op">)</span> <span class="co"># %&gt;% untangle("step2side")</span></span>
 <span><span class="va">dends</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/tanglegram.html">tanglegram</a></span><span class="op">(</span>margin_inner <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-38-1.png" width="450"></p>
-<p>We see that the two clusterings give similar results for: “Alabama”, “Georgia”, “Louisiana”, “Arkansas”, “Florida”, “Texas”, “South Carolina”, “Mississippi”.</p>
-<p>There are also several other sub-trees which are identical between the two methods. The biggest difference lies in several “rouge” states that are placed differently in the two clustering algorithms. They are: Vermont, Michigan, Maine, Hawaii, New Jersey, West Virginia, and Oklahoma.</p>
-<p>A better understanding of the data requires a much more in-depth historical perspective than is within the scope of the current analysis.</p>
+<p>We see that the two clusterings give similar results for: “Alabama”,
+“Georgia”, “Louisiana”, “Arkansas”, “Florida”, “Texas”, “South
+Carolina”, “Mississippi”.</p>
+<p>There are also several other sub-trees which are identical between
+the two methods. The biggest difference lies in several “rouge” states
+that are placed differently in the two clustering algorithms. They are:
+Vermont, Michigan, Maine, Hawaii, New Jersey, West Virginia, and
+Oklahoma.</p>
+<p>A better understanding of the data requires a much more in-depth
+historical perspective than is within the scope of the current
+analysis.</p>
 </div>
 </div>
 <div class="section level2">
@@ -663,15 +840,23 @@
 <span>          col <span class="op">=</span> <span class="va">some_col_func</span></span>
 <span>         <span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-40-1.png" width="675"></p>
-<p>We see that we have several groups of variables: the “can fly” and “endangered” (which usually are both “no”), the “have hair”, and the “warm-blooded”, “vertebrate”, and “live in groups”.</p>
-<p>We see that within the animals there are (roughly!) the following 4 groups:</p>
+<p>We see that we have several groups of variables: the “can fly” and
+“endangered” (which usually are both “no”), the “have hair”, and the
+“warm-blooded”, “vertebrate”, and “live in groups”.</p>
+<p>We see that within the animals there are (roughly!) the following 4
+groups:</p>
 <ol style="list-style-type: decimal">
-<li>The cold-blooded non-vertebrates, which are mostly not endangered.</li>
-<li>The warm-blooded vertebrates, which live in groups, have hair, cannot fly, and mostly are not endangered.</li>
-<li>The cold-blooded vertebrates, without hair, cannot fly, and are not endangered.</li>
-<li>The (mostly) warm-blooded vertebrates, without hair, some can fly, and some are endangered.</li>
+<li>The cold-blooded non-vertebrates, which are mostly not
+endangered.</li>
+<li>The warm-blooded vertebrates, which live in groups, have hair,
+cannot fly, and mostly are not endangered.</li>
+<li>The cold-blooded vertebrates, without hair, cannot fly, and are not
+endangered.</li>
+<li>The (mostly) warm-blooded vertebrates, without hair, some can fly,
+and some are endangered.</li>
 </ol>
-<p>How much of a difference would we get if we used another clustering algorithm?</p>
+<p>How much of a difference would we get if we used another clustering
+algorithm?</p>
 <p>We first calculate the clustering using 8 different methods:</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hclust_methods</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ward.D"</span>, <span class="st">"single"</span>, <span class="st">"complete"</span>, <span class="st">"average"</span>, <span class="st">"mcquitty"</span>, </span>
@@ -685,20 +870,35 @@
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">animals_dendlist</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">hclust_methods</span></span>
 <span><span class="co"># votes.repub_dendlist</span></span></code></pre></div>
-<p>Next, we can look at the cophenetic correlation between each clustering result using <code>cor.dendlist</code> (This can be nicely plotted using the <code>corrplot</code> function from the <em>corrplot</em> package):</p>
+<p>Next, we can look at the cophenetic correlation between each
+clustering result using <code>cor.dendlist</code> (This can be nicely
+plotted using the <code>corrplot</code> function from the
+<em>corrplot</em> package):</p>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cophenetic_cors</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span><span class="op">(</span><span class="va">animals_dendlist</span><span class="op">)</span></span>
 <span><span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html" class="external-link">corrplot</a></span><span class="op">(</span><span class="va">cophenetic_cors</span>, <span class="st">"pie"</span>, <span class="st">"lower"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-42-1.png" width="600"></p>
-<p>We see that the different methods (other than ward.D and ward.D2), all give quite different results. So would the above analysis be different if we had used another clustering algorithm?</p>
-<p>For this purpose, we compare the clustering solution of each algorithm with one another, when cut to k=4 clusters, using the Fowlkes-Mallows Index. This measure is similar to rand (or rand adjusted) index, and gives a value of 1 when the two clusters conform, and 0 when they do not:</p>
+<p>We see that the different methods (other than ward.D and ward.D2),
+all give quite different results. So would the above analysis be
+different if we had used another clustering algorithm?</p>
+<p>For this purpose, we compare the clustering solution of each
+algorithm with one another, when cut to k=4 clusters, using the
+Fowlkes-Mallows Index. This measure is similar to rand (or rand
+adjusted) index, and gives a value of 1 when the two clusters conform,
+and 0 when they do not:</p>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">remove_median</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dendlist.html">dendlist</a></span><span class="op">(</span><span class="va">animals_dendlist</span>, which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">6</span><span class="op">]</span> <span class="op">)</span></span>
 <span><span class="va">FM_cors</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cor.dendlist.html">cor.dendlist</a></span><span class="op">(</span><span class="va">remove_median</span>, method <span class="op">=</span> <span class="st">"FM_index"</span>, k <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html" class="external-link">corrplot</a></span><span class="op">(</span><span class="va">FM_cors</span>, <span class="st">"pie"</span>, <span class="st">"lower"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Cluster_Analysis_files/figure-html/unnamed-chunk-43-1.png" width="450"></p>
-<p>We removed the “median” method since it did not have k=4 possible. In general, the results seems sensitive to the algorithm used, and the different algorithm methods do not seem to agree with one another (with regards to k=4), so further analyses may be in place in order to decide on which algorithm and interpretation are most appropriate for these data.</p>
-<p>(Other possible data sets for the future: chorSub, flower, plantTraits, pluton, ruspini, agriculture)</p>
+<p>We removed the “median” method since it did not have k=4 possible. In
+general, the results seems sensitive to the algorithm used, and the
+different algorithm methods do not seem to agree with one another (with
+regards to k=4), so further analyses may be in place in order to decide
+on which algorithm and interpretation are most appropriate for these
+data.</p>
+<p>(Other possible data sets for the future: chorSub, flower,
+plantTraits, pluton, ruspini, agriculture)</p>
 </div>
 </div>
   </div>
@@ -720,7 +920,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
