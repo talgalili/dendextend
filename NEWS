@@ -12,6 +12,8 @@ ggplot.ggdend:
 See section 'Generic functions and methods' in the 'Writing R
 Extensions' manual.
 ```
+- Fixed: "Package CITATION file contains call(s) to old-style citEntry().  Please use bibentry() instead."
+
 
 dendextend 1.17.0 (2022-11-01)
 ----------------------------------------

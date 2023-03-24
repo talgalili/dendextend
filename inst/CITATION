@@ -1,7 +1,5 @@
-citHeader("The methods within the package can be cited as:")
-
-citEntry(
-   entry="article",
+bibentry(
+   bibtype="article",
    author = "Tal Galili",
    title = "dendextend: an R package for visualizing, adjusting, and comparing trees of hierarchical clustering",
    journal = "Bioinformatics",
@@ -9,11 +7,10 @@ citEntry(
    doi = "10.1093/bioinformatics/btv428",
    URL = "https://academic.oup.com/bioinformatics/article/31/22/3718/240978/dendextend-an-R-package-for-visualizing-adjusting", 
    eprint = "https://academic.oup.com/bioinformatics/article-pdf/31/22/3718/17122682/btv428.pdf", 
-   textVersion = "Tal Galili (2015). dendextend: an R package for visualizing, adjusting, and comparing trees of hierarchical clustering. Bioinformatics. DOI: 10.1093/bioinformatics/btv428"   
-)
-
-
-citFooter("This free open-source software implements academic
+   textVersion = "Tal Galili (2015). dendextend: an R package for visualizing, adjusting, and comparing trees of hierarchical clustering. Bioinformatics. DOI: 10.1093/bioinformatics/btv428",
+   header = "The methods within the package can be cited as:",
+   footer = "This free open-source software implements academic
 research by the authors and co-workers. If you use it,
 please support the project by citing the appropriate
-journal articles.")
+journal articles."
+)
