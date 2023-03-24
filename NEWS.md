@@ -1,3 +1,15 @@
+dendextend 1.17.1 (2023-03-24)
+----------------------------------------
+###BUG FIXES
+- Fix ggplot.ggdend the WARNING: checking S3 generic/method consistency ... WARNING in 
+- Fix: "Package CITATION file contains call(s) to old-style citEntry().  Please use bibentry() instead."
+
+
+dendextend 1.17.0 (2022-11-01)
+----------------------------------------
+###NEW FUNCTIONS
+* collapse_labels - Collapse a sub dendrogram of adjacent labels within a dend.
+
 dendextend 1.16.0 (2022-07-04)
 ----------------------------------------
 ###UPDATED FUNCTIONS:
@@ -613,8 +625,7 @@ dendextend 0.17.5 (2014-09-22)
 
 
 ###BUG FIXES
-   * checking S3 generic/method consistency ... WARNING
-         cor_bakers_gamma:
+   * fix: checking S3 generic/method consistency warning in cor_bakers_gamma:
            function(tree1, tree2, use_labels_not_values, to_plot, warn, ...)
          cor_bakers_gamma.dendlist:
            function(tree1, which, ...)
