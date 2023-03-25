@@ -1,8 +1,8 @@
 Package: dendextend
 Type: Package
 Title: Extending 'dendrogram' Functionality in R
-Version: 1.17.1
-Date: 2023-03-24
+Version: 1.17.2
+Date: 2023-03-25
 Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     "tal.galili@gmail.com", comment = "https://www.r-statistics.com"),
     person("Yoav", "Benjamini", email = "ybenja@tau.ac.il",role = "ths"),

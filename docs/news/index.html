@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.16.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.2</span>
       </span>
     </div>
 
@@ -67,9 +67,22 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="1.16.0" id="dendextend-1160-2022-07-03">dendextend 1.16.0 (2022-07-03)<a class="anchor" aria-label="anchor" href="#dendextend-1160-2022-07-03"></a></h2>
+<h2 class="page-header" data-toc-text="1.17.2" id="dendextend-1172-2023-03-25">dendextend 1.17.2 (2023-03-25)<a class="anchor" aria-label="anchor" href="#dendextend-1172-2023-03-25"></a></h2>
+<p>###BUG FIXES - Fix misc broken urls.</p>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.17.1" id="dendextend-1171-2023-03-24">dendextend 1.17.1 (2023-03-24)<a class="anchor" aria-label="anchor" href="#dendextend-1171-2023-03-24"></a></h2>
+<p>###BUG FIXES - Fix ggplot.ggdend the WARNING: checking S3 generic/method consistency … WARNING in - Fix: “Package CITATION file contains call(s) to old-style citEntry(). Please use bibentry() instead.”</p>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.17.0" id="dendextend-1170-2022-11-01">dendextend 1.17.0 (2022-11-01)<a class="anchor" aria-label="anchor" href="#dendextend-1170-2022-11-01"></a></h2>
+<p>###NEW FUNCTIONS * collapse_labels - Collapse a sub dendrogram of adjacent labels within a dend.</p>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.16.0" id="dendextend-1160-2022-07-04">dendextend 1.16.0 (2022-07-04)<small>2022-07-04</small><a class="anchor" aria-label="anchor" href="#dendextend-1160-2022-07-04"></a></h2>
 <p>###UPDATED FUNCTIONS: * set - added two new arguments: leaves_bg and nodes_bg (which provide a fill color when pch is between 21-25). Props to Patrick Schupp <a href="mailto:pschupp@sonic.net" class="email">pschupp@sonic.net</a> (<a href="https://github.com/pschupp" class="external-link uri">https://github.com/pschupp</a>)</p>
-<p>###BUG FIXES - Fix minor error in the docs of color_branches - Fix checking Rd cross-references … NOTE Undeclared packages ‘WGCNA’, ‘moduleColor’, ‘distory’, ‘phangorn’, ‘zoo’ in Rd xrefs</p>
+<p>###BUG FIXES - Fix minor error in the docs of color_branches - Fix checking Rd cross-references … NOTE Undeclared packages ‘WGCNA’, ‘moduleColor’, ‘distory’, ‘phangorn’, ‘zoo’ in Rd xrefs - Remove (undocumented!) dependancy on the psych library. - Fix an issue with running <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> (see: <a href="https://github.com/r-lib/pkgdown/issues/2155" class="external-link uri">https://github.com/r-lib/pkgdown/issues/2155</a>). Props to <a href="https://github.com/dmurdoch" class="external-link">@dmurdoch</a>.</p>
+<p>###OTHER NOTES - as.phylo - Remove example dependancy on ggdendro - Remove dependancy on <code>dendextendRcpp</code> in some tests and documentation files (.Rd). - Misc fixes to release to CRAN</p>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.15.2" id="dendextend-1152-2021-10-27">dendextend 1.15.2 (2021-10-27)<small>2021-10-28</small><a class="anchor" aria-label="anchor" href="#dendextend-1152-2021-10-27"></a></h2>
@@ -293,7 +306,7 @@
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.17.5" id="dendextend-0175-2014-09-22">dendextend 0.17.5 (2014-09-22)<small>2014-09-22</small><a class="anchor" aria-label="anchor" href="#dendextend-0175-2014-09-22"></a></h2>
 <p>###UPDATED FUNCTIONS: * <code>order.dendrogram&lt;-</code> - commenting off an examples and tests which (as of R 3.1.1-patched) produces an error (as it should). Thanks to Prof Brian Ripley for the e-mail about it.</p>
-<p>###BUG FIXES * checking S3 generic/method consistency … WARNING cor_bakers_gamma: function(tree1, tree2, use_labels_not_values, to_plot, warn, …) cor_bakers_gamma.dendlist: function(tree1, which, …) * Undocumented code objects: ‘plot.dendlist’ * <code>cor_bakers_gamma.Rd</code>: lines wider than 90 characters</p>
+<p>###BUG FIXES * fix: checking S3 generic/method consistency warning in cor_bakers_gamma: function(tree1, tree2, use_labels_not_values, to_plot, warn, …) cor_bakers_gamma.dendlist: function(tree1, which, …) * Undocumented code objects: ‘plot.dendlist’ * <code>cor_bakers_gamma.Rd</code>: lines wider than 90 characters</p>
 <p>###VIGNETTE: * Fixed several typos and grammatical mistakes.</p>
 <p>###OTHER NOTES * dendextend 0.17.5 is intended to be shipped to CRAN (to stay compatible with R 3.1.1-patched).</p>
 </div>
@@ -579,7 +592,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>
