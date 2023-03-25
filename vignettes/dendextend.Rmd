@@ -31,7 +31,7 @@ knitr::opts_chunk$set(
 ```
 
 
-**Author**: [Tal Galili](https://www.r-statistics.com) ( Tal.Galili@gmail.com )
+**Author**: Tal Galili (homepage: https://www.r-statistics.com) ( Tal.Galili@gmail.com )
 
 **tl;dr**: the [_dendextend package_](https://cran.r-project.org/package=dendextend) let's you create figures like this:
 
