@@ -151,3 +151,95 @@ test_that("ggplot doesn't have warnings for dendrograms", {
   g <- ggplot(as.dendrogram(hclust(dist(mtcars))))
   expect_warning(ggplot_build(g), NA)
 })
+
+
+
+
+# library(testthat)
+# library(dendextend)
+
+# Testing ggdend function
+test_that("ggdend provides usage message", {
+   expect_output(ggdend(), "Use either as.ggdend or ggplot (or both). ", fixed = TRUE)
+})
+
+# Testing allNA function
+test_that("allNA correctly identifies all NA values", {
+   allNA <- dendextend:::allNA
+   expect_true(dendextend:::allNA(c(NA, NA, NA)))
+   expect_false(allNA(c(1, NA, 3)))
+})
+
+# Testing as.ggdend.dendrogram function
+test_that("as.ggdend.dendrogram stops with non-dendrogram input", {
+   as.ggdend.dendrogram <- dendextend:::as.ggdend.dendrogram
+   expect_error(as.ggdend.dendrogram(list()), "dend is not a dendrogram")
+})
+
+test_that("as.ggdend.dendrogram stops with empty dendrogram", {
+   as.ggdend.dendrogram <- dendextend:::as.ggdend.dendrogram
+   empty_dend <- list()
+   class(empty_dend) <- "dendrogram"
+   expect_error(as.ggdend.dendrogram(empty_dend), "argument is of length zero")
+})
+
+test_that("as.ggdend.dendrogram stops with edge.root argument", {
+   as.ggdend.dendrogram <- dendextend:::as.ggdend.dendrogram
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   expect_error(as.ggdend.dendrogram(dend, edge.root = TRUE), "edge.root is not supported")
+})
+
+test_that("as.ggdend.dendrogram returns ggdend class with valid input", {
+   as.ggdend.dendrogram <- dendextend:::as.ggdend.dendrogram
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   result <- as.ggdend.dendrogram(dend)
+   expect_true("ggdend" %in% class(result))
+})
+
+# Testing prepare.ggdend function
+test_that("prepare.ggdend handles segment linetype and color", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   ggdend_data <- as.ggdend(dend)
+   prepared_data <- prepare.ggdend(ggdend_data)
+   
+   # Check for linetype and color corrections
+   expect_true(all(!is.na(prepared_data$segments$lty)))
+   expect_true(all(!is.na(prepared_data$segments$col)))
+})
+
+# Testing ggplot.ggdend function
+test_that("ggplot.ggdend creates a ggplot object", {
+   ggplot.ggdend <- dendextend:::ggplot.ggdend
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   ggdend_data <- as.ggdend(dend)
+   plot <- ggplot.ggdend(ggdend_data)
+   expect_true(inherits(plot, "ggplot"))
+})
+
+# Testing ggplot.dendrogram function
+test_that("ggplot.dendrogram converts dendrogram to ggplot", {
+   ggplot.dendrogram <- dendextend:::ggplot.dendrogram
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   plot <- ggplot.dendrogram(dend)
+   expect_true(inherits(plot, "ggplot"))
+})
+
+# Testing print.ggdend function
+test_that("print.ggdend prints a ggplot", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   ggdend_data <- as.ggdend(dend)
+   print(str(ggdend_data))
+   expect_output(print(ggdend_data), "ggplot")
+})
+
+
+
+test_that("print.ggdend prints a ggplot", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   ggdend_data <- as.ggdend(dend)
+   pdf(file = NULL)  # Open a null device
+   expect_silent(print(ggdend_data))
+   dev.off()  # Close the null device
+   expect_true(inherits(ggdend_data, "ggdend"))  # check if it's a ggdend object
+   expect_true(inherits(ggplot2::ggplot(ggdend_data), "ggplot"))  # check if it can be used to create a ggplot object
+})
