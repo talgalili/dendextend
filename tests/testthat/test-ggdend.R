@@ -224,15 +224,6 @@ test_that("ggplot.dendrogram converts dendrogram to ggplot", {
    expect_true(inherits(plot, "ggplot"))
 })
 
-# Testing print.ggdend function
-test_that("print.ggdend prints a ggplot", {
-   dend <- as.dendrogram(hclust(dist(1:5)))
-   ggdend_data <- as.ggdend(dend)
-   print(str(ggdend_data))
-   expect_output(print(ggdend_data), "ggplot")
-})
-
-
 
 test_that("print.ggdend prints a ggplot", {
    dend <- as.dendrogram(hclust(dist(1:5)))
