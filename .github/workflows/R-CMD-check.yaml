@@ -40,10 +40,14 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      # Check if R version is compatible with Hmisc requirements
-      - name: Install Hmisc
-        if: matrix.config.r >= '4.1'
-        run: Rscript -e 'install.packages("Hmisc")'
+      # Install Hmisc with dependencies
+      - name: Install Hmisc package
+        if: matrix.config.r == 'release' || startsWith(matrix.config.r, '4.')
+        run: Rscript -e 'install.packages("Hmisc", dependencies = TRUE)'
+
+      # Additional step to check the installation of Hmisc
+      - name: Check Hmisc installation
+        run: Rscript -e 'if (!("Hmisc" %in% installed.packages()[,"Package"])) stop("Hmisc installation failed", call. = FALSE)'
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
