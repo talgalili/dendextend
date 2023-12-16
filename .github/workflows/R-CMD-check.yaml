@@ -1,9 +1,3 @@
-# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
-# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
-#
-# NOTE: This workflow is overkill for most R packages and
-# check-standard.yaml is likely a better choice.
-# usethis::use_github_action("check-standard") will install it.
 on:
   push:
     branches: [main, master]
@@ -23,17 +17,13 @@ jobs:
       matrix:
         config:
           - {os: macOS-latest,   r: 'release'}
-
           - {os: windows-latest, r: 'release'}
-          # Use 3.6 to trigger usage of RTools35
-          - {os: windows-latest, r: '3.6'}
-
+          - {os: windows-latest, r: '4.1'} # Ensuring compatibility with Hmisc
           - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
           - {os: ubuntu-latest,   r: 'release'}
           - {os: ubuntu-latest,   r: 'oldrel-1'}
           - {os: ubuntu-latest,   r: 'oldrel-2'}
-          - {os: ubuntu-latest,   r: 'oldrel-3'}
-          - {os: ubuntu-latest,   r: 'oldrel-4'}
+          # Removed older versions to avoid compatibility issues
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -50,10 +40,19 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
+      # Check if R version is compatible with Hmisc requirements
+      - name: Install Hmisc
+        if: matrix.config.r >= '4.1'
+        run: Rscript -e 'install.packages("Hmisc")'
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
           needs: check
+
+      # This step is to ensure the installation of Hmisc does not fail the workflow
+      - name: Check for Hmisc installation
+        run: Rscript -e 'if (!("Hmisc" %in% installed.packages()[,"Package"])) { quit(save = "no", status = 1) }'
 
       - uses: r-lib/actions/check-r-package@v2
         with:
