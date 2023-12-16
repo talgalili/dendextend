@@ -256,3 +256,85 @@ test_that("fix_members_attr.dendrogram work", {
 
   expect_equal(attr(fixed_dend, "members"), 5)
 })
+
+
+
+
+test_that("get_branches_heights on a simple dendrogram", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   result <- get_branches_heights(dend)
+   expect_true(is.numeric(result))
+   expect_true(length(result) > 0)
+})
+
+test_that("hang.dendrogram modifies leaf heights", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   hanged_dend <- hang.dendrogram(dend, hang = 0.1)
+   expect_true(is.dendrogram(hanged_dend))
+   expect_true(all(get_leaves_attr(dend, "height") == 0))
+   expect_false(any(get_leaves_attr(hanged_dend, "height") == 0))
+})
+
+test_that("get_childrens_heights on a simple dendrogram", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   result <- get_childrens_heights(dend)
+   expect_true(is.numeric(result))
+})
+
+test_that("rank_branches adjusts branch heights", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   ranked_dend <- rank_branches(dend)
+   expect_true(is.dendrogram(ranked_dend))
+   # Check if heights are adjusted
+   heights <- sapply(ranked_dend, function(x) attr(x, "height"))
+   expect_true(all(diff(heights) == 1))
+})
+
+test_that("assign_values_to_leaves_nodePar updates nodePar", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   updated_dend <- assign_values_to_leaves_nodePar(dend, value = 1:5, nodePar = "col")
+   expect_false(identical(get_leaves_nodePar(dend),
+                          get_leaves_nodePar(updated_dend)))
+})
+
+
+test_that("remove_branches_edgePar removes edgePar", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   dend <- assign_values_to_branches_edgePar(dend, value = 1, edgePar = "col")
+   cleaned_dend <- remove_branches_edgePar(dend)
+   expect_true(all(is.na(unlist(get_leaves_nodePar(cleaned_dend)))))
+})
+
+
+test_that("remove_nodes_nodePar removes nodePar", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   dend <- assign_values_to_nodes_nodePar(dend, value = 1:5, nodePar = "col")
+   cleaned_dend <- remove_nodes_nodePar(dend)
+   expect_true(all(is.na(unlist(get_leaves_nodePar(cleaned_dend)))))
+})
+
+test_that("remove_leaves_nodePar removes nodePar from leaves", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   dend <- assign_values_to_leaves_nodePar(dend, value = 1:5, nodePar = "col")
+   cleaned_dend <- remove_leaves_nodePar(dend)
+   leaf_cols <- sapply(cleaned_dend, function(x) if(is.leaf(x)) attr(x, "nodePar")$col else NA)
+   expect_true(all(is.na(leaf_cols)))
+})
+
+test_that("fix_members_attr.dendrogram updates members attribute", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   fixed_dend <- fix_members_attr.dendrogram(dend)
+   expect_true(is.dendrogram(fixed_dend))
+   # Check if members attribute is correctly updated
+   members_attr <- sapply(fixed_dend, function(x) attr(x, "members"))
+   expect_true(all(!is.na(members_attr)))
+})
+
+test_that("rank_order.dendrogram updates leaf order", {
+   dend <- as.dendrogram(hclust(dist(1:5)))
+   ranked_dend <- rank_order.dendrogram(dend)
+   expect_true(is.dendrogram(ranked_dend))
+   # Check if order is correctly updated
+   expect_equal(order.dendrogram(ranked_dend), rank(order.dendrogram(dend), ties.method = "first"))
+})
+``
