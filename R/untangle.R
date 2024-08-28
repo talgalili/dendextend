@@ -123,7 +123,7 @@ untangle_labels <- function(dend1, dend2, ...) {
 #' @export
 #' @rdname untangle
 untangle.dendrogram <- function(dend1, dend2,
-                                method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"), ...) {
+                                method = c("labels", "ladderize", "random", "step1side", "step2side", "stepBothSides", "DendSer"), ...) {
   method <- match.arg(method)
 
   switch(method,
