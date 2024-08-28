@@ -1,6 +1,5 @@
-# library(testthat)
+library(testthat)
 context("Untangle two dendrograms for plotting a tanglegram")
-
 
 test_that("shuffle works", {
   suppressWarnings(RNGversion("3.5.0"))
@@ -109,6 +108,29 @@ test_that("untangle_step_rotate_2side work", {
   # expect_identical(round(entanglement(dend12_corrected[[1]],dend12_corrected[[2]], L = 2),3) ,  0.036)
   #
   #
+})
+
+
+library(tidyverse)
+test_that("untangle_step_rotate_both_side work", {
+   suppressWarnings(RNGversion("3.5.0"))
+   # Entanglement should be zero after applying algorithm, per Fig. 4 of 'Shuffle & untangle: novel untangle methods for solving the tanglegram layout problem' (Nguyen et al. 2022)
+   example_labels <- c("Versicolor 90", "Versicolor 54", "Versicolor 81", "Versicolor 63", "Versicolor 72", "Versicolor 99", "Virginica 135", "Virginica 117", "Virginica 126", "Virginica 108", "Virginica 144", "Setosa 27", "Setosa 18", "Setosa 36", "Setosa 45", "Setosa 9")
+   iris_modified <- 
+      iris %>%
+      mutate(Row = row_number()) %>%
+      mutate(Label = paste(str_to_title(Species), Row)) %>%
+      filter(Label %in% example_labels)
+   iris_numeric <- iris_modified[,1:4]
+   rownames(iris_numeric) <- iris_modified$Label
+   
+   dend1 <- as.dendrogram(hclust(dist(iris_numeric), method = "single"))
+   dend2 <- as.dendrogram(hclust(dist(iris_numeric), method = "complete"))
+   result <- untangle_step_rotate_both_side(dend1, dend2)
+   dend1 <- result[[1]]
+   dend2 <- result[[2]]
+   expect_identical(entanglement(dend1, dend2, L = 2), 0)
+   
 })
 
 
