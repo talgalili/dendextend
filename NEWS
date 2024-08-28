@@ -1,3 +1,9 @@
+dendextend 1.18.1 (2024-08-28)
+----------------------------------------
+###NEW FUNCTION
+* untangle_step_rotate_both_side - stepBothSides algorithm available for untangling 2 dendograms.
+
+
 dendextend 1.18.0 (2023-12-16)
 ----------------------------------------
 ###OTHER NOTES
