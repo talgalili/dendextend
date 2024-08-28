@@ -47,7 +47,8 @@ Authors@R: c(person("Tal", "Galili", role = c("aut", "cre", "cph"), email =
     person("Christian", "Hennig", role = "ctb", email = "c.hennig@ucl.ac.uk", comment = "http://www.homepages.ucl.ac.uk/~ucakche/"),
     person("David", "Bradley", role = "ctb", comment = "https://github.com/DBradley27"),
     person("Houyun", "Huang", role = "ctb", email = 'houyunhuang@163.com', comment = "https://github.com/houyunhuang"),
-    person("Patrick", "Schupp", role = "ctb", email = 'pschupp@sonic.net', comment = "https://github.com/pschupp")
+    person("Patrick", "Schupp", role = "ctb", email = 'pschupp@sonic.net', comment = "https://github.com/pschupp"),
+    person("Alec", "Buetow", role = "ctb", email = 'alecbuetow@gmail.com', comment = "https://github.com/alecbuetow")
     )
 Description: Offers a set of functions for extending
     'dendrogram' objects in R, letting you visualize and compare trees of
