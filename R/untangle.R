@@ -130,6 +130,7 @@ untangle.dendrogram <- function(dend1, dend2,
     random = untangle_random_search(dend1, dend2, ...),
     step1side = untangle_step_rotate_1side(dend1, dend2, ...),
     step2side = untangle_step_rotate_2side(dend1, dend2, ...),
+    stepBothSides = untangle_step_rotate_both_side(dend1, dend2, ...),
     DendSer = untangle_DendSer(dendlist(dend1, dend2), ...),
     ladderize = ladderize(dendlist(dend1, dend2), ...),
     labels = untangle_labels(dend1, dend2, ...)
@@ -826,6 +827,51 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
 
 
 
+
+
+untangle_step_rotate_both_side <- function(dend1, dend2, L = 1.5, max_n_iterations = 10L, print_times = dendextend_options("warn"), ...) {
+  # Implemented as described by pseudo-code in the paper 'Shuffle & untangle: novel untangle methods for solving the tanglegram layout problem' (Nguyen et al. 2022)
+  
+  # Initialize placeholder values to be overwritten in first iteration
+  entanglement_new <- 0
+  entanglement_old <- 1
+
+  # Step 3: Repeat Steps 1 and 2 until the entanglement does not reduce any further
+  times <- 1
+  while (times < max_n_iterations & !identical(entanglement_new, entanglement_old)) {
+    
+    # Step 1: Run the step2side algorithm until convergence
+    result <- untangle_step_rotate_2side(dend1, dend2, L = L, max_n_iterations = max_n_iterations, ...)
+    dend1 <- result[[1]]
+    dend2 <- result[[2]]
+    
+    entanglement_old <- entanglement_new # Record best entanglement score from last iteration
+    entanglement_new <- entanglement(dend1, dend2, L = L)
+
+    # Step 2: Create new alternative tanglegrams by rotating both dendrograms simultaneously
+    n_leaves <- nleaves(dend1)
+    for (i in 1:(n_leaves - 1)) {
+      for (j in 1:(n_leaves - 1)) {
+        dend1_rotated <- suppressWarnings(rotate(dend1, i))
+        dend2_rotated <- suppressWarnings(rotate(dend2, j))
+        new_entanglement <- entanglement(dend1_rotated, dend2_rotated, L = L)
+
+        if (new_entanglement < entanglement_new) {
+          dend1 <- dend1_rotated
+          dend2 <- dend2_rotated
+          entanglement_new <- new_entanglement
+        }
+        
+      }
+    }
+    
+    times <- times + 1
+  }
+  
+  if (print_times) cat("\nWe ran untangle ", times, " times\n")
+
+  return(dendlist(dend1, dend2))
+}
 
 
 
