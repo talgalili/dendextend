@@ -96,5 +96,5 @@ URL: http://talgalili.github.io/dendextend/,
     https://www.r-statistics.com/tag/dendextend/,
     https://academic.oup.com/bioinformatics/article/31/22/3718/240978/dendextend-an-R-package-for-visualizing-adjusting
 BugReports: https://github.com/talgalili/dendextend/issues
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Encoding: UTF-8

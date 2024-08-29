@@ -836,16 +836,19 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
 #'
 #' This is useful for finding good trees for a \link{tanglegram}.
 #'
-#' It goes through simulateneously rotating different branches of dend1 and dend2
+#' It goes through simultaneously rotating branches of dend1 and dend2
 #' until a locally optimal solution is found.
 #'
+#'
 #' Step 1: The algorithm begins by executing the 'step2side' operation on the pair 
-#' of dendrograms.
+#' of dendograms.
+#' 
 #' Step 2: The algorithm generates new alternative tanglegrams by simultaneously 
 #' rotating one branch from tree 1 and one branch from tree 2. This rotation is 
 #' applied to every possible combination of branches between tree 1 and tree 2, 
 #' resulting in a set of new alternative tanglegrams. The tanglegram with the lowest 
 #' entanglement is retained.
+#' 
 #' Step 3: Steps 1 and 2 are repeated until either a locally optimal solution is 
 #' found or the maximum number of iterations is reached.
 #'
