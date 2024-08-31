@@ -534,26 +534,26 @@ ggplot.ggdend <- function(data = NULL, mapping = aes(), ..., segments = TRUE, la
 
 
   if (segments) {
-    p <- p + geom_segment(
-      data = data$segments, na.rm = na.rm,
-      aes_string(
-        x = "x", y = "y", xend = "xend", yend = "yend",
-        colour = "col", linetype = "lty", size = "lwd"
-      ),
-      lineend = "square"
-    ) +
-      guides(linetype = "none", col = "none") +
-      scale_colour_identity() + scale_size_identity() + scale_linetype_identity()
+     p <- p + geom_segment(
+        data = data$segments, na.rm = na.rm,
+        aes(
+           x = .data$x, y = .data$y, xend = .data$xend, yend = .data$yend,
+           colour = .data$col, linetype = .data$lty, linewidth = .data$lwd
+        ),
+        lineend = "square"
+     ) +
+        guides(linetype = "none", col = "none") +
+        scale_colour_identity() + scale_size_identity() + scale_linetype_identity()
   }
-
+  
   if (nodes) {
-    p <- p + geom_point(
-      data = data$nodes, na.rm = na.rm,
-      aes_string(x = "x", y = "y", colour = "col", shape = "pch", size = "cex")
-    ) +
-      guides(shape = "none", col = "none", size = "none") +
-      # scale_colour_identity() + scale_size_identity()  +
-      scale_shape_identity()
+     p <- p + geom_point(
+        data = data$nodes, na.rm = na.rm,
+        aes(x = .data$x, y = .data$y, colour = .data$col, shape = .data$pch, size = .data$cex)
+     ) +
+        guides(shape = "none", col = "none", size = "none") +
+        # scale_colour_identity() + scale_size_identity()  +
+        scale_shape_identity()
   }
   # http://docs.ggplot2.org/0.9.3.1/geom_point.html
 
@@ -564,16 +564,21 @@ ggplot.ggdend <- function(data = NULL, mapping = aes(), ..., segments = TRUE, la
 
 
   if (labels) {
-    # default size is 5!  http://sape.inf.usi.ch/quick-reference/ggplot2/geom_text
-    data$labels$cex <- 5 * data$labels$cex
-    data$labels$y <- data$labels$y + offset_labels
-    p <- p + geom_text(
-      data = data$labels, aes_string(
-        x = "x",
-        y = "y", label = "label", colour = "col", size = "cex"
-      ),
-      hjust = hjust, angle = angle
-    )
+     # default size is 5!  http://sape.inf.usi.ch/quick-reference/ggplot2/geom_text
+     data$labels$cex <- 5 * data$labels$cex
+     data$labels$y <- data$labels$y + offset_labels
+     p <- p + geom_text(
+        data = data$labels, 
+        aes(
+           x = .data$x,
+           y = .data$y, 
+           label = .data$label, 
+           colour = .data$col, 
+           size = .data$cex
+        ),
+        hjust = hjust, 
+        angle = angle
+     )
   }
   # p <- p + scale_x_discrete(labels = data$labels$label)
   # if (horiz) {

@@ -2,7 +2,7 @@ library(testthat)
 
 library(dendextend)
 test_check("dendextend")
-# testthat::test_dir("tests/testthat/", wrap = F)
+# testthat::test_dir("tests/testthat/")
 
 
 

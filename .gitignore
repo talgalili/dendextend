@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 vignettes/*cache
+eval "$(ssh-agent -s)"
+eval "$(ssh-agent -s)".pub

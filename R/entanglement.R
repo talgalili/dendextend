@@ -316,6 +316,7 @@ entanglement <- function(dend1, ...) {
 }
 
 
+#' @export
 entanglement.default <- function(dend1, dend2, ...) {
   stop("no default function for entanglement")
 }

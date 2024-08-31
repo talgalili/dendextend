@@ -39,6 +39,6 @@
 #' @import graphics
 #' @import grDevices
 #' @import magrittr
-NULL
+"_PACKAGE"
 
 # help(package = "dendextend")
