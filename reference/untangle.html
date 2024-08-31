@@ -106,20 +106,22 @@ Using various heuristics.</p>
 
 
 <dl><dt id="arg-dend-">dend1<a class="anchor" aria-label="anchor" href="#arg-dend-"></a></dt>
-<dd><p>a dednrogram or a dendlist object</p></dd>
+<dd><p>a dendrogram or a dendlist object</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>passed to the releavnt untangle function</p></dd>
+<dd><p>passed to the relevant untangle function</p></dd>
 
 
 <dt id="arg-dend-">dend2<a class="anchor" aria-label="anchor" href="#arg-dend-"></a></dt>
-<dd><p>A second dednrogram (to untangle against)</p></dd>
+<dd><p>A second dendrogram (to untangle against)</p></dd>
 
 
 <dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
 <dd><p>a character indicating the type of untangle
-heuristic to use.</p></dd>
+heuristic to use. The options are:
+("labels", "ladderize", "random", "step1side", "step2side", "stepBothSides",
+"DendSer")</p></dd>
 
 
 <dt id="arg-which">which<a class="anchor" aria-label="anchor" href="#arg-which"></a></dt>
@@ -136,7 +138,7 @@ but with the relevant trees properly rotate.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>This function wraps all of the untagnle functions,
+    <p>This function wraps all of the untangle functions,
 in order to make it easier to find our about (and use) them.</p>
     </div>
     <div id="see-also">
