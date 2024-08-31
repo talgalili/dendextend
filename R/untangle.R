@@ -123,13 +123,14 @@ untangle_labels <- function(dend1, dend2, ...) {
 #' @export
 #' @rdname untangle
 untangle.dendrogram <- function(dend1, dend2,
-                                method = c("labels", "ladderize", "random", "step1side", "step2side", "DendSer"), ...) {
+                                method = c("labels", "ladderize", "random", "step1side", "step2side", "stepBothSides", "DendSer"), ...) {
   method <- match.arg(method)
 
   switch(method,
     random = untangle_random_search(dend1, dend2, ...),
     step1side = untangle_step_rotate_1side(dend1, dend2, ...),
     step2side = untangle_step_rotate_2side(dend1, dend2, ...),
+    stepBothSides = untangle_step_rotate_both_side(dend1, dend2, ...),
     DendSer = untangle_DendSer(dendlist(dend1, dend2), ...),
     ladderize = ladderize(dendlist(dend1, dend2), ...),
     labels = untangle_labels(dend1, dend2, ...)
@@ -826,6 +827,136 @@ untangle_step_rotate_2side <- function(dend1, dend2, L = 1.5, direction = c("for
 
 
 
+
+#' @title Stepwise untangle two trees at the same time
+#' @export
+#' @description
+#' This is a greedy forward selection algorithm for rotating the tree and
+#' looking for a better match.
+#'
+#' This is useful for finding good trees for a \link{tanglegram}.
+#'
+#' It goes through simultaneously rotating branches of dend1 and dend2
+#' until a locally optimal solution is found.
+#'
+#'
+#' Step 1: The algorithm begins by executing the 'step2side' operation on the pair 
+#' of dendograms.
+#' 
+#' Step 2: The algorithm generates new alternative tanglegrams by simultaneously 
+#' rotating one branch from tree 1 and one branch from tree 2. This rotation is 
+#' applied to every possible combination of branches between tree 1 and tree 2, 
+#' resulting in a set of new alternative tanglegrams. The tanglegram with the lowest 
+#' entanglement is retained.
+#' 
+#' Step 3: Steps 1 and 2 are repeated until either a locally optimal solution is 
+#' found or the maximum number of iterations is reached.
+#'
+#' @param dend1 a dendrogram object. The one we will rotate to best fit
+#' dend2.
+#' @param dend2 a dendrogram object. The one we will rotate to best fit
+#' dend1.
+#' @param L the distance norm to use for measuring the distance between the
+#' two trees. It can be any positive number,
+#' often one will want to use 0, 1, 1.5, 2 (see 'details' in \link{entanglement}).
+#'
+#' @param max_n_iterations integer. The maximal number of times to switch between optimizing one tree with another.
+#' @param print_times logical (TRUE), should we print how many times we executed steps 1 and 2?
+#' @param ... not used
+#'
+#' @return A list with two dendrograms (dend1/dend2),
+#' after they are rotated to best fit one another.
+#'
+#' @seealso \link{tanglegram}, \link{match_order_by_labels},
+#' \link{entanglement}, \link{flip_leaves}, \link{all_couple_rotations_at_k}.
+#' \link{untangle_step_rotate_1side}, \link{untangle_step_rotate_2side}.
+#' @references
+#' Nghia Nguyen, Kurdistan Chawshin, Carl Fredrik Berg, Damiano Varagnolo, Shuffle & untangle: novel untangle methods for solving the tanglegram layout problem, Bioinformatics Advances, Volume 2, Issue 1, 2022, vbac014, https://doi.org/10.1093/bioadv/vbac014
+#' 
+#' @examples
+#'
+#' \dontrun{
+#' # Figures recreated from 'Shuffle & untangle: novel untangle methods for solving the tanglegram layout problem' (Nguyen et al. 2022)
+#' library(tidyverse)
+#' example_labels <- c("Versicolor 90", "Versicolor 54", "Versicolor 81", "Versicolor 63", "Versicolor 72", "Versicolor 99", "Virginica 135", "Virginica 117", "Virginica 126", "Virginica 108", "Virginica 144", "Setosa 27", "Setosa 18", "Setosa 36", "Setosa 45", "Setosa 9")
+#'
+#' iris_modified <- 
+#'   iris %>%
+#'     mutate(Row = row_number()) %>%
+#'     mutate(Label = paste(str_to_title(Species), Row)) %>%
+#'     filter(Label %in% example_labels)
+#' iris_numeric <- iris_modified[,1:4]
+#' rownames(iris_numeric) <- iris_modified$Label
+#' 
+#' # Single Linkage vs. Complete Linkage comparison (Fig. 1)
+#' dend1 <- as.dendrogram(hclust(dist(iris_numeric), method = "single"))
+#' dend2 <- as.dendrogram(hclust(dist(iris_numeric), method = "complete"))
+#' tanglegram(dend1, dend2, 
+#'            color_lines = TRUE,
+#'            lwd = 2,
+#'            margin_inner = 6) # Good.
+#' entanglement(dend1, dend2, L = 2) # 0.207
+#'
+#' # The step2side algorithm (Fig. 2)
+#' result <- untangle_step_rotate_2side(dend1, dend2)
+#' tanglegram(result[[1]], result[[2]], 
+#'           color_lines = TRUE,
+#'           lwd = 2,
+#'           margin_inner = 6) # Better...
+#' entanglement(result[[1]], result[[2]], L = 2) # 0.185
+#' 
+#' # The stepBothSides algorithm (Fig. 4)
+#' result <- untangle_step_rotate_both_side(dend1, dend2)
+#' tanglegram(result[[1]], result[[2]], 
+#'            color_lines = TRUE,
+#'            lwd = 2,
+#'            margin_inner = 6,
+#'            lty = 1) # PERFECT.
+#' entanglement(result[[1]], result[[2]], L = 2) # 0.000
+#' }
+untangle_step_rotate_both_side <- function(dend1, dend2, L = 1.5, max_n_iterations = 10L, print_times = dendextend_options("warn"), ...) {
+  # Implemented as described by pseudo-code in the paper 'Shuffle & untangle: novel untangle methods for solving the tanglegram layout problem' (Nguyen et al. 2022)
+  
+  # Initialize placeholder values to be overwritten in first iteration
+  entanglement_new <- 0
+  entanglement_old <- 1
+
+  # Step 3: Repeat Steps 1 and 2 until the entanglement does not reduce any further
+  times <- 1
+  while (times < max_n_iterations & !identical(entanglement_new, entanglement_old)) {
+    
+    # Step 1: Run the step2side algorithm until convergence
+    result <- untangle_step_rotate_2side(dend1, dend2, L = L, max_n_iterations = max_n_iterations, ...)
+    dend1 <- result[[1]]
+    dend2 <- result[[2]]
+    
+    entanglement_old <- entanglement_new # Record best entanglement score from last iteration
+    entanglement_new <- entanglement(dend1, dend2, L = L)
+
+    # Step 2: Create new alternative tanglegrams by rotating both dendrograms simultaneously
+    n_leaves <- nleaves(dend1)
+    for (i in 1:(n_leaves - 1)) {
+      for (j in 1:(n_leaves - 1)) {
+        dend1_rotated <- suppressWarnings(rotate(dend1, i))
+        dend2_rotated <- suppressWarnings(rotate(dend2, j))
+        new_entanglement <- entanglement(dend1_rotated, dend2_rotated, L = L)
+
+        if (new_entanglement < entanglement_new) {
+          dend1 <- dend1_rotated
+          dend2 <- dend2_rotated
+          entanglement_new <- new_entanglement
+        }
+        
+      }
+    }
+    
+    times <- times + 1
+  }
+  
+  if (print_times) cat("\nWe ran untangle ", times, " times\n")
+
+  return(dendlist(dend1, dend2))
+}
 
 
 

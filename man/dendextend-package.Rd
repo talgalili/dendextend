@@ -15,6 +15,47 @@ the color, size, type, etc of its branches, nodes and labels.
 \seealso{
 \code{\link{dendrogram}, \link{hclust}} in \code{\link{stats}} package.
 }
+\author{
+\strong{Maintainer}: Tal Galili \email{tal.galili@gmail.com} (https://www.r-statistics.com) [copyright holder]
+
+Authors:
+\itemize{
+  \item Gregory Jefferis \email{jefferis@gmail.com} (imported code from his dendroextras package) [contributor]
+}
+
+Other contributors:
+\itemize{
+  \item Yoav Benjamini \email{ybenja@tau.ac.il} [thesis advisor]
+  \item Gavin Simpson [contributor]
+  \item Marco Gallotta (a.k.a: marcog) [contributor]
+  \item Johan Renaudie (https://github.com/plannapus) [contributor]
+  \item The R Core Team (Thanks for the Infastructure, and code in the examples) [contributor]
+  \item Kurt Hornik [contributor]
+  \item Uwe Ligges [contributor]
+  \item Andrej-Nikolai Spiess [contributor]
+  \item Steve Horvath \email{SHorvath@mednet.ucla.edu} [contributor]
+  \item Peter Langfelder \email{Peter.Langfelder@gmail.com} [contributor]
+  \item skullkey [contributor]
+  \item Mark Van Der Loo \email{mark.vanderloo@gmail.com} (https://github.com/markvanderloo d3dendrogram) [contributor]
+  \item Andrie de Vries \email{apdevries@gmail.com} (ggdendro author) [contributor]
+  \item Zuguang Gu \email{z.gu@dkfz-heidelberg.de} (circlize author) [contributor]
+  \item Cath (https://github.com/CathG) [contributor]
+  \item John Ma (https://github.com/JohnMCMa) [contributor]
+  \item Krzysiek G (https://github.com/storaged) [contributor]
+  \item Manuela Hummel \email{m.hummel@dkfz.de} (https://github.com/hummelma) [contributor]
+  \item Chase Clark (https://github.com/chasemc) [contributor]
+  \item Lucas Graybuck (https://github.com/hypercompetent) [contributor]
+  \item jdetribol (https://github.com/jdetribol) [contributor]
+  \item Ben Ho \email{ben.ho@sickkids.ca} (https://github.com/SplitInf) [contributor]
+  \item Samuel Perreault \email{samuel.perreault.3@ulaval.ca} (https://github.com/samperochkin) [contributor]
+  \item Christian Hennig \email{c.hennig@ucl.ac.uk} (http://www.homepages.ucl.ac.uk/~ucakche/) [contributor]
+  \item David Bradley (https://github.com/DBradley27) [contributor]
+  \item Houyun Huang \email{houyunhuang@163.com} (https://github.com/houyunhuang) [contributor]
+  \item Patrick Schupp \email{pschupp@sonic.net} (https://github.com/pschupp) [contributor]
+  \item Alec Buetow \email{alecbuetow@gmail.com} (https://github.com/alecbuetow) [contributor]
+}
+
+}
 \keyword{clustering}
 \keyword{dendrogram}
 \keyword{package}
