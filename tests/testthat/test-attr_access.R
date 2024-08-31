@@ -337,4 +337,4 @@ test_that("rank_order.dendrogram updates leaf order", {
    # Check if order is correctly updated
    expect_equal(order.dendrogram(ranked_dend), rank(order.dendrogram(dend), ties.method = "first"))
 })
-``
+
