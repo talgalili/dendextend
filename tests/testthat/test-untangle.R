@@ -111,16 +111,17 @@ test_that("untangle_step_rotate_2side work", {
 })
 
 
-library(tidyverse)
+
 test_that("untangle_step_rotate_both_side work", {
+   library(tidyverse)
    suppressWarnings(RNGversion("3.5.0"))
    # Entanglement should be zero after applying algorithm, per Fig. 4 of 'Shuffle & untangle: novel untangle methods for solving the tanglegram layout problem' (Nguyen et al. 2022)
    example_labels <- c("Versicolor 90", "Versicolor 54", "Versicolor 81", "Versicolor 63", "Versicolor 72", "Versicolor 99", "Virginica 135", "Virginica 117", "Virginica 126", "Virginica 108", "Virginica 144", "Setosa 27", "Setosa 18", "Setosa 36", "Setosa 45", "Setosa 9")
    iris_modified <- 
-      iris %>%
+      datasets::iris %>%
       mutate(Row = row_number()) %>%
       mutate(Label = paste(str_to_title(Species), Row)) %>%
-      filter(Label %in% example_labels)
+      dplyr::filter(Label %in% example_labels)
    iris_numeric <- iris_modified[,1:4]
    rownames(iris_numeric) <- iris_modified$Label
    
