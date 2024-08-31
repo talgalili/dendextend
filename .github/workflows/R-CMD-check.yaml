@@ -40,23 +40,14 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      # Install Hmisc with dependencies
+      # Install Hmisc with dependencies, only when needed
       - name: Install Hmisc package
-        if: matrix.config.r == 'release' || startsWith(matrix.config.r, '4.')
-        run: Rscript -e 'install.packages("Hmisc", dependencies = TRUE)'
-
-      # Additional step to check the installation of Hmisc
-      - name: Check Hmisc installation
-        run: Rscript -e 'if (!("Hmisc" %in% installed.packages()[,"Package"])) stop("Hmisc installation failed", call. = FALSE)'
+        run: Rscript -e 'if (!requireNamespace("Hmisc", quietly = TRUE)) install.packages("Hmisc", dependencies = TRUE)'
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
           needs: check
-
-      # This step is to ensure the installation of Hmisc does not fail the workflow
-      - name: Check for Hmisc installation
-        run: Rscript -e 'if (!("Hmisc" %in% installed.packages()[,"Package"])) { quit(save = "no", status = 1) }'
 
       - uses: r-lib/actions/check-r-package@v2
         with:
