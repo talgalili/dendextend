@@ -32,15 +32,17 @@
 #'
 #' @author Tal Galili
 #'
-#' @param dend1 a dednrogram or a dendlist object
-#' @param dend2 A second dednrogram (to untangle against)
+#' @param dend1 a dendrogram or a dendlist object
+#' @param dend2 A second dendrogram (to untangle against)
 #' @param which an integer vector of length 2, indicating
 #' which of the trees in the dendlist object should be plotted
 #' @param method a character indicating the type of untangle
-#' heuristic to use.
-#' @param ... passed to the releavnt untangle function
+#' heuristic to use. The options are:
+#' ("labels", "ladderize", "random", "step1side", "step2side", "stepBothSides",
+#' "DendSer")
+#' @param ... passed to the relevant untangle function
 #' @details
-#' This function wraps all of the untagnle functions,
+#' This function wraps all of the untangle functions,
 #' in order to make it easier to find our about (and use) them.
 #' @return A \link{dendlist}, with two trees after
 #' they have been untangled.

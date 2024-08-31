@@ -30,14 +30,16 @@ untangle_labels(dend1, dend2, ...)
 )
 }
 \arguments{
-\item{dend1}{a dednrogram or a dendlist object}
+\item{dend1}{a dendrogram or a dendlist object}
 
-\item{...}{passed to the releavnt untangle function}
+\item{...}{passed to the relevant untangle function}
 
-\item{dend2}{A second dednrogram (to untangle against)}
+\item{dend2}{A second dendrogram (to untangle against)}
 
 \item{method}{a character indicating the type of untangle
-heuristic to use.}
+heuristic to use. The options are:
+("labels", "ladderize", "random", "step1side", "step2side", "stepBothSides",
+"DendSer")}
 
 \item{which}{an integer vector of length 2, indicating
 which of the trees in the dendlist object should be plotted}
@@ -56,7 +58,7 @@ This function untangles dendrogram lists (dendlist),
 Using various heuristics.
 }
 \details{
-This function wraps all of the untagnle functions,
+This function wraps all of the untangle functions,
 in order to make it easier to find our about (and use) them.
 }
 \examples{
