@@ -215,3 +215,47 @@ test_that("untangle (main function) works for 2 step", {
   out2 <- untangle_step_rotate_2side(dend1, dend2)
   expect_identical(out1, out2)
 })
+
+
+
+
+test_that("untangle_best_k_to_rotate_by_1side works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(226)
+   
+   dend1 <- USArrests[1:10, ] %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   dend2 <- shuffle(dend1)
+   original_entanglement <- entanglement(dend1, dend2)
+   expect_identical(round(original_entanglement, 3), 0.248)
+   # resolve entanglement
+   dend1_corrected <- untangle_best_k_to_rotate_by_1side(dend1, dend2)
+   corrected_entanglement <- entanglement(dend1_corrected, dend2)
+   
+   # reduces entanglement from 0.248 to 0
+   expect_identical(round(corrected_entanglement, 3), 0)
+})
+
+
+
+
+test_that("untangle_best_k_to_rotate_by_2side_backNforth works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(30) 
+   
+   dend1 <- USArrests[1:10, ] %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   dend2 <- shuffle(dend1)
+   original_entanglement <- entanglement(dend1, dend2)
+   expect_identical(round(original_entanglement, 3), 0.251)
+   # resolve entanglement
+   dends_corrected <- untangle_best_k_to_rotate_by_2side_backNforth(dend1, dend2, L = 1, print_times = F)
+   corrected_entanglement <- entanglement(dends_corrected[[1]], dends_corrected[[2]])
+   
+   # reduces entanglement from 0.251 to 0
+   expect_identical(round(corrected_entanglement, 3), 0)
+})
