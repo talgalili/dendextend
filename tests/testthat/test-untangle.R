@@ -237,3 +237,25 @@ test_that("untangle_best_k_to_rotate_by_1side works", {
    # reduces entanglement from 0.248 to 0
    expect_identical(round(corrected_entanglement, 3), 0)
 })
+
+
+
+
+test_that("untangle_best_k_to_rotate_by_2side_backNforth works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(30) 
+   
+   dend1 <- USArrests[1:10, ] %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   dend2 <- shuffle(dend1)
+   original_entanglement <- entanglement(dend1, dend2)
+   expect_identical(round(original_entanglement, 3), 0.251)
+   # resolve entanglement
+   dends_corrected <- untangle_best_k_to_rotate_by_2side_backNforth(dend1, dend2, L = 1, print_times = F)
+   corrected_entanglement <- entanglement(dends_corrected[[1]], dends_corrected[[2]])
+   
+   # reduces entanglement from 0.251 to 0
+   expect_identical(round(corrected_entanglement, 3), 0)
+})
