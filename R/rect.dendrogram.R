@@ -226,7 +226,7 @@ rect.dendrogram <- function(tree, k = NULL, which = NULL, x = NULL, h = NULL, bo
       #          ytop = tree_heights[k] + abs(ybottom)
       #          ytop = mean(tree_heights[(k - 1):k]) + abs(ybottom)
 
-      ytop <- tree_heights[names(tree_heights) == k] * prop_k_height +
+      ytop <- max(tree_heights[names(tree_heights) == k]) * prop_k_height +
         next_k_height * (1 - prop_k_height) +
         upper_rect # tree_heights[k] + height_to_add # + abs(xright)
     } else {
