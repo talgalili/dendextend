@@ -1,14 +1,15 @@
-dendextend 1.18.0 (2024-08-31)
+dendextend 1.18.0 (2024-09-24)
 ----------------------------------------
 ###NEW FUNCTION
 * untangle_step_rotate_both_side - stepBothSides algorithm available for untangling 2 dendograms.
 
+###BUG FIXES
+- Fix rect.dendrogram (see https://github.com/talgalili/dendextend/issues/119)
+- Fix misc broken urls, tests, yaml actions on github, spelling mistakes.
+
 ###OTHER NOTES
 - Adding tests
 - Stoped tracking linter on github actions. This is because many linter calls are irrelevant to the design of the package, and I'm deferring sorting this out to a distant future.
-
-###BUG FIXES
-- Fix misc broken urls, tests, yaml actions on github, spelling mistakes.
 
 
 dendextend 1.17.1 (2023-03-24)

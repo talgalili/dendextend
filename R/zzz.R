@@ -341,6 +341,6 @@ dendextendWelcomeMessage <- function() {
 #  pkgdown::build_news()
 #  pkgdown::build_site()
 #  pkgdown::build_articles()
-# devtools::check_win()
+# devtools::check_win_release()
 # devtools::check_win_devel()
 # release()
