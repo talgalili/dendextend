@@ -154,8 +154,8 @@ rect.dendrogram <- function(tree, k = NULL, which = NULL, x = NULL, h = NULL, bo
       stop("specify exactly one of 'k' and 'h'")
     }
 
-    ss_ks <- tree_heights < h
-    k <- min(as.numeric(names(ss_ks))[ss_ks])
+    ss_ks <- tree_heights > h
+    k <- max(as.numeric(names(ss_ks))[ss_ks])
     k <- max(k, 2) # I don't like this default...
   }
   else if (is.null(k)) {
