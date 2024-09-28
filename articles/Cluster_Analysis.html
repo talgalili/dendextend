@@ -90,7 +90,7 @@
 sets - enhanced with the <em>dendextend</em> package</h1>
                         <h4 data-toc-skip class="author">Tal Galili</h4>
             
-            <h4 data-toc-skip class="date">2024-09-24</h4>
+            <h4 data-toc-skip class="date">2024-09-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/master/vignettes/Cluster_Analysis.Rmd" class="external-link"><code>vignettes/Cluster_Analysis.Rmd</code></a></small>
       <div class="hidden name"><code>Cluster_Analysis.Rmd</code></div>
@@ -188,7 +188,7 @@ into three clusters.</p>
 <span><span class="va">hc_iris</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span><span class="va">d_iris</span>, method <span class="op">=</span> <span class="st">"complete"</span><span class="op">)</span></span>
 <span><span class="va">iris_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://talgalili.github.io/dendextend/" class="external-link">dendextend</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://talgalili.github.io/dendextend/" class="external-link">dendextend</a></span><span class="op">)</span></span>
 <span><span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html" class="external-link">as.dendrogram</a></span><span class="op">(</span><span class="va">hc_iris</span><span class="op">)</span></span>
 <span><span class="co"># order it the closest we can to the order of the observations:</span></span>
 <span><span class="va">dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rotate.html">rotate</a></span><span class="op">(</span><span class="va">dend</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">150</span><span class="op">)</span></span>
