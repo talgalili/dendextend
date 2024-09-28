@@ -1,5 +1,5 @@
 <!-- badges: start -->
-[![codecov.io](https://codecov.io/github/talgalili/dendextend/coverage.svg?branch=master)](https://codecov.io/github/talgalili/dendextend?branch=master)
+[![codecov.io](https://codecov.io/github/talgalili/dendextend/coverage.svg?branch=master)](https://app.codecov.io/github/talgalili/dendextend?branch=master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/dendextend)](https://cran.r-project.org/package=dendextend)
 ![](https://cranlogs.r-pkg.org/badges/dendextend?color=yellow)
 ![](https://cranlogs.r-pkg.org/badges/grand-total/dendextend?color=yellowgreen)
