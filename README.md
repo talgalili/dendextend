@@ -70,7 +70,7 @@ A BibTeX entry for LaTeX users is
        journal = {Bioinformatics},
        year = {2015},
        doi = {10.1093/bioinformatics/btv428},
-       url = {https://academic.oup.com/bioinformatics/article/31/22/3718/240978},
+       url = {https://doi.org/10.1093/bioinformatics/btv428},
        eprint = {https://academic.oup.com/bioinformatics/article-pdf/31/22/3718/17122682/btv428.pdf},
      }
 

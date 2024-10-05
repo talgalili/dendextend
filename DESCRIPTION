@@ -94,7 +94,7 @@ URL: https://talgalili.github.io/dendextend/,
     https://github.com/talgalili/dendextend/,
     https://cran.r-project.org/package=dendextend,
     https://www.r-statistics.com/tag/dendextend/,
-    https://academic.oup.com/bioinformatics/article/31/22/3718/240978
+    https://doi.org/10.1093/bioinformatics/btv428
 BugReports: https://github.com/talgalili/dendextend/issues
 RoxygenNote: 7.3.2
 Encoding: UTF-8
