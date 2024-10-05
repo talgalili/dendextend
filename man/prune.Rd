@@ -59,5 +59,5 @@ as.hclust(prune(dend, c("Alaska", "California")))
 prune(hc, c("Alaska", "California"))
 }
 \seealso{
-\link{prune_leaf}, \link[ape]{drop.tip} {ape}
+\link{prune_leaf}, \link[ape]{drop.tip}
 }

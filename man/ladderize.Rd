@@ -55,6 +55,5 @@ dend \%>\%
   plot(main = "Left (rev of right)")
 }
 \seealso{
-\code{\link[ape]{ladderize}},
-\code{\link{rev.dendrogram}}, \code{\link{rotate}} ({dendextend}), \code{\link[ape]{rotate}} ({ape})
+\code{\link[ape]{ladderize}}, \code{\link{rev.dendrogram}}, \code{\link[dendextend]{rotate}}, \code{\link[ape]{rotate}}
 }

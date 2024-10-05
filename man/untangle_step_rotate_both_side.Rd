@@ -59,9 +59,13 @@ found or the maximum number of iterations is reached.
 \examples{
 
 \dontrun{
-# Figures recreated from 'Shuffle & untangle: novel untangle methods for solving the tanglegram layout problem' (Nguyen et al. 2022)
+# Figures recreated from 'Shuffle & untangle: novel untangle 
+# methods for solving the tanglegram layout problem' (Nguyen et al. 2022)
 library(tidyverse)
-example_labels <- c("Versicolor 90", "Versicolor 54", "Versicolor 81", "Versicolor 63", "Versicolor 72", "Versicolor 99", "Virginica 135", "Virginica 117", "Virginica 126", "Virginica 108", "Virginica 144", "Setosa 27", "Setosa 18", "Setosa 36", "Setosa 45", "Setosa 9")
+example_labels <- c("Versicolor 90", "Versicolor 54", "Versicolor 81", 
+                  "Versicolor 63", "Versicolor 72", "Versicolor 99", "Virginica 135", 
+                  "Virginica 117", "Virginica 126", "Virginica 108", "Virginica 144", 
+                  "Setosa 27", "Setosa 18", "Setosa 36", "Setosa 45", "Setosa 9")
 
 iris_modified <- 
   iris \%>\%

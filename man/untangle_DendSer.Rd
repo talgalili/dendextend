@@ -19,7 +19,7 @@ The function tries to turn the dend into hclust.
 It then uses the \link{cophenetic} distance matrix
 for optimizing the tree's rotation.
 
-This is a good (and fast) starting point for link{untangle_step_rotate_2side}
+This is a good (and fast) starting point for \link{untangle_step_rotate_2side}
 }
 \examples{
 \dontrun{

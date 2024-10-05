@@ -23,7 +23,7 @@
 #' @rdname rotate
 #' @description
 #' Rotates, rev and sort the branches of a tree object (dendrogram, hclust)
-#' based on a vector - eithor of labels order (numbers) or the labels in their
+#' based on a vector - either of labels order (numbers) or the labels in their
 #' new order (character).
 #'
 #' @param x a tree object (either a \code{dendrogram} or \code{hclust})
@@ -59,25 +59,24 @@
 #' Special care is taken in preserving some of the properties of the hclust
 #' object.
 #'
-#' The {ape} package has its own \code{\link[ape]{rotate}}({ape}) function
-#' (Which is sadly not S3, so cannot be easily connected with the
-#' current implementation).  Still, there is an S3 plug that makes sure people
-#' loading first ape and then dendextend will still be able to
+#' The ape package has its own \code{\link[ape]{rotate}} function (which is sadly not S3, so cannot be easily connected with the
+#' current implementation). Still, there is an S3 plug that makes sure people
+#' loading ape first and then dendextend will still be able to
 #' use \code{rotate} without a problem.
-#' Notice that if you will first load {ape} and only then {dendextend},
+#' Notice that if you first load ape and only then dendextend,
 #' using "rotate" will fail with the error: "Error in rotate(dend, ____) :
-#'  object "phy" is not of class "phylo"" - this is because rotate in ape
-#'  is not S3 and will fail to find the rotate.dendrogram function.
-#'  In such a case simply run \code{unloadNamespace(ape)}. Or, you can run:
-#'  \code{unloadNamespace("dendextend"); attachNamespace("dendextend")}
-#'  The solution for this is that if you have {ape} installed on your machine,
-#'  It will be loaded when you load {dendextend} (but after it).
-#'  This way, \code{rotate} will work fine for both dendrogram AND phylo
-#'  objects.
+#' object 'phy' is not of class 'phylo'" - this is because rotate in ape
+#' is not S3 and will fail to find the rotate.dendrogram function.
+#' In such a case, simply run \code{unloadNamespace(ape)}. Or, you can run:
+#' \code{unloadNamespace("dendextend"); attachNamespace("dendextend")}
+#' The solution for this is that if you have ape installed on your machine,
+#' it will be loaded when you load dendextend (but after it).
+#' This way, \code{rotate} will work fine for both dendrogram and phylo
+#' objects.
 #'
 #' @return A rotated tree object
-#' @seealso \code{\link{order.dendrogram}},  \code{\link{order}},
-#' \code{\link{rev.dendrogram}}, \code{\link[ape]{rotate}} ({ape}), \link{ladderize}
+#' @seealso \code{\link{order.dendrogram}}, \code{\link{order}},
+#' \code{\link{rev.dendrogram}}, \code{\link[ape]{rotate}}, \link{ladderize}
 #' @examples
 #' hc <- hclust(dist(USArrests[c(1, 6, 13, 20, 23), ]), "ave")
 #' dend <- as.dendrogram(hc)
@@ -373,7 +372,6 @@ click_rotate.dendrogram <- function(x, plot = TRUE, plot_after = plot, horiz = F
 
 
 
-
 #' @title Ladderize a Tree
 #' @export
 #' @rdname ladderize
@@ -389,8 +387,7 @@ click_rotate.dendrogram <- function(x, plot = TRUE, plot_after = plot, horiz = F
 #' @param phy a placeholder in case the user uses "phy ="
 #'
 #' @return A rotated tree object
-#' @seealso \code{\link[ape]{ladderize}},
-#' \code{\link{rev.dendrogram}}, \code{\link{rotate}} ({dendextend}), \code{\link[ape]{rotate}} ({ape})
+#' @seealso \code{\link[ape]{ladderize}}, \code{\link{rev.dendrogram}}, \code{\link[dendextend]{rotate}}, \code{\link[ape]{rotate}}
 #' @examples
 #'
 #' dend <- USArrests[1:8, ] %>%

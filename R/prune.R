@@ -142,7 +142,7 @@ prune_leaf <- function(dend, leaf_name, ...) {
 #' I was not sure if to call this function drop.tip (from ape), snip/prune (from rpart) or just remove.leaves.  I ended up deciding on prune.
 #'
 #' @return A pruned tree
-#' @seealso \link{prune_leaf}, \link[ape]{drop.tip} {ape}
+#' @seealso \link{prune_leaf}, \link[ape]{drop.tip}
 #' @examples
 #' hc <- hclust(dist(USArrests[1:5, ]), "ave")
 #' dend <- as.dendrogram(hc)

@@ -434,7 +434,7 @@ get_nodes_attr <- function(dend, attribute,
 #' @title recursivly apply a function on a list
 #' @description
 #' recursivly apply a function on a list - and returns the output as a list,
-#' following the naming convention in the {plyr} package
+#' following the naming convention in the \code{plyr} package
 #' the big difference between this and rapply is that this will also apply
 #' the function on EACH element of the list, even if it's not a "terminal node"
 #' inside the list tree.
@@ -849,7 +849,7 @@ assign_values_to_leaves_nodePar <- function(dend, value, nodePar, warn = dendext
 #' @param ... not used
 #' @return
 #' A dendrogram, after adjusting the edgePar attribute in all of its leaves,
-#' @seealso \link{get_leaves_attr}, link{assign_values_to_leaves_nodePar}
+#' @seealso \link{get_leaves_attr}, \link{assign_values_to_leaves_nodePar}
 #' @examples
 #'
 #' \dontrun{

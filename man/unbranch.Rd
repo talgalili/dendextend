@@ -44,5 +44,5 @@ plot(unbranch(dend, 1), main = "unbranched tree (left branch)")
 plot(unbranch(dend, 2), main = "tree without  (right branch)")
 }
 \seealso{
-\link[ape]{unroot} {ape}
+\link[ape]{unroot}
 }

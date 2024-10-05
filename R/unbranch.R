@@ -102,7 +102,7 @@ raise.dendrogram <- function(dend, heiget_to_add, ...) {
 #' If the parameter is not given - the height of the original root is used.
 #' @param ... passed on
 #' @return An unbranched dendrogram
-#' @seealso \link[ape]{unroot} {ape}
+#' @seealso \link[ape]{unroot}
 #' @examples
 #' hc <- hclust(dist(USArrests[2:9, ]), "com")
 #' dend <- as.dendrogram(hc)

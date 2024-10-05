@@ -14,7 +14,7 @@ khan <- NULL
 #' @format
 #'
 #' Khan is dataset containing the following:
-#'    \itemize{
+#'    \describe{
 #'       \item{train:}{\code{\link{data.frame}} of 306 rows and 64 columns.
 #'          The training dataset of 64 arrays and 306 gene expression values}
 #'       \item{test:}{\code{\link{data.frame}}, of 306 rows and 25 columns.
@@ -30,7 +30,7 @@ khan <- NULL
 #'       \item{annotation:}{\code{\link{data.frame}} of 306 rows and 8 columns.
 #'          This table contains further gene annotation retrieved from SOURCE
 #'          \url{http://SOURCE.stanford.edu} in May 2004.  For each of the 306 genes,
-#'          it contains: \itemize{
+#'          it contains: \describe{
 #'             \item{CloneID}{Image Clone ID}
 #'             \item{UGCluster}{The Unigene cluster to which the gene is assigned}
 #'             \item{Symbol}{The HUGO gene symbol}
