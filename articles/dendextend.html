@@ -89,9 +89,9 @@
       <h1 data-toc-skip>Introduction to dendextend</h1>
                         <h4 data-toc-skip class="author">Tal Galili</h4>
             
-            <h4 data-toc-skip class="date">2024-10-05</h4>
+            <h4 data-toc-skip class="date">2024-10-11</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/master/vignettes/dendextend.Rmd" class="external-link"><code>vignettes/dendextend.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/1.18.0/vignettes/dendextend.Rmd" class="external-link"><code>vignettes/dendextend.Rmd</code></a></small>
       <div class="hidden name"><code>dendextend.Rmd</code></div>
 
     </div>
@@ -995,7 +995,7 @@ heat-maps:</p>
 <span></span>
 <span><span class="va">x</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/mtcars.html" class="external-link">mtcars</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/gplots/man/heatmap.2.html" class="external-link">heatmap.2</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://talgalili.github.io/gplots/reference/heatmap.2.html" class="external-link">heatmap.2</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-45-1.png" width="525"></p>
 <div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># now let's spice up the dendrograms a bit:</span></span>
@@ -1008,7 +1008,7 @@ heat-maps:</p>
 <span>   <span class="va">ladderize</span></span>
 <span><span class="co">#    rotate_DendSer(ser_weight = dist(t(x)))</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/gplots/man/heatmap.2.html" class="external-link">heatmap.2</a></span><span class="op">(</span><span class="va">x</span>, Rowv <span class="op">=</span> <span class="va">Rowv</span>, Colv <span class="op">=</span> <span class="va">Colv</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://talgalili.github.io/gplots/reference/heatmap.2.html" class="external-link">heatmap.2</a></span><span class="op">(</span><span class="va">x</span>, Rowv <span class="op">=</span> <span class="va">Rowv</span>, Colv <span class="op">=</span> <span class="va">Colv</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dendextend_files/figure-html/unnamed-chunk-45-2.png" width="525"></p>
 </div>
 <div class="section level4">
@@ -1092,8 +1092,8 @@ the branches, as well as using the <code>colored_bars</code> function
 <span><span class="va">n_clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">clusters_numbers</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://colorspace.R-Forge.R-project.org/" class="external-link">colorspace</a></span><span class="op">)</span></span>
-<span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/rainbow_hcl.html" class="external-link">rainbow_hcl</a></span><span class="op">(</span><span class="va">n_clusters</span><span class="op">)</span></span>
-<span><span class="va">true_species_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/rainbow_hcl.html" class="external-link">rainbow_hcl</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>,<span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/order.dendrogram.html" class="external-link">order.dendrogram</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span>,<span class="fl">5</span><span class="op">]</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/colorspace/man/rainbow_hcl.html" class="external-link">rainbow_hcl</a></span><span class="op">(</span><span class="va">n_clusters</span><span class="op">)</span></span>
+<span><span class="va">true_species_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/colorspace/man/rainbow_hcl.html" class="external-link">rainbow_hcl</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>,<span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/order.dendrogram.html" class="external-link">order.dendrogram</a></span><span class="op">(</span><span class="va">dend</span><span class="op">)</span>,<span class="fl">5</span><span class="op">]</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">dend2</span> <span class="op">&lt;-</span> <span class="va">dend</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>         <span class="fu"><a href="../reference/branches_attr_by_clusters.html">branches_attr_by_clusters</a></span><span class="op">(</span><span class="va">clusters</span>, values <span class="op">=</span> <span class="va">cols</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>         <span class="fu"><a href="../reference/color_labels.html">color_labels</a></span><span class="op">(</span>col <span class="op">=</span>   <span class="va">true_species_cols</span><span class="op">)</span></span>
@@ -1849,7 +1849,7 @@ are examples:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
 <span><span class="co">#&gt;  [1] corrplot_0.94         circlize_0.4.16       pvclust_2.2-0        </span></span>
-<span><span class="co">#&gt;  [4] dynamicTreeCut_1.63-1 gplots_3.1.3.1        DendSer_1.0.2        </span></span>
+<span><span class="co">#&gt;  [4] dynamicTreeCut_1.63-1 gplots_3.2.0          DendSer_1.0.2        </span></span>
 <span><span class="co">#&gt;  [7] seriation_1.5.6       gclus_1.3.2           cluster_2.1.6        </span></span>
 <span><span class="co">#&gt; [10] ggplot2_3.5.1         viridis_0.6.5         viridisLite_0.4.2    </span></span>
 <span><span class="co">#&gt; [13] colorspace_2.1-1      knitr_1.48            dendextend_1.18.0    </span></span>
@@ -1858,7 +1858,7 @@ are examples:</p>
 <span><span class="co">#&gt;  [1] sass_0.4.9          utf8_1.2.4          generics_0.1.3     </span></span>
 <span><span class="co">#&gt;  [4] bitops_1.0-9        shape_1.4.6.1       KernSmooth_2.23-24 </span></span>
 <span><span class="co">#&gt;  [7] gtools_3.9.5        caTools_1.18.3      digest_0.6.37      </span></span>
-<span><span class="co">#&gt; [10] magrittr_2.0.3      evaluate_1.0.0      grid_4.4.1         </span></span>
+<span><span class="co">#&gt; [10] magrittr_2.0.3      evaluate_1.0.1      grid_4.4.1         </span></span>
 <span><span class="co">#&gt; [13] iterators_1.0.14    fastmap_1.2.0       foreach_1.5.2      </span></span>
 <span><span class="co">#&gt; [16] jsonlite_1.8.9      GlobalOptions_0.1.2 gridExtra_2.3      </span></span>
 <span><span class="co">#&gt; [19] fansi_1.0.6         scales_1.3.0        codetools_0.2-20   </span></span>
