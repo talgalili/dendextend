@@ -89,9 +89,9 @@
       <h1 data-toc-skip>Frequently asked questions</h1>
                         <h4 data-toc-skip class="author">Tal Galili</h4>
             
-            <h4 data-toc-skip class="date">2024-10-11</h4>
+            <h4 data-toc-skip class="date">2024-10-12</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/1.18.0/vignettes/FAQ.Rmd" class="external-link"><code>vignettes/FAQ.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/talgalili/dendextend/blob/master/vignettes/FAQ.Rmd" class="external-link"><code>vignettes/FAQ.Rmd</code></a></small>
       <div class="hidden name"><code>FAQ.Rmd</code></div>
 
     </div>
@@ -520,7 +520,7 @@ function.</p>
 <span><span class="va">car_type</span><span class="op">[</span><span class="va">is_x</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Toyota"</span></span>
 <span><span class="va">car_type</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">car_type</span><span class="op">)</span></span>
 <span><span class="va">n_car_types</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">car_type</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">cols_4</span> <span class="op">&lt;-</span> <span class="fu">colorspace</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/colorspace/man/rainbow_hcl.html" class="external-link">rainbow_hcl</a></span><span class="op">(</span><span class="va">n_car_types</span>, c <span class="op">=</span> <span class="fl">70</span>, l  <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
+<span><span class="va">cols_4</span> <span class="op">&lt;-</span> <span class="fu">colorspace</span><span class="fu">::</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/rainbow_hcl.html" class="external-link">rainbow_hcl</a></span><span class="op">(</span><span class="va">n_car_types</span>, c <span class="op">=</span> <span class="fl">70</span>, l  <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
 <span><span class="va">col_car_type</span> <span class="op">&lt;-</span> <span class="va">cols_4</span><span class="op">[</span><span class="va">car_type</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co"># extra: showing the various clusters cuts </span></span>
