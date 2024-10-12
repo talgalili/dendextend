@@ -1,3 +1,8 @@
+dendextend 1.18.1 (2024-10-12)
+==============================
+## BUG FIXES
+- Fix ggplot.ggdend that didn't respect lwd (see: https://github.com/talgalili/dendextend/issues/126)
+
 dendextend 1.18.0 (2024-10-05)
 ==============================
 ## NEW FUNCTION

@@ -1,3 +1,796 @@
+* 2024-10-12(Tal Galili) Fixes issue #126 (linewidth in heatmaply not respected) |cf49949| 
+|  R/ggdend.R | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2024-10-05(Tal Galili) Update citation URL to use DOI |950afec| 
+|  DESCRIPTION       | 2 +-
+|  README.md         | 2 +-
+|  docs/authors.html | 2 +-
+|  inst/CITATION     | 2 +-
+|  4 files changed, 4 insertions(+), 4 deletions(-)
+
+* 2024-10-05(Tal Galili) Fix redirect url |a4c6206| 
+|  README.md         | 2 +-
+|  docs/authors.html | 2 +-
+|  inst/CITATION     | 2 +-
+|  3 files changed, 3 insertions(+), 3 deletions(-)
+
+* 2024-10-05(Tal Galili) Fix NEWS.rmd and update pkgdown |b85fc40| 
+|  DESCRIPTION                                       |    2 +-
+|  NEWS.md                                           |  618 ++---
+|  docs/404.html                                     |   20 +-
+|  docs/CONDUCT.html                                 |   20 +-
+|  docs/articles/Cluster_Analysis.html               | 1213 +++++----
+|  .../figure-html/unnamed-chunk-11-1.png            |  Bin 194462 -> 195786 bytes
+|  .../figure-html/unnamed-chunk-12-1.png            |  Bin 197378 -> 198923 bytes
+|  .../figure-html/unnamed-chunk-13-1.png            |  Bin 85435 -> 85761 bytes
+|  .../figure-html/unnamed-chunk-14-1.png            |  Bin 101084 -> 100693 bytes
+|  .../figure-html/unnamed-chunk-15-1.png            |  Bin 151578 -> 151103 bytes
+|  .../figure-html/unnamed-chunk-17-1.png            |  Bin 120234 -> 119806 bytes
+|  .../figure-html/unnamed-chunk-18-1.png            |  Bin 219924 -> 221481 bytes
+|  .../figure-html/unnamed-chunk-21-1.png            |  Bin 31259 -> 31416 bytes
+|  .../figure-html/unnamed-chunk-26-1.png            |  Bin 33365 -> 37733 bytes
+|  .../figure-html/unnamed-chunk-27-1.png            |  Bin 223928 -> 238824 bytes
+|  .../figure-html/unnamed-chunk-29-1.png            |  Bin 69789 -> 69908 bytes
+|  .../figure-html/unnamed-chunk-3-1.png             |  Bin 165161 -> 165565 bytes
+|  .../figure-html/unnamed-chunk-32-1.png            |  Bin 202018 -> 202442 bytes
+|  .../figure-html/unnamed-chunk-33-1.png            |  Bin 114867 -> 114843 bytes
+|  .../figure-html/unnamed-chunk-35-1.png            |  Bin 198486 -> 200078 bytes
+|  .../figure-html/unnamed-chunk-36-1.png            |  Bin 114080 -> 113906 bytes
+|  .../figure-html/unnamed-chunk-38-1.png            |  Bin 165969 -> 167988 bytes
+|  .../figure-html/unnamed-chunk-4-1.png             |  Bin 146361 -> 146855 bytes
+|  .../figure-html/unnamed-chunk-40-1.png            |  Bin 59822 -> 60757 bytes
+|  .../figure-html/unnamed-chunk-42-1.png            |  Bin 199586 -> 201049 bytes
+|  .../figure-html/unnamed-chunk-43-1.png            |  Bin 132953 -> 134721 bytes
+|  .../figure-html/unnamed-chunk-5-1.png             |  Bin 250444 -> 249297 bytes
+|  .../figure-html/unnamed-chunk-6-1.png             |  Bin 431084 -> 408870 bytes
+|  .../figure-html/unnamed-chunk-8-1.png             |  Bin 67934 -> 67667 bytes
+|  docs/articles/FAQ.html                            |  789 +++---
+|  .../FAQ_files/figure-html/unnamed-chunk-12-1.png  |  Bin 247169 -> 244269 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-14-1.png  |  Bin 8645 -> 8668 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-15-1.png  |  Bin 87297 -> 85436 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-15-2.png  |  Bin 103678 -> 104165 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-16-1.png  |  Bin 110579 -> 110190 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-16-2.png  |  Bin 112041 -> 111295 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-2-1.png   |  Bin 21848 -> 25973 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-3-1.png   |  Bin 12541 -> 13444 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-4-1.png   |  Bin 33683 -> 33275 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-5-1.png   |  Bin 25717 -> 25373 bytes
+|  .../FAQ_files/figure-html/unnamed-chunk-7-1.png   |  Bin 28857 -> 28945 bytes
+|  docs/articles/Quick_Introduction.html             |  123 +-
+|  .../figure-html/unnamed-chunk-11-1.png            |  Bin 8924 -> 10661 bytes
+|  .../figure-html/unnamed-chunk-4-1.png             |  Bin 10041 -> 9957 bytes
+|  .../figure-html/unnamed-chunk-6-1.png             |  Bin 13085 -> 12876 bytes
+|  .../figure-html/unnamed-chunk-7-1.png             |  Bin 13258 -> 13075 bytes
+|  .../figure-html/unnamed-chunk-8-1.png             |  Bin 13271 -> 13097 bytes
+|  .../figure-html/unnamed-chunk-9-1.png             |  Bin 24733 -> 24584 bytes
+|  docs/articles/dendextend.html                     | 2615 +++++++++++--------
+|  .../figure-html/unnamed-chunk-11-1.png            |  Bin 39782 -> 47265 bytes
+|  .../figure-html/unnamed-chunk-13-1.png            |  Bin 8950 -> 8791 bytes
+|  .../figure-html/unnamed-chunk-17-1.png            |  Bin 12455 -> 12881 bytes
+|  .../figure-html/unnamed-chunk-18-1.png            |  Bin 11788 -> 12855 bytes
+|  .../figure-html/unnamed-chunk-2-1.png             |  Bin 46350 -> 47057 bytes
+|  .../figure-html/unnamed-chunk-20-1.png            |  Bin 16441 -> 18759 bytes
+|  .../figure-html/unnamed-chunk-21-1.png            |  Bin 28235 -> 31423 bytes
+|  .../figure-html/unnamed-chunk-22-1.png            |  Bin 20423 -> 24644 bytes
+|  .../figure-html/unnamed-chunk-24-1.png            |  Bin 12809 -> 14315 bytes
+|  .../figure-html/unnamed-chunk-26-1.png            |  Bin 9388 -> 10561 bytes
+|  .../figure-html/unnamed-chunk-27-1.png            |  Bin 13255 -> 13253 bytes
+|  .../figure-html/unnamed-chunk-28-1.png            |  Bin 9573 -> 11297 bytes
+|  .../figure-html/unnamed-chunk-29-1.png            |  Bin 15800 -> 15838 bytes
+|  .../figure-html/unnamed-chunk-30-1.png            |  Bin 16157 -> 16282 bytes
+|  .../figure-html/unnamed-chunk-31-1.png            |  Bin 12989 -> 13069 bytes
+|  .../figure-html/unnamed-chunk-32-1.png            |  Bin 21684 -> 21967 bytes
+|  .../figure-html/unnamed-chunk-33-1.png            |  Bin 23976 -> 24158 bytes
+|  .../figure-html/unnamed-chunk-33-2.png            |  Bin 74644 -> 74178 bytes
+|  .../figure-html/unnamed-chunk-33-3.png            |  Bin 49529 -> 49038 bytes
+|  .../figure-html/unnamed-chunk-33-4.png            |  Bin 39722 -> 39418 bytes
+|  .../figure-html/unnamed-chunk-33-5.png            |  Bin 84536 -> 84093 bytes
+|  .../figure-html/unnamed-chunk-34-1.png            |  Bin 12922 -> 12808 bytes
+|  .../figure-html/unnamed-chunk-35-1.png            |  Bin 17333 -> 17266 bytes
+|  .../figure-html/unnamed-chunk-36-1.png            |  Bin 9938 -> 11124 bytes
+|  .../figure-html/unnamed-chunk-37-1.png            |  Bin 9603 -> 9621 bytes
+|  .../figure-html/unnamed-chunk-38-1.png            |  Bin 6413 -> 6158 bytes
+|  .../figure-html/unnamed-chunk-39-1.png            |  Bin 10162 -> 11110 bytes
+|  .../figure-html/unnamed-chunk-40-1.png            |  Bin 17625 -> 17350 bytes
+|  .../figure-html/unnamed-chunk-41-1.png            |  Bin 9322 -> 11178 bytes
+|  .../figure-html/unnamed-chunk-42-1.png            |  Bin 55791 -> 48798 bytes
+|  .../figure-html/unnamed-chunk-43-1.png            |  Bin 50827 -> 51467 bytes
+|  .../figure-html/unnamed-chunk-43-2.png            |  Bin 57826 -> 59189 bytes
+|  .../figure-html/unnamed-chunk-43-3.png            |  Bin 70427 -> 71198 bytes
+|  .../figure-html/unnamed-chunk-43-4.png            |  Bin 84316 -> 91761 bytes
+|  .../figure-html/unnamed-chunk-44-1.png            |  Bin 7154 -> 7055 bytes
+|  .../figure-html/unnamed-chunk-45-1.png            |  Bin 93768 -> 96207 bytes
+|  .../figure-html/unnamed-chunk-45-2.png            |  Bin 101401 -> 103810 bytes
+|  .../figure-html/unnamed-chunk-49-1.png            |  Bin 54678 -> 53980 bytes
+|  .../figure-html/unnamed-chunk-50-1.png            |  Bin 101318 -> 111132 bytes
+|  .../figure-html/unnamed-chunk-51-1.png            |  Bin 88646 -> 101367 bytes
+|  .../figure-html/unnamed-chunk-52-1.png            |  Bin 131443 -> 129776 bytes
+|  .../figure-html/unnamed-chunk-53-1.png            |  Bin 141006 -> 139329 bytes
+|  .../figure-html/unnamed-chunk-55-1.png            |  Bin 13279 -> 13545 bytes
+|  .../figure-html/unnamed-chunk-56-1.png            |  Bin 26261 -> 26196 bytes
+|  .../figure-html/unnamed-chunk-57-1.png            |  Bin 23455 -> 23400 bytes
+|  .../figure-html/unnamed-chunk-59-1.png            |  Bin 8732 -> 8637 bytes
+|  .../figure-html/unnamed-chunk-60-1.png            |  Bin 30954 -> 30805 bytes
+|  .../figure-html/unnamed-chunk-61-1.png            |  Bin 30777 -> 30607 bytes
+|  .../figure-html/unnamed-chunk-62-1.png            |  Bin 17194 -> 16989 bytes
+|  .../figure-html/unnamed-chunk-63-1.png            |  Bin 11964 -> 11853 bytes
+|  .../figure-html/unnamed-chunk-64-1.png            |  Bin 24438 -> 25402 bytes
+|  .../figure-html/unnamed-chunk-66-1.png            |  Bin 8999 -> 9338 bytes
+|  .../figure-html/unnamed-chunk-68-1.png            |  Bin 81054 -> 89244 bytes
+|  .../figure-html/unnamed-chunk-69-1.png            |  Bin 25581 -> 25194 bytes
+|  .../figure-html/unnamed-chunk-69-2.png            |  Bin 45198 -> 45012 bytes
+|  .../figure-html/unnamed-chunk-7-1.png             |  Bin 4460 -> 4305 bytes
+|  .../figure-html/unnamed-chunk-72-1.png            |  Bin 41643 -> 43370 bytes
+|  .../figure-html/unnamed-chunk-73-1.png            |  Bin 44120 -> 43964 bytes
+|  .../figure-html/unnamed-chunk-73-2.png            |  Bin 41142 -> 40900 bytes
+|  .../figure-html/unnamed-chunk-73-3.png            |  Bin 34009 -> 35642 bytes
+|  .../figure-html/unnamed-chunk-79-1.png            |  Bin 49625 -> 53504 bytes
+|  .../figure-html/unnamed-chunk-79-2.png            |  Bin 47702 -> 51852 bytes
+|  .../figure-html/unnamed-chunk-9-1.png             |  Bin 4615 -> 4593 bytes
+|  docs/articles/index.html                          |   24 +-
+|  docs/authors.html                                 |   86 +-
+|  docs/index.html                                   |   52 +-
+|  docs/news/index.html                              | 1659 ++++++++++--
+|  docs/pkgdown.yml                                  |    9 +-
+|  docs/reference/Bk.html                            |   44 +-
+|  docs/reference/Bk_permutations.html               |   46 +-
+|  docs/reference/Bk_plot.html                       |   82 +-
+|  docs/reference/DendSer.dendrogram.html            |   36 +-
+|  docs/reference/FM_index.html                      |   46 +-
+|  docs/reference/FM_index_R.html                    |   44 +-
+|  docs/reference/FM_index_permutation.html          |   40 +-
+|  docs/reference/Rplot001.png                       |  Bin 4480 -> 4338 bytes
+|  docs/reference/Rplot002.png                       |  Bin 4588 -> 4544 bytes
+|  docs/reference/Rplot003.png                       |  Bin 9529 -> 9286 bytes
+|  docs/reference/Rplot004.png                       |  Bin 10574 -> 10302 bytes
+|  docs/reference/Rplot005.png                       |  Bin 7394 -> 3895 bytes
+|  docs/reference/Rplot006.png                       |  Bin 49630 -> 46391 bytes
+|  docs/reference/Rplot007.png                       |  Bin 5468 -> 4050 bytes
+|  docs/reference/Rplot008.png                       |  Bin 49630 -> 46391 bytes
+|  docs/reference/all.equal.dendrogram.html          |   50 +-
+|  docs/reference/all_couple_rotations_at_k.html     |   38 +-
+|  docs/reference/all_unique.html                    |   30 +-
+|  docs/reference/as.dendlist.html                   |   34 +-
+|  docs/reference/as.phylo.dendrogram.html           |   42 +-
+|  docs/reference/as_hclust_fixed.html               |   32 +-
+|  docs/reference/assign_dendextend_options.html     |   20 +-
+|  .../assign_values_to_branches_edgePar-1.png       |  Bin 13685 -> 13558 bytes
+|  .../assign_values_to_branches_edgePar.html        |   54 +-
+|  .../assign_values_to_leaves_edgePar.html          |   50 +-
+|  .../assign_values_to_leaves_nodePar.html          |   50 +-
+|  .../reference/assign_values_to_nodes_nodePar.html |   46 +-
+|  docs/reference/bakers_gamma_for_2_k_matrix.html   |   34 +-
+|  docs/reference/branches_attr_by_clusters.html     |   52 +-
+|  docs/reference/branches_attr_by_labels.html       |   58 +-
+|  docs/reference/branches_attr_by_lists.html        |   48 +-
+|  docs/reference/circlize_dendrogram.html           |   42 +-
+|  docs/reference/click_rotate.html                  |   46 +-
+|  docs/reference/collapse_branch-1.png              |  Bin 13449 -> 14781 bytes
+|  docs/reference/collapse_branch-2.png              |  Bin 15436 -> 16586 bytes
+|  docs/reference/collapse_branch.html               |   46 +-
+|  docs/reference/collapse_labels-1.png              |  Bin 0 -> 11984 bytes
+|  docs/reference/collapse_labels.html               |  155 ++
+|  docs/reference/color_branches.html                |   84 +-
+|  docs/reference/color_labels.html                  |   54 +-
+|  docs/reference/color_unique_labels-1.png          |  Bin 16525 -> 17928 bytes
+|  docs/reference/color_unique_labels.html           |   34 +-
+|  docs/reference/colored_bars-1.png                 |  Bin 14111 -> 14247 bytes
+|  docs/reference/colored_bars-2.png                 |  Bin 15954 -> 16091 bytes
+|  docs/reference/colored_bars-3.png                 |  Bin 17431 -> 17700 bytes
+|  docs/reference/colored_bars-4.png                 |  Bin 20978 -> 21488 bytes
+|  docs/reference/colored_bars-5.png                 |  Bin 13939 -> 14141 bytes
+|  docs/reference/colored_bars-6.png                 |  Bin 19456 -> 19745 bytes
+|  docs/reference/colored_bars-7.png                 |  Bin 106950 -> 104813 bytes
+|  docs/reference/colored_bars-8.png                 |  Bin 124716 -> 130506 bytes
+|  docs/reference/colored_bars.html                  |   66 +-
+|  docs/reference/colored_dots-1.png                 |  Bin 15944 -> 16383 bytes
+|  docs/reference/colored_dots-2.png                 |  Bin 17800 -> 17955 bytes
+|  docs/reference/colored_dots-3.png                 |  Bin 15761 -> 16178 bytes
+|  docs/reference/colored_dots-4.png                 |  Bin 17639 -> 17803 bytes
+|  docs/reference/colored_dots-5.png                 |  Bin 22582 -> 22498 bytes
+|  docs/reference/colored_dots-6.png                 |  Bin 27759 -> 28422 bytes
+|  docs/reference/colored_dots-7.png                 |  Bin 134960 -> 135242 bytes
+|  docs/reference/colored_dots-8.png                 |  Bin 133617 -> 139371 bytes
+|  docs/reference/colored_dots.html                  |   66 +-
+|  docs/reference/common_subtrees_clusters-1.png     |  Bin 57502 -> 57667 bytes
+|  docs/reference/common_subtrees_clusters-2.png     |  Bin 11230 -> 11552 bytes
+|  docs/reference/common_subtrees_clusters-3.png     |  Bin 11119 -> 11415 bytes
+|  docs/reference/common_subtrees_clusters-4.png     |  Bin 56073 -> 56204 bytes
+|  docs/reference/common_subtrees_clusters-5.png     |  Bin 57981 -> 58112 bytes
+|  docs/reference/common_subtrees_clusters.html      |   40 +-
+|  docs/reference/cor.dendlist.html                  |   36 +-
+|  docs/reference/cor_FM_index.html                  |   34 +-
+|  docs/reference/cor_bakers_gamma.html              |   54 +-
+|  docs/reference/cor_common_nodes-1.png             |  Bin 79226 -> 79436 bytes
+|  docs/reference/cor_common_nodes.html              |   32 +-
+|  docs/reference/cor_cophenetic.html                |   48 +-
+|  docs/reference/count_terminal_nodes-1.png         |  Bin 24491 -> 24778 bytes
+|  docs/reference/count_terminal_nodes-2.png         |  Bin 24568 -> 24912 bytes
+|  docs/reference/count_terminal_nodes.html          |   34 +-
+|  docs/reference/cut_lower_fun.html                 |   36 +-
+|  docs/reference/cutree-methods.html                |   70 +-
+|  docs/reference/cutree_1h.dendrogram.html          |   44 +-
+|  docs/reference/cutree_1k.dendrogram.html          |   48 +-
+|  docs/reference/dend_diff-1.png                    |  Bin 11895 -> 12516 bytes
+|  docs/reference/dend_diff-2.png                    |  Bin 11892 -> 12521 bytes
+|  docs/reference/dend_diff-3.png                    |  Bin 17345 -> 18073 bytes
+|  docs/reference/dend_diff.html                     |   40 +-
+|  docs/reference/dendextend-package.html            |   59 +-
+|  docs/reference/dendextend_options.html            |   30 +-
+|  docs/reference/dendlist.html                      |   42 +-
+|  docs/reference/depth-1.png                        |  Bin 69302 -> 70342 bytes
+|  docs/reference/depth.html                         |   32 +-
+|  docs/reference/dist.dendlist-1.png                |  Bin 11895 -> 12516 bytes
+|  docs/reference/dist.dendlist-2.png                |  Bin 13489 -> 14300 bytes
+|  docs/reference/dist.dendlist.html                 |   38 +-
+|  docs/reference/dist_long.html                     |   30 +-
+|  docs/reference/distinct_edges-1.png               |  Bin 11895 -> 12516 bytes
+|  docs/reference/distinct_edges.html                |   32 +-
+|  docs/reference/duplicate_leaf.html                |   54 +-
+|  docs/reference/entanglement.html                  |   50 +-
+|  docs/reference/fac2num.html                       |   34 +-
+|  docs/reference/find_dend-1.png                    |  Bin 65348 -> 69241 bytes
+|  docs/reference/find_dend.html                     |   42 +-
+|  docs/reference/find_dendrogram.html               |   44 +-
+|  docs/reference/find_k-1.png                       |  Bin 45347 -> 45044 bytes
+|  docs/reference/find_k-2.png                       |  Bin 48962 -> 51756 bytes
+|  docs/reference/find_k-3.png                       |  Bin 37264 -> 38014 bytes
+|  docs/reference/find_k-4.png                       |  Bin 44651 -> 44391 bytes
+|  docs/reference/find_k-5.png                       |  Bin 72119 -> 73135 bytes
+|  docs/reference/find_k.html                        |   56 +-
+|  docs/reference/fix_members_attr.dendrogram.html   |   30 +-
+|  docs/reference/flatten.dendrogram-1.png           |  Bin 32726 -> 31716 bytes
+|  docs/reference/flatten.dendrogram.html            |   38 +-
+|  docs/reference/flip_leaves.html                   |   38 +-
+|  docs/reference/get_branches_heights.html          |   36 +-
+|  docs/reference/get_childrens_heights.html         |   30 +-
+|  docs/reference/get_leaves_attr.html               |   34 +-
+|  docs/reference/get_leaves_branches_attr-1.png     |  Bin 23437 -> 23687 bytes
+|  docs/reference/get_leaves_branches_attr-2.png     |  Bin 30129 -> 30262 bytes
+|  docs/reference/get_leaves_branches_attr.html      |   36 +-
+|  docs/reference/get_leaves_branches_col-1.png      |  Bin 39284 -> 39805 bytes
+|  docs/reference/get_leaves_branches_col.html       |   34 +-
+|  docs/reference/get_leaves_edgePar-1.png           |  Bin 19337 -> 19585 bytes
+|  docs/reference/get_leaves_edgePar.html            |   34 +-
+|  docs/reference/get_leaves_nodePar-1.png           |  Bin 20937 -> 26384 bytes
+|  docs/reference/get_leaves_nodePar.html            |   34 +-
+|  docs/reference/get_nodes_attr.html                |   48 +-
+|  docs/reference/get_nodes_xy.html                  |   42 +-
+|  docs/reference/get_root_branches_attr.html        |   34 +-
+|  docs/reference/get_subdendrograms-1.png           |  Bin 17637 -> 17859 bytes
+|  docs/reference/get_subdendrograms-2.png           |  Bin 71992 -> 71955 bytes
+|  docs/reference/get_subdendrograms-3.png           |  Bin 32695 -> 33820 bytes
+|  docs/reference/get_subdendrograms.html            |   51 +-
+|  docs/reference/ggdend.html                        |   79 +-
+|  docs/reference/hang.dendrogram-1.png              |  Bin 44956 -> 44189 bytes
+|  docs/reference/hang.dendrogram-2.png              |  Bin 28986 -> 28785 bytes
+|  docs/reference/hang.dendrogram-3.png              |  Bin 16444 -> 16730 bytes
+|  docs/reference/hang.dendrogram.html               |   48 +-
+|  docs/reference/has_component_in_attribute-1.png   |  Bin 24044 -> 24232 bytes
+|  docs/reference/has_component_in_attribute.html    |   36 +-
+|  docs/reference/heights_per_k.dendrogram.html      |   36 +-
+|  docs/reference/highlight_branches-1.png           |  Bin 33622 -> 33881 bytes
+|  docs/reference/highlight_branches-2.png           |  Bin 33023 -> 33034 bytes
+|  docs/reference/highlight_branches-3.png           |  Bin 104164 -> 104078 bytes
+|  docs/reference/highlight_branches-4.png           |  Bin 66188 -> 66587 bytes
+|  docs/reference/highlight_branches-5.png           |  Bin 52808 -> 53095 bytes
+|  docs/reference/highlight_branches-6.png           |  Bin 113490 -> 113276 bytes
+|  docs/reference/highlight_branches-7.png           |  Bin 15309 -> 15321 bytes
+|  docs/reference/highlight_branches-8.png           |  Bin 113490 -> 113276 bytes
+|  docs/reference/highlight_branches.html            |   64 +-
+|  docs/reference/highlight_distinct_edges-1.png     |  Bin 10826 -> 11029 bytes
+|  docs/reference/highlight_distinct_edges.html      |   50 +-
+|  docs/reference/identify.dendrogram.html           |   52 +-
+|  docs/reference/index.html                         |   33 +-
+|  docs/reference/intersect_trees-1.png              |  Bin 24690 -> 24981 bytes
+|  docs/reference/intersect_trees.html               |   44 +-
+|  docs/reference/is.natural.number.html             |   32 +-
+|  docs/reference/is_null_list.html                  |   36 +-
+|  docs/reference/is_some_class.html                 |   28 +-
+|  docs/reference/khan.html                          |   92 +-
+|  docs/reference/labels-assign.html                 |   46 +-
+|  docs/reference/labels_cex-1.png                   |  Bin 15573 -> 15655 bytes
+|  docs/reference/labels_cex-2.png                   |  Bin 18864 -> 19846 bytes
+|  docs/reference/labels_cex-3.png                   |  Bin 15573 -> 15655 bytes
+|  docs/reference/labels_cex.html                    |   38 +-
+|  docs/reference/labels_colors-1.png                |  Bin 15573 -> 15655 bytes
+|  docs/reference/labels_colors-2.png                |  Bin 17570 -> 20905 bytes
+|  docs/reference/labels_colors-3.png                |  Bin 15573 -> 15655 bytes
+|  docs/reference/labels_colors-4.png                |  Bin 15573 -> 15655 bytes
+|  docs/reference/labels_colors.html                 |   42 +-
+|  docs/reference/ladderize-1.png                    |  Bin 27973 -> 28126 bytes
+|  docs/reference/ladderize.html                     |   57 +-
+|  docs/reference/leaf_Colors.html                   |   30 +-
+|  docs/reference/lowest_common_branch.html          |   32 +-
+|  docs/reference/match_order_by_labels.html         |   36 +-
+|  .../match_order_dendrogram_by_old_order.html      |   40 +-
+|  docs/reference/na_locf.html                       |   40 +-
+|  docs/reference/nleaves.html                       |   42 +-
+|  docs/reference/nnodes.html                        |   38 +-
+|  docs/reference/noded_with_condition.html          |   50 +-
+|  docs/reference/order.dendrogram-assign.html       |   32 +-
+|  docs/reference/order.hclust.html                  |   30 +-
+|  docs/reference/partition_leaves-1.png             |  Bin 11301 -> 11287 bytes
+|  docs/reference/partition_leaves.html              |   36 +-
+|  docs/reference/plot_horiz.dendrogram.html         |   64 +-
+|  docs/reference/prune-1.png                        |  Bin 27016 -> 27055 bytes
+|  docs/reference/prune.html                         |   50 +-
+|  .../reference/prune_common_subtrees.dendlist.html |   30 +-
+|  docs/reference/prune_leaf-1.png                   |  Bin 26250 -> 26299 bytes
+|  docs/reference/prune_leaf.html                    |   36 +-
+|  docs/reference/pvclust_edges.html                 |   32 +-
+|  docs/reference/pvclust_show_signif.html           |   54 +-
+|  docs/reference/pvclust_show_signif_gradient.html  |   50 +-
+|  docs/reference/pvrect2.html                       |   48 +-
+|  docs/reference/raise.dendrogram-1.png             |  Bin 35684 -> 36085 bytes
+|  docs/reference/raise.dendrogram.html              |   36 +-
+|  docs/reference/rank_branches-1.png                |  Bin 28420 -> 28713 bytes
+|  docs/reference/rank_branches.html                 |   38 +-
+|  docs/reference/rank_order.dendrogram.html         |   30 +-
+|  docs/reference/rank_values_with_clusters.html     |   32 +-
+|  docs/reference/rect.dendrogram-1.png              |  Bin 17732 -> 18765 bytes
+|  docs/reference/rect.dendrogram-2.png              |  Bin 47531 -> 47991 bytes
+|  docs/reference/rect.dendrogram-3.png              |  Bin 22507 -> 25051 bytes
+|  docs/reference/rect.dendrogram-4.png              |  Bin 21187 -> 23622 bytes
+|  docs/reference/rect.dendrogram-5.png              |  Bin 19688 -> 20767 bytes
+|  docs/reference/rect.dendrogram.html               |   74 +-
+|  docs/reference/reexports.html                     |   20 +-
+|  docs/reference/reindex_dend.html                  |   28 +-
+|  docs/reference/remove_branches_edgePar.html       |   38 +-
+|  docs/reference/remove_leaves_nodePar.html         |   38 +-
+|  docs/reference/remove_nodes_nodePar.html          |   38 +-
+|  docs/reference/rllply.html                        |   40 +-
+|  docs/reference/rotate-1.png                       |  Bin 26012 -> 26132 bytes
+|  docs/reference/rotate-2.png                       |  Bin 37568 -> 39362 bytes
+|  docs/reference/rotate-3.png                       |  Bin 32003 -> 32524 bytes
+|  docs/reference/rotate-4.png                       |  Bin 33951 -> 33510 bytes
+|  docs/reference/rotate-5.png                       |  Bin 25971 -> 26150 bytes
+|  docs/reference/rotate.html                        |  113 +-
+|  docs/reference/rotate_DendSer.html                |   36 +-
+|  docs/reference/sample.dendrogram.html             |   52 +-
+|  docs/reference/seriate_dendrogram.html            |   40 +-
+|  docs/reference/set.html                           |  134 +-
+|  docs/reference/set_labels-1.png                   |  Bin 29370 -> 29193 bytes
+|  docs/reference/set_labels-2.png                   |  Bin 48924 -> 49755 bytes
+|  docs/reference/set_labels-3.png                   |  Bin 25357 -> 25504 bytes
+|  docs/reference/set_labels.html                    |   38 +-
+|  docs/reference/shuffle-1.png                      |  Bin 241178 -> 241522 bytes
+|  docs/reference/shuffle-2.png                      |  Bin 107161 -> 109320 bytes
+|  docs/reference/shuffle.html                       |   42 +-
+|  docs/reference/sort_2_clusters_vectors.html       |   40 +-
+|  docs/reference/sort_dist_mat.html                 |   36 +-
+|  docs/reference/sort_levels_values.html            |   38 +-
+|  docs/reference/tanglegram.html                    |  130 +-
+|  docs/reference/theme_dendro.html                  |   20 +-
+|  docs/reference/unbranch-1.png                     |  Bin 28570 -> 28422 bytes
+|  docs/reference/unbranch.html                      |   50 +-
+|  docs/reference/unclass_dend.html                  |   30 +-
+|  docs/reference/untangle.html                      |   63 +-
+|  docs/reference/untangle_DendSer.html              |   38 +-
+|  docs/reference/untangle_random_search.html        |   42 +-
+|  docs/reference/untangle_step_rotate_1side.html    |   46 +-
+|  docs/reference/untangle_step_rotate_2side.html    |   46 +-
+|  .../reference/untangle_step_rotate_both_side.html |  232 ++
+|  docs/reference/which_leaf.html                    |   38 +-
+|  docs/reference/which_node-1.png                   |  Bin 13637 -> 14338 bytes
+|  docs/reference/which_node.html                    |   38 +-
+|  docs/sitemap.xml                                  |  153 ++
+|  360 files changed, 8102 insertions(+), 5765 deletions(-)
+
+* 2024-10-05(Tal Galili) Fix various .rd issues |1de78d0| 
+|  R/DendSer.R                            |  2 +-
+|  R/attr_access.R                        |  4 ++--
+|  R/data.R                               |  4 ++--
+|  R/prune.R                              |  2 +-
+|  R/rotate.R                             | 35 +++++++++++++++-----------------
+|  R/unbranch.R                           |  2 +-
+|  R/untangle.R                           |  8 ++++++--
+|  man/assign_values_to_leaves_edgePar.Rd |  2 +-
+|  man/khan.Rd                            |  4 ++--
+|  man/ladderize.Rd                       |  3 +--
+|  man/prune.Rd                           |  2 +-
+|  man/rllply.Rd                          |  2 +-
+|  man/rotate.Rd                          | 31 ++++++++++++++--------------
+|  man/unbranch.Rd                        |  2 +-
+|  man/untangle_DendSer.Rd                |  2 +-
+|  man/untangle_step_rotate_both_side.Rd  |  8 ++++++--
+|  16 files changed, 58 insertions(+), 55 deletions(-)
+
+* 2024-09-28(Tal Galili) URL fixes |d8beb1a| 
+|  DESCRIPTION |    6 +-
+|  NEWS        | 1477 ---------------------------------------------------------
+|  NEWS.md     |    2 +-
+|  README.md   |    2 +-
+|  4 files changed, 5 insertions(+), 1482 deletions(-)
+
+* 2024-09-24(Tal Galili) Updating yaml for code coverage. |586b59c| 
+|  .github/workflows/test-coverage.yaml | 27 +++++++++++++++++++--------
+|  1 file changed, 19 insertions(+), 8 deletions(-)
+
+* 2024-09-24(Tal Galili) Update DESCRIPTION and NEWS |0f15497| 
+|  DESCRIPTION | 2 +-
+|  NEWS        | 9 +++++----
+|  NEWS.md     | 9 +++++----
+|  R/zzz.R     | 2 +-
+|  4 files changed, 12 insertions(+), 10 deletions(-)
+
+* 2024-09-24(alecbuetow) Fixed rect.dendogram 2 rectangle bug (#124) |370e535| 
+|  R/rect.dendrogram.R | 6 +++---
+|  1 file changed, 3 insertions(+), 3 deletions(-)
+
+* 2024-09-23(alecbuetow) Added 2 Tests for Untangle.R (#123) |36b035b| 
+|  tests/testthat/test-untangle.R | 44 ++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 44 insertions(+)
+
+* 2024-08-31(Tal Galili) Update docs and NEWS to 1.18.0 |f5c5d0b| 
+|  DESCRIPTION     |  2 +-
+|  NAMESPACE       |  8 +++++---
+|  NEWS            | 11 +++--------
+|  NEWS.md         | 11 +++++++++--
+|  R/untangle.R    | 12 +++++++-----
+|  man/untangle.Rd | 12 +++++++-----
+|  6 files changed, 32 insertions(+), 24 deletions(-)
+
+* 2024-08-31(Tal Galili) Stop tracking linter for the time being |d906461| 
+|  .github/workflows/lint.yaml | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2024-08-31(Tal Galili) Remove windoes r: 4.1 check (since it seems to fail on installing Hmisc for some reason) |6eb3b3a| 
+|  .github/workflows/R-CMD-check.yaml | 1 -
+|  1 file changed, 1 deletion(-)
+
+* 2024-08-31(Tal Galili) Trying to fix the Hmisc error |7eaa20d| 
+|  .github/workflows/R-CMD-check.yaml | 13 ++-----------
+|  1 file changed, 2 insertions(+), 11 deletions(-)
+
+* 2024-08-31(Tal Galili) Update untangle_step_rotate_both_side to not need dplyr |67355f7| 
+|  tests/testthat/test-untangle.R | 17 +++++++++++------
+|  1 file changed, 11 insertions(+), 6 deletions(-)
+
+* 2024-08-31(Tal Galili) Fix warnings in tests and roxygen2 |c65d34c| 
+|  .gitignore                       |  4 ++-
+|  NAMESPACE                        |  9 +++---
+|  R/dendextend-package.R           |  2 +-
+|  R/entanglement.R                 |  1 +
+|  R/ggdend.R                       | 61 +++++++++++++++++++++-----------------
+|  tests/{test-all.R => testthat.R} |  2 +-
+|  tests/testthat/test-ggdend.R     |  8 ++---
+|  7 files changed, 47 insertions(+), 40 deletions(-)
+
+* 2024-08-31(Tal Galili) Fix untange test failure |3c2d436| 
+|  tests/testthat/test-untangle.R | 7 ++++---
+|  1 file changed, 4 insertions(+), 3 deletions(-)
+
+* 2024-08-31(Tal Galili) Fix tests to be able to run again |ef919e1| 
+|  tests/testthat/test-attr_access.R | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2024-08-31(alecbuetow) Added stepBothSides algorithm to untangle methods (#122) |d4d6530| 
+|  DESCRIPTION                           |   5 +-
+|  NAMESPACE                             |   1 +
+|  NEWS                                  |   6 ++
+|  R/untangle.R                          | 133 +++++++++++++++++++++++++++++++-
+|  man/dendextend-package.Rd             |  41 ++++++++++
+|  man/untangle.Rd                       |   3 +-
+|  man/untangle_step_rotate_both_side.Rd | 108 ++++++++++++++++++++++++++
+|  tests/testthat/test-untangle.R        |  26 ++++++-
+|  8 files changed, 317 insertions(+), 6 deletions(-)
+
+* 2023-12-16(Tal Galili) Another attempt to deal with Hmisc installation |278999b| 
+|  .github/workflows/R-CMD-check.yaml | 12 ++++++++----
+|  1 file changed, 8 insertions(+), 4 deletions(-)
+
+* 2023-12-16(Tal Galili) Try another R-CMD-check.yaml file - try 2 |402ce1d| 
+|  .github/workflows/R-CMD-check.yaml | 25 ++++++++++++-------------
+|  1 file changed, 12 insertions(+), 13 deletions(-)
+
+* 2023-12-16(Tal Galili) Try another R-CMD-check.yaml file |5435367| 
+|  .github/workflows/R-CMD-check.yaml | 18 +++---------------
+|  1 file changed, 3 insertions(+), 15 deletions(-)
+
+* 2023-12-16(Tal Galili) Add tests to attr_access |82c908b| 
+|  tests/testthat/test-attr_access.R | 82 +++++++++++++++++++++++++++++++++++++
+|  1 file changed, 82 insertions(+)
+
+* 2023-12-16(Tal Galili) Remove broken test |fcd3eae| 
+|  tests/testthat/test-ggdend.R | 9 ---------
+|  1 file changed, 9 deletions(-)
+
+* 2023-12-16(Tal Galili) Add tests to ggdend |a82de2b| 
+|  tests/testthat/test-ggdend.R | 92 ++++++++++++++++++++++++++++++++++++++++++
+|  1 file changed, 92 insertions(+)
+
+* 2023-12-16(Tal Galili) Add and update tests for get_nodes_xy function |96bc5cd| 
+|  DESCRIPTION                        |  4 ++--
+|  NEWS                               |  6 ++++++
+|  tests/testthat/test-get_nodes_xy.R | 41 ++++++++++++++++++++++++++++++++++++
+|  3 files changed, 49 insertions(+), 2 deletions(-)
+
+* 2023-03-31(Tal Galili) Fix type in missing seriation package message |c1f8608| 
+|  R/seriate_dendrogram.R | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2023-03-25(Tal Galili) Fix misc 500 error in a url |dcf42ee| 
+|  vignettes/dendextend.Rmd | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2023-03-25(Tal Galili) Remove "https://www.r-statistics.com" from being directly linked to |c76aa00| 
+|  vignettes/dendextend.Rmd | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+
+* 2023-03-25(Tal Galili) Fix misc url issues |8991549| 
+|  DESCRIPTION              |  4 ++--
+|  NEWS                     |  6 ++++++
+|  NEWS.md                  |  6 ++++++
+|  README.md                |  1 -
+|  docs/404.html            |  4 ++--
+|  docs/CONDUCT.html        |  4 ++--
+|  docs/authors.html        |  4 ++--
+|  docs/index.html          |  6 +++---
+|  docs/news/index.html     | 23 ++++++++++++++++++-----
+|  vignettes/dendextend.Rmd |  2 +-
+|  10 files changed, 42 insertions(+), 18 deletions(-)
+
+* 2023-03-24(Tal Galili) Update github workflows to use v2 |7a9c4e5| 
+|  .github/workflows/R-CMD-check.yaml    | 31 +++++++++++++++++++++++++++----
+|  .github/workflows/check-release.yaml  | 25 +++++++------------------
+|  .github/workflows/check-standard.yaml | 29 ++++++++++-------------------
+|  .github/workflows/lint.yaml           | 13 ++++++++-----
+|  .github/workflows/pkgdown.yaml        | 33 ++++++++++++++++++++++-----------
+|  .github/workflows/pr-commands.yaml    |  4 ++--
+|  .github/workflows/test-coverage.yaml  | 32 ++++++++++++++++++++++++++------
+|  R/zzz.R                               |  4 ++++
+|  8 files changed, 106 insertions(+), 65 deletions(-)
+
+* 2023-03-24(Tal Galili) Fix "Cannot process chunk/lines:" in the NEWS file |e568c21| 
+|  NEWS    | 17 +++--------------
+|  NEWS.md | 15 +++++++++++++--
+|  2 files changed, 16 insertions(+), 16 deletions(-)
+
+* 2023-03-24(Tal Galili) Fixed: "Package CITATION file contains call(s) to old-style citEntry().  Please use bibentry() instead." |e5c594f| 
+|  NEWS          |  2 ++
+|  inst/CITATION | 17 +++++++----------
+|  2 files changed, 9 insertions(+), 10 deletions(-)
+
+* 2023-03-24(Tal Galili) Fix ggplot.ggdend S3 generic/method consistency |5865a99| 
+|  DESCRIPTION   |  6 +++---
+|  NEWS          | 18 +++++++++++++++---
+|  R/ggdend.R    |  9 ++++++---
+|  man/ggdend.Rd | 10 ++++++++--
+|  man/set.Rd    | 16 ++++++++--------
+|  5 files changed, 40 insertions(+), 19 deletions(-)
+
+* 2022-11-01(Tal Galili) document elipsis |a52e7d7| 
+|  R/get_subdendrograms.R | 1 +
+|  man/collapse_labels.Rd | 2 ++
+|  2 files changed, 3 insertions(+)
+
+* 2022-11-01(Tal Galili) Add tests to collapse_labels |d6899eb| 
+|  tests/testthat/test-get_subdendrograms.R | 27 ++++++++++++++++++++++++++-
+|  1 file changed, 26 insertions(+), 1 deletion(-)
+
+* 2022-11-01(Tal Galili) Added the collapse_labels function |eb8fa9b| 
+|  DESCRIPTION            |  4 +--
+|  NAMESPACE              |  1 +
+|  NEWS                   |  8 +++++
+|  R/get_subdendrograms.R | 79 ++++++++++++++++++++++++++++++++++++++++++++++++
+|  man/collapse_labels.Rd | 45 +++++++++++++++++++++++++++
+|  5 files changed, 135 insertions(+), 2 deletions(-)
+
+* 2022-10-08(Tal Galili) update github actions |0a53957| 
+|  .github/workflows/R-CMD-check.yaml | 49 ++++++++++++++++++++++++++++++++++++
+|  .github/workflows/pr-commands.yaml | 28 ++++++++++++---------
+|  README.md                          |  3 +++
+|  3 files changed, 68 insertions(+), 12 deletions(-)
+
+* 2022-08-06(Tal Galili) Add github actions |87b55e1| 
+|  .github/workflows/check-release.yaml  | 40 ++++++++++++++++++
+|  .github/workflows/check-standard.yaml | 58 +++++++++++++++++++++++++
+|  .github/workflows/lint.yaml           | 29 +++++++++++++
+|  .github/workflows/pr-commands.yaml    | 75 +++++++++++++++++++++++++++++++++
+|  .github/workflows/test-coverage.yaml  | 30 +++++++++++++
+|  5 files changed, 232 insertions(+)
+
+* 2022-08-06(Tal Galili) Added usethis::use_github_action("pkgdown") |74b9d01| 
+|  .github/.gitignore             |  1 +
+|  .github/workflows/pkgdown.yaml | 35 +++++++++++++++++++++++++++++++++++
+|  2 files changed, 36 insertions(+)
+
+* 2022-07-16(Tal Galili) Some updating on the pkgdown |f02d7b3| 
+|  docs/pkgdown.yml                         |   2 +-
+|  docs/reference/FM_index_permutation.html |  10 ++++-----
+|  docs/reference/Rplot001.png              | Bin 7062 -> 4480 bytes
+|  docs/reference/Rplot002.png              | Bin 9877 -> 4588 bytes
+|  docs/reference/Rplot003.png              | Bin 11879 -> 9529 bytes
+|  docs/reference/Rplot004.png              | Bin 14430 -> 10574 bytes
+|  docs/reference/Rplot005.png              | Bin 22110 -> 7394 bytes
+|  docs/reference/Rplot006.png              | Bin 9450 -> 49630 bytes
+|  docs/reference/Rplot007.png              | Bin 34304 -> 5468 bytes
+|  docs/reference/Rplot008.png              | Bin 37110 -> 49630 bytes
+|  docs/reference/khan.html                 |  34 ++++++++++++++---------------
+|  11 files changed, 22 insertions(+), 24 deletions(-)
+
+* 2022-07-04(Tal Galili) Fix: |70b6e03| 
+|  DESCRIPTION              |  2 +-
+|  NEWS                     |  4 ++--
+|  NEWS.md                  |  4 ++--
+|  R/data.R                 | 34 +++++++++++++++++-----------------
+|  R/dendlist.R             |  2 +-
+|  man/khan.Rd              | 34 +++++++++++++++++-----------------
+|  vignettes/dendextend.Rmd |  2 +-
+|  7 files changed, 41 insertions(+), 41 deletions(-)
+
+* 2022-07-03(Tal Galili) Shorten the skew function a bit more |500925b| 
+|  R/bk_method.R               | 10 ++++------
+|  man/FM_index_permutation.Rd | 10 ++++------
+|  2 files changed, 8 insertions(+), 12 deletions(-)
+
+* 2022-07-03(Tal Galili) Update pkgdown files a bit |ecd2f82| 
+|  docs/404.html                                     |  119 +-
+|  docs/CONDUCT.html                                 |  115 +-
+|  docs/articles/index.html                          |  127 +-
+|  docs/authors.html                                 |  358 ++-
+|  docs/index.html                                   |  185 +-
+|  docs/news/index.html                              | 2362 ++++---------------
+|  docs/pkgdown.css                                  |   83 +-
+|  docs/pkgdown.js                                   |    4 +-
+|  docs/pkgdown.yml                                  |    6 +-
+|  docs/reference/Bk.html                            |  279 +--
+|  docs/reference/Bk_permutations.html               |  271 +--
+|  docs/reference/Bk_plot.html                       |  485 ++--
+|  docs/reference/DendSer.dendrogram.html            |  199 +-
+|  docs/reference/FM_index.html                      |  303 +--
+|  docs/reference/FM_index_R.html                    |  289 +--
+|  docs/reference/FM_index_permutation.html          |  309 +--
+|  docs/reference/Rplot001.png                       |  Bin 4480 -> 7062 bytes
+|  docs/reference/Rplot002.png                       |  Bin 4588 -> 9877 bytes
+|  docs/reference/Rplot003.png                       |  Bin 9529 -> 11879 bytes
+|  docs/reference/Rplot004.png                       |  Bin 10574 -> 14430 bytes
+|  docs/reference/Rplot005.png                       |  Bin 7394 -> 22110 bytes
+|  docs/reference/Rplot006.png                       |  Bin 49630 -> 9450 bytes
+|  docs/reference/Rplot007.png                       |  Bin 5468 -> 34304 bytes
+|  docs/reference/Rplot008.png                       |  Bin 49630 -> 37110 bytes
+|  docs/reference/all.equal.dendrogram.html          |  327 +--
+|  docs/reference/all_couple_rotations_at_k.html     |  227 +-
+|  docs/reference/all_unique.html                    |  194 +-
+|  docs/reference/as.dendlist.html                   |  192 +-
+|  docs/reference/as.phylo.dendrogram.html           |  235 +-
+|  docs/reference/as_hclust_fixed.html               |  223 +-
+|  docs/reference/assign_dendextend_options.html     |  121 +-
+|  .../assign_values_to_branches_edgePar.html        |  284 +--
+|  .../assign_values_to_leaves_edgePar.html          |  249 +-
+|  .../assign_values_to_leaves_nodePar.html          |  271 +--
+|  .../reference/assign_values_to_nodes_nodePar.html |  265 +--
+|  docs/reference/bakers_gamma_for_2_k_matrix.html   |  183 +-
+|  docs/reference/branches_attr_by_clusters.html     |  365 ++-
+|  docs/reference/branches_attr_by_labels.html       |  289 +--
+|  docs/reference/branches_attr_by_lists.html        |  265 +--
+|  docs/reference/circlize_dendrogram.html           |  295 +--
+|  docs/reference/click_rotate.html                  |  266 +--
+|  docs/reference/collapse_branch.html               |  255 +-
+|  docs/reference/color_branches.html                |  578 ++---
+|  docs/reference/color_labels.html                  |  278 +--
+|  docs/reference/color_unique_labels.html           |  181 +-
+|  docs/reference/colored_bars.html                  |  518 ++--
+|  docs/reference/colored_dots.html                  |  550 ++---
+|  docs/reference/common_subtrees_clusters.html      |  226 +-
+|  docs/reference/cor.dendlist.html                  |  253 +-
+|  docs/reference/cor_FM_index.html                  |  242 +-
+|  docs/reference/cor_bakers_gamma.html              |  325 +--
+|  docs/reference/cor_common_nodes.html              |  214 +-
+|  docs/reference/cor_cophenetic.html                |  343 ++-
+|  docs/reference/count_terminal_nodes.html          |  222 +-
+|  docs/reference/cut_lower_fun.html                 |  254 +-
+|  docs/reference/cutree-methods.html                |  487 ++--
+|  docs/reference/cutree_1h.dendrogram.html          |  279 +--
+|  docs/reference/cutree_1k.dendrogram.html          |  317 +--
+|  docs/reference/dend_diff.html                     |  247 +-
+|  docs/reference/dendextend-package.html            |  126 +-
+|  docs/reference/dendextend_options.html            |  185 +-
+|  docs/reference/dendlist.html                      |  255 +-
+|  docs/reference/depth.html                         |  191 +-
+|  docs/reference/dist.dendlist.html                 |  244 +-
+|  docs/reference/dist_long.html                     |  211 +-
+|  docs/reference/distinct_edges.html                |  207 +-
+|  docs/reference/duplicate_leaf.html                |  256 +-
+|  docs/reference/entanglement.html                  |  328 +--
+|  docs/reference/fac2num.html                       |  192 +-
+|  docs/reference/find_dend.html                     |  285 +--
+|  docs/reference/find_dendrogram.html               |  226 +-
+|  docs/reference/find_k.html                        |  266 +--
+|  docs/reference/fix_members_attr.dendrogram.html   |  255 +-
+|  docs/reference/flatten.dendrogram.html            |  195 +-
+|  docs/reference/flip_leaves.html                   |  212 +-
+|  docs/reference/get_branches_heights.html          |  207 +-
+|  docs/reference/get_childrens_heights.html         |  170 +-
+|  docs/reference/get_leaves_attr.html               |  268 +--
+|  docs/reference/get_leaves_branches_attr.html      |  224 +-
+|  docs/reference/get_leaves_branches_col.html       |  208 +-
+|  docs/reference/get_leaves_edgePar.html            |  362 ++-
+|  docs/reference/get_leaves_nodePar.html            |  325 +--
+|  docs/reference/get_nodes_attr.html                |  385 ++-
+|  docs/reference/get_nodes_xy.html                  |  274 +--
+|  docs/reference/get_root_branches_attr.html        |  213 +-
+|  docs/reference/get_subdendrograms.html            |  371 ++-
+|  docs/reference/ggdend.html                        |  450 ++--
+|  docs/reference/hang.dendrogram.html               |  232 +-
+|  docs/reference/has_component_in_attribute.html    |  246 +-
+|  docs/reference/heights_per_k.dendrogram.html      |  206 +-
+|  docs/reference/highlight_branches.html            |  349 ++-
+|  docs/reference/highlight_distinct_edges.html      |  308 +--
+|  docs/reference/identify.dendrogram.html           |  291 +--
+|  docs/reference/index.html                         |  678 ++----
+|  docs/reference/intersect_trees.html               |  226 +-
+|  docs/reference/is.natural.number.html             |  197 +-
+|  docs/reference/is_null_list.html                  |  200 +-
+|  docs/reference/is_some_class.html                 |  182 +-
+|  docs/reference/khan.html                          |  198 +-
+|  docs/reference/labels-assign.html                 |  295 +--
+|  docs/reference/labels_cex.html                    |  210 +-
+|  docs/reference/labels_colors.html                 |  268 +--
+|  docs/reference/ladderize.html                     |  256 +-
+|  docs/reference/leaf_Colors.html                   |  213 +-
+|  docs/reference/lowest_common_branch.html          |  188 +-
+|  docs/reference/match_order_by_labels.html         |  227 +-
+|  .../match_order_dendrogram_by_old_order.html      |  257 +-
+|  docs/reference/na_locf.html                       |  230 +-
+|  docs/reference/nleaves.html                       |  224 +-
+|  docs/reference/nnodes.html                        |  198 +-
+|  docs/reference/noded_with_condition.html          |  281 +--
+|  docs/reference/order.dendrogram-assign.html       |  253 +-
+|  docs/reference/order.hclust.html                  |  182 +-
+|  docs/reference/partition_leaves.html              |  244 +-
+|  docs/reference/plot_horiz.dendrogram.html         |  380 ++-
+|  docs/reference/prune.html                         |  275 +--
+|  .../reference/prune_common_subtrees.dendlist.html |  166 +-
+|  docs/reference/prune_leaf.html                    |  190 +-
+|  docs/reference/pvclust_edges.html                 |  171 +-
+|  docs/reference/pvclust_show_signif.html           |  285 +--
+|  docs/reference/pvclust_show_signif_gradient.html  |  277 +--
+|  docs/reference/pvrect2.html                       |  286 +--
+|  docs/reference/raise.dendrogram.html              |  183 +-
+|  docs/reference/rank_branches.html                 |  210 +-
+|  docs/reference/rank_order.dendrogram.html         |  198 +-
+|  docs/reference/rank_values_with_clusters.html     |  199 +-
+|  docs/reference/rect.dendrogram.html               |  548 ++---
+|  docs/reference/reexports.html                     |  127 +-
+|  docs/reference/reindex_dend.html                  |  187 +-
+|  docs/reference/remove_branches_edgePar.html       |  195 +-
+|  docs/reference/remove_leaves_nodePar.html         |  193 +-
+|  docs/reference/remove_nodes_nodePar.html          |  195 +-
+|  docs/reference/rllply.html                        |  228 +-
+|  docs/reference/rotate.html                        |  333 ++-
+|  docs/reference/rotate_DendSer.html                |  213 +-
+|  docs/reference/sample.dendrogram.html             |  283 +--
+|  docs/reference/seriate_dendrogram.html            |  213 +-
+|  docs/reference/set.html                           |  752 +++---
+|  docs/reference/set_labels.html                    |  253 +-
+|  docs/reference/shuffle.html                       |  247 +-
+|  docs/reference/sort_2_clusters_vectors.html       |  240 +-
+|  docs/reference/sort_dist_mat.html                 |  177 +-
+|  docs/reference/sort_levels_values.html            |  281 +--
+|  docs/reference/tanglegram.html                    |  968 ++++----
+|  docs/reference/theme_dendro.html                  |  138 +-
+|  docs/reference/unbranch.html                      |  226 +-
+|  docs/reference/unclass_dend.html                  |  374 ++-
+|  docs/reference/untangle.html                      |  331 ++-
+|  docs/reference/untangle_DendSer.html              |  229 +-
+|  docs/reference/untangle_random_search.html        |  260 +-
+|  docs/reference/untangle_step_rotate_1side.html    |  281 +--
+|  docs/reference/untangle_step_rotate_2side.html    |  315 +--
+|  docs/reference/which_leaf.html                    |  193 +-
+|  docs/reference/which_node.html                    |  234 +-
+|  vignettes/Cluster_Analysis.Rmd                    |    2 +-
+|  155 files changed, 14740 insertions(+), 25740 deletions(-)
+
+* 2022-07-03(Tal Galili) Update log files |172e35a| 
+|  ChangeLog | 117 +++++++++++++++++++++++++++++++++++++++++++++++++++++-------
+|  NEWS.md   |  18 ++++++++++
+|  R/zzz.R   |   1 +
+|  README.md |   7 ++--
+|  4 files changed, 129 insertions(+), 14 deletions(-)
+
 * 2022-07-03(Tal Galili) comment out library(zoo) - to let pkgdown run properly. |6b87e9e| 
 |  R/pvclust.R    | 21 +++++++++++----------
 |  man/na_locf.Rd | 25 +++++++++++++------------
@@ -70,7 +863,7 @@
 | |    R/ggdend.R | 8 ++++----
 | |    1 file changed, 4 insertions(+), 4 deletions(-)
 
-* | 2021-10-27(Tal Galili) update NEWS |3daf4af
+* / 2021-10-27(Tal Galili) update NEWS |3daf4af
 |/  |   
 |    DESCRIPTION | 2 +-
 |    NEWS        | 5 ++++-
@@ -1089,7 +1882,7 @@
 | |    R/ggdend.R | 11 +++++++----
 | |    1 file changed, 7 insertions(+), 4 deletions(-)
 
-* | 2020-05-15(Tal Galili) For future spell checking |65b9b67
+* / 2020-05-15(Tal Galili) For future spell checking |65b9b67
 |/  |   
 |    R/zzz.R       |   1 +
 |    inst/WORDLIST | 235 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
