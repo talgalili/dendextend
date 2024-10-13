@@ -21,7 +21,8 @@
 
 
 #' @title Global Comparison of two (or more) dendrograms
-#' @export
+#' @exportS3Method all.equal dendlist
+#' @method all.equal dendlist
 #' @aliases
 #' all.equal.dendlist
 #' @description
