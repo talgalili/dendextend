@@ -270,7 +270,6 @@ test_that("untangle_best_k_to_rotate_by_2side_backNforth works", {
 
 
 test_that("collapse_with_pipes works", {
-   
    x <- c("before pipe ", " after pipe")
    collapsed_vector = collapse_with_pipes(x)
    expect_identical(collapsed_vector, "before pipe || after pipe")
@@ -296,7 +295,6 @@ test_that("untangle.default works", {
 
 
 test_that("flip_1_and_2 works", {
-   
    x <- c(1,2,2,1)
    flipped <- flip_1_and_2(x)
    expect_identical(flipped, c(2,1,1,2))
@@ -306,6 +304,8 @@ test_that("flip_1_and_2 works", {
 
 
 test_that("untangle_labels works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1)   
    
    # Create two example dendrograms with different label orders
    dend1 <- as.dendrogram(hclust(dist(USArrests[1:5, ]), method = "complete"))
