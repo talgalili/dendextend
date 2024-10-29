@@ -285,3 +285,13 @@ test_that("untangle.default works", {
    
    expect_error(untangle.default(dend1, dend2))
 })
+
+
+
+
+test_that("flip_1_and_2 works", {
+   
+   x <- c(1,2,2,1)
+   flipped <- flip_1_and_2(x)
+   expect_identical(flipped, c(2,1,1,2))
+})
