@@ -269,3 +269,19 @@ test_that("collapse_with_pipes works", {
    collapsed_vector = collapse_with_pipes(x)
    expect_identical(collapsed_vector, "before pipe || after pipe")
 })
+
+
+
+
+test_that("untangle.default works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1) 
+   
+   dend1 <- USArrests[1:10, ] %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   dend2 <- shuffle(dend1)
+   
+   expect_error(untangle.default(dend1, dend2))
+})
