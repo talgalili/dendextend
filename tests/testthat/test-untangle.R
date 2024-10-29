@@ -338,7 +338,6 @@ test_that("untangle_DendSer works", {
       entanglement()
    # reduces entanglement from 0.014 to 0
    expect_identical(best_entanglement, 0)
-   
 })
 
 
@@ -389,4 +388,24 @@ test_that("untangle.dendlist works", {
    
    final_entanglement <- entanglement(result[[1]], result[[2]])
    expect_identical(round(final_entanglement, 3), 0)
+})
+
+
+
+
+test_that("untangle_random_search works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1)   
+   
+   dend1 <- as.dendrogram(hclust(dist(iris[1:50, -5]), method = "average"))
+   dend2 <- as.dendrogram(hclust(dist(iris[50:1, -5]), method = "single"))
+   
+   result <- untangle_random_search(dend1, dend2, R = 10, leaves_matching_method = "order")
+   
+   # entanglement improved from 0.579 to 0.311
+   initial_entanglement <-  entanglement(dend1, dend2)
+   expect_identical(round(initial_entanglement, 3), 0.579)
+   
+   final_entanglement <- entanglement(result[[1]], result[[2]])
+   expect_identical(round(final_entanglement, 3), 0.311)
 })
