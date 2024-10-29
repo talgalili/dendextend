@@ -49,6 +49,14 @@ test_that("all_couple_rotations_at_k work", {
   # tanglegram(dend1,dend2)
 
   expect_identical(entanglement(dend1, dend2, L = 2), 0.5)
+  
+  # returns original dend if k ==1
+  dend2 <- all_couple_rotations_at_k(dend1, k = 1)
+  expect_identical(dend1, dend2)
+  # uses first element of k if k is a vector and raises a warning
+  expect_warning(
+    dend2 <- all_couple_rotations_at_k(dend1, k = c(2, 3))
+  )
 })
 
 
