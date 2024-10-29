@@ -297,3 +297,16 @@ test_that("flip_1_and_2 works", {
    flipped <- flip_1_and_2(x)
    expect_identical(flipped, c(2,1,1,2))
 })
+
+
+
+
+test_that("untangle_labels works", {
+   
+   # Create two example dendrograms with different label orders
+   dend1 <- as.dendrogram(hclust(dist(USArrests[1:5, ]), method = "complete"))
+   dend2 <- as.dendrogram(hclust(dist(USArrests[5:1, ]), method = "complete"))
+   # use untangle_labels to reorder dend2 based on dend1
+   result <- untangle.dendrogram(dend1, dend2, "labels")
+   expect_identical(labels(result[[1]]), labels(result[[2]]))
+})
