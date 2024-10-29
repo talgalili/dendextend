@@ -484,3 +484,29 @@ test_that("untangle_intercourse_evolution works", {
    expect_true(entanglement(brother_1_dend1, brother_1_dend2) > entanglement(brother_2_dend1, brother_2_dend2))
    expect_identical(result, dendlist(brother_2_dend1, brother_2_dend2))
 })
+
+
+
+
+test_that("untangle_evolution works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1)   
+   
+   brother_1_dend1 <- as.dendrogram(hclust(dist(iris[1:10, -5]), method = "complete"))
+   brother_1_dend2 <- as.dendrogram(hclust(dist(iris[10:1, -5]), method = "single"))
+   
+   sister_2_dend1 <- as.dendrogram(hclust(dist(iris[11:20, -5]), method = "average"))
+   sister_2_dend2 <- as.dendrogram(hclust(dist(iris[20:11, -5]), method = "ward.D2"))
+   
+   # determine which set of dendrograms can be better untangled
+   intercourse_result <- untangle_intercourse(brother_1_dend1, brother_1_dend2, brother_2_dend1, brother_2_dend2, L = 1)
+   entanglement_child1 <- entanglement(intercourse_result[[1]][[1]], intercourse_result[[1]][[2]])
+   entanglement_child2 <- entanglement(intercourse_result[[2]][[1]], intercourse_result[[2]][[2]])
+   expect_true(entanglement_child1 > entanglement_child2)
+   # the untangled version of the better dendrograms should be the result
+   evolution_result <- untangle_evolution(brother_1_dend1, brother_1_dend2, brother_2_dend1, brother_2_dend2, L = 1)
+   expect_identical(evolution_result, intercourse_result[[2]])
+})
+
+
+
