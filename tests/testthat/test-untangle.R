@@ -344,3 +344,31 @@ test_that("untangle_DendSer works", {
    expect_identical(best_entanglement, 0)
    
 })
+
+
+
+
+test_that("ladderize works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1)   
+   
+   dend1 <- as.dendrogram(hclust(dist(mtcars[1:5, ]), method = "average"))
+   dend2 <- as.dendrogram(hclust(dist(mtcars[6:10, ]), method = "ward.D2"))
+   
+   result <- untangle.dendrogram(dend1, dend2, "ladderize")
+   
+   # check that both dendrograms were ladderized
+   expect_false(identical(order.dendrogram(dend1), order.dendrogram(result[[1]])))
+   expect_false(identical(order.dendrogram(dend2), order.dendrogram(result[[2]])))
+   
+   # the first dendrogram should be ladderized, but the second should remain the same
+   result_partial <- untangle.dendrogram(dend1, dend2, "ladderize", right = TRUE, which = 1)
+   expect_false(identical(order.dendrogram(dend1), order.dendrogram(result_partial[[1]])))
+   expect_identical(order.dendrogram(dend2), order.dendrogram(result_partial[[2]]))
+   
+   # check that the orders should differ after changing the 'right' argument
+   result_right_true <- untangle.dendrogram(dend1, dend2, "ladderize", right = TRUE)
+   result_right_false <- untangle.dendrogram(dend1, dend2, "ladderize", right = FALSE)
+   expect_false(identical(order.dendrogram(result_right_true[[1]]), order.dendrogram(result_right_false[[1]])))
+   expect_false(identical(order.dendrogram(result_right_true[[2]]), order.dendrogram(result_right_false[[2]])))
+})
