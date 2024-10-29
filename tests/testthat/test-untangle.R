@@ -114,14 +114,10 @@ test_that("untangle_step_rotate_2side work", {
 
 test_that("untangle_step_rotate_both_side work", {
    suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1)
    # Entanglement should be zero after applying algorithm, per Fig. 4 of 'Shuffle & untangle: novel untangle methods for solving the tanglegram layout problem' (Nguyen et al. 2022)
    example_labels <- c("Versicolor 90", "Versicolor 54", "Versicolor 81", "Versicolor 63", "Versicolor 72", "Versicolor 99", "Virginica 135", "Virginica 117", "Virginica 126", "Virginica 108", "Virginica 144", "Setosa 27", "Setosa 18", "Setosa 36", "Setosa 45", "Setosa 9")
-   # library(dplyr)
-   # iris_modified <- 
-   #    datasets::iris %>%
-   #    mutate(Row = row_number()) %>%
-   #    mutate(Label = paste(str_to_title(Species), Row)) %>%
-   #    dplyr::filter(Label %in% example_labels)
+
    iris_modified <- datasets::iris
    iris_modified$Row <- seq_len(nrow(iris_modified))
    iris_modified$Label <- paste(tools::toTitleCase(as.character(iris_modified$Species)), iris_modified$Row)
@@ -132,7 +128,10 @@ test_that("untangle_step_rotate_both_side work", {
    
    dend1 <- as.dendrogram(hclust(dist(iris_numeric), method = "single"))
    dend2 <- as.dendrogram(hclust(dist(iris_numeric), method = "complete"))
-   result <- untangle_step_rotate_both_side(dend1, dend2)
+   # enable print_times for test case but avoid cluttering output by capturing print statement
+   capture.output(
+      result <- untangle.dendrogram(dend1, dend2, "stepBothSides", print_times = T)  
+   )
    dend1 <- result[[1]]
    dend2 <- result[[2]]
    expect_identical(entanglement(dend1, dend2, L = 2), 0)
