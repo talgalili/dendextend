@@ -259,3 +259,13 @@ test_that("untangle_best_k_to_rotate_by_2side_backNforth works", {
    # reduces entanglement from 0.251 to 0
    expect_identical(round(corrected_entanglement, 3), 0)
 })
+
+
+
+
+test_that("collapse_with_pipes works", {
+   
+   x <- c("before pipe ", " after pipe")
+   collapsed_vector = collapse_with_pipes(x)
+   expect_identical(collapsed_vector, "before pipe || after pipe")
+})
