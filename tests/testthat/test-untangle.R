@@ -251,8 +251,11 @@ test_that("untangle_best_k_to_rotate_by_2side_backNforth works", {
    dend2 <- shuffle(dend1)
    original_entanglement <- entanglement(dend1, dend2)
    expect_identical(round(original_entanglement, 3), 0.251)
-   # resolve entanglement
-   dends_corrected <- untangle_best_k_to_rotate_by_2side_backNforth(dend1, dend2, L = 1, print_times = F)
+   # enable print_times for test case but avoid cluttering output by capturing print statement
+   capture.output(
+      # resolve entanglement
+      dends_corrected <- untangle_best_k_to_rotate_by_2side_backNforth(dend1, dend2, L = 1, print_times = T)  
+   )
    corrected_entanglement <- entanglement(dends_corrected[[1]], dends_corrected[[2]])
    
    # reduces entanglement from 0.251 to 0
