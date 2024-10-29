@@ -310,3 +310,37 @@ test_that("untangle_labels works", {
    result <- untangle.dendrogram(dend1, dend2, "labels")
    expect_identical(labels(result[[1]]), labels(result[[2]]))
 })
+
+
+
+
+test_that("untangle_DendSer works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(232)
+   
+   ss <- sample(1:150, 20)
+   dend1 <- iris[ss, -5] %>%
+      dist() %>%
+      hclust("com") %>%
+      as.dendrogram()
+   dend2 <- iris[ss, -5] %>%
+      dist() %>%
+      hclust("sin") %>%
+      as.dendrogram()
+   dend12 <- dendlist(dend1, dend2)
+   
+   bad_entanglement =
+   dend12 %>%
+      untangle("step2") %>%
+      entanglement()
+   expect_identical(round(bad_entanglement, 3), 0.014)
+   
+   best_entanglement = 
+      untangle.dendrogram(dend1, dend2, "DendSer") %>%
+      untangle_DendSer() %>%
+      untangle("step2") %>%
+      entanglement()
+   # reduces entanglement from 0.014 to 0
+   expect_identical(best_entanglement, 0)
+   
+})
