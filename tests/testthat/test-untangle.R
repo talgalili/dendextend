@@ -425,24 +425,24 @@ test_that("untangle_intercourse works", {
    suppressWarnings(RNGversion("3.5.0"))
    set.seed(1)   
    
-   dend1_brother <- as.dendrogram(hclust(dist(iris[1:10, -5]), method = "complete"))
-   dend1_sister <- as.dendrogram(hclust(dist(iris[10:1, -5]), method = "single"))
+   brother_1_dend1 <- as.dendrogram(hclust(dist(iris[1:10, -5]), method = "complete"))
+   brother_1_dend2 <- as.dendrogram(hclust(dist(iris[10:1, -5]), method = "single"))
    
-   dend2_brother <- as.dendrogram(hclust(dist(iris[11:20, -5]), method = "average"))
-   dend2_sister <- as.dendrogram(hclust(dist(iris[20:11, -5]), method = "ward.D2"))
+   sister_2_dend1 <- as.dendrogram(hclust(dist(iris[11:20, -5]), method = "average"))
+   sister_2_dend2 <- as.dendrogram(hclust(dist(iris[20:11, -5]), method = "ward.D2"))
    
-   result <- untangle_intercourse(dend1_brother, dend2_brother, dend2_sister, dend1_sister, L = 1)
+   result <- untangle_intercourse(brother_1_dend1, brother_1_dend2, sister_2_dend1, sister_2_dend2, L = 1)
    
    # entanglement reduced from 0.866 to 0.045
-   initial_entanglement_dend1 <- entanglement(dend1_brother, dend1_sister)
+   initial_entanglement_dend1 <- entanglement(brother_1_dend1, brother_1_dend2)
    expect_identical(round(initial_entanglement_dend1, 3), 0.866)
-   entanglement_child1 <- entanglement(result[[1]], result[[2]])
+   entanglement_child1 <- entanglement(result[[1]][[1]], result[[1]][[2]])
    expect_identical(round(entanglement_child1, 3), 0.045)
    
    # entanglement reduced from 0.391 to 0
-   initial_entanglement_dend2 <- entanglement(dend2_brother, dend2_sister)
+   initial_entanglement_dend2 <- entanglement(sister_2_dend1, sister_2_dend2)
    expect_identical(round(initial_entanglement_dend2, 3), 0.391)
-   entanglement_child2 <- entanglement(result[[3]], result[[4]])
+   entanglement_child2 <- entanglement(result[[2]][[1]], result[[2]][[2]])
    expect_identical(round(entanglement_child2, 3), 0)
 })
 
