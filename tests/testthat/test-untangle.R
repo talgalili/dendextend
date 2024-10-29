@@ -417,3 +417,31 @@ test_that("untangle_random_search works", {
    final_entanglement <- entanglement(result[[1]], result[[2]])
    expect_identical(round(final_entanglement, 3), 0.311)
 })
+
+
+
+
+test_that("untangle_intercourse works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1)   
+   
+   dend1_brother <- as.dendrogram(hclust(dist(iris[1:10, -5]), method = "complete"))
+   dend1_sister <- as.dendrogram(hclust(dist(iris[10:1, -5]), method = "single"))
+   
+   dend2_brother <- as.dendrogram(hclust(dist(iris[11:20, -5]), method = "average"))
+   dend2_sister <- as.dendrogram(hclust(dist(iris[20:11, -5]), method = "ward.D2"))
+   
+   result <- untangle_intercourse(dend1_brother, dend2_brother, dend2_sister, dend1_sister, L = 1)
+   
+   # entanglement reduced from 0.866 to 0.045
+   initial_entanglement_dend1 <- entanglement(dend1_brother, dend1_sister)
+   expect_identical(round(initial_entanglement_dend1, 3), 0.866)
+   entanglement_child1 <- entanglement(result[[1]], result[[2]])
+   expect_identical(round(entanglement_child1, 3), 0.045)
+   
+   # entanglement reduced from 0.391 to 0
+   initial_entanglement_dend2 <- entanglement(dend2_brother, dend2_sister)
+   expect_identical(round(initial_entanglement_dend2, 3), 0.391)
+   entanglement_child2 <- entanglement(result[[3]], result[[4]])
+   expect_identical(round(entanglement_child2, 3), 0)
+})
