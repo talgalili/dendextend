@@ -445,3 +445,22 @@ test_that("untangle_intercourse works", {
    entanglement_child2 <- entanglement(result[[3]], result[[4]])
    expect_identical(round(entanglement_child2, 3), 0)
 })
+
+
+
+
+test_that("entanglement_return_best_brother works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1)   
+   
+   brother_1_dend1 <- as.dendrogram(hclust(dist(iris[1:10, -5]), method = "complete"))
+   brother_1_dend2 <- as.dendrogram(hclust(dist(iris[10:1, -5]), method = "single"))
+   
+   brother_2_dend1 <- as.dendrogram(hclust(dist(iris[11:20, -5]), method = "average"))
+   brother_2_dend2 <- as.dendrogram(hclust(dist(iris[20:11, -5]), method = "ward.D2"))
+   
+   result <- entanglement_return_best_brother(brother_1_dend1, brother_1_dend2, brother_2_dend1, brother_2_dend2, L = 1)
+   # brother_1 is more entangled, therefore we expect to get brother_2 in result 
+   expect_true(entanglement(brother_1_dend1, brother_1_dend2) > entanglement(brother_2_dend1, brother_2_dend2))
+   expect_identical(result, dendlist(brother_2_dend1, brother_2_dend2))
+})
