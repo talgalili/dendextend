@@ -372,3 +372,25 @@ test_that("ladderize works", {
    expect_false(identical(order.dendrogram(result_right_true[[1]]), order.dendrogram(result_right_false[[1]])))
    expect_false(identical(order.dendrogram(result_right_true[[2]]), order.dendrogram(result_right_false[[2]])))
 })
+
+
+
+
+test_that("untangle.dendlist works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1)   
+   
+   dend1 <- as.dendrogram(hclust(dist(mtcars[6:10, ]), method = "complete"))
+   dend2 <- as.dendrogram(hclust(dist(mtcars[6:10, ]), method = "single"))
+   dend3 <- as.dendrogram(hclust(dist(mtcars[6:10, ]), method = "average"))
+   dend_list <- dendlist(dend1 = dend1, dend2 = dend2, dend3 = dend3)
+
+   result <- untangle.dendlist(dend_list, method = "step2side")
+   
+   # entanglement improved from 0.522 to 0
+   initial_entanglement <- entanglement(dend_list[[1]], dend_list[[2]])
+   expect_identical(round(initial_entanglement, 3), 0.522)
+   
+   final_entanglement <- entanglement(result[[1]], result[[2]])
+   expect_identical(round(final_entanglement, 3), 0)
+})
