@@ -81,6 +81,12 @@ test_that("cutree a dendrogram by height h", {
     stats::cutree(as.hclust(dend), k = 5),
     stats::cutree(as.hclust(dend), h = -1)
   )
+  
+  # dealing with case where multiple h values are passed in, should use the first one
+  expect_warning(
+    result <- cutree_1h.dendrogram(dend, h = c(-1, -2), warn = T)
+  )
+  expect_identical(result, stats::cutree(as.hclust(dend), h = -1))
 })
 
 
@@ -381,6 +387,19 @@ test_that("Testing sort_levels_values works", {
   #    dput(apply(x, 2, sort_levels_values))
   expect_identical(apply(x, 2, sort_levels_values), sort_levels_values(x))
   # Yay!
+  
+  # checking that sort_levels_values raises warning for matrix with NA values and returns original matrix
+  x[1,1] <- NA
+  expect_warning(
+     identical_x <- sort_levels_values(x, warn = T)
+  )
+  expect_identical(x, identical_x)
+  
+  # checking that sort_levels_values requires numeric matrix
+  x <- matrix(letters[1:4], 2, 2)
+  expect_error(
+     sort_levels_values(x)
+  )
 })
 
 
@@ -550,6 +569,60 @@ test_that("heights_per_k.dendrogram", {
 # })
 #
 #
+
+test_that("cutree.hclust works", {
+   iris <- datasets::iris
+   
+   # covers case where kultiple k values passed in, causing clusters to be a matrix
+   tree <- hclust(dist(iris[, -5]), method = "average")
+   k_values <- c(2, 3, 4)
+   clusters <- cutree.hclust(tree, k = k_values, order_clusters_as_data = F)
+   expect_true(all(dim(clusters) == c(150,3)))
+   
+   # test with NA labels
+   labels(tree) = NA
+   expect_warning(
+      clusters <- cutree.hclust(tree, k = 2, warn = T)  
+   )
+})
+
+
+
+test_that("cutree.phylo works", {
+   hclust_tree <- hclust(dist(iris[1:5, -5]), method = "average")
+   result <- cutree.phylo(hclust_tree, k = 2)
+   expect_true(all(result == c(1,2,2,2,1)))
+})
+
+test_that("cutree.agnes works", {
+   hclust_tree <- hclust(dist(iris[1:5, -5]), method = "average")
+   result <- cutree.agnes(hclust_tree, k = 2)
+   expect_true(all(result == c(1,2,2,2,1)))
+})
+
+test_that("cutree.diana works", {
+   hclust_tree <- hclust(dist(iris[1:5, -5]), method = "average")
+   result <- cutree.diana(hclust_tree, k = 2)
+   expect_true(all(result == c(1,2,2,2,1)))
+})
+
+
+
+test_that("cutree.dendrogram works", {
+   # case when a dendrogram is not passed in
+   mat = matrix(1:4, nrow = 2)
+   expect_error(cutree.dendrogram(mat), k =2)
+   
+   # case where both k and h are specified
+   dend <- as.dendrogram(hclust(dist(c(1, 1, 1, 2, 2))))
+   expect_warning(cutree.dendrogram(dend, k = 2, h = 2, warn = T))
+   
+   # case where h is specified
+   dend <- as.dendrogram(hclust(dist(c(1, 1, 1, 2, 2))))
+   result <- cutree.dendrogram(dend, h = 0.2, try_cutree_hclust = F)
+   expect_true(all(result == c(1,1,1,2,2)))
+})
+
 
 
 dendextend_options("warn", FALSE)
