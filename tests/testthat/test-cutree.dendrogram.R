@@ -381,6 +381,19 @@ test_that("Testing sort_levels_values works", {
   #    dput(apply(x, 2, sort_levels_values))
   expect_identical(apply(x, 2, sort_levels_values), sort_levels_values(x))
   # Yay!
+  
+  # checking that sort_levels_values raises warning for matrix with NA values and returns original matrix
+  x[1,1] <- NA
+  expect_warning(
+     identical_x <- sort_levels_values(x, warn = T)
+  )
+  expect_identical(x, identical_x)
+  
+  # checking that sort_levels_values requires numeric matrix
+  x <- matrix(letters[1:4], 2, 2)
+  expect_error(
+     sort_levels_values(x)
+  )
 })
 
 
