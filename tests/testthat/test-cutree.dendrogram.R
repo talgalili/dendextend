@@ -608,4 +608,21 @@ test_that("cutree.diana works", {
 
 
 
+test_that("cutree.dendrogram works", {
+   # case when a dendrogram is not passed in
+   mat = matrix(1:4, nrow = 2)
+   expect_error(cutree.dendrogram(mat), k =2)
+   
+   # case where both k and h are specified
+   dend <- as.dendrogram(hclust(dist(c(1, 1, 1, 2, 2))))
+   expect_warning(cutree.dendrogram(dend, k = 2, h = 2, warn = T))
+   
+   # case where h is specified
+   dend <- as.dendrogram(hclust(dist(c(1, 1, 1, 2, 2))))
+   result <- cutree.dendrogram(dend, h = 0.2, try_cutree_hclust = F)
+   expect_true(all(result == c(1,1,1,2,2)))
+})
+
+
+
 dendextend_options("warn", FALSE)
