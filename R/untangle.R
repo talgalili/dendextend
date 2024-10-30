@@ -1022,10 +1022,10 @@ untangle_step_rotate_both_side <- function(dend1, dend2, L = 1.5, max_n_iteratio
 untangle_intercourse <- function(brother_1_dend1, brother_1_dend2,
                                  sister_2_dend1, sister_2_dend2, L = 1) {
   # Gets two pairs of dend, and returns two childrens (inside a list)
-  children_1 <- untangle_step_rotate_2side(brother_1_dend1, sister_2_dend2, L = L)
-  children_2 <- untangle_step_rotate_2side(sister_2_dend1, brother_1_dend2, L = L)
+  children_1 <- untangle_step_rotate_2side(brother_1_dend1, brother_1_dend2, L = L)
+  children_2 <- untangle_step_rotate_2side(sister_2_dend1, sister_2_dend2, L = L)
 
-  dendlist(children_1, children_2)
+  list(children_1, children_2)
 }
 
 entanglement_return_best_brother <- function(brother_1_dend1, brother_1_dend2,
