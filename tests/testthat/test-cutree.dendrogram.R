@@ -570,5 +570,22 @@ test_that("heights_per_k.dendrogram", {
 #
 #
 
+test_that("cutree.hclust works", {
+   iris <- datasets::iris
+   
+   # covers case where kultiple k values passed in, causing clusters to be a matrix
+   tree <- hclust(dist(iris[, -5]), method = "average")
+   k_values <- c(2, 3, 4)
+   clusters <- cutree.hclust(tree, k = k_values, order_clusters_as_data = F)
+   expect_true(all(dim(clusters) == c(150,3)))
+   
+   # test with NA labels
+   labels(tree) = NA
+   expect_warning(
+      clusters <- cutree.hclust(tree, k = 2, warn = T)  
+   )
+})
+
+
 
 dendextend_options("warn", FALSE)
