@@ -81,6 +81,12 @@ test_that("cutree a dendrogram by height h", {
     stats::cutree(as.hclust(dend), k = 5),
     stats::cutree(as.hclust(dend), h = -1)
   )
+  
+  # dealing with case where multiple h values are passed in, should use the first one
+  expect_warning(
+    result <- cutree_1h.dendrogram(dend, h = c(-1, -2), warn = T)
+  )
+  expect_identical(result, stats::cutree(as.hclust(dend), h = -1))
 })
 
 
