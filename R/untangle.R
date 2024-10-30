@@ -1025,7 +1025,7 @@ untangle_intercourse <- function(brother_1_dend1, brother_1_dend2,
   children_1 <- untangle_step_rotate_2side(brother_1_dend1, brother_1_dend2, L = L)
   children_2 <- untangle_step_rotate_2side(sister_2_dend1, sister_2_dend2, L = L)
 
-  list(children_1, children_2)
+  dendlist(children_1, children_2)
 }
 
 entanglement_return_best_brother <- function(brother_1_dend1, brother_1_dend2,
@@ -1042,8 +1042,8 @@ entanglement_return_best_brother <- function(brother_1_dend1, brother_1_dend2,
 
 untangle_intercourse_evolution <- function(intercourse, L = 1) {
   # intercourse is a list with two elements.  Each element has two dends
-  entanglement_return_best_brother(intercourse[[1]][[1]], intercourse[[1]][[2]],
-    intercourse[[2]][[1]], intercourse[[2]][[2]],
+  entanglement_return_best_brother(intercourse[[1]], intercourse[[2]],
+    intercourse[[3]], intercourse[[4]],
     L = L
   )
 }

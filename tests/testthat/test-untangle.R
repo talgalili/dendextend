@@ -436,13 +436,13 @@ test_that("untangle_intercourse works", {
    # entanglement reduced from 0.866 to 0.045
    initial_entanglement_dend1 <- entanglement(brother_1_dend1, brother_1_dend2)
    expect_identical(round(initial_entanglement_dend1, 3), 0.866)
-   entanglement_child1 <- entanglement(result[[1]][[1]], result[[1]][[2]])
+   entanglement_child1 <- entanglement(result[[1]], result[[2]])
    expect_identical(round(entanglement_child1, 3), 0.045)
    
    # entanglement reduced from 0.391 to 0
    initial_entanglement_dend2 <- entanglement(sister_2_dend1, sister_2_dend2)
    expect_identical(round(initial_entanglement_dend2, 3), 0.391)
-   entanglement_child2 <- entanglement(result[[2]][[1]], result[[2]][[2]])
+   entanglement_child2 <- entanglement(result[[3]], result[[4]])
    expect_identical(round(entanglement_child2, 3), 0)
 })
 
@@ -478,7 +478,7 @@ test_that("untangle_intercourse_evolution works", {
    brother_2_dend1 <- as.dendrogram(hclust(dist(iris[11:20, -5]), method = "average"))
    brother_2_dend2 <- as.dendrogram(hclust(dist(iris[20:11, -5]), method = "ward.D2"))
    
-   intercourse = list(dendlist(brother_1_dend1, brother_1_dend2), dendlist(brother_2_dend1, brother_2_dend2))
+   intercourse = dendlist(brother_1_dend1, brother_1_dend2, brother_2_dend1, brother_2_dend2)
    result <- untangle_intercourse_evolution(intercourse, L = 1)
    # brother_1 is more entangled, therefore we expect to get brother_2 in result 
    expect_true(entanglement(brother_1_dend1, brother_1_dend2) > entanglement(brother_2_dend1, brother_2_dend2))
@@ -500,12 +500,12 @@ test_that("untangle_evolution works", {
    
    # determine which set of dendrograms can be better untangled
    intercourse_result <- untangle_intercourse(brother_1_dend1, brother_1_dend2, sister_2_dend1, sister_2_dend2, L = 1)
-   entanglement_child1 <- entanglement(intercourse_result[[1]][[1]], intercourse_result[[1]][[2]])
-   entanglement_child2 <- entanglement(intercourse_result[[2]][[1]], intercourse_result[[2]][[2]])
+   entanglement_child1 <- entanglement(intercourse_result[[1]], intercourse_result[[2]])
+   entanglement_child2 <- entanglement(intercourse_result[[3]], intercourse_result[[4]])
    expect_true(entanglement_child1 > entanglement_child2)
    # the untangled version of the better dendrograms should be the result
    evolution_result <- untangle_evolution(brother_1_dend1, brother_1_dend2, brother_1_dend1, brother_1_dend2, L = 1)
-   expect_identical(evolution_result, intercourse_result[[1]])
+   expect_identical(evolution_result, dendlist(intercourse_result[[1]], intercourse_result[[2]]))
 })
 
 
