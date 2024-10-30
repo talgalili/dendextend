@@ -588,4 +588,24 @@ test_that("cutree.hclust works", {
 
 
 
+test_that("cutree.phylo works", {
+   hclust_tree <- hclust(dist(iris[1:5, -5]), method = "average")
+   result <- cutree.phylo(hclust_tree, k = 2)
+   expect_true(all(result == c(1,2,2,2,1)))
+})
+
+test_that("cutree.agnes works", {
+   hclust_tree <- hclust(dist(iris[1:5, -5]), method = "average")
+   result <- cutree.agnes(hclust_tree, k = 2)
+   expect_true(all(result == c(1,2,2,2,1)))
+})
+
+test_that("cutree.diana works", {
+   hclust_tree <- hclust(dist(iris[1:5, -5]), method = "average")
+   result <- cutree.diana(hclust_tree, k = 2)
+   expect_true(all(result == c(1,2,2,2,1)))
+})
+
+
+
 dendextend_options("warn", FALSE)
