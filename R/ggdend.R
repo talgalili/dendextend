@@ -538,7 +538,7 @@ ggplot.ggdend <- function(data = NULL, mapping = aes(), ..., segments = TRUE, la
         data = data$segments, na.rm = na.rm,
         aes(
            x = .data$x, y = .data$y, xend = .data$xend, yend = .data$yend,
-           colour = .data$col, linetype = .data$lty, linewidth = .data$lwd
+           colour = .data$col, linetype = .data$lty, size = .data$lwd
         ),
         lineend = "square"
      ) +
