@@ -24,7 +24,7 @@ test_that("Rotate a dendrogram", {
   expect_identical(rotated_dend, dend)
   
   # test case where not all leaves are specified in order and order is not numeric
-  expect_error(rotate(dend, c("1500000", "1600000")))
+  expect_error(rotate(dend, c("Alaska", "Alabama")))
 })
 
 
@@ -86,3 +86,19 @@ test_that("Rotate a hclust (but not exactly to what we asked for)", {
   #    plot(rotate(hc, new_order))
   #    plot(hc)
 })
+
+
+test_that("rotate.phylo works", {
+   hc <- hclust(dist(USArrests[1:3, ]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   x = ape::as.phylo(dend)
+   rotated_x = rotate.phylo(x, c("Alaska", "Alabama"))
+   
+   dend_labels_reodered = labels(dend) 
+   dend_labels_reodered[2:3] = dend_labels_reodered[3:2]
+   rotated_dend = rotate(dend, order = dend_labels_reodered)
+   # same rotation applied, so labels should be ordered the same
+   expect_identical(labels(rotated_dend), labels(as.dendrogram(rotated_x)))
+})
+
