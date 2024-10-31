@@ -6,10 +6,8 @@ context("onLoad")
 
 
 test_that("onLoad works", {
-   # testing to see if test-zzz files interferes with codecov
-   expect_identical(1,1)
-   
-   # dendextend:::.onLoad()
-   # expect_identical(getOption("dendextend"), NULL)
+   # no options for dendextend yet, should be empty
+   dendextend:::.onLoad()
+   expect_identical(getOption("dendextend"), NULL)
 })
 
