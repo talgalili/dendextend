@@ -122,3 +122,20 @@ test_that("sort.hclust works", {
    sorted_hc = sort.hclust(hc, decreasing = T)
    expect_identical(labels(sorted_hc), c("Arizona", "Alaska", "Alabama"))
 })
+
+
+test_that("sort.dendlist works", {
+   hc <- hclust(dist(USArrests[1:5, ]), "ave")
+   dend1 <- as.dendrogram(hc)
+   hc <- hclust(dist(USArrests[6:10, ]), "ave")
+   dend2 <- as.dendrogram(hc)
+   dends <- dendlist(dend1, dend2)
+   
+   sorted_dends = sort.dendlist(dends)
+   # sorting should switch order
+   expect_identical(labels(dend1), c("Arkansas", "Arizona", "California", "Alabama", "Alaska" ))
+   expect_identical(labels(sorted_dends[[1]]), c("Alabama", "Alaska", "Arizona", "California", "Arkansas"))
+   
+   expect_identical(labels(dend2), c("Florida", "Connecticut", "Delaware", "Colorado", "Georgia"))
+   expect_identical(labels(sorted_dends[[2]]), c("Connecticut", "Delaware", "Colorado", "Georgia", "Florida"))
+})
