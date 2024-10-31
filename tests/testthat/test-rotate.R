@@ -102,3 +102,15 @@ test_that("rotate.phylo works", {
    expect_identical(labels(rotated_dend), labels(as.dendrogram(rotated_x)))
 })
 
+
+test_that("sort.dendrogram works", {
+   hc <- hclust(dist(USArrests[1:3, ]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   # sorting should switch order
+   expect_identical(labels(dend), c("Arizona", "Alabama", "Alaska"))
+   sorted_dend = sort.dendrogram(dend, type = "nodes")
+   expect_identical(labels(sorted_dend), c("Arizona", "Alaska", "Alabama"))
+})
+
+
