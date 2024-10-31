@@ -114,3 +114,11 @@ test_that("sort.dendrogram works", {
 })
 
 
+test_that("sort.hclust works", {
+   hc <- hclust(dist(USArrests[1:3, ]), "ave")
+   
+   # sorting should switch order
+   expect_identical(labels(hc), c("Arizona", "Alabama", "Alaska"))
+   sorted_hc = sort.hclust(hc, decreasing = T)
+   expect_identical(labels(sorted_hc), c("Arizona", "Alaska", "Alabama"))
+})
