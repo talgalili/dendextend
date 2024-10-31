@@ -176,7 +176,7 @@ test_that("click_rotate works", {
    hc <- hclust(dist(USArrests[10:1, ]), "ave")
    dend <- as.dendrogram(hc)
    
-   # temporarily redefine interactive locator to return coordinates 1,1 which causes no rotation and returns the same dendrogram
+   # temporarily redefine interactive locator function to yield coordinates 1,1 which causes no rotation in click_rotate and returns the same dendrogram
    with_mock(
       locator = function(n = 1) list(x = 1, y = 1),
       result <- click_rotate(dend, plot = TRUE, horiz = FALSE, continue = FALSE)
