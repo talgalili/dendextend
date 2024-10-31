@@ -139,3 +139,14 @@ test_that("sort.dendlist works", {
    expect_identical(labels(dend2), c("Florida", "Connecticut", "Delaware", "Colorado", "Georgia"))
    expect_identical(labels(sorted_dends[[2]]), c("Connecticut", "Delaware", "Colorado", "Georgia", "Florida"))
 })
+
+
+test_that("rev.hclust works", {
+   hc <- hclust(dist(USArrests[1:3, ]), "ave")
+   
+   # should reverse order
+   ordered_labels <- c("Arizona", "Alabama", "Alaska")
+   expect_identical(labels(hc), ordered_labels)
+   reversed_hc = rev.hclust(hc, decreasing = T)
+   expect_identical(labels(reversed_hc), ordered_labels[3:1])
+})
