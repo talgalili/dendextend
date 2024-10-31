@@ -12,6 +12,10 @@ test_that("Rotate a dendrogram", {
 
   expect_equal(rev(labels(dend)), labels(rotate(dend, 3:1)))
   expect_equal(rev(labels(dend)), labels(rotate(dend, rev(labels(dend)))))
+  
+  # test case where an object other than dendrogram/hclust/phylo is passed in
+  x <- matrix(1:4, nrow = 2)
+  expect_error(rotate(x))
 })
 
 
