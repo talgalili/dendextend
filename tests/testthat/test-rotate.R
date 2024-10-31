@@ -164,5 +164,27 @@ test_that("ladderize works", {
    ladderized_x <- ladderize(x, right = F)
    # order of edge should have changed 
    expect_false(identical(ladderized_x$edge, x$edge))
+})
+
+
+test_that("click_rotate works", {
+   # test case where an object other than dendrogram is passed in
+   x <- matrix(1:4, nrow = 2)
+   expect_error(click_rotate(x))
+   
+   # test for ladderize.phylo
+   hc <- hclust(dist(USArrests[10:1, ]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   # temporarily redefine interactive locator to return coordinates 1,1 which causes no rotation and returns the same dendrogram
+   with_mock(
+      locator = function(n = 1) list(x = 1, y = 1),
+      result <- click_rotate(dend, plot = TRUE, horiz = FALSE, continue = FALSE)
+   )
+   expect_identical(labels(dend), labels(result))
    
 })
+
+
+
+
