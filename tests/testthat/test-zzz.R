@@ -10,7 +10,7 @@ test_that("onLoad works", {
    dendextend:::.onLoad()
    expect_identical(getOption("dendextend"), NULL)
    
-   dendextend:::assign_dendextend_options()
-   dendextend:::remove_dendextend_options()
+   unloadNamespace("dendextend")
+   attachNamespace("dendextend")
 })
 
