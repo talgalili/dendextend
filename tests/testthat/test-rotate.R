@@ -92,12 +92,12 @@ test_that("rotate.phylo works", {
    hc <- hclust(dist(USArrests[1:3, ]), "ave")
    dend <- as.dendrogram(hc)
    
-   x = ape::as.phylo(dend)
-   rotated_x = rotate.phylo(x, c("Alaska", "Alabama"))
+   x <- ape::as.phylo(dend)
+   rotated_x <- rotate.phylo(x, c("Alaska", "Alabama"))
    
-   dend_labels_reodered = labels(dend) 
-   dend_labels_reodered[2:3] = dend_labels_reodered[3:2]
-   rotated_dend = rotate(dend, order = dend_labels_reodered)
+   dend_labels_reodered <- labels(dend) 
+   dend_labels_reodered[2:3] <- dend_labels_reodered[3:2]
+   rotated_dend <- rotate(dend, order = dend_labels_reodered)
    # same rotation applied, so labels should be ordered the same
    expect_identical(labels(rotated_dend), labels(as.dendrogram(rotated_x)))
 })
@@ -109,7 +109,7 @@ test_that("sort.dendrogram works", {
    
    # sorting should switch order
    expect_identical(labels(dend), c("Arizona", "Alabama", "Alaska"))
-   sorted_dend = sort.dendrogram(dend, type = "nodes")
+   sorted_dend <- sort.dendrogram(dend, type = "nodes")
    expect_identical(labels(sorted_dend), c("Arizona", "Alaska", "Alabama"))
 })
 
@@ -119,7 +119,7 @@ test_that("sort.hclust works", {
    
    # sorting should switch order
    expect_identical(labels(hc), c("Arizona", "Alabama", "Alaska"))
-   sorted_hc = sort.hclust(hc, decreasing = T)
+   sorted_hc <- sort.hclust(hc, decreasing = T)
    expect_identical(labels(sorted_hc), c("Arizona", "Alaska", "Alabama"))
 })
 
@@ -131,7 +131,7 @@ test_that("sort.dendlist works", {
    dend2 <- as.dendrogram(hc)
    dends <- dendlist(dend1, dend2)
    
-   sorted_dends = sort.dendlist(dends)
+   sorted_dends <- sort.dendlist(dends)
    # sorting should switch order
    expect_identical(labels(dend1), c("Arkansas", "Arizona", "California", "Alabama", "Alaska" ))
    expect_identical(labels(sorted_dends[[1]]), c("Alabama", "Alaska", "Arizona", "California", "Arkansas"))
@@ -147,6 +147,22 @@ test_that("rev.hclust works", {
    # should reverse order
    ordered_labels <- c("Arizona", "Alabama", "Alaska")
    expect_identical(labels(hc), ordered_labels)
-   reversed_hc = rev.hclust(hc, decreasing = T)
+   reversed_hc <- rev.hclust(hc, decreasing = T)
    expect_identical(labels(reversed_hc), ordered_labels[3:1])
+})
+
+
+test_that("ladderize works", {
+   # test case where an object other than dendrogram is passed in
+   x <- matrix(1:4, nrow = 2)
+   expect_error(ladderize(x))
+   
+   # test for ladderize.phylo
+   hc <- hclust(dist(USArrests[10:1, ]), "ave")
+   dend <- as.dendrogram(hc)
+   x <- ape::as.phylo(dend)
+   ladderized_x <- ladderize(x, right = F)
+   # order of edge should have changed 
+   expect_false(identical(ladderized_x$edge, x$edge))
+   
 })
