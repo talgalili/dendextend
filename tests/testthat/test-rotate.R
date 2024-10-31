@@ -16,6 +16,15 @@ test_that("Rotate a dendrogram", {
   # test case where an object other than dendrogram/hclust/phylo is passed in
   x <- matrix(1:4, nrow = 2)
   expect_error(rotate(x))
+  
+  # test case where order argument is missing
+  expect_warning(
+     rotated_dend <- rotate(dend)
+  )
+  expect_identical(rotated_dend, dend)
+  
+  # test case where not all leaves are specified in order and order is not numeric
+  expect_error(rotate(dend, c("1500000", "1600000")))
 })
 
 
