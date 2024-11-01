@@ -22,6 +22,29 @@ test_that("sort_2_clusters_vectors works", {
 
   sorted_As <- sort_2_clusters_vectors(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE) # Sorted
   expect_true(identical(sorted_As[[1]], sorted_As[[2]]))
+  
+  # test edge case warnings
+  A2_clusters <- A2_clusters[1:3]
+  expect_warning(
+     result <- sort_2_clusters_vectors(A1_clusters, A2_clusters, warn = T)
+  )
+  expect_identical(A1_clusters, result[[1]])
+  expect_identical(A2_clusters, result[[2]])
+  
+  names(A2_clusters) <- NULL
+  expect_warning(
+     result <- sort_2_clusters_vectors(A1_clusters, A2_clusters, warn = T)
+  )
+  expect_identical(A1_clusters, result[[1]])
+  expect_identical(A2_clusters, result[[2]])
+  
+  # create custom object with different length of names as length of object to trigger warning
+  custom_object <- list(a = 1, b = 2, c = 3) 
+  class(custom_object) <- "custom_class"
+  names.custom_class <<- function(x) {
+     return(c("Name1", "Name2", "Name3", "Name4", "Name5"))
+  }
+  expect_warning(sort_2_clusters_vectors(custom_object, custom_object, warn = T))
 })
 
 
