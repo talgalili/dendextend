@@ -309,8 +309,8 @@ test_that("Bk works", {
 test_that("Bk_plot works", {
    
   ss <- TRUE 
-  hc1 <- hclust(dist(datasets::iris[ss, -5]), "com")
-  hc2 <- hclust(dist(datasets::iris[ss, -5]), "single")
+  hc1 <- hclust(dist(datasets::iris[1:30, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[1:30, -5]), "single")
   dend1 <- as.dendrogram(hc1)
   dend2 <- as.dendrogram(hc2)
   
