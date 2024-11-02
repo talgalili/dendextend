@@ -304,3 +304,21 @@ test_that("Bk works", {
   dend2 <- as.dendrogram(hc2)
   expect_error(Bk_permutations(dend1, dend2, warn = T))
 })
+
+
+test_that("Bk_plot works", {
+   
+  ss <- TRUE 
+  hc1 <- hclust(dist(datasets::iris[ss, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[ss, -5]), "single")
+  dend1 <- as.dendrogram(hc1)
+  dend2 <- as.dendrogram(hc2)
+  
+  # simply check if the function can run without error
+  expect_no_error(
+    Bk_plot(dend1, dend2, try_cutree_hclust = T, add_E = T, rejection_line_asymptotic = T, rejection_line_permutation = T, p.adjust.methods = "bonferroni")
+  )
+  expect_no_error(
+    Bk_plot(dend1, dend2, try_cutree_hclust = T, add_E = F, rejection_line_asymptotic = T, rejection_line_permutation = T)
+  )
+})
