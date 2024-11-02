@@ -111,6 +111,20 @@ test_that("FM_index_R works", {
   expect_identical(round(as.vector(tmp_index), 2), 0.38)
   expect_identical(round(attr(tmp_index, "E_FM"), 2), 0.37)
   expect_identical(round(sqrt(attr(tmp_index, "V_FM")), 3), 0.008)
+  
+  # test case where a cluster with an NA value is passed in
+  hc1_with_na = cutree(hc1, k = 3)
+  hc1_with_na[1] = NA
+  expect_warning(
+     FM_index_R(hc1_with_na, cutree(hc1, k = 3), warn = T)
+  )
+  
+  # test case where unequal length clusters are passed in 
+  x = c(1,2,3,4)
+  y = c(1,2,3,4,5)
+  expect_error(
+     FM_index_R(x, y, assume_sorted_vectors = T)
+  )
 })
 
 
