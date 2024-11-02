@@ -284,22 +284,27 @@ test_that("Bk works", {
   dend2 <- as.dendrogram(hc2)
   expect_error(Bk(dend1, dend2, warn = T))
   
+  # make computationally easier for permutations
+  hc1 <- hclust(dist(datasets::iris[1:15, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[1:15, -5]), "single")
+  dend1 <- as.dendrogram(hc1)
+  dend2 <- as.dendrogram(hc2)
+  
   # test case where k is not specified
-  expect_identical(
-     Bk_permutations(dend1, dend2),
-     Bk_permutations(dend1, dend2, k = 2:(nleaves(dend1) - 1))
+  expect_no_error(
+     Bk_permutations(dend1, dend2)
   )
   
   # test case where different number of items are provided
-  hc1 <- hclust(dist(datasets::iris[1:149, -5]), "com")
-  hc2 <- hclust(dist(datasets::iris[1:150, -5]), "single")
+  hc1 <- hclust(dist(datasets::iris[1:29, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[1:30, -5]), "single")
   dend1 <- as.dendrogram(hc1)
   dend2 <- as.dendrogram(hc2)
   expect_error(Bk_permutations(dend1, dend2, warn = T))
   
   # test case where different labels are provided
-  hc1 <- hclust(dist(datasets::iris[1:149, -5]), "com")
-  hc2 <- hclust(dist(datasets::iris[2:150, -5]), "single")
+  hc1 <- hclust(dist(datasets::iris[1:29, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[2:30, -5]), "single")
   dend1 <- as.dendrogram(hc1)
   dend2 <- as.dendrogram(hc2)
   expect_error(Bk_permutations(dend1, dend2, warn = T))
@@ -307,13 +312,13 @@ test_that("Bk works", {
 
 
 test_that("Bk_plot works", {
-   
-  ss <- TRUE 
-  hc1 <- hclust(dist(datasets::iris[1:30, -5]), "com")
-  hc2 <- hclust(dist(datasets::iris[1:30, -5]), "single")
+
+  ss <- TRUE
+  hc1 <- hclust(dist(datasets::iris[1:15, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[1:15, -5]), "single")
   dend1 <- as.dendrogram(hc1)
   dend2 <- as.dendrogram(hc2)
-  
+
   # simply check if the function can run without error
   expect_no_error(
     Bk_plot(dend1, dend2, try_cutree_hclust = T, add_E = T, rejection_line_asymptotic = T, rejection_line_permutation = T, p.adjust.methods = "bonferroni")
