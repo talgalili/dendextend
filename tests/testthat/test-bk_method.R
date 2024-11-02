@@ -264,8 +264,26 @@ test_that("Bk works", {
     c(.45, .44)
   )
 
+  # test case where k is not specified
+  expect_identical(
+    Bk(dend1, dend2),
+    Bk(dend1, dend2, k = 2:(nleaves(dend1) - 1))
+  )
 
-
+  # test case where different number of items are provided
+  hc1 <- hclust(dist(datasets::iris[1:149, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[1:150, -5]), "single")
+  dend1 <- as.dendrogram(hc1)
+  dend2 <- as.dendrogram(hc2)
+  expect_error(Bk(dend1, dend2, warn = T))
+  
+  # test case where different labels are provided
+  hc1 <- hclust(dist(datasets::iris[1:149, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[2:150, -5]), "single")
+  dend1 <- as.dendrogram(hc1)
+  dend2 <- as.dendrogram(hc2)
+  expect_error(Bk(dend1, dend2, warn = T))
+  
   #    Bk_plot(hc1, hc2, main = "WRONG Bk plot \n(due to the way cutree works with ties)")
   #    Bk_plot(dend1, dend2, main = "CORRECT Bk plot")
 })
