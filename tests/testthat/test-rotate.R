@@ -100,6 +100,10 @@ test_that("rotate.phylo works", {
    rotated_dend <- rotate(dend, order = dend_labels_reodered)
    # same rotation applied, so labels should be ordered the same
    expect_identical(labels(rotated_dend), labels(as.dendrogram(rotated_x)))
+   
+   # test case where phy argument is provided
+   rotated_x <- rotate.phylo(NULL, c("Alaska", "Alabama"), phy = x)
+   expect_identical(labels(rotated_dend), labels(as.dendrogram(rotated_x)))
 })
 
 
@@ -164,6 +168,14 @@ test_that("ladderize works", {
    ladderized_x <- ladderize(x, right = F)
    # order of edge should have changed 
    expect_false(identical(ladderized_x$edge, x$edge))
+   
+   # test when a dendrogram isn't passed in
+   x <- matrix(1:4, nrow = 2)
+   expect_error(ladderize.dendrogram(x))
+   
+   # test when a phylo isn't passed in
+   x <- matrix(1:4, nrow = 2)
+   expect_error(ladderize.phylo(x))
 })
 
 
@@ -176,10 +188,10 @@ test_that("click_rotate works", {
    hc <- hclust(dist(USArrests[10:1, ]), "ave")
    dend <- as.dendrogram(hc)
    
-   # temporarily redefine interactive locator function to yield coordinates 1,1 which causes no rotation in click_rotate and returns the same dendrogram
+   # temporarily redefine interactive locator function to click leaf which causes no rotation in click_rotate and returns the same dendrogram
    with_mock(
-      locator = function(n = 1) list(x = 1, y = 1),
-      result <- click_rotate(dend, plot = TRUE, horiz = FALSE, continue = FALSE)
+      locator = function(n = 1) list(x = 1, y = -11),
+      result <- click_rotate(dend, plot = TRUE, horiz = FALSE, continue = TRUE)
    )
    expect_identical(labels(dend), labels(result))
    

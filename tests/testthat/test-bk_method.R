@@ -22,6 +22,29 @@ test_that("sort_2_clusters_vectors works", {
 
   sorted_As <- sort_2_clusters_vectors(A1_clusters, A2_clusters, assume_sorted_vectors = FALSE) # Sorted
   expect_true(identical(sorted_As[[1]], sorted_As[[2]]))
+  
+  # test edge case warnings
+  A2_clusters <- A2_clusters[1:3]
+  expect_warning(
+     result <- sort_2_clusters_vectors(A1_clusters, A2_clusters, warn = T)
+  )
+  expect_identical(A1_clusters, result[[1]])
+  expect_identical(A2_clusters, result[[2]])
+  
+  names(A2_clusters) <- NULL
+  expect_warning(
+     result <- sort_2_clusters_vectors(A1_clusters, A2_clusters, warn = T)
+  )
+  expect_identical(A1_clusters, result[[1]])
+  expect_identical(A2_clusters, result[[2]])
+  
+  # create custom object with different length of names as length of object to trigger warning
+  custom_object <- list(a = 1, b = 2, c = 3) 
+  class(custom_object) <- "custom_class"
+  names.custom_class <<- function(x) {
+     return(c("Name1", "Name2", "Name3", "Name4", "Name5"))
+  }
+  expect_warning(sort_2_clusters_vectors(custom_object, custom_object, warn = T))
 })
 
 
@@ -88,6 +111,20 @@ test_that("FM_index_R works", {
   expect_identical(round(as.vector(tmp_index), 2), 0.38)
   expect_identical(round(attr(tmp_index, "E_FM"), 2), 0.37)
   expect_identical(round(sqrt(attr(tmp_index, "V_FM")), 3), 0.008)
+  
+  # test case where a cluster with an NA value is passed in
+  hc1_with_na = cutree(hc1, k = 3)
+  hc1_with_na[1] = NA
+  expect_warning(
+     FM_index_R(hc1_with_na, cutree(hc1, k = 3), warn = T)
+  )
+  
+  # test case where unequal length clusters are passed in 
+  x = c(1,2,3,4)
+  y = c(1,2,3,4,5)
+  expect_error(
+     FM_index_R(x, y, assume_sorted_vectors = T)
+  )
 })
 
 
@@ -227,8 +264,66 @@ test_that("Bk works", {
     c(.45, .44)
   )
 
+  # test case where k is not specified
+  expect_identical(
+    Bk(dend1, dend2),
+    Bk(dend1, dend2, k = 2:(nleaves(dend1) - 1))
+  )
+
+  # test case where different number of items are provided
+  hc1 <- hclust(dist(datasets::iris[1:149, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[1:150, -5]), "single")
+  dend1 <- as.dendrogram(hc1)
+  dend2 <- as.dendrogram(hc2)
+  expect_error(Bk(dend1, dend2, warn = T))
+  
+  # test case where different labels are provided
+  hc1 <- hclust(dist(datasets::iris[1:149, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[2:150, -5]), "single")
+  dend1 <- as.dendrogram(hc1)
+  dend2 <- as.dendrogram(hc2)
+  expect_error(Bk(dend1, dend2, warn = T))
+  
+  # make computationally easier for permutations
+  hc1 <- hclust(dist(datasets::iris[1:15, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[1:15, -5]), "single")
+  dend1 <- as.dendrogram(hc1)
+  dend2 <- as.dendrogram(hc2)
+  
+  # test case where k is not specified
+  expect_no_error(
+     Bk_permutations(dend1, dend2)
+  )
+  
+  # test case where different number of items are provided
+  hc1 <- hclust(dist(datasets::iris[1:29, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[1:30, -5]), "single")
+  dend1 <- as.dendrogram(hc1)
+  dend2 <- as.dendrogram(hc2)
+  expect_error(Bk_permutations(dend1, dend2, warn = T))
+  
+  # test case where different labels are provided
+  hc1 <- hclust(dist(datasets::iris[1:29, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[2:30, -5]), "single")
+  dend1 <- as.dendrogram(hc1)
+  dend2 <- as.dendrogram(hc2)
+  expect_error(Bk_permutations(dend1, dend2, warn = T))
+})
 
 
-  #    Bk_plot(hc1, hc2, main = "WRONG Bk plot \n(due to the way cutree works with ties)")
-  #    Bk_plot(dend1, dend2, main = "CORRECT Bk plot")
+test_that("Bk_plot works", {
+
+  ss <- TRUE
+  hc1 <- hclust(dist(datasets::iris[1:15, -5]), "com")
+  hc2 <- hclust(dist(datasets::iris[1:15, -5]), "single")
+  dend1 <- as.dendrogram(hc1)
+  dend2 <- as.dendrogram(hc2)
+
+  # simply check if the function can run without error
+  expect_no_error(
+    Bk_plot(dend1, dend2, try_cutree_hclust = T, add_E = T, rejection_line_asymptotic = T, rejection_line_permutation = T, p.adjust.methods = "bonferroni")
+  )
+  expect_no_error(
+    Bk_plot(dend1, dend2, try_cutree_hclust = T, add_E = F, rejection_line_asymptotic = T, rejection_line_permutation = T)
+  )
 })
