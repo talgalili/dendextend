@@ -119,9 +119,13 @@ test_that("FM_index_R works", {
      FM_index_R(hc1_with_na, cutree(hc1, k = 3), warn = T)
   )
   
-  # test case where unequal length clusters are passed in 
-  x = c(1,2,3,4)
-  y = c(1,2,3,4,5)
+  # create custom class to pass in which triggers error otherwise not possible
+  x <- c(1, 2, 3, 4, 5) 
+  y <- c(1, 2, 3, 4, 5) 
+  class(x) <- "x"
+  length.x <- function(x) {
+     1
+  }
   expect_error(
      FM_index_R(x, y, assume_sorted_vectors = T)
   )
@@ -325,5 +329,14 @@ test_that("Bk_plot works", {
   )
   expect_no_error(
     Bk_plot(dend1, dend2, try_cutree_hclust = T, add_E = F, rejection_line_asymptotic = T, rejection_line_permutation = T)
+  )
+  
+  # case where object which cant be converted to phylo is passed in
+  x <- matrix(1:4, nrow = 2)
+  expect_error(
+    Bk_plot(x, dend2, try_cutree_hclust = T, add_E = F, rejection_line_asymptotic = T, rejection_line_permutation = T)
+  )
+  expect_error(
+    Bk_plot(dend1, x, try_cutree_hclust = T, add_E = F, rejection_line_asymptotic = T, rejection_line_permutation = T)
   )
 })
