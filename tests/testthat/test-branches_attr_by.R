@@ -197,3 +197,42 @@ test_that("branches_attr_by_clusters works", {
       branches_attr_by_clusters(dend, clusters, values)
    )
 })
+
+
+test_that("branches_attr_by_labels works", {
+   
+   dend <- c(1:4) %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   
+   # assign labels 1 and 2 a color
+   labels <- as.character(1:2)
+   new_dend <- branches_attr_by_labels(dend, labels, 2, attr = "col")
+   suppressWarnings(expect_identical(
+      dendrapply(new_dend, function(dend_node) attributes(dend_node))$members$members$edgePar$col,
+      2
+   ))
+   
+   # if non-dendrogram object is passed in
+   x <- matrix(1:4, nrow = 2)
+   expect_error(
+      branches_attr_by_labels(x, labels, attr = "col")
+   )
+   # if labels is missing
+   expect_error(
+      branches_attr_by_labels(dend)
+   )
+   # if labels is not of type character
+   dendextend_options("warn", T)
+   expect_warning(
+      branches_attr_by_labels(dend, as.numeric(labels), attr = "col")
+   )
+   # if any labels aren't in the dendrogram
+   labels = as.character(c(1,5))
+   expect_warning(
+      branches_attr_by_labels(dend, labels, attr = "col")
+   )
+   
+})
+
