@@ -50,3 +50,19 @@ test_that("rank_values_with_clusters works", {
     1:4
   )
 })
+
+
+test_that("nodes_with_shared_labels works", {
+   
+   hc1 <- hclust(dist(mtcars[1:5, ]), method = "complete")
+   dend1 <- as.dendrogram(hc1)
+   hc2 <- hclust(dist(mtcars[1:5, ]), method = "ave")
+   dend2 <- as.dendrogram(hc2)
+   
+   # shared nodes should match specified pattern
+   expect_identical(
+      nodes_with_shared_labels(dend1, dend2),
+      c(F, T, T, T, T, T, F, T, T)
+   )
+   
+})
