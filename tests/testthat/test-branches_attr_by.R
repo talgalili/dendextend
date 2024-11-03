@@ -228,6 +228,7 @@ test_that("branches_attr_by_labels works", {
    expect_warning(
       branches_attr_by_labels(dend, as.numeric(labels), attr = "col")
    )
+   dendextend_options("warn", F)
    # if any labels aren't in the dendrogram
    labels = as.character(c(1,5))
    expect_warning(
