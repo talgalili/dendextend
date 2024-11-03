@@ -120,15 +120,16 @@ test_that("FM_index_R works", {
   )
   
   # create custom class to pass in which triggers error otherwise not possible
-  x <- c(1, 2, 3, 4, 5) 
-  y <- c(1, 2, 3, 4, 5) 
-  class(x) <- "x"
-  length.x <- function(x) {
-     1
-  }
+  x <<- c(1, 2, 3, 4, 5) 
+  class(x) <<- "x"
+  length.x <<- function(x) 1
+  y <<- c(1, 2, 3, 4, 5) 
+  class(y) <<- "y"
+  length.y <<- function(y) 1
   expect_error(
      FM_index_R(x, y, assume_sorted_vectors = T)
   )
+
 })
 
 
