@@ -66,3 +66,15 @@ test_that("nodes_with_shared_labels works", {
    )
    
 })
+
+
+test_that("replace_unique_items_with_0_and_rank works", {
+   
+   # replace '5' with 0 because it is unique, convert all other values to a rank
+   x <- c(4,4,3,3,5)
+   expect_identical(
+      replace_unique_items_with_0_and_rank(x),
+      c(1,1,2,2,0)
+   )
+})
+
