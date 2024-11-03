@@ -120,3 +120,25 @@ test_that("lty_branches works", {
       2
    ))
 })
+
+
+test_that("leaf_Colors works", {
+   
+   dend <- c(1:5) %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   colorful_dend = color_labels(dend, k = 2)
+   
+   # extract leaf labels (none for uncolored dendrogram vs. #CC476B and #009681 for colorful dendrogram)
+   expect_true(
+      all(is.na(leaf_Colors(dend, "label")))
+   )
+   expect_true(
+      all(leaf_Colors(colorful_dend, "label") == c("#CC476B", "#CC476B", "#009681", "#009681", "#009681"))
+   )
+   
+   # if something other than a dend 
+   x <- matrix(1:4, nrow = 2)
+   expect_error(leaf_Colors(x))
+})
