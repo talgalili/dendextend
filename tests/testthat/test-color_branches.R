@@ -70,7 +70,7 @@ test_that("color_labels works", {
       as.dendrogram()
    
    # should recolor first and second label to red
-   colorful_dend = color_labels(dend, labels = c(1,2), col = "red")
+   colorful_dend <- color_labels(dend, labels = c(1,2), col = "red")
    expect_identical(
       dendrapply(colorful_dend, function(dend_node) attributes(dend_node))$members$members$nodePar$lab.col,
       "red"
@@ -89,7 +89,7 @@ test_that("color_labels works", {
    hc <- c(1:5) %>%
       dist() %>%
       hclust()
-   colorful_dend = color_labels(hc, k = 2)
+   colorful_dend <- color_labels(hc, k = 2)
    expect_identical(
       dendrapply(colorful_dend, function(dend_node) attributes(dend_node))$members$members$nodePar$lab.col,
       "#CC476B"
@@ -128,7 +128,7 @@ test_that("leaf_Colors works", {
       dist() %>%
       hclust() %>%
       as.dendrogram()
-   colorful_dend = color_labels(dend, k = 2)
+   colorful_dend <- color_labels(dend, k = 2)
    
    # extract leaf labels (none for uncolored dendrogram vs. #CC476B and #009681 for colorful dendrogram)
    expect_true(
@@ -152,7 +152,7 @@ test_that("color_branches_by_clusters works", {
       as.dendrogram()
    
    # cluster color for the first edge should be based on cluster # 2
-   colorful_dend = color_branches_by_clusters(dend, clusters = c(2,2,1,1,1), order_value = T)
+   colorful_dend <- color_branches_by_clusters(dend, clusters = c(2,2,1,1,1), order_value = T)
    suppressWarnings(expect_identical(
       dendrapply(colorful_dend, function(dend_node) attributes(dend_node))$members$members$edgePar$col,
       "2"
