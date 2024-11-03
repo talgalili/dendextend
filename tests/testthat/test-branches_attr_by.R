@@ -111,7 +111,7 @@ test_that("assign_values_to_branches_edgePar - when trying to keep a value un-to
 
 
 
-test_that("branches_attr_by_labels works", {
+test_that("branches_attr_by_lists works", {
   dend <- c(1:4) %>%
     dist() %>%
     hclust() %>%
@@ -142,4 +142,58 @@ test_that("branches_attr_by_labels works", {
   expect_equal(attr(tmp[[1]][[2]], "edgePar")$col, 1)
   expect_equal(attr(tmp[[2]][[1]], "edgePar")$col, 1)
   expect_equal(attr(tmp[[2]][[2]], "edgePar")$col, 2)
+  
+  # test when list argument not provided and non-dendrogram object passed in
+  expect_error(branches_attr_by_lists(dend))
+  hc <- c(1:4) %>%
+     dist() %>%
+     hclust()
+  expect_error(branches_attr_by_lists(hc))
+})
+
+
+test_that("branches_attr_by_clusters works", {
+   
+   dend <- c(1:4) %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   
+   # fourth cluster should be purple color if we assign branches colors
+   clusters <- c(1,2,3,4)
+   new_dend <- branches_attr_by_clusters(dend, clusters, attr = "col")
+   expect_identical(
+      dendrapply(new_dend, function(dend_node) attributes(dend_node))$class$class$edgePar$col,
+      "#7866D8"
+   )
+   
+   # if non-dendrogram object is passed in
+   hc <- c(1:4) %>%
+      dist() %>%
+      hclust()
+   expect_error(expect_warning(
+      branches_attr_by_clusters(hc, clusters, attr = "col")
+   ))
+   # if clusters is missing
+   expect_error(
+      branches_attr_by_clusters(dend)
+   )
+   # if clusters isn't numeric
+   expect_warning(
+      branches_attr_by_clusters(dend, as.character(clusters))
+   )
+   # if length of clusters isn't the same as the number of leaves
+   expect_error(
+      branches_attr_by_clusters(dend, clusters[-1])
+   )
+   # if number of colors provided does not equal number of clusters
+   values = c("red", "blue", "green")
+   expect_warning(
+      branches_attr_by_clusters(dend, clusters, values)
+   )
+   # if any colors are NA
+   values = c("red", "blue", "green", NA)
+   expect_warning(
+      branches_attr_by_clusters(dend, clusters, values)
+   )
 })
