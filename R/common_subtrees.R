@@ -181,7 +181,8 @@ common_subtrees_clusters <- function(dend1, dend2, leaves_get_0_cluster = TRUE, 
     current_node <- i_nodes
 
     if (is.leaf(dend_node)) {
-      if (!good_nodes[current_node]) cluster_group <<- cluster_group + 1
+       print("a")
+      if (!good_nodes[current_node]) print("t")
       leaf_id <<- leaf_id + 1
       clusters[leaf_id] <<- cluster_group
       return(NULL)
@@ -189,7 +190,7 @@ common_subtrees_clusters <- function(dend1, dend2, leaves_get_0_cluster = TRUE, 
 
     # If not leaf:
     n_children <- length(dend_node)
-
+      print("b")
     for (i in 1:n_children) {
       if (!good_nodes[current_node]) cluster_group <<- cluster_group + 1
       fill_clusters(dend_node[[i]])
