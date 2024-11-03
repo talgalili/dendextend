@@ -174,8 +174,9 @@ test_that("ladderize works", {
    expect_error(ladderize.dendrogram(x))
    
    # test when a phylo isn't passed in
-   x <- matrix(1:4, nrow = 2)
-   expect_error(ladderize.phylo(x))
+   x <- ape::as.phylo(dend)
+   ladderized_x <- ladderize.phylo(NULL, phy = x)
+   expect_false(identical(ladderized_x$edge, x$edge))
 })
 
 
