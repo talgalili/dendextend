@@ -50,15 +50,15 @@ test_that("color_branches works", {
       result2
    )
    # should be labeled now
-   expect_identical(
-      expect_warning(dendrapply(result1, function(dend_node) attributes(dend_node))$members$edgetext$label), 
+   suppressWarnings(expect_identical(
+      dendrapply(result1, function(dend_node) attributes(dend_node))$members$edgetext$label, 
       "1"
-   )
+   ))
    # should remain unlabeled
-   expect_identical(
-      expect_warning(dendrapply(result2, function(dend_node) attributes(dend_node))$members$edgetext$label), 
+   suppressWarnings(expect_identical(
+      dendrapply(result2, function(dend_node) attributes(dend_node))$members$edgetext$label, 
       NULL
-   )
+   ))
 })
 
 
@@ -115,7 +115,7 @@ test_that("lty_branches works", {
    
    # dend branches for second cluster should be dashed (aka lty = 2)
    lty_dend = lty_branches(dend, k = 2)
-   expect_warning(expect_identical(
+   suppressWarnings(expect_identical(
       dendrapply(lty_dend, function(dend_node) attributes(dend_node))$class$class$edgePar$lty,
       2
    ))
@@ -141,4 +141,26 @@ test_that("leaf_Colors works", {
    # if something other than a dend 
    x <- matrix(1:4, nrow = 2)
    expect_error(leaf_Colors(x))
+})
+
+
+test_that("color_branches_by_clusters works", {
+   
+   dend <- c(1:5) %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   
+   # cluster color for the first edge should be based on cluster # 2
+   colorful_dend = color_branches_by_clusters(dend, clusters = c(2,2,1,1,1), order_value = T)
+   suppressWarnings(expect_identical(
+      dendrapply(colorful_dend, function(dend_node) attributes(dend_node))$members$members$edgePar$col,
+      "2"
+   ))
+   
+   # if wrong number of clusters is passed in
+   expect_error(
+      color_branches_by_clusters(dend, clusters = c(2,2,1,1), order_value = T)
+   )
+   
 })
