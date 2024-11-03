@@ -60,3 +60,46 @@ test_that("color_branches works", {
 })
 
 
+test_that("color_labels works", {
+   
+   dend <- c(1:5) %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   
+   # should recolor first and second label to red
+   colorful_dend = color_labels(dend, labels = c(1,2), col = "red")
+   expect_identical(
+      dendrapply(colorful_dend, function(dend_node) attributes(dend_node))$members$members$nodePar$lab.col,
+      "red"
+   )
+   
+   # color and labels vector have a length mismatch, creates warning because it has to recycle colors
+   expect_warning(
+      color_labels(dend, labels = c(3,4,5), col = c("red", "blue"), warn = T)
+   )
+
+   # if something other than a dend / hclust is passed in
+   x <- matrix(1:4, nrow = 2)
+   expect_error(color_labels(x))
+   
+   # if hclust is passed in
+   hc <- c(1:5) %>%
+      dist() %>%
+      hclust()
+   colorful_dend = color_labels(hc, k = 2)
+   expect_identical(
+      dendrapply(colorful_dend, function(dend_node) attributes(dend_node))$members$members$nodePar$lab.col,
+      "#CC476B"
+   )
+   
+   # if misalignment in k and number of colors
+   expect_warning(
+      color_labels(dend, k = 3, col = c("red", "blue"), warn = T)
+   )
+   expect_warning(
+      color_labels(dend, k = 2, col = c("red", "blue", "green"), warn = T)   
+   )
+   
+})
+
