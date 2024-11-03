@@ -43,9 +43,11 @@ test_that("color_branches works", {
       color_branches(dend, k = 2, warn = T, groupLabels = function(...) TRUE)   
    )
    # structure doesnt change
+   result1 <- color_branches(dend, k = 2, warn = T, groupLabels = TRUE)
+   result2 <- color_branches(dend, k = 2, warn = T, groupLabels = FALSE) 
    expect_equal(
-      color_branches(dend, k = 2, warn = T, groupLabels = TRUE),
-      color_branches(dend, k = 2, warn = T, groupLabels = FALSE) 
+      result1,
+      result2
    )
    # should be labeled now
    expect_identical(
@@ -103,3 +105,18 @@ test_that("color_labels works", {
    
 })
 
+
+test_that("lty_branches works", {
+   
+   dend <- c(1:5) %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   
+   # dend branches for second cluster should be dashed (aka lty = 2)
+   lty_dend = lty_branches(dend, k = 2)
+   expect_warning(expect_identical(
+      dendrapply(lty_dend, function(dend_node) attributes(dend_node))$class$class$edgePar$lty,
+      2
+   ))
+})
