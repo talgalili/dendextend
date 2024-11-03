@@ -25,7 +25,7 @@ test_that("color_branches works", {
    
    # test when non-dendrogram object is passed in
    x <- matrix(1:4, nrow = 2)
-   expect_error(x %>% color_branches(clusters = c(1, 1)))
+   suppressWarnings(expect_error(x %>% color_branches(k = 2)))
    hc <- c(1:5) %>%
       dist() %>%
       hclust()
@@ -37,6 +37,8 @@ test_that("color_branches works", {
       `dendextend::cutree` = function(...) 0,
       color_branches(dend, k = 2, warn = T) 
    ))
+   # trigger 'else' clause in addcol
+   expect_no_error(color_branches(dend) %>% color_branches())
    
    # test when groupLabels argument used
    expect_error(
