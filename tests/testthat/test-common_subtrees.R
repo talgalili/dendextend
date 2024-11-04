@@ -80,6 +80,7 @@ test_that("replace_unique_items_with_0_and_rank works", {
 
 
 test_that("common_subtrees_clusters works", {
+   suppressWarnings(RNGversion("3.5.0"))
    
    hc1 <- hclust(dist(mtcars[1:5, ]), method = "complete")
    dend1 <- as.dendrogram(hc1)   
@@ -93,7 +94,7 @@ test_that("common_subtrees_clusters works", {
    )
    
    # temporarily redefine is.leaf to access and cover lines of code otherwise not possible
-   set.seed(3)
+   set.seed(2)
    with_mock(
       is.leaf = function(x) sample(c(T,F), 1),
       common_subtrees_clusters(dend1, dend2)
