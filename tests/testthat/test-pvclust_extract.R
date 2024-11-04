@@ -59,16 +59,33 @@ test_that("pvrect2 works", {
 
 test_that("pvclust_show_signif works", {
    
-   # color brnaches to highlight consistent clusters
+   # bold branches to highlight consistent clusters
    suppressWarnings(RNGversion("3.5.0"))
    library(pvclust)
    data(lung) # 916 genes for 73 subjects
    set.seed(13134)
-   result <- pvclust(lung[, 1:20], method.dist = "cor", method.hclust = "average", nboot = 100)
+   capture.output(result <- pvclust(lung[, 1:20], method.dist = "cor", method.hclust = "average", nboot = 100))
+   dend <- as.dendrogram(result)
+   
+   expect_no_error(
+      pvclust_show_signif(dend, result) %>% plot() 
+   )
+     
+})
+
+
+test_that("pvclust_show_signif_gradient works", {
+   
+   # color branches to highlight consistent clusters
+   suppressWarnings(RNGversion("3.5.0"))
+   library(pvclust)
+   data(lung) # 916 genes for 73 subjects
+   set.seed(13134)
+   capture.output(result <- pvclust(lung[, 1:20], method.dist = "cor", method.hclust = "average", nboot = 100))
    dend <- as.dendrogram(result)
    
    expect_no_error(
       pvclust_show_signif_gradient(dend, result) %>% plot() 
    )
-     
+   
 })
