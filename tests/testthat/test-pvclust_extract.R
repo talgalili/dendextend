@@ -96,12 +96,43 @@ test_that("strwidth2 works", {
    # test that adjusted string widths are numeric
    suppressWarnings(RNGversion("3.5.0"))
    library(pvclust)
-   data(lung) # 916 genes for 73 subjects
-   set.seed(13134)
-   capture.output(result <- pvclust(lung[, 1:20], method.dist = "cor", method.hclust = "average", nboot = 100))
+   set.seed(123)
+   capture.output(suppressWarnings(dend <- mtcars[1:5, ] %>% pvclust()))
    
    expect_true(
       is.numeric(strwidth2(result))
+   )
+   
+})
+
+
+test_that("as.hclust.pvclust works", {
+   
+   library(pvclust)
+   set.seed(123)
+   capture.output(suppressWarnings(dend <- mtcars[1:5, ] %>% pvclust()))
+   result <- as.hclust.pvclust(dend)
+   
+   # should convert pvclust to hclust object
+   expect_identical(
+      attributes(result)$class,
+      "hclust"
+   )
+   
+})
+
+
+test_that("as.dendrogram.pvclust works", {
+   
+   library(pvclust)
+   set.seed(123)
+   capture.output(suppressWarnings(dend <- mtcars[1:5, ] %>% pvclust()))
+   result <- as.dendrogram.pvclust(dend)
+   
+   # should convert pvclust to hclust object
+   expect_identical(
+      attributes(result)$class,
+      "dendrogram"
    )
    
 })
