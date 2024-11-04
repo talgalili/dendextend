@@ -52,7 +52,19 @@ test_that("pvrect2 works", {
    
    plot(as.dendrogram(dend))
    expect_no_error(
-      pvrect2(dend)
+      pvrect2(dend, type = "geq")
+   )
+   expect_no_error(
+      pvrect2(dend, type = "leq")
+   )
+   expect_no_error(
+      pvrect2(dend, type = "gt")
+   )
+   expect_no_error(
+      pvrect2(dend, type = "lt")
+   )
+   expect_error(
+      pvrect2(dend, type = NA)
    )
 })
 
