@@ -100,7 +100,7 @@ test_that("strwidth2 works", {
    capture.output(suppressWarnings(dend <- mtcars[1:5, ] %>% pvclust()))
    
    expect_true(
-      is.numeric(strwidth2(result))
+      is.numeric(strwidth2(dend))
    )
    
 })
