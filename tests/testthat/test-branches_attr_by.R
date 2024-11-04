@@ -213,6 +213,18 @@ test_that("branches_attr_by_labels works", {
       dendrapply(new_dend, function(dend_node) attributes(dend_node))$members$members$edgePar$col,
       2
    ))
+   # assign labels 1 and 2 a lwd
+   new_dend <- branches_attr_by_labels(dend, labels, 2, attr = "lwd")
+   suppressWarnings(expect_identical(
+      dendrapply(new_dend, function(dend_node) attributes(dend_node))$height$class$edgePar$lwd,
+      2
+   ))
+   # assign labels 1 and 2 a lty
+   new_dend <- branches_attr_by_labels(dend, labels, 2, attr = "lty")
+   suppressWarnings(expect_identical(
+      dendrapply(new_dend, function(dend_node) attributes(dend_node))$members$members$edgePar$lty,
+      2
+   ))
    
    # if non-dendrogram object is passed in
    x <- matrix(1:4, nrow = 2)
