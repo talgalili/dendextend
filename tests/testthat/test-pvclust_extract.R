@@ -44,7 +44,7 @@ test_that("text.pvclust works", {
 
 test_that("pvrect2 works", {
    
-   # add same text to dendrogram object as normally comes with pvclust
+   # add rect dendrogram object to highlight consistent clusters
    suppressWarnings(RNGversion("3.5.0"))
    library(pvclust)
    set.seed(123)
@@ -54,4 +54,21 @@ test_that("pvrect2 works", {
    expect_no_error(
       pvrect2(dend)
    )
+})
+
+
+test_that("pvclust_show_signif works", {
+   
+   # color brnaches to highlight consistent clusters
+   suppressWarnings(RNGversion("3.5.0"))
+   library(pvclust)
+   data(lung) # 916 genes for 73 subjects
+   set.seed(13134)
+   result <- pvclust(lung[, 1:20], method.dist = "cor", method.hclust = "average", nboot = 100)
+   dend <- as.dendrogram(result)
+   
+   expect_no_error(
+      pvclust_show_signif_gradient(dend, result) %>% plot() 
+   )
+     
 })
