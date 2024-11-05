@@ -6,7 +6,7 @@ context("Tanglegram")
 
 test_that("plot_horiz.dendrogram works", {
    suppressWarnings(RNGversion("3.5.0"))
-   set.seed(5)
+   set.seed(1)
    
    hc <- USArrests[1:10, ] %>%
      dist() %>%
@@ -14,12 +14,9 @@ test_that("plot_horiz.dendrogram works", {
    dend <- as.dendrogram(hc)
    
    # covers cases where side = F
-   options(verbose = TRUE)
-   capture.output(expect_no_error(
+   expect_no_error(
       plot_horiz.dendrogram(dend, side = F)
-   ))
-   options(verbose = FALSE)
-   
+   )
    
    # if horiz = F, should raise error
    expect_error(
@@ -41,13 +38,28 @@ test_that("plot_horiz.dendrogram works", {
    )
    
    # create custom horiz class to bypass horiz = T requirement while still accessing lines that require horiz = F 
-   horiz_trick <- structure(FALSE, class = "horiz_trick")
-   `!.horiz_trick` <- function(x) FALSE
+   horiz_trick <<- structure(FALSE, class = "horiz_trick")
+   `!.horiz_trick` <<- function(x) FALSE
    capture.output(expect_no_error(
       plot_horiz.dendrogram(dend, side = T, edge.root = T, horiz = horiz_trick)
    ))
    
 })
+
+
+options(verbose = TRUE)
+test_that("plotNode_horiz verbose works", {
+   
+   hc <- USArrests[1:10, ] %>%
+      dist() %>%
+      hclust() 
+   dend <- as.dendrogram(hc)
+   capture.output(expect_no_error(
+      plotNode_horiz(1, 1, dend, center = T, nodePar = NULL, leaflab = "perpendicular")
+   ))
+   
+})
+options(verbose = FALSE)
 
 
 test_that("tanglegram works", {
