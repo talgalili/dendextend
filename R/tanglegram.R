@@ -488,7 +488,9 @@ plot_horiz.dendrogram <- function(x,
     } else {
       segments(x0, hgt, x0, yTop)
     }
+    print("x")
     if (!is.null(et <- attr(x, "edgetext"))) {
+       print("t")
       my <- mean(hgt, yTop)
       if (horiz) {
         text(my, x0, et)
