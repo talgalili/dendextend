@@ -5,13 +5,15 @@ context("Tanglegram")
 
 
 test_that("plot_horiz.dendrogram works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1)
    
    hc <- USArrests[1:10, ] %>%
      dist() %>%
      hclust() 
    dend <- as.dendrogram(hc)
    
-   # 
+   # covers cases where side = F
    options(verbose = TRUE)
    capture.output(expect_no_error(
       plot_horiz.dendrogram(dend, side = F)
@@ -28,16 +30,23 @@ test_that("plot_horiz.dendrogram works", {
       plot_horiz.dendrogram(hc, side = T, edge.root = T, center = T)
    )
    
-   #
+   # covers cases where text_pos and dleaf used
    attr(dend, "edgetext") <- "t"
    capture.output(expect_no_error(
       plot_horiz.dendrogram(dend, side = T, edge.root = T, horiz = T, text_pos = 1, dLeaf = 1)
    ))
-   #
-   capture.output(expect_no_error(
-      plot_horiz.dendrogram(dend, side = T, edge.root = T, horiz = T, text_pos = 1)
-   ))
+   # if a leaf is passed in
+   expect_no_error(
+      plot_horiz.dendrogram(dend[[1]], side = T, edge.root = T)
+   )
    
+   # randomly simulate horiz to reach parts of the code that are otherwise impossible due to the requirement that horiz = T
+   makeActiveBinding("horiz", function() sample(c(TRUE, FALSE), 1), .GlobalEnv)
+   capture.output(expect_no_error(
+      plot_horiz.dendrogram(dend, side = T, edge.root = T, horiz = horiz, text_pos = 1)
+   ))
+   rm("horiz", envir = .GlobalEnv)
+
 })
 
 
