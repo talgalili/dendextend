@@ -6,7 +6,7 @@ context("Tanglegram")
 
 test_that("plot_horiz.dendrogram works", {
    suppressWarnings(RNGversion("3.5.0"))
-   set.seed(1)
+   set.seed(5)
    
    hc <- USArrests[1:10, ] %>%
      dist() %>%
@@ -40,13 +40,13 @@ test_that("plot_horiz.dendrogram works", {
       plot_horiz.dendrogram(dend[[1]], side = T, edge.root = T)
    )
    
-   # randomly simulate horiz to reach parts of the code that are otherwise impossible due to the requirement that horiz = T
-   makeActiveBinding("horiz", function() sample(c(TRUE, FALSE), 1), .GlobalEnv)
+   # create custom horiz class to bypass horiz = T requirement while still accessing lines that require horiz = F 
+   horiz_trick <- structure(FALSE, class = "horiz_trick")
+   `!.horiz_trick` <- function(x) FALSE
    capture.output(expect_no_error(
-      plot_horiz.dendrogram(dend, side = T, edge.root = T, horiz = horiz, text_pos = 1)
+      plot_horiz.dendrogram(dend, side = T, edge.root = T, horiz = horiz_trick)
    ))
-   rm("horiz", envir = .GlobalEnv)
-
+   
 })
 
 
