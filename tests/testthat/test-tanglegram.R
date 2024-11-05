@@ -54,8 +54,18 @@ test_that("plotNode_horiz verbose works", {
       dist() %>%
       hclust() 
    dend <- as.dendrogram(hc)
+   attr(dend, "edgetext") <- "t"
+   #
    capture.output(expect_no_error(
       plotNode_horiz(1, 1, dend, center = T, nodePar = NULL, leaflab = "perpendicular")
+   ))
+   
+   #
+   capture.output(expect_no_error(
+      plotNode_horiz(0.5, 1, dend, center = T, nodePar = 1, horiz = F, leaflab = "perpendicular", edgePar = list(), type = "rectangle", dLeaf = NULL)
+   ))
+   capture.output(expect_no_error(
+      plotNode_horiz(0.5, 1, dend, center = T, nodePar = 1, leaflab = "textlike", edgePar = list(), type = "rectangle", dLeaf = NULL)
    ))
    
 })
