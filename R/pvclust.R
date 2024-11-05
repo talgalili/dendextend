@@ -73,7 +73,7 @@ na_locf <- function(x, first_na_value = 0, recursive = TRUE, ...) {
   } else {
     # If the first observation is NA, fill it with "first_na_value"
     if (x_na[1]) x[1] <- first_na_value
-    x_na[1] <- F
+    x_na[1] <- FALSE
     
     x_na_loc <- which(x_na)
     x[x_na_loc] <- x[x_na_loc - 1]
