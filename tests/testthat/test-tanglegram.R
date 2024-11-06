@@ -73,6 +73,23 @@ test_that("plotNode_horiz verbose works", {
       plotNode_horiz(0.5, 1, dend, center = T, nodePar = 1, leaflab = "textlike", edgePar = list(), type = "rectangle", dLeaf = NULL)
    ))
 
+   #
+   capture.output(expect_no_error(
+      plotNode_horiz(0.5, 1, dend, center = T, nodePar = 1, leaflab = "textlike", horiz = T, edgePar = list(), type = "triangle", dLeaf = NULL)
+   ))
+   
+   # if a leaf is passed in
+   leaf <- dend[[1]]
+   attr(leaf, "label") <- "l"
+   capture.output(expect_no_error(
+      plotNode_horiz(0.5, 1, leaf, center = T, nodePar = 1, leaflab = "textlike", horiz = T, edgePar = list(), type = "triangle", dLeaf = NULL)
+   ))
+   # if ybot is null
+   attr(dend[[1]], "height") <- NULL
+   capture.output(expect_no_error(
+      plotNode_horiz(0.5, 1, dend, center = T, nodePar = 1, leaflab = "textlike", horiz = T, edgePar = list(), type = "triangle", dLeaf = NULL)
+   ))
+
 })
 options(verbose = FALSE)
 
