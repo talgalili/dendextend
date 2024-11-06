@@ -59,7 +59,7 @@ test_that("plotNode_horiz verbose works", {
       dist() %>%
       hclust() 
    dend <- as.dendrogram(hc)
-   attr(dend, "edgetext") <- "t"
+   attr(dend[[1]], "edgetext") <- "t"
    # general case which covers most lines
    capture.output(expect_no_error(
       plotNode_horiz(1, 1, dend, center = T, nodePar = NULL, leaflab = "perpendicular")
