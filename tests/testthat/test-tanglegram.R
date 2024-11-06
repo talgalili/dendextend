@@ -106,4 +106,26 @@ test_that("tanglegram works", {
    expect_error(
       tanglegram.default(1:4, 4:1)
    )
+   
+   # temporarily overwrite par() function to access error that is otherwise inaccessible
+   expect_error(with_mock(
+      par = function(mar = 0) c(1,1),
+      tanglegram.dendlist(dend12, just_one = F)
+   ))
+   # if only 1 dendrogram is passed in
+   expect_error(
+      tanglegram.dendlist(dend12[1])   
+   )
+   # if trying to plot trees that are not in the dendlist
+   expect_error(
+      tanglegram.dendlist(dend12, which = c(1,2,3))   
+   )
+   
+   # if dendrograms with names are passed in
+   names(dend12) <- c("dendrogram1", "dendrogram2")
+   expect_no_error(
+      tanglegram.dendlist(dend12)
+   )
+   
+   
 })
