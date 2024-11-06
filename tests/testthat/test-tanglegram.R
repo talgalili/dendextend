@@ -73,7 +73,7 @@ test_that("plotNode_horiz verbose works", {
       plotNode_horiz(0.5, 1, dend, center = T, nodePar = 1, leaflab = "textlike", edgePar = list(), type = "rectangle", dLeaf = NULL)
    ))
 
-   #
+   # with type triangle
    capture.output(expect_no_error(
       plotNode_horiz(0.5, 1, dend, center = T, nodePar = 1, leaflab = "textlike", horiz = T, edgePar = list(), type = "triangle", dLeaf = NULL)
    ))
@@ -147,11 +147,13 @@ test_that("tanglegram works", {
    # cover additional parameters
    expect_no_error(
       tanglegram.dendrogram(dend1, dend2, faster = T, remove_nodePar = T, sort = T, rank_branches = T, hang = T, 
-                            highlight_branches_col = T, lab.cex = 1, edge.lwd = 2, k_labels = 2, k_branches = 2)
+                            lab.cex = 1, edge.lwd = 2, k_labels = 2, k_branches = 2)
    )
-   # dleaf triggers warning in plot() and plot_horiz.dendrogram
-   expect_warning(
-      tanglegram.dendrogram(dend1, dend2, dleaf = 3)
+   expect_no_error(
+      tanglegram.dendrogram(dend1, dend2, highlight_branches_col = T)
+   )
+   expect_no_error(
+      tanglegram.dendrogram(dend1, dend2, dLeaf = 3)
    )
    
 })
