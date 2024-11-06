@@ -5,7 +5,7 @@
 context("rect.dendrogram")
 
 
-testthat("rect.dendrogram works", {
+test_that("rect.dendrogram works", {
    
    hc <- USArrests[1:10, ] %>%
       dist() %>%
@@ -52,6 +52,9 @@ testthat("rect.dendrogram works", {
    expect_error(
       rect.dendrogram(dend, k = 4, which = 5)   
    )
+   # if k >= number of leaves
+   expect_warning(
+      rect.dendrogram(dend, k = 10)
+   )
    
-   207 - 209
 })
