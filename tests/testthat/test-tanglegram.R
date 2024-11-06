@@ -127,5 +127,14 @@ test_that("tanglegram works", {
       tanglegram.dendlist(dend12)
    )
    
+   # cover additional parameters
+   expect_no_error(
+      tanglegram.dendrogram(dend1, dend2, faster = T, remove_nodePar = T, sort = T, rank_branches = T, hang = T, 
+                            highlight_branches_col = T, lab.cex = 1, edge.lwd = 2, k_labels = 2, k_branches = 2)
+   )
+   # dleaf triggers warning in plot() and plot_horiz.dendrogram
+   expect_warning(
+      tanglegram.dendrogram(dend1, dend2, dleaf = 3)
+   )
    
 })
