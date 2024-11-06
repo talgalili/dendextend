@@ -27,6 +27,11 @@ test_that("plot_horiz.dendrogram works", {
       plot_horiz.dendrogram(hc, side = T, edge.root = T, center = T)
    )
    
+   # covers cases where text_pos is used but dleaf is not
+   attr(dend, "edgetext") <- "t"
+   capture.output(expect_no_error(
+      plot_horiz.dendrogram(dend, side = T, edge.root = T, horiz = T, text_pos = 1)
+   ))
    # covers cases where text_pos and dleaf used
    attr(dend, "edgetext") <- "t"
    capture.output(expect_no_error(
@@ -55,19 +60,19 @@ test_that("plotNode_horiz verbose works", {
       hclust() 
    dend <- as.dendrogram(hc)
    attr(dend, "edgetext") <- "t"
-   #
+   # general case which covers most lines
    capture.output(expect_no_error(
       plotNode_horiz(1, 1, dend, center = T, nodePar = NULL, leaflab = "perpendicular")
    ))
    
-   #
+   # specific cases to cover all lines
    capture.output(expect_no_error(
       plotNode_horiz(0.5, 1, dend, center = T, nodePar = 1, horiz = F, leaflab = "perpendicular", edgePar = list(), type = "rectangle", dLeaf = NULL)
    ))
    capture.output(expect_no_error(
       plotNode_horiz(0.5, 1, dend, center = T, nodePar = 1, leaflab = "textlike", edgePar = list(), type = "rectangle", dLeaf = NULL)
    ))
-   
+
 })
 options(verbose = FALSE)
 
