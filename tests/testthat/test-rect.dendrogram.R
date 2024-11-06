@@ -16,6 +16,7 @@ test_that("rect.dendrogram works", {
    plot(dend)
    rect.dendrogram(dend, k = 4, which = 3)
    rect.dendrogram(dend, k = 4, x = 4)
+   rect.dendrogram(dend, h = 70, x = 1)
    
    # horizontal
    plot(dend, horiz = T)
