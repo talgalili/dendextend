@@ -57,9 +57,21 @@ test_that("rescale works", {
 
 test_that("rotated_str_dim works", {
    
+   plot.new()
    expect_identical(
       round(rotated_str_dim("input string"), 3),
-      c(xh = 0.459, yh = 36.090)
+      c(xh = 0.037, yh = 0.171)
+   )
+   
+})
+
+
+test_that("max_labels_height works", {
+   
+   plot.new()
+   expect_identical(
+      round(max_labels_height("input string"), 2),
+      0.17
    )
    
 })
