@@ -13,6 +13,9 @@ test_that("dudahart2 works", {
    km <- kmeans(iriss,2)
    p <- dudahart2(iriss,km$cluster)$p.value
    expect_identical(signif(p, 3), 2.38e-06)
+   
+   p <- dudahart2(iriss,rep(1, length(km$cluster)))$p.value
+   expect_identical(signif(p, 3), 0.87)
 })
 
 
@@ -24,6 +27,9 @@ test_that("calinhara works", {
    km <- kmeans(iriss,3)
    result <- round(calinhara(iriss,km$cluster),digits=2)
    expect_identical(result, 63.34)
+   
+   result <- round(calinhara(iriss,rep(1, length(km$cluster))),digits=2)
+   expect_identical(result, NaN)
 })
 
 
@@ -65,6 +71,11 @@ test_that("cluster.stats works", {
       0.702
    )
    result <- cluster.stats(dface,complete3,alt.clustering=as.integer(attr(face,"grouping")),noisecluster=F,silhouette=T)
+   expect_equal(
+      round(result$entropy, 3),
+      0.702
+   )
+   result <- cluster.stats(dface,complete3,alt.clustering=as.integer(attr(face,"grouping")),noisecluster=T,sepwithnoise=F)
    expect_equal(
       round(result$entropy, 3),
       0.702
