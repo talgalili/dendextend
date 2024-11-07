@@ -37,3 +37,19 @@ test_that("zero_range works", {
    )   
    
 })
+
+
+test_that("rescale works", {
+   
+   x <- c(1, 2)
+   expect_identical(
+      rescale(x),
+      c(0, 1)
+   )
+   x <- c(1, 1)
+   expect_identical(
+      rescale(x),
+      c(0.5, 0.5)
+   )
+   
+})
