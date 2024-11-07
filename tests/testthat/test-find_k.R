@@ -28,8 +28,9 @@ test_that("calinhara works", {
    result <- round(calinhara(iriss,km$cluster),digits=2)
    expect_identical(result, 63.34)
    
-   result <- round(calinhara(iriss,rep(1, length(km$cluster))),digits=2)
-   expect_identical(result, NaN)
+   set.seed(1)
+   result <- round(calinhara(iriss,rep(1, length(km$cluster)),cn=2),digits=2)
+   expect_identical(result, 0)
 })
 
 
