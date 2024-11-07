@@ -40,3 +40,29 @@ test_that("duplicate_leaf works", {
    )
    
 })
+
+
+test_that("sample.dendrogram works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1)
+   
+   hc <- USArrests[1:10, ] %>%
+      dist() %>%
+      hclust() 
+   dend <- as.dendrogram(hc)
+   
+   sampled_dend <- sample.dendrogram(dend, replace = TRUE)
+   expect_equal(
+      labels(sampled_dend),
+      c("Connecticut", "Arizona", "California", "Arizona_2", "Colorado", 
+        "Georgia", "Georgia_2", "Alabama", "Delaware", "Delaware_2")
+   )
+   
+   sampled_dend <- sample.dendrogram(dend, replace = FALSE)
+   expect_equal(
+      labels(sampled_dend),
+      c("Arizona", "Florida", "Colorado", "Delaware", "Arkansas", 
+        "Georgia", "Alaska", "California", "Connecticut", "Alabama")
+   )
+   
+})
