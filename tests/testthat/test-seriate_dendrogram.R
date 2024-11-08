@@ -34,18 +34,9 @@ test_that("seriate_dendrogram works", {
       seriate_dendrogram(fake_dend)
    )
    # if seriation not installed
-   mock_requireNamespace <- function(package, ...) {
-      if (package == "seriate_dendrogram") return(FALSE)
-      base::requireNamespace(package, ...)
-   }
-   mockery::stub(seriate_dendrogram, "requireNamespace", mock_requireNamespace)
-   expect_error(
+   expect_error(with_mock(
+      requireNamespace = function(...) FALSE,
       seriate_dendrogram(dend)
-   )
-   # undo changes that were needed to mock seriation not being installed
-   undo_mock_requireNamespace <- function(package, ...) {
-      base::requireNamespace(package, ...)
-   }
-   mockery::stub(seriate_dendrogram, "requireNamespace", undo_mock_requireNamespace)
+   ))
    
 })
