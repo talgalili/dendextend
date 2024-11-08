@@ -37,3 +37,24 @@ test_that("cor.dendlist works", {
    )
    
 })
+
+
+test_that("cor_FM_index works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1)   
+   
+   dend1 <- as.dendrogram(hclust(dist(mtcars[1:5, ]), method = "average"))
+   dend2 <- as.dendrogram(hclust(dist(mtcars[1:5, ]), method = "ward.D2"))
+   
+   
+   # if k isn't specified
+   expect_error(
+      cor_FM_index(dend1, dend2)   
+   )
+   # if all leaves part of the same cluster
+   expect_warning(with_mock(
+      cutree = function(dend, k, ...) rep(0, length(labels(dend))),
+      cor_FM_index(dend1, dend2, k = 2)
+   ))
+   
+})
