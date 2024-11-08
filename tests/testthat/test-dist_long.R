@@ -18,3 +18,18 @@ test_that("dist_long works", {
    )
    
 })
+
+
+test_that("labels<-.dist works", {
+   
+   sample_matrix <- matrix(1:9, nrow = 3)
+   dist_object <- dist(sample_matrix)
+   label_vec <- c("A", "B", "C")
+   labels(dist_object) <- label_vec
+   
+   expect_identical(
+      attr(dist_object, "Labels"), 
+      label_vec
+   )
+
+})
