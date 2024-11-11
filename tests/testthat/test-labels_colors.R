@@ -22,6 +22,20 @@ test_that("Setting and extracting leaves color", {
   expect_equal(labels_colors(dend, labels = FALSE), 2:4)
   # getting it (with labels)
   expect_equal(labels_colors(dend), structure(2:4, .Names = c("Arizona", "Alabama", "Alaska")))
+  
+  # if 'value' parameter missing
+  dendextend_options("warn", T)
+  expect_warning(
+     `labels_colors<-`(dend)
+  )
+  dendextend_options("warn", F)
+  
+  # if nodePar attribute is empty
+  attr(dend[[1]], "nodePar") <- list()
+  expect_warning(
+     labels_colors(dend) <- c()   
+  )
+  
 })
 
 

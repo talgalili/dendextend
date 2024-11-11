@@ -43,6 +43,12 @@ test_that("stats_plotNode works", {
    capture.output(expect_no_error(
       stats_plotNode(1, 1, dend, center = T, nodePar = NULL, leaflab = "perpendicular")
    ))
+   capture.output(expect_no_error(
+      stats_plotNode(1, 0.9, dend, center = F, edgePar = list(), type = "rectangle", nodePar = list("pch" = 1:2), leaflab = "perpendicular", dLeaf = NULL)
+   ))
+   capture.output(expect_no_error(
+      stats_plotNode(1, 0.9, dend, center = F, edgePar = list(), type = "rectangle", nodePar = NULL, leaflab = "perpendicular", dLeaf = NULL)
+   ))
    
    # specific cases to cover all lines
    capture.output(expect_no_error(
