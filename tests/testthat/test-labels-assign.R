@@ -223,3 +223,15 @@ test_that("labels assignment works for phylo objects", {
    )
    dendextend_options("warn", F)
 })
+
+
+test_that("order.dendrogram works", {
+   hc <- hclust(dist(USArrests[1:3, ]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   # if non-numeric order passed in
+   expect_warning(
+      order.dendrogram(dend) <- c("1", "2", "3")   
+   )
+   
+})
