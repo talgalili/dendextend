@@ -252,3 +252,16 @@ test_that("order.hclust works", {
    )
    
 })
+
+
+test_that("place_labels works", {
+   hc <- hclust(dist(USArrests[1:3, ]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   result <- place_labels(dend, labels(dend))
+   expect_identical(
+      labels(result),
+      c("Alaska", "Arizona", "Alabama")
+   )
+   
+})
