@@ -149,5 +149,21 @@ test_that("Using set leaves_col still allows for set labels_colors", {
 })
 
 
-
+test_that("labels_cex<- works", {
+   
+   hc <- hclust(dist(USArrests[1:3, ]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   labels_cex(dend) <- 1.5
+   expect_identical(
+      attributes(dend[[1]])$nodePar$lab.cex,
+      1.5
+   )
+   
+   # if non dend object passed in
+   expect_error(
+      labels_cex(hc) <- 1.5
+   )
+   
+})
 # library(testthat)
