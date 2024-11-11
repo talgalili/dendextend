@@ -349,3 +349,15 @@ test_that("rank_order.dendrogram updates leaf order", {
    expect_equal(order.dendrogram(ranked_dend), rank(order.dendrogram(dend), ties.method = "first"))
 })
 
+test_that("get_leaves_edgePar works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   result <- get_leaves_edgePar(dend, simplify = T)
+   expect_true(
+      all(is.na(result))
+   )
+   # if non-dendrogram object passed in
+   expect_error(expect_warning(
+      get_leaves_edgePar(hc)
+   ))
+})
