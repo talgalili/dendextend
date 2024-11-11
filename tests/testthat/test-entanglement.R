@@ -48,7 +48,14 @@ test_that("Match order of one dend based on another (using their order valuess)"
   )
   expect_identical(order.dendrogram(dend_changed), order.dendrogram(dend))
 
-
+  # if check_that_labels_match and check_that_leaves_order_match parameters used
+  dend_changed <- dend
+  dend_changed <- match_order_dendrogram_by_old_order(
+     dend_changed, dend,
+     order.dendrogram(dend_changed),
+     check_that_labels_match = T, check_that_leaves_order_match = T
+  )
+  expect_identical(order.dendrogram(dend_changed), order.dendrogram(dend))
 
   # Watch this!
   # take a dend and change it:
