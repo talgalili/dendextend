@@ -404,11 +404,36 @@ test_that("rllply works", {
 test_that("hang.dendrogram works", {
    hc <- hclust(dist(1:5))
    dend <- as.dendrogram(hc)
+   expect_no_error(
+      hang.dendrogram(dend, hang = -1)
+   )
    # if non-dendrogram object passed in
    expect_error(
       hang.dendrogram(hc)
    )
-   expect_no_error(
-      hang.dendrogram(dend, hang = -1)
+})
+
+test_that("rank_branches works", {
+   hc <- hclust(dist(1:5))
+   # if non-dendrogram object passed in
+   expect_error(
+      rank_branches(hc)
+   )
+})
+
+test_that("assign_values_to_leaves_nodePar works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   # if non-dendrogram object passed in
+   expect_error(
+      assign_values_to_leaves_nodePar(hc)
+   )   
+   # if 'value' parameter missing
+   expect_warning(
+      assign_values_to_leaves_nodePar(dend)
+   )
+   # if 'value' recycled
+   expect_warning(
+      assign_values_to_leaves_nodePar(dend, c(1), warn = T)
    )
 })
