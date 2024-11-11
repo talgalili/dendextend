@@ -82,3 +82,29 @@ test_that("prune_common_subtrees.dendlist works", {
    )
    
 })
+
+
+test_that("intersect_trees works", {
+   
+   hc <- USArrests[1:10, ] %>%
+      dist() %>%
+      hclust() 
+   dend1 <- as.dendrogram(hc)
+   hc <- USArrests[2:11, ] %>%
+      dist() %>%
+      hclust() 
+   dend2 <- as.dendrogram(hc)   
+   
+   # if there is an issue with label overlap
+   expect_warning(
+      intersect_trees(dend1, dend2, warn = T)   
+   )
+   hc <- USArrests[11:20, ] %>%
+      dist() %>%
+      hclust() 
+   dend2 <- as.dendrogram(hc)   
+   expect_warning(
+      intersect_trees(dend1, dend2, warn = T)   
+   )
+   
+})
