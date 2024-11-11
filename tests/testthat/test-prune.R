@@ -53,3 +53,32 @@ test_that("prune works for non-dendrogram objects", {
       prune.default(dend)
    )
 })
+
+
+test_that("prune_common_subtrees.dendlist works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(1)   
+   
+   hc <- USArrests[1:10, ] %>%
+      dist() %>%
+      hclust() 
+   dend1 <- as.dendrogram(hc)
+   dend2 <- shuffle(dend1)
+   dend12 <- dendlist(dend1, dend2)
+   
+   # dend1 and dend2 have the same subtrees, so resulting dend1 should be unchanged
+   result <- prune_common_subtrees.dendlist(dend12)
+   expect_identical(
+      result[[1]],
+      dend1      
+   )
+   
+   # if wrong objects passed in
+   expect_error(
+      prune_common_subtrees.dendlist(dend12[1])
+   )
+   expect_error(
+      prune_common_subtrees.dendlist(list(dend1, dend2))
+   )
+   
+})
