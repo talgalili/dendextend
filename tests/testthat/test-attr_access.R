@@ -361,3 +361,27 @@ test_that("get_leaves_edgePar works", {
       get_leaves_edgePar(hc)
    ))
 })
+
+test_that("get_leaves_branches_attr works", {
+   hc <- hclust(dist(1:5))
+   # if non-dendrogram object passed in
+   expect_error(expect_warning(
+      get_leaves_branches_attr(hc)
+   ))
+})
+
+test_that("get_nodes_attr works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   # if non-dendrogram object passed in
+   expect_error(expect_warning(
+      get_nodes_attr(hc)
+   )) 
+   dendextend_options("warn", T)
+   expect_warning(
+      result <- get_nodes_attr(dend, "fake attribute")   
+   )
+   expect_true(
+      all(is.na(result))
+   )
+})
