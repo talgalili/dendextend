@@ -506,3 +506,27 @@ test_that("assign_values_to_branches_edgePar works", {
    )
    
 })
+
+test_that("assign_values_to_leaves_edgePar works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   # if non-dendrogram object passed in
+   expect_error(
+      assign_values_to_leaves_edgePar(hc)
+   )   
+   # if 'value' parameter missing
+   expect_warning(
+      assign_values_to_leaves_edgePar(dend)
+   )
+   # if 'value' recycled
+   expect_warning(
+      assign_values_to_leaves_edgePar(dend, c(1), warn = T)
+   )
+   
+   # if leaf passed in
+   result <- assign_values_to_leaves_edgePar(dend[[1]][[1]], 1:10, skip_leaves = T)
+   expect_identical(
+      result,
+      dend[[1]][[1]]
+   )
+})
