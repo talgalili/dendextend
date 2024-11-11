@@ -19,6 +19,12 @@ test_that("Get a dendrogram leaves attributes", {
   # when using simplify=FALSE, we get back a list...
   expect_true(is.list(get_leaves_attr(dend, "height", simplify = FALSE)))
   expect_identical(unlist(get_leaves_attr(dend, "height", simplify = FALSE)), rep(0, 3))
+  
+  # if non-dendrogram object is passed in and 'attribute' parameter is missing
+  expect_warning(expect_error(
+     get_leaves_attr(hc)   
+  ))
+  
 })
 
 
