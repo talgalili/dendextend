@@ -113,6 +113,29 @@ test_that("Entanglement works", {
   #    library(microbenchmark)
   #     microbenchmark(entanglement(dend1 , dend2, 2, "labels"),
   #                    entanglement(dend1 , dend2, 2, "order"), times = 10L )   # order is about twice as fast...
+  
+  # if entanglement calculated for non dend objects
+  expect_error(
+     entanglement.default(dend1, dend2)
+  )
+  expect_identical(
+     round(entanglement.hclust(hc1, hc2, 1.5, "labels"), 2),
+     0.91
+  )
+  ph1 <- ape::as.phylo(hc1)
+  ph2 <- ape::as.phylo(hc2)
+  expect_identical(
+     round(entanglement.phylo(ph1, ph2, 1.5, "labels"), 2),
+     0.91
+  )
+  dend12 <- dendlist(dend1, dend2)
+  expect_error(
+     entanglement.dendlist(dend12, 1.5, "labels")
+  )
+  expect_error(
+     entanglement.dendlist(dend12[1], 1.5, "labels")
+  )
+  
 })
 
 
