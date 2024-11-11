@@ -57,6 +57,15 @@ test_that("cut_lower_fun works", {
   #          lapply(cut(dend_big, h = .4)$lower, order.dendrogram)
   #       )
   # Rcpp is 16 times faster...
+  
+  # if non dendrogram object is passed in
+  hc <- datasets::iris[1:4, -5] %>%
+     dist() %>%
+     hclust()
+  expect_error(
+     cut_lower_fun(hc) 
+  )
+  
 })
 
 
