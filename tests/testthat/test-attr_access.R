@@ -171,6 +171,11 @@ test_that("get_leaves_nodePar works", {
     "pch", "lab.cex"
   )))
   expect_identical(get_leaves_nodePar(dend), should_be)
+  
+  # if non-dendrogram object passed in
+  expect_error(expect_warning(
+     get_leaves_nodePar(hc)
+  ))
 })
 
 
