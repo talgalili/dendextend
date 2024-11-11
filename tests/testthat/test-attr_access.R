@@ -385,3 +385,18 @@ test_that("get_nodes_attr works", {
       all(is.na(result))
    )
 })
+
+test_that("rllply works", {
+   x <- list(1, 2, list(31))
+   result <- rllply(x, function(x) {x}, add_notation = TRUE)
+   expect_identical(
+      result[[1]][[1]],
+      1
+   )
+   x <- 1:4
+   result <- rllply(x, function(x) {x}, add_notation = TRUE)
+   expect_identical(
+      attributes(result)$position_type,
+      "Leaf"
+   )
+})
