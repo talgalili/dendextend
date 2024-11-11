@@ -166,4 +166,22 @@ test_that("labels_cex<- works", {
    )
    
 })
+
+
+test_that("color_unique_labels works", {
+   
+   hc <- hclust(dist(USArrests[1:3, ]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   capture.output(
+      result <- color_unique_labels(dend)
+   )
+   expect_identical(
+      attributes(result[[1]])$nodePar$lab.col,
+      "#7DB0DD"
+   )
+   
+})
+
+
 # library(testthat)
