@@ -437,3 +437,27 @@ test_that("assign_values_to_leaves_nodePar works", {
       assign_values_to_leaves_nodePar(dend, c(1), warn = T)
    )
 })
+
+test_that("assign_values_to_nodes_nodePar works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   # if non-dendrogram object passed in
+   expect_error(
+      assign_values_to_nodes_nodePar(hc)
+   )   
+   # if 'value' parameter missing
+   expect_warning(
+      assign_values_to_nodes_nodePar(dend)
+   )
+   # if 'value' recycled
+   expect_warning(
+      assign_values_to_nodes_nodePar(dend, c(1), warn = T)
+   )
+   
+   # testing remove nodePar if it is empty
+   attr(dend[[1]][[1]], "nodePar") <- list()
+   expect_no_error(
+      result <- assign_values_to_nodes_nodePar(dend, rep(Inf, 10))   
+   )
+
+})
