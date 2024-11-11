@@ -400,3 +400,15 @@ test_that("rllply works", {
       "Leaf"
    )
 })
+
+test_that("hang.dendrogram works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   # if non-dendrogram object passed in
+   expect_error(
+      hang.dendrogram(hc)
+   )
+   expect_no_error(
+      hang.dendrogram(dend, hang = -1)
+   )
+})
