@@ -83,6 +83,13 @@ test_that("labels assginment works for dendrogram", {
 
   labels(dend)[1] <- "one"
   expect_equal(labels(dend), c("one", "b", "c")) # checking specific assignment
+  
+  # if 'value' parameter missing
+  dendextend_options("warn", T)
+  expect_warning(
+     `labels<-`(dend)
+  )
+  dendextend_options("warn", F)
 })
 
 
@@ -192,4 +199,27 @@ test_that("order of leaves can be extracted and changed", {
   # change order (with replications):
   expect_warning(order.dendrogram(dend) <- c(1, 2))
   expect_identical(order.dendrogram(dend), as.integer(c(1, 2, 1)))
+})
+
+
+test_that("labels assignment works for phylo objects", {
+   hc <- hclust(dist(USArrests[1:3, ]), "ave")
+   ph <- ape::as.phylo(hc)
+   
+   labels(ph) <- c("Al", "Ak", "Az")
+   expect_identical(
+      labels.phylo(ph),
+      c("Al", "Ak", "Az")
+   )
+   
+   # if replacement labels are incorrect length
+   expect_warning(
+      labels(ph) <- c("Al", "Ak")   
+   )
+   # if 'value' parameter missing
+   dendextend_options("warn", T)
+   expect_warning(
+      `labels<-.phylo`(dend)
+   )
+   dendextend_options("warn", F)
 })
