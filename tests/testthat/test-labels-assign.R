@@ -219,7 +219,7 @@ test_that("labels assignment works for phylo objects", {
    # if 'value' parameter missing
    dendextend_options("warn", T)
    expect_warning(
-      `labels<-.phylo`(dend)
+      `labels<-.phylo`(ph)
    )
    dendextend_options("warn", F)
 })
@@ -232,6 +232,23 @@ test_that("order.dendrogram works", {
    # if non-numeric order passed in
    expect_warning(
       order.dendrogram(dend) <- c("1", "2", "3")   
+   )
+   
+})
+
+
+test_that("order.hclust works", {
+   x <- dist(USArrests[1:3, ])
+   hc <- hclust(x, "ave")
+   
+   expect_equal(
+      order.hclust(hc),
+      c(3, 1, 2)
+   )
+   
+   # if non-hclust object passed in
+   expect_error(
+      order.hclust(x)
    )
    
 })
