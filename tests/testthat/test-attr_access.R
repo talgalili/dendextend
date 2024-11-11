@@ -314,6 +314,10 @@ test_that("remove_branches_edgePar removes edgePar", {
    dend <- assign_values_to_branches_edgePar(dend, value = 1, edgePar = "col")
    cleaned_dend <- remove_branches_edgePar(dend)
    expect_true(all(is.na(unlist(get_leaves_nodePar(cleaned_dend)))))
+   # if non dendrogram object passed in
+   expect_error(
+      remove_branches_edgePar(1:4)
+   )
 })
 
 
@@ -322,6 +326,10 @@ test_that("remove_nodes_nodePar removes nodePar", {
    dend <- assign_values_to_nodes_nodePar(dend, value = 1:5, nodePar = "col")
    cleaned_dend <- remove_nodes_nodePar(dend)
    expect_true(all(is.na(unlist(get_leaves_nodePar(cleaned_dend)))))
+   # if non dendrogram object passed in
+   expect_error(
+      remove_nodes_nodePar(1:4)
+   )   
 })
 
 test_that("remove_leaves_nodePar removes nodePar from leaves", {
@@ -330,6 +338,10 @@ test_that("remove_leaves_nodePar removes nodePar from leaves", {
    cleaned_dend <- remove_leaves_nodePar(dend)
    leaf_cols <- sapply(cleaned_dend, function(x) if(is.leaf(x)) attr(x, "nodePar")$col else NA)
    expect_true(all(is.na(leaf_cols)))
+   # if non dendrogram object passed in
+   expect_error(
+      remove_leaves_nodePar(1:4)
+   )      
 })
 
 test_that("fix_members_attr.dendrogram updates members attribute", {
@@ -339,6 +351,10 @@ test_that("fix_members_attr.dendrogram updates members attribute", {
    # Check if members attribute is correctly updated
    members_attr <- sapply(fixed_dend, function(x) attr(x, "members"))
    expect_true(all(!is.na(members_attr)))
+   # if non dendrogram object passed in
+   expect_error(
+      fix_members_attr.dendrogram(1:4)
+   )      
 })
 
 test_that("rank_order.dendrogram updates leaf order", {
@@ -347,6 +363,10 @@ test_that("rank_order.dendrogram updates leaf order", {
    expect_true(is.dendrogram(ranked_dend))
    # Check if order is correctly updated
    expect_equal(order.dendrogram(ranked_dend), rank(order.dendrogram(dend), ties.method = "first"))
+   # if non dendrogram object passed in
+   expect_error(
+      rank_order.dendrogram(1:4)
+   )         
 })
 
 test_that("get_leaves_edgePar works", {
