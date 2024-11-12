@@ -45,41 +45,9 @@ test_that("dendrogram_data works", {
    # if a leaf has a null label
    attr(dend[[1]][[1]], "label") <- NULL
    res <- dendrogram_data(dend)
-   
+   untrace("dendrogram_data")
 
-   # TODO: 115 - 117, 174 - 190 HAVE to figure out nested trace
-   expect_true(TRUE)
 })
 options("verbose" = F)
 
 
-
-# trace("gg.plotNode", quote({
-#    nodePar <- 1
-#    horiz <- TRUE
-# }), at = 4, , where = dendrogram_data) 
-# res <- dendrogram_data(dend)
-# untrace("dendrogram_data")
-# 
-# 
-# 
-# 
-# # Define an outer function with an inner function
-# outer_function <- function(data) {
-#    inner_function <- function(x) {
-#       # Some code
-#       return(x + 1)
-#    }
-#    a = 1
-#    result <- inner_function(data)
-#    return(result)
-# }
-# 
-# # Apply a trace to the inner function within the outer function's environment
-# trace("outer_function:inner_function", where = outer_function, quote({
-#    print("Tracing inner function")
-# }))
-# 
-# 
-# 
-# test <- get("a", envir = environment(outer_function))
