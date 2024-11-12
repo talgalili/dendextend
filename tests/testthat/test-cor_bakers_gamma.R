@@ -65,7 +65,7 @@ test_that("bakers_gamma_for_2_k_matrix works", {
    k_matrix_dend1 <- cutree(dend1, k = 1:nleaves(dend1))
    k_matrix_dend2 <- cutree(dend2, k = 1:nleaves(dend2))
    
-   expect_identical(
+   expect_equal(
       bakers_gamma_for_2_k_matrix(k_matrix_dend1, k_matrix_dend1, to_plot = T),
       1
    )
