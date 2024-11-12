@@ -103,3 +103,13 @@ test_that("unclass_dend works", {
    )
    
 })
+
+
+test_that("head.dendrogram works", {
+   hc <- hclust(dist(USArrests), "ave")
+   dend <- as.dendrogram(hc)
+   
+   capture.output(expect_no_error(
+      head(dend)
+   ))
+})
