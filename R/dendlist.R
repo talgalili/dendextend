@@ -163,6 +163,7 @@ dendlist <- function(..., which) {
     for (i in seq_len(n)) {
       if (x_classes_hclust_phylo[i]) {
         x[[i]] <- as.dendrogram(x[[i]])
+        x_classes[[i]] <- "dendrogram"
       }
     }
   }

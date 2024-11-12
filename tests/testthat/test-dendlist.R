@@ -69,6 +69,13 @@ test_that("dendlist works", {
   # checks is.dendlist
   expect_true(suppressWarnings(is.dendlist(dendlist())))
   expect_true(is.dendlist(dendlist(dend)))
+  
+  # if hclust object passed in and/or 'which' parameter used
+  hc <- iris[, -5] %>%
+     dist() %>%
+     hclust()
+  result <- dendlist(dend, hc, dend, which = c(1,2))
+  expect_true(is.dendlist(result))
 })
 
 
