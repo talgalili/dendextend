@@ -45,6 +45,11 @@ test_that("cor_bakers_gamma works", {
   labels(dend1_mixed) <- rev(labels(dend1_mixed))
   # does NOT mean having the worst cor!
   expect_false(identical(cor_bakers_gamma(dend1, dend1_mixed), 1))
+  
+  expect_identical(round(cor_bakers_gamma.default(dend1, dend2), 2), 0.57)
+  
+  dend12 <- dendlist(dend1, dend2)
+  expect_identical(round(cor_bakers_gamma.dendlist(dend12), 2), 0.57)
 })
 
 
