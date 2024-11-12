@@ -45,8 +45,9 @@ test_that("prune works for non-dendrogram objects", {
       prune_leaf(dend, "Florida")
    )
    # rpart is not a dependency for dendextend. so long as that is true, this will create an error in tests
+   # however, for local machine testing, rpart is likely installed. so, to force an error we use a non-tree object
    expect_error(
-      prune.rpart(dend, -1000)
+      prune.rpart(1:4, -1000)
    )
    
    # no default for prune
