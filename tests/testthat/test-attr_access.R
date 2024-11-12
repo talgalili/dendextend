@@ -401,6 +401,7 @@ test_that("get_nodes_attr works", {
    expect_warning(
       result <- get_nodes_attr(dend, "fake attribute")   
    )
+   dendextend_options("warn", F)
    expect_true(
       all(is.na(result))
    )
@@ -448,6 +449,7 @@ test_that("assign_values_to_leaves_nodePar works", {
    expect_error(
       assign_values_to_leaves_nodePar(hc)
    )   
+   dendextend_options("warn", T)
    # if 'value' parameter missing
    expect_warning(
       assign_values_to_leaves_nodePar(dend)
@@ -456,6 +458,7 @@ test_that("assign_values_to_leaves_nodePar works", {
    expect_warning(
       assign_values_to_leaves_nodePar(dend, c(1), warn = T)
    )
+   dendextend_options("warn", F)
 })
 
 test_that("assign_values_to_nodes_nodePar works", {
@@ -465,6 +468,7 @@ test_that("assign_values_to_nodes_nodePar works", {
    expect_error(
       assign_values_to_nodes_nodePar(hc)
    )   
+   dendextend_options("warn", T)
    # if 'value' parameter missing
    expect_warning(
       assign_values_to_nodes_nodePar(dend)
@@ -473,6 +477,7 @@ test_that("assign_values_to_nodes_nodePar works", {
    expect_warning(
       assign_values_to_nodes_nodePar(dend, c(1), warn = T)
    )
+   dendextend_options("warn", F)
    
    # testing remove nodePar if it is empty
    attr(dend[[1]][[1]], "nodePar") <- list()
@@ -489,6 +494,7 @@ test_that("assign_values_to_branches_edgePar works", {
    expect_error(
       assign_values_to_branches_edgePar(hc)
    )   
+   dendextend_options("warn", T)
    # if 'value' parameter missing
    expect_warning(
       assign_values_to_branches_edgePar(dend)
@@ -497,6 +503,7 @@ test_that("assign_values_to_branches_edgePar works", {
    expect_warning(
       assign_values_to_branches_edgePar(dend, c(1), warn = T)
    )
+   dendextend_options("warn", F)
    
    # if leaf passed in
    result <- assign_values_to_branches_edgePar(dend[[1]][[1]], 1:10, skip_leaves = T)
@@ -514,6 +521,7 @@ test_that("assign_values_to_leaves_edgePar works", {
    expect_error(
       assign_values_to_leaves_edgePar(hc)
    )   
+   dendextend_options("warn", T)
    # if 'value' parameter missing
    expect_warning(
       assign_values_to_leaves_edgePar(dend)
@@ -522,6 +530,7 @@ test_that("assign_values_to_leaves_edgePar works", {
    expect_warning(
       assign_values_to_leaves_edgePar(dend, c(1), warn = T)
    )
+   dendextend_options("warn", F)
    
    # if leaf passed in
    result <- assign_values_to_leaves_edgePar(dend[[1]][[1]], 1:10, skip_leaves = T)
