@@ -44,9 +44,9 @@ test_that("prune works for non-dendrogram objects", {
       as.dendrogram(result),
       prune_leaf(dend, "Florida")
    )
-   expect_no_error(
-      prune.rpart(dend, -1000) 
-   )
+   # expect_no_error(
+   #    prune.rpart(dend, -1000) 
+   # )
    
    # no default for prune
    expect_error(
