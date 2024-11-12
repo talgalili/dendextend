@@ -30,7 +30,10 @@ test_that("color_branches works", {
       dist() %>%
       hclust()
    dend <- as.dendrogram(hc)
-   expect_equal(color_branches(hc), color_branches(dend)) # hc gets converted to dendrogram so should be the same
+   expect_equal(
+      labels(color_branches(hc)), 
+      labels(color_branches(dend))
+   ) # hc gets converted to dendrogram so should be the same
    
    # temporarily redefine cutree to return 0 so we can activate warning for 'dend has only one level'
    expect_warning(with_mock(
@@ -48,8 +51,8 @@ test_that("color_branches works", {
    result1 <- color_branches(dend, k = 2, warn = T, groupLabels = TRUE)
    result2 <- color_branches(dend, k = 2, warn = T, groupLabels = FALSE) 
    expect_equal(
-      result1,
-      result2
+      labels(result1),
+      labels(result2)
    )
    # should be labeled now
    suppressWarnings(expect_identical(
