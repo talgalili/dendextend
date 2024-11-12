@@ -6,6 +6,10 @@ test_that("lowest_common_branch works", {
   item1 <- structure(c(1L, 1L, 1L, 1L), .Names = c("1", "2", "3", "4"))
   item2 <- structure(c(1L, 1L, 2L, 2L), .Names = c("1", "2", "3", "4"))
   expect_identical(lowest_common_branch(item1, item2), 2)
+  # if no shared items
+  item1 <- structure(c(1L, 1L, 1L, 1L), .Names = c("1", "2", "3", "4"))
+  item2 <- structure(c(2L, 2L, 2L, 2L), .Names = c("1", "2", "3", "4"))
+  expect_identical(lowest_common_branch(item1, item2), 0)
 })
 
 
