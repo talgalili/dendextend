@@ -1,3 +1,10 @@
+dendextend 1.19.0 (2024-11-12)
+==============================
+## OTHER NOTES
+- Adding tests (props to @alecbuetow for all of his GREAT work), moving the test coverage from <40% to >95% !
+   See: https://app.codecov.io/github/talgalili/dendextend?branch=master
+
+
 dendextend 1.18.1 (2024-10-12)
 ==============================
 ## BUG FIXES
