@@ -91,3 +91,15 @@ test_that("nleaves.dendlist works", {
    )
    
 })
+
+
+test_that("unclass_dend works", {
+   dend <- as.dendrogram(hclust(dist(USArrests[1:3, ])))
+   
+   result <- unclass_dend(dend)
+   expect_identical(
+      typeof(result),
+      "list"
+   )
+   
+})
