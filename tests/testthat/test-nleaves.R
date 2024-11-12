@@ -42,7 +42,7 @@ test_that("Get a dendrogram number of nodes", {
   ))
   # for phylo
   expect_identical(
-     nnodes.phylo(ape::as.phylo(hc)),
+     nnodes.phylo(as.phylo(hc)),
      5
   )
   
