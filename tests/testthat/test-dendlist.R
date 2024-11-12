@@ -155,3 +155,23 @@ test_that("as.dendlist works", {
    )
    
 })
+
+
+
+
+
+test_that("head.dendlist works", {
+   dend <- iris[1:10, -5] %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   dend2 <- iris[1:10, -5] %>%
+      dist() %>%
+      hclust(method = "single") %>%
+      as.dendrogram()
+   dend12 <- dendlist(dend, dend2)
+   
+   capture.output(expect_no_error(
+      head.dendlist(dend12)
+   ))
+})
