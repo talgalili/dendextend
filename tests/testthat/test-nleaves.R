@@ -63,3 +63,16 @@ test_that("Get a dendrogram tree size with leaves having their branch of height 
   #    plot(dend, main = "This is considered a tree \n with TWO terminal nodes only") # while we have 3 leaves, in practice we have only 2 terminal nodes (this is a feature, not a bug.)
   expect_false(count_terminal_nodes(dend) == nleaves(dend))
 })
+
+
+test_that("nleaves.dendlist works", {
+   dend1 <- as.dendrogram(hclust(dist(USArrests[1:3, ])))
+   dend2 <- as.dendrogram(hclust(dist(USArrests[4:5, ])))
+   dend12 <- dendlist(dend1, dend2)
+   
+   expect_equal(
+      nleaves.dendlist(dend12),
+      c(3,2)
+   )
+   
+})
