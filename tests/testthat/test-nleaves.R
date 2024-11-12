@@ -31,6 +31,21 @@ test_that("Get a dendrogram number of nodes", {
 
   expect_true(nnodes(dend) == 5L)
   expect_true(nnodes(hc) == 5L)
+  
+  # no default for nnodes
+  expect_error(
+     nnodes.default()   
+  )
+  # if non-dend object passed in
+  expect_warning(expect_error(
+     nnodes.dendrogram(hc)
+  ))
+  # for phylo
+  expect_identical(
+     nnodes.phylo(ape::as.phylo(hc)),
+     5
+  )
+  
 })
 
 
