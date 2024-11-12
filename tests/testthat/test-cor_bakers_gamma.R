@@ -46,3 +46,32 @@ test_that("cor_bakers_gamma works", {
   # does NOT mean having the worst cor!
   expect_false(identical(cor_bakers_gamma(dend1, dend1_mixed), 1))
 })
+
+
+test_that("bakers_gamma_for_2_k_matrix works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(23235)
+   ss <- sample(1:150, 10) # we want to compare small trees
+   hc1 <- hclust(dist(datasets::iris[ss, -5]), "com")
+   hc2 <- hclust(dist(datasets::iris[ss, -5]), "single")
+   dend1 <- as.dendrogram(hc1)
+   dend2 <- as.dendrogram(hc2)
+   
+   k_matrix_dend1 <- cutree(dend1, k = 1:nleaves(dend1))
+   k_matrix_dend2 <- cutree(dend2, k = 1:nleaves(dend2))
+   
+   expect_identical(
+      bakers_gamma_for_2_k_matrix(k_matrix_dend1, k_matrix_dend1, to_plot = T),
+      1
+   )
+   
+   # if dimension misalignment
+   expect_error(
+      bakers_gamma_for_2_k_matrix(k_matrix_dend1, k_matrix_dend2[-1,])   
+   )
+   # if all labels aren't shared
+   expect_error(
+      bakers_gamma_for_2_k_matrix(k_matrix_dend1[-2,], k_matrix_dend2[-1,])
+   )
+   
+})
