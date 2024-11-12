@@ -106,3 +106,33 @@ test_that("all.equal.dendlist works", {
     )
   )
 })
+
+
+
+
+
+test_that("plot.dendlist works", {
+   dend <- iris[1:10, -5] %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   dend2 <- iris[1:10, -5] %>%
+      dist() %>%
+      hclust(method = "single") %>%
+      as.dendrogram()
+   
+   dend12 <- dendlist(dend, dend2)
+   expect_no_error(
+      plot.dendlist(dend12)
+   )
+   dend12 <- dendlist(dend)
+   expect_no_error(
+      plot.dendlist(dend12)
+   )
+   
+   # if nondendlist object passed in
+   expect_error(
+      plot.dendlist(dend)   
+   )
+   
+})
