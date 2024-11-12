@@ -22,6 +22,20 @@ test_that("Setting and extracting leaves color", {
   expect_equal(labels_colors(dend, labels = FALSE), 2:4)
   # getting it (with labels)
   expect_equal(labels_colors(dend), structure(2:4, .Names = c("Arizona", "Alabama", "Alaska")))
+  
+  # if 'value' parameter missing
+  dendextend_options("warn", T)
+  expect_warning(
+     `labels_colors<-`(dend)
+  )
+  dendextend_options("warn", F)
+  
+  # if nodePar attribute is empty
+  attr(dend[[1]], "nodePar") <- list()
+  expect_warning(
+     labels_colors(dend) <- c()   
+  )
+  
 })
 
 
@@ -134,6 +148,40 @@ test_that("Using set leaves_col still allows for set labels_colors", {
   expect_identical(unname(labels_colors(dend)), c(3, 1, 3, 1, 3))
 })
 
+
+test_that("labels_cex<- works", {
+   
+   hc <- hclust(dist(USArrests[1:3, ]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   labels_cex(dend) <- 1.5
+   expect_identical(
+      attributes(dend[[1]])$nodePar$lab.cex,
+      1.5
+   )
+   
+   # if non dend object passed in
+   expect_error(
+      labels_cex(hc) <- 1.5
+   )
+   
+})
+
+
+test_that("color_unique_labels works", {
+   
+   hc <- hclust(dist(USArrests[1:3, ]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   capture.output(
+      result <- color_unique_labels(dend)
+   )
+   expect_identical(
+      attributes(result[[1]])$nodePar$lab.col,
+      "#7DB0DD"
+   )
+   
+})
 
 
 # library(testthat)

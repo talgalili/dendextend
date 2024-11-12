@@ -19,6 +19,12 @@ test_that("Get a dendrogram leaves attributes", {
   # when using simplify=FALSE, we get back a list...
   expect_true(is.list(get_leaves_attr(dend, "height", simplify = FALSE)))
   expect_identical(unlist(get_leaves_attr(dend, "height", simplify = FALSE)), rep(0, 3))
+  
+  # if non-dendrogram object is passed in and 'attribute' parameter is missing
+  expect_warning(expect_error(
+     get_leaves_attr(hc)   
+  ))
+  
 })
 
 
@@ -165,6 +171,11 @@ test_that("get_leaves_nodePar works", {
     "pch", "lab.cex"
   )))
   expect_identical(get_leaves_nodePar(dend), should_be)
+  
+  # if non-dendrogram object passed in
+  expect_error(expect_warning(
+     get_leaves_nodePar(hc)
+  ))
 })
 
 
@@ -303,6 +314,10 @@ test_that("remove_branches_edgePar removes edgePar", {
    dend <- assign_values_to_branches_edgePar(dend, value = 1, edgePar = "col")
    cleaned_dend <- remove_branches_edgePar(dend)
    expect_true(all(is.na(unlist(get_leaves_nodePar(cleaned_dend)))))
+   # if non dendrogram object passed in
+   expect_error(
+      remove_branches_edgePar(1:4)
+   )
 })
 
 
@@ -311,6 +326,10 @@ test_that("remove_nodes_nodePar removes nodePar", {
    dend <- assign_values_to_nodes_nodePar(dend, value = 1:5, nodePar = "col")
    cleaned_dend <- remove_nodes_nodePar(dend)
    expect_true(all(is.na(unlist(get_leaves_nodePar(cleaned_dend)))))
+   # if non dendrogram object passed in
+   expect_error(
+      remove_nodes_nodePar(1:4)
+   )   
 })
 
 test_that("remove_leaves_nodePar removes nodePar from leaves", {
@@ -319,6 +338,10 @@ test_that("remove_leaves_nodePar removes nodePar from leaves", {
    cleaned_dend <- remove_leaves_nodePar(dend)
    leaf_cols <- sapply(cleaned_dend, function(x) if(is.leaf(x)) attr(x, "nodePar")$col else NA)
    expect_true(all(is.na(leaf_cols)))
+   # if non dendrogram object passed in
+   expect_error(
+      remove_leaves_nodePar(1:4)
+   )      
 })
 
 test_that("fix_members_attr.dendrogram updates members attribute", {
@@ -328,6 +351,10 @@ test_that("fix_members_attr.dendrogram updates members attribute", {
    # Check if members attribute is correctly updated
    members_attr <- sapply(fixed_dend, function(x) attr(x, "members"))
    expect_true(all(!is.na(members_attr)))
+   # if non dendrogram object passed in
+   expect_error(
+      fix_members_attr.dendrogram(1:4)
+   )      
 })
 
 test_that("rank_order.dendrogram updates leaf order", {
@@ -336,5 +363,179 @@ test_that("rank_order.dendrogram updates leaf order", {
    expect_true(is.dendrogram(ranked_dend))
    # Check if order is correctly updated
    expect_equal(order.dendrogram(ranked_dend), rank(order.dendrogram(dend), ties.method = "first"))
+   # if non dendrogram object passed in
+   expect_error(
+      rank_order.dendrogram(1:4)
+   )         
 })
 
+test_that("get_leaves_edgePar works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   result <- get_leaves_edgePar(dend, simplify = T)
+   expect_true(
+      all(is.na(result))
+   )
+   # if non-dendrogram object passed in
+   expect_error(expect_warning(
+      get_leaves_edgePar(hc)
+   ))
+})
+
+test_that("get_leaves_branches_attr works", {
+   hc <- hclust(dist(1:5))
+   # if non-dendrogram object passed in
+   expect_error(expect_warning(
+      get_leaves_branches_attr(hc)
+   ))
+})
+
+test_that("get_nodes_attr works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   # if non-dendrogram object passed in
+   expect_error(expect_warning(
+      get_nodes_attr(hc)
+   )) 
+   dendextend_options("warn", T)
+   expect_warning(
+      result <- get_nodes_attr(dend, "fake attribute")   
+   )
+   dendextend_options("warn", F)
+   expect_true(
+      all(is.na(result))
+   )
+})
+
+test_that("rllply works", {
+   x <- list(1, 2, list(31))
+   result <- rllply(x, function(x) {x}, add_notation = TRUE)
+   expect_identical(
+      result[[1]][[1]],
+      1
+   )
+   x <- 1:4
+   result <- rllply(x, function(x) {x}, add_notation = TRUE)
+   expect_identical(
+      attributes(result)$position_type,
+      "Leaf"
+   )
+})
+
+test_that("hang.dendrogram works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   expect_no_error(
+      hang.dendrogram(dend, hang = -1)
+   )
+   # if non-dendrogram object passed in
+   expect_error(
+      hang.dendrogram(hc)
+   )
+})
+
+test_that("rank_branches works", {
+   hc <- hclust(dist(1:5))
+   # if non-dendrogram object passed in
+   expect_error(
+      rank_branches(hc)
+   )
+})
+
+test_that("assign_values_to_leaves_nodePar works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   # if non-dendrogram object passed in
+   expect_error(
+      assign_values_to_leaves_nodePar(hc)
+   )   
+   dendextend_options("warn", T)
+   # if 'value' parameter missing
+   expect_warning(
+      assign_values_to_leaves_nodePar(dend)
+   )
+   # if 'value' recycled
+   expect_warning(
+      assign_values_to_leaves_nodePar(dend, c(1), warn = T)
+   )
+   dendextend_options("warn", F)
+})
+
+test_that("assign_values_to_nodes_nodePar works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   # if non-dendrogram object passed in
+   expect_error(
+      assign_values_to_nodes_nodePar(hc)
+   )   
+   dendextend_options("warn", T)
+   # if 'value' parameter missing
+   expect_warning(
+      assign_values_to_nodes_nodePar(dend)
+   )
+   # if 'value' recycled
+   expect_warning(
+      assign_values_to_nodes_nodePar(dend, c(1), warn = T)
+   )
+   dendextend_options("warn", F)
+   
+   # testing remove nodePar if it is empty
+   attr(dend[[1]][[1]], "nodePar") <- list()
+   expect_no_error(
+      result <- assign_values_to_nodes_nodePar(dend, rep(Inf, 10))   
+   )
+
+})
+
+test_that("assign_values_to_branches_edgePar works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   # if non-dendrogram object passed in
+   expect_error(
+      assign_values_to_branches_edgePar(hc)
+   )   
+   dendextend_options("warn", T)
+   # if 'value' parameter missing
+   expect_warning(
+      assign_values_to_branches_edgePar(dend)
+   )
+   # if 'value' recycled
+   expect_warning(
+      assign_values_to_branches_edgePar(dend, c(1), warn = T)
+   )
+   dendextend_options("warn", F)
+   
+   # if leaf passed in
+   result <- assign_values_to_branches_edgePar(dend[[1]][[1]], 1:10, skip_leaves = T)
+   expect_identical(
+      result,
+      dend[[1]][[1]]
+   )
+   
+})
+
+test_that("assign_values_to_leaves_edgePar works", {
+   hc <- hclust(dist(1:5))
+   dend <- as.dendrogram(hc)
+   # if non-dendrogram object passed in
+   expect_error(
+      assign_values_to_leaves_edgePar(hc)
+   )   
+   dendextend_options("warn", T)
+   # if 'value' parameter missing
+   expect_warning(
+      assign_values_to_leaves_edgePar(dend)
+   )
+   # if 'value' recycled
+   expect_warning(
+      assign_values_to_leaves_edgePar(dend, c(1), warn = T)
+   )
+   dendextend_options("warn", F)
+   
+   # if leaf passed in
+   result <- assign_values_to_leaves_edgePar(dend[[1]][[1]], 1:10, skip_leaves = T)
+   expect_identical(
+      result,
+      dend[[1]][[1]]
+   )
+})

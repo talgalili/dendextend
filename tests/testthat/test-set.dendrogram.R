@@ -78,6 +78,27 @@ test_that("labels options works", {
     attr(tmp, "nodePar")$lab.cex,
     1.2
   )
+  
+  # if 'what' parameter not specified in set() then it should create a warning and return the same dendrogram
+  dendextend_options("warn", TRUE)
+  expect_warning(
+     result <- dend %>% set()
+  )
+  dendextend_options("warn", FALSE)
+  expect_identical(
+     result,
+     dend
+  )
+  
+  # if order_value parameter used
+  tmp <- dend %>%
+     set("labels_col", 2, order_value = T)
+  tmp <- tmp[[2]][[1]][[1]]
+  expect_equal(
+     attr(tmp, "nodePar")$lab.col,
+     2
+  )
+
 })
 
 
@@ -187,5 +208,36 @@ test_that("clearing options works", {
   expect_identical(dend, set(tmp, "clear_branches"))
 })
 
+
+test_that("set.dendlist works", {
+   suppressWarnings(RNGversion("3.5.0"))
+   set.seed(23235)
+   
+   ss <- sample(1:150, 10)
+   dend1 <- iris[ss, -5] %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   dend2 <- shuffle(dend1)
+   dend12 <- dendlist(dend1, dend2)
+   
+   # without 'what' parameter specified, nothing is changed
+   result <- set.dendlist(dend12)
+   expect_identical(
+      dend12,
+      result
+   )
+})
+
+
+test_that("set.data.table works", {
+   
+   # expect warning as dendextend::set.data.table overwrites data.table::set
+   dt <- data.table::data.table(id = 1:5, value = c(10, 20, 30, 40, 50))
+   expect_warning(
+      set.data.table(dt, j = 1L, value = 1)
+   )
+   
+})
 
 options(warn = old_warn_opt)
