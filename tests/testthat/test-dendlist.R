@@ -136,3 +136,22 @@ test_that("plot.dendlist works", {
    )
    
 })
+
+
+
+
+
+test_that("as.dendlist works", {
+   hc <- iris[1:10, -5] %>%
+      dist() %>%
+      hclust()
+   dend <- as.dendrogram(hc)
+   
+   # automatically removes non-dend objects
+   x <- list(1, hc, dend, list())
+   expect_equal(
+      length(as.dendlist(x)),
+      2
+   )
+   
+})
