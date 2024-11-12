@@ -31,4 +31,14 @@ test_that("all.equal.dendrogram works", {
       "current is not a dendrogram"
    )
    
+   # if non-dendlist object passed in
+   expect_error(
+      all.equal.dendlist(dend)
+   )
+   # if dendlist has only one dend in it
+   dend12 <- dendlist(dend)
+   expect_warning(
+      all.equal.dendlist(dend12)
+   )
+   
 })
