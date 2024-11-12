@@ -75,8 +75,8 @@ test_that("bakers_gamma_for_2_k_matrix works", {
       bakers_gamma_for_2_k_matrix(k_matrix_dend1, k_matrix_dend2[-1,])   
    )
    # if all labels aren't shared
-   expect_error(
+   capture.output(expect_error(
       bakers_gamma_for_2_k_matrix(k_matrix_dend1[-2,], k_matrix_dend2[-1,])
-   )
+   ))
    
 })
