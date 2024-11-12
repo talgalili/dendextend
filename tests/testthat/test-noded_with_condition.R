@@ -27,3 +27,26 @@ test_that("noded_with_condition works", {
    )
    
 })
+
+
+test_that("which_leaf works", {
+   # if non-dendrogram object passed in
+   expect_error(
+      which_leaf(1:4)
+   )
+})
+
+
+test_that("which_node works", {
+   dend <- iris[1:10, -5] %>%
+     dist() %>%
+     hclust() %>%
+     as.dendrogram() %>%
+     set("labels", 1:10)
+   
+   expect_equal(
+      which_node(dend, c(1, 2)),
+      2
+   )
+   
+})
