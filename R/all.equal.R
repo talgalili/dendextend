@@ -21,8 +21,8 @@
 
 
 #' @title Global Comparison of two (or more) dendrograms
-#' @exportS3Method all.equal dendlist
-#' @method all.equal dendlist
+#' @exportS3Method all.equal dendrogram
+#' @method all.equal dendrogram
 #' @aliases
 #' all.equal.dendlist
 #' @description
@@ -48,6 +48,16 @@
 #' @return
 #' Either TRUE (NULL for attr.all.equal) or a vector of mode "character" describing the differences
 #' between target and current.
+#'
+#' @usage \method{all.equal}{dendrogram}(target, current,
+#'                                      use.edge.length = TRUE,
+#'                                      use.tip.label.order = FALSE,
+#'                                      use.tip.label = TRUE,
+#'                                      use.topology = TRUE,
+#'                                      tolerance = .Machine$double.eps^0.5,
+#'                                      scale = NULL, ...)
+#'
+#' \method{all.equal}{dendlist}(target, current, ...)
 #'
 #' @examples
 #'
@@ -174,6 +184,8 @@ all.equal.dendrogram <- function(target, current,
 
 
 #' @export
+#' @exportS3Method all.equal dendlist
+#' @method all.equal dendlist
 all.equal.dendlist <- function(target, current, ...) {
   if (!is.dendlist(target)) stop("target needs to be a dendlist object")
 
