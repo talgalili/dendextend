@@ -70,6 +70,13 @@ test_that("bakers_gamma_for_2_k_matrix works", {
       1
    )
    
+   # if COR_object is NA
+    trace("bakers_gamma_for_2_k_matrix", quote(COR_object <- NA), at = 9)
+   expect_no_error(
+      bakers_gamma_for_2_k_matrix(k_matrix_dend1, k_matrix_dend1)
+   )
+   untrace("bakers_gamma_for_2_k_matrix")
+   
    # if dimension misalignment
    expect_error(
       bakers_gamma_for_2_k_matrix(k_matrix_dend1, k_matrix_dend2[-1,])   

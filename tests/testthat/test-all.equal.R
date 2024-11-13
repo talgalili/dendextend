@@ -12,9 +12,14 @@ test_that("all.equal.dendrogram works", {
    hc <- hclust(dist(1:5))
    dend <- as.dendrogram(hc)
    dend2 <- shuffle(dend)
-   
+   dend3 <- as.dendrogram(hclust(dist(iris[1:10, -5])))
+                          
    expect_identical(
       typeof(all.equal.dendrogram(dend, dend2, use.edge.length = F, use.tip.label.order = T)),
+      "character"
+   )
+   expect_identical(
+      typeof(all.equal.dendrogram(dend, dend3, use.edge.length = F, use.tip.label.order = F)),
       "character"
    )
    expect_identical(
@@ -42,3 +47,6 @@ test_that("all.equal.dendrogram works", {
    )
    
 })
+
+
+all.equal(c("a","b"),c("b","a"))

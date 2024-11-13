@@ -538,4 +538,10 @@ test_that("assign_values_to_leaves_edgePar works", {
       result,
       dend[[1]][[1]]
    )
+   
+   # if edgePar already present for a leaf
+   attr(dend[[1]][[1]], "edgePar") <- list(test = 1)
+   expect_no_error(
+      assign_values_to_leaves_edgePar(dend, 1:10)
+   )
 })
