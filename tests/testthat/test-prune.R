@@ -36,17 +36,19 @@ test_that("prune works for non-dendrogram objects", {
    # should achieve the same result regardless of object type
    result <- prune.hclust(hc, "Florida")
    expect_equal(
-      as.dendrogram(result),
-      prune_leaf(dend, "Florida")
+      labels(as.dendrogram(result)),
+      labels(prune_leaf(dend, "Florida"))
    )
    result <- prune.phylo(ph, "Florida")
    expect_equal(
-      as.dendrogram(result),
-      prune_leaf(dend, "Florida")
+      labels(as.dendrogram(result)),
+      labels(prune_leaf(dend, "Florida"))
    )
-   # expect_no_error(
-   #    prune.rpart(dend, -1000) 
-   # )
+   # rpart is not a dependency for dendextend. so long as that is true, this will create an error in tests
+   # however, for local machine testing, rpart is likely installed. so, to force an error we use a non-tree object
+   expect_error(
+      prune.rpart(1:4, -1000)
+   )
    
    # no default for prune
    expect_error(

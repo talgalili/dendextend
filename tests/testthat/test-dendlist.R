@@ -69,6 +69,13 @@ test_that("dendlist works", {
   # checks is.dendlist
   expect_true(suppressWarnings(is.dendlist(dendlist())))
   expect_true(is.dendlist(dendlist(dend)))
+  
+  # if hclust object passed in and/or 'which' parameter used
+  hc <- iris[, -5] %>%
+     dist() %>%
+     hclust()
+  result <- dendlist(dend, hc, dend, which = c(1,2))
+  expect_true(is.dendlist(result))
 })
 
 
@@ -98,4 +105,73 @@ test_that("all.equal.dendlist works", {
       all.equal(dendlist(dend, p_dend))
     )
   )
+})
+
+
+
+
+
+test_that("plot.dendlist works", {
+   dend <- iris[1:10, -5] %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   dend2 <- iris[1:10, -5] %>%
+      dist() %>%
+      hclust(method = "single") %>%
+      as.dendrogram()
+   
+   dend12 <- dendlist(dend, dend2)
+   expect_no_error(
+      plot.dendlist(dend12)
+   )
+   dend12 <- dendlist(dend)
+   expect_no_error(
+      plot.dendlist(dend12)
+   )
+   
+   # if nondendlist object passed in
+   expect_error(
+      plot.dendlist(dend)   
+   )
+   
+})
+
+
+
+
+
+test_that("as.dendlist works", {
+   hc <- iris[1:10, -5] %>%
+      dist() %>%
+      hclust()
+   dend <- as.dendrogram(hc)
+   
+   # automatically removes non-dend objects
+   x <- list(1, hc, dend, list())
+   expect_equal(
+      length(as.dendlist(x)),
+      2
+   )
+   
+})
+
+
+
+
+
+test_that("head.dendlist works", {
+   dend <- iris[1:10, -5] %>%
+      dist() %>%
+      hclust() %>%
+      as.dendrogram()
+   dend2 <- iris[1:10, -5] %>%
+      dist() %>%
+      hclust(method = "single") %>%
+      as.dendrogram()
+   dend12 <- dendlist(dend, dend2)
+   
+   capture.output(expect_no_error(
+      head.dendlist(dend12)
+   ))
 })
