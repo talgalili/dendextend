@@ -88,6 +88,18 @@ test_that("Match order of one dend based on another (using their order valuess)"
 
   #    expect_identical(order.dendrogram(dend_changed), order.dendrogram(dend))
   #    identical(match_order_by_labels(dend_changed, dend), dend_changed)
+  
+  # if labels do not match
+  dend1 <- as.dendrogram(hclust(dist(iris[1:10, -5])))
+  dend2 <- as.dendrogram(hclust(dist(iris[2:11, -5])))
+  dend3 <- as.dendrogram(hclust(dist(iris[1:9, -5])))
+  expect_error(
+    match_order_dendrogram_by_old_order(dend1, dend2, check_that_labels_match = T)
+  )
+  # if label order does not match
+  expect_error(expect_warning(
+     match_order_dendrogram_by_old_order(dend1, dend3, check_that_leaves_order_match = T)
+  ))
 })
 
 
