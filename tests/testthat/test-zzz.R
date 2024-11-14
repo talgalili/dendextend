@@ -12,6 +12,8 @@ test_that("onLoad works", {
    
    # create a subprocess to load / unload package which avoids interrupting coverage check
    if (testthat:::in_covr()){
+      require("callr")
+      require("pkgload")
       callr::r(function() {
          pkgload::load_all()
          # pkgload::unload("dendextend")

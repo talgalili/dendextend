@@ -1,6 +1,4 @@
 library(testthat)
-library(callr)
-library(pkgload)
 
 library(dendextend)
 test_check("dendextend")
