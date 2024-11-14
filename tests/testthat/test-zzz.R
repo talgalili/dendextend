@@ -10,14 +10,11 @@ test_that("onLoad works", {
    dendextend:::.onLoad()
    expect_identical(getOption("dendextend"), NULL)
    
-   # create a subprocess to load / unload package which avoids interrupting coverage check
+   # only execute for sake of coverage
    if (testthat:::in_covr()){
-      require("callr")
-      require("pkgload")
-      callr::r(function() {
-         pkgload::load_all()
-         # pkgload::unload("dendextend")
-      })
+      unloadNamespace("dendextend")
+      loadNamespace("dendextend")
+      library(dendextend)
    }
 
 })
