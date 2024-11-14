@@ -82,7 +82,9 @@ Suggests:
     cluster,
     fpc,
     circlize (>= 0.2.5),
-    covr
+    covr,
+    callr,
+    pkgload
 Enhances: ggdendro,
     dendroextras, Hmisc,
     data.table, rpart,
