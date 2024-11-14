@@ -11,12 +11,11 @@ test_that("onLoad works", {
    expect_identical(getOption("dendextend"), NULL)
    
    # create a subprocess to load / unload package which avoids interrupting coverage check
-   if (testthat:::in_covr()){
-      callr::r(function() {
-         pkgload::load_all()
-         pkgload::unload("dendextend")
-      })
-   }
+   callr::r(function() {
+      pkgload::load_all()
+      pkgload::unload("dendextend")
+   })
+   
 
 })
 
