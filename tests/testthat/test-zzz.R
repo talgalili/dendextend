@@ -9,6 +9,13 @@ test_that("onLoad works", {
    # no options for dendextend yet, should be empty
    dendextend:::.onLoad()
    expect_identical(getOption("dendextend"), NULL)
+   
+   # create a subprocess to load / unload package which avoids interrupting coverage check
+   callr::r(function() {
+      pkgload::load_all()
+      pkgload::unload("dendextend")
+   })
+
 })
 
 
