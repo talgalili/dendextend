@@ -143,6 +143,22 @@ test_that("as.ggdend.dendrogram works", {
   ), class = "ggdend")
   ###
   expect_identical(gg2, should_be)
+  
+  # if dend without leaves is passed in
+  expect_error(with_mock(
+     nleaves = function(x, ...) return(0),
+     as.ggdend(dend),   
+  ))
+  
+  # if type triangle used
+  dend <- 1:3 %>%
+     dist() %>%
+     hclust() %>%
+     as.dendrogram()
+  expect_no_error(
+     as.ggdend(dend, type = "triangle")   
+  )
+  
 })
 
 test_that("ggplot doesn't have warnings for dendrograms", {
@@ -205,6 +221,18 @@ test_that("prepare.ggdend handles segment linetype and color", {
    # Check for linetype and color corrections
    expect_true(all(!is.na(prepared_data$segments$lty)))
    expect_true(all(!is.na(prepared_data$segments$col)))
+   
+   data <- list()
+   data$segments$lty <- 1
+   data$segments$col <- 1
+   data$labels$col <- 1
+   data$nodes <- matrix(1:6, ncol = 3)
+   colnames(data$nodes) <- c("pch", "cex", "col")
+   data$nodes <- as.data.frame(data$nodes)
+   expect_no_error(
+      prepare.ggdend(data)   
+   )
+
 })
 
 # Testing ggplot.ggdend function
@@ -214,6 +242,8 @@ test_that("ggplot.ggdend creates a ggplot object", {
    ggdend_data <- as.ggdend(dend)
    plot <- ggplot.ggdend(ggdend_data)
    expect_true(inherits(plot, "ggplot"))
+   plot <- ggplot.ggdend(ggdend_data, horiz = T)
+   expect_true(inherits(plot, "ggplot"))   
 })
 
 # Testing ggplot.dendrogram function

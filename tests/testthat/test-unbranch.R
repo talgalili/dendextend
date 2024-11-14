@@ -43,7 +43,48 @@ test_that("unbranching a dendrogram", {
   expect_warning(unbranch(dend[[1]])) # since the new root can not be a leaf.
   expect_error(unbranch(hc)) # While there is an hclust method,
   # this object can not handle non-binary trees.
+  
+  # if 'new_root_height' parameter used
+  result <- unbranch.dendrogram(dend, new_root_height = 4.5)
+  expect_equal(length(result), 3)
+  
+  # no default method
+  expect_error(
+     unbranch.default(dend)
+  )
 })
 
 
-dendextend_options("warn", FALSE)
+test_that("flatten.dendrogram works", {
+   hc <- hclust(dist(USArrests[10:13, ]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   result <- flatten.dendrogram(dend)
+   expect_equal(
+      attr(result[[1]], "height"),
+      attr(result[[2]], "height")
+   )
+   
+})
+
+
+test_that("collapse_branch works", {
+   hc <- hclust(dist(USArrests[10:13, ]), "ave")
+   dend <- as.dendrogram(hc)
+   
+   result <- collapse_branch(dend, lower = F)
+   expect_equal(
+      attr(result[[1]], "height"),
+      attr(result[[2]], "height")
+   )
+   
+   # if leaf object passed in
+   expect_warning(
+      collapse_branch(dend[[1]][[1]])
+   )
+   
+   # if non-dendrogram object passed in
+   expect_error(
+      collapse_branch(hc)
+   )
+})

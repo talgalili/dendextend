@@ -35,4 +35,10 @@ test_that("highlight_branches can be run", {
 
   expect_equal(dend2, dend_expected)
   # expect_identical(dend2, dend_expected)
+  
+  # if non dendrogram object is passed in
+  expect_error(
+     highlight_branches(hca)   
+  )
+  
 })

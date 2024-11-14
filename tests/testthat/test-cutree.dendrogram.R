@@ -87,6 +87,13 @@ test_that("cutree a dendrogram by height h", {
     result <- cutree_1h.dendrogram(dend, h = c(-1, -2), warn = T)
   )
   expect_identical(result, stats::cutree(as.hclust(dend), h = -1))
+  
+  # if order.dendrogram indices aren't 1:nleaves(dend)
+  expect_warning(with_mock(
+     order.dendrogram = function(...) return(2:6),
+     cutree_1h.dendrogram(dend, h = 50, order_clusters_as_data = T, warn = T)
+  ))
+  
 })
 
 
@@ -151,7 +158,11 @@ test_that("cutree a dendrogram to k clusters", {
     unname(cutree_1k.dendrogram(dend, k = 3, use_labels_not_values = FALSE)),
     unname(cutree(hc, k = 3))
   )
-
+   
+  # if k is outside the range of possible cluster
+  trace("cutree_1k.dendrogram", quote(k <- -1), at = 9, print = F)
+  expect_warning(cutree_1k.dendrogram(unbranch_dend, 2, warn = TRUE))
+  untrace("cutree_1k.dendrogram")
 
   # errors:
   expect_error(cutree_1k.dendrogram(dend)) # we need h!
@@ -621,6 +632,13 @@ test_that("cutree.dendrogram works", {
    dend <- as.dendrogram(hclust(dist(c(1, 1, 1, 2, 2))))
    result <- cutree.dendrogram(dend, h = 0.2, try_cutree_hclust = F)
    expect_true(all(result == c(1,1,1,2,2)))
+   
+   # if order.dendrogram indices aren't 1:nleaves(dend)
+   expect_warning(with_mock(
+      order.dendrogram = function(...) return(2:6),
+      cutree.dendrogram(dend, h = 0.2, try_cutree_hclust = T, warn = T)
+   ))
+   
 })
 
 

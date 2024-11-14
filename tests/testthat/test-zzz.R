@@ -11,3 +11,12 @@ test_that("onLoad works", {
    expect_identical(getOption("dendextend"), NULL)
 })
 
+
+test_that("dendextend_options works", {
+   
+   opt <- dendextend_options()
+   expect_true(
+      !opt$warn
+   )
+
+})

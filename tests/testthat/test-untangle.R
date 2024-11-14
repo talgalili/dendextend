@@ -50,13 +50,30 @@ test_that("all_couple_rotations_at_k work", {
 
   expect_identical(entanglement(dend1, dend2, L = 2), 0.5)
   
-  # returns original dend if k ==1
+  # returns original dend if k == 1
   dend2 <- all_couple_rotations_at_k(dend1, k = 1)
   expect_identical(dend1, dend2)
   # uses first element of k if k is a vector and raises a warning
   expect_warning(
     dend2 <- all_couple_rotations_at_k(dend1, k = c(2, 3))
   )
+  
+  # if k_cluster_leaves is NA
+  trace("all_couple_rotations_at_k", quote(k_cluster_leaves <- c(NA)), at = 8, print = FALSE)
+  result <- all_couple_rotations_at_k(dend1, k = 4)
+  untrace("all_couple_rotations_at_k")
+  expect_identical(
+     labels(result),
+     "1"
+  )
+  
+  # if km1_cluster_leaves is NA
+  trace("all_couple_rotations_at_k", quote(km1_cluster_leaves <- c(NA)), at = 8, print = FALSE)
+  expect_warning(
+     all_couple_rotations_at_k(dend1, k = 4)     
+  )
+  untrace("all_couple_rotations_at_k")
+  
 })
 
 
@@ -82,6 +99,15 @@ test_that("untangle_step_rotate_1side work", {
   dend2_corrected <- untangle.dendrogram(dend2, dend1, "step1side", direction = "backward")[[1]]
   #    tanglegram(dend1,dend2_corrected) # FIXED.
   expect_identical(round(entanglement(dend1, dend2_corrected, L = 2), 2), 0)
+  
+  # if leaf mismatch in dend1 and dend after ordering
+  dendextend_options("warn", T)
+  expect_warning(expect_error(with_mock(
+     match_order_by_labels = function(dend1, dend2, ...) return(dend2),
+     untangle_step_rotate_1side(dend2, dend1, "step1side", leaves_matching_method = "order")
+  )))
+  dendextend_options("warn", F)
+  
 })
 
 
@@ -111,6 +137,12 @@ test_that("untangle_step_rotate_2side work", {
       dend12_corrected <- untangle_step_rotate_2side(dend1, dend2, L = 2, print_times = T, max_n_iterations = 20)
    ))
    expect_identical(round(entanglement(dend12_corrected[[1]],dend12_corrected[[2]], L = 2),3) ,  0.059)
+   
+   # if times reaches 2+ iterations
+   expect_output(with_mock(
+      untangle_step_rotate_1side = function(dend1, dend2, ...) return(list(shuffle(dend2), dend1)),
+      result <- untangle_step_rotate_2side(dend1, dend2, k = 4, print_times = T)
+   ))
    
 })
 
@@ -416,6 +448,12 @@ test_that("untangle_random_search works", {
    
    final_entanglement <- entanglement(result[[1]], result[[2]])
    expect_identical(round(final_entanglement, 3), 0.311)
+   
+   dendextend_options("warn", T)
+   expect_warning(
+      untangle_random_search(dend1, dend2, R = 10, leaves_matching_method = "order")
+   )
+   dendextend_options("warn", F)
 })
 
 
@@ -463,6 +501,11 @@ test_that("entanglement_return_best_brother works", {
    # brother_1 is more entangled, therefore we expect to get brother_2 in result 
    expect_true(entanglement(brother_1_dend1, brother_1_dend2) > entanglement(brother_2_dend1, brother_2_dend2))
    expect_identical(result, dendlist(brother_2_dend1, brother_2_dend2))
+   
+   # if brother_2 is more entangled
+   expect_no_error(
+      entanglement_return_best_brother(brother_2_dend1, brother_2_dend2, brother_1_dend1, brother_1_dend2, L = 1)
+   )
 })
 
 
