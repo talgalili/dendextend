@@ -14,7 +14,7 @@ test_that("onLoad works", {
    if (testthat:::in_covr()){
       callr::r(function() {
          pkgload::load_all()
-         pkgload::unload("dendextend")
+         # pkgload::unload("dendextend")
       })
    }
 
