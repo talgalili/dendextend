@@ -34,9 +34,9 @@ test_that("seriate_dendrogram works", {
       seriate_dendrogram(fake_dend)
    )
    # if seriation not installed
-   expect_error(with_mock(
-      requireNamespace = function(...) FALSE,
-      seriate_dendrogram(dend)
+   expect_error(with_mocked_bindings(
+      seriate_dendrogram(dend),
+      requireNamespace = function(...) FALSE
    ))
    
 })
