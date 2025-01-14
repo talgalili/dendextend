@@ -76,4 +76,4 @@ seriate_dendrogram <- function(dend, x, method = c("OLO", "GW"), ...) {
 }
 
 
-requireNamespace <- requireNamespace
+requireNamespace <- NULL
