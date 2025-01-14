@@ -20,11 +20,10 @@ test_that("circlize_dendrogram works", {
       circlize_dendrogram(dend)
    )
    # if circlize not installed
-   expect_error(with_mock(
-      requireNamespace = function(...) FALSE,
-      circlize_dendrogram(dend)
+   requireNamespace <- NULL
+   expect_error(with_mocked_bindings(
+      circlize_dendrogram(dend),
+      requireNamespace = function(...) FALSE
    ))
    
 })
-
-
