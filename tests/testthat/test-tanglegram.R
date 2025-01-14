@@ -128,9 +128,9 @@ test_that("tanglegram works", {
    )
    
    # temporarily overwrite par() function to access error that is otherwise inaccessible
-   expect_error(with_mock(
-      par = function(mar = 0) c(1,1),
-      tanglegram.dendlist(dend12, just_one = F)
+   expect_error(with_mocked_bindings(
+      tanglegram.dendlist(dend12, just_one = F),
+      par = function(mar = 0) c(1,1)
    ))
    # if only 1 dendrogram is passed in
    expect_error(
