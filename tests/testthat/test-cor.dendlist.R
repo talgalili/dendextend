@@ -52,9 +52,9 @@ test_that("cor_FM_index works", {
       cor_FM_index(dend1, dend2)   
    )
    # if all leaves part of the same cluster
-   expect_warning(with_mock(
-      cutree = function(dend, k, ...) rep(0, length(labels(dend))),
-      cor_FM_index(dend1, dend2, k = 2)
+   expect_warning(with_mocked_bindings(
+      cor_FM_index(dend1, dend2, k = 2),
+      cutree = function(dend, k, ...) rep(0, length(labels(dend)))
    ))
    
 })
