@@ -29,3 +29,6 @@ rainbow_fun <- function(n, c = 90, l = 50, ...) {
 # n = 10
 # barplot(rep(10, n), col = rainbow_hcl(n) )
 # barplot(rep(10, n), col = rainbow_hcl(n, c=90, l=50) )
+
+
+requireNamespace <- requireNamespace
