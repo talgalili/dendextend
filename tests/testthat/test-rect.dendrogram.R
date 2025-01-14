@@ -70,18 +70,18 @@ test_that("identify.dendrogram works", {
    
    # replace locator function with one that automatically clicks to make test non-interactive
    locator_counter <<- 0
-   with_mock(
+   with_mocked_bindings(
+      {
+         plot(dend, horiz = TRUE)
+         vec <- identify(dend, horiz = TRUE, FUN = function(x) x + 1, DEV.FUN = 2)
+      },
       locator = function(x) {
          locator_counter <<- locator_counter + 1
          if (locator_counter == 1) return(list(x = 172, y = 5))
          if (locator_counter == 2) return(list(x = 172, y = 1))
          return(NULL)
-      },
-      {
-         plot(dend, horiz = TRUE)
-         vec <- identify(dend, horiz = TRUE, FUN = function(x) x + 1, DEV.FUN = 2)
-      }
-   )
+      }      
+   )   
    expect_identical(
       vec[[2]], c("Connecticut" = 8)
    )
