@@ -145,9 +145,9 @@ test_that("as.ggdend.dendrogram works", {
   expect_identical(gg2, should_be)
   
   # if dend without leaves is passed in
-  expect_error(with_mock(
-     nleaves = function(x, ...) return(0),
-     as.ggdend(dend),   
+  expect_error(with_mocked_bindings(
+     as.ggdend(dend),
+     nleaves = function(x, ...) return(0)
   ))
   
   # if type triangle used
