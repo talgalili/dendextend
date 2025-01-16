@@ -89,10 +89,10 @@ test_that("cutree a dendrogram by height h", {
   expect_identical(result, stats::cutree(as.hclust(dend), h = -1))
   
   # if order.dendrogram indices aren't 1:nleaves(dend)
-  expect_warning(with_mock(
+  expect_warning(with_mocked_bindings(
+     cutree_1h.dendrogram(dend, h = 50, order_clusters_as_data = T, warn = T),
      order.dendrogram = function(...) return(2:6),
-     cutree_1h.dendrogram(dend, h = 50, order_clusters_as_data = T, warn = T)
-  ))
+  ))  
   
 })
 
@@ -634,10 +634,10 @@ test_that("cutree.dendrogram works", {
    expect_true(all(result == c(1,1,1,2,2)))
    
    # if order.dendrogram indices aren't 1:nleaves(dend)
-   expect_warning(with_mock(
-      order.dendrogram = function(...) return(2:6),
-      cutree.dendrogram(dend, h = 0.2, try_cutree_hclust = T, warn = T)
-   ))
+   expect_warning(with_mocked_bindings(
+      cutree.dendrogram(dend, h = 0.2, try_cutree_hclust = T, warn = T),
+      order.dendrogram = function(...) return(2:6)
+   ))   
    
 })
 

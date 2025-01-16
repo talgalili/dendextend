@@ -36,9 +36,9 @@ test_that("color_branches works", {
    ) # hc gets converted to dendrogram so should be the same
    
    # temporarily redefine cutree to return 0 so we can activate warning for 'dend has only one level'
-   expect_warning(with_mock(
-      `dendextend::cutree` = function(...) 0,
-      color_branches(dend, k = 2, warn = T) 
+   expect_warning(with_mocked_bindings(
+      color_branches(dend, k = 2, warn = T),
+      cutree = function(...) 0
    ))
    # trigger 'else' clause in addcol
    expect_no_error(color_branches(dend) %>% color_branches())

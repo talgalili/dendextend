@@ -94,9 +94,9 @@ test_that("common_subtrees_clusters works", {
    )
    
    # temporarily redefine is.leaf to access and cover lines of code otherwise not possible
-   set.seed(2)
-   with_mock(
-      is.leaf = function(x) sample(c(T,F), 1),
-      common_subtrees_clusters(dend1, dend2)
-   )
+   set.seed(3)
+   with_mocked_bindings(
+      common_subtrees_clusters(dend1, dend2),
+      is.leaf = function(x) sample(c(T,F), 1)
+   )   
 })

@@ -102,10 +102,10 @@ test_that("untangle_step_rotate_1side work", {
   
   # if leaf mismatch in dend1 and dend after ordering
   dendextend_options("warn", T)
-  expect_warning(expect_error(with_mock(
-     match_order_by_labels = function(dend1, dend2, ...) return(dend2),
-     untangle_step_rotate_1side(dend2, dend1, "step1side", leaves_matching_method = "order")
-  )))
+  expect_warning(expect_error(with_mocked_bindings(
+     untangle_step_rotate_1side(dend2, dend1, "step1side", leaves_matching_method = "order"),
+     match_order_by_labels = function(dend1, dend2, ...) return(dend2)
+  )))  
   dendextend_options("warn", F)
   
 })
@@ -139,9 +139,9 @@ test_that("untangle_step_rotate_2side work", {
    expect_identical(round(entanglement(dend12_corrected[[1]],dend12_corrected[[2]], L = 2),3) ,  0.059)
    
    # if times reaches 2+ iterations
-   expect_output(with_mock(
-      untangle_step_rotate_1side = function(dend1, dend2, ...) return(list(shuffle(dend2), dend1)),
-      result <- untangle_step_rotate_2side(dend1, dend2, k = 4, print_times = T)
+   expect_output(with_mocked_bindings(
+      result <- untangle_step_rotate_2side(dend1, dend2, k = 4, print_times = T),
+      untangle_step_rotate_1side = function(dend1, dend2, ...) return(list(shuffle(dend2), dend1))
    ))
    
 })

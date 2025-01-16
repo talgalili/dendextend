@@ -190,10 +190,10 @@ test_that("click_rotate works", {
    dend <- as.dendrogram(hc)
    
    # temporarily redefine interactive locator function to click leaf which causes no rotation in click_rotate and returns the same dendrogram
-   capture.output(with_mock(
-      locator = function(n = 1) list(x = 1, y = -11),
-      result <- click_rotate(dend, plot = TRUE, horiz = FALSE, continue = TRUE)
-   ))
+   capture.output(with_mocked_bindings(
+      result <- click_rotate(dend, plot = TRUE, horiz = FALSE, continue = TRUE),
+      locator = function(n = 1) list(x = 1, y = -11)
+   ))   
    expect_identical(labels(dend), labels(result))
    
 })
