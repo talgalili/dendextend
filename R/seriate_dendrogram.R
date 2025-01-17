@@ -74,6 +74,3 @@ seriate_dendrogram <- function(dend, x, method = c("OLO", "GW"), ...) {
   dend <- rotate(dend, order = rev(labels(x)[seriation::get_order(o)]))
   dend
 }
-
-
-requireNamespace <- NULL

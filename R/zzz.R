@@ -161,6 +161,8 @@ dendextendWelcomeMessage <- function() {
 
 
 
+# Defined so to support with_mocked_bindings usage in tests
+requireNamespace <- NULL
 
 
 # using "zzz.r" like in devtools...

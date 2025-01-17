@@ -158,6 +158,3 @@ circlize_dendrogram <- function(dend, facing = c("outside", "inside"), labels = 
 #  circlize_dendrogram(dend)
 #
 #
-
-
-requireNamespace <- NULL

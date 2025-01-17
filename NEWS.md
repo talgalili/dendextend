@@ -1,3 +1,9 @@
+dendextend 1.19.1 (2025-01-17)
+==============================
+## BUG FIXES
+- Remove redundent `requireNamespace <- NULL`
+
+
 dendextend 1.19.0 (2024-11-15)
 ==============================
 ## BUG FIXES
