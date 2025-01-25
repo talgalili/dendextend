@@ -4,7 +4,7 @@ dendextend 1.19.1 (2025-01-25)
 - Remove redundent `requireNamespace <- NULL`
 
 ## UPDATED DOCS:
-- `set` - gave a bit more details about arguments when using `by_labels_branches_col`
+- `set` - gave a bit more details (/fixes) about arguments when using `by_labels_branches_col`
 
 dendextend 1.19.0 (2024-11-15)
 ==============================

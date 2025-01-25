@@ -46,8 +46,10 @@
 #' might wish to perform on a dendrogram before plotting.
 #'
 #' The options of by_labels_branches_col, by_labels_branches_lwd, by_labels_branches_lty
-#' have extra parameters: type, attr, TF_value, and by_lists_branches_col, by_lists_branches_lwd,
-#' by_lists_branches_lty have extra parameters: attr, TF_value. You can read more about them here:
+#' have extra parameters: `type` and `TF_value` (`attr` is autofilled).
+#' For by_lists_branches_col, by_lists_branches_lwd,
+#' by_lists_branches_lty, they get extra parameter: TF_value (`attr` is autofilled).
+#' You can read more about them here:
 #' \link{branches_attr_by_labels} and \link{branches_attr_by_lists}
 #'
 #' The "what" parameter" can accept the following options:
