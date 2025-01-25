@@ -242,11 +242,11 @@
 #'
 #' old_labels <- labels(dend)
 #' dend %>%
-#'   set("labels", seq_len(nleaves(dend))) %>%
-#'   set("by_labels_branches_col", c(1:4, 7)) %>%
-#'   set("by_labels_branches_lwd", c(1:4, 7)) %>%
-#'   set("by_labels_branches_lty", c(1:4, 7)) %>%
-#'   set("labels", old_labels) %>%
+#' set("labels", seq_len(nleaves(dend))) %>%
+#'    set("by_labels_branches_col", value = c(1:4, 7), TF_values = 'gold') %>%
+#'    set("by_labels_branches_lwd", value = c(1:4, 7), TF_values = 5) %>%
+#'    set("by_labels_branches_lty", value = c(1:4, 7), TF_values = 2) %>%
+#'    set("labels", old_labels) %>%
 #'   plot()
 #'
 #' dend %>%

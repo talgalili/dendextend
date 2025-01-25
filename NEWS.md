@@ -1,8 +1,10 @@
-dendextend 1.19.1 (2025-01-17)
+dendextend 1.19.1 (2025-01-25)
 ==============================
 ## BUG FIXES
 - Remove redundent `requireNamespace <- NULL`
 
+## UPDATED DOCS:
+- `set` - gave a bit more details about arguments when using `by_labels_branches_col`
 
 dendextend 1.19.0 (2024-11-15)
 ==============================
