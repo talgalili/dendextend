@@ -351,6 +351,8 @@ test_that("untangle_labels works", {
 
 
 test_that("untangle_DendSer works", {
+   skip_if_not_installed("DendSer")
+   
    suppressWarnings(RNGversion("3.5.0"))
    set.seed(232)
    
