@@ -1,7 +1,10 @@
-dendextend 1.19.1 (2025-01-25)
+dendextend 1.19.1 (2025-07-12)
 ==============================
 ## BUG FIXES
 - Remove redundant `requireNamespace <- NULL`
+
+## UPDATED TESTS:
+- Fix tests to be compatible for ggplot2 4.
 
 ## UPDATED DOCS:
 - `set` - gave a bit more details (/fixes) about arguments when using `by_labels_branches_col`
