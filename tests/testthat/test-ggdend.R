@@ -166,7 +166,11 @@ test_that("ggplot doesn't have warnings for dendrograms", {
    library(dendextend)
    g <- ggplot(as.dendrogram(hclust(dist(mtcars))))
    built_plot <- ggplot_build(g)
-   expect_identical(names(attributes(built_plot)), c("class", "S7_class", "data", "layout", "plot"))
+   if (packageVersion("ggplot2") >= "4.0.0") {
+      expect_identical(names(attributes(built_plot)), c("class", "S7_class", "data", "layout", "plot"))
+   } else {
+      expect_identical(names(built_plot), c("data", "layout", "plot"))   
+   }
 })
 
 
