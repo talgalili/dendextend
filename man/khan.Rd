@@ -60,7 +60,8 @@ subset of non-Hodgkin lymphoma (BL), and the Ewing family of tumours
 (EWS). Gene expression profiles from both tumour biopsy and cell line
 samples were obtained and are contained in this dataset. The dataset downloaded
 from the website contained the filtered dataset of 2308 gene expression profiles as described
-by Khan et al., 2001.  This dataset is available from the \url{http://bioinf.ucd.ie/people/aedin/R/}.
+by Khan et al., 2001.  This dataset was available from the url bioinf.ucd.ie/people/aedin/R/
+(but the URL has been broken for a while since 2025)
 
 In order to reduce the size of the MADE4 package, and produce small example datasets, the top 50 genes from the
 ends of 3 axes following \code{bga} were selected. This produced a reduced datasets of 306 genes.
