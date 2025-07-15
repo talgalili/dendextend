@@ -21,7 +21,7 @@ compare all of the dendrograms within it to one another.'><!-- mathjax --><scrip
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dendextend</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.18.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.1</span>
       </span>
     </div>
 
@@ -80,18 +80,17 @@ compare all of the dendrograms within it to one another.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'equal.dendrogram'</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span></span>
-<span>  <span class="va">target</span>,</span>
-<span>  <span class="va">current</span>,</span>
-<span>  use.edge.length <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  use.tip.label.order <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  use.tip.label <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  use.topology <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  tolerance <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>,</span>
-<span>  scale <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  <span class="va">...</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'dendrogram'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">target</span>, <span class="va">current</span>,</span>
+<span>                                     use.edge.length <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                                     use.tip.label.order <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                                     use.tip.label <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                                     use.topology <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                                     tolerance <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>,</span>
+<span>                                     scale <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'dendlist'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">target</span>, <span class="va">current</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
