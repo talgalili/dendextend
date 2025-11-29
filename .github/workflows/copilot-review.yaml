@@ -1,0 +1,17 @@
+# Workflow to trigger GitHub Copilot code review on pull requests
+# See: https://docs.github.com/en/copilot/using-github-copilot/code-review/using-copilot-code-review
+on:
+  pull_request:
+
+name: Copilot Code Review
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  copilot-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copilot Code Review
+        uses: github/copilot-code-review-action@v1
