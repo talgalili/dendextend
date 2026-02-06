@@ -82,10 +82,36 @@ test_that("Get a dendrogram nodes attributes", {
     c(NA, NA, NA, NA, NA)
   )
 
-  # check the id paramter:
+  # check the id parameter:
+  # Note: with id parameter, get_nodes_attr returns attributes from the subtrees
+  # rooted at the specified node IDs
+  # For node 1 (root with all 3 nodes), we get all labels: c(NA, "Arizona", NA, "Alabama", "Alaska")
+  # But we should filter to only get leaves when using na.rm
   expect_identical(
-    get_nodes_attr(dend, "member", id = c(1, 3)),
-    c(3L, 2L)
+    get_nodes_attr(dend, "label", id = 1, na.rm = TRUE),
+    c("Arizona", "Alabama", "Alaska")
+  )
+  
+  # Test with an internal node - this tests the fix for the reported issue
+  # where getting labels from an internal node id should return all labels
+  # in that subtree, not just NA
+  # Node 3 is an internal node with 2 leaves
+  expect_identical(
+    get_nodes_attr(dend, "label", id = 3, na.rm = TRUE),
+    c("Alabama", "Alaska")
+  )
+  
+  # Without na.rm, should include the NA from the internal node itself
+  expect_identical(
+    get_nodes_attr(dend, "label", id = 3),
+    c(NA, "Alabama", "Alaska")
+  )
+  
+  # Test the new behavior with members attribute
+  # Node 1 is the root - its subtree contains all nodes
+  expect_identical(
+    get_nodes_attr(dend, "members", id = 1),
+    c(3L, 1L, 2L, 1L, 1L)
   )
 
 
