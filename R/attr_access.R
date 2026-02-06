@@ -375,12 +375,14 @@ get_nodes_attr <- function(dend, attribute,
   # If id is specified, collect attributes from subtrees rooted at those nodes
   if (!missing_id) {
     # First, map node IDs to their subtrees
-    subtrees <- list()
+    subtrees <- vector("list", length(id))
+    subtree_index <- 0
     i_node <- 0
     map_id_to_subtree <- function(dend_node) {
       i_node <<- i_node + 1
       if (i_node %in% id) {
-        subtrees[[length(subtrees) + 1]] <<- dend_node
+        subtree_index <<- subtree_index + 1
+        subtrees[[subtree_index]] <<- dend_node
       }
       return(invisible())
     }
@@ -388,14 +390,18 @@ get_nodes_attr <- function(dend, attribute,
     
     # Collect attributes from each subtree
     result_list <- list()
-    for (subtree in subtrees) {
-      # Recursively call get_nodes_attr on the subtree without id parameter
-      subtree_attrs <- get_nodes_attr(subtree, attribute,
-                                      include_leaves = include_leaves,
-                                      include_branches = include_branches,
-                                      simplify = FALSE,
-                                      na.rm = FALSE)
-      result_list <- c(result_list, subtree_attrs)
+    for (i in seq_along(subtrees)) {
+      subtree <- subtrees[[i]]
+      if (!is.null(subtree)) {
+        # Recursively call get_nodes_attr on the subtree without id parameter
+        subtree_attrs <- get_nodes_attr(subtree, attribute,
+                                        include_leaves = include_leaves,
+                                        include_branches = include_branches,
+                                        simplify = FALSE,
+                                        na.rm = FALSE)
+        # Efficiently append to result_list
+        result_list <- c(result_list, subtree_attrs)
+      }
     }
     dend_attr <- result_list
   } else {

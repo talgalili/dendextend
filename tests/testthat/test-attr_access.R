@@ -82,7 +82,7 @@ test_that("Get a dendrogram nodes attributes", {
     c(NA, NA, NA, NA, NA)
   )
 
-  # check the id paramter:
+  # check the id parameter:
   # Note: with id parameter, get_nodes_attr returns attributes from the subtrees
   # rooted at the specified node IDs
   # For node 1 (root with all 3 nodes), we get all labels: c(NA, "Arizona", NA, "Alabama", "Alaska")
