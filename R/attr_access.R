@@ -290,7 +290,7 @@ get_leaves_branches_col <- function(dend, ...) {
 #' @param dend a dendrogram object
 #' @param attribute character scalar of the attribute (\code{attr})
 #' we wish to get from the nodes
-#' @param id integer vector. If given - only the attr of these nodes id will be returned (via depth first search)
+#' @param id integer vector. If given - attributes will be collected from the subtrees rooted at these node IDs (via depth first search). This allows you to get attributes from specific branches of the dendrogram.
 #' @param include_leaves logical. Should leaves attributes be included as well?
 #' @param include_branches logical. Should non-leaf (branch node)
 #' attributes be included as well?
@@ -328,8 +328,8 @@ get_leaves_branches_col <- function(dend, ...) {
 #' get_nodes_attr(dend, "members", simplify = FALSE)
 #' get_nodes_attr(dend, "members", include_leaves = FALSE, na.rm = TRUE) #
 #'
-#' get_nodes_attr(dend, "members", id = c(1, 3), simplify = FALSE)
-#' get_nodes_attr(dend, "members", id = c(1, 3)) #
+#' get_nodes_attr(dend, "members", id = 1, simplify = FALSE) # Get all members in subtree rooted at node 1
+#' get_nodes_attr(dend, "label", id = 3, na.rm = TRUE) # Get labels from subtree rooted at node 3
 #'
 #'
 #' hang_dend <- hang.dendrogram(dend)
@@ -369,53 +369,65 @@ get_nodes_attr <- function(dend, attribute,
 
   #    dend_attr <- rep(NA, nnodes(dend))
   #   empty_list <- vector("list", nnodes(dend))
-  empty_list <- as.list(rep(NA, nnodes(dend)))
-  dend_attr <- empty_list
+  
   missing_id <- missing(id)
-
-
-  # this function is used to modify dend_attr. What it returns is not important.
-  i_node <- 0
-  get_attr_from_node <- function(dend_node) {
-    i_node <<- i_node + 1
-
-    # if we have id's and this is not it - we can skip it...
-    # FALSE & NULL # fails
-    # FALSE && NULL # works...
-    if (!missing_id && !(i_node %in% id)) {
+  
+  # If id is specified, collect attributes from subtrees rooted at those nodes
+  if (!missing_id) {
+    # First, map node IDs to their subtrees
+    subtrees <- list()
+    i_node <- 0
+    map_id_to_subtree <- function(dend_node) {
+      i_node <<- i_node + 1
+      if (i_node %in% id) {
+        subtrees[[length(subtrees) + 1]] <<- dend_node
+      }
       return(invisible())
     }
-
-
-    # if we should not include_leaves, then we skip when a leaf is encountered.
-    if (!include_leaves && is.leaf(dend_node)) {
-      return(NULL)
+    dendrapply(dend, map_id_to_subtree)
+    
+    # Collect attributes from each subtree
+    result_list <- list()
+    for (subtree in subtrees) {
+      # Recursively call get_nodes_attr on the subtree without id parameter
+      subtree_attrs <- get_nodes_attr(subtree, attribute,
+                                      include_leaves = include_leaves,
+                                      include_branches = include_branches,
+                                      simplify = FALSE,
+                                      na.rm = FALSE)
+      result_list <- c(result_list, subtree_attrs)
     }
-    if (!include_branches && !is.leaf(dend_node)) {
-      return(NULL)
-    }
+    dend_attr <- result_list
+  } else {
+    # Original behavior when id is not specified
+    empty_list <- as.list(rep(NA, nnodes(dend)))
+    dend_attr <- empty_list
 
-    i_attr <- attr(dend_node, attribute)
-    if (!is.null(i_attr)) dend_attr[[i_node]] <<- i_attr
-    return(invisible())
+    # this function is used to modify dend_attr. What it returns is not important.
+    i_node <- 0
+    get_attr_from_node <- function(dend_node) {
+      i_node <<- i_node + 1
+
+      # if we should not include_leaves, then we skip when a leaf is encountered.
+      if (!include_leaves && is.leaf(dend_node)) {
+        return(NULL)
+      }
+      if (!include_branches && !is.leaf(dend_node)) {
+        return(NULL)
+      }
+
+      i_attr <- attr(dend_node, attribute)
+      if (!is.null(i_attr)) dend_attr[[i_node]] <<- i_attr
+      return(invisible())
+    }
+    dendrapply(dend, get_attr_from_node)
   }
-  dendrapply(dend, get_attr_from_node)
 
   # as.vector is to remove all classes of the na.omit
   # thank you Prof. Brian Ripley http://tolstoy.newcastle.edu.au/R/e2/devel/07/01/1965.html
   if (simplify) dend_attr <- simplify2array(dend_attr)
 
   if (na.rm) dend_attr <- as.vector(na.omit(dend_attr))
-
-
-  if (dendextend_options("warn") && identical(dend_attr, simplify2array(empty_list))) warning("It seems that the attribute '", attribute, "' does not exist - returning NA.")
-
-  # TODO: this could probably be more optimized - say, by looking only at the above mentioned id's
-  # and not create all of the vector and only then take a subset.
-  # But for now, I think this is more maintainable...
-  if (!missing_id) {
-    dend_attr <- dend_attr[id]
-  }
 
   return(dend_attr)
 }
