@@ -92,15 +92,23 @@ test_that("Get a dendrogram nodes attributes", {
     c("Arizona", "Alabama", "Alaska")
   )
   
-  # Test with multiple ids - should get labels from both subtrees
-  # Node 3 is the internal node with 2 leaves
+  # Test with an internal node - this tests the fix for the reported issue
+  # where getting labels from an internal node id should return all labels
+  # in that subtree, not just NA
+  # Node 3 is an internal node with 2 leaves
   expect_identical(
     get_nodes_attr(dend, "label", id = 3, na.rm = TRUE),
     c("Alabama", "Alaska")
   )
   
-  # Test the old behavior with members attribute
-  # This test may need to be updated based on the new behavior
+  # Without na.rm, should include the NA from the internal node itself
+  expect_identical(
+    get_nodes_attr(dend, "label", id = 3),
+    c(NA, "Alabama", "Alaska")
+  )
+  
+  # Test the new behavior with members attribute
+  # Node 1 is the root - its subtree contains all nodes
   expect_identical(
     get_nodes_attr(dend, "members", id = 1),
     c(3L, 1L, 2L, 1L, 1L)
