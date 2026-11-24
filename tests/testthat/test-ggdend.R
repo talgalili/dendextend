@@ -161,16 +161,14 @@ test_that("as.ggdend.dendrogram works", {
   
 })
 
-test_that("ggplot doesn't have warnings for dendrograms", {
-   library(ggplot2)
-   library(dendextend)
-   g <- ggplot(as.dendrogram(hclust(dist(mtcars))))
-   built_plot <- ggplot_build(g)
-   if (packageVersion("ggplot2") >= "4.0.0") {
-      expect_identical(names(attributes(built_plot)), c("class", "S7_class", "data", "layout", "plot"))
-   } else {
-      expect_identical(names(built_plot), c("data", "layout", "plot"))   
-   }
+test_that("ggplot builds the dendrogram segments", {
+   dend <- as.dendrogram(hclust(dist(mtcars)))
+   plot <- ggplot2::ggplot(dend)
+
+   expect_equal(
+      nrow(ggplot2::layer_data(plot)),
+      nrow(as.ggdend(dend)$segments)
+   )
 })
 
 
